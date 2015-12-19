@@ -1,10 +1,9 @@
 import Ember from 'ember';
 import EmberValidations, { validator } from 'ember-validations';
-import { RoutableComponentMixin } from 'client/mixins/routable-component';
 import errorMessages from 'client/utils/error-messages';
 
 const {
-  Component,
+  Controller,
   isPresent,
   get,
   set,
@@ -12,9 +11,8 @@ const {
   inject: { service }
 } = Ember;
 
-export default Component.extend(EmberValidations, RoutableComponentMixin, {
+export default Controller.extend(EmberValidations, {
   currentSession: service(),
-  errorMessage: null,
   validations: {
     'model.email': {
       presence: true,
@@ -47,16 +45,21 @@ export default Component.extend(EmberValidations, RoutableComponentMixin, {
 
   actions: {
     createAccount() {
-      get(this, 'model').save().then(() => {
-        const identification = get(this, 'model.name');
-        const password = get(this, 'model.password');
-        get(this, 'currentSession').authenticateWithOAuth2(identification, password)
-          .catch((reason) => {
-            set(this, 'errorMessage', errorMessages(reason));
-          });
-      }).catch((reason) => {
-        set(this, 'errorMessage', errorMessages(reason));
-      });
+      get(this, 'model').save()
+        .then(() => {
+          const identification = get(this, 'model.name');
+          const password = get(this, 'model.password');
+          get(this, 'currentSession').authenticateWithOAuth2(identification, password)
+            .then(() => {
+              this.transitionToRoute('onboarding.start');
+            })
+            .catch((reason) => {
+              set(this, 'errorMessage', errorMessages(reason));
+            });
+        })
+        .catch((reason) => {
+          set(this, 'errorMessage', errorMessages(reason));
+        });
     }
   }
 });
