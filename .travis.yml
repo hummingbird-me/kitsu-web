@@ -8,7 +8,6 @@ before_install:
   - "npm config set spin false"
 
 install:
-  - cd client
   - travis_retry npm install -g bower
   - travis_retry npm install phantomjs-prebuilt
   - travis_retry npm install
