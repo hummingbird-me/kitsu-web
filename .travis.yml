@@ -1,19 +1,19 @@
 language: node_js
 node_js:
-  - "5.9"
+- '5.9'
 
 sudo: false
 
 before_install:
-  - "npm config set spin false"
+- npm config set spin false
 
 install:
-  - travis_retry npm install -g bower
-  - travis_retry npm install phantomjs-prebuilt
-  - travis_retry npm install
-  - travis_retry bower install
+- travis_retry npm install -g bower
+- travis_retry npm install phantomjs-prebuilt
+- travis_retry npm install
+- travis_retry bower install
 
 cache:
   directories:
-    - node_modules
-    - bower_components
+  - node_modules
+  - bower_components
