@@ -1,33 +1,27 @@
-<button type="button" class="dropdown button"
-  disabled={{if (or updateTask.isRunning (not entryIsLoaded)) "disabled"}}
-  data-toggle="{{elementId}}-dropdown" data-test-selector="library-dropdown">
-  {{#if updateTask.isIdle}}
-    {{#if entry}}
-      {{currentStatus}}
-    {{else}}
-      {{#if entryIsLoaded}}
-        Add to Library
+{{#bootstrap/bs-dropdown as |dropdown|}}
+  {{#dropdown.button disabled=(if (or updateTask.isRunning (not entryIsLoaded)) "disabled") data-test-selector="library-dropdown"}}
+    {{#if updateTask.isIdle}}
+      {{#if entry}}
+        {{currentStatus}}
       {{else}}
-        Loading...
-        {{fa-icon "spinner" spin=true}}
+        {{#if entryIsLoaded}}
+          Add to Library
+        {{else}}
+          Loading...
+          {{fa-icon "spinner" spin=true}}
+        {{/if}}
       {{/if}}
+    {{else}}
+      Updating...
+      {{fa-icon "spinner" spin=true}}
     {{/if}}
-  {{else}}
-    Updating...
-    {{fa-icon "spinner" spin=true}}
-  {{/if}}
-</button>
+  {{/dropdown.button}}
 
-{{!-- TODO: Needs to be changed to Bootstrap
-{{#zf-dropdown id=(concat elementId "-dropdown")}}
-  <ul class="no-bullet">
+  {{#dropdown.menu}}
     {{#each statuses as |status|}}
-      <li data-test-selector="library-dropdown-list-item">
-        <a onclick={{perform updateTask status}}>
-          {{status.string}}
-        </a>
-      </li>
+      {{#dropdown.menu-item data-test-selector="library-dropdown-item" onClick=(perform updateTask status)}}
+        {{status.string}}
+      {{/dropdown.menu-item}}
     {{/each}}
-  </ul>
-{{/zf-dropdown}}
---}}
+  {{/dropdown.menu}}
+{{/bootstrap/bs-dropdown}}

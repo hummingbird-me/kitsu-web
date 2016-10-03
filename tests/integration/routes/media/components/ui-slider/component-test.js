@@ -61,7 +61,7 @@ test('actions are called', function(assert) {
   const [$el] = this.$('.noUi-target');
   const event = document.createEvent('MouseEvents');
   event.initMouseEvent('mousedown', true, true, window, null, 0, 0,
-    offset($el).left + 100, offset($el).top + 8, '',
+    offset($el).left + 100, offset($el).top + 8,
     false, false, false, false, 0, null);
   $el.querySelectorAll('.noUi-origin')[0].dispatchEvent(event);
 });

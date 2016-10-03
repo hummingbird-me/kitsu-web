@@ -98,21 +98,16 @@
           <div class="dropdown-rating">
             {{! Privacy }}
             {{#if isOwner}}
-              <button type="button" class="dropdown button" data-toggle="{{entry.id}}-privacy-dropdown">
-                {{if entry.private (t "users.library.private") (t "users.library.public")}}
-              </button>
-
-              {{!-- TODO: Needs to be changed to Bootstrap
-              {{#zf-dropdown id=(concat entry.id "-privacy-dropdown")}}
-                <ul class="no-bullet">
-                  <li>
-                    <a {{action (perform updateProperty "private" (not entry.private) false)}}>
-                      {{if entry.private (t "users.library.public") (t "users.library.private")}}
-                    </a>
-                  </li>
-                </ul>
-              {{/zf-dropdown}}
-              --}}
+              {{#bootstrap/bs-dropdown as |dropdown|}}
+                {{#dropdown.button}}
+                  {{if entry.private (t "users.library.private") (t "users.library.public")}}
+                {{/dropdown.button}}
+                {{#dropdown.menu}}
+                  {{#dropdown.menu-item onClick=(perform updateProperty "private" (not entry.private) false)}}
+                    {{if entry.private (t "users.library.public") (t "users.library.private")}}
+                  {{/dropdown.menu-item}}
+                {{/dropdown.menu}}
+              {{/bootstrap/bs-dropdown}}
             {{/if}}
 
             {{! Rating }}

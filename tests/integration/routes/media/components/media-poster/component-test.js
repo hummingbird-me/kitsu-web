@@ -13,8 +13,9 @@ test('it renders', function(assert) {
   assert.equal($el.length, 1);
 
   // trailer modal can be opened
-  assert.equal(jQuery('[data-reveal]').length, 0);
+  assert.equal(jQuery('.modal').length, 0);
   const $trailer = this.$('[data-test-selector="media-poster-trailer"]');
   $trailer.find('a').click();
-  assert.equal(jQuery('[data-reveal]').length, 1);
+  assert.equal(jQuery('.modal').length, 1);
+  jQuery('.modal').modal('hide');
 });

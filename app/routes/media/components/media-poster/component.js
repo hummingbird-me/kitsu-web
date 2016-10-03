@@ -12,16 +12,13 @@ export default Component.extend({
     return `${get(this, 'media').constructor.modelName}.show`;
   }),
 
-  trailerId: getter(function() {
-    return `${get(this, 'elementId')}-trailer`;
-  }),
-
   actions: {
     openTrailer() {
-      this.$().off('closed.zf.reveal').on('closed.zf.reveal', () => {
-        set(this, 'trailerOpen', false);
-      });
       set(this, 'trailerOpen', true);
+    },
+
+    closeTrailer() {
+      set(this, 'trailerOpen', false);
     }
   }
 });
