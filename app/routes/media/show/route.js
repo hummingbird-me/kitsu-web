@@ -3,7 +3,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { assert } from 'ember-metal/utils';
 import service from 'ember-service/inject';
-import LibraryEntryMixin from 'client/mixins/library-entry';
+import LibraryEntryMixin from 'client/mixins/routes/library-entry';
 
 export default Route.extend(LibraryEntryMixin, {
   mediaType: undefined,

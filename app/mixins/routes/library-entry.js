@@ -5,7 +5,6 @@ import { capitalize } from 'ember-string';
 
 export default Mixin.create({
   session: service(),
-  store: service(),
 
   _getLibraryEntry(media) {
     if (get(this, 'session.isAuthenticated') === false) {
