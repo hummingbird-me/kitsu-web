@@ -1,23 +1,19 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import computed from 'ember-computed';
-import { task } from 'ember-concurrency';
-import { assert } from 'ember-metal/utils';
+import computed, { or } from 'ember-computed';
 import service from 'ember-service/inject';
 import libraryStatus from 'client/utils/library-status';
-import RSVP from 'rsvp';
 
-const REMOVE_KEY = 'library.remove';
+export const REMOVE_KEY = 'library.remove';
 
 export default Component.extend({
-  entryIsLoaded: false,
   i18n: service(),
+  isWaiting: or('requestEntry.isRunning', 'updateTask.isRunning'),
 
   currentStatus: computed('entry.status', {
     get() {
-      const entry = get(this, 'entry');
-      const status = get(entry, 'status');
+      const status = get(this, 'entry.status');
       const type = get(this, 'mediaType');
       return get(this, 'i18n').t(`library.statuses.${type}.${status}`).toString();
     }
@@ -43,28 +39,10 @@ export default Component.extend({
     }
   }).readOnly(),
 
-  updateTask: task(function *(status) {
-    const entry = get(this, 'entry');
-    if (entry === undefined && get(this, 'entryIsLoaded') === true) {
-      yield get(this, 'create')(status.key);
-    } else if (entry !== undefined) {
-      if (status.key === REMOVE_KEY) {
-        yield get(this, 'delete')();
-      } else {
-        yield get(this, 'update')(status.key);
-      }
-    }
-  }).drop(),
-
   init() {
     this._super(...arguments);
-    assert('`{{library-dropdown}}` requires a `mediaType` param',
-      get(this, 'mediaType') !== undefined);
-    assert('`{{library-dropdown}}` requires a `promise` param when `entry` is undefined',
-      (get(this, 'promise') !== undefined && get(this, 'entry') === undefined) ||
-      (get(this, 'promise') === undefined && get(this, 'entry') !== undefined));
-
-    const promise = get(this, 'promise');
-    RSVP.resolve(promise).then(() => set(this, 'entryIsLoaded', true));
+    const media = get(this, 'media');
+    const type = media.constructor.modelName || get(media, 'content').constructor.modelName;
+    set(this, 'mediaType', type);
   }
 });

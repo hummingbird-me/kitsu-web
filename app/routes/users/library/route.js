@@ -6,10 +6,9 @@ import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 import libraryStatus from 'client/utils/library-status';
 import PaginationMixin from 'client/mixins/routes/pagination';
-import LibraryEntryMixin from 'client/mixins/routes/library-entry';
 import jQuery from 'jquery';
 
-export default Route.extend(PaginationMixin, LibraryEntryMixin, {
+export default Route.extend(PaginationMixin, {
   queryParams: {
     media: { refreshModel: true },
     status: { refreshModel: true }

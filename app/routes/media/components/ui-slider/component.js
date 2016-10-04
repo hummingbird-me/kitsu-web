@@ -29,7 +29,7 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    const [$el] = this.$();
+    const elem = this.$()[0];
     const options = get(this, '_options');
     const selected = [get(options, 'initialStart')];
     if (get(options, 'doubleSided') === true) {
@@ -37,7 +37,7 @@ export default Component.extend({
     }
 
     const decimal = get(options, 'decimal');
-    noUiSlider.create($el, {
+    noUiSlider.create(elem, {
       start: selected,
       connect: get(options, 'doubleSided'),
       step: get(options, 'step'),
@@ -55,7 +55,7 @@ export default Component.extend({
         }
       }
     });
-    $el.noUiSlider.on('slide', (values) => get(this, 'onUpdate')(values));
-    $el.noUiSlider.on('set', () => get(this, 'onRelease')());
+    elem.noUiSlider.on('slide', (values) => get(this, 'onUpdate')(values));
+    elem.noUiSlider.on('set', () => get(this, 'onRelease')());
   }
 });

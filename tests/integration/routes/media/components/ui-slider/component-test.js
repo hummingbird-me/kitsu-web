@@ -34,10 +34,10 @@ test('decimal setting is respected', function(assert) {
     }}
   `);
 
-  const [$el] = this.$('.noUi-target');
-  assert.deepEqual($el.noUiSlider.get(), [50, 90]);
-  $el.noUiSlider.set([25.125, null]);
-  assert.deepEqual($el.noUiSlider.get(), [25.13, 90]);
+  const elem = this.$('.noUi-target')[0];
+  assert.deepEqual(elem.noUiSlider.get(), [50, 90]);
+  elem.noUiSlider.set([25.125, null]);
+  assert.deepEqual(elem.noUiSlider.get(), [25.13, 90]);
 });
 
 test('actions are called', function(assert) {
@@ -58,10 +58,10 @@ test('actions are called', function(assert) {
       y: rect.top + this.$()[0].scrollTop
     };
   };
-  const [$el] = this.$('.noUi-target');
+  const elem = this.$('.noUi-target')[0];
   const event = document.createEvent('MouseEvents');
   event.initMouseEvent('mousedown', true, true, window, null, 0, 0,
-    offset($el).left + 100, offset($el).top + 8,
+    offset(elem).left + 100, offset(elem).top + 8,
     false, false, false, false, 0, null);
-  $el.querySelectorAll('.noUi-origin')[0].dispatchEvent(event);
+  elem.querySelectorAll('.noUi-origin')[0].dispatchEvent(event);
 });

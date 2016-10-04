@@ -1,19 +1,13 @@
 {{#bootstrap/bs-dropdown as |dropdown|}}
-  {{#dropdown.button disabled=(if (or updateTask.isRunning (not entryIsLoaded)) "disabled") data-test-selector="library-dropdown"}}
-    {{#if updateTask.isIdle}}
+  {{#dropdown.button disabled=(if isWaiting "disabled") data-test-selector="library-dropdown"}}
+    {{#if isWaiting}}
+      {{fa-icon "spinner" spin=true}}
+    {{else}}
       {{#if entry}}
         {{currentStatus}}
       {{else}}
-        {{#if entryIsLoaded}}
-          Add to Library
-        {{else}}
-          Loading...
-          {{fa-icon "spinner" spin=true}}
-        {{/if}}
+        Add to Library
       {{/if}}
-    {{else}}
-      Updating...
-      {{fa-icon "spinner" spin=true}}
     {{/if}}
   {{/dropdown.button}}
 

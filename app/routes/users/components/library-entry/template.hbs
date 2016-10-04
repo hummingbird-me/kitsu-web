@@ -86,9 +86,9 @@
           {{#if isOwner}}
             {{! Library Status }}
             <div class="status-select">
-              {{library-dropdown
+              {{library-dropdown/entry
                 entry=entry
-                mediaType=mediaType
+                media=entry.media
                 update=(action "updateEntry" "status")
                 delete=(action "deleteEntry")
               }}
