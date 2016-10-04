@@ -50,8 +50,12 @@ export default Component.extend({
   }),
 
   actions: {
-    update(records) {
-      get(this, 'update')(records);
+    update(entry) {
+      get(this, 'update')(entry);
+    },
+
+    delete(entry) {
+      get(this, 'delete')(entry);
     }
   }
 });

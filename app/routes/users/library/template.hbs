@@ -47,6 +47,8 @@
               entries=entries
               mediaType=media
               isLoading=isLoading
+              update=(route-action "updateEntry")
+              delete=(route-action "deleteEntry")
             }}
           {{/if}}
         {{/each-in}}
@@ -56,6 +58,8 @@
           entries=filteredEntries
           mediaType=media
           isLoading=isLoading
+          update=(route-action "updateEntry")
+          delete=(route-action "deleteEntry")
         }}
       {{/if}}
 

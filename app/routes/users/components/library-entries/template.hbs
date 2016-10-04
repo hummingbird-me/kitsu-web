@@ -11,8 +11,8 @@
       {{users/components/library-entry
         entry=entry
         mediaType=mediaType
-        update=(route-action "updateEntry" entry)
-        delete=(route-action "deleteEntry" entry)
+        update=(action "update" entry)
+        delete=(action "delete" entry)
       }}
     {{/each}}
   {{else}}
