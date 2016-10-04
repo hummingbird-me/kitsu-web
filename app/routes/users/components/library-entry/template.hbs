@@ -112,11 +112,13 @@
 
             {{! Rating }}
             <div class="rating-options">
-              {{#each (repeat 5) as |_|}}
-                <span class="icon-container" data-rating="1">
-                  {{fa-icon "star-o"}}
-                </span>
-              {{/each}}
+              {{star-rating entry.rating
+                options=(hash
+                  readOnly=(not isOwner)
+                  halfStar=true
+                )
+                onSet=(perform updateProperty "rating")
+              }}
             </div>
           </div>
 
