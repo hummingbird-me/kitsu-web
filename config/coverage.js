@@ -1,5 +1,6 @@
 /* global module */
 
 module.exports = {
-  reporters: ['html', 'text']
+  reporters: ['lcov', 'text'],
+  useBabelInstrumenter: true
 };

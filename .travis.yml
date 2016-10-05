@@ -13,6 +13,9 @@ install:
 - travis_retry npm install
 - travis_retry bower install
 
+after_script:
+- codeclimate-test-reporter < coverage/lcov.info
+
 cache:
   directories:
   - node_modules
