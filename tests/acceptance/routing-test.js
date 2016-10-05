@@ -17,45 +17,6 @@ test('visiting `/` works when unauthenticated', function(assert) {
   andThen(() => assert.equal(currentURL(), '/'));
 });
 
-test('visiting `/sign-in` redirects to `/` when authenticated', function(assert) {
-  assert.expect(1);
-  authenticateSession(this.application);
-  // create user for `service:current-session#getCurrentUser`
-  server.create('user');
-  visit('/sign-in');
-  andThen(() => assert.equal(currentURL(), '/'));
-});
-
-test('visiting `/sign-in` works when unauthenticated', function(assert) {
-  assert.expect(1);
-  invalidateSession(this.application);
-  visit('/sign-in');
-  andThen(() => assert.equal(currentURL(), '/sign-in'));
-});
-
-test('visiting `/sign-up` redirects to `/` when authenticated', function(assert) {
-  assert.expect(1);
-  authenticateSession(this.application);
-  // create user for `service:current-session#getCurrentUser`
-  server.create('user');
-  visit('/sign-up');
-  andThen(() => assert.equal(currentURL(), '/'));
-});
-
-test('visiting `/sign-up` works when unauthenticated', function(assert) {
-  assert.expect(1);
-  invalidateSession(this.application);
-  visit('/sign-up');
-  andThen(() => assert.equal(currentURL(), '/sign-up'));
-});
-
-test('visiting `/onboarding` redirects to `/sign-in` when unauthenticated', function(assert) {
-  assert.expect(1);
-  invalidateSession(this.application);
-  visit('/onboarding');
-  andThen(() => assert.equal(currentURL(), '/sign-in'));
-});
-
 test('visiting an unknown route redirects to `/404`', function(assert) {
   assert.expect(2);
   visit('/doesnt-exist');

@@ -35,14 +35,6 @@ RouterInstance.map(function() {
     this.route('lists');
   });
 
-  this.route('onboarding', function() {
-    this.route('start');
-  });
-
-  // Authentication
-  this.route('sign-up');
-  this.route('sign-in');
-
   // These must remain at the bottom of the RouterInstance map
   this.route('server-error', { path: '/500' });
   this.route('not-found', { path: '/*path' });

@@ -2,32 +2,21 @@
  * Translation file for English.
  */
 export default {
-  // Static page titles. Keys must match the route name
+  /**
+   * Keys of `titles` must match their route name.
+   */
   titles: {
     anime: {
       index: 'Explore Anime'
     },
     dashboard: 'Dashboard',
     'not-found': '404',
-    onboarding: {
-      start: 'Onboarding Start'
-    },
     'server-error': '500',
-    'sign-in': 'Sign In',
-    'sign-up': 'Sign Up',
     users: {
       index: '{{user}}\'s Profile',
       library: '{{user}}\'s Library',
       lists: '{{user}}\'s List',
       reviews: '{{user}}\'s Reviews'
-    }
-  },
-  // Text for links
-  links: {
-    auth: {
-      'sign-up': 'Sign Up',
-      'sign-in': 'Sign In',
-      logout: 'Logout'
     }
   },
   media: {
@@ -109,28 +98,14 @@ export default {
     forums: 'Forums',
     downloads: 'Downloads',
     user: {
-      profile: 'View Profile'
+      profile: 'View Profile',
+      logout: 'Logout'
     }
   },
   // Global footer
   footer: {
     header: 'Find an anime, manga, or drama',
     'search-placeholder': 'Search by title...'
-  },
-  // Sign in route text
-  'sign-in': {
-    header: 'Sign in to Hummingbird',
-    identification: 'Email or Username',
-    password: 'Password',
-    'no-account': 'Don\'t have an account yet?'
-  },
-  // Sign up route text
-  'sign-up': {
-    header: 'Sign up for Hummingbird',
-    username: 'Username',
-    email: 'Email',
-    password: 'Password',
-    'has-account': 'Already have an account?'
   },
   // Users route text
   users: {
