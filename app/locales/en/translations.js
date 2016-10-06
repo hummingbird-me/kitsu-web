@@ -19,6 +19,16 @@ export default {
       reviews: '{{user}}\'s Reviews'
     }
   },
+  'auth-modal': {
+    'sign-up': {
+      submit: {
+        base: 'Let\'s get some basic info first',
+        first: 'Very witty - email is next!',
+        second: 'Looks legit, how about a password?',
+        last: 'Cool - Let\'s create that account'
+      }
+    }
+  },
   media: {
     anime: {
       name: 'Anime',

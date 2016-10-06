@@ -15,8 +15,11 @@ export default Component.extend({
   }),
 
   didInsertElement() {
-    this.$().off('hide.bs.modal').on('hide.bs.modal', (e) => {
-      get(this, 'onClose')(e);
+    this.$().off('hide.bs.modal').on('hide.bs.modal', (event) => {
+      const onClose = get(this, 'onClose');
+      if (onClose !== undefined) {
+        onClose(event);
+      }
     });
   }
 });

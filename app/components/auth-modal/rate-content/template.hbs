@@ -1,0 +1,53 @@
+<!-- Placeholder Template -->
+<h4>Rate the content you've seen</h4>
+
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#anime" role="tab" {{action "updateTab" "anime"}}>
+      Anime
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#manga" role="tab" {{action "updateTab" "manga"}}>
+      Manga
+    </a>
+  </li>
+  <li>
+    {{one-way-search
+      update=(action "updateContent")
+      placeholder="Search by media title..."}}
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="anime" role="tabpanel">
+    {{#if query.isRunning}}
+      {{fa-icon "spinner" spin=true}}
+    {{else}}
+      {{#each media as |anime|}}
+        <img src="https://static.hummingbird.me/anime/poster_images/000/000/001/large/hNSma.jpg?1431697256">
+        {{star-rating
+          options=(hash halfStar=true)
+          onSet=(action "createLibraryEntry" anime)}}
+      {{/each}}
+    {{/if}}
+  </div>
+
+  <div class="tab-pane" id="manga" role="tabpanel">
+    {{#if query.isRunning}}
+      {{fa-icon "spinner" spin=true}}
+    {{else}}
+      {{#each media as |manga|}}
+        <img src="https://static.hummingbird.me/anime/poster_images/000/000/001/large/hNSma.jpg?1431697256">
+        {{star-rating
+          options=(hash halfStar=true)
+          onSet=(action "createLibraryEntry" manga)}}
+      {{/each}}
+    {{/if}}
+  </div>
+</div>
+
+Number: {{numRated}} / 5
+<button type="button" class="btn btn-primary" {{action "changeComponent" "find-friends"}}>
+  Rate {{numRatedLeft}} to continue
+</button>

@@ -1,6 +1,6 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'client/tests/helpers/module-for-acceptance';
-import { authenticateSession, invalidateSession } from 'client/tests/helpers/ember-simple-auth';
+import { invalidateSession } from 'client/tests/helpers/ember-simple-auth';
 
 moduleForAcceptance('Acceptance | Routing');
 
