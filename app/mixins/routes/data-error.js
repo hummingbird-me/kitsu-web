@@ -8,7 +8,6 @@ export default Mixin.create({
       if (status === '500') {
         this.replaceWith('server-error');
       } else {
-        console.error(reason);
         this.replaceWith('/404');
       }
     }
