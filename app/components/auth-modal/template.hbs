@@ -1,7 +1,7 @@
-{{#bootstrap/bs-modal id="auth-modal" as |modal|}}
+{{#bootstrap/bs-modal id="auth-modal" onClose=(action "onClose") as |modal|}}
   {{#modal.body}}
     {{component componentName
       changeComponent=(action "changeComponent")
-      close=(action "close")}}
+      close=(action "closeModal")}}
   {{/modal.body}}
 {{/bootstrap/bs-modal}}

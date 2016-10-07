@@ -1,7 +1,9 @@
 <!-- Placeholder Template -->
 <form>
   {{#if errorMessage}}
-    {{errorMessage}}
+    <div data-test-selector="error-message">
+      {{errorMessage}}
+    </div>
   {{/if}}
 
   <div class="form-group {{if hasInvalidName "has-warning"}} {{if hasValidName "has-success"}}">
@@ -47,7 +49,7 @@
   <div class="form-group">
     <button type="submit" class="btn btn-primary"
             disabled={{if user.validations.isInvalid "disabled"}}
-            data-test-selector="sign-up"
+            data-test-selector="create-account"
             {{action (perform createAccount)}}>
       {{#if createAccount.isRunning}}
         {{fa-icon "spinner" spin=true}}

@@ -9,7 +9,7 @@ export default Mixin.create({
         this.replaceWith('server-error');
       } else {
         console.error(reason);
-        //this.replaceWith('/404');
+        this.replaceWith('/404');
       }
     }
   }

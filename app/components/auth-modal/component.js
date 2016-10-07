@@ -17,20 +17,21 @@ export default Component.extend({
     }
   }),
 
-  /**
-   * TODO: Remove after testing
-   */
   didInsertElement() {
     this.$('.modal').modal();
   },
 
   actions: {
+    onClose() {
+      get(this, 'onClose')();
+    },
+
     changeComponent(component) {
       set(this, '_component', component);
       this.$('.modal').data('bs.modal')._handleUpdate();
     },
 
-    close() {
+    closeModal() {
       this.$('.modal').modal('hide');
     }
   }

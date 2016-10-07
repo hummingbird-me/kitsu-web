@@ -3,7 +3,10 @@ import hbs from 'htmlbars-inline-precompile';
 import jQuery from 'jquery';
 
 moduleForComponent('media-poster', 'Integration | Component | media-poster', {
-  integration: true
+  integration: true,
+  beforeEach() {
+    jQuery('#ember-testing').append('<div id="wormhole"></div>');
+  }
 });
 
 test('it renders', function(assert) {

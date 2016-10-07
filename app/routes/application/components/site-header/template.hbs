@@ -65,6 +65,16 @@
               {{fa-icon "search"}}
             </a>
           </li>
+          <li>
+            <a href="#" class="btn btn-primary" {{action "toggleAuth" true}} data-test-selector="sign-up-header">
+              Sign Up / In
+            </a>
+            {{#if authOpened}}
+              {{#ember-wormhole to="wormhole"}}
+                {{auth-modal onClose=(action "toggleAuth" false)}}
+              {{/ember-wormhole}}
+            {{/if}}
+          </li>
         </ul>
       {{/if}}
     </div>
