@@ -12,6 +12,5 @@ export function initialize() {
 
 export default {
   name: 'inflections',
-  before: 'ember-cli-mirage',
   initialize
 };

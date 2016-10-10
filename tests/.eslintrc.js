@@ -3,6 +3,6 @@ module.exports = {
     embertest: true
   },
   globals: {
-    server: true
+    "Pretender": true
   }
 };

@@ -47,9 +47,8 @@
   </div>
 
   <div class="form-group">
-    <button type="submit" class="btn btn-primary"
+    <button type="submit" class="btn btn-primary" data-test-selector="create-account"
             disabled={{if user.validations.isInvalid "disabled"}}
-            data-test-selector="create-account"
             {{action (perform createAccount)}}>
       {{#if createAccount.isRunning}}
         {{fa-icon "spinner" spin=true}}

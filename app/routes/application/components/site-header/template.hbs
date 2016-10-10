@@ -66,17 +66,19 @@
             </a>
           </li>
           <li>
-            <a href="#" class="btn btn-primary" {{action "toggleAuth" true}} data-test-selector="sign-up-header">
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#auth-modal"
+              data-test-selector="sign-up-header" {{action "toggleAuth" true}}>
               Sign Up / In
             </a>
-            {{#if authOpened}}
-              {{#ember-wormhole to="wormhole"}}
-                {{auth-modal onClose=(action "toggleAuth" false)}}
-              {{/ember-wormhole}}
-            {{/if}}
           </li>
         </ul>
       {{/if}}
     </div>
   </div>
 </div>
+
+{{#if authOpened}}
+  {{#ember-wormhole to="wormhole"}}
+    {{auth-modal onClose=(action "toggleAuth" false)}}
+  {{/ember-wormhole}}
+{{/if}}

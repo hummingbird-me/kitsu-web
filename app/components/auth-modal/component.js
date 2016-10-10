@@ -17,10 +17,6 @@ export default Component.extend({
     }
   }),
 
-  didInsertElement() {
-    this.$('.modal').modal();
-  },
-
   actions: {
     onClose() {
       get(this, 'onClose')();
