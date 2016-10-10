@@ -16,7 +16,7 @@ export default Controller.extend({
    */
   mediaList: computed('media', {
     get() {
-      const list = ['anime', 'drama', 'manga'];
+      const list = ['anime', 'manga'];
       const media = get(this, 'media');
       list.splice(list.findIndex((m) => m === media), 1);
       return list;

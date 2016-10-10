@@ -24,13 +24,6 @@ export default Controller.extend({
     }
   }),
 
-  isDrama: getter(function() {
-    const media = get(this, 'model.firstObject');
-    if (media !== undefined) {
-      return media.constructor.modelName === 'drama';
-    }
-  }),
-
   isManga: getter(function() {
     const media = get(this, 'model.firstObject');
     if (media !== undefined) {

@@ -23,7 +23,7 @@ RouterInstance.map(function() {
   this.route('dashboard', { path: '/' });
   this.route('dashboard/redirect', { path: '/dashboard' });
 
-  ['anime', 'drama', 'manga'].forEach((media) => {
+  ['anime', 'manga'].forEach((media) => {
     this.route(media, function() {
       this.route('show', { path: '/:slug' });
     });

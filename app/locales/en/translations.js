@@ -51,14 +51,6 @@ export default {
         doujin: 'Doujin'
       }
     },
-    drama: {
-      name: 'Drama',
-      'show-type': {
-        drama: 'Drama',
-        movie: 'Movie',
-        special: 'Drama Special'
-      }
-    },
     routes: {
       index: {
         filter: {
@@ -91,14 +83,6 @@ export default {
         completed: 'Completed',
         on_hold: 'On Hold',
         dropped: 'Dropped'
-      },
-      drama: {
-        all: 'All',
-        current: 'Currently Watching',
-        planned: 'Plan To Watch',
-        completed: 'Completed',
-        on_hold: 'On Hold',
-        dropped: 'Dropped'
       }
     }
   },
@@ -114,7 +98,7 @@ export default {
   },
   // Global footer
   footer: {
-    header: 'Find an anime, manga, or drama',
+    header: 'Find an anime or manga',
     'search-placeholder': 'Search by title...'
   },
   // Users route text

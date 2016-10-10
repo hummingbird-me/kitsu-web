@@ -19,9 +19,8 @@ module('Unit | Initializer | inflections', {
 });
 
 test('it works', function(assert) {
-  assert.expect(3);
+  assert.expect(2);
   initialize(this.registry, this.application);
   assert.equal(pluralize('anime'), 'anime');
   assert.equal(pluralize('manga'), 'manga');
-  assert.equal(pluralize('drama'), 'drama');
 });
