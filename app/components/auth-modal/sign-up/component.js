@@ -58,7 +58,10 @@ export default Component.extend({
         const { name: identification, password } = getProperties(user, 'name', 'password');
         get(this, 'session')
           .authenticateWithOAuth2(identification, password)
-          .then(() => get(this, 'changeComponent')('import-select'))
+          .then(() => {
+            set(user, 'password', undefined);
+            get(this, 'changeComponent')('import-select');
+          })
           .catch((err) => set(this, 'errorMessage', errorMessage(err)));
       })
       .catch((err) => set(this, 'errorMessage', errorMessage(err)));
