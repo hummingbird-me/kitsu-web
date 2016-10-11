@@ -2,6 +2,7 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'client/tests/helpers/module-for-acceptance';
 import { authenticateSession } from 'client/tests/helpers/ember-simple-auth';
 import testSelector from 'client/tests/helpers/ember-test-selectors';
+import Pretender from 'pretender';
 import JaQuery from 'client/tests/ember-ja-query';
 import { arrayResponse as animeResponse } from 'client/tests/responses/anime';
 import { arrayResponse as genresResponse } from 'client/tests/responses/genre';

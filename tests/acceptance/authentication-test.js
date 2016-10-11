@@ -2,6 +2,7 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'client/tests/helpers/module-for-acceptance';
 import { currentSession } from 'client/tests/helpers/ember-simple-auth';
 import testSelector from 'client/tests/helpers/ember-test-selectors';
+import Pretender from 'pretender';
 import jQuery from 'jquery';
 import JaQuery from 'client/tests/ember-ja-query';
 import {
