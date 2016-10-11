@@ -16,8 +16,6 @@ RUN bower install --allow-root -q
 COPY . /opt/hummingbird/client
 
 ENTRYPOINT ["./node_modules/.bin/ember"]
-# If you are using Docker for Windows or Docker Toolbox, you may want to add the
-# following parameter: --watcher=polling
 CMD ["serve", "--port=80", "--environment=development", "--live-reload-port=57777"]
 EXPOSE 57777
 EXPOSE 80
