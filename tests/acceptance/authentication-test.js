@@ -4,8 +4,11 @@ import { currentSession } from 'client/tests/helpers/ember-simple-auth';
 import testSelector from 'client/tests/helpers/ember-test-selectors';
 import jQuery from 'jquery';
 import JaQuery from 'client/tests/ember-ja-query';
-import usersResponse, { objectResponse as singleUser } from 'client/tests/helpers/responses/user';
-import tokenResponse from 'client/tests/helpers/responses/token';
+import {
+  arrayResponse as usersResponse,
+  objectResponse as singleUser
+} from 'client/tests/responses/user';
+import tokenResponse from 'client/tests/responses/token';
 
 moduleForAcceptance('Acceptance | Authentication', {
   beforeEach() {
@@ -19,6 +22,9 @@ moduleForAcceptance('Acceptance | Authentication', {
   }
 });
 
+/**
+ * Sign Up Tests
+ */
 test('can create an account', function(assert) {
   this.server = new Pretender(function() {
     this.post('/api/edge/users', function() {
@@ -31,7 +37,7 @@ test('can create an account', function(assert) {
       return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
     });
 
-    this.post('/api/oauth/token', () => {
+    this.post('/api/oauth/token', function() {
       return [200, { 'Content-Type': 'application/json' }, JSON.stringify(tokenResponse)];
     });
   });
@@ -51,7 +57,7 @@ test('can create an account', function(assert) {
   });
 });
 
-test('displays error on account creation', function(assert) {
+test('shows an error when using incorrect details on sign up', function(assert) {
   this.server = new Pretender(function() {
     this.post('/api/edge/users', function() {
       const data = { errors: [{ detail: 'email is already taken.' }] };
@@ -73,6 +79,47 @@ test('displays error on account creation', function(assert) {
   });
 });
 
+test('shows validation warnings on input fields', function(assert) {
+  visit('/');
+  click(testSelector('selector', 'sign-up-header'));
+  click(testSelector('selector', 'sign-up-email'), '#wormhole');
+
+  fillIn(testSelector('selector', 'username'), '#wormhole', '1234');
+  andThen(() => {
+    const error = find(testSelector('selector', 'validation-username'), '#wormhole');
+    assert.equal(error.length, 1);
+  });
+
+  fillIn(testSelector('selector', 'email'), '#wormhole', 'bob@acme');
+  andThen(() => {
+    const error = find(testSelector('selector', 'validation-email'), '#wormhole');
+    assert.equal(error.length, 1);
+  });
+
+  fillIn(testSelector('selector', 'password'), '#wormhole', 'nope');
+  andThen(() => {
+    const error = find(testSelector('selector', 'validation-password'), '#wormhole');
+    assert.equal(error.length, 1);
+  });
+});
+
+test('shows strength of password', function(assert) {
+  visit('/');
+  click(testSelector('selector', 'sign-up-header'));
+  click(testSelector('selector', 'sign-up-email'), '#wormhole');
+
+  fillIn(testSelector('selector', 'password'), '#wormhole', 'password');
+  andThen(() => {
+    const element = find(testSelector('selector', 'password-strength'), '#wormhole');
+    assert.equal(element.length, 1);
+  });
+
+  // TODO: Test state of Goku
+});
+
+/**
+ * Sign In Tests
+ */
 test('can sign into an account', function(assert) {
   this.server = new Pretender(function() {
     this.post('/api/oauth/token', () => {
@@ -98,7 +145,7 @@ test('can sign into an account', function(assert) {
   });
 });
 
-test('displays error when failing signing in', function(assert) {
+test('shows an error when using incorrect details on sign in', function(assert) {
   this.server = new Pretender(function() {
     this.post('/api/oauth/token', function() {
       const data = { error: 'invalid_grant' };

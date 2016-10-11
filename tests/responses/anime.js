@@ -152,4 +152,3 @@ export const two = {
 
 export const arrayResponse = { data: [one, two] };
 export const objectResponse = { data: one };
-export default arrayResponse;

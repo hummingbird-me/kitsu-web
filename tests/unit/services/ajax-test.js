@@ -18,10 +18,9 @@ test('authentication headers are added to ajax requests', function(assert) {
 });
 
 test('#options uses full URL if `includesHost` is true', function(assert) {
-  assert.expect(2);
   const service = this.subject({ session: { isAuthenticated: false } });
   let result = service.options('/relative', {});
-  assert.equal(result.url, '/api/edge/relative');
+  assert.equal(result.url, `${get(service, 'namespace')}/relative`);
   result = service.options('https://example.com/absolute', { includesHost: true });
   assert.equal(result.url, 'https://example.com/absolute');
 });

@@ -3,11 +3,11 @@ import moduleForAcceptance from 'client/tests/helpers/module-for-acceptance';
 import { authenticateSession } from 'client/tests/helpers/ember-simple-auth';
 import testSelector from 'client/tests/helpers/ember-test-selectors';
 import JaQuery from 'client/tests/ember-ja-query';
-import animeResponse from 'client/tests/helpers/responses/anime';
-import genreResponse from 'client/tests/helpers/responses/genre';
-import streamerResponse from 'client/tests/helpers/responses/streamer';
-import usersResponse from 'client/tests/helpers/responses/user';
-import { createdResponse as libraryResponse } from 'client/tests/helpers/responses/library-entry';
+import { arrayResponse as animeResponse } from 'client/tests/responses/anime';
+import { arrayResponse as genresResponse } from 'client/tests/responses/genre';
+import { arrayResponse as streamersResponse } from 'client/tests/responses/streamer';
+import { arrayResponse as usersResponse } from 'client/tests/responses/user';
+import { objectResponse as libraryResponse } from 'client/tests/responses/library-entry';
 
 moduleForAcceptance('Acceptance | Anime', {
   afterEach() {
@@ -25,12 +25,12 @@ test('anime.index requests and renders the correct data', function(assert) {
     });
 
     this.get('/api/edge/genres', function() {
-      const data = new JaQuery(genreResponse);
+      const data = new JaQuery(genresResponse);
       return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
     });
 
     this.get('/api/edge/streamers', function() {
-      const data = new JaQuery(streamerResponse);
+      const data = new JaQuery(streamersResponse);
       return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
     });
   });

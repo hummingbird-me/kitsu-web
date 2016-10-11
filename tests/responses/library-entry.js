@@ -1,4 +1,4 @@
-export const created = {
+export const one = {
   "id": "1",
   "type": "libraryEntries",
   "links": {
@@ -32,4 +32,4 @@ export const created = {
   }
 }
 
-export const createdResponse = { data: created };
+export const objectResponse = { data: one };

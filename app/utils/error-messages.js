@@ -10,6 +10,10 @@ const lookupTable = {
 
 export default function errorMessages(obj) {
   let reason = 'An unknown error occurred';
+  if (obj === undefined) {
+    return reason;
+  }
+
   let errors = get(obj, 'errors') || get(obj, 'error');
   errors = errors === undefined ? get(obj, 'jqXHR.responseJSON.errors') : errors;
   if (isPresent(errors)) {

@@ -37,4 +37,5 @@ export const three = {
   }
 };
 
-export default { data: [one, two, three] };
+export const arrayResponse = { data: [one, two, three] };
+export const objectResponse = { data: one };

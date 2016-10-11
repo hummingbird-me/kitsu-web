@@ -25,4 +25,3 @@ export const one = {
 
 export const objectResponse = { data: one };
 export const arrayResponse = { data: [one] };
-export default arrayResponse;

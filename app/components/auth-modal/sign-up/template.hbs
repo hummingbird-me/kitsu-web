@@ -13,7 +13,7 @@
       placeholder="Username"
       data-test-selector="username"}}
     {{#if hasInvalidName}}
-      <div class="form-control-feedback">
+      <div class="form-control-feedback" data-test-selector="validation-username">
         {{v-get user "name" "message"}}
       </div>
     {{/if}}
@@ -26,7 +26,7 @@
       placeholder="Email"
       data-test-selector="email"}}
     {{#if hasInvalidEmail}}
-      <div class="form-control-feedback">
+      <div class="form-control-feedback" data-test-selector="validation-email">
         {{v-get user "email" "message"}}
       </div>
     {{/if}}
@@ -39,11 +39,13 @@
       placeholder="Password"
       data-test-selector="password"}}
     {{#if hasInvalidPassword}}
-      <div class="form-control-feedback">
+      <div class="form-control-feedback" data-test-selector="validation-password">
         {{v-get user "password" "message"}}
       </div>
     {{/if}}
-    <small class="form-text text-muted">Strength: {{passwordStrength.score}}</small>
+    <small class="form-text text-muted" data-test-selector="password-strength">
+      Strength: {{passwordStrength.score}}
+    </small>
   </div>
 
   <div class="form-group">
