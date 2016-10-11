@@ -45,9 +45,9 @@ export default Model.extend(Validations, {
 
   about: attr('string'),
   aboutFormatted: attr('string'),
-  avatar: attr('string'),
+  avatar: attr('object', { defaultValue: '/images/default_avatar.png' }),
   bio: attr('string'),
-  coverImage: attr('string'),
+  coverImage: attr('object', { defaultValue: '/images/default_cover.png' }),
   email: attr('string'),
   followersCount: attr('number'),
   followingCount: attr('number'),
