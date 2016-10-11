@@ -16,11 +16,3 @@ test('authentication headers are added to ajax requests', function(assert) {
   const result = get(service, 'headers');
   assert.deepEqual(result, { 'Test-Header': 'Test' });
 });
-
-test('#options uses full URL if `includesHost` is true', function(assert) {
-  const service = this.subject({ session: { isAuthenticated: false } });
-  let result = service.options('/relative', {});
-  assert.equal(result.url, `${get(service, 'namespace')}/relative`);
-  result = service.options('https://example.com/absolute', { includesHost: true });
-  assert.equal(result.url, 'https://example.com/absolute');
-});
