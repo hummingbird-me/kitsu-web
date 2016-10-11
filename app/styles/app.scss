@@ -1,9 +1,48 @@
-@import 'settings'; // Foundation settings
-@import 'bootstrap-flex'; // CSS Framework used site-wide
-@import 'colors'; // Colors used site-wide
-@import 'mixins'; // CSS Mixins used site-wide
+// -----------------------------------------------------------------------------
+// Base
+// Contains what we might call the boilerplate code for Kitsu. Things such as
+// typographic rules, colors, resets, etc.
+// -----------------------------------------------------------------------------
+@import
+  'base/_colors', // Colors used site-wide
+  'base/_base', // General CSS styles
+  'base/_shame'; // Declarations, hacks and naughty code we're not proud of.
+  
+// -----------------------------------------------------------------------------
+// Components
+// While layout/ is macro (defining the global wireframe), components/ is more
+// focused on widgets. It holds specific modules likes media, thumbnails, etc.
+// -----------------------------------------------------------------------------
 
-@import 'global'; // General CSS styles
-@import 'library'; // User library page
-@import 'media-browse'; // Browse anime, manga, drama, etc
-@import 'noui';
+// -----------------------------------------------------------------------------
+// Layout
+// Contains everything that takes part in laying out Kitsu. Things such as the
+// header, footer, forms, etc.
+// -----------------------------------------------------------------------------
+@import
+  'layout/_settings'; // Foundation settings
+
+// -----------------------------------------------------------------------------
+// Pages
+// Page-specific styles, in a file named after the page.
+// -----------------------------------------------------------------------------
+@import
+  'pages/_library', // User library page
+  'pages/_media-browse'; // Browse anime, manga, etc.
+
+// -----------------------------------------------------------------------------
+// Utilities
+// Gathers Sass tools and helpers used across the project. Global variables,
+// functions, mixins and placeholders should be placed here.
+// -----------------------------------------------------------------------------
+@import
+  'utilities/_mixins'; // CSS Mixins used site-wide
+
+// -----------------------------------------------------------------------------
+// Vendor
+// All the CSS files from external libraries and frameworks. Not from us, not
+// our code, not our responsibility.
+// -----------------------------------------------------------------------------
+@import
+  'bootstrap-flex', // CSS Framework used site-wide
+  'vendor/noui';
