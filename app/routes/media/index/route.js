@@ -64,9 +64,9 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
     jQuery(document).on('scroll', bind(controller, '_handleScroll'));
   },
 
-  resetController() {
+  resetController(controller) {
     this._super(...arguments);
-    jQuery(document).off('scroll');
+    jQuery(document).off('scroll', bind(controller, '_handleScroll'));
   },
 
   activate() {
