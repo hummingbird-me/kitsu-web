@@ -1,1 +1,22 @@
-// Nothing here yet! Yay!
+// Nothing is truly infamous, but what is wicked; and therefore,
+// shame can never disturb an innocent and virtuous mind.
+// -- WILLIAM SHERLOCK, A Practical Discourse Concerning a Future Judgment
+
+
+// temporary padding for fixed header. Will need to be addressed when dealing with cover photos.
+body {
+  padding-top: 80px;
+}
+
+// Need a more elegant solution for vertically centering primary-nav content. Currently the height of the
+// avatar causes the header to become too large (due to the top and bottom padding) and forces the
+// left-hand links to misalign vertically.
+.nav-link.avatar {
+  width: 32px;
+  height: 32px;
+  .avatar-image {
+    position: absolute;
+    right: 0;
+    top: 4px;
+  }
+}

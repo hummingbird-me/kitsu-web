@@ -1,0 +1,17 @@
+.dropdown-menu {
+  display: block;
+  opacity: 0;
+  transform: scale(.8);
+  transition: all 250ms cubic-bezier(.24,.22,.015,1.56);
+  backface-visibility: hidden;
+  pointer-events: none;
+  border: none;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.open>.dropdown-menu {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+  display: block!important;
+}

@@ -1,0 +1,21 @@
+.navbar {
+  background: #fff;
+  box-shadow: 0 0 1px rgba(0,0,0,.15);
+  padding: 0.4rem .1rem;
+  &.primary-nav {
+    z-index: $zIndex--primary-nav;
+    .row {
+      display: inherit;
+    }
+  }
+  a {
+    color: lighten($charcoal, 30);
+    &:hover {
+      color: $charcoal;
+    }
+  }
+}
+
+.nav-item {
+  position: relative;
+}

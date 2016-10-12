@@ -88,9 +88,13 @@ export default {
   },
   // Global header
   header: {
-    shows: 'Shows',
+    library: 'Library',
+    anime: 'Anime',
+    manga: 'Manga',
     forums: 'Forums',
-    downloads: 'Downloads',
+    apps: 'Apps',
+    signIn: 'Sign In',
+    signUp: 'Sign Up',
     user: {
       profile: 'View Profile',
       logout: 'Logout'

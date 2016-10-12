@@ -12,17 +12,21 @@
   'base/_colors', // Colors used site-wide
   'base/_base', // General CSS styles
   'base/_shame', // Declarations, hacks and naughty code we're not proud of.
-  'base/_typography';
+  'base/_typography'; // how text appears on the site
 
 // Components
 // While layout/ is macro (defining the global wireframe), components/ is more
 // focused on widgets. It holds specific modules likes media, thumbnails, etc.
+@import
+  'components/_dropdowns', // rules for bootstraps default dropdowns
+  'components/_avatars'; // various user avatar rules
 
 // Layout
 // Contains everything that takes part in laying out Kitsu. Things such as the
 // header, footer, forms, etc.
 @import
-  'layout/_settings'; // Foundation settings
+  'layout/_z-index', // z-index scale
+  'layout/_navbar'; // Navigation Bars
 
 // Pages
 // Page-specific styles, in a file named after the page.
