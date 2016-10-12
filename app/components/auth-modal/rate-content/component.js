@@ -65,7 +65,7 @@ export default Component.extend({
     createLibraryEntry(media, rating) {
       const user = get(this, 'session.account');
       const entry = get(this, 'store').createRecord('library-entry', {
-        status: 'complete',
+        status: 'completed',
         rating,
         user,
         media

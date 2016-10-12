@@ -12,7 +12,7 @@
       <div class="entry-progress">
         {{#if isOwner}}
           {{one-way-number entry.progress
-            update=(perform updateProperty "progress")
+            update=(perform updatePropertyDelayed "progress")
             placeholder="0"
           }}
           <span>
@@ -47,7 +47,7 @@
       <div class="small-12 columns">
         {{#if isOwner}}
           {{one-way-text entry.notes
-            update=(perform updateProperty "notes")
+            update=(perform updatePropertyDelayed "notes")
             placeholder=(t "users.library.notes" title=media.canonicalTitle)
             class="personal-notes"
           }}
@@ -103,7 +103,7 @@
                   {{if entry.private (t "users.library.private") (t "users.library.public")}}
                 {{/dropdown.button}}
                 {{#dropdown.menu}}
-                  {{#dropdown.menu-item onClick=(perform updateProperty "private" (not entry.private) false)}}
+                  {{#dropdown.menu-item onClick=(perform updateProperty "private" (not entry.private))}}
                     {{if entry.private (t "users.library.public") (t "users.library.private")}}
                   {{/dropdown.menu-item}}
                 {{/dropdown.menu}}
@@ -134,7 +134,7 @@
               <span>{{t "users.library.rewatched"}}</span>
               {{#if isOwner}}
                 {{one-way-number entry.reconsumeCount
-                    update=(perform updateProperty "reconsumeCount")}}
+                    update=(perform updatePropertyDelayed "reconsumeCount")}}
               {{else}}
                 <span>{{entry.reconsumeCount}}</span>
               {{/if}}
