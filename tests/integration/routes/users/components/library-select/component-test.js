@@ -13,7 +13,7 @@ test('renders the current status', function(assert) {
     status=status
   }}`);
 
-  const $el = this.$('a');
+  const $el = this.$('button');
   assert.equal($el.length, 1);
   assert.equal($el.text().trim(), 'Currently Watching');
 });
@@ -30,7 +30,7 @@ test('triggers the action with the status key', function(assert) {
     onClick=action
   }}`);
 
-  const $el = this.$('a');
+  const $el = this.$('button');
   $el.click();
   this.set('isActive', true);
   $el.click();
