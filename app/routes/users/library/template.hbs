@@ -3,7 +3,7 @@
     <div class="library-list col-sm-12">
       <div class="nav-wrapper">
         {{! Library type dropdown }}
-        {{#bootstrap/bs-dropdown as |dropdown|}}
+        {{#bootstrap/bs-dropdown class="library-type" as |dropdown|}}
           {{#dropdown.button class="button--dark-outline button--small"}}
             {{t "users.library.library" type=(t (concat "media." media ".name"))}}
           {{/dropdown.button}}
