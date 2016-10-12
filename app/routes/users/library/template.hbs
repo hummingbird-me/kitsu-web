@@ -19,25 +19,16 @@
         {{! Library status selection }}
         <div class="library-status">
           <div class="btn-group" role="group" aria-label="Library Status">
-            <button type="button" class="btn btn-secondary">All</button>
-            <button type="button" class="btn btn-secondary">Current</button>
-            <button type="button" class="btn btn-secondary">Planned</button>
-            <button type="button" class="btn btn-secondary">Completed</button>
-            <button type="button" class="btn btn-secondary">Stalled</button>
-            <button type="button" class="btn btn-secondary">Dropped</button>
+            {{#each statuses as |_status|}}
+              {{users/components/library-select
+                status=_status
+                mediaType=media
+                isActive=(eq _status status)
+                onClick=(action (mut status))
+              }}
+            {{/each}}
           </div>
         </div>
-        <!-- <ul class="menu">
-          {{#each statuses as |_status|}}
-            {{users/components/library-select
-              status=_status
-              mediaType=media
-              isActive=(eq _status status)
-              isLoading=isLoading
-              onClick=(action (mut status))
-            }}
-          {{/each}}
-        </ul> -->
       </div>
 
       {{! Filter Search }}
@@ -51,16 +42,14 @@
       {{! Library Entries }}
       {{#if (eq status 'all')}} {{! all status is selected }}
         {{#each-in sections as |status entries|}}
-          {{#if entries}}
-            {{users/components/library-entries
-              status=status
-              entries=entries
-              mediaType=media
-              isLoading=isLoading
-              update=(route-action "updateEntry")
-              delete=(route-action "deleteEntry")
-            }}
-          {{/if}}
+          {{users/components/library-entries
+            status=status
+            entries=entries
+            mediaType=media
+            isLoading=isLoading
+            update=(route-action "updateEntry")
+            delete=(route-action "deleteEntry")
+          }}
         {{/each-in}}
       {{else}} {{! active tab entires }}
         {{users/components/library-entries
