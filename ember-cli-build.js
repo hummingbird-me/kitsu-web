@@ -45,8 +45,6 @@ module.exports = function(defaults) {
   app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
   app.import('bower_components/nouislider/distribute/nouislider.js');
   app.import('bower_components/nouislider/distribute/nouislider.min.css');
-  app.import('bower_components/PACE/pace.js');
-  app.import('bower_components/PACE/themes/orange/pace-theme-minimal.css');
   app.import('bower_components/humanize-duration/humanize-duration.js');
 
   return app.toTree();
