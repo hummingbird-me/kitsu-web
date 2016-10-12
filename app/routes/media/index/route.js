@@ -9,10 +9,9 @@ import { task, timeout } from 'ember-concurrency';
 import jQuery from 'jquery';
 import QueryableMixin from 'client/mixins/routes/queryable';
 import PaginationMixin from 'client/mixins/routes/pagination';
-import BrowsePageMixin from 'client/mixins/routes/browse-page';
 import SlideHeaderMixin from 'client/mixins/routes/slide-header';
 
-export default Route.extend(BrowsePageMixin, SlideHeaderMixin, QueryableMixin, PaginationMixin, {
+export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
   mediaType: undefined,
   mediaQueryParams: {
     averageRating: { replace: true },
@@ -68,6 +67,16 @@ export default Route.extend(BrowsePageMixin, SlideHeaderMixin, QueryableMixin, P
   resetController() {
     this._super(...arguments);
     jQuery(document).off('scroll');
+  },
+
+  activate() {
+    this._super(...arguments);
+    jQuery('body').addClass('browse-page');
+  },
+
+  deactivate() {
+    this._super(...arguments);
+    jQuery('body').removeClass('browse-page');
   },
 
   _buildFilters(params) {
