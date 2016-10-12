@@ -1,3 +1,12 @@
+.browse-page {
+  padding-top: 0;
+  .primary-nav {
+    position: relative;
+  }
+  .global-container {
+    max-width: 100%;
+  }
+}
 .media-browse {
   margin-bottom: -50px;
   overflow: hidden;
@@ -7,7 +16,8 @@
     width: 100%;
   }
   .filter-options {
-    background-color: $charcoal;
+    background-color: #eee;
+    border-right: 1px solid #ddd;
     position: fixed;
     top: 51px;
     left: 0;
@@ -16,8 +26,10 @@
     padding-top: 20px;
     bottom: 0;
     top: 51px;
-    border-left: 1px solid darken($charcoal, 10);
     transition: .2s ease-in;
+    @media (max-width: 768px) {
+      display: none;
+    }
     &.scrolled {
       top: 0;
     }
@@ -29,8 +41,10 @@
 
   .media-grid {
     position: relative;
-    padding-left: 240px;
-    padding-right: 15px;
+    padding-left: 274px;
+    @media (max-width: 768px) {
+      padding-left: 30px;
+    }
     .media-posters {
       padding: 75px 0 0 15px;
       padding-right: 0;
@@ -38,14 +52,27 @@
       padding-bottom: 75px;
     }
     .poster-wrapper {
-      padding-left: 6px;
-      padding-right: 6px;
+      float: left;
+      padding-right: 15px;
       margin-bottom: 15px;
-      width: 16.6%;
-      min-width: 170px;
       position: relative;
       img {
-        border-radius: 2px;
+        border-radius: 3px;
+      }
+      @media (max-width: 1820px) {
+        width: 14.2857%;
+      }
+      @media (max-width: 1610px) {
+        width: 16.666%;
+      }
+      @media (max-width: 1420px) {
+        width: 20%;
+      }
+      @media (max-width: 1220px) {
+        width: 25%;
+      }
+      @media (max-width: 990px) {
+        width: 50%;
       }
       .media-title {
         color: #383D48;
@@ -56,6 +83,9 @@
     .grid-poster {
       position: relative;
       cursor: pointer;
+      img {
+        width: 100%;
+      }
       .poster-overlay {
         opacity: 0;
         position: absolute;
@@ -120,6 +150,9 @@
     z-index: 1;
     top: 51px;
     transition: .2s ease-in;
+    @media (max-width: 768px) {
+      left: 0;
+    }
     &.scrolled {
       top: 0;
     }
@@ -141,7 +174,7 @@
       padding: 15px 0 15px 50px;
       width: 100%;
       border: none;
-      border-bottom: 1px solid #ddd;
+      box-shadow: rgba(0, 0, 0, 0.14902) 0px 0px 1px;
     }
   }
 
@@ -149,7 +182,7 @@
 
   // Filter widgets
   .filter-widget {
-    border-bottom: 1px solid darken($charcoal, 10);
+    border-bottom: 1px solid #ddd;
     padding-bottom: 25px;
     margin-bottom: 25px;
   }
@@ -157,13 +190,13 @@
     @extend .clearfix;
     .filter-title {
       float: left;
-      color: $alabaster;
+      color: $charcoal;
       font-weight: 700;
     }
     .filter-values {
       float: right;
-      color: #76818C;
-      background: #3C424D;
+      color: lighten($charcoal, 20);
+      background: lighten($charcoal, 62);
       font-size: 12px;
       font-weight: 600;
       padding: 2px 10px;
@@ -177,7 +210,7 @@
     @extend .clearfix;
     text-align: center;
     font-size: 12px;
-    color: #778393;
+    color: lighten($charcoal, 30);
     font-weight: 900;
     .low-value {
       float: left;
@@ -213,6 +246,7 @@
       position: relative;
       top: 8px;
       height: 35px;
+      transition: none;
     }
     .netflix {
       background-position: 7px -35px;
@@ -233,31 +267,37 @@
     ul {
       list-style-type: none;
       margin: 0;
+      padding: 0;
     }
     li {
       float: left;
-      background: #505868;
+      background: #ddd;
       width: 40px;
       height: 50px;
       border-radius: 2px;
       margin-bottom: 5px;
       margin-right: 4px;
+      transition: 0s;
       &:nth-child(5), &:nth-child(10) {
         margin-right: 0;
       }
       &:hover, &.active {
-        background: lighten(#505868, 5);
+        background: $white;
+        border: 1px solid #ddd;
         .netflix {
           background-position: 7px -4px;
           opacity: 1;
+          transition: none;
         }
         .hulu {
           background-position: -23px -4px;
           opacity: 1;
+          transition: none;
         }
         .crunchyroll {
           background-position: -57px -4px;
           opacity: 1;
+          transition: none;
         }
         .funimation {
           background-position: -93px -4px;
@@ -269,7 +309,7 @@
         }
       }
       &.active {
-        background: #EDEEEF;
+        background: $white;
         &:hover {
           opacity: .8;
         }
@@ -320,6 +360,7 @@
     ul {
       list-style-type: none;
       margin: 0;
+      padding: 0;
     }
     li {
       margin-bottom: 5px;
