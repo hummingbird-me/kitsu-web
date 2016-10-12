@@ -1,8 +1,9 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
 import { assert } from 'ember-metal/utils';
+import CoverPageMixin from 'client/mixins/routes/cover-page';
 
-export default Route.extend({
+export default Route.extend(CoverPageMixin, {
   mediaType: undefined,
   templateName: 'media/show',
 
