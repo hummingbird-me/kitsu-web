@@ -1,0 +1,7 @@
+{{#bootstrap/bs-modal id="edit-profile-modal" onClose=(action "onClose") as |modal|}}
+  {{#modal.body}}
+    {{component componentName
+      changeComponent=(action "changeComponent")
+      close=(action "closeModal")}}
+  {{/modal.body}}
+{{/bootstrap/bs-modal}}

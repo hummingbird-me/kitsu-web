@@ -20,7 +20,7 @@
           <div class="cover-cta">
             {{#if isOwner}}
               {{! TODO: Edit Button }}
-              <button class="button button--light-outline">
+              <button class="button button--light-outline" data-toggle="modal" data-target="#edit-profile-modal">
                 <span class="button-label  button-defaultState js-buttonLabel">Edit</span>
               </button>
             {{else}}
@@ -50,3 +50,9 @@
 
 {{! users/* templates rendered here }}
 {{outlet}}
+
+{{#if authOpened}}
+  {{#ember-wormhole to="wormhole"}}
+    {{auth-modal onClose=(action "toggleAuth" false)}}
+  {{/ember-wormhole}}
+{{/if}}
