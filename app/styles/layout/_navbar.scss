@@ -2,6 +2,7 @@
   background: #fff;
   box-shadow: 0 0 1px rgba(0,0,0,.15);
   padding: 0.4rem .1rem;
+  width: 100%;
   &.primary-nav {
     z-index: $zIndex--primary-nav;
     .row {
@@ -18,4 +19,27 @@
 
 .nav-item {
   position: relative;
+}
+
+.cover-nav {
+  padding: 0;
+  .nav-item {
+    border-right: 1px solid $eggshell;
+    padding: 10px 20px;
+    font-size: 14px;
+    &:first-child {
+      border-left: 1px solid $eggshell;
+    }
+    &:hover {
+      background: lighten($eggshell, 5);
+    }
+    &.active {
+      &:hover {
+        background: $white;
+      }
+    }
+  }
+  .nav-item + .nav-item {
+    margin-left: 0;
+  }
 }

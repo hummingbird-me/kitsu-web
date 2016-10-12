@@ -1,0 +1,40 @@
+.button {
+  @extend .btn;
+  font-family: $heading-font-family;
+  letter-spacing: .05em;
+  &:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.80);
+  }
+}
+
+.button--follow {
+  background-color: $caribbean;
+  color: $white;
+  padding: 10px 60px;
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0.0);
+  &:hover {
+    background: lighten($caribbean, 5);
+  }
+}
+
+.button--following {
+  background-color: $nobel;
+  color: $white;
+  padding: 10px 60px;
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0.0);
+  &:hover {
+    background: lighten($nobel, 5);
+  }
+}
+
+.button--edit-profile {
+  background-color: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.20);
+  color: rgba(255,255,255,.60);
+  padding: 10px 60px;
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0.0);
+  &:hover {
+    color: $charcoal;
+    background: darken($white, 5);
+  }
+}

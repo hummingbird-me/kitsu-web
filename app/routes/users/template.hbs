@@ -1,71 +1,52 @@
 {{! TODO: Move to component }}
 <div class="user-cover no-edit">
   <div class="cover-photo" style={{coverImageStyle}}>
-    <div class="row">
-      <div class="user-info">
-        <div class="primary-info">
-          <div class="cover-avatar">
-            <img src={{image user.avatar}}>
-          </div>
-          <div class="mini-bio">
-            <h3 class="cover-username" data-test-selector="username">
-              {{user.name}}
-            </h3>
-            <p>
-              {{user.bio}}
-            </p>
-          </div>
-        </div>
-        <div class="follow-info">
-          <div class="followers">
-            <div class="bubble">
-              <h3 class="count">
-                {{user.followingCount}}
+    <div class="container">
+      <div class="row">
+        <div class="cover-user-info">
+          <div class="primary-info">
+            <div class="cover-avatar avatar">
+              <img src={{image user.avatar}} class="avatar-image avatar-image--large">
+            </div>
+            <div class="mini-bio">
+              <h3 class="cover-username" data-test-selector="username">
+                {{user.name}}
               </h3>
-              <label>{{t "users.following"}}</label>
+              <p>
+                {{user.bio}}
+              </p>
             </div>
           </div>
-          <div class="following">
-            <div class="bubble">
-              <h3 class="count">
-                {{user.followersCount}}
-              </h3>
-              <label>{{t "users.followers"}}</label>
-            </div>
+          <div class="cover-cta">
+            {{#if isOwner}}
+              {{! TODO: Edit Button }}
+              <button class="button button--edit-profile">
+                <span class="button-label  button-defaultState js-buttonLabel">Edit</span>
+              </button>
+            {{else}}
+              {{follow-button}}
+            {{/if}}
           </div>
         </div>
       </div>
     </div>
-    <div class="dark-overlay"></div>
+    <div class="dark-cover-overlay"></div>
   </div>
 </div>
 
 {{! TODO: Move to component }}
-<div class="user-nav">
-  <div class="row align-justify">
-    <ul class="menu columns">
-      <li>
-        {{link-to (t 'users.nav.activity') 'users.index'}}
-      </li>
-      <li>
-        {{link-to (t 'users.nav.library') 'users.library'}}
-      </li>
-      <li>
-        {{link-to (t 'users.nav.reviews') 'users.reviews'}}
-      </li>
-      <li>
-        {{link-to (t 'users.nav.lists') 'users.lists'}}
-      </li>
-    </ul>
-    <div class="columns">
-      {{#if isOwner}}
-        {{! TODO: Edit Button }}
-      {{else}}
-        {{follow-button}}
-      {{/if}}
+<nav class="cover-nav navbar navbar-light">
+  <div class="container">
+    <div class="row">
+      <div class="nav navbar-nav">
+        {{link-to (t 'users.nav.activity') 'users.index' class="nav-item nav-link"}}
+        {{link-to (t 'users.nav.library') 'users.library' class="nav-item nav-link"}}
+        {{link-to (t 'users.nav.reviews') 'users.reviews' class="nav-item nav-link"}}
+        {{link-to (t 'users.nav.lists') 'users.lists' class="nav-item nav-link"}}
+      </div>
     </div>
   </div>
-</div>
+</nav>
 
 {{! users/* templates rendered here }}
 {{outlet}}
