@@ -1,10 +1,10 @@
-<div class="row">
-  <div class="columns">
-    <div class="library-list columns">
+<div class="container">
+  <div class="row">
+    <div class="library-list col-sm-12">
       <div class="nav-wrapper">
         {{! Library type dropdown }}
         {{#bootstrap/bs-dropdown as |dropdown|}}
-          {{#dropdown.button}}
+          {{#dropdown.button class="button--dark-outline button--small"}}
             {{t "users.library.library" type=(t (concat "media." media ".name"))}}
           {{/dropdown.button}}
           {{#dropdown.menu}}
@@ -17,7 +17,17 @@
         {{/bootstrap/bs-dropdown}}
 
         {{! Library status selection }}
-        <ul class="menu">
+        <div class="library-status">
+          <div class="btn-group" role="group" aria-label="Library Status">
+            <button type="button" class="btn btn-secondary">All</button>
+            <button type="button" class="btn btn-secondary">Current</button>
+            <button type="button" class="btn btn-secondary">Planned</button>
+            <button type="button" class="btn btn-secondary">Completed</button>
+            <button type="button" class="btn btn-secondary">Stalled</button>
+            <button type="button" class="btn btn-secondary">Dropped</button>
+          </div>
+        </div>
+        <!-- <ul class="menu">
           {{#each statuses as |_status|}}
             {{users/components/library-select
               status=_status
@@ -27,16 +37,16 @@
               onClick=(action (mut status))
             }}
           {{/each}}
-        </ul>
+        </ul> -->
       </div>
 
       {{! Filter Search }}
       {{! @TODO: API is not yet searchable }}
-      <div class="search-library">
+      <!-- <div class="search-library">
         {{one-way-search
             class="search-input"
             placeholder=(t "users.library.search")}}
-      </div>
+      </div> -->
 
       {{! Library Entries }}
       {{#if (eq status 'all')}} {{! all status is selected }}

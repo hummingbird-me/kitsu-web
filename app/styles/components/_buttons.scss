@@ -7,7 +7,7 @@
   }
 }
 
-.button--follow {
+.button--primary {
   background-color: $caribbean;
   color: $white;
   padding: 10px 60px;
@@ -17,7 +17,7 @@
   }
 }
 
-.button--following {
+.button--secondary {
   background-color: $nobel;
   color: $white;
   padding: 10px 60px;
@@ -27,7 +27,7 @@
   }
 }
 
-.button--edit-profile {
+.button--light-outline {
   background-color: rgba(255,255,255,.10);
   border: 1px solid rgba(255,255,255,.20);
   color: rgba(255,255,255,.60);
@@ -37,4 +37,22 @@
     color: $charcoal;
     background: darken($white, 5);
   }
+}
+
+.button--dark-outline {
+  background-color: transparent;
+  border: 1px solid $eggshell;
+  color: $charcoal;
+  padding: 10px 60px;
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0.0);
+  &:hover {
+    color: $charcoal;
+    border: 1px solid $eggshell;
+    background: darken($white, 2);
+  }
+}
+
+.button--small {
+  font-size: 12px;
+  padding: 10px 20px;
 }

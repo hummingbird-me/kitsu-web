@@ -1,20 +1,13 @@
 // User Library
 .library-list {
-  @extend .no-padding;
   background: #fff;
-  border: 1px solid;
+  border: 1px solid $eggshell;
   border-radius: 3px;
   margin-top: 30px;
+  padding: 0;
   .nav-wrapper {
+    @extend .clearfix;
     padding: 15px;
-  }
-  .button {
-    border-radius: 3px;
-    background: #fff;
-    border: 1px solid #ddd;
-    color: #333;
-    margin-bottom: 0;
-    font-size: 12px;
   }
   .menu {
     border: 1px solid #ddd;
@@ -37,6 +30,21 @@
   }
 }
 
+.library-type {
+  float: left;
+}
+.library-status {
+  float: right;
+  .btn {
+    border-color: $eggshell;
+    font-size: 12px;
+    padding: 10px 15px;
+    &:hover {
+      background: darken($white, 2);
+    }
+  }
+}
+
 .search-library {
   .search-input {
     width: 100%;
@@ -46,6 +54,7 @@
     font-size: 14px;
   }
 }
+
 .section-head {
   background: #EBEBEB;
   color: #727272;
