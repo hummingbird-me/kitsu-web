@@ -7,11 +7,17 @@ $heading-font-family: "Asap", sans-serif;
 $heading-font-weight: 700;
 
 $text-color: $charcoal;
-$soft-color: #ccc;
-$link-color: #000;
-$heading-color: #111;
+$soft-color: lighten($charcoal, 30);
+$link-color: $cinnabar;
+$link-visited-color: lighten($cinnabar, 15);
+
 
 // Base Typography Styles
+
+body {
+  color: $text-color;
+}
+
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: $heading-font-family;
   font-weight: $heading-font-weight;
@@ -19,4 +25,21 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 p {
   font-family: $base-font-family;
+}
+
+.link {
+  color: $link-color;
+  text-decoration: none;
+  &:visited {
+    color: $link-visited-color;
+  }
+
+  &:hover, &:visited:hover {
+    color: $link-hover-color;
+    text-decoration: underline;
+  }
+}
+
+a {
+  @extend .link;
 }
