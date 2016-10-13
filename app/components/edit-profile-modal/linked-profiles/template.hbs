@@ -35,117 +35,17 @@
 </nav>
 
 <div class="modal-wrapper">
-  <h4 class="edit-heading">Linked Profiles</h4>
+  <h4 class="edit-heading">{{t 'users.edit.linkedProfiles'}}</h4>
   <!-- Nav tabs -->
   <ul class="linked-profiles nav" role="tablist">
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded active" aria-label="Website" data-toggle="tab" href="#website" role="tab">
-        {{svg-jar "web"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Facebook" data-toggle="tab" href="#facebook" role="tab">
-        {{svg-jar "facebook"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Twitter" data-toggle="tab" href="#twitter" role="tab">
-        {{svg-jar "twitter"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded filled" aria-label="Twitch" data-toggle="tab" href="#twitch" role="tab">
-        {{svg-jar "twitch"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded filled" aria-label="Youtube" data-toggle="tab" href="#youtube" role="tab">
-        {{svg-jar "youtube"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Google+" data-toggle="tab" href="#google" role="tab">
-        {{svg-jar "gplus"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Steam" data-toggle="tab" href="#steam" role="tab">
-        {{svg-jar "steam"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Patreon" data-toggle="tab" href="#patreon" role="tab">
-        {{svg-jar "patreon"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Tumblr" data-toggle="tab" href="#tumblr" role="tab">
-        {{svg-jar "tumblr"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Github" data-toggle="tab" href="#github" role="tab">
-        {{svg-jar "github"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Instagram" data-toggle="tab" href="#instagram" role="tab">
-        {{svg-jar "instagram"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Mobcrush" data-toggle="tab" href="#mobcrush" role="tab">
-        {{svg-jar "mobcrush"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Raptr" data-toggle="tab" href="#raptr" role="tab">
-        {{svg-jar "raptr"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Soundcloud" data-toggle="tab" href="#soundcloud" role="tab">
-        {{svg-jar "soundcloud"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded filled" aria-label="Discord" data-toggle="tab" href="#discord" role="tab">
-        {{svg-jar "discord"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Vimeo" data-toggle="tab" href="#vimeo" role="tab">
-        {{svg-jar "vimeo"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Dailymotion" data-toggle="tab" href="#dailymotion" role="tab">
-        {{svg-jar "dailymotion"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Osu" data-toggle="tab" href="#osu" role="tab">
-        {{svg-jar "osu"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
+    {{#each availableProfiles as |profile|}}
+      <li class="profile-item nav-item">
+        <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="{{t (concat 'users.edit.availableProfiles.' profile)}}" data-toggle="tab" href="#{{profile}}" role="tab">
+          {{svg-jar profile}}
+          <span class="fill-mark">{{svg-jar "success"}}</span>
+        </a>
+      </li>
+    {{/each}}
   </ul>
 
   <!-- Tab panes -->

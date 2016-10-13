@@ -120,6 +120,26 @@ export default {
       editCover: 'Change your cover photo',
       aboutMe: 'About Me',
       linkedProfiles: 'Linked Profiles',
+      availableProfiles: {
+        web: 'Website',
+        facebook: 'Facebook',
+        twitter: 'Twitter',
+        twitch: 'Twitch',
+        youtube: 'Youtube',
+        gplus: 'Google',
+        steam: 'Steam',
+        patreon: 'Patreon',
+        tumblr: 'Tumblr',
+        github: 'Github',
+        instagram: 'Instagram',
+        mobcrush: 'Mobcrush',
+        raptr: 'Raptr',
+        soundcloud: 'Soundcloud',
+        discord: 'Discord',
+        vimeo: 'Vimeo',
+        dailymotion: 'Dailymotion',
+        osu: 'Osu'
+      },
       favorites: 'Favorites'
     },
     library: {
