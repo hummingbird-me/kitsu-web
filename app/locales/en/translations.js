@@ -125,6 +125,13 @@ export default {
         locationPlaceholder: 'Where do you live?',
         birthday: 'Birthday',
         gender: 'Gender',
+        genderOptions: {
+          secret: 'It\'s a secret',
+          male: 'Male',
+          female: 'Female',
+          custom: 'Custom'
+        },
+        genderCustom: 'Attack Helicopter',
         waifu: 'Waifu',
         waifuPlaceholder: 'Who is your waifu / husbando?',
         bio: 'Bio',

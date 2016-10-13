@@ -17,7 +17,6 @@
     </div>
   </div>
   <div class="form-group row">
-    {{! TODO: NYI On Server }}
     <label for="birthday-input" class="col-xs-2 col-form-label">
       {{t "users.edit.about.birthday"}}
     </label>
@@ -35,16 +34,24 @@
     </div>
   </div>
   <div class="form-group row">
-    {{! TODO: NYI On Server }}
     <label for="gender-input" class="col-xs-2 col-form-label">
       {{t "users.edit.about.gender"}}
     </label>
     <div class="col-xs-10">
-      {{one-way-select
+      {{one-way-select selectedGender
         options=genderOptions
+        update=(action "updateGender")
         id="gender-input"
         class="form-control"
       }}
+
+      {{#if (eq selectedGender (get this 'genderOptions.lastObject'))}}
+        {{one-way-text user.gender
+          update=(action (mut user.gender))
+          class="form-control"
+          placeholder=(t "users.edit.about.genderCustom")
+        }}
+      {{/if}}
     </div>
   </div>
   <div class="form-group row">
