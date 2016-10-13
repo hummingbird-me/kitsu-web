@@ -22,10 +22,15 @@
       {{t "users.edit.about.birthday"}}
     </label>
     <div class="col-xs-10">
-      {{! TODO: Look into using pikaday here }}
-      {{one-way-date
+      {{pikaday-input
+        value=user.birthday
+        onSelection=(action (mut user.birthday))
+        useUTC=true
         id="birthday-input"
         class="form-control"
+        format="MM/DD/YYYY"
+        yearRange="1900,currentYear"
+        placeholder="MM/DD/YYYY"
       }}
     </div>
   </div>
