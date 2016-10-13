@@ -1,82 +1,73 @@
-<div class="modal-cover-photo" style="background-image: url(&quot;/images/default_cover.png&quot;)">
-  <a class="modal-overlay-button">
-    <span class="overlay-text">
-      {{svg-jar "picture"}}
-      <h6>{{t 'users.edit.editCover'}}</h6>
-    </span>
-  </a>
-</div>
-<div class="modal-user-avatar">
-  <div class="modal-avatar-wrapper">
-    <a class="modal-overlay-button">
-      <span class="overlay-text">
-        {{svg-jar "picture"}}
-      </span>
-    </a>
-    <img src="http://localhost:32768/images/default_avatar.png" class="avatar-image avatar-image--medium">
-  </div>
-</div>
-<nav class="cover-nav edit-nav navbar navbar-light">
-  <div class="container">
-    <div class="row">
-      <div class="nav navbar-nav">
-        <a class="nav-item nav-link" {{action "changeComponent" "about-me"}}>
-          {{t 'users.edit.aboutMe'}}
-        </a>
-        <a class="nav-item nav-link" {{action "changeComponent" "linked-profiles"}}>
-          {{t 'users.edit.linkedProfiles'}}
-        </a>
-        <a class="nav-item nav-link" {{action "changeComponent" "favorites"}}>
-          {{t 'users.edit.favorites'}}
-        </a>
-      </div>
-    </div>
-  </div>
-</nav>
-
 <div class="modal-wrapper">
-  <h4 class="edit-heading">About Me</h4>
+  <h4 class="edit-heading">
+    {{t "users.edit.aboutMe"}}
+  </h4>
 
   <div class="form-group row">
-    <label for="example-date-input" class="col-xs-2 col-form-label">Location</label>
+    <label for="location-input" class="col-xs-2 col-form-label">
+      {{t "users.edit.about.location"}}
+    </label>
     <div class="col-xs-10">
-      <input class="form-control" type="text" value="" placeholder="Where do you live?"id="location-input">
+      {{one-way-text user.location
+        update=(action (mut user.location))
+        id="location-input"
+        class="form-control"
+        placeholder=(t "users.edit.about.locationPlaceholder")
+      }}
     </div>
   </div>
   <div class="form-group row">
-    <label for="example-date-input" class="col-xs-2 col-form-label">Birthdate</label>
+    {{! TODO: NYI On Server }}
+    <label for="birthday-input" class="col-xs-2 col-form-label">
+      {{t "users.edit.about.birthday"}}
+    </label>
     <div class="col-xs-10">
-      <input class="form-control" type="date" value="" id="birthday-input">
+      {{! TODO: Look into using pikaday here }}
+      {{one-way-date
+        id="birthday-input"
+        class="form-control"
+      }}
     </div>
   </div>
   <div class="form-group row">
-    <label for="example-date-input" class="col-xs-2 col-form-label">Gender</label>
+    {{! TODO: NYI On Server }}
+    <label for="gender-input" class="col-xs-2 col-form-label">
+      {{t "users.edit.about.gender"}}
+    </label>
     <div class="col-xs-10">
-      <select class="form-control" id="exampleSelect1">
-        <option>It's a secret</option>
-        <option>Male</option>
-        <option>Female</option>
-        <option>Custom</option>
-    </select>
+      {{one-way-select
+        options=genderOptions
+        id="gender-input"
+        class="form-control"
+      }}
     </div>
   </div>
   <div class="form-group row">
-    <label for="example-search-input" class="col-xs-2 col-form-label">Waifu</label>
+    <label for="example-search-input" class="col-xs-2 col-form-label">
+      {{t "users.edit.about.waifu"}}
+    </label>
     <div class="col-xs-10">
-      <input class="form-control" type="search" value="" placeholder="Who is your waifu / husbando?" id="waifu-input">
+      {{! TODO: NYI + Switch to typeahead }}
+      {{one-way-search
+        id="waifu-input"
+        class="form-control"
+        placeholder=(t "users.edit.about.waifuPlaceholder")
+      }}
     </div>
   </div>
   <div class="form-group row">
-    <label for="example-search-input" class="col-xs-2 col-form-label">Bio</label>
+    <label for="bio-input" class="col-xs-2 col-form-label">
+      {{t "users.edit.about.bio"}}
+    </label>
     <div class="col-xs-10">
-      <textarea class="about" name="about" placeholder="Tell the world your story." rows="2"></textarea>
+      {{one-way-textarea user.about
+        update=(action (mut user.about))
+        name="about"
+        id="bio-input"
+        class="about"
+        placeholder=(t "users.edit.about.bioPlaceholder")
+        rows="2"
+      }}
     </div>
   </div>
 </div>
-
-<section class="modal-footer">
-  <p class="link-note">
-    Visit your <a href="#">settings page</a> to change your username, email, notification settings, and more.
-  </p>
-  <button href="#" class="button button--save-edit button--primary">Update Profile</button>
-</section>

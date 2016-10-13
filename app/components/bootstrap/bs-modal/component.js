@@ -11,7 +11,7 @@ export default Component.extend({
   renderInPlace: false,
 
   label: getter(function() {
-    return `${get(this, 'id')}-modal-label`;
+    return `${get(this, 'id')}-label`;
   }),
 
   didInsertElement() {

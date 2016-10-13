@@ -120,6 +120,16 @@ export default {
       editCover: 'Change your cover photo',
       aboutMe: 'About Me',
       linkedProfiles: 'Linked Profiles',
+      about: {
+        location: 'Location',
+        locationPlaceholder: 'Where do you live?',
+        birthday: 'Birthday',
+        gender: 'Gender',
+        waifu: 'Waifu',
+        waifuPlaceholder: 'Who is your waifu / husbando?',
+        bio: 'Bio',
+        bioPlaceholder: 'Tell the world your story.'
+      },
       linkProfile: {
         connect: 'Connect to {{profile}}',
         disconnect: 'Disconnect from {{profile}}',

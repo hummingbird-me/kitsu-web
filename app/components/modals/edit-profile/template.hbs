@@ -1,7 +1,63 @@
 {{#bootstrap/bs-modal id=modalId onClose=(action "onClose") as |modal|}}
+  {{#modal.header}}
+    <div class="modal-cover-photo" style={{coverImageStyle}}>
+      <a class="modal-overlay-button" {{action "triggerClick" "cover-input"}}>
+        <span class="overlay-text">
+          {{svg-jar "picture"}}
+          <h6>{{t 'users.edit.editCover'}}</h6>
+        </span>
+      </a>
+      {{file-select
+        id="cover-input"
+        update=(action "updateImage" "user.coverImage")}}
+    </div>
+    <div class="modal-user-avatar">
+      <div class="modal-avatar-wrapper">
+        <a class="modal-overlay-button" {{action "triggerClick" "avatar-input"}}>
+          <span class="overlay-text">
+            {{svg-jar "picture"}}
+          </span>
+        </a>
+        <img src={{image user.avatar}} class="avatar-image avatar-image--medium">
+        {{file-select
+          id="avatar-input"
+          update=(action "updateImage" "user.avatar")}}
+      </div>
+    </div>
+    <nav class="cover-nav edit-nav navbar navbar-light">
+      <div class="container">
+        <div class="row">
+          <div class="nav navbar-nav">
+            <a class="nav-item nav-link {{if isAboutActive "active"}}" {{action "changeComponent" "about-me"}}>
+              {{t 'users.edit.aboutMe'}}
+            </a>
+            <a class="nav-item nav-link {{if isProfilesActive "active"}}" {{action "changeComponent" "linked-profiles"}}>
+              {{t 'users.edit.linkedProfiles'}}
+            </a>
+            <a class="nav-item nav-link {{if isFavoritesActive "active"}}" {{action "changeComponent" "favorites"}}>
+              {{t 'users.edit.favorites'}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  {{/modal.header}}
+
   {{#modal.body}}
-    {{component componentName
-      changeComponent=(action "changeComponent")
-      close=(action "closeModal")}}
+    {{component componentName}}
   {{/modal.body}}
+
+  {{#modal.footer}}
+    <p class="link-note">
+      Visit your <a href="#">settings page</a> to change your username, email, notification settings, and more.
+    </p>
+    <button class="button button--save-edit button--primary"
+      disabled={{unless user.hasDirtyAttributes "disabled"}} {{action "updateProfile"}}>
+      {{#if updateProfileTask.isRunning}}
+        Saving...
+      {{else}}
+        Update Profile
+      {{/if}}
+    </button>
+  {{/modal.footer}}
 {{/bootstrap/bs-modal}}

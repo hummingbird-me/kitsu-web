@@ -1,39 +1,3 @@
-<div class="modal-cover-photo" style="background-image: url(&quot;/images/default_cover.png&quot;)">
-  <a class="modal-overlay-button">
-    <span class="overlay-text">
-      {{svg-jar "picture"}}
-      <h6>{{t 'users.edit.editCover'}}</h6>
-    </span>
-  </a>
-</div>
-<div class="modal-user-avatar">
-  <div class="modal-avatar-wrapper">
-    <a class="modal-overlay-button">
-      <span class="overlay-text">
-        {{svg-jar "picture"}}
-      </span>
-    </a>
-    <img src="http://localhost:32768/images/default_avatar.png" class="avatar-image avatar-image--medium">
-  </div>
-</div>
-<nav class="cover-nav edit-nav navbar navbar-light">
-  <div class="container">
-    <div class="row">
-      <div class="nav navbar-nav">
-        <a class="nav-item nav-link" {{action "changeComponent" "about-me"}}>
-          {{t 'users.edit.aboutMe'}}
-        </a>
-        <a class="nav-item nav-link" {{action "changeComponent" "linked-profiles"}}>
-          {{t 'users.edit.linkedProfiles'}}
-        </a>
-        <a class="nav-item nav-link" {{action "changeComponent" "favorites"}}>
-          {{t 'users.edit.favorites'}}
-        </a>
-      </div>
-    </div>
-  </div>
-</nav>
-
 <div class="modal-wrapper">
   <h4 class="edit-heading">{{t 'users.edit.linkedProfiles'}}</h4>
   <!-- Nav tabs -->
@@ -292,12 +256,4 @@
       </div>
     </div>
   </div>
-
 </div>
-
-<section class="modal-footer">
-  <p class="link-note">
-    Visit your <a href="#">settings page</a> to change your username, email, notification settings, and more.
-  </p>
-  <button href="#" class="button button--save-edit button--primary">Update Profile</button>
-</section>

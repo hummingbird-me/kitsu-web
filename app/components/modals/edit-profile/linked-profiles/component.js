@@ -2,7 +2,6 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 
 export default Component.extend({
-
   availableProfiles: [
     'web',
     'facebook',
@@ -22,11 +21,5 @@ export default Component.extend({
     'vimeo',
     'dailymotion',
     'osu'
-  ],
-
-  actions: {
-    changeComponent(component) {
-      get(this, 'changeComponent')(component);
-    }
-  }
+  ]
 });
