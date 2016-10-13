@@ -1,21 +1,53 @@
 <div class="modal-wrapper">
-  <h4 class="edit-heading">Linked Profiles</h4>
+  <h4 class="edit-heading">Favorites</h4>
   <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
+  <ul class="nav nav-tabs soft-tabs" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Anime</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Manga</a>
+      <a class="nav-link" data-toggle="tab" href="#home" role="tab">Manga</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Characters</a>
+      <a class="nav-link" data-toggle="tab" href="#home" role="tab">Characters</a>
     </li>
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div class="tab-pane active" id="home" role="tabpanel">tab 1</div>
+    <div class="tab-pane active" id="home" role="tabpanel">
+      <input class="media-sort-search" placeholder="Search to add by title..." type="text">
+      <ul class="media-sortable nav">
+        <li class="media-sort-item card">
+          <a class="media-sort-thumb-wrapper" href="#">
+            <img class="media-sort-thumb" src="https://static.hummingbird.me/anime/poster_images/000/003/936/medium/gqt6iYB.png?1419000387">
+          </a>
+          <span class="media-sort-title">Fullmetal Alchemist: Brotherhood</span>
+          <span class="media-sort-action"> <a class="hint--left hint--bounce hint--rounded" aria-label="Remove Favorite?" href="#">{{svg-jar "cancel"}}</a></span>
+        </li>
+        <li class="media-sort-item card">
+          <a class="media-sort-thumb-wrapper" href="#">
+            <img class="media-sort-thumb" src="https://static.hummingbird.me/anime/poster_images/000/003/936/medium/gqt6iYB.png?1419000387">
+          </a>
+          <span class="media-sort-title">Fullmetal Alchemist: Brotherhood</span>
+          <span class="media-sort-action"> <a class="hint--left hint--bounce hint--rounded" aria-label="Remove Favorite?" href="#">{{svg-jar "cancel"}}</a></span>
+        </li>
+        <li class="media-sort-item card">
+          <a class="media-sort-thumb-wrapper" href="#">
+            <img class="media-sort-thumb" src="https://static.hummingbird.me/anime/poster_images/000/003/936/medium/gqt6iYB.png?1419000387">
+          </a>
+          <span class="media-sort-title">Fullmetal Alchemist: Brotherhood</span>
+          <span class="media-sort-action"> <a class="hint--left hint--bounce hint--rounded" aria-label="Remove Favorite?" href="#">{{svg-jar "cancel"}}</a></span>
+        </li>
+        <li class="media-sort-item card">
+          <a class="media-sort-thumb-wrapper" href="#">
+            <img class="media-sort-thumb" src="https://static.hummingbird.me/anime/poster_images/000/003/936/medium/gqt6iYB.png?1419000387">
+          </a>
+          <span class="media-sort-title">Fullmetal Alchemist: Brotherhood</span>
+          <span class="media-sort-action"> <a class="hint--left hint--bounce hint--rounded" aria-label="Remove Favorite?" href="#">{{svg-jar "cancel"}}</a></span>
+        </li>
+      </ul>
+    </div>
     <div class="tab-pane" id="profile" role="tabpanel">tab 2</div>
     <div class="tab-pane" id="messages" role="tabpanel">tab 3</div>
   </div>

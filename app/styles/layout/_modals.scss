@@ -1,3 +1,5 @@
+// Yikes! This file needs a lot of cleaning! - Josh
+
 .modal-content {
   background-color: $alabaster;
   border: none;
@@ -23,10 +25,10 @@
   }
 }
 
-.global-row {
+.global-row, .primary-nav {
   filter: blur(0);
 }
-.modal-open .global-row {
+.modal-open .global-row, .modal-open .primary-nav {
   filter: blur(2px);
 }
 #edit-profile-modal {
@@ -35,8 +37,18 @@
   }
 }
 
+.modal-body {
+  padding: 15px;
+  max-height: 405px;
+  overflow: auto;
+}
+
 .modal-wrapper {
   padding: 20px;
+  padding-top: 5px;
+  .form-group:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .modal-overlay-button {
