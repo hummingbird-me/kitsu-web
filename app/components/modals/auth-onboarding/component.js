@@ -7,7 +7,7 @@ import computed from 'ember-computed';
  * This component should be invoked within a wormhole.
  */
 export default Component.extend({
-  _component: 'rate-content',
+  _component: 'social-auth',
   componentName: computed('_component', {
     get() {
       return `modals/auth-onboarding/${get(this, '_component')}`;

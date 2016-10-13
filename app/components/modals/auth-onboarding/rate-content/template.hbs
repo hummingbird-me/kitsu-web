@@ -25,7 +25,7 @@
       {{fa-icon "spinner" spin=true}}
     {{else}}
       {{#each media as |anime|}}
-        <img src="https://static.hummingbird.me/anime/poster_images/000/000/001/large/hNSma.jpg?1431697256">
+        <img src={{image anime.posterImage}}>
         {{star-rating
           options=(hash halfStar=true)
           onSet=(action "createLibraryEntry" anime)}}
@@ -38,7 +38,7 @@
       {{fa-icon "spinner" spin=true}}
     {{else}}
       {{#each media as |manga|}}
-        <img src="https://static.hummingbird.me/anime/poster_images/000/000/001/large/hNSma.jpg?1431697256">
+        <img src={{image manga.posterImage}}>
         {{star-rating
           options=(hash halfStar=true)
           onSet=(action "createLibraryEntry" manga)}}
@@ -47,7 +47,11 @@
   </div>
 </div>
 
-Number: {{numRated}} / 5
-<button type="button" class="btn btn-primary" {{action "changeComponent" "find-friends"}}>
-  Rate {{numRatedLeft}} to continue
+<progress class="progress progress-success" value={{numRated}} max="5"></progress>
+<button type="button" class="btn btn-primary" disabled={{if (not-eq numRatedLeft 0) "disabled"}} {{action "changeComponent" "find-friends"}}>
+  {{#if (not-eq numRatedLeft 0)}}
+    Rate {{numRatedLeft}} more to continue
+  {{else}}
+    Continue
+  {{/if}}
 </button>

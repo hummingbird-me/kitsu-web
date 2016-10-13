@@ -63,6 +63,8 @@ export default Component.extend({
     },
 
     createLibraryEntry(media, rating) {
+      // Increment to provide instant feedback to user
+      this.incrementProperty('numRated')
       const user = get(this, 'session.account');
       const entry = get(this, 'store').createRecord('library-entry', {
         status: 'completed',
@@ -70,7 +72,7 @@ export default Component.extend({
         user,
         media
       });
-      entry.save().then(() => this.incrementProperty('numRated'));
+      entry.save().catch(() => this.decrementProperty('numRated'));
     }
   }
 });
