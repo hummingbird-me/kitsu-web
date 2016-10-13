@@ -1,0 +1,112 @@
+.modal-content {
+  background-color: $alabaster;
+  border: none;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.30);
+  .label {
+    color: $charcoal;
+    font-size: 12px;
+  }
+  input, textarea, select {
+    width: 100%;
+    border: 1px solid $eggshell;
+    padding: 10px;
+    border-radius: 3px;
+  }
+}
+
+.modal-backdrop {
+  background-color: rgb(50, 58, 69);
+  &.in {
+    opacity: .8;
+  }
+}
+
+.global-row {
+  filter: blur(0);
+}
+.modal-open .global-row {
+  filter: blur(2px);
+}
+.edit-profile-modal {
+  .modal-body {
+    padding: 0;
+  }
+}
+
+.modal-wrapper {
+  padding: 20px;
+}
+
+.modal-overlay-button {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  .overlay-text {
+    position: relative;
+    display: block;
+    height: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FFF;
+  }
+  svg {
+    fill: $white;
+    width: 30px;
+    height: 30px;
+  }
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.modal-cover-photo {
+  width: 100%;
+  height: 165px;
+  background-size: cover;
+  position: relative;
+}
+
+.modal-avatar-wrapper {
+  position: relative;
+  display: inline-block;
+  .modal-overlay-button {
+    border-radius: 999em;
+    border: 2px solid $alabaster;
+  }
+  img {
+    border: 2px solid $alabaster;
+  }
+}
+
+.modal-user-avatar {
+  margin-top: -38px;
+  margin-left: 15px;
+  position: absolute;
+  z-index: $zIndex--modal-user-avatar;
+}
+
+.edit-heading {
+  margin-bottom: 18px;
+}
+
+.modal-footer {
+  text-align: left;
+  border-top: 1px solid $eggshell;
+  background: #f5f5f5;
+  padding: 20px;
+  .link-note {
+    float: left;
+    font-size: 12px;
+    width: 65%;
+    margin-bottom: 0;
+  }
+}

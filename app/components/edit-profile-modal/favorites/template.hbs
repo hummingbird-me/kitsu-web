@@ -1,0 +1,66 @@
+<div class="modal-cover-photo" style="background-image: url(&quot;/images/default_cover.png&quot;)">
+  <a class="modal-overlay-button">
+    <span class="overlay-text">
+      {{svg-jar "picture"}}
+      <h6>{{t 'users.edit.editCover'}}</h6>
+    </span>
+  </a>
+</div>
+<div class="modal-user-avatar">
+  <div class="modal-avatar-wrapper">
+    <a class="modal-overlay-button">
+      <span class="overlay-text">
+        {{svg-jar "picture"}}
+      </span>
+    </a>
+    <img src="http://localhost:32768/images/default_avatar.png" class="avatar-image avatar-image--medium">
+  </div>
+</div>
+<nav class="cover-nav edit-nav navbar navbar-light">
+  <div class="container">
+    <div class="row">
+      <div class="nav navbar-nav">
+        <a class="nav-item nav-link" {{action "changeComponent" "about-me"}}>
+          {{t 'users.edit.aboutMe'}}
+        </a>
+        <a class="nav-item nav-link" {{action "changeComponent" "linked-profiles"}}>
+          {{t 'users.edit.linkedProfiles'}}
+        </a>
+        <a class="nav-item nav-link" {{action "changeComponent" "favorites"}}>
+          {{t 'users.edit.favorites'}}
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="modal-wrapper">
+  <h4 class="edit-heading">Linked Profiles</h4>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Anime</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Manga</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Characters</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane active" id="home" role="tabpanel">tab 1</div>
+    <div class="tab-pane" id="profile" role="tabpanel">tab 2</div>
+    <div class="tab-pane" id="messages" role="tabpanel">tab 3</div>
+  </div>
+
+</div>
+
+<section class="modal-footer">
+  <p class="link-note">
+    Visit your <a href="#">settings page</a> to change your username, email, notification settings, and more.
+  </p>
+  <button href="#" class="button button--save-edit button--primary">Update Profile</button>
+</section>

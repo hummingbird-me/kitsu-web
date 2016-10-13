@@ -116,6 +116,12 @@ export default {
       reviews: 'Reviews',
       lists: 'Lists'
     },
+    edit: {
+      editCover: 'Change your cover photo',
+      aboutMe: 'About Me',
+      linkedProfiles: 'Linked Profiles',
+      favorites: 'Favorites'
+    },
     library: {
       library: '{{type}} Library',
       search: 'Search this library...',

@@ -3,7 +3,8 @@
 // our code, not our responsibility. Placed first for overrides
 @import
   'bootstrap-flex', // CSS Framework used site-wide
-  'vendor/noui';
+  'vendor/noui',
+  'vendor/hint'; // lightweight css tooltips
 
 // Base
 // Contains what we might call the boilerplate code for Kitsu. Things such as
@@ -12,7 +13,8 @@
   'base/_colors', // Colors used site-wide
   'base/_base', // General CSS styles
   'base/_shame', // Declarations, hacks and naughty code we're not proud of.
-  'base/_typography'; // how text appears on the site
+  'base/_typography', // how text appears on the site
+  'base/_animate.scss'; // animation library
 
 // Components
 // While layout/ is macro (defining the global wireframe), components/ is more
@@ -20,7 +22,8 @@
 @import
   'components/_dropdowns', // rules for bootstraps default dropdowns
   'components/_avatars', // various user avatar rules
-  'components/_buttons'; // buttons used site-wide
+  'components/_buttons', // buttons used site-wide
+  'components/_switch'; // Toggle switch styles
 
 // Layout
 // Contains everything that takes part in laying out Kitsu. Things such as the
@@ -28,7 +31,8 @@
 @import
   'layout/_z-index', // z-index scale
   'layout/_navbar', // Navigation Bars
-  'layout/cover-images'; // Cover section found on user and media pages
+  'layout/_cover-images', // Cover section found on user and media pages
+  'layout/_modals'; // various pop-up modal styles
 
 
 // Pages

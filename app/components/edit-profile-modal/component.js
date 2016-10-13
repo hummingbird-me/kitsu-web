@@ -8,9 +8,9 @@ import computed from 'ember-computed';
  */
 export default Component.extend({
   /**
-   * `edit-profile-modal/basic-info` is the default view for Edit Profile Modal.
+   * `edit-profile-modal/about-me` is the default view for Edit Profile Modal.
    */
-  _component: 'basic-info',
+  _component: 'about-me',
   componentName: computed('_component', {
     get() {
       return `edit-profile-modal/${get(this, '_component')}`;
