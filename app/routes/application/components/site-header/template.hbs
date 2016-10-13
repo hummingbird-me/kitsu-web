@@ -29,7 +29,7 @@
               <img src={{image session.account.avatar}} class="avatar-image avatar-image--small">
             </a>
             <div class="dropdown-menu">
-              {{#link-to "users.index" session.account class="dropdown-item"}}
+              {{#link-to "users.index" session.account.name class="dropdown-item"}}
                 {{t "header.user.profile"}}
               {{/link-to}}
               <a href="#" {{action "invalidateSession"}} class="dropdown-item">

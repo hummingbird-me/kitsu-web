@@ -30,7 +30,7 @@ module.exports = function(environment) {
     },
 
     'ember-simple-auth': {
-      authenticationRoute: 'sign-in',
+      authenticationRoute: 'dashboard',
       routeIfAlreadyAuthenticated: 'dashboard',
       store: 'session-store:adaptive'
     },

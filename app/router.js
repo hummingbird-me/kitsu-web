@@ -35,6 +35,8 @@ RouterInstance.map(function() {
     this.route('lists');
   });
 
+  this.route('settings');
+
   // These must remain at the bottom of the RouterInstance map
   this.route('server-error', { path: '/500' });
   this.route('not-found', { path: '/*path' });
