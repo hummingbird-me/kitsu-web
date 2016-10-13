@@ -35,117 +35,19 @@
 </nav>
 
 <div class="modal-wrapper">
-  <h4 class="edit-heading">Linked Profiles</h4>
+  <h4 class="edit-heading">{{t 'users.edit.linkedProfiles'}}</h4>
   <!-- Nav tabs -->
   <ul class="linked-profiles nav" role="tablist">
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded active" aria-label="Website" data-toggle="tab" href="#website" role="tab">
-        {{svg-jar "web"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Facebook" data-toggle="tab" href="#facebook" role="tab">
-        {{svg-jar "facebook"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Twitter" data-toggle="tab" href="#twitter" role="tab">
-        {{svg-jar "twitter"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded filled" aria-label="Twitch" data-toggle="tab" href="#twitch" role="tab">
-        {{svg-jar "twitch"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded filled" aria-label="Youtube" data-toggle="tab" href="#youtube" role="tab">
-        {{svg-jar "youtube"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Google+" data-toggle="tab" href="#google" role="tab">
-        {{svg-jar "gplus"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Steam" data-toggle="tab" href="#steam" role="tab">
-        {{svg-jar "steam"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Patreon" data-toggle="tab" href="#patreon" role="tab">
-        {{svg-jar "patreon"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Tumblr" data-toggle="tab" href="#tumblr" role="tab">
-        {{svg-jar "tumblr"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Github" data-toggle="tab" href="#github" role="tab">
-        {{svg-jar "github"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Instagram" data-toggle="tab" href="#instagram" role="tab">
-        {{svg-jar "instagram"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Mobcrush" data-toggle="tab" href="#mobcrush" role="tab">
-        {{svg-jar "mobcrush"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Raptr" data-toggle="tab" href="#raptr" role="tab">
-        {{svg-jar "raptr"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Soundcloud" data-toggle="tab" href="#soundcloud" role="tab">
-        {{svg-jar "soundcloud"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded filled" aria-label="Discord" data-toggle="tab" href="#discord" role="tab">
-        {{svg-jar "discord"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Vimeo" data-toggle="tab" href="#vimeo" role="tab">
-        {{svg-jar "vimeo"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Dailymotion" data-toggle="tab" href="#dailymotion" role="tab">
-        {{svg-jar "dailymotion"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
-    <li class="profile-item nav-item">
-      <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="Osu" data-toggle="tab" href="#osu" role="tab">
-        {{svg-jar "osu"}}
-        <span class="fill-mark">{{svg-jar "success"}}</span>
-      </a>
-    </li>
+    {{#each availableProfiles as |profile|}}
+      <li class="profile-item nav-item">
+        <!-- DEVNOTE: For already filled out, add class "filled" to link -->
+        <!-- DEVNOTE: For first active, add class "active" to link -->
+        <a class="nav-link hint--top hint--bounce hint--rounded" aria-label="{{t (concat 'users.edit.availableProfiles.' profile)}}" data-toggle="tab" href="#{{profile}}" role="tab">
+          {{svg-jar profile}}
+          <span class="fill-mark">{{svg-jar "success"}}</span>
+        </a>
+      </li>
+    {{/each}}
   </ul>
 
   <!-- Tab panes -->
@@ -154,7 +56,7 @@
       <h6>Website</h6>
       <div class="form-group row">
         <div class="col-xs-12">
-          <label for="example-url-input" class="col-form-label">Enter your Website URL to add a link on your profile.</label>
+          <label for="example-url-input" class="col-form-label">{{t 'users.edit.linkProfile.toAddLink' profile='Website URL'}}</label>
         </div>
         <div class="col-xs-12">
           <input class="form-control" type="url" value="" placeholder="https://yourwebsite.com" id="example-url-input">
@@ -165,10 +67,10 @@
       <h6>Facebook</h6>
       <div class="form-group row">
         <div class="col-xs-12">
-          <label for="example-url-input" class="col-form-label">Connect to cross-post, find your friends and link to your profile.</label>
+          <label for="example-url-input" class="col-form-label">{{t 'users.edit.linkProfile.toCrosspost'}}</label>
         </div>
         <div class="col-xs-12">
-          <button class="">Connect to Facebook</button>
+          <button class="">{{t 'users.edit.linkProfile.connect' profile='Facebook'}}</button>
         </div>
       </div>
     </div>
@@ -176,10 +78,10 @@
       <h6>Twitter</h6>
       <div class="form-group row">
         <div class="col-xs-12">
-          <label for="example-url-input" class="col-form-label">Connect to cross-post, find your friends and link to your profile.</label>
+          <label for="example-url-input" class="col-form-label">{{t 'users.edit.linkProfile.toCrosspost'}}</label>
         </div>
         <div class="col-xs-12">
-          <button class="">Connect to Twitter</button>
+          <button class="">{{t 'users.edit.linkProfile.connect' profile='Twitter'}}</button>
         </div>
       </div>
     </div>
@@ -187,24 +89,24 @@
       <h6>Twitch</h6>
       <div class="form-group row">
         <div class="col-xs-12">
-          <label for="example-url-input" class="col-form-label">Connect to show when you're streaming and add a link to your profile.</label>
+          <label for="example-url-input" class="col-form-label">{{t 'users.edit.linkProfile.toShowStreamAndLink'}}</label>
         </div>
         <div class="col-xs-12">
-          <button class="">Disconnect from Twitch</button>
+          <button class="">{{t 'users.edit.linkProfile.connect' profile='Twitch'}}</button>
           <ul class="profile-settings nav">
             <li>
               <span class="switch">
                 <input type="checkbox" checked="checked" id="twitch-toggle1" />
                 <label for="twitch-toggle1"></label>
               </span>
-              <label for="twitch-toggle1" class="setting-info">Link to your Twitch from your profile.</label>
+              <label for="twitch-toggle1" class="setting-info">{{t 'users.edit.linkProfile.toShowLink' profile='Twitch'}}</label>
             </li>
             <li>
               <span class="switch">
                 <input type="checkbox" checked="checked" id="twitch-toggle2" />
                 <label for="twitch-toggle2"></label>
               </span>
-              <label for="twitch-toggle2" class="setting-info">Show my followers when I'm streaming.</label>
+              <label for="twitch-toggle2" class="setting-info">{{t 'users.edit.linkProfile.toShowStreaming'}}</label>
             </li>
           </ul>
         </div>
@@ -214,37 +116,37 @@
       <h6>Youtube</h6>
       <div class="form-group row">
         <div class="col-xs-12">
-          <label for="example-url-input" class="col-form-label">Connect to automatically share your content and link to your account.</label>
+          <label for="example-url-input" class="col-form-label">{{t 'users.edit.linkProfile.toShowContentAndLink'}}</label>
         </div>
         <div class="col-xs-12">
-          <button class="">Disconnect from Youtube</button>
+          <button class="">{{t 'users.edit.linkProfile.connect' profile='Youtube'}}</button>
           <ul class="profile-settings nav">
             <li>
               <span class="switch">
                 <input type="checkbox" id="youtube-toggle1" />
                 <label for="youtube-toggle1"></label>
               </span>
-              <label for="youtube-toggle1" class="setting-info">Share new content with your followers automatically.</label>
+              <label for="youtube-toggle1" class="setting-info">{{t 'users.edit.linkProfile.toShowNewUploads'}}</label>
             </li>
             <li>
               <span class="switch">
                 <input type="checkbox" checked="checked" id="youtube-toggle2" />
                 <label for="youtube-toggle2"></label>
               </span>
-              <label for="youtube-toggle2" class="setting-info">Link to your Youtube from your profile.</label>
+              <label for="youtube-toggle2" class="setting-info">{{t 'users.edit.linkProfile.toShowLink' profile='Youtube'}}</label>
             </li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="tab-pane" id="google" role="tabpanel">
+    <div class="tab-pane" id="gplus" role="tabpanel">
       <h6>Google+</h6>
       <div class="form-group row">
         <div class="col-xs-12">
           <label for="example-url-input" class="col-form-label">Connect to find your friends add a link on your profile.</label>
         </div>
         <div class="col-xs-12">
-          <button class="">Connect to Google+</button>
+          <button class="">{{t 'users.edit.linkProfile.connect' profile='Google+'}}</button>
         </div>
       </div>
     </div>
@@ -255,7 +157,7 @@
           <label for="example-url-input" class="col-form-label">Connect to find your friends and add a link on your profile.</label>
         </div>
         <div class="col-xs-12">
-          <button class="">Connect to Steam</button>
+          <button class="">{{t 'users.edit.linkProfile.connect' profile='Steam'}}</button>
         </div>
       </div>
     </div>
@@ -263,10 +165,10 @@
       <h6>Patreon</h6>
       <div class="form-group row">
         <div class="col-xs-12">
-          <label for="example-url-input" class="col-form-label">Enter your Patreon URL to add a link on your profile.</label>
+          <label for="example-url-input" class="col-form-label">{{t 'users.edit.linkProfile.toAddLink' profile='Patreon URL'}}</label>
         </div>
         <div class="col-xs-12">
-          <input class="form-control" type="url" value="" placeholder="Patreon Profile URL">
+          <input class="form-control" type="url" value="" placeholder="{{t 'users.edit.linkProfile.placeholderProfile' profile='Patreon'}}">
         </div>
       </div>
     </div>
@@ -274,10 +176,10 @@
       <h6>Tumblr</h6>
       <div class="form-group row">
         <div class="col-xs-12">
-          <label for="example-url-input" class="col-form-label">Enter your Tumblr URL to add a link on your profile.</label>
+          <label for="example-url-input" class="col-form-label">{{t 'users.edit.linkProfile.toAddLink' profile='Tumblr URL'}}</label>
         </div>
         <div class="col-xs-12">
-          <input class="form-control" type="url" value="" placeholder="Tumblr Profile URL">
+          <input class="form-control" type="url" value="" placeholder="{{t 'users.edit.linkProfile.placeholderProfile' profile='Tumblr'}}">
         </div>
       </div>
     </div>
@@ -285,10 +187,10 @@
       <h6>Github</h6>
       <div class="form-group row">
         <div class="col-xs-12">
-          <label for="example-url-input" class="col-form-label">Enter your Github URL to add a link on your profile.</label>
+          <label for="example-url-input" class="col-form-label">{{t 'users.edit.linkProfile.toAddLink' profile='Github URL'}}</label>
         </div>
         <div class="col-xs-12">
-          <input class="form-control" type="url" value="" placeholder="Github Profile URL">
+          <input class="form-control" type="url" value="" placeholder="{{t 'users.edit.linkProfile.placeholderProfile' profile='Github'}}">
         </div>
       </div>
     </div>
@@ -296,10 +198,10 @@
       <h6>Instagram</h6>
       <div class="form-group row">
         <div class="col-xs-12">
-          <label for="example-url-input" class="col-form-label">Enter your Instagram URL to add a link on your profile.</label>
+          <label for="example-url-input" class="col-form-label">{{t 'users.edit.linkProfile.toAddLink' profile='Instagram URL'}}</label>
         </div>
         <div class="col-xs-12">
-          <input class="form-control" type="url" value="" placeholder="Instagram Profile URL">
+          <input class="form-control" type="url" value="" placeholder="{{t 'users.edit.linkProfile.placeholderProfile' profile='Instagram'}}">
         </div>
       </div>
     </div>
@@ -307,10 +209,10 @@
       <h6>Mobcrush</h6>
       <div class="form-group row">
         <div class="col-xs-12">
-          <label for="example-url-input" class="col-form-label">Enter your Mobcrush URL to add a link on your profile.</label>
+          <label for="example-url-input" class="col-form-label">{{t 'users.edit.linkProfile.toAddLink' profile='Mobcrush URL'}}</label>
         </div>
         <div class="col-xs-12">
-          <input class="form-control" type="url" value="" placeholder="Mobcrush Profile URL">
+          <input class="form-control" type="url" value="" placeholder="{{t 'users.edit.linkProfile.placeholderProfile' profile='Mobcrush'}}">
         </div>
       </div>
     </div>
@@ -318,10 +220,10 @@
       <h6>Raptr</h6>
       <div class="form-group row">
         <div class="col-xs-12">
-          <label for="example-url-input" class="col-form-label">Enter your Raptr URL to add a link on your profile.</label>
+          <label for="example-url-input" class="col-form-label">{{t 'users.edit.linkProfile.toAddLink' profile='Raptr URL'}}</label>
         </div>
         <div class="col-xs-12">
-          <input class="form-control" type="url" value="" placeholder="Raptr Profile URL">
+          <input class="form-control" type="url" value="" placeholder="{{t 'users.edit.linkProfile.placeholderProfile' profile='Raptr'}}">
         </div>
       </div>
     </div>
@@ -329,10 +231,10 @@
       <h6>Soundcloud</h6>
       <div class="form-group row">
         <div class="col-xs-12">
-          <label for="example-url-input" class="col-form-label">Enter your Soundcloud URL to add a link on your profile.</label>
+          <label for="example-url-input" class="col-form-label">{{t 'users.edit.linkProfile.toAddLink' profile='Soundcloud URL'}}</label>
         </div>
         <div class="col-xs-12">
-          <input class="form-control" type="url" value="" placeholder="Soundcloud Profile URL">
+          <input class="form-control" type="url" value="" placeholder="{{t 'users.edit.linkProfile.placeholderProfile' profile='Soundcloud'}}">
         </div>
       </div>
     </div>
@@ -340,17 +242,17 @@
       <h6>Discord</h6>
       <div class="form-group row">
         <div class="col-xs-12">
-          <label for="example-url-input" class="col-form-label">Enter your Discord Invite URL or DiscordTag to add a link on your profile.</label>
+          <label for="example-url-input" class="col-form-label">{{t 'users.edit.linkProfile.toAddLink' profile='Discord Invite URL or DiscordTag'}}</label>
         </div>
         <div class="col-xs-12">
-          <input class="form-control" type="url" value="Cruecial#8650" placeholder="Discord Invite URL or DiscordTag#000">
+          <input class="form-control" type="url" value="Cruecial#8650" placeholder="{{t 'users.edit.linkProfile.placeholderDiscord'}}">
           <ul class="profile-settings nav">
             <li>
               <span class="switch">
                 <input type="checkbox" checked="checked" id="discord-toggle1" />
                 <label for="discord-toggle1"></label>
               </span>
-              <label for="discord-toggle1" class="setting-info">Link to your Discord from your profile.</label>
+              <label for="discord-toggle1" class="setting-info">{{t 'users.edit.linkProfile.toShowLink' profile='Discord'}}</label>
             </li>
           </ul>
         </div>
@@ -360,10 +262,10 @@
       <h6>Vimeo</h6>
       <div class="form-group row">
         <div class="col-xs-12">
-          <label for="example-url-input" class="col-form-label">Enter your Vimeo URL to add a link on your profile.</label>
+          <label for="example-url-input" class="col-form-label">{{t 'users.edit.linkProfile.toAddLink' profile='Vimeo URL'}}</label>
         </div>
         <div class="col-xs-12">
-          <input class="form-control" type="url" value="" placeholder="Vimeo Channel URL">
+          <input class="form-control" type="url" value="" placeholder="{{t 'users.edit.linkProfile.placeholderChannel' profile='Viemo'}}">
         </div>
       </div>
     </div>
@@ -371,10 +273,10 @@
       <h6>Dailymotion</h6>
       <div class="form-group row">
         <div class="col-xs-12">
-          <label for="example-url-input" class="col-form-label">Enter your Dailymotion URL to add a link on your profile.</label>
+          <label for="example-url-input" class="col-form-label">{{t 'users.edit.linkProfile.toAddLink' profile='Dailymotion URL'}}</label>
         </div>
         <div class="col-xs-12">
-          <input class="form-control" type="url" value="" placeholder="Dailymotion Channel URL">
+          <input class="form-control" type="url" value="" placeholder="{{t 'users.edit.linkProfile.placeholderChannel' profile='Dailymotion'}}">
         </div>
       </div>
     </div>
@@ -382,10 +284,10 @@
       <h6>Osu!</h6>
       <div class="form-group row">
         <div class="col-xs-12">
-          <label for="example-url-input" class="col-form-label">Enter your Osu! URL to add a link on your profile.</label>
+          <label for="example-url-input" class="col-form-label">{{t 'users.edit.linkProfile.toAddLink' profile='Osu! URL'}}</label>
         </div>
         <div class="col-xs-12">
-          <input class="form-control" type="url" value="" placeholder="Osu! Profile URL">
+          <input class="form-control" type="url" value="" placeholder="{{t 'users.edit.linkProfile.placeholderProfile' profile='Osu!'}}">
         </div>
       </div>
     </div>
