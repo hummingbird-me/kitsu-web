@@ -184,6 +184,12 @@ export default {
       times: 'times'
     }
   },
+  // ember-power-select locale
+  selects: {
+    loading: 'Loading...',
+    none: 'No results found',
+    search: 'Type to search'
+  },
   errors: {
     // ember-cp-validations default errors
     description: 'This field',

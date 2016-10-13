@@ -4,6 +4,7 @@ import { alias } from 'ember-computed';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { isEmpty } from 'ember-utils';
+import { task, timeout } from 'ember-concurrency';
 
 const GENDER_KEYS = ['secret', 'male', 'female', 'custom'];
 
@@ -11,7 +12,13 @@ export default Component.extend({
   selectedGender: undefined,
   i18n: service(),
   session: service(),
+  store: service(),
   user: alias('session.account'),
+
+  searchCharacters: task(function *() {
+    yield timeout(1000);
+    // TODO: Implement searching when available on server
+  }).restartable(),
 
   init() {
     this._super(...arguments);

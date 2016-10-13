@@ -64,5 +64,5 @@ export default Model.extend(Validations, {
   waifuOrHusbando: attr('string'),
   website: attr('string'),
 
-  character: belongsTo('character')
+  waifu: belongsTo('character')
 });

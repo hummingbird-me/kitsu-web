@@ -59,12 +59,16 @@
       {{t "users.edit.about.waifu"}}
     </label>
     <div class="col-xs-10">
-      {{! TODO: NYI + Switch to typeahead }}
-      {{one-way-search
-        id="waifu-input"
-        class="form-control"
-        placeholder=(t "users.edit.about.waifuPlaceholder")
+      {{#power-select
+        search=(perform searchCharacters)
+        selected=user.waifu
+        onchange=(action (mut user.waifu))
+        renderInPlace=true
+        as |character|
       }}
+        <img src={{image character.image}}>
+        <strong>{{character.name}}</strong>
+      {{/power-select}}
     </div>
   </div>
   <div class="form-group row">
