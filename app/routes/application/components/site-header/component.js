@@ -8,10 +8,6 @@ export default Component.extend({
   session: service(),
 
   actions: {
-    toggleAuth(value) {
-      set(this, 'authOpened', value);
-    },
-
     invalidateSession() {
       get(this, 'session').invalidate();
     }

@@ -16,11 +16,5 @@ export default Controller.extend(IsOwnerMixin, {
       const coverImage = image([get(this, 'user.coverImage')]);
       return `background-image: url("${coverImage}")`.htmlSafe();
     }
-  }),
-
-  actions: {
-    toggleEditing(value) {
-      set(this, 'isEditing', value);
-    }
-  }
+  })
 });

@@ -7,13 +7,10 @@ import computed from 'ember-computed';
  * This component should be invoked within a wormhole.
  */
 export default Component.extend({
-  /**
-   * `auth-modal/social-auth` is the default view for authentication.
-   */
-  _component: 'social-auth',
+  _component: 'about-me',
   componentName: computed('_component', {
     get() {
-      return `auth-modal/${get(this, '_component')}`;
+      return `modals/edit-profile/${get(this, '_component')}`;
     }
   }),
 

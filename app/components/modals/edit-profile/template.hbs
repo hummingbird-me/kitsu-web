@@ -1,4 +1,4 @@
-{{#bootstrap/bs-modal class="edit-profile-modal" id="edit-profile-modal" onClose=(action "onClose") as |modal|}}
+{{#bootstrap/bs-modal id=modalId onClose=(action "onClose") as |modal|}}
   {{#modal.body}}
     {{component componentName
       changeComponent=(action "changeComponent")

@@ -20,7 +20,7 @@
           <div class="cover-cta">
             {{#if isOwner}}
               {{! TODO: Edit Button }}
-              <button class="button button--light-outline" data-toggle="modal" data-target="#edit-profile-modal" {{action "toggleEditing" true}}>
+              <button class="button button--light-outline" data-toggle="modal" data-target="#edit-profile-modal" {{action (toggle "isEditing" this)}}>
                 <span class="button-label button-defaultState js-buttonLabel">Edit</span>
               </button>
             {{else}}
@@ -53,6 +53,8 @@
 
 {{#if isEditing}}
   {{#ember-wormhole to="wormhole"}}
-    {{edit-profile-modal onClose=(action "toggleEditing" false)}}
+    {{modals/edit-profile
+      modalId="edit-profile-modal"
+      onClose=(toggle-action "isEditing" this)}}
   {{/ember-wormhole}}
 {{/if}}

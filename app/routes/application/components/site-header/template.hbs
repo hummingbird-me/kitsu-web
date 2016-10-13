@@ -39,12 +39,12 @@
           </li>
         {{else}}
           <li class="nav-item">
-            <a href="#" class="nav-link" data-toggle="modal" data-target="#auth-modal" data-test-selector="sign-up-header" {{action "toggleAuth" true}}>
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#auth-modal" data-test-selector="sign-up-header" {{action (toggle "authOpened" this)}}>
               {{t "header.signUp"}}
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link" data-toggle="modal" data-target="#auth-modal" data-test-selector="sign-up-header" {{action "toggleAuth" true}}>
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#auth-modal" data-test-selector="sign-up-header" {{action (toggle "authOpened" this)}}>
               {{t "header.signIn"}}
             </a>
           </li>
@@ -134,6 +134,8 @@
 
 {{#if authOpened}}
   {{#ember-wormhole to="wormhole"}}
-    {{auth-modal onClose=(action "toggleAuth" false)}}
+    {{modals/auth-onboarding
+      modalId="auth-modal"
+      onClose=(toggle-action "authOpened" this)}}
   {{/ember-wormhole}}
 {{/if}}
