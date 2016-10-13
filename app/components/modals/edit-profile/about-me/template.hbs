@@ -46,7 +46,7 @@
       }}
 
       {{#if (eq selectedGender (get this 'genderOptions.lastObject'))}}
-        {{one-way-text user.gender
+        {{one-way-text (capitalize user.gender)
           update=(action (mut user.gender))
           class="form-control"
           placeholder=(t "users.edit.about.genderCustom")

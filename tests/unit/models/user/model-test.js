@@ -13,7 +13,8 @@ moduleForModel('user', 'Unit | Model | user', {
     'validator:presence',
     'validator:length',
     'validator:format',
-    'validator:messages'
+    'validator:messages',
+    'model:character'
   ],
 
   beforeEach() {

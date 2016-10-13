@@ -1,5 +1,6 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
+import { belongsTo } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
 import service from 'ember-service/inject';
 import get from 'ember-metal/get';
@@ -61,5 +62,7 @@ export default Model.extend(Validations, {
   name: attr('string'),
   toFollow: attr('boolean'),
   waifuOrHusbando: attr('string'),
-  website: attr('string')
+  website: attr('string'),
+
+  character: belongsTo('character')
 });

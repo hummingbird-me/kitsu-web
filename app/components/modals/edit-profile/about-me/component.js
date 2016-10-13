@@ -5,6 +5,8 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { isEmpty } from 'ember-utils';
 
+const GENDER_KEYS = ['secret', 'male', 'female', 'custom'];
+
 export default Component.extend({
   selectedGender: undefined,
   i18n: service(),
@@ -18,33 +20,36 @@ export default Component.extend({
   },
 
   _setGenderOptions() {
-    const keys = ['secret', 'male', 'female', 'custom'];
     const i18n = [];
-    keys.forEach((key) => {
-      const value = get(this, 'i18n').t(`users.edit.about.genderOptions.${key}`);
-      i18n.push(value.string);
+    GENDER_KEYS.forEach((key) => {
+      i18n.push(this._translateGender(key));
     });
     set(this, 'genderOptions', i18n);
   },
 
   _setGender() {
     const gender = get(this, 'user.gender');
-    const options = get(this, 'genderOptions');
 
     if (isEmpty(gender) === true) {
-      set(this, 'selectedGender', get(options, 'firstObject'));
-    } else if (options.includes(gender) === true) {
-      set(this, 'selectedGender', gender);
+      set(this, 'selectedGender', this._translateGender(get(GENDER_KEYS, 'firstObject')));
+    } else if (GENDER_KEYS.includes(gender) === true) {
+      set(this, 'selectedGender', this._translateGender(gender));
     } else {
-      set(this, 'selectedGender', get(options, 'lastObject'));
+      set(this, 'selectedGender', this._translateGender(get(GENDER_KEYS, 'lastObject')));
     }
+  },
+
+  _translateGender(key) {
+    return get(this, 'i18n').t(`users.edit.about.genderOptions.${key}`).string;
   },
 
   actions: {
     updateGender(value) {
-      const options = get(this, 'genderOptions').slice(0, 2);
-      if (options.includes(value) === true) {
-        set(this, 'user.gender', value);
+      const options = GENDER_KEYS.slice(0, 3).map((key) => {
+        return { key, str: this._translateGender(key) };
+      });
+      if (options.map((o) => o.str).includes(value) === true) {
+        set(this, 'user.gender', options.find((o) => o.str === value).key);
       }
       set(this, 'selectedGender', value);
     }
