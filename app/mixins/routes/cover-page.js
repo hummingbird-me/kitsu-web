@@ -27,7 +27,7 @@ export default Mixin.create({
         if (jQuery(window).scrollTop() < 200) {
           jQuery('.primary-nav').addClass('transparent');
         }
-      }, 500);
+      }, 1000);
 
       if (get(this, 'timer') !== undefined) {
         cancel(get(this, 'timer'));
