@@ -17,7 +17,8 @@ export default {
       library: '{{user}}\'s Library',
       lists: '{{user}}\'s List',
       reviews: '{{user}}\'s Reviews'
-    }
+    },
+    settings: 'Settings'
   },
   'auth-modal': {
     'sign-up': {
@@ -97,6 +98,7 @@ export default {
     signUp: 'Sign Up',
     user: {
       profile: 'View Profile',
+      settings: 'Settings',
       logout: 'Logout'
     }
   },
