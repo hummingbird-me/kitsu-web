@@ -1,0 +1,13 @@
+{{one-way-search
+  update=(action "update")
+  placeholder=placeholder}}
+
+{{#if items}}
+  <ul class="typeahead-items-container nav">
+    {{#each items as |item|}}
+      <li class="typeahead-item-container">
+        {{yield item}}
+      </li>
+    {{/each}}
+  </ul>
+{{/if}}

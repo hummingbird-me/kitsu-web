@@ -102,11 +102,6 @@ export default {
       logout: 'Logout'
     }
   },
-  // Global footer
-  footer: {
-    header: 'Find an anime or manga',
-    'search-placeholder': 'Search by title...'
-  },
   // Users route text
   users: {
     following: 'Following',
@@ -173,7 +168,15 @@ export default {
         dailymotion: 'Dailymotion',
         osu: 'Osu'
       },
-      favorites: 'Favorites'
+      favorites: 'Favorites',
+      favorite: {
+        anime: 'Anime',
+        manga: 'Manga',
+        characters: 'Characters',
+        remove: 'Remove Favorite?',
+        add: 'Add Favorite',
+        search: 'Search to add by title...'
+      }
     },
     library: {
       library: '{{type}} Library',
