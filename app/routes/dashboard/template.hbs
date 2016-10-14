@@ -1,4 +1,5 @@
 {{#if session.isAuthenticated}}
+  {{dashboard/components/quick-update}}
   <h1>Welcome, {{session.account.name}}</h1>
 {{else}}
   <h1>Dashboard</h1>

@@ -1,0 +1,13 @@
+{{#if lessThanFive}}
+  <!-- Helper Hint -->
+{{/if}}
+
+{{#each entries as |entry|}}
+  {{dashboard/components/quick-update-item entry=entry}}
+{{/each}}
+
+{{#if lessThanFive}}
+  {{#each (repeat remaining) as |_|}}
+    <!-- Empty Block -->
+  {{/each}}
+{{/if}}

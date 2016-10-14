@@ -34,7 +34,7 @@ export default Component.extend({
       }).save().then((entry) => set(this, 'entry', entry));
     } else {
       if (status.key === REMOVE_KEY) {
-        yield get(this, 'store').destroyRecord()
+        yield get(this, 'entry').destroyRecord()
           .then(() => set(this, 'entry', undefined))
           .catch(() => entry.rollbackAttributes());
       } else {

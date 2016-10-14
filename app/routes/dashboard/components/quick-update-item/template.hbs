@@ -1,0 +1,21 @@
+<img src={{image entry.media.posterImage}}>
+{{#if (not isCompleted)}}
+  <button class="btn btn-primary" {{action (perform updateEntryTask)}}>
+    {{#if updateEntryTask.isRunning}}
+      Updating... (Spinner)
+    {{else}}
+      {{#if canComplete}}
+        Complete
+      {{else}}
+        Mark Episode {{nextProgress}} Complete
+      {{/if}}
+    {{/if}}
+  </button>
+{{else}}
+  {{star-rating entry.rating
+    options=(hash halfStar=true)
+    onSet=(action "rateEntry")
+  }}
+
+  <!-- Review -->
+{{/if}}
