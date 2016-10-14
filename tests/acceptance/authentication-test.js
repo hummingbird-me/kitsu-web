@@ -41,6 +41,10 @@ test('can create an account', function(assert) {
     this.post('/api/oauth/token', function() {
       return [200, { 'Content-Type': 'application/json' }, JSON.stringify(tokenResponse)];
     });
+
+    this.get('/api/edge/library-entries', function() {
+      return [200, { 'Content-Type': 'application/json' }, JSON.stringify({ data: [] })];
+    });
   });
 
   visit('/');
@@ -130,6 +134,10 @@ test('can sign into an account', function(assert) {
     this.get('/api/edge/users', function() {
       const data = new JaQuery(usersResponse);
       return [201, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
+    });
+
+    this.get('/api/edge/library-entries', function() {
+      return [200, { 'Content-Type': 'application/json' }, JSON.stringify({ data: [] })];
     });
   });
 
