@@ -1,4 +1,13 @@
 // Yikes! This file needs a lot of cleaning! - Josh
+#edit-profile-modal {
+  .modal-header, .modal.body {
+    padding: 0;
+  }
+  .modal-body {
+    max-height: 405px;
+    overflow: auto;
+  }
+}
 
 .modal-content {
   background-color: $alabaster;
@@ -31,16 +40,9 @@
 .modal-open .global-row, .modal-open .primary-nav {
   filter: blur(2px);
 }
-#edit-profile-modal {
-  .modal-header, .modal.body {
-    padding: 0;
-  }
-}
 
 .modal-body {
   padding: 15px;
-  max-height: 405px;
-  overflow: auto;
 }
 
 .modal-wrapper {
@@ -120,5 +122,24 @@
     font-size: 12px;
     width: 65%;
     margin-bottom: 0;
+  }
+}
+
+// Onboarding modal-content
+#auth-modal {
+  .modal-content {
+    background: #fff;
+  }
+  .modal-body {
+    padding: 0;
+  }
+  .modal-wrapper {
+    padding: 30px;
+  }
+  @media (min-width: 544px) {
+    .modal-dialog {
+        max-width: 530px;
+        margin: 30px auto;
+    }
   }
 }

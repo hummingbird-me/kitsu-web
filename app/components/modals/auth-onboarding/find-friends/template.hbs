@@ -1,5 +1,37 @@
-<!-- Placeholder Template -->
-
-<button type="button" class="btn btn-primary" {{action "close"}}>
-  All set - Start using Kitsu!
-</button>
+<div class="modal-wrapper">
+  <div class="auth-section active">
+    <h6 class="auth-section-title">Find your friends!</h6>
+    <p class="auth-section-helper">Kitsu becomes more interesting as you follow others. Connect your social accounts so you and your friends can find each other.</p>
+  </div>
+  <div class="onboarding-connect modal-actions">
+    <section class="connect-item">
+      <div class="connect-itemInfo">
+        <h6 class="connect-itemTitle">Connect to Facebook</h6>
+      </div>
+      <div class="connect-cta">
+        <button class="button button--facebook " title="Connect your Facebook account to Kitsu" aria-label="Connect your Facebook account to Kitsu">
+          <span class="svgIcon">{{svg-jar "l-facebook"}}</span>
+          <span class="button-label">Connect to Facebook</span>
+        </button>
+      </div>
+      <p class="connect-itemDescription">Friends you have on Facebook who are also on Kitsu will become part of your Kitsu network. <strong>We will never post to Facebook or message your friends without your permission.</strong></p>
+    </section>
+    <section class="connect-item">
+      <div class="connect-itemInfo">
+        <h6 class="connect-itemTitle">Connect to Twitter</h6>
+      </div>
+      <div class="connect-cta">
+        <button class="button button--twitter" title="Connect your Facebook account to Kitsu" aria-label="Connect your Facebook account to Kitsu">
+          <span class="svgIcon">{{svg-jar "l-twitter"}}</span>
+          <span class="button-label">Connect to Twitter</span>
+        </button>
+      </div>
+      <p class="connect-itemDescription">Connections you have on Twitter who are also on Kitsu will become part of your Kitsu network. <strong>We will never post to Twitter or message your followers without your permission.</strong></p>
+    </section>
+  </div>
+  <div class="form-cta">
+    <button type="button" class="button button--primary" {{action "close"}}>
+      All set - Start using Kitsu!
+    </button>
+  </div>
+</div>

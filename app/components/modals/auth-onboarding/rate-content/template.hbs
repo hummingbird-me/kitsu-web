@@ -1,57 +1,72 @@
-<!-- Placeholder Template -->
-<h4>Rate the content you've seen</h4>
+<div class="modal-wrapper">
+  <div class="auth-section active">
+    <h6 class="auth-section-title">Rate the content you've seen</h6>
+    <p class="auth-section-helper">We use your 'Library' to track the media you've seen and look forward to. Let's get your library started by rating some of the anime and manga you've seen or read.</p>
+  </div>
 
-<ul class="nav nav-tabs" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#anime" role="tab" {{action "updateTab" "anime"}}>
-      Anime
-    </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#manga" role="tab" {{action "updateTab" "manga"}}>
-      Manga
-    </a>
-  </li>
-  <li>
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#anime" role="tab" {{action "updateTab" "anime"}}>
+        Anime
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#manga" role="tab" {{action "updateTab" "manga"}}>
+        Manga
+      </a>
+    </li>
+  </ul>
+
+  <div class="onboarding-search">
     {{one-way-search
       update=(action "updateContent")
       placeholder="Search by media title..."}}
-  </li>
-</ul>
-
-<div class="tab-content">
-  <div class="tab-pane active" id="anime" role="tabpanel">
-    {{#if query.isRunning}}
-      {{fa-icon "spinner" spin=true}}
-    {{else}}
-      {{#each media as |anime|}}
-        <img src={{image anime.posterImage}}>
-        {{star-rating
-          options=(hash halfStar=true)
-          onSet=(action "createLibraryEntry" anime)}}
-      {{/each}}
-    {{/if}}
   </div>
 
-  <div class="tab-pane" id="manga" role="tabpanel">
-    {{#if query.isRunning}}
-      {{fa-icon "spinner" spin=true}}
-    {{else}}
-      {{#each media as |manga|}}
-        <img src={{image manga.posterImage}}>
-        {{star-rating
-          options=(hash halfStar=true)
-          onSet=(action "createLibraryEntry" manga)}}
-      {{/each}}
-    {{/if}}
+  <div class="tab-content container onboarding-media-wrapper">
+    <div class="tab-pane active row" id="anime" role="tabpanel">
+      <div class="modal-grid row">
+        {{#if query.isRunning}}
+          {{fa-icon "spinner" spin=true}}
+        {{else}}
+          {{#each media as |anime|}}
+            <div class="onboarding-media col-sm-3">
+              <img src={{image anime.posterImage}}>
+              {{star-rating
+                options=(hash halfStar=true)
+                onSet=(action "createLibraryEntry" anime)}}
+            </div>
+          {{/each}}
+        {{/if}}
+      </div>
+    </div>
+
+    <div class="tab-pane row" id="manga" role="tabpanel">
+      <div class="modal-grid row">
+        {{#if query.isRunning}}
+          {{fa-icon "spinner" spin=true}}
+        {{else}}
+          {{#each media as |manga|}}
+            <div class="onboarding-media col-sm-3">
+              <img src={{image manga.posterImage}}>
+              {{star-rating
+                options=(hash halfStar=true)
+                onSet=(action "createLibraryEntry" manga)}}
+            </div>
+          {{/each}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-section">
+    <progress class="progress" value={{numRated}} max="5"></progress>
+    <button type="button" class="button button--primary" disabled={{if (not-eq numRatedLeft 0) "disabled"}} {{action "changeComponent" "find-friends"}}>
+      {{#if (not-eq numRatedLeft 0)}}
+        Rate {{numRatedLeft}} more to continue
+      {{else}}
+        Continue
+      {{/if}}
+    </button>
   </div>
 </div>
-
-<progress class="progress progress-success" value={{numRated}} max="5"></progress>
-<button type="button" class="btn btn-primary" disabled={{if (not-eq numRatedLeft 0) "disabled"}} {{action "changeComponent" "find-friends"}}>
-  {{#if (not-eq numRatedLeft 0)}}
-    Rate {{numRatedLeft}} more to continue
-  {{else}}
-    Continue
-  {{/if}}
-</button>

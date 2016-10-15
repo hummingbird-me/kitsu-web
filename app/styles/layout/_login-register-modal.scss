@@ -1,0 +1,273 @@
+.register-cover {
+  background: url(../register-head.png);
+  background-size: cover;
+  background-position: 50%;
+  height: 233px;
+}
+
+.modal-actions {
+  svg {
+    fill: $white;
+  }
+  .svgIcon {
+    vertical-align: middle;
+    padding-right: 8px;
+    top: 4px;
+    position: relative;
+  }
+  .button {
+    width: 100%;
+    height: 58px;
+    border-radius: 2px;
+    font-size: 16px;
+    text-align: left;
+    padding-left: 18px;
+    color: $white;
+    font-family: $base-font-family;
+    margin-bottom: 10px;
+  }
+  .button-labelSet {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .button-label--multiLine {
+    display: block;
+    line-height: 16px;
+  }
+  .button-label--subText {
+    color: rgba(255,255,255,.65);
+    font-size: 12px;
+  }
+}
+
+.privacy-copy {
+  font-size: 12px;
+  margin-top: 40px;
+  color: lighten($charcoal, 20);
+}
+
+
+// Register Step
+.password-form {
+  position: relative;
+  &.has-warning {
+    .form-control-warning {
+      background-image: none;
+    }
+  }
+  &.has-success {
+    .form-control-success {
+      background-image: none;
+    }
+  }
+}
+
+.password-step {
+  background-size: cover;
+  width: 130px;
+  height: 130px;
+  display: inline-block;
+  position: absolute;
+  top: -65px;
+  right: -50px;
+  &.password-0 {
+    background-image: url(../images/password-0.gif);
+  }
+
+  &.password-1 {
+    background-image: url(../images/password-1.gif);
+  }
+
+  &.password-2 {
+    background-image: url(../images/password-2.gif);
+  }
+
+  &.password-3 {
+    background-image: url(../images/password-3.gif);
+  }
+
+  &.password-4 {
+    background-image: url(../images/password-4.gif);
+  }
+}
+
+.auth-section {
+  margin-bottom: 30px;
+  opacity: .4;
+  &.active {
+    opacity: 1;
+  }
+  .auth-section-title {
+    margin-bottom: 10px;
+  }
+  .auth-section-helper {
+    font-size: 14px;
+  }
+  input {
+    border: none;
+    border-bottom: 1px solid #EEE;
+    border-radius: 0;
+  }
+  .form-control-feedback {
+    position: absolute;
+  }
+}
+
+.form-cta {
+  button {
+    width: 100%;
+    padding: 15px;
+    font-family: $heading-font-family;
+    &:disabled {
+      border: 1px solid $nobel;
+      color: $charcoal;
+      background: transparent;
+    }
+  }
+}
+
+.import-option {
+  display: block;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 15px 20px;
+  color: $charcoal;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &:hover {
+    text-decoration: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.10);
+  }
+}
+
+.import-logo {
+  width: 130px;
+  display: inline-block;
+  margin-right: 15px;
+  img {
+    width: 100%;
+  }
+}
+
+.import-title {
+  color: $charcoal;
+}
+
+.onboarding-search {
+  margin-top: 20px;
+}
+.modal-grid {
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-top: 20px;
+}
+.onboarding-media {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 15px;
+  img {
+    width: 100%;
+    border-radius: 3px;
+    min-height: 148px;
+    background: $eggshell;
+    text-align: center;
+  }
+  .jq-ry-container {
+    width: 100% !important;
+    height: auto;
+    padding: 0;
+  }
+  .jq-ry-group {
+    svg {
+      width: 16px;
+      padding-right: 5px;
+    }
+  }
+  &:hover, &.active {
+    .jq-ry-normal-group {
+      svg {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.onboarding-media-wrapper {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.progress-section {
+  @extend .clearfix;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+  .progress {
+    float: left;
+    width: 55%;
+    margin-bottom: 0;
+    margin-top: 7px;
+    height: 20px;
+  }
+  .progress[value]::-webkit-progress-value {
+    background-color: $caribbean; }
+
+  .progress[value]::-moz-progress-bar {
+    background-color: $caribbean; }
+
+  .progress[value]::-ms-fill {
+    background-color: $caribbean; }
+  .button {
+    font-size: 12px;
+    padding: 8px 15px;
+    float: right;
+  }
+}
+
+// rating star colors
+.jq-ry-normal-group {
+  opacity: .5;
+  svg {
+    fill: $nobel;
+  }
+}
+
+.jq-ry-rated-group {
+  svg {
+    fill: $buttercup;
+  }
+}
+
+// Find Friends
+
+.connect-itemTitle {
+  float: left;
+  position: relative;
+  top: 15px;
+}
+
+.connect-cta {
+  @extend .clearfix;
+  .button {
+    width: 50%;
+    float: right;
+    padding: 10px 15px;
+    height: auto;
+  }
+}
+
+.connect-itemDescription {
+  font-size: 11px;
+}
+
+.connect-item {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 30px;
+  }
+}

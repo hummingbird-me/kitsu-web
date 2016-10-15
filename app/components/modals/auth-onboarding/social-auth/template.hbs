@@ -1,9 +1,52 @@
-<!-- Placeholder Template -->
-<a href="#" {{action "changeComponent" "sign-up"}} data-test-selector="sign-up-email">
-  Sign up with email
-</a>
+<div class="register-cover"></div>
+<div class="modal-wrapper">
+  <p class="register-intro">
+    Create an account to track, share and discover anime and manga in a uniquely social way.
+  </p>
 
-Have an account?
-<a href="#" {{action "changeComponent" "sign-in"}} data-test-selector="sign-in-email">
-  Login
-</a>
+  <div class="modal-actions">
+    <button class="button button--twitter" title="Connect with Twitter" aria-label="Connect with Twitter">
+      <span class="svgIcon">
+        {{svg-jar "l-twitter"}}
+      </span>
+      <div class="button-labelSet">
+        <span class="button-label button-label--multiLine js-buttonLabel">
+          Continue with Twitter
+        </span>
+        <span class="button-label button-label--subText button-label--multiLine js-buttonLabelSubtext">
+          <span class="u-fontSizeSmallest u-textColorTransparentWhiteDark">We won’t post without asking</span>
+        </span>
+      </div>
+    </button>
+
+    <button class="button button--facebook" title="Connect with Twitter" aria-label="Connect with Twitter">
+      <span class="svgIcon">
+        {{svg-jar "l-facebook"}}
+      </span>
+      <div class="button-labelSet">
+        <span class="button-label button-label--multiLine js-buttonLabel">
+          Continue with Facebook
+        </span>
+        <span class="button-label button-label--subText button-label--multiLine js-buttonLabelSubtext">
+          <span class="u-fontSizeSmallest u-textColorTransparentWhiteDark">We won’t post without asking</span>
+        </span>
+      </div>
+    </button>
+    <div class="secondary-links">
+      <a href="#" {{action "changeComponent" "sign-up"}} data-test-selector="sign-up-email">
+        Sign up with email
+      </a>
+      <span class="pull-sm-right">
+        Have an account?
+        <a href="#" class="text-sm-right" {{action "changeComponent" "sign-in"}} data-test-selector="sign-in-email">
+          Login
+        </a>
+      </span>
+    </div>
+    <div class="privacy-copy">
+      <p>If you sign up with Twitter or Facebook, we’ll start you off with a network by automatically matching you with your followers/followees or friends already on Kitsu. Don't worry, we’ll never post to Twitter or Facebook without your permission.</p>
+      <div>By signing up you indicate that you have read and agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</div>
+    </div>
+
+  </div>
+</div>

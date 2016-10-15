@@ -1,5 +1,35 @@
-<!-- Placeholder Template -->
-
-<button type="button" class="btn btn-primary" {{action "changeComponent" "rate-content"}}>
-  Nothing to import, skip this
-</button>
+<div class="modal-wrapper">
+  <div class="auth-section active">
+    <h6 class="auth-section-title">Do you have anime / manga data to import?</h6>
+    <p class="auth-section-helper">If you currently track your anime and manga on another platform, we can quickly import your data to jumpstart your account.</p>
+    <a href="#" class="import-option">
+      <span class="import-logo">
+        <img src="images/mal.png">
+      </span>
+      <span class="import-title">
+        Import MyAnimeList Account
+      </span>
+    </a>
+    <a href="#" class="import-option">
+      <span class="import-logo">
+        <img src="images/a-p.png">
+      </span>
+      <span class="import-title">
+        Import Anime-Planet Account
+      </span>
+    </a>
+    <a href="#" class="import-option">
+      <span class="import-logo">
+        <img src="images/ani.png">
+      </span>
+      <span class="import-title">
+        Import Anilist Account
+      </span>
+    </a>
+  </div>
+  <div class="form-cta">
+    <button type="button" class="button button--primary" {{action "changeComponent" "rate-content"}}>
+      Nothing to import, skip this
+    </button>
+  </div>
+</div>
