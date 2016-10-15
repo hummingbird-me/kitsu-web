@@ -65,5 +65,14 @@ export default Component.extend({
           .catch((err) => set(this, 'errorMessage', errorMessage(err)));
       })
       .catch((err) => set(this, 'errorMessage', errorMessage(err)));
-  }).drop()
+  }).drop(),
+
+  actions: {
+    focused(event) {
+      const target = this.$('.auth-section').has(event.target);
+      if (target.hasClass('active') === false) {
+        target.addClass('active');
+      }
+    }
+  }
 });
