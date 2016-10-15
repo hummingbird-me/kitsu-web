@@ -63,13 +63,14 @@
   .like-stream-item {
     display: inline-block;
     float: left;
-    margin-right: 10px;
+    margin-right: 5px;
     position: relative;
     top: 2px;
     svg {
       width: 23px;
       height: auto;
       fill: $nobel;
+      float: left;
     }
     .like-label {
       font-size: 12px;
@@ -121,6 +122,29 @@
   }
 }
 
+.media-body {
+  .stream-item-activity {
+    margin: 0;
+    svg {
+      width: 18px;
+    }
+  }
+  .more-wrapper {
+    line-height: 19px;
+  }
+  .sm-comment-count {
+    color: $nobel;
+    padding-top: 1px;
+    margin-left: 3px;
+    display: inline-block;
+  }
+  .comment-time {
+    color: $nobel;
+    font-family: $base-font-family;
+    margin-left: 5px;
+  }
+}
+
 .stream-item-options {
   float: right;
   position: relative;
@@ -137,12 +161,13 @@
     fill: #CACACA;
     float: left;
   }
-  .more-wrapper {
-    position: relative;
-    a {
-      margin-right: 0;
-      margin-left: 5px;
-    }
+}
+
+.more-wrapper {
+  position: relative;
+  a {
+    margin-right: 0;
+    margin-left: 5px;
   }
 }
 
@@ -164,7 +189,6 @@
     }
   }
   .add-comment {
-    margin-top: 10px;
     display: inline-block;
     input {
       border-color: #E8E8E8;

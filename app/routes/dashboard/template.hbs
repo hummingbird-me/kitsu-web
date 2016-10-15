@@ -79,19 +79,27 @@
               </a>
             </div>
             <div class="media-body">
-              <h4 class="media-heading">Zelgadiss</h4>
+              <h4 class="media-heading">
+                Zelgadiss
+                <small class="comment-time">1 hour ago</small>
+              </h4>
               <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
-            </div>
-          </li>
-          <li class="media m-t-2">
-            <div class="media-left">
-              <a href="#">
-                <img class="media-object" src="https://static.hummingbird.me/users/avatars/000/044/628/thumb_small/3765987.jpg?1433807380" alt="Generic placeholder image">
-              </a>
-            </div>
-            <div class="media-body">
-              <h6 class="media-heading">Media heading</h6>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+              <div class="stream-item-activity">
+                <a href="#" class="like-stream-item">
+                  {{svg-jar "heart-filled"}}
+                  <span class="sm-comment-count">3</span>
+                </a>
+                <span class="more-wrapper">
+                  <a href="#" class="more-drop" id="moreDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{svg-jar "more"}}
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="moreDrop">
+                    <a class="dropdown-item" href="#">Report Post</a>
+                    <a class="dropdown-item" href="#">Mute @Josh</a>
+                    <a class="dropdown-item" href="#">Block @Josh</a>
+                  </div>
+                </span>
+              </div>
             </div>
           </li>
         </ul>
