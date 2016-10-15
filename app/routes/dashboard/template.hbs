@@ -1,8 +1,55 @@
-{{#if session.isAuthenticated}}
-  {{dashboard/components/quick-update}}
-  <h1>Welcome, {{session.account.name}}</h1>
-{{else}}
-  <h1>Dashboard</h1>
-{{/if}}
+<div class="feed-container">
+  <div class="feed-stream">
+    <div class="stream-item">
 
-<p>This is test content</p>
+      <div class="stream-item--author-block">
+        <a href="#" class="author-avatar">
+          <img src="https://static.hummingbird.me/users/avatars/000/000/002/thumb/IMG_5499_%281%29.jpeg?1444332940">
+        </a>
+        <div class="author-info">
+          <a class="author-username" href="#">Josh</a>
+          <small class="author-timestamp">5 minutes ago</small>
+        </div>
+      </div>
+
+      <div class="stream-content">
+        <p>Watching this all day!</p>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tI2Aa12ZUWg" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="stream-item-activity">
+        <a href="#" class="like-stream-item">
+          {{svg-jar "heart-filled"}}
+          <!-- <span class="like-label">Like</span>  -->
+          <!-- Only show if nobody has liked stream item yet -->
+        </a>
+        <ul class="stream-item-participants">
+          <li class="stream-like">
+            <a class="like-avatar" href="#">
+              <img src="https://static.hummingbird.me/users/avatars/000/057/971/thumb_small/1703378.jpg?1411577096">
+            </a>
+          </li>
+          <li class="stream-like">
+            <a class="like-avatar" href="#">
+              <img src="https://static.hummingbird.me/users/avatars/000/069/952/thumb_small/tdMacaroniMan.jpg?1472678681">
+            </a>
+          </li>
+          <li class="stream-like">
+            <a class="like-avatar" href="#">
+              <img src="https://static.hummingbird.me/users/avatars/000/044/628/thumb_small/3765987.jpg?1433807380">
+            </a>
+          </li>
+          <li class="stream-like-count">
+            <a href="#">9</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+  <div class="feed-sidebar">
+    <h2>Sidebar</h2>
+  </div>
+</div>

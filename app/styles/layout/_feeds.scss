@@ -1,0 +1,118 @@
+.feed-container {
+  width: 100%;
+  position: relative;
+}
+
+.feed-stream {
+  max-width: 660px;
+}
+
+.stream-item {
+  padding: 20px;
+  padding-bottom: 0;
+  border-radius: 3px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 660px;
+  background: $white;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  border: 1px solid rgba(0,0,0,.09);
+}
+
+.stream-item--author-block {
+  @extend .clearfix;
+  margin-bottom: 15px;
+  .author-avatar {
+    float: left;
+    margin-right: 15px;
+    img {
+      border-radius: 999em;
+      width: 50px;
+      height: 50px;
+    }
+  }
+  .author-info {
+    display: inline-block;
+    line-height: 20px;
+    position: relative;
+    top: 7px;
+  }
+  .author-username, .author-timestamp {
+    display: block;
+  }
+  .author-username {
+    font-size: 20px;
+    font-family: $heading-font-family;
+  }
+  .author-timestamp {
+    color: $charcoal;
+    opacity: .6;
+    font-size: 14px;
+  }
+}
+
+.stream-item-activity {
+  @extend .clearfix;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: -3px;
+  .like-stream-item {
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+    position: relative;
+    top: 2px;
+    svg {
+      width: 23px;
+      height: auto;
+      fill: $nobel;
+    }
+    .like-label {
+      font-size: 12px;
+      font-weight: 700;
+      position: absolute;
+      top: 4px;
+      right: -30px;
+      color: $nobel;
+    }
+    &:hover {
+      text-decoration: none;
+      svg {
+        fill: #ec8661;
+      }
+    }
+  }
+
+  .stream-item-participants {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+  }
+  .stream-like {
+    display: inline-block;
+    .like-avatar {
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+    }
+    img {
+      width: 100%;
+      border-radius: 999em;
+    }
+  }
+  .stream-like-count {
+    display: inline-block;
+    a {
+      width: 25px;
+      height: 25px;
+      background: $eggshell;
+      display: inline-block;
+      font-size: 12px;
+      border-radius: 999em;
+      line-height: 25px;
+      text-align: center;
+      color: $charcoal;
+    }
+  }
+}
