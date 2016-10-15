@@ -8,8 +8,6 @@
 }
 
 .stream-item {
-  padding: 20px;
-  padding-bottom: 0;
   border-radius: 3px;
   margin-right: auto;
   margin-left: auto;
@@ -17,6 +15,11 @@
   background: $white;
   box-shadow: 0 1px 4px rgba(0,0,0,.04);
   border: 1px solid rgba(0,0,0,.09);
+}
+
+.stream-item-wrapper {
+  padding: 20px;
+  padding-bottom: 0;
 }
 
 .stream-item--author-block {
@@ -56,6 +59,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: -3px;
+  display: inline-block;
   .like-stream-item {
     display: inline-block;
     float: left;
@@ -113,6 +117,57 @@
       line-height: 25px;
       text-align: center;
       color: $charcoal;
+    }
+  }
+}
+
+.stream-item-options {
+  float: right;
+  position: relative;
+  top: 10px;
+  a {
+    color: #979797;
+    font-size: 12px;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 22px;
+    margin-right: 10px;
+  }
+  svg {
+    fill: #CACACA;
+    float: left;
+  }
+  .more-wrapper {
+    position: relative;
+    a {
+      margin-right: 0;
+      margin-left: 5px;
+    }
+  }
+}
+
+.stream-item-comments {
+  background: #FBFBFB;
+  border-top: 1px solid #F0F0F0;
+  padding: 20px;
+  .media-object {
+    width: 35px;
+    border-radius: 999em;
+  }
+  .media-heading {
+    font-size: 12px;
+  }
+  .media-body {
+    font-size: 12px;
+    p {
+      margin-bottom: 0;
+    }
+  }
+  .add-comment {
+    margin-top: 10px;
+    display: inline-block;
+    input {
+      border-color: #E8E8E8;
     }
   }
 }
