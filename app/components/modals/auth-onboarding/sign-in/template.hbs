@@ -1,37 +1,67 @@
-<!-- Placeholder Template -->
-<form>
-  {{#if errorMessage}}
-    <div data-test-selector="error-message">
-      {{errorMessage}}
-    </div>
-  {{/if}}
-
-  <div class="form-group">
-    {{one-way-text identification
-      update=(action (mut identification))
-      class="form-control"
-      placeholder="Email or Username"
-      data-test-selector="identification"}}
+<div class="modal-wrapper">
+  <div class="auth-section active">
+    <h6 class="auth-section-title">Welcome back!</h6>
+    <p class="auth-section-helper">Login to your Kitsu account below. If you need an account, <a href="#">create one</a>.</p>
   </div>
 
-  <div class="form-group">
-    {{one-way-password password
-      update=(action (mut password))
-      class="form-control"
-      placeholder="Password"
-      data-test-selector="password"}}
-  </div>
-
-  <div class="form-group">
-    <button type="submit" class="btn btn-primary"
-            disabled={{if (or (is-empty identification) (is-empty password)) "disabled"}}
-            data-test-selector="sign-in"
-            {{action (perform authenticate)}}>
-      {{#if authenticate.isRunning}}
-        {{fa-icon "spinner" spin=true}}
-      {{else}}
-        Login
-      {{/if}}
+  <div class="modal-actions login-actions">
+    <button class="button button--twitter" title="Connect with Twitter" aria-label="Connect with Twitter">
+      <span class="svgIcon">
+        {{svg-jar "l-twitter"}}
+      </span>
+      <div class="button-labelSet">
+        <span class="button-label button-label--multiLine js-buttonLabel">
+          Continue with Twitter
+        </span>
+      </div>
     </button>
+
+    <button class="button button--facebook" title="Connect with Twitter" aria-label="Connect with Twitter">
+      <span class="svgIcon">
+        {{svg-jar "l-facebook"}}
+      </span>
+      <div class="button-labelSet">
+        <span class="button-label button-label--multiLine js-buttonLabel">
+          Continue with Facebook
+        </span>
+      </div>
+    </button>
+    <small>Or, sign in with:</small>
+    <form>
+      {{#if errorMessage}}
+        <div data-test-selector="error-message">
+          {{errorMessage}}
+        </div>
+      {{/if}}
+
+      <div class="form-group email-login">
+        {{one-way-text identification
+          update=(action (mut identification))
+          class="form-control username"
+          placeholder="Email or Username"
+          data-test-selector="identification"}}
+
+        {{one-way-password password
+          update=(action (mut password))
+          class="form-control password"
+          placeholder="Password"
+          data-test-selector="password"}}
+        <a href="#" class="forgot-pass-link">forgot password?</a>
+      </div>
+
+      <div class="form-cta">
+        <button type="submit" class="btn button--primary"
+                disabled={{if (or (is-empty identification) (is-empty password)) "disabled"}}
+                data-test-selector="sign-in"
+                {{action (perform authenticate)}}>
+          {{#if authenticate.isRunning}}
+            {{fa-icon "spinner" spin=true}}
+          {{else}}
+            Login
+          {{/if}}
+        </button>
+      </div>
+    </form>
+
   </div>
-</form>
+</div>
