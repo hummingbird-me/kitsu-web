@@ -39,7 +39,7 @@ export default Component.extend({
     });
   },
 
-  willDestroyelement() {
+  willDestroyElement() {
     this._super(...arguments);
     if (get(this, 'carousel') !== undefined) {
       get(this, 'carousel').flickity('destroy');
