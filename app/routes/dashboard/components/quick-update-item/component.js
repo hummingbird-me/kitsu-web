@@ -4,7 +4,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import computed from 'ember-computed';
 
-export default Component.extend({
+const QuickUpdateItemComponent = Component.extend({
   isCompleted: computed('entry.progress', {
     get() {
       return get(this, 'entry.status') === 'completed';
@@ -43,4 +43,10 @@ export default Component.extend({
       entry.save().catch(() => {});
     }
   }
-})
+});
+
+QuickUpdateItemComponent.reopenClass({
+  positionalParams: ['entry']
+});
+
+export default QuickUpdateItemComponent;
