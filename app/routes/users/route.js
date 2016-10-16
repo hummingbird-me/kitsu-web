@@ -8,9 +8,8 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
   model({ name }) {
     if (name.match(/\D+/)) {
       return get(this, 'store').query('user', { include: 'waifu', filter: { name } })
-        .then((records) => get(records, 'firstObject'));
-    } else {
-      return get(this, 'store').findRecord('user', name);
+        .then(records => get(records, 'firstObject'));
     }
+    return get(this, 'store').findRecord('user', name);
   }
 });

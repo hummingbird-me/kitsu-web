@@ -27,6 +27,7 @@ export default Route.extend(ApplicationRouteMixin, {
       if (title && title.toString().includes('Missing translation')) {
         title = undefined;
       }
+      // eslint-disable-next-line no-param-reassign
       tokens = title ? [title] : undefined;
     }
     return tokens ? `${tokens.reverse().join(' | ')} | ${base}` : base;

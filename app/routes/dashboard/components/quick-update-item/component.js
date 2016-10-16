@@ -23,7 +23,7 @@ const QuickUpdateItemComponent = Component.extend({
     }
   }).readOnly(),
 
-  updateEntryTask: task(function *() {
+  updateEntryTask: task(function* () {
     const entry = get(this, 'entry');
     const progress = get(entry, 'progress');
 

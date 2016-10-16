@@ -12,4 +12,4 @@ export default Component.extend({
       onClick();
     }
   }
-})
+});

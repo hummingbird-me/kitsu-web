@@ -1,5 +1,5 @@
-import errorMessages from '../../../utils/error-messages';
 import { module, test } from 'qunit';
+import errorMessages from '../../../utils/error-messages';
 
 module('Unit | Utility | error messages');
 

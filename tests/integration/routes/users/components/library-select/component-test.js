@@ -21,7 +21,7 @@ test('renders the current status', function(assert) {
 test('triggers the action with the status key', function(assert) {
   assert.expect(1);
   this.set('status', 'current');
-  this.set('action', (status) => assert.equal(status, 'current'));
+  this.set('action', status => assert.equal(status, 'current'));
   this.set('isActive', false);
 
   this.render(hbs`{{users/components/library-select

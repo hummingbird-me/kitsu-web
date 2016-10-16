@@ -24,13 +24,13 @@ export default Component.extend({
     }
   }),
 
-  query: task(function *() {
+  query: task(function* () {
     const mediaType = get(this, 'activeTab');
     const data = yield get(this, 'store').query(mediaType, this._getFilters());
     set(this, 'media', data);
   }).restartable(),
 
-  updateSearchQuery: task(function *(query) {
+  updateSearchQuery: task(function* (query) {
     set(this, 'searchQuery', query);
     yield timeout(1000);
     get(this, 'query').perform();
@@ -66,7 +66,7 @@ export default Component.extend({
     const { modelName } = media.constructor;
     const cache = get(this, 'itemCache');
     console.log(cache, modelName);
-    return cache[modelName].find((item) => get(item, 'id') === get(media, 'id'));
+    return cache[modelName].find(item => get(item, 'id') === get(media, 'id'));
   },
 
   actions: {
@@ -81,7 +81,7 @@ export default Component.extend({
 
     createLibraryEntry(media, rating) {
       // Increment to provide instant feedback to user
-      this.incrementProperty('numRated')
+      this.incrementProperty('numRated');
       const user = get(this, 'session.account');
       const entry = get(this, 'store').createRecord('library-entry', {
         status: 'completed',

@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const one = {
   "id": "1",
   "type": "libraryEntries",

@@ -42,8 +42,8 @@ export default Component.extend({
       connect: get(options, 'doubleSided'),
       step: get(options, 'step'),
       range: {
-        'min': get(options, 'start'),
-        'max': get(options, 'end')
+        min: get(options, 'start'),
+        max: get(options, 'end')
       },
       format: {
         to(value) {
@@ -55,7 +55,7 @@ export default Component.extend({
         }
       }
     });
-    elem.noUiSlider.on('slide', (values) => get(this, 'onUpdate')(values));
+    elem.noUiSlider.on('slide', values => get(this, 'onUpdate')(values));
     elem.noUiSlider.on('set', () => get(this, 'onRelease')());
   }
 });

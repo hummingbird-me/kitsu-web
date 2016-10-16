@@ -36,11 +36,11 @@ export default Component.extend(IsOwnerMixin, {
     }
   }).readOnly(),
 
-  updateProperty: task(function *(key, value) {
+  updateProperty: task(function* (key, value) {
     yield get(this, 'update')(key, value);
   }).restartable(),
 
-  updatePropertyDelayed: task(function *(key, value) {
+  updatePropertyDelayed: task(function* (key, value) {
     yield timeout(1000);
     yield get(this, 'updateProperty').perform(key, value);
   }).restartable(),

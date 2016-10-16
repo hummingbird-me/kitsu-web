@@ -16,7 +16,7 @@ export default Component.extend({
     }
   }).readOnly(),
 
-  getEntriesTask: task(function *() {
+  getEntriesTask: task(function* () {
     const items = yield get(this, 'store').query('library-entry', {
       include: 'media',
       filter: {
@@ -53,6 +53,6 @@ export default Component.extend({
       pageDots: false,
       groupCells: false,
       autoPlay: 1500
-    }
+    };
   }
 });

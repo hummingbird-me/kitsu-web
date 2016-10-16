@@ -12,11 +12,11 @@ export default Component.extend({
 
   session: service(),
 
-  authenticate: task(function *() {
+  authenticate: task(function* () {
     const { identification, password } = getProperties(this, 'identification', 'password');
     yield get(this, 'session')
       .authenticateWithOAuth2(identification, password)
       .then(() => get(this, 'close')())
-      .catch((err) => set(this, 'errorMessage', errorMessage(err)));
+      .catch(err => set(this, 'errorMessage', errorMessage(err)));
   })
 });

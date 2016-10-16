@@ -34,8 +34,8 @@ test('actions are invoked based on entry status', function(assert) {
 
   this.set('entry', { status: 'planned' });
   this.set('media', { constructor: { modelName: 'anime' } });
-  this.set('create', (status) => assert.equal(status, 'current'));
-  this.set('update', (status) => assert.equal(status, 'current'));
+  this.set('create', status => assert.equal(status, 'current'));
+  this.set('update', status => assert.equal(status, 'current'));
   this.set('delete', () => assert.ok(true));
 
   this.render(hbs`{{library-dropdown/entry

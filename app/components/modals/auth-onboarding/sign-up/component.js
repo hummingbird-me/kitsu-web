@@ -51,7 +51,7 @@ export default Component.extend({
     set(this, 'user', user);
   },
 
-  createAccount: task(function *() {
+  createAccount: task(function* () {
     const user = get(this, 'user');
     yield user.save()
       .then(() => {
@@ -62,9 +62,9 @@ export default Component.extend({
             set(user, 'password', undefined);
             get(this, 'changeComponent')('import-select');
           })
-          .catch((err) => set(this, 'errorMessage', errorMessage(err)));
+          .catch(err => set(this, 'errorMessage', errorMessage(err)));
       })
-      .catch((err) => set(this, 'errorMessage', errorMessage(err)));
+      .catch(err => set(this, 'errorMessage', errorMessage(err)));
   }).drop(),
 
   actions: {

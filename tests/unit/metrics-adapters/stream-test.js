@@ -14,7 +14,7 @@ moduleFor('metrics-adapter:stream', 'stream adapter', {
 
 test('#identify calls setUser with right data', function(assert) {
   const adapter = this.subject({ config: this.config });
-  this.sandbox.stub(window, 'StreamAnalytics', () => { return function() { }; });
+  this.sandbox.stub(window, 'StreamAnalytics', () => function() { });
   const stub = this.sandbox.stub(adapter.get('client'), 'setUser', () => true);
   adapter.identify({
     distinctId: 1234,
@@ -25,7 +25,7 @@ test('#identify calls setUser with right data', function(assert) {
 
 test('#trackImpression calls trackImpression with right data', function(assert) {
   const adapter = this.subject({ config: this.config, userSet: true });
-  this.sandbox.stub(window, 'StreamAnalytics', () => { return function() { }; });
+  this.sandbox.stub(window, 'StreamAnalytics', () => function() { });
   const stub = this.sandbox.stub(adapter.get('client'), 'trackImpression', () => true);
   adapter.trackImpression({
     content_list: ['feed:1234', 'feed:5678']
@@ -35,7 +35,7 @@ test('#trackImpression calls trackImpression with right data', function(assert) 
 
 test('#trackEngagement calls trackEngagement with right data', function(assert) {
   const adapter = this.subject({ config: this.config, userSet: true });
-  this.sandbox.stub(window, 'StreamAnalytics', () => { return function() { }; });
+  this.sandbox.stub(window, 'StreamAnalytics', () => function() { });
   const stub = this.sandbox.stub(adapter.get('client'), 'trackEngagement', () => true);
   adapter.trackEngagement({
     label: 'like',

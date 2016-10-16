@@ -18,7 +18,7 @@ export default Controller.extend({
     get() {
       const list = ['anime', 'manga'];
       const media = get(this, 'media');
-      list.splice(list.findIndex((m) => m === media), 1);
+      list.splice(list.findIndex(m => m === media), 1);
       return list;
     }
   }).readOnly(),
