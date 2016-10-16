@@ -21,9 +21,9 @@ module.exports = function(environment) {
 
     contentSecurityPolicyHeader: 'Content-Security-Policy-Report-Only',
     contentSecurityPolicy: {
-      'script-src': "'self' www.google-analytics.com",
+      'script-src': "'self' www.google-analytics.com d2j1fszo1axgmp.cloudfront.net",
       'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
-      'connect-src': "'self' www.google-analytics.com localhost:3000",
+      'connect-src': "'self' www.google-analytics.com analytics.getstream.io",
       'img-src': "* data:",
       'font-src': "'self' fonts.gstatic.com",
       'frame-src': "'self' www.youtube.com"
@@ -40,6 +40,14 @@ module.exports = function(environment) {
         name: 'GoogleAnalytics',
         environments: ['production'],
         config: { id: 'UA-37633900-1' }
+      },
+      {
+        name: 'Stream',
+        environments: ['production'],
+        config: {
+          apiKey: '3byr477gj7mj',
+          token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.Zxetf3_Zyh0Lb-wqx1L-RZ4c9wT7_ZW5-K9wn7Qq-_E'
+        }
       }
     ],
 

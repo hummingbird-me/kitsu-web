@@ -41,7 +41,12 @@ export default Route.extend(ApplicationRouteMixin, {
     const isAuthenticated = get(this, 'session.isAuthenticated');
     if (isAuthenticated === true) {
       return get(this, 'session').getCurrentUser()
-        .then((user) => get(this, 'metrics').identify({ distinctId: get(user, 'id') }))
+        .then((user) => {
+          get(this, 'metrics').identify({
+            distinctId: get(user, 'id'),
+            alias: get(user, 'name')
+          });
+        })
         .catch(() => get(this, 'session').invalidate());
     }
   }
