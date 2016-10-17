@@ -1,21 +1,33 @@
-<img src={{image entry.media.posterImage}}>
-{{#if (not isCompleted)}}
-  <button class="btn btn-primary" {{action (perform updateEntryTask)}}>
-    {{#if updateEntryTask.isRunning}}
-      Updating... (Spinner)
+<div class="overlay-panel">
+  <div class="quick-update-actions">
+    {{#if (not isCompleted)}}
+      <button class="btn btn-primary" {{action (perform updateEntryTask)}}>
+        {{#if updateEntryTask.isRunning}}
+          Updating... (Spinner)
+        {{else}}
+          {{#if canComplete}}
+            Complete
+          {{else}}
+            Mark Episode {{nextProgress}} Complete
+          {{/if}}
+        {{/if}}
+      </button>
     {{else}}
-      {{#if canComplete}}
-        Complete
-      {{else}}
-        Mark Episode {{nextProgress}} Complete
-      {{/if}}
-    {{/if}}
-  </button>
-{{else}}
-  {{star-rating entry.rating
-    options=(hash halfStar=true)
-    onSet=(action "rateEntry")
-  }}
+      {{star-rating entry.rating
+        options=(hash halfStar=true)
+        onSet=(action "rateEntry")
+      }}
 
-  <!-- Review -->
-{{/if}}
+      <!-- Review -->
+    {{/if}}
+  </div>
+  <div class="quick-update-title-block" title="One Punch Man">
+    <h6 class="series-title">
+      One Punch Man
+    </h6>
+    <small class="series-progress">
+      Ep. 11 - The Terrifying City
+    </small>
+  </div>
+</div>
+<img src={{image entry.media.posterImage}}>
