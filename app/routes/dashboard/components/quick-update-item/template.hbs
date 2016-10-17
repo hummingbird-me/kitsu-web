@@ -16,8 +16,7 @@
           </button>
         {{else}}
           {{star-rating entry.rating
-            options=(hash halfStar=true)
-            onSet=(action "rateEntry")
+            onClick=(action "rateEntry")
           }}
           <!-- Review -->
         {{/if}}

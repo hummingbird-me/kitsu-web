@@ -113,11 +113,8 @@
             {{! Rating }}
             <div class="rating-options">
               {{star-rating entry.rating
-                options=(hash
-                  readOnly=(not isOwner)
-                  halfStar=true
-                )
-                onSet=(perform updateProperty "rating")
+                readOnly=(not isOwner)
+                onClick=(perform updateProperty "rating")
               }}
             </div>
           </div>

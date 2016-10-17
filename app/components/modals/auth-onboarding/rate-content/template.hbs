@@ -34,8 +34,7 @@
               <img src={{image anime.posterImage}}>
               {{star-rating
                 rating=(compute (action "getRating") anime)
-                options=(hash halfStar=true)
-                onSet=(action "createLibraryEntry" anime)}}
+                onClick=(action "createLibraryEntry" anime)}}
             </div>
           {{/each}}
         {{/if}}
@@ -52,8 +51,7 @@
               <img src={{image manga.posterImage}}>
               {{star-rating
                 rating=(compute (action "getRating") manga)
-                options=(hash halfStar=true)
-                onSet=(action "createLibraryEntry" manga)}}
+                onClick=(action "createLibraryEntry" manga)}}
             </div>
           {{/each}}
         {{/if}}
