@@ -17,9 +17,9 @@ export default Ember.Component.extend({
 
     this.set('loading', true);
 
-    let source = this.get('source');
-    let target = this.get('target');
-    let similarity = this.calculateSimilarity(source, target);
+    const source = this.get('source');
+    const target = this.get('target');
+    const similarity = this.calculateSimilarity(source, target);
 
     this.set('loading', false);
     this.set('similarity', similarity);
@@ -27,10 +27,12 @@ export default Ember.Component.extend({
 
 
   calculateSimilarity(source = [], target = []) {
-    let targetList = target.map(x => x.id);
-    let sourcePool = target.reduce((o, x) => {o[x.id] = x; return o;}, {});
-    let targetPool = target.reduce((o, x) => {o[x.id] = x; return o;}, {});
-    let commonList = [];
+    const targetList = target.map(x => x.id);
+    // eslint-disable-next-line no-param-reassign
+    const sourcePool = target.reduce((o, x) => { o[x.id] = x; return o; }, {});
+    // eslint-disable-next-line no-param-reassign
+    const targetPool = target.reduce((o, x) => { o[x.id] = x; return o; }, {});
+    const commonList = [];
     let meanSource = 0;
     let meanTarget = 0;
     let squareDifX = 0;
@@ -54,21 +56,18 @@ export default Ember.Component.extend({
     meanTarget /= commonList.length;
 
     commonList.forEach((id) => {
-      let s = sourcePool[id];
-      let t = targetPool[id];
-
-      let diffX = s.rating - meanSource;
-      let diffY = t.rating - meanTarget;
+      const diffX = sourcePool[id].rating - meanSource;
+      const diffY = targetPool[id].rating - meanTarget;
 
       squareDifX += Math.pow(diffX, 2);
       squareDifY += Math.pow(diffY, 2);
       squareDifT += diffX * diffY;
     });
 
-    let similarity = squareDifT / Math.sqrt(squareDifX * squareDifY);
+    const similarity = squareDifT / Math.sqrt(squareDifX * squareDifY);
 
-    let ppmccSimilarity = Math.round(similarity * 100);
-    let amountSimilarity = (commonList.length / source.length) * 100;
+    const ppmccSimilarity = Math.round(similarity * 100);
+    const amountSimilarity = (commonList.length / source.length) * 100;
 
     // Similarity is 20% similar titles and 80% ppmcc match of those
     return ((amountSimilarity * 2) + (ppmccSimilarity * 8)) / 10;

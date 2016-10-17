@@ -37,7 +37,7 @@ test('it does not render wrong arguments', function(assert) {
     target=target
   }}`);
 
-  let $el = this.$('[class="similarity-result"]');
+  const $el = this.$('[class="similarity-result"]');
   assert.equal($el.eq(0).text().trim(), 'Test similarity is ?%');
 });
 
@@ -51,7 +51,7 @@ test('it does calculate perfect match for identical datasets', function(assert) 
     target=target
   }}`);
 
-  let $el = this.$('[class="similarity-result"]');
+  const $el = this.$('[class="similarity-result"]');
   assert.equal($el.eq(0).text().trim(), 'Test similarity is 100%');
 });
 
@@ -65,6 +65,6 @@ test('it does calculate proper similarity', function(assert) {
     target=target
   }}`);
 
-  let $el = this.$('[class="similarity-result"]');
+  const $el = this.$('[class="similarity-result"]');
   assert.equal($el.eq(0).text().trim(), 'Test similarity is 81.3%');
 });
