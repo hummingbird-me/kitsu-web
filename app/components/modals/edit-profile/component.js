@@ -32,9 +32,9 @@ export default Component.extend({
   isProfilesActive: equal('_component', 'linked-profiles'),
   isFavoritesActive: equal('_component', 'favorites'),
 
-  updateProfileTask: task(function *() {
+  updateProfileTask: task(function* () {
     const user = get(this, 'session.account');
-    return yield user.save()
+    return yield user.save();
   }).restartable(),
 
   actions: {
@@ -60,7 +60,7 @@ export default Component.extend({
     updateImage(property, event) {
       if (event.files && event.files[0]) {
         const reader = new FileReader();
-        reader.onload = (evt) => run(() => set(this, property, evt.target.result));
+        reader.onload = evt => run(() => set(this, property, evt.target.result));
         reader.readAsDataURL(event.files[0]);
       }
     }

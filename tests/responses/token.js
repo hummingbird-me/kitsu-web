@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default {
   "access_token": "dbaf9757982a9e738f05d249b7b5b4a266b3a139049317c4909f2f263572c781",
   "token_type": "bearer",

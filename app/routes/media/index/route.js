@@ -21,7 +21,7 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
   },
   templateName: 'media/index',
 
-  setQuery: task(function *(value) {
+  setQuery: task(function* (value) {
     const controller = this.controllerFor(get(this, 'routeName'));
     set(controller, 'text', value);
     yield timeout(1000);
@@ -81,19 +81,20 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
 
   _buildFilters(params) {
     const filters = { filter: {} };
-    for (let key in params) {
+    Object.keys(params).forEach((key) => {
       const value = params[key];
       if (isEmpty(value) === true) {
-        continue;
+        return;
       } else if (isEmberArray(value) === true) {
-        const filtered = value.reject((x) => isEmpty(x));
+        const filtered = value.reject(x => isEmpty(x));
         if (isEmpty(filtered) === true) {
-          continue;
+          return;
         }
       }
       const type = typeOf(value);
       filters.filter[key] = this.serializeQueryParam(value, key, type);
-    }
+    });
+
     if (filters.filter.text === undefined) {
       filters.sort = '-user_count';
     }

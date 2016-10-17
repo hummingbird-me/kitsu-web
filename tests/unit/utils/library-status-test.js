@@ -1,5 +1,5 @@
-import libraryStatus from '../../../utils/library-status';
 import { module, test } from 'qunit';
+import libraryStatus from '../../../utils/library-status';
 
 module('Unit | Utility | library status');
 

@@ -5,13 +5,14 @@ export default Mixin.create({
   serializeQueryParam(value, _, defaultValueType) {
     if (defaultValueType === 'array') {
       if (typeOf(value) !== 'array') {
+        // eslint-disable-next-line no-param-reassign
         value = this.deserializeQueryParam(...arguments);
       }
       const isRange = typeOf(value[0]) !== 'string';
       if (isRange && value.length === 2) {
         return value.join('..');
       } else if (!isRange && value.length > 1) {
-        return value.reject((x) => isEmpty(x)).join();
+        return value.reject(x => isEmpty(x)).join();
       }
       return value.join();
     }
@@ -25,9 +26,8 @@ export default Mixin.create({
         return value.split('..').map((x) => {
           if (Number.isInteger(JSON.parse(x))) {
             return parseInt(x, 10);
-          } else {
-            return parseFloat(x);
           }
+          return parseFloat(x);
         });
       }
       return value.split(',');

@@ -19,15 +19,16 @@ export default Route.extend(PaginationMixin, {
    * Restartable task that queries the library entries for the current status,
    * and media type.
    */
-  modelTask: task(function *(media, status) {
+  modelTask: task(function* (media, status) {
     const user = this.modelFor('users');
     const userId = get(user, 'id');
     const options = {};
 
     if (status === 'all') {
-      status = '1,2,3,4,5';
+      status = '1,2,3,4,5'; // eslint-disable-line no-param-reassign
       Object.assign(options, { sort: 'status' });
     } else {
+      // eslint-disable-next-line no-param-reassign
       status = libraryStatus.enumToNumber(status);
     }
 

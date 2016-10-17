@@ -3,7 +3,7 @@ import DS from 'ember-data';
 import Owner from 'client/tests/helpers/owner';
 import ApplicationSerializer from 'client/models/application/serializer';
 
-export default function(options) {
+export default function(options = {}) {
   const registry = new Ember.Registry();
   const owner = Owner.create({
     __registry__: registry
@@ -14,9 +14,9 @@ export default function(options) {
   owner.__container__ = container;
 
   DS._setupContainer(registry);
-  for (const prop in options) {
-    registry.register(`model:${prop}`, Ember.get(options, prop));
-  }
+  Object.keys(options).forEach(prop => (
+    registry.register(`model:${prop}`, Ember.get(options, prop))
+  ));
   registry.register('adapter:application', DS.JSONAPIAdapter);
   registry.register('serializer:application', ApplicationSerializer);
   return container.lookup('service:store');

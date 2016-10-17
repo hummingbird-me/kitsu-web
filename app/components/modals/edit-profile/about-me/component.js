@@ -15,7 +15,7 @@ export default Component.extend({
   store: service(),
   user: alias('session.account'),
 
-  searchCharacters: task(function *() {
+  searchCharacters: task(function* () {
     yield timeout(1000);
     // TODO: Implement searching when available on server
   }).restartable(),
@@ -52,11 +52,11 @@ export default Component.extend({
 
   actions: {
     updateGender(value) {
-      const options = GENDER_KEYS.slice(0, 3).map((key) => {
-        return { key, str: this._translateGender(key) };
-      });
-      if (options.map((o) => o.str).includes(value) === true) {
-        set(this, 'user.gender', options.find((o) => o.str === value).key);
+      const options = GENDER_KEYS.slice(0, 3).map(key => ({
+        key, str: this._translateGender(key)
+      }));
+      if (options.map(o => o.str).includes(value) === true) {
+        set(this, 'user.gender', options.find(o => o.str === value).key);
       }
       set(this, 'selectedGender', value);
     }
