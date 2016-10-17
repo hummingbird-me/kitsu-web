@@ -1,33 +1,36 @@
-<div class="overlay-panel">
-  <div class="quick-update-actions">
-    {{#if (not isCompleted)}}
-      <button class="btn btn-primary" {{action (perform updateEntryTask)}}>
-        {{#if updateEntryTask.isRunning}}
-          Updating... (Spinner)
+<div class="quick-update-media-wrapper">
+  <div class="overlay-panel">
+    <div class="quick-update-actions">
+      <div class="action-wrapper">
+        {{#if (not isCompleted)}}
+          <button class="button button--quick-update" {{action (perform updateEntryTask)}}>
+            {{#if updateEntryTask.isRunning}}
+              Mark <span class="loading loading--small"></span> Complete
+            {{else}}
+              {{#if canComplete}}
+                Complete
+              {{else}}
+                Mark <span class="progress-count">EP {{nextProgress}}</span> Complete
+              {{/if}}
+            {{/if}}
+          </button>
         {{else}}
-          {{#if canComplete}}
-            Complete
-          {{else}}
-            Mark Episode {{nextProgress}} Complete
-          {{/if}}
+          {{star-rating entry.rating
+            options=(hash halfStar=true)
+            onSet=(action "rateEntry")
+          }}
+          <!-- Review -->
         {{/if}}
-      </button>
-    {{else}}
-      {{star-rating entry.rating
-        options=(hash halfStar=true)
-        onSet=(action "rateEntry")
-      }}
-
-      <!-- Review -->
-    {{/if}}
+      </div>
+    </div>
+    <div class="quick-update-title-block" title="One Punch Man">
+      <h6 class="series-title">
+        One Punch Man
+      </h6>
+      <small class="series-progress">
+        Ep. 11 - The Terrifying City
+      </small>
+    </div>
   </div>
-  <div class="quick-update-title-block" title="One Punch Man">
-    <h6 class="series-title">
-      One Punch Man
-    </h6>
-    <small class="series-progress">
-      Ep. 11 - The Terrifying City
-    </small>
-  </div>
+  <img src={{image entry.media.posterImage}}>
 </div>
-<img src={{image entry.media.posterImage}}>
