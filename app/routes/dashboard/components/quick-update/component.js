@@ -51,7 +51,7 @@ export default Component.extend({
       cellAlign: 'left',
       contain: false,
       pageDots: false,
-      groupCells: false,
+      groupCells: 4,
       autoPlay: false
     };
   }

@@ -14,15 +14,18 @@
   overflow: visible;
   .flickity-slider {
     width: 100vw;
-    transform: translateX(15%);
   }
   .ember-view {
-    width: 20%;
+    width: 19%;
     height: 150px;
     border-radius: 3px;
-    margin-right: 10px;
+    margin-right: 15px;
     background: #677086;
     overflow: hidden;
+    opacity: .5;
+    &.is-selected {
+      opacity: 1;
+    }
     img {
       width: 100%;
     }
