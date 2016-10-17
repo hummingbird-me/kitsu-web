@@ -8,9 +8,13 @@
 }
 
 .flickity-viewport {
+  @extend .container;
   height: 250px;
   margin-top: 15px;
+  overflow: visible;
   .flickity-slider {
+    width: 100vw;
+    transform: translateX(15%);
   }
   .ember-view {
     width: 20%;

@@ -48,11 +48,11 @@ export default Component.extend({
 
   _options() {
     return {
-      cellAlign: 'center',
-      contain: true,
+      cellAlign: 'left',
+      contain: false,
       pageDots: false,
       groupCells: false,
-      autoPlay: 1500
+      autoPlay: false
     };
   }
 });
