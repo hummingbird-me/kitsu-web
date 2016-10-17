@@ -8,13 +8,13 @@ module('Unit | Mixin | pagination');
 
 test('nextLink returns the next link or undefined', function(assert) {
   const PaginationObject = Ember.Object.extend(PaginationMixin, {
-    model: { links: { next: 'https://www.google.com' }}
+    model: { links: { next: 'https://www.google.com' } }
   });
   const subject = PaginationObject.create();
 
   let result = get(subject, 'nextLink');
   assert.equal(result, 'https://www.google.com');
-  set(subject, 'model', { links: {}});
+  set(subject, 'model', { links: {} });
   result = get(subject, 'nextLink');
   assert.equal(result, undefined);
 });

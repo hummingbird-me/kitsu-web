@@ -46,12 +46,12 @@ test('#getCurrentUser retrieves the user and sets account', function(assert) {
                 name: 'Holo'
               }
             }]
-          })
+          });
         });
       }
     }
   });
   service.getCurrentUser().then(() => {
     assert.equal(get(service, 'account.name'), 'Holo');
-  })
+  });
 });

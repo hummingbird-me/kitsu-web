@@ -18,8 +18,8 @@
   </ul>
 
   <div class="onboarding-search">
-    {{one-way-search
-      update=(action "updateContent")
+    {{one-way-search searchQuery
+      update=(perform updateSearchQuery)
       placeholder="Search by media title..."}}
   </div>
 
@@ -33,6 +33,7 @@
             <div class="onboarding-media col-sm-3">
               <img src={{image anime.posterImage}}>
               {{star-rating
+                rating=(compute (action "getRating") anime)
                 options=(hash halfStar=true)
                 onSet=(action "createLibraryEntry" anime)}}
             </div>
@@ -50,6 +51,7 @@
             <div class="onboarding-media col-sm-3">
               <img src={{image manga.posterImage}}>
               {{star-rating
+                rating=(compute (action "getRating") manga)
                 options=(hash halfStar=true)
                 onSet=(action "createLibraryEntry" manga)}}
             </div>

@@ -20,17 +20,17 @@ moduleForAcceptance('Acceptance | Anime', {
 
 test('anime.index requests and renders the correct data', function(assert) {
   this.server = new Pretender(function() {
-    this.get('/api/edge/anime', function() {
+    this.get('/api/edge/anime', () => {
       const data = new JaQuery(animeResponse);
       return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
     });
 
-    this.get('/api/edge/genres', function() {
+    this.get('/api/edge/genres', () => {
       const data = new JaQuery(genresResponse);
       return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
     });
 
-    this.get('/api/edge/streamers', function() {
+    this.get('/api/edge/streamers', () => {
       const data = new JaQuery(streamersResponse);
       return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
     });
@@ -50,7 +50,7 @@ test('anime.index requests and renders the correct data', function(assert) {
 
 test('anime.show requests and renders the correct data', function(assert) {
   this.server = new Pretender(function() {
-    this.get('/api/edge/anime', function() {
+    this.get('/api/edge/anime', () => {
       const data = new JaQuery(animeResponse);
       return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
     });
@@ -68,21 +68,21 @@ test('anime.show requests and renders the correct data', function(assert) {
 
 test('I should be able to create a library entry from anime.show', function(assert) {
   this.server = new Pretender(function() {
-    this.get('/api/edge/anime', function() {
+    this.get('/api/edge/anime', () => {
       const data = new JaQuery(animeResponse);
       return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
     });
 
-    this.get('/api/edge/users', function() {
+    this.get('/api/edge/users', () => {
       const data = new JaQuery(usersResponse);
       return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
     });
 
-    this.get('/api/edge/library-entries', function() {
-      return [200, { 'Content-Type': 'application/json' }, JSON.stringify({ data: [] })];
-    });
+    this.get('/api/edge/library-entries', () => (
+      [200, { 'Content-Type': 'application/json' }, JSON.stringify({ data: [] })]
+    ));
 
-    this.post('/api/edge/library-entries', function() {
+    this.post('/api/edge/library-entries', () => {
       const data = new JaQuery(libraryResponse);
       return [201, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
     });

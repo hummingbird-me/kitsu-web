@@ -28,23 +28,23 @@ moduleForAcceptance('Acceptance | Authentication', {
  */
 test('can create an account', function(assert) {
   this.server = new Pretender(function() {
-    this.post('/api/edge/users', function() {
+    this.post('/api/edge/users', () => {
       const data = new JaQuery(singleUser);
       return [201, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
     });
 
-    this.get('/api/edge/users', function() {
+    this.get('/api/edge/users', () => {
       const data = new JaQuery(usersResponse);
       return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
     });
 
-    this.post('/api/oauth/token', function() {
-      return [200, { 'Content-Type': 'application/json' }, JSON.stringify(tokenResponse)];
-    });
+    this.post('/api/oauth/token', () => (
+      [200, { 'Content-Type': 'application/json' }, JSON.stringify(tokenResponse)]
+    ));
 
-    this.get('/api/edge/library-entries', function() {
-      return [200, { 'Content-Type': 'application/json' }, JSON.stringify({ data: [] })];
-    });
+    this.get('/api/edge/library-entries', () => (
+      [200, { 'Content-Type': 'application/json' }, JSON.stringify({ data: [] })]
+    ));
   });
 
   visit('/');
@@ -64,7 +64,7 @@ test('can create an account', function(assert) {
 
 test('shows an error when using incorrect details on sign up', function(assert) {
   this.server = new Pretender(function() {
-    this.post('/api/edge/users', function() {
+    this.post('/api/edge/users', () => {
       const data = { errors: [{ detail: 'email is already taken.' }] };
       return [400, { 'Content-Type': 'application/json' }, JSON.stringify(data)];
     });
@@ -127,18 +127,18 @@ test('shows strength of password', function(assert) {
  */
 test('can sign into an account', function(assert) {
   this.server = new Pretender(function() {
-    this.post('/api/oauth/token', () => {
-      return [200, { 'Content-Type': 'application/json' }, JSON.stringify(tokenResponse)];
-    });
+    this.post('/api/oauth/token', () => (
+      [200, { 'Content-Type': 'application/json' }, JSON.stringify(tokenResponse)]
+    ));
 
-    this.get('/api/edge/users', function() {
+    this.get('/api/edge/users', () => {
       const data = new JaQuery(usersResponse);
       return [201, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
     });
 
-    this.get('/api/edge/library-entries', function() {
-      return [200, { 'Content-Type': 'application/json' }, JSON.stringify({ data: [] })];
-    });
+    this.get('/api/edge/library-entries', () => (
+      [200, { 'Content-Type': 'application/json' }, JSON.stringify({ data: [] })]
+    ));
   });
 
   visit('/');
@@ -156,7 +156,7 @@ test('can sign into an account', function(assert) {
 
 test('shows an error when using incorrect details on sign in', function(assert) {
   this.server = new Pretender(function() {
-    this.post('/api/oauth/token', function() {
+    this.post('/api/oauth/token', () => {
       const data = { error: 'invalid_grant' };
       return [400, { 'Content-Type': 'application/json' }, JSON.stringify(data)];
     });

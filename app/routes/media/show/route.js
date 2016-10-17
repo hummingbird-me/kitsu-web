@@ -17,10 +17,9 @@ export default Route.extend(CoverPageMixin, {
     const mediaType = get(this, 'mediaType');
     if (slug.match(/\D+/)) {
       return get(this, 'store').query(mediaType, { filter: { slug } })
-        .then((records) => get(records, 'firstObject'));
-    } else {
-      return get(this, 'store').findRecord(mediaType, slug);
+        .then(records => get(records, 'firstObject'));
     }
+    return get(this, 'store').findRecord(mediaType, slug);
   },
 
   titleToken(model) {

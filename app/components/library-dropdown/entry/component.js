@@ -13,16 +13,14 @@ export default Component.extend({
   update: K,
   delete: K,
 
-  updateTask: task(function *(status) {
+  updateTask: task(function* (status) {
     const entry = get(this, 'entry');
     if (entry === undefined) {
       yield get(this, 'create')(status.key);
+    } else if (status.key === REMOVE_KEY) {
+      yield get(this, 'delete')();
     } else {
-      if (status.key === REMOVE_KEY) {
-        yield get(this, 'delete')();
-      } else {
-        yield get(this, 'update')(status.key);
-      }
+      yield get(this, 'update')(status.key);
     }
   }).drop(),
 

@@ -46,6 +46,8 @@ module.exports = function(defaults) {
   app.import('bower_components/nouislider/distribute/nouislider.js');
   app.import('bower_components/nouislider/distribute/nouislider.min.css');
   app.import('bower_components/humanize-duration/humanize-duration.js');
+  app.import('bower_components/flickity/dist/flickity.min.css');
+  app.import('bower_components/flickity/dist/flickity.pkgd.min.js');
 
   return app.toTree();
 };
