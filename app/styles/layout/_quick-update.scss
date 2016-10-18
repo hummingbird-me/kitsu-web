@@ -52,7 +52,6 @@
     border-radius: 3px;
     margin-right: 15px;
     overflow: hidden;
-    text-align: left;
     animation-delay: .5s;
     .quick-update-media-wrapper {
       opacity: .4;
@@ -143,7 +142,33 @@
   }
 }
 
+.empty-panel {
+  text-align: center;
+  border: 2px dashed rgba(255,255,255,.2);
+  svg {
+    width: 60px;
+    fill: rgba(255,255,255,.1);
+    margin-top: 40px;
+  }
+}
 
+.hint-panel {
+  @extend .card;
+  padding: 15px;
+  font-size: 14px;
+  border: none;
+  .button {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    font-size: 14px;
+    padding: 10px;
+    &:hover {
+      color: $white;
+    }
+  }
+}
 
 .flickity-prev-next-button {
   top: 90px;
