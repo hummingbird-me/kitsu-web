@@ -210,8 +210,6 @@
 
 .stream-item--media-timeline {
   padding: 15px 20px 0 0;
-  max-height: 300px;
-  overflow: auto;
 }
 
 .stream-onboarding {
@@ -220,4 +218,72 @@
   padding: 15px;
   font-size: 12px;
   margin-bottom: 25px;
+}
+
+
+// aggregate feed items
+.aggregate-wrapper {
+  margin-top: 15px;
+  overflow: auto;
+  max-height: 220px;
+}
+
+.aggregate-date-block {
+  position: relative;
+  padding-bottom: 15px;
+  .hr {
+    position: absolute;
+    content: '';
+    width: 1px;
+    background: #ddd;
+    top: 0;
+    bottom: 0;
+    left: 30px;
+  }
+}
+.aggregate-date {
+  width: 60px;
+  background: $white;
+  position: relative;
+  padding-bottom: 5px;
+  span {
+    font-size: 12px;
+    display: block;
+    text-align: center;
+  }
+  .date-heading {
+    font-family: $heading-font-family;
+    font-weight: 700;
+  }
+}
+
+.aggregate-items {
+  list-style-type: none;
+  padding-left: 45px;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.agg-item {
+  @extend .clearfix;
+  font-size: 12px;
+  margin-bottom: 10px;
+  a {
+    font-family: $heading-font-family;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.agg-avatar {
+  width: 20px;
+  display: inline-block;
+  overflow: hidden;
+  float: left;
+  margin-right: 10px;
+  img {
+    border-radius: 999em;
+    width: 100%;
+  }
 }
