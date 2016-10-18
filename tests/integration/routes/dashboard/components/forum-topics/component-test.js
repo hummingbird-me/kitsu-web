@@ -30,7 +30,7 @@ test('data is handled correctly', function(assert) {
   };
 
   this.server.get('https://example.com/test.json', json(200, data), 300);
-  this.render(hbs`{{forum-topics
+  this.render(hbs`{{dashboard/components/forum-topics
     endpoint="https://example.com/test.json"
   }}`);
 
