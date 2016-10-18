@@ -34,6 +34,7 @@ export default {
     quickUpdate: {
       hint: {
         first: 'Media you\'ve added or updated within your',
+        library: 'Library',
         second: 'will show up here for you to quickly update.',
         discover: 'Discover anime and manga'
       },

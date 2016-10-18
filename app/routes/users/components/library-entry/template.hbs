@@ -68,7 +68,9 @@
       {{! Media Info }}
       <div class="medium-6 columns">
         <h4 class="drop-title">
-          {{link-to media.canonicalTitle (concat mediaType ".show") media}}
+          <a href={{href-to (concat mediaType ".show") media}}>
+            {{media.canonicalTitle}}
+          </a>
         </h4>
         <ul class="genres">
           {{#each media.genres as |genre|}}
