@@ -5,12 +5,18 @@
         {{#if (not isCompleted)}}
           <button class="button button--quick-update" {{action (perform updateEntryTask)}}>
             {{#if updateEntryTask.isRunning}}
-              Mark <span class="loading loading--small"></span> Complete
+              {{t "dashboard.quickUpdate.mark"}}
+              <span class="loading loading--small"></span>
+              {{t "dashboard.quickUpdate.complete"}}
             {{else}}
               {{#if canComplete}}
-                Complete
+                {{t "dashboard.quickUpdate.complete"}}
               {{else}}
-                Mark <span class="progress-count">EP {{nextProgress}}</span> Complete
+                {{t "dashboard.quickUpdate.mark"}}
+                <span class="progress-count">
+                  {{t "dashboard.quickUpdate.episode" num=nextProgress}}
+                </span>
+                {{t "dashboard.quickUpdate.complete"}}
               {{/if}}
             {{/if}}
           </button>
@@ -22,14 +28,15 @@
         {{/if}}
       </div>
     </div>
-    <div class="quick-update-title-block" title="One Punch Man">
+    <div class="quick-update-title-block" title={{entry.media.canonicalTitle}}>
       <h6 class="series-title">
-        One Punch Man
+        {{entry.media.canonicalTitle}}
       </h6>
       <small class="series-progress">
-        Ep. 11 - The Terrifying City
+        {{episodeText}}
       </small>
     </div>
   </div>
+  <!-- TODO: Use episode thumbnail and fallback to posterImage -->
   <img src={{image entry.media.posterImage}}>
 </div>

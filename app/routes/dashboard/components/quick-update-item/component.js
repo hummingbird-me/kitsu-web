@@ -3,8 +3,11 @@ import { task } from 'ember-concurrency';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import computed from 'ember-computed';
+import service from 'ember-service/inject';
 
 const QuickUpdateItemComponent = Component.extend({
+  i18n: service(),
+
   isCompleted: computed('entry.progress', {
     get() {
       return get(this, 'entry.status') === 'completed';
@@ -20,6 +23,15 @@ const QuickUpdateItemComponent = Component.extend({
   canComplete: computed('nextProgress', {
     get() {
       return get(this, 'nextProgress') === get(this, 'entry.media.episodeCount');
+    }
+  }).readOnly(),
+
+  episodeText: computed('nextProgress', {
+    get() {
+      const num = get(this, 'nextProgress');
+      const start = get(this, 'i18n').t('dashboard.quickUpdate.episode', { num });
+      // TODO: If we have the episode data, then append the `- Episode Title`.
+      return start;
     }
   }).readOnly(),
 

@@ -30,6 +30,18 @@ export default {
       }
     }
   },
+  dashboard: {
+    quickUpdate: {
+      hint: {
+        first: 'Media you\'ve added or updated within your',
+        second: 'will show up here for you to quickly update.',
+        discover: 'Discover anime and manga'
+      },
+      mark: 'Mark',
+      episode: 'Ep. {{num}}',
+      complete: 'Complete'
+    }
+  },
   media: {
     anime: {
       name: 'Anime',

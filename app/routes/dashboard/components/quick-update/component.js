@@ -12,7 +12,7 @@ export default Component.extend({
 
   remaining: computed('entries.length', {
     get() {
-      return 4 - (get(this, 'entries.length') || 0);
+      return 3 - (get(this, 'entries.length') || 0);
     }
   }).readOnly(),
 
