@@ -2,8 +2,8 @@
   {{dashboard/components/quick-update}}
 {{/if}}
 
-<div class="feed-container quick-update-enabled">
-  <div class="feed-stream">
+<div class="feed-container quick-update-enabled row">
+  <div class="feed-stream col-sm-8">
 
     <div class="stream-item row">
       <div class="stream-item--media col-sm-4">
@@ -129,7 +129,71 @@
 
     </div>
   </div>
-  <div class="feed-sidebar">
-    <h2>Sidebar</h2>
+  <div class="feed-sidebar col-sm-4">
+    <div class="checklist card">
+      <h4>Set-Up Your Feed</h4>
+      <ul>
+        <li class="step step--complete">
+          <span class="step-status">
+            {{svg-jar "success"}}
+          </span>
+          <span class="step-description">
+            Visit your feed
+          </span>
+        </li>
+        <li class="step step--complete">
+          <span class="step-status">
+            {{svg-jar "success"}}
+          </span>
+          <span class="step-description">
+            Rate 5 anime or manga
+          </span>
+        </li>
+        <li class="step step--complete">
+          <span class="step-status">
+            {{svg-jar "success"}}
+          </span>
+          <span class="step-description">
+            Follow 5 users
+          </span>
+        </li>
+        <li class="step">
+          <span class="step-status">
+            {{svg-jar "empty"}}
+          </span>
+          <span class="step-description">
+            Comment on 2 feed posts
+          </span>
+        </li>
+        <li class="step">
+          <span class="step-status">
+            {{svg-jar "empty"}}
+          </span>
+          <span class="step-description">
+            Like 3 feed posts
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-footer">
+      <div class="footer-social">
+        <a href="#" class="kitsu-social">
+          {{svg-jar "l-github"}}
+        </a>
+        <a href="#" class="kitsu-social">
+          {{svg-jar "l-twitter"}}
+        </a>
+        <a href="#" class="kitsu-social">
+          {{svg-jar "l-facebook"}}
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="#" class="site-link">Contact</a>
+        <a href="#" class="site-link">Jobs</a>
+        <a href="#" class="site-link">Privacy</a>
+        <a href="#" class="site-link">Terms</a>
+        <a href="#" class="site-link">About</a>
+      </div>
+    </div>
   </div>
 </div>
