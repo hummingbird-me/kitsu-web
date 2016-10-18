@@ -22,11 +22,15 @@ module.exports = function(environment) {
     contentSecurityPolicyHeader: 'Content-Security-Policy-Report-Only',
     contentSecurityPolicy: {
       'script-src': "'self' www.google-analytics.com",
+      'script-src': "'self' https://connect.facebook.net",
+      'script-src': "'self' http://connect.facebook.net",
       'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
       'connect-src': "'self' www.google-analytics.com localhost:3000",
       'img-src': "* data:",
       'font-src': "'self' fonts.gstatic.com",
-      'frame-src': "'self' www.youtube.com"
+      'frame-src': "'self' www.youtube.com",
+      'frame-src': "'self' https://staticxx.facebook.com",
+      'frame-src': "'self' http://staticxx.facebook.com"
     },
 
     'ember-simple-auth': {
@@ -45,7 +49,8 @@ module.exports = function(environment) {
 
     i18n: {
       defaultLocale: 'en'
-    }
+    },
+
   };
 
   if (environment === 'development') {
@@ -69,6 +74,12 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.contentSecurityPolicyHeader = 'Content-Security-Policy';
+  }
+
+  ENV.FB = {
+    appId: '1222641771096126',
+    version: 'v2.5',
+    xfbml: true
   }
 
   return ENV;
