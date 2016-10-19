@@ -15,7 +15,11 @@ export default Controller.extend({
   genres: [],
   text: undefined,
   year: [1914, 2016],
-  availableGenres: [],
+
+  // Buffer values so we don't mutate the query params every update
+  dirtyYear: [1914, 2016],
+  dirtyRating: [0.5, 5.0],
+  dirtyEpisodes: [1, 100],
 
   isAnime: getter(function() {
     const media = get(this, 'model.firstObject');

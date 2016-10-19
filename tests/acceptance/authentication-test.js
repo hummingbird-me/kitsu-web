@@ -17,6 +17,7 @@ moduleForAcceptance('Acceptance | Authentication', {
   },
 
   afterEach() {
+    jQuery('.modal-backdrop').remove();
     if (this.server !== undefined) {
       this.server.shutdown();
     }

@@ -11,9 +11,11 @@
           </a>
     	  </div>
         <ul class="nav navbar-nav">
-          <li class="nav-item">
-            {{link-to (t "header.library") "users.library" session.account.name class="nav-link"}}
-          </li>
+          {{#if sesison.isAuthenticated}}
+            <li class="nav-item">
+              {{link-to (t "header.library") "users.library" session.account.name class="nav-link"}}
+            </li>
+          {{/if}}
           <li class="nav-item">
             {{link-to (t "header.anime") "anime.index" class="nav-link"}}
           </li>

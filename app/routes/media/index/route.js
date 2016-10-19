@@ -14,16 +14,14 @@ import SlideHeaderMixin from 'client/mixins/routes/slide-header';
 export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
   mediaType: undefined,
   mediaQueryParams: {
-    averageRating: { replace: true },
+    averageRating: { refreshModel: true, replace: true },
     genres: { refreshModel: true, replace: true },
-    text: { replace: true },
-    year: { replace: true }
+    text: { refreshModel: true, replace: true },
+    year: { refreshModel: true, replace: true }
   },
   templateName: 'media/index',
 
-  setQuery: task(function* (value) {
-    const controller = this.controllerFor(get(this, 'routeName'));
-    set(controller, 'text', value);
+  refreshDebounced: task(function* () {
     yield timeout(1000);
     this.refresh();
   }).restartable(),
@@ -40,12 +38,13 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
 
   beforeModel() {
     this._super(...arguments);
-    return get(this, 'store').query('genre', {
-      page: { offset: 0, limit: 20000 }
-    }).then((results) => {
-      const controller = this.controllerFor(get(this, 'routeName'));
-      set(controller, 'availableGenres', results);
-    });
+    const controller = this.controllerFor(get(this, 'routeName'));
+    if (get(controller, 'availableGenres') !== undefined) {
+      return;
+    }
+    get(this, 'store').query('genre', {
+      page: { limit: 10000, offset: 0 }
+    }).then(genres => set(controller, 'availableGenres', genres));
   },
 
   model(params) {
@@ -61,22 +60,14 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
 
   setupController(controller) {
     this._super(...arguments);
+    jQuery(document.body).addClass('browse-page');
     jQuery(document).on('scroll', bind(controller, '_handleScroll'));
   },
 
   resetController(controller) {
     this._super(...arguments);
+    jQuery(document.body).removeClass('browse-page');
     jQuery(document).off('scroll', bind(controller, '_handleScroll'));
-  },
-
-  activate() {
-    this._super(...arguments);
-    jQuery('body').addClass('browse-page');
-  },
-
-  deactivate() {
-    this._super(...arguments);
-    jQuery('body').removeClass('browse-page');
   },
 
   _buildFilters(params) {
@@ -102,10 +93,6 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
   },
 
   actions: {
-    updateText(value) {
-      get(this, 'setQuery').perform(value);
-    },
-
     refresh() {
       this.refresh();
     }

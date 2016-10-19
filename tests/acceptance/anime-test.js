@@ -43,7 +43,7 @@ test('anime.index requests and renders the correct data', function(assert) {
     const streamers = find(testSelector('selector', 'filter-streamer'));
 
     assert.equal(media.length, 2);
-    assert.equal(genres.length, 3);
+    assert.equal(genres.length, 4);
     assert.equal(streamers.length, 3);
   });
 });
