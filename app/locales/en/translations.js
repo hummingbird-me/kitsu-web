@@ -33,9 +33,8 @@ export default {
   dashboard: {
     quickUpdate: {
       hint: {
-        first: 'Media you\'ve added or updated within your',
+        text: 'Media you\'ve added or updated within your {{link}} willl show up here for you to quickly update.',
         library: 'Library',
-        second: 'will show up here for you to quickly update.',
         discover: 'Discover anime and manga'
       },
       mark: 'Mark',
