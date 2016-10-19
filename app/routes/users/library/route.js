@@ -66,27 +66,17 @@ export default Route.extend(PaginationMixin, {
       set(controller, 'media', media);
     },
 
-    updateEntry(entry, key, value) {
-      if (jQuery.isPlainObject(key)) {
-        setProperties(entry, key);
-      } else {
-        set(entry, key, value);
-      }
-
+    saveEntry(entry) {
       if (get(entry, 'validations.isValid') === true) {
         return entry.save()
-          .then(() => {
-            // TODO: Feedback for user
-          })
+          .then(() => {})
           .catch(() => entry.rollbackAttributes());
       }
     },
 
     deleteEntry(entry) {
       return entry.destroyRecord()
-        .then(() => {
-          // TODO: Feedback for user.
-        })
+        .then(() => {})
         .catch(() => entry.rollbackAttributes());
     }
   }

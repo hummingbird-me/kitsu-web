@@ -5,29 +5,28 @@ import service from 'ember-service/inject';
 import { task, timeout } from 'ember-concurrency';
 import IsOwnerMixin from 'client/mixins/is-owner';
 import jQuery from 'jquery';
+import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend(IsOwnerMixin, {
   isExpanded: false,
-
   session: service(),
   i18n: service(),
   media: alias('entry.media'),
   user: alias('entry.user'),
 
-  // TODO: Handle manga (no support yet?)
-  totalProgress: computed('media.episodeCount', {
+  totalProgressText: computed('media.episodeCount', {
     get() {
       return get(this, 'media.episodeCount') || '-';
     }
   }).readOnly(),
 
-  rating: computed('entry.rating', {
+  ratingText: computed('entry.rating', {
     get() {
       return get(this, 'entry.rating') || '-';
     }
   }).readOnly(),
 
-  type: computed('media.{showType,mangaType}', {
+  typeText: computed('media.{showType,mangaType}', {
     get() {
       const mediaType = get(this, 'mediaType');
       const key = mediaType === 'manga' ? 'manga-type' : 'show-type';
@@ -36,13 +35,13 @@ export default Component.extend(IsOwnerMixin, {
     }
   }).readOnly(),
 
-  updateProperty: task(function* (key, value) {
-    yield get(this, 'update')(key, value);
+  saveEntry: task(function* () {
+    yield get(this, 'save')();
   }).restartable(),
 
-  updatePropertyDelayed: task(function* (key, value) {
+  saveEntryDebounced: task(function* () {
     yield timeout(1000);
-    yield get(this, 'updateProperty').perform(key, value);
+    yield get(this, 'saveEntry').perform();
   }).restartable(),
 
   /**
@@ -60,22 +59,13 @@ export default Component.extend(IsOwnerMixin, {
   },
 
   actions: {
-    updateEntry(key, value) {
-      get(this, 'update')(key, value);
+    sanitizeNumber(value) {
+      const parsed = parseInt(value, 10);
+      return isNaN(parsed) ? value : parsed;
     },
 
-    deleteEntry() {
-      get(this, 'delete')();
-    },
-
-    rewatch() {
-      const reconsumeCount = get(this, 'entry.reconsumeCount') + 1;
-      const updates = {
-        reconsumeCount,
-        progress: 0,
-        status: 'current'
-      };
-      get(this, 'updateProperty').perform(updates);
+    delete() {
+      invokeAction(this, 'delete');
     }
   }
 });

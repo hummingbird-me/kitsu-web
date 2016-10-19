@@ -12,28 +12,32 @@
       <div class="entry-progress">
         {{#if isOwner}}
           {{one-way-number entry.progress
-            update=(perform updatePropertyDelayed "progress")
+            update=(queue
+              (action (mut entry.progress))
+              (perform saveEntryDebounced)
+            )
+            sanitizeInput=(action "sanitizeNumber")
             placeholder="0"
           }}
           <span>
             <span class="sep">/</span>
-            {{totalProgress}}
+            {{totalProgressText}}
           </span>
         {{else}}
           <span>
-            {{entry.progress}} / {{totalProgress}}
+            {{entry.progress}} / {{totalProgressText}}
           </span>
         {{/if}}
       </div>
 
       {{! Entry Rating }}
       <div class="entry-rating">
-        <span>{{rating}}</span>
+        <span>{{ratingText}}</span>
       </div>
 
       {{! Entry Type }}
       <div class="entry-type">
-        <span>{{type}}</span>
+        <span>{{typeText}}</span>
       </div>
     </div>
   </div>
@@ -47,7 +51,10 @@
       <div class="small-12 columns">
         {{#if isOwner}}
           {{one-way-text entry.notes
-            update=(perform updatePropertyDelayed "notes")
+            update=(queue
+              (action (mut entry.notes))
+              (perform saveEntryDebounced)
+            )
             placeholder=(t "users.library.notes" title=media.canonicalTitle)
             class="personal-notes"
           }}
@@ -91,8 +98,12 @@
               {{library-dropdown/entry
                 entry=entry
                 media=entry.media
-                update=(action "updateEntry" "status")
-                delete=(action "deleteEntry")
+                update=(queue
+                  (action (mut entry.status))
+                  (action (mut entry.progress) (or entry.media.episodeCount entry.progress))
+                  (perform saveEntry)
+                )
+                delete=(action "delete")
               }}
             </div>
           {{/if}}
@@ -105,7 +116,12 @@
                   {{if entry.private (t "users.library.private") (t "users.library.public")}}
                 {{/dropdown.button}}
                 {{#dropdown.menu}}
-                  {{#dropdown.menu-item onClick=(perform updateProperty "private" (not entry.private))}}
+                  {{#dropdown.menu-item
+                    onClick=(queue
+                      (action (mut entry.private) (not entry.private))
+                      (perform saveEntry)
+                    )
+                  }}
                     {{if entry.private (t "users.library.public") (t "users.library.private")}}
                   {{/dropdown.menu-item}}
                 {{/dropdown.menu}}
@@ -116,7 +132,10 @@
             <div class="rating-options">
               {{star-rating entry.rating
                 readOnly=(not isOwner)
-                onClick=(perform updateProperty "rating")
+                onClick=(queue
+                  (action (mut entry.rating))
+                  (perform saveEntry)
+                )
               }}
             </div>
           </div>
@@ -124,7 +143,11 @@
           {{! Rewatch }}
           <div class="rewatch">
             {{#if isOwner}}
-              <button type="button" class="button" {{action "rewatch"}}>
+              <button type="button" class="button" {{action (queue
+                (action (mut entry.reconsumeCount) (inc entry.reconsumeCount))
+                (action (mut entry.progress) 0)
+                (action (mut entry.status) "current")
+                (perform saveEntry))}}>
                 {{t "users.library.rewatch"}}
               </button>
             {{/if}}
@@ -133,7 +156,12 @@
               <span>{{t "users.library.rewatched"}}</span>
               {{#if isOwner}}
                 {{one-way-number entry.reconsumeCount
-                    update=(perform updatePropertyDelayed "reconsumeCount")}}
+                  update=(queue
+                    (action (mut entry.reconsumeCount))
+                    (perform saveEntryDebounced)
+                  )
+                  sanitizeInput=(action "sanitizeNumber")
+                }}
               {{else}}
                 <span>{{entry.reconsumeCount}}</span>
               {{/if}}
