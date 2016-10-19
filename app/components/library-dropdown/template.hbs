@@ -1,7 +1,7 @@
 {{#bootstrap/bs-dropdown as |dropdown|}}
   {{#dropdown.button disabled=(if isWaiting "disabled") data-test-selector="library-dropdown"}}
     {{#if isWaiting}}
-      {{fa-icon "spinner" spin=true}}
+      {{loading-spinner}}
     {{else}}
       {{#if entry}}
         {{currentStatus}}

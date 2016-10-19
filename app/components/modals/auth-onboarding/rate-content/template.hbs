@@ -27,7 +27,7 @@
     <div class="tab-pane active row" id="anime" role="tabpanel">
       <div class="modal-grid row">
         {{#if query.isRunning}}
-          {{fa-icon "spinner" spin=true}}
+          {{loading-spinner}}
         {{else}}
           {{#each media as |anime|}}
             <div class="onboarding-media col-sm-3">
@@ -44,7 +44,7 @@
     <div class="tab-pane row" id="manga" role="tabpanel">
       <div class="modal-grid row">
         {{#if query.isRunning}}
-          {{fa-icon "spinner" spin=true}}
+          {{loading-spinner}}
         {{else}}
           {{#each media as |manga|}}
             <div class="onboarding-media col-sm-3">

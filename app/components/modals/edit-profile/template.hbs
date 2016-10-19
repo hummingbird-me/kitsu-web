@@ -54,7 +54,7 @@
     <button class="button button--save-edit button--primary"
       disabled={{unless user.hasDirtyAttributes "disabled"}} {{action "updateProfile"}}>
       {{#if updateProfileTask.isRunning}}
-        Saving...
+        {{loading-spinner}}
       {{else}}
         Update Profile
       {{/if}}

@@ -52,11 +52,11 @@
           }}
           <div class="filter-legend">
             <div class="low-value">
-              {{fa-icon "star-half-o"}}
+              <!-- Half Star -->
             </div>
             <div class="high-value">
               {{#each (repeat 5) as |_|}}
-                {{fa-icon "star"}}
+                <!-- Full Star -->
               {{/each}}
             </div>
           </div>
@@ -171,7 +171,7 @@
 
     {{! SEARCH }}
     <div class="search-media">
-      {{fa-icon "search"}}
+      {{svg-jar "search"}}
       {{one-way-search
         update=(route-action "updateText")
         placeholder=(t "media.routes.index.filter.search")

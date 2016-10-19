@@ -67,7 +67,7 @@
               disabled={{if user.validations.isInvalid "disabled"}}
               {{action (perform createAccount)}}>
         {{#if createAccount.isRunning}}
-          {{fa-icon "spinner" spin=true}}
+          {{loading-spinner}}
         {{else}}
           {{buttonText}}
         {{/if}}
