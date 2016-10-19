@@ -36,7 +36,7 @@ export default Component.extend(IsOwnerMixin, {
   }).readOnly(),
 
   saveEntry: task(function* () {
-    yield get(this, 'save')();
+    yield invokeAction(this, 'save');
   }).restartable(),
 
   saveEntryDebounced: task(function* () {

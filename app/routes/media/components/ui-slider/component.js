@@ -1,6 +1,7 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import { invokeAction } from 'ember-invoke-action';
 /* global noUiSlider */
 
 export default Component.extend({
@@ -55,7 +56,7 @@ export default Component.extend({
         }
       }
     });
-    elem.noUiSlider.on('slide', values => get(this, 'onUpdate')(values));
-    elem.noUiSlider.on('set', () => get(this, 'onRelease')());
+    elem.noUiSlider.on('slide', values => invokeAction(this, 'onUpdate', values));
+    elem.noUiSlider.on('set', () => invokeAction(this, 'onRelease'));
   }
 });

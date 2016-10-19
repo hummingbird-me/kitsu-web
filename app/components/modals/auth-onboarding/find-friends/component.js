@@ -1,10 +1,10 @@
 import Component from 'ember-component';
-import get from 'ember-metal/get';
+import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
   actions: {
     close() {
-      get(this, 'close')();
+      invokeAction(this, 'close');
     }
   }
 });

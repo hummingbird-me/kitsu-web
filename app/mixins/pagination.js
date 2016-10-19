@@ -3,6 +3,7 @@ import get from 'ember-metal/get';
 import computed from 'ember-computed';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
+import { invokeAction } from 'ember-invoke-action';
 
 /**
  * Pagination based on JSON-API's top level links object.
@@ -40,7 +41,7 @@ export default Mixin.create({
     const options = this._parseLink(nextLink);
     const records = yield get(this, 'store').query(modelName, options);
     const links = get(records, 'links');
-    get(this, 'update')(records, links);
+    invokeAction(this, 'update', records, links);
   }).drop(),
 
   /**

@@ -5,6 +5,7 @@ import { task, timeout } from 'ember-concurrency';
 import computed from 'ember-computed';
 import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
+import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
   activeTab: 'anime',
@@ -71,7 +72,7 @@ export default Component.extend({
 
   actions: {
     changeComponent(component) {
-      get(this, 'changeComponent')(component);
+      invokeAction(this, 'changeComponent', component);
     },
 
     updateTab(tab) {

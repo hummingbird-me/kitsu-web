@@ -1,6 +1,7 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import { copy } from 'ember-metal/utils';
+import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
   actions: {
@@ -11,7 +12,7 @@ export default Component.extend({
       } else {
         value.addObject(option);
       }
-      get(this, 'onSelect')(value);
+      invokeAction(this, 'onSelect', value);
     }
   }
 });
