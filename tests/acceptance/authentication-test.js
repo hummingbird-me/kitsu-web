@@ -10,17 +10,20 @@ import {
   objectResponse as singleUser
 } from 'client/tests/responses/user';
 import tokenResponse from 'client/tests/responses/token';
+import { jsonFactory as json } from 'client/tests/helpers/json';
 
 moduleForAcceptance('Acceptance | Authentication', {
   beforeEach() {
     jQuery('#ember-testing').append('<div id="wormhole"></div>');
+    this.server = new Pretender(function() {
+      this.post('/api/edge/users', json(201, new JaQuery(singleUser).unwrap()));
+      this.get('/api/edge/users', json(200, new JaQuery(usersResponse).unwrap()));
+    });
   },
 
   afterEach() {
     jQuery('.modal-backdrop').remove();
-    if (this.server !== undefined) {
-      this.server.shutdown();
-    }
+    this.server.shutdown();
   }
 });
 
@@ -28,25 +31,8 @@ moduleForAcceptance('Acceptance | Authentication', {
  * Sign Up Tests
  */
 test('can create an account', function(assert) {
-  this.server = new Pretender(function() {
-    this.post('/api/edge/users', () => {
-      const data = new JaQuery(singleUser);
-      return [201, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
-    });
-
-    this.get('/api/edge/users', () => {
-      const data = new JaQuery(usersResponse);
-      return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
-    });
-
-    this.post('/api/oauth/token', () => (
-      [200, { 'Content-Type': 'application/json' }, JSON.stringify(tokenResponse)]
-    ));
-
-    this.get('/api/edge/library-entries', () => (
-      [200, { 'Content-Type': 'application/json' }, JSON.stringify({ data: [] })]
-    ));
-  });
+  this.server.post('/api/oauth/token', json(201, tokenResponse));
+  this.server.get('/api/edge/library-entries', json(200, { data: [] }));
 
   visit('/');
   click(testSelector('selector', 'sign-up-header'));
@@ -64,12 +50,7 @@ test('can create an account', function(assert) {
 });
 
 test('shows an error when using incorrect details on sign up', function(assert) {
-  this.server = new Pretender(function() {
-    this.post('/api/edge/users', () => {
-      const data = { errors: [{ detail: 'email is already taken.' }] };
-      return [400, { 'Content-Type': 'application/json' }, JSON.stringify(data)];
-    });
-  });
+  this.server.post('/api/edge/users', json(400, { errors: [{ detail: 'email is already taken.' }] }));
 
   visit('/');
   click(testSelector('selector', 'sign-up-header'));
@@ -113,34 +94,19 @@ test('shows strength of password', function(assert) {
   visit('/');
   click(testSelector('selector', 'sign-up-header'));
   click(testSelector('selector', 'sign-up-email'), '#wormhole');
-
   fillIn(testSelector('selector', 'password'), '#wormhole', 'password');
   andThen(() => {
     const element = find(testSelector('selector', 'password-strength'), '#wormhole');
     assert.equal(element.length, 1);
   });
-
-  // TODO: Test state of Goku
 });
 
 /**
  * Sign In Tests
  */
 test('can sign into an account', function(assert) {
-  this.server = new Pretender(function() {
-    this.post('/api/oauth/token', () => (
-      [200, { 'Content-Type': 'application/json' }, JSON.stringify(tokenResponse)]
-    ));
-
-    this.get('/api/edge/users', () => {
-      const data = new JaQuery(usersResponse);
-      return [201, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
-    });
-
-    this.get('/api/edge/library-entries', () => (
-      [200, { 'Content-Type': 'application/json' }, JSON.stringify({ data: [] })]
-    ));
-  });
+  this.server.post('/api/oauth/token', json(200, tokenResponse));
+  this.server.get('/api/edge/library-entries', json(200, { data: [] }));
 
   visit('/');
   click(testSelector('selector', 'sign-up-header'));
@@ -156,12 +122,7 @@ test('can sign into an account', function(assert) {
 });
 
 test('shows an error when using incorrect details on sign in', function(assert) {
-  this.server = new Pretender(function() {
-    this.post('/api/oauth/token', () => {
-      const data = { error: 'invalid_grant' };
-      return [400, { 'Content-Type': 'application/json' }, JSON.stringify(data)];
-    });
-  });
+  this.server.post('/api/oauth/token', json(400, { error: 'invalid_grant' }));
 
   visit('/');
   click(testSelector('selector', 'sign-up-header'));
