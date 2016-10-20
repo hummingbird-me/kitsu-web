@@ -42,7 +42,7 @@ export default Component.extend({
       } else if (allValid) {
         step = 'last';
       }
-      return get(this, 'i18n').t(`auth-modal.sign-up.submit.${step}`);
+      return get(this, 'i18n').t(`auth.signUp.submit.${step}`);
     }
   }),
 

@@ -3,290 +3,70 @@
 {{/if}}
 
 <div class="feed-container row {{if session.isAuthenticated "quick-update-enabled"}}">
+  <!-- Feed Posts -->
   <div class="feed-stream col-sm-8">
+    <!-- TODO: also check if they haven't made a post -->
+    {{#if session.isAuthenticated}}
+      {{dashboard/components/stream-onboarding}}
 
-    <div class="stream-onboarding">
-      <h6>Hey Josh, welcome to Kitsu!</h6>
-      <p>
-        This is the global activity feed. It's populated by the recent activity from all of Kitsu's users - even you!
-        Once you've had a chance to follow a few more interesting users, we'll switch your default feed from Global to Following.
-      </p>
-      <strong>Why don't you try creating a feed post to introduce yourself using the form below? You can say something as simple as 'Hey everyone, I'm new to Kitsu', or you can show us how creative and witty you are!</strong>
-    </div>
-    <div class="stream-item row">
-      <div class="stream-item--media col-sm-4">
-        <img src="https://static.hummingbird.me/anime/poster_images/000/011/949/large/w646.jpg?1474672168">
-      </div>
-      <div class="stream-item--media-timeline col-sm">
-        <div class="stream-item--title-block">
-          <div class="author-info">
-            <a class="author-name" href="#">Occultic;Nine</a>
-            <small class="author-secondary">
-              The "paranormal science" story follows nine idiosyncratic individuals, linked by the "Chōjō Kagaku Kirikiri Basara" occult summary blog run by 17-year-old second-year high school student Yūta... <a href="#">more</a>
-            </small>
-          </div>
-        </div>
-        <div class="aggregate-wrapper">
-          <div class="aggregate-date-block">
-            <span class="hr"></span>
-            <div class="aggregate-date">
-              <div class="date-wrapper">
-                <span class="date-heading">Today</span>
-                <span>09.16.16</span>
-              </div>
-            </div>
-            <ul class="aggregate-items">
-              <li class="agg-item">
-                <span class="agg-avatar">
-                  <img src="https://static.hummingbird.me/users/avatars/000/002/431/thumb/tumblr_nc642q7iST1tkvag9o2_500.gif?1470531772">
-                </span>
-                <span class="agg-action">
-                  <a href="#">Jojo</a> and <strong>4 others</strong> watched <strong>episode 11</strong>
-                </span>
-              </li>
-              <li class="agg-item">
-                <span class="agg-avatar">
-                  <img src="https://static.hummingbird.me/users/avatars/000/002/431/thumb/tumblr_nc642q7iST1tkvag9o2_500.gif?1470531772">
-                </span>
-                <span class="agg-action">
-                  <a href="#">Jojo</a> and <strong>4 others</strong> watched <strong>episode 11</strong>
-                </span>
-              </li>
-            </ul>
-          </div>
+      <!-- TODO: Remove from authentication block when global feed is built -->
+      {{stream-feed
+        streamType=streamType
+        streamId=session.account.id
+        readOnly=(not session.isAuthenticated)}}
+    {{/if}}
+  </div>
 
-          <div class="aggregate-date-block">
-            <span class="hr"></span>
-            <div class="aggregate-date">
-              <div class="date-wrapper">
-                <span class="date-heading">Yesterday</span>
-                <span>09.16.16</span>
-              </div>
-            </div>
-            <ul class="aggregate-items">
-              <li class="agg-item">
-                <span class="agg-avatar">
-                  <img src="https://static.hummingbird.me/users/avatars/000/002/431/thumb/tumblr_nc642q7iST1tkvag9o2_500.gif?1470531772">
-                </span>
-                <span class="agg-action">
-                  <a href="#">Jojo</a> and <strong>4 others</strong> watched <strong>episode 11</strong>
-                </span>
-              </li>
-              <li class="agg-item">
-                <span class="agg-avatar">
-                  <img src="https://static.hummingbird.me/users/avatars/000/002/431/thumb/tumblr_nc642q7iST1tkvag9o2_500.gif?1470531772">
-                </span>
-                <span class="agg-action">
-                  <a href="#">Jojo</a> and <strong>4 others</strong> watched <strong>episode 11</strong>
-                </span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="aggregate-date-block">
-            <span class="hr"></span>
-            <div class="aggregate-date">
-              <div class="date-wrapper">
-                <span class="date-heading">Sunday</span>
-                <span>09.16.16</span>
-              </div>
-            </div>
-            <ul class="aggregate-items">
-              <li class="agg-item">
-                <span class="agg-avatar">
-                  <img src="https://static.hummingbird.me/users/avatars/000/002/431/thumb/tumblr_nc642q7iST1tkvag9o2_500.gif?1470531772">
-                </span>
-                <span class="agg-action">
-                  <a href="#">Jojo</a> and <strong>4 others</strong> watched <strong>episode 11</strong>
-                </span>
-              </li>
-              <li class="agg-item">
-                <span class="agg-avatar">
-                  <img src="https://static.hummingbird.me/users/avatars/000/002/431/thumb/tumblr_nc642q7iST1tkvag9o2_500.gif?1470531772">
-                </span>
-                <span class="agg-action">
-                  <a href="#">Jojo</a> and <strong>4 others</strong> watched <strong>episode 11</strong>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="stream-item row">
-      <div class="stream-item-wrapper col-sm-12">
-        <div class="stream-item--title-block">
-          <a href="#" class="author-avatar">
-            <img src="https://static.hummingbird.me/users/avatars/000/000/002/thumb/IMG_5499_%281%29.jpeg?1444332940">
-          </a>
-          <div class="author-info">
-            <a class="author-name" href="#">Josh</a>
-            <small class="author-secondary">5 minutes ago</small>
-          </div>
-        </div>
-
-        <div class="stream-content">
-          <p>Watching this all day!</p>
-          <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tI2Aa12ZUWg" allowfullscreen></iframe>
-          </div>
-        </div>
-
-        <div class="stream-item-activity">
-          <a href="#" class="like-stream-item">
-            {{svg-jar "heart-filled"}}
-            <!-- <span class="like-label">Like</span>  -->
-            <!-- Only show if nobody has liked stream item yet -->
-          </a>
-          <ul class="stream-item-participants">
-            <li class="stream-like">
-              <a class="like-avatar" href="#">
-                <img src="https://static.hummingbird.me/users/avatars/000/057/971/thumb_small/1703378.jpg?1411577096">
-              </a>
-            </li>
-            <li class="stream-like">
-              <a class="like-avatar" href="#">
-                <img src="https://static.hummingbird.me/users/avatars/000/069/952/thumb_small/tdMacaroniMan.jpg?1472678681">
-              </a>
-            </li>
-            <li class="stream-like">
-              <a class="like-avatar" href="#">
-                <img src="https://static.hummingbird.me/users/avatars/000/044/628/thumb_small/3765987.jpg?1433807380">
-              </a>
-            </li>
-            <li class="stream-like-count">
-              <a href="#">9</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="stream-item-options">
-          <a href="#">
-            {{svg-jar "l-twitter"}}
-            Tweet
-          </a>
-          <a href="#">
-            {{svg-jar "l-facebook"}}
-            Share
-          </a>
-          <span class="more-wrapper">
-            <a href="#" class="more-drop" id="moreDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {{svg-jar "more"}}
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="moreDrop">
-              <a class="dropdown-item" href="#">Copy Link to Post</a>
-              <a class="dropdown-item" href="#">Report Post</a>
-              <a class="dropdown-item" href="#">Mute @Josh</a>
-              <a class="dropdown-item" href="#">Block @Josh</a>
-            </div>
-          </span>
-        </div>
-      </div>
-
-      <div class="stream-item-comments">
-        <ul class="media-list">
-          <li class="media">
-            <div class="media-left">
-              <a href="#">
-                <img class="media-object" src="https://static.hummingbird.me/users/avatars/000/013/673/thumb_small/13335859_1189320507774829_7047452774197641321_n.jpg?1466081241" alt="Generic placeholder image">
-              </a>
-            </div>
-            <div class="media-body">
-              <h4 class="media-heading">
-                Zelgadiss
-                <small class="comment-time">1 hour ago</small>
-              </h4>
-              <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
-              <div class="stream-item-activity">
-                <a href="#" class="like-stream-item">
-                  {{svg-jar "heart-filled"}}
-                  <span class="sm-comment-count">3</span>
-                </a>
-                <span class="more-wrapper">
-                  <a href="#" class="more-drop" id="moreDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{svg-jar "more"}}
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="moreDrop">
-                    <a class="dropdown-item" href="#">Report Post</a>
-                    <a class="dropdown-item" href="#">Mute @Josh</a>
-                    <a class="dropdown-item" href="#">Block @Josh</a>
-                  </div>
-                </span>
-              </div>
-            </div>
+  <div class="feed-sidebar col-sm-4">
+    <!-- TODO: Componentize the checklist -->
+    {{#if session.isAuthenticated}}
+      <div class="checklist card">
+        <h4>Set-Up Your Feed</h4>
+        <ul>
+          <li class="step step--complete">
+            <span class="step-status">
+              {{svg-jar "success"}}
+            </span>
+            <span class="step-description">
+              Visit your feed
+            </span>
+          </li>
+          <li class="step step--complete">
+            <span class="step-status">
+              {{svg-jar "success"}}
+            </span>
+            <span class="step-description">
+              Rate 5 anime or manga
+            </span>
+          </li>
+          <li class="step step--complete">
+            <span class="step-status">
+              {{svg-jar "success"}}
+            </span>
+            <span class="step-description">
+              Follow 5 users
+            </span>
+          </li>
+          <li class="step">
+            <span class="step-status">
+              {{svg-jar "empty"}}
+            </span>
+            <span class="step-description">
+              Comment on 2 feed posts
+            </span>
+          </li>
+          <li class="step">
+            <span class="step-status">
+              {{svg-jar "empty"}}
+            </span>
+            <span class="step-description">
+              Like 3 feed posts
+            </span>
           </li>
         </ul>
-        <input class="form-control add-comment" type="text" value="" placeholder="leave a comment" id="example-text-input">
       </div>
+    {{/if}}
 
-
-    </div>
-  </div>
-  <div class="feed-sidebar col-sm-4">
-    <div class="checklist card">
-      <h4>Set-Up Your Feed</h4>
-      <ul>
-        <li class="step step--complete">
-          <span class="step-status">
-            {{svg-jar "success"}}
-          </span>
-          <span class="step-description">
-            Visit your feed
-          </span>
-        </li>
-        <li class="step step--complete">
-          <span class="step-status">
-            {{svg-jar "success"}}
-          </span>
-          <span class="step-description">
-            Rate 5 anime or manga
-          </span>
-        </li>
-        <li class="step step--complete">
-          <span class="step-status">
-            {{svg-jar "success"}}
-          </span>
-          <span class="step-description">
-            Follow 5 users
-          </span>
-        </li>
-        <li class="step">
-          <span class="step-status">
-            {{svg-jar "empty"}}
-          </span>
-          <span class="step-description">
-            Comment on 2 feed posts
-          </span>
-        </li>
-        <li class="step">
-          <span class="step-status">
-            {{svg-jar "empty"}}
-          </span>
-          <span class="step-description">
-            Like 3 feed posts
-          </span>
-        </li>
-      </ul>
-    </div>
-    <div class="sidebar-footer">
-      <div class="footer-social">
-        <a href="#" class="kitsu-social">
-          {{svg-jar "l-github"}}
-        </a>
-        <a href="#" class="kitsu-social">
-          {{svg-jar "l-twitter"}}
-        </a>
-        <a href="#" class="kitsu-social">
-          {{svg-jar "l-facebook"}}
-        </a>
-      </div>
-      <div class="footer-links">
-        <a href="#" class="site-link">Contact</a>
-        <a href="#" class="site-link">Jobs</a>
-        <a href="#" class="site-link">Privacy</a>
-        <a href="#" class="site-link">Terms</a>
-        <a href="#" class="site-link">About</a>
-      </div>
-    </div>
+    {{sidebar-footer}}
   </div>
 </div>

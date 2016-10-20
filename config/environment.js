@@ -56,6 +56,10 @@ module.exports = function(environment) {
 
     i18n: {
       defaultLocale: 'en'
+    },
+
+    moment: {
+      allowEmpty: true
     }
   };
 

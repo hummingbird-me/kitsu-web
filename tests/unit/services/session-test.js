@@ -5,6 +5,7 @@ import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import RSVP from 'rsvp';
 import setupStore from 'client/tests/helpers/setup-store';
+import wait from 'ember-test-helpers/wait';
 
 moduleFor('service:session', 'Unit | Service | session', {
   beforeEach() {
@@ -51,7 +52,6 @@ test('#getCurrentUser retrieves the user and sets account', function(assert) {
       }
     }
   });
-  service.getCurrentUser().then(() => {
-    assert.equal(get(service, 'account.name'), 'Holo');
-  });
+  service.getCurrentUser();
+  return wait().then(() => assert.equal(get(service, 'account.name'), 'Holo'));
 });

@@ -29,9 +29,8 @@ export default Component.extend(IsOwnerMixin, {
   typeText: computed('media.{showType,mangaType}', {
     get() {
       const mediaType = get(this, 'mediaType');
-      const key = mediaType === 'manga' ? 'manga-type' : 'show-type';
       const type = get(this, 'media.showType') || get(this, 'media.mangaType');
-      return get(this, 'i18n').t(`media.${mediaType}.${key}.${type}`);
+      return get(this, 'i18n').t(`media.${mediaType}.type.${type}`);
     }
   }).readOnly(),
 

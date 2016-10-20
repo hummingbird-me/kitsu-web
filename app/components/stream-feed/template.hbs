@@ -1,0 +1,10 @@
+{{#if getFeedData.isRunning}}
+  {{loading-spinner size="large"}}
+{{else}}
+  {{#each feed as |group|}}
+    {{log group}}
+    {{component (concat "stream-feed/items/" (feed-type group.activities)) group=group readOnly=readOnly}}
+  {{else}}
+    {{t "errors.contentEmpty"}}
+  {{/each}}
+{{/if}}

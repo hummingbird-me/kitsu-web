@@ -63,6 +63,7 @@ export default Model.extend(Validations, {
   toFollow: attr('boolean'),
   waifuOrHusbando: attr('string'),
   website: attr('string'),
+  updatedAt: attr('date'),
 
   waifu: belongsTo('character')
 });

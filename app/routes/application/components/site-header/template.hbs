@@ -11,7 +11,7 @@
           </a>
     	  </div>
         <ul class="nav navbar-nav">
-          {{#if sesison.isAuthenticated}}
+          {{#if session.isAuthenticated}}
             <li class="nav-item">
               {{link-to (t "header.library") "users.library" session.account.name class="nav-link"}}
             </li>

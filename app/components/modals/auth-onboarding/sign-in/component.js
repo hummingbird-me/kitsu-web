@@ -19,5 +19,11 @@ export default Component.extend({
       .authenticateWithOAuth2(identification, password)
       .then(() => invokeAction(this, 'close'))
       .catch(err => set(this, 'errorMessage', errorMessage(err)));
-  })
+  }),
+
+  actions: {
+    changeComponent(component) {
+      invokeAction(this, 'changeComponent', component);
+    }
+  }
 });
