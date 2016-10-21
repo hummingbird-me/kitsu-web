@@ -41,6 +41,11 @@
     padding: 10px 15px;
     &:hover {
       background: darken($white, 2);
+      border-color: $eggshell;
+    }
+    &.active {
+      background: lighten($eggshell, 3);
+      border-color: $eggshell;
     }
   }
 }
@@ -56,12 +61,16 @@
 }
 
 .section-head {
-  background: #EBEBEB;
-  color: #727272;
+  background: lighten($eggshell, 5);
+  border-bottom: 1px solid $eggshell;
+  color: $charcoal;
   width: 100%;
   font-size: 12px;
   font-weight: 600;
   padding: 10px 15px;
+  &:first-child {
+    border-top: 1px solid $eggshell;
+  }
   .section-stats {
     float: right;
   }
@@ -69,7 +78,10 @@
 
 .library-entry {
   @extend .clearfix;
-  border-top: 1px solid #ddd;
+  border-bottom: 1px solid $eggshell;
+  &:last-child {
+    border-bottom: none;
+  }
   .entry-progress, .entry-rating, .entry-type {
     display: inline-block;
   }
@@ -107,7 +119,8 @@
   }
   .entry-type {
     display: inline-block;
-    width: 42px;
+    width: 65px;
+    font-size: 12px;
     font-weight: bold;
     line-height: 14px;
     text-align: center;
@@ -121,13 +134,16 @@
 }
 .library-dropdown {
   @extend .clearfix;
-  background: #F4F4F4;
+  background: lighten($eggshell, 5);
   padding-bottom: 15px;
+  .arrow-wrapper {
+    padding: 0;
+  }
   .drop-arrow {
     position: relative;
     height: 5px;
     margin-bottom: 15px;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid $eggshell;
     &:before, &:after {
       top: 100%;
       border: solid transparent;
@@ -139,7 +155,7 @@
     }
     &:before {
       border-color: rgba(221,221,221,0);
-      border-top-color: #ddd;
+      border-top-color: $eggshell;
       border-width: 11px;
       left: 50%;
       top: -1px;
@@ -172,7 +188,7 @@
   .drop-title {
     font-size: 18px;
     font-weight: 600;
-    margin-bottom: 0;
+    margin-bottom: 10px;
   }
   .genres {
     margin: 0;
@@ -189,6 +205,15 @@
   float: right;
   font-size: 22px;
   color: #9B9A9A;
+  position: relative;
+  top: 5px;
+  svg {
+    width: 20px;
+  }
+}
+
+.drop-description {
+  font-size: 14px;
 }
 
 .drop-options {
@@ -218,12 +243,62 @@
       font-size: 12px;
       line-height: 36px;
     }
-    input {
-      width: 20px;
-      text-align: center;
-      border: none;
-      font-weight: 600;
-      color: #16A085;
+  }
+}
+
+.dropdown-rating {
+  @extend .clearfix;
+  .dropdown {
+    float: left;
+  }
+}
+
+.dropdown-rating, .rewatch {
+  .button {
+    font-size: 12px;
+    padding: 10px 25px;
+    background: lighten($eggshell, 3);
+    border: 1px solid lighten($nobel, 15);
+    color: $charcoal;
+    &:hover {
+      background: $eggshell;
     }
+  }
+}
+
+.rewatch {
+  input {
+    width: 30px;
+    height: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-weight: 600;
+    color: #16A085;width: 30px;
+    height: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-weight: 600;
+    color: #16A085;
+  }
+}
+
+.empty-wrapper {
+  text-align: center;
+  background: lighten($eggshell, 5);
+}
+.library-section-empty {
+  border: 1px dotted #ddd;
+  display: inline-block;
+  margin: 20px auto;
+  border-radius: 3px;
+  padding: 10px 30px;
+  min-width: 50%;
+  span, a {
+    font-size: 12px;
+  }
+  a {
+    margin-left: 15px;
   }
 }
