@@ -22,20 +22,17 @@ export default Component.extend({
   statuses: computed('entry', 'currentStatus', {
     get() {
       const type = get(this, 'mediaType');
-      const statuses = libraryStatus.getEnumKeys().map((key) => {
-        return {
-          key,
-          string: get(this, 'i18n').t(`library.statuses.${type}.${key}`).toString()
-        };
-      });
+      const statuses = libraryStatus.getEnumKeys().map(key => ({
+        key,
+        string: get(this, 'i18n').t(`library.statuses.${type}.${key}`).toString()
+      }));
       if (get(this, 'entry') === undefined) {
         return statuses;
-      } else {
-        const status = get(this, 'currentStatus');
-        statuses.splice(statuses.findIndex((el) => el.string === status), 1);
-        const removeKey = get(this, 'i18n').t(REMOVE_KEY).toString();
-        return statuses.concat([{ key: REMOVE_KEY, string: removeKey }]);
       }
+      const status = get(this, 'currentStatus');
+      statuses.splice(statuses.findIndex(el => el.string === status), 1);
+      const removeKey = get(this, 'i18n').t(REMOVE_KEY).toString();
+      return statuses.concat([{ key: REMOVE_KEY, string: removeKey }]);
     }
   }).readOnly(),
 

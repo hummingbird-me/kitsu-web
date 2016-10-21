@@ -4,6 +4,7 @@ import { assert } from 'ember-metal/utils';
 import { task } from 'ember-concurrency';
 import layout from 'client/components/library-dropdown/template';
 import Ember from 'ember';
+import { invokeAction } from 'ember-invoke-action';
 
 const { K } = Ember;
 
@@ -13,16 +14,14 @@ export default Component.extend({
   update: K,
   delete: K,
 
-  updateTask: task(function *(status) {
+  updateTask: task(function* (status) {
     const entry = get(this, 'entry');
     if (entry === undefined) {
-      yield get(this, 'create')(status.key);
+      yield invokeAction(this, 'create', status.key);
+    } else if (status.key === REMOVE_KEY) {
+      yield invokeAction(this, 'delete');
     } else {
-      if (status.key === REMOVE_KEY) {
-        yield get(this, 'delete')();
-      } else {
-        yield get(this, 'update')(status.key);
-      }
+      yield invokeAction(this, 'update', status.key);
     }
   }).drop(),
 

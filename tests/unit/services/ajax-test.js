@@ -14,5 +14,8 @@ test('authentication headers are added to ajax requests', function(assert) {
     }
   });
   const result = get(service, 'headers');
-  assert.deepEqual(result, { 'Test-Header': 'Test' });
+  assert.deepEqual(result, {
+    accept: 'application/vnd.api+json',
+    'Test-Header': 'Test'
+  });
 });

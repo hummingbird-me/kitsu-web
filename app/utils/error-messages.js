@@ -5,7 +5,7 @@ import { capitalize } from 'ember-string';
 
 // http://tools.ietf.org/html/rfc6749#section-5.2
 const lookupTable = {
-  'invalid_grant': 'The provided credentials are invalid.'
+  invalid_grant: 'The provided credentials are invalid.'
 };
 
 export default function errorMessages(obj) {

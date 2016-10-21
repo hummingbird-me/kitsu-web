@@ -6,18 +6,14 @@ moduleFor('transform:array', 'Unit | Transform | array', {
 });
 
 test('#serialize', function(assert) {
-  assert.expect(3);
   const transform = this.subject();
-
   assert.deepEqual(transform.serialize(null), []);
   assert.deepEqual(transform.serialize(undefined), []);
   assert.deepEqual(transform.serialize([1, 2, 3]), [1, 2, 3]);
 });
 
 test('#deserialize', function(assert) {
-  assert.expect(3);
   const transform = this.subject();
-
   assert.deepEqual(transform.deserialize(null), []);
   assert.deepEqual(transform.deserialize(undefined), []);
   assert.deepEqual(transform.deserialize([1, 2, 3]), [1, 2, 3]);

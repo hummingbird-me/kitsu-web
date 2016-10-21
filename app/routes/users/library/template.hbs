@@ -47,7 +47,7 @@
             entries=entries
             mediaType=media
             isLoading=isLoading
-            update=(route-action "updateEntry")
+            save=(route-action "saveEntry")
             delete=(route-action "deleteEntry")
           }}
         {{/each-in}}
@@ -57,7 +57,7 @@
           entries=filteredEntries
           mediaType=media
           isLoading=isLoading
-          update=(route-action "updateEntry")
+          save=(route-action "saveEntry")
           delete=(route-action "deleteEntry")
         }}
       {{/if}}

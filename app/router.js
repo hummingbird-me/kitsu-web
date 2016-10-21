@@ -19,6 +19,7 @@ const RouterInstance = Router.extend({
   }
 });
 
+// eslint-disable-next-line array-callback-return
 RouterInstance.map(function() {
   this.route('dashboard', { path: '/' });
   this.route('dashboard/redirect', { path: '/dashboard' });

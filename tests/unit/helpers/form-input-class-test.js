@@ -4,8 +4,6 @@ import { module, test } from 'qunit';
 module('Unit | Helper | form input class');
 
 test('it works', function(assert) {
-  assert.expect(4);
-
   let result = formInputClass([false, false]);
   assert.equal(result, 'form-control');
 

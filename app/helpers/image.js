@@ -2,9 +2,8 @@ import { helper } from 'ember-helper';
 import get from 'ember-metal/get';
 import jQuery from 'jquery';
 
-export function image([object, size]) {
+export function image([object, size = 'original']) {
   if (jQuery.isPlainObject(object) === true) {
-    size = size || 'original';
     return get(object, size);
   }
   return object;

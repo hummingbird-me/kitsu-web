@@ -4,24 +4,19 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { task } from 'ember-concurrency';
 import computed from 'ember-computed';
+import { scheduleOnce } from 'ember-runloop';
 
 export default Component.extend({
   session: service(),
   store: service(),
 
-  lessThanFive: computed('entries.length', {
-    get() {
-      return (get(this, 'entries.length') || 0) < 5;
-    }
-  }).readOnly(),
-
   remaining: computed('entries.length', {
     get() {
-      return 4 - (get(this, 'entries.length') || 0);
+      return 3 - (get(this, 'entries.length') || 0);
     }
   }).readOnly(),
 
-  getEntriesTask: task(function *() {
+  getEntriesTask: task(function* () {
     const items = yield get(this, 'store').query('library-entry', {
       include: 'media',
       filter: {
@@ -37,6 +32,27 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    get(this, 'getEntriesTask').perform();
+    get(this, 'getEntriesTask').perform().then(() => {
+      scheduleOnce('afterRender', () => {
+        set(this, 'carousel', this.$().flickity(this._options()));
+      });
+    });
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    if (get(this, 'carousel') !== undefined) {
+      get(this, 'carousel').flickity('destroy');
+    }
+  },
+
+  _options() {
+    return {
+      cellAlign: 'left',
+      contain: false,
+      pageDots: false,
+      groupCells: 4,
+      autoPlay: false
+    };
   }
 });

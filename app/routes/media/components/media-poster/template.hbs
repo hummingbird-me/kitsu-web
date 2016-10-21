@@ -13,7 +13,7 @@
     {{#if media.youtubeVideoId}}
       <div class="trailer" data-test-selector="media-poster-trailer">
         <a data-toggle="modal" data-target="#{{elementId}}-trailer" {{action "openTrailer"}}>
-          {{fa-icon "play"}}
+          {{svg-jar "play"}}
         </a>
         {{#if trailerOpen}}
          {{#ember-wormhole to="wormhole"}}
@@ -55,7 +55,7 @@
 </div>
 
 <div class="ellipsis">
-  {{#link-to mediaRoute media class="media-title"}}
+  <a href={{href-to mediaRoute media}} class="media-title">
     {{media.canonicalTitle}}
-  {{/link-to}}
+  </a>
 </div>

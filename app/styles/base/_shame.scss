@@ -44,3 +44,14 @@ body {
 .container {
   width: 100%;
 }
+
+
+// Need to fix svg size to align all social footer icons. This is a temporary fix for that.
+.kitsu-social {
+  &:first-child {
+    svg {
+      position: relative;
+      top: -2px;
+    }
+  }
+}

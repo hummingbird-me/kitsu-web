@@ -1,21 +1,42 @@
-<img src={{image entry.media.posterImage}}>
-{{#if (not isCompleted)}}
-  <button class="btn btn-primary" {{action (perform updateEntryTask)}}>
-    {{#if updateEntryTask.isRunning}}
-      Updating... (Spinner)
-    {{else}}
-      {{#if canComplete}}
-        Complete
-      {{else}}
-        Mark Episode {{nextProgress}} Complete
-      {{/if}}
-    {{/if}}
-  </button>
-{{else}}
-  {{star-rating entry.rating
-    options=(hash halfStar=true)
-    onSet=(action "rateEntry")
-  }}
-
-  <!-- Review -->
-{{/if}}
+<div class="quick-update-media-wrapper">
+  <div class="overlay-panel">
+    <div class="quick-update-actions">
+      <div class="action-wrapper">
+        {{#if (not isCompleted)}}
+          <button class="button button--quick-update" {{action (perform updateEntryTask)}}>
+            {{#if updateEntryTask.isRunning}}
+              {{t "dashboard.quickUpdate.mark"}}
+              <span class="loading loading--small"></span>
+              {{t "dashboard.quickUpdate.complete"}}
+            {{else}}
+              {{#if canComplete}}
+                {{t "dashboard.quickUpdate.complete"}}
+              {{else}}
+                {{t "dashboard.quickUpdate.mark"}}
+                <span class="progress-count">
+                  {{t "dashboard.quickUpdate.episode" num=nextProgress}}
+                </span>
+                {{t "dashboard.quickUpdate.complete"}}
+              {{/if}}
+            {{/if}}
+          </button>
+        {{else}}
+          {{star-rating entry.rating
+            onClick=(action "rateEntry")
+          }}
+          <!-- Review -->
+        {{/if}}
+      </div>
+    </div>
+    <div class="quick-update-title-block" title={{entry.media.canonicalTitle}}>
+      <h6 class="series-title">
+        {{entry.media.canonicalTitle}}
+      </h6>
+      <small class="series-progress">
+        {{episodeText}}
+      </small>
+    </div>
+  </div>
+  <!-- TODO: Use episode thumbnail and fallback to posterImage -->
+  <img src={{image entry.media.posterImage}}>
+</div>

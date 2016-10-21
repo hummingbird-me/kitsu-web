@@ -9,32 +9,23 @@ import { arrayResponse as genresResponse } from 'client/tests/responses/genre';
 import { arrayResponse as streamersResponse } from 'client/tests/responses/streamer';
 import { arrayResponse as usersResponse } from 'client/tests/responses/user';
 import { objectResponse as libraryResponse } from 'client/tests/responses/library-entry';
+import { jsonFactory as json } from 'client/tests/helpers/json';
 
 moduleForAcceptance('Acceptance | Anime', {
+  beforeEach() {
+    this.server = new Pretender(function() {
+      this.get('/api/edge/anime', json(200, new JaQuery(animeResponse).unwrap()));
+    });
+  },
+
   afterEach() {
-    if (this.server !== undefined) {
-      this.server.shutdown();
-    }
+    this.server.shutdown();
   }
 });
 
 test('anime.index requests and renders the correct data', function(assert) {
-  this.server = new Pretender(function() {
-    this.get('/api/edge/anime', function() {
-      const data = new JaQuery(animeResponse);
-      return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
-    });
-
-    this.get('/api/edge/genres', function() {
-      const data = new JaQuery(genresResponse);
-      return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
-    });
-
-    this.get('/api/edge/streamers', function() {
-      const data = new JaQuery(streamersResponse);
-      return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
-    });
-  });
+  this.server.get('/api/edge/genres', json(200, new JaQuery(genresResponse).unwrap()));
+  this.server.get('/api/edge/streamers', json(200, new JaQuery(streamersResponse).unwrap()));
 
   visit('/anime');
   andThen(() => {
@@ -43,19 +34,12 @@ test('anime.index requests and renders the correct data', function(assert) {
     const streamers = find(testSelector('selector', 'filter-streamer'));
 
     assert.equal(media.length, 2);
-    assert.equal(genres.length, 3);
+    assert.equal(genres.length, 4);
     assert.equal(streamers.length, 3);
   });
 });
 
 test('anime.show requests and renders the correct data', function(assert) {
-  this.server = new Pretender(function() {
-    this.get('/api/edge/anime', function() {
-      const data = new JaQuery(animeResponse);
-      return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
-    });
-  });
-
   visit('/anime/trigun');
   andThen(() => {
     const data = new JaQuery(animeResponse);
@@ -67,26 +51,9 @@ test('anime.show requests and renders the correct data', function(assert) {
 });
 
 test('I should be able to create a library entry from anime.show', function(assert) {
-  this.server = new Pretender(function() {
-    this.get('/api/edge/anime', function() {
-      const data = new JaQuery(animeResponse);
-      return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
-    });
-
-    this.get('/api/edge/users', function() {
-      const data = new JaQuery(usersResponse);
-      return [200, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
-    });
-
-    this.get('/api/edge/library-entries', function() {
-      return [200, { 'Content-Type': 'application/json' }, JSON.stringify({ data: [] })];
-    });
-
-    this.post('/api/edge/library-entries', function() {
-      const data = new JaQuery(libraryResponse);
-      return [201, { 'Content-Type': 'application/json' }, data.unwrap(JSON.stringify)];
-    });
-  });
+  this.server.get('/api/edge/users', json(200, new JaQuery(usersResponse).unwrap()));
+  this.server.get('/api/edge/library-entries', json(200, { data: [] }));
+  this.server.post('/api/edge/library-entries', json(201, new JaQuery(libraryResponse).unwrap()));
 
   authenticateSession(this.application);
   visit('/anime/trigun');

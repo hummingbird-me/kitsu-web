@@ -1,6 +1,7 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import { invokeAction } from 'ember-invoke-action';
 /* global noUiSlider */
 
 export default Component.extend({
@@ -14,8 +15,8 @@ export default Component.extend({
       step: 1,
       initialStart: 0,
       initialEnd: 100,
-      doubleSided: false,
-      decimal: 2
+      doubleSided: true,
+      decimal: 0
     });
   },
 
@@ -31,20 +32,13 @@ export default Component.extend({
     this._super(...arguments);
     const elem = this.$()[0];
     const options = get(this, '_options');
-    const selected = [get(options, 'initialStart')];
-    if (get(options, 'doubleSided') === true) {
-      selected.push(get(options, 'initialEnd'));
-    }
-
+    const [min, max] = get(options, 'range');
     const decimal = get(options, 'decimal');
     noUiSlider.create(elem, {
-      start: selected,
+      start: get(options, 'initial'),
       connect: get(options, 'doubleSided'),
       step: get(options, 'step'),
-      range: {
-        'min': get(options, 'start'),
-        'max': get(options, 'end')
-      },
+      range: { min, max },
       format: {
         to(value) {
           return parseFloat(parseFloat(value).toFixed(decimal));
@@ -55,7 +49,7 @@ export default Component.extend({
         }
       }
     });
-    elem.noUiSlider.on('slide', (values) => get(this, 'onUpdate')(values));
-    elem.noUiSlider.on('set', () => get(this, 'onRelease')());
+    elem.noUiSlider.on('slide', values => invokeAction(this, 'onSlide', values));
+    elem.noUiSlider.on('set', () => invokeAction(this, 'onSet'));
   }
 });

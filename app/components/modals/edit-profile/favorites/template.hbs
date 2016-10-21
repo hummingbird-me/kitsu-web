@@ -30,9 +30,9 @@
         placeholder=(t "users.edit.favorite.search") as |item|
       }}
         <div class="media-sort-item card">
-          {{#link-to "anime.show" item class="media-sort-thumb-wrapper"}}
+          <a href={{href-to 'anime.show' item}} class="media-sort-thumb-wrapper">
             <img class="media-sort-thumb" src={{image item.posterImage}}>
-          {{/link-to}}
+          </a>
           <span class="media-sort-title">
             {{item.canonicalTitle}}
           </span>

@@ -7,7 +7,7 @@ import { task, timeout } from 'ember-concurrency';
 export default Component.extend({
   store: service(),
 
-  search: task(function *(modelType, value) {
+  search: task(function* (modelType, value) {
     yield timeout(500);
     const field = 'text';
     return yield get(this, 'store').query(modelType, {

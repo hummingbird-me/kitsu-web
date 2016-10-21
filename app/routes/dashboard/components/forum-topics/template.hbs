@@ -1,0 +1,17 @@
+{{#if getTopics.isRunning}}
+  <!-- Loading State -->
+{{else}}
+  {{#if topics}}
+    <ul>
+      {{#each topics as |topic|}}
+        <li>
+          <a href={{topic.href}} target="_blank">
+            {{topic.title}}
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <!-- No Topics (Most likely an error with API request) -->
+  {{/if}}
+{{/if}}

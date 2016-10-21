@@ -6,6 +6,7 @@ import service from 'ember-service/inject';
 import { image } from 'client/helpers/image';
 import { task } from 'ember-concurrency';
 import run from 'ember-runloop';
+import { invokeAction } from 'ember-invoke-action';
 
 /**
  * This component should be invoked within a wormhole.
@@ -32,14 +33,14 @@ export default Component.extend({
   isProfilesActive: equal('_component', 'linked-profiles'),
   isFavoritesActive: equal('_component', 'favorites'),
 
-  updateProfileTask: task(function *() {
+  updateProfileTask: task(function* () {
     const user = get(this, 'session.account');
-    return yield user.save()
+    return yield user.save();
   }).restartable(),
 
   actions: {
     onClose() {
-      get(this, 'onClose')();
+      invokeAction(this, 'onClose');
     },
 
     changeComponent(component) {
@@ -54,13 +55,13 @@ export default Component.extend({
     updateProfile() {
       // TODO: Show potential error to user.
       get(this, 'updateProfileTask').perform()
-        .catch(() => { });
+        .catch(() => get(this, 'user').rollbackAttributes());
     },
 
     updateImage(property, event) {
       if (event.files && event.files[0]) {
         const reader = new FileReader();
-        reader.onload = (evt) => run(() => set(this, property, evt.target.result));
+        reader.onload = evt => run(() => set(this, property, evt.target.result));
         reader.readAsDataURL(event.files[0]);
       }
     }

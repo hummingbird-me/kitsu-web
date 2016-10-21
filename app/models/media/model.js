@@ -24,7 +24,7 @@ export default Model.extend({
     get() {
       let titles = get(this, 'titles');
       titles = Object.values(titles);
-      return titles.map((x) => x.toLowerCase()).join('');
+      return titles.map(x => x.toLowerCase()).join('');
     }
   }).readOnly()
 });

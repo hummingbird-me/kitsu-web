@@ -9,7 +9,7 @@ export default Controller.extend({
   session: service(),
   user: alias('session.account'),
 
-  updateTask: task(function *() {
+  updateTask: task(function* () {
     return yield get(this, 'user').save()
       .then(() => set(this, 'user.password', undefined));
   })

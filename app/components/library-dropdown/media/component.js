@@ -12,7 +12,7 @@ export default Component.extend({
   session: service(),
   store: service(),
 
-  requestEntry: task(function *() {
+  requestEntry: task(function* () {
     const media = get(this, 'media');
     const entry = yield get(this, 'store').query('library-entry', {
       filter: {
@@ -20,27 +20,25 @@ export default Component.extend({
         media_type: capitalize(media.constructor.modelName),
         media_id: get(media, 'id')
       }
-    }).then((e) => get(e, 'firstObject'));
+    }).then(e => get(e, 'firstObject'));
     set(this, 'entry', entry);
   }).cancelOn('willDestroyElement').drop(),
 
-  updateTask: task(function *(status) {
+  updateTask: task(function* (status) {
     const entry = get(this, 'entry');
     if (entry === undefined) {
       yield get(this, 'store').createRecord('library-entry', {
         status: status.key,
         user: get(this, 'session.account'),
         media: get(this, 'media')
-      }).save().then((entry) => set(this, 'entry', entry));
+      }).save().then(newEntry => set(this, 'entry', newEntry));
+    } else if (status.key === REMOVE_KEY) {
+      yield get(this, 'entry').destroyRecord()
+        .then(() => set(this, 'entry', undefined))
+        .catch(() => entry.rollbackAttributes());
     } else {
-      if (status.key === REMOVE_KEY) {
-        yield get(this, 'entry').destroyRecord()
-          .then(() => set(this, 'entry', undefined))
-          .catch(() => entry.rollbackAttributes());
-      } else {
-        set(entry, 'status', status.key);
-        yield entry.save().catch(() => entry.rollbackAttributes());
-      }
+      set(entry, 'status', status.key);
+      yield entry.save().catch(() => entry.rollbackAttributes());
     }
   }).drop(),
 

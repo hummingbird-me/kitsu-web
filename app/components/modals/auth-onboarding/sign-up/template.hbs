@@ -5,14 +5,16 @@
         {{errorMessage}}
       </div>
     {{/if}}
-    <div class="auth-section active">
+    <div class="auth-section">
       <h6 class="auth-section-title">What should we call you?</h6>
       <p class="auth-section-helper">Your username should be original, being witty is optional.</p>
       <div class="form-group {{if hasInvalidName "has-warning"}} {{if hasValidName "has-success"}}">
         {{one-way-text user.name
           update=(action (mut user.name))
           class=(form-input-class hasInvalidName hasValidName)
+          focusIn=(action "focused")
           placeholder="Username"
+          autofocus="autofocus"
           data-test-selector="username"}}
         {{#if hasInvalidName}}
           <div class="form-control-feedback" data-test-selector="validation-username">
@@ -29,6 +31,7 @@
         {{one-way-email user.email
           update=(action (mut user.email))
           class=(form-input-class hasInvalidEmail hasValidEmail)
+          focusIn=(action "focused")
           placeholder="Email"
           data-test-selector="email"}}
         {{#if hasInvalidEmail}}
@@ -46,6 +49,7 @@
         {{one-way-password user.password
           update=(action (mut user.password))
           class=(form-input-class hasInvalidPassword hasValidPassword)
+          focusIn=(action "focused")
           placeholder="Password"
           data-test-selector="password"}}
         {{#if hasInvalidPassword}}
@@ -63,7 +67,7 @@
               disabled={{if user.validations.isInvalid "disabled"}}
               {{action (perform createAccount)}}>
         {{#if createAccount.isRunning}}
-          {{fa-icon "spinner" spin=true}}
+          {{loading-spinner}}
         {{else}}
           {{buttonText}}
         {{/if}}

@@ -3,6 +3,7 @@ import get from 'ember-metal/get';
 import computed from 'ember-computed';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
+import { invokeAction } from 'ember-invoke-action';
 
 /**
  * Pagination based on JSON-API's top level links object.
@@ -29,7 +30,7 @@ export default Mixin.create({
    * Droppable task that queries the next set of data and sends an action
    * up to the owner.
    */
-  getNextData: task(function *() {
+  getNextData: task(function* () {
     const nextLink = get(this, 'nextLink');
     if (nextLink === undefined) {
       return;
@@ -40,22 +41,22 @@ export default Mixin.create({
     const options = this._parseLink(nextLink);
     const records = yield get(this, 'store').query(modelName, options);
     const links = get(records, 'links');
-    get(this, 'update')(records, links);
+    invokeAction(this, 'update', records, links);
   }).drop(),
 
   /**
    * Decodes and rebuilds the query params object from the URL passed.
    */
-  _parseLink(url) {
-    url = window.decodeURI(url);
+  _parseLink(link) {
+    let url = window.decodeURI(link);
     url = url.split('?');
     if (url.length !== 2) {
       return {};
     }
     url = url[1].split('&');
     const filter = {};
-    url.forEach((option) => {
-      option = option.split('=');
+    url.forEach((param) => {
+      const option = param.split('=');
       if (option[0].includes('[') === true) {
         const match = option[0].match(/(.+)\[(.+)\]/);
         filter[match[1]] = filter[match[1]] || {};

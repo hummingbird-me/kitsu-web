@@ -27,6 +27,7 @@ export default Route.extend(ApplicationRouteMixin, {
       if (title && title.toString().includes('Missing translation')) {
         title = undefined;
       }
+      // eslint-disable-next-line no-param-reassign
       tokens = title ? [title] : undefined;
     }
     return tokens ? `${tokens.reverse().join(' | ')} | ${base}` : base;
@@ -41,7 +42,12 @@ export default Route.extend(ApplicationRouteMixin, {
     const isAuthenticated = get(this, 'session.isAuthenticated');
     if (isAuthenticated === true) {
       return get(this, 'session').getCurrentUser()
-        .then((user) => get(this, 'metrics').identify({ distinctId: get(user, 'id') }))
+        .then((user) => {
+          get(this, 'metrics').identify({
+            distinctId: get(user, 'id'),
+            alias: get(user, 'name')
+          });
+        })
         .catch(() => get(this, 'session').invalidate());
     }
   }
