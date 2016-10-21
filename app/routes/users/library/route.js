@@ -47,6 +47,11 @@ export default Route.extend(PaginationMixin, {
     return get(this, 'modelTask').perform(media, status);
   },
 
+  setupController(controller) {
+    this._super(...arguments);
+    set(controller, 'user', this.modelFor('users'));
+  },
+
   titleToken() {
     const model = this.modelFor('users');
     const name = get(model, 'name');

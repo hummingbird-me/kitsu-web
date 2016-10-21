@@ -199,7 +199,10 @@ export default {
       private: 'Private',
       rewatch: 'Rewatch',
       rewatched: 'Rewatched',
-      times: 'times'
+      times: 'times',
+      emptyOwner: 'You don\'t have any titles here! Ready to start something new? {{link}}',
+      emptyGuest: 'Doesn\'t look like {{user}} has anything here!',
+      browse: 'Browse {{type}}'
     }
   },
   // ember-power-select locale

@@ -4,23 +4,28 @@
 </div>
 
 {{#if isLoading}}
-  <p>Loading...</p>
+  <div class="empty-wrapper">
+    {{loading-spinner}}
+  </div>
 {{else}}
-  {{#if entries}}
-    {{#each entries as |entry|}}
-      {{users/components/library-entry
-        entry=entry
-        mediaType=mediaType
-        save=(action "save" entry)
-        delete=(action "delete" entry)
-      }}
-    {{/each}}
+  {{#each entries as |entry|}}
+    {{users/components/library-entry
+      entry=entry
+      mediaType=mediaType
+      save=(action "save" entry)
+      delete=(action "delete" entry)
+    }}
   {{else}}
     <div class="empty-wrapper">
       <div class="library-section-empty">
-        <span>You're not currently watching anything! Ready to start something new?</span>
-        <a href="">Browse Anime</a>
+        <span>
+          {{#if isOwner}}
+            {{t "users.library.emptyOwner" link=(create-link (t "users.library.browse" type=(capitalize mediaType)) (concat mediaType ".index"))}}
+          {{else}}
+            {{t "users.library.emptyGuest" user=user.name}}
+          {{/if}}
+        </span>
       </div>
     </div>
-  {{/if}}
+  {{/each}}
 {{/if}}
