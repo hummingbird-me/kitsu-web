@@ -1,5 +1,6 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
+import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
   tagName: 'button',
@@ -11,6 +12,6 @@ export default Component.extend({
       return;
     }
     const status = get(this, 'status');
-    get(this, 'onClick')(status);
+    invokeAction(this, 'onClick', status);
   }
 });

@@ -7,9 +7,7 @@
 
   {{#if (lt entries.length 4)}}
     <div class="ember-view hint-panel">
-      {{t "dashboard.quickUpdate.hint.first"}}
-      {{link-to 'Library' 'users.library' session.account.name}}
-      {{t "dashboard.quickUpdate.hint.second"}}
+      {{t "dashboard.quickUpdate.hint.text" link=(create-link (t "dashboard.quickUpdate.hint.library") 'users.library' session.account.name)}}
       <a href="#" class="button button--primary">
         {{t "dashboard.quickUpdate.hint.discover"}}
       </a>

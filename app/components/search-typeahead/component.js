@@ -1,7 +1,7 @@
 import Component from 'ember-component';
-import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { isEmpty } from 'ember-utils';
+import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
   init() {
@@ -14,7 +14,7 @@ export default Component.extend({
       if (isEmpty(value) === true) {
         set(this, 'items', []);
       } else {
-        get(this, 'search')(value).then((items) => {
+        invokeAction(this, 'search', value).then((items) => {
           set(this, 'items', items);
         });
       }

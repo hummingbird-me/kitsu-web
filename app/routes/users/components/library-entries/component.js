@@ -3,14 +3,13 @@ import computed from 'ember-computed';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import moment from 'moment';
+import { invokeAction } from 'ember-invoke-action';
 /* global humanizeDuration */
 
 export default Component.extend({
   i18n: service(),
 
-  /**
-   * Returns the i18n version of our status
-   */
+  // Returns the i18n version of our status
   statusName: computed('status', {
     get() {
       const status = get(this, 'status');
@@ -19,9 +18,7 @@ export default Component.extend({
     }
   }),
 
-  /**
-   * Displays the number of entries within this section
-   */
+  // Displays the number of entries within this section
   stats: computed('entries', {
     get() {
       const entries = get(this, 'entries');
@@ -32,10 +29,7 @@ export default Component.extend({
     }
   }),
 
-  /**
-   * Displays the total time of all entries in this section
-   * @TODO: Time is only relevent for anime and drama.
-   */
+  // Displays the total time of all entries in this section
   time: computed('entries', {
     get() {
       const entries = get(this, 'entries') || [];
@@ -50,12 +44,12 @@ export default Component.extend({
   }),
 
   actions: {
-    update(entry, ...args) {
-      get(this, 'update')(entry, ...args);
+    save(...args) {
+      invokeAction(this, 'save', ...args);
     },
 
-    delete(entry) {
-      get(this, 'delete')(entry);
+    delete(...args) {
+      invokeAction(this, 'delete', ...args);
     }
   }
 });

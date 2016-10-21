@@ -2,6 +2,7 @@ import Component from 'ember-component';
 import set from 'ember-metal/set';
 import get from 'ember-metal/get';
 import computed from 'ember-computed';
+import { invokeAction } from 'ember-invoke-action';
 
 /**
  * This component should be invoked within a wormhole.
@@ -16,7 +17,7 @@ export default Component.extend({
 
   actions: {
     onClose() {
-      get(this, 'onClose')();
+      invokeAction(this, 'onClose');
     },
 
     changeComponent(component) {

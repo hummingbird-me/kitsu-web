@@ -6,6 +6,7 @@ import { task } from 'ember-concurrency';
 import computed, { and } from 'ember-computed';
 import errorMessage from 'client/utils/error-messages';
 import strength from 'password-strength';
+import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
   errorMessage: '',
@@ -60,7 +61,7 @@ export default Component.extend({
           .authenticateWithOAuth2(identification, password)
           .then(() => {
             set(user, 'password', undefined);
-            get(this, 'changeComponent')('import-select');
+            invokeAction(this, 'changeComponent', 'import-select');
           })
           .catch(err => set(this, 'errorMessage', errorMessage(err)));
       })

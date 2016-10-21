@@ -6,6 +6,7 @@ import service from 'ember-service/inject';
 import { image } from 'client/helpers/image';
 import { task } from 'ember-concurrency';
 import run from 'ember-runloop';
+import { invokeAction } from 'ember-invoke-action';
 
 /**
  * This component should be invoked within a wormhole.
@@ -39,7 +40,7 @@ export default Component.extend({
 
   actions: {
     onClose() {
-      get(this, 'onClose')();
+      invokeAction(this, 'onClose');
     },
 
     changeComponent(component) {
@@ -54,7 +55,7 @@ export default Component.extend({
     updateProfile() {
       // TODO: Show potential error to user.
       get(this, 'updateProfileTask').perform()
-        .catch(() => { });
+        .catch(() => get(this, 'user').rollbackAttributes());
     },
 
     updateImage(property, event) {

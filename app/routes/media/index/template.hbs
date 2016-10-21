@@ -1,116 +1,76 @@
-{{! TODO: Make the footer component toggleable }}
-<style>.global-footer { display: none }</style>
-
 <div class="media-browse">
   <div class="media-grid columns">
-    {{! FILTER OPTIONS }}
     <div class="filter-options">
       <div class="filter-wrapper">
-        {{! YEAR }}
+        {{! Year Filter }}
         <div class="filter-widget">
           <div class="filter-header">
             <label class="filter-title">
               {{t "media.routes.index.filter.year"}}
             </label>
             <span class="filter-values">
-              {{year.[0]}} - {{year.[1]}}
+              {{dirtyYear.firstObject}} - {{dirtyYear.lastObject}}
             </span>
           </div>
-          {{media/components/ui-slider
-            options=(hash
-              start=1914 end=2016
-              initialStart=year.[0] initialEnd=year.[1]
-              doubleSided=true decimal=0 step=1
-            )
-            onUpdate=(action (mut year))
-            onRelease=(route-action "refresh")
-          }}
+          {{media/components/filter-widgets/slider
+            options=(hash range=dirtyYear initial=year)
+            onSlide=(action (mut dirtyYear))
+            onSet=(action (mut year) dirtyYear)}}
           <div class="filter-legend">
             <div class="low-value">1914</div>
             <div class="high-value">2016</div>
           </div>
         </div>
 
-        {{! RATING }}
+        {{! Rating Filter }}
         <div class="filter-widget">
           <div class="filter-header">
             <label class="filter-title">
               {{t "media.routes.index.filter.score"}}
             </label>
             <span class="filter-values">
-              {{averageRating.[0]}} - {{averageRating.[1]}}
+              {{dirtyRating.firstObject}} - {{dirtyRating.lastObject}}
             </span>
           </div>
-          {{media/components/ui-slider
-            options=(hash
-              start=0.5 end=5.0
-              initialStart=averageRating.[0] initialEnd=averageRating.[1]
-              doubleSided=true decimal=1 step=0.5
-            )
-            onUpdate=(action (mut averageRating))
-            onRelease=(route-action "refresh")
-          }}
+          {{media/components/filter-widgets/slider
+            options=(hash range=dirtyRating initial=averageRating step=0.5 decimal=1)
+            onSlide=(action (mut dirtyRating))
+            onSet=(action (mut averageRating) dirtyRating)}}
           <div class="filter-legend">
             <div class="low-value">
-              {{fa-icon "star-half-o"}}
+              <!-- TODO: Should be half-star -->
+              {{svg-jar "star"}}
             </div>
             <div class="high-value">
-              {{#each (repeat 5) as |_|}}
-                {{fa-icon "star"}}
+              {{#each (repeat 5) as |empty|}}
+                {{svg-jar "star"}}
               {{/each}}
             </div>
           </div>
         </div>
 
-        {{! Anime }}
+        {{! Anime Options }}
         {{#if isAnime}}
-          {{! STREAMERS }}
-          <div class="filter-widget">
-            <div class="filter-header">
-              <label class="filter-title">
-                {{t "media.routes.index.filter.streamers"}}
-              </label>
-              <span class="filter-values">
-                {{#if (eq streamers.length 0)}}
-                  {{availableStreamers.length}}
-                {{else}}
-                  {{streamers.length}}
-                {{/if}}
-              </span>
-            </div>
-            {{#media/components/box-select
-              class="box-select"
-              selection=(to-lower (map-by "siteName" availableStreamers))
-              selected=streamers
-              onSelect=(action (mut streamers)) as |option|
-            }}
-              <span class={{option}} data-test-selector="filter-streamer"></span>
-            {{/media/components/box-select}}
-          </div>
-
-          {{! EPISODES }}
+          {{! Episode Filter }}
           <div class="filter-widget">
             <div class="filter-header">
               <label class="filter-title">
                 {{t "media.routes.index.filter.episodes"}}
               </label>
               <span class="filter-values">
-                {{episodeCount.[0]}} -
-                {{#if (eq episodeCount.[1] 1000)}}
+                {{dirtyEpisodes.firstObject}}
+                -
+                {{#if (eq dirtyEpisodes.lastObject 100)}}
                   ∞
                 {{else}}
-                  {{episodeCount.[1]}}
+                  {{dirtyEpisodes.lastObject}}
                 {{/if}}
               </span>
             </div>
-            {{media/components/ui-slider
-              options=(hash
-                start=1 end=1000
-                initialStart=episodeCount.[0] initialEnd=episodeCount.[1]
-                doubleSided=true decimal=0 step=1
-              )
-              onUpdate=(action (mut episodeCount))
-              onRelease=(route-action "refresh")
+            {{media/components/filter-widgets/slider
+              options=(hash range=dirtyEpisodes initial=episodeCount)
+              onSlide=(action (mut dirtyEpisodes))
+              onSet=(action (mut episodeCount) dirtyEpisodes)
             }}
             <div class="filter-legend">
               <div class="low-value">1</div>
@@ -118,67 +78,92 @@
             </div>
           </div>
 
-          {{! AGE RATING }}
+          {{! Age Rating Filter }}
           <div class="filter-widget">
             <div class="filter-header">
               <label class="filter-title">
                 {{t "media.routes.index.filter.rating"}}
               </label>
               <span class="filter-values">
-                {{#if (eq ageRating.length 0)}}
-                  {{availableAgeRatings.length}}
+                {{#if (is-empty ageRating)}}
+                  {{availableRatings.length}}
                 {{else}}
                   {{ageRating.length}}
                 {{/if}}
               </span>
             </div>
-            {{#media/components/box-select
+            {{#media/components/filter-widgets/multi-select
               class="rating-select"
-              selection=availableAgeRatings
+              includeAll=true
               selected=ageRating
-              onSelect=(action (mut ageRating)) as |option|
+              selection=availableRatings
+              onChange=(action (mut ageRating)) as |option|
             }}
-              {{option}}
-            {{/media/components/box-select}}
+              {{capitalize option}}
+            {{/media/components/filter-widgets/multi-select}}
+          </div>
+
+          {{! Streamer Filter }}
+          <div class="filter-widget">
+            <div class="filter-header">
+              <label class="filter-title">
+                {{t "media.routes.index.filter.streamers"}}
+              </label>
+              <span class="filter-values">
+                {{#if (is-empty streamers)}}
+                  {{availableStreamers.length}}
+                {{else}}
+                  {{streamers.length}}
+                {{/if}}
+              </span>
+            </div>
+            {{#media/components/filter-widgets/multi-select
+              class="box-select"
+              selected=streamers
+              selection=(map-by "siteName" availableStreamers)
+              onChange=(action (mut streamers)) as |option|
+            }}
+              {{svg-jar (to-lower option) width="32" height="32" data-test-selector="filter-streamer"}}
+            {{/media/components/filter-widgets/multi-select}}
           </div>
         {{/if}}
 
-        {{! GENRES }}
+        {{! Genre Filter }}
         <div class="filter-widget">
-          <div class="filter-header">
-            <label class="filter-title">
-              {{t "media.routes.index.filter.genres"}}
-            </label>
-            <span class="filter-values">
-              {{#if (eq genres.length 0)}}
-                {{availableGenres.length}}
-              {{else}}
-                {{genres.length}}
-              {{/if}}
-            </span>
+            <div class="filter-header">
+              <label class="filter-title">
+                {{t "media.routes.index.filter.genres"}}
+              </label>
+              <span class="filter-values">
+                {{#if (is-empty genres)}}
+                  {{availableGenres.length}}
+                {{else}}
+                  {{genres.length}}
+                {{/if}}
+              </span>
+            </div>
+            {{#media/components/filter-widgets/multi-select
+              class="category-select"
+              includeAll=true
+              selected=genres
+              selection=(map-by "name" availableGenres)
+              onChange=(action (mut genres)) as |option|
+            }}
+               <a href="#" data-test-selector="filter-genre">{{option}}</a>
+            {{/media/components/filter-widgets/multi-select}}
           </div>
-          {{#media/components/box-select
-            class="category-select"
-            selection=(map-by "name" availableGenres)
-            selected=genres
-            onSelect=(action (mut genres)) as |option|
-          }}
-            <a href="#" data-test-selector="filter-genre">{{option}}</a>
-          {{/media/components/box-select}}
-        </div>
       </div>
     </div>
 
-    {{! SEARCH }}
-    <div class="search-media">
-      {{fa-icon "search"}}
-      {{one-way-search
-        update=(route-action "updateText")
-        placeholder=(t "media.routes.index.filter.search")
-      }}
-    </div>
+    {{! Search }}
+    {{search-input
+      class="search-media"
+      text=text
+      update=(action (mut text))
+      placeholder=(t "media.routes.index.filter.search")
+    }}
 
-    {{! MEDIA }}
+    {{! Media List }}
     <div class="media-posters">
       <div class="row">
         {{#each model as |media|}}

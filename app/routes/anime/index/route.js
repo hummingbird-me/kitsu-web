@@ -6,17 +6,18 @@ export default MediaIndexRoute.extend({
   mediaType: 'anime',
   queryParams: {
     ageRating: { refreshModel: true, replace: true },
-    episodeCount: { replace: true },
+    episodeCount: { refreshModel: true, replace: true },
     streamers: { refreshModel: true, replace: true }
   },
 
   beforeModel() {
     this._super(...arguments);
-    return get(this, 'store').query('streamer', {
-      page: { offset: 0, limit: 20000 }
-    }).then((results) => {
-      const controller = this.controllerFor(get(this, 'routeName'));
-      set(controller, 'availableStreamers', results);
-    });
+    const controller = this.controllerFor(get(this, 'routeName'));
+    if (get(controller, 'availableStreamers') !== undefined) {
+      return;
+    }
+    get(this, 'store').query('streamer', {
+      page: { limit: 10000, offset: 0 }
+    }).then(streamers => set(controller, 'availableStreamers', streamers));
   }
 });

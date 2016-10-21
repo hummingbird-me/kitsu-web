@@ -1,12 +1,11 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
-import set, { setProperties } from 'ember-metal/set';
+import set from 'ember-metal/set';
 import { capitalize } from 'ember-string';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 import libraryStatus from 'client/utils/library-status';
 import PaginationMixin from 'client/mixins/routes/pagination';
-import jQuery from 'jquery';
 
 export default Route.extend(PaginationMixin, {
   queryParams: {
@@ -66,27 +65,17 @@ export default Route.extend(PaginationMixin, {
       set(controller, 'media', media);
     },
 
-    updateEntry(entry, key, value) {
-      if (jQuery.isPlainObject(key)) {
-        setProperties(entry, key);
-      } else {
-        set(entry, key, value);
-      }
-
+    saveEntry(entry) {
       if (get(entry, 'validations.isValid') === true) {
         return entry.save()
-          .then(() => {
-            // TODO: Feedback for user
-          })
+          .then(() => {})
           .catch(() => entry.rollbackAttributes());
       }
     },
 
     deleteEntry(entry) {
       return entry.destroyRecord()
-        .then(() => {
-          // TODO: Feedback for user.
-        })
+        .then(() => {})
         .catch(() => entry.rollbackAttributes());
     }
   }
