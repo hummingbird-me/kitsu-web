@@ -119,6 +119,7 @@ export default {
     following: 'Following',
     followers: 'Followers',
     follow: 'Follow',
+    unfollow: 'Unfollow',
     nav: {
       activity: 'Activity',
       library: 'Library',
