@@ -1,9 +1,5 @@
-<button class="button button--primary" data-test-selector="follow-button" onclick={{perform toggle}}>
-  {{#if toggle.isRunning}}
-    {{loading-spinner}}
-  {{/if}}
-
-  {{#if prepare.isRunning}}
+<button class="button button--primary" data-test-selector="follow-button" {{action (perform toggle)}}>
+  {{#if (or prepare.isRunning toggle.isRunning)}}
       {{loading-spinner}}
   {{else}}
     {{#if following}}

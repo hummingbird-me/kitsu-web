@@ -10,18 +10,22 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
+    set(this, 'guest', false);
+
+    set(this, 'follower', get(this, 'session.account'));
+    set(this, 'followed', get(this, 'user'));
+
+    if ((get(this, 'follower') === undefined) ||
+        (get(this, 'followed') === undefined)) {
+      set(this, 'following', false);
+      set(this, 'guest', true);
+      return;
+    }
+
     get(this, 'prepare').perform();
   },
 
   prepare: task(function* () {
-    set(this, 'follower', get(this, 'session.account'));
-    set(this, 'followed', get(this, 'user'));
-
-    if (get(this, 'follower') === null || get(this, 'followed') === null) {
-      set(this, 'following', false);
-      yield;
-    }
-
     yield get(this, 'store').query('follow', {
       filter: {
         follower: get(this, 'follower.id'),
@@ -40,6 +44,10 @@ export default Component.extend({
         set(this, 'following', false);
       });
     } else {
+      if (get(this, 'guest')) {
+        // Handle guest case!
+      }
+
       yield get(this, 'store').createRecord('follow', {
         follower: get(this, 'follower'),
         followed: get(this, 'followed')
