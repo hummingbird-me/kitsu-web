@@ -1,0 +1,19 @@
+<div class="container">
+  {{#each model as |follow|}}
+    <div class="card">
+      <img class="card-img-top" src={{image follow.follower.coverImage}}>
+      <div class="card-block">
+        <h4 class="card-title">{{follow.follower.name}}</h4>
+        <p class="card-text">{{follow.follower.about}}</p>
+        {{follow-button user=follow.follower}}
+      </div>
+    </div>
+  {{else}}
+    <p>No one is following this person.</p>
+  {{/each}}
+
+  {{pagination-scrolling
+    model=model
+    update=(route-action "updateNextPage")
+  }}
+</div>

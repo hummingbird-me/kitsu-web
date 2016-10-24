@@ -19,13 +19,11 @@
           </div>
           <div class="cover-cta">
             {{#if isOwner}}
-              {{! TODO: Edit Button }}
               <button class="button button--light-outline" data-toggle="modal" data-target="#edit-profile-modal" {{action (toggle "isEditing" this)}}>
                 <span class="button-label button-defaultState js-buttonLabel">Edit</span>
               </button>
-            {{else}}
-              {{follow-button user=user}}
             {{/if}}
+            {{follow-button user=user}}
           </div>
         </div>
       </div>
@@ -39,10 +37,11 @@
   <div class="container">
     <div class="row">
       <div class="nav navbar-nav">
-        {{link-to (t 'users.nav.activity') 'users.index' class="nav-item nav-link"}}
-        {{link-to (t 'users.nav.library') 'users.library' class="nav-item nav-link"}}
-        {{link-to (t 'users.nav.reviews') 'users.reviews' class="nav-item nav-link"}}
-        {{link-to (t 'users.nav.lists') 'users.lists' class="nav-item nav-link"}}
+        {{link-to (t "users.nav.activity") "users.index" class="nav-item nav-link"}}
+        {{link-to (t "users.nav.library") "users.library" class="nav-item nav-link"}}
+        {{link-to (t "users.nav.reviews") "users.reviews" class="nav-item nav-link"}}
+        {{link-to (t "users.nav.followers") "users.followers" class="nav-item nav-link"}}
+        {{link-to (t "users.nav.following") "users.following" class="nav-item nav-link"}}
       </div>
     </div>
   </div>

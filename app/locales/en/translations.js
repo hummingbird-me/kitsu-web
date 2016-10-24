@@ -15,8 +15,9 @@ export default {
     users: {
       index: '{{user}}\'s Profile',
       library: '{{user}}\'s Library',
-      lists: '{{user}}\'s List',
-      reviews: '{{user}}\'s Reviews'
+      reviews: '{{user}}\'s Reviews',
+      followers: '{{user}}\'s Followers',
+      following: 'Followed by {{user}}'
     },
     settings: 'Settings'
   },
@@ -124,7 +125,8 @@ export default {
       activity: 'Activity',
       library: 'Library',
       reviews: 'Reviews',
-      lists: 'Lists'
+      followers: 'Followers',
+      following: 'Following'
     },
     edit: {
       editCover: 'Change your cover photo',
