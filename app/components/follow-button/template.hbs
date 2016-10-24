@@ -1,11 +1,11 @@
-<button class="button button--primary" data-test-selector="follow-button" {{action (perform toggle)}}>
-  {{#if (or prepare.isRunning toggle.isRunning)}}
-      {{loading-spinner}}
+<span class="button-label" data-test-selector="follow-button">
+  {{#if (or getFollowStatus.isRunning toggleFollow.isRunning)}}
+    {{loading-spinner}}
   {{else}}
-    {{#if following}}
-      <span class="button-label">{{t "users.unfollow"}}</span>
+    {{#if isFollowing}}
+      {{t "users.unfollow"}}
     {{else}}
-      <span class="button-label">{{t "users.follow"}}</span>
+      {{t "users.follow"}}
     {{/if}}
   {{/if}}
-</button>
+</span>

@@ -3,58 +3,52 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
+import { notEmpty } from 'ember-computed';
 
 export default Component.extend({
+  tagName: 'button',
+  classNames: ['button', 'button--primary'],
+
   session: service(),
   store: service(),
+  isFollowing: notEmpty('relationship'),
 
-  init() {
-    this._super(...arguments);
-    set(this, 'guest', false);
-
-    set(this, 'follower', get(this, 'session.account'));
-    set(this, 'followed', get(this, 'user'));
-
-    if ((get(this, 'follower') === undefined) ||
-        (get(this, 'followed') === undefined)) {
-      set(this, 'following', false);
-      set(this, 'guest', true);
-      return;
-    }
-
-    get(this, 'prepare').perform();
-  },
-
-  prepare: task(function* () {
-    yield get(this, 'store').query('follow', {
+  getFollowStatus: task(function* () {
+    return yield get(this, 'store').query('follow', {
       filter: {
-        follower: get(this, 'follower.id'),
-        followed: get(this, 'followed.id')
+        follower: get(this, 'session.account.id'),
+        followed: get(this, 'user.id')
       }
-    }).then((e) => {
-      set(this, 'relationship', get(e, 'firstObject'));
-      set(this, 'following', (get(e, 'firstObject') !== undefined));
-    });
+    }).then(follow => set(this, 'relationship', get(follow, 'firstObject')));
   }),
 
-  toggle: task(function* () {
-    if (get(this, 'following')) {
-      yield get(this, 'relationship').destroyRecord().then(() => {
-        set(this, 'relationship', null);
-        set(this, 'following', false);
-      });
-    } else {
-      if (get(this, 'guest')) {
-        // Handle guest case!
-      }
-
-      yield get(this, 'store').createRecord('follow', {
-        follower: get(this, 'follower'),
-        followed: get(this, 'followed')
-      }).save().then((e) => {
-        set(this, 'relationship', e);
-        set(this, 'following', true);
-      });
+  toggleFollow: task(function* () {
+    if (get(this, 'session.isAuthenticated') === false) {
+      return get(this, 'session.signUpModal')();
     }
-  }).restartable()
+
+    if (get(this, 'isFollowing')) {
+      yield get(this, 'relationship').destroyRecord()
+        .then(() => set(this, 'relationship', undefined))
+        .catch(() => { /* TODO: Feedback */ });
+    } else {
+      yield get(this, 'store').createRecord('follow', {
+        follower: get(this, 'session.account'),
+        followed: get(this, 'user')
+      }).save()
+        .then(record => set(this, 'relationship', record))
+        .catch(() => { /* TODO: Feedback */ });
+    }
+  }),
+
+  click() {
+    get(this, 'toggleFollow').perform();
+  },
+
+  didReceiveAttrs() {
+    this._super(...arguments);
+    if (get(this, 'session.isAuthenticated')) {
+      get(this, 'getFollowStatus').perform();
+    }
+  }
 });
