@@ -4,7 +4,6 @@ import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import moment from 'moment';
 import { invokeAction } from 'ember-invoke-action';
-import { isEmpty } from 'ember-utils';
 import isOwnerMixin from 'client/mixins/is-owner';
 /* global humanizeDuration */
 

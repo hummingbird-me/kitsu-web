@@ -4,6 +4,7 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 import { notEmpty } from 'ember-computed';
+import observer from 'ember-metal/observer';
 
 export default Component.extend({
   tagName: 'button',
@@ -12,6 +13,10 @@ export default Component.extend({
   session: service(),
   store: service(),
   isFollowing: notEmpty('relationship'),
+
+  didAuthenticate: observer('session.account', function() {
+    this._getData();
+  }),
 
   getFollowStatus: task(function* () {
     return yield get(this, 'store').query('follow', {
@@ -41,14 +46,18 @@ export default Component.extend({
     }
   }),
 
+  _getData() {
+    if (get(this, 'session.isAuthenticated')) {
+      get(this, 'getFollowStatus').perform();
+    }
+  },
+
   click() {
     get(this, 'toggleFollow').perform();
   },
 
   didReceiveAttrs() {
     this._super(...arguments);
-    if (get(this, 'session.isAuthenticated')) {
-      get(this, 'getFollowStatus').perform();
-    }
-  }
+    this._getData();
+  },
 });
