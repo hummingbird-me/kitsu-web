@@ -109,8 +109,7 @@ test('can sign into an account', function(assert) {
   this.server.get('/api/edge/library-entries', json(200, { data: [] }));
 
   visit('/');
-  click(testSelector('selector', 'sign-up-header'));
-  click(testSelector('selector', 'sign-in-email'), '#wormhole');
+  click(testSelector('selector', 'sign-in-header'));
   fillIn(testSelector('selector', 'identification'), '#wormhole', 'bob');
   fillIn(testSelector('selector', 'password'), '#wormhole', 'password');
   click(testSelector('selector', 'sign-in'), '#wormhole');
@@ -125,8 +124,7 @@ test('shows an error when using incorrect details on sign in', function(assert) 
   this.server.post('/api/oauth/token', json(400, { error: 'invalid_grant' }));
 
   visit('/');
-  click(testSelector('selector', 'sign-up-header'));
-  click(testSelector('selector', 'sign-in-email'), '#wormhole');
+  click(testSelector('selector', 'sign-in-header'));
   fillIn(testSelector('selector', 'identification'), '#wormhole', 'bob');
   fillIn(testSelector('selector', 'password'), '#wormhole', 'not_password');
   click(testSelector('selector', 'sign-in'), '#wormhole');
