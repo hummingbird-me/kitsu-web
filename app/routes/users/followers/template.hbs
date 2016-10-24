@@ -5,7 +5,9 @@
       <div class="card-block">
         <h4 class="card-title">{{follow.follower.name}}</h4>
         <p class="card-text">{{follow.follower.about}}</p>
-        {{follow-button user=follow.follower}}
+        {{#if (not (is-self follow.follower))}}
+          {{follow-button user=follow.follower}}
+        {{/if}}
       </div>
     </div>
   {{else}}
