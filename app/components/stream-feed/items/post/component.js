@@ -40,6 +40,9 @@ export default Component.extend(ClipboardMixin, {
         return false;
       }
       const likes = get(this, 'post.postLikes');
+      if (likes === undefined) {
+        return false;
+      }
       const user = get(this, 'session.account');
       return likes.findBy('user.id', get(user, 'id')) !== undefined;
     }
