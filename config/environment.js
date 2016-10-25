@@ -29,9 +29,7 @@ module.exports = function(environment) {
       'connect-src': "'self' www.google-analytics.com analytics.getstream.io",
       'img-src': "* data:",
       'font-src': "'self' fonts.gstatic.com",
-      'frame-src': "'self' www.youtube.com",
-      'frame-src': "'self' https://staticxx.facebook.com",
-      'frame-src': "'self' http://staticxx.facebook.com"
+      'frame-src': "'self' www.youtube.com https://staticxx.facebook.com http://staticxx.facebook.com"
     },
 
     'ember-simple-auth': {
