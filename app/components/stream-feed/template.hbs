@@ -1,3 +1,10 @@
+{{#if (not readOnly)}}
+  {{stream-feed/add-content
+    placeholder="Write here..."
+    onCreate=(perform createPost)
+  }}
+{{/if}}
+
 {{#if getFeedData.isRunning}}
   {{loading-spinner size="large"}}
 {{else}}

@@ -7,6 +7,7 @@ import { isEmpty } from 'ember-utils';
 
 export default Component.extend({
   readOnly: false,
+  session: service(),
   store: service(),
 
   getFeedData: task(function* (type, id) {
@@ -17,6 +18,14 @@ export default Component.extend({
       include: 'media,actor,unit,subject.user,subject.target_user,subject.post_likes.user,subject.comments.user,subject.media'
     });
   }).restartable(),
+
+  createPost: task(function* (content) {
+    const post = get(this, 'store').createRecord('post', {
+      content,
+      user: get(this, 'session.account')
+    });
+    yield post.save().catch(() => { /* TODO: Feedback */ });
+  }).drop(),
 
   didReceiveAttrs() {
     this._super(...arguments);
