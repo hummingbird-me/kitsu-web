@@ -2,6 +2,6 @@
   {{text}}
   <a href="#" {{action (toggle "isExpanded" this)}}>less</a>
 {{else}}
-  {{truncated}}
+  {{truncate text max}}
   <a href="#" {{action (toggle "isExpanded" this)}}>more</a>
 {{/if}}
