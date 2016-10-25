@@ -63,18 +63,6 @@ export default Component.extend(IsOwnerMixin, {
       return isNaN(parsed) ? value : parsed;
     },
 
-    updateStatus(status) {
-      const object = { status };
-      if (status === 'completed') {
-        object.progress = get(this, 'media.episodeCount');
-      }
-      invokeAction(this, 'update', object);
-    },
-
-    update(...args) {
-      invokeAction(this, 'update', ...args);
-    },
-
     delete() {
       invokeAction(this, 'delete');
     }

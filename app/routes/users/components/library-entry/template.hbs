@@ -13,7 +13,7 @@
         {{#if isOwner}}
           {{one-way-number entry.progress
             update=(queue
-              (action "update" "progress")
+              (action (mut entry.progress))
               (perform saveEntryDebounced)
             )
             sanitizeInput=(action "sanitizeNumber")
@@ -68,7 +68,7 @@
           {{#if isOwner}}
             {{one-way-text entry.notes
               update=(queue
-                (action "update" "notes")
+                (action (mut entry.notes))
                 (perform saveEntryDebounced)
               )
               placeholder=(t "users.library.notes" title=media.canonicalTitle)
@@ -93,7 +93,7 @@
               {{library-dropdown/entry
                 entry=entry
                 update=(queue
-                  (action "updateStatus")
+                  (action (mut entry.status))
                   (perform saveEntry)
                 )
                 delete=(action "delete")
@@ -111,7 +111,7 @@
                 {{#dropdown.menu}}
                   {{#dropdown.menu-item
                     onClick=(queue
-                      (action "update" "private" (not entry.private))
+                      (action (mut entry.private) (not entry.private))
                       (perform saveEntry)
                     )
                   }}
@@ -126,7 +126,7 @@
               {{star-rating entry.rating
                 readOnly=(not isOwner)
                 onClick=(queue
-                  (action "update" "rating")
+                  (action (mut entry.rating))
                   (perform saveEntry)
                 )
               }}
@@ -137,9 +137,9 @@
           <div class="rewatch">
             {{#if isOwner}}
               <button type="button" class="button" {{action (queue
-                (action "update" "reconsumeCount" (inc entry.reconsumeCount))
-                (action "update" "progress" 0)
-                (action "update" "status" "current")
+                (action (mut entry.reconsumeCount) (inc entry.reconsumeCount))
+                (action (mut entry.progress) 0)
+                (action (mut entry.status) "current")
                 (perform saveEntry))}}>
                 {{t "users.library.rewatch"}}
               </button>
@@ -150,7 +150,7 @@
               {{#if isOwner}}
                 {{one-way-number entry.reconsumeCount
                   update=(queue
-                    (action "update" "reconsumeCount")
+                    (action (mut entry.reconsumeCount))
                     (perform saveEntryDebounced)
                   )
                   sanitizeInput=(action "sanitizeNumber")
