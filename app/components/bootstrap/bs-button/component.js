@@ -4,7 +4,7 @@ export default Component.extend({
   tagName: 'button',
   ariaRole: 'button',
   attributeBindings: ['disabled', 'data-test-selector'],
-  classNames: ['btn'],
+  classNames: ['button'],
   classNameBindings: ['type'],
-  type: 'btn-primary'
+  type: 'button--primary'
 });

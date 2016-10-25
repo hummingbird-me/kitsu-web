@@ -4,6 +4,7 @@ import service from 'ember-service/inject';
 
 export default Component.extend({
   authOpened: false,
+  authComponent: 'social-auth',
   session: service(),
 
   actions: {

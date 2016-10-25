@@ -1,13 +1,13 @@
-<div class="library-entry" data-test-selector="library-entry">
-  <div class="entry-wrapper">
+<div class="library-entry container" data-test-selector="library-entry">
+  <div class="entry-wrapper row">
     {{! Entry Title }}
-    <div class="medium-7 columns entry-left">
+    <div class="col-md-7 entry-left">
       <div class="entry-title" data-test-selector="library-entry-title">
         <span>{{media.canonicalTitle}}</span>
       </div>
     </div>
 
-    <div class="medium-5 columns entry-right">
+    <div class="col-md-5 entry-right">
       {{! Entry Progress }}
       <div class="entry-progress">
         {{#if isOwner}}
@@ -44,53 +44,48 @@
 
   {{! Expanded Info }}
   {{#if isExpanded}}
-    <div class="library-dropdown">
-      <div class="drop-arrow"></div>
-
-      {{! Notes }}
-      <div class="small-12 columns">
-        {{#if isOwner}}
-          {{one-way-text entry.notes
-            update=(queue
-              (action (mut entry.notes))
-              (perform saveEntryDebounced)
-            )
-            placeholder=(t "users.library.notes" title=media.canonicalTitle)
-            class="personal-notes"
-          }}
-        {{else}} {{! Only show if the user has notes }}
-          {{#if entry.notes}}
-            {{one-way-text entry.notes
-                class="personal-notes"
-                readonly=true}}
-          {{/if}}
-        {{/if}}
+    <div class="library-dropdown row">
+      <div class="col-sm-12 arrow-wrapper">
+        <div class="drop-arrow"></div>
       </div>
 
       {{! Poster Image }}
-      <div class="medium-2 columns">
+      <div class="col-md-2 columns">
         <img class="drop-thumb" src={{image media.posterImage}}>
       </div>
 
       {{! Media Info }}
-      <div class="medium-6 columns">
+      <div class="col-md-6 columns no-padding-left">
         <h4 class="drop-title">
           <a href={{href-to (concat mediaType ".show") media}}>
             {{media.canonicalTitle}}
           </a>
         </h4>
-        <ul class="genres">
-          {{#each media.genres as |genre|}}
-            <li>{{genre.name}}</li>
-          {{/each}}
-        </ul>
         <p class="drop-description">
           {{media.synopsis}}
         </p>
+        <div class="entry-notes">
+          {{#if isOwner}}
+            {{one-way-text entry.notes
+              update=(queue
+                (action (mut entry.notes))
+                (perform saveEntryDebounced)
+              )
+              placeholder=(t "users.library.notes" title=media.canonicalTitle)
+              class="personal-notes"
+            }}
+          {{else}} {{! Only show if the user has notes }}
+            {{#if entry.notes}}
+              {{one-way-text entry.notes
+                  class="personal-notes"
+                  readonly=true}}
+            {{/if}}
+          {{/if}}
+        </div>
       </div>
 
       {{! Options }}
-      <div class="medium-4 columns">
+      <div class="col-md-4 columns">
         <div class="drop-options">
           {{#if isOwner}}
             {{! Library Status }}

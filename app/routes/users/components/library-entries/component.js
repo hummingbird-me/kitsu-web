@@ -4,10 +4,12 @@ import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import moment from 'moment';
 import { invokeAction } from 'ember-invoke-action';
+import isOwnerMixin from 'client/mixins/is-owner';
 /* global humanizeDuration */
 
-export default Component.extend({
+export default Component.extend(isOwnerMixin, {
   i18n: service(),
+  session: service(),
 
   // Returns the i18n version of our status
   statusName: computed('status', {

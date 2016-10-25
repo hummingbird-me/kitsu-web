@@ -17,7 +17,7 @@ export default Route.extend(ApplicationRouteMixin, {
   },
 
   title(tokens) {
-    const base = 'Hummingbird';
+    const base = 'Kitsu';
     // If the route hasn't defined a `titleToken` then try to grab the route
     // name from the `titles` table in translations.
     const hasTokens = tokens && tokens.length > 0;

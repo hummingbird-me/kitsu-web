@@ -7,6 +7,6 @@ moduleFor('route:application', 'Unit | Route | application', {
 test('title works', function(assert) {
   assert.expect(2);
   const route = this.subject();
-  assert.equal(route.title(['One', 'Two']), 'Two | One | Hummingbird');
-  assert.equal(route.title(), 'Hummingbird');
+  assert.equal(route.title(['One', 'Two']), 'Two | One | Kitsu');
+  assert.equal(route.title(), 'Kitsu');
 });

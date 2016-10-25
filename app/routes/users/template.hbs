@@ -19,12 +19,12 @@
           </div>
           <div class="cover-cta">
             {{#if isOwner}}
-              {{! TODO: Edit Button }}
               <button class="button button--light-outline" data-toggle="modal" data-target="#edit-profile-modal" {{action (toggle "isEditing" this)}}>
                 <span class="button-label button-defaultState js-buttonLabel">Edit</span>
               </button>
-            {{else}}
-              {{follow-button}}
+            {{/if}}
+            {{#if (not (is-self user))}}
+              {{follow-button user=user}}
             {{/if}}
           </div>
         </div>
@@ -39,10 +39,17 @@
   <div class="container">
     <div class="row">
       <div class="nav navbar-nav">
-        {{link-to (t 'users.nav.activity') 'users.index' class="nav-item nav-link"}}
-        {{link-to (t 'users.nav.library') 'users.library' class="nav-item nav-link"}}
-        {{link-to (t 'users.nav.reviews') 'users.reviews' class="nav-item nav-link"}}
-        {{link-to (t 'users.nav.lists') 'users.lists' class="nav-item nav-link"}}
+        {{link-to (t "users.nav.activity") "users.index" class="nav-item nav-link"}}
+        {{link-to (t "users.nav.library") "users.library" class="nav-item nav-link"}}
+        {{link-to (t "users.nav.reviews") "users.reviews" class="nav-item nav-link"}}
+        {{#link-to "users.followers" class="nav-item nav-link"}}
+          {{t "users.nav.followers"}}
+          <span class="tag tag-default">{{user.followersCount}}</span>
+        {{/link-to}}
+        {{#link-to "users.following" class="nav-item nav-link"}}
+          {{t "users.nav.following"}}
+          <span class="tag tag-default">{{user.followingCount}}</span>
+        {{/link-to}}
       </div>
     </div>
   </div>

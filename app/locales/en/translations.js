@@ -15,8 +15,9 @@ export default {
     users: {
       index: '{{user}}\'s Profile',
       library: '{{user}}\'s Library',
-      lists: '{{user}}\'s List',
-      reviews: '{{user}}\'s Reviews'
+      reviews: '{{user}}\'s Reviews',
+      followers: '{{user}}\'s Followers',
+      following: 'Followed by {{user}}'
     },
     settings: 'Settings'
   },
@@ -119,11 +120,13 @@ export default {
     following: 'Following',
     followers: 'Followers',
     follow: 'Follow',
+    unfollow: 'Unfollow',
     nav: {
       activity: 'Activity',
       library: 'Library',
       reviews: 'Reviews',
-      lists: 'Lists'
+      followers: 'Followers',
+      following: 'Following'
     },
     edit: {
       editCover: 'Change your cover photo',
@@ -198,7 +201,10 @@ export default {
       private: 'Private',
       rewatch: 'Rewatch',
       rewatched: 'Rewatched',
-      times: 'times'
+      times: 'times',
+      emptyOwner: 'You don\'t have any titles here! Ready to start something new? {{link}}',
+      emptyGuest: 'Doesn\'t look like {{user}} has anything here!',
+      browse: 'Browse {{type}}'
     }
   },
   // ember-power-select locale

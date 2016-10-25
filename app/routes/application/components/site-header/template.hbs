@@ -44,12 +44,20 @@
           </li>
         {{else}}
           <li class="nav-item">
-            <a href="#" class="nav-link" data-toggle="modal" data-target="#auth-modal" data-test-selector="sign-up-header" {{action (toggle "authOpened" this)}}>
+            <a href="#" id="sign-up-button" class="nav-link" data-test-selector="sign-up-header"
+              {{action (queue
+                (action (mut authComponent) "social-auth")
+                (toggle "authOpened" this)
+              )}}>
               {{t "header.signUp"}}
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link" data-toggle="modal" data-target="#auth-modal" data-test-selector="sign-up-header" {{action (toggle "authOpened" this)}}>
+            <a href="#" id="sign-in-button" class="nav-link" data-test-selector="sign-in-header"
+              {{action (queue
+                (action (mut authComponent) "sign-in")
+                (toggle "authOpened" this)
+              )}}>
               {{t "header.signIn"}}
             </a>
           </li>
@@ -60,87 +68,11 @@
   </div>
 </nav>
 
-
-<!-- <div class="site-header" class="top-bar" data-test-selector="site-header">
-  <div class="top-bar-wrapper">
-    <div class="top-bar-left">
-      <ul>
-        <li>
-          {{#link-to "dashboard"}}
-            <div class="logo"></div>
-          {{/link-to}}
-        </li>
-        <li class="primary-nav has-submenu">
-          <a>{{t "header.shows"}}</a>
-          <ul class="submenu menu vertical" data-submenu>
-            <li>
-              {{link-to (t "media.anime.name") "anime.index"}}
-            </li>
-          </ul>
-        </li>
-        <li class="primary-nav">
-          {{link-to (t "media.manga.name") "manga.index"}}
-        </li>
-        <li class="primary-nav"><a href="https://forums.hummingbird.me">{{t "header.forums"}}</a></li>
-        <li class="primary-nav"><a href="#">{{t "header.downloads"}}</a></li>
-      </ul>
-    </div>
-
-    <div class="top-bar-right">
-      {{! TODO: Implement guest state }}
-      {{#if session.isAuthenticated}}
-        <ul>
-          <li>
-            <a href="#" class="circle-button">
-              {{fa-icon "search"}}
-            </a>
-          </li>
-          <li>
-            <a href="#" class="circle-button">
-              {{fa-icon "bell-o"}}
-            </a>
-          </li>
-          <li class="has-submenu">
-            <a href="#" class="circle-button avatar">
-              <img src={{image session.account.avatar}}>
-            </a>
-            <ul class="submenu menu vertical" data-submenu>
-              <li>
-                {{#link-to "users.index" session.account}}
-                  {{t "header.user.profile"}}
-                {{/link-to}}
-              </li>
-              <li>
-                <a href="#" {{action "invalidateSession"}}>
-                  {{t "header.user.logout"}}
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      {{else}}
-        <ul class="menu">
-          <li>
-            <a href="#" class="circle-button">
-              {{fa-icon "search"}}
-            </a>
-          </li>
-          <li>
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#auth-modal"
-              data-test-selector="sign-up-header" {{action "toggleAuth" true}}>
-              Sign Up / In
-            </a>
-          </li>
-        </ul>
-      {{/if}}
-    </div>
-  </div>
-</div> -->
-
 {{#if authOpened}}
   {{#ember-wormhole to="wormhole"}}
     {{modals/auth-onboarding
       modalId="auth-modal"
+      component=authComponent
       onClose=(toggle-action "authOpened" this)}}
   {{/ember-wormhole}}
 {{/if}}

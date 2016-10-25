@@ -33,7 +33,8 @@ RouterInstance.map(function() {
   this.route('users', { path: '/users/:name' }, function() {
     this.route('library');
     this.route('reviews');
-    this.route('lists');
+    this.route('followers');
+    this.route('following');
   });
 
   this.route('settings');
