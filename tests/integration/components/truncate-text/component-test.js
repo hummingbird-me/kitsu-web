@@ -8,7 +8,7 @@ moduleForComponent('truncate-text', 'Integration | Component | truncate-text', {
 test('text is truncated based on max', function(assert) {
   this.set('text', 'Hello, World!');
   this.render(hbs`{{truncate-text text max=5}}`);
-  assert.equal(this.$().text().trim().replace(/(\r\n|\n|\r)/gm, ''), 'Hello...  more');
+  assert.equal(this.$().text().trim().replace(/(\r\n|\n|\r)/gm, ''), 'He...  more');
 });
 
 test('text is changed upon expansion', function(assert) {
