@@ -60,12 +60,6 @@ export default Route.extend(PaginationMixin, {
   },
 
   actions: {
-    loading(transition) {
-      const controller = this.controllerFor(get(this, 'routeName'));
-      set(controller, 'isLoading', true);
-      transition.promise.finally(() => set(controller, 'isLoading', false));
-    },
-
     updateEntry(entry, key, value) {
       if (jQuery.isPlainObject(key)) {
         setProperties(entry, key);
