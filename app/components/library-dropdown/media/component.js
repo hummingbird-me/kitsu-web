@@ -27,16 +27,24 @@ export default Component.extend({
   updateTask: task(function* (status) {
     const entry = get(this, 'entry');
     if (entry === undefined) {
-      yield get(this, 'store').createRecord('library-entry', {
+      const options = {
         status: status.key,
         user: get(this, 'session.account'),
         media: get(this, 'media')
-      }).save().then(newEntry => set(this, 'entry', newEntry));
+      };
+      if (options.status === 'completed') {
+        options.progress = get(this, 'media.episodeCount') || 0;
+      }
+      yield get(this, 'store').createRecord('library-entry', options)
+        .save().then(newEntry => set(this, 'entry', newEntry));
     } else if (status.key === REMOVE_KEY) {
       yield get(this, 'entry').destroyRecord()
         .then(() => set(this, 'entry', undefined))
         .catch(() => entry.rollbackAttributes());
     } else {
+      if (status.key === 'completed') {
+        set(entry, 'progress', get(this, 'media.episodeCount') || get(entry, 'progress'));
+      }
       set(entry, 'status', status.key);
       yield entry.save().catch(() => entry.rollbackAttributes());
     }
@@ -44,9 +52,9 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    assert('Must pass a `media` attribute to `{{library-dropdown/new}}`',
+    assert('Must pass a `media` attribute to `{{library-dropdown/media}}`',
       get(this, 'media') !== undefined);
-    assert('Do not pass a `entry` attribute to `{{library-dropdown/new}}`',
+    assert('Do not pass a `entry` attribute to `{{library-dropdown/media}}`',
       get(this, 'entry') === undefined);
     get(this, 'requestEntry').perform();
   }

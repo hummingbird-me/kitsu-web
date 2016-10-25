@@ -5,6 +5,7 @@ import { task } from 'ember-concurrency';
 import layout from 'client/components/library-dropdown/template';
 import Ember from 'ember';
 import { invokeAction } from 'ember-invoke-action';
+import getter from 'client/utils/getter';
 
 const { K } = Ember;
 
@@ -13,6 +14,10 @@ export default Component.extend({
   create: K,
   update: K,
   delete: K,
+
+  media: getter(function() {
+    return get(this, 'entry.media');
+  }),
 
   updateTask: task(function* (status) {
     const entry = get(this, 'entry');
@@ -27,9 +32,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    assert('Must pass a `entry` attribute to `{{library-dropdown/existing}}`',
+    assert('Must pass a `entry` attribute to `{{library-dropdown/entry}}`',
       get(this, 'entry') !== undefined);
-    assert('Must pass a `media` attribute to `{{library-dropdown/existing}}`',
-      get(this, 'media') !== undefined);
   }
 });

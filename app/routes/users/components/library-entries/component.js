@@ -46,6 +46,10 @@ export default Component.extend(isOwnerMixin, {
   }),
 
   actions: {
+    update(...args) {
+      invokeAction(this, 'update', ...args);
+    },
+
     save(...args) {
       invokeAction(this, 'save', ...args);
     },
