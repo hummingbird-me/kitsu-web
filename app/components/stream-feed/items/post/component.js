@@ -92,8 +92,6 @@ export default Component.extend(ClipboardMixin, {
     /**
      * This is a hack fix so that our clipboard target anchor doesn't send
      * the user's browser to the top of the window with its `#` href.
-     *
-     * @param {Event} event
      */
     preventDefault(event) {
       event.preventDefault();

@@ -1,4 +1,4 @@
-import Base from 'client/models/base/model';
+import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
@@ -20,7 +20,7 @@ const Validations = buildValidations({
   ]
 });
 
-export default Base.extend(Validations, {
+export default Model.extend(Validations, {
   progress: attr('number'),
   notes: attr('string'),
   private: attr('boolean'),

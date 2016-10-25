@@ -14,7 +14,7 @@ export default Component.extend({
     return yield get(this, 'store').query('feed', {
       type,
       id,
-      include: 'media,actor,unit,subject.user,subject.target_user,subject.post_likes.user,subject.comments.user'
+      include: 'media,actor,unit,subject.user,subject.target_user,subject.post_likes.user,subject.comments.user,subject.media'
     });
   }).restartable(),
 

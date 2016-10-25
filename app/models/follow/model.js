@@ -1,7 +1,7 @@
-import Base from 'client/models/base/model';
+import Model from 'ember-data/model';
 import { belongsTo } from 'ember-data/relationships';
 
-export default Base.extend({
+export default Model.extend({
   follower: belongsTo('user'),
   followed: belongsTo('user')
 });
