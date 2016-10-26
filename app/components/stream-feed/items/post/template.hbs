@@ -34,8 +34,8 @@
       </a>
       {{#if post.postLikes}}
         <ul class="stream-item-participants">
-          {{#each (take 4 (reject-by "isError" true post.postLikes)) as |liker|}}
-            <li class="stream-like {{if liker.isNew "new-like"}} {{if (or liker.isDeleted liker.isError) "removed-like"}}">
+          {{#each (take 4 post.postLikes) as |liker|}}
+            <li class="stream-like {{if liker.isNew "new-like"}} {{if liker.isDeleted "removed-like"}}">
               <a class="like-avatar" href={{href-to "users.index" liker.user.name}}>
                 <img src={{image liker.user.avatar}}>
               </a>
