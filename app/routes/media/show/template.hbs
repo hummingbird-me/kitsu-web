@@ -1,5 +1,49 @@
-<h1 data-test-selector="title">{{media.canonicalTitle}}</h1>
+{{! TODO: Move to component }}
+<div class="user-cover no-edit">
+  <div class="cover-photo" style={{coverImageStyle}}>
+    <div class="container">
+      <div class="row">
+        <div class="cover-user-info">
+          <div class="primary-info">
+            <div class="media-sidebar">
+              <img src={{image media.posterImage}}>
+              {{#if session.isAuthenticated}}
+                {{library-dropdown/media media=media}}
+              {{/if}}
+            </div>
+            <div class="mini-bio">
+              <h3 class="cover-username" data-test-selector="title">
+                {{media.canonicalTitle}}
+              </h3>
+            </div>
+          </div>
+          <div class="cover-cta">
+            {{follow-button user=user}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dark-cover-overlay"></div>
+  </div>
+</div>
 
-{{#if session.isAuthenticated}}
-  {{library-dropdown/media media=media}}
-{{/if}}
+{{! TODO: Move to component }}
+<nav class="cover-nav navbar navbar-light">
+  <div class="container">
+    <div class="row">
+      <div class="nav navbar-nav">
+        {{link-to (t "users.nav.activity") "users.index" class="nav-item nav-link"}}
+        {{link-to (t "users.nav.library") "users.library" class="nav-item nav-link"}}
+        {{link-to (t "users.nav.reviews") "users.reviews" class="nav-item nav-link"}}
+        {{#link-to "users.followers" class="nav-item nav-link"}}
+          {{t "users.nav.followers"}}
+          <span class="tag tag-default">{{user.followersCount}}</span>
+        {{/link-to}}
+        {{#link-to "users.following" class="nav-item nav-link"}}
+          {{t "users.nav.following"}}
+          <span class="tag tag-default">{{user.followingCount}}</span>
+        {{/link-to}}
+      </div>
+    </div>
+  </div>
+</nav>
