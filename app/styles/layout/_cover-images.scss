@@ -2,7 +2,6 @@
   padding-top: 0;
   .global-container {
     max-width: 100%;
-    padding: 0;
   }
   .transparent {
     background: transparent;
@@ -28,7 +27,6 @@
 .user-cover {
   height: 400px;
   width: 100%;
-  overflow: hidden;
   position: relative;
   .cover-photo {
     background-size: cover;
@@ -90,5 +88,22 @@
     background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
     z-index: $zIndex--dark-cover-overlay;
+  }
+}
+
+.media-sidebar {
+  width: 195px;
+  position: absolute;
+  img {
+    border-radius: 3px;
+  }
+  .button--primary {
+    padding: 10px;
+    width: 100%;
+    font-size: 12px;
+    margin-top: 10px;
+    &:hover {
+      box-shadow: none;
+    }
   }
 }
