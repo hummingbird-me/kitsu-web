@@ -12,6 +12,7 @@ export default Component.extend({
 
   session: service(),
   store: service(),
+  lazy: service(),
   isFollowing: notEmpty('relationship'),
 
   didAuthenticate: observer('session.hasUser', function() {
@@ -19,11 +20,21 @@ export default Component.extend({
   }),
 
   getFollowStatus: task(function* () {
+    const lookFor = {
+      follower: get(this, 'session.account.id'),
+      followed: get(this, 'user.id')
+    };
+
+    if (get(this, 'lazyId') !== undefined) {
+      return yield get(this, 'lazy.add').perform(get(this, 'lazyId'), lookFor).then(() => {
+        const payload = get(this, 'lazy').fetch(get(this, 'lazyId'));
+        const rel = payload.find(item => (get(item, 'followed.id') === lookFor.followed));
+        set(this, 'relationship', rel);
+      });
+    }
+
     return yield get(this, 'store').query('follow', {
-      filter: {
-        follower: get(this, 'session.account.id'),
-        followed: get(this, 'user.id')
-      }
+      filter: lookFor
     }).then(follow => set(this, 'relationship', get(follow, 'firstObject')));
   }),
 
