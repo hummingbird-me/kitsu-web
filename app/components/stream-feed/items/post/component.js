@@ -35,13 +35,13 @@ export default Component.extend(ClipboardMixin, {
     return `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   }),
 
-  isLiked: computed('post.postLikes.[]', 'session.account', {
+  isLiked: computed('post.postLikes.@each.isError', 'session.account', {
     get() {
       if (get(this, 'session.isAuthenticated') === false ||
         get(this, 'post.postLikes') === undefined) {
         return false;
       }
-      const likes = get(this, 'post.postLikes');
+      const likes = get(this, 'post.postLikes').reject(like => get(like, 'isError'));
       const user = get(this, 'session.account');
       return likes.findBy('user.id', get(user, 'id')) !== undefined;
     }
@@ -57,20 +57,14 @@ export default Component.extend(ClipboardMixin, {
     if (get(this, 'isLiked') === true) {
       const like = get(this, 'post.postLikes').findBy('user.id', get(user, 'id'));
       post.decrementProperty('postLikesCount');
-      yield like.destroyRecord().catch(() => {
-        // TODO: Feedback
-        post.incrementProperty('postLikesCount');
-      });
+      yield like.destroyRecord().catch(() => post.incrementProperty('postLikesCount'));
     } else {
       const like = get(this, 'store').createRecord('post-like', {
         post,
         user: get(this, 'session.account')
       });
       post.incrementProperty('postLikesCount');
-      yield like.save().catch(() => {
-        // TODO: Feedback
-        post.decrementProperty('postLikesCount');
-      });
+      yield like.save().catch(() => post.decrementProperty('postLikesCount'));
     }
   }).drop(),
 
