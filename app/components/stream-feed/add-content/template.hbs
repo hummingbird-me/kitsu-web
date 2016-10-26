@@ -31,15 +31,15 @@
 
     <!-- actions -->
     <div>
+      <button type="button" class="button button--primary" {{action "create"}}>
+        Post
+      </button>
+
       <label class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">NSFW</span>
       </label>
-
-      <button type="button" class="button button--primary" {{action "create"}}>
-        Post
-      </button>
     </div>
   </div>
 {{/if}}

@@ -30,7 +30,7 @@
 
     <div class="stream-item-activity">
       <a href="#" class="like-stream-item {{if isLiked "is-liked"}}" {{action (perform toggleLike)}}>
-        {{svg-jar "heart-filled"}}
+        <span class="heart-wrapper"></span>
       </a>
       {{#if (gt post.postLikesCount 0)}}
         <ul class="stream-item-participants">
@@ -86,13 +86,15 @@
       </ul>
     {{/if}}
     {{#if (not readOnly)}}
-      {{one-way-text
-        keyEvents=(hash
-          13=(perform createComment)
-        )
-        placeholder="Leave a comment..."
-        class="form-control add-comment"
-      }}
+      <div class="add-comment-wrapper">
+        {{one-way-text
+          keyEvents=(hash
+            13=(perform createComment)
+          )
+          placeholder="Leave a comment..."
+          class="form-control add-comment"
+        }}
+      </div>
     {{/if}}
   </div>
 {{else}}

@@ -6,23 +6,23 @@
 <div class="media-body">
   <h4 class="media-heading">
     {{comment.user.name}}
-    <small class="comment-time">
-      {{moment-from-now comment.createdAt}}
-    </small>
   </h4>
-  <p>
+  <span class="comment-body">
     {{#if comment.isNew}}
       {{comment.content}}
     {{else}}
       {{{comment.contentFormatted}}}
     {{/if}}
-  </p>
+  </span>
   <div class="stream-item-activity">
     <!-- NYI on API -->
     <a href="#" class="like-stream-item">
-      {{svg-jar "heart-filled"}}
+      <span class="heart-wrapper"></span>
       <span class="sm-comment-count">3</span>
     </a>
+    <small class="comment-time">
+      {{moment-from-now comment.createdAt}}
+    </small>
     <span class="more-wrapper">
       <a href="#" class="more-drop" id="moreDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {{svg-jar "more"}}
