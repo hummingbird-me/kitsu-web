@@ -5,6 +5,7 @@ import { capitalize } from 'ember-string';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 import { isEmpty } from 'ember-utils';
+import { invoke } from 'ember-invoke-action';
 import libraryStatus from 'client/utils/library-status';
 import PaginationMixin from 'client/mixins/routes/pagination';
 
@@ -91,6 +92,11 @@ export default Route.extend(PaginationMixin, {
   },
 
   actions: {
+    updatePageAndTrack(records, links) {
+      invoke(this, 'updateNextPage', records, links);
+      this._trackImpression(records);
+    },
+
     saveEntry(entry) {
       if (get(entry, 'validations.isValid') === true) {
         return entry.save()
