@@ -73,6 +73,9 @@ export default Component.extend({
     get(this, 'getFeedData').perform(streamType, streamId).then((data) => {
       set(this, 'feed', data);
       const list = data.map(group => get(group, 'activities').map(activity => get(activity, 'foreignId')));
+      if (isEmpty(list) === true) {
+        return;
+      }
       get(this, 'metrics').invoke('trackImpression', 'Stream', {
         content_list: list.reduce((a, b) => a.concat(b)),
         feed_id: get(this, 'feedId')
