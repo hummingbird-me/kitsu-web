@@ -50,24 +50,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    set(this, 'itemCache', { anime: [], manga: [] });
     get(this, 'query').perform();
-  },
-
-  _addToCache(media, rating) {
-    const { modelName } = media.constructor;
-    const cache = get(this, 'itemCache');
-    cache[modelName].push({
-      id: get(media, 'id'),
-      rating
-    });
-  },
-
-  _getFromCache(media) {
-    const { modelName } = media.constructor;
-    const cache = get(this, 'itemCache');
-    console.log(cache, modelName);
-    return cache[modelName].find(item => get(item, 'id') === get(media, 'id'));
   },
 
   actions: {
@@ -81,8 +64,6 @@ export default Component.extend({
     },
 
     createLibraryEntry(media, rating) {
-      // Increment to provide instant feedback to user
-      this.incrementProperty('numRated');
       const user = get(this, 'session.account');
       const entry = get(this, 'store').createRecord('library-entry', {
         status: 'completed',
@@ -90,14 +71,8 @@ export default Component.extend({
         user,
         media
       });
-      entry.save()
-        .then(() => this._addToCache(media, rating))
-        .catch(() => this.decrementProperty('numRated'));
-    },
-
-    getRating(media) {
-      const entry = this._getFromCache(media);
-      return entry === undefined ? 0 : get(entry, 'rating');
+      this.incrementProperty('numRated');
+      entry.save().catch(() => this.decrementProperty('numRated'));
     }
   }
 });

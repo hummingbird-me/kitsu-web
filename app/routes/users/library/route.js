@@ -4,7 +4,7 @@ import set from 'ember-metal/set';
 import { capitalize } from 'ember-string';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
-import { invoke } from 'ember-invoke-action';
+import { isEmpty } from 'ember-utils';
 import libraryStatus from 'client/utils/library-status';
 import PaginationMixin from 'client/mixins/routes/pagination';
 
@@ -51,6 +51,7 @@ export default Route.extend(PaginationMixin, {
   },
 
   afterModel(model) {
+    this._super(...arguments);
     this._trackImpression(model);
   },
 
@@ -66,6 +67,10 @@ export default Route.extend(PaginationMixin, {
   },
 
   _trackImpression(model) {
+    if (isEmpty(model) === true) {
+      return;
+    }
+
     const controller = this.controllerFor(get(this, 'routeName'));
     const list = model.map(entry => ({
       foreign_id: `LibraryEntry:${get(entry, 'id')}`,
