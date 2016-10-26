@@ -9,6 +9,7 @@ import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
 
 export default Component.extend(ClipboardMixin, {
+  classNameBindings: ['post.isNew:new-post'],
   classNames: ['stream-item', 'row'],
   session: service(),
   store: service(),
@@ -34,15 +35,13 @@ export default Component.extend(ClipboardMixin, {
     return `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   }),
 
-  isLiked: computed('post.postLikes', 'session.account', {
+  isLiked: computed('post.postLikes.[]', 'session.account', {
     get() {
-      if (get(this, 'session.isAuthenticated') === false) {
+      if (get(this, 'session.isAuthenticated') === false ||
+        get(this, 'post.postLikes') === undefined) {
         return false;
       }
       const likes = get(this, 'post.postLikes');
-      if (likes === undefined) {
-        return false;
-      }
       const user = get(this, 'session.account');
       return likes.findBy('user.id', get(user, 'id')) !== undefined;
     }
@@ -81,6 +80,9 @@ export default Component.extend(ClipboardMixin, {
     });
     yield comment.save().then(() => {
       get(this, 'post').incrementProperty('commentsCount');
+    }).catch(() => {
+      get(this, 'post').decrementProperty('commentsCount');
+      get(this, 'post.comments').removeObject(comment);
     });
   }).drop(),
 

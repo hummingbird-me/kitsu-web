@@ -1,5 +1,5 @@
 import Component from 'ember-component';
 
 export default Component.extend({
-  classNameBindings: ['comment.isNew:is-saving']
+  classNameBindings: ['comment.isNew:new-comment']
 });

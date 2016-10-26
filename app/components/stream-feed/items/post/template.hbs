@@ -20,7 +20,12 @@
     </div>
 
     <div class="stream-content">
-      {{{post.contentFormatted}}}
+      {{#if post.isNew}}
+        {{! proxy content }}
+        {{post.content.content}}
+      {{else}}
+        {{{post.contentFormatted}}}
+      {{/if}}
     </div>
 
     <div class="stream-item-activity">

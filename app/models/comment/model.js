@@ -6,9 +6,9 @@ export default Model.extend({
   blocked: attr('boolean'),
   content: attr('string'),
   contentFormatted: attr('string'),
-  createdAt: attr('date'),
+  createdAt: attr('date', { defaultValue() { return new Date(); } }),
   deletedAt: attr('date'),
 
-  user: belongsTo('user'),
-  post: belongsTo('post', { inverse: 'comments' })
+  user: belongsTo('user', { async: false }),
+  post: belongsTo('post', { inverse: 'comments', async: false })
 });

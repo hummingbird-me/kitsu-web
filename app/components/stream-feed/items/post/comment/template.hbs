@@ -12,7 +12,7 @@
   </h4>
   <p>
     {{#if comment.isNew}}
-      {{loading-spinner}}
+      {{comment.content}}
     {{else}}
       {{{comment.contentFormatted}}}
     {{/if}}

@@ -20,12 +20,45 @@ export default Component.extend({
   }).restartable(),
 
   createPost: task(function* (content) {
-    const post = get(this, 'store').createRecord('post', {
+    const data = {
       content,
       user: get(this, 'session.account')
+    };
+    // posting on another profile?
+    if (get(this, 'streamId') !== get(this, 'session.account.id')) {
+      data.targetUser = get(this, 'store').peekRecord('user', get(this, 'streamId'));
+    }
+    const post = get(this, 'store').createRecord('post', data);
+    const [group, activity] = this._createTempActivity(post);
+    yield post.save().then((record) => {
+      set(activity, 'foreignId', `Post:${get(record, 'id')}`);
+    }).catch(() => {
+      get(this, 'feed').removeObject(group);
     });
-    yield post.save().catch(() => { /* TODO: Feedback */ });
   }).drop(),
+
+  /**
+   * Create a temporary activity group record so that we can push a new
+   * post into the feed without a restart.
+   *
+   * TODO:
+   * When we enable real-time updates, we'll need to grab all groups that
+   * don't have a set id, match the content from the real-time update and
+   * fill in the missing details.
+   */
+  _createTempActivity(record) {
+    const activity = get(this, 'store').createRecord('activity', {
+      subject: record,
+      foreignId: 'Post:<unknown>'
+    });
+    const group = get(this, 'store').createRecord('activity-group', {
+      activities: [activity]
+    });
+    const feed = get(this, 'feed').toArray();
+    feed.insertAt(0, group);
+    set(this, 'feed', feed);
+    return [group, activity];
+  },
 
   didReceiveAttrs() {
     this._super(...arguments);
