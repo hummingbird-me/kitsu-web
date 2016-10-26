@@ -9,7 +9,7 @@
       {{stream-feed
         streamType="user_aggr"
         streamId=user.id
-        readOnly=(not session.isAuthenticated)}}
+        readOnly=(not session.hasUser)}}
     </div>
 
     <div class="feed-sidebar col-sm-4">

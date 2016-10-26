@@ -14,7 +14,7 @@ export default Component.extend({
   store: service(),
   isFollowing: notEmpty('relationship'),
 
-  didAuthenticate: observer('session.account', function() {
+  didAuthenticate: observer('session.hasUser', function() {
     this._getData();
   }),
 
@@ -47,7 +47,7 @@ export default Component.extend({
   }),
 
   _getData() {
-    if (get(this, 'session.isAuthenticated')) {
+    if (get(this, 'session.hasUser')) {
       get(this, 'getFollowStatus').perform();
     }
   },
