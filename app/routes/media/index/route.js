@@ -61,13 +61,15 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
   setupController(controller) {
     this._super(...arguments);
     jQuery(document.body).addClass('browse-page');
-    jQuery(document).on('scroll', bind(controller, '_handleScroll'));
+    const binding = bind(controller, '_handleScroll');
+    set(this, 'scrollBinding', binding);
+    jQuery(document).on('scroll', binding);
   },
 
-  resetController(controller) {
+  resetController() {
     this._super(...arguments);
     jQuery(document.body).removeClass('browse-page');
-    jQuery(document).off('scroll', bind(controller, '_handleScroll'));
+    jQuery(document).off('scroll', get(this, 'scrollBinding'));
   },
 
   _buildFilters(params) {

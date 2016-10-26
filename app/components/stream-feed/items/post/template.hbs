@@ -35,7 +35,7 @@
       {{#if (gt post.postLikesCount 0)}}
         <ul class="stream-item-participants">
           {{#each (take 4 post.postLikes) as |liker|}}
-            <li class="stream-like">
+            <li class="stream-like {{if liker.isNew "new-like"}}">
               <a class="like-avatar" href={{href-to "users.index" liker.user.name}}>
                 <img src={{image liker.user.avatar}}>
               </a>

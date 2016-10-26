@@ -7,7 +7,7 @@
           <div class="primary-info">
             <div class="media-sidebar">
               <img src={{image media.posterImage}}>
-              {{#if session.isAuthenticated}}
+              {{#if session.hasUser}}
                 {{library-dropdown/media media=media}}
               {{/if}}
             </div>

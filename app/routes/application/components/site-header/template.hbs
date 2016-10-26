@@ -11,7 +11,7 @@
           </a>
     	  </div>
         <ul class="nav navbar-nav">
-          {{#if session.isAuthenticated}}
+          {{#if session.hasUser}}
             <li class="nav-item">
               {{link-to (t "header.library") "users.library" session.account.name class="nav-link"}}
             </li>
@@ -25,7 +25,7 @@
         </ul>
 
       <ul class="nav navbar-nav pull-sm-right">
-        {{#if session.isAuthenticated}}
+        {{#if session.hasUser}}
           <li class="nav-item">
             <a href="#" class="nav-link avatar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src={{image session.account.avatar}} class="avatar-image avatar-image--small">

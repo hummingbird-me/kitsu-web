@@ -1,25 +1,25 @@
-{{#if session.isAuthenticated}}
+{{#if session.hasUser}}
   {{dashboard/components/quick-update}}
 {{/if}}
 
-<div class="feed-container row {{if session.isAuthenticated "quick-update-enabled"}}">
+<div class="feed-container row {{if session.hasUser "quick-update-enabled"}}">
   <!-- Feed Posts -->
   <div class="feed-stream col-sm-8">
     <!-- TODO: also check if they haven't made a post -->
-    {{#if session.isAuthenticated}}
+    {{#if session.hasUser}}
       {{dashboard/components/stream-onboarding}}
 
       <!-- TODO: Remove from authentication block when global feed is built -->
       {{stream-feed
         streamType=streamType
         streamId=session.account.id
-        readOnly=(not session.isAuthenticated)}}
+        readOnly=(not session.hasUser)}}
     {{/if}}
   </div>
 
   <div class="feed-sidebar col-sm-4">
     <!-- TODO: Componentize the checklist -->
-    {{#if session.isAuthenticated}}
+    {{#if session.hasUser}}
       <div class="checklist card">
         <h4>Set-Up Your Feed</h4>
         <ul>
