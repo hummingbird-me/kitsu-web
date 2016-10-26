@@ -58,7 +58,7 @@ export default Ember.Service.extend({
       if (key !== multikey) finalFilter[key] = reference[key];
     });
 
-    for (let i = get(this, 'preloaded'); i < get(this, 'threshold'); i += 1) {
+    for (let i = collection.preloaded; i < collection.threshold; i += 1) {
       const filter = collection.targets.objectAt(i);
       if (filter === undefined) break;
 
