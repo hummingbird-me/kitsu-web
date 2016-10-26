@@ -73,28 +73,27 @@
         </div>
       </span>
     </div>
-
-    <div class="stream-item-comments">
-      {{#if post.commentsCount}}
-        <ul class="media-list">
-          {{#each post.comments as |comment|}}
-            {{stream-feed/items/post/comment
-              comment=comment
-              tagName="li"
-              class="media"}}
-          {{/each}}
-        </ul>
-      {{/if}}
-      {{#if (not readOnly)}}
-        {{one-way-text
-          keyEvents=(hash
-            13=(perform createComment)
-          )
-          placeholder="Leave a comment..."
-          class="form-control add-comment"
-        }}
-      {{/if}}
-    </div>
+  </div>
+  <div class="stream-item-comments">
+    {{#if post.commentsCount}}
+      <ul class="media-list">
+        {{#each post.comments as |comment|}}
+          {{stream-feed/items/post/comment
+            comment=comment
+            tagName="li"
+            class="media"}}
+        {{/each}}
+      </ul>
+    {{/if}}
+    {{#if (not readOnly)}}
+      {{one-way-text
+        keyEvents=(hash
+          13=(perform createComment)
+        )
+        placeholder="Leave a comment..."
+        class="form-control add-comment"
+      }}
+    {{/if}}
   </div>
 {{else}}
   {{t "errors.load"}}

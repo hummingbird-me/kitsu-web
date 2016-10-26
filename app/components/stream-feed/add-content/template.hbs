@@ -1,4 +1,4 @@
-<div style="background-color: #fff; padding: 15px;" {{action (toggle "isExpanded" this)}}>
+<div {{action (toggle "isExpanded" this)}}>
   <!-- avatar -->
   <div style="display: inline-block; margin-right: 10px;">
     <img style="width: 36px; height: 36px; border-radius: 100%;" src={{image session.account.avatar}}>
@@ -16,7 +16,7 @@
 
 {{#if isExpanded}}
   <!-- Expanded Editor -->
-  <div style="background-color: #fff; padding: 15px;">
+  <div>
     <!-- editor -->
     <!-- TODO: Keybinds -->
     {{content-editable

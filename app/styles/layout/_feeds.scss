@@ -180,6 +180,10 @@
   background: #FBFBFB;
   border-top: 1px solid #F0F0F0;
   padding: 20px;
+  width: 100%;
+  li {
+    margin-bottom: 15px;
+  }
   .media-object {
     width: 35px;
     height: 35px;
@@ -187,12 +191,17 @@
   }
   .media-heading {
     font-size: 12px;
+    margin-bottom: 0;
   }
   .media-body {
     font-size: 12px;
     p {
       margin-bottom: 0;
     }
+  }
+  .stream-item-activity {
+    position: relative;
+    top: -3px;
   }
   .add-comment {
     display: inline-block;
@@ -306,6 +315,11 @@
 }
 
 .new-post {
+  @extend .animated;
+  @extend .fadeIn;
+}
+
+.new-comment {
   @extend .animated;
   @extend .fadeIn;
 }
