@@ -5,14 +5,17 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import computed from 'ember-computed';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
+import { isEmpty } from 'ember-utils';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
+import jQuery from 'jquery';
 
 export default Component.extend(ClipboardMixin, {
   classNameBindings: ['post.isNew:new-post'],
   classNames: ['stream-item', 'row'],
   session: service(),
   store: service(),
+  metrics: service(),
   host: getter(() => `${location.protocol}//${location.host}`),
 
   activity: getter(function() {
@@ -62,15 +65,23 @@ export default Component.extend(ClipboardMixin, {
         post.incrementProperty('postLikesCount');
       });
     } else {
+      // could be attempting to like a non-saved post
+      if (isEmpty(get(this, 'post.id')) === true) {
+        return;
+      }
       const like = get(this, 'store').createRecord('post-like', {
         post,
         user: get(this, 'session.account')
       });
       post.incrementProperty('postLikesCount');
-      yield like.save().catch(() => {
-        get(post, 'postLikes').removeObject(like);
-        post.decrementProperty('postLikesCount');
-      });
+      yield like.save()
+        .then((record) => {
+          this._streamAnalytics('like', { id: `PostLike:${get(record, 'id')}` });
+        })
+        .catch(() => {
+          get(post, 'postLikes').removeObject(like);
+          post.decrementProperty('postLikesCount');
+        });
     }
   }).drop(),
 
@@ -82,13 +93,41 @@ export default Component.extend(ClipboardMixin, {
       post: get(this, 'post'),
       user: get(this, 'session.account')
     });
-    yield comment.save().then(() => {
+    yield comment.save().then((record) => {
       get(this, 'post').incrementProperty('commentsCount');
+      this._streamAnalytics('comment', { id: `Comment:${get(record, 'id')}` });
     }).catch(() => {
       get(this, 'post').decrementProperty('commentsCount');
       get(this, 'post.comments').removeObject(comment);
     });
   }).drop(),
+
+  _streamAnalytics(label, verb, object) {
+    if (jQuery.isPlainObject(verb) === true) {
+      object = verb; // eslint-disable-line no-param-reassign
+      verb = undefined; // eslint-disable-line no-param-reassign
+    }
+    // foreign_id is manually build as it may be a post on a `posts` page.
+    const data = {
+      label,
+      content: {
+        foreign_id: `Post:${get(this, 'post.id')}`,
+        actor: {
+          id: `User:${get(this, 'session.account.id')}`,
+          label: get(this, 'session.account.name')
+        },
+        verb: verb || label
+      },
+      position: get(this, 'positionInFeed') || 0
+    };
+    if (object !== undefined) {
+      data.content.object = object;
+    }
+    if (get(this, 'feedId') !== undefined) {
+      data.feed_id = get(this, 'feedId');
+    }
+    get(this, 'metrics').invoke('trackEngagement', 'Stream', data);
+  },
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -98,12 +137,8 @@ export default Component.extend(ClipboardMixin, {
   },
 
   actions: {
-    /**
-     * This is a hack fix so that our clipboard target anchor doesn't send
-     * the user's browser to the top of the window with its `#` href.
-     */
-    preventDefault(event) {
-      event.preventDefault();
+    trackClick(verb) {
+      this._streamAnalytics('click', verb, { id: `Post:${get(this, 'post.id')}` });
     }
   }
 });

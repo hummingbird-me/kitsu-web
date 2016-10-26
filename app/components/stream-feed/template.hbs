@@ -8,8 +8,13 @@
 {{#if getFeedData.isRunning}}
   {{loading-spinner size="large"}}
 {{else}}
-  {{#each feed as |group|}}
-    {{component (concat "stream-feed/items/" (feed-type group.activities)) group=group readOnly=readOnly}}
+  {{#each feed as |group index|}}
+    {{component (concat "stream-feed/items/" (feed-type group.activities))
+      group=group
+      feedId=feedId
+      positionInFeed=index
+      readOnly=readOnly
+    }}
   {{else}}
     {{t "errors.contentEmpty"}}
   {{/each}}

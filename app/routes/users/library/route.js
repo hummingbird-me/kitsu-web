@@ -4,6 +4,7 @@ import set from 'ember-metal/set';
 import { capitalize } from 'ember-string';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
+import { invoke } from 'ember-invoke-action';
 import libraryStatus from 'client/utils/library-status';
 import PaginationMixin from 'client/mixins/routes/pagination';
 
@@ -13,6 +14,8 @@ export default Route.extend(PaginationMixin, {
     status: { refreshModel: true }
   },
   i18n: service(),
+  metrics: service(),
+  session: service(),
 
   /**
    * Restartable task that queries the library entries for the current status,
@@ -47,6 +50,10 @@ export default Route.extend(PaginationMixin, {
     return get(this, 'modelTask').perform(media, status);
   },
 
+  afterModel(model) {
+    this._trackImpression(model);
+  },
+
   setupController(controller) {
     this._super(...arguments);
     set(controller, 'user', this.modelFor('users'));
@@ -56,6 +63,26 @@ export default Route.extend(PaginationMixin, {
     const model = this.modelFor('users');
     const name = get(model, 'name');
     return get(this, 'i18n').t('titles.users.library', { user: name });
+  },
+
+  _trackImpression(model) {
+    const controller = this.controllerFor(get(this, 'routeName'));
+    const list = model.map(entry => ({
+      foreign_id: `LibraryEntry:${get(entry, 'id')}`,
+      actor: {
+        id: `User:${get(this, 'session.account.id')}`,
+        label: get(this, 'session.account.name')
+      },
+      verb: 'view',
+      object: {
+        id: `${capitalize(get(controller, 'media'))}:${get(entry, 'media.id')}`,
+        label: get(entry, 'media.canonicalTitle')
+      }
+    }));
+    get(this, 'metrics').invoke('trackImpression', 'Stream', {
+      content_list: list,
+      location: get(this, 'routeName')
+    });
   },
 
   actions: {

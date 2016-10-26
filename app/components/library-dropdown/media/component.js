@@ -31,7 +31,7 @@ export default Component.extend({
         status: status.key,
         user: get(this, 'session.account'),
         media: get(this, 'media')
-      }).save().then(newEntry => set(this, 'entry', newEntry));
+      }).save().then(record => set(this, 'entry', record));
     } else if (status.key === REMOVE_KEY) {
       yield get(this, 'entry').destroyRecord()
         .then(() => set(this, 'entry', undefined))

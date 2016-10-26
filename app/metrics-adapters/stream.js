@@ -3,19 +3,22 @@ import canUseDOM from 'ember-metrics/utils/can-use-dom';
 import { assert } from 'ember-metal/utils';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import service from 'ember-service/inject';
 import jQuery from 'jquery';
+import Config from 'client/config/environment';
 
 export default BaseAdapter.extend({
   client: undefined,
   // We never want to send analytics for Stream for a guest
   userSet: false,
+  router: service('-routing'),
 
   toStringExtension() {
     return 'Stream';
   },
 
   init() {
-    const config = get(this, 'config');
+    const config = get(this, `config.${Config.environment}`);
     assert('[ember-metrics] You must pass a valid `apiKey` and `token` to this adapter',
       get(config, 'apiKey') && get(config, 'token'));
 
@@ -49,7 +52,10 @@ export default BaseAdapter.extend({
    */
   trackImpression(data) {
     if (canUseDOM && get(this, 'userSet')) {
-      get(this, 'client').trackImpression(data);
+      const options = Object.assign({
+        location: get(this, 'router.currentRouteName')
+      }, data);
+      get(this, 'client').trackImpression(options);
     }
   },
 
@@ -69,12 +75,15 @@ export default BaseAdapter.extend({
    */
   trackEngagement(data) {
     if (canUseDOM && get(this, 'userSet')) {
-      get(this, 'client').trackEngagement(data);
+      const options = Object.assign({
+        location: get(this, 'router.currentRouteName')
+      }, data);
+      get(this, 'client').trackEngagement(options);
     }
   },
 
   /**
-   * NOOP the `ember-metrics` functions as Stream will be invoked on very
+   * NOOP the `ember-metrics` functions as Stream will be invoked with very
    * specific data.
    */
   trackEvent() {},

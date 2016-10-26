@@ -4,6 +4,7 @@ import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { task, timeout } from 'ember-concurrency';
 import IsOwnerMixin from 'client/mixins/is-owner';
+import { capitalize } from 'ember-string';
 import jQuery from 'jquery';
 import { invokeAction } from 'ember-invoke-action';
 
@@ -11,6 +12,7 @@ export default Component.extend(IsOwnerMixin, {
   isExpanded: false,
   session: service(),
   i18n: service(),
+  metrics: service(),
   media: alias('entry.media'),
   user: alias('entry.user'),
 
