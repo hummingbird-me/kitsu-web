@@ -56,16 +56,20 @@ export default Component.extend(ClipboardMixin, {
     const post = get(this, 'post');
     if (get(this, 'isLiked') === true) {
       const like = get(this, 'post.postLikes').findBy('user.id', get(user, 'id'));
-      yield like.destroyRecord().then(() => {
-        post.decrementProperty('postLikesCount');
+      post.decrementProperty('postLikesCount');
+      yield like.destroyRecord().catch(() => {
+        // TODO: Feedback
+        post.incrementProperty('postLikesCount');
       });
     } else {
       const like = get(this, 'store').createRecord('post-like', {
         post,
         user: get(this, 'session.account')
       });
-      yield like.save().then(() => {
-        post.incrementProperty('postLikesCount');
+      post.incrementProperty('postLikesCount');
+      yield like.save().catch(() => {
+        // TODO: Feedback
+        post.decrementProperty('postLikesCount');
       });
     }
   }).drop(),
