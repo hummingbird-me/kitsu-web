@@ -11,14 +11,16 @@ export default Ember.Service.extend({
   collections: null,
 
   create(resource, multikey, include = null) {
-    const collection = { targets: [] };
+    const collection = {
+      resource,
+      multikey,
+      threshold: 0,
+      preloaded: 0,
+      waiting: [],
+      targets: []
+    };
 
     if (include !== null) collection.include = include;
-    collection.resource = resource;
-    collection.multikey = multikey;
-    collection.threshold = 0;
-    collection.preloaded = 0;
-    collection.waiting = [];
 
     get(this, 'collections').pushObject(collection);
     return (get(this, 'collections').length - 1);
@@ -52,11 +54,14 @@ export default Ember.Service.extend({
     const finalFilter = {};
     finalFilter[multikey] = [];
 
-    for (const key in reference) {
+    Object.keys(reference).forEach((key) => {
       if (key !== multikey) finalFilter[key] = reference[key];
-    }
+    });
 
-    for (const filter of collection.targets) {
+    for (let i = get(this, 'preloaded'); i < get(this, 'threshold'); i += 1) {
+      const filter = collection.targets.objectAt(i);
+      if (filter === undefined) break;
+
       finalFilter[multikey].addObject(filter[multikey]);
     }
 
@@ -67,6 +72,7 @@ export default Ember.Service.extend({
       collection.payload = payload;
       collection.preloaded = collection.threshold;
       collection.waiting.forEach(resolver => resolver());
+      collection.waiting = [];
     });
   }),
 
