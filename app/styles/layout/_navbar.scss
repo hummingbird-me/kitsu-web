@@ -172,17 +172,14 @@
     font-family: $base-font-family;
     border-bottom: 1px solid $eggshell;
     transition: all .2s ease-in-out;
+    opacity: .4;
     &.new {
-      background-color: #ebf9f6;
-      border-color: #d1e6e2;
-      &:hover {
-
-      }
+      opacity: 1;
     }
     &:hover {
       text-decoration: none;
-      background-color: lighten($eggshell, 3);
-      border-bottom: 1px solid $eggshell;
+      background-color: lighten($eggshell, 4);
+      opacity: 1;
     }
   }
   .media-body {
