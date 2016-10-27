@@ -60,8 +60,7 @@
   text-align: center;
   border-radius: 999em;
   line-height: 18px;
-  font-size: 12px;
-  letter-spacing: 1px;
+  font-size: 13px;
   position: relative;
   top: 3px;
   border: 1px solid #eee;
@@ -139,4 +138,62 @@
 }
 .site-search__submit {
   display: none;
+}
+
+
+
+.notification-drop {
+  width: 400px;
+  right: 0;
+  left: initial;
+  top: 53px;
+  padding: 0;
+  overflow: hidden;
+  header {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-bottom: 1px solid $eggshell;
+  }
+  .mark-as-read {
+    float: right;
+  }
+}
+
+.notification-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  max-height: 300px;
+  overflow: auto;
+  .media {
+    padding: 15px;
+    font-size: 12px;
+    color: $charcoal;
+    font-family: $base-font-family;
+    border-bottom: 1px solid $eggshell;
+    transition: all .2s ease-in-out;
+    &.new {
+      background-color: #ebf9f6;
+      border-color: #d1e6e2;
+      &:hover {
+
+      }
+    }
+    &:hover {
+      text-decoration: none;
+      background-color: lighten($eggshell, 3);
+      border-bottom: 1px solid $eggshell;
+    }
+  }
+  .media-body {
+    top: 0;
+  }
+  .media-heading {
+    margin-bottom: 0;
+  }
+  .media-secondary {
+    margin-top: 0px;
+    display: block;
+    opacity: .6;
+  }
 }
