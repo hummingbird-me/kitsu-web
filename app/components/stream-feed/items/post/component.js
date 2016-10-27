@@ -85,21 +85,6 @@ export default Component.extend(ClipboardMixin, {
     }
   }).drop(),
 
-  createComment: task(function* (content) {
-    const comment = get(this, 'store').createRecord('comment', {
-      content,
-      post: get(this, 'post'),
-      user: get(this, 'session.account')
-    });
-    yield comment.save().then((record) => {
-      get(this, 'post').incrementProperty('commentsCount');
-      this._streamAnalytics('comment', { id: `Comment:${get(record, 'id')}` });
-    }).catch(() => {
-      get(this, 'post').decrementProperty('commentsCount');
-      get(this, 'post.comments').removeObject(comment);
-    });
-  }).drop(),
-
   _streamAnalytics(label, verb, object) {
     if (jQuery.isPlainObject(verb) === true) {
       object = verb; // eslint-disable-line no-param-reassign
@@ -137,6 +122,16 @@ export default Component.extend(ClipboardMixin, {
   actions: {
     trackClick(verb) {
       this._streamAnalytics('click', verb, { id: `Post:${get(this, 'post.id')}` });
+    },
+
+    createdComment(record) {
+      get(this, 'post').incrementProperty('commentsCount');
+      this._streamAnalytics('comment', { id: `Comment:${get(record, 'id')}` });
+    },
+
+    erroredComment(record) {
+      get(this, 'post').decrementProperty('commentsCount');
+      get(this, 'post.comments').removeObject(record);
     }
   }
 });

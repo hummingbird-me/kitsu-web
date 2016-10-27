@@ -7,9 +7,7 @@ export default Route.extend({
   session: service(),
 
   model({ id }) {
-    return get(this, 'store').findRecord('post', id, {
-      include: 'user,targetUser,comments.user,postLikes.user'
-    });
+    return get(this, 'store').findRecord('post', id, { include: 'user,targetUser' });
   },
 
   afterModel(model) {

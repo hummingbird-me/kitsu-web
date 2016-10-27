@@ -5,7 +5,9 @@
 </div>
 <div class="media-body">
   <h4 class="media-heading">
-    {{comment.user.name}}
+    <a href={{href-to "users.index" comment.user.name}}>
+      {{comment.user.name}}
+    </a>
   </h4>
   <span class="comment-body">
     {{#if comment.isNew}}
