@@ -5,6 +5,11 @@ import { scheduleOnce } from 'ember-runloop';
 import service from 'ember-service/inject';
 import RSVP from 'rsvp';
 
+/**
+ * TODO: This either needs a massive refactor to work without being dependent
+ * on a included property, or we need to remove this and rework the areas where
+ * its currently used.
+ */
 export default Service.extend({
   store: service(),
   _registry: {},
