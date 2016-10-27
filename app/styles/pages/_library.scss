@@ -87,26 +87,6 @@
   .entry-right {
     text-align: right;
   }
-  .entry-progress {
-    margin-right: 20px;
-    padding-right: 20px;
-    height: 25px;
-    display: inline-block;
-    border-right: 1px solid #ddd;
-    font-weight: 600;
-    input {
-      padding: 1px 0;
-      margin-top: -2px;
-      width: 46px;
-      float: left;
-      text-align: center;
-      border-radius: 3px;
-      border: 1px solid #ddd;
-    }
-    .sep {
-      padding: 0 0 0 10px;
-    }
-  }
   .entry-rating {
     margin-right: 20px;
     padding-right: 20px;
@@ -124,6 +104,42 @@
     line-height: 14px;
     text-align: center;
   }
+}
+
+.entry-progress {
+  margin-right: 20px;
+  padding-right: 20px;
+  height: 25px;
+  display: inline-block;
+  border-right: 1px solid #ddd;
+  font-weight: 600;
+  input {
+    padding: 1px 0;
+    margin-top: -2px;
+    width: 46px;
+    float: left;
+    text-align: center;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+  }
+  .sep {
+    padding: 0 0 0 10px;
+  }
+}
+
+.entry-progress--mini-wrapper {
+  border: 1px solid darken($eggshell, 5);
+  padding: 10px;
+  border-radius: 3px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.entry-progress--mini {
+  margin: 0;
+  padding: 0;
+  float: right;
+  border: none;
 }
 
 .entry-wrapper {

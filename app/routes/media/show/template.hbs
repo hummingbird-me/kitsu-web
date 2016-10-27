@@ -1,49 +1,123 @@
 {{! TODO: Move to component }}
-<div class="user-cover no-edit">
-  <div class="cover-photo" style={{coverImageStyle}}>
-    <div class="container">
-      <div class="row">
-        <div class="cover-user-info">
-          <div class="primary-info">
-            <div class="media-sidebar">
-              <img src={{image media.posterImage}}>
-              {{#if session.hasUser}}
-                {{library-dropdown/media media=media}}
-              {{/if}}
+<div class="media-cover-wrapper">
+  <div class="user-cover no-edit">
+    <div class="cover-photo" style={{coverImageStyle}}>
+      <div class="container">
+        <div class="row">
+          <div class="cover-user-info">
+            <div class="primary-info">
+              <div class="media-sidebar">
+                <img src={{image media.posterImage}}>
+                {{#if session.hasUser}}
+                  {{library-dropdown/media media=media}}
+                {{/if}}
+                <div class="entry-progress--mini-wrapper">
+                  <span>Progress</span>
+                  <div class="entry-progress entry-progress--mini">
+                    <input type="number" placeholder="0">
+                    <span>
+                      <span class="sep">/</span>
+                      51
+                    </span>
+                  </div>
+                </div>
+                <div class="where-to-watch-widget">
+
+                </div>
+              </div>
+              <div class="mini-bio">
+                <h3 class="cover-username" data-test-selector="title">
+                  {{media.canonicalTitle}}
+                </h3>
+              </div>
             </div>
-            <div class="mini-bio">
-              <h3 class="cover-username" data-test-selector="title">
-                {{media.canonicalTitle}}
-              </h3>
+            <div class="cover-cta">
+              {{follow-button user=user}}
             </div>
-          </div>
-          <div class="cover-cta">
-            {{follow-button user=user}}
           </div>
         </div>
       </div>
+      <div class="dark-cover-overlay"></div>
     </div>
-    <div class="dark-cover-overlay"></div>
   </div>
-</div>
 
-{{! TODO: Move to component }}
-<nav class="cover-nav navbar navbar-light">
-  <div class="container">
-    <div class="row">
-      <div class="nav navbar-nav">
-        {{link-to (t "users.nav.activity") "users.index" class="nav-item nav-link"}}
-        {{link-to (t "users.nav.library") "users.library" class="nav-item nav-link"}}
-        {{link-to (t "users.nav.reviews") "users.reviews" class="nav-item nav-link"}}
-        {{#link-to "users.followers" class="nav-item nav-link"}}
-          {{t "users.nav.followers"}}
-          <span class="tag tag-default">{{user.followersCount}}</span>
-        {{/link-to}}
-        {{#link-to "users.following" class="nav-item nav-link"}}
-          {{t "users.nav.following"}}
-          <span class="tag tag-default">{{user.followingCount}}</span>
-        {{/link-to}}
+  {{! TODO: Move to component }}
+  <nav class="cover-nav navbar navbar-light">
+    <div class="container">
+      <div class="row">
+        <div class="nav navbar-nav">
+          {{link-to (t "users.nav.activity") "users.index" class="nav-item nav-link"}}
+          {{link-to (t "users.nav.library") "users.library" class="nav-item nav-link"}}
+          {{link-to (t "users.nav.reviews") "users.reviews" class="nav-item nav-link"}}
+          {{#link-to "users.followers" class="nav-item nav-link"}}
+            {{t "users.nav.followers"}}
+            <span class="tag tag-default">{{user.followersCount}}</span>
+          {{/link-to}}
+          {{#link-to "users.following" class="nav-item nav-link"}}
+            {{t "users.nav.following"}}
+            <span class="tag tag-default">{{user.followingCount}}</span>
+          {{/link-to}}
+        </div>
       </div>
     </div>
+  </nav>
+</div>
+
+<div class="container">
+  <div class="media-container row">
+    <section>
+      <h5>Synopsis</h5>
+      <p>
+        Mugen's a buck wild warrior—violent, thoughtless and womanizing. Jin is a vagrant ronin—mysterious, traditional, well-mannered, and very strong as well. These two fiercely independent warriors can't be any more different from one another, yet their paths cross when Fuu, a ditzy waitress, saves them from being executed when they are arrested after a violent swordfight...
+        <a href="#">more</a>
+      </p>
+    </section>
+    <section>
+      <h5>Popular Reviews</h5>
+      <ul class="media-list">
+        <li id="ember1696" class="media ember-view">
+          <div class="media-left">
+            <a href="/users/Josh">
+              <img src="/images/default_avatar.png">
+            </a>
+          </div>
+          <div class="media-body">
+            <small class="media-heading">
+              Review by <a href="#">PTApro</a>
+            </small>
+            <div class="comment-body">
+              <p>
+                Paradoxes be damned, this was delightful.
+              </p>
+              <p>
+                Taking a cue from Groundhog Day, The Girl Who Leapt Through Time eschews the technicalities of
+                time-travel and instead uses it as a stage to examine relationships, regrets, and what makes us
+                happy. It's a risky move, but then again all time-travel stories are; do you focus on believability
+                to construct intriguingly mathematical cause-and-effect issues, or do you focus on the theme of time
+                itself in an allegorical way? TGWLTT opts for the latter, and luckily populates its film with darling
+                characters who are much more interesting than the mechanics itself. Even more fortunately is its
+                treatment of its star, Makoto, who is written quite well as a girl on the cusp of womanhood…
+                <a href="#">more</a>
+              </p>
+            </div>
+            <div class="stream-item-activity">
+              <a href="#" class="like-stream-item is-liked" data-ember-action="1428">
+                <span class="heart-wrapper"></span>
+              </a>
+              <ul class="stream-item-participants">
+                <li class="stream-like  ">
+                  <a class="like-avatar" href="/users/Josh">
+                    <img src="/images/default_avatar.png">
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h5>Community Feed</h5>
+    </section>
   </div>
-</nav>
+</div>
