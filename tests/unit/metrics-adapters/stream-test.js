@@ -4,7 +4,7 @@ import sinon from 'sinon';
 moduleFor('metrics-adapter:stream', 'stream adapter', {
   beforeEach() {
     this.sandbox = sinon.sandbox.create();
-    this.config = { apiKey: 'xxxx', token: 'xxxx' };
+    this.config = { testing: { apiKey: 'xxxx', token: 'xxxx' } };
   },
 
   afterEach() {
