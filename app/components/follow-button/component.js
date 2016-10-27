@@ -12,7 +12,7 @@ export default Component.extend({
 
   session: service(),
   store: service(),
-  lazy: service(),
+  coalesce: service(),
   isFollowing: notEmpty('relationship'),
 
   didAuthenticate: observer('session.hasUser', function() {
@@ -27,10 +27,11 @@ export default Component.extend({
     };
 
     if (collection !== undefined) {
-      return yield get(this, 'lazy').query(collection, 'follow', {
-        filter: storeFilter,
-        isRelationship: true
-      }).then(follow => set(this, 'relationship', get(follow, 'firstObject')));
+      return yield get(this, 'coalesce').query(collection, 'follow', {
+        lookupKey: 'followed.id',
+        filterKey: 'followed'
+      }, { filter: storeFilter, include: 'followed' })
+        .then(follow => set(this, 'relationship', get(follow, 'firstObject')));
     }
 
     return yield get(this, 'store').query('follow', {
