@@ -4,6 +4,7 @@ import service from 'ember-service/inject';
 
 export default Route.extend({
   metrics: service(),
+  session: service(),
 
   model({ id }) {
     return get(this, 'store').findRecord('post', id, {
@@ -22,6 +23,7 @@ export default Route.extend({
         verb: 'view',
         object: { id: `Post:${get(model, 'id')}` }
       }],
+      feed_id: `post:${get(model, 'id')}`,
       location: get(this, 'routeName')
     });
   }
