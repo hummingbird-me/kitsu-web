@@ -24,8 +24,38 @@
           </li>
         </ul>
 
-      <ul class="nav navbar-nav pull-sm-right">
+      <ul class="nav navbar-nav pull-sm-right navbar-buttons">
         {{#if session.hasUser}}
+          <li class="nav-item">
+            <form class="site-search" action="/searchresults.asp" method="get" name="SearchBoxForm">
+    				    <input id="search" class="site-search__input" type="text" name="Search" value="" placeholder="Search...">
+    				    <label for="search" class="site-search__icon">
+    				    	<span class="icon">
+                    {{svg-jar "search"}}
+                  </span>
+    				    </label>
+    				    <button class="site-search__submit" type="submit" name="Submit" value=""></button>
+    				</form>
+
+            <span style="display: none">
+              <svg xmlns="http://www.w3.org/2000/svg">
+              <symbol viewBox="0 0 512 512" id="icon-search">
+                <title>search</title>
+                <path id="search-magnifier-2-icon" d="M460.355,421.59L353.844,315.078c20.041-27.553,31.885-61.437,31.885-98.037	C385.729,124.934,310.793,50,218.686,50C126.58,50,51.645,124.934,51.645,217.041c0,92.106,74.936,167.041,167.041,167.041
+                	c34.912,0,67.352-10.773,94.184-29.158L419.945,462L460.355,421.59z M100.631,217.041c0-65.096,52.959-118.056,118.055-118.056
+                	c65.098,0,118.057,52.959,118.057,118.056c0,65.096-52.959,118.056-118.057,118.056C153.59,335.097,100.631,282.137,100.631,217.041 	z" /> </symbol>
+              </svg>
+            </span>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link notifications notifications--present" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <!-- {{svg-jar "bell"}} -->
+              <span>20</span>
+            </a>
+            <div class="dropdown-menu">
+              notifications!
+            </div>
+          </li>
           <li class="nav-item">
             <a href="#" class="nav-link avatar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src={{image session.account.avatar}} class="avatar-image avatar-image--small">
