@@ -48,6 +48,7 @@ module.exports = function(defaults) {
   app.import('bower_components/humanize-duration/humanize-duration.js');
   app.import('bower_components/flickity/dist/flickity.min.css');
   app.import('bower_components/flickity/dist/flickity.pkgd.min.js');
+  app.import('bower_components/clipboard/dist/clipboard.min.js');
 
   return app.toTree();
 };

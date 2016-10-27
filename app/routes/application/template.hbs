@@ -1,6 +1,11 @@
 {{! header }}
 {{application/components/site-header}}
 
+{{! loading indicator }}
+{{#if routeIsLoading}}
+  <h1>LOADING</h1>
+{{/if}}
+
 {{! content }}
 <div class="container global-container">
   <div class="row global-row">

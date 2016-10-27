@@ -92,10 +92,8 @@
             <div class="status-select">
               {{library-dropdown/entry
                 entry=entry
-                media=entry.media
                 update=(queue
                   (action (mut entry.status))
-                  (action (mut entry.progress) (or entry.media.episodeCount entry.progress))
                   (perform saveEntry)
                 )
                 delete=(action "delete")

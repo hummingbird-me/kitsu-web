@@ -1,0 +1,37 @@
+<div class="media-left">
+  <a href={{href-to "users.index" comment.user.name}}>
+    <img class="media-object" src={{image comment.user.avatar}}>
+  </a>
+</div>
+<div class="media-body">
+  <h4 class="media-heading">
+    {{comment.user.name}}
+  </h4>
+  <span class="comment-body">
+    {{#if comment.isNew}}
+      {{comment.content}}
+    {{else}}
+      {{{comment.contentFormatted}}}
+    {{/if}}
+  </span>
+  <div class="stream-item-activity">
+    <!-- NYI on API -->
+    <a href="#" class="like-stream-item">
+      <span class="heart-wrapper"></span>
+      <span class="sm-comment-count">3</span>
+    </a>
+    <small class="comment-time">
+      {{moment-from-now comment.createdAt}}
+    </small>
+    <span class="more-wrapper">
+      <a href="#" class="more-drop" id="moreDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{svg-jar "more"}}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="moreDrop">
+        <a class="dropdown-item" href="#">Report Post</a>
+        <a class="dropdown-item" href="#">Mute @{{comment.user.name}}</a>
+        <a class="dropdown-item" href="#">Block @{{comment.user.name}}</a>
+      </div>
+    </span>
+  </div>
+</div>

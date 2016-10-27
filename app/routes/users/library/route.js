@@ -59,17 +59,6 @@ export default Route.extend(PaginationMixin, {
   },
 
   actions: {
-    loading(transition) {
-      const controller = this.controllerFor(get(this, 'routeName'));
-      set(controller, 'isLoading', true);
-      transition.promise.finally(() => set(controller, 'isLoading', false));
-    },
-
-    updateMedia(media) {
-      const controller = this.controllerFor(get(this, 'routeName'));
-      set(controller, 'media', media);
-    },
-
     saveEntry(entry) {
       if (get(entry, 'validations.isValid') === true) {
         return entry.save()

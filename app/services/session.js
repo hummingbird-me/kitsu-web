@@ -2,12 +2,14 @@ import Session from 'ember-simple-auth/services/session';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
+import { and } from 'ember-computed';
 import jQuery from 'jquery';
 
 export default Session.extend({
   account: undefined,
   ajax: service(),
   store: service(),
+  hasUser: and('isAuthenticated', 'account'),
 
   authenticateWithOAuth2(identification, password) {
     return this.authenticate('authenticator:oauth2', identification, password);
@@ -18,9 +20,9 @@ export default Session.extend({
   },
 
   isCurrentUser(user) {
-    const isAuthenticated = get(this, 'isAuthenticated');
+    const hasUser = get(this, 'hasUser');
     const userId = get(this, 'account.id');
-    return isAuthenticated && userId === get(user, 'id');
+    return hasUser && userId === get(user, 'id');
   },
 
   getCurrentUser() {

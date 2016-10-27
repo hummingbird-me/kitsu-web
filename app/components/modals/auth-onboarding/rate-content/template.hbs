@@ -27,12 +27,13 @@
     <div class="tab-pane active row" id="anime" role="tabpanel">
       <div class="modal-grid row">
         {{#if query.isRunning}}
-          {{loading-spinner}}
+          {{loading-spinner size="large"}}
         {{else}}
           {{#each media as |anime|}}
             <div class="onboarding-media col-sm-3">
               <img src={{image anime.posterImage}}>
               {{star-rating
+                class="rating-container"
                 rating=(compute (action "getRating") anime)
                 onClick=(action "createLibraryEntry" anime)}}
             </div>
@@ -44,12 +45,13 @@
     <div class="tab-pane row" id="manga" role="tabpanel">
       <div class="modal-grid row">
         {{#if query.isRunning}}
-          {{loading-spinner}}
+          {{loading-spinner size="large"}}
         {{else}}
           {{#each media as |manga|}}
             <div class="onboarding-media col-sm-3">
               <img src={{image manga.posterImage}}>
               {{star-rating
+                class="rating-container"
                 rating=(compute (action "getRating") manga)
                 onClick=(action "createLibraryEntry" manga)}}
             </div>

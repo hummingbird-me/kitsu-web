@@ -7,6 +7,7 @@ import computed from 'ember-computed';
 import { scheduleOnce } from 'ember-runloop';
 
 export default Component.extend({
+  classNames: ['quick-update'],
   session: service(),
   store: service(),
 
@@ -30,7 +31,7 @@ export default Component.extend({
     set(this, 'entries', items);
   }).cancelOn('willDestroyElement').drop(),
 
-  didInsertElement() {
+  init() {
     this._super(...arguments);
     get(this, 'getEntriesTask').perform().then(() => {
       scheduleOnce('afterRender', () => {

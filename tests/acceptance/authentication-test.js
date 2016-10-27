@@ -16,6 +16,7 @@ moduleForAcceptance('Acceptance | Authentication', {
   beforeEach() {
     jQuery('#ember-testing').append('<div id="wormhole"></div>');
     this.server = new Pretender(function() {
+      this.get('/api/edge/feeds/timeline/1', json(200, { data: [] }));
       this.post('/api/edge/users', json(201, new JaQuery(singleUser).unwrap()));
       this.get('/api/edge/users', json(200, new JaQuery(usersResponse).unwrap()));
     });

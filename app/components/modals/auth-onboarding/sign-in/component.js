@@ -31,6 +31,9 @@ export default Component.extend({
           .then(() => get(this, 'close')())
           .catch(() => set(this, 'changeComponent', 'sign-up'));
       });
+    },
+    changeComponent(component) {
+      invokeAction(this, 'changeComponent', component);
     }
   }
 });

@@ -58,6 +58,9 @@ module.exports = function(environment) {
       defaultLocale: 'en'
     },
 
+    moment: {
+      allowEmpty: true
+    }
   };
 
   if (environment === 'development') {

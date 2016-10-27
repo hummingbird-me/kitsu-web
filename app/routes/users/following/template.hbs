@@ -6,12 +6,12 @@
         <h4 class="card-title">{{follow.followed.name}}</h4>
         <p class="card-text">{{follow.followed.about}}</p>
         {{#if (not (is-self follow.followed))}}
-          {{follow-button user=follow.followed}}
+          {{follow-button user=follow.followed lazyCollection="followingCollection"}}
         {{/if}}
       </div>
     </div>
   {{else}}
-    <p>No one is following this person.</p>
+    <p>This person is not following anyone.</p>
   {{/each}}
 
   {{pagination-scrolling

@@ -9,7 +9,7 @@
           {{/dropdown.button}}
           {{#dropdown.menu}}
             {{#each mediaList as |_media|}}
-              {{#dropdown.menu-item onClick=(route-action "updateMedia" _media)}}
+              {{#dropdown.menu-item onClick=(action (mut media) _media)}}
                 {{t "users.library.library" type=(t (concat "media." _media ".name"))}}
               {{/dropdown.menu-item}}
             {{/each}}

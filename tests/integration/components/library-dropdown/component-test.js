@@ -9,11 +9,10 @@ moduleForComponent('library-dropdown', 'Integration | Component | library-dropdo
 });
 
 test('it lists the correct statuses', function(assert) {
-  this.set('entry', { status: 'planned' });
+  this.set('entry', { status: 'planned', media: { constructor: { modelName: 'anime' } } });
   this.set('media', { constructor: { modelName: 'anime' } });
   this.render(hbs`{{library-dropdown/entry
     entry=entry
-    media=media
   }}`);
 
   const statuses = libraryStatus.getEnumKeys();
@@ -32,7 +31,7 @@ test('it lists the correct statuses', function(assert) {
 test('actions are invoked based on entry status', function(assert) {
   assert.expect(3);
 
-  this.set('entry', { status: 'planned' });
+  this.set('entry', { status: 'planned', media: { constructor: { modelName: 'anime' } } });
   this.set('media', { constructor: { modelName: 'anime' } });
   this.set('create', status => assert.equal(status, 'current'));
   this.set('update', status => assert.equal(status, 'current'));
@@ -40,7 +39,6 @@ test('actions are invoked based on entry status', function(assert) {
 
   this.render(hbs`{{library-dropdown/entry
     entry=entry
-    media=media
     create=create
     update=update
     delete=delete

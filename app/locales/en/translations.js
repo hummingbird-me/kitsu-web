@@ -1,10 +1,5 @@
-/**
- * Translation file for English.
- */
 export default {
-  /**
-   * Keys of `titles` must match their route name.
-   */
+  // Keys of `titles` must match the route name
   titles: {
     anime: {
       index: 'Explore Anime'
@@ -21,8 +16,8 @@ export default {
     },
     settings: 'Settings'
   },
-  'auth-modal': {
-    'sign-up': {
+  auth: {
+    signUp: {
       submit: {
         base: 'Let\'s get some basic info first',
         first: 'Very witty - email is next!',
@@ -41,12 +36,18 @@ export default {
       mark: 'Mark',
       episode: 'Ep. {{num}}',
       complete: 'Complete'
+    },
+    streamOnboarding: {
+      welcome: 'Hey {{user}}, welcome to Kitsu!',
+      about: `This is the global activity feed. It's populated by the recent activity from all of Kitsu's users - even you!
+        Once you've had a chance to follow a few more interesting users, we'll switch your default feed from Global to Following.`,
+      action: 'Why don\'t you try creating a feed post to introduce yourself using the form below? You can say something as simple as \'Hey everyone, I\'m new to Kitsu\', or you can show us how creative and witty you are!'
     }
   },
   media: {
     anime: {
       name: 'Anime',
-      'show-type': {
+      type: {
         TV: 'TV',
         special: 'Special',
         ONA: 'OVA',
@@ -57,7 +58,7 @@ export default {
     },
     manga: {
       name: 'Manga',
-      'manga-type': {
+      type: {
         manga: 'Manga',
         novel: 'Novel',
         manhua: 'Manhua',
@@ -127,6 +128,12 @@ export default {
       reviews: 'Reviews',
       followers: 'Followers',
       following: 'Following'
+    },
+    streamOnboarding: {
+      welcome: 'Hey {{user}}, this page is all about YOU!',
+      about: `As you continue to use Kitsu your <strong>Personal Feed</strong> below will begin to populate with the anime and manga you've watched, read, completed and plan to check out.
+        You can also post text, images and videos to your feed using the form below. Your posts will be seen and appreciated by your followers and users from the global feed.`,
+      action: 'Make yourself at home! Upload an avatar and cover image! Click <a href="#">Edit Profile</a> above to get started.'
     },
     edit: {
       editCover: 'Change your cover photo',
@@ -207,6 +214,18 @@ export default {
       browse: 'Browse {{type}}'
     }
   },
+  feeds: {
+    library: {
+      updated: 'moved this to {{status}}',
+      rated: 'rated it',
+      progressed: {
+        anime: 'watched episode {{progress}}',
+        manga: 'read chapter {{progress}}'
+      },
+      reviewed: 'wrote a {{link}}',
+      review: 'review'
+    }
+  },
   // ember-power-select locale
   selects: {
     loading: 'Loading...',
@@ -254,6 +273,8 @@ export default {
         numbers: 'This field must not be made up of numbers entirely',
         starts: 'This field must start with a letter or number'
       }
-    }
+    },
+    load: 'There was an issue loading the content',
+    contentEmpty: 'There doesn\'t seem to be anything here'
   }
 };

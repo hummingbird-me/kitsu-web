@@ -44,9 +44,9 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    assert('Must pass a `media` attribute to `{{library-dropdown/new}}`',
+    assert('Must pass a `media` attribute to `{{library-dropdown/media}}`',
       get(this, 'media') !== undefined);
-    assert('Do not pass a `entry` attribute to `{{library-dropdown/new}}`',
+    assert('Do not pass a `entry` attribute to `{{library-dropdown/media}}`',
       get(this, 'entry') === undefined);
     get(this, 'requestEntry').perform();
   }

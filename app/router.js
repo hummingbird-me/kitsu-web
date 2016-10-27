@@ -37,6 +37,7 @@ RouterInstance.map(function() {
     this.route('following');
   });
 
+  this.route('posts', { path: '/posts/:id' });
   this.route('settings');
 
   // These must remain at the bottom of the RouterInstance map

@@ -1,0 +1,16 @@
+{{#if (not readOnly)}}
+  {{stream-feed/add-content
+    placeholder="Write here..."
+    onCreate=(perform createPost)
+  }}
+{{/if}}
+
+{{#if getFeedData.isRunning}}
+  {{loading-spinner size="large"}}
+{{else}}
+  {{#each feed as |group|}}
+    {{component (concat "stream-feed/items/" (feed-type group.activities)) group=group readOnly=readOnly}}
+  {{else}}
+    {{t "errors.contentEmpty"}}
+  {{/each}}
+{{/if}}

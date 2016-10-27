@@ -1,5 +1,6 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
+import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
@@ -39,16 +40,21 @@ export default Route.extend(ApplicationRouteMixin, {
   },
 
   _getCurrentUser() {
-    const isAuthenticated = get(this, 'session.isAuthenticated');
-    if (isAuthenticated === true) {
-      return get(this, 'session').getCurrentUser()
-        .then((user) => {
-          get(this, 'metrics').identify({
-            distinctId: get(user, 'id'),
-            alias: get(user, 'name')
-          });
-        })
-        .catch(() => get(this, 'session').invalidate());
-    }
+    return get(this, 'session').getCurrentUser()
+      .then((user) => {
+        get(this, 'metrics').identify({
+          distinctId: get(user, 'id'),
+          alias: get(user, 'name')
+        });
+      })
+      .catch(() => get(this, 'session').invalidate());
+  },
+
+  actions: {
+    loading(transition) {
+      const controller = this.controllerFor(get(this, 'routeName'));
+      set(controller, 'routeIsLoading', true);
+      transition.promise.finally(() => set(controller, 'routeIsLoading', false));
+    },
   }
 });
