@@ -2,9 +2,11 @@ import { moduleFor, test } from 'ember-qunit';
 import sinon from 'sinon';
 
 moduleFor('metrics-adapter:stream', 'stream adapter', {
+  needs: ['service:metrics'],
+
   beforeEach() {
     this.sandbox = sinon.sandbox.create();
-    this.config = { testing: { apiKey: 'xxxx', token: 'xxxx' } };
+    this.config = { test: { apiKey: 'xxxx', token: 'xxxx' } };
   },
 
   afterEach() {
@@ -24,22 +26,22 @@ test('#identify calls setUser with right data', function(assert) {
 });
 
 test('#trackImpression calls trackImpression with right data', function(assert) {
-  const adapter = this.subject({ config: this.config, userSet: true });
+  const adapter = this.subject({ config: this.config, userSet: true, router: { currentRouteName: 'hello' } });
   this.sandbox.stub(window, 'StreamAnalytics', () => function() { });
   const stub = this.sandbox.stub(adapter.get('client'), 'trackImpression', () => true);
   adapter.trackImpression({
     content_list: ['feed:1234', 'feed:5678']
   });
-  assert.ok(stub.calledWith({ content_list: ['feed:1234', 'feed:5678'] }));
+  assert.ok(stub.calledWith({ content_list: ['feed:1234', 'feed:5678'], location: 'hello' }));
 });
 
 test('#trackEngagement calls trackEngagement with right data', function(assert) {
-  const adapter = this.subject({ config: this.config, userSet: true });
+  const adapter = this.subject({ config: this.config, userSet: true, router: { currentRouteName: 'hello' } });
   this.sandbox.stub(window, 'StreamAnalytics', () => function() { });
   const stub = this.sandbox.stub(adapter.get('client'), 'trackEngagement', () => true);
   adapter.trackEngagement({
     label: 'like',
     content: 'post:1234'
   });
-  assert.ok(stub.calledWith({ label: 'like', content: 'post:1234' }));
+  assert.ok(stub.calledWith({ label: 'like', content: 'post:1234', location: 'hello' }));
 });

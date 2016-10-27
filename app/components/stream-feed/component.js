@@ -17,15 +17,18 @@ export default Component.extend({
   }),
 
   getFeedData: task(function* (type, id) {
-    // TODO: Remove ridiculous include when API links work
     return yield get(this, 'store').query('feed', {
       type,
       id,
       include: [
-        'media', 'actor', 'unit',
-        'subject.user', 'subject.target_user', 'subject.post_likes.user', 'subject.comments.user',
+        // activity
+        'media,actor,unit,subject',
+        // posts
+        'subject.user,subject.target_user,subject.comments.user,subject.post_likes.user',
+        // library-entry
         'subject.media',
-        'subject.follower', 'subject.followed'
+        // follow
+        'subject.follower,subject.followed'
       ].join(',')
     });
   }).restartable(),

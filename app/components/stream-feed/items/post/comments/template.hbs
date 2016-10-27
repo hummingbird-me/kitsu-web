@@ -1,0 +1,22 @@
+{{#if count}}
+  <ul class="media-list">
+    {{#each comments as |comment|}}
+      {{stream-feed/items/post/comment
+        comment=comment
+        tagName="li"
+        class="media"}}
+    {{/each}}
+  </ul>
+{{/if}}
+
+{{#if (not readOnly)}}
+  <div class="add-comment-wrapper">
+    {{one-way-text
+      keyEvents=(hash
+        13=(action "createComment")
+      )
+      placeholder="Leave a comment..."
+      class="form-control add-comment"
+    }}
+  </div>
+{{/if}}

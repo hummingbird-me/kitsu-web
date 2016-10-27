@@ -86,8 +86,6 @@ export default Component.extend(ClipboardMixin, {
   }).drop(),
 
   createComment: task(function* (content) {
-    // clear value (TODO: Will eventually be compenentized)
-    this.$('.add-comment').val('');
     const comment = get(this, 'store').createRecord('comment', {
       content,
       post: get(this, 'post'),
