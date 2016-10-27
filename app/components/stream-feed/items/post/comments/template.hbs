@@ -9,14 +9,12 @@
   </ul>
 {{/if}}
 
-{{#if (not readOnly)}}
-  <div class="add-comment-wrapper">
-    {{one-way-text
-      keyEvents=(hash
-        13=(action "createComment")
-      )
-      placeholder="Leave a comment..."
-      class="form-control add-comment"
-    }}
-  </div>
-{{/if}}
+<div class="add-comment-wrapper">
+  {{one-way-text
+    keyEvents=(hash
+      13=(action "createComment")
+    )
+    placeholder="Leave a comment..."
+    class="form-control add-comment"
+  }}
+</div>
