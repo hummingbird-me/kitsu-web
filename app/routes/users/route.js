@@ -11,5 +11,9 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
         .then(records => get(records, 'firstObject'));
     }
     return get(this, 'store').findRecord('user', name);
+  },
+
+  serialize(model) {
+    return { name: get(model, 'name') };
   }
 });

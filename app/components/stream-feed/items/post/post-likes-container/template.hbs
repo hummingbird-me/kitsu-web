@@ -8,7 +8,7 @@
     <ul class="stream-item-participants">
       {{#each (take 4 likes) as |liker|}}
         <li class="stream-like {{if liker.isNew "new-like"}} {{if liker.isDeleted "removed-like"}}">
-          <a class="like-avatar" href={{href-to "users.index" liker.user.name}}>
+          <a class="like-avatar" href={{href-to "users.index" liker.user}}>
             <img src={{image liker.user.avatar}}>
           </a>
         </li>

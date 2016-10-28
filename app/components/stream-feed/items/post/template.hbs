@@ -1,15 +1,15 @@
 {{#if post}}
   <div class="stream-item-wrapper col-sm-12">
     <div class="stream-item--title-block">
-      <a href={{href-to "users.index" post.user.name}} class="author-avatar">
+      <a href={{href-to "users.index" post.user}} class="author-avatar">
         <img src={{image post.user.avatar}}>
       </a>
       <div class="author-info">
-        <a class="author-name" href={{href-to "users.index" post.user.name}}>{{post.user.name}}</a>
+        <a class="author-name" href={{href-to "users.index" post.user}}>{{post.user.name}}</a>
         <!-- TODO @Josh - style targeted posts -->
         {{#if post.targetUser}}
           ->
-          <a href={{href-to "users.index" post.targetUser.name}} class="author-name">
+          <a href={{href-to "users.index" post.targetUser}} class="author-name">
             {{post.targetUser.name}}
           </a>
         {{/if}}
