@@ -20,7 +20,7 @@ export default Mixin.create({
    */
   nextLink: computed('model', {
     get() {
-      const model = get(this, 'model');
+      const model = get(this, 'model') || {};
       const links = get(model, 'links') || {};
       return get(links, 'next') || undefined;
     }

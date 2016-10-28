@@ -2,7 +2,8 @@
   <div class="feed-container row">
     <!-- Feed Posts -->
     <div class="feed-stream col-sm-8">
-      {{#if (and (is-self user) shouldShowOnboarding)}}
+      <!-- TODO: Only show if they haven't uploaded an avatar -->
+      {{#if (is-self user)}}
         {{users/components/stream-onboarding}}
       {{/if}}
 
@@ -13,7 +14,7 @@
     </div>
 
     <div class="feed-sidebar col-sm-4">
-      <!-- TODO: Componentize -->
+      <!-- TODO: Componentize (NYI Implemented on Server) -->
       {{#if (is-self user)}}
         <div class="checklist card">
           <h4>Set-Up Your Feed</h4>

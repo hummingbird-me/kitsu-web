@@ -12,10 +12,10 @@
           {{#pagination-manual
             model=comments
             limit=5
-            update=(action "loadComments")
+            update=(action "loadComments") as |active|
           }}
-            <a href="#">
-              Load More Comments
+            <a href="#" class={{if (not active) "is-disabled"}}>
+              Load Previous Comments
             </a>
           {{/pagination-manual}}
         </div>

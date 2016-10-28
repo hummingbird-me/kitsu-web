@@ -4,6 +4,7 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
+import { prependObjects } from 'client/utils/array-utils';
 
 export default Component.extend({
   classNames: ['stream-item-comments'],
@@ -30,19 +31,20 @@ export default Component.extend({
       post: get(this, 'post'),
       user: get(this, 'session.account')
     });
-    get(this, 'comments').insertAt(0, comment);
+    get(this, 'comments').addObject(comment);
+    invokeAction(this, 'onCreate');
     yield comment.save().then((record) => {
-      invokeAction(this, 'onCreate', record);
-    }).catch(() => {
+      invokeAction(this, 'onSave', record);
+    }).catch((error) => {
       get(this, 'comments').removeObject(comment);
-      invokeAction(this, 'onError', comment);
+      invokeAction(this, 'onSave', comment, error);
     });
   }).drop(),
 
   init() {
     this._super(...arguments);
     get(this, 'getComments').perform().then((comments) => {
-      const content = comments.toArray();
+      const content = comments.toArray().reverse();
       set(content, 'links', get(comments, 'links'));
       set(this, 'comments', content);
     });
@@ -51,7 +53,7 @@ export default Component.extend({
   actions: {
     loadComments(records, links) {
       const content = get(this, 'comments').toArray();
-      content.addObjects(records);
+      prependObjects(content, records);
       set(this, 'comments', content);
       set(this, 'comments.links', links);
     }

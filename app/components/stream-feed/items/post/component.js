@@ -1,11 +1,8 @@
 import Component from 'ember-component';
-import { task } from 'ember-concurrency';
 import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import computed from 'ember-computed';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
-import { isEmpty } from 'ember-utils';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
 import jQuery from 'jquery';
@@ -37,53 +34,6 @@ export default Component.extend(ClipboardMixin, {
     const url = `${host}${link}`;
     return `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   }),
-
-  isLiked: computed('post.postLikes.[]', 'session.account', {
-    get() {
-      if (get(this, 'session.isAuthenticated') === false ||
-        get(this, 'post.postLikes') === undefined) {
-        return false;
-      }
-      const likes = get(this, 'post.postLikes');
-      const user = get(this, 'session.account');
-      return likes.findBy('user.id', get(user, 'id')) !== undefined;
-    }
-  }).readOnly(),
-
-  toggleLike: task(function* () {
-    if (get(this, 'session.isAuthenticated') === false) {
-      return get(this, 'session.signUpModal')();
-    }
-
-    const user = get(this, 'session.account');
-    const post = get(this, 'post');
-    if (get(this, 'isLiked') === true) {
-      const like = get(this, 'post.postLikes').findBy('user.id', get(user, 'id'));
-      post.decrementProperty('postLikesCount');
-      yield like.destroyRecord().catch(() => {
-        like.rollbackAttributes();
-        post.incrementProperty('postLikesCount');
-      });
-    } else {
-      // could be attempting to like a non-saved post
-      if (isEmpty(get(this, 'post.id')) === true) {
-        return;
-      }
-      const like = get(this, 'store').createRecord('post-like', {
-        post,
-        user: get(this, 'session.account')
-      });
-      post.incrementProperty('postLikesCount');
-      yield like.save()
-        .then((record) => {
-          this._streamAnalytics('like', { id: `PostLike:${get(record, 'id')}` });
-        })
-        .catch(() => {
-          get(post, 'postLikes').removeObject(like);
-          post.decrementProperty('postLikesCount');
-        });
-    }
-  }).drop(),
 
   _streamAnalytics(label, verb, object) {
     if (jQuery.isPlainObject(verb) === true) {
@@ -124,14 +74,36 @@ export default Component.extend(ClipboardMixin, {
       this._streamAnalytics('click', verb, { id: `Post:${get(this, 'post.id')}` });
     },
 
-    createdComment(record) {
+    createdComment() {
       get(this, 'post').incrementProperty('commentsCount');
-      this._streamAnalytics('comment', { id: `Comment:${get(record, 'id')}` });
     },
 
-    erroredComment(record) {
-      get(this, 'post').decrementProperty('commentsCount');
-      get(this, 'post.comments').removeObject(record);
+    savedComment(record, error) {
+      if (error !== undefined) {
+        get(this, 'post').decrementProperty('commentsCount');
+      } else {
+        this._streamAnalytics('comment', { id: `Comment:${get(record, 'id')}` });
+      }
+    },
+
+    createdPostLike() {
+      get(this, 'post').incrementProperty('postLikesCount');
+    },
+
+    savedPostLike(record, error) {
+      if (error !== undefined) {
+        get(this, 'post').decrementProperty('postLikesCount');
+      } else {
+        this._streamAnalytics('like', { id: `PostLike:${get(record, 'id')}` });
+      }
+    },
+
+    destroyedPostLike(record, error) {
+      if (error !== undefined) {
+        record.rollbackAttributes();
+      } else {
+        get(this, 'post').decrementProperty('postLikesCount');
+      }
     }
   }
 });

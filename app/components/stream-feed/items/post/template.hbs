@@ -28,27 +28,13 @@
       {{/if}}
     </div>
 
-    <div class="stream-item-activity">
-      <a href="#" class="like-stream-item {{if isLiked "is-liked"}}" {{action (perform toggleLike)}}>
-        <span class="heart-wrapper"></span>
-      </a>
-      {{#if post.postLikes}}
-        <ul class="stream-item-participants">
-          {{#each (take 4 post.postLikes) as |liker|}}
-            <li class="stream-like {{if liker.isNew "new-like"}} {{if liker.isDeleted "removed-like"}}">
-              <a class="like-avatar" href={{href-to "users.index" liker.user.name}}>
-                <img src={{image liker.user.avatar}}>
-              </a>
-            </li>
-          {{/each}}
-          {{#if (gt post.postLikesCount 4)}}
-            <li class="stream-like-count">
-              <a href="#">{{post.postLikesCount}}</a>
-            </li>
-          {{/if}}
-        </ul>
-      {{/if}}
-    </div>
+    <!-- Post Likes -->
+    {{stream-feed/items/post/post-likes-container
+      post=post
+      onCreate=(action "createdPostLike")
+      onSave=(action "savedPostLike")
+      onDestroy=(action "destroyedPostLike")
+    }}
 
     <div class="stream-item-options">
       <a href={{tweetLink}} target="_blank" onclick={{action "trackClick" "share"}}>
@@ -75,11 +61,12 @@
     </div>
   </div>
 
-  {{stream-feed/items/post/comments
-    comments=post.comments
-    count=post.commentsCount
+  <!-- Comments -->
+  {{stream-feed/items/post/comments-container
+    post=post
     readOnly=readOnly
-    onCreate=(perform createComment)
+    onCreate=(action "createdComment")
+    onSave=(action "savedComment")
   }}
 {{else}}
   {{t "errors.load"}}
