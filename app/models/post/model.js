@@ -16,7 +16,7 @@ export default Base.extend({
   media: belongsTo('media'),
   spoiledUnit: belongsTo('base'),
   targetUser: belongsTo('user'),
-  user: belongsTo('user', { async: false }),
+  user: belongsTo('user'),
 
   comments: hasMany('comment', { inverse: 'post' }),
   postLikes: hasMany('post-like', { inverse: 'post' })

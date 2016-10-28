@@ -9,6 +9,6 @@ export default Model.extend({
   createdAt: attr('date', { defaultValue() { return new Date(); } }),
   deletedAt: attr('date'),
 
-  user: belongsTo('user', { async: false }),
-  post: belongsTo('post', { inverse: 'comments', async: false })
+  user: belongsTo('user'),
+  post: belongsTo('post', { inverse: 'comments' })
 });

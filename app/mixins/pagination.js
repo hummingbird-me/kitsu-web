@@ -20,7 +20,7 @@ export default Mixin.create({
    */
   nextLink: computed('model', {
     get() {
-      const model = get(this, 'model');
+      const model = get(this, 'model') || {};
       const links = get(model, 'links') || {};
       return get(links, 'next') || undefined;
     }
@@ -58,9 +58,15 @@ export default Mixin.create({
     url.forEach((param) => {
       const option = param.split('=');
       if (option[0].includes('[') === true) {
+        let value = option[1];
         const match = option[0].match(/(.+)\[(.+)\]/);
+        if (match[1] === 'page' && match[2] === 'limit') {
+          if (get(this, 'limit') !== undefined) {
+            value = get(this, 'limit');
+          }
+        }
         filter[match[1]] = filter[match[1]] || {};
-        filter[match[1]][match[2]] = decodeURIComponent(option[1]);
+        filter[match[1]][match[2]] = decodeURIComponent(value);
       } else {
         filter[option[0]] = decodeURIComponent(option[1]);
       }

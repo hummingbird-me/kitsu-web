@@ -30,13 +30,11 @@
           {{loading-spinner size="large"}}
         {{else}}
           {{#each media as |anime|}}
-            <div class="onboarding-media col-sm-3">
-              <img src={{image anime.posterImage}}>
-              {{star-rating
-                class="rating-container"
-                rating=(compute (action "getRating") anime)
-                onClick=(action "createLibraryEntry" anime)}}
-            </div>
+            {{modals/auth-onboarding/rate-content/item
+              class="onboarding-media col-sm-3"
+              item=anime
+              onClick=(action "createLibraryEntry" anime)
+            }}
           {{/each}}
         {{/if}}
       </div>
@@ -48,13 +46,11 @@
           {{loading-spinner size="large"}}
         {{else}}
           {{#each media as |manga|}}
-            <div class="onboarding-media col-sm-3">
-              <img src={{image manga.posterImage}}>
-              {{star-rating
-                class="rating-container"
-                rating=(compute (action "getRating") manga)
-                onClick=(action "createLibraryEntry" manga)}}
-            </div>
+            {{modals/auth-onboarding/rate-content/item
+              class="onboarding-media col-sm-3"
+              item=manga
+              onClick=(action "createLibraryEntry" manga)
+            }}
           {{/each}}
         {{/if}}
       </div>

@@ -11,6 +11,7 @@ export default Component.extend(IsOwnerMixin, {
   isExpanded: false,
   session: service(),
   i18n: service(),
+  metrics: service(),
   media: alias('entry.media'),
   user: alias('entry.user'),
 

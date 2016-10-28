@@ -1,0 +1,67 @@
+<!-- TODO: Show placeholder when user hasn't finished checklist -->
+<!-- TODO: i18n -->
+<h6 class="panel-heading">About Me</h6>
+<div class="about-me-profiles">
+  <!-- TODO: NYI on server -->
+  <span>{{svg-jar "twitter"}}</span>
+  <span>{{svg-jar "facebook"}}</span>
+  <span>{{svg-jar "twitch"}}</span>
+  <span>{{svg-jar "youtube"}}</span>
+</div>
+<p>{{user.about}}</p>
+<ul class="about-me-stats">
+  <li class="about-stat">
+    <span class="stat-icon">
+      {{svg-jar "sm-heart"}}
+    </span>
+    <strong>Waifu:</strong>
+    <span>
+      {{#if user.waifu}}
+        {{user.waifu.iamge}}
+        {{user.waifu.name}}
+      {{else}}
+        None
+      {{/if}}
+    </span>
+  </li>
+  <li class="about-stat about--gender">
+    <span class="stat-icon">
+      {{svg-jar "gender"}}
+    </span>
+    <strong>Gender:</strong>
+    <span>{{gender}}</span>
+  </li>
+  <li class="about-stat about--location">
+    <span class="stat-icon">
+      {{svg-jar "location"}}
+    </span>
+    <strong>Location:</strong>
+    <span>
+      {{#if user.location}}
+        {{user.location}}
+      {{else}}
+        {{t "users.about.empty"}}
+      {{/if}}
+    </span>
+  </li>
+  <li class="about-stat about--birthday">
+    <span class="stat-icon">
+      {{svg-jar "cake"}}
+    </span>
+    <strong>Age:</strong>
+    <span>
+      {{#if user.birthday}}
+        {{age}} ({{moment-format user.birthday "MMMM Do, YYYY"}})
+      {{else}}
+        {{t "users.about.empty"}}
+      {{/if}}
+    </span>
+  </li>
+  <li class="about-stat about--cal">
+    <span class="stat-icon">
+      {{svg-jar "cal"}}
+    </span>
+    <strong>Join Date:</strong>
+    <span>{{moment-format user.createdAt "MMMM Do, YYYY"}} ({{moment-from-now user.createdAt}})</span>
+  </li>
+</ul>

@@ -1,15 +1,15 @@
 {{#if post}}
   <div class="stream-item-wrapper col-sm-12">
     <div class="stream-item--title-block">
-      <a href={{href-to "users.index" post.user.name}} class="author-avatar">
+      <a href={{href-to "users.index" post.user}} class="author-avatar">
         <img src={{image post.user.avatar}}>
       </a>
       <div class="author-info">
-        <a class="author-name" href={{href-to "users.index" post.user.name}}>{{post.user.name}}</a>
+        <a class="author-name" href={{href-to "users.index" post.user}}>{{post.user.name}}</a>
         <!-- TODO @Josh - style targeted posts -->
         {{#if post.targetUser}}
           ->
-          <a href={{href-to "users.index" post.targetUser.name}} class="author-name">
+          <a href={{href-to "users.index" post.targetUser}} class="author-name">
             {{post.targetUser.name}}
           </a>
         {{/if}}
@@ -28,34 +28,20 @@
       {{/if}}
     </div>
 
-    <div class="stream-item-activity">
-      <a href="#" class="like-stream-item {{if isLiked "is-liked"}}" {{action (perform toggleLike)}}>
-        <span class="heart-wrapper"></span>
-      </a>
-      {{#if post.postLikes}}
-        <ul class="stream-item-participants">
-          {{#each (take 4 (reject-by "isError" true post.postLikes)) as |liker|}}
-            <li class="stream-like {{if liker.isNew "new-like"}} {{if (or liker.isDeleted liker.isError) "removed-like"}}">
-              <a class="like-avatar" href={{href-to "users.index" liker.user.name}}>
-                <img src={{image liker.user.avatar}}>
-              </a>
-            </li>
-          {{/each}}
-          {{#if (gt post.postLikesCount 4)}}
-            <li class="stream-like-count">
-              <a href="#">{{post.postLikesCount}}</a>
-            </li>
-          {{/if}}
-        </ul>
-      {{/if}}
-    </div>
+    <!-- Post Likes -->
+    {{stream-feed/items/post/post-likes-container
+      post=post
+      onCreate=(action "createdPostLike")
+      onSave=(action "savedPostLike")
+      onDestroy=(action "destroyedPostLike")
+    }}
 
     <div class="stream-item-options">
-      <a href={{tweetLink}} target="_blank">
+      <a href={{tweetLink}} target="_blank" onclick={{action "trackClick" "share"}}>
         {{svg-jar "l-twitter"}}
         Tweet
       </a>
-      <a href={{facebookLink}} target="_blank">
+      <a href={{facebookLink}} target="_blank" onclick={{action "trackClick" "share"}}>
         {{svg-jar "l-facebook"}}
         Share
       </a>
@@ -64,7 +50,7 @@
           {{svg-jar "more"}}
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="moreDrop">
-          <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "posts" post.id)}} onclick={{action "preventDefault"}}>
+          <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "posts" post.id)}} {{action "trackClick" "permalink"}}>
             Copy Link to Post
           </a>
           <a class="dropdown-item" href="#">Report Post</a>
@@ -74,29 +60,14 @@
       </span>
     </div>
   </div>
-  <div class="stream-item-comments">
-    {{#if post.commentsCount}}
-      <ul class="media-list">
-        {{#each post.comments as |comment|}}
-          {{stream-feed/items/post/comment
-            comment=comment
-            tagName="li"
-            class="media"}}
-        {{/each}}
-      </ul>
-    {{/if}}
-    {{#if (not readOnly)}}
-      <div class="add-comment-wrapper">
-        {{one-way-text
-          keyEvents=(hash
-            13=(perform createComment)
-          )
-          placeholder="Leave a comment..."
-          class="form-control add-comment"
-        }}
-      </div>
-    {{/if}}
-  </div>
+
+  <!-- Comments -->
+  {{stream-feed/items/post/comments-container
+    post=post
+    readOnly=readOnly
+    onCreate=(action "createdComment")
+    onSave=(action "savedComment")
+  }}
 {{else}}
   <div class="stream-error-wrapper col-sm-12">
     {{t "errors.load"}}

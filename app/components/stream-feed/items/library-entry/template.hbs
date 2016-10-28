@@ -29,7 +29,7 @@
                 <img src={{image activity.actor.avatar}}>
               </span>
               <span class="agg-action">
-                <a href={{href-to "users.index" activity.actor.name}}>{{activity.actor.name}}</a>
+                <a href={{href-to "users.index" activity.actor}}>{{activity.actor.name}}</a>
                 {{! TODO: Possible to refactor into something less gross? }}
                 {{#if (eq activity.verb "updated")}}
                   {{t "feeds.library.updated" status=(t (concat "library.statuses." mediaType "." activity.status))}}

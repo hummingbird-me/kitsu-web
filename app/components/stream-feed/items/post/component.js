@@ -1,18 +1,18 @@
 import Component from 'ember-component';
-import { task } from 'ember-concurrency';
 import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import computed from 'ember-computed';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
+import jQuery from 'jquery';
 
 export default Component.extend(ClipboardMixin, {
   classNameBindings: ['post.isNew:new-post'],
   classNames: ['stream-item', 'row'],
   session: service(),
   store: service(),
+  metrics: service(),
   host: getter(() => `${location.protocol}//${location.host}`),
 
   activity: getter(function() {
@@ -35,54 +35,32 @@ export default Component.extend(ClipboardMixin, {
     return `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   }),
 
-  isLiked: computed('post.postLikes.@each.isError', 'session.account', {
-    get() {
-      if (get(this, 'session.isAuthenticated') === false ||
-        get(this, 'post.postLikes') === undefined) {
-        return false;
-      }
-      const likes = get(this, 'post.postLikes').reject(like => get(like, 'isError'));
-      const user = get(this, 'session.account');
-      return likes.findBy('user.id', get(user, 'id')) !== undefined;
+  _streamAnalytics(label, verb, object) {
+    if (jQuery.isPlainObject(verb) === true) {
+      object = verb; // eslint-disable-line no-param-reassign
+      verb = undefined; // eslint-disable-line no-param-reassign
     }
-  }).readOnly(),
-
-  toggleLike: task(function* () {
-    if (get(this, 'session.isAuthenticated') === false) {
-      return get(this, 'session.signUpModal')();
+    // foreign_id is manually build as it may be a post on a `posts` page.
+    const data = {
+      label,
+      content: {
+        foreign_id: `Post:${get(this, 'post.id')}`,
+        actor: {
+          id: `User:${get(this, 'session.account.id')}`,
+          label: get(this, 'session.account.name')
+        },
+        verb: verb || label
+      },
+      position: get(this, 'positionInFeed') || 0
+    };
+    if (object !== undefined) {
+      data.content.object = object;
     }
-
-    const user = get(this, 'session.account');
-    const post = get(this, 'post');
-    if (get(this, 'isLiked') === true) {
-      const like = get(this, 'post.postLikes').findBy('user.id', get(user, 'id'));
-      post.decrementProperty('postLikesCount');
-      yield like.destroyRecord().catch(() => post.incrementProperty('postLikesCount'));
-    } else {
-      const like = get(this, 'store').createRecord('post-like', {
-        post,
-        user: get(this, 'session.account')
-      });
-      post.incrementProperty('postLikesCount');
-      yield like.save().catch(() => post.decrementProperty('postLikesCount'));
+    if (get(this, 'feedId') !== undefined) {
+      data.feed_id = get(this, 'feedId');
     }
-  }).drop(),
-
-  createComment: task(function* (content) {
-    // clear value (TODO: Will eventually be compenentized)
-    this.$('.add-comment').val('');
-    const comment = get(this, 'store').createRecord('comment', {
-      content,
-      post: get(this, 'post'),
-      user: get(this, 'session.account')
-    });
-    yield comment.save().then(() => {
-      get(this, 'post').incrementProperty('commentsCount');
-    }).catch(() => {
-      get(this, 'post').decrementProperty('commentsCount');
-      get(this, 'post.comments').removeObject(comment);
-    });
-  }).drop(),
+    get(this, 'metrics').invoke('trackEngagement', 'Stream', data);
+  },
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -92,12 +70,40 @@ export default Component.extend(ClipboardMixin, {
   },
 
   actions: {
-    /**
-     * This is a hack fix so that our clipboard target anchor doesn't send
-     * the user's browser to the top of the window with its `#` href.
-     */
-    preventDefault(event) {
-      event.preventDefault();
+    trackClick(verb) {
+      this._streamAnalytics('click', verb, { id: `Post:${get(this, 'post.id')}` });
+    },
+
+    createdComment() {
+      get(this, 'post').incrementProperty('commentsCount');
+    },
+
+    savedComment(record, error) {
+      if (error !== undefined) {
+        get(this, 'post').decrementProperty('commentsCount');
+      } else {
+        this._streamAnalytics('comment', { id: `Comment:${get(record, 'id')}` });
+      }
+    },
+
+    createdPostLike() {
+      get(this, 'post').incrementProperty('postLikesCount');
+    },
+
+    savedPostLike(record, error) {
+      if (error !== undefined) {
+        get(this, 'post').decrementProperty('postLikesCount');
+      } else {
+        this._streamAnalytics('like', { id: `PostLike:${get(record, 'id')}` });
+      }
+    },
+
+    destroyedPostLike(record, error) {
+      if (error !== undefined) {
+        record.rollbackAttributes();
+      } else {
+        get(this, 'post').decrementProperty('postLikesCount');
+      }
     }
   }
 });

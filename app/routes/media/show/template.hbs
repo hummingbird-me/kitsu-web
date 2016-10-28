@@ -10,19 +10,19 @@
                 <img src={{image media.posterImage}}>
                 {{#if session.hasUser}}
                   {{library-dropdown/media media=media}}
-                {{/if}}
-                <div class="entry-progress--mini-wrapper">
-                  <span>Progress</span>
-                  <div class="entry-progress entry-progress--mini">
-                    <input type="number" placeholder="0">
-                    <span>
-                      <span class="sep">/</span>
-                      51
-                    </span>
+                  <div class="entry-progress--mini-wrapper">
+                    <span>Progress</span>
+                    <div class="entry-progress entry-progress--mini">
+                      <input type="number" placeholder="0">
+                      <span>
+                        <span class="sep">/</span>
+                        51
+                      </span>
+                    </div>
                   </div>
-                </div>
+                {{/if}}
                 <div class="where-to-watch-widget">
-
+                  <!-- TODO: -->
                 </div>
               </div>
               <div class="mini-bio">
@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="cover-cta">
-              {{follow-button user=user}}
+              {{follow-button}}
             </div>
           </div>
         </div>
@@ -67,10 +67,7 @@
   <div class="media-container row">
     <section>
       <h5>Synopsis</h5>
-      <p>
-        Mugen's a buck wild warrior—violent, thoughtless and womanizing. Jin is a vagrant ronin—mysterious, traditional, well-mannered, and very strong as well. These two fiercely independent warriors can't be any more different from one another, yet their paths cross when Fuu, a ditzy waitress, saves them from being executed when they are arrested after a violent swordfight...
-        <a href="#">more</a>
-      </p>
+      <p>{{truncate-text media.synopsis max=500}}</p>
     </section>
     <section>
       <h5>Popular Reviews</h5>
@@ -118,6 +115,11 @@
     </section>
     <section>
       <h5>Community Feed</h5>
+      {{stream-feed
+        streamType="media_aggr"
+        streamId=(concat mediaType "-" media.id)
+        readOnly=true
+      }}
     </section>
   </div>
 </div>

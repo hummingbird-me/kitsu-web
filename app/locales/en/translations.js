@@ -135,6 +135,14 @@ export default {
         You can also post text, images and videos to your feed using the form below. Your posts will be seen and appreciated by your followers and users from the global feed.`,
       action: 'Make yourself at home! Upload an avatar and cover image! Click <a href="#">Edit Profile</a> above to get started.'
     },
+    about: {
+      empty: 'It\'s a secret',
+      gender: {
+        secret: 'It\'s a secret',
+        male: 'Male',
+        female: 'Female'
+      }
+    },
     edit: {
       editCover: 'Change your cover photo',
       aboutMe: 'About Me',
