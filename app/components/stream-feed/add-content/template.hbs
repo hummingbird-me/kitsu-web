@@ -1,4 +1,4 @@
-<div {{action (toggle "isExpanded" this)}}>
+<div class="add-content-header" {{action (toggle "isExpanded" this)}}>
   <!-- avatar -->
   <div style="display: inline-block; margin-right: 10px;">
     <img style="width: 36px; height: 36px; border-radius: 100%;" src={{image session.account.avatar}}>
@@ -28,9 +28,11 @@
     }}
 
     <!-- TODO: Allow tagging of single media -->
-
+    <div class="tag-media">
+      <input class="form-control" type="search" placeholder="Type to tag a show or manga">
+    </div>
     <!-- actions -->
-    <div>
+    <div class="add-content-footer">
       <button type="button" class="button button--primary" {{action "create"}}>
         Post
       </button>

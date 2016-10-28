@@ -375,15 +375,35 @@
 
 .stream-add-content {
   @extend .card;
-  padding: 15px;
   &.is-expanded {
 
   }
 }
 
+.add-content-header, .add-content-footer {
+  padding: 20px;
+}
+
+.add-content-footer {
+  .button {
+    padding: 10px 30px;
+    margin-right: 15px;
+  }
+}
+.tag-media {
+  border-top: 1px solid $eggshell;
+  border-bottom: 1px solid $eggshell;
+  input {
+    border-radius: 0;
+    border: none;
+    padding: 10px 20px;
+  }
+}
+
 .stream-content-editor {
   min-height: 100px;
-  margin-top: 15px;
+  margin-top: 0;
+  padding: 0 20px;
 }
 
 .new-post {
