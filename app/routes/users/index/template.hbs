@@ -71,56 +71,7 @@
         </div>
       {{/if}}
 
-      <!-- TODO: Componentize -->
-      <div class="about-me-panel">
-        <h6 class="panel-heading">About Me</h6>
-        <div class="about-me-profiles">
-          <span>{{svg-jar "twitter"}}</span>
-          <span>{{svg-jar "facebook"}}</span>
-          <span>{{svg-jar "twitch"}}</span>
-          <span>{{svg-jar "youtube"}}</span>
-        </div>
-        <p>
-          I like to write, do analysis and have interests in music, model building, programming, lockpicking, history and gaming. I also enjoy making glitch and digital art. It's not anything special but it's fun. Give me a shout if you ever want to request something.
-        </p>
-        <ul class="about-me-stats">
-          <li class="about-stat">
-            <span class="stat-icon">
-              {{svg-jar "sm-heart"}}
-            </span>
-            <strong>Waifu:</strong>
-            <span>Holo</span>
-          </li>
-          <li class="about-stat about--gender">
-            <span class="stat-icon">
-              {{svg-jar "gender"}}
-            </span>
-            <strong>Gender:</strong>
-            <span>Male</span>
-          </li>
-          <li class="about-stat about--location">
-            <span class="stat-icon">
-              {{svg-jar "location"}}
-            </span>
-            <strong>Location:</strong>
-            <span>Chicago, IL</span>
-          </li>
-          <li class="about-stat about--birthday">
-            <span class="stat-icon">
-              {{svg-jar "cake"}}
-            </span>
-            <strong>Age:</strong>
-            <span>26 (January 2nd, 1990)</span>
-          </li>
-          <li class="about-stat about--cal">
-            <span class="stat-icon">
-              {{svg-jar "cal"}}
-            </span>
-            <strong>Join Date:</strong>
-            <span>March 3rd, 2013 (3 years ago)</span>
-          </li>
-        </ul>
-      </div>
+      {{users/components/about-me user=user}}
 
       <!-- TODO: Componentize -->
       <div class="favorite-series-panel">

@@ -24,7 +24,7 @@ export default Component.extend({
         // activity
         'media,actor,unit,subject',
         // posts
-        'subject.user,subject.target_user,subject.comments.user,subject.post_likes.user',
+        'subject.user,subject.target_user',
         // library-entry
         'subject.media',
         // follow
