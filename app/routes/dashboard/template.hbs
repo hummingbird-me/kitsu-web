@@ -4,7 +4,7 @@
 
 <div class="feed-container row {{if session.hasUser "quick-update-enabled"}}">
   <!-- Feed Posts -->
-  <div class="feed-stream col-sm-8">
+  <div class="feed-stream col-sm-12 col-md-8">
     <!-- TODO: also check if they haven't made a post -->
     {{#if session.hasUser}}
       {{dashboard/components/stream-onboarding}}

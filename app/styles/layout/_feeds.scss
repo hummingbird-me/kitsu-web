@@ -55,6 +55,9 @@
     opacity: .6;
     font-size: 12px;
     margin-top: 2px;
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 }
 
@@ -277,7 +280,7 @@
   padding: 20px;
   img {
     width: 100%;
-    height: 100%;
+    height: auto;
     background: $eggshell;
     border-radius: 3px;
   }
@@ -307,6 +310,9 @@
   position: relative;
   padding-bottom: 15px;
   min-height: 220px;
+  @media (max-width: 768px) {
+    min-height: 144px;
+  }
   .hr {
     position: absolute;
     content: '';
