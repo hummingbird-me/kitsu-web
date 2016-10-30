@@ -27,7 +27,11 @@
 
 .stream-item--title-block {
   @extend .clearfix;
-  margin-bottom: 15px;
+  margin-bottom: 0;
+  padding-bottom: 15px;
+  background: $white;
+  position: relative;
+  z-index: $zIndex--stream-item-block;
   .author-avatar {
     float: left;
     margin-right: 15px;
@@ -288,6 +292,8 @@
 
 .stream-item--media-timeline {
   padding: 15px 20px 0 0;
+  padding-top: 0;
+  margin-top: 15px;
 }
 
 .stream-onboarding {
@@ -301,18 +307,8 @@
 
 // aggregate feed items
 .aggregate-wrapper {
-  margin-top: 15px;
   overflow: auto;
-  max-height: 220px;
-}
-
-.aggregate-date-block {
-  position: relative;
-  padding-bottom: 15px;
-  min-height: 220px;
-  @media (max-width: 768px) {
-    min-height: 144px;
-  }
+  height: 222px;
   .hr {
     position: absolute;
     content: '';
@@ -323,11 +319,19 @@
     left: 30px;
   }
 }
+
+.aggregate-date-block {
+  position: relative;
+  padding-bottom: 15px;
+  @media (max-width: 768px) {
+    min-height: 144px;
+  }
+}
 .aggregate-date {
   width: 60px;
   background: $white;
   position: relative;
-  padding-bottom: 5px;
+  padding: 5px 0;
   span {
     font-size: 12px;
     display: block;
