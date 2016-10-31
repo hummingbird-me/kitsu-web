@@ -29,7 +29,7 @@ module.exports = function(environment) {
       'connect-src': "'self' www.google-analytics.com analytics.getstream.io",
       'img-src': "* data:",
       'font-src': "'self' fonts.gstatic.com",
-      'frame-src': "'self' www.youtube.com"
+      'frame-src': "'self' www.youtube.com https://staticxx.facebook.com http://staticxx.facebook.com"
     },
 
     'ember-simple-auth': {
@@ -90,6 +90,12 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.contentSecurityPolicyHeader = 'Content-Security-Policy';
+  }
+
+  ENV.FB = {
+    appId: '1222641771096126',
+    version: 'v2.5',
+    xfbml: true
   }
 
   return ENV;

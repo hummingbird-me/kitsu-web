@@ -15,6 +15,10 @@ export default Session.extend({
     return this.authenticate('authenticator:oauth2', identification, password);
   },
 
+  authenticateWithOAuth2Assertion(accessToken) {
+    return this.authenticate('authenticator:assertion', accessToken);
+  },
+
   isCurrentUser(user) {
     const hasUser = get(this, 'hasUser');
     const userId = get(this, 'account.id');

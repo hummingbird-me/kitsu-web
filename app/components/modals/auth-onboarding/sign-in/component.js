@@ -10,7 +10,7 @@ export default Component.extend({
   identification: undefined,
   password: undefined,
   errorMessage: undefined,
-
+  fb: service(),
   session: service(),
 
   authenticate: task(function* () {
@@ -22,6 +22,16 @@ export default Component.extend({
   }),
 
   actions: {
+    facebook_auth: function () {
+      let session = this.get('session');
+      this.get('fb').login().then(function (response) {
+        let accessToken = response.authResponse.accessToken;
+        session
+          .authenticateWithOAuth2Assertion(accessToken)
+          .then(() => get(this, 'close')())
+          .catch(() => set(this, 'changeComponent', 'sign-up'));
+      });
+    },
     changeComponent(component) {
       invokeAction(this, 'changeComponent', component);
     }
