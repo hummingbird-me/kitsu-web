@@ -4,11 +4,10 @@
         {{loading-spinner size="small"}}
       </div>
     {{else}}
-      <!-- TODO: @Josh - Needs Styling -->
+      {{! @Josh/Styling -- Comment Actions }}
       <div class="comment-actions">
-        <!-- Pagination -->
         <div class="d-inline-block">
-          <!-- TODO: i18n -->
+          {{! TODO: i18n }}
           {{#pagination-manual
             model=comments
             limit=5
@@ -19,9 +18,10 @@
             </a>
           {{/pagination-manual}}
         </div>
-        <!-- Current Comments / Max -->
+
+        {{! Comment count }}
         <div class="pull-sm-right">
-          <!-- TODO: i18n / pad left -->
+          {{! TODO: i18n / pad left }}
           {{comments.length}} of {{post.commentsCount}}
         </div>
       </div>
@@ -30,6 +30,7 @@
         {{#each comments as |comment|}}
           {{stream-feed/items/post/comment
             comment=comment
+            likesCountUpdate=(action (mut comment.likesCount))
             tagName="li"
             class="media"}}
         {{/each}}

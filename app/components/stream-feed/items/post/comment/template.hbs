@@ -17,11 +17,14 @@
     {{/if}}
   </span>
   <div class="stream-item-activity">
-    <!-- NYI on API -->
-    <a href="#" class="like-stream-item">
-      <span class="heart-wrapper"></span>
-      <span class="sm-comment-count">3</span>
-    </a>
+    {{#if getStatus.isRunning}}
+      {{loading-spinner}}
+    {{else}}
+      <a href="#" class="like-stream-item {{if isLiked "is-liked"}}" {{action "toggleLike"}}>
+        <span class="heart-wrapper"></span>
+        <span class="sm-comment-count">{{comment.likesCount}}</span>
+      </a>
+    {{/if}}
     <small class="comment-time">
       {{moment-from-now comment.createdAt}}
     </small>
