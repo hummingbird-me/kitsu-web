@@ -6,7 +6,8 @@ import get from 'ember-metal/get';
 export default Mixin.create({
   didInsertElement() {
     this._super(...arguments);
-    set(this, 'clipboard', new Clipboard('[data-clipboard-text]'));
+    const id = get(this, 'elementId');
+    set(this, 'clipboard', new Clipboard(`#${id} [data-clipboard-text]`));
   },
 
   willDestroyElement() {

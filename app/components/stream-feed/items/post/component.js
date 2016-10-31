@@ -5,7 +5,6 @@ import set from 'ember-metal/set';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
-import jQuery from 'jquery';
 
 export default Component.extend(ClipboardMixin, {
   classNameBindings: ['post.isNew:new-post'],

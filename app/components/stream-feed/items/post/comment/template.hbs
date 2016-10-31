@@ -17,6 +17,7 @@
     {{/if}}
   </span>
   <div class="stream-item-activity">
+    {{! comment likes }}
     {{#if getStatus.isRunning}}
       {{loading-spinner}}
     {{else}}
@@ -25,9 +26,12 @@
         <span class="sm-comment-count">{{comment.likesCount}}</span>
       </a>
     {{/if}}
+
     <small class="comment-time">
       {{moment-from-now comment.createdAt}}
     </small>
+
+    {{! TODO: Implement }}
     <span class="more-wrapper">
       <a href="#" class="more-drop" id="moreDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {{svg-jar "more"}}

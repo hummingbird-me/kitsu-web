@@ -100,7 +100,7 @@ export default Component.extend({
 
   actions: {
     toggleLike() {
-      if (get(this, 'session.isAuthenticated') === false) {
+      if (get(this, 'session.hasUser') === false) {
         return get(this, 'session.signUpModal')();
       }
       const isLiked = get(this, 'isLiked');

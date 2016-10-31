@@ -21,10 +21,6 @@ export default Component.extend({
   }).drop(),
 
   createComment: task(function* (content) {
-    if (get(this, 'readOnly') === true) {
-      return get(this, 'session.signUpModal')();
-    }
-
     this.$('.add-comment').val('');
     const comment = get(this, 'store').createRecord('comment', {
       content,

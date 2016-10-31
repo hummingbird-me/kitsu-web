@@ -49,16 +49,18 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    get(this, 'getStatus').perform().then((records) => {
-      const like = get(records, 'firstObject');
-      set(this, 'like', like);
-      set(this, 'isLiked', like !== undefined);
-    });
+    if (get(this, 'session.hasUser') === true) {
+      get(this, 'getStatus').perform().then((records) => {
+        const like = get(records, 'firstObject');
+        set(this, 'like', like);
+        set(this, 'isLiked', like !== undefined);
+      });
+    }
   },
 
   actions: {
     toggleLike() {
-      if (get(this, 'session.isAuthenticated') === false) {
+      if (get(this, 'session.hasUser') === false) {
         return get(this, 'session.signUpModal')();
       }
       const isLiked = get(this, 'isLiked');
