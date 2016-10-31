@@ -4,7 +4,9 @@ import get, { getProperties } from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
+import { capitalize } from 'ember-string';
 import getter from 'client/utils/getter';
+import { mediaType } from 'client/helpers/media-type';
 
 export default Component.extend({
   readOnly: false,
@@ -33,14 +35,23 @@ export default Component.extend({
     });
   }).restartable(),
 
-  createPost: task(function* (content) {
-    const data = {
-      content,
-      user: get(this, 'session.account')
-    };
-    // posting on another profile?
-    if (get(this, 'streamId') !== get(this, 'session.account.id')) {
-      data.targetUser = get(this, 'store').peekRecord('user', get(this, 'streamId'));
+  createPost: task(function* (content, options) {
+    const data = { content, user: get(this, 'session.account'), ...options };
+    // posting on another user's profile
+    if (get(this, 'user') !== undefined && get(this, 'user.id') !== get(this, 'session.account.id')) {
+      set(data, 'targetUser', get(this, 'user'));
+    }
+    // spoiler + media set
+    if (get(data, 'spoiler') === true && get(data, 'media') !== undefined) {
+      const entry = yield get(this, 'store').query('library-entry', {
+        filter: {
+          user_id: get(this, 'session.account.id'),
+          media_type: capitalize(mediaType([get(data, 'media')])),
+          media_id: get(data, 'media.id')
+        },
+        include: 'unit'
+      });
+      set(data, 'spoiledUnit', get(entry, 'unit'));
     }
     const post = get(this, 'store').createRecord('post', data);
     const [group, activity] = this._createTempActivity(post);
@@ -85,7 +96,7 @@ export default Component.extend({
         return;
       }
       get(this, 'metrics').invoke('trackImpression', 'Stream', {
-        content_list: list.reduce((a, b) => a.concat(b)),
+        content_list: list.reduce((a, b) => a.concat(b)).uniq(),
         feed_id: get(this, 'feedId')
       });
     });

@@ -1,3 +1,4 @@
+{{! We have to check `post` here due to Stream & development environments }}
 {{#if post}}
   <div class="stream-item-wrapper col-sm-12">
     <div class="stream-item--title-block">
@@ -6,7 +7,7 @@
       </a>
       <div class="author-info">
         <a class="author-name" href={{href-to "users.index" post.user}}>{{post.user.name}}</a>
-        <!-- TODO @Josh - style targeted posts -->
+        {{! @Josh/Stying -- Targeted post }}
         {{#if post.targetUser}}
           ->
           <a href={{href-to "users.index" post.targetUser}} class="author-name">
@@ -20,15 +21,25 @@
     </div>
 
     <div class="stream-content">
-      {{#if post.isNew}}
-        {{! proxy content }}
-        {{post.content.content}}
+      {{#if isHidden}}
+        {{! @Josh/Styling -- NSFW Toggle }}
+        {{#if post.nsfw}}
+          <a href="#" {{action (toggle "isHidden" this)}}>NSFW content -- click here</a>
+        {{/if}}
+        {{! TODO (@vevix): Show spoiler information such as what episode this relates too }}
+        {{#if post.spoiler}}
+          <a href="#" {{action (toggle "isHidden" this)}}>Spoiled content -- click here</a>
+        {{/if}}
       {{else}}
-        {{{post.contentFormatted}}}
+        {{#if post.isNew}}
+          {{post.content.content}}
+        {{else}}
+          {{{post.contentFormatted}}}
+        {{/if}}
       {{/if}}
     </div>
 
-    <!-- Post Likes -->
+    {{! post likes }}
     {{stream-feed/items/post/post-likes-container
       post=post
       onCreate=(action "createdPostLike")
@@ -61,13 +72,18 @@
     </div>
   </div>
 
-  <!-- Comments -->
-  {{stream-feed/items/post/comments-container
-    post=post
-    readOnly=readOnly
-    onCreate=(action "createdComment")
-    onSave=(action "savedComment")
-  }}
+  {{! comments }}
+  {{#if isHidden}}
+    {{! @Josh/Styling -- Comments hidden due to NSFW/Spoiler }}
+    <span>Comments Hidden</span>
+  {{else}}
+    {{stream-feed/items/post/comments-container
+      post=post
+      readOnly=readOnly
+      onCreate=(action "createdComment")
+      onSave=(action "savedComment")
+    }}
+  {{/if}}
 {{else}}
   <div class="stream-error-wrapper col-sm-12">
     {{t "errors.load"}}

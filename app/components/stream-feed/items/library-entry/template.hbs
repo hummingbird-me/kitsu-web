@@ -1,56 +1,62 @@
-<div class="stream-item--media col-sm-4">
-  <img src={{image media.posterImage}}>
-</div>
-<div class="stream-item--media-timeline col-sm">
-  <div class="stream-item--title-block">
-    <div class="author-info">
-      <a class="author-name" href={{href-to (concat mediaType ".show") media.slug}}>
-        {{media.canonicalTitle}}
-      </a>
-      <small class="author-secondary">
-        {{truncate-text media.synopsis}}
-      </small>
+{{#if media}}
+  <div class="stream-item--media col-sm-4">
+    <img src={{image media.posterImage}}>
+  </div>
+  <div class="stream-item--media-timeline col-sm">
+    <div class="stream-item--title-block">
+      <div class="author-info">
+        <a class="author-name" href={{href-to (concat (media-type media) ".show") media.slug}}>
+          {{media.canonicalTitle}}
+        </a>
+        <small class="author-secondary">
+          {{truncate-text media.synopsis}}
+        </small>
+      </div>
+    </div>
+    <div class="aggregate-wrapper">
+      <span class="hr"></span>
+      {{#each groupByTime as |timeGroup|}}
+        <div class="aggregate-date-block">
+          <div class="aggregate-date">
+            <div class="date-wrapper">
+              <span class="date-heading">{{timeGroup.calendar}}</span>
+              <span>{{timeGroup.date}}</span>
+            </div>
+          </div>
+          <ul class="aggregate-items">
+            {{#each timeGroup.activities as |activity|}}
+              <li class="agg-item">
+                <span class="agg-avatar">
+                  <img src={{image activity.actor.avatar}}>
+                </span>
+                <span class="agg-action">
+                  <a href={{href-to "users.index" activity.actor}}>{{activity.actor.name}}</a>
+                  {{! TODO: Possible to refactor into something less gross? }}
+                  {{#if (eq activity.verb "updated")}}
+                    {{t "feeds.library.updated" status=(t (concat "library.statuses." (media-type media) "." activity.status))}}
+                  {{/if}}
+                  {{#if (eq activity.verb "rated")}}
+                    {{t "feeds.library.rated"}}
+                    {{star-rating activity.rating readOnly=true class="rating-container"}}
+                  {{/if}}
+                  {{#if (eq activity.verb "progressed")}}
+                    {{t (concat "feeds.library.progressed." (media-type media)) progress=activity.progress}}
+                    <!-- TODO/FEED: Handle "unit" -->
+                  {{/if}}
+                  {{#if (eq activity.verb "reviewed")}}
+                    <!-- TODO/FEED: Link when reviews exist -->
+                    {{t "feeds.library.reviewed" link=(t "feeds.library.review")}}
+                  {{/if}}
+                </span>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+      {{/each}}
     </div>
   </div>
-  <div class="aggregate-wrapper">
-    <span class="hr"></span>
-    {{#each groupByTime as |timeGroup|}}
-      <div class="aggregate-date-block">
-        <div class="aggregate-date">
-          <div class="date-wrapper">
-            <span class="date-heading">{{timeGroup.calendar}}</span>
-            <span>{{timeGroup.date}}</span>
-          </div>
-        </div>
-        <ul class="aggregate-items">
-          {{#each timeGroup.activities as |activity|}}
-            <li class="agg-item">
-              <span class="agg-avatar">
-                <img src={{image activity.actor.avatar}}>
-              </span>
-              <span class="agg-action">
-                <a href={{href-to "users.index" activity.actor}}>{{activity.actor.name}}</a>
-                {{! TODO: Possible to refactor into something less gross? }}
-                {{#if (eq activity.verb "updated")}}
-                  {{t "feeds.library.updated" status=(t (concat "library.statuses." mediaType "." activity.status))}}
-                {{/if}}
-                {{#if (eq activity.verb "rated")}}
-                  {{t "feeds.library.rated"}}
-                  {{star-rating activity.rating readOnly=true class="rating-container"}}
-                {{/if}}
-                {{#if (eq activity.verb "progressed")}}
-                  {{t (concat "feeds.library.progressed." mediaType) progress=activity.progress}}
-                  <!-- TODO/FEED: Handle "unit" -->
-                {{/if}}
-                {{#if (eq activity.verb "reviewed")}}
-                  <!-- TODO/FEED: Link when reviews exist -->
-                  {{t "feeds.library.reviewed" link=(t "feeds.library.review")}}
-                {{/if}}
-              </span>
-            </li>
-          {{/each}}
-        </ul>
-      </div>
-    {{/each}}
+{{else}}
+  <div class="stream-error-wrapper col-sm-12">
+    {{t "errors.load"}}
   </div>
-</div>
+{{/if}}

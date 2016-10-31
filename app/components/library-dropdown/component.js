@@ -1,9 +1,9 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
-import set from 'ember-metal/set';
 import computed, { or } from 'ember-computed';
 import service from 'ember-service/inject';
 import libraryStatus from 'client/utils/library-status';
+import { mediaType } from 'client/helpers/media-type';
 
 export const REMOVE_KEY = 'library.remove';
 
@@ -14,14 +14,14 @@ export default Component.extend({
   currentStatus: computed('entry.status', {
     get() {
       const status = get(this, 'entry.status');
-      const type = get(this, 'mediaType');
+      const type = mediaType([get(this, 'media')]);
       return get(this, 'i18n').t(`library.statuses.${type}.${status}`).toString();
     }
   }).readOnly(),
 
   statuses: computed('entry', 'currentStatus', {
     get() {
-      const type = get(this, 'mediaType');
+      const type = mediaType([get(this, 'media')]);
       const statuses = libraryStatus.getEnumKeys().map(key => ({
         key,
         string: get(this, 'i18n').t(`library.statuses.${type}.${key}`).toString()
@@ -34,12 +34,5 @@ export default Component.extend({
       const removeKey = get(this, 'i18n').t(REMOVE_KEY).toString();
       return statuses.concat([{ key: REMOVE_KEY, string: removeKey }]);
     }
-  }).readOnly(),
-
-  init() {
-    this._super(...arguments);
-    const media = get(this, 'media');
-    const type = media.constructor.modelName || get(media, 'content').constructor.modelName;
-    set(this, 'mediaType', type);
-  }
+  }).readOnly()
 });

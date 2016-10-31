@@ -11,10 +11,6 @@ export default Component.extend({
     return get(this, 'group.activities.firstObject.media');
   }),
 
-  mediaType: getter(function() {
-    return get(this, 'media.content').constructor.modelName;
-  }),
-
   groupByTime: getter(function() {
     const temp = {};
     get(this, 'group.activities').forEach((activity) => {

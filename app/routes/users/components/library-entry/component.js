@@ -6,6 +6,7 @@ import { task, timeout } from 'ember-concurrency';
 import IsOwnerMixin from 'client/mixins/is-owner';
 import jQuery from 'jquery';
 import { invokeAction } from 'ember-invoke-action';
+import { mediaType } from 'client/helpers/media-type';
 
 export default Component.extend(IsOwnerMixin, {
   isExpanded: false,
@@ -29,9 +30,9 @@ export default Component.extend(IsOwnerMixin, {
 
   typeText: computed('media.{showType,mangaType}', {
     get() {
-      const mediaType = get(this, 'mediaType');
+      const media = mediaType([get(this, 'media')]);
       const type = get(this, 'media.showType') || get(this, 'media.mangaType');
-      return get(this, 'i18n').t(`media.${mediaType}.type.${type}`);
+      return get(this, 'i18n').t(`media.${media}.type.${type}`);
     }
   }).readOnly(),
 

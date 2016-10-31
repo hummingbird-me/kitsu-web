@@ -8,7 +8,7 @@ export default Component.extend({
   delay: 1000,
   dirtyText: undefined,
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
     set(this, 'dirtyText', get(this, 'text'));
   },

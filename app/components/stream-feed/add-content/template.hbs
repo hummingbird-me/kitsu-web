@@ -1,10 +1,10 @@
 <div class="add-content-header" {{action (toggle "isExpanded" this)}}>
-  <!-- avatar -->
+  {{! avatar }}
   <div style="display: inline-block; margin-right: 10px;">
     <img style="width: 36px; height: 36px; border-radius: 100%;" src={{image session.account.avatar}}>
   </div>
 
-  <!-- Placeholder -->
+  {{! placeholder/name }}
   <div style="display: inline-block; font-size: 16px; color: #999; vertical-align: middle;">
     {{#if isExpanded}}
       <span style="color: #ee2e24;">{{session.account.name}}</span>
@@ -15,10 +15,9 @@
 </div>
 
 {{#if isExpanded}}
-  <!-- Expanded Editor -->
-  <div>
-    <!-- editor -->
-    <!-- TODO: Keybinds -->
+  <div class="add-content-expanded">
+    {{! editor }}
+    <!-- TODO: Keybinds (Cmd+Enter should POST) -->
     {{content-editable
       value=content
       type="text"
@@ -27,20 +26,37 @@
       class="stream-content-editor"
     }}
 
-    <!-- TODO: Allow tagging of single media -->
+    {{! media tagging input }}
     <div class="tag-media">
-      <input class="form-control" type="search" placeholder="Type to tag a show or manga">
+      {{#search-typeahead
+        value=media.canonicalTitle
+        search=(perform search)
+        disabled=mediaReadOnly
+        placeholder="Type to tag a show or manga" as |_media|
+      }}
+        <div {{action (queue (action (mut media) _media) (action (mut spoiler) true))}}>
+          <span class="tag tag-primary">{{capitalize (media-type _media)}}</span>
+          <span>{{_media.canonicalTitle}}</span>
+        </div>
+      {{/search-typeahead}}
     </div>
-    <!-- actions -->
+
+    {{! post actions }}
     <div class="add-content-footer">
       <button type="button" class="button button--primary" {{action "create"}}>
         Post
       </button>
 
       <label class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input">
+        {{one-way-checkbox nsfw update=(action (mut nsfw)) class="custom-control-input"}}
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">NSFW</span>
+      </label>
+
+      <label class="custom-control custom-checkbox">
+        {{one-way-checkbox spoiler update=(action (mut spoiler)) class="custom-control-input"}}
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Spoiler</span>
       </label>
     </div>
   </div>

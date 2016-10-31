@@ -10,6 +10,8 @@ import jQuery from 'jquery';
 export default Component.extend(ClipboardMixin, {
   classNameBindings: ['post.isNew:new-post'],
   classNames: ['stream-item', 'row'],
+  isHidden: false,
+
   session: service(),
   store: service(),
   metrics: service(),
@@ -67,6 +69,8 @@ export default Component.extend(ClipboardMixin, {
     if (get(this, 'group') !== undefined) {
       set(this, 'post', get(this, 'activity.subject'));
     }
+    const post = get(this, 'post');
+    set(this, 'isHidden', get(post, 'nsfw') === true || get(post, 'spoiler') === true);
   },
 
   actions: {
