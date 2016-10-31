@@ -42,17 +42,16 @@
     {{! post likes }}
     {{stream-feed/items/post/post-likes-container
       post=post
-      onCreate=(action "createdPostLike")
-      onSave=(action "savedPostLike")
-      onDestroy=(action "destroyedPostLike")
+      likesCountUpdate=(action (mut post.likesCount))
+      trackStream=(action "trackStream")
     }}
 
     <div class="stream-item-options">
-      <a href={{tweetLink}} target="_blank" onclick={{action "trackClick" "share"}}>
+      <a href={{tweetLink}} target="_blank" {{action "trackShare" preventDefault=false}}>
         {{svg-jar "l-twitter"}}
         Tweet
       </a>
-      <a href={{facebookLink}} target="_blank" onclick={{action "trackClick" "share"}}>
+      <a href={{facebookLink}} target="_blank" {{action "trackShare"  preventDefault=false}}>
         {{svg-jar "l-facebook"}}
         Share
       </a>
@@ -80,8 +79,8 @@
     {{stream-feed/items/post/comments-container
       post=post
       readOnly=readOnly
-      onCreate=(action "createdComment")
-      onSave=(action "savedComment")
+      countUpdate=(action (mut post.commentsCount))
+      trackStream=(action "trackStream")
     }}
   {{/if}}
 {{else}}

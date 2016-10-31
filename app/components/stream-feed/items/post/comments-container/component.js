@@ -32,12 +32,12 @@ export default Component.extend({
       user: get(this, 'session.account')
     });
     get(this, 'comments').addObject(comment);
-    invokeAction(this, 'onCreate');
-    yield comment.save().then((record) => {
-      invokeAction(this, 'onSave', record);
-    }).catch((error) => {
+    invokeAction(this, 'countUpdate', get(this, 'post.commentsCount') + 1);
+    yield comment.save().then(() => {
+      invokeAction(this, 'trackStream', 'comment', 'comment');
+    }).catch(() => {
       get(this, 'comments').removeObject(comment);
-      invokeAction(this, 'onSave', comment, error);
+      invokeAction(this, 'countUpdate', get(this, 'post.commentsCount') - 1);
     });
   }).drop(),
 

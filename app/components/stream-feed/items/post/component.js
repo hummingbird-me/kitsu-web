@@ -38,26 +38,20 @@ export default Component.extend(ClipboardMixin, {
   }),
 
   _streamAnalytics(label, verb, object) {
-    if (jQuery.isPlainObject(verb) === true) {
-      object = verb; // eslint-disable-line no-param-reassign
-      verb = undefined; // eslint-disable-line no-param-reassign
-    }
-    // foreign_id is manually build as it may be a post on a `posts` page.
+    const content = object || {
+      foreign_id: `Post:${get(this, 'post.id')}`,
+      actor: {
+        id: `User:${get(this, 'session.account.id')}`,
+        label: get(this, 'session.account.name')
+      },
+      verb: verb || label,
+      object: { id: `Post:${get(this, 'post.id')}` }
+    };
     const data = {
       label,
-      content: {
-        foreign_id: `Post:${get(this, 'post.id')}`,
-        actor: {
-          id: `User:${get(this, 'session.account.id')}`,
-          label: get(this, 'session.account.name')
-        },
-        verb: verb || label
-      },
+      content,
       position: get(this, 'positionInFeed') || 0
     };
-    if (object !== undefined) {
-      data.content.object = object;
-    }
     if (get(this, 'feedId') !== undefined) {
       data.feed_id = get(this, 'feedId');
     }
@@ -74,40 +68,12 @@ export default Component.extend(ClipboardMixin, {
   },
 
   actions: {
-    trackClick(verb) {
-      this._streamAnalytics('click', verb, { id: `Post:${get(this, 'post.id')}` });
+    trackShare() {
+      this._streamAnalytics('click', 'share');
     },
 
-    createdComment() {
-      get(this, 'post').incrementProperty('commentsCount');
-    },
-
-    savedComment(record, error) {
-      if (error !== undefined) {
-        get(this, 'post').decrementProperty('commentsCount');
-      } else {
-        this._streamAnalytics('comment', { id: `Comment:${get(record, 'id')}` });
-      }
-    },
-
-    createdPostLike() {
-      get(this, 'post').incrementProperty('postLikesCount');
-    },
-
-    savedPostLike(record, error) {
-      if (error !== undefined) {
-        get(this, 'post').decrementProperty('postLikesCount');
-      } else {
-        this._streamAnalytics('like', { id: `PostLike:${get(record, 'id')}` });
-      }
-    },
-
-    destroyedPostLike(record, error) {
-      if (error !== undefined) {
-        record.rollbackAttributes();
-      } else {
-        get(this, 'post').decrementProperty('postLikesCount');
-      }
+    trackStream(label, verb, content) {
+      this._streamAnalytics(label, verb, content);
     }
   }
 });
