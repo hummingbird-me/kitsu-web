@@ -26,8 +26,9 @@ export default Component.extend({
       invokeAction(this, 'onClose');
     },
 
-    changeComponent(component) {
+    changeComponent(component, data) {
       set(this, 'component', component);
+      set(this, 'componentData', data);
       this.$('.modal').data('bs.modal')._handleUpdate();
     },
 

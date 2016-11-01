@@ -1,7 +1,7 @@
 import Component from 'ember-component';
 import service from 'ember-service/inject';
 import get, { getProperties } from 'ember-metal/get';
-import set from 'ember-metal/set';
+import set, { setProperties } from 'ember-metal/set';
 import { task } from 'ember-concurrency';
 import computed, { and } from 'ember-computed';
 import errorMessage from 'client/utils/error-messages';
@@ -50,6 +50,15 @@ export default Component.extend({
     this._super(...arguments);
     const user = get(this, 'store').createRecord('user');
     set(this, 'user', user);
+
+    const data = get(this, 'componentData');
+    if (data !== undefined) {
+      setProperties(user, {
+        name: get(data, 'name'),
+        email: get(data, 'email'),
+        facebookId: get(data, 'id')
+      });
+    }
   },
 
   createAccount: task(function* () {

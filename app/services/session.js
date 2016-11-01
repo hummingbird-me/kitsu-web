@@ -15,8 +15,8 @@ export default Session.extend({
     return this.authenticate('authenticator:oauth2', identification, password);
   },
 
-  authenticateWithOAuth2Assertion(accessToken) {
-    return this.authenticate('authenticator:assertion', accessToken);
+  authenticateWithFacebook() {
+    return this.authenticate('authenticator:assertion', 'facebook');
   },
 
   isCurrentUser(user) {

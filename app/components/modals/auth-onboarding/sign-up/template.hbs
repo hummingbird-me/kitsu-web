@@ -5,7 +5,7 @@
         {{errorMessage}}
       </div>
     {{/if}}
-    <div class="auth-section">
+    <div class="auth-section {{if hasValidName "active"}}">
       <h6 class="auth-section-title">What should we call you?</h6>
       <p class="auth-section-helper">Your username should be original, being witty is optional.</p>
       <div class="form-group {{if hasInvalidName "has-warning"}} {{if hasValidName "has-success"}}">
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="auth-section">
+    <div class="auth-section {{if hasValidEmail "active"}}">
       <h6 class="auth-section-title">What email should we use?</h6>
       <p class="auth-section-helper">We'll use your email address to send you occasional updates and help you out if you forget your password.</p>
       <div class="form-group {{if hasInvalidEmail "has-warning"}} {{if hasValidEmail "has-success"}}">

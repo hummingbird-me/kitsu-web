@@ -52,6 +52,7 @@ export default Model.extend(Validations, {
   coverImage: attr('object', { defaultValue: '/images/default_cover.png' }),
   createdAt: attr('date'),
   email: attr('string'),
+  facebookId: attr('string'),
   followersCount: attr('number'),
   followingCount: attr('number'),
   gender: attr('string'),

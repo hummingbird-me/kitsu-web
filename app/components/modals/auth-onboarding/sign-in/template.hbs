@@ -1,7 +1,7 @@
 <div class="modal-wrapper">
   <div class="auth-section active">
     <h6 class="auth-section-title">Welcome back!</h6>
-    <p class="auth-section-helper">Login to your Kitsu account below. If you need an account, <a href="#" {{action "changeComponent" "sign-up"}}>create one</a>.</p>
+    <p class="auth-section-helper">Login to your Kitsu account below. If you need an account, <a href="#" {{action "changeComponent" "social-auth"}}>create one</a>.</p>
   </div>
 
   <div class="modal-actions login-actions">
@@ -16,7 +16,7 @@
       </div>
     </button>
 
-    <button class="button button--facebook" title="Connect with Twitter" aria-label="Connect with Twitter" {{action 'facebook_auth'}}>
+    <button class="button button--facebook" title="Connect with Twitter" aria-label="Connect with Twitter" {{action (perform facebook)}}>
       <span class="svgIcon">
         {{svg-jar "l-facebook"}}
       </span>
@@ -53,8 +53,8 @@
         <button type="submit" class="btn button--primary"
                 disabled={{if (or (is-empty identification) (is-empty password)) "disabled"}}
                 data-test-selector="sign-in"
-                {{action (perform authenticate)}}>
-          {{#if authenticate.isRunning}}
+                {{action (perform login)}}>
+          {{#if authentication.isRunning}}
             {{loading-spinner}}
           {{else}}
             Login
