@@ -55,6 +55,7 @@ export default Component.extend({
     updateProfile() {
       // TODO: Show potential error to user.
       get(this, 'updateProfileTask').perform()
+        .then(() => this.$('.modal').modal('hide'))
         .catch(() => get(this, 'user').rollbackAttributes());
     },
 
