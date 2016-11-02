@@ -51,11 +51,13 @@ export default Component.extend({
     const user = get(this, 'store').createRecord('user');
     set(this, 'user', user);
 
+    // was data passed to this?
     const data = get(this, 'componentData');
     if (data !== undefined) {
       setProperties(user, {
         name: get(data, 'name'),
         email: get(data, 'email'),
+        gender: get(data, 'gender'),
         facebookId: get(data, 'id')
       });
     }
