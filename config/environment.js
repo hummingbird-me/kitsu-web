@@ -41,7 +41,7 @@ module.exports = function(environment) {
     torii: {
       providers: {
         'facebook-connect': {
-          appId: '1157250561017159',
+          appId: '189034391502520',
           version: 'v2.8',
           scope: 'public_profile,email,user_friends'
         }
@@ -100,6 +100,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.contentSecurityPolicyHeader = 'Content-Security-Policy';
+    ENV.torii.providers['facebook-connect'].appId = '1683064425356437';
   }
 
   return ENV;
