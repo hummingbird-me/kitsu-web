@@ -38,6 +38,7 @@ RouterInstance.map(function() {
   });
 
   this.route('posts', { path: '/posts/:id' });
+  this.route('notifications');
   this.route('settings');
 
   // These must remain at the bottom of the RouterInstance map

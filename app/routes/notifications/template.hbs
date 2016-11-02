@@ -1,0 +1,5 @@
+<ul class="notification-list">
+  {{#each model as |group|}}
+    {{application/components/user-notifications/notification-item tagName="li" class="notification-item" group=group}}
+  {{/each}}
+</ul>
