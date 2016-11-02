@@ -45,8 +45,8 @@ export default Component.extend({
   _handleClick(event) {
     const target = get(event, 'target');
     const isChild = jQuery(target).is('.stream-add-content *, .stream-add-content');
-    const isDeleted = jQuery(target).length === 0;
-    if (isChild === false && isDeleted === get(this, 'isDestroyed') === false) {
+    const isDeleted = jQuery(document.body).find(target).length === 0;
+    if (isChild === false && isDeleted === false && get(this, 'isDestroyed') === false) {
       set(this, 'isExpanded', false);
     }
   },
