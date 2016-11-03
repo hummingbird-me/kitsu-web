@@ -24,12 +24,13 @@ module.exports = function(environment) {
 
     contentSecurityPolicyHeader: 'Content-Security-Policy-Report-Only',
     contentSecurityPolicy: {
-      'script-src': "'self' www.google-analytics.com d2j1fszo1axgmp.cloudfront.net connect.facebook.net graph.facebook.com faye.getstream.io",
+      'script-src': "'self' www.google-analytics.com d2j1fszo1axgmp.cloudfront.net connect.facebook.net graph.facebook.com faye.getstream.io widget.intercom.io js.intercomcdn.com",
       'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
-      'connect-src': "'self' www.google-analytics.com analytics.getstream.io wss://faye.getstream.io",
+      'connect-src': "'self' www.google-analytics.com analytics.getstream.io wss://faye.getstream.io *.intercom.io wss://*.intercom.io",
       'img-src': '* data:',
-      'font-src': "'self' fonts.gstatic.com",
-      'frame-src': "'self' www.youtube.com *.facebook.com"
+      'font-src': "'self' fonts.gstatic.com js.intercomcdn.com",
+      'frame-src': "'self' www.youtube.com *.facebook.com",
+      'media-src': "'self' js.intercomcdn.com"
     },
 
     'ember-simple-auth': {
@@ -83,6 +84,11 @@ module.exports = function(environment) {
         key: 'sjm3sx9mgcx2',
         app: '17073'
       }
+    },
+
+    intercom: {
+      appId: 'elre1t9q',
+      enabled: true
     }
   };
 
@@ -103,6 +109,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    ENV.intercom.enabled = false;
   }
 
   if (environment === 'production') {
@@ -110,6 +117,7 @@ module.exports = function(environment) {
     ENV.torii.providers['facebook-connect'].appId = '1683064425356437';
     ENV.stream.realtime.key = '3byr477gj7mj';
     ENV.stream.realtime.app = '16897';
+    ENV.intercom.appId = 'ca7x05fo';
   }
 
   return ENV;
