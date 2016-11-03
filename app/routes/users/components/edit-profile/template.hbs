@@ -44,7 +44,7 @@
   {{/modal.header}}
 
   {{#modal.body}}
-    {{component componentName}}
+    {{component componentName user=user addRecord=(action "addRecord") removeRecord=(action "removeRecord")}}
   {{/modal.body}}
 
   {{#modal.footer}}
@@ -52,7 +52,7 @@
       Visit your <a href="#">settings page</a> to change your username, email, notification settings, and more.
     </p>
     <button class="button button--save-edit button--primary"
-      disabled={{unless user.hasDirtyAttributes "disabled"}} {{action "updateProfile"}}>
+      disabled={{if (is-empty isDirty) "disabled"}} {{action "updateProfile"}}>
       {{#if updateProfileTask.isRunning}}
         {{loading-spinner}}
       {{else}}

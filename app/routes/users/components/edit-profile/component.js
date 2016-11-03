@@ -1,12 +1,13 @@
 import Component from 'ember-component';
 import set from 'ember-metal/set';
 import get from 'ember-metal/get';
-import computed, { equal, alias } from 'ember-computed';
+import computed, { equal, alias, filterBy } from 'ember-computed';
 import service from 'ember-service/inject';
 import { image } from 'client/helpers/image';
 import { task } from 'ember-concurrency';
 import run from 'ember-runloop';
 import { invokeAction } from 'ember-invoke-action';
+import RSVP from 'rsvp';
 
 /**
  * This component should be invoked within a wormhole.
@@ -18,7 +19,7 @@ export default Component.extend({
   _component: 'about-me',
   componentName: computed('_component', {
     get() {
-      return `modals/edit-profile/${get(this, '_component')}`;
+      return `users/components/edit-profile/${get(this, '_component')}`;
     }
   }).readOnly(),
 
@@ -32,11 +33,23 @@ export default Component.extend({
   isAboutActive: equal('_component', 'about-me'),
   isProfilesActive: equal('_component', 'linked-profiles'),
   isFavoritesActive: equal('_component', 'favorites'),
+  isDirty: filterBy('records', 'hasDirtyAttributes'),
 
   updateProfileTask: task(function* () {
-    const user = get(this, 'session.account');
-    return yield user.save();
+    const records = get(this, 'records');
+    const saving = records.filterBy('hasDirtyAttributes').map(record => record.save());
+    return yield new RSVP.Promise((resolve, reject) => {
+      RSVP.allSettled(saving).then((data) => {
+        const failed = data.filterBy('state', 'rejected');
+        return failed.length > 0 ? reject() : resolve();
+      });
+    });
   }).restartable(),
+
+  init() {
+    this._super(...arguments);
+    set(this, 'records', []);
+  },
 
   actions: {
     onClose() {
@@ -52,11 +65,18 @@ export default Component.extend({
       this.$(`#${elementId}`).click();
     },
 
+    addRecord(record) {
+      get(this, 'records').addObject(record);
+    },
+
+    removeRecord(record) {
+      get(this, 'records').removeObject(record);
+    },
+
     updateProfile() {
-      // TODO: Show potential error to user.
       get(this, 'updateProfileTask').perform()
         .then(() => this.$('.modal').modal('hide'))
-        .catch(() => get(this, 'user').rollbackAttributes());
+        .catch(() => { /* TODO: Feedback */ });
     },
 
     updateImage(property, event) {
