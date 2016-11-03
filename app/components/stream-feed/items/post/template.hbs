@@ -40,11 +40,13 @@
     </div>
 
     {{! post likes }}
-    {{stream-feed/items/post/post-likes
-      post=post
-      likesCountUpdate=(action (mut post.likesCount))
-      trackStream=(action "trackStream")
-    }}
+    {{#if viewportEntered}}
+      {{stream-feed/items/post/post-likes
+        post=post
+        likesCountUpdate=(action (mut post.likesCount))
+        trackStream=(action "trackStream")
+      }}
+    {{/if}}
 
     <div class="stream-item-options">
       <a href={{tweetLink}} target="_blank" {{action "trackShare" preventDefault=false}}>
@@ -77,12 +79,14 @@
     {{! @Josh/Styling -- Comments hidden due to NSFW/Spoiler }}
     <span>Comments Hidden</span>
   {{else}}
-    {{stream-feed/items/post/comments
-      post=post
-      readOnly=readOnly
-      countUpdate=(action (mut post.commentsCount))
-      trackStream=(action "trackStream")
-    }}
+    {{#if viewportEntered}}
+      {{stream-feed/items/post/comments
+        post=post
+        readOnly=readOnly
+        countUpdate=(action (mut post.commentsCount))
+        trackStream=(action "trackStream")
+      }}
+    {{/if}}
   {{/if}}
 {{else}}
   <div class="stream-error-wrapper col-sm-12">
