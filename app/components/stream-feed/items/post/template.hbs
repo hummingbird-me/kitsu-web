@@ -63,8 +63,10 @@
           <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "posts" post.id)}} {{action "trackShare"}}>
             Copy Link to Post
           </a>
-          <a class="dropdown-item" href="#">Report Post</a>
-          <a class="dropdown-item" href="#" {{action "blockUser"}}>Block @{{post.user.name}}</a>
+          {{#if (not (is-self post.user))}}
+            <a class="dropdown-item" href="#">Report Post</a>
+            <a class="dropdown-item" href="#" {{action "blockUser"}}>Block @{{post.user.name}}</a>
+          {{/if}}
         </div>
       </span>
     </div>
