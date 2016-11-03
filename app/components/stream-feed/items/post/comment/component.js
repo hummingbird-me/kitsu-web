@@ -69,6 +69,15 @@ export default Component.extend({
       } else {
         get(this, 'createLike').perform();
       }
+    },
+
+    blockUser() {
+      const block = get(this, 'store').createRecord('block', {
+        user: get(this, 'session.account'),
+        blocked: get(this, 'comment.user')
+      });
+      // TODO: Feedback
+      block.save().then(() => {}).catch(() => {});
     }
   }
 });

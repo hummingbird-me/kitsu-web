@@ -1,6 +1,6 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
-import { belongsTo } from 'ember-data/relationships';
+import { belongsTo, hasMany } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
 import service from 'ember-service/inject';
 import get from 'ember-metal/get';
@@ -66,5 +66,9 @@ export default Model.extend(Validations, {
   website: attr('string'),
   updatedAt: attr('date'),
 
-  waifu: belongsTo('character')
+  waifu: belongsTo('character'),
+
+  blocks: hasMany('block', { inverse: 'user' }),
+  followers: hasMany('follow', { inverse: 'followed' }),
+  following: hasMany('follow', { inverse: 'follower' })
 });

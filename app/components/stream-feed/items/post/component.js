@@ -73,6 +73,15 @@ export default Component.extend(ClipboardMixin, {
 
     trackStream(label, verb, content) {
       this._streamAnalytics(label, verb, content);
+    },
+
+    blockUser() {
+      const block = get(this, 'store').createRecord('block', {
+        user: get(this, 'session.account'),
+        blocked: get(this, 'post.user')
+      });
+      // TODO: Feedback
+      block.save().then(() => {}).catch(() => {});
     }
   }
 });
