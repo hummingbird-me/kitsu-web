@@ -24,9 +24,9 @@ module.exports = function(environment) {
 
     contentSecurityPolicyHeader: 'Content-Security-Policy-Report-Only',
     contentSecurityPolicy: {
-      'script-src': "'self' www.google-analytics.com d2j1fszo1axgmp.cloudfront.net connect.facebook.net graph.facebook.com",
+      'script-src': "'self' www.google-analytics.com d2j1fszo1axgmp.cloudfront.net connect.facebook.net graph.facebook.com faye.getstream.io",
       'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
-      'connect-src': "'self' www.google-analytics.com analytics.getstream.io",
+      'connect-src': "'self' www.google-analytics.com analytics.getstream.io wss://faye.getstream.io",
       'img-src': '* data:',
       'font-src': "'self' fonts.gstatic.com",
       'frame-src': "'self' www.youtube.com *.facebook.com"
@@ -76,6 +76,13 @@ module.exports = function(environment) {
 
     moment: {
       allowEmpty: true
+    },
+
+    stream: {
+      realtime: {
+        key: 'sjm3sx9mgcx2',
+        app: '17073'
+      }
     }
   };
 
@@ -101,6 +108,8 @@ module.exports = function(environment) {
   if (environment === 'production') {
     ENV.contentSecurityPolicyHeader = 'Content-Security-Policy';
     ENV.torii.providers['facebook-connect'].appId = '1683064425356437';
+    ENV.stream.realtime.key = '3byr477gj7mj';
+    ENV.stream.realtime.app = '16897';
   }
 
   return ENV;

@@ -3,8 +3,9 @@ import attr from 'ember-data/attr';
 import { hasMany } from 'ember-data/relationships';
 
 export default Model.extend({
-  isRead: attr('boolean'),
-  isSeen: attr('boolean'),
+  group: attr('string'),
+  isRead: attr('boolean', { defaultValue: false }),
+  isSeen: attr('boolean', { defaultValue: false }),
 
   activities: hasMany('activity')
 });
