@@ -1,4 +1,3 @@
-/* global module */
 /* eslint-disable */
 
 module.exports = function(environment) {
@@ -112,7 +111,13 @@ module.exports = function(environment) {
     ENV.intercom.enabled = false;
   }
 
-  if (environment === 'production') {
+  if (process.env.HEROKU_EMBER_APP === 'staging') {
+    ENV.contentSecurityPolicyHeader = 'Content-Security-Policy';
+    ENV.metricsAdapters[1].config.production.apiKey = 'sjm3sx9mgcx2';
+    ENV.metricsAdapters[1].config.production.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.PwcarwpGmUWY57rhorNKYPbTOZt0ppmX2U4AyYwzrw0';
+  }
+
+  if (environment === 'production' && process.env.HEROKU_EMBER_APP !== 'staging') {
     ENV.contentSecurityPolicyHeader = 'Content-Security-Policy';
     ENV.torii.providers['facebook-connect'].appId = '1683064425356437';
     ENV.stream.realtime.key = '3byr477gj7mj';
