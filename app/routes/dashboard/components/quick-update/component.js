@@ -26,7 +26,7 @@ export default Component.extend({
         status: '1,2'
       },
       sort: 'status,-updated_at',
-      page: { limit: 10 }
+      page: { limit: 5 }
     });
     set(this, 'entries', items);
   }).cancelOn('willDestroyElement').drop(),

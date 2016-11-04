@@ -27,6 +27,10 @@ export default Component.extend(isOwnerMixin, {
       const count = entries !== undefined ? get(entries, 'length') : 0;
       const time = get(this, 'time');
       const text = count === 1 ? 'title' : 'titles';
+      const mediaType = get(this, 'mediaType');
+      if (mediaType === 'manga') {
+        return `${count} ${text}}`;
+      }
       return `${count} ${text} — ${time}`;
     }
   }),

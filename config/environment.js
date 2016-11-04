@@ -80,6 +80,7 @@ module.exports = function(environment) {
 
     stream: {
       realtime: {
+        enabled: true,
         key: 'sjm3sx9mgcx2',
         app: '17073'
       }
@@ -108,6 +109,8 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+
+    ENV.stream.realtime.enabled = false;
     ENV.intercom.enabled = false;
   }
 

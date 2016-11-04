@@ -14,6 +14,7 @@ import { jsonFactory as json } from 'client/tests/helpers/json';
 moduleForAcceptance('Acceptance | Anime', {
   beforeEach() {
     this.server = new Pretender(function() {
+      this.get('/api/edge/feeds/notifications/1', json(200, { data: [] }));
       this.get('/api/edge/anime', json(200, new JaQuery(animeResponse).unwrap()));
       this.get('/api/edge/feeds/media_aggr/Anime-1', json(200, { data: [] }));
     });
