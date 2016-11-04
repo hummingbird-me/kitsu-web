@@ -1,0 +1,53 @@
+<div class="favorite-series-panel">
+  <h6 class="panel-heading">Favorite Series</h6>
+  {{#if getAllFavorites.isRunning}}
+    <div class="text-xs-center">
+      {{loading-spinner size="large"}}
+    </div>
+  {{else}}
+    {{! TODO: @Josh -- Style tab headings here }}
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" href="#favorite-anime" data-toggle="tab" role="tab">Anime</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#favorite-manga" data-toggle="tab" role="tab">Manga</a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      {{! anime }}
+      <div class="tab-pane active" id="favorite-anime" role="tabpanel">
+        {{users/components/favorite-series/items
+          items=animeFavorites
+          user=user
+          updateNextPage=(action "updateNextPage" "anime")
+          type="anime" class="favorite-media-grid row"}}
+      </div>
+
+      {{! manga }}
+      <div class="tab-pane" id="favorite-manga" role="tabpanel">
+        {{users/components/favorite-series/items
+          items=mangaFavorites
+          user=user
+          updateNextPage=(action "updateNextPage" "manga")
+          type="manga" class="favorite-media-grid row"}}
+      </div>
+    </div>
+  {{/if}}
+</div>
+
+<div class="favorite-characters-panel">
+  <h6 class="panel-heading">Favorite Characters</h6>
+  {{#if getAllFavorites.isRunning}}
+    <div class="text-xs-center">
+      {{loading-spinner size="large"}}
+    </div>
+  {{else}}
+    {{users/components/favorite-series/items
+      items=characterFavorites
+      user=user
+      updateNextPage=(action "updateNextPage" "character")
+      type="character" class="favorite-media-grid row"}}
+  {{/if}}
+</div>

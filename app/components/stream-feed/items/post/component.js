@@ -5,8 +5,9 @@ import set from 'ember-metal/set';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
+import InViewportMixin from 'ember-in-viewport';
 
-export default Component.extend(ClipboardMixin, {
+export default Component.extend(ClipboardMixin, InViewportMixin, {
   classNameBindings: ['post.isNew:new-post'],
   classNames: ['stream-item', 'row'],
   isHidden: false,
@@ -57,6 +58,13 @@ export default Component.extend(ClipboardMixin, {
     get(this, 'metrics').invoke('trackEngagement', 'Stream', data);
   },
 
+  didInsertElement() {
+    this._super(...arguments);
+    set(this, 'viewportTolerance', {
+      top: 150, bottom: 0, left: 0, right: 0
+    });
+  },
+
   didReceiveAttrs() {
     this._super(...arguments);
     if (get(this, 'group') !== undefined) {
@@ -73,6 +81,15 @@ export default Component.extend(ClipboardMixin, {
 
     trackStream(label, verb, content) {
       this._streamAnalytics(label, verb, content);
+    },
+
+    blockUser() {
+      const block = get(this, 'store').createRecord('block', {
+        user: get(this, 'session.account'),
+        blocked: get(this, 'post.user')
+      });
+      // TODO: Feedback
+      block.save().then(() => {}).catch(() => {});
     }
   }
 });

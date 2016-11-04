@@ -72,73 +72,11 @@
         </div>
       {{/if}}
 
+      {{! About User }}
       {{users/components/about-me user=user}}
 
-      <!-- TODO: Componentize -->
-      <div class="favorite-series-panel">
-        <h6 class="panel-heading">Favorite Series</h6>
-        <ul class="nav nav-inline">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Anime</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Manga</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Drama</a>
-          </li>
-        </ul>
-        <div class="favorite-media-grid row">
-          <div class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded" aria-label="JoJo's Bizarre Adventure: Diamond Is Unbreakable">
-            <a href="#">
-              <img src="https://static.hummingbird.me/anime/poster_images/000/011/459/large/t_main_img.jpg?1458324630">
-            </a>
-          </div>
-          <div class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded" aria-label="JoJo's Bizarre Adventure: Diamond Is Unbreakable">
-            <a href="#">
-              <img src="https://static.hummingbird.me/anime/poster_images/000/011/459/large/t_main_img.jpg?1458324630">
-            </a>
-          </div>
-          <div class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded" aria-label="JoJo's Bizarre Adventure: Diamond Is Unbreakable">
-            <a href="#">
-              <img src="https://static.hummingbird.me/anime/poster_images/000/011/459/large/t_main_img.jpg?1458324630">
-            </a>
-          </div>
-          <div class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded" aria-label="JoJo's Bizarre Adventure: Diamond Is Unbreakable">
-            <a href="#">
-              <img src="https://static.hummingbird.me/anime/poster_images/000/011/459/large/t_main_img.jpg?1458324630">
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- TODO: Componentize -->
-      <div class="favorite-characters-panel">
-        <h6 class="panel-heading">Favorite Characters</h6>
-
-        <div class="favorite-media-grid row">
-          <div class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded" aria-label="JoJo's Bizarre Adventure: Diamond Is Unbreakable">
-            <a href="#">
-              <img src="https://myanimelist.cdn-dena.com/images/characters/2/284121.jpg">
-            </a>
-          </div>
-          <div class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded" aria-label="JoJo's Bizarre Adventure: Diamond Is Unbreakable">
-            <a href="#">
-              <img src="https://myanimelist.cdn-dena.com/images/characters/2/284121.jpg">
-            </a>
-          </div>
-          <div class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded" aria-label="JoJo's Bizarre Adventure: Diamond Is Unbreakable">
-            <a href="#">
-              <img src="https://myanimelist.cdn-dena.com/images/characters/2/284121.jpg">
-            </a>
-          </div>
-          <div class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded" aria-label="JoJo's Bizarre Adventure: Diamond Is Unbreakable">
-            <a href="#">
-              <img src="https://myanimelist.cdn-dena.com/images/characters/2/284121.jpg">
-            </a>
-          </div>
-        </div>
-      </div>
+      {{! Favorites }}
+      {{users/components/favorite-series user=user}}
 
       {{sidebar-footer}}
     </div>

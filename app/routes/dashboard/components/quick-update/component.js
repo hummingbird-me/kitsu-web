@@ -25,7 +25,7 @@ export default Component.extend({
         user_id: get(this, 'session.account.id'),
         status: '1,2'
       },
-      sort: 'status,updated_at',
+      sort: 'status,-updated_at',
       page: { limit: 10 }
     });
     set(this, 'entries', items);

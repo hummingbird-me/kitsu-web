@@ -1,4 +1,3 @@
-/* global module */
 /* eslint-disable */
 
 module.exports = function(environment) {
@@ -24,12 +23,13 @@ module.exports = function(environment) {
 
     contentSecurityPolicyHeader: 'Content-Security-Policy-Report-Only',
     contentSecurityPolicy: {
-      'script-src': "'self' www.google-analytics.com d2j1fszo1axgmp.cloudfront.net connect.facebook.net graph.facebook.com",
+      'script-src': "'self' www.google-analytics.com d2j1fszo1axgmp.cloudfront.net connect.facebook.net graph.facebook.com faye.getstream.io widget.intercom.io js.intercomcdn.com",
       'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
-      'connect-src': "'self' www.google-analytics.com analytics.getstream.io",
+      'connect-src': "'self' www.google-analytics.com analytics.getstream.io wss://faye.getstream.io *.intercom.io wss://*.intercom.io",
       'img-src': '* data:',
-      'font-src': "'self' fonts.gstatic.com",
-      'frame-src': "'self' www.youtube.com *.facebook.com"
+      'font-src': "'self' fonts.gstatic.com js.intercomcdn.com",
+      'frame-src': "'self' www.youtube.com *.facebook.com",
+      'media-src': "'self' js.intercomcdn.com"
     },
 
     'ember-simple-auth': {
@@ -41,7 +41,7 @@ module.exports = function(environment) {
     torii: {
       providers: {
         'facebook-connect': {
-          appId: '1157250561017159',
+          appId: '189034391502520',
           version: 'v2.8',
           scope: 'public_profile,email,user_friends'
         }
@@ -76,6 +76,18 @@ module.exports = function(environment) {
 
     moment: {
       allowEmpty: true
+    },
+
+    stream: {
+      realtime: {
+        key: 'sjm3sx9mgcx2',
+        app: '17073'
+      }
+    },
+
+    intercom: {
+      appId: 'elre1t9q',
+      enabled: true
     }
   };
 
@@ -96,10 +108,21 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    ENV.intercom.enabled = false;
   }
 
-  if (environment === 'production') {
+  if (process.env.HEROKU_EMBER_APP === 'staging') {
     ENV.contentSecurityPolicyHeader = 'Content-Security-Policy';
+    ENV.metricsAdapters[1].config.production.apiKey = 'sjm3sx9mgcx2';
+    ENV.metricsAdapters[1].config.production.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.PwcarwpGmUWY57rhorNKYPbTOZt0ppmX2U4AyYwzrw0';
+  }
+
+  if (environment === 'production' && process.env.HEROKU_EMBER_APP !== 'staging') {
+    ENV.contentSecurityPolicyHeader = 'Content-Security-Policy';
+    ENV.torii.providers['facebook-connect'].appId = '1683064425356437';
+    ENV.stream.realtime.key = '3byr477gj7mj';
+    ENV.stream.realtime.app = '16897';
+    ENV.intercom.appId = 'ca7x05fo';
   }
 
   return ENV;

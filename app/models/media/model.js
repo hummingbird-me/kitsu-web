@@ -1,8 +1,8 @@
-import Model from 'ember-data/model';
+import Base from 'client/models/base/model';
 import attr from 'ember-data/attr';
 import { hasMany } from 'ember-data/relationships';
 
-export default Model.extend({
+export default Base.extend({
   abbreviatedTitles: attr('array'),
   averageRating: attr('number'),
   canonicalTitle: attr('string'),

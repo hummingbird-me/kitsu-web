@@ -14,6 +14,7 @@ export default {
       followers: '{{user}}\'s Followers',
       following: 'Followed by {{user}}'
     },
+    notifications: 'Notifications',
     settings: 'Settings'
   },
   auth: {

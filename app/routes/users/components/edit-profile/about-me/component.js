@@ -1,19 +1,17 @@
 import Component from 'ember-component';
 import service from 'ember-service/inject';
-import { alias } from 'ember-computed';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { isEmpty } from 'ember-utils';
 import { task, timeout } from 'ember-concurrency';
+import { invokeAction } from 'ember-invoke-action';
 
 const GENDER_KEYS = ['secret', 'male', 'female', 'custom'];
 
 export default Component.extend({
   selectedGender: undefined,
   i18n: service(),
-  session: service(),
   store: service(),
-  user: alias('session.account'),
 
   searchCharacters: task(function* () {
     yield timeout(1000);
@@ -24,6 +22,7 @@ export default Component.extend({
     this._super(...arguments);
     this._setGenderOptions();
     this._setGender();
+    invokeAction(this, 'addRecord', get(this, 'user'));
   },
 
   _setGenderOptions() {

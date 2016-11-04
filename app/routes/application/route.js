@@ -6,6 +6,7 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 
 export default Route.extend(ApplicationRouteMixin, {
   i18n: service(),
+  intercom: service(),
   metrics: service(),
   session: service(),
 
@@ -39,6 +40,11 @@ export default Route.extend(ApplicationRouteMixin, {
     this._getCurrentUser();
   },
 
+  sessionInvalidated() {
+    get(this, 'intercom').stop();
+    this._super(...arguments);
+  },
+
   _getCurrentUser() {
     return get(this, 'session').getCurrentUser()
       .then((user) => {
@@ -46,6 +52,11 @@ export default Route.extend(ApplicationRouteMixin, {
           distinctId: get(user, 'id'),
           alias: get(user, 'name')
         });
+        get(this, 'intercom').set('user.user_id', get(user, 'id'));
+        get(this, 'intercom').set('user.name', get(user, 'name'));
+        get(this, 'intercom').set('user.email', get(user, 'email'));
+        get(this, 'intercom').set('user.created_at', get(user, 'createdAt'));
+        get(this, 'intercom').update(get(this, 'intercom.user'));
       })
       .catch(() => get(this, 'session').invalidate());
   },

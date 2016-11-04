@@ -60,7 +60,7 @@
 
 {{#if isEditing}}
   {{#ember-wormhole to="wormhole"}}
-    {{modals/edit-profile
+    {{users/components/edit-profile
       modalId="edit-profile-modal"
       onClose=(toggle-action "isEditing" this)}}
   {{/ember-wormhole}}

@@ -31,16 +31,16 @@
       {{moment-from-now comment.createdAt}}
     </small>
 
-    {{! TODO: Implement }}
-    <span class="more-wrapper">
-      <a href="#" class="more-drop" id="moreDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {{svg-jar "more"}}
-      </a>
-      <div class="dropdown-menu" aria-labelledby="moreDrop">
-        <a class="dropdown-item" href="#">Report Comment</a>
-        <a class="dropdown-item" href="#">Mute @{{comment.user.name}}</a>
-        <a class="dropdown-item" href="#">Block @{{comment.user.name}}</a>
-      </div>
-    </span>
+    {{#if (not (is-self comment.user))}}
+      <span class="more-wrapper">
+        <a href="#" class="more-drop" id="moreDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{svg-jar "more"}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="moreDrop">
+          <a class="dropdown-item" href="#">Report Comment</a>
+          <a class="dropdown-item" href="#" {{action "blockUser"}}>Block @{{comment.user.name}}</a>
+        </div>
+      </span>
+    {{/if}}
   </div>
 </div>

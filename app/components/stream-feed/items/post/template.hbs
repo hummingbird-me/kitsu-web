@@ -40,11 +40,13 @@
     </div>
 
     {{! post likes }}
-    {{stream-feed/items/post/post-likes
-      post=post
-      likesCountUpdate=(action (mut post.likesCount))
-      trackStream=(action "trackStream")
-    }}
+    {{#if viewportEntered}}
+      {{stream-feed/items/post/post-likes
+        post=post
+        likesCountUpdate=(action (mut post.likesCount))
+        trackStream=(action "trackStream")
+      }}
+    {{/if}}
 
     <div class="stream-item-options">
       <a href={{tweetLink}} target="_blank" {{action "trackShare" preventDefault=false}}>
@@ -63,9 +65,10 @@
           <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "posts" post.id)}} {{action "trackShare"}}>
             Copy Link to Post
           </a>
-          <a class="dropdown-item" href="#">Report Post</a>
-          <a class="dropdown-item" href="#">Mute @{{post.user.name}}</a>
-          <a class="dropdown-item" href="#">Block @{{post.user.name}}</a>
+          {{#if (not (is-self post.user))}}
+            <a class="dropdown-item" href="#">Report Post</a>
+            <a class="dropdown-item" href="#" {{action "blockUser"}}>Block @{{post.user.name}}</a>
+          {{/if}}
         </div>
       </span>
     </div>
@@ -76,12 +79,14 @@
     {{! @Josh/Styling -- Comments hidden due to NSFW/Spoiler }}
     <span>Comments Hidden</span>
   {{else}}
-    {{stream-feed/items/post/comments
-      post=post
-      readOnly=readOnly
-      countUpdate=(action (mut post.commentsCount))
-      trackStream=(action "trackStream")
-    }}
+    {{#if viewportEntered}}
+      {{stream-feed/items/post/comments
+        post=post
+        readOnly=readOnly
+        countUpdate=(action (mut post.commentsCount))
+        trackStream=(action "trackStream")
+      }}
+    {{/if}}
   {{/if}}
 {{else}}
   <div class="stream-error-wrapper col-sm-12">

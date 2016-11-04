@@ -7,6 +7,8 @@ class Getter {
   get(obj) {
     return this._getter.call(obj);
   }
+
+  teardown() { } // eslint-disable-line
 }
 
 export default function getter(func) {
