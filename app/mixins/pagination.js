@@ -24,7 +24,7 @@ export default Mixin.create({
       const links = get(model, 'links') || {};
       return get(links, 'next') || undefined;
     }
-  }),
+  }).volatile(),
 
   /**
    * Droppable task that queries the next set of data and sends an action

@@ -11,14 +11,14 @@ export default Component.extend({
   session: service(),
   store: service(),
 
-  remaining: computed('entries.length', {
+  remaining: computed('initialEntries.length', {
     get() {
-      return 3 - (get(this, 'entries.length') || 0);
+      return 3 - (get(this, 'initialEntries.length') || 0);
     }
   }).readOnly(),
 
   getEntriesTask: task(function* () {
-    const items = yield get(this, 'store').query('library-entry', {
+    return yield get(this, 'store').query('library-entry', {
       include: 'media',
       filter: {
         media_type: 'Anime,Manga',
@@ -26,16 +26,16 @@ export default Component.extend({
         status: '1,2'
       },
       sort: 'status,-updated_at',
-      page: { limit: 5 }
+      page: { limit: 12 }
     });
-    set(this, 'entries', items);
-  }).cancelOn('willDestroyElement').drop(),
+  }).drop(),
 
   init() {
     this._super(...arguments);
-    get(this, 'getEntriesTask').perform().then(() => {
+    get(this, 'getEntriesTask').perform().then((entries) => {
+      set(this, 'initialEntries', entries);
       scheduleOnce('afterRender', () => {
-        set(this, 'carousel', this.$().flickity(this._options()));
+        set(this, 'carousel', this.$('.carousel').flickity(this._options()));
       });
     });
   },
@@ -47,6 +47,12 @@ export default Component.extend({
     }
   },
 
+  _appendToFlickty() {
+    scheduleOnce('afterRender', () => (
+      get(this, 'carousel').flickity('append', this.$('.new-entries').children())
+    ));
+  },
+
   _options() {
     return {
       cellAlign: 'left',
@@ -55,5 +61,13 @@ export default Component.extend({
       groupCells: 2,
       autoPlay: false
     };
+  },
+
+  actions: {
+    updateNextPage(records, links) {
+      set(this, 'newEntries', records);
+      set(this, 'initialEntries.links', links);
+      this._appendToFlickty();
+    }
   }
 });
