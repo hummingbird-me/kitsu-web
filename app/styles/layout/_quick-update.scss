@@ -17,9 +17,7 @@
     width: 100vw;
   }
   .quick-update-actions {
-    @extend .animated;
     opacity: 0;
-    @extend .fadeOutUp;
     background: RGBA(70, 76, 90, .8);
     position: absolute;
     top: 5px;
@@ -30,7 +28,6 @@
   }
 
   .quick-update-title-block {
-    @extend .animated;
     text-align: left;
     position: absolute;
     bottom: 15px;
@@ -38,15 +35,12 @@
     right: 15px;
     color: $white;
     opacity: 1;
-    @extend .fadeInUp;
     .series-title {
       margin-bottom: 0;
     }
   }
 
   .ember-view {
-    @extend .animated;
-    @extend .slideInRight;
     width: 19%;
     min-width: 240px;
     height: 150px;
@@ -59,22 +53,6 @@
       background: #677086;
       transition: opacity .2s ease-in;
     }
-    &:nth-child(1) {
-      @extend .fadeInUp;
-      animation-delay: .1s;
-    }
-    &:nth-child(2) {
-      @extend .fadeInDown;
-      animation-delay: .2s;
-    }
-    &:nth-child(3) {
-      @extend .fadeInUp;
-      animation-delay: .3s;
-    }
-    &:nth-child(4) {
-      @extend .fadeInDown;
-      animation-delay: .4s;
-    }
     &.is-selected {
       .quick-update-media-wrapper {
         opacity: 1;
@@ -85,17 +63,9 @@
     }
     &:hover {
       .quick-update-actions {
-        @extend .fadeInDown;
         opacity: 1;
-        animation-duration: .4s;
-        .button {
-          @extend .fadeInUp;
-          animation-delay: .2s;
-          animation-duration: .5s;
-        }
       }
       .quick-update-title-block {
-        @extend .fadeOutDown;
         opacity: 0;
       }
     }
@@ -128,7 +98,6 @@
       margin-right: -0.25em; /* Adjusts for spacing */
     }
     .button {
-      @extend .animated;
       display: inline-block;
       vertical-align: middle;
       min-width: 75%;
