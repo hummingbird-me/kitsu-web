@@ -25,7 +25,7 @@ export default Component.extend({
       if (get(temp, key) === undefined) {
         temp[key] = {
           calendar,
-          date: moment(time).format('MMM, Do'),
+          date: moment(time).format('MMM Do'),
           activities: []
         };
       }
