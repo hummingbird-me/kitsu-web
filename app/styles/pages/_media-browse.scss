@@ -1,32 +1,31 @@
 .browse-page {
   padding-top: 0;
-  .primary-nav {
-    position: relative;
-  }
   .global-container {
     max-width: 100%;
+    padding-top: 51px;
+    background: linear-gradient(90deg, $river-bed 50%, $alabaster 50%);
   }
 }
 .media-browse {
+  margin: 0 auto;
   margin-bottom: -50px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
   .row {
-    width: 100%;
+    position: relative;
   }
   .filter-options {
-    background-color: $porcelain;
-    border-right: 1px solid $gray;
-    position: fixed;
-    top: 51px;
+    background-color: $river-bed;
+    border-right: 1px solid darken($river-bed, 10);
+    border-left: 1px solid darken($river-bed, 10);
+    position: absolute;
+    top: 0;
     left: 0;
     width: 240px;
-    padding: 10px;
+    padding: 0;
     padding-top: 20px;
     bottom: 0;
-    top: 51px;
-    transition: .2s ease-in;
     @media (max-width: 768px) {
       display: none;
     }
@@ -41,15 +40,16 @@
 
   .media-grid {
     position: relative;
-    padding-left: 274px;
+    background: $alabaster;
     @media (max-width: 768px) {
       padding-left: 30px;
     }
     .media-posters {
-      padding: 75px 0 0 15px;
+      padding: 75px 0 75px 280px;
       padding-right: 0;
-      overflow: auto;
-      padding-bottom: 75px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      height: 100vh;
     }
     .poster-wrapper {
       float: left;
@@ -60,10 +60,10 @@
         border-radius: 3px;
       }
       @media (max-width: 1820px) {
-        width: 14.2857%;
+        width: 16.666%;
       }
       @media (max-width: 1610px) {
-        width: 16.666%;
+        width: 20%;
       }
       @media (max-width: 1420px) {
         width: 20%;
@@ -146,38 +146,67 @@
     }
   }
 
-  .search-media {
-    position: fixed;
-    left: 240px;
+  .media-poster-header {
+    position: absolute;
+    left: 265px;
     right: 0;
     z-index: 1;
-    top: 51px;
-    transition: .2s ease-in;
-    @media (max-width: 768px) {
-      left: 0;
-    }
-    &.scrolled {
-      top: 0;
-    }
-    &:before {
-      content: '';
-      position: absolute;
-      right: -200px;
-      width: 200px;
-      height: 53px;
-      border-bottom: 1px solid #ddd;
-    }
-    svg {
-      position: absolute;
-      line-height: 50px;
-      left: 20px;
-      color: #8A8A8A;
+    top: 0;
+    border-bottom: 1px solid $eggshell;
+    background: RGBA(250, 250, 250, .98);
+    padding: 15px 0;
+    .search-media {
+      @extend .col-sm;
+      position: relative;
+      svg {
+        position: absolute;
+        line-height: 50px;
+        left: 20px;
+        color: #8A8A8A;
+        left: 0px;
+        top: 6px;
+        width: 25px;
+        fill: #bbb8b8;
+      }
     }
     input {
-      padding: 15px 0 15px 50px;
-      width: 100%;
+      width: 40px;
       border: none;
-      box-shadow: rgba(0, 0, 0, 0.14902) 0px 0px 1px;
+      font-size: 16px;
+      width: 100%;
+      background: transparent;
+    }
+
+    .filter-container {
+      display: flex;
+      flex-flow: row wrap;
+      width: 100%;
+      overflow: hidden;
+      word-wrap: break-word;
+    }
+
+    .active-filter {
+      position: relative;
+      margin-right: 10px;
+      color: $charcoal;
+      padding: 5px 10px;
+      padding-right: 35px;
+      border-radius: 3px;
+      border: 1px solid #ddd;
+    }
+    .tag-remove {
+      position: absolute;
+      right: 10px;
+      top: 7px;
+      svg {
+        width: 16px;
+        fill: #a5a5a5;
+      }
+      &:hover {
+        svg {
+          fill: #e74c3c;
+        }
+      }
     }
   }
 
@@ -185,23 +214,31 @@
 
   // Filter widgets
   .filter-widget {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 25px;
-    margin-bottom: 25px;
+    border-bottom: 1px solid darken($river-bed, 10);
+    margin-bottom: 15px;
+    padding: 10px;
+    padding-bottom: 15px;
+    padding-top: 0;
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
   }
   .filter-header {
     @extend .clearfix;
     .filter-title {
       float: left;
-      color: $charcoal;
-      font-weight: 700;
+      color: lighten($river-bed, 40);
+      font-size: 12px;
+      line-height: 30px;
+      font-weight: 600;
     }
     .filter-values {
       float: right;
-      color: lighten($charcoal, 20);
-      background: lighten($charcoal, 62);
+      color: #6E7881;
+      background: #323842;
       font-size: 12px;
-      font-weight: 600;
       padding: 2px 10px;
       border-radius: 999em;
       position: relative;
@@ -209,12 +246,25 @@
     }
   }
 
+  .category-filter {
+    padding: 0;
+    padding-bottom: 15px;
+    margin-bottom: 100px;
+    .filter-header {
+      padding: 0 10px;
+    }
+  }
+
   .filter-legend {
     @extend .clearfix;
     text-align: center;
     font-size: 12px;
-    color: lighten($charcoal, 30);
+    color: lighten($river-bed, 50);
     font-weight: 900;
+    svg {
+      width: 10px;
+      fill: lighten($river-bed, 50);
+    }
     .low-value {
       float: left;
     }
@@ -240,33 +290,6 @@
   .box-select {
     @extend .clearfix;
     margin-top: 20px;
-    .netflix, .hulu, .crunchyroll, .funimation, .anime-network, .animax, .animelab, .daisuki, .hanabee, .viewster, {
-      background: url(/images/providers.png) no-repeat;
-      display: inline-block;
-      background-size: 320px 240px;
-      opacity: .4;
-      width: 100%;
-      position: relative;
-      top: 8px;
-      height: 35px;
-      transition: none;
-    }
-    .netflix {
-      background-position: 7px -35px;
-    }
-    .hulu {
-      background-position: -23px -35px;
-    }
-    .crunchyroll {
-      background-position: -59px -35px;
-    }
-    .funimation {
-      background-position: -93px -35px;
-    }
-    .daisuki {
-      background-position: -266px -32px;
-    }
-
     ul {
       list-style-type: none;
       margin: 0;
@@ -275,48 +298,43 @@
     li {
       float: left;
       background: #ddd;
-      width: 40px;
-      height: 50px;
+      width: 50px;
+      height: 45px;
       border-radius: 2px;
       margin-bottom: 5px;
       margin-right: 4px;
-      transition: 0s;
-      &:nth-child(5), &:nth-child(10) {
+      text-align: center;
+      background: #505868;
+      &:nth-child(4), &:nth-child(8) {
         margin-right: 0;
       }
-      &:hover, &.active {
+      &:hover {
+        background: lighten(#505868, 5);
+      }
+      &.active {
         background: $white;
-        border: 1px solid #ddd;
-        .netflix {
-          background-position: 7px -4px;
-          opacity: 1;
-          transition: none;
-        }
-        .hulu {
-          background-position: -23px -4px;
-          opacity: 1;
-          transition: none;
-        }
-        .crunchyroll {
-          background-position: -57px -4px;
-          opacity: 1;
-          transition: none;
-        }
-        .funimation {
-          background-position: -93px -4px;
-          opacity: 1;
-        }
-        .daisuki {
-          background-position: -266px -3px;
-          opacity: 1;
-        }
       }
       &.active {
         background: $white;
         &:hover {
           opacity: .8;
         }
+        path {
+          fill: inherit;
+          opacity: 1;
+        }
       }
+    }
+    svg {
+      width: 25px;
+      height: 26px;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    path {
+      fill: $white;
+      opacity: .5;
     }
   }
 
@@ -366,23 +384,77 @@
       padding: 0;
     }
     li {
-      margin-bottom: 5px;
+      position: relative;
       a {
         color: #ACB4BF;
         font-weight: 600;
         display: block;
-        padding: 3px 0px;
-        background: #505868;
-        border-radius: 2px;
+        padding: 5px 0px;
         padding-left: 10px;
         font-size: 13px;
-        &:hover {
-          background: lighten(#505868, 5);
+        font-family: $base-font-family;
+      }
+      .include-genre, .exclude-genre {
+        position: absolute;
+        top: 4px;
+        right: 10px;
+        height: 20px;
+        visibility: hidden;
+        svg {
+          width: 20px;
+        }
+        &[class*="hint--"]:after {
+          box-shadow: none;
         }
       }
-      &.active a {
-        background: #EDEEEF;
-        color: #383D48;
+      .include-genre svg {
+        fill: #2ecc71;
+      }
+      .exclude-genre svg {
+        fill: #ACB4BF;
+        &:hover {
+          fill: #EF8F79;
+        }
+      }
+      &.active {
+        .include-genre {
+          @extend .animated;
+          @extend .fadeInRight;
+          visibility: visible;
+        }
+        .exclude-genre {
+          display: none;
+        }
+        a {
+          background: lighten(#505868, 2);
+        }
+      }
+      &.exclude {
+        a {
+          background: #3b4250;
+        }
+        .exclude-genre {
+          visibility: visible;
+          display: block;
+          svg {
+            fill: #EF8F79;
+          }
+          &.hint--left:before, &.hint--left:after {
+            display: none;
+          }
+        }
+        .include-genre {
+          display: none;
+        }
+      }
+      &:hover {
+        .exclude-genre {
+          visibility: visible;
+        }
+        a {
+          background: #505868;
+          text-decoration: none;
+        }
       }
     }
   }

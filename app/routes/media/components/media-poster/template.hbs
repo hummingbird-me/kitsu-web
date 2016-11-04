@@ -19,11 +19,12 @@
          {{#ember-wormhole to="wormhole"}}
             {{#bootstrap/bs-modal
               id=(concat elementId "-trailer")
+              class="trailer-modal"
               onClose=(action "closeTrailer") as |modal|
             }}
               {{#modal.body}}
-                <div class="flex-video widescreen">
-                  <iframe width="100%" height="520" src="https://www.youtube.com/embed/{{media.youtubeVideoId}}?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{media.youtubeVideoId}}?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <div class="trailer-info">
                   <div class="info-header">
@@ -31,18 +32,15 @@
                     <ul class="type-tags">
                       <li>{{capitalize media.showType}}</li>
                       <li>{{media.ageRating}}</li>
-                      <li class="average-rating">
+                      <!-- <li class="average-rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star-half-o"></i>
                         <i class="fa fa-star-o"></i>
-                      </li>
+                      </li> -->
                     </ul>
                   </div>
-                  {{#each media.genres as |genre|}}
-                    <span class="label">{{genre.name}}</span>
-                  {{/each}}
                   <p>{{media.synopsis}}</p>
                 </div>
               {{/modal.body}}

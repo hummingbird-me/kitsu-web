@@ -75,7 +75,7 @@ export default {
           episodes: 'Episodes',
           rating: 'Rating',
           genres: 'Categories',
-          search: 'Search by title, director, studio, or voice actor'
+          search: 'Search by title, director, studio, or voice actor... '
         }
       }
     }
