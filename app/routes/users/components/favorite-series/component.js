@@ -27,7 +27,7 @@ export default Component.extend({
     return yield RSVP.allSettled([anime, manga, chars], 'Get Favorites');
   }).drop(),
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
     get(this, 'getAllFavorites').perform().then(([anime, manga, chars]) => {
       set(this, 'animeFavorites', get(anime, 'value'));

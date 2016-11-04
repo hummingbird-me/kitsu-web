@@ -42,20 +42,22 @@
       {{! Library Entries }}
       {{#if (eq status 'all')}} {{! all status is selected }}
         {{#each-in sections as |status entries|}}
-          {{users/components/library-entries
-            status=status
-            entries=entries
-            mediaType=media
-            user=user
-            isLoading=isLoading
-            save=(route-action "saveEntry")
-            delete=(route-action "deleteEntry")
-          }}
+          {{#if entries}}
+            {{users/components/library-entries
+              status=status
+              entries=entries
+              mediaType=media
+              user=user
+              isLoading=isLoading
+              save=(route-action "saveEntry")
+              delete=(route-action "deleteEntry")
+            }}
+          {{/if}}
         {{/each-in}}
       {{else}} {{! active tab entires }}
         {{users/components/library-entries
           status=status
-          entries=filteredEntries
+          entries=entries
           mediaType=media
           user=user
           isLoading=isLoading
@@ -65,11 +67,15 @@
       {{/if}}
 
       {{! pagination }}
-      {{pagination-scrolling
-        model=entries
-        update=(route-action "updatePageAndTrack")
-        tolerance=(hash top=0 left=0 bottom=100 right=0)
-      }}
+      {{#if (not isLoading)}}
+        <div class="text-xs-center">
+          {{pagination-scrolling
+            model=entries
+            update=(route-action "updatePageAndTrack")
+            tolerance=(hash top=200 left=0 bottom=0 right=0)
+          }}
+        </div>
+      {{/if}}
     </div>
   </div>
 </div>
