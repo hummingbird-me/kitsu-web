@@ -43,16 +43,6 @@ export default Controller.extend({
     }
   }).readOnly(),
 
-  /**
-   * Gets the filtered entries for the current status
-   */
-  filteredEntries: computed('status', 'sections', {
-    get() {
-      const status = get(this, 'status');
-      return get(this, 'sections')[status];
-    }
-  }).readOnly(),
-
   init() {
     this._super(...arguments);
     set(this, 'statuses', ['all', ...libraryStatus.getEnumKeys()]);

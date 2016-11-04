@@ -55,7 +55,7 @@
       {{else}} {{! active tab entires }}
         {{users/components/library-entries
           status=status
-          entries=filteredEntries
+          entries=entries
           mediaType=media
           user=user
           isLoading=isLoading
@@ -65,11 +65,15 @@
       {{/if}}
 
       {{! pagination }}
-      {{pagination-scrolling
-        model=entries
-        update=(route-action "updatePageAndTrack")
-        tolerance=(hash top=0 left=0 bottom=100 right=0)
-      }}
+      {{#if (not isLoading)}}
+        <div class="text-xs-center">
+          {{pagination-scrolling
+            model=entries
+            update=(route-action "updatePageAndTrack")
+            tolerance=(hash top=0 left=0 bottom=100 right=0)
+          }}
+        </div>
+      {{/if}}
     </div>
   </div>
 </div>
