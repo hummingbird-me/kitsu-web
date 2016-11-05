@@ -1,13 +1,16 @@
 <div class="library-entry container" data-test-selector="library-entry">
   <div class="entry-wrapper row">
     {{! Entry Title }}
-    <div class="col-md-7 entry-left">
+    <div class="col-md-12 col-lg-7 entry-left">
+      <div class="entry-poster">
+        <img class="drop-thumb" src={{image media.posterImage}}>
+      </div>
       <div class="entry-title" data-test-selector="library-entry-title">
         <span>{{media.canonicalTitle}}</span>
       </div>
     </div>
 
-    <div class="col-md-5 entry-right">
+    <div class="col-md-12 col-lg-5 entry-right">
       {{! Entry Progress }}
       <div class="entry-progress">
         {{#if isOwner}}
@@ -50,12 +53,12 @@
       </div>
 
       {{! Poster Image }}
-      <div class="col-md-2 columns">
+      <div class="col-lg-1 hidden-md-down columns no-padding-right">
         <img class="drop-thumb" src={{image media.posterImage}}>
       </div>
 
       {{! Media Info }}
-      <div class="col-md-6 columns no-padding-left">
+      <div class="col-md-12 col-lg-7 columns">
         <h4 class="drop-title">
           <a href={{href-to (concat (media-type media) ".show") media}}>
             {{media.canonicalTitle}}
@@ -66,7 +69,7 @@
         </p>
         <div class="entry-notes">
           {{#if isOwner}}
-            {{one-way-text entry.notes
+            {{one-way-textarea entry.notes
               update=(queue
                 (action (mut entry.notes))
                 (perform saveEntryDebounced)
@@ -85,7 +88,7 @@
       </div>
 
       {{! Options }}
-      <div class="col-md-4 columns">
+      <div class="col-md-12 col-lg-4 columns">
         <div class="drop-options">
           {{#if isOwner}}
             {{! Library Status }}

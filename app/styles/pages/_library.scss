@@ -4,6 +4,7 @@
   border: 1px solid $eggshell;
   border-radius: 3px;
   padding: 0;
+  margin-bottom: 30px;
   .nav-wrapper {
     @extend .clearfix;
     padding: 15px;
@@ -83,9 +84,22 @@
   }
   .entry-progress, .entry-rating, .entry-type {
     display: inline-block;
+    @media (max-width: 992px) {
+      width: 33.3%;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
   }
   .entry-right {
     text-align: right;
+    font-size: 12px;
+    line-height: 40px;
+    @media (max-width: 992px) {
+      border-top: 1px solid #eee;
+      margin-top: 11px;
+      text-align: left;
+    }
   }
   .entry-rating {
     margin-right: 20px;
@@ -93,31 +107,44 @@
     text-align: center;
     min-width: 64px;
     display: inline-block;
-    height: 25px;
+    height: 100%;
     border-right: 1px solid #ddd;
   }
   .entry-type {
     display: inline-block;
     width: 65px;
-    font-size: 12px;
     font-weight: bold;
     line-height: 14px;
     text-align: center;
   }
 }
 
+.entry-poster {
+  float: left;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  margin-right: 15px;
+  border-radius: 3px;
+}
+
 .entry-progress {
   margin-right: 20px;
   padding-right: 20px;
-  height: 25px;
+  height: 100%;
   display: inline-block;
   border-right: 1px solid #ddd;
   font-weight: 600;
+  width: 125px;
+  text-align: left;
+  font-size: 12px;
   input {
     padding: 1px 0;
-    margin-top: -2px;
-    width: 46px;
+    width: 45px;
+    height: 25px;
     float: left;
+    position: relative;
+    top: 8px;
     text-align: center;
     border-radius: 3px;
     border: 1px solid #ddd;
@@ -146,11 +173,22 @@
   @extend .clearfix;
   padding: 10px 0;
   cursor: pointer;
+  border-bottom: 1px solid $eggshell;
+  line-height: 40px;
+  transition: .3s ease-in-out;
+  @media (max-width: 992px) {
+    padding-bottom: 0;
+    padding-top: 20px;
+  }
+  &:hover {
+    background: $alabaster;
+  }
 }
 .library-dropdown {
   @extend .clearfix;
   background: lighten($eggshell, 5);
   padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
   .arrow-wrapper {
     padding: 0;
   }
@@ -158,7 +196,6 @@
     position: relative;
     height: 5px;
     margin-bottom: 15px;
-    border-top: 1px solid $eggshell;
     &:before, &:after {
       top: 100%;
       border: solid transparent;
@@ -194,10 +231,13 @@
     box-shadow: none;
     width: 100%;
     margin-bottom: 15px;
-    padding: 0 10px;
+    padding: 10px;
+    height: 50px;
+    line-height: 16px;
+    font-size: 12px;
   }
   .drop-thumb {
-    max-width: 150px;
+    max-width: 100%;
     border-radius: 3px;
   }
   .drop-title {
@@ -229,6 +269,8 @@
 
 .drop-description {
   font-size: 14px;
+  overflow: hidden;
+  height: 85px;
 }
 
 .drop-options {
