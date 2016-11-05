@@ -8,13 +8,12 @@
     <!-- TODO: also check if they haven't made a post -->
     {{#if session.hasUser}}
       {{dashboard/components/stream-onboarding}}
-
-      <!-- TODO: Remove from authentication block when global feed is built -->
-      {{stream-feed
-        streamType=streamType
-        streamId=session.account.id
-        readOnly=(not session.hasUser)}}
     {{/if}}
+
+    {{stream-feed
+      streamType=streamType
+      streamId=streamId
+      readOnly=(not session.hasUser)}}
   </div>
 
   <div class="feed-sidebar col-sm-4">
