@@ -39,6 +39,8 @@
       readOnly=readOnly
     }}
   {{else}}
-    {{t "errors.contentEmpty"}}
+    <div class="stream-error-wrapper col-sm-12">
+      {{t "errors.contentEmpty"}}
+    </div>
   {{/each}}
 {{/if}}
