@@ -23,9 +23,11 @@
   <div class="text-xs-center">
     {{! TODO/@Josh -- load more button }}
     {{#pagination-manual model=items update=(action "updateNextPage") as |nextLink|}}
-      <button class="button button--primary" disabled={{unless nextLink "disabled"}}>
-        Load More
-      </button>
+      {{#if nextLink}}
+        <button class="button button--primary">
+          Load More
+        </button>
+      {{/if}}
     {{/pagination-manual}}
   </div>
 {{/if}}
