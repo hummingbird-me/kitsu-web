@@ -5,10 +5,12 @@ import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
+import { prependObjects } from 'client/utils/array-utils';
 
 export default Component.extend({
   classNameBindings: ['comment.isNew:new-comment'],
   isLiked: false,
+  isReplying: false,
 
   session: service(),
   store: service(),
@@ -16,6 +18,36 @@ export default Component.extend({
   getStatus: task(function* () {
     return yield get(this, 'store').query('comment-like', {
       filter: { comment_id: get(this, 'comment.id'), user_id: get(this, 'session.account.id') }
+    });
+  }).drop(),
+
+  getReplies: task(function* () {
+    const post = yield get(this, 'comment.post');
+    return yield get(this, 'store').query('comment', {
+      filter: { parent_id: get(this, 'comment.id'), post_id: get(post, 'id') },
+      page: { limit: 2 },
+      sort: '-created_at',
+      parent_id: get(this, 'comment.id')
+    });
+  }).drop(),
+
+  createReply: task(function* (content) {
+    set(this, 'isReplying', false);
+    const reply = get(this, 'store').createRecord('comment', {
+      content,
+      post: get(this, 'post'),
+      parent: get(this, 'comment'),
+      user: get(this, 'session.account')
+    });
+    get(this, 'replies').addObject(reply);
+
+    yield reply.save().then(() => {
+      // invokeAction(this, 'trackStream', 'comment', 'comment');
+
+      // update the parent comment => make it a top level comment
+      // get(this, 'comment').save();
+    }).catch(() => {
+      get(this, 'replies').removeObject(reply);
     });
   }).drop(),
 
@@ -56,6 +88,11 @@ export default Component.extend({
         set(this, 'isLiked', like !== undefined);
       });
     }
+
+    get(this, 'getReplies').perform().then((replies) => {
+      const content = replies.toArray().reverse();
+      set(this, 'replies', content);
+    });
   },
 
   actions: {
@@ -78,6 +115,13 @@ export default Component.extend({
       });
       // TODO: Feedback
       block.save().then(() => {}).catch(() => {});
-    }
+    },
+
+    // loadReplies(records, links) {
+    //   const content = get(this, 'comments').toArray();
+    //   prependObjects(content, records);
+    //   set(this, 'comments', content);
+    //   set(this, 'comments.links', links);
+    // }
   }
 });
