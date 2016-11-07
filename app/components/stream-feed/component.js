@@ -56,7 +56,7 @@ export default Component.extend({
         'media,actor,unit,subject',
         // posts
         'subject.user,subject.target_user',
-        // library-entry
+        // library-entry/post
         'subject.media',
         // follow
         'subject.follower,subject.followed'

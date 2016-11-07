@@ -3,6 +3,8 @@ import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
+import { capitalize } from 'ember-string';
+import { mediaType } from 'client/helpers/media-type';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
 import InViewportMixin from 'ember-in-viewport';
@@ -77,6 +79,19 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
   actions: {
     trackShare() {
       this._streamAnalytics('click', 'share');
+    },
+
+    trackMedia() {
+      const mediaClass = capitalize(mediaType([get(this, 'post.media')]));
+      this._streamAnalytics('click', 'media', {
+        foreign_id: `Post:${get(this, 'post.id')}`,
+        actor: {
+          id: `User:${get(this, 'session.account.id')}`,
+          label: get(this, 'session.account.name')
+        },
+        verb: 'media',
+        object: { id: `${mediaClass}:${get(this, 'post.media.id')}` }
+      });
     },
 
     trackStream(label, verb, content) {

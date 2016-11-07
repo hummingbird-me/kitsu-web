@@ -37,6 +37,12 @@
           {{{post.contentFormatted}}}
         {{/if}}
       {{/if}}
+
+      {{#if post.media}}
+        <a href={{href-to (concat (media-type post.media) ".show") post.media}} onclick={{action "trackMedia"}}>
+          Tagged with {{post.media.canonicalTitle}}
+        </a>
+      {{/if}}
     </div>
 
     {{! post likes }}
