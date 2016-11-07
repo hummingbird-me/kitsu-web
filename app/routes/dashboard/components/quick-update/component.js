@@ -5,11 +5,20 @@ import set from 'ember-metal/set';
 import { task } from 'ember-concurrency';
 import computed from 'ember-computed';
 import { scheduleOnce } from 'ember-runloop';
+import { capitalize } from 'ember-string';
+import observer from 'ember-metal/observer';
 
 export default Component.extend({
   classNames: ['quick-update'],
+  filter: 'anime',
   session: service(),
   store: service(),
+
+  filterOptions: computed('filter', {
+    get() {
+      return ['anime', 'manga'].removeObject(get(this, 'filter'));
+    }
+  }).readOnly(),
 
   remaining: computed('initialEntries.length', {
     get() {
@@ -21,7 +30,7 @@ export default Component.extend({
     return yield get(this, 'store').query('library-entry', {
       include: 'media',
       filter: {
-        media_type: 'Anime,Manga',
+        media_type: capitalize(get(this, 'filter')),
         user_id: get(this, 'session.account.id'),
         status: '1,2'
       },
@@ -30,14 +39,13 @@ export default Component.extend({
     });
   }).drop(),
 
+  _updateType: observer('filter', function() {
+    this._getEntries();
+  }),
+
   init() {
     this._super(...arguments);
-    get(this, 'getEntriesTask').perform().then((entries) => {
-      set(this, 'initialEntries', entries);
-      scheduleOnce('afterRender', () => {
-        set(this, 'carousel', this.$('.carousel').flickity(this._options()));
-      });
-    });
+    this._getEntries();
   },
 
   willDestroyElement() {
@@ -45,6 +53,15 @@ export default Component.extend({
     if (get(this, 'carousel') !== undefined) {
       get(this, 'carousel').flickity('destroy');
     }
+  },
+
+  _getEntries() {
+    get(this, 'getEntriesTask').perform().then((entries) => {
+      set(this, 'initialEntries', entries);
+      scheduleOnce('afterRender', () => {
+        set(this, 'carousel', this.$('.carousel').flickity(this._options()));
+      });
+    });
   },
 
   _appendToFlickty() {
