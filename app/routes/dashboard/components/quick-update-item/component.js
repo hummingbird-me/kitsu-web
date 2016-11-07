@@ -4,9 +4,19 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import computed from 'ember-computed';
 import service from 'ember-service/inject';
+import getter from 'client/utils/getter';
+import { mediaType } from 'client/helpers/media-type';
 
 const QuickUpdateItemComponent = Component.extend({
   i18n: service(),
+
+  isAnime: getter(function() {
+    return mediaType([get(this, 'entry.media')]) === 'anime';
+  }),
+
+  unitType: getter(function() {
+    return get(this, 'isAnime') === true ? 'episode' : 'chapter';
+  }),
 
   isCompleted: computed('entry.progress', {
     get() {
@@ -29,7 +39,8 @@ const QuickUpdateItemComponent = Component.extend({
   episodeText: computed('nextProgress', {
     get() {
       const num = get(this, 'nextProgress');
-      const start = get(this, 'i18n').t('dashboard.quickUpdate.episode', { num });
+      const key = get(this, 'unitType');
+      const start = get(this, 'i18n').t(`dashboard.quickUpdate.${key}`, { num });
       // TODO: If we have the episode data, then append the `- Episode Title`.
       return start;
     }

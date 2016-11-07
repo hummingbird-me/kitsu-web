@@ -36,6 +36,7 @@ export default {
       },
       mark: 'Mark',
       episode: 'Ep. {{num}}',
+      chapter: 'Ch. {{num}}',
       complete: 'Complete'
     },
     streamOnboarding: {

@@ -1,22 +1,22 @@
+{{! TODO/@Josh - Media context dropdown on QU }}
+<div>
+  {{#bootstrap/bs-dropdown as |dropdown|}}
+    {{#dropdown.button}}
+      {{t (concat "media." filter ".name")}}
+    {{/dropdown.button}}
+    {{#dropdown.menu}}
+      {{#each filterOptions as |option|}}
+        {{#dropdown.menu-item onClick=(action (mut filter) option)}}
+          {{t (concat "media." option ".name")}}
+        {{/dropdown.menu-item}}
+      {{/each}}
+    {{/dropdown.menu}}
+  {{/bootstrap/bs-dropdown}}
+</div>
+
 {{#if getEntriesTask.isRunning}}
   {{! TODO -- Loading State? }}
 {{else}}
-  {{! TODO/@Josh - Media context dropdown on QU }}
-  <div>
-    {{#bootstrap/bs-dropdown as |dropdown|}}
-      {{#dropdown.button}}
-        {{t (concat "media." filter ".name")}}
-      {{/dropdown.button}}
-      {{#dropdown.menu}}
-        {{#each filterOptions as |option|}}
-          {{#dropdown.menu-item onClick=(action (mut filter) option)}}
-            {{t (concat "media." option ".name")}}
-          {{/dropdown.menu-item}}
-        {{/each}}
-      {{/dropdown.menu}}
-    {{/bootstrap/bs-dropdown}}
-  </div>
-
   <div class="carousel">
     {{#each initialEntries as |entry|}}
       {{dashboard/components/quick-update-item entry}}

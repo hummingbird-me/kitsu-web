@@ -50,18 +50,23 @@ export default Component.extend({
 
   willDestroyElement() {
     this._super(...arguments);
-    if (get(this, 'carousel') !== undefined) {
-      get(this, 'carousel').flickity('destroy');
-    }
+    this._clean();
   },
 
   _getEntries() {
     get(this, 'getEntriesTask').perform().then((entries) => {
       set(this, 'initialEntries', entries);
+      this._clean();
       scheduleOnce('afterRender', () => {
         set(this, 'carousel', this.$('.carousel').flickity(this._options()));
       });
     });
+  },
+
+  _clean() {
+    if (get(this, 'carousel') !== undefined) {
+      get(this, 'carousel').flickity('destroy');
+    }
   },
 
   _appendToFlickty() {

@@ -14,7 +14,7 @@
               {{else}}
                 {{t "dashboard.quickUpdate.mark"}}
                 <span class="progress-count">
-                  {{t "dashboard.quickUpdate.episode" num=nextProgress}}
+                  {{t (concat "dashboard.quickUpdate." unitType) num=nextProgress}}
                 </span>
                 {{t "dashboard.quickUpdate.complete"}}
               {{/if}}
