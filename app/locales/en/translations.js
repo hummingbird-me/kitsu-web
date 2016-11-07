@@ -224,6 +224,11 @@ export default {
     }
   },
   feeds: {
+    filter: {
+      all: 'All Activity',
+      media: 'Media Activity',
+      user: 'User Activity'
+    },
     library: {
       updated: 'moved this to {{status}}',
       rated: 'rated it',

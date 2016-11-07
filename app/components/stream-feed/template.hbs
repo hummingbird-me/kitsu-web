@@ -7,6 +7,28 @@
   }}
 {{/if}}
 
+<div class="feed-actions clearfix">
+  {{#if hasBlock}}
+    {{yield}}
+  {{/if}}
+
+  <div class="pull-sm-right">
+    {{! TODO/@Josh -- Dropdown for filtering feed activity }}
+    {{#bootstrap/bs-dropdown class="" as |dropdown|}}
+      {{#dropdown.button}}
+        {{t (concat "feeds.filter." filter)}}
+      {{/dropdown.button}}
+      {{#dropdown.menu}}
+        {{#each filterOptions as |option|}}
+          {{#dropdown.menu-item onClick=(action (mut filter) option)}}
+            {{t (concat "feeds.filter." option)}}
+          {{/dropdown.menu-item}}
+        {{/each}}
+      {{/dropdown.menu}}
+    {{/bootstrap/bs-dropdown}}
+  </div>
+</div>
+
 {{#if getFeedData.isRunning}}
   {{#each (repeat 2) as |empty|}}
     <div class="stream-item stream-item--loading row">
@@ -31,7 +53,7 @@
     </div>
   {{/each}}
 {{else}}
-  {{#each feed as |group index|}}
+  {{#each filteredFeed as |group index|}}
     {{component (concat "stream-feed/items/" (feed-type group.activities))
       group=group
       feedId=feedId
