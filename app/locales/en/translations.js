@@ -29,6 +29,11 @@ export default {
   },
   dashboard: {
     quickUpdate: {
+      filter: {
+        all: 'All',
+        anime: 'Anime',
+        manga: 'Manga'
+      },
       hint: {
         text: 'Media you\'ve added or updated within your {{link}} willl show up here for you to quickly update.',
         library: 'Library',

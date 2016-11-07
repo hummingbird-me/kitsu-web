@@ -10,13 +10,13 @@ import observer from 'ember-metal/observer';
 
 export default Component.extend({
   classNames: ['quick-update'],
-  filter: 'anime',
+  filter: 'all',
   session: service(),
   store: service(),
 
   filterOptions: computed('filter', {
     get() {
-      return ['anime', 'manga'].removeObject(get(this, 'filter'));
+      return ['all', 'anime', 'manga'].removeObject(get(this, 'filter'));
     }
   }).readOnly(),
 
@@ -27,10 +27,11 @@ export default Component.extend({
   }).readOnly(),
 
   getEntriesTask: task(function* () {
+    const type = get(this, 'filter') === 'all' ? 'Anime,Manga' : capitalize(get(this, 'filter'));
     return yield get(this, 'store').query('library-entry', {
       include: 'media',
       filter: {
-        media_type: capitalize(get(this, 'filter')),
+        media_type: type,
         user_id: get(this, 'session.account.id'),
         status: '1,2'
       },

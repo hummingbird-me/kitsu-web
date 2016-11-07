@@ -2,12 +2,12 @@
 <div>
   {{#bootstrap/bs-dropdown as |dropdown|}}
     {{#dropdown.button}}
-      {{t (concat "media." filter ".name")}}
+      {{t (concat "dashboard.quickUpdate.filter." filter)}}
     {{/dropdown.button}}
     {{#dropdown.menu}}
       {{#each filterOptions as |option|}}
         {{#dropdown.menu-item onClick=(action (mut filter) option)}}
-          {{t (concat "media." option ".name")}}
+          {{t (concat "dashboard.quickUpdate.filter." option)}}
         {{/dropdown.menu-item}}
       {{/each}}
     {{/dropdown.menu}}
