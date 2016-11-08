@@ -84,6 +84,16 @@ export default {
           genres: 'Categories',
           search: 'Search by title, director, studio, or voice actor... '
         }
+      },
+      show: {
+        nav: {
+          summary: 'Summary',
+          episodes: 'Episodes',
+          installments: 'Installments',
+          cast: 'Cast',
+          reviews: 'Reviews',
+          quotes: 'Quotes'
+        }
       }
     }
   },

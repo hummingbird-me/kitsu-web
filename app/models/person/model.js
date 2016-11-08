@@ -1,13 +1,11 @@
 import attr from 'ember-data/attr';
 import Model from 'ember-data/model';
-import { belongsTo } from 'ember-data/relationships';
+import { hasMany } from 'ember-data/relationships';
 
 export default Model.extend({
-  description: attr('string'),
   // TODO: Replace with default image for characters
   image: attr('object', { defaultValue: '/image/default_avatar.png' }),
   name: attr('string'),
-  slug: attr('string'),
 
-  primaryMedia: belongsTo('media')
+  castings: hasMany('casting')
 });

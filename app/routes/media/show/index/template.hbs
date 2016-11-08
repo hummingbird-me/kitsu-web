@@ -1,0 +1,57 @@
+<section>
+  <h5>Synopsis</h5>
+  <p>{{truncate-text media.synopsis max=400}}</p>
+</section>
+<section>
+  <h5>Popular Reviews [Placeholder]</h5>
+  <ul class="media-list">
+    <li id="ember1696" class="media ember-view">
+      <div class="media-left">
+        <a href="/users/Josh">
+          <img src="/images/default_avatar.png">
+        </a>
+      </div>
+      <div class="media-body">
+        <small class="media-heading">
+          Review by <a href="#">PTApro</a>
+        </small>
+        <div class="comment-body">
+          <p>
+            Paradoxes be damned, this was delightful.
+          </p>
+          <p>
+            Taking a cue from Groundhog Day, The Girl Who Leapt Through Time eschews the technicalities of
+            time-travel and instead uses it as a stage to examine relationships, regrets, and what makes us
+            happy. It's a risky move, but then again all time-travel stories are; do you focus on believability
+            to construct intriguingly mathematical cause-and-effect issues, or do you focus on the theme of time
+            itself in an allegorical way? TGWLTT opts for the latter, and luckily populates its film with darling
+            characters who are much more interesting than the mechanics itself. Even more fortunately is its
+            treatment of its star, Makoto, who is written quite well as a girl on the cusp of womanhood…
+            <a href="#">more</a>
+          </p>
+        </div>
+        <div class="stream-item-activity">
+          <a href="#" class="like-stream-item is-liked" data-ember-action="1428">
+            <span class="heart-wrapper"></span>
+          </a>
+          <ul class="stream-item-participants">
+            <li class="stream-like  ">
+              <a class="like-avatar" href="/users/Josh">
+                <img src="/images/default_avatar.png">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </li>
+  </ul>
+</section>
+<section>
+  <h5>Community Feed</h5>
+  {{stream-feed
+    streamType="media_aggr"
+    streamId=(concat (capitalize (media-type media)) "-" media.id)
+    readOnly=(not session.hasUser)
+    media=media
+  }}
+</section>
