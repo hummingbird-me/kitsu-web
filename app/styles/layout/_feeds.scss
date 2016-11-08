@@ -2,7 +2,7 @@
   width: 100%;
   position: relative;
   &.quick-update-enabled {
-    margin-top: 180px;
+    margin-top: 230px;
   }
 }
 
@@ -304,7 +304,10 @@
     font-size: 14px;
     .comment-body {
       margin-bottom: 0;
-      display: inline;
+      display: inline-block;
+      p:last-child {
+        margin-bottom: 0;
+      }
     }
   }
   .stream-item-activity {
@@ -482,6 +485,11 @@
   @extend .fadeIn;
 }
 
+.comment-actions {
+  font-size: 12px;
+  padding: 10px 20px 0 20px;
+  color: #b4b4b4;
+}
 .nsfw-gate, .spoiler-gate {
   a {
     background: #fafafa;

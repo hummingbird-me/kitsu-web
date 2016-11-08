@@ -3,9 +3,28 @@
   left: 0;
   right: 0;
   top: 50px;
-  height: 180px;
+  height: 230px;
   background: #464C5A;
   overflow: hidden;
+}
+
+.quick-update--header {
+  margin-top: 15px;
+  h6 {
+    color: #B3BBCD;
+    font-size: 16px;
+    margin-bottom: 0;
+    line-height: 26px;
+    font-weight: normal;
+  }
+  button {
+    padding: 3px 5px;
+    font-size: 12px;
+    background: transparent;
+    border: 1px solid #B3BBCD;
+    margin-left: 10px;
+    color: #B3BBCD;
+  }
 }
 
 .flickity-viewport {
@@ -148,12 +167,15 @@
 
 .flickity-prev-next-button {
   top: 90px;
-  height: 180px;
+  height: 290px;
   bottom: 0;
   border-radius: 0;
   background: rgba(0,0,0,1);
   transition: all .2s ease-in;
   opacity: .3;
+  svg {
+    top: 10%;
+  }
   .arrow {
     fill: $white;
   }

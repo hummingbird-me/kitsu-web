@@ -1,17 +1,20 @@
 {{! TODO/@Josh - Media context dropdown on QU }}
-<div>
-  {{#bootstrap/bs-dropdown as |dropdown|}}
-    {{#dropdown.button}}
-      {{t (concat "dashboard.quickUpdate.filter." filter)}}
-    {{/dropdown.button}}
-    {{#dropdown.menu}}
-      {{#each filterOptions as |option|}}
-        {{#dropdown.menu-item onClick=(action (mut filter) option)}}
-          {{t (concat "dashboard.quickUpdate.filter." option)}}
-        {{/dropdown.menu-item}}
-      {{/each}}
-    {{/dropdown.menu}}
-  {{/bootstrap/bs-dropdown}}
+<div class="quick-update--header container">
+  <div class="row">
+    <h6>Quick Update</h6>
+    {{#bootstrap/bs-dropdown as |dropdown|}}
+      {{#dropdown.button}}
+        {{t (concat "dashboard.quickUpdate.filter." filter)}}
+      {{/dropdown.button}}
+      {{#dropdown.menu}}
+        {{#each filterOptions as |option|}}
+          {{#dropdown.menu-item onClick=(action (mut filter) option)}}
+            {{t (concat "dashboard.quickUpdate.filter." option)}}
+          {{/dropdown.menu-item}}
+        {{/each}}
+      {{/dropdown.menu}}
+    {{/bootstrap/bs-dropdown}}
+  </div>
 </div>
 
 {{#if getEntriesTask.isRunning}}
