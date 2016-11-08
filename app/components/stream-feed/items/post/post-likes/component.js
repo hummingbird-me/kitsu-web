@@ -72,6 +72,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
+    set(this, 'likes', []);
     get(this, 'getLikes').perform().then((likes) => {
       set(this, 'likes', likes.toArray());
       if (get(this, 'session.isAuthenticated') === true) {

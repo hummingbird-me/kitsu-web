@@ -33,6 +33,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
+    set(this, 'groups', []);
     get(this, 'getNotifications').perform().then((data) => {
       const { readonlyToken } = get(data, 'meta');
       const id = get(this, 'session.account.id');
