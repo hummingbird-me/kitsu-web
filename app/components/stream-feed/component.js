@@ -128,6 +128,6 @@ export default Component.extend({
         content_list: list.reduce((a, b) => a.concat(b)).uniq(),
         feed_id: get(this, 'feedId')
       });
-    });
+    }).catch(() => {});
   }
 });

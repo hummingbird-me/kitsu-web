@@ -48,7 +48,7 @@ export default Component.extend({
       // add to meta records to check for dirty state
       get(anime, 'value').forEach(record => invokeAction(this, 'addRecord', record));
       get(manga, 'value').forEach(record => invokeAction(this, 'addRecord', record));
-    });
+    }).catch(() => {});
   },
 
   actions: {

@@ -36,7 +36,7 @@ test('data is handled correctly', function(assert) {
 
   return wait().then(() => {
     const items = this.$('li');
-    assert.equal(items.length, 4);
+    assert.equal(items.length, 5);
     assert.equal(items.eq(0).find('a').text().trim(), 'First Topic');
   });
 });

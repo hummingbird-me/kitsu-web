@@ -39,7 +39,7 @@ export default Component.extend({
       const subscription = get(this, 'streamRealtime')
         .subscribe('notifications', id, readonlyToken, object => this._handleRealtime(object));
       set(this, 'subscription', subscription);
-    });
+    }).catch(() => {});
   },
 
   willDestroyElement() {

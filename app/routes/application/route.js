@@ -57,10 +57,7 @@ export default Route.extend(ApplicationRouteMixin, {
           email: get(user, 'email'),
           createdAt: get(user, 'createdAt')
         });
-        get(this, 'intercom').update({
-          ...get(this, 'intercom.user'),
-          user_id: get(user, 'id')
-        });
+        get(this, 'intercom').update({ ...get(this, 'intercom.user'), user_id: get(user, 'id') });
       })
       .catch(() => get(this, 'session').invalidate());
   },

@@ -43,7 +43,7 @@ export default Component.extend({
       const content = comments.toArray().reverse();
       set(content, 'links', get(comments, 'links'));
       set(this, 'comments', content);
-    });
+    }).catch(() => {});
   },
 
   actions: {

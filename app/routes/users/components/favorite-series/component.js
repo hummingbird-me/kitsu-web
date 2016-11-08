@@ -33,7 +33,7 @@ export default Component.extend({
       set(this, 'animeFavorites', get(anime, 'value'));
       set(this, 'mangaFavorites', get(manga, 'value'));
       set(this, 'characterFavorites', get(chars, 'value'));
-    });
+    }).catch(() => {});
   },
 
   actions: {

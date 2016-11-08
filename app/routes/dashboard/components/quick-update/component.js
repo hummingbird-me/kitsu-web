@@ -61,7 +61,7 @@ export default Component.extend({
       scheduleOnce('afterRender', () => {
         set(this, 'carousel', this.$('.carousel').flickity(this._options()));
       });
-    });
+    }).catch(() => {});
   },
 
   _clean() {

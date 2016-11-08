@@ -43,13 +43,10 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
   },
 
   model(params) {
-    const hash = {
-      include: 'genres',
-      page: { offset: 0, limit: 20 }
-    };
+    const hash = { page: { offset: 0, limit: 20 } };
     const filters = this._buildFilters(params);
     const options = Object.assign(filters, hash);
-    const [mediaType] = get(this, 'rotueName').split('.');
+    const [mediaType] = get(this, 'routeName').split('.');
     return get(this, 'store').query(mediaType, options);
   },
 

@@ -16,6 +16,9 @@ moduleForAcceptance('Acceptance | Anime', {
     this.server = new Pretender(function() {
       this.get('/api/edge/feeds/notifications/1', json(200, { data: [] }));
       this.get('/api/edge/anime', json(200, new JaQuery(animeResponse).unwrap()));
+      this.get('/api/edge/anime/1/streaming-links', json(200, { data: [] }));
+      // TODO: Remove when issue with feed links is fixed
+      this.get('/anime/1/streaming-links', json(200, { data: [] }));
       this.get('/api/edge/feeds/media_aggr/Anime-1', json(200, { data: [] }));
     });
   },
@@ -25,7 +28,7 @@ moduleForAcceptance('Acceptance | Anime', {
   }
 });
 
-test('anime.index requests and renders the correct data', function(assert) {
+test('can browse anime', function(assert) {
   this.server.get('/api/edge/genres', json(200, new JaQuery(genresResponse).unwrap()));
   this.server.get('/api/edge/streamers', json(200, new JaQuery(streamersResponse).unwrap()));
 
@@ -41,7 +44,7 @@ test('anime.index requests and renders the correct data', function(assert) {
   });
 });
 
-test('anime.show requests and renders the correct data', function(assert) {
+test('can look at a single anime', function(assert) {
   visit('/anime/trigun');
   andThen(() => {
     const data = new JaQuery(animeResponse);
@@ -52,7 +55,7 @@ test('anime.show requests and renders the correct data', function(assert) {
   });
 });
 
-test('I should be able to create a library entry from anime.show', function(assert) {
+test('can create a library entry from an anime page', function(assert) {
   this.server.get('/api/edge/users', json(200, new JaQuery(usersResponse).unwrap()));
   this.server.get('/api/edge/library-entries', json(200, { data: [] }));
   this.server.post('/api/edge/library-entries', json(201, new JaQuery(libraryResponse).unwrap()));
