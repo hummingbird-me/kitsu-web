@@ -1,4 +1,4 @@
-/* global require, module */
+/* eslint-disable */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
@@ -8,9 +8,7 @@ module.exports = function(defaults) {
       includePolyfill: true
     },
     sassOptions: {
-      includePaths: [
-        'bower_components/bootstrap/scss'
-      ]
+      includePaths: ['bower_components/bootstrap/scss']
     },
     postcssOptions: {
       compile: { enabled: false },
