@@ -32,13 +32,33 @@
   background: $white;
   position: relative;
   z-index: $zIndex--stream-item-block;
+
   .author-avatar {
     float: left;
     margin-right: 15px;
+    margin-left: -1px; // offset 1px border
+    position: relative;
+    transition: all .2s ease-in-out;
+    z-index: $zIndex--author-avatar;
+    &:hover {
+      opacity: .6;
+    }
     img {
       border-radius: 999em;
       width: 50px;
       height: 50px;
+      border: 1px solid #fff;
+    }
+  }
+  .recipient-avatar {
+    margin-left: -30px;
+    z-index: $zIndex--recipient-avatar;
+  }
+  .avatar-block {
+    &:hover {
+      .recipient-avatar {
+        margin-left: -15px;
+      }
     }
   }
   .author-info {
@@ -47,10 +67,11 @@
     position: relative;
     top: 7px;
   }
-  .author-name, .author-secondary {
+  .author-secondary {
     display: block;
   }
   .author-name {
+    display: inline-block;
     font-size: 20px;
     font-family: $heading-font-family;
   }
@@ -67,7 +88,6 @@
 
 .stream-item-activity {
   @extend .clearfix;
-  margin-top: 10px;
   margin-bottom: 5px;
   margin-left: -3px;
   display: inline-block;
@@ -206,7 +226,7 @@
 .stream-item-options {
   float: right;
   position: relative;
-  top: 10px;
+  top: 0;
   a {
     color: #979797;
     font-size: 12px;

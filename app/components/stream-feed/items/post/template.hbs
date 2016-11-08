@@ -2,17 +2,26 @@
 {{#if post}}
   <div class="stream-item-wrapper col-sm-12">
     <div class="stream-item--title-block">
-      <a href={{href-to "users.index" post.user}} class="author-avatar">
-        <img src={{image post.user.avatar}}>
-      </a>
+      <span class="avatar-block">
+        <a href={{href-to "users.index" post.user}} class="author-avatar">
+          <img src={{image post.user.avatar}}>
+        </a>
+        {{#if post.targetUser}}
+          <a href={{href-to "users.index" post.targetUser}} class="author-avatar recipient-avatar">
+            <img src={{image post.targetUser.avatar}}>
+          </a>
+        {{/if}}
+      </span>
       <div class="author-info">
         <a class="author-name" href={{href-to "users.index" post.user}}>{{post.user.name}}</a>
         {{! @Josh/Stying -- Targeted post }}
         {{#if post.targetUser}}
-          ->
-          <a href={{href-to "users.index" post.targetUser}} class="author-name">
-            {{post.targetUser.name}}
-          </a>
+          <span class="recipient-info">
+            <small>to</small>
+            <a href={{href-to "users.index" post.targetUser}} class="author-name">
+              {{post.targetUser.name}}
+            </a>
+          </span>
         {{/if}}
         <small class="author-secondary">
           {{moment-from-now post.createdAt}}
