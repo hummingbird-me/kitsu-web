@@ -69,13 +69,31 @@
     }
   }
   .cover-cta {
+    .button {
+      padding: 8px 40px;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+  }
+  .cover-profiles {
     position: absolute;
     right: 0;
-    height: 100px;
-    .button {
-      position: relative;
-      top: 50%;
-      transform: translateY(-40%);
+    bottom: 0;
+    .about-me-profiles {
+      text-align: center;
+      .profile-icon {
+        display: inline-block;
+        position: relative;
+        top: 0;
+        transition: all .2s ease-in-out;
+        &:hover {
+          top: -5px;
+        }
+        svg {
+          width: 40px;
+          margin-right: 5px;
+        }
+      }
     }
   }
   .dark-cover-overlay {

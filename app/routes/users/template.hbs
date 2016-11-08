@@ -12,20 +12,26 @@
               <h3 class="cover-username" data-test-selector="username">
                 {{user.name}}
               </h3>
-              <p>
-                {{user.bio}}
-              </p>
+              <div class="cover-cta">
+                {{#if isOwner}}
+                  <button class="button button--light-outline" data-toggle="modal" data-target="#edit-profile-modal" {{action (toggle "isEditing" this)}}>
+                    <span class="button-label button-defaultState js-buttonLabel">Edit</span>
+                  </button>
+                {{/if}}
+                {{#if (not (is-self user))}}
+                  {{follow-button user=user}}
+                {{/if}}
+              </div>
             </div>
           </div>
-          <div class="cover-cta">
-            {{#if isOwner}}
-              <button class="button button--light-outline" data-toggle="modal" data-target="#edit-profile-modal" {{action (toggle "isEditing" this)}}>
-                <span class="button-label button-defaultState js-buttonLabel">Edit</span>
-              </button>
-            {{/if}}
-            {{#if (not (is-self user))}}
-              {{follow-button user=user}}
-            {{/if}}
+          <div class="cover-profiles">
+            <div class="about-me-profiles">
+              <!-- TODO: NYI on server -->
+              <a href="#" class="profile-icon hint--top hint--bounce hint--rounded" aria-label="Twitter">{{svg-jar "twitter"}}</a>
+              <a href="#" class="profile-icon hint--top hint--bounce hint--rounded" aria-label="Facebook">{{svg-jar "facebook"}}</a>
+              <a href="#" class="profile-icon hint--top hint--bounce hint--rounded" aria-label="Twitch">{{svg-jar "twitch"}}</a>
+              <a href="#" class="profile-icon hint--top hint--bounce hint--rounded" aria-label="Youtube">{{svg-jar "youtube"}}</a>
+            </div>
           </div>
         </div>
       </div>
