@@ -26,11 +26,19 @@
                 {{#if media.streamingLinks}}
                   <div class="where-to-watch-widget">
                     <span>Where to Watch</span>
-                    <ul class="nav">
-                      {{#each media.streamingLinks as |link|}}
-                        <li>{{links.streamer.siteName}}</li>
-                      {{/each}}
-                    </ul>
+                    {{#if isStreamersLoaded}}
+                      <ul class="nav">
+                        {{#each media.streamingLinks as |link|}}
+                          <li>
+                            <a href={{link.url}}>
+                              {{svg-jar (to-lower link.streamer.siteName)}}
+                            </a>
+                          </li>
+                        {{/each}}
+                      </ul>
+                    {{else}}
+                      {{loading-spinner size="small"}}
+                    {{/if}}
                   </div>
                 {{/if}}
               </div>
