@@ -14,7 +14,6 @@
       </span>
       <div class="author-info">
         <a class="author-name" href={{href-to "users.index" post.user}}>{{post.user.name}}</a>
-        {{! @Josh/Stying -- Targeted post }}
         {{#if post.targetUser}}
           <span class="recipient-info">
             <small>to</small>
@@ -31,7 +30,6 @@
 
     <div class="stream-content">
       {{#if isHidden}}
-        {{! @Josh/Styling -- NSFW Toggle }}
         {{#if post.nsfw}}
           <div class="nsfw-gate">
             <a href="#" {{action (toggle "isHidden" this)}}>
@@ -95,8 +93,6 @@
 
   {{! comments }}
   {{#if isHidden}}
-    {{! @Josh/Styling -- Comments hidden due to NSFW/Spoiler }}
-
   {{else}}
     {{#if viewportEntered}}
       {{stream-feed/items/post/comments
