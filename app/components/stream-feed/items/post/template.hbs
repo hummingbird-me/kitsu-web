@@ -33,11 +33,21 @@
       {{#if isHidden}}
         {{! @Josh/Styling -- NSFW Toggle }}
         {{#if post.nsfw}}
-          <a href="#" {{action (toggle "isHidden" this)}}>NSFW content -- click here</a>
+          <div class="nsfw-gate">
+            <a href="#" {{action (toggle "isHidden" this)}}>
+              <div class="gate--label">This post contains NSFW content.</div>
+              <div class="gate--hover">My body is ready!</div>
+            </a>
+          </div>
         {{/if}}
         {{! TODO (@vevix): Show spoiler information such as what episode this relates to }}
         {{#if post.spoiler}}
-          <a href="#" {{action (toggle "isHidden" this)}}>Spoiled content -- click here</a>
+          <div class="spoiler-gate">
+            <a href="#" {{action (toggle "isHidden" this)}}>
+              <div class="gate--label">This post contains spoilers.</div>
+              <div class="gate--hover">I can handle the truth!</div>
+            </a>
+          </div>
         {{/if}}
       {{else}}
         {{#if post.isNew}}
@@ -86,7 +96,7 @@
   {{! comments }}
   {{#if isHidden}}
     {{! @Josh/Styling -- Comments hidden due to NSFW/Spoiler }}
-    <span>Comments Hidden</span>
+
   {{else}}
     {{#if viewportEntered}}
       {{stream-feed/items/post/comments

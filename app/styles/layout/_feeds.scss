@@ -451,3 +451,66 @@
   @extend .animated;
   @extend .fadeIn;
 }
+
+.nsfw-gate, .spoiler-gate {
+  a {
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    text-align: center;
+    padding: 20px;
+    display: block;
+    color: darken($nobel, 10);
+    transition: 0.3s background ease-in-out;
+    position: relative;
+    font-weight: 700;
+    &::after {
+      content: "(ಠ_ಠ)";
+      position: absolute;
+      right: 15px;
+      font-size: 42px;
+      top: -4px;
+      opacity: .3;
+      font-family: "Arial";
+    }
+    .gate--hover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      line-height: 65px;
+      transform: translate3d(0, -100%, 0);
+      transition: 0.3s all cubic-bezier(0.5,2,0.5,0.75);
+    }
+    &:hover {
+      background: #ffdcd8;
+      border: 1px dotted #e74c3c;
+      color: #e74c3c;
+      &::after {
+        content: "(¬‿¬ )";
+      }
+      .gate--label {
+        transform: translateY(60px);
+        opacity: 0;
+      }
+      .gate--hover {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+}
+
+.spoiler-gate {
+  a {
+    &::after {
+      content: "(⊙_⊙)";
+    }
+    &:hover {
+      &::after {
+        content: "(◕‿◕)";
+      }
+    }
+  }
+}
