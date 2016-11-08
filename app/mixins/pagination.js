@@ -18,7 +18,7 @@ export default Mixin.create({
   /**
    * Grabs the latest `next` URL from the `links` object
    */
-  nextLink: computed('model', {
+  nextLink: computed('model.links', {
     get() {
       const model = get(this, 'model') || {};
       const links = get(model, 'links') || {};

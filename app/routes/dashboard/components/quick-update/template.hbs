@@ -41,13 +41,16 @@
         </div>
       {{/each}}
     {{/if}}
-  </div>
 
-  {{pagination-scrolling
-    model=initialEntries
-    update=(action "updateNextPage")
-    tolerance=(hash top=0 bottom=0 left=200 right=0)
-  }}
+    {{! don't add the pagination component as a cell if we have less than the initial request length }}
+    {{#if (gte initialEntries.length pageLimit)}}
+      {{pagination-scrolling
+        model=initialEntries
+        update=(action "updateNextPage")
+        tolerance=(hash top=0 bottom=0 left=200 right=0)
+      }}
+    {{/if}}
+  </div>
 
   {{! Temporary storage for paginated entries }}
   <div class="new-entries" style="display: none">

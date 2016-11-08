@@ -11,6 +11,8 @@ import observer from 'ember-metal/observer';
 export default Component.extend({
   classNames: ['quick-update'],
   filter: 'all',
+  pageLimit: 12,
+
   session: service(),
   store: service(),
 
@@ -36,7 +38,7 @@ export default Component.extend({
         status: '1,2'
       },
       sort: 'status,-updated_at',
-      page: { limit: 12 }
+      page: { limit: get(this, 'pageLimit') }
     });
   }).drop(),
 
@@ -55,6 +57,7 @@ export default Component.extend({
   },
 
   _getEntries() {
+    set(this, 'initialEntries', []);
     get(this, 'getEntriesTask').perform().then((entries) => {
       set(this, 'initialEntries', entries);
       this._clean();
@@ -71,9 +74,10 @@ export default Component.extend({
   },
 
   _appendToFlickty() {
-    scheduleOnce('afterRender', () => (
-      get(this, 'carousel').flickity('append', this.$('.new-entries').children())
-    ));
+    scheduleOnce('afterRender', () => {
+      const index = get(this, 'carousel').data('flickity').cells.length - 1;
+      get(this, 'carousel').flickity('insert', this.$('.new-entries').children(), index);
+    });
   },
 
   _options() {
