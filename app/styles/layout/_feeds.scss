@@ -465,6 +465,10 @@
     transition: 0.3s background ease-in-out;
     position: relative;
     font-weight: 700;
+    overflow: hidden;
+    small {
+      display: block;
+    }
     &::after {
       content: "(ಠ_ಠ)";
       position: absolute;
@@ -480,7 +484,10 @@
       left: 0;
       width: 100%;
       height: 100%;
-      line-height: 65px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
       transform: translate3d(0, -100%, 0);
       transition: 0.3s all cubic-bezier(0.5,2,0.5,0.75);
     }
