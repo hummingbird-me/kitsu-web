@@ -33,8 +33,14 @@ export default BaseAdapter.extend({
     }
   },
 
-  identify(options) {
+  identify(options = {}) {
     const { distinctId: id, alias } = options;
+
+    // exit out if this is a guest identification
+    if (id === undefined || alias === undefined) {
+      return;
+    }
+
     if (canUseDOM) {
       get(this, 'client').setUser({ id, alias });
       set(this, 'userSet', true);

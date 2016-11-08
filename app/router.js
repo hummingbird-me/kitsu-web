@@ -7,7 +7,6 @@ import config from './config/environment';
 const RouterInstance = Router.extend({
   location: config.locationType,
   rootURL: config.rootURL,
-  intercom: service(),
   metrics: service(),
 
   didTransition() {
@@ -16,7 +15,6 @@ const RouterInstance = Router.extend({
       const page = get(this, 'url');
       const title = get(this, 'currentRouteName') || 'Unknown';
       get(this, 'metrics').trackPage({ page, title });
-      get(this, 'intercom').update();
     });
   }
 });
