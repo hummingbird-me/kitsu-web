@@ -9,6 +9,36 @@
 .feed-stream {
 }
 
+.feed-actions {
+  margin-bottom: 15px;
+  margin-top: 30px;
+  a {
+    font-size: 14px;
+    color: #AEAEAE;
+    margin-right: 10px;
+    &:hover {
+      text-decoration: none;
+    }
+    &.active {
+      padding: 5px 15px;
+      color: $charcoal;
+      background: transparent;
+      border: 1px solid #E8E8E8;
+      border-radius: 3px;
+    }
+  }
+  button {
+    padding: 5px 15px;
+    color: $charcoal;
+    background: transparent;
+    border: 1px solid #E8E8E8;
+    font-size: 14px;
+    &:hover, &:focus {
+      background: $white;
+    }
+  }
+}
+
 .stream-item {
   @extend .clearfix;
   border-radius: 3px;
