@@ -95,7 +95,7 @@
 
 {{#if authOpened}}
   {{#ember-wormhole to="wormhole"}}
-    {{modals/auth-onboarding
+    {{application/components/auth-onboarding
       modalId="auth-modal"
       component=authComponent
       onClose=(toggle-action "authOpened" this)}}

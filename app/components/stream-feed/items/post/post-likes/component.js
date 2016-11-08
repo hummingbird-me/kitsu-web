@@ -84,7 +84,7 @@ export default Component.extend({
           set(this, 'isLiked', true);
         }
       }
-    });
+    }).catch(() => {});
   },
 
   _getStatus() {
@@ -95,7 +95,7 @@ export default Component.extend({
         get(this, 'likes').addObject(record);
         set(this, 'isLiked', true);
       }
-    });
+    }).catch(() => {});
   },
 
   actions: {

@@ -12,7 +12,7 @@ export default Component.extend({
   component: 'social-auth',
   componentName: computed('component', {
     get() {
-      return `modals/auth-onboarding/${get(this, 'component')}`;
+      return `application/components/auth-onboarding/${get(this, 'component')}`;
     }
   }),
 

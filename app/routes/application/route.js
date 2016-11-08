@@ -52,11 +52,12 @@ export default Route.extend(ApplicationRouteMixin, {
           distinctId: get(user, 'id'),
           alias: get(user, 'name')
         });
-        get(this, 'intercom').set('user.user_id', get(user, 'id'));
-        get(this, 'intercom').set('user.name', get(user, 'name'));
-        get(this, 'intercom').set('user.email', get(user, 'email'));
-        get(this, 'intercom').set('user.created_at', get(user, 'createdAt'));
-        get(this, 'intercom').update(get(this, 'intercom.user'));
+        get(this, 'intercom').set('user', {
+          name: get(user, 'name'),
+          email: get(user, 'email'),
+          createdAt: get(user, 'createdAt')
+        });
+        get(this, 'intercom').update({ ...get(this, 'intercom.user'), user_id: get(user, 'id') });
       })
       .catch(() => get(this, 'session').invalidate());
   },

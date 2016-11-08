@@ -3,7 +3,6 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 
 export default MediaIndexRoute.extend({
-  mediaType: 'anime',
   queryParams: {
     ageRating: { refreshModel: true, replace: true },
     episodeCount: { refreshModel: true, replace: true },

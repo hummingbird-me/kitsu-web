@@ -41,7 +41,7 @@ module.exports = function(environment) {
     torii: {
       providers: {
         'facebook-connect': {
-          appId: '189034391502520',
+          appId: '1189964281083789',
           version: 'v2.8',
           scope: 'public_profile,email,user_friends'
         }
@@ -116,8 +116,9 @@ module.exports = function(environment) {
 
   if (process.env.HEROKU_EMBER_APP === 'staging') {
     ENV.contentSecurityPolicyHeader = 'Content-Security-Policy';
-    ENV.metricsAdapters[1].config.production.apiKey = 'sjm3sx9mgcx2';
-    ENV.metricsAdapters[1].config.production.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.PwcarwpGmUWY57rhorNKYPbTOZt0ppmX2U4AyYwzrw0';
+    ENV.torii.providers['facebook-connect'].appId = '189034391502520';
+    ENV.metricsAdapters[1].config.production.apiKey = 'ekx6xkn9v9xx';
+    ENV.metricsAdapters[1].config.production.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.Loj_VZy_FKQzP3xLpX46xSF9bktOBfqcve8eYjwFmNc';
   }
 
   if (environment === 'production' && process.env.HEROKU_EMBER_APP !== 'staging') {

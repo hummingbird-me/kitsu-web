@@ -5,10 +5,12 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
 import { capitalize } from 'ember-string';
+import computed from 'ember-computed';
 import getter from 'client/utils/getter';
 import { mediaType } from 'client/helpers/media-type';
 
 export default Component.extend({
+  filter: 'all',
   readOnly: false,
   session: service(),
   store: service(),
@@ -17,6 +19,33 @@ export default Component.extend({
   feedId: getter(function() {
     return `${get(this, 'streamType')}:${get(this, 'streamId')}`;
   }),
+
+  filterOptions: computed('filter', {
+    get() {
+      return ['all', 'media', 'user'].removeObject(get(this, 'filter'));
+    }
+  }).readOnly(),
+
+  filteredFeed: computed('feed', 'filter', {
+    get() {
+      const feed = get(this, 'feed');
+      if (feed === undefined) {
+        return [];
+      }
+      let result = feed;
+      const filter = get(this, 'filter');
+      if (filter === 'media') {
+        result = result.filter(group => (
+          get(group, 'activities.firstObject.foreignId').split(':')[0] === 'LibraryEntry'
+        ));
+      } else if (filter === 'user') {
+        result = result.reject(group => (
+          get(group, 'activities.firstObject.foreignId').split(':')[0] === 'LibraryEntry'
+        ));
+      }
+      return result;
+    }
+  }).readOnly(),
 
   getFeedData: task(function* (type, id) {
     return yield get(this, 'store').query('feed', {
@@ -27,7 +56,7 @@ export default Component.extend({
         'media,actor,unit,subject',
         // posts
         'subject.user,subject.target_user',
-        // library-entry
+        // library-entry/post
         'subject.media',
         // follow
         'subject.follower,subject.followed'
@@ -99,6 +128,6 @@ export default Component.extend({
         content_list: list.reduce((a, b) => a.concat(b)).uniq(),
         feed_id: get(this, 'feedId')
       });
-    });
+    }).catch(() => {});
   }
 });

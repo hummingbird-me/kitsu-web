@@ -5,27 +5,18 @@
   </div>
 
   <div class="modal-actions login-actions">
-    <button class="button button--twitter" title="Connect with Twitter" aria-label="Connect with Twitter">
-      <span class="svgIcon">
-        {{svg-jar "l-twitter"}}
-      </span>
-      <div class="button-labelSet">
-        <span class="button-label button-label--multiLine js-buttonLabel">
-          Continue with Twitter
+    <div class="connect-buttons">
+      <button class="button button--facebook" title="Connect with Facebook" aria-label="Connect with Facebook" {{action (perform loginWithFacebook)}}>
+        <span class="svgIcon">
+          {{svg-jar "l-facebook"}}
         </span>
-      </div>
-    </button>
-
-    <button class="button button--facebook" title="Connect with Twitter" aria-label="Connect with Twitter" {{action (perform facebook)}}>
-      <span class="svgIcon">
-        {{svg-jar "l-facebook"}}
-      </span>
-      <div class="button-labelSet">
-        <span class="button-label button-label--multiLine js-buttonLabel">
-          Continue with Facebook
-        </span>
-      </div>
-    </button>
+        <div class="button-labelSet">
+          <span class="button-label button-label--multiLine js-buttonLabel">
+            Continue with Facebook
+          </span>
+        </div>
+      </button>
+    </div>
     <small>Or, sign in with:</small>
     <form>
       {{#if errorMessage}}

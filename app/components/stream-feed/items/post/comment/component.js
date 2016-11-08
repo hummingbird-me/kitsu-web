@@ -54,7 +54,7 @@ export default Component.extend({
         const like = get(records, 'firstObject');
         set(this, 'like', like);
         set(this, 'isLiked', like !== undefined);
-      });
+      }).catch(() => {});
     }
   },
 

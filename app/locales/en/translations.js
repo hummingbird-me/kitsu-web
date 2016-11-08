@@ -29,6 +29,11 @@ export default {
   },
   dashboard: {
     quickUpdate: {
+      filter: {
+        all: 'All',
+        anime: 'Anime',
+        manga: 'Manga'
+      },
       hint: {
         text: 'Media you\'ve added or updated within your {{link}} willl show up here for you to quickly update.',
         library: 'Library',
@@ -36,6 +41,7 @@ export default {
       },
       mark: 'Mark',
       episode: 'Ep. {{num}}',
+      chapter: 'Ch. {{num}}',
       complete: 'Complete'
     },
     streamOnboarding: {
@@ -77,6 +83,16 @@ export default {
           rating: 'Rating',
           genres: 'Categories',
           search: 'Search by title, director, studio, or voice actor... '
+        }
+      },
+      show: {
+        nav: {
+          summary: 'Summary',
+          episodes: 'Episodes',
+          installments: 'Installments',
+          cast: 'Cast',
+          reviews: 'Reviews',
+          quotes: 'Quotes'
         }
       }
     }
@@ -224,6 +240,11 @@ export default {
     }
   },
   feeds: {
+    filter: {
+      all: 'All Activity',
+      media: 'Media Activity',
+      user: 'User Activity'
+    },
     library: {
       updated: 'moved this to {{status}}',
       rated: 'rated it',

@@ -28,7 +28,13 @@ RouterInstance.map(function() {
 
   ['anime', 'manga'].forEach((media) => {
     this.route(media, function() {
-      this.route('show', { path: '/:slug' });
+      this.route('show', { path: '/:slug' }, function() {
+        this.route('episodes');
+        this.route('installments');
+        this.route('cast');
+        this.route('reviews');
+        this.route('quotes');
+      });
     });
   });
 

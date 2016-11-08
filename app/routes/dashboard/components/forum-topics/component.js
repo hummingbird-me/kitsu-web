@@ -17,11 +17,14 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     get(this, 'getTopics').perform().then((data) => {
-      const topics = get(data, 'topic_list.topics').slice(0, 4).map(topic => ({
-        title: topic.title,
-        href: `https://forums.hummingbird.me/t/${topic.slug}/${topic.id}`
-      }));
-      set(this, 'topics', topics);
-    });
+      const topics = get(data, 'topic_list.topics') || undefined;
+      if (topics !== undefined) {
+        topics.slice(0, 4).map(topic => ({
+          title: topic.title,
+          href: `https://forums.hummingbird.me/t/${topic.slug}/${topic.id}`
+        }));
+        set(this, 'topics', topics);
+      }
+    }).catch(() => {});
   }
 });
