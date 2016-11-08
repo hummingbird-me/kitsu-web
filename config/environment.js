@@ -127,7 +127,7 @@ module.exports = function(environment) {
 
   if (environment === 'production' && process.env.HEROKU_EMBER_APP !== 'staging') {
     ENV.contentSecurityPolicyHeader = 'Content-Security-Policy';
-    ENV.torii.providers['facebook-connect'].appId = '1683064425356437';
+    ENV.torii.providers['facebook-connect'].appId = '325314560922421';
     ENV.stream.realtime.key = '3byr477gj7mj';
     ENV.stream.realtime.app = '16897';
     ENV.metricsAdapters[1].config.appId = 'ca7x05fo';
