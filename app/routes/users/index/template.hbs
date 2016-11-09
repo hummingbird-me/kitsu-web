@@ -2,7 +2,7 @@
   <div class="feed-container row">
     <!-- Feed Posts -->
     <div class="feed-stream col-sm-12 col-md-8">
-      {{#if (is-self user)}}
+      {{#if (and (is-self user) (not (is-object user.avatar)))}}
         {{users/components/stream-onboarding}}
       {{/if}}
 
