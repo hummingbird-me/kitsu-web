@@ -9,17 +9,36 @@
               <div class="media-sidebar">
                 <img src={{image media.posterImage}}>
                 {{#if session.hasUser}}
-                  {{library-dropdown/media media=media}}
-                  <div class="entry-progress--mini-wrapper">
-                    <span>Progress</span>
-                    <div class="entry-progress entry-progress--mini">
-                      <input type="number" placeholder="0">
-                      <span>
-                        <span class="sep">/</span>
-                        51
-                      </span>
+                  {{library-dropdown
+                    entry=entry
+                    type=(media-type media)
+                    methods=(hash
+                      create=(route-action "createEntry")
+                      update=(route-action "updateEntry" entry "status")
+                      delete=(route-action "deleteEntry" entry)
+                    )}}
+
+                  {{#if (and entry (not (is-promise entry)))}}
+                    {{! TODO/@Josh -- entry input here is broken after library page update }}
+                    <div class="entry-progress--mini-wrapper">
+                      <span>Progress</span>
+                      <div class="entry-progress entry-progress--mini">
+                        {{one-way-number entry.progress
+                          min=0
+                          update=(queue
+                            (action (mut entry.progress))
+                            (route-action "saveEntryDebounced" entry)
+                          )
+                          sanitizeInput=(action "sanitizeNumber")
+                          placeholder="0"
+                        }}
+                        <span>
+                          <span class="sep">/</span>
+                          {{totalProgressText}}
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                  {{/if}}
                 {{/if}}
 
                 {{! TODO/@Josh -- Styling here for third party streamers }}

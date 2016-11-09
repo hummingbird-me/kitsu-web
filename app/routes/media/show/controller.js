@@ -9,7 +9,7 @@ export default Controller.extend({
   session: service(),
 
   // Determine if the streamers are loaded so we can show a async loading state
-  isStreamersLoaded: computed('media.streamingLinks.@each.streamer.isLoaded', {
+  isStreamersLoaded: computed('media.streamingLinks.@each.streamer', {
     get() {
       const links = get(this, 'media.streamingLinks');
       if (get(links, 'isLoaded') === false) {
@@ -21,11 +21,24 @@ export default Controller.extend({
     }
   }).readOnly(),
 
+  totalProgressText: computed('media.episodeCount', {
+    get() {
+      return get(this, 'media.episodeCount') || '-';
+    }
+  }).readOnly(),
+
   coverImageStyle: computed('media.coverImage', {
     get() {
       // TODO: Support offset
       const coverImage = image([get(this, 'media.coverImage')]);
       return `background-image: url("${coverImage}")`.htmlSafe();
     }
-  }).readOnly()
+  }).readOnly(),
+
+  actions: {
+    sanitizeNumber(value) {
+      const parsed = parseInt(value, 10);
+      return isNaN(parsed) ? value : parsed;
+    }
+  }
 });

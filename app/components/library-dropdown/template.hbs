@@ -1,6 +1,6 @@
 {{#bootstrap/bs-dropdown as |dropdown|}}
-  {{#dropdown.button disabled=(if isWaiting "disabled") data-test-selector="library-dropdown"}}
-    {{#if isWaiting}}
+  {{#dropdown.button disabled=(if (or (not entryIsLoaded) updateTask.isRunning) "disabled") data-test-selector="library-dropdown"}}
+    {{#if (or (not entryIsLoaded) updateTask.isRunning)}}
       {{loading-spinner}}
     {{else}}
       {{#if entry}}

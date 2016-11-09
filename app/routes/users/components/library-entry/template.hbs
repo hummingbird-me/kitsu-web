@@ -15,6 +15,7 @@
       <div class="entry-progress">
         {{#if isOwner}}
           {{one-way-number entry.progress
+            min=0
             update=(queue
               (action (mut entry.progress))
               (perform saveEntryDebounced)
@@ -93,13 +94,15 @@
           {{#if isOwner}}
             {{! Library Status }}
             <div class="status-select">
-              {{library-dropdown/entry
+              {{library-dropdown
                 entry=entry
-                update=(queue
-                  (action (mut entry.status))
-                  (perform saveEntry)
+                methods=(hash
+                  update=(queue
+                    (action (mut entry.status))
+                    (perform saveEntry)
+                  )
+                  delete=(action "delete")
                 )
-                delete=(action "delete")
               }}
             </div>
           {{/if}}
