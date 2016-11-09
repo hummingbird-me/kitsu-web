@@ -23,53 +23,8 @@
   </div>
 
   <div class="feed-sidebar col-sm-4">
-    <!-- TODO: Componentize the checklist -->
     {{#if session.hasUser}}
-      <div class="checklist card">
-        <h4>Set-Up Your Feed</h4>
-        <ul>
-          <li class="step step--complete">
-            <span class="step-status">
-              {{svg-jar "success"}}
-            </span>
-            <span class="step-description">
-              Visit your feed
-            </span>
-          </li>
-          <li class="step step--complete">
-            <span class="step-status">
-              {{svg-jar "success"}}
-            </span>
-            <span class="step-description">
-              Rate 5 anime or manga
-            </span>
-          </li>
-          <li class="step step--complete">
-            <span class="step-status">
-              {{svg-jar "success"}}
-            </span>
-            <span class="step-description">
-              Follow 5 users
-            </span>
-          </li>
-          <li class="step">
-            <span class="step-status">
-              {{svg-jar "empty"}}
-            </span>
-            <span class="step-description">
-              Comment on 2 feed posts
-            </span>
-          </li>
-          <li class="step">
-            <span class="step-status">
-              {{svg-jar "empty"}}
-            </span>
-            <span class="step-description">
-              Like 3 feed posts
-            </span>
-          </li>
-        </ul>
-      </div>
+      {{dashboard/components/checklist-onboarding user=session.account}}
     {{/if}}
 
     {{! News }}

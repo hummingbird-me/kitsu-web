@@ -1,0 +1,42 @@
+{{! TODO: Needs way to hide checklist if completed. }}
+<div class="checklist card">
+  <h4>Set-Up Your Feed</h4>
+  <ul>
+    {{! default checked }}
+    <li class="step step--complete">
+      <span class="step-status">{{svg-jar "success"}}</span>
+      <span class="step-description">Visit your feed</span>
+    </li>
+
+    {{! TODO: needs impl. on server }}
+    <li class="step">
+      <span class="step-status">{{svg-jar "empty"}}</span>
+      <span class="step-description">
+        Rate 5 anime or manga
+      </span>
+    </li>
+
+    <li class="step {{if (gte user.followingCount 5) "step--complete"}}">
+      <span class="step-status">
+        {{#if (gte user.followingCount 5)}}
+          {{svg-jar "success"}}
+        {{else}}
+          {{svg-jar "empty"}}
+        {{/if}}
+      </span>
+      <span class="step-description">Follow 5 users</span>
+    </li>
+
+    {{! TODO: needs impl. on server }}
+    <li class="step">
+      <span class="step-status">{{svg-jar "empty"}}</span>
+      <span class="step-description">Comment on 2 feed posts</span>
+    </li>
+
+    {{! TODO: needs impl. on server }}
+    <li class="step">
+      <span class="step-status">{{svg-jar "empty"}}</span>
+      <span class="step-description">Like 3 feed posts</span>
+    </li>
+  </ul>
+</div>
