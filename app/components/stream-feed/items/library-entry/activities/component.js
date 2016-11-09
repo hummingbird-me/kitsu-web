@@ -13,7 +13,7 @@ export default Component.extend({
   groupedActivities: computed('activities', {
     get() {
       if (get(this, 'shouldGroup') === false) {
-        return get(this, 'activities');
+        return get(this, 'activities').map(activity => ({ activity }));
       }
       const groups = {};
       const activities = get(this, 'activities');

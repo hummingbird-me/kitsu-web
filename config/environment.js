@@ -26,7 +26,7 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'script-src': "'self' www.google-analytics.com d2j1fszo1axgmp.cloudfront.net connect.facebook.net graph.facebook.com faye.getstream.io widget.intercom.io js.intercomcdn.com",
       'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
-      'connect-src': "'self' www.google-analytics.com analytics.getstream.io wss://faye.getstream.io *.intercom.io wss://*.intercom.io",
+      'connect-src': "'self' www.google-analytics.com analytics.getstream.io wss://faye.getstream.io *.intercom.io wss://*.intercom.io forums.hummingbird.me",
       'img-src': '* data:',
       'font-src': "'self' fonts.gstatic.com js.intercomcdn.com",
       'frame-src': "'self' www.youtube.com *.facebook.com",
