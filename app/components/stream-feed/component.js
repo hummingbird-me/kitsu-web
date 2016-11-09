@@ -118,6 +118,7 @@ export default Component.extend({
     if (isEmpty(streamType) || isEmpty(streamId)) {
       return;
     }
+    set(this, 'feed', []);
     get(this, 'getFeedData').perform(streamType, streamId).then((data) => {
       set(this, 'feed', data);
       const list = data.map(group => get(group, 'activities').map(activity => get(activity, 'foreignId')));

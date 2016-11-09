@@ -1,4 +1,11 @@
 <section>
+  {{media/components/media-rating
+    entry=entry
+    media=media
+    update=(route-action "updateEntry" entry "rating")
+  }}
+</section>
+<section>
   <h5>Synopsis</h5>
   <p>{{truncate-text media.synopsis max=400}}</p>
 </section>

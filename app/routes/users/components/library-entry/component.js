@@ -41,7 +41,7 @@ export default Component.extend(IsOwnerMixin, {
   }).restartable(),
 
   saveEntryDebounced: task(function* () {
-    yield timeout(1000);
+    yield timeout(500);
     yield get(this, 'saveEntry').perform();
   }).restartable(),
 

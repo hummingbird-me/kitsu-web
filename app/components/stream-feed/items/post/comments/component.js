@@ -39,6 +39,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
+    set(this, 'comments', []);
     get(this, 'getComments').perform().then((comments) => {
       const content = comments.toArray().reverse();
       set(content, 'links', get(comments, 'links'));

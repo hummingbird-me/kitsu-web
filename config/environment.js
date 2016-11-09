@@ -21,6 +21,7 @@ module.exports = function(environment) {
       Date: false
     },
 
+    // ember-cli-content-security-policy
     contentSecurityPolicyHeader: 'Content-Security-Policy-Report-Only',
     contentSecurityPolicy: {
       'script-src': "'self' www.google-analytics.com d2j1fszo1axgmp.cloudfront.net connect.facebook.net graph.facebook.com faye.getstream.io widget.intercom.io js.intercomcdn.com",
@@ -32,12 +33,14 @@ module.exports = function(environment) {
       'media-src': "'self' js.intercomcdn.com"
     },
 
+    // ember-simple-auth
     'ember-simple-auth': {
       authenticationRoute: 'dashboard',
       routeIfAlreadyAuthenticated: 'dashboard',
       store: 'session-store:adaptive'
     },
 
+    // torii
     torii: {
       providers: {
         'facebook-connect': {
@@ -48,11 +51,17 @@ module.exports = function(environment) {
       }
     },
 
+    // ember-metrics
     metricsAdapters: [
       {
         name: 'GoogleAnalytics',
         environments: ['production'],
         config: { id: 'UA-37633900-1' }
+      },
+      {
+        name: 'Intercom',
+        environments: ['production', 'development'],
+        config: { appId: 'elre1t9q' }
       },
       {
         name: 'Stream',
@@ -70,10 +79,12 @@ module.exports = function(environment) {
       }
     ],
 
+    // ember-i18n
     i18n: {
       defaultLocale: 'en'
     },
 
+    // ember-moment
     moment: {
       allowEmpty: true
     },
@@ -84,11 +95,6 @@ module.exports = function(environment) {
         key: 'sjm3sx9mgcx2',
         app: '17073'
       }
-    },
-
-    intercom: {
-      appId: 'elre1t9q',
-      enabled: true
     }
   };
 
@@ -109,24 +115,22 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
-
     ENV.stream.realtime.enabled = false;
-    ENV.intercom.enabled = false;
   }
 
   if (process.env.HEROKU_EMBER_APP === 'staging') {
     ENV.contentSecurityPolicyHeader = 'Content-Security-Policy';
     ENV.torii.providers['facebook-connect'].appId = '189034391502520';
-    ENV.metricsAdapters[1].config.production.apiKey = 'ekx6xkn9v9xx';
-    ENV.metricsAdapters[1].config.production.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.Loj_VZy_FKQzP3xLpX46xSF9bktOBfqcve8eYjwFmNc';
+    ENV.metricsAdapters[2].config.production.apiKey = 'ekx6xkn9v9xx';
+    ENV.metricsAdapters[2].config.production.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.Loj_VZy_FKQzP3xLpX46xSF9bktOBfqcve8eYjwFmNc';
   }
 
   if (environment === 'production' && process.env.HEROKU_EMBER_APP !== 'staging') {
     ENV.contentSecurityPolicyHeader = 'Content-Security-Policy';
-    ENV.torii.providers['facebook-connect'].appId = '1683064425356437';
+    ENV.torii.providers['facebook-connect'].appId = '325314560922421';
     ENV.stream.realtime.key = '3byr477gj7mj';
     ENV.stream.realtime.app = '16897';
-    ENV.intercom.appId = 'ca7x05fo';
+    ENV.metricsAdapters[1].config.appId = 'ca7x05fo';
   }
 
   return ENV;
