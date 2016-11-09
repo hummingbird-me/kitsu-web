@@ -2,8 +2,9 @@
 {{application/components/site-header}}
 
 {{! loading indicator }}
+{{! TODO/@Josh -- css/improve :D }}
 {{#if routeIsLoading}}
-  <h1>LOADING</h1>
+  <div style="position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 9001; background: orange;"></div>
 {{/if}}
 
 {{! content }}
