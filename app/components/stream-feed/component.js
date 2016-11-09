@@ -55,7 +55,7 @@ export default Component.extend({
         // activity
         'media,actor,unit,subject',
         // posts
-        'subject.user,subject.target_user',
+        'subject.user,subject.target_user,subject.spoiled_unit',
         // library-entry/post
         'subject.media',
         // follow

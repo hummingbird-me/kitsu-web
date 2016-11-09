@@ -44,13 +44,16 @@
             <a href="#" {{action (toggle "isHidden" this)}}>
               <div class="gate--label">
                 This post contains spoilers.
-                <small>Attack on Titan EP. 05</small>
+                {{#if post.spoiledUnit}}
+                  {{t (concat "feeds.spoilers." (media-type post.media)) num=post.spoiledUnit.number}}
+                {{/if}}
               </div>
               <div class="gate--hover">
                 I can handle the truth!
-                <small>Attack on Titan EP. 05</small>
+                {{#if post.spoiledUnit}}
+                  {{t (concat "feeds.spoilers." (media-type post.media)) num=post.spoiledUnit.number}}
+                {{/if}}
               </div>
-
             </a>
           </div>
         {{/if}}
