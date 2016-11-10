@@ -24,7 +24,7 @@ module.exports = function(environment) {
     // ember-cli-content-security-policy
     contentSecurityPolicyHeader: 'Content-Security-Policy-Report-Only',
     contentSecurityPolicy: {
-      'script-src': "'self' www.google-analytics.com d2j1fszo1axgmp.cloudfront.net connect.facebook.net graph.facebook.com faye.getstream.io widget.intercom.io js.intercomcdn.com",
+      'script-src': "'self' 'unsafe-eval' www.google-analytics.com d2j1fszo1axgmp.cloudfront.net connect.facebook.net graph.facebook.com faye.getstream.io widget.intercom.io js.intercomcdn.com",
       'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
       'connect-src': "'self' www.google-analytics.com analytics.getstream.io wss://faye.getstream.io *.intercom.io wss://*.intercom.io forums.hummingbird.me",
       'img-src': '* data:',
