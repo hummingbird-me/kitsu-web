@@ -4,14 +4,14 @@
   right: 0;
   top: 50px;
   height: 230px;
-  background: #464C5A;
+  background: $voodoo;
   overflow: hidden;
 }
 
 .quick-update--header {
   margin-top: 15px;
   h6 {
-    color: #B3BBCD;
+    color: #A596A6;
     font-size: 16px;
     margin-bottom: 0;
     line-height: 26px;
@@ -21,9 +21,9 @@
     padding: 3px 5px;
     font-size: 12px;
     background: transparent;
-    border: 1px solid #B3BBCD;
+    border: 1px solid #A596A6;
     margin-left: 10px;
-    color: #B3BBCD;
+    color: #A596A6;
     &:hover {
       background: rgba(255,255,255,.1);
     }
@@ -40,7 +40,7 @@
   }
   .quick-update-actions {
     opacity: 0;
-    background: RGBA(70, 76, 90, .8);
+    background: linear-gradient(to right,RGBA(237, 72, 95, .8),RGBA(242, 124, 54, .8));
     position: absolute;
     top: 5px;
     bottom: 5px;
@@ -68,13 +68,13 @@
   .ember-view {
     width: 19%;
     min-width: 240px;
+    max-width: 275px;
     height: 150px;
     border-radius: 3px;
     margin-right: 15px;
     overflow: hidden;
     animation-delay: .5s;
     .quick-update-media-wrapper {
-      opacity: .4;
       background: #677086;
       transition: opacity .2s ease-in;
     }
