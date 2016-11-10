@@ -475,6 +475,9 @@
   padding: 0 20px;
 }
 
+.stream-content {
+  word-break: break-all;
+}
 .new-post {
   @extend .animated;
   @extend .fadeIn;
@@ -557,5 +560,54 @@
         content: "(◕‿◕)";
       }
     }
+  }
+}
+
+.tag-media {
+  li {
+    @extend .clearfix;
+    border-top: 1px solid #eee;
+    padding: 15px;
+    background: #fafafa;
+    line-height: 35px;
+    &:hover {
+      background: darken(#fafafa, 1);
+    }
+  }
+  .tag {
+    float: right;
+    background: none;
+    color: #787878;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+  }
+  .tag-poster {
+    width: 35px;
+    height: 35px;
+    overflow: hidden;
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+    border-radius: 3px;
+  }
+}
+
+.tagged-media--wrapper {
+  padding: 20px;
+  .tagged-media--remove {
+    font-size: 12px;
+    float: right;
+  }
+}
+
+.tagged-media {
+  border: 1px solid #eee;
+  border-radius: 3px;
+  background: #fafafa;
+  margin-left: 0;
+  margin-right: 0;
+  .stream-item--title-block {
+    background: none;
+    padding: 15px 0;
   }
 }
