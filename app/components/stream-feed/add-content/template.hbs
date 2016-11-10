@@ -17,7 +17,6 @@
 {{#if isExpanded}}
   <div class="add-content-expanded">
     {{! editor }}
-    <!-- TODO: Keybinds (Cmd+Enter should POST) -->
     {{content-editable
       value=content
       type="text"
@@ -26,47 +25,47 @@
       class="stream-content-editor"
     }}
 
-
-
-    {{! @vevix only show the tagged media OR the tagging input
-    If a user removes tagged media, input should appear again. }}
     <div class="tag-media">
-      <div class="tagged-media--wrapper">
-        <div class="tagged-media row">
-          <div class="stream-item--media col-sm-2">
-            <img src="/system/anime/poster_images/245/original.jpeg?1478002857">
-          </div>
-          <div class="col-sm no-padding-left">
-            <div class="stream-item--title-block">
-              <div class="author-info">
-                <a class="author-name" href="/anime/hellsing">
-                  Hellsing
-                </a>
-                <small class="author-secondary">
-                  <div id="ember1552" class="ember-view">  Hellsing follows the antiheroic vampire, Alucard, and a police girl-turned-vampire, Seras Victoria, two vampires employed by the vampire-extermination group of England, the Hellsing Organization. Slowly but surely, through their active duty, they ...
-                      <a href="#" data-ember-action="1553">more</a>
-                  </div>
-                </small>
+      {{#if media}}
+        <div class="tagged-media--wrapper">
+          <div class="tagged-media row">
+            <div class="stream-item--media col-sm-2">
+              <img src={{image media.posterImage}}>
+            </div>
+            <div class="col-sm no-padding-left">
+              <div class="stream-item--title-block">
+                <div class="author-info">
+                  <a class="author-name" href="/anime/hellsing">
+                    {{media.canonicalTitle}}
+                  </a>
+                  <small class="author-secondary">
+                    <div class="media-tag-synopsis">
+                      {{truncate-text media.synopsis max=200}}
+                    </div>
+                  </small>
+                </div>
               </div>
             </div>
           </div>
+          <a href="#" class="tagged-media--remove" {{action (queue (action (mut media) undefined) (action (mut spoiler) false))}}>
+            remove tag
+          </a>
         </div>
-        <a href="#" class="tagged-media--remove">remove tag</a>
-      </div>
-
-      {{! media tagging input }}
-      {{#search-typeahead
-        value=media.canonicalTitle
-        search=(perform search)
-        disabled=mediaReadOnly
-        placeholder="Type to tag a show or manga" as |_media|
-      }}
-        <div {{action (queue (action (mut media) _media) (action (mut spoiler) true))}}>
-          <span class="tag-poster"><img src="/system/anime/poster_images/245/original.jpeg?1478002857"></span>
-          <span class="tag tag-primary">{{capitalize (media-type _media)}}</span>
-          <span>{{_media.canonicalTitle}}</span>
-        </div>
-      {{/search-typeahead}}
+      {{else}}
+        {{! media tagging input }}
+        {{#search-typeahead
+          value=media.canonicalTitle
+          search=(perform search)
+          disabled=mediaReadOnly
+          placeholder="Type to tag a show or manga" as |_media|
+        }}
+          <div {{action (queue (action (mut media) _media) (action (mut spoiler) true))}}>
+            <span class="tag-poster"><img src={{image _media.posterImage}}></span>
+            <span class="tag tag-primary">{{capitalize (media-type _media)}}</span>
+            <span>{{_media.canonicalTitle}}</span>
+          </div>
+        {{/search-typeahead}}
+      {{/if}}
     </div>
 
     {{! post actions }}
