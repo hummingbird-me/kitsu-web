@@ -108,8 +108,7 @@
   </div>
 
   {{! comments }}
-  {{#if isHidden}}
-  {{else}}
+  {{#unless isHidden}}
     {{#if viewportEntered}}
       {{stream-feed/items/post/comments
         post=post
@@ -118,7 +117,7 @@
         trackStream=(action "trackStream")
       }}
     {{/if}}
-  {{/if}}
+  {{/unless}}
 {{else}}
   <div class="stream-error-wrapper col-sm-12">
     {{t "errors.load"}}
