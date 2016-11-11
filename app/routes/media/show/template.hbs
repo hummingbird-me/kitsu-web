@@ -41,15 +41,15 @@
                   {{/if}}
                 {{/if}}
 
-                {{! TODO/@Josh -- Styling here for third party streamers }}
+                {{! TODO/@vevix -- Show tooltip with platform + country i.e. "Hulu Espanol" }}
                 {{#if media.streamingLinks}}
                   <div class="where-to-watch-widget">
-                    <span>Where to Watch</span>
+                    <h6>Where to Watch</h6>
                     {{#if isStreamersLoaded}}
                       <ul class="nav">
                         {{#each media.streamingLinks as |link|}}
                           <li>
-                            <a href={{link.url}}>
+                            <a href={{link.url}} class="hint--top hint--bounce hint--rounded" aria-label="Hulu (US)">
                               {{svg-jar (to-lower link.streamer.siteName)}}
                             </a>
                           </li>
