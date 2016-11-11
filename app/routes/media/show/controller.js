@@ -21,9 +21,9 @@ export default Controller.extend({
     }
   }).readOnly(),
 
-  totalProgressText: computed('media.episodeCount', {
+  totalProgressText: computed('media.unitCount', {
     get() {
-      return get(this, 'media.episodeCount') || '-';
+      return get(this, 'media.unitCount') || '-';
     }
   }).readOnly(),
 
