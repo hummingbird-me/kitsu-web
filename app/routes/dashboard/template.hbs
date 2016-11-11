@@ -13,10 +13,12 @@
       streamType=streamType
       streamId=streamId
       readOnly=(not session.hasUser)}}
-      <div class="d-inline-block">
-        <a href="#" class="{{if (eq streamType "timeline") "active"}}" {{action (action (mut streamType) "timeline")}}>Following</a>
-        <a href="#" class="{{if (eq streamType "global") "active"}}" {{action (action (mut streamType) "global")}}>Global</a>
-      </div>
+      {{#if session.hasUser}}
+        <div class="d-inline-block">
+          <a href="#" class="{{if (eq streamType "timeline") "active"}}" {{action (action (mut streamType) "timeline")}}>Following</a>
+          <a href="#" class="{{if (eq streamType "global") "active"}}" {{action (action (mut streamType) "global")}}>Global</a>
+        </div>
+      {{/if}}
     {{/stream-feed}}
   </div>
 

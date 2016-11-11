@@ -27,7 +27,9 @@
     <div class="tab-pane active row" id="anime" role="tabpanel">
       <div class="modal-grid row">
         {{#if query.isRunning}}
-          {{loading-spinner size="large"}}
+          <div class="m-t-1 text-xs-center w-100">
+            {{loading-spinner size="large"}}
+          </div>
         {{else}}
           {{#each media as |anime|}}
             {{application/components/auth-onboarding/rate-content/item
@@ -36,6 +38,14 @@
               onClick=(action "createLibraryEntry" anime)
             }}
           {{/each}}
+
+          <div class="m-t-1 text-xs-center w-100">
+            {{pagination-scrolling
+              model=media
+              update=(action "updateNextPage")
+              tolerance=(hash top=0 bottom=500 left=0 right=0)
+            }}
+          </div>
         {{/if}}
       </div>
     </div>
@@ -43,7 +53,9 @@
     <div class="tab-pane row" id="manga" role="tabpanel">
       <div class="modal-grid row">
         {{#if query.isRunning}}
-          {{loading-spinner size="large"}}
+          <div class="m-t-1 text-xs-center w-100">
+            {{loading-spinner size="large"}}
+          </div>
         {{else}}
           {{#each media as |manga|}}
             {{application/components/auth-onboarding/rate-content/item
@@ -52,6 +64,14 @@
               onClick=(action "createLibraryEntry" manga)
             }}
           {{/each}}
+
+          <div class="m-t-1 text-xs-center w-100">
+            {{pagination-scrolling
+              model=media
+              update=(action "updateNextPage")
+              tolerance=(hash top=0 bottom=500 left=0 right=0)
+            }}
+          </div>
         {{/if}}
       </div>
     </div>
