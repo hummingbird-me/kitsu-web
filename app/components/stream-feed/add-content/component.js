@@ -47,7 +47,10 @@ export default Component.extend({
     const isChild = jQuery(target).is('.stream-add-content *, .stream-add-content');
     const isDeleted = jQuery(document.body).find(target).length === 0;
     if (isChild === false && isDeleted === false && get(this, 'isDestroyed') === false) {
-      set(this, 'isExpanded', false);
+      // don't collapse if user has text entered
+      if (isEmpty(get(this, 'content')) === true) {
+        set(this, 'isExpanded', false);
+      }
     }
   },
 
