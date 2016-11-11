@@ -22,13 +22,25 @@ export default Component.extend({
     }
   }),
 
+  /**
+   * set the activities to an array so any updates to a group from a feed load
+   * won't reset the activities relationship
+   */
   getNotifications: task(function* () {
     // TODO: Limit the number of notifications pulled here and filter on isRead: false
     return yield get(this, 'store').query('feed', {
       type: 'notifications',
       id: get(this, 'session.account.id'),
       include: 'actor'
-    }).then(groups => set(this, 'groups', groups));
+    }).then((groups) => {
+      const meta = get(groups, 'meta');
+      set(this, 'groups', groups.map(group => ({
+        ...group,
+        activities: get(group, 'activities').toArray()
+      })));
+      set(this, 'groups.meta', meta);
+      return get(this, 'groups');
+    });
   }).drop(),
 
   init() {
@@ -52,11 +64,10 @@ export default Component.extend({
   },
 
   _handleRealtime(object) {
-    const created = get(object, 'new');
     const groups = get(this, 'groups');
 
     // new activities
-    created.forEach((activity) => {
+    get(object, 'new').forEach((activity) => {
       const enriched = this._enrichActivity(activity);
       const group = groups.findBy('group', get(activity, 'group'));
       if (group !== undefined) {
@@ -70,6 +81,18 @@ export default Component.extend({
         const content = get(this, 'groups').toArray();
         prependObjects(content, [newGroup]);
         set(this, 'groups', content);
+      }
+    });
+
+    // deleted activities
+    get(object, 'deleted').forEach((id) => {
+      const group = groups.find(g => get(g, 'activities').findBy('id', id) !== undefined);
+      if (group !== undefined) {
+        const activities = get(group, 'activities').reject(activity => get(activity, 'id') === id);
+        set(group, 'activities', activities);
+        if (get(group, 'activities.length') === 0) {
+          get(this, 'groups').removeObject(group);
+        }
       }
     });
 
@@ -92,6 +115,8 @@ export default Component.extend({
   actions: {
     markSeen() {
       // TODO: API Needed here (will mark notifications here as seen)
+      get(this, 'groups').forEach(group => set(group, 'isSeen', true));
+      return true;
     },
 
     markRead() {

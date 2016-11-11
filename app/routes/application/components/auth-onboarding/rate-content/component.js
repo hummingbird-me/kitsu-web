@@ -38,7 +38,7 @@ export default Component.extend({
   }).restartable(),
 
   _getFilters() {
-    const filters = {};
+    const filters = { page: { limit: 20 } };
     const query = get(this, 'searchQuery');
     if (isEmpty(query) === true) {
       filters.sort = '-user_count';
@@ -73,6 +73,13 @@ export default Component.extend({
       });
       this.incrementProperty('numRated');
       entry.save().catch(() => this.decrementProperty('numRated'));
+    },
+
+    updateNextPage(records, links) {
+      const content = get(this, 'media').toArray();
+      content.addObjects(records);
+      set(this, 'media', content);
+      set(this, 'media.links', links);
     }
   }
 });

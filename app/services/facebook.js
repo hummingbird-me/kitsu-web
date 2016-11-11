@@ -14,13 +14,20 @@ export default Service.extend({
         .then(response => resolve(response)).catch(err => reject(err));
     }).then((response) => {
       set(user, 'facebookId', get(response, 'userId'));
-      return user.save().catch(() => user.rollbackAttributes());
+      return user.save().catch((error) => {
+        set(user, 'facebookId', null);
+        throw error;
+      });
     });
   },
 
   disconnect(user) {
+    const id = get(user, 'facebookId');
     set(user, 'facebookId', null);
-    return user.save().catch(() => user.rollbackAttributes());
+    return user.save().catch((error) => {
+      set(user, 'facebookId', id);
+      throw error;
+    });
   },
 
   getUserData() {
