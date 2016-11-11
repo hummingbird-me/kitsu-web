@@ -66,10 +66,15 @@
   border: 1px solid #eee;
   font-family: $heading-font-family;
   &.notifications--present {
-    background: $caribbean;
-    border: 1px solid $caribbean;
+    background: linear-gradient(-45deg, RGBA(237, 72, 95, 1), #f39c12, RGBA(242, 124, 54, 1));
+  	background-size: 400% 400%;
+  	animation: Gradient 10s ease infinite;
+    border: none;
     span {
       color: #fff;
+    }
+    &:hover {
+      opacity: .9;
     }
   }
   svg {
