@@ -56,7 +56,7 @@ const QuickUpdateItemComponent = Component.extend({
     set(entry, 'progress', progress + 1);
     // TODO: Feedback on error
     yield entry.save().catch(() => {});
-  }).drop(),
+  }).enqueue(),
 
   actions: {
     rateEntry(rating) {
