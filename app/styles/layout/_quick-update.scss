@@ -11,7 +11,7 @@
 .quick-update--header {
   margin-top: 15px;
   h6 {
-    color: #A596A6;
+    color: #a3a9b7;
     font-size: 16px;
     margin-bottom: 0;
     line-height: 26px;
@@ -21,9 +21,9 @@
     padding: 3px 5px;
     font-size: 12px;
     background: transparent;
-    border: 1px solid #A596A6;
+    border: 1px solid #a3a9b7;
     margin-left: 10px;
-    color: #A596A6;
+    color: #a3a9b7;
     &:hover {
       background: rgba(255,255,255,.1);
     }
@@ -88,7 +88,9 @@
     }
     &:hover {
       .quick-update-actions {
-        opacity: 1;
+        @extend .animated;
+        @extend .fadeIn;
+        animation-duration: .5s;
       }
       .quick-update-title-block {
         opacity: 0;
@@ -127,6 +129,9 @@
       vertical-align: middle;
       min-width: 75%;
       height: 45px;
+      &:hover {
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+      }
       .loading {
         position: relative;
         top: 3px;
