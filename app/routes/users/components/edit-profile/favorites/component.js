@@ -8,6 +8,7 @@ import { invokeAction } from 'ember-invoke-action';
 import RSVP from 'rsvp';
 
 export default Component.extend({
+  session: service(),
   store: service(),
 
   // Search media and filter out records that are already favorites of the user
@@ -67,6 +68,8 @@ export default Component.extend({
       record.save().then(() => {
         get(this, `${type}Favorites`).addObject(record);
         invokeAction(this, 'addRecord', record);
+        // Increase count on user
+        get(this, 'session.account').incrementProperty('favoritesCount');
       }).catch(() => {});
     },
 

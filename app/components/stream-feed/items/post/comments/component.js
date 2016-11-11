@@ -28,12 +28,15 @@ export default Component.extend({
       user: get(this, 'session.account')
     });
     get(this, 'comments').addObject(comment);
+    // update comments count
     invokeAction(this, 'countUpdate', get(this, 'post.commentsCount') + 1);
+    get(this, 'session.account').incrementProperty('commentsCount');
     yield comment.save().then(() => {
       invokeAction(this, 'trackStream', 'comment', 'comment');
     }).catch(() => {
       get(this, 'comments').removeObject(comment);
       invokeAction(this, 'countUpdate', get(this, 'post.commentsCount') - 1);
+      get(this, 'session.account').decrementProperty('commentsCount');
     });
   }).drop(),
 

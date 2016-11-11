@@ -1,10 +1,13 @@
 import Component from 'ember-component';
 import computed from 'ember-computed';
+import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import { invokeAction } from 'ember-invoke-action';
 import { decimalNumber } from 'client/helpers/decimal-number';
 
 export default Component.extend({
+  session: service(),
+
   percentageLiked: computed('media.ratingFrequencies', {
     get() {
       const freqs = get(this, 'media.ratingFrequencies');

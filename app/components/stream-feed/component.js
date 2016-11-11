@@ -84,9 +84,14 @@ export default Component.extend({
     }
     const post = get(this, 'store').createRecord('post', data);
     const [group, activity] = this._createTempActivity(post);
+    // update post counter
+    get(this, 'session.account').incrementProperty('postsCount');
     yield post.save()
       .then(record => set(activity, 'foreignId', `Post:${get(record, 'id')}`))
-      .catch(() => get(this, 'feed').removeObject(group));
+      .catch(() => {
+        get(this, 'feed').removeObject(group);
+        get(this, 'session.account').decrementProperty('postsCount');
+      });
   }).drop(),
 
   /**

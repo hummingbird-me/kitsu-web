@@ -1,42 +1,74 @@
-{{! TODO: Needs way to hide checklist if completed. }}
-<div class="checklist card">
-  <h4>Set-Up Your Feed</h4>
-  <ul>
-    {{! default checked }}
-    <li class="step step--complete">
-      <span class="step-status">{{svg-jar "success"}}</span>
-      <span class="step-description">Visit your feed</span>
-    </li>
+{{#unless isCompleted}}
+  <div class="checklist card">
+    <h4>Set-Up Your Feed</h4>
+    <ul>
+      {{! default checked }}
+      <li class="step step--complete">
+        <span class="step-status">{{svg-jar "success"}}</span>
+        <span class="step-description">Visit your feed</span>
+      </li>
 
-    {{! TODO: needs impl. on server }}
-    <li class="step">
-      <span class="step-status">{{svg-jar "empty"}}</span>
-      <span class="step-description">
-        Rate 5 anime or manga
-      </span>
-    </li>
+      <li class="step {{if hasRatings "step--complete"}}">
+        <span class="step-status">
+          {{#if hasRatings}}
+            {{svg-jar "success"}}
+          {{else}}
+            {{svg-jar "empty"}}
+          {{/if}}
+        </span>
+        <span class="step-description">
+          {{#if hasRatings}}
+            Rate 5 anime or manga
+          {{else}}
+            Rate {{ratingsLeft}} anime or manga
+          {{/if}}
+        </span>
+      </li>
 
-    <li class="step {{if (gte user.followingCount 5) "step--complete"}}">
-      <span class="step-status">
-        {{#if (gte user.followingCount 5)}}
-          {{svg-jar "success"}}
-        {{else}}
-          {{svg-jar "empty"}}
-        {{/if}}
-      </span>
-      <span class="step-description">Follow 5 users</span>
-    </li>
+      <li class="step {{if hasFollows "step--complete"}}">
+        <span class="step-status">
+          {{#if hasFollows}}
+            {{svg-jar "success"}}
+          {{else}}
+            {{svg-jar "empty"}}
+          {{/if}}
+        </span>
+        <span class="step-description">
+          {{#if hasFollows}}
+            Follow 5 users
+          {{else}}
+            Follow {{pluralize followsLeft "user"}}
+          {{/if}}
+        </span>
+      </li>
 
-    {{! TODO: needs impl. on server }}
-    <li class="step">
-      <span class="step-status">{{svg-jar "empty"}}</span>
-      <span class="step-description">Comment on 2 feed posts</span>
-    </li>
+      <li class="step {{if hasComments "step--complete"}}">
+        <span class="step-status">
+          {{#if hasComments}}
+            {{svg-jar "success"}}
+          {{else}}
+            {{svg-jar "empty"}}
+          {{/if}}
+        </span>
+        <span class="step-description">Comment on an activity</span>
+      </li>
 
-    {{! TODO: needs impl. on server }}
-    <li class="step">
-      <span class="step-status">{{svg-jar "empty"}}</span>
-      <span class="step-description">Like 3 feed posts</span>
-    </li>
-  </ul>
-</div>
+      <li class="step {{if hasLikes "step--complete"}}">
+        <span class="step-status">
+          {{#if hasLikes}}
+            {{svg-jar "success"}}
+          {{else}}
+            {{svg-jar "empty"}}
+          {{/if}}
+        </span>
+        <span class="step-description">
+          {{#if hasLikes}}
+            Like 3 feed posts
+          {{else}}
+            Like {{likesLeft}} feed posts
+          {{/if}}
+        </span>
+      </li>
+    </ul>
+  </div>
+{{/unless}}
