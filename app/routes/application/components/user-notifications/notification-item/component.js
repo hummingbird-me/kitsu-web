@@ -12,13 +12,15 @@ export default Component.extend({
 
   others: computed('group.activities.[]', {
     get() {
-      return get(this, 'group.activities').toArray().slice(1);
+      return get(this, 'group.activities').toArray().slice(1).reject(a => (
+        get(a, 'actor.id') === get(this, 'activity.actor.id')
+      ));
     }
   }).readOnly(),
 
-  otherCount: computed('group.activities.[]', {
+  otherCount: computed('others', {
     get() {
-      return get(this, 'group.activities.length') - 1;
+      return get(this, 'others.length');
     }
   }),
 
