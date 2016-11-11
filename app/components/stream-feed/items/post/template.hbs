@@ -7,20 +7,24 @@
           <img src={{image post.user.avatar}}>
         </a>
         {{#if post.targetUser}}
-          <a href={{href-to "users.index" post.targetUser}} class="author-avatar recipient-avatar">
-            <img src={{image post.targetUser.avatar}}>
-          </a>
+          {{#unless (eq post.targetUser.id userId)}}
+            <a href={{href-to "users.index" post.targetUser}} class="author-avatar recipient-avatar">
+              <img src={{image post.targetUser.avatar}}>
+            </a>
+          {{/unless}}
         {{/if}}
       </span>
       <div class="author-info">
         <a class="author-name" href={{href-to "users.index" post.user}}>{{post.user.name}}</a>
         {{#if post.targetUser}}
-          <span class="recipient-info">
-            <small>to</small>
-            <a href={{href-to "users.index" post.targetUser}} class="author-name">
-              {{post.targetUser.name}}
-            </a>
-          </span>
+          {{#unless (eq post.targetUser.id userId)}}
+            <span class="recipient-info">
+              <small>to</small>
+              <a href={{href-to "users.index" post.targetUser}} class="author-name">
+                {{post.targetUser.name}}
+              </a>
+            </span>
+          {{/unless}}
         {{/if}}
         <small class="author-secondary">
           {{moment-from-now post.createdAt}}

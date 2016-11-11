@@ -74,6 +74,7 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
     }
     const post = get(this, 'post');
     set(this, 'isHidden', get(post, 'nsfw') === true || get(post, 'spoiler') === true);
+    set(this, 'userId', get(this, 'feedId').split(':')[1]);
   },
 
   actions: {
