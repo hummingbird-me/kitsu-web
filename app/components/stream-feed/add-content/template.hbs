@@ -22,6 +22,7 @@
       type="text"
       spellcheck=true
       autofocus=true
+      key-down=(action "keyDown")
       class="stream-content-editor"
     }}
 
@@ -70,7 +71,7 @@
 
     {{! post actions }}
     <div class="add-content-footer">
-      <button type="button" class="button button--primary" {{action "create"}}>
+      <button type="button" class="button button--primary" disabled={{if (is-empty content) "disabled"}} {{action "create"}}>
         Post
       </button>
 

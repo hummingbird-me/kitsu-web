@@ -4,7 +4,7 @@ import get from 'ember-metal/get';
 import set, { setProperties } from 'ember-metal/set';
 import { isEmpty } from 'ember-utils';
 import { task, timeout } from 'ember-concurrency';
-import { invokeAction } from 'ember-invoke-action';
+import { invoke, invokeAction } from 'ember-invoke-action';
 import { bind } from 'ember-runloop';
 import jQuery from 'jquery';
 import RSVP from 'rsvp';
@@ -101,6 +101,13 @@ export default Component.extend({
       }
       invokeAction(this, 'onCreate', get(this, 'content'), options);
       this._resetProperties();
+    },
+
+    keyDown(value, event) {
+      const { keyCode, metaKey, ctrlKey } = event;
+      if (keyCode === 13 && (metaKey === true || ctrlKey === true)) {
+        invoke(this, 'create');
+      }
     }
   }
 });
