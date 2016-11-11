@@ -67,7 +67,7 @@
           </a>
         </h4>
         <p class="drop-description">
-          {{media.synopsis}}
+          {{truncate-text media.synopsis max=400}}
         </p>
         <div class="entry-notes">
           {{#if isOwner}}
