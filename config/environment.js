@@ -24,12 +24,12 @@ module.exports = function(environment) {
     // ember-cli-content-security-policy
     contentSecurityPolicyHeader: 'Content-Security-Policy-Report-Only',
     contentSecurityPolicy: {
-      'script-src': "'self' 'unsafe-eval' www.google-analytics.com d2j1fszo1axgmp.cloudfront.net connect.facebook.net graph.facebook.com faye.getstream.io widget.intercom.io js.intercomcdn.com",
+      'script-src': "'self' 'unsafe-eval' pagead2.googlesyndication.com www.google-analytics.com *.cloudfront.net connect.facebook.net graph.facebook.com faye.getstream.io widget.intercom.io js.intercomcdn.com",
       'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
-      'connect-src': "'self' www.google-analytics.com analytics.getstream.io wss://faye.getstream.io *.intercom.io wss://*.intercom.io forums.hummingbird.me",
+      'connect-src': "'self' google-analytics.com analytics.getstream.io wss://faye.getstream.io *.intercom.io wss://*.intercom.io forums.hummingbird.me",
       'img-src': '* data:',
       'font-src': "'self' fonts.gstatic.com js.intercomcdn.com",
-      'frame-src': "'self' www.youtube.com *.facebook.com",
+      'frame-src': "'self' youtube.com *.facebook.com",
       'media-src': "'self' js.intercomcdn.com"
     },
 
@@ -95,6 +95,11 @@ module.exports = function(environment) {
         key: 'sjm3sx9mgcx2',
         app: '17073'
       }
+    },
+
+    ads: {
+      enabled: false,
+      client: undefined
     }
   };
 
@@ -133,6 +138,8 @@ module.exports = function(environment) {
     ENV.stream.realtime.key = '3byr477gj7mj';
     ENV.stream.realtime.app = '16897';
     ENV.metricsAdapters[1].config.appId = 'ca7x05fo';
+    ENV.ads.enabled = true;
+    ENV.ads.client = 'TODO-HERE';
   }
 
   return ENV;
