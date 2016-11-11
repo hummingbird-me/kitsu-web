@@ -1,0 +1,77 @@
+.stream-content {
+  video {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+  }
+}
+
+.imgur-album {
+  border-radius: 3px;
+  overflow: hidden;
+  background: #141518;
+  a {
+    display: block;
+    text-align: center;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .outer-box {
+    display: block;
+    position: relative;
+    width: 100% !important;
+  }
+  .inner-box {
+    display: block;
+    padding: 10px 15px;
+    background: #34373C;
+    color: #fff;
+    text-align: left;
+    &::after {
+      content: '';
+      background: url(http://s.imgur.com/images/imgur-logo.svg?1);
+      width: 71px;
+      height: 25px;
+      position: absolute;
+      background-size: cover;
+      right: 15px;
+      top: 10px;
+    }
+  }
+}
+.amazon {
+  border: 1px solid #eee;
+  border-radius: 3px;
+  position: relative;
+  text-align: center;
+  .source {
+    border-bottom: 1px solid #eee;
+    padding: 10px 15px;
+    text-align: left;
+  }
+  .onebox-body img {
+    width: 100%;
+    max-width: 250px;
+  }
+  h3 {
+    font-size: 16px;
+    border-top: 1px solid #eee;
+    text-align: left;
+    padding: 15px;
+    padding-bottom: 0;
+  }
+  p {
+    text-align: left;
+    padding: 0 15px;
+    font-size: 12px;
+    &:last-child {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      margin-bottom: 0;
+      font-size: 16px;
+      padding: 0;
+    }
+  }
+}
