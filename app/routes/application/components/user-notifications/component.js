@@ -62,6 +62,7 @@ export default Component.extend({
       if (group !== undefined) {
         prependObjects(get(group, 'activities'), [enriched]);
         set(group, 'isSeen', false);
+        // TODO: push this group to top of stack
       } else {
         const newGroup = get(this, 'store').createRecord('activity-group', {
           activities: [enriched]

@@ -4,27 +4,27 @@
         {{loading-spinner size="small"}}
       </div>
     {{else}}
-      {{! @vevix -- Only show if more than 4 comments }}
-      <div class="comment-actions">
-        <div class="d-inline-block">
-          {{! TODO: i18n }}
-          {{#pagination-manual
-            model=comments
-            limit=5
-            update=(action "loadComments") as |active|
-          }}
-            <a href="#" class={{if (not active) "is-disabled"}}>
-              Show Previous Comments
-            </a>
-          {{/pagination-manual}}
-        </div>
+      {{#if (and (gt post.commentsCount 4) (not-eq post.commentsCount comments.length))}}
+        <div class="comment-actions">
+          <div class="d-inline-block">
+            {{! TODO: i18n }}
+            {{#pagination-manual
+              model=comments
+              update=(action "loadComments") as |active|
+            }}
+              <a href="#" class={{if (not active) "is-disabled"}}>
+                Show Previous Comments
+              </a>
+            {{/pagination-manual}}
+          </div>
 
-        {{! Comment count }}
-        <div class="pull-sm-right">
-          {{! TODO: i18n / pad left }}
-          {{comments.length}} of {{post.commentsCount}}
+          {{! Comment count }}
+          <div class="pull-sm-right">
+            {{! TODO: i18n / pad left }}
+            {{comments.length}} of {{post.commentsCount}}
+          </div>
         </div>
-      </div>
+      {{/if}}
 
       <ul class="media-list">
         {{#each comments as |comment|}}

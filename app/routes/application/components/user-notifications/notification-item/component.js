@@ -8,7 +8,13 @@ export default Component.extend({
     get() {
       return get(this, 'group.activities.firstObject');
     }
-  }),
+  }).readOnly(),
+
+  others: computed('group.activities.[]', {
+    get() {
+      return get(this, 'group.activities').toArray().slice(1);
+    }
+  }).readOnly(),
 
   otherCount: computed('group.activities.[]', {
     get() {

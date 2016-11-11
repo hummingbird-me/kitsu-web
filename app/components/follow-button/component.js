@@ -42,7 +42,11 @@ export default Component.extend({
         follower: get(this, 'session.account'),
         followed: get(this, 'user')
       }).save()
-        .then(record => set(this, 'relationship', record))
+        .then((record) => {
+          set(this, 'relationship', record);
+          // update follow counter
+          get(this, 'session.account').incrementProperty('followingCount');
+        })
         .catch(() => { /* TODO: Feedback */ });
     }
   }),

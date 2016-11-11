@@ -30,7 +30,7 @@
           {{loading-spinner size="large"}}
         {{else}}
           {{#each media as |anime|}}
-            {{modals/auth-onboarding/rate-content/item
+            {{application/components/auth-onboarding/rate-content/item
               class="onboarding-media col-sm-3"
               item=anime
               onClick=(action "createLibraryEntry" anime)
@@ -46,7 +46,7 @@
           {{loading-spinner size="large"}}
         {{else}}
           {{#each media as |manga|}}
-            {{modals/auth-onboarding/rate-content/item
+            {{application/components/auth-onboarding/rate-content/item
               class="onboarding-media col-sm-3"
               item=manga
               onClick=(action "createLibraryEntry" manga)

@@ -254,6 +254,10 @@ export default {
       },
       reviewed: 'wrote a {{link}}',
       review: 'review'
+    },
+    spoilers: {
+      anime: 'Ep. {{num}}',
+      manga: 'Ch. {{num}}'
     }
   },
   // ember-power-select locale

@@ -18,10 +18,19 @@ export default Controller.extend({
   }).readOnly(),
 
   updateStreamType: observer('session.hasUser', 'session.account.followingCount', function() {
+    this._updateType();
+  }),
+
+  init() {
+    this._super(...arguments);
+    this._updateType();
+  },
+
+  _updateType() {
     if (get(this, 'session.hasUser') === true) {
       if (get(this, 'session.account.followingCount') >= MAGIC_NUMBER) {
         set(this, 'streamType', 'timeline');
       }
     }
-  })
+  }
 });

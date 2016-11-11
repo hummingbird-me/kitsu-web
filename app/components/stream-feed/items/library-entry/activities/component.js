@@ -22,13 +22,12 @@ export default Component.extend({
         groups[key] = groups[key] || [];
         groups[key].addObject(activity);
       });
-
       const result = [];
       Object.keys(groups).forEach((key) => {
         const group = groups[key];
         result.addObject({
           activity: get(group, 'firstObject'),
-          others: get(group, 'length') - 1
+          others: group.toArray().slice(1)
         });
       });
       return result;

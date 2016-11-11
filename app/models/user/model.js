@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
@@ -49,18 +50,23 @@ export default Model.extend(Validations, {
   avatar: attr('object', { defaultValue: '/images/default_avatar.png' }),
   bio: attr('string'),
   birthday: attr('date'),
+  commentsCount: attr('number'),
   coverImage: attr('object', { defaultValue: '/images/default_cover.png' }),
   createdAt: attr('date'),
   email: attr('string'),
   facebookId: attr('string'),
+  favoritesCount: attr('number'),
   followersCount: attr('number'),
   followingCount: attr('number'),
   gender: attr('string'),
+  likesGivenCount: attr('number'),
   location: attr('string'),
   onboarded: attr('boolean'),
   password: attr('string'),
   pastNames: attr('array'),
+  postsCount: attr('number'),
   name: attr('string'),
+  ratingsCount: attr('number'),
   toFollow: attr('boolean'),
   waifuOrHusbando: attr('string'),
   website: attr('string'),

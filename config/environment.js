@@ -24,7 +24,7 @@ module.exports = function(environment) {
     // ember-cli-content-security-policy
     contentSecurityPolicyHeader: 'Content-Security-Policy-Report-Only',
     contentSecurityPolicy: {
-      'script-src': "'self' www.google-analytics.com d2j1fszo1axgmp.cloudfront.net connect.facebook.net graph.facebook.com faye.getstream.io widget.intercom.io js.intercomcdn.com",
+      'script-src': "'self' 'unsafe-eval' www.google-analytics.com d2j1fszo1axgmp.cloudfront.net connect.facebook.net graph.facebook.com faye.getstream.io widget.intercom.io js.intercomcdn.com",
       'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
       'connect-src': "'self' www.google-analytics.com analytics.getstream.io wss://faye.getstream.io *.intercom.io wss://*.intercom.io forums.hummingbird.me",
       'img-src': '* data:',
@@ -123,6 +123,8 @@ module.exports = function(environment) {
     ENV.torii.providers['facebook-connect'].appId = '189034391502520';
     ENV.metricsAdapters[2].config.production.apiKey = 'ekx6xkn9v9xx';
     ENV.metricsAdapters[2].config.production.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.Loj_VZy_FKQzP3xLpX46xSF9bktOBfqcve8eYjwFmNc';
+    ENV.stream.realtime.key = 'ekx6xkn9v9xx';
+    ENV.stream.realtime.app = '17647';
   }
 
   if (environment === 'production' && process.env.HEROKU_EMBER_APP !== 'staging') {
