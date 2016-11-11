@@ -33,7 +33,11 @@
         {{entry.media.canonicalTitle}}
       </h6>
       <small class="series-progress">
-        {{episodeText}}
+        {{#if canComplete}}
+          Complete
+        {{else}}
+          {{episodeText}}
+        {{/if}}
       </small>
     </div>
   </div>
