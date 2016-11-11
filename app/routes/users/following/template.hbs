@@ -1,21 +1,25 @@
 <div class="container">
   {{#each model as |follow|}}
-    <div class="card">
-      <img class="card-img-top" src={{image follow.followed.coverImage}}>
-      <div class="card-block">
-        <h4 class="card-title">{{follow.followed.name}}</h4>
-        <p class="card-text">{{follow.followed.about}}</p>
-        {{#if (not (is-self follow.followed))}}
-          {{follow-button user=follow.followed}}
-        {{/if}}
+    {{#if follow.followed}}
+      <div class="card">
+        <img class="card-img-top" src={{image follow.followed.coverImage}}>
+        <div class="card-block">
+          <h4 class="card-title">{{follow.followed.name}}</h4>
+          <p class="card-text">{{follow.followed.about}}</p>
+          {{#if (not (is-self follow.followed))}}
+            {{follow-button user=follow.followed}}
+          {{/if}}
+        </div>
       </div>
-    </div>
+    {{/if}}
   {{else}}
     <p>This person is not following anyone.</p>
   {{/each}}
 
-  {{pagination-scrolling
-    model=model
-    update=(route-action "updateNextPage")
-  }}
+  <div class="m-t-1 text-xs-center">
+    {{pagination-scrolling
+      model=model
+      update=(route-action "updateNextPage")
+    }}
+  </div>
 </div>
