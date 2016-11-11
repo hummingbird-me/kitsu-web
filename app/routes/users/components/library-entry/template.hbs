@@ -16,6 +16,7 @@
         {{#if isOwner}}
           {{one-way-number entry.progress
             min=0
+            max=(or media.episodeCount media.chapterCount)
             update=(queue
               (action (mut entry.progress))
               (perform saveEntryDebounced)
