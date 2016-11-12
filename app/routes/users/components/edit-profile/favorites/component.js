@@ -13,7 +13,7 @@ export default Component.extend({
 
   // Search media and filter out records that are already favorites of the user
   search: task(function* (type, value) {
-    yield timeout(100);
+    yield timeout(250);
     const field = 'text';
     return yield get(this, 'store').query(type, {
       filter: { [field]: value },
@@ -43,8 +43,8 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     get(this, 'getAllFavorites').perform().then(([anime, manga]) => {
-      set(this, 'animeFavorites', get(anime, 'value'));
-      set(this, 'mangaFavorites', get(manga, 'value'));
+      set(this, 'animeFavorites', get(anime, 'value').toArray());
+      set(this, 'mangaFavorites', get(manga, 'value').toArray());
 
       // add to meta records to check for dirty state
       get(anime, 'value').forEach(record => invokeAction(this, 'addRecord', record));
@@ -65,9 +65,10 @@ export default Component.extend({
       });
       // TODO: Feedback
       const type = mediaType([item]);
-      record.save().then(() => {
-        get(this, `${type}Favorites`).addObject(record);
-        invokeAction(this, 'addRecord', record);
+      record.save().then((favorite) => {
+        get(this, `${type}Favorites`).addObject(favorite);
+        invokeAction(this, 'addRecord', favorite);
+        console.log('yup', favorite);
         // Increase count on user
         get(this, 'session.account').incrementProperty('favoritesCount');
       }).catch(() => {});

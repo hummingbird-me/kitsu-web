@@ -148,12 +148,12 @@
                 (action (mut entry.progress) 0)
                 (action (mut entry.status) "current")
                 (perform saveEntry))}}>
-                {{t "users.library.rewatch"}}
+                {{t (concat "users.library.reconsume." (media-type media))}}
               </button>
             {{/if}}
 
             <label>
-              <span>{{t "users.library.rewatched"}}</span>
+              <span>{{t (concat "users.library.reconsumed." (media-type media))}}</span>
               {{#if isOwner}}
                 {{one-way-number entry.reconsumeCount
                   update=(queue

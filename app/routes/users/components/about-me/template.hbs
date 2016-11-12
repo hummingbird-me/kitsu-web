@@ -44,7 +44,7 @@
     <strong>Age:</strong>
     <span>
       {{#if user.birthday}}
-        {{age}} ({{moment-format user.birthday "MMMM Do, YYYY"}})
+        {{age}} ({{moment-format (moment-utc user.birthday) "MMMM Do, YYYY"}})
       {{else}}
         {{t "users.about.empty"}}
       {{/if}}
