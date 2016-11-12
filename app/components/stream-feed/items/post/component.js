@@ -39,8 +39,8 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
     return `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   }),
 
-  _streamAnalytics(label, verb, object) {
-    const content = object || {
+  _streamAnalytics(label, verb, object = {}) {
+    const content = Object.assign({
       foreign_id: `Post:${get(this, 'post.id')}`,
       actor: {
         id: `User:${get(this, 'session.account.id')}`,
@@ -48,7 +48,8 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
       },
       verb: verb || label,
       object: { id: `Post:${get(this, 'post.id')}` }
-    };
+    }, object);
+
     const data = {
       label,
       content,

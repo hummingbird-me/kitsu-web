@@ -32,6 +32,7 @@
             comment=comment
             likesCountUpdate=(action (mut comment.likesCount))
             tagName="li"
+            trackStream=(action trackStream)
             class="media new-comment"}} {{! HACK: Until we have transitions }}
         {{/each}}
       </ul>
