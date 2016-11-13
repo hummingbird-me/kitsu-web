@@ -43,6 +43,7 @@ export default Component.extend({
     get(this, 'likes').addObject(like);
     set(this, 'isLiked', true);
     invokeAction(this, 'likesCountUpdate', get(this, 'post.likesCount') + 1);
+    get(this, 'session.account').incrementProperty('likesGivenCount');
 
     // commit
     yield like.save().then(() => {
@@ -51,6 +52,7 @@ export default Component.extend({
       get(this, 'likes').removeObject(like);
       set(this, 'isLiked', false);
       invokeAction(this, 'likesCountUpdate', get(this, 'post.likesCount') - 1);
+      get(this, 'session.account').decrementProperty('likesGivenCount');
     });
   }).drop(),
 

@@ -49,13 +49,13 @@
           </li>
 
           {{! Notifications }}
-          <!-- {{application/components/user-notifications tagName="li" class="nav-item"}} -->
+          {{application/components/user-notifications tagName="li" class="nav-item"}}
 
           <li class="nav-item">
             <a href="#" class="nav-link avatar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src={{image session.account.avatar}} class="avatar-image avatar-image--small">
             </a>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu user-menu-drop">
               <a href={{href-to "users.index" session.account}} class="dropdown-item">
                 {{t "header.user.profile"}}
               </a>

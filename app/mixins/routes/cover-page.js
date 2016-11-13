@@ -8,9 +8,11 @@ export default Mixin.create({
   activate() {
     this._super(...arguments);
     jQuery('body').addClass('cover-page');
+
     const binding = bind(this, '_handleScroll');
     set(this, 'scrollBinding', binding);
     jQuery(document).on('scroll', binding);
+
     scheduleOnce('afterRender', () => {
       jQuery('.primary-nav').addClass('transparent');
     });

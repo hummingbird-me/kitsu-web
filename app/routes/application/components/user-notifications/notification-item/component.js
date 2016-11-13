@@ -8,11 +8,19 @@ export default Component.extend({
     get() {
       return get(this, 'group.activities.firstObject');
     }
-  }),
+  }).readOnly(),
 
-  otherCount: computed('group.activities.[]', {
+  others: computed('group.activities.[]', {
     get() {
-      return get(this, 'group.activities.length') - 1;
+      return get(this, 'group.activities').toArray().slice(1).reject(a => (
+        get(a, 'actor.id') === get(this, 'activity.actor.id')
+      ));
+    }
+  }).readOnly(),
+
+  otherCount: computed('others', {
+    get() {
+      return get(this, 'others.length');
     }
   }),
 

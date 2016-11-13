@@ -10,7 +10,7 @@ export default Component.extend({
 
   age: computed('user.birthday', {
     get() {
-      return moment(new Date()).diff(moment(get(this, 'user.birthday')), 'years');
+      return moment.utc(new Date()).diff(moment.utc(get(this, 'user.birthday')), 'years');
     }
   }),
 

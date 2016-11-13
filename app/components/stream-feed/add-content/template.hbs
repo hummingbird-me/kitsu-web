@@ -17,33 +17,62 @@
 {{#if isExpanded}}
   <div class="add-content-expanded">
     {{! editor }}
-    <!-- TODO: Keybinds (Cmd+Enter should POST) -->
     {{content-editable
       value=content
       type="text"
       spellcheck=true
       autofocus=true
+      key-down=(action "keyDown")
+      maxlength=maxLength
       class="stream-content-editor"
     }}
 
-    {{! media tagging input }}
     <div class="tag-media">
-      {{#search-typeahead
-        value=media.canonicalTitle
-        search=(perform search)
-        disabled=mediaReadOnly
-        placeholder="Type to tag a show or manga" as |_media|
-      }}
-        <div {{action (queue (action (mut media) _media) (action (mut spoiler) true))}}>
-          <span class="tag tag-primary">{{capitalize (media-type _media)}}</span>
-          <span>{{_media.canonicalTitle}}</span>
+      {{#if media}}
+        <div class="tagged-media--wrapper">
+          <div class="tagged-media row">
+            <div class="stream-item--media col-sm-2">
+              <img src={{image media.posterImage}}>
+            </div>
+            <div class="col-sm no-padding-left">
+              <div class="stream-item--title-block">
+                <div class="author-info">
+                  <a class="author-name" href="/anime/hellsing">
+                    {{media.canonicalTitle}}
+                  </a>
+                  <small class="author-secondary">
+                    <div class="media-tag-synopsis">
+                      {{truncate-text media.synopsis max=200}}
+                    </div>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="tagged-media--remove" {{action (queue (action (mut media) undefined) (action (mut spoiler) false))}}>
+            remove tag
+          </a>
         </div>
-      {{/search-typeahead}}
+      {{else}}
+        {{! media tagging input }}
+        {{#search-typeahead
+          value=media.canonicalTitle
+          search=(perform search)
+          disabled=mediaReadOnly
+          placeholder="Type to tag a show or manga" as |_media|
+        }}
+          <div {{action (queue (action (mut media) _media) (action (mut spoiler) true))}}>
+            <span class="tag-poster"><img src={{image _media.posterImage}}></span>
+            <span class="tag tag-primary">{{capitalize (media-type _media)}}</span>
+            <span>{{_media.canonicalTitle}}</span>
+          </div>
+        {{/search-typeahead}}
+      {{/if}}
     </div>
 
     {{! post actions }}
     <div class="add-content-footer">
-      <button type="button" class="button button--primary" {{action "create"}}>
+      <button type="button" class="button button--primary" disabled={{if (not canPost) "disabled"}} {{action "create"}}>
         Post
       </button>
 

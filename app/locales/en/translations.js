@@ -150,7 +150,7 @@ export default {
       welcome: 'Hey {{user}}, this page is all about YOU!',
       about: `As you continue to use Kitsu your <strong>Personal Feed</strong> below will begin to populate with the anime and manga you've watched, read, completed and plan to check out.
         You can also post text, images and videos to your feed using the form below. Your posts will be seen and appreciated by your followers and users from the global feed.`,
-      action: 'Make yourself at home! Upload an avatar and cover image! Click <a href="#">Edit Profile</a> above to get started.'
+      action: 'Make yourself at home! Upload an avatar and cover image! Click <a href="#">Edit</a> above to get started.'
     },
     about: {
       empty: 'It\'s a secret',
@@ -231,8 +231,14 @@ export default {
       notes: 'Personal notes about {{title}}',
       public: 'Public',
       private: 'Private',
-      rewatch: 'Rewatch',
-      rewatched: 'Rewatched',
+      reconsume: {
+        anime: 'Rewatch',
+        manga: 'Reread'
+      },
+      reconsumed: {
+        anime: 'Rewatched',
+        manga: 'Reread'
+      },
       times: 'times',
       emptyOwner: 'You don\'t have any titles here! Ready to start something new? {{link}}',
       emptyGuest: 'Doesn\'t look like {{user}} has anything here!',
@@ -254,6 +260,10 @@ export default {
       },
       reviewed: 'wrote a {{link}}',
       review: 'review'
+    },
+    spoilers: {
+      anime: 'Ep. {{num}}',
+      manga: 'Ch. {{num}}'
     }
   },
   // ember-power-select locale

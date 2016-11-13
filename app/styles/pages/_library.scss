@@ -167,6 +167,10 @@
   padding: 0;
   float: right;
   border: none;
+  width: auto;
+  input {
+    top: -4px;
+  }
 }
 
 .entry-wrapper {
@@ -363,5 +367,11 @@
 .star-full {
   path {
     fill: $buttercup;
+  }
+}
+
+.star-half {
+  .star-rating-filled {
+    stop-color: $buttercup;
   }
 }

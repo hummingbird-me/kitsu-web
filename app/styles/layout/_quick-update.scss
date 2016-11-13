@@ -3,15 +3,16 @@
   left: 0;
   right: 0;
   top: 50px;
-  height: 230px;
-  background: #464C5A;
+  height: 180px;
+  background: $voodoo;
   overflow: hidden;
 }
 
 .quick-update--header {
   margin-top: 15px;
+  display: none;
   h6 {
-    color: #B3BBCD;
+    color: #a3a9b7;
     font-size: 16px;
     margin-bottom: 0;
     line-height: 26px;
@@ -21,9 +22,12 @@
     padding: 3px 5px;
     font-size: 12px;
     background: transparent;
-    border: 1px solid #B3BBCD;
+    border: 1px solid #a3a9b7;
     margin-left: 10px;
-    color: #B3BBCD;
+    color: #a3a9b7;
+    &:hover {
+      background: rgba(255,255,255,.1);
+    }
   }
 }
 
@@ -37,12 +41,12 @@
   }
   .quick-update-actions {
     opacity: 0;
-    background: RGBA(70, 76, 90, .8);
+    background: linear-gradient(to right,RGBA(237, 72, 95, .7),RGBA(242, 124, 54, .7));
     position: absolute;
-    top: 5px;
-    bottom: 5px;
-    left: 5px;
-    right: 5px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     border-radius: 3px;
   }
 
@@ -62,16 +66,16 @@
     }
   }
 
-  .ember-view {
+  .quick-update-item {
     width: 19%;
     min-width: 240px;
+    max-width: 275px;
     height: 150px;
     border-radius: 3px;
     margin-right: 15px;
     overflow: hidden;
     animation-delay: .5s;
     .quick-update-media-wrapper {
-      opacity: .4;
       background: #677086;
       transition: opacity .2s ease-in;
     }
@@ -85,7 +89,9 @@
     }
     &:hover {
       .quick-update-actions {
-        opacity: 1;
+        @extend .animated;
+        @extend .fadeIn;
+        animation-duration: .5s;
       }
       .quick-update-title-block {
         opacity: 0;
@@ -124,6 +130,9 @@
       vertical-align: middle;
       min-width: 75%;
       height: 45px;
+      &:hover {
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+      }
       .loading {
         position: relative;
         top: 3px;
@@ -167,14 +176,14 @@
 
 .flickity-prev-next-button {
   top: 90px;
-  height: 290px;
+  height: 210px;
   bottom: 0;
   border-radius: 0;
   background: rgba(0,0,0,1);
   transition: all .2s ease-in;
   opacity: .3;
   svg {
-    top: 10%;
+    top: 14%;
   }
   .arrow {
     fill: $white;

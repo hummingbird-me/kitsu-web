@@ -1,5 +1,5 @@
 {{#if media}}
-  <div class="stream-item--media col-sm-4">
+  <div class="stream-item--media col-sm-3">
     <img src={{image media.posterImage}}>
   </div>
   <div class="stream-item--media-timeline col-sm">
@@ -9,7 +9,7 @@
           {{media.canonicalTitle}}
         </a>
         <small class="author-secondary">
-          {{truncate-text media.synopsis}}
+          {{truncate-text media.synopsis max=250}}
         </small>
       </div>
     </div>

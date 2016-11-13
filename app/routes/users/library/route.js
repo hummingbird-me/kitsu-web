@@ -42,7 +42,8 @@ export default Route.extend(PaginationMixin, {
         media_type: capitalize(media),
         status
       },
-      page: { offset: 0, limit: 50 }
+      page: { offset: 0, limit: 200 },
+      sort: '-updated_at'
     });
     return yield get(this, 'store').query('library-entry', options);
   }).restartable(),

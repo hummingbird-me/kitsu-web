@@ -1,11 +1,12 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
-import { setProperties } from 'ember-metal/set';
+import set, { setProperties } from 'ember-metal/set';
+import observer from 'ember-metal/observer';
 import InViewportMixin from 'ember-in-viewport';
 import PaginationMixin from 'client/mixins/pagination';
 
 export default Component.extend(InViewportMixin, PaginationMixin, {
-  tolerance: { top: 50, left: 0, bottom: 0, right: 0 },
+  tolerance: { top: 0, left: 0, bottom: 0, right: 0 },
 
   init() {
     this._super(...arguments);
@@ -13,16 +14,21 @@ export default Component.extend(InViewportMixin, PaginationMixin, {
       viewportSpy: true,
       viewportTolerance: get(this, 'tolerance')
     });
+    this._disable();
   },
 
   didEnterViewport() {
     this._super(...arguments);
-    get(this, 'getNextData').perform().then(() => {
-      // reset the viewport state, this is done because there is a possibility
-      // that the component will still be within the viewport after the data
-      // is retrieved, in which case a request will not be executed until
-      // the component has left the viewport and re-entered.
-      this._triggerDidAccessViewport(false);
-    }).catch(() => {});
+    get(this, 'getNextData').perform().catch(() => {});
+  },
+
+  _disableWhenLast: observer('nextLink', function() {
+    this._disable();
+  }),
+
+  _disable() {
+    if (get(this, 'nextLink') === undefined) {
+      set(this, 'viewportEnabled', false);
+    }
   }
 });

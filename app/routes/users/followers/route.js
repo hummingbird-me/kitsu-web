@@ -10,9 +10,7 @@ export default Route.extend(PaginationMixin, {
   model() {
     const user = this.modelFor('users');
     return get(this, 'store').query('follow', {
-      filter: {
-        followed: get(user, 'id')
-      },
+      filter: { followed: get(user, 'id') },
       include: 'follower'
     });
   },

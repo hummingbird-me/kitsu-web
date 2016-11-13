@@ -66,10 +66,13 @@
   border: 1px solid #eee;
   font-family: $heading-font-family;
   &.notifications--present {
-    background: $caribbean;
-    border: 1px solid $caribbean;
+    background: linear-gradient(RGBA(237, 72, 95, 1), RGBA(242, 124, 54, 1));
+    border: none;
     span {
       color: #fff;
+    }
+    &:hover {
+      opacity: .9;
     }
   }
   svg {
@@ -85,6 +88,7 @@
   top: -3px;
   height: 32px;
   text-align: right;
+  display: inline-block;
 }
 .site-search__icon {
   position: relative;
@@ -146,7 +150,7 @@
   width: 400px;
   right: 0;
   left: initial;
-  top: 53px;
+  top: 55px;
   padding: 0;
   overflow: hidden;
   header {
@@ -156,6 +160,19 @@
   }
   .mark-as-read {
     float: right;
+  }
+}
+
+.user-menu-drop {
+  right: 0;
+  left: initial;
+  top: 55px;
+  padding: 0;
+  overflow: hidden;
+  .dropdown-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 20px;
+    font-size: 12px;
   }
 }
 

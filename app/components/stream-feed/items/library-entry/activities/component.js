@@ -13,7 +13,7 @@ export default Component.extend({
   groupedActivities: computed('activities', {
     get() {
       if (get(this, 'shouldGroup') === false) {
-        return get(this, 'activities');
+        return get(this, 'activities').map(activity => ({ activity }));
       }
       const groups = {};
       const activities = get(this, 'activities');
@@ -22,13 +22,15 @@ export default Component.extend({
         groups[key] = groups[key] || [];
         groups[key].addObject(activity);
       });
-
       const result = [];
       Object.keys(groups).forEach((key) => {
         const group = groups[key];
+        const others = group.toArray().slice(1).reject(a => (
+          get(a, 'actor.id') === get(group, 'firstObject.actor.id')
+        ));
         result.addObject({
           activity: get(group, 'firstObject'),
-          others: get(group, 'length') - 1
+          others
         });
       });
       return result;

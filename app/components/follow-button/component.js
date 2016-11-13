@@ -19,14 +19,13 @@ export default Component.extend({
   }),
 
   getFollowStatus: task(function* () {
-    const storeFilter = {
-      follower: get(this, 'session.account.id'),
-      followed: get(this, 'user.id')
-    };
     return yield get(this, 'store').query('follow', {
-      filter: storeFilter
+      filter: {
+        follower: get(this, 'session.account.id'),
+        followed: get(this, 'user.id')
+      }
     }).then(follow => set(this, 'relationship', get(follow, 'firstObject')));
-  }),
+  }).drop(),
 
   toggleFollow: task(function* () {
     if (get(this, 'session.isAuthenticated') === false) {
@@ -34,18 +33,21 @@ export default Component.extend({
     }
 
     if (get(this, 'isFollowing')) {
-      yield get(this, 'relationship').destroyRecord()
-        .then(() => set(this, 'relationship', undefined))
-        .catch(() => { /* TODO: Feedback */ });
+      yield get(this, 'relationship').destroyRecord().then(() => {
+        set(this, 'relationship', undefined);
+        get(this, 'session.account').decrementProperty('followingCount');
+      }).catch(() => { /* TODO: Feedback */ });
     } else {
       yield get(this, 'store').createRecord('follow', {
         follower: get(this, 'session.account'),
         followed: get(this, 'user')
-      }).save()
-        .then(record => set(this, 'relationship', record))
-        .catch(() => { /* TODO: Feedback */ });
+      }).save().then((record) => {
+        set(this, 'relationship', record);
+        get(this, 'session.account').incrementProperty('followingCount');
+      })
+      .catch(() => { /* TODO: Feedback */ });
     }
-  }),
+  }).drop(),
 
   _getData() {
     if (get(this, 'session.hasUser')) {

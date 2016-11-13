@@ -1,26 +1,12 @@
-{{#search-typeahead
-  closeOnClick=false
+{{! TODO/@Josh -- favorite dropdown -- Might need some styling -- we can display anything in the dropdown from the media. }}
+{{#power-select
   search=(action "search")
-  class="media-sort-search"
-  placeholder=(t "users.edit.favorite.search") as |item|
+  onchange=(action "addItem")
+  renderInPlace=true
+  as |media|
 }}
-  {{! TODO/@vevix -- Will require logic here to handle characters }}
-  {{! TODO/@josh -- Styling for search items }}
-  <div class="media-sort-item card">
-    <a href={{href-to (concat type ".show") item}} class="media-sort-thumb-wrapper">
-      <img class="media-sort-thumb" src={{image item.posterImage}}>
-    </a>
-    <span class="media-sort-title">
-      {{item.canonicalTitle}}
-    </span>
-    <span class="media-sort-action">
-      <a class="hint--left hint--bounce hint--rounded" aria-label={{t "users.edit.favorite.add"}} {{action "addItem" item}}>
-        {{! TODO/@josh -- Need SVG for adding an item }}
-        {{svg-jar "success"}}
-      </a>
-    </span>
-  </div>
-{{/search-typeahead}}
+  <strong>{{media.canonicalTitle}}</strong>
+{{/power-select}}
 
 {{#if items}}
   {{#sortable-group
@@ -29,7 +15,6 @@
     class="media-sortable nav" as |group|}}
     {{#each items as |item|}}
       {{#sortable-item model=item group=group tagName="li" class="media-sort-item card"}}
-        {{! TODO/@vevix -- will require logic for characters }}
         <a class="media-sort-thumb-wrapper" href="#">
           <img class="media-sort-thumb" src={{image item.item.posterImage}}>
         </a>
@@ -42,7 +27,6 @@
       {{/sortable-item}}
     {{/each}}
   {{/sortable-group}}
-
   <div class="text-xs-center">
     {{pagination-scrolling model=items update=(action "updateNextPage")}}
   </div>
@@ -51,7 +35,7 @@
     {{! TODO/@Josh -- Case when there is an error loading the data }}
     <p>Error</p>
   {{else}}
-    {{! TODO/@Josh -- Case when user has no anime favorites }}
+    {{! TODO/@Josh -- Case when user has no favorites }}
     <p>You don't have any favorites! add them now!</p>
   {{/if}}
 {{/if}}

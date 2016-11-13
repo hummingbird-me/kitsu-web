@@ -49,7 +49,7 @@
 
   {{#modal.footer}}
     <p class="link-note">
-      Visit your <a href="#">settings page</a> to change your username, email, notification settings, and more.
+      Visit your <a href={{href-to "settings"}}>settings page</a> to change your username, email, notification settings, and more.
     </p>
     <button class="button button--save-edit button--primary"
       disabled={{if (is-empty isDirty) "disabled"}} {{action "updateProfile"}}>

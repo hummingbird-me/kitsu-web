@@ -82,40 +82,40 @@ export const two = {
     "self": "/anime/2"
   },
   "attributes": {
-      "slug": "naruto",
-      "synopsis": "Naruto closely follows the life of a boy who is feared and detested by the villagers of the hidden leaf village of Konoha. The distrust of the boy has little to do with the boy himself, but it’s what’s inside him that causes anxiety. Long before Naruto came to be, a Kyuubi (demon fox) with great fury and power waged war taking many lives. The battle ensued for a long time until a man known as the Fourth Hokage, Yondaime, the strongest ninja in Konoha, fiercely fought the Kyuubi. The fight was soon won by Yondaime as he sealed the evil demon in a human body. Thus the boy, Naruto, was born. As Naruto grows he decides to become the strongest ninja in Konoha in an effort to show everyone that he is not as they perceive him to be, but is a human being worthy of love and admiration. But the road to becoming Hokage, the title for the strongest ninja in Konoha, is a long and arduous one. It is a path filled with betrayal, pain, and loss; but with hard work, Naruto may achieve Hokage.\n\n(Source: ANN)",
-      "posterImage": "/images/poster.png",
-      "coverImage": "/images/cover.png",
-      "coverImageTopOffset": 209,
-      "titles": {
-        "en": null,
-        "en_jp": "Naruto",
-        "ja_jp": "NARUTO－ナルト－"
-      },
-      "canonicalTitle": "Naruto",
-      "abbreviatedTitles": null,
-      "averageRating": 3.7355306310736,
-      "ratingFrequencies": {
-        "0.0": "5",
-        "0.5": "156",
-        "1.0": "285",
-        "1.5": "219",
-        "2.0": "585",
-        "2.5": "1093",
-        "3.0": "2925",
-        "3.5": "2949",
-        "4.0": "3490",
-        "4.5": "1313",
-        "5.0": "4019"
-      },
-      "startDate": "2002-10-03",
-      "endDate": "2007-02-08",
-      "episodeCount": 220,
-      "episodeLength": 23,
-      "showType": "special",
-      "youtubeVideoId": "",
-      "ageRating": "R",
-      "ageRatingGuide": "Teens 13 or older"
+    "slug": "naruto",
+    "synopsis": "Naruto closely follows the life of a boy who is feared and detested by the villagers of the hidden leaf village of Konoha. The distrust of the boy has little to do with the boy himself, but it’s what’s inside him that causes anxiety. Long before Naruto came to be, a Kyuubi (demon fox) with great fury and power waged war taking many lives. The battle ensued for a long time until a man known as the Fourth Hokage, Yondaime, the strongest ninja in Konoha, fiercely fought the Kyuubi. The fight was soon won by Yondaime as he sealed the evil demon in a human body. Thus the boy, Naruto, was born. As Naruto grows he decides to become the strongest ninja in Konoha in an effort to show everyone that he is not as they perceive him to be, but is a human being worthy of love and admiration. But the road to becoming Hokage, the title for the strongest ninja in Konoha, is a long and arduous one. It is a path filled with betrayal, pain, and loss; but with hard work, Naruto may achieve Hokage.\n\n(Source: ANN)",
+    "posterImage": "/images/poster.png",
+    "coverImage": "/images/cover.png",
+    "coverImageTopOffset": 209,
+    "titles": {
+      "en": null,
+      "en_jp": "Naruto",
+      "ja_jp": "NARUTO－ナルト－"
+    },
+    "canonicalTitle": "Naruto",
+    "abbreviatedTitles": null,
+    "averageRating": 3.7355306310736,
+    "ratingFrequencies": {
+      "0.0": "5",
+      "0.5": "156",
+      "1.0": "285",
+      "1.5": "219",
+      "2.0": "585",
+      "2.5": "1093",
+      "3.0": "2925",
+      "3.5": "2949",
+      "4.0": "3490",
+      "4.5": "1313",
+      "5.0": "4019"
+    },
+    "startDate": "2002-10-03",
+    "endDate": "2007-02-08",
+    "episodeCount": 220,
+    "episodeLength": 23,
+    "showType": "special",
+    "youtubeVideoId": "",
+    "ageRating": "R",
+    "ageRatingGuide": "Teens 13 or older"
   },
   "relationships": {
     "genres": {

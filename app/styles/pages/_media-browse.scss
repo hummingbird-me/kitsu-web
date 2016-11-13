@@ -3,7 +3,7 @@
   .global-container {
     max-width: 100%;
     padding-top: 51px;
-    background: linear-gradient(90deg, $river-bed 50%, $alabaster 50%);
+    background: linear-gradient(90deg, $voodoo 50%, $alabaster 50%);
   }
 }
 .media-browse {
@@ -16,9 +16,9 @@
     position: relative;
   }
   .filter-options {
-    background-color: $river-bed;
-    border-right: 1px solid darken($river-bed, 10);
-    border-left: 1px solid darken($river-bed, 10);
+    background-color: $voodoo;
+    border-right: 1px solid darken($voodoo, 10);
+    border-left: 1px solid darken($voodoo, 10);
     position: absolute;
     top: 0;
     left: 0;
@@ -214,7 +214,7 @@
 
   // Filter widgets
   .filter-widget {
-    border-bottom: 1px solid darken($river-bed, 10);
+    border-bottom: 1px solid darken($voodoo, 10);
     margin-bottom: 15px;
     padding: 10px;
     padding-bottom: 15px;
@@ -229,15 +229,15 @@
     @extend .clearfix;
     .filter-title {
       float: left;
-      color: lighten($river-bed, 40);
+      color: #a3a9b7;
       font-size: 12px;
       line-height: 30px;
       font-weight: 600;
     }
     .filter-values {
       float: right;
-      color: #6E7881;
-      background: #323842;
+      color: #a3a9b7;
+      background: darken($voodoo,5);
       font-size: 12px;
       padding: 2px 10px;
       border-radius: 999em;
@@ -259,11 +259,11 @@
     @extend .clearfix;
     text-align: center;
     font-size: 12px;
-    color: lighten($river-bed, 50);
+    color: #a3a9b7;
     font-weight: 900;
     svg {
       width: 10px;
-      fill: lighten($river-bed, 50);
+      fill: #a3a9b7;
     }
     .low-value {
       float: left;
@@ -304,7 +304,7 @@
       margin-bottom: 5px;
       margin-right: 4px;
       text-align: center;
-      background: #505868;
+      background: darken($voodoo,10);
       &:nth-child(4), &:nth-child(8) {
         margin-right: 0;
       }
@@ -333,7 +333,7 @@
       transform: translateY(-50%);
     }
     path {
-      fill: $white;
+      fill: #a3a9b7;
       opacity: .5;
     }
   }
@@ -357,20 +357,23 @@
     }
     li {
       float: left;
-      background: #505868;
+      background: darken($voodoo,10);
       font-size: 12px;
       font-weight: 900;
       text-transform: uppercase;
-      color: $alabaster;
+      color: #a3a9b7;
       padding: 5px 10px;
       margin-right: 5px;
       border-radius: 2px;
       &.active {
         background: #EDEEEF;
-        color: #383D48;
+        color: $voodoo;
+        &:hover {
+          background: #EDEEEF;
+        }
       }
       &:hover {
-        background: lighten(#505868, 5);
+        background: darken($voodoo, 5);
       }
     }
   }
@@ -386,7 +389,7 @@
     li {
       position: relative;
       a {
-        color: #ACB4BF;
+        color: #a3a9b7;
         font-weight: 600;
         display: block;
         padding: 5px 0px;
@@ -426,7 +429,10 @@
           display: none;
         }
         a {
-          background: lighten(#505868, 2);
+          background: darken($voodoo,10);
+          &:hover {
+            background: darken($voodoo,8);
+          }
         }
       }
       &.exclude {
@@ -437,7 +443,7 @@
           visibility: visible;
           display: block;
           svg {
-            fill: #EF8F79;
+            fill: #60b885;
           }
           &.hint--left:before, &.hint--left:after {
             display: none;
@@ -452,7 +458,7 @@
           visibility: visible;
         }
         a {
-          background: #505868;
+          background: darken($voodoo,5);
           text-decoration: none;
         }
       }

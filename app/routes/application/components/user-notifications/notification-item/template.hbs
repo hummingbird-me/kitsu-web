@@ -4,10 +4,16 @@
   </span>
   <div class="media-body">
     <p class="media-heading">
-      <strong>{{activity.actor.name}}</strong>
+      <a href={{href-to "users.index" activity.actor}}>{{activity.actor.name}}</a>
       {{! more than one? }}
-      {{#if (gt otherCount 0)}}
-        and <strong>{{pluralize otherCount "other"}}</strong>
+      {{#if (gt others.length 0)}}
+        {{#if (eq others.length 1)}}
+          {{#with (get others "firstObject") as |other|}}
+            and <a href={{href-to "users.index" other.actor}}>{{other.actor.name}}</a>
+          {{/with}}
+        {{else}}
+          and <strong>{{otherCount}} others</strong>
+        {{/if}}
       {{/if}}
       {{! type }}
       {{#if (eq activity.verb "follow")}}

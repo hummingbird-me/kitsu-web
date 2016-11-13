@@ -3,10 +3,9 @@
 {{/if}}
 
 <div class="feed-container row {{if session.hasUser "quick-update-enabled"}}">
-  <!-- Feed Posts -->
+  {{! Feed }}
   <div class="feed-stream col-sm-12 col-md-8">
-    <!-- TODO: also check if they haven't made a post -->
-    {{#if session.hasUser}}
+    {{#if (and session.hasUser (and (eq streamType "global") (eq session.account.postsCount 0)))}}
       {{dashboard/components/stream-onboarding}}
     {{/if}}
 
@@ -14,66 +13,26 @@
       streamType=streamType
       streamId=streamId
       readOnly=(not session.hasUser)}}
-      {{! TODO/@Josh -- Context switching between following/global on feed }}
-      <div class="d-inline-block">
-        <a href="#" class="{{if (eq streamType "timeline") "active"}}" {{action (action (mut streamType) "timeline")}}>Following</a>
-        <a href="#" class="{{if (eq streamType "global") "active"}}" {{action (action (mut streamType) "global")}}>Global</a>
-      </div>
+      {{#if session.hasUser}}
+        <div class="d-inline-block">
+          <a href="#" class="{{if (eq streamType "timeline") "active"}}" {{action (action (mut streamType) "timeline")}}>Following</a>
+          <a href="#" class="{{if (eq streamType "global") "active"}}" {{action (action (mut streamType) "global")}}>Global</a>
+        </div>
+      {{/if}}
     {{/stream-feed}}
   </div>
 
   <div class="feed-sidebar col-sm-4">
-    <!-- TODO: Componentize the checklist -->
+    {{! Onboarding }}
     {{#if session.hasUser}}
-      <div class="checklist card">
-        <h4>Set-Up Your Feed</h4>
-        <ul>
-          <li class="step step--complete">
-            <span class="step-status">
-              {{svg-jar "success"}}
-            </span>
-            <span class="step-description">
-              Visit your feed
-            </span>
-          </li>
-          <li class="step step--complete">
-            <span class="step-status">
-              {{svg-jar "success"}}
-            </span>
-            <span class="step-description">
-              Rate 5 anime or manga
-            </span>
-          </li>
-          <li class="step step--complete">
-            <span class="step-status">
-              {{svg-jar "success"}}
-            </span>
-            <span class="step-description">
-              Follow 5 users
-            </span>
-          </li>
-          <li class="step">
-            <span class="step-status">
-              {{svg-jar "empty"}}
-            </span>
-            <span class="step-description">
-              Comment on 2 feed posts
-            </span>
-          </li>
-          <li class="step">
-            <span class="step-status">
-              {{svg-jar "empty"}}
-            </span>
-            <span class="step-description">
-              Like 3 feed posts
-            </span>
-          </li>
-        </ul>
-      </div>
+      {{dashboard/components/checklist-onboarding user=session.account}}
     {{/if}}
 
     {{! News }}
     {{dashboard/components/forum-topics}}
+
+    {{! sidebar ad }}
+    {{ad-unit slot="TODO-SLOT-HERE" class="rectangle"}}
 
     {{! Footer }}
     {{sidebar-footer}}

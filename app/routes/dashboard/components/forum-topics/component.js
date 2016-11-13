@@ -19,11 +19,10 @@ export default Component.extend({
     get(this, 'getTopics').perform().then((data) => {
       const topics = get(data, 'topic_list.topics') || undefined;
       if (topics !== undefined) {
-        topics.slice(0, 4).map(topic => ({
+        set(this, 'topics', topics.slice(1, 5).map(topic => ({
           title: topic.title,
           href: `https://forums.hummingbird.me/t/${topic.slug}/${topic.id}`
-        }));
-        set(this, 'topics', topics);
+        })));
       }
     }).catch(() => {});
   }
