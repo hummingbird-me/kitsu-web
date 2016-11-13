@@ -8,7 +8,6 @@ export function initialize() {
     const script = document.getElementsByTagName('script')[0];
     script.parentNode.insertBefore(element, script);
   }
-  window.adsbygoogle = [];
 }
 
 export default {

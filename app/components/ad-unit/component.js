@@ -2,6 +2,7 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { assert } from 'ember-metal/utils';
+import { scheduleOnce } from 'ember-runloop';
 import Config from 'client/config/environment';
 
 export default Component.extend({
@@ -11,11 +12,14 @@ export default Component.extend({
     this._super(...arguments);
     assert('Must pass a `slot` param to an `{{ad-unit}}` component.', get(this, 'slot') !== undefined);
     set(this, 'client', Config.ads.client);
-    set(this, 'isEnabled', Config.ads.enabled);
+    // if adsbygoogle is undefined then the script failed to load or was blocked.
+    set(this, 'isEnabled', Config.ads.enabled === true && window.adsbygoogle !== undefined);
   },
 
   didInsertElement() {
     this._super(...arguments);
-    window.adsbygoogle.push({});
+    scheduleOnce('afterRender', () => {
+      (window.adsbygoogle || []).push({});
+    });
   }
 });
