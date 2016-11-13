@@ -36,6 +36,7 @@
         {{#each replies as |reply|}}
           {{stream-feed/items/post/comment
             comment=reply
+            post=post
             tagName="li"
             class="media new-comment"}} {{! HACK: Until we have transitions }}
         {{/each}}

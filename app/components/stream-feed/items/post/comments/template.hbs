@@ -30,9 +30,9 @@
         {{#each comments as |comment|}}
           {{stream-feed/items/post/comment
             comment=comment
+            post=post
             likesCountUpdate=(action (mut comment.likesCount))
             tagName="li"
-            trackStream=(action trackStream)
             class="media new-comment"}} {{! HACK: Until we have transitions }}
         {{/each}}
       </ul>

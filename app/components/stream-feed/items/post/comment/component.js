@@ -9,7 +9,6 @@ import { invokeAction } from 'ember-invoke-action';
 export default Component.extend({
   classNameBindings: ['comment.isNew:new-comment'],
   isLiked: false,
-  isReplying: false,
 
   session: service(),
   store: service(),
@@ -21,9 +20,8 @@ export default Component.extend({
   }).drop(),
 
   getReplies: task(function* () {
-    const post = yield get(this, 'comment.post');
     return yield get(this, 'store').query('comment', {
-      filter: { post_id: get(post, 'id'), parent_id: get(this, 'comment.id') },
+      filter: { post_id: get(this, 'post.id'), parent_id: get(this, 'comment.id') },
       page: { limit: 2 },
       sort: '-created_at'
     });
@@ -31,22 +29,18 @@ export default Component.extend({
 
   createReply: task(function* (content) {
     this.$('.reply-comment').val('');
-    const post = yield get(this, 'comment.post');
     set(this, 'isReplying', false);
     const reply = get(this, 'store').createRecord('comment', {
       content,
-      post,
+      post: get(this, 'post'),
       parent: get(this, 'comment'),
       user: get(this, 'session.account')
     });
     get(this, 'replies').addObject(reply);
 
-    yield reply.save().then(() => {
-      invokeAction(this, 'trackStream', 'comment-reply', 'comment-reply', { parent_comment_id: get(this, 'comment.id') });
-      get(this, 'comment').save();
-    }).catch(() => {
-      get(this, 'replies').removeObject(reply);
-    });
+    yield reply.save()
+      .then(() => {})
+      .catch(() => { get(this, 'replies').removeObject(reply); });
   }).drop(),
 
   createLike: task(function* () {
