@@ -13,6 +13,7 @@ import RSVP from 'rsvp';
  * This component should be invoked within a wormhole.
  */
 export default Component.extend({
+  routing: service('-routing'),
   session: service(),
   user: alias('session.account'),
 
@@ -52,7 +53,7 @@ export default Component.extend({
   },
 
   willDestroyElement() {
-    this.$('.modal').modal('hide');
+    // this.$('.modal').modal('hide');
   },
 
   actions: {
@@ -89,6 +90,11 @@ export default Component.extend({
         reader.onload = evt => run(() => set(this, property, evt.target.result));
         reader.readAsDataURL(event.files[0]);
       }
+    },
+
+    goToSettings() {
+      this.$('.modal').modal('hide');
+      get(this, 'routing').transitionTo('settings');
     }
   }
 });
