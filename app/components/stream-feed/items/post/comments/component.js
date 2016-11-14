@@ -13,7 +13,7 @@ export default Component.extend({
 
   getComments: task(function* () {
     return yield get(this, 'store').query('comment', {
-      filter: { post_id: get(this, 'post.id') },
+      filter: { post_id: get(this, 'post.id'), parent_id: '_none' },
       page: { limit: 4 },
       include: 'user',
       sort: '-created_at'
