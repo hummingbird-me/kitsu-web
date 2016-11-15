@@ -1,9 +1,15 @@
 {{#each items as |favorite|}}
   {{! TODO/@vevix: This will need some logic to handle characters }}
-  <div class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded" aria-label={{favorite.item.canonicalTitle}}>
-    <a href={{href-to (concat type ".show") favorite.item}}>
-      <img src={{image favorite.item.posterImage}}>
-    </a>
+  <div class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded" aria-label={{if isCharacter favorite.item.name favorite.item.canonicalTitle}}>
+    {{#if isCharacter}}
+      <a href="#">
+        <img src={{image favorite.item.image}}>
+      </a>
+    {{else}}
+      <a href={{href-to (concat type ".show") favorite.item}}>
+        <img src={{image favorite.item.posterImage}}>
+      </a>
+    {{/if}}
   </div>
 {{else}}
   {{#if isError}}
