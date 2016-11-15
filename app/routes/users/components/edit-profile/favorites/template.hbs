@@ -44,8 +44,14 @@
         updateNextPage=(action "updateNextPage" "manga")
         id="edit-favorite-manga" class="tab-pane" role="tabpanel"}}
 
-      {{! TODO/@vevix -- NYI on server }}
-      <div class="tab-pane" id="edit-favorite-characters" role="tabpanel">NYI</div>
+      {{! Characters }}
+      {{users/components/edit-profile/favorites/items items=characterFavorites type="character"
+        search=(perform search "character")
+        reorderItems=(action "reorderItems" "character")
+        addItem=(action "addItem")
+        removeItem=(action "removeItem")
+        updateNextPage=(action "updateNextPage" "character")
+        id="edit-favorite-characters" class="tab-pane" role="tabpanel"}}
     </div>
   {{/if}}
 </div>

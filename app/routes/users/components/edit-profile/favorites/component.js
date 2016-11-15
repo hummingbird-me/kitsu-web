@@ -14,7 +14,10 @@ export default Component.extend({
   // Search media and filter out records that are already favorites of the user
   search: task(function* (type, value) {
     yield timeout(250);
-    const field = 'text';
+    let field = 'text';
+    if (type === 'character') {
+      field = 'name';
+    }
     return yield get(this, 'store').query(type, {
       filter: { [field]: value },
       page: { limit: 3 }
@@ -37,18 +40,21 @@ export default Component.extend({
   getAllFavorites: task(function* () {
     const anime = get(this, 'getFavorites').perform('Anime');
     const manga = get(this, 'getFavorites').perform('Manga');
-    return yield RSVP.allSettled([anime, manga], 'Get Favorites');
+    const chars = get(this, 'getFavorites').perform('Character');
+    return yield RSVP.allSettled([anime, manga, chars], 'Get Favorites');
   }).drop().cancelOn('willDestroyElement'),
 
   init() {
     this._super(...arguments);
-    get(this, 'getAllFavorites').perform().then(([anime, manga]) => {
+    get(this, 'getAllFavorites').perform().then(([anime, manga, chars]) => {
       set(this, 'animeFavorites', get(anime, 'value').toArray());
       set(this, 'mangaFavorites', get(manga, 'value').toArray());
+      set(this, 'characterFavorites', get(chars, 'value').toArray());
 
       // add to meta records to check for dirty state
       get(anime, 'value').forEach(record => invokeAction(this, 'addRecord', record));
       get(manga, 'value').forEach(record => invokeAction(this, 'addRecord', record));
+      get(chars, 'value').forEach(record => invokeAction(this, 'addRecord', record));
     }).catch(() => {});
   },
 
@@ -68,7 +74,6 @@ export default Component.extend({
       record.save().then((favorite) => {
         get(this, `${type}Favorites`).addObject(favorite);
         invokeAction(this, 'addRecord', favorite);
-        console.log('yup', favorite);
         // Increase count on user
         get(this, 'session.account').incrementProperty('favoritesCount');
       }).catch(() => {});

@@ -1,8 +1,8 @@
+import Base from 'client/models/base/model';
 import attr from 'ember-data/attr';
-import Model from 'ember-data/model';
 import { belongsTo } from 'ember-data/relationships';
 
-export default Model.extend({
+export default Base.extend({
   description: attr('string'),
   // TODO: Replace with default image for characters
   image: attr('object', { defaultValue: '/image/default_avatar.png' }),

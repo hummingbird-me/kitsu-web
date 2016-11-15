@@ -3,9 +3,15 @@
   search=(action "search")
   onchange=(action "addItem")
   renderInPlace=true
-  as |media|
+  as |item|
 }}
-  <strong>{{media.canonicalTitle}}</strong>
+  <strong>
+    {{#if isCharacter}}
+      {{item.name}}
+    {{else}}
+      {{item.canonicalTitle}}
+    {{/if}}
+  </strong>
 {{/power-select}}
 
 {{#if items}}
@@ -16,9 +22,19 @@
     {{#each items as |item|}}
       {{#sortable-item model=item group=group tagName="li" class="media-sort-item card"}}
         <a class="media-sort-thumb-wrapper" href="#">
-          <img class="media-sort-thumb" src={{image item.item.posterImage}}>
+          {{#if isCharacter}}
+            <img class="media-sort-thumb" src={{image item.item.image}}>
+          {{else}}
+            <img class="media-sort-thumb" src={{image item.item.posterImage}}>
+          {{/if}}
         </a>
-        <span class="media-sort-title">{{item.item.canonicalTitle}}</span>
+        <span class="media-sort-title">
+          {{#if isCharacter}}
+            {{item.item.name}}
+          {{else}}
+            {{item.item.canonicalTitle}}
+          {{/if}}
+        </span>
         <span class="media-sort-action">
           <a class="hint--left hint--bounce hint--rounded" aria-label={{t "users.edit.favorite.remove"}} {{action "removeItem" item}}>
             {{svg-jar "cancel"}}

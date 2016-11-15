@@ -8,6 +8,10 @@ export default Component.extend({
     return get(this, 'items') === undefined;
   }),
 
+  isCharacter: getter(function() {
+    return get(this, 'type') === 'character';
+  }),
+
   actions: {
     reorderItems(...args) {
       invokeAction(this, 'reorderItems', ...args);
