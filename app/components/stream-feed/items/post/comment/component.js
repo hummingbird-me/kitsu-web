@@ -6,6 +6,7 @@ import { isEmpty } from 'ember-utils';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import { scheduleOnce } from 'ember-runloop';
+import { prependObjects } from 'client/utils/array-utils';
 
 export default Component.extend({
   classNameBindings: ['comment.isNew:new-comment'],
@@ -89,6 +90,7 @@ export default Component.extend({
       get(this, 'getReplies').perform().then((replies) => {
         const content = replies.toArray().reverse();
         set(this, 'replies', content);
+        set(this, 'replies.links', get(replies, 'links'));
       });
     }
   },
@@ -126,6 +128,13 @@ export default Component.extend({
     onReply(name) {
       this.toggleProperty('isReplying');
       scheduleOnce('afterRender', () => this.$('.reply-comment').val(`@${name} `));
+    },
+
+    loadReplies(records, links) {
+      const content = get(this, 'replies').toArray();
+      prependObjects(content, records);
+      set(this, 'replies', content);
+      set(this, 'replies.links', links);
     }
   }
 });
