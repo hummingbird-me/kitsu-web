@@ -18,20 +18,38 @@
     <div class="tab-content">
       {{! anime }}
       <div class="tab-pane active" id="favorite-anime" role="tabpanel">
-        {{users/components/favorite-series/items
-          items=animeFavorites
-          user=user
-          updateNextPage=(action "updateNextPage" "anime")
-          type="anime" class="favorite-media-grid row"}}
+        {{#if animeFavorites}}
+          {{users/components/favorite-series/items
+            items=animeFavorites
+            user=user
+            updateNextPage=(action "updateNextPage" "anime")
+            type="anime" class="favorite-media-grid row"}}
+        {{else}}
+          {{! TODO/@Josh -- Style the empty states for owner & guest }}
+          {{#if (is-self user)}}
+            Add some Favorites
+          {{else}}
+            User has no favorites.
+          {{/if}}
+        {{/if}}
       </div>
 
       {{! manga }}
       <div class="tab-pane" id="favorite-manga" role="tabpanel">
-        {{users/components/favorite-series/items
-          items=mangaFavorites
-          user=user
-          updateNextPage=(action "updateNextPage" "manga")
-          type="manga" class="favorite-media-grid row"}}
+        {{#if mangaFavorites}}
+          {{users/components/favorite-series/items
+            items=mangaFavorites
+            user=user
+            updateNextPage=(action "updateNextPage" "manga")
+            type="manga" class="favorite-media-grid row"}}
+        {{else}}
+          {{! TODO/@Josh -- Style the empty states for owner & guest }}
+          {{#if (is-self user)}}
+            Add some Favorites
+          {{else}}
+            User has no favorites.
+          {{/if}}
+        {{/if}}
       </div>
     </div>
   {{/if}}
@@ -44,10 +62,19 @@
       {{loading-spinner size="large"}}
     </div>
   {{else}}
-    {{users/components/favorite-series/items
-      items=characterFavorites
-      user=user
-      updateNextPage=(action "updateNextPage" "character")
-      type="character" class="favorite-media-grid row"}}
+    {{#if characterFavorites}}
+      {{users/components/favorite-series/items
+        items=characterFavorites
+        user=user
+        updateNextPage=(action "updateNextPage" "character")
+        type="character" class="favorite-media-grid row"}}
+    {{else}}
+      {{! TODO/@Josh -- Style the empty states for owner & guest }}
+      {{#if (is-self user)}}
+        Add some Favorites
+      {{else}}
+        User has no favorites.
+      {{/if}}
+    {{/if}}
   {{/if}}
 </div>
