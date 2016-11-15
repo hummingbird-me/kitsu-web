@@ -4,7 +4,7 @@
         {{loading-spinner size="small"}}
       </div>
     {{else}}
-      {{#if (and (gt post.commentsCount 4) (not-eq post.commentsCount comments.length))}}
+      {{#if (and (gt post.commentsCount 2) (not-eq post.commentsCount comments.length))}}
         <div class="comment-actions">
           <div class="d-inline-block">
             {{! TODO: i18n }}
@@ -29,8 +29,10 @@
       <ul class="media-list">
         {{#each comments as |comment|}}
           {{stream-feed/items/post/comment
+            isTopLevel=true
             comment=comment
             post=post
+            readOnly=readOnly
             likesCountUpdate=(action (mut comment.likesCount))
             tagName="li"
             class="media new-comment"}} {{! HACK: Until we have transitions }}

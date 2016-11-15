@@ -27,26 +27,41 @@
       </a>
     {{/if}}
 
+    {{! TODO/@Josh -- style reply action }}
+    <small class="comment-reply" {{action "showReply"}}>
+      reply
+    </small>
+
     <small class="comment-time">
       {{moment-from-now comment.createdAt}}
     </small>
 
-    {{#unless comment.parent}}
-      <ul class="media-list reply-list">
-        {{#each replies as |reply|}}
-          {{stream-feed/items/post/comment
-            comment=reply
-            post=post
-            tagName="li"
-            class="media new-comment"}} {{! HACK: Until we have transitions }}
-        {{/each}}
+    {{#if (and isTopLevel (not readOnly))}}
+      {{#if getReplies.isRunning}}
+        <div class="p-t-1 p-b-1 text-xs-center">
+          {{loading-spinner size="small"}}
+        </div>
+      {{else}}
+        {{! TODO/@Josh -- Replies list }}
+        <ul class="media-list reply-list">
+          {{#each replies as |reply|}}
+            {{stream-feed/items/post/comment
+              comment=reply
+              post=post
+              onReply=(action "onReply")
+              tagName="li"
+              class="media new-comment"}} {{! HACK: Until we have transitions }}
+          {{/each}}
 
-        {{one-way-text
-          keyEvents=(hash 13=(perform createReply))
-          placeholder="Reply"
-          class="form-control reply-comment"}}
-      </ul>
-    {{/unless}}
+          {{#if isReplying}}
+            {{one-way-text
+              keyEvents=(hash 13=(perform createReply))
+              placeholder="Add a reply..."
+              class="form-control reply-comment"}}
+          {{/if}}
+        </ul>
+      {{/if}}
+    {{/if}}
 
     {{#if (not (is-self comment.user))}}
       <span class="more-wrapper">

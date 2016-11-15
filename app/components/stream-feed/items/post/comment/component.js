@@ -5,10 +5,13 @@ import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
+import { scheduleOnce } from 'ember-runloop';
 
 export default Component.extend({
   classNameBindings: ['comment.isNew:new-comment'],
   isLiked: false,
+  isTopLevel: false,
+  isReplying: false,
 
   session: service(),
   store: service(),
@@ -21,6 +24,7 @@ export default Component.extend({
 
   getReplies: task(function* () {
     return yield get(this, 'store').query('comment', {
+      include: 'user',
       filter: { post_id: get(this, 'post.id'), parent_id: get(this, 'comment.id') },
       page: { limit: 2 },
       sort: '-created_at'
@@ -29,18 +33,18 @@ export default Component.extend({
 
   createReply: task(function* (content) {
     this.$('.reply-comment').val('');
-    set(this, 'isReplying', false);
     const reply = get(this, 'store').createRecord('comment', {
       content,
       post: get(this, 'post'),
       parent: get(this, 'comment'),
       user: get(this, 'session.account')
     });
+
     get(this, 'replies').addObject(reply);
+    set(this, 'isReplying', false);
 
     yield reply.save()
-      .then(() => {})
-      .catch(() => { get(this, 'replies').removeObject(reply); });
+      .catch(() => get(this, 'replies').removeObject(reply));
   }).drop(),
 
   createLike: task(function* () {
@@ -81,10 +85,12 @@ export default Component.extend({
       }).catch(() => {});
     }
 
-    get(this, 'getReplies').perform().then((replies) => {
-      const content = replies.toArray().reverse();
-      set(this, 'replies', content);
-    });
+    if (get(this, 'isTopLevel') === true) {
+      get(this, 'getReplies').perform().then((replies) => {
+        const content = replies.toArray().reverse();
+        set(this, 'replies', content);
+      });
+    }
   },
 
   actions: {
@@ -107,6 +113,19 @@ export default Component.extend({
       });
       // TODO: Feedback
       block.save().then(() => {}).catch(() => {});
+    },
+
+    showReply() {
+      if (get(this, 'isTopLevel') === true) {
+        this.toggleProperty('isReplying');
+      } else {
+        invokeAction(this, 'onReply', get(this, 'comment.user.name'));
+      }
+    },
+
+    onReply(name) {
+      this.toggleProperty('isReplying');
+      scheduleOnce('afterRender', () => this.$('.reply-comment').val(`@${name} `));
     }
   }
 });
