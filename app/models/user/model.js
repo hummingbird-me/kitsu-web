@@ -75,5 +75,9 @@ export default Model.extend(Validations, {
 
   blocks: hasMany('block', { inverse: 'user' }),
   followers: hasMany('follow', { inverse: 'followed' }),
-  following: hasMany('follow', { inverse: 'follower' })
+  following: hasMany('follow', { inverse: 'follower' }),
+
+  // HACK: We use this to flag the model as dirty when waifu changes, as ember-data
+  // doesn't currently track the dirtiness of a relationship.
+  waifuDirtyHack: attr('boolean', { defaultValue: false })
 });

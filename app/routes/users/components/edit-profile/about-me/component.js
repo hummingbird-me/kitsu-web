@@ -13,9 +13,12 @@ export default Component.extend({
   i18n: service(),
   store: service(),
 
-  searchCharacters: task(function* () {
-    yield timeout(1000);
-    // TODO: Implement searching when available on server
+  searchCharacters: task(function* (query) {
+    yield timeout(150);
+    return yield get(this, 'store').query('character', {
+      filter: { name: query },
+      page: { limit: 4 }
+    });
   }).restartable(),
 
   init() {

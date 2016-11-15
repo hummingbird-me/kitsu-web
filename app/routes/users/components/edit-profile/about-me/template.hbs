@@ -62,7 +62,7 @@
       {{#power-select
         search=(perform searchCharacters)
         selected=user.waifu
-        onchange=(action (mut user.waifu))
+        onchange=(action (queue (action (mut user.waifu)) (action (mut user.waifuDirtyHack) true)))
         renderInPlace=true
         as |character|
       }}

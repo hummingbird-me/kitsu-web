@@ -52,10 +52,6 @@ export default Component.extend({
     set(this, 'records', []);
   },
 
-  willDestroyElement() {
-    // this.$('.modal').modal('hide');
-  },
-
   actions: {
     onClose() {
       invokeAction(this, 'onClose');
