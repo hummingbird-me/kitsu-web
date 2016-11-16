@@ -118,17 +118,22 @@
   .action-wrapper {
     text-align: center;
     height: 100%;
-    &:before {
-      content: '';
+    padding: 0 20px;
+    .update--entry-title {
+      color: #fff;
+      margin-top: 40px;
+      margin-bottom: 15px;
       display: inline-block;
-      height: 100%;
-      vertical-align: middle;
-      margin-right: -0.25em; /* Adjusts for spacing */
+      font-weight: 700;
+      width: 100%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
     .button {
       display: inline-block;
       vertical-align: middle;
-      min-width: 75%;
+      width: 100%;
       height: 45px;
       &:hover {
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
