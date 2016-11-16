@@ -3,6 +3,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { capitalize } from 'ember-string';
+import observer from 'ember-metal/observer';
 import { task, timeout } from 'ember-concurrency';
 import CanonicalRedirectMixin from 'client/mixins/routes/canonical-redirect';
 import CoverPageMixin from 'client/mixins/routes/cover-page';
@@ -20,23 +21,16 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   model({ slug }) {
     const [type] = get(this, 'routeName').split('.');
     if (slug.match(/\D+/)) {
-      return get(this, 'store').query(type, { filter: { slug } })
+      return get(this, 'store').query(type, { filter: { slug }, include: 'genres' })
         .then(records => get(records, 'firstObject'));
     }
-    return get(this, 'store').findRecord(type, slug);
+    return get(this, 'store').findRecord(type, slug, { include: 'genres' });
   },
 
   setupController(controller, model) {
     this._super(...arguments);
     if (get(this, 'session.hasUser') === true) {
-      const promise = this._getLibraryEntry(model).then((results) => {
-        const entry = get(results, 'firstObject');
-        set(controller, 'entry', entry);
-        if (entry !== undefined) {
-          set(controller, 'entry.media', model);
-        }
-      });
-      set(controller, 'entry', promise);
+      this._getLibraryEntry(controller, model);
     }
   },
 
@@ -48,15 +42,29 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
     return { slug: get(model, 'slug') };
   },
 
-  _getLibraryEntry(media) {
-    return get(this, 'store').query('library-entry', {
+  _getLibraryEntry(controller, media) {
+    const promise = get(this, 'store').query('library-entry', {
       filter: {
         user_id: get(this, 'session.account.id'),
         media_type: capitalize(mediaType([media])),
         media_id: get(media, 'id')
       },
+    }).then((results) => {
+      const entry = get(results, 'firstObject');
+      set(controller, 'entry', entry);
+      if (entry !== undefined) {
+        set(controller, 'entry.media', media);
+      }
     });
+    set(controller, 'entry', promise);
   },
+
+  // if the user authenticates while on this page, attempt to get their entry
+  _userAuthenticated: observer('session.hasUser', function() {
+    if (get(this, 'session.hasUser') === true) {
+      this._getLibraryEntry(this.controllerFor(get(this, 'routeName')), this.modelFor(get(this, 'routeName')));
+    }
+  }),
 
   actions: {
     createEntry(status) {

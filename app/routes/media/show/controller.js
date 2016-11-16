@@ -3,6 +3,8 @@ import computed, { alias } from 'ember-computed';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { image } from 'client/helpers/image';
+import moment from 'moment';
+/* global humanizeDuration */
 
 export default Controller.extend({
   media: alias('model'),
@@ -24,6 +26,13 @@ export default Controller.extend({
   totalProgressText: computed('media.unitCount', {
     get() {
       return get(this, 'media.unitCount') || '-';
+    }
+  }).readOnly(),
+
+  totalTime: computed('media.episodeLength', {
+    get() {
+      const time = moment.duration(get(this, 'media.episodeCount') * get(this, 'media.episodeLength'), 'minutes');
+      return humanizeDuration(time.asMilliseconds(), { largest: 2 });
     }
   }).readOnly(),
 

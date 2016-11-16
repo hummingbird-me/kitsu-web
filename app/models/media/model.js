@@ -19,5 +19,6 @@ export default Base.extend({
 
   genres: hasMany('genre'),
 
+  mediaType: or('showType', 'mangaType'),
   unitCount: or('episodeCount', 'chapterCount')
 });

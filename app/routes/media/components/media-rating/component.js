@@ -16,7 +16,7 @@ export default Component.extend({
       const total = keys.reduce((prev, curr) => (
         prev + parseInt(freqs[decimalNumber([curr])], 10)
       ), 0);
-      const liked = keys.slice(5).reduce((prev, curr) => (
+      const liked = keys.slice(7).reduce((prev, curr) => (
         prev + parseInt(freqs[decimalNumber([curr])], 10)
       ), 0);
       const value = (liked / total) * 100;

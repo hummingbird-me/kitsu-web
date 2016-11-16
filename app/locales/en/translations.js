@@ -93,6 +93,20 @@ export default {
           cast: 'Cast',
           reviews: 'Reviews',
           quotes: 'Quotes'
+        },
+        unit: {
+          anime: {
+            one: '{{count}} episode',
+            other: '{{count}} episodes'
+          },
+          manga: {
+            one: '{{count}} chapter',
+            other: '{{count}} chapters'
+          },
+          length: {
+            one: '({{total}} / {{length}} minutes)',
+            other: '({{total}} / {{length}} minutes each)'
+          }
         }
       }
     }

@@ -42,7 +42,6 @@
                   {{/if}}
                 {{/if}}
 
-                {{! TODO/@vevix -- Show tooltip with platform + country i.e. "Hulu Espanol" }}
                 {{#if media.streamingLinks}}
                   <div class="where-to-watch-widget">
                     <h6>Where to Watch</h6>
@@ -50,7 +49,8 @@
                       <ul class="nav">
                         {{#each media.streamingLinks as |link|}}
                           <li>
-                            <a href={{link.url}} class="hint--top hint--bounce hint--rounded" aria-label="Hulu (US)">
+                            {{! TODO/@vevix -- show subs/dubs status }}
+                            <a href={{link.url}} class="hint--top hint--bounce hint--rounded" aria-label={{link.streamer.siteName}}>
                               {{svg-jar (to-lower link.streamer.siteName)}}
                             </a>
                           </li>
@@ -69,29 +69,38 @@
                 <div class="media--meta">
                   <ul>
                     <li class="rating-content-type">
-                      <span>R17+</span>
-                      <span>TV Series</span>
+                      <span>{{media.ageRating}}</span>
+                      <span>{{capitalize media.mediaType}}</span>
                     </li>
-                    {{! @vevix clicking a category tag should take you
-                     to search page filtered by that category }}
-                    <li class="media--category-tag">
-                      <a href="">Action</a>
-                    </li>
-                    <li class="media--category-tag">
-                      <a href="">Adventure</a>
-                    </li>
-                    <li class="media--category-tag">
-                      <a href="">Comedy</a>
-                    </li>
+                    {{#each media.genres as |genre|}}
+                      <li class="media--category-tag">
+                        <a href={{href-to (concat (media-type media) ".index") (query-params genres=genre.name)}}>
+                          {{genre.name}}
+                        </a>
+                      </li>
+                    {{/each}}
                   </ul>
                   <ul class="media--secondary-meta">
-                    <li class="media--airing-date">
-                      <span>May 20, 2004 to Mar 19, 2005</span>
-                    </li>
-                    <li class="media--content-length">
-                      <span>24 episodes (10 hrs / 24 min each)</span>
-                    </li>
-
+                    {{#if media.startDate}}
+                      <li class="media--airing-date">
+                        <span>
+                          {{moment-format media.startDate "MMM D, YYYY"}}
+                          {{#if media.endDate}}
+                            to {{moment-format media.endDate "MMM D, YYYY"}}
+                          {{/if}}
+                        </span>
+                      </li>
+                    {{/if}}
+                    {{#if media.unitCount}}
+                      <li class="media--content-length">
+                        <span>
+                          {{t (concat "media.routes.show.unit." (media-type media)) count=media.unitCount}}
+                          {{#if media.episodeLength}}
+                            {{t "media.routes.show.unit.length" total=totalTime length=media.episodeLength count=media.unitCount}}
+                          {{/if}}
+                        </span>
+                      </li>
+                    {{/if}}
                   </ul>
                 </div>
               </div>

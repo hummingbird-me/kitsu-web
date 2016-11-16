@@ -16,15 +16,15 @@
   </div>
 </div>
 
-<div class="average-rating media-user-rating">
-  <div class="personal-rating">
-    <div class="featured-number">
-      {{! user rating }}
-      {{#if (and entry (not (is-promise entry)))}}
+{{#if (and entry (not (is-promise entry)))}}
+  <div class="average-rating media-user-rating">
+    <div class="personal-rating">
+      <div class="featured-number">
+        {{! user rating }}
         <label>{{decimal-number entry.rating}}</label>
         {{star-rating entry.rating onClick=(action "update")}}
-      {{/if}}
+      </div>
+      <span>Your rating</span>
     </div>
-    <span>Your rating</span>
   </div>
-</div>
+{{/if}}

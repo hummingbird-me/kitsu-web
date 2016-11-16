@@ -28,10 +28,10 @@ export default Component.extend(IsOwnerMixin, {
     }
   }).readOnly(),
 
-  typeText: computed('media.{showType,mangaType}', {
+  typeText: computed('media.mediaType', {
     get() {
       const media = mediaType([get(this, 'media')]);
-      const type = get(this, 'media.showType') || get(this, 'media.mangaType');
+      const type = get(this, 'media.mediaType');
       return get(this, 'i18n').t(`media.${media}.type.${type}`);
     }
   }).readOnly(),
