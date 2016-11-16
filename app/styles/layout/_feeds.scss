@@ -1,12 +1,18 @@
 .feed-container {
   width: 100%;
   position: relative;
+  @media (max-width: 768px) {
+    margin: 0;
+  }
   &.quick-update-enabled {
     margin-top: 180px;
   }
 }
 
 .feed-stream {
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 }
 
 .feed-actions {
@@ -364,6 +370,7 @@
 .aggregate-wrapper {
   overflow: auto;
   height: 135px;
+  position: relative;
   .hr {
     position: absolute;
     content: '';
