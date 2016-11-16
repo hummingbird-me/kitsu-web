@@ -3,8 +3,9 @@ import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set, { setProperties } from 'ember-metal/set';
 import { isEmpty } from 'ember-utils';
+import computed from 'ember-computed';
 import { task, timeout } from 'ember-concurrency';
-import { invokeAction } from 'ember-invoke-action';
+import { invoke, invokeAction } from 'ember-invoke-action';
 import { bind } from 'ember-runloop';
 import jQuery from 'jquery';
 import RSVP from 'rsvp';
@@ -17,9 +18,16 @@ export default Component.extend({
   mediaReadOnly: false,
   nsfw: false,
   spoiler: false,
+  maxLength: 9000,
 
   session: service(),
   store: service(),
+
+  canPost: computed('content', {
+    get() {
+      return isEmpty(get(this, 'content')) === false && (get(this, 'content.length') <= get(this, 'maxLength'));
+    }
+  }).readOnly(),
 
   getMedia: task(function* (type, query) {
     return yield get(this, 'store').query(type, {
@@ -47,7 +55,10 @@ export default Component.extend({
     const isChild = jQuery(target).is('.stream-add-content *, .stream-add-content');
     const isDeleted = jQuery(document.body).find(target).length === 0;
     if (isChild === false && isDeleted === false && get(this, 'isDestroyed') === false) {
-      set(this, 'isExpanded', false);
+      // don't collapse if user has text entered
+      if (isEmpty(get(this, 'content')) === true) {
+        set(this, 'isExpanded', false);
+      }
     }
   },
 
@@ -85,7 +96,7 @@ export default Component.extend({
 
   actions: {
     create() {
-      if (isEmpty(get(this, 'content')) === true) {
+      if (get(this, 'canPost') === false) {
         return;
       }
 
@@ -98,6 +109,13 @@ export default Component.extend({
       }
       invokeAction(this, 'onCreate', get(this, 'content'), options);
       this._resetProperties();
+    },
+
+    keyDown(value, event) {
+      const { keyCode, metaKey, ctrlKey } = event;
+      if (keyCode === 13 && (metaKey === true || ctrlKey === true)) {
+        invoke(this, 'create');
+      }
     }
   }
 });

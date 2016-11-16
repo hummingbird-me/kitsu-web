@@ -19,6 +19,30 @@ export default Component.extend({
     });
   }).drop(),
 
+  getReplies: task(function* () {
+    return yield get(this, 'store').query('comment', {
+      filter: { post_id: get(this, 'post.id'), parent_id: get(this, 'comment.id') },
+      page: { limit: 2 },
+      sort: '-created_at'
+    });
+  }).drop(),
+
+  createReply: task(function* (content) {
+    this.$('.reply-comment').val('');
+    set(this, 'isReplying', false);
+    const reply = get(this, 'store').createRecord('comment', {
+      content,
+      post: get(this, 'post'),
+      parent: get(this, 'comment'),
+      user: get(this, 'session.account')
+    });
+    get(this, 'replies').addObject(reply);
+
+    yield reply.save()
+      .then(() => {})
+      .catch(() => { get(this, 'replies').removeObject(reply); });
+  }).drop(),
+
   createLike: task(function* () {
     if (isEmpty(get(this, 'comment.id')) === true) {
       return;
@@ -56,6 +80,11 @@ export default Component.extend({
         set(this, 'isLiked', like !== undefined);
       }).catch(() => {});
     }
+
+    get(this, 'getReplies').perform().then((replies) => {
+      const content = replies.toArray().reverse();
+      set(this, 'replies', content);
+    });
   },
 
   actions: {

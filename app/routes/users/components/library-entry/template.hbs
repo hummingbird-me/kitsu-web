@@ -16,6 +16,7 @@
         {{#if isOwner}}
           {{one-way-number entry.progress
             min=0
+            max=media.unitCount
             update=(queue
               (action (mut entry.progress))
               (perform saveEntryDebounced)
@@ -66,7 +67,7 @@
           </a>
         </h4>
         <p class="drop-description">
-          {{media.synopsis}}
+          {{truncate-text media.synopsis max=400}}
         </p>
         <div class="entry-notes">
           {{#if isOwner}}
@@ -147,12 +148,12 @@
                 (action (mut entry.progress) 0)
                 (action (mut entry.status) "current")
                 (perform saveEntry))}}>
-                {{t "users.library.rewatch"}}
+                {{t (concat "users.library.reconsume." (media-type media))}}
               </button>
             {{/if}}
 
             <label>
-              <span>{{t "users.library.rewatched"}}</span>
+              <span>{{t (concat "users.library.reconsumed." (media-type media))}}</span>
               {{#if isOwner}}
                 {{one-way-number entry.reconsumeCount
                   update=(queue

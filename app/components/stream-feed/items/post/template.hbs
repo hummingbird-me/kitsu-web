@@ -7,20 +7,24 @@
           <img src={{image post.user.avatar}}>
         </a>
         {{#if post.targetUser}}
-          <a href={{href-to "users.index" post.targetUser}} class="author-avatar recipient-avatar">
-            <img src={{image post.targetUser.avatar}}>
-          </a>
+          {{#unless (eq post.targetUser.id userId)}}
+            <a href={{href-to "users.index" post.targetUser}} class="author-avatar recipient-avatar">
+              <img src={{image post.targetUser.avatar}}>
+            </a>
+          {{/unless}}
         {{/if}}
       </span>
       <div class="author-info">
         <a class="author-name" href={{href-to "users.index" post.user}}>{{post.user.name}}</a>
         {{#if post.targetUser}}
-          <span class="recipient-info">
-            <small>to</small>
-            <a href={{href-to "users.index" post.targetUser}} class="author-name">
-              {{post.targetUser.name}}
-            </a>
-          </span>
+          {{#unless (eq post.targetUser.id userId)}}
+            <span class="recipient-info">
+              <small>to</small>
+              <a href={{href-to "users.index" post.targetUser}} class="author-name">
+                {{post.targetUser.name}}
+              </a>
+            </span>
+          {{/unless}}
         {{/if}}
         <small class="author-secondary">
           {{moment-from-now post.createdAt}}
@@ -30,32 +34,41 @@
 
     <div class="stream-content">
       {{#if isHidden}}
-        {{#if post.nsfw}}
+        {{#if (and post.spoiler post.nsfw)}}
+          {{! TODO/@Josh -- gate when post is both spoiler/nsfw }}
           <div class="nsfw-gate">
-            <a href="#" {{action (toggle "isHidden" this)}}>
-              <div class="gate--label">This post contains NSFW content.</div>
-              <div class="gate--hover">My body is ready!</div>
-            </a>
-          </div>
-        {{/if}}
-        {{! TODO (@vevix): Show spoiler information such as what episode this relates to }}
-        {{#if post.spoiler}}
-          <div class="spoiler-gate">
-            <a href="#" {{action (toggle "isHidden" this)}}>
-              <div class="gate--label">
-                This post contains spoilers.
-                {{#if post.spoiledUnit}}
-                  {{t (concat "feeds.spoilers." (media-type post.media)) num=post.spoiledUnit.number}}
-                {{/if}}
-              </div>
-              <div class="gate--hover">
-                I can handle the truth!
-                {{#if post.spoiledUnit}}
-                  {{t (concat "feeds.spoilers." (media-type post.media)) num=post.spoiledUnit.number}}
-                {{/if}}
-              </div>
-            </a>
-          </div>
+              <a href="#" {{action (toggle "isHidden" this)}}>
+                <div class="gate--label">This post contains NSFW content and spoilers.</div>
+                <div class="gate--hover">My body is ready and I can handle the truth!</div>
+              </a>
+            </div>
+        {{else}}
+          {{#if post.nsfw}}
+            <div class="nsfw-gate">
+              <a href="#" {{action (toggle "isHidden" this)}}>
+                <div class="gate--label">This post contains NSFW content.</div>
+                <div class="gate--hover">My body is ready!</div>
+              </a>
+            </div>
+          {{/if}}
+          {{#if post.spoiler}}
+            <div class="spoiler-gate">
+              <a href="#" {{action (toggle "isHidden" this)}}>
+                <div class="gate--label">
+                  This post contains spoilers.
+                  {{#if post.spoiledUnit}}
+                    {{t (concat "feeds.spoilers." (media-type post.media)) num=post.spoiledUnit.number}}
+                  {{/if}}
+                </div>
+                <div class="gate--hover">
+                  I can handle the truth!
+                  {{#if post.spoiledUnit}}
+                    {{t (concat "feeds.spoilers." (media-type post.media)) num=post.spoiledUnit.number}}
+                  {{/if}}
+                </div>
+              </a>
+            </div>
+          {{/if}}
         {{/if}}
       {{else}}
         {{#if post.isNew}}

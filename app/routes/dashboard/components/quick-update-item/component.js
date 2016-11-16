@@ -18,7 +18,7 @@ const QuickUpdateItemComponent = Component.extend({
     return get(this, 'isAnime') === true ? 'episode' : 'chapter';
   }),
 
-  isCompleted: computed('entry.progress', {
+  isCompleted: computed('entry.status', {
     get() {
       return get(this, 'entry.status') === 'completed';
     }
@@ -26,13 +26,14 @@ const QuickUpdateItemComponent = Component.extend({
 
   nextProgress: computed('entry.progress', {
     get() {
-      return get(this, 'entry.progress') + 1;
+      const progress = get(this, 'entry.progress');
+      return progress === get(this, 'entry.media.unitCount') ? progress : progress + 1;
     }
   }).readOnly(),
 
   canComplete: computed('nextProgress', {
     get() {
-      return get(this, 'nextProgress') === get(this, 'entry.media.episodeCount');
+      return get(this, 'nextProgress') === get(this, 'entry.media.unitCount');
     }
   }).readOnly(),
 
@@ -53,10 +54,12 @@ const QuickUpdateItemComponent = Component.extend({
     if (get(this, 'canComplete') === true) {
       set(entry, 'status', 'completed');
     }
-    set(entry, 'progress', progress + 1);
+    if (get(this, 'nextProgress') !== progress) {
+      set(entry, 'progress', progress + 1);
+    }
     // TODO: Feedback on error
     yield entry.save().catch(() => {});
-  }).drop(),
+  }).enqueue(),
 
   actions: {
     rateEntry(rating) {

@@ -25,6 +25,7 @@
                       <div class="entry-progress entry-progress--mini">
                         {{one-way-number entry.progress
                           min=0
+                          max=media.unitCount
                           update=(queue
                             (action (mut entry.progress))
                             (route-action "saveEntryDebounced" entry)

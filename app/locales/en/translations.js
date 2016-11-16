@@ -231,8 +231,14 @@ export default {
       notes: 'Personal notes about {{title}}',
       public: 'Public',
       private: 'Private',
-      rewatch: 'Rewatch',
-      rewatched: 'Rewatched',
+      reconsume: {
+        anime: 'Rewatch',
+        manga: 'Reread'
+      },
+      reconsumed: {
+        anime: 'Rewatched',
+        manga: 'Reread'
+      },
       times: 'times',
       emptyOwner: 'You don\'t have any titles here! Ready to start something new? {{link}}',
       emptyGuest: 'Doesn\'t look like {{user}} has anything here!',

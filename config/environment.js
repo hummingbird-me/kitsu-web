@@ -21,18 +21,6 @@ module.exports = function(environment) {
       Date: false
     },
 
-    // ember-cli-content-security-policy
-    contentSecurityPolicyHeader: 'Content-Security-Policy-Report-Only',
-    contentSecurityPolicy: {
-      'script-src': "'self' 'unsafe-eval' www.google-analytics.com d2j1fszo1axgmp.cloudfront.net connect.facebook.net graph.facebook.com faye.getstream.io widget.intercom.io js.intercomcdn.com",
-      'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
-      'connect-src': "'self' www.google-analytics.com analytics.getstream.io wss://faye.getstream.io *.intercom.io wss://*.intercom.io forums.hummingbird.me",
-      'img-src': '* data:',
-      'font-src': "'self' fonts.gstatic.com js.intercomcdn.com",
-      'frame-src': "'self' www.youtube.com *.facebook.com",
-      'media-src': "'self' js.intercomcdn.com"
-    },
-
     // ember-simple-auth
     'ember-simple-auth': {
       authenticationRoute: 'dashboard',
@@ -95,6 +83,11 @@ module.exports = function(environment) {
         key: 'sjm3sx9mgcx2',
         app: '17073'
       }
+    },
+
+    ads: {
+      enabled: false,
+      client: undefined
     }
   };
 
@@ -119,7 +112,6 @@ module.exports = function(environment) {
   }
 
   if (process.env.HEROKU_EMBER_APP === 'staging') {
-    ENV.contentSecurityPolicyHeader = 'Content-Security-Policy';
     ENV.torii.providers['facebook-connect'].appId = '189034391502520';
     ENV.metricsAdapters[2].config.production.apiKey = 'ekx6xkn9v9xx';
     ENV.metricsAdapters[2].config.production.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.Loj_VZy_FKQzP3xLpX46xSF9bktOBfqcve8eYjwFmNc';
@@ -128,11 +120,12 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production' && process.env.HEROKU_EMBER_APP !== 'staging') {
-    ENV.contentSecurityPolicyHeader = 'Content-Security-Policy';
     ENV.torii.providers['facebook-connect'].appId = '325314560922421';
     ENV.stream.realtime.key = '3byr477gj7mj';
     ENV.stream.realtime.app = '16897';
     ENV.metricsAdapters[1].config.appId = 'ca7x05fo';
+    ENV.ads.enabled = true;
+    ENV.ads.client = 'TODO-HERE';
   }
 
   return ENV;

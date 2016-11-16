@@ -16,9 +16,9 @@ export default Component.extend(IsOwnerMixin, {
   media: alias('entry.media'),
   user: alias('entry.user'),
 
-  totalProgressText: computed('media.episodeCount', {
+  totalProgressText: computed('media.unitCount', {
     get() {
-      return get(this, 'media.episodeCount') || '-';
+      return get(this, 'media.unitCount') || '-';
     }
   }).readOnly(),
 
