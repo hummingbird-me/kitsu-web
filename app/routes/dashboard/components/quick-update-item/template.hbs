@@ -3,8 +3,9 @@
     <div class="quick-update-actions">
       <div class="action-wrapper">
         {{#if (not isCompleted)}}
-          {{! @vevix needs hooked up }}
-          <a class="update--entry-title" href="#">{{entry.media.canonicalTitle}}</a>
+          <a class="update--entry-title" href={{href-to (concat (media-type entry.media) ".show") entry.media}}>
+            {{entry.media.canonicalTitle}}
+          </a>
           <button class="button button--quick-update" {{action (perform updateEntryTask)}}>
             {{#if updateEntryTask.isRunning}}
               {{t "dashboard.quickUpdate.mark"}}
@@ -43,6 +44,6 @@
       </small>
     </div>
   </div>
-  <!-- TODO: Use episode thumbnail and fallback to posterImage -->
+  {{! TODO/@vevix: Use episode thumbnail and fallback to posterImage }}
   <img src={{image entry.media.posterImage}}>
 </div>
