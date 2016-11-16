@@ -1,8 +1,18 @@
-{{! TODO/@Josh -- episodes page }}
-<h1>Episodes</h1>
-
-<ul>
-  {{#each model as |episode|}}
+<ul class="media--episode-grid row">
+  <!-- {{#each model as |episode|}}
     <li>{{episode.canonicalTitle}}</li>
-  {{/each}}
-</ul>
+  {{/each}} -->
+
+  {{! @vevix, needs hooked up}}
+  <li class="media--episode-block col-md-4 col-sm-2">
+    <div class="thumbnail-wrapper">
+      <img src="https://1.viki.io/videos/1107432v/episode_1.jpg?x=b&s=380x214&e=t&f=t&cb=1">
+    </div>
+    <div class="thumbnail-description">
+      <h6>Episode 1</h6>
+      <div class="info-emphasis thumb-caption">
+        <span>The First Day</span>
+      </div>
+    </div>
+  </li>
+  </ul>
