@@ -94,9 +94,9 @@
                     {{#if media.unitCount}}
                       <li class="media--content-length">
                         <span>
-                          {{t (concat "media.routes.show.unit." (media-type media)) count=media.unitCount}}
+                          {{t (concat "media.routes.show.meta.unit." (media-type media)) count=media.unitCount}}
                           {{#if media.episodeLength}}
-                            {{t "media.routes.show.unit.length" total=totalTime length=media.episodeLength count=media.unitCount}}
+                            {{t "media.routes.show.meta.unit.length" total=totalTime length=media.episodeLength count=media.unitCount}}
                           {{/if}}
                         </span>
                       </li>
@@ -106,10 +106,7 @@
               </div>
             </div>
             <div class="cover-cta">
-              {{! TODO/@vevix -- NYI on API }}
-              <button class="button button--primary">
-                Follow
-              </button>
+              {{media/components/media-follow media=media}}
             </div>
           </div>
         </div>

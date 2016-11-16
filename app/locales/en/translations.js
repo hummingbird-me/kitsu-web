@@ -94,19 +94,24 @@ export default {
           reviews: 'Reviews',
           quotes: 'Quotes'
         },
-        unit: {
-          anime: {
-            one: '{{count}} episode',
-            other: '{{count}} episodes'
-          },
-          manga: {
-            one: '{{count}} chapter',
-            other: '{{count}} chapters'
-          },
-          length: {
-            one: '({{total}} / {{length}} minutes)',
-            other: '({{total}} / {{length}} minutes each)'
+        meta: {
+          unit: {
+            anime: {
+              one: '{{count}} episode',
+              other: '{{count}} episodes'
+            },
+            manga: {
+              one: '{{count}} chapter',
+              other: '{{count}} chapters'
+            },
+            length: {
+              one: '({{total}} / {{length}} minutes)',
+              other: '({{total}} / {{length}} minutes each)'
+            }
           }
+        },
+        episodes: {
+          episode: 'Episode'
         }
       }
     }

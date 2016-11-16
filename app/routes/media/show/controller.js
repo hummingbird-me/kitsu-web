@@ -32,7 +32,7 @@ export default Controller.extend({
   totalTime: computed('media.episodeLength', {
     get() {
       const time = moment.duration(get(this, 'media.episodeCount') * get(this, 'media.episodeLength'), 'minutes');
-      return humanizeDuration(time.asMilliseconds(), { largest: 2 });
+      return humanizeDuration(time.asMilliseconds(), { largest: 1 });
     }
   }).readOnly(),
 
