@@ -99,3 +99,57 @@
   background: none;
   color: $charcoal;
 }
+
+.media--meta {
+  margin-top: 10px;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  .rating-content-type, .media--category-tag  {
+    display: inline-block;
+    border: 1px solid;
+    border-radius: 999em;
+    font-size: 12px;
+  }
+  .rating-content-type {
+    border-radius: 3px;
+    margin-right: 10px;
+    opacity: .8;
+    span {
+      padding: 5px 10px;
+      display: inline-block;
+      &:first-child {
+        border-right: 1px solid;
+      }
+    }
+  }
+  .media--category-tag {
+    margin-right: 5px;
+    opacity: .6;
+    transition: all .2s ease-in-out;
+    &:hover {
+      opacity: 1;
+    }
+    a {
+      color: #fff;
+      display: inline-block;
+      padding: 5px 10px;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  .media--secondary-meta {
+    margin-top: 10px;
+    opacity: .6;
+  }
+  .media--airing-date, .media--content-length {
+    display: inline-block;
+    font-size: 12px;
+  }
+  .media--airing-date {
+    margin-right: 30px;
+  }
+}

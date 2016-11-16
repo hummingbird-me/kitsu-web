@@ -65,7 +65,34 @@
                 <h3 class="cover-username" data-test-selector="title">
                   {{media.canonicalTitle}}
                 </h3>
-                {{! TODO/@Josh -- Media page extra info (genres,rating,type,airdates,etc) }}
+                <div class="media--meta">
+                  <ul>
+                    <li class="rating-content-type">
+                      <span>R17+</span>
+                      <span>TV Series</span>
+                    </li>
+                    {{! @vevix clicking a category tag should take you
+                     to search page filtered by that category }}
+                    <li class="media--category-tag">
+                      <a href="">Action</a>
+                    </li>
+                    <li class="media--category-tag">
+                      <a href="">Adventure</a>
+                    </li>
+                    <li class="media--category-tag">
+                      <a href="">Comedy</a>
+                    </li>
+                  </ul>
+                  <ul class="media--secondary-meta">
+                    <li class="media--airing-date">
+                      <span>May 20, 2004 to Mar 19, 2005</span>
+                    </li>
+                    <li class="media--content-length">
+                      <span>24 episodes (10 hrs / 24 min each)</span>
+                    </li>
+
+                  </ul>
+                </div>
               </div>
             </div>
             <div class="cover-cta">
