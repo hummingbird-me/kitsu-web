@@ -66,9 +66,30 @@
       {{/if}}
 
       {{#if post.media}}
-        <a href={{href-to (concat (media-type post.media) ".show") post.media}} onclick={{action "trackMedia"}}>
+        <div class="tagged-media--wrapper">
+          <div class="tagged-media row">
+            <div class="stream-item--media col-sm-1">
+              <img src={{image post.media.posterImage}}>
+            </div>
+            <div class="col-sm no-padding-left">
+              <div class="stream-item--title-block">
+                <div class="author-info">
+                  <a class="author-name" href="/anime/hellsing">
+                    {{post.media.canonicalTitle}}
+                  </a>
+                  <small class="author-secondary">
+                    <div class="media-tag-synopsis">
+                      {{truncate-text post.media.synopsis max=150}}
+                    </div>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <a href={{href-to (concat (media-type post.media) ".show") post.media}} onclick={{action "trackMedia"}}>
           Tagged with {{post.media.canonicalTitle}}
-        </a>
+        </a> -->
       {{/if}}
     </div>
 

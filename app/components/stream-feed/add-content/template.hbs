@@ -29,7 +29,7 @@
       {{#if media}}
         <div class="tagged-media--wrapper">
           <div class="tagged-media row">
-            <div class="stream-item--media col-sm-2">
+            <div class="stream-item--media col-sm-1">
               <img src={{image media.posterImage}}>
             </div>
             <div class="col-sm no-padding-left">
@@ -40,7 +40,7 @@
                   </a>
                   <small class="author-secondary">
                     <div class="media-tag-synopsis">
-                      {{truncate-text media.synopsis max=200}}
+                      {{truncate-text media.synopsis max=150}}
                     </div>
                   </small>
                 </div>

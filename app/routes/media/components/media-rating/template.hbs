@@ -1,15 +1,30 @@
-{{! TODO/@Josh -- Rating area above synopsis }}
-
 {{! community rating }}
-{{percentageLiked}}
-<span>Liked it</span>
-{{decimal-number media.averageRating}}
-{{! TODO/@vevix: Support any % on readonly }}
-{{star-rating media.averageRating readOnly=true}}
+<div class="community-rating">
+  <div class="percentage-liked">
+    <div class="featured-number">
+      {{percentageLiked}}
+    </div>
+    <span>Liked it</span>
+  </div>
+  <div class="average-rating">
+    <div class="featured-number">
+      <label>{{decimal-number media.averageRating}}</label>
+      {{! TODO/@vevix: Support any % on readonly }}
+      {{star-rating media.averageRating readOnly=true}}
+    </div>
+    <span>Avg. user rating</span>
+  </div>
+</div>
 
-{{! user rating }}
-{{#if (and entry (not (is-promise entry)))}}
-  {{decimal-number entry.rating}}
-  <span>Your rating</span>
-  {{star-rating entry.rating onClick=(action "update")}}
-{{/if}}
+<div class="average-rating media-user-rating">
+  <div class="personal-rating">
+    <div class="featured-number">
+      {{! user rating }}
+      {{#if (and entry (not (is-promise entry)))}}
+        <label>{{decimal-number entry.rating}}</label>
+        {{star-rating entry.rating onClick=(action "update")}}
+      {{/if}}
+    </div>
+    <span>Your rating</span>
+  </div>
+</div>
