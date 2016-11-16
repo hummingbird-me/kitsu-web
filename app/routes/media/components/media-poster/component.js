@@ -7,10 +7,19 @@ export default Component.extend({
   classNames: ['poster-wrapper'],
   media: undefined,
   trailerOpen: false,
+  isHovering: false,
 
   mediaRoute: getter(function() {
     return `${get(this, 'media').constructor.modelName}.show`;
   }),
+
+  mouseEnter() {
+    set(this, 'isHovering', true);
+  },
+
+  mouseLeave() {
+    set(this, 'isHovering', false);
+  },
 
   actions: {
     openTrailer() {

@@ -3,11 +3,12 @@
   <img src={{image media.posterImage}}>
 
   <div class="poster-overlay">
-    {{! Friends }}
+    {{!-- TODO/@vevix: Friends (Server needed for this)
     <div class="shared-friends">
       <a href="#" class="friend-avatar"><img src="https://static.hummingbird.me/users/avatars/000/044/425/thumb_small/tumblr_mjf1jtHNm61s7110mo1_250.jpg?1440141803"></a>
       <a href="#" class="friend-count">03</a>
     </div>
+    --}}
 
     {{! Trailer }}
     {{#if media.youtubeVideoId}}
@@ -57,3 +58,10 @@
     {{media.canonicalTitle}}
   </a>
 </div>
+
+{{! Hover }}
+{{#if isHovering}}
+  {{#epic-tooltip target=(concat "#" elementId " .grid-poster")}}
+    <p>Stuff!</p>
+  {{/epic-tooltip}}
+{{/if}}
