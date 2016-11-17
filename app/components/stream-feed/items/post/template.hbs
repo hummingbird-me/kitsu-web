@@ -32,113 +32,114 @@
       </div>
     </div>
 
-    <div class="stream-content">
-      {{#if isHidden}}
-        {{#if (and post.spoiler post.nsfw)}}
-          {{! TODO/@Josh -- gate when post is both spoiler/nsfw }}
-          <div class="nsfw-gate">
-              <a href="#" {{action (toggle "isHidden" this)}}>
-                <div class="gate--label">This post contains NSFW content and spoilers.</div>
-                <div class="gate--hover">My body is ready and I can handle the truth!</div>
-              </a>
-            </div>
-        {{else}}
-          {{#if post.nsfw}}
+    {{#if post.isNew}}
+      <div class="m-t-1 m-b-1 text-xs-center">
+        {{loading-spinner size="large"}}
+      </div>
+    {{else}}
+      <div class="stream-content">
+        {{#if isHidden}}
+          {{#if (and post.spoiler post.nsfw)}}
+            {{! TODO/@Josh -- gate when post is both spoiler/nsfw }}
             <div class="nsfw-gate">
-              <a href="#" {{action (toggle "isHidden" this)}}>
-                <div class="gate--label">This post contains NSFW content.</div>
-                <div class="gate--hover">My body is ready!</div>
-              </a>
-            </div>
+                <a href="#" {{action (toggle "isHidden" this)}}>
+                  <div class="gate--label">This post contains NSFW content and spoilers.</div>
+                  <div class="gate--hover">My body is ready and I can handle the truth!</div>
+                </a>
+              </div>
+          {{else}}
+            {{#if post.nsfw}}
+              <div class="nsfw-gate">
+                <a href="#" {{action (toggle "isHidden" this)}}>
+                  <div class="gate--label">This post contains NSFW content.</div>
+                  <div class="gate--hover">My body is ready!</div>
+                </a>
+              </div>
+            {{/if}}
+            {{#if post.spoiler}}
+              <div class="spoiler-gate">
+                <a href="#" {{action (toggle "isHidden" this)}}>
+                  <div class="gate--label">
+                    This post contains spoilers.
+                    {{#if post.spoiledUnit}}
+                      {{t (concat "feeds.spoilers." (media-type post.media)) num=post.spoiledUnit.number}}
+                    {{/if}}
+                  </div>
+                  <div class="gate--hover">
+                    I can handle the truth!
+                    {{#if post.spoiledUnit}}
+                      {{t (concat "feeds.spoilers." (media-type post.media)) num=post.spoiledUnit.number}}
+                    {{/if}}
+                  </div>
+                </a>
+              </div>
+            {{/if}}
           {{/if}}
-          {{#if post.spoiler}}
-            <div class="spoiler-gate">
-              <a href="#" {{action (toggle "isHidden" this)}}>
-                <div class="gate--label">
-                  This post contains spoilers.
-                  {{#if post.spoiledUnit}}
-                    {{t (concat "feeds.spoilers." (media-type post.media)) num=post.spoiledUnit.number}}
-                  {{/if}}
-                </div>
-                <div class="gate--hover">
-                  I can handle the truth!
-                  {{#if post.spoiledUnit}}
-                    {{t (concat "feeds.spoilers." (media-type post.media)) num=post.spoiledUnit.number}}
-                  {{/if}}
-                </div>
-              </a>
-            </div>
-          {{/if}}
-        {{/if}}
-      {{else}}
-        {{#if post.isNew}}
-          {{post.content.content}}
         {{else}}
           {{{post.contentFormatted}}}
         {{/if}}
-      {{/if}}
 
-      {{#if post.media}}
-        <div class="tagged-media--wrapper">
-          <div class="tagged-media row">
-            <div class="stream-item--media col-xs-1">
-              <img src={{image post.media.posterImage}}>
-            </div>
-            <div class="col-sm no-padding-left">
-              <div class="stream-item--title-block">
-                <div class="author-info">
-                  <a class="author-name" href={{href-to (concat (media-type post.media) ".show") post.media}}>
-                    {{post.media.canonicalTitle}}
-                  </a>
-                  <small class="author-secondary">
-                    <div class="media-tag-synopsis">
-                      {{truncate-text post.media.synopsis max=150}}
-                    </div>
-                  </small>
+        {{! media tag }}
+        {{#if post.media}}
+          <div class="tagged-media--wrapper">
+            <div class="tagged-media row">
+              <div class="stream-item--media col-xs-1">
+                <img src={{image post.media.posterImage}}>
+              </div>
+              <div class="col-sm no-padding-left">
+                <div class="stream-item--title-block">
+                  <div class="author-info">
+                    <a class="author-name" href={{href-to (concat (media-type post.media) ".show") post.media}}>
+                      {{post.media.canonicalTitle}}
+                    </a>
+                    <small class="author-secondary">
+                      <div class="media-tag-synopsis">
+                        {{truncate-text post.media.synopsis max=150}}
+                      </div>
+                    </small>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- <a href={{href-to (concat (media-type post.media) ".show") post.media}} onclick={{action "trackMedia"}}>
-          Tagged with {{post.media.canonicalTitle}}
-        </a> -->
+        {{/if}}
+      </div>
+
+      {{! post likes }}
+      {{#if viewportEntered}}
+        {{stream-feed/items/post/post-likes
+          post=post
+          likesCountUpdate=(action (mut post.likesCount))
+          trackStream=(action "trackStream")
+        }}
       {{/if}}
-    </div>
 
-    {{! post likes }}
-    {{#if viewportEntered}}
-      {{stream-feed/items/post/post-likes
-        post=post
-        likesCountUpdate=(action (mut post.likesCount))
-        trackStream=(action "trackStream")
-      }}
-    {{/if}}
-
-    <div class="stream-item-options">
-      <a href={{tweetLink}} target="_blank" {{action "trackShare" preventDefault=false}}>
-        {{svg-jar "l-twitter"}}
-        Tweet
-      </a>
-      <a href={{facebookLink}} target="_blank" {{action "trackShare"  preventDefault=false}}>
-        {{svg-jar "l-facebook"}}
-        Share
-      </a>
-      <span class="more-wrapper">
-        <a href="#" class="more-drop" id="moreDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{svg-jar "more"}}
+      {{! post actions }}
+      <div class="stream-item-options">
+        <a href={{tweetLink}} target="_blank" {{action "trackShare" preventDefault=false}}>
+          {{svg-jar "l-twitter"}}
+          Tweet
         </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="moreDrop">
-          <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "posts" post.id)}} {{action "trackShare"}}>
-            Copy Link to Post
+        <a href={{facebookLink}} target="_blank" {{action "trackShare"  preventDefault=false}}>
+          {{svg-jar "l-facebook"}}
+          Share
+        </a>
+        <span class="more-wrapper">
+          <a href="#" class="more-drop" id="moreDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{svg-jar "more"}}
           </a>
-          {{#if (not (is-self post.user))}}
-            <a class="dropdown-item" href="#">Report Post</a>
-            <a class="dropdown-item" href="#" {{action "blockUser"}}>Block @{{post.user.name}}</a>
-          {{/if}}
-        </div>
-      </span>
-    </div>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="moreDrop">
+            <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "posts" post.id)}} {{action "trackShare"}}>
+              Copy Link to Post
+            </a>
+            {{#if (not (is-self post.user))}}
+              <a class="dropdown-item" href="#">Report Post</a>
+              <a class="dropdown-item" href="#" {{action "blockUser"}}>Block @{{post.user.name}}</a>
+            {{/if}}
+          </div>
+        </span>
+      </div>
+    {{/if}}
   </div>
 
   {{! comments }}

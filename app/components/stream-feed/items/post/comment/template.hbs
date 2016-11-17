@@ -25,24 +25,24 @@
         <span class="heart-wrapper"></span>
         <span class="sm-comment-count">{{comment.likesCount}}</span>
       </a>
-    {{/if}}
 
-    {{! TODO/@Josh -- style reply action }}
-    <small class="comment-reply" {{action "showReply"}}>
-      reply
-    </small>
+      {{! TODO/@Josh -- style reply action }}
+      <small class="comment-reply" {{action "showReply"}}>
+        reply
+      </small>
+    {{/if}}
 
     <small class="comment-time">
       {{moment-from-now comment.createdAt}}
     </small>
 
-    {{#if (and isTopLevel (not readOnly))}}
+    {{#if isTopLevel}}
       {{#if getReplies.isRunning}}
         <div class="p-t-1 p-b-1 text-xs-center">
           {{loading-spinner size="small"}}
         </div>
       {{else}}
-        {{#if replies}}
+        {{#if (and (gt comment.repliesCount 2) (not-eq comment.repliesCount replies.length))}}
           <div class="comment-actions">
             <div class="d-inline-block">
               {{! TODO: i18n }}
@@ -54,27 +54,36 @@
               {{/pagination-manual}}
             </div>
 
-            {{! TODO: Reply count }}
+            {{! Comment count }}
+            <div class="pull-sm-right">
+              {{! TODO: i18n / pad left }}
+              {{replies.length}} of {{comment.repliesCount}}
+            </div>
           </div>
+        {{/if}}
 
-          {{! TODO/@Josh -- Replies list }}
+        {{! TODO/@Josh -- Replies list }}
+        {{#if (gt comment.repliesCount 0)}}
           <ul class="media-list reply-list">
             {{#each replies as |reply|}}
               {{stream-feed/items/post/comment
                 comment=reply
                 post=post
                 onReply=(action "onReply")
+                likesCountUpdate=(action (mut reply.likesCount))
+                replyCountUpdate=(action (mut comment.repliesCount))
                 tagName="li"
                 class="media new-comment"}} {{! HACK: Until we have transitions }}
             {{/each}}
-
-            {{#if isReplying}}
-              {{one-way-text
-                keyEvents=(hash 13=(perform createReply))
-                placeholder="Add a reply..."
-                class="form-control reply-comment"}}
-            {{/if}}
           </ul>
+        {{/if}}
+
+        {{! Reply text box }}
+        {{#if (and isReplying (not readOnly))}}
+          {{one-way-text
+            keyEvents=(hash 13=(perform createReply))
+            placeholder="Add a reply..."
+            class="form-control reply-comment"}}
         {{/if}}
       {{/if}}
     {{/if}}

@@ -9,6 +9,7 @@ export default Model.extend({
   createdAt: attr('date', { defaultValue() { return new Date(); } }),
   deletedAt: attr('date'),
   likesCount: attr('number'),
+  repliesCount: attr('number'),
 
   parent: belongsTo('comment', { inverse: 'replies' }),
   post: belongsTo('post', { inverse: 'comments' }),

@@ -11,8 +11,8 @@ import { prependObjects } from 'client/utils/array-utils';
 export default Component.extend({
   classNameBindings: ['comment.isNew:new-comment'],
   isLiked: false,
-  isTopLevel: false,
   isReplying: false,
+  isTopLevel: false,
 
   session: service(),
   store: service(),
@@ -41,11 +41,15 @@ export default Component.extend({
       user: get(this, 'session.account')
     });
 
+    invokeAction(this, 'replyCountUpdate', get(this, 'comment.repliesCount') + 1);
     get(this, 'replies').addObject(reply);
     set(this, 'isReplying', false);
 
     yield reply.save()
-      .catch(() => get(this, 'replies').removeObject(reply));
+      .catch(() => {
+        invokeAction(this, 'replyCountUpdate', get(this, 'comment.repliesCount') - 1);
+        get(this, 'replies').removeObject(reply);
+      });
   }).drop(),
 
   createLike: task(function* () {
@@ -86,7 +90,8 @@ export default Component.extend({
       }).catch(() => {});
     }
 
-    if (get(this, 'isTopLevel') === true) {
+    set(this, 'replies', []);
+    if (get(this, 'isTopLevel') === true && get(this, 'comment.repliesCount') > 0) {
       get(this, 'getReplies').perform().then((replies) => {
         const content = replies.toArray().reverse();
         set(this, 'replies', content);
