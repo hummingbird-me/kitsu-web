@@ -46,6 +46,7 @@ export default Component.extend({
     set(this, 'isReplying', false);
 
     yield reply.save()
+      .then(() => invokeAction(this, 'trackEngagement', 'comment', `Comment:${get(this, 'comment.id')}`))
       .catch(() => {
         invokeAction(this, 'replyCountUpdate', get(this, 'comment.repliesCount') - 1);
         get(this, 'replies').removeObject(reply);
@@ -63,6 +64,7 @@ export default Component.extend({
     set(this, 'isLiked', true);
     invokeAction(this, 'likesCountUpdate', get(this, 'comment.likesCount') + 1);
     yield like.save().then((record) => {
+      invokeAction(this, 'trackEngagement', 'like', `Comment:${get(this, 'comment.id')}`);
       set(this, 'like', record);
     }).catch(() => {
       set(this, 'isLiked', false);
@@ -140,6 +142,11 @@ export default Component.extend({
       prependObjects(content, records);
       set(this, 'replies', content);
       set(this, 'replies.links', links);
+      invokeAction(this, 'trackEngagement', 'click', `Comment:${get(this, 'comment.id')}`);
+    },
+
+    trackEngagement(...args) {
+      invokeAction(this, 'trackEngagement', ...args);
     }
   }
 });

@@ -12,16 +12,7 @@ export default Route.extend({
 
   afterModel(model) {
     get(this, 'metrics').invoke('trackImpression', 'Stream', {
-      content_list: [{
-        foreign_id: `Post:${get(model, 'id')}`,
-        actor: {
-          id: `User:${get(this, 'session.account.id')}`,
-          label: get(this, 'session.account.name')
-        },
-        verb: 'view',
-        object: { id: `Post:${get(model, 'id')}` }
-      }],
-      feed_id: `post:${get(model, 'id')}`,
+      content_list: [`Post:${get(model, 'id')}`],
       location: get(this, 'routeName')
     });
   }

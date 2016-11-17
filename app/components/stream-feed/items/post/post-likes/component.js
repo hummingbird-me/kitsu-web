@@ -47,7 +47,7 @@ export default Component.extend({
 
     // commit
     yield like.save().then(() => {
-      invokeAction(this, 'trackStream', 'click', 'like');
+      invokeAction(this, 'trackEngagement', 'like');
     }).catch(() => {
       get(this, 'likes').removeObject(like);
       set(this, 'isLiked', false);

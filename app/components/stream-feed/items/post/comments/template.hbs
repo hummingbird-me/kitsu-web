@@ -33,6 +33,7 @@
             readOnly=readOnly
             likesCountUpdate=(action (mut comment.likesCount))
             replyCountUpdate=(action (mut comment.repliesCount))
+            trackEngagement=(action "trackEngagement")
             tagName="li"
             class="media new-comment"}} {{! HACK: Until we have transitions }}
         {{/each}}

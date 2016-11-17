@@ -52,11 +52,6 @@ export default Route.extend(PaginationMixin, {
     return get(this, 'modelTask').perform(media, status);
   },
 
-  afterModel(model) {
-    this._super(...arguments);
-    this._trackImpression(model);
-  },
-
   setupController(controller) {
     this._super(...arguments);
     set(controller, 'user', this.modelFor('users'));
@@ -68,36 +63,7 @@ export default Route.extend(PaginationMixin, {
     return get(this, 'i18n').t('titles.users.library', { user: name });
   },
 
-  _trackImpression(model) {
-    if (isEmpty(model) === true) {
-      return;
-    }
-
-    const controller = this.controllerFor(get(this, 'routeName'));
-    const list = model.map(entry => ({
-      foreign_id: `LibraryEntry:${get(entry, 'id')}`,
-      actor: {
-        id: `User:${get(this, 'session.account.id')}`,
-        label: get(this, 'session.account.name')
-      },
-      verb: 'view',
-      object: {
-        id: `${capitalize(get(controller, 'media'))}:${get(entry, 'media.id')}`,
-        label: get(entry, 'media.canonicalTitle')
-      }
-    }));
-    get(this, 'metrics').invoke('trackImpression', 'Stream', {
-      content_list: list,
-      location: get(this, 'routeName')
-    });
-  },
-
   actions: {
-    updatePageAndTrack(records, links) {
-      invoke(this, 'updateNextPage', records, links);
-      this._trackImpression(records);
-    },
-
     saveEntry(entry) {
       if (get(entry, 'validations.isValid') === true) {
         return entry.save()

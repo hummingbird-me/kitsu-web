@@ -72,6 +72,7 @@
                 onReply=(action "onReply")
                 likesCountUpdate=(action (mut reply.likesCount))
                 replyCountUpdate=(action (mut comment.repliesCount))
+                trackEngagement=(action "trackEngagement")
                 tagName="li"
                 class="media new-comment"}} {{! HACK: Until we have transitions }}
             {{/each}}

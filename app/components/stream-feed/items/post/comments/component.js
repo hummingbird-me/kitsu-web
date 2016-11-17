@@ -32,7 +32,7 @@ export default Component.extend({
     invokeAction(this, 'countUpdate', get(this, 'post.commentsCount') + 1);
     get(this, 'session.account').incrementProperty('commentsCount');
     yield comment.save().then(() => {
-      invokeAction(this, 'trackStream', 'comment', 'comment');
+      invokeAction(this, 'trackEngagement', 'comment');
     }).catch(() => {
       get(this, 'comments').removeObject(comment);
       invokeAction(this, 'countUpdate', get(this, 'post.commentsCount') - 1);
@@ -56,6 +56,11 @@ export default Component.extend({
       prependObjects(content, records);
       set(this, 'comments', content);
       set(this, 'comments.links', links);
+      invokeAction(this, 'trackEngagement', 'click');
+    },
+
+    trackEngagement(...args) {
+      invokeAction(this, 'trackEngagement', ...args);
     }
   }
 });

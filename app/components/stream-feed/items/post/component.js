@@ -39,19 +39,10 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
     return `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   }),
 
-  _streamAnalytics(label, verb, object) {
-    const content = object || {
-      foreign_id: `Post:${get(this, 'post.id')}`,
-      actor: {
-        id: `User:${get(this, 'session.account.id')}`,
-        label: get(this, 'session.account.name')
-      },
-      verb: verb || label,
-      object: { id: `Post:${get(this, 'post.id')}` }
-    };
+  _streamAnalytics(label, foreignId) {
     const data = {
       label,
-      content,
+      content: { foreign_id: foreignId },
       position: get(this, 'positionInFeed') || 0
     };
     if (get(this, 'feedId') !== undefined) {
@@ -80,25 +71,8 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
   },
 
   actions: {
-    trackShare() {
-      this._streamAnalytics('click', 'share');
-    },
-
-    trackMedia() {
-      const mediaClass = capitalize(mediaType([get(this, 'post.media')]));
-      this._streamAnalytics('click', 'media', {
-        foreign_id: `Post:${get(this, 'post.id')}`,
-        actor: {
-          id: `User:${get(this, 'session.account.id')}`,
-          label: get(this, 'session.account.name')
-        },
-        verb: 'media',
-        object: { id: `${mediaClass}:${get(this, 'post.media.id')}` }
-      });
-    },
-
-    trackStream(label, verb, content) {
-      this._streamAnalytics(label, verb, content);
+    trackEngagement(label, id) {
+      this._streamAnalytics(label, id || `Post:${get(this, 'post.id')}`);
     },
 
     blockUser() {
