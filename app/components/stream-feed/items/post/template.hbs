@@ -1,42 +1,57 @@
 {{! We have to check `post` here due to Stream & development environments }}
 {{#if post}}
-  <div class="stream-item-wrapper col-sm-12">
-    <div class="stream-item--title-block">
-      <span class="avatar-block">
-        <a href={{href-to "users.index" post.user}} class="author-avatar">
-          <img src={{image post.user.avatar}}>
-        </a>
-        {{#if post.targetUser}}
-          {{#unless (eq post.targetUser.id userId)}}
-            <a href={{href-to "users.index" post.targetUser}} class="author-avatar recipient-avatar">
-              <img src={{image post.targetUser.avatar}}>
-            </a>
-          {{/unless}}
-        {{/if}}
-      </span>
-      <div class="author-info">
-        <a class="author-name" href={{href-to "users.index" post.user}}>{{post.user.name}}</a>
-        {{#if post.targetUser}}
-          {{#unless (eq post.targetUser.id userId)}}
-            <span class="recipient-info">
-              <small>to</small>
-              <a href={{href-to "users.index" post.targetUser}} class="author-name">
-                {{post.targetUser.name}}
-              </a>
-            </span>
-          {{/unless}}
-        {{/if}}
-        <small class="author-secondary">
-          {{moment-from-now post.createdAt}}
-        </small>
+  {{#if post.isNew}}
+    <div class="stream-item-wrapper stream-item--loading col-sm-12">
+      <div class='panel-effect'>
+        <div class='fake-effect fe-0'></div>
+        <div class='fake-effect fe-1'></div>
+        <div class='fake-effect fe-2'></div>
+        <div class='fake-effect fe-3'></div>
+        <div class='fake-effect fe-4'></div>
+        <div class='fake-effect fe-5'></div>
+        <div class='fake-effect fe-6'></div>
+        <div class='fake-effect fe-7'></div>
+        <div class='fake-effect fe-8'></div>
+        <div class='fake-effect fe-9'></div>
+        <div class='fake-effect fe-10'></div>
+        <div class='fake-effect fe-11'></div>
+        <div class='fake-effect fe-12'></div>
+        <div class='fake-effect fe-13'></div>
       </div>
     </div>
-
-    {{#if post.isNew}}
-      <div class="m-t-1 m-b-1 text-xs-center">
-        {{loading-spinner size="large"}}
+  {{else}}
+    <div class="stream-item-wrapper col-sm-12">
+      <div class="stream-item--title-block">
+        <span class="avatar-block">
+          <a href={{href-to "users.index" post.user}} class="author-avatar">
+            <img src={{image post.user.avatar}}>
+          </a>
+          {{#if post.targetUser}}
+            {{#unless (eq post.targetUser.id userId)}}
+              <a href={{href-to "users.index" post.targetUser}} class="author-avatar recipient-avatar">
+                <img src={{image post.targetUser.avatar}}>
+              </a>
+            {{/unless}}
+          {{/if}}
+        </span>
+        <div class="author-info">
+          <a class="author-name" href={{href-to "users.index" post.user}}>{{post.user.name}}</a>
+          {{#if post.targetUser}}
+            {{#unless (eq post.targetUser.id userId)}}
+              <span class="recipient-info">
+                <small>to</small>
+                <a href={{href-to "users.index" post.targetUser}} class="author-name">
+                  {{post.targetUser.name}}
+                </a>
+              </span>
+            {{/unless}}
+          {{/if}}
+          <small class="author-secondary">
+            {{moment-from-now post.createdAt}}
+          </small>
+        </div>
       </div>
-    {{else}}
+
       <div class="stream-content">
         {{#if isHidden}}
           {{#if (and post.spoiler post.nsfw)}}
@@ -139,20 +154,20 @@
           </div>
         </span>
       </div>
-    {{/if}}
-  </div>
+    </div>
 
-  {{! comments }}
-  {{#unless isHidden}}
-    {{#if viewportEntered}}
-      {{stream-feed/items/post/comments
-        post=post
-        readOnly=readOnly
-        countUpdate=(action (mut post.commentsCount))
-        trackStream=(action "trackStream")
-      }}
-    {{/if}}
-  {{/unless}}
+    {{! comments }}
+    {{#unless isHidden}}
+      {{#if viewportEntered}}
+        {{stream-feed/items/post/comments
+          post=post
+          readOnly=readOnly
+          countUpdate=(action (mut post.commentsCount))
+          trackStream=(action "trackStream")
+        }}
+      {{/if}}
+    {{/unless}}
+  {{/if}}
 {{else}}
   <div class="stream-error-wrapper col-sm-12">
     {{t "errors.load"}}
