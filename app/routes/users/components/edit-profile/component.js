@@ -13,7 +13,7 @@ import RSVP from 'rsvp';
  * This component should be invoked within a wormhole.
  */
 export default Component.extend({
-  routing: service('-routing'),
+  router: service('-routing'),
   session: service(),
   user: alias('session.account'),
 
@@ -90,7 +90,7 @@ export default Component.extend({
 
     goToSettings() {
       this.$('.modal').modal('hide');
-      get(this, 'routing').transitionTo('settings');
+      get(this, 'router').transitionTo('settings');
     }
   }
 });
