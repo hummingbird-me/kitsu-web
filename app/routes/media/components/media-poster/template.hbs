@@ -60,9 +60,28 @@
   </a>
 </div>
 
-{{! Hover }}
-{{#if isHovering}}
-  {{#epic-tooltip target=(concat "#" elementId " .grid-poster")}}
-    <p>Stuff!</p>
+{{! tooltip }}
+{{#if hasHovered}}
+  {{! TODO @josh -- make epic }}
+  {{#epic-tooltip target=(concat "#" elementId " .grid-poster") closeDelay=250 singleInstance=true}}
+    <div class="p-a-1" style="background-color: #4B5360; color: #fff; width: 350px">
+      <span class="media-title" style="font-weight: bold; font-size: 14px">{{media.canonicalTitle}}</span>
+      <div class="media-ratings">
+        {{star-rating media.averageRating readOnly=true}}
+      </div>
+      <div class="media-synopsis" style="font-size: 12px">
+        {{truncate-text media.synopsis max=200}}
+      </div>
+      {{#if session.hasUser}}
+        {{library-dropdown
+          entry=entry
+          type=(media-type media)
+          methods=(hash
+            create=(action "createEntry")
+            update=(action "updateEntry")
+            delete=(action "deleteEntry")
+          )}}
+      {{/if}}
+    </div>
   {{/epic-tooltip}}
 {{/if}}

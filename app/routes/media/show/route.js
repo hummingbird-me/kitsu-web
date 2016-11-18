@@ -77,7 +77,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
         media
       });
       // TODO: Feedback
-      return entry.save().then(() => set(controller, 'entry', entry));
+      return entry.save().then(() => set(controller, 'entry', entry)).catch(() => {});
     },
 
     updateEntry(entry, property, status) {
