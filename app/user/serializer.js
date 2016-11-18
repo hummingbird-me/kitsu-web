@@ -8,7 +8,6 @@ export default ApplicationSerializer.extend({
     followersCount: { serialize: false },
     likesGivenCount: { serialize: false },
     postsCount: { serialize: false },
-    waifuDirtyHack: { serialize: false },
-    updatedAt: { serialize: false }
+    waifuDirtyHack: { serialize: false }
   }
 });

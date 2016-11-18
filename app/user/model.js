@@ -85,7 +85,7 @@ export default Model.extend(Validations, {
   waifuDirtyHack: attr('boolean', { defaultValue: false }),
 
   hasRole(roleName, resource) {
-    const role = get(this, 'roles').find(r => r.name === roleName);
+    const role = (get(this, 'roles') || []).find(r => r.name === roleName);
     if (role === undefined) {
       return false;
     }
