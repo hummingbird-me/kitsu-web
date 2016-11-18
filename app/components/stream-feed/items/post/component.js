@@ -3,8 +3,6 @@ import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
-import { capitalize } from 'ember-string';
-import { mediaType } from 'client/helpers/media-type';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
 import InViewportMixin from 'ember-in-viewport';

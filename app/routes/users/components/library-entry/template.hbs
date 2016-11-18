@@ -3,7 +3,7 @@
     {{! Entry Title }}
     <div class="col-md-12 col-lg-7 entry-left">
       <div class="entry-poster">
-        <img class="drop-thumb" src={{image media.posterImage}}>
+        {{lazy-image src=(image media.posterImage) class="drop-thumb"}}
       </div>
       <div class="entry-title" data-test-selector="library-entry-title">
         <span>{{media.canonicalTitle}}</span>

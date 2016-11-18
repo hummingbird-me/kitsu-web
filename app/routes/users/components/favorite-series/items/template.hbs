@@ -1,7 +1,7 @@
 {{#each items as |favorite|}}
-  {{! TODO/@vevix: This will need some logic to handle characters }}
   <div class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded" aria-label={{if isCharacter favorite.item.name favorite.item.canonicalTitle}}>
     {{#if isCharacter}}
+      {{! TODO/@vevix: Link to character/media }}
       <a href="#">
         <img src={{image favorite.item.image}}>
       </a>

@@ -185,11 +185,14 @@
             {{/each}}
           </div>
 
-          {{pagination-scrolling
-            model=model
-            update=(route-action "updateNextPage")
-            tolerance=(hash top=0 bottom=1000 left=0 right=0)
-          }}
+          <div class="m-t-1 text-xs-center">
+            {{pagination-scrolling
+              model=model
+              update=(route-action "updateNextPage")
+              tolerance=(hash top=0 bottom=1000 left=0 right=0)
+              loadingSize="large"
+            }}
+          </div>
         </div>
       </div>
     </div>
