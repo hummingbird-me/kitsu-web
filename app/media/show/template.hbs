@@ -49,7 +49,6 @@
                       <ul class="nav">
                         {{#each media.streamingLinks as |link|}}
                           <li>
-                            {{! TODO/@vevix -- show subs/dubs status }}
                             <a href={{link.url}} class="hint--top hint--bounce hint--rounded" aria-label={{link.streamer.siteName}}>
                               {{svg-jar (to-lower link.streamer.siteName)}}
                             </a>

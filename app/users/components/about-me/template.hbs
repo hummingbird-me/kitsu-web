@@ -40,10 +40,10 @@
     <span class="stat-icon">
       {{svg-jar "cake"}}
     </span>
-    <strong>Age:</strong>
+    <strong>Birthday:</strong>
     <span>
       {{#if user.birthday}}
-        {{age}} ({{moment-format (moment-utc user.birthday) "MMMM Do, YYYY"}})
+        {{moment-format (moment-utc user.birthday) "MMMM Do"}}
       {{else}}
         {{t "users.about.empty"}}
       {{/if}}

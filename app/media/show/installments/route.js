@@ -8,6 +8,7 @@ export default Route.extend({
     const [mediaType] = get(this, 'routeName').split('.');
     const media = this.modelFor(`${mediaType}.show`);
     return get(this, 'store').query('installment', {
+      include: 'franchise',
       filter: { media_id: get(media, 'id') },
       sort: 'position'
     });
