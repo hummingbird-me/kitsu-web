@@ -17,10 +17,14 @@ export default Component.extend({
   session: service(),
   store: service(),
 
-  getStatus: task(function* () {
+  getLocalLike: task(function* () {
     return yield get(this, 'store').query('comment-like', {
       filter: { comment_id: get(this, 'comment.id'), user_id: get(this, 'session.account.id') }
-    });
+    }).then((records) => {
+      const like = get(records, 'firstObject');
+      set(this, 'like', like);
+      set(this, 'isLiked', like !== undefined);
+    }).catch(() => {});
   }).drop(),
 
   getReplies: task(function* () {
@@ -84,15 +88,14 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
+    set(this, 'replies', []);
+
     if (get(this, 'session.hasUser') === true) {
-      get(this, 'getStatus').perform().then((records) => {
-        const like = get(records, 'firstObject');
-        set(this, 'like', like);
-        set(this, 'isLiked', like !== undefined);
-      }).catch(() => {});
+      if (get(this, 'comment.id') !== null) {
+        get(this, 'getLocalLike').perform();
+      }
     }
 
-    set(this, 'replies', []);
     if (get(this, 'isTopLevel') === true && get(this, 'comment.repliesCount') > 0) {
       get(this, 'getReplies').perform().then((replies) => {
         const content = replies.toArray().reverse();

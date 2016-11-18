@@ -11,14 +11,14 @@
   </h4>
   <span class="comment-body">
     {{#if comment.isNew}}
-      {{comment.content}}
+      {{loading-spinner size="small"}}
     {{else}}
       {{{comment.contentFormatted}}}
     {{/if}}
   </span>
   <div class="stream-item-activity">
     {{! comment likes }}
-    {{#if getStatus.isRunning}}
+    {{#if getLocalLike.isRunning}}
       {{loading-spinner}}
     {{else}}
       <a href="#" class="like-stream-item {{if isLiked "is-liked"}}" {{action "toggleLike"}}>
