@@ -1,7 +1,7 @@
 {{#each items as |favorite|}}
   <div class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded" aria-label={{if isCharacter favorite.item.name favorite.item.canonicalTitle}}>
     {{#if isCharacter}}
-      {{! TODO/@vevix: Link to character/media }}
+      {{! TODO/@vevix: Link to character/media -- Server needed for this }}
       <a href="#">
         <img src={{image favorite.item.image}}>
       </a>
@@ -28,7 +28,7 @@
 {{#if items}}
   <div class="text-xs-center">
     {{! TODO/@Josh -- load more button }}
-    {{#pagination-manual model=items update=(action "updateNextPage") as |nextLink|}}
+    {{#pagination-manual model=items limit=8 update=(action "updateNextPage") as |nextLink|}}
       {{#if nextLink}}
         <button class="button button--primary">
           Load More
