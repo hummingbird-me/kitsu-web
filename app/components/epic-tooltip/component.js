@@ -70,6 +70,9 @@ export default Component.extend({
 
   willDestroyElement() {
     this._super(...arguments);
+    if (get(this, 'singleInstance') === true) {
+      get(this, 'epicTooltip').remove(this);
+    }
     jQuery(get(this, 'target')).off('mouseenter').off('mouseleave');
     get(this, 'tether').destroy();
     this.$().remove();

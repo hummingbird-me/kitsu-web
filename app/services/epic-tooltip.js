@@ -7,6 +7,10 @@ export default Service.extend({
     this.tooltips.addObject(component);
   },
 
+  remove(component) {
+    this.tooltips.removeObject(component);
+  },
+
   all() {
     return this.tooltips;
   }
