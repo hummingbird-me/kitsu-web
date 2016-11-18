@@ -1,7 +1,6 @@
 import Controller from 'ember-controller';
 import service from 'ember-service/inject';
-import IsOwnerMixin from 'client/mixins/is-owner';
 
-export default Controller.extend(IsOwnerMixin, {
+export default Controller.extend({
   session: service()
 });

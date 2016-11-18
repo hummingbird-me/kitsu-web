@@ -3,7 +3,7 @@
   {{lazy-image src=(image media.posterImage)}}
 
   <div class="poster-overlay">
-    <a href={{href-to (concat (media-type media) ".show") media}}></a>
+    <a href={{href-to (concat (model-type media) ".show") media}}></a>
     {{!-- TODO/@vevix: Friends (Server needed for this)
     <div class="shared-friends">
       <a href="#" class="friend-avatar"><img src="https://static.hummingbird.me/users/avatars/000/044/425/thumb_small/tumblr_mjf1jtHNm61s7110mo1_250.jpg?1440141803"></a>
@@ -55,7 +55,7 @@
 </div>
 
 <div class="ellipsis">
-  <a href={{href-to (concat (media-type media) ".show") media}} class="media-title">
+  <a href={{href-to (concat (model-type media) ".show") media}} class="media-title">
     {{media.canonicalTitle}}
   </a>
 </div>
@@ -75,7 +75,7 @@
       {{#if session.hasUser}}
         {{library-dropdown
           entry=entry
-          type=(media-type media)
+          type=(model-type media)
           methods=(hash
             create=(action "createEntry")
             update=(action "updateEntry")

@@ -4,7 +4,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { task } from 'ember-concurrency';
 import { capitalize } from 'ember-string';
-import { mediaType } from 'client/helpers/media-type';
+import { modelType } from 'client/helpers/model-type';
 
 export default FollowComponent.extend({
   layout,
@@ -13,7 +13,7 @@ export default FollowComponent.extend({
     return yield get(this, 'store').query('media-follow', {
       filter: {
         user_id: get(this, 'session.account.id'),
-        media_type: capitalize(mediaType([get(this, 'media')])),
+        media_type: capitalize(modelType([get(this, 'media')])),
         media_id: get(this, 'media.id')
       }
     }).then(follow => set(this, 'relationship', get(follow, 'firstObject')));

@@ -7,7 +7,7 @@ import observer from 'ember-metal/observer';
 import { task, timeout } from 'ember-concurrency';
 import CanonicalRedirectMixin from 'client/mixins/routes/canonical-redirect';
 import CoverPageMixin from 'client/mixins/routes/cover-page';
-import { mediaType } from 'client/helpers/media-type';
+import { modelType } from 'client/helpers/model-type';
 
 export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   templateName: 'media/show',
@@ -46,7 +46,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
     const promise = get(this, 'store').query('library-entry', {
       filter: {
         user_id: get(this, 'session.account.id'),
-        media_type: capitalize(mediaType([media])),
+        media_type: capitalize(modelType([media])),
         media_id: get(media, 'id')
       },
     }).then((results) => {

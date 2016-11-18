@@ -3,12 +3,11 @@ import computed, { alias } from 'ember-computed';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { task, timeout } from 'ember-concurrency';
-import IsOwnerMixin from 'client/mixins/is-owner';
 import jQuery from 'jquery';
 import { invokeAction } from 'ember-invoke-action';
-import { mediaType } from 'client/helpers/media-type';
+import { modelType } from 'client/helpers/model-type';
 
-export default Component.extend(IsOwnerMixin, {
+export default Component.extend({
   isExpanded: false,
   session: service(),
   i18n: service(),
@@ -30,7 +29,7 @@ export default Component.extend(IsOwnerMixin, {
 
   typeText: computed('media.mediaType', {
     get() {
-      const media = mediaType([get(this, 'media')]);
+      const media = modelType([get(this, 'media')]);
       const type = get(this, 'media.mediaType');
       return get(this, 'i18n').t(`media.${media}.type.${type}`);
     }

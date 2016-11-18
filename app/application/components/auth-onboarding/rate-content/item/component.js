@@ -4,7 +4,7 @@ import set from 'ember-metal/set';
 import stateFor from 'ember-state-services/state-for';
 import { invokeAction } from 'ember-invoke-action';
 import { isEmpty } from 'ember-utils';
-import { mediaType } from 'client/helpers/media-type';
+import { modelType } from 'client/helpers/model-type';
 
 export default Component.extend({
   init() {
@@ -13,7 +13,7 @@ export default Component.extend({
     if (isEmpty(item) === true) {
       return;
     }
-    const key = `${mediaType([item])}_${get(item, 'id')}`;
+    const key = `${modelType([item])}_${get(item, 'id')}`;
     set(this, 'data', stateFor(`CONTENT_ITEM_${key}`, 'item'));
   },
 

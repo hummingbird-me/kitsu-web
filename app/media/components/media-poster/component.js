@@ -4,7 +4,7 @@ import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { capitalize } from 'ember-string';
 import observer from 'ember-metal/observer';
-import { mediaType } from 'client/helpers/media-type';
+import { modelType } from 'client/helpers/model-type';
 
 export default Component.extend({
   classNames: ['poster-wrapper'],
@@ -33,7 +33,7 @@ export default Component.extend({
     const promise = get(this, 'store').query('library-entry', {
       filter: {
         user_id: get(this, 'session.account.id'),
-        media_type: capitalize(mediaType([media])),
+        media_type: capitalize(modelType([media])),
         media_id: get(media, 'id')
       },
     }).then((results) => {

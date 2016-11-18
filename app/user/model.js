@@ -4,6 +4,8 @@ import { belongsTo, hasMany } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
 import service from 'ember-service/inject';
 import get from 'ember-metal/get';
+import { classify } from 'ember-string';
+import { modelType } from 'client/helpers/model-type';
 
 const Validations = buildValidations({
   email: [
@@ -60,12 +62,13 @@ export default Model.extend(Validations, {
   gender: attr('string'),
   likesGivenCount: attr('number'),
   location: attr('string'),
+  name: attr('string'),
   onboarded: attr('boolean'),
   password: attr('string'),
   pastNames: attr('array'),
   postsCount: attr('number'),
-  name: attr('string'),
   ratingsCount: attr('number'),
+  roles: attr('array'),
   toFollow: attr('boolean'),
   waifuOrHusbando: attr('string'),
   website: attr('string'),
@@ -79,5 +82,27 @@ export default Model.extend(Validations, {
 
   // HACK: We use this to flag the model as dirty when waifu changes, as ember-data
   // doesn't currently track the dirtiness of a relationship.
-  waifuDirtyHack: attr('boolean', { defaultValue: false })
+  waifuDirtyHack: attr('boolean', { defaultValue: false }),
+
+  hasRole(roleName, resource) {
+    const role = get(this, 'roles').find(r => r.name === roleName);
+    if (role === undefined) {
+      return false;
+    }
+
+    // if its a blanket role then return
+    if (role.resource_type === null) {
+      return true;
+    }
+
+    // determine if they have access to the resource
+    const resourceId = get(resource, 'id');
+    const resourceType = classify(modelType([resource]));
+    if (role.resource_type === resourceType) {
+      if (role.resource_id === resourceId || role.resource_id === null) {
+        return true;
+      }
+      return false;
+    }
+  }
 });

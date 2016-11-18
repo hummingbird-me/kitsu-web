@@ -11,7 +11,7 @@
                 {{#if session.hasUser}}
                   {{library-dropdown
                     entry=entry
-                    type=(media-type media)
+                    type=(model-type media)
                     methods=(hash
                       create=(route-action "createEntry")
                       update=(route-action "updateEntry" entry "status")
@@ -74,7 +74,7 @@
                     </li>
                     {{#each media.genres as |genre|}}
                       <li class="media--category-tag">
-                        <a href={{href-to (concat (media-type media) ".index") (query-params genres=genre.name)}}>
+                        <a href={{href-to (concat (model-type media) ".index") (query-params genres=genre.name)}}>
                           {{genre.name}}
                         </a>
                       </li>
@@ -94,7 +94,7 @@
                     {{#if media.unitCount}}
                       <li class="media--content-length">
                         <span>
-                          {{t (concat "media.routes.show.meta.unit." (media-type media)) count=media.unitCount}}
+                          {{t (concat "media.routes.show.meta.unit." (model-type media)) count=media.unitCount}}
                           {{#if media.episodeLength}}
                             {{t "media.routes.show.meta.unit.length" total=totalTime length=media.episodeLength count=media.unitCount}}
                           {{/if}}
@@ -119,17 +119,17 @@
     <div class="container">
       <div class="row">
         <div class="nav navbar-nav">
-          {{link-to (t "media.routes.show.nav.summary") (concat (media-type media) ".show.index") class="nav-item nav-link"}}
-          {{#if (eq (media-type media) "anime")}}
-            {{link-to (t "media.routes.show.nav.episodes") (concat (media-type media) ".show.episodes") class="nav-item nav-link"}}
+          {{link-to (t "media.routes.show.nav.summary") (concat (model-type media) ".show.index") class="nav-item nav-link"}}
+          {{#if (eq (model-type media) "anime")}}
+            {{link-to (t "media.routes.show.nav.episodes") (concat (model-type media) ".show.episodes") class="nav-item nav-link"}}
           {{/if}}
-          {{link-to (t "media.routes.show.nav.cast") (concat (media-type media) ".show.cast") class="nav-item nav-link"}}
-          {{link-to (t "media.routes.show.nav.installments") (concat (media-type media) ".show.installments") class="nav-item nav-link"}}
-          {{#link-to (concat (media-type media) ".show.reviews") class="nav-item nav-link"}}
+          {{link-to (t "media.routes.show.nav.cast") (concat (model-type media) ".show.cast") class="nav-item nav-link"}}
+          {{link-to (t "media.routes.show.nav.installments") (concat (model-type media) ".show.installments") class="nav-item nav-link"}}
+          {{#link-to (concat (model-type media) ".show.reviews") class="nav-item nav-link"}}
             {{t "media.routes.show.nav.reviews"}}
             <span class="tag tag-default">NYI</span>
           {{/link-to}}
-          {{#link-to (concat (media-type media) ".show.quotes") class="nav-item nav-link"}}
+          {{#link-to (concat (model-type media) ".show.quotes") class="nav-item nav-link"}}
             {{t "media.routes.show.nav.quotes"}}
             <span class="tag tag-default">NYI</span>
           {{/link-to}}

@@ -63,7 +63,7 @@
         }}
           <div {{action (queue (action (mut media) _media) (action (mut spoiler) true))}}>
             <span class="tag-poster"><img src={{image _media.posterImage}}></span>
-            <span class="tag tag-primary">{{capitalize (media-type _media)}}</span>
+            <span class="tag tag-primary">{{capitalize (model-type _media)}}</span>
             <span>{{_media.canonicalTitle}}</span>
           </div>
         {{/search-typeahead}}

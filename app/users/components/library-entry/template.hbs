@@ -13,7 +13,7 @@
     <div class="col-md-12 col-lg-5 entry-right">
       {{! Entry Progress }}
       <div class="entry-progress">
-        {{#if isOwner}}
+        {{#if (can-mutate user entry)}}
           {{one-way-number entry.progress
             min=0
             max=media.unitCount
@@ -62,7 +62,7 @@
       {{! Media Info }}
       <div class="col-md-12 col-lg-7 columns">
         <h4 class="drop-title">
-          <a href={{href-to (concat (media-type media) ".show") media}}>
+          <a href={{href-to (concat (model-type media) ".show") media}}>
             {{media.canonicalTitle}}
           </a>
         </h4>
@@ -70,7 +70,7 @@
           {{truncate-text media.synopsis max=400}}
         </p>
         <div class="entry-notes">
-          {{#if isOwner}}
+          {{#if (can-mutate user entry)}}
             {{one-way-textarea entry.notes
               update=(queue
                 (action (mut entry.notes))
@@ -92,7 +92,7 @@
       {{! Options }}
       <div class="col-md-12 col-lg-4 columns">
         <div class="drop-options">
-          {{#if isOwner}}
+          {{#if (can-mutate user entry)}}
             {{! Library Status }}
             <div class="status-select">
               {{library-dropdown
@@ -110,7 +110,7 @@
 
           <div class="dropdown-rating">
             {{! Privacy }}
-            {{#if isOwner}}
+            {{#if (can-mutate user entry)}}
               {{#bootstrap/bs-dropdown as |dropdown|}}
                 {{#dropdown.button}}
                   {{if entry.private (t "users.library.private") (t "users.library.public")}}
@@ -133,7 +133,7 @@
             {{! Rating }}
             <div class="rating-options">
               {{star-rating entry.rating
-                readOnly=(not isOwner)
+                readOnly=(not (can-mutate user entry))
                 onClick=(queue
                   (action (mut entry.rating))
                   (perform saveEntry)
@@ -144,19 +144,19 @@
 
           {{! Rewatch }}
           <div class="rewatch">
-            {{#if isOwner}}
+            {{#if (can-mutate user entry)}}
               <button type="button" class="button" {{action (queue
                 (action (mut entry.reconsumeCount) (inc entry.reconsumeCount))
                 (action (mut entry.progress) 0)
                 (action (mut entry.status) "current")
                 (perform saveEntry))}}>
-                {{t (concat "users.library.reconsume." (media-type media))}}
+                {{t (concat "users.library.reconsume." (model-type media))}}
               </button>
             {{/if}}
 
             <label>
-              <span>{{t (concat "users.library.reconsumed." (media-type media))}}</span>
-              {{#if isOwner}}
+              <span>{{t (concat "users.library.reconsumed." (model-type media))}}</span>
+              {{#if (can-mutate user entry)}}
                 {{one-way-number entry.reconsumeCount
                   update=(queue
                     (action (mut entry.reconsumeCount))

@@ -57,7 +57,7 @@
   <h5>Community Feed</h5>
   {{stream-feed
     streamType="media_aggr"
-    streamId=(concat (capitalize (media-type media)) "-" media.id)
+    streamId=(concat (capitalize (model-type media)) "-" media.id)
     readOnly=(not session.hasUser)
     media=media
   }}

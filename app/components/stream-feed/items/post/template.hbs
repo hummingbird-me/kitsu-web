@@ -77,13 +77,13 @@
                   <div class="gate--label">
                     This post contains spoilers.
                     {{#if post.spoiledUnit}}
-                      {{t (concat "feeds.spoilers." (media-type post.media)) num=post.spoiledUnit.number}}
+                      {{t (concat "feeds.spoilers." (model-type post.media)) num=post.spoiledUnit.number}}
                     {{/if}}
                   </div>
                   <div class="gate--hover">
                     I can handle the truth!
                     {{#if post.spoiledUnit}}
-                      {{t (concat "feeds.spoilers." (media-type post.media)) num=post.spoiledUnit.number}}
+                      {{t (concat "feeds.spoilers." (model-type post.media)) num=post.spoiledUnit.number}}
                     {{/if}}
                   </div>
                 </a>
@@ -104,7 +104,7 @@
               <div class="col-sm no-padding-left">
                 <div class="stream-item--title-block">
                   <div class="author-info">
-                    <a class="author-name" href={{href-to (concat (media-type post.media) ".show") post.media}}>
+                    <a class="author-name" href={{href-to (concat (model-type post.media) ".show") post.media}}>
                       {{post.media.canonicalTitle}}
                     </a>
                     <small class="author-secondary">

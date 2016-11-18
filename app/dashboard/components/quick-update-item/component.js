@@ -5,13 +5,13 @@ import set from 'ember-metal/set';
 import computed from 'ember-computed';
 import service from 'ember-service/inject';
 import getter from 'client/utils/getter';
-import { mediaType } from 'client/helpers/media-type';
+import { modelType } from 'client/helpers/model-type';
 
 const QuickUpdateItemComponent = Component.extend({
   i18n: service(),
 
   isAnime: getter(function() {
-    return mediaType([get(this, 'entry.media')]) === 'anime';
+    return modelType([get(this, 'entry.media')]) === 'anime';
   }),
 
   unitType: getter(function() {

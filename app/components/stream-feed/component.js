@@ -7,7 +7,7 @@ import { isEmpty } from 'ember-utils';
 import { capitalize } from 'ember-string';
 import computed from 'ember-computed';
 import getter from 'client/utils/getter';
-import { mediaType } from 'client/helpers/media-type';
+import { modelType } from 'client/helpers/model-type';
 
 export default Component.extend({
   filter: 'all',
@@ -75,7 +75,7 @@ export default Component.extend({
       const entry = yield get(this, 'store').query('library-entry', {
         filter: {
           user_id: get(this, 'session.account.id'),
-          media_type: capitalize(mediaType([get(data, 'media')])),
+          media_type: capitalize(modelType([get(data, 'media')])),
           media_id: get(data, 'media.id')
         },
         include: 'unit'

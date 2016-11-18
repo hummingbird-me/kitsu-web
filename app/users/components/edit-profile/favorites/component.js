@@ -3,7 +3,7 @@ import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { task, timeout } from 'ember-concurrency';
-import { mediaType } from 'client/helpers/media-type';
+import { modelType } from 'client/helpers/model-type';
 import { invokeAction } from 'ember-invoke-action';
 import RSVP from 'rsvp';
 
@@ -70,7 +70,7 @@ export default Component.extend({
         item
       });
       // TODO: Feedback
-      const type = mediaType([item]);
+      const type = modelType([item]);
       record.save().then((favorite) => {
         get(this, `${type}Favorites`).addObject(favorite);
         invokeAction(this, 'addRecord', favorite);
@@ -81,7 +81,7 @@ export default Component.extend({
 
     removeItem(item) {
       // TODO: Feedback
-      const type = mediaType([get(item, 'item')]);
+      const type = modelType([get(item, 'item')]);
       item.destroyRecord().then(() => {
         const items = get(this, `${type}Favorites`);
         items.removeObject(item);

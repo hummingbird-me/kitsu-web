@@ -12,7 +12,7 @@
                 {{user.name}}
               </h3>
               <div class="cover-cta">
-                {{#if isOwner}}
+                {{#if (can-mutate user user)}}
                   <button class="button button--light-outline" data-toggle="modal" data-target="#edit-profile-modal" {{action (toggle "isEditing" this)}}>
                     <span class="button-label button-defaultState js-buttonLabel">Edit</span>
                   </button>

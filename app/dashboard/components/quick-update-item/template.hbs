@@ -3,7 +3,7 @@
     <div class="quick-update-actions">
       <div class="action-wrapper">
         {{#if (not isCompleted)}}
-          <a class="update--entry-title" href={{href-to (concat (media-type entry.media) ".show") entry.media}}>
+          <a class="update--entry-title" href={{href-to (concat (model-type entry.media) ".show") entry.media}}>
             {{entry.media.canonicalTitle}}
           </a>
           <button class="button button--quick-update" {{action (perform updateEntryTask)}}>
