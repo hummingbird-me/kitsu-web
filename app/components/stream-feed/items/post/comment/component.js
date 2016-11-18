@@ -37,7 +37,6 @@ export default Component.extend({
   }).drop(),
 
   createReply: task(function* (content) {
-    this.$('.reply-comment').val('');
     const reply = get(this, 'store').createRecord('comment', {
       content,
       post: get(this, 'post'),
@@ -125,6 +124,15 @@ export default Component.extend({
       });
       // TODO: Feedback
       block.save().then(() => {}).catch(() => {});
+    },
+
+    createReply(component, event, content) {
+      const { metaKey, ctrlKey } = event;
+      if (metaKey === true || ctrlKey === true) {
+        get(this, 'createReply').perform(content);
+        this.$('.reply-comment').val('');
+        component.resize();
+      }
     },
 
     showReply() {

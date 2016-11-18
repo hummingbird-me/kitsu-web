@@ -81,8 +81,8 @@
 
         {{! Reply text box }}
         {{#if (and isReplying (not readOnly))}}
-          {{one-way-text
-            keyEvents=(hash 13=(perform createReply))
+          {{expanding-textarea
+            keyEvents=(hash 13=(action "createReply"))
             placeholder="Add a reply..."
             class="form-control reply-comment"}}
         {{/if}}

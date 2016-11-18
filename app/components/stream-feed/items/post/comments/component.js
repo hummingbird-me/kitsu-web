@@ -21,7 +21,6 @@ export default Component.extend({
   }).drop(),
 
   createComment: task(function* (content) {
-    this.$('.add-comment').val('');
     const comment = get(this, 'store').createRecord('comment', {
       content,
       post: get(this, 'post'),
@@ -51,6 +50,15 @@ export default Component.extend({
   },
 
   actions: {
+    createComment(component, event, content) {
+      const { metaKey, ctrlKey } = event;
+      if (metaKey === true || ctrlKey === true) {
+        get(this, 'createComment').perform(content);
+        this.$('.add-comment').val('');
+        component.resize();
+      }
+    },
+
     loadComments(records, links) {
       const content = get(this, 'comments').toArray();
       prependObjects(content, records);

@@ -47,6 +47,7 @@ module.exports = function(defaults) {
   app.import('bower_components/flickity/dist/flickity.min.css');
   app.import('bower_components/flickity/dist/flickity.pkgd.min.js');
   app.import('bower_components/clipboard/dist/clipboard.min.js');
+  app.import('bower_components/autosize/dist/autosize.min.js');
   app.import('bower_components/getstream/dist/js_min/getstream.js');
 
   return app.toTree();
