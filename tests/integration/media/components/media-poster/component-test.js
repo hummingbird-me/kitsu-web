@@ -9,8 +9,8 @@ moduleForComponent('media-poster', 'Integration | Component | media-poster', {
   }
 });
 
-test('it renders', function(assert) {
-  this.set('media', { constructor: { modelName: 'anime' }, youtubeVideoId: 'yt' });
+test('media-poster it renders', function(assert) {
+  this.set('media', { constructor: { modelName: 'anime' }, youtubeVideoId: 'yt', posterImage: 'pi' });
   this.render(hbs`{{media/components/media-poster media=media}}`);
   const $el = this.$('[data-test-selector="media-poster"]');
   assert.equal($el.length, 1);

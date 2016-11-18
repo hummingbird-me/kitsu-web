@@ -17,8 +17,10 @@ moduleForAcceptance('Acceptance | Anime', {
       this.get('/api/edge/feeds/notifications/1', json(200, { data: [] }));
       this.get('/api/edge/anime', json(200, new JaQuery(animeResponse).unwrap()));
       this.get('/api/edge/anime/1/streaming-links', json(200, { data: [] }));
+      this.get('/api/edge/anime/1/genres', json(200, { data: [] }));
       // TODO: Remove when issue with feed links is fixed
       this.get('/anime/1/streaming-links', json(200, { data: [] }));
+      this.get('/anime/1/genres', json(200, { data: [] }));
       this.get('/api/edge/feeds/media_aggr/Anime-1', json(200, { data: [] }));
     });
   },
@@ -59,6 +61,7 @@ test('can create a library entry from an anime page', function(assert) {
   this.server.get('/api/edge/users', json(200, new JaQuery(usersResponse).unwrap()));
   this.server.get('/api/edge/library-entries', json(200, { data: [] }));
   this.server.post('/api/edge/library-entries', json(201, new JaQuery(libraryResponse).unwrap()));
+  this.server.get('/api/edge/media-follows', json(200, { data: [] }));
 
   authenticateSession(this.application);
   visit('/anime/trigun');

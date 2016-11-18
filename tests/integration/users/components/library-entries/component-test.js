@@ -8,7 +8,7 @@ moduleForComponent('library-entries', 'Integration | Component | library-entries
 test('it renders', function(assert) {
   assert.expect(2);
   this.set('entries', [{
-    media: { episodeCount: 13, episodeLength: 24 }
+    media: { episodeCount: 13, episodeLength: 24, posterImage: 'pi' }
   }]);
 
   this.render(hbs`{{users/components/library-entries

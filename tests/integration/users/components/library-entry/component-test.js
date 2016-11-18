@@ -8,7 +8,7 @@ moduleForComponent('library-entry', 'Integration | Component | library-entry', {
 test('it renders', function(assert) {
   assert.expect(2);
   this.set('entry', {
-    media: { canonicalTitle: 'Spice and Wolf' }
+    media: { canonicalTitle: 'Spice and Wolf', posterImage: 'pi' }
   });
   this.render(hbs`{{users/components/library-entry entry=entry}}`);
   assert.ok(this.$('[data-test-selector="library-entry"]').length);

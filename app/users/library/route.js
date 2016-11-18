@@ -4,8 +4,6 @@ import set from 'ember-metal/set';
 import { capitalize } from 'ember-string';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
-import { isEmpty } from 'ember-utils';
-import { invoke } from 'ember-invoke-action';
 import libraryStatus from 'client/utils/library-status';
 import PaginationMixin from 'client/mixins/routes/pagination';
 

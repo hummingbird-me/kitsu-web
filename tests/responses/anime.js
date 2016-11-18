@@ -8,8 +8,12 @@ export const one = {
   "attributes": {
     "slug": "trigun",
     "synopsis": "Trigun takes place in the distant future on a deserted planet. Vash the Stampede is a gunfighter with a legend so ruthless that he has a $$60,000,000,000 bounty on his head. Entire towns are evacuated upon hearing rumors of his arrival. However, the real Vash the Stampede is not the same man that rumor portrays him to be. The enigmatic and conflicted lead character in Trigun is actually more heroic in nature, and at times a complete and utter idiot.",
-    "posterImage": "/images/poster.png",
-    "coverImage": "/images/cover.png",
+    "posterImage": {
+      "original": "/images/poster.png"
+    },
+    "coverImage": {
+      "original": "/images/cover.png"
+    },
     "coverImageTopOffset": 100,
     "titles": {
       "en": null,
@@ -84,8 +88,12 @@ export const two = {
   "attributes": {
     "slug": "naruto",
     "synopsis": "Naruto closely follows the life of a boy who is feared and detested by the villagers of the hidden leaf village of Konoha. The distrust of the boy has little to do with the boy himself, but it’s what’s inside him that causes anxiety. Long before Naruto came to be, a Kyuubi (demon fox) with great fury and power waged war taking many lives. The battle ensued for a long time until a man known as the Fourth Hokage, Yondaime, the strongest ninja in Konoha, fiercely fought the Kyuubi. The fight was soon won by Yondaime as he sealed the evil demon in a human body. Thus the boy, Naruto, was born. As Naruto grows he decides to become the strongest ninja in Konoha in an effort to show everyone that he is not as they perceive him to be, but is a human being worthy of love and admiration. But the road to becoming Hokage, the title for the strongest ninja in Konoha, is a long and arduous one. It is a path filled with betrayal, pain, and loss; but with hard work, Naruto may achieve Hokage.\n\n(Source: ANN)",
-    "posterImage": "/images/poster.png",
-    "coverImage": "/images/cover.png",
+    "posterImage": {
+      "original": "/images/poster.png"
+    },
+    "coverImage": {
+      "original": "/images/cover.png"
+    },
     "coverImageTopOffset": 209,
     "titles": {
       "en": null,
