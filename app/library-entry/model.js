@@ -27,7 +27,7 @@ export default Model.extend(Validations, {
   rating: attr('number'),
   reconsumeCount: attr('number'),
   status: attr('string'),
-  updatedAt: attr('date'),
+  updatedAt: attr('utc'),
 
   media: belongsTo('media'),
   user: belongsTo('user')

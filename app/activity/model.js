@@ -8,7 +8,7 @@ export default Model.extend({
   rating: attr('number'),
   status: attr('string'),
   streamId: attr('string'),
-  time: attr('date'),
+  time: attr('utc'),
   verb: attr('string'),
 
   actor: belongsTo('user'),

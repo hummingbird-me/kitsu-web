@@ -50,10 +50,10 @@ export default Model.extend(Validations, {
   aboutFormatted: attr('string'),
   avatar: attr('object', { defaultValue: '/images/default_avatar.png' }),
   bio: attr('string'),
-  birthday: attr('date'),
+  birthday: attr('utc'),
   commentsCount: attr('number'),
   coverImage: attr('object', { defaultValue: '/images/default_cover.png' }),
-  createdAt: attr('date'),
+  createdAt: attr('utc'),
   email: attr('string'),
   facebookId: attr('string'),
   favoritesCount: attr('number'),
@@ -72,7 +72,7 @@ export default Model.extend(Validations, {
   toFollow: attr('boolean'),
   waifuOrHusbando: attr('string'),
   website: attr('string'),
-  updatedAt: attr('date'),
+  updatedAt: attr('utc'),
 
   waifu: belongsTo('character'),
 

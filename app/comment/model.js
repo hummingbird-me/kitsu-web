@@ -6,8 +6,8 @@ export default Model.extend({
   blocked: attr('boolean'),
   content: attr('string'),
   contentFormatted: attr('string'),
-  createdAt: attr('date', { defaultValue() { return new Date(); } }),
-  deletedAt: attr('date'),
+  createdAt: attr('utc', { defaultValue() { return new Date(); } }),
+  deletedAt: attr('utc'),
   likesCount: attr('number'),
   repliesCount: attr('number'),
 

@@ -3,7 +3,7 @@ import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
 
 export default Model.extend({
-  airdate: attr('date'),
+  airdate: attr('utc'),
   canonicalTitle: attr('string'),
   length: attr('number'),
   number: attr('number'),

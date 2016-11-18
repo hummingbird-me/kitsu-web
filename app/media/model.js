@@ -9,11 +9,11 @@ export default Base.extend({
   canonicalTitle: attr('string'),
   coverImage: attr('object', { defaultValue: '/images/default_cover.png' }),
   coverImageTopOffset: attr('number'),
-  endDate: attr('date'),
+  endDate: attr('utc'),
   posterImage: attr('object', { defaultValue: '/images/default_poster.jpg' }),
   ratingFrequencies: attr('object'),
   slug: attr('string'),
-  startDate: attr('date'),
+  startDate: attr('utc'),
   synopsis: attr('string'),
   titles: attr('object'),
 
