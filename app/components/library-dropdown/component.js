@@ -8,7 +8,7 @@ import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import libraryStatus from 'client/utils/library-status';
 import getter from 'client/utils/getter';
-import { mediaType as getType } from 'client/helpers/model-type';
+import { modelType as getType } from 'client/helpers/model-type';
 import RSVP from 'rsvp';
 
 export const REMOVE_KEY = 'library.remove';

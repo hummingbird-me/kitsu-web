@@ -79,30 +79,31 @@ export default Model.extend(Validations, {
   blocks: hasMany('block', { inverse: 'user' }),
   followers: hasMany('follow', { inverse: 'followed' }),
   following: hasMany('follow', { inverse: 'follower' }),
+  userRoles: hasMany('user-role'),
 
   // HACK: We use this to flag the model as dirty when waifu changes, as ember-data
   // doesn't currently track the dirtiness of a relationship.
   waifuDirtyHack: attr('boolean', { defaultValue: false }),
 
   hasRole(roleName, resource) {
-    const role = (get(this, 'roles') || []).find(r => r.name === roleName);
+    const roles = get(this, 'userRoles').map(ur => get(ur, 'role'));
+    const role = roles.find(r => get(r, 'name') === roleName);
     if (role === undefined) {
       return false;
     }
 
-    // if its a blanket role then return
-    if (role.resource_type === null) {
+    // blanket role
+    if (get(role, 'resource.content') === null) {
       return true;
     }
 
-    // determine if they have access to the resource
-    const resourceId = get(resource, 'id');
-    const resourceType = classify(modelType([resource]));
-    if (role.resource_type === resourceType) {
-      if (role.resource_id === resourceId || role.resource_id === null) {
+    // specific resource
+    if (modelType([get(role, 'resource')]) === modelType([resource])) {
+      if (get(role, 'resource.id') === get(resource, 'id')) {
         return true;
       }
-      return false;
     }
+
+    return false;
   }
 });

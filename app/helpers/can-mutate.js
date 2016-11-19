@@ -12,17 +12,20 @@ import observer from 'ember-metal/observer';
 export default Helper.extend({
   session: service(),
 
-  // TODO: Mod Support
   compute([user, model]) {
     const isOwner = get(this, 'session').isCurrentUser(user);
     if (model === undefined) {
       return isOwner;
     }
-    const isAdmin = get(this, 'session.account').hasRole('admin', model);
+    const isAdmin = get(this, 'session.hasUser') && get(this, 'session.account').hasRole('admin', model);
     return isOwner || isAdmin;
   },
 
   didAuthenticate: observer('session.account', function() {
+    this.recompute();
+  }),
+
+  didGetRoles: observer('session.account.userRoles.@each.role.resource', function() {
     this.recompute();
   })
 });
