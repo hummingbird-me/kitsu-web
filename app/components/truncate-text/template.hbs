@@ -1,8 +1,8 @@
 {{#if isExpanded}}
-  {{text}}
+  {{{text}}}
   <a href="#" {{action (toggle "isExpanded" this)}}>less</a>
 {{else}}
-  {{truncate text max}}
+  {{truncatedText}}
   {{#if isTruncated}}
     <a href="#" {{action (toggle "isExpanded" this)}}>more</a>
   {{/if}}

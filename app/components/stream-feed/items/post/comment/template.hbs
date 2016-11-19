@@ -18,26 +18,26 @@
     <span class="comment-body">
       {{{comment.contentFormatted}}}
     </span>
+
     <div class="stream-item-activity">
-      {{! comment likes }}
-      {{#if getLocalLike.isRunning}}
-        {{loading-spinner}}
-      {{else}}
-        <a href="#" class="like-stream-item {{if isLiked "is-liked"}}" {{action "toggleLike"}}>
-          <span class="heart-wrapper"></span>
-          <span class="sm-comment-count">{{comment.likesCount}}</span>
-        </a>
+      {{! likes }}
+      {{likeable-resource
+        resource=comment
+        likesCount=comment.likesCount
+        likesCountUpdate=(action (mut comment.likesCount))
+      }}
 
-        {{! TODO/@Josh -- style reply action }}
-        <small class="comment-reply" {{action "showReply"}}>
-          reply
-        </small>
-      {{/if}}
+      {{! TODO/@Josh -- style reply action }}
+      <small class="comment-reply" {{action "showReply"}}>
+        reply
+      </small>
 
+      {{! comment timestamp }}
       <small class="comment-time">
         {{moment-from-now comment.createdAt}}
       </small>
 
+      {{! more dropdown }}
       {{#if (not (is-self comment.user))}}
         <span class="more-wrapper">
           <a href="#" class="more-drop" id="moreDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,59 +49,60 @@
           </div>
         </span>
       {{/if}}
+    </div>
 
-      {{#if isTopLevel}}
-        {{#if getReplies.isRunning}}
-          <div class="p-t-1 p-b-1 text-xs-center">
-            {{loading-spinner size="small"}}
-          </div>
-        {{else}}
-          {{#if (and (gt comment.repliesCount 2) (not-eq comment.repliesCount replies.length))}}
-            <div class="comment-actions">
-              <div class="d-inline-block">
-                {{! TODO: i18n }}
-                {{#pagination-manual
-                  model=replies
-                  update=(action "loadReplies") as |active|
-                }}
-                  <a href="#">Show Previous Replies</a>
-                {{/pagination-manual}}
-              </div>
-
-              {{! Comment count }}
-              <div class="pull-sm-right">
-                {{! TODO: i18n / pad left }}
-                {{replies.length}} of {{comment.repliesCount}}
-              </div>
+    {{! comment replies }}
+    {{#if isTopLevel}}
+      {{#if getReplies.isRunning}}
+        <div class="p-t-1 p-b-1 text-xs-center">
+          {{loading-spinner size="small"}}
+        </div>
+      {{else}}
+        {{#if (and (gt comment.repliesCount 2) (not-eq comment.repliesCount replies.length))}}
+          <div class="comment-actions">
+            <div class="d-inline-block">
+              {{! TODO: i18n }}
+              {{#pagination-manual
+                model=replies
+                update=(action "loadReplies") as |active|
+              }}
+                <a href="#">Show Previous Replies</a>
+              {{/pagination-manual}}
             </div>
-          {{/if}}
 
-          {{! TODO/@Josh -- Replies list }}
-          {{#if (gt comment.repliesCount 0)}}
-            <ul class="media-list reply-list">
-              {{#each replies as |reply|}}
-                {{stream-feed/items/post/comment
-                  comment=reply
-                  post=post
-                  onReply=(action "onReply")
-                  likesCountUpdate=(action (mut reply.likesCount))
-                  replyCountUpdate=(action (mut comment.repliesCount))
-                  trackEngagement=(action "trackEngagement")
-                  tagName="li"
-                  class="media new-comment"}} {{! HACK: Until we have transitions }}
-              {{/each}}
-            </ul>
-          {{/if}}
+            {{! Comment count }}
+            <div class="pull-sm-right">
+              {{! TODO: i18n / pad left }}
+              {{replies.length}} of {{comment.repliesCount}}
+            </div>
+          </div>
+        {{/if}}
 
-          {{! Reply text box }}
-          {{#if (and isReplying (not readOnly))}}
-            {{expanding-textarea
-              keyEvents=(hash 13=(action "createReply"))
-              placeholder="Add a reply..."
-              class="form-control reply-comment"}}
-          {{/if}}
+        {{! TODO/@Josh -- Replies list }}
+        {{#if (gt comment.repliesCount 0)}}
+          <ul class="media-list reply-list">
+            {{#each replies as |reply|}}
+              {{stream-feed/items/post/comment
+                comment=reply
+                post=post
+                onReply=(action "onReply")
+                likesCountUpdate=(action (mut reply.likesCount))
+                replyCountUpdate=(action (mut comment.repliesCount))
+                trackEngagement=(action "trackEngagement")
+                tagName="li"
+                class="media new-comment"}} {{! HACK: Until we have transitions }}
+            {{/each}}
+          </ul>
+        {{/if}}
+
+        {{! Reply text box }}
+        {{#if (and isReplying (not readOnly))}}
+          {{expanding-textarea
+            keyEvents=(hash 13=(action "createReply"))
+            placeholder="Add a reply..."
+            class="form-control reply-comment"}}
         {{/if}}
       {{/if}}
-    </div>
+    {{/if}}
   </div>
 {{/if}}

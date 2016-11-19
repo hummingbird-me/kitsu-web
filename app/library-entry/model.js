@@ -30,5 +30,6 @@ export default Model.extend(Validations, {
   updatedAt: attr('utc'),
 
   media: belongsTo('media'),
+  review: belongsTo('review'),
   user: belongsTo('user')
 });

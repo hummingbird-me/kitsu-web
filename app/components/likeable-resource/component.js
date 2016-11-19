@@ -2,57 +2,63 @@ import Component from 'ember-component';
 import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import { isEmpty } from 'ember-utils';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
+import { modelType } from 'client/helpers/model-type';
+import getter from 'client/utils/getter';
 
 export default Component.extend({
-  classNames: ['stream-item-activity'],
+  classNames: ['d-inline-block'],
   isLiked: false,
+  showUsers: false,
 
   session: service(),
   store: service(),
   metrics: service(),
 
+  resourceFilterKey: getter(function() {
+    return `${modelType([get(this, 'resource')])}_id`;
+  }),
+
+  resourceLikeType: getter(function() {
+    return `${modelType([get(this, 'resource')])}-like`;
+  }),
+
   getLikes: task(function* () {
-    return yield get(this, 'store').query('post-like', {
-      filter: { post_id: get(this, 'post.id') },
+    const key = get(this, 'resourceFilterKey');
+    return yield get(this, 'store').query(get(this, 'resourceLikeType'), {
+      filter: { [key]: get(this, 'resource.id') },
       page: { limit: 4 },
       include: 'user'
     });
   }).drop(),
 
-  getStatus: task(function* () {
-    return yield get(this, 'store').query('post-like', {
-      filter: { post_id: get(this, 'post.id'), user_id: get(this, 'session.account.id') }
+  getLocalLike: task(function* () {
+    const key = get(this, 'resourceFilterKey');
+    return yield get(this, 'store').query(get(this, 'resourceLikeType'), {
+      filter: { [key]: get(this, 'resource.id'), user_id: get(this, 'session.account.id') }
     });
   }).drop(),
 
   createLike: task(function* () {
-    // can't like a post that isn't saved yet
-    if (isEmpty(get(this, 'post.id')) === true) {
-      return;
-    }
-
-    const like = get(this, 'store').createRecord('post-like', {
-      post: get(this, 'post'),
+    const key = modelType([get(this, 'resource')]);
+    const like = get(this, 'store').createRecord(get(this, 'resourceLikeType'), {
+      [key]: get(this, 'resource'),
       user: get(this, 'session.account')
     });
 
     // provide instant feedback to user
     get(this, 'likes').addObject(like);
     set(this, 'isLiked', true);
-    invokeAction(this, 'likesCountUpdate', get(this, 'post.likesCount') + 1);
-    get(this, 'session.account').incrementProperty('likesGivenCount');
+    invokeAction(this, 'likesCountUpdate', get(this, 'likesCount') + 1);
 
-    // commit
+    // commit and handle error
     yield like.save().then(() => {
-      invokeAction(this, 'trackEngagement', 'like');
+      invokeAction(this, 'onCreate');
     }).catch(() => {
       get(this, 'likes').removeObject(like);
       set(this, 'isLiked', false);
-      invokeAction(this, 'likesCountUpdate', get(this, 'post.likesCount') - 1);
-      get(this, 'session.account').decrementProperty('likesGivenCount');
+      invokeAction(this, 'likesCountUpdate', get(this, 'likesCount') - 1);
     });
   }).drop(),
 
@@ -61,22 +67,25 @@ export default Component.extend({
 
     // instant feedback
     set(this, 'isLiked', false);
-    invokeAction(this, 'likesCountUpdate', get(this, 'post.likesCount') - 1);
+    invokeAction(this, 'likesCountUpdate', get(this, 'likesCount') - 1);
 
-    // commit
+    // commit and handle error
     yield like.destroyRecord().then(() => {
       get(this, 'likes').removeObject(like);
     }).catch(() => {
       set(this, 'isLiked', true);
-      invokeAction(this, 'likesCountUpdate', get(this, 'post.likesCount') + 1);
+      invokeAction(this, 'likesCountUpdate', get(this, 'likesCount') + 1);
     });
   }).drop(),
 
   init() {
     this._super(...arguments);
     set(this, 'likes', []);
+
     get(this, 'getLikes').perform().then((likes) => {
       set(this, 'likes', likes.toArray());
+
+      // look up session users like status if authenticated
       if (get(this, 'session.isAuthenticated') === true) {
         const like = likes.findBy('user.id', get(this, 'session.account.id'));
         if (like === undefined) {
@@ -91,7 +100,7 @@ export default Component.extend({
   },
 
   _getStatus() {
-    get(this, 'getStatus').perform().then((records) => {
+    get(this, 'getLocalLike').perform().then((records) => {
       const record = get(records, 'firstObject');
       if (record !== undefined) {
         set(record, 'user', get(this, 'session.account'));
@@ -106,6 +115,7 @@ export default Component.extend({
       if (get(this, 'session.hasUser') === false) {
         return get(this, 'session.signUpModal')();
       }
+
       const isLiked = get(this, 'isLiked');
       if (isLiked === true) {
         get(this, 'destroyLike').perform();

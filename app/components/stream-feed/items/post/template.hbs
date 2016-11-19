@@ -122,11 +122,15 @@
 
       {{! post likes }}
       {{#if viewportEntered}}
-        {{stream-feed/items/post/post-likes
-          post=post
-          likesCountUpdate=(action (mut post.likesCount))
-          trackEngagement=(action "trackEngagement")
-        }}
+        <div class="stream-item-activity">
+          {{likeable-resource
+            resource=post
+            likesCount=post.likesCount
+            likesCountUpdate=(action (mut post.likesCount))
+            onCreate=(action "trackEngagement" "like")
+            showUsers=true
+          }}
+        </div>
       {{/if}}
 
       {{! post actions }}
