@@ -16,7 +16,7 @@ export default Route.extend({
         media_type: capitalize(modelType([media]))
       },
       page: { limit: 2 },
-      sort: '-likesCount'
+      sort: '-likes_count'
     });
   }
 });

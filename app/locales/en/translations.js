@@ -112,6 +112,12 @@ export default {
         },
         episodes: {
           episode: 'Episode'
+        },
+        reviews: {
+          title: {
+            anime: 'Review by {{link}} at Episode {{progress}}',
+            manga: 'Review by {{link}} at Chapter {{progress}}'
+          }
         }
       }
     }

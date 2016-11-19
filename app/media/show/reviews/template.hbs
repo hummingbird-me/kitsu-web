@@ -1,1 +1,14 @@
-<h1>Reviews NYI</h1>
+{{#if model}}
+  {{media/components/media-reviews model media=media}}
+
+  <div class="text-xs-center w-100">
+    {{pagination-scrolling
+      model=model
+      update=(route-action "updateNextPage")
+      loadingSize="large"
+    }}
+  </div>
+{{else}}
+  {{! TODO @Josh -- No reviews for this media }}
+  <p>No reviews. [Placeholder]</p>
+{{/if}}
