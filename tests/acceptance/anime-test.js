@@ -22,6 +22,7 @@ moduleForAcceptance('Acceptance | Anime', {
       this.get('/anime/1/streaming-links', json(200, { data: [] }));
       this.get('/anime/1/genres', json(200, { data: [] }));
       this.get('/api/edge/feeds/media_aggr/Anime-1', json(200, { data: [] }));
+      this.get('/api/edge/reviews', json(200, { data: [] }));
     });
   },
 

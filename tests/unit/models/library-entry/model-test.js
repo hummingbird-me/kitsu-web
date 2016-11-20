@@ -14,7 +14,8 @@ moduleForModel('library-entry', 'Unit | Model | library-entry', {
     'validator:number',
     'validator:messages',
     'model:media',
-    'model:user'
+    'model:user',
+    'model:review'
   ],
 
   beforeEach() {

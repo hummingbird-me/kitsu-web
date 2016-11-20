@@ -16,7 +16,8 @@ moduleForModel('user', 'Unit | Model | user', {
     'validator:messages',
     'model:character',
     'model:block',
-    'model:follow'
+    'model:follow',
+    'model:user-role'
   ],
 
   beforeEach() {

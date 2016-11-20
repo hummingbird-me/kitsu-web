@@ -70,7 +70,7 @@
         {{star-rating media.averageRating readOnly=true}}
       </div>
       <div class="media-synopsis" style="font-size: 12px">
-        {{truncate-text media.synopsis max=200}}
+        {{text-clipper media.synopsis length=200}}
       </div>
       {{#if session.hasUser}}
         {{library-dropdown

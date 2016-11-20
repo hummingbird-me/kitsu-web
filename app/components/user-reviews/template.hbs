@@ -40,7 +40,7 @@
             <p>{{review.summary}}</p>
             <small>This is a legacy review.</small>
           {{else}}
-            {{truncate-text review.contentFormatted max=400}}
+            {{text-clipper review.contentFormatted length=400 options=(hash html=true)}}
           {{/if}}
         {{/if}}
       </div>

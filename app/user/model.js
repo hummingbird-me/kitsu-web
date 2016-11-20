@@ -4,7 +4,6 @@ import { belongsTo, hasMany } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
 import service from 'ember-service/inject';
 import get from 'ember-metal/get';
-import { classify } from 'ember-string';
 import { modelType } from 'client/helpers/model-type';
 
 const Validations = buildValidations({
