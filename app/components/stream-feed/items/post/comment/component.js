@@ -127,11 +127,11 @@ export default Component.extend({
     },
 
     createReply(component, event, content) {
-      const { metaKey, ctrlKey } = event;
-      if (metaKey === true || ctrlKey === true) {
+      if (isEmpty(content) === true) { return; }
+      const { shiftKey } = event;
+      if (shiftKey === false) {
         get(this, 'createReply').perform(content);
-        this.$('.reply-comment').val('');
-        component.resize();
+        component.clear();
       }
     },
 

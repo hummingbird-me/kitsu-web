@@ -2,6 +2,7 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
+import { isEmpty } from 'ember-utils';
 import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
 import { prependObjects } from 'client/utils/array-utils';
@@ -51,11 +52,11 @@ export default Component.extend({
 
   actions: {
     createComment(component, event, content) {
-      const { metaKey, ctrlKey } = event;
-      if (metaKey === true || ctrlKey === true) {
+      if (isEmpty(content) === true) { return; }
+      const { shiftKey } = event;
+      if (shiftKey === false) {
         get(this, 'createComment').perform(content);
-        this.$('.add-comment').val('');
-        component.resize();
+        component.clear();
       }
     },
 
