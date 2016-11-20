@@ -1,25 +1,33 @@
 <div class="container">
-  {{#each model as |follow|}}
-    {{#if follow.followed}}
-      <div class="card">
-        <img class="card-img-top" src={{image follow.followed.coverImage}}>
-        <div class="card-block">
-          <h4 class="card-title">{{follow.followed.name}}</h4>
-          <p class="card-text">{{follow.followed.about}}</p>
-          {{#if (not (is-self follow.followed))}}
-            {{follow-button user=follow.followed}}
-          {{/if}}
+  <div class="row">
+    {{#each model as |follow|}}
+      {{#if follow.followed}}
+        <div class="card user-card col-sm-3">
+          <!-- @vevix hook-up links to user profiles -->
+          <a href="#">
+            <img class="card-img-top" src={{image follow.followed.coverImage}}>
+          </a>
+          <div class="card-block">
+            <a href="#">
+              <img class="card-img-avatar" src={{image follow.followed.avatar}}>
+            </a>
+            <a href="#"><h4 class="card-title">{{follow.followed.name}}</h4></a>
+            <!-- <p class="card-text">{{follow.followed.about}}</p> -->
+            {{#if (not (is-self follow.followed))}}
+              {{follow-button user=follow.followed}}
+            {{/if}}
+          </div>
         </div>
-      </div>
-    {{/if}}
-  {{else}}
-    <p>This person is not following anyone.</p>
-  {{/each}}
+      {{/if}}
+    {{else}}
+      <p>This person is not following anyone.</p>
+    {{/each}}
 
-  <div class="m-t-1 text-xs-center">
-    {{pagination-scrolling
-      model=model
-      update=(route-action "updateNextPage")
-    }}
+    <div class="m-t-1 text-xs-center">
+      {{pagination-scrolling
+        model=model
+        update=(route-action "updateNextPage")
+      }}
+    </div>
   </div>
 </div>
