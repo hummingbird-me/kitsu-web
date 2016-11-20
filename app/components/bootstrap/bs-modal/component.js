@@ -2,6 +2,7 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import getter from 'client/utils/getter';
 import { invokeAction } from 'ember-invoke-action';
+import jQuery from 'jquery';
 
 export default Component.extend({
   classNames: ['modal', 'fade'],
@@ -19,5 +20,9 @@ export default Component.extend({
     this.$().off('hide.bs.modal').on('hide.bs.modal', (event) => {
       invokeAction(this, 'onClose', event);
     });
+  },
+
+  willDestroyElement() {
+    jQuery('.modal-backdrop').remove();
   }
 });

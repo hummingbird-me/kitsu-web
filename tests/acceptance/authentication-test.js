@@ -14,7 +14,6 @@ import { jsonFactory as json } from 'client/tests/helpers/json';
 
 moduleForAcceptance('Acceptance | Authentication', {
   beforeEach() {
-    jQuery('#ember-testing').append('<div id="wormhole"></div>');
     this.server = new Pretender(function() {
       this.get('https://forums.hummingbird.me/c/industry-news.json', json(200, { data: [] }));
       this.get('/api/edge/feeds/notifications/1', json(200, { data: [] }));
@@ -40,11 +39,11 @@ test('can create an account', function(assert) {
 
   visit('/');
   click(testSelector('selector', 'sign-up-header'));
-  click(testSelector('selector', 'sign-up-email'), '#wormhole');
-  fillIn(testSelector('selector', 'username'), '#wormhole', 'bob');
-  fillIn(testSelector('selector', 'email'), '#wormhole', 'bob@acme.com');
-  fillIn(testSelector('selector', 'password'), '#wormhole', 'password');
-  click(testSelector('selector', 'create-account'), '#wormhole');
+  click(testSelector('selector', 'sign-up-email'));
+  fillIn(testSelector('selector', 'username'), 'bob');
+  fillIn(testSelector('selector', 'email'), 'bob@acme.com');
+  fillIn(testSelector('selector', 'password'), 'password');
+  click(testSelector('selector', 'create-account'));
 
   andThen(() => {
     const session = currentSession(this.application);
@@ -58,14 +57,14 @@ test('shows an error when using incorrect details on sign up', function(assert) 
 
   visit('/');
   click(testSelector('selector', 'sign-up-header'));
-  click(testSelector('selector', 'sign-up-email'), '#wormhole');
-  fillIn(testSelector('selector', 'username'), '#wormhole', 'bob');
-  fillIn(testSelector('selector', 'email'), '#wormhole', 'bob@acme.com');
-  fillIn(testSelector('selector', 'password'), '#wormhole', 'password');
-  click(testSelector('selector', 'create-account'), '#wormhole');
+  click(testSelector('selector', 'sign-up-email'));
+  fillIn(testSelector('selector', 'username'), 'bob');
+  fillIn(testSelector('selector', 'email'), 'bob@acme.com');
+  fillIn(testSelector('selector', 'password'), 'password');
+  click(testSelector('selector', 'create-account'));
 
   andThen(() => {
-    const error = find(testSelector('selector', 'error-message'), '#wormhole').text().trim();
+    const error = find(testSelector('selector', 'error-message')).text().trim();
     assert.equal(error, 'Email is already taken.');
   });
 });
@@ -73,23 +72,23 @@ test('shows an error when using incorrect details on sign up', function(assert) 
 test('shows validation warnings on input fields', function(assert) {
   visit('/');
   click(testSelector('selector', 'sign-up-header'));
-  click(testSelector('selector', 'sign-up-email'), '#wormhole');
+  click(testSelector('selector', 'sign-up-email'));
 
-  fillIn(testSelector('selector', 'username'), '#wormhole', '1234');
+  fillIn(testSelector('selector', 'username'), '1234');
   andThen(() => {
-    const error = find(testSelector('selector', 'validation-username'), '#wormhole');
+    const error = find(testSelector('selector', 'validation-username'));
     assert.equal(error.length, 1);
   });
 
-  fillIn(testSelector('selector', 'email'), '#wormhole', 'bob@acme');
+  fillIn(testSelector('selector', 'email'), 'bob@acme');
   andThen(() => {
-    const error = find(testSelector('selector', 'validation-email'), '#wormhole');
+    const error = find(testSelector('selector', 'validation-email'));
     assert.equal(error.length, 1);
   });
 
-  fillIn(testSelector('selector', 'password'), '#wormhole', 'nope');
+  fillIn(testSelector('selector', 'password'), 'nope');
   andThen(() => {
-    const error = find(testSelector('selector', 'validation-password'), '#wormhole');
+    const error = find(testSelector('selector', 'validation-password'));
     assert.equal(error.length, 1);
   });
 });
@@ -97,10 +96,10 @@ test('shows validation warnings on input fields', function(assert) {
 test('shows strength of password', function(assert) {
   visit('/');
   click(testSelector('selector', 'sign-up-header'));
-  click(testSelector('selector', 'sign-up-email'), '#wormhole');
-  fillIn(testSelector('selector', 'password'), '#wormhole', 'password');
+  click(testSelector('selector', 'sign-up-email'));
+  fillIn(testSelector('selector', 'password'), 'password');
   andThen(() => {
-    const element = find(testSelector('selector', 'password-strength'), '#wormhole');
+    const element = find(testSelector('selector', 'password-strength'));
     assert.equal(element.length, 1);
   });
 });
@@ -114,9 +113,9 @@ test('can sign into an account', function(assert) {
 
   visit('/');
   click(testSelector('selector', 'sign-in-header'));
-  fillIn(testSelector('selector', 'identification'), '#wormhole', 'bob');
-  fillIn(testSelector('selector', 'password'), '#wormhole', 'password');
-  click(testSelector('selector', 'sign-in'), '#wormhole');
+  fillIn(testSelector('selector', 'identification'), 'bob');
+  fillIn(testSelector('selector', 'password'), 'password');
+  click(testSelector('selector', 'sign-in'));
 
   andThen(() => {
     const session = currentSession(this.application);
@@ -129,12 +128,12 @@ test('shows an error when using incorrect details on sign in', function(assert) 
 
   visit('/');
   click(testSelector('selector', 'sign-in-header'));
-  fillIn(testSelector('selector', 'identification'), '#wormhole', 'bob');
-  fillIn(testSelector('selector', 'password'), '#wormhole', 'not_password');
-  click(testSelector('selector', 'sign-in'), '#wormhole');
+  fillIn(testSelector('selector', 'identification'), 'bob');
+  fillIn(testSelector('selector', 'password'), 'not_password');
+  click(testSelector('selector', 'sign-in'));
 
   andThen(() => {
-    const error = find(testSelector('selector', 'error-message'), '#wormhole').text().trim();
+    const error = find(testSelector('selector', 'error-message')).text().trim();
     assert.equal(error, 'The provided credentials are invalid.');
   });
 });

@@ -63,9 +63,7 @@
 {{outlet}}
 
 {{#if isEditing}}
-  {{#ember-wormhole to="wormhole"}}
-    {{users/components/edit-profile
-      modalId="edit-profile-modal"
-      onClose=(toggle-action "isEditing" this)}}
-  {{/ember-wormhole}}
+  {{to-elsewhere named="modal" send=(component "users/components/edit-profile"
+    modalId="edit-profile-modal"
+    onClose=(toggle-action "isEditing" this))}}
 {{/if}}

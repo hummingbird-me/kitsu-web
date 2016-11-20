@@ -94,10 +94,6 @@
 </nav>
 
 {{#if authOpened}}
-  {{#ember-wormhole to="wormhole"}}
-    {{application/components/auth-onboarding
-      modalId="auth-modal"
-      component=authComponent
-      onClose=(toggle-action "authOpened" this)}}
-  {{/ember-wormhole}}
+  {{to-elsewhere named="modal" send=(component "application/components/auth-onboarding"
+    modalId="auth-modal" component=authComponent onClose=(toggle-action "authOpened" this))}}
 {{/if}}

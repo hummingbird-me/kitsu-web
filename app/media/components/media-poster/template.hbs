@@ -14,40 +14,15 @@
     {{! Trailer }}
     {{#if media.youtubeVideoId}}
       <div class="trailer" data-test-selector="media-poster-trailer">
-        <a data-toggle="modal" data-target="#{{elementId}}-trailer" {{action "openTrailer"}}>
+        <a data-toggle="modal" data-target="#{{elementId}}-trailer" {{action (toggle "trailerOpen" this)}}>
           {{svg-jar "play"}}
         </a>
         {{#if trailerOpen}}
-         {{#ember-wormhole to="wormhole"}}
-            {{#bootstrap/bs-modal
-              id=(concat elementId "-trailer")
-              class="trailer-modal"
-              onClose=(action "closeTrailer") as |modal|
-            }}
-              {{#modal.body}}
-                <div class="embed-responsive embed-responsive-16by9">
-                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{media.youtubeVideoId}}?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="trailer-info">
-                  <div class="info-header">
-                    <h4>{{media.canonicalTitle}}</h4>
-                    <ul class="type-tags">
-                      <li>{{capitalize media.mediaType}}</li>
-                      <li>{{media.ageRating}}</li>
-                      <!-- <li class="average-rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
-                      </li> -->
-                    </ul>
-                  </div>
-                  <p>{{media.synopsis}}</p>
-                </div>
-              {{/modal.body}}
-            {{/bootstrap/bs-modal}}
-          {{/ember-wormhole}}
+          {{to-elsewhere named="modal" send=(component "media/components/media-trailer"
+            modalId=(concat elementId "-trailer")
+            onClose=(toggle-action "trailerOpen" this)
+            media=media
+          )}}
         {{/if}}
       </div>
     {{/if}}

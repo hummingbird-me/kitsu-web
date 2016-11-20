@@ -47,14 +47,6 @@ export default Component.extend({
   },
 
   actions: {
-    openTrailer() {
-      set(this, 'trailerOpen', true);
-    },
-
-    closeTrailer() {
-      set(this, 'trailerOpen', false);
-    },
-
     createEntry(status) {
       const user = get(this, 'session.account');
       const entry = get(this, 'store').createRecord('library-entry', {

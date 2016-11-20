@@ -9,9 +9,6 @@ import run from 'ember-runloop';
 import { invokeAction } from 'ember-invoke-action';
 import RSVP from 'rsvp';
 
-/**
- * This component should be invoked within a wormhole.
- */
 export default Component.extend({
   router: service('-routing'),
   session: service(),

@@ -5,9 +5,6 @@ import computed from 'ember-computed';
 import { invokeAction } from 'ember-invoke-action';
 import { scheduleOnce } from 'ember-runloop';
 
-/**
- * This component should be invoked within a wormhole.
- */
 export default Component.extend({
   component: 'social-auth',
   componentName: computed('component', {

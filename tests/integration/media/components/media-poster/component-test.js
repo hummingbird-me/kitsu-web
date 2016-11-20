@@ -3,15 +3,15 @@ import hbs from 'htmlbars-inline-precompile';
 import jQuery from 'jquery';
 
 moduleForComponent('media-poster', 'Integration | Component | media-poster', {
-  integration: true,
-  beforeEach() {
-    jQuery('#ember-testing').append('<div id="wormhole"></div>');
-  }
+  integration: true
 });
 
 test('media-poster it renders', function(assert) {
   this.set('media', { constructor: { modelName: 'anime' }, youtubeVideoId: 'yt', posterImage: 'pi' });
-  this.render(hbs`{{media/components/media-poster media=media}}`);
+  this.render(hbs`
+    {{media/components/media-poster media=media}}
+    {{from-elsewhere name="modal"}}
+  `);
   const $el = this.$('[data-test-selector="media-poster"]');
   assert.equal($el.length, 1);
 
