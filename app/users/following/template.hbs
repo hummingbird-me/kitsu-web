@@ -3,24 +3,30 @@
     {{#each model as |follow|}}
       {{#if follow.followed}}
         <div class="card user-card col-sm-3">
-          <!-- @vevix hook-up links to user profiles -->
-          <a href="#">
+          <a href={{href-to "users.index" follow.followed}}>
             <img class="card-img-top" src={{image follow.followed.coverImage}}>
           </a>
           <div class="card-block">
-            <a href="#">
+            <a href={{href-to "users.index" follow.followed}}>
               <img class="card-img-avatar" src={{image follow.followed.avatar}}>
             </a>
-            <a href="#"><h4 class="card-title">{{follow.followed.name}}</h4></a>
-            <!-- <p class="card-text">{{follow.followed.about}}</p> -->
+            <a href={{href-to "users.index" follow.followed}}>
+              <h4 class="card-title">{{follow.followed.name}}</h4>
+            </a>
+
             {{#if (not (is-self follow.followed))}}
               {{follow-button user=follow.followed}}
+            {{else}}
+              <button class="button button--primary" disabled="disabled">
+                Hey, that's you!
+              </button>
             {{/if}}
           </div>
         </div>
       {{/if}}
     {{else}}
-      <p>This person is not following anyone.</p>
+      {{! @Josh -- Following empty state }}
+      <p>{{user.name}} is not following anyone.</p>
     {{/each}}
 
     <div class="m-t-1 text-xs-center">

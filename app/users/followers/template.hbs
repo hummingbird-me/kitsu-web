@@ -3,30 +3,37 @@
     {{#each model as |follow|}}
       {{#if follow.follower}}
         <div class="card user-card col-sm-3">
-          <!-- @vevix hook-up links to user profiles -->
-          <a href="#"><img class="card-img-top" src={{image follow.follower.coverImage}}></a>
+          <a href={{href-to "users.index" follow.follower}}>
+            <img class="card-img-top" src={{image follow.follower.coverImage}}>
+          </a>
           <div class="card-block">
-            <a href="#">
+            <a href={{href-to "users.index" follow.follower}}>
               <img class="card-img-avatar" src={{image follow.follower.avatar}}>
             </a>
-            <a href="#"><h4 class="card-title">{{follow.follower.name}}</h4></a>
-            <!-- <p class="card-text">{{follow.follower.about}}</p> -->
+            <a href={{href-to "users.index" follow.follower}}>
+              <h4 class="card-title">{{follow.follower.name}}</h4>
+            </a>
 
-            <!-- @vevix show disabled button saying "Hey, that's you!" if a user on this list
-            is the currently logged in user -->
             {{#if (not (is-self follow.follower))}}
               {{follow-button user=follow.follower}}
+            {{else}}
+              <button class="button button--primary" disabled="disabled">
+                Hey, that's you!
+              </button>
             {{/if}}
           </div>
         </div>
       {{/if}}
     {{else}}
+      {{! @Josh -- Followers empty state }}
       <p>No one is following this person.</p>
     {{/each}}
 
-    {{pagination-scrolling
-      model=model
-      update=(route-action "updateNextPage")
-    }}
+    <div class="m-t-1 text-xs-center">
+      {{pagination-scrolling
+        model=model
+        update=(route-action "updateNextPage")
+      }}
+    </div>
   </div>
 </div>
