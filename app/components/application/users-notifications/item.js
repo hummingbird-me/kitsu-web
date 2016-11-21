@@ -32,10 +32,7 @@ export default Component.extend({
         return hrefTo(this, 'posts', modelId);
       } else if (modelType === 'Follow') {
         const actor = get(activity, 'actor');
-        if (actor === undefined) {
-          return '#';
-        }
-        return hrefTo(this, 'users', get(actor, 'name'));
+        return hrefTo(this, 'users', actor);
       }
     }
   })
