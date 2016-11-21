@@ -1,0 +1,23 @@
+<a href="#" class="nav-link notifications {{if (gt count 0) "notifications--present"}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" {{action "markSeen"}}>
+  {{#if getNotifications.isRunning}}
+    {{loading-spinner}}
+  {{else}}
+    {{#if (gt count 0)}}
+      <span>{{count}}</span>
+    {{else}}
+      {{svg-jar "bell"}}
+    {{/if}}
+  {{/if}}
+</a>
+
+<div class="dropdown-menu notification-drop">
+  <header>
+    <a href={{href-to "notifications"}} class="see-all-notifications">See All Notifications</a>
+    <a href="#" class="mark-as-read" {{action "markRead"}}>Mark all as Read</a>
+  </header>
+  <ul class="notification-list">
+    {{#each groups as |group|}}
+      {{application/user-notifications/item tagName="li" class="notification-item" group=group}}
+    {{/each}}
+  </ul>
+</div>

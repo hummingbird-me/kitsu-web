@@ -1,0 +1,14 @@
+{{#if model}}
+  {{user-reviews model media=media}}
+
+  <div class="text-xs-center w-100">
+    {{paginated-resource/infinite
+      model=model
+      update=(route-action "updateNextPage")
+      loadingSize="large"
+    }}
+  </div>
+{{else}}
+  {{! TODO @Josh -- No reviews for this media }}
+  <p>No reviews. [Placeholder]</p>
+{{/if}}

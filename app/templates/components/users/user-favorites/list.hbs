@@ -1,0 +1,39 @@
+{{#each items as |favorite|}}
+  <div class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded" aria-label={{if isCharacter favorite.item.name favorite.item.canonicalTitle}}>
+    {{#if isCharacter}}
+      {{! TODO/@vevix: Link to character/media -- Server needed for this }}
+      <a href="#">
+        <img src={{image favorite.item.image}}>
+      </a>
+    {{else}}
+      <a href={{href-to (concat type ".show") favorite.item}}>
+        <img src={{image favorite.item.posterImage}}>
+      </a>
+    {{/if}}
+  </div>
+{{else}}
+  {{#if isError}}
+    {{! TODO/@Josh -- case where data has an error while loading }}
+    <p>Error</p>
+  {{else}}
+    {{! TODO/@Josh -- style cases when user has no favorites for anime as both the profile owner and guest }}
+    {{#if (is-self user)}}
+      <p>Hey, make some favorites!</p>
+    {{else}}
+      <p>User has no favorites.</p>
+    {{/if}}
+  {{/if}}
+{{/each}}
+
+{{#if items}}
+  <div class="text-xs-center">
+    {{! TODO/@Josh -- load more button }}
+    {{#paginated-resource/manual model=items limit=8 update=(action "updateNextPage") as |nextLink|}}
+      {{#if nextLink}}
+        <button class="button button--primary">
+          Load More
+        </button>
+      {{/if}}
+    {{/paginated-resource/manual}}
+  </div>
+{{/if}}

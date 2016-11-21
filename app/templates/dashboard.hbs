@@ -1,0 +1,40 @@
+{{#if session.hasUser}}
+  {{dashboard/quick-update}}
+{{/if}}
+
+<div class="feed-container row {{if session.hasUser "quick-update-enabled"}}">
+  {{! Feed }}
+  <div class="feed-stream col-sm-12 col-md-8">
+    {{#if (and session.hasUser (and (eq streamType "global") (eq session.account.postsCount 0)))}}
+      {{dashboard/onboarding/feed-notice}}
+    {{/if}}
+
+    {{#stream-feed/list
+      streamType=streamType
+      streamId=streamId
+      readOnly=(not session.hasUser)}}
+      {{#if session.hasUser}}
+        <div class="d-inline-block">
+          <a href="#" class="{{if (eq streamType "timeline") "active"}}" {{action (action (mut streamType) "timeline")}}>Following</a>
+          <a href="#" class="{{if (eq streamType "global") "active"}}" {{action (action (mut streamType) "global")}}>Global</a>
+        </div>
+      {{/if}}
+    {{/stream-feed/list}}
+  </div>
+
+  <div class="feed-sidebar col-sm-4">
+    {{! Onboarding }}
+    {{#if session.hasUser}}
+      {{dashboard/onboarding/checklist-progress user=session.account}}
+    {{/if}}
+
+    {{! News }}
+    {{dashboard/kitsu-forums}}
+
+    {{! sidebar ad }}
+    {{ad-unit slot="TODO-SLOT-HERE" class="rectangle"}}
+
+    {{! Footer }}
+    {{sidebar-footer}}
+  </div>
+</div>

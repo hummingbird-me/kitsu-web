@@ -1,0 +1,62 @@
+<div class="grid-poster" data-test-selector="media-poster">
+  {{! Media Poster }}
+  {{lazy-image src=(image media.posterImage)}}
+
+  <div class="poster-overlay">
+    <a href={{href-to (concat (model-type media) ".show") media}}></a>
+    {{!-- TODO/@vevix: Friends (Server needed for this)
+    <div class="shared-friends">
+      <a href="#" class="friend-avatar"><img src="https://static.hummingbird.me/users/avatars/000/044/425/thumb_small/tumblr_mjf1jtHNm61s7110mo1_250.jpg?1440141803"></a>
+      <a href="#" class="friend-count">03</a>
+    </div>
+    --}}
+
+    {{! Trailer }}
+    {{#if media.youtubeVideoId}}
+      <div class="trailer" data-test-selector="media-poster-trailer">
+        <a data-toggle="modal" data-target="#{{elementId}}-trailer" {{action (toggle "trailerOpen" this)}}>
+          {{svg-jar "play"}}
+        </a>
+        {{#if trailerOpen}}
+          {{to-elsewhere named="modal" send=(component "media/media-trailer"
+            modalId=(concat elementId "-trailer")
+            onClose=(toggle-action "trailerOpen" this)
+            media=media
+          )}}
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+</div>
+
+<div class="ellipsis">
+  <a href={{href-to (concat (model-type media) ".show") media}} class="media-title">
+    {{media.canonicalTitle}}
+  </a>
+</div>
+
+{{! tooltip }}
+{{#if hasHovered}}
+  {{! TODO @josh -- make epic }}
+  {{#epic-tooltip target=(concat "#" elementId " .grid-poster") closeDelay=250 singleInstance=true}}
+    <div class="p-a-1" style="background-color: #4B5360; color: #fff; width: 350px">
+      <span class="media-title" style="font-weight: bold; font-size: 14px">{{media.canonicalTitle}}</span>
+      <div class="media-ratings">
+        {{star-rating media.averageRating readOnly=true}}
+      </div>
+      <div class="media-synopsis" style="font-size: 12px">
+        {{text-clipper media.synopsis length=200}}
+      </div>
+      {{#if session.hasUser}}
+        {{library-dropdown
+          entry=entry
+          type=(model-type media)
+          methods=(hash
+            create=(action "createEntry")
+            update=(action "updateEntry")
+            delete=(action "deleteEntry")
+          )}}
+      {{/if}}
+    </div>
+  {{/epic-tooltip}}
+{{/if}}

@@ -1,0 +1,31 @@
+<div class="container no-padding">
+  <div class="feed-container row">
+    {{! Feed Posts }}
+    <div class="feed-stream col-sm-12 col-md-8">
+      {{#if (and (is-self user) (not (is-object user.avatar)))}}
+        {{users/onboarding/feed-notice}}
+      {{/if}}
+
+      {{stream-feed/list
+        streamType="user_aggr"
+        streamId=user.id
+        readOnly=(not session.hasUser)
+        user=user}}
+    </div>
+
+    <div class="feed-sidebar col-sm-4">
+      {{#if (is-self user)}}
+        {{users/onboarding/checklist-progress user=user}}
+      {{/if}}
+
+      {{! About User }}
+      {{users/about-me user=user}}
+
+      {{! Favorites }}
+      {{users/user-favorites user=user}}
+
+      {{! Footer }}
+      {{sidebar-footer}}
+    </div>
+  </div>
+</div>

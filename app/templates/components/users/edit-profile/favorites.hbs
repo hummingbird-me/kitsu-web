@@ -1,0 +1,57 @@
+<div class="modal-wrapper">
+  <h4 class="edit-heading">
+    {{t "users.edit.favorites"}}
+  </h4>
+  {{#if getAllFavorites.isRunning}}
+    <div class="text-xs-center">
+      {{loading-spinner size="large"}}
+    </div>
+  {{else}}
+    <ul class="nav nav-tabs soft-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#edit-favorite-anime" role="tab">
+          {{t "users.edit.favorite.anime"}}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#edit-favorite-manga" role="tab">
+          {{t "users.edit.favorite.manga"}}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#edit-favorite-characters" role="tab">
+          {{t "users.edit.favorite.characters"}}
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      {{! Anime }}
+      {{users/edit-profile/favorites/items items=animeFavorites type="anime"
+        search=(perform search "anime")
+        reorderItems=(action "reorderItems" "anime")
+        addItem=(action "addItem")
+        removeItem=(action "removeItem")
+        updateNextPage=(action "updateNextPage" "anime")
+        id="edit-favorite-anime" class="tab-pane active" role="tabpanel"}}
+
+      {{! Manga }}
+      {{users/edit-profile/favorites/items items=mangaFavorites type="manga"
+        search=(perform search "manga")
+        reorderItems=(action "reorderItems" "manga")
+        addItem=(action "addItem")
+        removeItem=(action "removeItem")
+        updateNextPage=(action "updateNextPage" "manga")
+        id="edit-favorite-manga" class="tab-pane" role="tabpanel"}}
+
+      {{! Characters }}
+      {{users/edit-profile/favorites/items items=characterFavorites type="character"
+        search=(perform search "character")
+        reorderItems=(action "reorderItems" "character")
+        addItem=(action "addItem")
+        removeItem=(action "removeItem")
+        updateNextPage=(action "updateNextPage" "character")
+        id="edit-favorite-characters" class="tab-pane" role="tabpanel"}}
+    </div>
+  {{/if}}
+</div>
