@@ -32,40 +32,33 @@ export default Component.extend({
     if (get(this, 'singleInstance') === true) {
       get(this, 'epicTooltip').register(this);
     }
-
-    // listen for hover events on the target and enable/disable tether
-    // TODO: handle other types of triggers
-    scheduleOnce('afterRender', () => {
-      jQuery(get(this, 'target')).mouseenter(() => {
-        later(() => this.targetEntered(), get(this, 'openDelay') || 0);
-      }).mouseleave(() => {
-        later(() => {
-          if (get(this, 'isHovered') === true) {
-            addObserver(this, 'isHovered', this.targetLeave);
-          } else {
-            this.targetLeave();
-          }
-        }, get(this, 'closeDelay') || 0);
-      });
-    });
   },
 
-  didReceiveAttrs() {
+  didInsertElement() {
     this._super(...arguments);
 
     // initialize tether
-    scheduleOnce('afterRender', () => {
-      const tether = new Tether({
-        element: this.$(),
-        target: get(this, 'target'),
-        attachment: get(this, 'attachment'),
-        targetAttachment: get(this, 'targetAttachment'),
-        enabled: true,
-        constraints: get(this, 'constraints')
-      });
-      set(this, 'tether', tether);
-      tether.position();
+    const tether = new Tether({
+      element: this.$(),
+      target: get(this, 'target'),
+      attachment: get(this, 'attachment'),
+      targetAttachment: get(this, 'targetAttachment'),
+      enabled: true,
+      constraints: get(this, 'constraints')
     });
+    set(this, 'tether', tether);
+    tether.position();
+
+    // listen to hover events on the target
+    jQuery(get(this, 'target')).hoverIntent({
+      over: () => this.targetEntered(),
+      out: () => this.targetLeave(),
+      timeout: get(this, 'timeout') || 0
+    });
+
+    // because hoverIntent `out` doesn't fire unless `over` has fired, we need to exit
+    // for the first time
+    jQuery(get(this, 'target')).one('mouseleave', () => this.targetLeave());
   },
 
   willDestroyElement() {
@@ -73,7 +66,7 @@ export default Component.extend({
     if (get(this, 'singleInstance') === true) {
       get(this, 'epicTooltip').remove(this);
     }
-    jQuery(get(this, 'target')).off('mouseenter').off('mouseleave');
+    jQuery(get(this, 'target')).off('mouseenter.hoverIntent').off('mouseleave.hoverIntent');
     get(this, 'tether').destroy();
     this.$().remove();
   },
@@ -88,10 +81,12 @@ export default Component.extend({
   },
 
   targetLeave() {
-    if (get(this, 'isHovered') === false) {
+    if (get(this, 'isHovered') === true) {
+      addObserver(this, 'isHovered', this.targetLeave);
+    } else {
       removeObserver(this, 'isHovered', this.targetLeave);
+      get(this, 'tether').disable();
+      this.$().hide();
     }
-    get(this, 'tether').disable();
-    this.$().hide();
   }
 });

@@ -15,18 +15,26 @@ export default Component.extend({
   session: service(),
   store: service(),
 
+  didInsertElement() {
+    this._super(...arguments);
+    this.$().hoverIntent(() => {
+      if (get(this, 'hasHovered') === false) {
+        this._getLibraryEntry();
+        set(this, 'hasHovered', true);
+      }
+    });
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    this.$().off('mouseenter.hoverIntent');
+  },
+
   _onAuthentication: observer('session.hasUser', function() {
     if (get(this, 'hasHovered') === true) {
       this._getLibraryEntry();
     }
   }),
-
-  mouseEnter() {
-    if (get(this, 'hasHovered') === false) {
-      this._getLibraryEntry();
-      set(this, 'hasHovered', true);
-    }
-  },
 
   _getLibraryEntry() {
     const media = get(this, 'media');
