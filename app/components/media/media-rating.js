@@ -14,10 +14,10 @@ export default Component.extend({
       // TODO: There are some weird keys on the server from our april fools joke -- so hardcoded.
       const keys = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0].map(k => k.toString());
       const total = keys.reduce((prev, curr) => (
-        prev + parseInt(freqs[decimalNumber([curr])], 10)
+        prev + (parseInt(freqs[decimalNumber([curr])], 10) || 0)
       ), 0);
       const liked = keys.slice(7).reduce((prev, curr) => (
-        prev + parseInt(freqs[decimalNumber([curr])], 10)
+        prev + (parseInt(freqs[decimalNumber([curr])], 10) || 0)
       ), 0);
       const value = (liked / total) * 100;
       return `${value.toFixed(0)}%`;
