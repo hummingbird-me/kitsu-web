@@ -17,9 +17,8 @@
 {{#if isExpanded}}
   <div class="add-content-expanded">
     {{! editor }}
-    {{content-editable
+    {{content-editable-html
       value=content
-      type="text"
       spellcheck=true
       autofocus=true
       key-down=(action "keyDown")

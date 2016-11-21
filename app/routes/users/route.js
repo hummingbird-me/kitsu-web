@@ -14,6 +14,6 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
   },
 
   serialize(model) {
-    return { name: get(model, 'name') };
+    return { name: model && get(model, 'name') || 'N/A' };
   }
 });
