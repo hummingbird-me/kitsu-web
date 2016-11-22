@@ -9,6 +9,7 @@ import { modelType } from 'client/helpers/model-type';
 
 const QuickUpdateItemComponent = Component.extend({
   i18n: service(),
+  notify: service(),
 
   isAnime: getter(function() {
     return modelType([get(this, 'entry.media')]) === 'anime';
@@ -57,16 +58,20 @@ const QuickUpdateItemComponent = Component.extend({
     if (get(this, 'nextProgress') !== progress) {
       set(entry, 'progress', progress + 1);
     }
-    // TODO: Feedback on error
-    yield entry.save().catch(() => {});
+    yield entry.save().catch(() => {
+      entry.rollbackAttributes();
+      get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+    });
   }).enqueue(),
 
   actions: {
     rateEntry(rating) {
       const entry = get(this, 'entry');
       set(entry, 'rating', rating);
-      // TODO: Feedback on error
-      entry.save().catch(() => {});
+      entry.save().catch(() => {
+        entry.rollbackAttributes();
+        get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+      });
     }
   }
 });

@@ -12,6 +12,7 @@ export default Component.extend({
   password: undefined,
   errorMessage: undefined,
 
+  i18n: service(),
   facebook: service(),
   session: service(),
   authentication: taskGroup().drop(),
@@ -33,7 +34,9 @@ export default Component.extend({
           get(this, 'facebook').getUserData().then((response) => {
             const data = { ...response, name: underscore(get(response, 'name')) };
             invokeAction(this, 'changeComponent', 'sign-up', data);
-          }).catch(() => { /* TODO: Feedback */ });
+          }).catch(() => {
+            set(this, 'errorMessage', get(this, 'i18n').t('errors.request'));
+          });
         }
       });
   }).group('authentication'),

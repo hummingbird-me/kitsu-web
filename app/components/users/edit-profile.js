@@ -10,6 +10,9 @@ import { invokeAction } from 'ember-invoke-action';
 import RSVP from 'rsvp';
 
 export default Component.extend({
+  errorMessage: undefined,
+
+  i18n: service(),
   router: service('-routing'),
   session: service(),
   user: alias('session.account'),
@@ -74,7 +77,7 @@ export default Component.extend({
     updateProfile() {
       get(this, 'updateProfileTask').perform()
         .then(() => this.$('.modal').modal('hide'))
-        .catch(() => { /* TODO: Feedback */ });
+        .catch(() => set(this, 'errorMessage', get(this, 'i18n').t('errors.request')));
     },
 
     updateImage(property, event) {

@@ -8,6 +8,8 @@ import { invokeAction } from 'ember-invoke-action';
 import RSVP from 'rsvp';
 
 export default Component.extend({
+  i18n: service(),
+  notify: service(),
   session: service(),
   store: service(),
 
@@ -69,25 +71,27 @@ export default Component.extend({
         user: get(this, 'user'),
         item
       });
-      // TODO: Feedback
       const type = modelType([item]);
       record.save().then((favorite) => {
         get(this, `${type}Favorites`).addObject(favorite);
         invokeAction(this, 'addRecord', favorite);
         // Increase count on user
         get(this, 'session.account').incrementProperty('favoritesCount');
-      }).catch(() => {});
+      }).catch(() => {
+        get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+      });
     },
 
     removeItem(item) {
-      // TODO: Feedback
       const type = modelType([get(item, 'item')]);
       item.destroyRecord().then(() => {
         const items = get(this, `${type}Favorites`);
         items.removeObject(item);
         items.forEach(record => set(record, 'favRank', items.indexOf(record) + 1));
         invokeAction(this, 'removeRecord', item);
-      }).catch(() => {});
+      }).catch(() => {
+        get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+      });
     },
 
     updateNextPage(type, records, links) {

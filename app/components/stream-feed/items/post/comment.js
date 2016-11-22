@@ -14,6 +14,8 @@ export default Component.extend({
   isReplying: false,
   isTopLevel: false,
 
+  i18n: service(),
+  notify: service(),
   session: service(),
   store: service(),
 
@@ -122,8 +124,9 @@ export default Component.extend({
         user: get(this, 'session.account'),
         blocked: get(this, 'comment.user')
       });
-      // TODO: Feedback
-      block.save().then(() => {}).catch(() => {});
+      block.save().then(() => {}).catch(() => (
+        get(this, 'notify').error(get(this, 'i18n').t('errors.request'))
+      ));
     },
 
     createReply(component, event, content) {

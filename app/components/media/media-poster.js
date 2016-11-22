@@ -12,6 +12,8 @@ export default Component.extend({
   trailerOpen: false,
   hasHovered: false,
 
+  i18n: service(),
+  notify: service(),
   session: service(),
   store: service(),
 
@@ -62,21 +64,26 @@ export default Component.extend({
         user,
         media: get(this, 'media')
       });
-      // TODO: Feedback
-      return entry.save().then(() => set(this, 'entry', entry)).catch(() => {});
+      return entry.save().then(() => set(this, 'entry', entry))
+        .catch(() => get(this, 'notify').error(get(this, 'i18n').t('errors.request')));
     },
 
     updateEntry(status) {
       set(this, 'entry.status', status);
-      // TODO: Feedback
-      get(this, 'entry').save().catch(() => get(this, 'entry').rollbackAttributes());
+      get(this, 'entry').save()
+        .catch(() => {
+          get(this, 'entry').rollbackAttributes();
+          get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+        });
     },
 
     deleteEntry() {
-      // TODO: Feedback
       get(this, 'entry').destroyRecord()
         .then(() => set(this, 'entry', undefined))
-        .catch(() => get(this, 'entry').rollbackAttributes());
+        .catch(() => {
+          get(this, 'entry').rollbackAttributes();
+          get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+        });
     }
   }
 });

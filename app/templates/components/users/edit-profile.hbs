@@ -48,6 +48,12 @@
   {{/modal.body}}
 
   {{#modal.footer}}
+    {{#if errorMessage}}
+      <div class="alert alert-danger" data-test-selector="error-message">
+        {{errorMessage}}
+      </div>
+    {{/if}}
+
     <p class="link-note">
       Visit your <a href="#" {{action "goToSettings"}}>settings page</a> to change your username, email, notification settings, and more.
     </p>

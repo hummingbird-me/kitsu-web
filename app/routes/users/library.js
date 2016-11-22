@@ -12,7 +12,9 @@ export default Route.extend(PaginationMixin, {
     media: { refreshModel: true },
     status: { refreshModel: true }
   },
+
   i18n: service(),
+  notify: service(),
   metrics: service(),
   session: service(),
 
@@ -65,15 +67,19 @@ export default Route.extend(PaginationMixin, {
     saveEntry(entry) {
       if (get(entry, 'validations.isValid') === true) {
         return entry.save()
-          .then(() => {})
-          .catch(() => entry.rollbackAttributes());
+          .catch(() => {
+            entry.rollbackAttributes();
+            get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+          });
       }
     },
 
     deleteEntry(entry) {
       return entry.destroyRecord()
-        .then(() => {})
-        .catch(() => entry.rollbackAttributes());
+        .catch(() => {
+          entry.rollbackAttributes();
+          get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+        });
     }
   }
 });

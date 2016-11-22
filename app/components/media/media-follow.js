@@ -27,7 +27,7 @@ export default FollowComponent.extend({
     if (get(this, 'isFollowing')) {
       yield get(this, 'relationship').destroyRecord().then(() => {
         set(this, 'relationship', undefined);
-      }).catch(() => { /* TODO: Feedback */ });
+      }).catch(() => get(this, 'notify').error(get(this, 'i18n').t('errors.request')));
     } else {
       yield get(this, 'store').createRecord('media-follow', {
         user: get(this, 'session.account'),
@@ -35,7 +35,7 @@ export default FollowComponent.extend({
       }).save().then((record) => {
         set(this, 'relationship', record);
       })
-      .catch(() => { /* TODO: Feedback */ });
+      .catch(() => get(this, 'notify').error(get(this, 'i18n').t('errors.request')));
     }
   }).drop()
 });

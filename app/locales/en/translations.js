@@ -339,6 +339,7 @@ export default {
         starts: 'This field must start with a letter or number'
       }
     },
+    request: 'There was an issue with your request, please try again.',
     load: 'There was an issue loading the content',
     contentEmpty: 'There doesn\'t seem to be anything here'
   }

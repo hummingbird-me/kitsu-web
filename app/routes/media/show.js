@@ -11,11 +11,16 @@ import { modelType } from 'client/helpers/model-type';
 
 export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   templateName: 'media/show',
+  i18n: service(),
+  notify: service(),
   session: service(),
 
   saveEntryTask: task(function* (entry) {
     yield timeout(500);
-    return yield entry.save().catch(() => entry.rollbackAttributes());
+    return yield entry.save().catch(() => {
+      entry.rollbackAttributes();
+      get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+    });
   }).restartable(),
 
   model({ slug }) {
@@ -76,20 +81,27 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
         user,
         media
       });
-      // TODO: Feedback
-      return entry.save().then(() => set(controller, 'entry', entry)).catch(() => {});
+      return entry.save().then(() => set(controller, 'entry', entry)).catch(() => {
+        get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+      });
     },
 
     updateEntry(entry, property, status) {
       set(entry, property, status);
-      return entry.save().catch(() => entry.rollbackAttributes());
+      return entry.save().catch(() => {
+        entry.rollbackAttributes();
+        get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+      });
     },
 
     deleteEntry(entry) {
       const controller = this.controllerFor(get(this, 'routeName'));
       return entry.destroyRecord()
         .then(() => set(controller, 'entry', undefined))
-        .catch(() => entry.rollbackAttributes());
+        .catch(() => {
+          entry.rollbackAttributes();
+          get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+        });
     },
 
     saveEntryDebounced(entry) {

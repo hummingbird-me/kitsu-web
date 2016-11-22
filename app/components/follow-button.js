@@ -11,6 +11,8 @@ export default Component.extend({
   classNameBindings: ['isFollowing:active:inactive'],
   classNames: ['button', 'button--primary'],
 
+  i18n: service(),
+  notify: service(),
   session: service(),
   store: service(),
   isFollowing: notEmpty('relationship'),
@@ -37,7 +39,7 @@ export default Component.extend({
       yield get(this, 'relationship').destroyRecord().then(() => {
         set(this, 'relationship', undefined);
         get(this, 'session.account').decrementProperty('followingCount');
-      }).catch(() => { /* TODO: Feedback */ });
+      }).catch(() => get(this, 'notify').error(get(this, 'i18n').t('errors.request')));
     } else {
       yield get(this, 'store').createRecord('follow', {
         follower: get(this, 'session.account'),
@@ -46,7 +48,7 @@ export default Component.extend({
         set(this, 'relationship', record);
         get(this, 'session.account').incrementProperty('followingCount');
       })
-      .catch(() => { /* TODO: Feedback */ });
+      .catch(() => get(this, 'notify').error(get(this, 'i18n').t('errors.request')));
     }
   }).drop(),
 

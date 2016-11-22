@@ -12,6 +12,8 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
   classNames: ['stream-item', 'row'],
   isHidden: false,
 
+  i18n: service(),
+  notify: service(),
   session: service(),
   store: service(),
   metrics: service(),
@@ -78,8 +80,9 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
         user: get(this, 'session.account'),
         blocked: get(this, 'post.user')
       });
-      // TODO: Feedback
-      block.save().then(() => {}).catch(() => {});
+      block.save().then(() => {}).catch(() => (
+        get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+      ));
     }
   }
 });

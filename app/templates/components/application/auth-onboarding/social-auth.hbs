@@ -1,5 +1,11 @@
 <div class="register-cover"></div>
 <div class="modal-wrapper">
+  {{#if errorMessage}}
+    <div class="alert alert-danger" data-test-selector="error-message">
+      {{errorMessage}}
+    </div>
+  {{/if}}
+
   <p class="register-intro">
     Create an account to track, share and discover anime and manga in a uniquely social way.
   </p>
