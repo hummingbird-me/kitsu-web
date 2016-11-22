@@ -1,0 +1,22 @@
+{{#bootstrap/bs-modal id=modalId onClose=onClose as |modal|}}
+  {{#modal.body}}
+    {{! TODO - @Josh - people who like things }}
+    {{#each likes as |liker|}}
+      <img src={{image liker.user.avatar}} style="width:35px;height:35px;">
+    {{/each}}
+
+    {{#paginated-resource/manual
+      model=likes
+      limit=limit
+      update=(action "updateNextPage") as |active isLoading|
+    }}
+      <button class="button button--primary btn-block" disabled={{unless active "disabled"}}>
+        {{#if (or getNextData.isRunning isLoading)}}
+          {{loading-spinner size="small"}}
+        {{else}}
+          Load More
+        {{/if}}
+      </button>
+    {{/paginated-resource/manual}}
+  {{/modal.body}}
+{{/bootstrap/bs-modal}}

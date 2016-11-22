@@ -42,6 +42,7 @@ export default Mixin.create({
     const records = yield get(this, 'store').query(modelName, options);
     const links = get(records, 'links');
     invokeAction(this, 'update', records, links);
+    return records;
   }).drop(),
 
   /**

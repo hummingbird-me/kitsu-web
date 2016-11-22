@@ -84,6 +84,7 @@ export default Component.extend({
 
     get(this, 'getLikes').perform().then((likes) => {
       set(this, 'likes', likes.toArray());
+      set(this, 'likes.links', get(likes, 'links'));
 
       // look up session users like status if authenticated
       if (get(this, 'session.isAuthenticated') === true) {

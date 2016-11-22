@@ -3,7 +3,6 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { assert } from 'ember-metal/utils';
-import { scheduleOnce, later } from 'ember-runloop';
 import { addObserver, removeObserver } from 'ember-metal/observer';
 import jQuery from 'jquery';
 /* global Tether */

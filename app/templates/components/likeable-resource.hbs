@@ -15,7 +15,7 @@
           </li>
         {{/each}}
         {{#if (gt likesCount 4)}}
-          <li class="stream-like-count">
+          <li class="stream-like-count" {{action (toggle "modalOpen" this)}}>
             <a>{{likesCount}}</a>
           </li>
         {{/if}}
@@ -25,5 +25,15 @@
 {{/if}}
 
 {{#unless showUsers}}
-  <span class="sm-comment-count">{{likesCount}}</span>
+  <span class="sm-comment-count" {{action (toggle "modalOpen" this)}}>{{likesCount}}</span>
 {{/unless}}
+
+{{! modal }}
+{{#if modalOpen}}
+  {{to-elsewhere named="modal" send=(component "likeable-resource/modal"
+    likes=likes
+    updateLikes=(action (mut likes))
+    modalId="likeable-resource-modal"
+    onClose=(toggle-action "modalOpen" this)
+  )}}
+{{/if}}

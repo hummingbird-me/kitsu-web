@@ -3,7 +3,6 @@ import set from 'ember-metal/set';
 import get from 'ember-metal/get';
 import computed from 'ember-computed';
 import { invokeAction } from 'ember-invoke-action';
-import { scheduleOnce } from 'ember-runloop';
 
 export default Component.extend({
   component: 'social-auth',
@@ -15,7 +14,7 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    scheduleOnce('afterRender', () => this.$('.modal').modal('show'));
+    this.$('.modal').modal('show');
   },
 
   actions: {
