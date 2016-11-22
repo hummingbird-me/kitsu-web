@@ -40,7 +40,7 @@
                 onSet=(action (mut averageRating) dirtyRating)}}
               <div class="filter-legend">
                 <div class="low-value">
-                  <!-- TODO: Should be half-star -->
+                  {{! TODO - @Josh - half star svg }}
                   {{svg-jar "star"}}
                 </div>
                 <div class="high-value">
@@ -153,7 +153,7 @@
                 }}
                    <a href="#" data-test-selector="filter-genre">{{option}}</a>
                    <span class="exclude-genre hint--left hint--bounce hint--rounded" aria-label="Exclude?">{{svg-jar "close"}}</span>
-                   <span class="include-genre">{{svg-jar "checkmark"}}</span>
+                   <span class="include-genre hint--left hint--bounce hint--rounded" aria-label="Include?">{{svg-jar "checkmark"}}</span>
                 {{/media/filter-widgets/multi-select}}
               </div>
           </div>

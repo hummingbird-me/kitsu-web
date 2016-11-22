@@ -431,7 +431,7 @@
           visibility: visible;
         }
         .exclude-genre {
-          display: none;
+          visibility: hidden;
         }
         a {
           background: darken($voodoo,10);
@@ -439,27 +439,13 @@
             background: darken($voodoo,8);
           }
         }
-      }
-      &.exclude {
-        a {
-          background: #3b4250;
-        }
-        .exclude-genre {
-          visibility: visible;
-          display: block;
-          svg {
-            fill: #60b885;
-          }
-          &.hint--left:before, &.hint--left:after {
-            display: none;
-          }
-        }
-        .include-genre {
-          display: none;
+        &:hover {
+          .include-genre { visibility: hidden; }
+          .exclude-genre { visibility: visible; }
         }
       }
       &:hover {
-        .exclude-genre {
+        .include-genre {
           visibility: visible;
         }
         a {
