@@ -60,7 +60,6 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    assert('Must pass a `entry` attribute to `{{library-dropdown}}`', get(this, 'entry') !== undefined);
     RSVP.resolve(get(this, 'entry')).then(() => set(this, 'entryIsLoaded', true));
   }
 });

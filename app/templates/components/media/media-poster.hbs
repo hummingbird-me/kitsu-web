@@ -14,7 +14,10 @@
     {{! Trailer }}
     {{#if media.youtubeVideoId}}
       <div class="trailer" data-test-selector="media-poster-trailer">
-        <a data-toggle="modal" data-target="#{{elementId}}-trailer" {{action (toggle "trailerOpen" this)}}>
+        <a data-toggle="modal" data-target="#{{elementId}}-trailer" {{action (queue
+          (action "getLibrary")
+          (toggle "trailerOpen" this)
+        )}}>
           {{svg-jar "play"}}
         </a>
         {{#if trailerOpen}}
@@ -22,6 +25,12 @@
             modalId=(concat elementId "-trailer")
             onClose=(toggle-action "trailerOpen" this)
             media=media
+            entry=entry
+            methods=(hash
+              create=(action "createEntry")
+              update=(action "updateEntry")
+              delete=(action "deleteEntry")
+            )
           )}}
         {{/if}}
       </div>
@@ -29,13 +38,14 @@
   </div>
 </div>
 
+{{! Title }}
 <div class="ellipsis">
   <a href={{href-to (concat (model-type media) ".show") media}} class="media-title">
     {{media.canonicalTitle}}
   </a>
 </div>
 
-{{! tooltip }}
+{{! Tooltip }}
 {{#if hasHovered}}
   {{! TODO @josh -- make epic }}
   {{#epic-tooltip target=(concat "#" elementId " .grid-poster") timeout=250 singleInstance=true}}

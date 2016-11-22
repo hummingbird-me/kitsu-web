@@ -8,6 +8,7 @@ import { modelType } from 'client/helpers/model-type';
 
 export default Component.extend({
   classNames: ['poster-wrapper'],
+  entry: null,
   media: undefined,
   trailerOpen: false,
   hasHovered: false,
@@ -39,6 +40,11 @@ export default Component.extend({
   }),
 
   _getLibraryEntry() {
+    // already done a request
+    if (get(this, 'entry') !== null) {
+      return;
+    }
+
     const media = get(this, 'media');
     const promise = get(this, 'store').query('library-entry', {
       filter: {
@@ -57,6 +63,12 @@ export default Component.extend({
   },
 
   actions: {
+    getLibrary() {
+      if (get(this, 'session.hasUser') === true) {
+        this._getLibraryEntry();
+      }
+    },
+
     createEntry(status) {
       const user = get(this, 'session.account');
       const entry = get(this, 'store').createRecord('library-entry', {

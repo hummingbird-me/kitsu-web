@@ -1,27 +1,45 @@
 {{#bootstrap/bs-modal
   id=modalId
   class="trailer-modal"
-  onClose=(action "onClose") as |modal|}}
-  {{#modal.body}}
+  onClose=onClose as |modal|}}
+  {{#modal.header}}
     <div class="embed-responsive embed-responsive-16by9">
       <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{media.youtubeVideoId}}?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
     </div>
+  {{/modal.header}}
+  {{#modal.body}}
     <div class="trailer-info">
       <div class="info-header">
         <h4>{{media.canonicalTitle}}</h4>
         <ul class="type-tags">
           <li>{{capitalize media.mediaType}}</li>
           <li>{{media.ageRating}}</li>
-          <!-- <li class="average-rating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-half-o"></i>
-            <i class="fa fa-star-o"></i>
-          </li> -->
         </ul>
+        {{! TODO - @Josh - rating stars on trailer modal }}
+        <span>{{star-rating media.averageRating readOnly=true}}</span>
+        {{#if session.hasUser}}
+          {{library-dropdown
+            entry=entry
+            type=(model-type media)
+            methods=(hash
+              create=methods.create
+              update=methods.update
+              delete=methods.delete
+            )
+          }}
+        {{/if}}
       </div>
-      <p>{{media.synopsis}}</p>
+      {{! TODO - @Josh - genres on trailer modal }}
+      <ul class="type-tags">
+        {{#if (not media.genres.isFulfilled)}}
+          {{loading-spinner size="small"}}
+        {{/if}}
+
+        {{#each media.genres as |genre|}}
+          <li>{{capitalize genre.name}}</li>
+        {{/each}}
+      </ul>
+      <p>{{text-clipper media.synopsis length=400 maxLines=4}}</p>
     </div>
   {{/modal.body}}
 {{/bootstrap/bs-modal}}

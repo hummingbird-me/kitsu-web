@@ -1,10 +1,6 @@
 import Component from 'ember-component';
-import { invokeAction } from 'ember-invoke-action';
+import service from 'ember-service/inject';
 
 export default Component.extend({
-  actions: {
-    onClose(...args) {
-      invokeAction(this, 'onClose', ...args);
-    }
-  }
+  session: service()
 });
