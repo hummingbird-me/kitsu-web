@@ -6,7 +6,33 @@
           <div class="cover-user-info">
             <div class="primary-info">
               <div class="media-sidebar">
+                {{! poster  }}
                 {{lazy-image src=(image media.posterImage)}}
+
+                {{! Trailer }}
+                {{#if media.youtubeVideoId}}
+                  <div class="trailer">
+                    {{! TODO - @Josh - trailer button on media page }}
+                    <button data-toggle="modal" data-target="#media-trailer" class="button button--primary" {{action (toggle "trailerOpen" this)}}>
+                      Watch Trailer
+                    </button>
+                    {{#if trailerOpen}}
+                      {{to-elsewhere named="modal" send=(component "modals/media-trailer"
+                        modalId="media-trailer"
+                        onClose=(toggle-action "trailerOpen" this)
+                        media=media
+                        entry=entry
+                        methods=(hash
+                          create=(route-action "createEntry")
+                          update=(route-action "updateEntry" entry "status")
+                          delete=(route-action "deleteEntry" entry)
+                        )
+                      )}}
+                    {{/if}}
+                  </div>
+                {{/if}}
+
+                {{! library entry }}
                 {{#if session.hasUser}}
                   {{library-dropdown
                     entry=entry

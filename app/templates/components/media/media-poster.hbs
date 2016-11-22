@@ -21,7 +21,7 @@
           {{svg-jar "play"}}
         </a>
         {{#if trailerOpen}}
-          {{to-elsewhere named="modal" send=(component "media/media-trailer"
+          {{to-elsewhere named="modal" send=(component "modals/media-trailer"
             modalId=(concat elementId "-trailer")
             onClose=(toggle-action "trailerOpen" this)
             media=media
