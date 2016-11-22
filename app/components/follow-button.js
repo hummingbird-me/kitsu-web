@@ -8,6 +8,7 @@ import observer from 'ember-metal/observer';
 
 export default Component.extend({
   tagName: 'button',
+  classNameBindings: ['isFollowing:active:inactive'],
   classNames: ['button', 'button--primary'],
 
   session: service(),
