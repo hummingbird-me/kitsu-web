@@ -11,6 +11,7 @@ export default Controller.extend({
 
   media: alias('parent.media'),
   entry: alias('parent.entry'),
+  reviews: alias('model'),
 
   init() {
     this._super(...arguments);
