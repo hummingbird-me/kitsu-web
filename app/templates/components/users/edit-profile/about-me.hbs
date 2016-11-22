@@ -67,7 +67,7 @@
         renderInPlace=true
         as |character|
       }}
-        <img src={{image character.image}}>
+        {{lazy-image src=(image character.image)}}
         <strong>{{character.name}}</strong>
       {{/power-select}}
     </div>

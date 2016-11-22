@@ -3,7 +3,7 @@
     {{#each model as |episode|}}
       <li class="media--episode-block col-md-4 col-sm-2">
         <div class="thumbnail-wrapper">
-          <img src={{image episode.thumbnail}}>
+          {{lazy-image src=(image episode.thumbnail)}}
         </div>
         <div class="thumbnail-description">
           <h6>{{t "media.routes.show.episodes.episode"}} {{episode.number}}</h6>

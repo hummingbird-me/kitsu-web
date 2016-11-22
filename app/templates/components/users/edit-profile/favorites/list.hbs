@@ -23,9 +23,9 @@
       {{#sortable-item model=item group=group tagName="li" class="media-sort-item card"}}
         <a class="media-sort-thumb-wrapper" href="#">
           {{#if isCharacter}}
-            <img class="media-sort-thumb" src={{image item.item.image}}>
+            {{lazy-image src=(image item.item.image) class="media-sort-thumb"}}
           {{else}}
-            <img class="media-sort-thumb" src={{image item.item.posterImage}}>
+            {{lazy-image src=(image item.item.posterImage) class="media-sort-thumb"}}
           {{/if}}
         </a>
         <span class="media-sort-title">

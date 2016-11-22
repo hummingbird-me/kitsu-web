@@ -3,11 +3,11 @@
     {{#if isCharacter}}
       {{! TODO/@vevix: Link to character/media -- Server needed for this }}
       <a href="#">
-        <img src={{image favorite.item.image}}>
+        {{lazy-image src=(image favorite.item.image)}}
       </a>
     {{else}}
       <a href={{href-to (concat type ".show") favorite.item}}>
-        <img src={{image favorite.item.posterImage}}>
+        {{lazy-image src=(image favorite.item.posterImage)}}
       </a>
     {{/if}}
   </div>

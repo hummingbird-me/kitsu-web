@@ -56,7 +56,7 @@
 
       {{! Poster Image }}
       <div class="col-lg-1 hidden-md-down columns no-padding-right">
-        <img class="drop-thumb" src={{image media.posterImage}}>
+        {{lazy-image src=(image media.posterImage) class="drop-thumb"}}
       </div>
 
       {{! Media Info }}

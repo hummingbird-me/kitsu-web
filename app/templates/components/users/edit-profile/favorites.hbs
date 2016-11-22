@@ -27,7 +27,7 @@
 
     <div class="tab-content">
       {{! Anime }}
-      {{users/edit-profile/favorites/items items=animeFavorites type="anime"
+      {{users/edit-profile/favorites/list items=animeFavorites type="anime"
         search=(perform search "anime")
         reorderItems=(action "reorderItems" "anime")
         addItem=(action "addItem")
@@ -36,7 +36,7 @@
         id="edit-favorite-anime" class="tab-pane active" role="tabpanel"}}
 
       {{! Manga }}
-      {{users/edit-profile/favorites/items items=mangaFavorites type="manga"
+      {{users/edit-profile/favorites/list items=mangaFavorites type="manga"
         search=(perform search "manga")
         reorderItems=(action "reorderItems" "manga")
         addItem=(action "addItem")
@@ -45,7 +45,7 @@
         id="edit-favorite-manga" class="tab-pane" role="tabpanel"}}
 
       {{! Characters }}
-      {{users/edit-profile/favorites/items items=characterFavorites type="character"
+      {{users/edit-profile/favorites/list items=characterFavorites type="character"
         search=(perform search "character")
         reorderItems=(action "reorderItems" "character")
         addItem=(action "addItem")

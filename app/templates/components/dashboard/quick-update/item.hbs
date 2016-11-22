@@ -45,5 +45,5 @@
     </div>
   </div>
   {{! TODO/@vevix: Use episode thumbnail and fallback to posterImage }}
-  <img src={{image entry.media.posterImage}}>
+  {{lazy-image src=(image entry.media.posterImage) tolerance=(hash right=200)}}
 </div>
