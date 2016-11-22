@@ -89,7 +89,7 @@ export default {
         nav: {
           summary: 'Summary',
           episodes: 'Episodes',
-          installments: 'Installments',
+          installments: 'Franchise',
           cast: 'Cast',
           reviews: 'Reviews',
           quotes: 'Quotes'
