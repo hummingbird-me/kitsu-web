@@ -1,0 +1,74 @@
+{{! TODO - @Josh - Reviews need some style love with dynamic content }}
+<div class="media-left">
+  {{! only shown when each review has its own media -- show media image }}
+  {{#if (not media)}}
+    <a href={{href-to (concat (model-type review.media) ".show") review.media}}>
+      {{lazy-image src=(image review.media.posterImage)}}
+    </a>
+  {{else}}
+    <a href={{href-to "users.index" review.user}}>
+      {{lazy-image src=(image review.user.avatar)}}
+    </a>
+  {{/if}}
+</div>
+<div class="media-body">
+  <small class="media-heading">
+    {{! only shown when each review has its own media -- show media title }}
+    {{#if (not media)}}
+      <h4>
+        <a href={{href-to (concat (model-type review.media) ".show") review.media}}>
+          {{review.media.canonicalTitle}}
+        </a>
+      </h4>
+    {{/if}}
+    {{t (concat "media.routes.show.reviews.title." (model-type (or media review.media))) progress=review.progress link=(create-link review.user.name "users.index" review.user)}}
+
+    {{! TODO - @Josh - Review rating }}
+    {{star-rating review.rating readOnly=true}}
+  </small>
+  <div class="comment-body">
+    {{! legacy reviews are from Hummingbird }}
+    {{#if expanded}}
+      {{#if review.legacy}}
+        {{{review.content}}}
+      {{else}}
+        {{{review.contentFormatted}}}
+      {{/if}}
+    {{else}}
+      {{#if review.legacy}}
+        <p>{{review.summary}}</p>
+        <small>This is a legacy review.</small>
+      {{else}}
+        {{text-clipper review.contentFormatted length=400 options=(hash html=true)}}
+      {{/if}}
+    {{/if}}
+  </div>
+
+  {{! review likes }}
+  <div class="stream-item-activity">
+    {{likeable-resource
+      resource=review
+      likesCount=review.likesCount
+      likesCountUpdate=(action (mut review.likesCount))
+      showUsers=true
+    }}
+  </div>
+
+  {{! review actions }}
+  <div class="review-action pull-sm-right">
+    {{#if (can-mutate review.user review)}}
+      <a data-toggle="modal" data-target="#{{elementId}}-review-modal" href="#" {{action (toggle "reviewOpen" this)}}>edit</a>
+      {{#if reviewOpen}}
+        {{to-elsewhere named="modal" send=(component "modals/media-review"
+          modalId=(concat elementId "-review-modal")
+          onClose=(toggle-action "reviewOpen" this)
+          review=review
+          updateEntry=(action "updateEntry")
+        )}}
+      {{/if}}
+    {{/if}}
+    {{#unless expanded}}
+      <a href={{href-to "reviews" review}}>view</a>
+    {{/unless}}
+  </div>
+</div>

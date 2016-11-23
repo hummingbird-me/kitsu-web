@@ -49,6 +49,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
 
   _getLibraryEntry(controller, media) {
     const promise = get(this, 'store').query('library-entry', {
+      include: 'review',
       filter: {
         user_id: get(this, 'session.account.id'),
         media_type: capitalize(modelType([media])),
@@ -86,8 +87,8 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
       });
     },
 
-    updateEntry(entry, property, status) {
-      set(entry, property, status);
+    updateEntry(entry, property, value) {
+      set(entry, property, value);
       return entry.save().catch(() => {
         entry.rollbackAttributes();
         get(this, 'notify').error(get(this, 'i18n').t('errors.request'));

@@ -39,7 +39,7 @@
           <li>{{capitalize genre.name}}</li>
         {{/each}}
       </ul>
-      <p>{{text-clipper media.synopsis length=400 maxLines=4}}</p>
+      <p>{{text-clipper media.synopsis length=400 options=(hash maxLines=4)}}</p>
     </div>
   {{/modal.body}}
 {{/bootstrap/bs-modal}}

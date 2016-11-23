@@ -17,7 +17,10 @@
 <section>
   <h5>Popular Reviews</h5>
   {{#if reviews}}
-    {{user-reviews reviews media=media}}
+    {{user-reviews reviews
+      media=media
+      updateEntry=(route-action "updateEntry")
+    }}
   {{else}}
     {{! TODO @Josh -- empty state for no reviews on media page }}
     <p>No Reviews</p>

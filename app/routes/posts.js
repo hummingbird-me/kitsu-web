@@ -1,8 +1,9 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
+import DataErrorMixin from 'client/mixins/routes/data-error';
 
-export default Route.extend({
+export default Route.extend(DataErrorMixin, {
   metrics: service(),
   session: service(),
 

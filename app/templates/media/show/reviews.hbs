@@ -1,6 +1,7 @@
 {{#if model}}
-  {{user-reviews model media=media}}
-
+  {{user-reviews model
+    media=media
+    updateEntry=(route-action "updateEntry")}}
   <div class="text-xs-center w-100">
     {{paginated-resource/infinite
       model=model

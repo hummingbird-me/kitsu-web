@@ -9,10 +9,10 @@
                 {{! poster  }}
                 {{lazy-image src=(image media.posterImage)}}
 
-                {{! Trailer }}
+                {{! trailer }}
                 {{#if media.youtubeVideoId}}
                   <div class="trailer">
-                    {{! TODO - @Josh - trailer button on media page }}
+                    {{! TODO - @Josh - trailer button on media page -- might be good to overlay again like browse page }}
                     <button data-toggle="modal" data-target="#media-trailer" class="button button--primary" {{action (toggle "trailerOpen" this)}}>
                       Watch Trailer
                     </button>
@@ -44,6 +44,7 @@
                     )}}
 
                   {{#if (and entry (not (is-promise entry)))}}
+                    {{! progress }}
                     <div class="entry-progress--mini-wrapper">
                       <span>Progress</span>
                       <div class="entry-progress entry-progress--mini">
@@ -63,6 +64,26 @@
                         </span>
                       </div>
                     </div>
+
+                    {{! review }}
+                    {{! TODO - @Josh - review button on media page }}
+                    {{#unless (and entry.review (not entry.review.isNew))}}
+                      <div>
+                        <button data-toggle="modal" data-target="#review-modal" class="button button--primary" {{action (toggle "reviewOpen" this)}}>
+                          Write a review
+                        </button>
+                      </div>
+                    {{/unless}}
+
+                    {{#if reviewOpen}}
+                      {{to-elsewhere named="modal" send=(component "modals/media-review"
+                        modalId="review-modal"
+                        onClose=(toggle-action "reviewOpen" this)
+                        media=media
+                        entry=entry
+                        updateEntry=(route-action "updateEntry")
+                      )}}
+                    {{/if}}
                   {{/if}}
                 {{/if}}
 

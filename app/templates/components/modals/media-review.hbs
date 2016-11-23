@@ -1,0 +1,58 @@
+{{#bootstrap/bs-modal
+  id=modalId
+  onClose=onClose as |modal|}}
+  {{#modal.body}}
+    {{#if (and media entry)}}
+      {{! TODO - @Josh - Review creation modal )}}
+      <div class="row">
+        <div class="col-sm-4">
+          {{lazy-image src=(image media.posterImage)}}
+        </div>
+        <div class="col-sm-8">
+          <h3>{{media.canonicalTitle}}</h3>
+
+          {{! media rating -- required to be set for review }}
+          <div>
+            <h6>Your Media Rating</h6>
+            {{star-rating entry.rating onClick=(action "updateEntry" entry "rating")}}
+          </div>
+
+          {{! review content! }}
+          {{expanding-textarea content
+            update=(action (mut content))
+            rows=5
+            placeholder="Add a review..."
+          }}
+
+          {{! delete review}}
+          {{#if (and review (not review.isNew))}}
+            <button class="button btn-danger" {{action (perform delete)}}>
+              {{#if delete.isRunning}}
+                {{loading-spinner size="small"}}
+              {{else}}
+                Delete
+              {{/if}}
+            </button>
+          {{/if}}
+
+          {{! publish review }}
+          <button class="button button--primary" disabled={{unless isValid "disabled"}} {{action (perform publish)}}>
+            {{#if publish.isRunning}}
+              {{loading-spinner size="small"}}
+            {{else}}
+              {{#if (and review (not review.isNew))}}
+                Edit
+              {{else}}
+                Publish
+              {{/if}}
+            {{/if}}
+          </button>
+        </div>
+      </div>
+    {{else}}
+      <div class="text-xs-center w-100">
+        {{loading-spinner size="large"}}
+      </div>
+    {{/if}}
+  {{/modal.body}}
+{{/bootstrap/bs-modal}}
