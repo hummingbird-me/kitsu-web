@@ -70,4 +70,14 @@
       {{t "errors.contentEmpty"}}
     </div>
   {{/each}}
+
+  <div class="w-100 text-xs-center">
+    {{paginated-resource/infinite
+      model=feed
+      modelName="feed"
+      loadingSize="large"
+      options=(hash type=streamType id=streamId)
+      update=(action "updateNextPage")
+    }}
+  </div>
 {{/if}}

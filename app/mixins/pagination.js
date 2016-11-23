@@ -37,8 +37,9 @@ export default Mixin.create({
     }
     let model = get(this, 'model');
     model = get(model, 'firstObject') || model;
-    const { modelName } = model.constructor;
-    const options = this._parseLink(nextLink);
+    let { modelName } = model.constructor;
+    modelName = get(this, 'modelName') || modelName;
+    const options = Object.assign(this._parseLink(nextLink), get(this, 'options'));
     const records = yield get(this, 'store').query(modelName, options);
     const links = get(records, 'links');
     invokeAction(this, 'update', records, links);

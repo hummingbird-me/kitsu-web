@@ -60,7 +60,8 @@ export default Component.extend({
         'subject.media',
         // follow
         'subject.follower,subject.followed'
-      ].join(',')
+      ].join(','),
+      page: { limit: 10 }
     });
   }).restartable(),
 
@@ -135,5 +136,14 @@ export default Component.extend({
         feed_id: get(this, 'feedId')
       });
     }).catch(() => {});
+  },
+
+  actions: {
+    updateNextPage(records, links) {
+      const dup = get(this, 'feed').toArray();
+      dup.addObjects(records);
+      set(this, 'feed', dup);
+      set(this, 'feed.links', links);
+    }
   }
 });

@@ -81,7 +81,7 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
         blocked: get(this, 'post.user')
       });
       block.save().then(() => {}).catch(() => (
-        get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+        get(this, 'notify').error(get(this, 'i18n').t('errors.request'))
       ));
     }
   }
