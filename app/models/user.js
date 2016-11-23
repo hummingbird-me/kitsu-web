@@ -67,6 +67,7 @@ export default Base.extend(Validations, {
   pastNames: attr('array'),
   postsCount: attr('number'),
   ratingsCount: attr('number'),
+  reviewsCount: attr('number'),
   roles: attr('array'),
   toFollow: attr('boolean'),
   waifuOrHusbando: attr('string'),

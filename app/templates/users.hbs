@@ -45,7 +45,10 @@
       <div class="nav navbar-nav">
         {{link-to (t "users.nav.activity") "users.index" class="nav-item nav-link"}}
         {{link-to (t "users.nav.library") "users.library" class="nav-item nav-link"}}
-        {{link-to (t "users.nav.reviews") "users.reviews" class="nav-item nav-link"}}
+        {{#link-to "users.reviews" class="nav-item nav-link"}}
+          {{t "users.nav.reviews"}}
+          <span class="tag tag-default">{{user.reviewsCount}}</span>
+        {{/link-to}}
         {{#link-to "users.followers" class="nav-item nav-link"}}
           {{t "users.nav.followers"}}
           <span class="tag tag-default">{{user.followersCount}}</span>
