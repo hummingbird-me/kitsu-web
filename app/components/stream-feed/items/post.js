@@ -3,6 +3,7 @@ import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import computed from 'ember-computed';
+import { typeOf } from 'ember-utils';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
@@ -79,7 +80,8 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
 
   actions: {
     trackEngagement(label, id) {
-      this._streamAnalytics(label, id || `Post:${get(this, 'post.id')}`);
+      const foreignId = typeOf(id) === 'string' ? id : undefined;
+      this._streamAnalytics(label, foreignId || `Post:${get(this, 'post.id')}`);
     },
 
     blockUser() {

@@ -39,17 +39,22 @@
       </small>
 
       {{! more dropdown }}
-      {{#if (not (is-self comment.user))}}
-        <span class="more-wrapper">
-          <a href="#" class="more-drop" id="moreDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{svg-jar "more"}}
-          </a>
-          <div class="dropdown-menu" aria-labelledby="moreDrop">
+      <span class="more-wrapper">
+        <a href="#" class="more-drop" id="moreDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{svg-jar "more"}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="moreDrop">
+          {{#if (can-mutate comment.user comment)}}
+            <a class="dropdown-item" href="#">Edit Comment</a>
+            <a class="dropdown-item" href="#" {{action "deleteComment"}}>Delete Comment</a>
+          {{/if}}
+
+          {{#if (not (is-self comment.user))}}
             <a class="dropdown-item" href="#">Report Comment</a>
             <a class="dropdown-item" href="#" {{action "blockUser"}}>Block @{{comment.user.name}}</a>
-          </div>
-        </span>
-      {{/if}}
+          {{/if}}
+        </div>
+      </span>
     </div>
 
     {{! comment replies }}
@@ -59,12 +64,14 @@
           {{loading-spinner size="small"}}
         </div>
       {{else}}
-        {{#if (and (gt comment.repliesCount 2) (not-eq comment.repliesCount replies.length))}}
+        {{#if (not-eq comment.repliesCount replies.length)}}
           <div class="comment-actions">
             <div class="d-inline-block">
               {{! TODO: i18n }}
               {{#paginated-resource/manual
                 model=replies
+                modelName="comment"
+                offset=replies.length
                 update=(action "loadReplies") as |active|
               }}
                 <a href="#">Show Previous Replies</a>
@@ -87,6 +94,7 @@
                 comment=reply
                 post=post
                 onReply=(action "onReply")
+                onDelete=(action "deletedReply")
                 likesCountUpdate=(action (mut reply.likesCount))
                 replyCountUpdate=(action (mut comment.repliesCount))
                 trackEngagement=(action "trackEngagement")

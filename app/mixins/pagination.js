@@ -62,9 +62,15 @@ export default Mixin.create({
       if (option[0].includes('[') === true) {
         let value = option[1];
         const match = option[0].match(/(.+)\[(.+)\]/);
-        if (match[1] === 'page' && match[2] === 'limit') {
-          if (get(this, 'limit') !== undefined) {
-            value = get(this, 'limit');
+        if (match[1] === 'page') {
+          if (match[2] === 'limit') {
+            if (get(this, 'limit') !== undefined) {
+              value = get(this, 'limit');
+            }
+          } else if (match[2] === 'offset') {
+            if (get(this, 'offset') !== undefined) {
+              value = get(this, 'offset');
+            }
           }
         }
         filter[match[1]] = filter[match[1]] || {};

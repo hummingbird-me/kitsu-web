@@ -102,8 +102,8 @@ export default Component.extend({
     if (get(this, 'isTopLevel') === true && get(this, 'comment.repliesCount') > 0) {
       get(this, 'getReplies').perform().then((replies) => {
         const content = replies.toArray().reverse();
+        set(content, 'links', get(replies, 'links'));
         set(this, 'replies', content);
-        set(this, 'replies.links', get(replies, 'links'));
       });
     }
   },
@@ -131,10 +131,25 @@ export default Component.extend({
       ));
     },
 
+    deleteComment() {
+      get(this, 'comment').destroyRecord()
+        .then(() => invokeAction(this, 'onDelete', get(this, 'comment')))
+        .catch((err) => {
+          get(this, 'comment').rollbackAttributes();
+          get(this, 'notify').error(errorMessages(err));
+        });
+    },
+
+    deletedReply(reply) {
+      get(this, 'replies').removeObject(reply);
+      invokeAction(this, 'replyCountUpdate', get(this, 'comment.repliesCount') - 1);
+    },
+
     createReply(component, event, content) {
       if (isEmpty(content) === true) { return; }
       const { shiftKey } = event;
       if (shiftKey === false) {
+        event.preventDefault();
         get(this, 'createReply').perform(content);
         component.clear();
       }

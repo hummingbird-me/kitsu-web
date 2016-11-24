@@ -59,9 +59,15 @@ export default Component.extend({
       if (isEmpty(content) === true) { return; }
       const { shiftKey } = event;
       if (shiftKey === false) {
+        event.preventDefault();
         get(this, 'createComment').perform(content);
         component.clear();
       }
+    },
+
+    deletedComment(comment) {
+      get(this, 'comments').removeObject(comment);
+      invokeAction(this, 'countUpdate', get(this, 'post.topLevelCommentsCount') - 1);
     },
 
     loadComments(records, links) {

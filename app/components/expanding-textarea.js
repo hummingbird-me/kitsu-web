@@ -4,7 +4,8 @@ import { invokeAction } from 'ember-invoke-action';
 /* global autosize */
 
 export default OneWayTextAreaComponent.extend({
-  keyUp() {
+  keyUp() { },
+  keyDown(event) {
     const method = get(this, `keyEvents.${event.keyCode}`);
     if (method) {
       invokeAction(this, method, this, event, event.target.value);

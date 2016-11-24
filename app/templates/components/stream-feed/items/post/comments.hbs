@@ -4,12 +4,14 @@
         {{loading-spinner size="small"}}
       </div>
     {{else}}
-      {{#if (and (gt post.topLevelCommentsCount 2) (not-eq post.topLevelCommentsCount comments.length))}}
+      {{#if (not-eq post.topLevelCommentsCount comments.length)}}
         <div class="comment-actions">
           <div class="d-inline-block">
             {{! TODO: i18n }}
             {{#paginated-resource/manual
               model=comments
+              modelName="comment"
+              offset=comments.length
               update=(action "loadComments") as |active|
             }}
               <a href="#">Show Previous Comments</a>
@@ -31,6 +33,7 @@
             comment=comment
             post=post
             readOnly=readOnly
+            onDelete=(action "deletedComment")
             likesCountUpdate=(action (mut comment.likesCount))
             replyCountUpdate=(action (mut comment.repliesCount))
             trackEngagement=(action "trackEngagement")
