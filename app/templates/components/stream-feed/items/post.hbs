@@ -46,9 +46,12 @@
               </span>
             {{/unless}}
           {{/if}}
-          <small class="author-secondary">
-            {{moment-from-now post.createdAt}}
-          </small>
+
+          <a href={{href-to "posts" post}}>
+            <small class="author-secondary">
+              {{moment-from-now post.createdAt}}
+            </small>
+          </a>
         </div>
       </div>
 
