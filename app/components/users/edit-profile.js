@@ -1,7 +1,7 @@
 import Component from 'ember-component';
 import set from 'ember-metal/set';
 import get from 'ember-metal/get';
-import computed, { equal, alias, filterBy } from 'ember-computed';
+import computed, { equal, filterBy } from 'ember-computed';
 import service from 'ember-service/inject';
 import { image } from 'client/helpers/image';
 import { task } from 'ember-concurrency';
