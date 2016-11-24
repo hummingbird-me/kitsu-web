@@ -30,7 +30,7 @@ test('it returns the error message from the Doorkeeper key', function(assert) {
 
 test('it returns the default error message', function(assert) {
   let result = errorMessages(undefined);
-  assert.equal(result, 'An unknown error occurred');
+  assert.equal(result, 'There was an issue with your request, please try again.');
   result = errorMessages({});
-  assert.equal(result, 'An unknown error occurred');
+  assert.equal(result, 'There was an issue with your request, please try again.');
 });

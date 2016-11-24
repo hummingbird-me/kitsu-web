@@ -72,7 +72,6 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
     if (get(this, 'group') !== undefined) {
       set(this, 'post', get(this, 'activity.subject.content') || get(this, 'activity.subject'));
     }
-    const post = get(this, 'post');
     if (get(this, 'feedId') !== undefined) {
       set(this, 'userId', get(this, 'feedId').split(':')[1]);
     }
