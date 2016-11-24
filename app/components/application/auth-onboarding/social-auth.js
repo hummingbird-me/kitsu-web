@@ -5,6 +5,7 @@ import service from 'ember-service/inject';
 import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
 import { underscore } from 'ember-string';
+import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   errorMessage: undefined,
@@ -22,7 +23,7 @@ export default Component.extend({
           get(this, 'facebook').getUserData().then((response) => {
             const data = { ...response, name: underscore(get(response, 'name')) };
             invokeAction(this, 'changeComponent', 'sign-up', data);
-          }).catch(() => set(this, 'errorMessage', get(this, 'i18n').t('errors.request')));
+          }).catch(err => set(this, 'errorMessage', errorMessages(err)));
         }
       });
   }).drop(),

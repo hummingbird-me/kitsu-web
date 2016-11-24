@@ -6,10 +6,10 @@ import computed from 'ember-computed';
 import { task } from 'ember-concurrency';
 import { prependObjects } from 'client/utils/array-utils';
 import moment from 'moment';
+import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   ajax: service(),
-  i18n: service(),
   notify: service(),
   session: service(),
   store: service(),
@@ -132,9 +132,9 @@ export default Component.extend({
       const groups = get(this, 'groups').filter(group => get(group, 'isSeen') === false);
       if (get(groups, 'length') > 0) {
         groups.forEach(group => set(group, 'isSeen', true));
-        this._mark('seen', groups).catch(() => {
+        this._mark('seen', groups).catch((err) => {
           groups.forEach(group => set(group, 'isSeen', false));
-          get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+          get(this, 'notify').error(errorMessages(err));
         });
       }
     },
@@ -147,9 +147,9 @@ export default Component.extend({
       const groups = get(this, 'groups').filter(group => get(group, 'isRead') === false);
       if (get(groups, 'length') > 0) {
         groups.forEach(group => set(group, 'isRead', true));
-        this._mark('read', groups).catch(() => {
+        this._mark('read', groups).catch((err) => {
           groups.forEach(group => set(group, 'isRead', false));
-          get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+          get(this, 'notify').error(errorMessages(err));
         });
       }
     }

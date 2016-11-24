@@ -6,6 +6,7 @@ import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 import libraryStatus from 'client/utils/library-status';
 import PaginationMixin from 'client/mixins/routes/pagination';
+import errorMessages from 'client/utils/error-messages';
 
 export default Route.extend(PaginationMixin, {
   queryParams: {
@@ -67,18 +68,18 @@ export default Route.extend(PaginationMixin, {
     saveEntry(entry) {
       if (get(entry, 'validations.isValid') === true) {
         return entry.save()
-          .catch(() => {
+          .catch((err) => {
             entry.rollbackAttributes();
-            get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+            get(this, 'notify').error(errorMessages(err));
           });
       }
     },
 
     deleteEntry(entry) {
       return entry.destroyRecord()
-        .catch(() => {
+        .catch((err) => {
           entry.rollbackAttributes();
-          get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+          get(this, 'notify').error(errorMessages(err));
         });
     }
   }

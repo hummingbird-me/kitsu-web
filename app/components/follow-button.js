@@ -5,13 +5,13 @@ import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 import { notEmpty } from 'ember-computed';
 import observer from 'ember-metal/observer';
+import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   tagName: 'button',
   classNameBindings: ['isFollowing:active:inactive'],
   classNames: ['button', 'button--primary'],
 
-  i18n: service(),
   notify: service(),
   session: service(),
   store: service(),
@@ -39,7 +39,7 @@ export default Component.extend({
       yield get(this, 'relationship').destroyRecord().then(() => {
         set(this, 'relationship', undefined);
         get(this, 'session.account').decrementProperty('followingCount');
-      }).catch(() => get(this, 'notify').error(get(this, 'i18n').t('errors.request')));
+      }).catch(err => get(this, 'notify').error(errorMessages(err)));
     } else {
       yield get(this, 'store').createRecord('follow', {
         follower: get(this, 'session.account'),
@@ -48,7 +48,7 @@ export default Component.extend({
         set(this, 'relationship', record);
         get(this, 'session.account').incrementProperty('followingCount');
       })
-      .catch(() => get(this, 'notify').error(get(this, 'i18n').t('errors.request')));
+      .catch(err => get(this, 'notify').error(errorMessages(err)));
     }
   }).drop(),
 

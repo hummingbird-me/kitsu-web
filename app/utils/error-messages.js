@@ -9,7 +9,7 @@ const lookupTable = {
 };
 
 export default function errorMessages(obj) {
-  let reason = 'An unknown error occurred';
+  let reason = 'There was an issue with your request, please try again.';
   if (obj === undefined) {
     return reason;
   }

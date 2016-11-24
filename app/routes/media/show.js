@@ -8,19 +8,20 @@ import { task, timeout } from 'ember-concurrency';
 import CanonicalRedirectMixin from 'client/mixins/routes/canonical-redirect';
 import CoverPageMixin from 'client/mixins/routes/cover-page';
 import { modelType } from 'client/helpers/model-type';
+import errorMessages from 'client/utils/error-messages';
 
 export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   templateName: 'media/show',
-  i18n: service(),
+
   metrics: service(),
   notify: service(),
   session: service(),
 
   saveEntryTask: task(function* (entry) {
     yield timeout(500);
-    return yield entry.save().catch(() => {
+    return yield entry.save().catch((err) => {
       entry.rollbackAttributes();
-      get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+      get(this, 'notify').error(errorMessages(err));
     });
   }).restartable(),
 
@@ -91,16 +92,16 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
         user,
         media
       });
-      return entry.save().then(() => set(controller, 'entry', entry)).catch(() => {
-        get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+      return entry.save().then(() => set(controller, 'entry', entry)).catch((err) => {
+        get(this, 'notify').error(errorMessages(err));
       });
     },
 
     updateEntry(entry, property, value) {
       set(entry, property, value);
-      return entry.save().catch(() => {
+      return entry.save().catch((err) => {
         entry.rollbackAttributes();
-        get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+        get(this, 'notify').error(errorMessages(err));
       });
     },
 
@@ -108,9 +109,9 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
       const controller = this.controllerFor(get(this, 'routeName'));
       return entry.destroyRecord()
         .then(() => set(controller, 'entry', undefined))
-        .catch(() => {
+        .catch((err) => {
           entry.rollbackAttributes();
-          get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+          get(this, 'notify').error(errorMessages(err));
         });
     },
 

@@ -7,6 +7,7 @@ import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import { scheduleOnce } from 'ember-runloop';
 import { prependObjects } from 'client/utils/array-utils';
+import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   classNameBindings: ['comment.isNew:new-comment'],
@@ -14,7 +15,6 @@ export default Component.extend({
   isReplying: false,
   isTopLevel: false,
 
-  i18n: service(),
   notify: service(),
   session: service(),
   store: service(),
@@ -52,9 +52,10 @@ export default Component.extend({
 
     yield reply.save()
       .then(() => invokeAction(this, 'trackEngagement', 'comment'))
-      .catch(() => {
+      .catch((err) => {
         invokeAction(this, 'replyCountUpdate', get(this, 'comment.repliesCount') - 1);
         get(this, 'replies').removeObject(reply);
+        get(this, 'notify').error(errorMessages(err))
       });
   }).drop(),
 
@@ -71,9 +72,10 @@ export default Component.extend({
     yield like.save().then((record) => {
       invokeAction(this, 'trackEngagement', 'like', `Comment:${get(this, 'comment.id')}`);
       set(this, 'like', record);
-    }).catch(() => {
+    }).catch((err) => {
       set(this, 'isLiked', false);
       invokeAction(this, 'likesCountUpdate', get(this, 'comment.likesCount') - 1);
+      get(this, 'notify').error(errorMessages(err))
     });
   }).drop(),
 
@@ -124,8 +126,8 @@ export default Component.extend({
         user: get(this, 'session.account'),
         blocked: get(this, 'comment.user')
       });
-      block.save().then(() => {}).catch(() => (
-        get(this, 'notify').error(get(this, 'i18n').t('errors.request'))
+      block.save().then(() => {}).catch((err) => (
+        get(this, 'notify').error(errorMessages(err))
       ));
     },
 

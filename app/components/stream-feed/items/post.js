@@ -6,13 +6,13 @@ import { hrefTo } from 'ember-href-to/helpers/href-to';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
 import InViewportMixin from 'ember-in-viewport';
+import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend(ClipboardMixin, InViewportMixin, {
   classNameBindings: ['post.isNew:new-post'],
   classNames: ['stream-item', 'row'],
   isHidden: false,
 
-  i18n: service(),
   notify: service(),
   session: service(),
   store: service(),
@@ -80,8 +80,8 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
         user: get(this, 'session.account'),
         blocked: get(this, 'post.user')
       });
-      block.save().then(() => {}).catch(() => (
-        get(this, 'notify').error(get(this, 'i18n').t('errors.request'))
+      block.save().then(() => {}).catch(err => (
+        get(this, 'notify').error(errorMessages(err))
       ));
     }
   }

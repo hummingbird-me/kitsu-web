@@ -5,6 +5,7 @@ import service from 'ember-service/inject';
 import { capitalize } from 'ember-string';
 import observer from 'ember-metal/observer';
 import { modelType } from 'client/helpers/model-type';
+import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   classNames: ['poster-wrapper'],
@@ -13,7 +14,6 @@ export default Component.extend({
   trailerOpen: false,
   hasHovered: false,
 
-  i18n: service(),
   notify: service(),
   session: service(),
   store: service(),
@@ -77,24 +77,24 @@ export default Component.extend({
         media: get(this, 'media')
       });
       return entry.save().then(() => set(this, 'entry', entry))
-        .catch(() => get(this, 'notify').error(get(this, 'i18n').t('errors.request')));
+        .catch(err => get(this, 'notify').error(errorMessages(err)));
     },
 
     updateEntry(status) {
       set(this, 'entry.status', status);
       get(this, 'entry').save()
-        .catch(() => {
+        .catch((err) => {
           get(this, 'entry').rollbackAttributes();
-          get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+          get(this, 'notify').error(errorMessages(err));
         });
     },
 
     deleteEntry() {
       get(this, 'entry').destroyRecord()
         .then(() => set(this, 'entry', undefined))
-        .catch(() => {
+        .catch((err) => {
           get(this, 'entry').rollbackAttributes();
-          get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+          get(this, 'notify').error(errorMessages(err));
         });
     }
   }

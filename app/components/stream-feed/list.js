@@ -8,10 +8,13 @@ import { capitalize } from 'ember-string';
 import computed from 'ember-computed';
 import getter from 'client/utils/getter';
 import { modelType } from 'client/helpers/model-type';
+import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   filter: 'all',
   readOnly: false,
+
+  notify: service(),
   session: service(),
   store: service(),
   metrics: service(),
@@ -89,9 +92,10 @@ export default Component.extend({
     get(this, 'session.account').incrementProperty('postsCount');
     yield post.save()
       .then(record => set(activity, 'foreignId', `Post:${get(record, 'id')}`))
-      .catch(() => {
+      .catch((err) => {
         get(this, 'feed').removeObject(group);
         get(this, 'session.account').decrementProperty('postsCount');
+        get(this, 'notify').error(errorMessages(err));
       });
   }).drop(),
 

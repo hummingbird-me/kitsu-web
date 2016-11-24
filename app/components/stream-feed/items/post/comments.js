@@ -6,9 +6,12 @@ import { isEmpty } from 'ember-utils';
 import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
 import { prependObjects } from 'client/utils/array-utils';
+import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   classNames: ['stream-item-comments'],
+
+  notify: service(),
   session: service(),
   store: service(),
 
@@ -33,10 +36,11 @@ export default Component.extend({
     get(this, 'session.account').incrementProperty('commentsCount');
     yield comment.save().then(() => {
       invokeAction(this, 'trackEngagement', 'comment');
-    }).catch(() => {
+    }).catch((err) => {
       get(this, 'comments').removeObject(comment);
       invokeAction(this, 'countUpdate', get(this, 'post.topLevelCommentsCount') - 1);
       get(this, 'session.account').decrementProperty('commentsCount');
+      get(this, 'notify').error(errorMessages(err));
     });
   }).drop(),
 

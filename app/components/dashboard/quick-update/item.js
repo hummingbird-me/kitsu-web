@@ -6,6 +6,7 @@ import computed from 'ember-computed';
 import service from 'ember-service/inject';
 import getter from 'client/utils/getter';
 import { modelType } from 'client/helpers/model-type';
+import errorMessages from 'client/utils/error-messages';
 
 const QuickUpdateItemComponent = Component.extend({
   i18n: service(),
@@ -58,9 +59,9 @@ const QuickUpdateItemComponent = Component.extend({
     if (get(this, 'nextProgress') !== progress) {
       set(entry, 'progress', progress + 1);
     }
-    yield entry.save().catch(() => {
+    yield entry.save().catch((err) => {
       entry.rollbackAttributes();
-      get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+      get(this, 'notify').error(errorMessages(err));
     });
   }).enqueue(),
 
@@ -68,9 +69,9 @@ const QuickUpdateItemComponent = Component.extend({
     rateEntry(rating) {
       const entry = get(this, 'entry');
       set(entry, 'rating', rating);
-      entry.save().catch(() => {
+      entry.save().catch((err) => {
         entry.rollbackAttributes();
-        get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+        get(this, 'notify').error(errorMessages(err));
       });
     }
   }

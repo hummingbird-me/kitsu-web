@@ -6,9 +6,9 @@ import { task, timeout } from 'ember-concurrency';
 import { modelType } from 'client/helpers/model-type';
 import { invokeAction } from 'ember-invoke-action';
 import RSVP from 'rsvp';
+import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
-  i18n: service(),
   notify: service(),
   session: service(),
   store: service(),
@@ -77,8 +77,8 @@ export default Component.extend({
         invokeAction(this, 'addRecord', favorite);
         // Increase count on user
         get(this, 'session.account').incrementProperty('favoritesCount');
-      }).catch(() => {
-        get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+      }).catch((err) => {
+        get(this, 'notify').error(errorMessages(err));
       });
     },
 
@@ -89,8 +89,8 @@ export default Component.extend({
         items.removeObject(item);
         items.forEach(record => set(record, 'favRank', items.indexOf(record) + 1));
         invokeAction(this, 'removeRecord', item);
-      }).catch(() => {
-        get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+      }).catch((err) => {
+        get(this, 'notify').error(errorMessages(err));
       });
     },
 

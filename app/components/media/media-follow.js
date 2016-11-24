@@ -5,6 +5,7 @@ import set from 'ember-metal/set';
 import { task } from 'ember-concurrency';
 import { capitalize } from 'ember-string';
 import { modelType } from 'client/helpers/model-type';
+import errorMessages from 'client/utils/error-messages';
 
 export default FollowComponent.extend({
   layout,
@@ -27,7 +28,7 @@ export default FollowComponent.extend({
     if (get(this, 'isFollowing')) {
       yield get(this, 'relationship').destroyRecord().then(() => {
         set(this, 'relationship', undefined);
-      }).catch(() => get(this, 'notify').error(get(this, 'i18n').t('errors.request')));
+      }).catch(err => get(this, 'notify').error(errorMessages(err)));
     } else {
       yield get(this, 'store').createRecord('media-follow', {
         user: get(this, 'session.account'),
@@ -35,7 +36,7 @@ export default FollowComponent.extend({
       }).save().then((record) => {
         set(this, 'relationship', record);
       })
-      .catch(() => get(this, 'notify').error(get(this, 'i18n').t('errors.request')));
+      .catch(err => get(this, 'notify').error(errorMessages(err)));
     }
   }).drop()
 });
