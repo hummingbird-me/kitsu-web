@@ -21,12 +21,10 @@
         {{/if}}
       </ul>
     {{/if}}
+  {{else}}
+    <span class="sm-comment-count" {{action (toggle "modalOpen" this)}}>{{likesCount}}</span>
   {{/if}}
 {{/if}}
-
-{{#unless showUsers}}
-  <span class="sm-comment-count" {{action (toggle "modalOpen" this)}}>{{likesCount}}</span>
-{{/unless}}
 
 {{! modal }}
 {{#if modalOpen}}
