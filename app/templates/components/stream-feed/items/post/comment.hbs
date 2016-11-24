@@ -25,6 +25,7 @@
         resource=comment
         likesCount=comment.likesCount
         likesCountUpdate=(action (mut comment.likesCount))
+        onCreate=(action "trackEngagement" "like")
       }}
 
       {{! TODO/@Josh -- style reply action }}

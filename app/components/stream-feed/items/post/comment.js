@@ -51,7 +51,7 @@ export default Component.extend({
     set(this, 'isReplying', false);
 
     yield reply.save()
-      .then(() => invokeAction(this, 'trackEngagement', 'comment', `Comment:${get(this, 'comment.id')}`))
+      .then(() => invokeAction(this, 'trackEngagement', 'comment'))
       .catch(() => {
         invokeAction(this, 'replyCountUpdate', get(this, 'comment.repliesCount') - 1);
         get(this, 'replies').removeObject(reply);
@@ -156,11 +156,11 @@ export default Component.extend({
       prependObjects(content, records);
       set(this, 'replies', content);
       set(this, 'replies.links', links);
-      invokeAction(this, 'trackEngagement', 'click', `Comment:${get(this, 'comment.id')}`);
+      invokeAction(this, 'trackEngagement', 'click');
     },
 
-    trackEngagement(...args) {
-      invokeAction(this, 'trackEngagement', ...args);
+    trackEngagement(label) {
+      invokeAction(this, 'trackEngagement', label, `Comment:${get(this, 'comment.id')}`);
     }
   }
 });
