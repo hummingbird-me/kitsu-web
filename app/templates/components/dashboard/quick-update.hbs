@@ -17,7 +17,7 @@
 </div>
 
 {{#if getEntriesTask.isRunning}}
-  {{! TODO -- Loading State? }}
+  {{! TODO -- @josh -- Loading State? }}
 {{else}}
   <div class="carousel">
     {{#each initialEntries as |entry|}}
@@ -27,7 +27,7 @@
     {{#if (lt initialEntries.length 4)}}
       <div class="quick-update-item hint-panel">
         {{t "dashboard.quickUpdate.hint.text" link=(create-link (t "dashboard.quickUpdate.hint.library") 'users.library' session.account.name)}}
-        <a href="#" class="button button--primary">
+        <a href={{href-to "anime.index"}} class="button button--primary">
           {{t "dashboard.quickUpdate.hint.discover"}}
         </a>
       </div>

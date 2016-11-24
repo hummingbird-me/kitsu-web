@@ -29,9 +29,10 @@
       <p>{{user.name}} is not following anyone.</p>
     {{/each}}
 
-    <div class="m-t-1 text-xs-center">
+    <div class="m-t-1 text-xs-center w-100">
       {{paginated-resource/infinite
         model=model
+        loadingSize="large"
         update=(route-action "updateNextPage")
       }}
     </div>
