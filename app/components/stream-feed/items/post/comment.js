@@ -12,6 +12,7 @@ import errorMessages from 'client/utils/error-messages';
 export default Component.extend({
   classNameBindings: ['comment.isNew:new-comment'],
   isLiked: false,
+  isEditing: false,
   isReplying: false,
   isTopLevel: false,
 
@@ -57,6 +58,10 @@ export default Component.extend({
         get(this, 'replies').removeObject(reply);
         get(this, 'notify').error(errorMessages(err));
       });
+  }).drop(),
+
+  updateComment: task(function* () {
+    yield get(this, 'comment').save().catch(err => get(this, 'notify').error(errorMessages(err)));
   }).drop(),
 
   createLike: task(function* () {
@@ -129,6 +134,17 @@ export default Component.extend({
       block.save().then(() => {}).catch(err => (
         get(this, 'notify').error(errorMessages(err))
       ));
+    },
+
+    updateComment(component, event, content) {
+      if (isEmpty(content) === true) { return; }
+      const { shiftKey } = event;
+      if (shiftKey === false) {
+        event.preventDefault();
+        get(this, 'updateComment').perform();
+        component.clear();
+        this.toggleProperty('isEditing');
+      }
     },
 
     deleteComment() {

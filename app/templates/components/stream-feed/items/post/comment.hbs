@@ -15,8 +15,20 @@
         {{comment.user.name}}
       </a>
     </h4>
+
     <span class="comment-body">
-      {{{comment.contentFormatted}}}
+      {{#if isEditing}}
+        {{expanding-textarea comment.content
+          update=(action (mut comment.content))
+          keyEvents=(hash 13=(action "updateComment"))
+          class="form-control add-comment"}}
+      {{else}}
+        {{#if updateComment.isRunning}}
+          {{loading-spinner size="small"}}
+        {{else}}
+          {{{comment.contentFormatted}}}
+        {{/if}}
+      {{/if}}
     </span>
 
     <div class="stream-item-activity">
@@ -45,7 +57,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="moreDrop">
           {{#if (can-mutate comment.user comment)}}
-            <a class="dropdown-item" href="#">Edit Comment</a>
+            <a class="dropdown-item" href="#" {{action (toggle "isEditing" this)}}>Edit Comment</a>
             <a class="dropdown-item" href="#" {{action "deleteComment"}}>Delete Comment</a>
           {{/if}}
 
