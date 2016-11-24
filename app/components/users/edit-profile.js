@@ -8,14 +8,12 @@ import { task } from 'ember-concurrency';
 import run from 'ember-runloop';
 import { invokeAction } from 'ember-invoke-action';
 import RSVP from 'rsvp';
+import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   errorMessage: undefined,
 
-  i18n: service(),
   router: service('-routing'),
-  session: service(),
-  user: alias('session.account'),
 
   _component: 'about-me',
   componentName: computed('_component', {
@@ -24,9 +22,9 @@ export default Component.extend({
     }
   }).readOnly(),
 
-  coverImageStyle: computed('session.account.coverImage', {
+  coverImageStyle: computed('user.coverImage', {
     get() {
-      const coverImage = image([get(this, 'session.account.coverImage')]);
+      const coverImage = image([get(this, 'user.coverImage')]);
       return `background-image: url("${coverImage}")`.htmlSafe();
     }
   }).readOnly(),
@@ -77,7 +75,7 @@ export default Component.extend({
     updateProfile() {
       get(this, 'updateProfileTask').perform()
         .then(() => this.$('.modal').modal('hide'))
-        .catch(() => set(this, 'errorMessage', get(this, 'i18n').t('errors.request')));
+        .catch(err => set(this, 'errorMessage', errorMessages(err)));
     },
 
     updateImage(property, event) {

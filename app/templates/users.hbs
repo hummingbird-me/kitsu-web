@@ -67,6 +67,7 @@
 
 {{#if isEditing}}
   {{to-elsewhere named="modal" send=(component "users/edit-profile"
+    user=user
     modalId="edit-profile-modal"
     onClose=(toggle-action "isEditing" this))}}
 {{/if}}
