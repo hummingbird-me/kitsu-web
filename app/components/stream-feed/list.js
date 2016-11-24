@@ -29,13 +29,13 @@ export default Component.extend({
     }
   }).readOnly(),
 
-  filteredFeed: computed('feed', 'filter', {
+  filteredFeed: computed('feed.@each.isDeleted', 'filter', {
     get() {
       const feed = get(this, 'feed');
       if (feed === undefined) {
         return [];
       }
-      let result = feed;
+      let result = feed.rejectBy('isDeleted');
       const filter = get(this, 'filter');
       if (filter === 'media') {
         result = result.filter(group => (

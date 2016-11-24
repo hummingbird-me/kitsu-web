@@ -154,6 +154,12 @@
             <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "posts" post.id)}} {{action "trackEngagement" "click"}}>
               Copy Link to Post
             </a>
+
+            {{#if (can-mutate post.user post)}}
+              <a class="dropdown-item" href="#">Edit Post</a>
+              <a class="dropdown-item" href="#" {{action "deletePost"}}>Delete Post</a>
+            {{/if}}
+
             {{#if (not (is-self post.user))}}
               <a class="dropdown-item" href="#">Report Post</a>
               <a class="dropdown-item" href="#" {{action "blockUser"}}>Block @{{post.user.name}}</a>

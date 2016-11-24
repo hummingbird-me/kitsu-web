@@ -55,7 +55,7 @@ export default Component.extend({
       .catch((err) => {
         invokeAction(this, 'replyCountUpdate', get(this, 'comment.repliesCount') - 1);
         get(this, 'replies').removeObject(reply);
-        get(this, 'notify').error(errorMessages(err))
+        get(this, 'notify').error(errorMessages(err));
       });
   }).drop(),
 
@@ -75,7 +75,7 @@ export default Component.extend({
     }).catch((err) => {
       set(this, 'isLiked', false);
       invokeAction(this, 'likesCountUpdate', get(this, 'comment.likesCount') - 1);
-      get(this, 'notify').error(errorMessages(err))
+      get(this, 'notify').error(errorMessages(err));
     });
   }).drop(),
 
@@ -126,7 +126,7 @@ export default Component.extend({
         user: get(this, 'session.account'),
         blocked: get(this, 'comment.user')
       });
-      block.save().then(() => {}).catch((err) => (
+      block.save().then(() => {}).catch(err => (
         get(this, 'notify').error(errorMessages(err))
       ));
     },

@@ -14,6 +14,7 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
   isHidden: false,
 
   notify: service(),
+  router: service('-routing'),
   session: service(),
   store: service(),
   metrics: service(),
@@ -61,7 +62,7 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
   didReceiveAttrs() {
     this._super(...arguments);
     if (get(this, 'group') !== undefined) {
-      set(this, 'post', get(this, 'activity.subject'));
+      set(this, 'post', get(this, 'activity.subject.content') || get(this, 'activity.subject'));
     }
     const post = get(this, 'post');
     set(this, 'isHidden', get(post, 'nsfw') === true || get(post, 'spoiler') === true);
@@ -83,6 +84,22 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
       block.save().then(() => {}).catch(err => (
         get(this, 'notify').error(errorMessages(err))
       ));
+    },
+
+    deletePost() {
+      get(this, 'post').destroyRecord()
+        .then(() => {
+          if (get(this, 'group') === undefined) {
+            get(this, 'router').transitionTo('dashboard');
+          } else {
+            const record = get(this, 'store').peekRecord('activity-group', get(this, 'group.id'));
+            record.deleteRecord();
+          }
+        })
+        .catch((err) => {
+          get(this, 'post').rollbackAttributes();
+          get(this, 'notify').error(errorMessages(err));
+        });
     }
   }
 });
