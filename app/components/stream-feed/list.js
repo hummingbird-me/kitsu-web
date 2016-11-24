@@ -131,6 +131,7 @@ export default Component.extend({
     set(this, 'feed', []);
     get(this, 'getFeedData').perform(streamType, streamId).then((data) => {
       get(this, 'feed').addObjects(data);
+      set(this, 'feed.links', get(data, 'links'));
       const list = data.map(group => get(group, 'activities').map(activity => get(activity, 'foreignId')));
       if (isEmpty(list) === true) {
         return;
