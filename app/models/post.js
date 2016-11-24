@@ -12,6 +12,7 @@ export default Base.extend({
   nsfw: attr('boolean'),
   postLikesCount: attr('number'),
   spoiler: attr('boolean'),
+  topLevelCommentsCount: attr('number'),
 
   media: belongsTo('media'),
   spoiledUnit: belongsTo('base'),

@@ -166,7 +166,7 @@
         {{stream-feed/items/post/comments
           post=post
           readOnly=readOnly
-          countUpdate=(action (mut post.commentsCount))
+          countUpdate=(action (mut post.topLevelCommentsCount))
           trackEngagement=(action "trackEngagement")
         }}
       {{/if}}

@@ -1,10 +1,10 @@
-{{#if post.commentsCount}}
+{{#if post.topLevelCommentsCount}}
     {{#if getComments.isRunning}}
       <div class="p-t-1 p-b-1 text-xs-center">
         {{loading-spinner size="small"}}
       </div>
     {{else}}
-      {{#if (and (gt post.commentsCount 2) (not-eq post.commentsCount comments.length))}}
+      {{#if (and (gt post.topLevelCommentsCount 2) (not-eq post.topLevelCommentsCount comments.length))}}
         <div class="comment-actions">
           <div class="d-inline-block">
             {{! TODO: i18n }}
@@ -19,7 +19,7 @@
           {{! Comment count }}
           <div class="pull-sm-right">
             {{! TODO: i18n / pad left }}
-            {{comments.length}} of {{post.commentsCount}}
+            {{comments.length}} of {{post.topLevelCommentsCount}}
           </div>
         </div>
       {{/if}}

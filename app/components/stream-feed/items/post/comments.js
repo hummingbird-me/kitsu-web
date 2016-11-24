@@ -29,13 +29,13 @@ export default Component.extend({
     });
     get(this, 'comments').addObject(comment);
     // update comments count
-    invokeAction(this, 'countUpdate', get(this, 'post.commentsCount') + 1);
+    invokeAction(this, 'countUpdate', get(this, 'post.topLevelCommentsCount') + 1);
     get(this, 'session.account').incrementProperty('commentsCount');
     yield comment.save().then(() => {
       invokeAction(this, 'trackEngagement', 'comment');
     }).catch(() => {
       get(this, 'comments').removeObject(comment);
-      invokeAction(this, 'countUpdate', get(this, 'post.commentsCount') - 1);
+      invokeAction(this, 'countUpdate', get(this, 'post.topLevelCommentsCount') - 1);
       get(this, 'session.account').decrementProperty('commentsCount');
     });
   }).drop(),
