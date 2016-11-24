@@ -11,13 +11,18 @@
 </a>
 
 <div class="dropdown-menu notification-drop">
-  <header>
-    <a href={{href-to "notifications"}} class="see-all-notifications">See All Notifications</a>
-    <a href="#" class="mark-as-read" {{action "markRead"}}>Mark all as Read</a>
-  </header>
-  <ul class="notification-list">
-    {{#each groups as |group|}}
-      {{application/user-notifications/item tagName="li" class="notification-item" group=group}}
-    {{/each}}
-  </ul>
+  {{#if (is-empty groups)}}
+    {{! -- TODO -- @Josh -- notifications empty state }}
+    <p>No notifications!</p>
+  {{else}}
+    <header>
+      <a href={{href-to "notifications"}} class="see-all-notifications">See All Notifications</a>
+      <a href="#" class="mark-as-read" {{action "markRead"}}>Mark all as Read</a>
+    </header>
+    <ul class="notification-list">
+      {{#each groups as |group|}}
+        {{application/user-notifications/item tagName="li" class="notification-item" group=group}}
+      {{/each}}
+    </ul>
+  {{/if}}
 </div>

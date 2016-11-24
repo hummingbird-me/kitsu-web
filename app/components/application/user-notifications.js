@@ -8,6 +8,9 @@ import { prependObjects } from 'client/utils/array-utils';
 import moment from 'moment';
 
 export default Component.extend({
+  ajax: service(),
+  i18n: service(),
+  notify: service(),
   session: service(),
   store: service(),
   streamRealtime: service(),
@@ -27,17 +30,14 @@ export default Component.extend({
    * won't reset the activities relationship
    */
   getNotifications: task(function* () {
-    // TODO: Limit the number of notifications pulled here and filter on isRead: false
     return yield get(this, 'store').query('feed', {
       type: 'notifications',
       id: get(this, 'session.account.id'),
       include: 'actor'
     }).then((groups) => {
       const meta = get(groups, 'meta');
-      set(this, 'groups', groups.map(group => ({
-        ...group,
-        activities: get(group, 'activities').toArray()
-      })));
+      groups.forEach(group => set(group, 'activities', get(group, 'activities').toArray()));
+      set(this, 'groups', groups);
       set(this, 'groups.meta', meta);
       return get(this, 'groups');
     });
@@ -112,15 +112,44 @@ export default Component.extend({
     return enriched;
   },
 
+  _mark(type, data) {
+    const feedUrl = `/feeds/notifications/${get(this, 'session.account.id')}/_${type}`;
+    return get(this, 'ajax').request(feedUrl, {
+      method: 'POST',
+      data: JSON.stringify(data.map(group => get(group, 'id'))),
+      contentType: 'application/json'
+    });
+  },
+
   actions: {
     markSeen() {
-      // TODO: API Needed here (will mark notifications here as seen)
-      get(this, 'groups').forEach(group => set(group, 'isSeen', true));
-      return true;
+      if (get(this, 'groups.length') === 0) {
+        return;
+      }
+
+      const groups = get(this, 'groups').filter(group => get(group, 'isSeen') === false);
+      if (get(groups, 'length') > 0) {
+        groups.forEach(group => set(group, 'isSeen', true));
+        this._mark('seen', groups).catch(() => {
+          groups.forEach(group => set(group, 'isSeen', false));
+          get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+        });
+      }
     },
 
     markRead() {
-      // TODO: API Needed here (will mark notifications here as read)
+      if (get(this, 'groups.length') === 0) {
+        return;
+      }
+
+      const groups = get(this, 'groups').filter(group => get(group, 'isRead') === false);
+      if (get(groups, 'length') > 0) {
+        groups.forEach(group => set(group, 'isRead', true));
+        this._mark('read', groups).catch(() => {
+          groups.forEach(group => set(group, 'isRead', false));
+          get(this, 'notify').error(get(this, 'i18n').t('errors.request'));
+        });
+      }
     }
   }
 });
