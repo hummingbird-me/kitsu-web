@@ -12,6 +12,7 @@ import { modelType } from 'client/helpers/model-type';
 export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   templateName: 'media/show',
   i18n: service(),
+  metrics: service(),
   notify: service(),
   session: service(),
 
@@ -30,6 +31,14 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
         .then(records => get(records, 'firstObject'));
     }
     return get(this, 'store').findRecord(type, slug, { include: 'genres' });
+  },
+
+  afterModel(model) {
+    const id = `${capitalize(modelType([model]))}-${get(model, 'id')}`;
+    get(this, 'metrics').invoke('trackImpression', 'Stream', {
+      content_list: [`Media:${id}`],
+      location: get(this, 'routeName')
+    });
   },
 
   setupController(controller, model) {

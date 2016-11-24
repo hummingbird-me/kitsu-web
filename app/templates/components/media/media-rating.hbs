@@ -9,8 +9,7 @@
   <div class="average-rating">
     <div class="featured-number">
       <label>{{decimal-number media.averageRating}}</label>
-      {{! TODO/@vevix: Support any % on readonly }}
-      {{star-rating media.averageRating readOnly=true}}
+      {{star-rating media.averageRating anyPercent=true readOnly=true}}
     </div>
     <span>Avg. user rating</span>
   </div>
