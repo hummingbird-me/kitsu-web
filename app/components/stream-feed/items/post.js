@@ -2,7 +2,7 @@ import Component from 'ember-component';
 import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import computed from 'ember-computed';
+import observer from 'ember-metal/observer';
 import { typeOf } from 'ember-utils';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
 import getter from 'client/utils/getter';
@@ -13,6 +13,7 @@ import errorMessages from 'client/utils/error-messages';
 export default Component.extend(ClipboardMixin, InViewportMixin, {
   classNameBindings: ['post.isNew:new-post'],
   classNames: ['stream-item', 'row'],
+  isHidden: false,
 
   notify: service(),
   router: service('-routing'),
@@ -29,7 +30,6 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
     const host = get(this, 'host');
     const link = hrefTo(this, 'posts', get(this, 'post.id'));
     const url = `${host}${link}`;
-    // TODO: i18n
     const text = encodeURIComponent('Check out this post on #kitsu');
     return `https://twitter.com/share?text=${text}&url=${url}`;
   }),
@@ -40,13 +40,6 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
     const url = `${host}${link}`;
     return `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   }),
-
-  isHidden: computed('post.nsfw', 'post.spoiler', {
-    get() {
-      const post = get(this, 'post');
-      return get(post, 'nsfw') === true || get(post, 'spoiler') === true;
-    }
-  }).readOnly(),
 
   _streamAnalytics(label, foreignId) {
     const data = {
@@ -75,7 +68,14 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
     if (get(this, 'feedId') !== undefined) {
       set(this, 'userId', get(this, 'feedId').split(':')[1]);
     }
+    const post = get(this, 'post');
+    set(this, 'isHidden', get(post, 'nsfw') || get(post, 'spoiler'));
   },
+
+  _updateHidden: observer('post.nsfw', 'post.spoiler', function() {
+    const post = get(this, 'post');
+    set(this, 'isHidden', get(post, 'nsfw') || get(post, 'spoiler'));
+  }),
 
   actions: {
     trackEngagement(label, id) {
