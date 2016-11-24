@@ -27,7 +27,7 @@
 {{/if}}
 
 {{! modal }}
-{{#if modalOpen}}
+{{#if (and modalOpen (gt likesCount 0))}}
   {{to-elsewhere named="modal" send=(component "likeable-resource/modal"
     likes=likes
     updateLikes=(action (mut likes))
