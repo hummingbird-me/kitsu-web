@@ -5,7 +5,7 @@ import set, { setProperties } from 'ember-metal/set';
 import { isEmpty } from 'ember-utils';
 import computed from 'ember-computed';
 import { task, timeout } from 'ember-concurrency';
-import { invoke, invokeAction } from 'ember-invoke-action';
+import { invokeAction } from 'ember-invoke-action';
 import { bind } from 'ember-runloop';
 import jQuery from 'jquery';
 import RSVP from 'rsvp';
@@ -15,10 +15,12 @@ export default Component.extend({
   classNames: ['stream-add-content'],
   content: undefined,
   isExpanded: false,
+  isEditing: false,
   mediaReadOnly: false,
   nsfw: false,
   spoiler: false,
   maxLength: 9000,
+  author: undefined,
 
   session: service(),
   store: service(),
@@ -28,6 +30,22 @@ export default Component.extend({
       return isEmpty(get(this, 'content')) === false && (get(this, 'content.length') <= get(this, 'maxLength'));
     }
   }).readOnly(),
+
+  createPost: task(function* () {
+    if (get(this, 'canPost') === false) {
+      return;
+    }
+
+    const options = {
+      nsfw: get(this, 'nsfw'),
+      spoiler: get(this, 'spoiler')
+    };
+    if (get(this, 'media') !== undefined) {
+      options.media = get(this, 'media');
+    }
+    yield invokeAction(this, 'onCreate', get(this, 'content'), options);
+    this._resetProperties();
+  }).drop(),
 
   getMedia: task(function* (type, query) {
     return yield get(this, 'store').query(type, {
@@ -64,7 +82,16 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    if (get(this, 'media') !== undefined) {
+    set(this, 'author', get(this, 'session.account'));
+    if (get(this, 'isEditing') === true) {
+      setProperties(this, {
+        media: get(this, 'post.media'),
+        content: get(this, 'post.content'),
+        spoiler: get(this, 'post.spoiler'),
+        nsfw: get(this, 'post.nsfw'),
+        author: get(this, 'post.user')
+      });
+    } else if (get(this, 'media') !== undefined) {
       set(this, 'mediaReadOnly', true);
       set(this, 'spoiler', true);
     }
@@ -72,17 +99,25 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    const binding = bind(this, '_handleClick');
-    set(this, 'clickBinding', binding);
-    jQuery(document.body).on('click', binding);
+    if (get(this, 'isEditing') === false) {
+      const binding = bind(this, '_handleClick');
+      set(this, 'clickBinding', binding);
+      jQuery(document.body).on('click', binding);
+    }
   },
 
   willDestroyElement() {
     this._super(...arguments);
-    jQuery(document.body).off('click', get(this, 'clickBinding'));
+    if (get(this, 'isEditing') === false) {
+      jQuery(document.body).off('click', get(this, 'clickBinding'));
+    }
   },
 
   _resetProperties() {
+    if (get(this, 'isEditing') === true) {
+      return;
+    }
+
     setProperties(this, {
       content: '',
       isExpanded: false,
@@ -95,26 +130,10 @@ export default Component.extend({
   },
 
   actions: {
-    create() {
-      if (get(this, 'canPost') === false) {
-        return;
-      }
-
-      const options = {
-        nsfw: get(this, 'nsfw'),
-        spoiler: get(this, 'spoiler')
-      };
-      if (get(this, 'media') !== undefined) {
-        options.media = get(this, 'media');
-      }
-      invokeAction(this, 'onCreate', get(this, 'content'), options);
-      this._resetProperties();
-    },
-
     keyDown(value, event) {
       const { keyCode, metaKey, ctrlKey } = event;
       if (keyCode === 13 && (metaKey === true || ctrlKey === true)) {
-        invoke(this, 'create');
+        get(this, 'createPost').perform();
       }
     }
   }

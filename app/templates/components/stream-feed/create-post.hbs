@@ -1,13 +1,13 @@
 <div class="add-content-header" {{action (toggle "isExpanded" this)}}>
   {{! avatar }}
   <div style="display: inline-block; margin-right: 10px;">
-    <img style="width: 36px; height: 36px; border-radius: 100%;" src={{image session.account.avatar}}>
+    <img style="width: 36px; height: 36px; border-radius: 100%;" src={{image author.avatar}}>
   </div>
 
   {{! placeholder/name }}
   <div style="display: inline-block; font-size: 16px; color: #999; vertical-align: middle;">
     {{#if isExpanded}}
-      <span style="color: #ee2e24;">{{session.account.name}}</span>
+      <span style="color: #ee2e24;">{{author.name}}</span>
     {{else}}
       {{placeholder}}
     {{/if}}
@@ -49,9 +49,11 @@
               </div>
             </div>
           </div>
-          <a href="#" class="tagged-media--remove" {{action (queue (action (mut media) undefined) (action (mut spoiler) false))}}>
-            remove tag
-          </a>
+          {{#unless mediaReadOnly}}
+            <a href="#" class="tagged-media--remove" {{action (queue (action (mut media) undefined) (action (mut spoiler) false))}}>
+              remove tag
+            </a>
+          {{/unless}}
         </div>
       {{else}}
         {{! media tagging input }}
@@ -72,8 +74,16 @@
 
     {{! post actions }}
     <div class="add-content-footer">
-      <button type="button" class="button button--primary" disabled={{if (not canPost) "disabled"}} {{action "create"}}>
-        Post
+      <button type="button" class="button button--primary" disabled={{if (not canPost) "disabled"}} {{action (perform createPost)}}>
+        {{#if createPost.isRunning}}
+          {{loading-spinner size="small"}}
+        {{else}}
+          {{#if post}}
+            Edit
+          {{else}}
+            Post
+          {{/if}}
+        {{/if}}
       </button>
 
       <label class="custom-control custom-checkbox">

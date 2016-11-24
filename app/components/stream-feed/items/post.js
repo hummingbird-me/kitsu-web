@@ -2,6 +2,7 @@ import Component from 'ember-component';
 import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import computed from 'ember-computed';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
@@ -11,7 +12,6 @@ import errorMessages from 'client/utils/error-messages';
 export default Component.extend(ClipboardMixin, InViewportMixin, {
   classNameBindings: ['post.isNew:new-post'],
   classNames: ['stream-item', 'row'],
-  isHidden: false,
 
   notify: service(),
   router: service('-routing'),
@@ -40,6 +40,13 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
     return `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   }),
 
+  isHidden: computed('post.nsfw', 'post.spoiler', {
+    get() {
+      const post = get(this, 'post');
+      return get(post, 'nsfw') === true || get(post, 'spoiler') === true;
+    }
+  }).readOnly(),
+
   _streamAnalytics(label, foreignId) {
     const data = {
       label,
@@ -65,7 +72,6 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
       set(this, 'post', get(this, 'activity.subject.content') || get(this, 'activity.subject'));
     }
     const post = get(this, 'post');
-    set(this, 'isHidden', get(post, 'nsfw') === true || get(post, 'spoiler') === true);
     if (get(this, 'feedId') !== undefined) {
       set(this, 'userId', get(this, 'feedId').split(':')[1]);
     }
