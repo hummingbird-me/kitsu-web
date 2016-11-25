@@ -80,9 +80,7 @@ export default Component.extend({
         const newGroup = get(this, 'store').createRecord('activity-group', {
           activities: [enriched]
         });
-        const content = get(this, 'groups').toArray();
-        prependObjects(content, [newGroup]);
-        set(this, 'groups', content);
+        prependObjects(groups, [newGroup]);
       }
     });
 
