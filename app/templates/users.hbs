@@ -20,6 +20,22 @@
                 {{#if (not (is-self user))}}
                   {{follow-button user=user}}
                 {{/if}}
+                {{#if (has-role "admin" user)}}
+                  {{#unless (is-empty user.pastNames)}}
+                    {{#bootstrap/bs-dropdown class="d-inline-block" as |dropdown|}}
+                      {{#dropdown.button}}
+                        Previous Names
+                      {{/dropdown.button}}
+                      {{#dropdown.menu}}
+                        {{#each user.pastNames as |name|}}
+                          {{#dropdown.menu-item}}
+                            {{name}}
+                          {{/dropdown.menu-item}}
+                        {{/each}}
+                      {{/dropdown.menu}}
+                    {{/bootstrap/bs-dropdown}}
+                  {{/unless}}
+                {{/if}}
               </div>
             </div>
           </div>
