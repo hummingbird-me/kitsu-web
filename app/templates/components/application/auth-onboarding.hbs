@@ -2,6 +2,7 @@
   {{#modal.body}}
     {{component componentName
       componentData=componentData
+      modal=this
       changeComponent=(action "changeComponent")
       close=(action "closeModal")}}
   {{/modal.body}}

@@ -8,7 +8,7 @@ import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import { modelType } from 'client/helpers/model-type';
 
-const Validations = buildValidations({
+export const Validations = buildValidations({
   email: [
     validator('presence', true),
     validator('format', {

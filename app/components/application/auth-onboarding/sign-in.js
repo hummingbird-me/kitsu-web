@@ -13,6 +13,7 @@ export default Component.extend({
   errorMessage: undefined,
 
   facebook: service(),
+  router: service('-routing'),
   session: service(),
   authentication: taskGroup().drop(),
 
@@ -43,6 +44,12 @@ export default Component.extend({
   actions: {
     changeComponent(component) {
       invokeAction(this, 'changeComponent', component);
+    },
+
+    transitionToForgot() {
+      get(this, 'modal').$('.modal').on('hidden.bs.modal', () => {
+        get(this, 'router').transitionTo('password-reset');
+      }).modal('hide');
     }
   }
 });
