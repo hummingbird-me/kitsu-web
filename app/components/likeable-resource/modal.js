@@ -1,12 +1,15 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import service from 'ember-service/inject';
 import { alias } from 'ember-computed';
 import { strictInvokeAction } from 'ember-invoke-action';
 import PaginationMixin from 'client/mixins/pagination';
 
 export default Component.extend(PaginationMixin, {
   limit: 20,
+
+  router: service('-routing'),
   model: alias('likes'),
 
   init() {
@@ -31,6 +34,11 @@ export default Component.extend(PaginationMixin, {
       dup.addObjects(records);
       set(dup, 'links', links);
       strictInvokeAction(this, 'updateLikes', dup);
+    },
+
+    transitionToUser(user) {
+      this.$('.modal').modal('hide');
+      get(this, 'router').transitionTo('users.index', [user]);
     }
   }
 });

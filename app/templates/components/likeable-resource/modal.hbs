@@ -2,7 +2,7 @@
   {{#modal.body}}
     {{! TODO - @Josh - people who like things }}
     {{#each likes as |liker|}}
-      <a href={{href-to "users.index" liker.user}} class="hint--bottom hint--bounce hint--rounded" aria-label={{liker.user.name}}>
+      <a href={{href-to "users.index" liker.user}} class="hint--bottom hint--bounce hint--rounded" aria-label={{liker.user.name}} {{action "transitionToUser" liker.user}}>
         <img src={{image liker.user.avatar}} style="width:35px;height:35px;">
       </a>
     {{/each}}

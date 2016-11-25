@@ -86,7 +86,7 @@ export default Component.extend({
       }
     },
 
-    goToSettings() {
+    transitionToSettings() {
       this.$('.modal').modal('hide');
       get(this, 'router').transitionTo('settings');
     }
