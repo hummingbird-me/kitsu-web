@@ -2,6 +2,8 @@ import Base from 'client/models/base';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
+import { isEmpty } from 'ember-utils';
+import { classify } from 'ember-string';
 import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import { modelType } from 'client/helpers/model-type';
@@ -86,23 +88,22 @@ export default Base.extend(Validations, {
 
   hasRole(roleName, resource) {
     const roles = get(this, 'userRoles').map(ur => get(ur, 'role'));
-    const role = roles.find(r => get(r, 'name') === roleName);
-    if (role === undefined) {
-      return false;
-    }
-
-    // blanket role
-    if (get(role, 'resource.content') === null) {
-      return true;
-    }
-
-    // specific resource
-    if (modelType([get(role, 'resource')]) === modelType([resource])) {
-      if (get(role, 'resource.id') === get(resource, 'id')) {
-        return true;
+    const validRoles = roles.filter((r) => {
+      let hasRole = get(r, 'name') === roleName && get(r, 'hasDirtyAttributes') === false;
+      if (hasRole && get(r, 'resourceType') !== null && resource !== undefined) {
+        hasRole = hasRole && get(r, 'resourceType') === classify(modelType([resource]));
       }
-    }
+      return hasRole;
+    });
 
-    return false;
+    let valid = false;
+    validRoles.forEach((role) => {
+      // Class based role or record based role
+      if (isEmpty(get(role, 'resourceId')) === true || get(role, 'resourceId') === get(resource, 'id')) {
+        valid = true;
+      }
+    });
+
+    return valid;
   }
 });

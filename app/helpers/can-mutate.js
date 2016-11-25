@@ -25,7 +25,7 @@ export default Helper.extend({
     this.recompute();
   }),
 
-  didGetRoles: observer('session.account.userRoles.@each.role.resource', function() {
+  didGetRoles: observer('session.account.userRoles.@each.role', function() {
     this.recompute();
   })
 });

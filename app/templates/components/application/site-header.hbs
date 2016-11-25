@@ -63,6 +63,11 @@
               <a href={{href-to "settings"}} class="dropdown-item">
                 {{t "header.user.settings"}}
               </a>
+              {{#if (has-role "admin")}}
+                <a href={{href-to "admin"}} class="dropdown-item">
+                  {{t "header.user.admin"}}
+                </a>
+              {{/if}}
               <a href="#" {{action "invalidateSession"}} class="dropdown-item">
                 {{t "header.user.logout"}}
               </a>

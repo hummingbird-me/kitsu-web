@@ -15,7 +15,8 @@ export default {
       following: 'Followed by {{user}}'
     },
     notifications: 'Notifications',
-    settings: 'Settings'
+    settings: 'Settings',
+    admin: 'Admin'
   },
   auth: {
     signUp: {
@@ -155,6 +156,7 @@ export default {
     user: {
       profile: 'View Profile',
       settings: 'Settings',
+      admin: 'Admin',
       logout: 'Logout'
     }
   },

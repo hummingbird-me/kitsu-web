@@ -47,6 +47,7 @@ RouterInstance.map(function() {
   this.route('reviews', { path: '/reviews/:id' });
   this.route('notifications');
   this.route('settings');
+  this.route('admin');
 
   // These must remain at the bottom of the RouterInstance map
   this.route('server-error', { path: '/500' });

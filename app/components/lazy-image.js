@@ -31,6 +31,7 @@ export default Component.extend(InViewportMixin, {
     // if there was an error loading the image, then switch to placeholder
     // TODO -- Actually use a good placeholder (logo?)
     this.$().one('error', () => {
+      if (get(this, 'isDestroyed') === true) { return; }
       this.$().attr('src', get(this, 'placeholder') || '/images/default_poster.jpg');
     });
   }
