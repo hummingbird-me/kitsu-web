@@ -3,8 +3,8 @@
     <h6 class="auth-section-title">Okay, let's import your {{siteName}} account</h6>
     <p class="auth-section-helper">Our {{siteName}} importer can migrate your existing anime and manga data.</p>
     <div class="form-group">
-      {{one-way-text data.username
-        update=(action (mut data.username))
+      {{one-way-text imports.username
+        update=(action (mut imports.username))
         class="form-control"
         placeholder="Username"
         autofocus="autofocus"
@@ -12,12 +12,16 @@
     </div>
   </div>
   <div class="form-cta">
-    <button type="button" class="button button--primary m-b-1" {{action "changeComponent" "import-select"}}>
+    <button type="button" class="button button--primary m-b-1" disabled={{if createImport.isRunning "disabled"}} {{action "changeComponent" "import-select"}}>
       Back to Import Select
     </button>
 
     <button type="button" class="button button--primary" {{action "startImport"}}>
-      Start {{siteName}} Import
+      {{#if createImport.isRunning}}
+        {{loading-spinner size="small"}}
+      {{else}}
+        Start {{siteName}} Import
+      {{/if}}
     </button>
   </div>
 </div>

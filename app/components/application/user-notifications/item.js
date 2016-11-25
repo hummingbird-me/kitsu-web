@@ -34,6 +34,7 @@ export default Component.extend({
         const actor = get(activity, 'actor');
         return hrefTo(this, 'users', actor);
       }
+      return '#';
     }
   })
 });

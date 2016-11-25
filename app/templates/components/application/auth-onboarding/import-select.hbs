@@ -28,8 +28,14 @@
     </a>
   </div>
   <div class="form-cta">
-    <button type="button" class="button button--primary" {{action "changeComponent" "rate-content"}}>
-      Nothing to import, skip this
-    </button>
+    {{#if componentData.justImport}}
+      <button type="button" class="button button--primary" {{action close}}>
+        Close
+      </button>
+    {{else}}
+      <button type="button" class="button button--primary" {{action "changeComponent" "rate-content"}}>
+        Nothing to import, skip this
+      </button>
+    {{/if}}
   </div>
 </div>
