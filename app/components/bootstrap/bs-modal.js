@@ -17,12 +17,13 @@ export default Component.extend({
   }),
 
   didInsertElement() {
-    this.$().off('hide.bs.modal').on('hide.bs.modal', (event) => {
+    this.$().off('hidden.bs.modal').on('hidden.bs.modal', (event) => {
       invokeAction(this, 'onClose', event);
     });
   },
 
   willDestroyElement() {
+    this.$().off('hidden.bs.modal');
     jQuery('.modal-backdrop').remove();
   }
 });

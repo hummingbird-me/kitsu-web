@@ -87,8 +87,9 @@ export default Component.extend({
     },
 
     transitionToSettings() {
-      this.$('.modal').modal('hide');
-      get(this, 'router').transitionTo('settings');
+      this.$('.modal').on('hidden.bs.modal', () => {
+        get(this, 'router').transitionTo('settings');
+      }).modal('hide');
     }
   }
 });

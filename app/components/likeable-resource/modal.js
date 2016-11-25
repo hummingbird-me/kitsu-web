@@ -37,8 +37,9 @@ export default Component.extend(PaginationMixin, {
     },
 
     transitionToUser(user) {
-      this.$('.modal').modal('hide');
-      get(this, 'router').transitionTo('users.index', [user]);
+      this.$('.modal').on('hidden.bs.modal', () => {
+        get(this, 'router').transitionTo('users.index', [user]);
+      }).modal('hide');
     }
   }
 });
