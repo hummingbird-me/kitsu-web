@@ -9,8 +9,6 @@ export default Base.extend({
   likesCount: attr('number'),
   progress: attr('number'),
   rating: attr('number'),
-  source: attr('string'),
-  summary: attr('string'),
 
   libraryEntry: belongsTo('library-entry'),
   media: belongsTo('media'),
