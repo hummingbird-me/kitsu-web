@@ -4,22 +4,22 @@ import { module, test } from 'qunit';
 module('Unit | Helper | image');
 
 test('it returns value when not an object', function(assert) {
-  const result = image(['/images/hello.png']);
+  const result = image('/images/hello.png');
   assert.equal(result, '/images/hello.png');
 });
 
 test('it returns the original style when not specified', function(assert) {
-  const result = image([{
+  const result = image({
     original: '/images/original.png',
     small: '/images/small.png'
-  }]);
+  });
   assert.equal(result, '/images/original.png');
 });
 
 test('it returns the style specified', function(assert) {
-  const result = image([{
+  const result = image({
     original: '/images/original.png',
     small: '/images/small.png'
-  }, 'small']);
+  }, 'small');
   assert.equal(result, '/images/small.png');
 });

@@ -39,7 +39,7 @@ export default Controller.extend({
   coverImageStyle: computed('media.coverImage', {
     get() {
       // TODO: Support offset
-      const coverImage = image([get(this, 'media.coverImage')]);
+      const coverImage = image(get(this, 'media.coverImage'));
       return `background-image: url("${coverImage}")`.htmlSafe();
     }
   }).readOnly(),
