@@ -5,7 +5,7 @@ import { scheduleOnce } from 'ember-runloop';
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 
 export default Route.extend(UnauthenticatedRouteMixin, {
-  queryParams: { token: { replace: true, refreshModel: true } },
+  queryParams: { token: { replace: true } },
 
   // Remove token from URL so it can't leak if we have an external link on this page.
   setupController(controller) {
