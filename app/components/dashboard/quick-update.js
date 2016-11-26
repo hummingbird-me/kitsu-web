@@ -7,12 +7,14 @@ import computed from 'ember-computed';
 import { scheduleOnce } from 'ember-runloop';
 import { capitalize } from 'ember-string';
 import observer from 'ember-metal/observer';
+import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   classNames: ['quick-update'],
   filter: 'all',
   pageLimit: 12,
 
+  notify: service(),
   session: service(),
   store: service(),
 
@@ -31,7 +33,7 @@ export default Component.extend({
   getEntriesTask: task(function* () {
     const type = get(this, 'filter') === 'all' ? 'Anime,Manga' : capitalize(get(this, 'filter'));
     return yield get(this, 'store').query('library-entry', {
-      include: 'media',
+      include: 'media,review',
       filter: {
         media_type: type,
         user_id: get(this, 'session.account.id'),
@@ -95,6 +97,14 @@ export default Component.extend({
       set(this, 'newEntries', records);
       set(this, 'initialEntries.links', links);
       this._appendToFlickty();
-    }
+    },
+
+    updateEntry(entry, property, value) {
+      set(entry, property, value);
+      return entry.save().catch((err) => {
+        entry.rollbackAttributes();
+        get(this, 'notify').error(errorMessages(err));
+      });
+    },
   }
 });
