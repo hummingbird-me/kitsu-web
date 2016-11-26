@@ -8,12 +8,23 @@
 {{/if}}
 
 <div class="feed-actions clearfix">
+  {{! TODO - @Josh -- new feed items block }}
+  {{#if (gte newItems.length 0)}}
+    <div class="card text-xs-center p-t-1 p-b-1" {{action "newActivities"}}>
+      {{#if realtimeLoading}}
+        {{loading-spinner size="small"}}
+      {{else}}
+        {{newItems.length}} new activities
+      {{/if}}
+    </div>
+  {{/if}}
+
   {{#if hasBlock}}
     {{yield}}
   {{/if}}
 
   <div class="pull-sm-right">
-    {{#bootstrap/bs-dropdown class="" as |dropdown|}}
+    {{#bootstrap/bs-dropdown as |dropdown|}}
       {{#dropdown.button}}
         {{t (concat "feeds.filter." filter)}}
       {{/dropdown.button}}
@@ -28,7 +39,7 @@
   </div>
 </div>
 
-{{#if getFeedData.isRunning}}
+{{#if (and getFeedData.isRunning (not realtimeLoading))}}
   {{#each (repeat 2) as |empty|}}
     <div class="stream-item stream-item--loading row">
       <div class="stream-item-wrapper col-sm-12">

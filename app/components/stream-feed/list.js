@@ -6,9 +6,11 @@ import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
 import { capitalize } from 'ember-string';
 import computed from 'ember-computed';
+import EmberObject from 'ember-object';
 import getter from 'client/utils/getter';
 import { modelType } from 'client/helpers/model-type';
 import errorMessages from 'client/utils/error-messages';
+import { prependObjects } from 'client/utils/array-utils';
 
 export default Component.extend({
   filter: 'all',
@@ -18,6 +20,7 @@ export default Component.extend({
   session: service(),
   store: service(),
   metrics: service(),
+  streamRealtime: service(),
 
   feedId: getter(function() {
     return `${get(this, 'streamType')}:${get(this, 'streamId')}`;
@@ -50,7 +53,7 @@ export default Component.extend({
     }
   }).readOnly(),
 
-  getFeedData: task(function* (type, id) {
+  getFeedData: task(function* (type, id, limit = 10) {
     return yield get(this, 'store').query('feed', {
       type,
       id,
@@ -64,7 +67,7 @@ export default Component.extend({
         // follow
         'subject.follower,subject.followed'
       ].join(','),
-      page: { limit: 10 }
+      page: { limit }
     });
   }).restartable(),
 
@@ -91,7 +94,10 @@ export default Component.extend({
     // update post counter
     get(this, 'session.account').incrementProperty('postsCount');
     return yield post.save()
-      .then(record => set(activity, 'foreignId', `Post:${get(record, 'id')}`))
+      .then((record) => {
+        set(group, 'group', `Post:${get(record, 'id')}`);
+        set(activity, 'foreignId', `Post:${get(record, 'id')}`);
+      })
       .catch((err) => {
         get(this, 'feed').removeObject(group);
         get(this, 'session.account').decrementProperty('postsCount');
@@ -114,6 +120,7 @@ export default Component.extend({
       foreignId: 'Post:<unknown>'
     });
     const group = get(this, 'store').createRecord('activity-group', {
+      group: 'Post:<unknown>',
       activities: [activity]
     });
     const feed = get(this, 'feed').toArray();
@@ -124,6 +131,10 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
+
+    // cancel any previous subscriptions
+    this._cancelSubscription();
+
     const { streamType, streamId } = getProperties(this, 'streamType', 'streamId');
     if (isEmpty(streamType) || isEmpty(streamId)) {
       return;
@@ -132,15 +143,55 @@ export default Component.extend({
     get(this, 'getFeedData').perform(streamType, streamId).then((data) => {
       get(this, 'feed').addObjects(data);
       set(this, 'feed.links', get(data, 'links'));
-      const list = data.map(group => get(group, 'activities').map(activity => get(activity, 'foreignId')));
-      if (isEmpty(list) === true) {
-        return;
-      }
-      get(this, 'metrics').invoke('trackImpression', 'Stream', {
-        content_list: list.reduce((a, b) => a.concat(b)).uniq(),
-        feed_id: get(this, 'feedId')
-      });
+
+      // realtime
+      const { readonlyToken } = get(data, 'meta');
+      const subscription = get(this, 'streamRealtime').subscribe(streamType, streamId, readonlyToken,
+        object => this._handleRealtime(object));
+      set(this, 'subscription', subscription);
+      set(this, 'newItems', EmberObject.create({ length: 0 }));
+
+      // stream analytics
+      this._trackImpressions(data);
     }).catch(() => {});
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    this._cancelSubscription();
+  },
+
+  _trackImpressions(data) {
+    const list = data.map(group => get(group, 'activities').map(activity => get(activity, 'foreignId')));
+    if (isEmpty(list) === true) {
+      return;
+    }
+    get(this, 'metrics').invoke('trackImpression', 'Stream', {
+      content_list: list.reduce((a, b) => a.concat(b)).uniq(),
+      feed_id: get(this, 'feedId')
+    });
+  },
+
+  _cancelSubscription() {
+    const subscription = get(this, 'subscription');
+    if (subscription !== undefined) {
+      subscription.cancel();
+    }
+  },
+
+  _handleRealtime(object) {
+    get(this, 'newItems').beginPropertyChanges();
+    get(object, 'new').forEach((activity) => {
+      // This is a potential race condition as we don't know the Post id before the response from
+      // the API server and Stream may send us this new activity before that response is received.
+      const found = get(this, 'feed').findBy('group', get(activity, 'group'));
+      if (found === undefined) {
+        set(this, 'newItems.length', get(this, 'newItems.length') + 1);
+      }
+    });
+    get(this, 'newItems').endPropertyChanges();
+
+    // TODO: Update title
   },
 
   actions: {
@@ -149,6 +200,22 @@ export default Component.extend({
       dup.addObjects(records);
       set(this, 'feed', dup);
       set(this, 'feed.links', links);
+    },
+
+    /**
+     * Request the activities from the API Server instead of enriching them locally
+     * so we reduce the logic and handling of all the relationships needed for display.
+     */
+    newActivities() {
+      const { streamType, streamId } = getProperties(this, 'streamType', 'streamId');
+      const limit = get(this, 'newItems.length');
+      set(this, 'realtimeLoading', true);
+      get(this, 'getFeedData').perform(streamType, streamId, limit).then((data) => {
+        set(this, 'newItems.length', 0);
+        prependObjects(get(this, 'feed'), data);
+        set(this, 'realtimeLoading', false);
+        this._trackImpressions(data);
+      });
     }
   }
 });
