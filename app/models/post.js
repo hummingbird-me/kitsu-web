@@ -13,6 +13,7 @@ export default Base.extend({
   postLikesCount: attr('number'),
   spoiler: attr('boolean'),
   topLevelCommentsCount: attr('number'),
+  updatedAt: attr('utc', { defaultValue() { return new Date(); } }),
 
   media: belongsTo('media'),
   spoiledUnit: belongsTo('base'),

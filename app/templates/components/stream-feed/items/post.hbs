@@ -50,6 +50,9 @@
           <a href={{href-to "posts" post}} onclick={{action "trackEngagement" "click"}}>
             <small class="author-secondary">
               {{moment-from-now post.createdAt}}
+              {{#if postEdited}}
+                &middot; edited {{moment-from-now post.updatedAt}}
+              {{/if}}
             </small>
           </a>
         </div>

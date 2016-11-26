@@ -4,6 +4,7 @@ export default ApplicationSerializer.extend({
   attrs: {
     likesCount: { serialize: false },
     repliesCount: { serialize: false },
-    createdAt: { serialize: false }
+    createdAt: { serialize: false },
+    updatedAt: { serialize: false }
   }
 });

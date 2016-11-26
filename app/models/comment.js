@@ -10,6 +10,7 @@ export default Base.extend({
   deletedAt: attr('utc'),
   likesCount: attr('number'),
   repliesCount: attr('number'),
+  updatedAt: attr('utc'),
 
   parent: belongsTo('comment', { inverse: 'replies' }),
   post: belongsTo('post', { inverse: 'comments' }),

@@ -3,12 +3,14 @@ import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import observer from 'ember-metal/observer';
+import computed from 'ember-computed';
 import { typeOf } from 'ember-utils';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
 import InViewportMixin from 'ember-in-viewport';
 import errorMessages from 'client/utils/error-messages';
+import moment from 'moment';
 
 export default Component.extend(ClipboardMixin, InViewportMixin, {
   classNameBindings: ['post.isNew:new-post'],
@@ -40,6 +42,12 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
     const url = `${host}${link}`;
     return `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   }),
+
+  postEdited: computed('post.createdAt', 'post.updatedAt', {
+    get() {
+      return moment(get(this, 'post.createdAt')).isSame(get(this, 'post.updatedAt')) === false;
+    }
+  }).readOnly(),
 
   _streamAnalytics(label, foreignId) {
     const data = {

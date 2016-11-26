@@ -2,12 +2,14 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
+import computed from 'ember-computed';
 import { isEmpty } from 'ember-utils';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import { scheduleOnce } from 'ember-runloop';
 import { prependObjects } from 'client/utils/array-utils';
 import errorMessages from 'client/utils/error-messages';
+import moment from 'moment';
 
 export default Component.extend({
   classNameBindings: ['comment.isNew:new-comment'],
@@ -19,6 +21,12 @@ export default Component.extend({
   notify: service(),
   session: service(),
   store: service(),
+
+  commentEdited: computed('comment.createdAt', 'comment.updatedAt', {
+    get() {
+      return moment(get(this, 'comment.createdAt')).isSame(get(this, 'comment.updatedAt')) === false;
+    }
+  }).readOnly(),
 
   getLocalLike: task(function* () {
     return yield get(this, 'store').query('comment-like', {

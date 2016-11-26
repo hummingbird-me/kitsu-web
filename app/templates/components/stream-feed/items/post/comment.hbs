@@ -48,6 +48,9 @@
       {{! comment timestamp }}
       <small class="comment-time">
         {{moment-from-now comment.createdAt}}
+        {{#if commentEdited}}
+          &middot; edited {{moment-from-now comment.updatedAt}}
+        {{/if}}
       </small>
 
       {{! more dropdown }}
