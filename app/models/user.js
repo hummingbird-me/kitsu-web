@@ -53,6 +53,7 @@ export default Base.extend(Validations, {
   bio: attr('string'),
   birthday: attr('utc'),
   commentsCount: attr('number'),
+  confirmed: attr('boolean', { defaultValue: false }),
   coverImage: attr('object', { defaultValue: '/images/default_cover.png' }),
   createdAt: attr('utc'),
   email: attr('string'),

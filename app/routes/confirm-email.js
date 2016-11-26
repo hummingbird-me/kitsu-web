@@ -3,7 +3,6 @@ import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
 import RSVP from 'rsvp';
-import moment from 'moment';
 import errorMessages from 'client/utils/error-messages';
 
 export default Route.extend({
@@ -29,7 +28,7 @@ export default Route.extend({
             data: {
               type: 'users',
               id: get(user, 'id'),
-              attributes: { confirmedAt: moment().toJSON() }
+              attributes: { confirmed: true }
             }
           }),
           contentType: 'application/vnd.api+json'
