@@ -10,7 +10,9 @@
       opacity: 0;
     }
     .logo {
-      color: $white;
+      g {
+        fill: #fff;
+      }
     }
     &:hover {
       background: #fff;
@@ -18,7 +20,12 @@
         opacity: 1;
       }
       .logo {
-        color: $charcoal;
+        g {
+          fill: #F75239;
+          &:first-child {
+            fill: #545D69;
+          }
+        }
       }
     }
   }
