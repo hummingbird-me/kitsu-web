@@ -17,10 +17,15 @@
 <section>
   <h5>Popular Reviews</h5>
   {{#if reviews}}
-    {{user-reviews reviews
-      media=media
-      updateEntry=(route-action "updateEntry")
-    }}
+    <ul class="media-list">
+      {{#each reviews as |review|}}
+        {{media-review
+          tagName="li"
+          isUserFocused=true
+          review=review
+          media=media}}
+      {{/each}}
+    </ul>
   {{else}}
     {{! TODO @Josh -- empty state for no reviews on media page }}
     <p>No Reviews</p>

@@ -1,0 +1,12 @@
+{{! @Josh -- Review Stream Item }}
+{{#if review}}
+  <div class="stream-item-wrapper col-sm-12">
+    {{media-review
+      review=review
+    }}
+  </div>
+{{else}}
+  <div class="stream-error-wrapper col-sm-12">
+    {{t "errors.load"}}
+  </div>
+{{/if}}

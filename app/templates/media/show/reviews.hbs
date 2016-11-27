@@ -1,7 +1,14 @@
 {{#if model}}
-  {{user-reviews model
-    media=media
-    updateEntry=(route-action "updateEntry")}}
+  <ul class="media-list">
+    {{#each model as |review|}}
+      {{media-review
+        tagName="li"
+        isUserFocused=true
+        review=review
+        media=media}}
+    {{/each}}
+  </ul>
+
   <div class="text-xs-center w-100">
     {{paginated-resource/infinite
       model=model

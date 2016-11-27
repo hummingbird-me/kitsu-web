@@ -113,12 +113,6 @@ export default {
         },
         episodes: {
           episode: 'Episode'
-        },
-        reviews: {
-          title: {
-            anime: 'Review by {{link}} at Episode {{progress}}',
-            manga: 'Review by {{link}} at Chapter {{progress}}'
-          }
         }
       }
     }
@@ -142,6 +136,13 @@ export default {
         on_hold: 'On Hold',
         dropped: 'Dropped'
       }
+    }
+  },
+  reviews: {
+    review: 'Review',
+    title: {
+      anime: '{{link}} by {{user}} at Episode {{progress}}',
+      manga: '{{link}} by {{user}} at Chapter {{progress}}'
     }
   },
   // Global header

@@ -67,7 +67,7 @@
 
                     {{! review }}
                     {{! TODO - @Josh - review button on media page }}
-                    {{#unless (and entry.review (not entry.review.isNew))}}
+                    {{#unless (or (and entry.review (not entry.review.isNew)) (eq entry.progress 0))}}
                       <div>
                         <button data-toggle="modal" data-target="#review-modal" class="button button--primary" {{action (toggle "reviewOpen" this)}}>
                           Write a review

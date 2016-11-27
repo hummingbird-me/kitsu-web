@@ -1,4 +1,11 @@
 <div class="container">
   {{! TODO: - @Josh - reviews on users page }}
-  {{user-reviews model}}
+  <ul class="media-list">
+    {{#each model as |review|}}
+      {{media-review
+        tagName="li"
+        review=review
+      }}
+    {{/each}}
+  </ul>
 </div>
