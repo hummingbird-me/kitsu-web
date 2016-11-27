@@ -5,6 +5,7 @@
   }
   .transparent {
     background: transparent;
+    box-shadow: none;
     transition: all 0.5s ease;
     .navbar-nav {
       opacity: 0;
@@ -12,20 +13,6 @@
     .logo {
       g {
         fill: #fff;
-      }
-    }
-    &:hover {
-      background: #fff;
-      .navbar-nav {
-        opacity: 1;
-      }
-      .logo {
-        g {
-          fill: #F75239;
-          &:first-child {
-            fill: #545D69;
-          }
-        }
       }
     }
   }
