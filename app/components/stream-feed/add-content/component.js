@@ -13,7 +13,7 @@ import RSVP from 'rsvp';
 export default Component.extend({
   classNameBindings: ['isExpanded:is-expanded'],
   classNames: ['stream-add-content'],
-  content: undefined,
+  content: '',
   isExpanded: false,
   mediaReadOnly: false,
   nsfw: false,
@@ -25,12 +25,13 @@ export default Component.extend({
 
   mediumEditorOptions: {
     toolbar: {
-      buttons: ['image', 'h1', 'h2']
+      buttons: ['image', 'video', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'justifyLeft', 'justifyCenter', 'justifyRight']
     }
   },
 
   canPost: computed('content', {
     get() {
+      console.log(get(this, 'content.length'));
       return isEmpty(get(this, 'content')) === false && (get(this, 'content.length') <= get(this, 'maxLength'));
     }
   }).readOnly(),
