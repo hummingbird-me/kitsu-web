@@ -129,6 +129,11 @@ export default Component.extend({
     return [group, activity];
   },
 
+  init() {
+    this._super(...arguments);
+    set(this, 'originalTitle', window.document.title);
+  },
+
   didReceiveAttrs() {
     this._super(...arguments);
 
@@ -149,7 +154,7 @@ export default Component.extend({
       const subscription = get(this, 'streamRealtime').subscribe(streamType, streamId, readonlyToken,
         object => this._handleRealtime(object));
       set(this, 'subscription', subscription);
-      set(this, 'newItems', EmberObject.create({ length: 0 }));
+      set(this, 'newItems', EmberObject.create({ length: 0, cache: [] }));
 
       // stream analytics
       this._trackImpressions(data);
@@ -181,17 +186,24 @@ export default Component.extend({
 
   _handleRealtime(object) {
     get(this, 'newItems').beginPropertyChanges();
+    const groupCache = get(this, 'newItems.cache');
     get(object, 'new').forEach((activity) => {
-      // This is a potential race condition as we don't know the Post id before the response from
-      // the API server and Stream may send us this new activity before that response is received.
-      const found = get(this, 'feed').findBy('group', get(activity, 'group'));
-      if (found === undefined) {
+      if (get(activity, 'group').split(':')[0] === 'Post') {
+        const found = get(this, 'feed').findBy('group', get(activity, 'group'));
+        if (found !== undefined) {
+          return;
+        }
+      }
+      if (groupCache.indexOf(get(activity, 'group')) === -1) {
         set(this, 'newItems.length', get(this, 'newItems.length') + 1);
+        groupCache.addObject(get(activity, 'group'));
       }
     });
     get(this, 'newItems').endPropertyChanges();
 
-    // TODO: Update title
+    if (get(this, 'newItems.length') > 0) {
+      window.document.title = `(${get(this, 'newItems.length')}) ${get(this, 'originalTitle')}`;
+    }
   },
 
   actions: {
@@ -212,7 +224,18 @@ export default Component.extend({
       set(this, 'realtimeLoading', true);
       get(this, 'getFeedData').perform(streamType, streamId, limit).then((data) => {
         set(this, 'newItems.length', 0);
-        prependObjects(get(this, 'feed'), data);
+        set(this, 'newItems.cache', []);
+        window.document.title = get(this, 'originalTitle');
+
+        // remove dups from the feed and replace with updated activity
+        const dups = get(this, 'feed').filter(group => (
+          data.findBy('group', get(group, 'group')) !== undefined
+        ));
+        get(this, 'feed').removeObjects(dups);
+
+        // prepend the new activities
+        prependObjects(get(this, 'feed'), data.toArray().reverse());
+
         set(this, 'realtimeLoading', false);
         this._trackImpressions(data);
       });

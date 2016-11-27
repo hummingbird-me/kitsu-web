@@ -9,7 +9,7 @@
 
 <div class="feed-actions clearfix">
   {{! TODO - @Josh -- new feed items block }}
-  {{#if (gte newItems.length 0)}}
+  {{#if (gt newItems.length 0)}}
     <div class="card text-xs-center p-t-1 p-b-1" {{action "newActivities"}}>
       {{#if realtimeLoading}}
         {{loading-spinner size="small"}}
