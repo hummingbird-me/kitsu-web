@@ -37,7 +37,7 @@ export default Component.extend({
     }).then((groups) => {
       const meta = get(groups, 'meta');
       groups.forEach(group => set(group, 'activities', get(group, 'activities').toArray()));
-      set(this, 'groups', groups);
+      get(this, 'groups').addObjects(groups);
       set(this, 'groups.meta', meta);
       return get(this, 'groups');
     });
@@ -68,20 +68,22 @@ export default Component.extend({
 
     // new activities
     get(object, 'new').forEach((activity) => {
-      const enriched = this._enrichActivity(activity);
-      const group = groups.findBy('group', get(activity, 'group'));
-      if (group !== undefined) {
-        prependObjects(get(group, 'activities'), [enriched]);
-        set(group, 'isSeen', false);
-        set(group, 'isRead', false);
-        groups.removeObject(group);
-        prependObjects(groups, [group]);
-      } else {
-        const newGroup = get(this, 'store').createRecord('activity-group', {
-          activities: [enriched]
-        });
-        prependObjects(groups, [newGroup]);
-      }
+      this._enrichActivity(activity).then((enriched) => {
+        const group = groups.findBy('group', get(activity, 'group'));
+        if (group !== undefined) {
+          prependObjects(get(group, 'activities'), [enriched]);
+          set(group, 'isSeen', false);
+          set(group, 'isRead', false);
+          groups.removeObject(group);
+          prependObjects(groups, [group]);
+        } else {
+          const newGroup = get(this, 'store').createRecord('activity-group', {
+            activities: [enriched]
+          });
+          prependObjects(groups, [newGroup]);
+        }
+        get(this, 'notify').info(`You have a new notification from ${get(enriched, 'actor.name')}`);
+      });
     });
 
     // deleted activities
@@ -95,8 +97,6 @@ export default Component.extend({
         }
       }
     });
-
-    // TODO: Toast user
   },
 
   _enrichActivity(activity) {
@@ -106,10 +106,10 @@ export default Component.extend({
       time: moment.parseZone(get(activity, 'time')).local().format(),
       verb: get(activity, 'verb')
     });
-    get(this, 'store').findRecord('user', get(activity, 'actor').split(':')[1]).then((user) => {
+    return get(this, 'store').findRecord('user', get(activity, 'actor').split(':')[1]).then((user) => {
       set(enriched, 'actor', user);
+      return enriched;
     });
-    return enriched;
   },
 
   _mark(type, data) {
