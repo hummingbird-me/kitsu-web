@@ -17,7 +17,7 @@ export default Component.extend(InViewportMixin, {
   init() {
     this._super(...arguments);
     assert('Must pass url to {{lazy-image}}', get(this, 'src') !== undefined);
-    set(this, 'viewportTolerance', Object.assign({ top: 0, bottom: 200, left: 0, right: 0 }, get(this, 'tolerance') || {}));
+    set(this, 'viewportTolerance', Object.assign({ top: 200, bottom: 200, left: 0, right: 0 }, get(this, 'tolerance') || {}));
   },
 
   didReceiveAttrs() {
