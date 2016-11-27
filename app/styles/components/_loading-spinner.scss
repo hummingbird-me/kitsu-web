@@ -1,3 +1,31 @@
+// TODO - @Josh - top loading bar
+.loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 9001;
+  background: $cinnabar;
+  transform:translateX(100%);
+  animation: shift-rightwards 1s ease-in-out infinite;
+  animation-delay: .8s;
+}
+@keyframes shift-rightwards {
+  0% {
+    transform:translateX(-100%)
+  }
+  40% {
+    transform:translateX(0%)
+  }
+  60% {
+    transform:translateX(0%)
+  }
+  100% {
+    transform:translateX(100%)
+  }
+}
+
 .loading {
 	border-bottom: 6px solid rgba(0, 0, 0, .1);
 	border-left: 6px solid rgba(0, 0, 0, .1);
