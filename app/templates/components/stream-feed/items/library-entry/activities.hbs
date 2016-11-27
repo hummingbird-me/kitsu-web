@@ -2,7 +2,7 @@
   {{#with group.activity as |activity|}}
     <li class="agg-item">
       <span class="agg-avatar">
-        <img src={{image activity.actor.avatar}}>
+        <img src={{image activity.actor.avatar "tiny"}}>
       </span>
       <span class="agg-action">
         <a href={{href-to "users.index" activity.actor}}>{{activity.actor.name}}</a>

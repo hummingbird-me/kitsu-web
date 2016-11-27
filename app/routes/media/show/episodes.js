@@ -1,5 +1,6 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
+import { capitalize } from 'ember-string';
 import { modelType } from 'client/helpers/model-type';
 
 export default Route.extend({
@@ -10,7 +11,7 @@ export default Route.extend({
     const media = this.modelFor(`${mediaType}.show`);
     return get(this, 'store').query('episode', {
       filter: {
-        media_type: modelType([media]),
+        media_type: capitalize(modelType([media])),
         media_id: get(media, 'id')
       }
     });

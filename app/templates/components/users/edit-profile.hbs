@@ -18,7 +18,7 @@
             {{svg-jar "picture"}}
           </span>
         </a>
-        <img src={{image user.avatar}} class="avatar-image avatar-image--medium">
+        <img src={{image user.avatar "medium"}} class="avatar-image avatar-image--medium">
         {{file-select
           id="avatar-input"
           update=(action "updateImage" "user.avatar")}}

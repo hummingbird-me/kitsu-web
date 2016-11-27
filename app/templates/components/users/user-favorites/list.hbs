@@ -7,7 +7,7 @@
       </a>
     {{else}}
       <a href={{href-to (concat type ".show") favorite.item}}>
-        {{lazy-image src=(image favorite.item.posterImage)}}
+        {{lazy-image src=(image favorite.item.posterImage "tiny")}}
       </a>
     {{/if}}
   </div>

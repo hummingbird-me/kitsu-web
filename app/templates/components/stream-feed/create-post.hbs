@@ -1,7 +1,7 @@
 <div class="add-content-header" {{action (toggle "isExpanded" this)}}>
   {{! avatar }}
   <div style="display: inline-block; margin-right: 10px;">
-    <img style="width: 36px; height: 36px; border-radius: 100%;" src={{image author.avatar}}>
+    <img style="width: 36px; height: 36px; border-radius: 100%;" src={{image author.avatar "small"}}>
   </div>
 
   {{! placeholder/name }}
@@ -32,7 +32,7 @@
         <div class="tagged-media--wrapper">
           <div class="tagged-media row">
             <div class="stream-item--media col-xs-1">
-              {{lazy-image src=(image media.posterImage)}}
+              {{lazy-image src=(image media.posterImage "small")}}
             </div>
             <div class="col-sm no-padding-left">
               <div class="stream-item--title-block">
@@ -64,7 +64,7 @@
           placeholder="Type to tag a show or manga" as |_media|
         }}
           <div {{action (queue (action (mut media) _media) (action (mut spoiler) true))}}>
-            <span class="tag-poster">{{lazy-image src=(image _media.posterImage)}}</span>
+            <span class="tag-poster">{{lazy-image src=(image _media.posterImage "tiny")}}</span>
             <span class="tag tag-primary">{{capitalize (model-type _media)}}</span>
             <span>{{_media.canonicalTitle}}</span>
           </div>
