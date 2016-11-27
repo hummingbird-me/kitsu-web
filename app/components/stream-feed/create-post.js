@@ -86,6 +86,7 @@ export default Component.extend({
     if (get(this, 'isEditing') === true) {
       setProperties(this, {
         media: get(this, 'post.media'),
+        mediaReadOnly: true,
         content: get(this, 'post.content'),
         spoiler: get(this, 'post.spoiler'),
         nsfw: get(this, 'post.nsfw'),
