@@ -23,6 +23,12 @@ export default Component.extend({
   session: service(),
   store: service(),
 
+  mediumEditorOptions: {
+    toolbar: {
+      buttons: ['image', 'h1', 'h2']
+    }
+  },
+
   canPost: computed('content', {
     get() {
       return isEmpty(get(this, 'content')) === false && (get(this, 'content.length') <= get(this, 'maxLength'));

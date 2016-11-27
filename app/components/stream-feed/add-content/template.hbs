@@ -17,14 +17,12 @@
 {{#if isExpanded}}
   <div class="add-content-expanded">
     {{! editor }}
-    {{content-editable
-      value=content
-      type="text"
-      spellcheck=true
-      autofocus=true
+    
+    {{medium-content-editable 
+      value=content 
       key-down=(action "keyDown")
-      maxlength=maxLength
       class="stream-content-editor"
+      options=mediumEditorOptions
     }}
 
     <div class="tag-media">

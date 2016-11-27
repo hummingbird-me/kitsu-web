@@ -24,6 +24,9 @@ module.exports = function(defaults) {
           }
         ]
       }
+    },
+    mediumEditorOptions: {
+      theme: 'bootstrap'
     }
   });
 
