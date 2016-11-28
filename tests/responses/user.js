@@ -8,7 +8,13 @@ export const one = {
   "attributes": {
     "name": "bob",
     "pastNames": [],
-    "avatar": "/images/avatar.png",
+    "avatar": {
+      "original": "/images/avatar.png",
+      "tiny": "/images/avatar.png",
+      "small": "/images/avatar.png",
+      "medium": "/images/avatar.png",
+      "large": "/images/avatar.png",
+    },
     "coverImage": "/images/cover.png",
     "about": "About Section",
     "bio": "Hello, World!",
