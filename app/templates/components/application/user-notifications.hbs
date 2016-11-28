@@ -12,8 +12,11 @@
 
 <div class="dropdown-menu notification-drop">
   {{#if (is-empty groups)}}
-    {{! -- TODO -- @Josh -- notifications empty state }}
-    <p>No notifications!</p>
+    <header>
+      <a href={{href-to "notifications"}} class="see-all-notifications">See All Notifications</a>
+      <a href="#" class="mark-as-read" {{action "markRead"}}>Mark all as Read</a>
+    </header>
+    <p class="notifications-empty">You don't have any notifications yet!</p>
   {{else}}
     <header>
       <a href={{href-to "notifications"}} class="see-all-notifications">See All Notifications</a>
