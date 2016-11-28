@@ -25,13 +25,15 @@
           </button>
         {{else}}
           {{! TODO - @Josh -- actions here need to be vertically aligned }}
-          {{star-rating entry.rating
-            onClick=(action "rateEntry")
-          }}
+          <div class="quick-update--rate">
+            {{star-rating entry.rating
+              onClick=(action "rateEntry")
+            }}
+          </div>
 
           {{! TODO -- @Josh -- Review quick update item }}
-          <button class="button button--primary" data-toggle="modal" data-target="#review-modal" onclick={{action (toggle "reviewModal" this)}}>
-            Review
+          <button class="button button--quick-update" data-toggle="modal" data-target="#review-modal" onclick={{action (toggle "reviewModal" this)}}>
+            Write Review
           </button>
           {{#if reviewModal}}
             {{#unless (and entry.review (not entry.review.isNew))}}
