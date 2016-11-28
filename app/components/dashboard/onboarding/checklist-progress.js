@@ -1,8 +1,12 @@
 import Component from 'ember-component';
 import computed, { gte } from 'ember-computed';
 import get from 'ember-metal/get';
+import service from 'ember-service/inject';
+import observer from 'ember-metal/observer';
 
 export default Component.extend({
+  metrics: service(),
+
   hasRatings: gte('user.ratingsCount', 5),
   hasFollows: gte('user.followingCount', 5),
   hasComments: gte('user.commentsCount', 1),
@@ -31,5 +35,11 @@ export default Component.extend({
     get() {
       return 3 - get(this, 'user.likesGivenCount');
     }
-  }).readOnly()
+  }).readOnly(),
+
+  _track: observer('isCompleted', function() {
+    if (get(this, 'isCompleted') === true) {
+      get(this, 'metrics').trackEvent({ category: 'onboarding', action: 'complete', label: 'dashboard' });
+    }
+  })
 });

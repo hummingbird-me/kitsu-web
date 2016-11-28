@@ -41,6 +41,7 @@ export default Ember.Component.extend({
     get(this, 'mangaTask').perform('manga', 'text', query).then(data => set(this, 'groups.manga', data));
     get(this, 'usersTask').perform('user', 'query', query).then(data => set(this, 'groups.users', data));
     set(this, 'query', query);
+    get(this, 'metrics').trackEvent({ category: 'search', action: 'query', label: query });
   }).restartable(),
 
   init() {

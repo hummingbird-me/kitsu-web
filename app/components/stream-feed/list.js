@@ -97,6 +97,7 @@ export default Component.extend({
       .then((record) => {
         set(group, 'group', `Post:${get(record, 'id')}`);
         set(activity, 'foreignId', `Post:${get(record, 'id')}`);
+        get(this, 'metrics').trackEvent({ category: 'post', action: 'create' });
       })
       .catch((err) => {
         get(this, 'feed').removeObject(group);

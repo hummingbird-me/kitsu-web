@@ -18,6 +18,7 @@ export default Component.extend({
   isReplying: false,
   isTopLevel: false,
 
+  metrics: service(),
   notify: service(),
   session: service(),
   store: service(),
@@ -60,7 +61,10 @@ export default Component.extend({
     set(this, 'isReplying', false);
 
     yield reply.save()
-      .then(() => invokeAction(this, 'trackEngagement', 'comment'))
+      .then(() => {
+        invokeAction(this, 'trackEngagement', 'comment');
+        get(this, 'metrics').trackEvent({ category: 'comment', action: 'reply', value: get(this, 'comment.id') });
+      })
       .catch((err) => {
         invokeAction(this, 'replyCountUpdate', get(this, 'comment.repliesCount') - 1);
         get(this, 'replies').removeObject(reply);

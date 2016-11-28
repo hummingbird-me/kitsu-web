@@ -7,6 +7,7 @@ import { task } from 'ember-concurrency';
 import { assert } from 'ember-metal/utils';
 import { invokeAction } from 'ember-invoke-action';
 import errorMessages from 'client/utils/error-messages';
+import { modelType } from 'client/helpers/model-type';
 import { validator, buildValidations } from 'ember-cp-validations';
 
 const Validations = buildValidations({
@@ -19,6 +20,7 @@ const Validations = buildValidations({
 export default Component.extend(Validations, {
   content: undefined,
 
+  metrics: service(),
   notify: service(),
   session: service(),
   store: service(),
@@ -44,6 +46,12 @@ export default Component.extend(Validations, {
       .then(() => {
         set(review, 'rating', get(this, 'entry.rating'));
         this.$('.modal').modal('hide');
+        get(this, 'metrics').trackEvent({
+          category: 'review',
+          action: 'create',
+          label: modelType([get(review, 'media')]),
+          value: get(review, 'media.id')
+        });
       })
       .catch(err => get(this, 'notify').error(errorMessages(err)));
   }).drop(),

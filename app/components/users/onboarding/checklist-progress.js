@@ -1,6 +1,8 @@
 import Component from 'ember-component';
 import computed, { alias, gte } from 'ember-computed';
 import get from 'ember-metal/get';
+import service from 'ember-service/inject';
+import observer from 'ember-metal/observer';
 import { isObject } from 'client/helpers/is-object';
 
 const isObjectComputed = property => (
@@ -12,6 +14,7 @@ const isObjectComputed = property => (
 );
 
 export default Component.extend({
+  metrics: service(),
   hasRatings: gte('user.ratingsCount', 5),
   hasAvatar: isObjectComputed('user.avatar'),
   hasCover: isObjectComputed('user.coverImage'),
@@ -31,5 +34,11 @@ export default Component.extend({
     get() {
       return 5 - get(this, 'user.ratingsCount');
     }
-  }).readOnly()
+  }).readOnly(),
+
+  _track: observer('isCompleted', function() {
+    if (get(this, 'isCompleted') === true) {
+      get(this, 'metrics').trackEvent({ category: 'onboarding', action: 'complete', label: 'users' });
+    }
+  })
 });

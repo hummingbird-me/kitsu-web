@@ -36,7 +36,10 @@ export default Component.extend({
 
     startImport() {
       get(this, 'createImport').perform()
-        .then(() => invokeAction(this, 'changeComponent', 'import-progress', get(this, 'componentData')))
+        .then(() => {
+          invokeAction(this, 'changeComponent', 'import-progress', get(this, 'componentData'));
+          get(this, 'metrics').trackEvent({ category: 'import', action: 'create', label: get(this, 'siteName') });
+        })
         .catch(err => get(this, 'notify').error(errorMessages(err)));
     }
   }

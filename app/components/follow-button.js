@@ -47,6 +47,12 @@ export default Component.extend({
       }).save().then((record) => {
         set(this, 'relationship', record);
         get(this, 'session.account').incrementProperty('followingCount');
+        get(this, 'metrics').trackEvent({
+          category: 'follow',
+          action: 'create',
+          label: 'user',
+          value: get(this, 'user.id')
+        });
       })
       .catch(err => get(this, 'notify').error(errorMessages(err)));
     }

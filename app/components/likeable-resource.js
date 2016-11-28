@@ -55,6 +55,7 @@ export default Component.extend({
     // commit and handle error
     yield like.save().then(() => {
       invokeAction(this, 'onCreate');
+      get(this, 'metrics').trackEvent({ category: key, action: 'like', value: get(this, 'resource.id') });
     }).catch(() => {
       get(this, 'likes').removeObject(like);
       set(this, 'isLiked', false);

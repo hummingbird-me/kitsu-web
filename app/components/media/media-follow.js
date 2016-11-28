@@ -35,6 +35,12 @@ export default FollowComponent.extend({
         media: get(this, 'media')
       }).save().then((record) => {
         set(this, 'relationship', record);
+        get(this, 'metrics').trackEvent({
+          category: 'follow',
+          action: 'create',
+          label: 'media',
+          value: get(this, 'media.id')
+        });
       })
       .catch(err => get(this, 'notify').error(errorMessages(err)));
     }

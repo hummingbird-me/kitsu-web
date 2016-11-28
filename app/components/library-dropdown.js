@@ -15,6 +15,7 @@ export const REMOVE_KEY = 'library.remove';
 export default Component.extend({
   entryIsLoaded: false,
   i18n: service(),
+  metrics: service(),
 
   mediaType: getter(function() {
     return get(this, 'type') || getType([get(this, 'entry.media')]);
@@ -48,12 +49,23 @@ export default Component.extend({
   updateTask: task(function* (status) {
     const entry = get(this, 'entry');
     const actions = get(this, 'methods');
+    let eventCategory;
     if (entry === undefined) {
       yield invokeAction(actions, 'create', status.key);
+      eventCategory = 'create';
     } else if (status.key === REMOVE_KEY) {
       yield invokeAction(actions, 'delete');
+      eventCategory = 'remove';
     } else {
       yield invokeAction(actions, 'update', status.key);
+    }
+    if (get(this, 'eventCategory') !== undefined) {
+      get(this, 'metrics').trackEvent({
+        category: 'library',
+        action: eventCategory,
+        label: get(this, 'mediaType'),
+        value: get(this, 'entry.media.id')
+      });
     }
   }).drop(),
 
