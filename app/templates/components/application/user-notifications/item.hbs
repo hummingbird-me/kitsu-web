@@ -28,6 +28,9 @@
         {{#if (eq activity.verb "post")}}
           mentioned you in a post.
         {{/if}}
+        {{#if (eq activity.verb "comment")}}
+          mentioned you in a comment.
+        {{/if}}
       </p>
       <small class="media-secondary">{{moment-from-now activity.time}}</small>
     </div>
