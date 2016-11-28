@@ -12,7 +12,9 @@
                 <div class="media--meta">
                   <ul>
                     <li class="rating-content-type">
-                      <span>{{media.ageRating}}</span>
+                      {{#if media.ageRating}}
+                        <span>{{media.ageRating}}</span>
+                      {{/if}}
                       <span>{{capitalize media.mediaType}}</span>
                     </li>
                     {{#each media.genres as |genre|}}
