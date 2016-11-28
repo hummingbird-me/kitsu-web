@@ -19,7 +19,7 @@ module.exports = function(defaults) {
           {
             module: require('autoprefixer'),
             options: {
-              browsers: ['last 2 versions']
+              browsers: ['> 1%', 'last 2 versions']
             }
           }
         ]
