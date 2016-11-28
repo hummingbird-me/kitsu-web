@@ -338,13 +338,26 @@
 }
 
 .reply-list {
-  margin: .5rem 0 0 -1rem;
+  background: #f5f5f5;
+  border-radius: 3px;
+  margin-top: 30px;
+  li {
+    &:last-child {
+      border-bottom: none;
+    }
+  }
 }
 
 .reply-comment {
   width: 100%;
-  padding: 0.2rem;
+  padding: 10px;
   font-size: .9rem;
+  margin-top: -5px;
+  height: 40px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border: 1px solid #eee;
+  border-top: none;
 }
 
 .stream-error-wrapper {
