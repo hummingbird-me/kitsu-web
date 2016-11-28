@@ -22,7 +22,7 @@
                 {{/if}}
                 {{#if (has-role "admin" user)}}
                   {{#unless (is-empty user.pastNames)}}
-                    {{#bootstrap/bs-dropdown class="d-inline-block" as |dropdown|}}
+                    {{#bootstrap/bs-dropdown class="d-inline" as |dropdown|}}
                       {{#dropdown.button}}
                         Previous Names
                       {{/dropdown.button}}

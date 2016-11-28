@@ -8,7 +8,7 @@ import { modelType } from 'client/helpers/model-type';
 import getter from 'client/utils/getter';
 
 export default Component.extend({
-  classNames: ['d-inline-block'],
+  classNames: ['d-inline'],
   isLiked: false,
   showUsers: false,
 
