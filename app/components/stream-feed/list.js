@@ -193,6 +193,13 @@ export default Component.extend({
         if (found !== undefined) {
           return;
         }
+        // look for unknown post at first object by session user
+        if (get(activity, 'actor').split(':')[1] === get(this, 'session.account.id')) {
+          const top = get(this, 'feed.firstObject');
+          if (get(top, 'group') === 'Post:<unknown>') {
+            return;
+          }
+        }
       }
       if (groupCache.indexOf(get(activity, 'group')) === -1) {
         set(this, 'newItems.length', get(this, 'newItems.length') + 1);
