@@ -56,10 +56,20 @@
     </div>
   </div>
   <div class="form-group row">
-    <label for="example-search-input" class="col-xs-2 col-form-label">
+    <label for="waifu-search" class="col-xs-2 col-form-label">
       {{t "users.edit.about.waifu"}}
     </label>
-    <div class="col-xs-10">
+    <div class="col-xs-4">
+      {{#power-select
+        renderInPlace=true
+        searchEnabled=false
+        selected=user.waifuOrHusbando
+        options=(array "Waifu" "Husbando")
+        onchange=(action (mut user.waifuOrHusbando)) as |option|}}
+        <span>{{option}}</span>
+      {{/power-select}}
+    </div>
+    <div class="col-xs-6">
       {{#power-select
         search=(perform searchCharacters)
         selected=user.waifu
@@ -67,7 +77,6 @@
         renderInPlace=true
         as |character|
       }}
-        {{lazy-image src=(image character.image)}}
         <strong>{{character.name}}</strong>
       {{/power-select}}
     </div>

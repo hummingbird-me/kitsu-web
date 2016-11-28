@@ -24,7 +24,7 @@ export default Component.extend({
 
   coverImageStyle: computed('user.coverImage', {
     get() {
-      const coverImage = image([get(this, 'user.coverImage')]);
+      const coverImage = image(get(this, 'user.coverImage'));
       return `background-image: url("${coverImage}")`.htmlSafe();
     }
   }).readOnly(),
