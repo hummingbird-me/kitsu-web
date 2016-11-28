@@ -14,7 +14,7 @@
       {{#if realtimeLoading}}
         {{loading-spinner size="small"}}
       {{else}}
-        {{newItems.length}} new activities
+        {{pluralize newItems.length "new activity"}}
       {{/if}}
     </div>
   {{/if}}
