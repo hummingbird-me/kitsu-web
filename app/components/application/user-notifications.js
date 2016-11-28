@@ -78,6 +78,7 @@ export default Component.extend({
           prependObjects(groups, [group]);
         } else {
           const newGroup = get(this, 'store').createRecord('activity-group', {
+            id: get(enriched, 'id'),
             isSeen: false,
             isRead: false,
             activities: [enriched]
