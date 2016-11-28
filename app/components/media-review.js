@@ -26,6 +26,13 @@ export default Component.extend({
     });
   }),
 
+  init() {
+    this._super(...arguments);
+    if (get(this, 'media') !== undefined) {
+      set(this, 'review.media', get(this, 'media'));
+    }
+  },
+
   actions: {
     updateEntry(entry, property, value) {
       set(entry, property, value);
