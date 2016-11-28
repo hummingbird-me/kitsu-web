@@ -12,6 +12,8 @@ export default Component.extend({
   attachment: 'middle left',
   targetAttachment: 'middle right',
   isHovered: false,
+  isStatic: false,
+
   epicTooltip: service(),
 
   mouseEnter() {
@@ -25,7 +27,6 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     assert('Must pass a target to {{epic-tooltip}}', get(this, 'target') !== undefined);
-    set(this, 'constraints', get(this, 'constraints') || [{ to: 'scrollParent', attachment: 'together' }]);
 
     // only one epic-tooltip open at a single time
     if (get(this, 'singleInstance') === true) {
@@ -43,21 +44,27 @@ export default Component.extend({
       attachment: get(this, 'attachment'),
       targetAttachment: get(this, 'targetAttachment'),
       enabled: true,
-      constraints: get(this, 'constraints')
+      constraints: get(this, 'constraints'),
+      offset: get(this, 'offset') || '0px 0px'
     });
     set(this, 'tether', tether);
     tether.position();
+    jQuery(get(this, 'target')).on('resize.ett', () => tether.position());
 
-    // listen to hover events on the target
-    jQuery(get(this, 'target')).hoverIntent({
-      over: () => this.targetEntered(),
-      out: () => this.targetLeave(),
-      timeout: get(this, 'timeout') || 0
-    });
+    if (get(this, 'isStatic') === false) {
+      // listen to hover events on the target
+      jQuery(get(this, 'target')).hoverIntent({
+        over: () => this.targetEntered(),
+        out: () => this.targetLeave(),
+        timeout: get(this, 'timeout') || 0
+      });
 
-    // because hoverIntent `out` doesn't fire unless `over` has fired, we need to exit
-    // for the first time
-    jQuery(get(this, 'target')).one('mouseleave', () => this.targetLeave());
+      // because hoverIntent `out` doesn't fire unless `over` has fired, we need to exit
+      // for the first time
+      jQuery(get(this, 'target')).one('mouseleave', () => this.targetLeave());
+    } else {
+      this.targetEntered();
+    }
   },
 
   willDestroyElement() {
@@ -65,7 +72,10 @@ export default Component.extend({
     if (get(this, 'singleInstance') === true) {
       get(this, 'epicTooltip').remove(this);
     }
-    jQuery(get(this, 'target')).off('mouseenter.hoverIntent').off('mouseleave.hoverIntent');
+    jQuery(get(this, 'target'))
+      .off('mouseenter.hoverIntent')
+      .off('mouseleave.hoverIntent')
+      .off('resize.ett');
     get(this, 'tether').destroy();
     this.$().remove();
   },

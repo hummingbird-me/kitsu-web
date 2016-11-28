@@ -9,6 +9,7 @@ import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   classNames: ['poster-wrapper'],
+  contraints: [{ to: 'scrollParent', attachment: 'together' }],
   entry: null,
   media: undefined,
   trailerOpen: false,

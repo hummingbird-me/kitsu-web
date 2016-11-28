@@ -132,29 +132,17 @@
   transition: width 0.2s cubic-bezier(0, 1.2, 0.4, 1.1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-.site-search__input:focus::-webkit-input-placeholder {
-  opacity: .5;
-}
-.site-search__input:focus:-moz-placeholder {
-  opacity: .5;
-}
-.site-search__input:focus::-moz-placeholder {
-  opacity: .5;
-}
-.site-search__input:focus:-ms-input-placeholder {
-  opacity: .5;
-}
-.site-search__input:focus {
-  text-indent: 0;
-  width: 300px;
-  padding-left: 15px;
-}
-.site-search__submit {
-  display: none;
+  &.active {
+    text-indent: 0;
+    width: 300px;
+    padding-left: 15px;
+  }
 }
 
-
+// @Josh -- Search dropdown CSS
+#search-popover {
+  z-index: $zIndex-5;
+}
 
 .notification-drop {
   width: 400px;

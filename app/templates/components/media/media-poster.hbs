@@ -48,7 +48,7 @@
 {{! Tooltip }}
 {{#if hasHovered}}
   {{! TODO @josh -- make epic }}
-  {{#epic-tooltip target=(concat "#" elementId " .grid-poster") timeout=250 singleInstance=true}}
+  {{#epic-tooltip target=(concat "#" elementId " .grid-poster") timeout=250 singleInstance=true constraints=constraints}}
     <div class="p-a-1" style="background-color: #4B5360; color: #fff; width: 350px">
       <span class="media-title" style="font-weight: bold; font-size: 14px">{{media.canonicalTitle}}</span>
       <div class="media-ratings">

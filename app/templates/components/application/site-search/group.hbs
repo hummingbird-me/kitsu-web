@@ -1,0 +1,47 @@
+{{! TODO - @Josh - Search header for each group }}
+<div style="font-size: 12px;padding: 10px; background-color: #faf9fa; margin-bottom: 0px; text-transform: uppercase;">
+  <p class="d-inline-block" style="margin-bottom: 0px">{{group}}</p>
+  <div class="pull-sm-right">
+    {{#if moreLink}}
+      <a href="#" {{action "transitionTo" moreLink}}>more</a>
+    {{else}}
+      {{#paginated-resource/manual
+        model=items
+        update=update as |nextLink|}}
+        {{#if nextLink}}
+          <a href="#" {{action "noop"}}>more</a>
+        {{/if}}
+      {{/paginated-resource/manual}}
+    {{/if}}
+  </div>
+</div>
+
+<ul class="nav">
+  {{#if isLoading}}
+    <div class="text-xs-center w-100 m-t-1 m-b-1">
+      {{loading-spinner size="small"}}
+    </div>
+  {{else}}
+    <ul class="media-list">
+      {{#each items as |item|}}
+        {{! TODO - @Josh - Search item result }}
+        <li class="media" {{action "transitionTo" item}}>
+          <div class="media-left">
+            {{#if (eq group "users")}}
+              {{lazy-image src=(image item.avatar "small")}}
+            {{else}}
+              {{lazy-image src=(image item.posterImage "small")}}
+            {{/if}}
+          </div>
+          <div class="media-body">
+            {{#if (eq group "users")}}
+              <p>{{item.name}}</p>
+            {{else}}
+              <p>{{item.canonicalTitle}}</p>
+            {{/if}}
+          </div>
+        </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+</ul>

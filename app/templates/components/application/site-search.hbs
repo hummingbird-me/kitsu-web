@@ -1,0 +1,36 @@
+{{one-way-input
+  update=(perform search)
+  id="search"
+  class=inputClass
+  placeholder="Search..."
+}}
+<label for="search" class="site-search__icon" {{action (action (mut isOpened) true)}}>
+  <span class="icon">
+    {{svg-jar "search"}}
+  </span>
+</label>
+
+{{#if (and isOpened (not (is-empty query)))}}
+  {{#epic-tooltip
+    id="search-popover"
+    target=(concat "#" elementId)
+    isStatic=true
+    singleInstance=true
+    attachment="top right"
+    targetAttachment="bottom right"
+    offset="-20px 0px"
+  }}
+    {{! TODO - @Josh - Search dropdown }}
+    <div style="width: 350px; height: 90vh; background-color: #fff; overflow: auto;">
+      <p style="background-color: #efeef1; padding: 10px; margin-bottom: 0px;">Search Results</p>
+      <div style="overflow: auto">
+        {{application/site-search/group group="anime" items=groups.anime isLoading=animeTask.isRunning
+          moreLink=(href-to "anime.index" (query-params text=query)) close=(action "close")}}
+        {{application/site-search/group group="manga" items=groups.manga isLoading=mangaTask.isRunning
+          moreLink=(href-to "manga.index" (query-params text=query)) close=(action "close")}}
+        {{application/site-search/group group="users" items=groups.users isLoading=usersTask.isRunning
+          update=(action "updatePage" "users") close=(action "close")}}
+      </div>
+    </div>
+  {{/epic-tooltip}}
+{{/if}}
