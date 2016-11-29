@@ -3,11 +3,11 @@
   {{! Show either the user's avatar or media poster image on the left side }}
   {{#if isUserFocused}}
     <a href={{href-to "users.index" review.user}} style="height: 100%;">
-      {{lazy-image src=(image review.user.avatar "small")}}
+      {{lazy-image url=(image review.user.avatar "small")}}
     </a>
   {{else}}
     <a href={{href-to (concat (model-type review.media) ".show") review.media}}>
-      {{lazy-image src=(image review.media.posterImage "large")}}
+      {{lazy-image url=(image review.media.posterImage "large")}}
     </a>
   {{/if}}
 </div>

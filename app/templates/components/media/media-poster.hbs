@@ -1,6 +1,6 @@
 <div class="grid-poster" data-test-selector="media-poster">
   {{! Media Poster }}
-  {{lazy-image src=(image media.posterImage "medium")}}
+  {{lazy-image url=(image media.posterImage "medium")}}
 
   <div class="poster-overlay">
     <a href={{href-to (concat (model-type media) ".show") media}}></a>

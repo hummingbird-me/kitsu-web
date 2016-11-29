@@ -3,7 +3,7 @@
     {{! Entry Title }}
     <div class="col-md-12 col-lg-7 entry-left">
       <div class="entry-poster">
-        {{lazy-image src=(image media.posterImage "tiny") class="drop-thumb"}}
+        {{lazy-image url=(image media.posterImage "tiny") class="drop-thumb"}}
       </div>
       <div class="entry-title" data-test-selector="library-entry-title">
         <span>{{media.canonicalTitle}}</span>
@@ -56,7 +56,7 @@
 
       {{! Poster Image }}
       <div class="col-lg-1 hidden-md-down columns no-padding-right">
-        {{lazy-image src=(image media.posterImage "medium") class="drop-thumb"}}
+        {{lazy-image url=(image media.posterImage "medium") class="drop-thumb"}}
       </div>
 
       {{! Media Info }}

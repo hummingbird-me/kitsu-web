@@ -21,12 +21,13 @@ export default Route.extend(ApplicationRouteMixin, {
   },
 
   headTags() {
+    const desc = 'TODO @Josh: Kitsu Default Description';
     return [{
       type: 'meta',
       tagId: 'meta-description',
       attrs: {
         name: 'description',
-        content: 'TODO - @Josh - (Pre-Launch) - Base Site Description'
+        content: desc
       }
     }, {
       type: 'meta',
@@ -47,21 +48,21 @@ export default Route.extend(ApplicationRouteMixin, {
       tagId: 'meta-og-image',
       attrs: {
         property: 'og:image',
-        content: `${window.location.protocol}//${window.location.host}/kitsu.png`
+        content: `${window.location.protocol}//${window.location.host}/kitsu-256.png`
       }
     }, {
       type: 'meta',
       tagId: 'meta-og-description',
       attrs: {
         property: 'og:description',
-        content: 'TODO - COPY FROM ABOVE'
+        content: desc
       }
     }, {
       type: 'meta',
       tagId: 'meta-twitter-image',
       attrs: {
         name: 'twitter:image',
-        content: `${window.location.protocol}//${window.location.host}/kitsu.png`,
+        content: `${window.location.protocol}//${window.location.host}/kitsu-256.png`,
       }
     }];
   },
