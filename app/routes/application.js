@@ -6,6 +6,7 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 
 export default Route.extend(ApplicationRouteMixin, {
   i18n: service(),
+  headData: service(),
   metrics: service(),
   session: service(),
 
@@ -17,6 +18,52 @@ export default Route.extend(ApplicationRouteMixin, {
     }
     // boot intercom for guests
     get(this, 'metrics').invoke('identify', 'Intercom', {});
+  },
+
+  headTags() {
+    return [{
+      type: 'meta',
+      tagId: 'meta-description',
+      attrs: {
+        name: 'description',
+        content: 'TODO - @Josh - (Pre-Launch) - Base Site Description'
+      }
+    }, {
+      type: 'meta',
+      tagId: 'meta-og-title',
+      attrs: {
+        property: 'og:title',
+        content: get(this, 'headData.title')
+      }
+    }, {
+      type: 'meta',
+      tagId: 'meta-og-type',
+      attrs: {
+        property: 'og:type',
+        content: 'website'
+      }
+    }, {
+      type: 'meta',
+      tagId: 'meta-og-image',
+      attrs: {
+        property: 'og:image',
+        content: `${window.location.protocol}//${window.location.host}/kitsu.png`
+      }
+    }, {
+      type: 'meta',
+      tagId: 'meta-og-description',
+      attrs: {
+        property: 'og:description',
+        content: 'TODO - COPY FROM ABOVE'
+      }
+    }, {
+      type: 'meta',
+      tagId: 'meta-twitter-image',
+      attrs: {
+        name: 'twitter:image',
+        content: `${window.location.protocol}//${window.location.host}/kitsu.png`,
+      }
+    }];
   },
 
   title(tokens) {

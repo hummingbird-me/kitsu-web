@@ -8,7 +8,9 @@ import { task, timeout } from 'ember-concurrency';
 import CanonicalRedirectMixin from 'client/mixins/routes/canonical-redirect';
 import CoverPageMixin from 'client/mixins/routes/cover-page';
 import { modelType } from 'client/helpers/model-type';
+import { image } from 'client/helpers/image';
 import errorMessages from 'client/utils/error-messages';
+import clip from 'clip';
 
 export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   templateName: 'media/show',
@@ -32,14 +34,6 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
         .then(records => get(records, 'firstObject'));
     }
     return get(this, 'store').findRecord(type, slug, { include: 'genres' });
-  },
-
-  afterModel(model) {
-    const id = `${capitalize(modelType([model]))}-${get(model, 'id')}`;
-    get(this, 'metrics').invoke('trackImpression', 'Stream', {
-      content_list: [`Media:${id}`],
-      location: get(this, 'routeName')
-    });
   },
 
   setupController(controller, model) {
@@ -73,6 +67,47 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
       }
     });
     set(controller, 'entry', promise);
+  },
+
+  _headTags(model) {
+    // TODO - @Josh - Custom description for a user's profile (SEO / Embeds)
+    const desc = `Check out ${get(model, 'canonicalTitle')} on Kitsu.`;
+    return [{
+      type: 'meta',
+      tagId: 'meta-description',
+      attrs: {
+        name: 'description',
+        content: clip(`${desc} ${get(model, 'synopsis')}`, 150)
+      }
+    }, {
+      type: 'meta',
+      tagId: 'meta-og-title',
+      attrs: {
+        property: 'og:title',
+        content: get(model, 'canonicalTitle')
+      }
+    }, {
+      type: 'meta',
+      tagId: 'meta-og-description',
+      attrs: {
+        property: 'og:description',
+        content: `${desc} ${get(model, 'synopsis')}`
+      }
+    }, {
+      type: 'meta',
+      tagId: 'meta-og-image',
+      attrs: {
+        property: 'og:image',
+        content: `${window.location.protocol}//${window.location.host}${image(get(model, 'posterImage'), 'medium')}`
+      }
+    }, {
+      type: 'meta',
+      tagID: 'meta-twitter-image',
+      attrs: {
+        name: 'twitter:image',
+        content: `${window.location.protocol}//${window.location.host}${image(get(model, 'posterImage'), 'medium')}`
+      }
+    }];
   },
 
   // if the user authenticates while on this page, attempt to get their entry

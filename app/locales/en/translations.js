@@ -4,7 +4,6 @@ export default {
     anime: {
       index: 'Explore Anime'
     },
-    dashboard: 'Dashboard',
     'not-found': '404',
     'server-error': '500',
     users: {

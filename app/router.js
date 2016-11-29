@@ -8,14 +8,20 @@ const RouterInstance = Router.extend({
   location: config.locationType,
   rootURL: config.rootURL,
   metrics: service(),
+  headData: service(),
 
   didTransition() {
     this._super(...arguments);
     scheduleOnce('afterRender', this, () => {
+      get(this, 'headData').set('url', `${window.location.protocol}//${window.location.host}${get(this, 'url')}`);
       const page = get(this, 'url');
       const title = get(this, 'currentRouteName') || 'Unknown';
       get(this, 'metrics').trackPage({ page, title });
     });
+  },
+
+  setTitle(title) {
+    get(this, 'headData').set('title', title);
   }
 });
 

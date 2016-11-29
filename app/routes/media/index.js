@@ -50,6 +50,27 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
     return get(this, 'store').query(mediaType, options);
   },
 
+  afterModel() {
+    // TODO: @Josh - Custom Description for search page.
+    const [mediaType] = get(this, 'routeName').split('.');
+    const desc = `Check out ALL our ${mediaType}. TODO`;
+    set(this, 'headTags', [{
+      type: 'meta',
+      tagId: 'meta-description',
+      attrs: {
+        name: 'description',
+        content: desc
+      }
+    }, {
+      type: 'meta',
+      tagId: 'meta-og-description',
+      attrs: {
+        property: 'og:description',
+        content: desc
+      }
+    }]);
+  },
+
   setupController(controller) {
     this._super(...arguments);
     jQuery(document.body).addClass('browse-page');
