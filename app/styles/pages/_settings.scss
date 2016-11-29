@@ -1,0 +1,76 @@
+.settings-page {
+  .global-container {
+    max-width: 100%;
+  }
+}
+
+.settings--header {
+  background: $voodoo;
+  width: 100%;
+  margin-top: -25px;
+  margin-bottom: 30px;
+  padding: 30px 0 0px;
+  img {
+    width: 40px;
+    height: 40px;
+  }
+  h2 {
+    font-weight: normal;
+    color: #fff;
+    margin-left: 15px;
+    margin-bottom: 0;
+    line-height: 40px;
+  }
+}
+
+.settings--navigation {
+  width: 100%;
+  margin: 0;
+  margin-top: 20px;
+  margin-left: -11px;
+  padding: 0;
+  list-style-type: none;
+  .list-item {
+    display: inline-block;
+  }
+  a {
+    font-family: $base-font-family;
+    text-transform: uppercase;
+    color: #a793a5;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    padding: 18px 11px 15px;
+    display: block;
+    transition: color .2s;
+    position: relative;
+    &:before {
+      content: "";
+      height: 5px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      background: linear-gradient(to right, RGBA(237, 72, 95, 1), RGBA(242, 124, 54, 1));
+      transform: scaleX(0);
+      transition: transform 250ms ease;
+    }
+    &:hover {
+      text-decoration: none;
+      color: $white;
+    }
+  }
+  .list-item {
+    display: inline-block;
+    &.active {
+      a {
+        color: $white;
+        &:before {
+          transform: scaleX(1);
+        }
+      }
+    }
+  }
+}

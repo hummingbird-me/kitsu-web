@@ -1,6 +1,36 @@
-{{! @Josh -- Settings Page }}
-<div class="row">
-  <div class="col-xs-6">
+<div class="settings--header">
+  <div class="container">
+    <div class="row">
+      <div class="settings--avatar">
+        <img src={{image session.account.avatar "small"}} class="avatar-image avatar-image--small">
+      </div>
+      <h2>Settings</h2>
+      <ul class="settings--navigation">
+        <li class="list-item active">
+          <a href="#">Profile</a>
+        </li>
+        <li class="list-item">
+          <a href="#">Password</a>
+        </li>
+        <li class="list-item">
+          <a href="#">Privacy</a>
+        </li>
+        <li class="list-item">
+          <a href="#">Notifications</a>
+        </li>
+        <li class="list-item">
+          <a href="#">Blocking</a>
+        </li>
+        <li class="list-item">
+          <a href="#">Apps</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
     <form>
       <div class="form-group">
         <label for="username-input">Username</label>
@@ -36,9 +66,9 @@
       {{/if}}
     </button>
   </div>
-</div>
+  </div>
 
-<div class="card">
+  <div class="card">
   <div class="card-header">
     Import Media
   </div>
@@ -64,4 +94,5 @@
       )}}
     {{/if}}
   </div>
+</div>
 </div>
