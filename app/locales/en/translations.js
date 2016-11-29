@@ -200,7 +200,7 @@ export default {
     edit: {
       editCover: 'Change your cover photo',
       aboutMe: 'About Me',
-      linkedProfiles: 'Linked Profiles',
+      profileLinks: 'Profile Links',
       about: {
         location: 'Location',
         locationPlaceholder: 'Where do you live?',

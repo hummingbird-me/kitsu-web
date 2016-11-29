@@ -30,7 +30,7 @@ export default Component.extend({
   }).readOnly(),
 
   isAboutActive: equal('component', 'about-me'),
-  isProfilesActive: equal('component', 'linked-profiles'),
+  isProfilesActive: equal('component', 'profile-links'),
   isFavoritesActive: equal('component', 'favorites'),
   isDirty: filterBy('records', 'hasDirtyAttributes'),
 

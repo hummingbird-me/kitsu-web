@@ -11,10 +11,14 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
 
   model({ name }) {
     if (name.match(/\D+/)) {
-      return get(this, 'store').query('user', { filter: { name }, include: 'favorites.item' })
-        .then(records => get(records, 'firstObject'));
+      return get(this, 'store').query('user', {
+        filter: { name },
+        include: 'profileLinks.profileLinkSite,favorites.item'
+      }).then(records => get(records, 'firstObject'));
     }
-    return get(this, 'store').findRecord('user', name, { include: 'favorites.item' });
+    return get(this, 'store').findRecord('user', name, {
+      include: 'profileLinks.profileLinkSite,favorites.item'
+    });
   },
 
   afterModel(model) {

@@ -1,0 +1,15 @@
+<h6>{{link.site.name}}</h6>
+<div class="form-group row">
+  <div class="col-xs-12">
+    <label class="col-form-label">
+      Enter your {{link.site.name}} details to add a badge to your profile.
+    </label>
+  </div>
+  <div class="col-xs-12">
+    {{one-way-text url
+      update=(action "update")
+      class="form-control"
+      placeholder=(concat "Enter your " link.site.name " details")
+    }}
+  </div>
+</div>

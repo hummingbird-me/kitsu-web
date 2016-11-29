@@ -97,6 +97,7 @@ export default Base.extend(Validations, {
   favorites: hasMany('favorite', { inverse: 'user' }),
   followers: hasMany('follow', { inverse: 'followed' }),
   following: hasMany('follow', { inverse: 'follower' }),
+  profileLinks: hasMany('profile-link', { inverse: 'user' }),
   userRoles: hasMany('user-role'),
 
   // HACK: We use this to flag the model as dirty when waifu changes, as ember-data
