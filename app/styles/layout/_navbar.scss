@@ -139,9 +139,27 @@
   }
 }
 
-// @Josh -- Search dropdown CSS
 #search-popover {
   z-index: $zIndex-5;
+}
+
+.search--drop {
+  width: 350px;
+  height: 90vh;
+  background-color: #fff;
+  overflow: auto;
+  border-radius: 3px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.search--results {
+  padding: 5px 0;
+  .media {
+    padding: 5px 10px;
+    &:hover {
+      background: #faf9fa;
+    }
+  }
 }
 
 .notification-drop {

@@ -22,18 +22,17 @@
       {{loading-spinner size="small"}}
     </div>
   {{else}}
-    <ul class="media-list">
+    <ul class="media-list search--results">
       {{#each items as |item|}}
-        {{! TODO - @Josh - Search item result }}
-        <li class="media" {{action "transitionTo" item}}>
-          <div class="media-left">
+        <li class="media col-sm-12" {{action "transitionTo" item}}>
+          <div class="media-left col-sm-2 no-padding-left">
             {{#if (eq group "users")}}
               {{lazy-image src=(image item.avatar "small")}}
             {{else}}
               {{lazy-image src=(image item.posterImage "small")}}
             {{/if}}
           </div>
-          <div class="media-body">
+          <div class="media-body col-sm no-padding-left">
             {{#if (eq group "users")}}
               <p>{{item.name}}</p>
             {{else}}
