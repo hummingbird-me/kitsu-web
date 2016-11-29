@@ -33,6 +33,8 @@ export default Component.extend({
       } else if (modelType === 'Follow') {
         const actor = get(activity, 'actor');
         return hrefTo(this, 'users', actor);
+      } else if (modelType === 'Comment') {
+        return hrefTo(this, 'posts', get(activity, 'postId'));
       }
       return '#';
     }

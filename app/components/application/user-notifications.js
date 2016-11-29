@@ -107,7 +107,8 @@ export default Component.extend({
       id: get(activity, 'id'),
       foreignId: get(activity, 'foreign_id'),
       time: moment.parseZone(get(activity, 'time')).local().format(),
-      verb: get(activity, 'verb')
+      verb: get(activity, 'verb'),
+      postId: get(activity, 'post_id')
     });
     return get(this, 'store').findRecord('user', get(activity, 'actor').split(':')[1]).then((user) => {
       set(enriched, 'actor', user);
