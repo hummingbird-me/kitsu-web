@@ -9,6 +9,7 @@ import { invoke, invokeAction } from 'ember-invoke-action';
 import { bind } from 'ember-runloop';
 import jQuery from 'jquery';
 import RSVP from 'rsvp';
+import VideoExtension from 'client/utils/video-extension';
 
 export default Component.extend({
   classNameBindings: ['isExpanded:is-expanded'],
@@ -26,6 +27,9 @@ export default Component.extend({
   mediumEditorOptions: {
     toolbar: {
       buttons: ['image', 'video', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'justifyLeft', 'justifyCenter', 'justifyRight']
+    },
+    extensions: {
+      video: new VideoExtension()
     }
   },
 

@@ -51,6 +51,12 @@ module.exports = function(defaults) {
   app.import('bower_components/flickity/dist/flickity.pkgd.min.js');
   app.import('bower_components/clipboard/dist/clipboard.min.js');
   app.import('bower_components/getstream/dist/js_min/getstream.js');
+  app.import('bower_components/rangy/rangy-core.min.js');
+  app.import('bower_components/rangy/rangy-classapplier.min.js');
+  //app.import('bower_components/rangy/rangy-highlighter.js');
+  //app.import('bower_components/rangy/rangy-selectionsaverestore.js');
+  //app.import('bower_components/rangy/rangy-serializer.js');
+  //app.import('bower_components/rangy/rangy-textrange.js');
 
   return app.toTree();
 };
