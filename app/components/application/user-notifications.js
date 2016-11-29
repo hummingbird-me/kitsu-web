@@ -37,7 +37,7 @@ export default Component.extend({
     }).then((groups) => {
       const meta = get(groups, 'meta');
       groups.forEach(group => set(group, 'activities', get(group, 'activities').toArray()));
-      get(this, 'groups').addObjects(groups);
+      groups.toArray().map(group => group.copy().then(copy => get(this, 'groups').addObject(copy)));
       set(this, 'groups.meta', meta);
       return get(this, 'groups');
     });
