@@ -135,7 +135,26 @@
 
 .media-sidebar {
   width: 195px;
-  position: absolute;
+  // Falls back to relative if browser doesn't support `position: sticky`
+  position: relative;
+  top: -201px;
+  // 25px right margin
+  padding-right: 15px;
+  float: left;
+  z-index: 301;
+
+  &:after {
+    content: '';
+    display: block;
+    visibility: hidden;
+    height: 0;
+    clear: both;
+  }
+
+  > div {
+    position: relative;
+  }
+  // New stuff above
   img {
     border-radius: 3px;
   }
@@ -146,6 +165,18 @@
     margin-top: 10px;
     &:hover {
       box-shadow: none;
+    }
+  }
+}
+
+// Browser natively supports `position: sticky`
+@supports (position: sticky) {
+  .media-sidebar {
+    position: sticky;
+    top: 274px;
+
+    > div {
+      top: -201px;
     }
   }
 }
