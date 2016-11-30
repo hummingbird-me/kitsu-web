@@ -1,3 +1,34 @@
+function _isYouTube(url) {
+  let found = false;
+
+  if (typeof url === 'string') {
+    const pos = url.indexOf('youtube.com');
+
+    found = (pos > -1);
+  }
+
+  return found;
+}
+
+function _getYouTubeParams(url) {
+  const hash = {};
+
+  if (typeof url === 'string') {
+    const pos = url.indexOf('?');
+    if (pos > -1) {
+      let params = url.substr(pos + 1, url.length);
+      params = params.split('&');
+
+      params.forEach((d) => {
+        const pair = d.split('=');
+        hash[pair[0]] = pair[1];
+      });
+    }
+  }
+
+  return hash;
+}
+
 rangy.init();
 
 export default MediumEditor.extensions.button.extend({
@@ -13,31 +44,34 @@ export default MediumEditor.extensions.button.extend({
     this.classApplier = rangy.createClassApplier('video-preview', {
       elementTagName: 'video',
       elementAttributes: {
-        controls: 'true'
+        controls: 'true',
+        src: ''
       },
       normalize: true
     });
 
-    this.classApplier.onElementCreate = function(el) {
-      const sel = rangy.getSelection();
-      const node = sel.nativeSelection.baseNode;
-      const text = node.data;
-      const source = document.createElement('source');
-
-      source.src = text;
-      source.type = 'video/mp4';
-
-      el.appendChild(source);
-    };
+    this.youtubeApplier = rangy.createClassApplier('video-preview', {
+      elementTagName: 'iframe',
+      elementAttributes: {
+        src: ''
+      },
+      normalize: true
+    });
   },
 
   handleClick() {
-    this.classApplier.toggleSelection();
+    const node = rangy.getSelection().nativeSelection.baseNode;
+    const text = node.data;
+    const activeElement = MediumEditor.selection.getSelectionElement(this.window);
+    const applier = _isYouTube(text) ? this.youtubeApplier : this.classApplier;
 
-    try {
-      this.base.checkContentChanged();
-    } catch(e) {
-      console.log(e);
-    }
+    applier.elementAttributes.src = text;
+
+    applier.toggleSelection();
+
+    this.base.events.updateInput(activeElement, {
+      target: activeElement,
+      currentTarget: activeElement
+    });
   }
 });

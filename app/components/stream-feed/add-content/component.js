@@ -26,17 +26,26 @@ export default Component.extend({
 
   mediumEditorOptions: {
     toolbar: {
-      buttons: ['image', 'video', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'justifyLeft', 'justifyCenter', 'justifyRight']
+      buttons: ['image', 'video', 'h1', 'h2', 'h3', 'justifyLeft', 'justifyCenter', 'justifyRight']
     },
     extensions: {
       video: new VideoExtension()
     }
   },
 
+  trueContentLength: computed('content', {
+    get() {
+      const div = document.createElement('div');
+
+      div.innerHTML = get(this, 'content');
+
+      return div.textContent.length;
+    }
+  }).readOnly(),
+
   canPost: computed('content', {
     get() {
-      console.log(get(this, 'content.length'));
-      return isEmpty(get(this, 'content')) === false && (get(this, 'content.length') <= get(this, 'maxLength'));
+      return isEmpty(get(this, 'content')) === false && (get(this, 'trueContentLength') <= get(this, 'maxLength'));
     }
   }).readOnly(),
 
