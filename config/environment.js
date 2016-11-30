@@ -19,6 +19,7 @@ module.exports = function(environment) {
     EXTEND_PROTOTYPES: {
       Date: false
     },
+    isStaging: false,
 
     // ember-simple-auth
     'ember-simple-auth': {
@@ -87,6 +88,10 @@ module.exports = function(environment) {
     ads: {
       enabled: false,
       client: undefined
+    },
+
+    bugherd: {
+      enabled: true
     }
   };
 
@@ -111,6 +116,7 @@ module.exports = function(environment) {
   }
 
   if (process.env.HEROKU_EMBER_APP === 'staging') {
+    ENV.isStaging = true;
     ENV.torii.providers['facebook-connect'].appId = '189034391502520';
     ENV.metricsAdapters[0].config.id = 'UA-37633900-3';
     ENV.metricsAdapters[2].config.production.apiKey = 'ekx6xkn9v9xx';
