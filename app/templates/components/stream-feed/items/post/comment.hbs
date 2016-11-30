@@ -65,7 +65,14 @@
           {{/if}}
 
           {{#if (not (is-self comment.user))}}
-            <a class="dropdown-item" href="#">Report Comment</a>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#{{elementId}}-report-content" {{action (toggle "reportingComment" this)}}>Report Comment</a>
+              {{#if reportingComment}}
+                {{to-elsewhere named="modal" send=(component "modals/report-content"
+                  content=comment
+                  modalId=(concat elementId "-report-content")
+                  onClose=(toggle-action "reportingComment" this)
+                )}}
+              {{/if}}
             <a class="dropdown-item" href="#" {{action "blockUser"}}>Block @{{comment.user.name}}</a>
           {{/if}}
         </div>

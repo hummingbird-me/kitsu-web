@@ -1,0 +1,33 @@
+{{#bootstrap/bs-modal
+  id=modalId
+  onClose=onClose as |modal|}}
+  {{#modal.body}}
+    {{! Reason Select }}
+    {{#power-select
+      renderInPlace=true
+      searchEnabled=false
+      selected=reason
+      options=reasons
+      placeholder="Reason"
+      onchange=(action (mut reason)) as |reason|
+    }}
+      {{reason}}
+    {{/power-select}}
+
+    {{! Explanation }}
+    {{expanding-textarea
+      update=(action (mut explanation))
+      placeholder="Your explanation..."
+      class="form-control"}}
+  {{/modal.body}}
+
+  {{#modal.footer}}
+    <button class="button button--primary" disabled={{if (or (is-empty reason) (is-empty explanation)) "disabled"}} onclick={{perform createReport}}>
+      {{#if createReport.isRunning}}
+        {{loading-spinner size="small"}}
+      {{else}}
+        Report
+      {{/if}}
+    </button>
+  {{/modal.footer}}
+{{/bootstrap/bs-modal}}

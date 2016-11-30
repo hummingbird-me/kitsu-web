@@ -172,7 +172,15 @@
             {{/if}}
 
             {{#if (not (is-self post.user))}}
-              <a class="dropdown-item" href="#">Report Post</a>
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#{{elementId}}-report-content" {{action (toggle "reportingPost" this)}}>Report Post</a>
+              {{#if reportingPost}}
+                {{to-elsewhere named="modal" send=(component "modals/report-content"
+                  content=post
+                  modalId=(concat elementId "-report-content")
+                  onClose=(toggle-action "reportingPost" this)
+                )}}
+              {{/if}}
+
               <a class="dropdown-item" href="#" {{action "blockUser"}}>Block @{{post.user.name}}</a>
             {{/if}}
           </div>
