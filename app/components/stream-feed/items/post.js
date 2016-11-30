@@ -96,7 +96,9 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
         user: get(this, 'session.account'),
         blocked: get(this, 'post.user')
       });
-      block.save().then(() => {}).catch(err => (
+      block.save().then(() => {
+        get(this, 'notify').success(`You have blocked ${get(this, 'post.user')}`);
+      }).catch(err => (
         get(this, 'notify').error(errorMessages(err))
       ));
     },

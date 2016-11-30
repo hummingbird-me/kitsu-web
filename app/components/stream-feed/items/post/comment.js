@@ -143,7 +143,9 @@ export default Component.extend({
         user: get(this, 'session.account'),
         blocked: get(this, 'comment.user')
       });
-      block.save().then(() => {}).catch(err => (
+      block.save().then(() => {
+        get(this, 'notify').success(`You have blocked ${get(this, 'comment.user')}`);
+      }).catch(err => (
         get(this, 'notify').error(errorMessages(err))
       ));
     },
