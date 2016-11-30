@@ -1,16 +1,60 @@
-// TODO - @Josh - top loading bar
 .loading-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  z-index: 9001;
-  background: $cinnabar;
-  transform:translateX(100%);
-  animation: shift-rightwards 1s ease-in-out infinite;
-  animation-delay: .8s;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 2px;
+	z-index: 9001;
+	width: 0;
+	animation: loader 2s ease forwards;
+	background: linear-gradient(to right, RGBA(237, 72, 95, 0.7), RGBA(242, 124, 54, 0.7));
 }
+
+@keyframes loader {
+
+	0% {
+		width: 0;
+	}
+
+	20% {
+		width: 10%;
+	}
+
+	25% {
+		width: 24%;
+	}
+
+	43% {
+		width: 41%;
+	}
+
+	56% {
+		width: 50%;
+	}
+
+	66% {
+		width: 52%;
+	}
+
+	71% {
+		width: 60%;
+	}
+
+	75% {
+		width: 76%;
+
+	}
+
+	94% {
+		width: 86%;
+	}
+
+	100% {
+		width: 100%;
+	}
+
+}
+
+
 @keyframes shift-rightwards {
   0% {
     transform:translateX(-100%)
@@ -250,60 +294,4 @@
   -moz-animation: anim2 1s forwards infinite linear;
   -webkit-animation: anim2 1s forwards infinite linear;
   animation: anim2 1s forwards infinite linear;
-}
-
-.loading-bar {
-	position: fixed;
-	top: 0;
-	left: 0;
-	height: 2px;
-	z-index: 9001;
-	width: 0;
-	animation: loader 2s ease forwards;
-	background: linear-gradient(to right, RGBA(237, 72, 95, 0.7), RGBA(242, 124, 54, 0.7));
-}
-
-@keyframes loader {
-
-	0% {
-		width: 0;
-	}
-
-	20% {
-		width: 10%;
-	}
-
-	25% {
-		width: 24%;
-	}
-
-	43% {
-		width: 41%;
-	}
-
-	56% {
-		width: 50%;
-	}
-
-	66% {
-		width: 52%;
-	}
-
-	71% {
-		width: 60%;
-	}
-
-	75% {
-		width: 76%;
-
-	}
-
-	94% {
-		width: 86%;
-	}
-
-	100% {
-		width: 100%;
-	}
-
 }

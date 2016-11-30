@@ -18,11 +18,11 @@
     singleInstance=true
     attachment="top right"
     targetAttachment="bottom right"
-    offset="-20px 0px"
+    offset="-30px 0px"
   }}
-    {{! TODO - @Josh - Search dropdown }}
-    <div style="width: 350px; height: 90vh; background-color: #fff; overflow: auto;">
-      <p style="background-color: #efeef1; padding: 10px; margin-bottom: 0px;">Search Results</p>
+
+    <div class="search--drop">
+      <p class="search--header">Search Results</p>
       <div style="overflow: auto">
         {{application/site-search/group group="anime" items=groups.anime isLoading=animeTask.isRunning
           moreLink=(href-to "anime.index" (query-params text=query)) close=(action "close")}}
