@@ -25,5 +25,7 @@ export default IntercomAdapter.extend({
       window.Intercom(method, props);
       this.booted = true;
     }
-  }
+  },
+
+  trackEvent() { }
 });

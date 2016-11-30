@@ -34,7 +34,9 @@ export default Component.extend({
         const actor = get(activity, 'actor');
         return hrefTo(this, 'users', actor);
       } else if (modelType === 'Comment') {
-        return hrefTo(this, 'posts', get(activity, 'postId'));
+        if (get(activity, 'postId') !== undefined) {
+          return hrefTo(this, 'posts', get(activity, 'postId'));
+        }
       }
       return '#';
     }

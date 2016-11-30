@@ -2,7 +2,6 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { assert } from 'ember-metal/utils';
-import { scheduleOnce } from 'ember-runloop';
 import InViewportMixin from 'ember-in-viewport';
 
 export default Component.extend(InViewportMixin, {

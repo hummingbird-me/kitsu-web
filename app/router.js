@@ -49,10 +49,18 @@ RouterInstance.map(function() {
     this.route('following');
   });
 
+  this.route('settings', function() {
+    this.route('profile');
+    this.route('password');
+    this.route('privacy');
+    this.route('notifications');
+    this.route('blocking');
+    this.route('apps');
+  });
+
   this.route('posts', { path: '/posts/:id' });
   this.route('reviews', { path: '/reviews/:id' });
   this.route('notifications');
-  this.route('settings');
   this.route('admin');
 
   this.route('password-reset');

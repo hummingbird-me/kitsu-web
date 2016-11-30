@@ -6,28 +6,34 @@
       </div>
       <h2>Settings</h2>
       <ul class="settings--navigation">
-        <li class="list-item active">
-          <a href="#">Profile</a>
-        </li>
-        <li class="list-item">
-          <a href="#">Password</a>
-        </li>
-        <li class="list-item">
-          <a href="#">Privacy</a>
-        </li>
-        <li class="list-item">
-          <a href="#">Notifications</a>
-        </li>
-        <li class="list-item">
-          <a href="#">Blocking</a>
-        </li>
-        <li class="list-item">
-          <a href="#">Apps</a>
-        </li>
+        {{#link-to "settings.profile" tagName="li" class="list-item"}}
+          <a href={{href-to "settings.profile"}}>Profile</a>
+        {{/link-to}}
+        {{#link-to "settings.password" tagName="li" class="list-item"}}
+          <a href={{href-to "settings.password"}}>Password</a>
+        {{/link-to}}
+        {{#link-to "settings.privacy" tagName="li" class="list-item"}}
+          <a href={{href-to "settings.privacy"}}>Privacy</a>
+        {{/link-to}}
+        {{#link-to "settings.notifications" tagName="li" class="list-item"}}
+          <a href={{href-to "settings.notifications"}}>Notifications</a>
+        {{/link-to}}
+        {{#link-to "settings.blocking" tagName="li" class="list-item"}}
+          <a href={{href-to "settings.blocking"}}>Blocking</a>
+        {{/link-to}}
+        {{#link-to "settings.apps" tagName="li" class="list-item"}}
+          <a href={{href-to "settings.apps"}}>Apps</a>
+        {{/link-to}}
       </ul>
     </div>
   </div>
 </div>
+
+<div class="container">
+  {{outlet}}
+</div>
+
+<!--
 <div class="container">
   <div class="row">
     <div class="col-xs-6">
@@ -96,3 +102,4 @@
   </div>
 </div>
 </div>
+-->
