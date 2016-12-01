@@ -23,11 +23,6 @@ export default Component.extend(PaginationMixin, {
     }
   },
 
-  didInsertElement() {
-    this._super(...arguments);
-    this.$('.modal').modal('show');
-  },
-
   actions: {
     updateNextPage(records, links) {
       const dup = get(this, 'likes').toArray();

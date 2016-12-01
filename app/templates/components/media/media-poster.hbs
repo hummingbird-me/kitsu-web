@@ -14,7 +14,7 @@
     {{! Trailer }}
     {{#if media.youtubeVideoId}}
       <div class="trailer" data-test-selector="media-poster-trailer">
-        <a data-toggle="modal" data-target="#{{elementId}}-trailer" {{action (queue
+        <a href="#" {{action (queue
           (action "getLibrary")
           (toggle "trailerOpen" this)
         )}}>

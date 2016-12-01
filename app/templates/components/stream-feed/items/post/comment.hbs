@@ -62,7 +62,6 @@
           {{! Edit/Delete Options }}
           {{#if (can-mutate comment.user comment)}}
             <a class="dropdown-item" href="#" {{action (toggle "isEditing" this)}}>Edit Comment</a>
-
             <a class="dropdown-item" href="#" {{action (toggle "deleteModalOpened" this)}}>Delete Comment</a>
             {{#if deleteModalOpened}}
               {{to-elsewhere named="modal" send=(component "modals/confirm-action"
@@ -74,20 +73,18 @@
 
           {{! Report/Blocking Options }}
           {{#if (and session.hasUser (not (is-self comment.user)))}}
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#{{elementId}}-report-content" {{action (toggle "reportingComment" this)}}>Report Comment</a>
+            <a class="dropdown-item" href="#" {{action (toggle "reportingComment" this)}}>Report Comment</a>
             {{#if reportingComment}}
               {{to-elsewhere named="modal" send=(component "modals/report-content"
                 content=comment
-                modalId=(concat elementId "-report-content")
                 onClose=(toggle-action "reportingComment" this)
               )}}
             {{/if}}
 
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#{{elementId}}-block-user" {{action (toggle "blockUserModal" this)}}>Block @{{comment.user.name}}</a>
+            <a class="dropdown-item" href="#" {{action (toggle "blockUserModal" this)}}>Block @{{comment.user.name}}</a>
               {{#if blockUserModal}}
                 {{to-elsewhere named="modal" send=(component "modals/block-user"
                   user=comment.user
-                  modalId=(concat elementId "-block-user")
                   onClose=(toggle-action "blockUserModal" this)
                 )}}
               {{/if}}
