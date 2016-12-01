@@ -7,7 +7,7 @@ import { isEmberArray as isArray } from 'ember-array/utils';
  */
 export function toLower([target = '']) {
   if (isArray(target)) {
-    return target.map(x => x.toLowerCase());
+    return target.slice().map(x => x.toLowerCase());
   }
   return target.toLowerCase();
 }
