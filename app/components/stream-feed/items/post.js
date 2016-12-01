@@ -11,6 +11,7 @@ import ClipboardMixin from 'client/mixins/clipboard';
 import InViewportMixin from 'ember-in-viewport';
 import errorMessages from 'client/utils/error-messages';
 import moment from 'moment';
+import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend(ClipboardMixin, InViewportMixin, {
   classNameBindings: ['post.isNew:new-post'],
@@ -106,11 +107,18 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
     deletePost() {
       get(this, 'post').destroyRecord()
         .then(() => {
+          // this post is being deleted from its permalink page
           if (get(this, 'group') === undefined) {
             get(this, 'router').transitionTo('dashboard');
           } else {
-            const record = get(this, 'store').peekRecord('activity-group', get(this, 'group.id'));
-            record.deleteRecord();
+            // try to find the activity-group that references this post
+            let record = get(this, 'store').peekRecord('activity-group', get(this, 'group.id'));
+            // might be a new activity-group that doesn't have a set id
+            if (record === null || record === undefined) {
+              record = get(this, 'store').peekAll('activity-group')
+                .find(group => get(group, 'activities').findBy('foreignId', `Post:${get(this, 'post.id')}`));
+            }
+            invokeAction(this, 'removePost', record);
           }
         })
         .catch((err) => {

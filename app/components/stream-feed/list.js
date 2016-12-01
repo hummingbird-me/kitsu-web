@@ -32,13 +32,13 @@ export default Component.extend({
     }
   }).readOnly(),
 
-  filteredFeed: computed('feed.@each.isDeleted', 'filter', {
+  filteredFeed: computed('feed.[]', 'filter', {
     get() {
       const feed = get(this, 'feed');
       if (feed === undefined) {
         return [];
       }
-      let result = feed.rejectBy('isDeleted');
+      let result = feed;
       const filter = get(this, 'filter');
       if (filter === 'media') {
         result = result.filter(group => (
@@ -220,6 +220,10 @@ export default Component.extend({
       dup.addObjects(records);
       set(this, 'feed', dup);
       set(this, 'feed.links', links);
+    },
+
+    removePost(post) {
+      get(this, 'feed').removeObject(post);
     },
 
     /**
