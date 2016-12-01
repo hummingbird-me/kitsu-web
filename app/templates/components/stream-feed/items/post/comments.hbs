@@ -11,6 +11,7 @@
             {{#paginated-resource/manual
               model=comments
               modelName="comment"
+              limit=10
               offset=comments.length
               update=(action "loadComments") as |active|
             }}
