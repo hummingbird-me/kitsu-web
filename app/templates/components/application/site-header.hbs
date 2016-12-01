@@ -7,16 +7,19 @@
 
     {{#unless session.hasUser}}
       <div class="staging-pro-gate">
-        Go grab Pro, you doof
-
-        If you have it, feel free to
-        <a href="#"
-          {{action (queue
-            (action (mut authComponent) "sign-in")
-            (toggle "authOpened" this)
-          )}}>
-          {{t "header.signIn"}}
-        </a>
+        <div class="pro-gate--message">
+          Sorry, this place is for people that are PRO. <a href="https://hummingbird.me/pro">Become PRO</a>
+        </div>
+        <img src="https://media.giphy.com/media/aiL0BGeWHbtRu/giphy.gif">
+        <div class="pro-secondary">
+          <a href="#"
+            {{action (queue
+              (action (mut authComponent) "sign-in")
+              (toggle "authOpened" this)
+            )}}>
+            Already PRO? Login
+          </a>
+        </div>
       </div>
     {{/unless}}
   {{/if}}
