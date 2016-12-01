@@ -64,7 +64,7 @@
             <a class="dropdown-item" href="#" {{action "deleteComment"}}>Delete Comment</a>
           {{/if}}
 
-          {{#if (not (is-self comment.user))}}
+          {{#if (and session.hasUser (not (is-self comment.user)))}}
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#{{elementId}}-report-content" {{action (toggle "reportingComment" this)}}>Report Comment</a>
               {{#if reportingComment}}
                 {{to-elsewhere named="modal" send=(component "modals/report-content"

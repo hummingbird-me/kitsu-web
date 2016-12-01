@@ -1,28 +1,41 @@
 {{#bootstrap/bs-modal
   id=modalId
   onClose=onClose as |modal|}}
+  {{#if hasReported}}
+    {{#modal.header}}
+      <div class="alert alert-danger">
+        You've aleady reported this content! You are unable to report the same content more than once.
+        <small>The current status of your report: {{report.status}}</small>
+      </div>
+    {{/modal.header}}
+  {{/if}}
+
   {{#modal.body}}
+    <p>Please give a reason for reporting this content.</p>
+
     {{! Reason Select }}
-    {{#power-select
-      renderInPlace=true
-      searchEnabled=false
-      selected=reason
-      options=reasons
-      placeholder="Reason"
-      onchange=(action (mut reason)) as |reason|
-    }}
-      {{reason}}
-    {{/power-select}}
+    <div class="m-b-1">
+      {{#power-select
+        renderInPlace=true
+        searchEnabled=false
+        selected=reason
+        options=reasons
+        placeholder="Reason"
+        onchange=(action (mut reason)) as |reason|
+      }}
+        {{reason}}
+      {{/power-select}}
+    </div>
 
     {{! Explanation }}
     {{expanding-textarea
       update=(action (mut explanation))
-      placeholder="Your explanation..."
+      placeholder=explanationPlaceholder
       class="form-control"}}
   {{/modal.body}}
 
   {{#modal.footer}}
-    <button class="button button--primary" disabled={{if (or (is-empty reason) (is-empty explanation)) "disabled"}} onclick={{perform createReport}}>
+    <button class="button button--primary btn-lg btn-block" disabled={{unless canSubmit "disabled"}} onclick={{perform createReport}}>
       {{#if createReport.isRunning}}
         {{loading-spinner size="small"}}
       {{else}}
