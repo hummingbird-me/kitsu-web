@@ -16,7 +16,9 @@ export default Ember.Component.extend({
   isOpened: false,
   query: undefined,
 
+  metrics: service(),
   store: service(),
+
   animeTask: typeTask(),
   mangaTask: typeTask(),
   usersTask: typeTask(),

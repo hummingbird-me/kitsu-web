@@ -12,6 +12,7 @@ export default Component.extend({
   classNameBindings: ['isFollowing:active:inactive'],
   classNames: ['button', 'button--primary'],
 
+  metrics: service(),
   notify: service(),
   session: service(),
   store: service(),

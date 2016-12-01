@@ -124,9 +124,7 @@ export default Component.extend({
       group: 'Post:<unknown>',
       activities: [activity]
     });
-    const feed = get(this, 'feed').toArray();
-    feed.insertAt(0, group);
-    set(this, 'feed', feed);
+    get(this, 'feed').insertAt(0, group);
     return [group, activity];
   },
 
@@ -146,6 +144,8 @@ export default Component.extend({
       return;
     }
     set(this, 'feed', []);
+    set(this, 'newItems', EmberObject.create({ length: 0, cache: [] }));
+
     get(this, 'getFeedData').perform(streamType, streamId).then((data) => {
       get(this, 'feed').addObjects(data);
       set(this, 'feed.links', get(data, 'links'));
@@ -155,7 +155,6 @@ export default Component.extend({
       const subscription = get(this, 'streamRealtime').subscribe(streamType, streamId, readonlyToken,
         object => this._handleRealtime(object));
       set(this, 'subscription', subscription);
-      set(this, 'newItems', EmberObject.create({ length: 0, cache: [] }));
 
       // stream analytics
       this._trackImpressions(data);
@@ -186,18 +185,16 @@ export default Component.extend({
   },
 
   _handleRealtime(object) {
-    get(this, 'newItems').beginPropertyChanges();
     const groupCache = get(this, 'newItems.cache');
+
+    get(this, 'newItems').beginPropertyChanges();
     get(object, 'new').forEach((activity) => {
-      if (get(activity, 'group').split(':')[0] === 'Post') {
-        const found = get(this, 'feed').findBy('group', get(activity, 'group'));
-        if (found !== undefined) {
-          return;
-        }
+      if (get(activity, 'foreign_id').split(':')[0] === 'Post') {
         // look for unknown post at first object by session user
         if (get(activity, 'actor').split(':')[1] === get(this, 'session.account.id')) {
-          const top = get(this, 'feed.firstObject');
-          if (get(top, 'group') === 'Post:<unknown>') {
+          const top = get(this, 'feed.firstObject.activities.firstObject');
+          if (get(top, 'foreignId') === 'Post:<unknown>' ||
+            get(top, 'foreignId') === get(activity, 'foreign_id')) {
             return;
           }
         }
