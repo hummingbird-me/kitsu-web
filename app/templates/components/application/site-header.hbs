@@ -7,32 +7,18 @@
   {{/if}}
   <div class="container">
     <div class="row">
-      <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler hidden-sm-up pull-xs-left" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
         &#9776;
       </button>
-      <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-        <div class="nav-item">
-          <a href={{href-to "dashboard"}} class="navbar-brand nav-link">
-            <span class="logo">
-              {{svg-jar "kitsu-full"}}
-            </span>
-          </a>
-    	  </div>
-        <ul class="nav navbar-nav">
-          {{#if session.hasUser}}
-            <li class="nav-item">
-              {{link-to (t "header.library") "users.library" session.account.name class="nav-link"}}
-            </li>
-          {{/if}}
-          <li class="nav-item">
-            {{link-to (t "header.anime") "anime.index" class="nav-link"}}
-          </li>
-          <li class="nav-item">
-            {{link-to (t "header.manga") "manga.index" class="nav-link"}}
-          </li>
-        </ul>
+      <div class="nav-item pull-xs-left">
+        <a href={{href-to "dashboard"}} class="navbar-brand nav-link">
+          <span class="logo">
+            {{svg-jar "kitsu-full"}}
+          </span>
+        </a>
+      </div>
 
-      <ul class="nav navbar-nav pull-sm-right navbar-buttons">
+      <ul class="nav navbar-nav pull-xs-right navbar-buttons">
         <li class="nav-item">
           {{application/site-search class="site-search"}}
         </li>
@@ -84,6 +70,21 @@
           </li>
         {{/if}}
       </ul>
+      <div class="collapse navbar-toggleable-xs pull-sm-left primary-nav--drop" id="exCollapsingNavbar2">
+
+        <ul class="nav navbar-nav">
+          {{#if session.hasUser}}
+            <li class="nav-item">
+              {{link-to (t "header.library") "users.library" session.account.name class="nav-link"}}
+            </li>
+          {{/if}}
+          <li class="nav-item">
+            {{link-to (t "header.anime") "anime.index" class="nav-link"}}
+          </li>
+          <li class="nav-item">
+            {{link-to (t "header.manga") "manga.index" class="nav-link"}}
+          </li>
+        </ul>
       </div>
     </div>
   </div>

@@ -4,6 +4,9 @@
   z-index: 5000;
   top: 70px;
   right: 15px;
+  @media (max-width: 680px) { // @josh figure out why this is so glitchy on mobile
+    display: none;
+  }
   .alert {
     border: none;
     background: rgba(0,0,0,.5);
