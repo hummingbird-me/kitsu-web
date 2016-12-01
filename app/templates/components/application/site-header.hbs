@@ -5,18 +5,20 @@
       This is a sandbox. <br> All changes will be reset.
     </div>
 
-    <div class="staging-pro-gate">
-      Go grab Pro, you doof
+    {{#unless session.hasUser}}
+      <div class="staging-pro-gate">
+        Go grab Pro, you doof
 
-      If you have it, feel free to
-      <a href="#"
-        {{action (queue
-          (action (mut authComponent) "sign-in")
-          (toggle "authOpened" this)
-        )}}>
-        {{t "header.signIn"}}
-      </a>
-    </div>
+        If you have it, feel free to
+        <a href="#"
+          {{action (queue
+            (action (mut authComponent) "sign-in")
+            (toggle "authOpened" this)
+          )}}>
+          {{t "header.signIn"}}
+        </a>
+      </div>
+    {{/unless}}
   {{/if}}
   <div class="container">
     <div class="row">
