@@ -1,0 +1,8 @@
+{{#each model as |report|}}
+  {{! TODO: Once API is fixed }}
+{{/each}}
+
+{{paginated-resource/infinite
+  model=model
+  update=(action "updateNextPage")
+}}

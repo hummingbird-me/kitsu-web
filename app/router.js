@@ -58,11 +58,13 @@ RouterInstance.map(function() {
     this.route('apps');
   });
 
+  this.route('admin', function() {
+    this.route('reports');
+  });
+
   this.route('posts', { path: '/posts/:id' });
   this.route('reviews', { path: '/reviews/:id' });
   this.route('notifications');
-  this.route('admin');
-
   this.route('password-reset');
   this.route('confirm-email');
 
