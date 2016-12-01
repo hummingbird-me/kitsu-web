@@ -1,21 +1,18 @@
 <h6 class="panel-heading">About Me</h6>
 <p>{{user.about}}</p>
 <ul class="about-me-stats">
-  <li class="about-stat">
-    <span class="stat-icon">
-      {{svg-jar "sm-heart"}}
-    </span>
-    <strong>{{user.waifuOrHusbando}}:</strong>
-    <span>
-      {{! TODO/@Josh -- Style Waifu image }}
-      {{#if user.waifu}}
-        <img src={{image user.waifu.image}}>
-        {{user.waifu.name}}
-      {{else}}
-        None
-      {{/if}}
-    </span>
-  </li>
+  {{#if user.waifu}}
+    <li class="about-stat">
+      <span class="stat-icon">
+        {{svg-jar "sm-heart"}}
+      </span>
+      <strong>{{user.waifuOrHusbando}}:</strong>
+        <span class="waifu-wrapper">
+          <img src={{image user.waifu.image}}>
+        </span>
+        <span class="waifu-name">{{user.waifu.name}}</span>
+    </li>
+  {{/if}}
   <li class="about-stat about--gender">
     <span class="stat-icon">
       {{svg-jar "gender"}}
