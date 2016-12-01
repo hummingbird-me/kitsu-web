@@ -13,7 +13,8 @@ export default Component.extend({
   groupedActivities: computed('activities', {
     get() {
       if (get(this, 'shouldGroup') === false) {
-        return get(this, 'activities').map(activity => ({ activity }));
+        return get(this, 'activities')
+          .map(activity => ({ activity })).slice(0, get(this, 'activityLimit'));
       }
       const groups = {};
       const activities = get(this, 'activities');
@@ -33,7 +34,7 @@ export default Component.extend({
           others
         });
       });
-      return result;
+      return result.slice(0, get(this, 'activityLimit'));
     }
   }).readOnly(),
 
