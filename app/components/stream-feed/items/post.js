@@ -108,6 +108,7 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
             }
             invokeAction(this, 'removePost', record);
           }
+          get(this, 'notify').success('Success! Your post has been deleted.');
         })
         .catch((err) => {
           get(this, 'post').rollbackAttributes();

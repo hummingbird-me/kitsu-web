@@ -160,14 +160,21 @@
 
             {{! Editing/Deleting Options }}
             {{#if (can-mutate post.user post)}}
-              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#{{elementId}}-edit-modal" {{action (toggle "editModalOpened" this)}}>Edit Post</a>
-              <a class="dropdown-item" href="#" {{action "deletePost"}}>Delete Post</a>
-
+              <a class="dropdown-item" href="#" {{action (toggle "editModalOpened" this)}}>Edit Post</a>
               {{#if editModalOpened}}
                 {{to-elsewhere named="modal" send=(component "stream-feed/edit-post"
                   post=post
                   modalId=(concat elementId "-edit-modal")
                   onClose=(toggle-action "editModalOpened" this)
+                )}}
+              {{/if}}
+
+              <a class="dropdown-item" href="#" {{action (toggle "deleteModalOpened" this)}}>Delete Post</a>
+              {{#if deleteModalOpened}}
+                {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+                  onConfirm=(action "deletePost")
+                  modalId="delete-modal"
+                  onClose=(toggle-action "deleteModalOpened" this)
                 )}}
               {{/if}}
             {{/if}}

@@ -151,7 +151,10 @@ export default Component.extend({
 
     deleteComment() {
       get(this, 'comment').destroyRecord()
-        .then(() => invokeAction(this, 'onDelete', get(this, 'comment')))
+        .then(() => {
+          invokeAction(this, 'onDelete', get(this, 'comment'));
+          get(this, 'notify').success('Success! Your comment has been deleted.');
+        })
         .catch((err) => {
           get(this, 'comment').rollbackAttributes();
           get(this, 'notify').error(errorMessages(err));

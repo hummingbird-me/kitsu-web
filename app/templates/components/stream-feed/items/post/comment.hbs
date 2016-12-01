@@ -62,7 +62,14 @@
           {{! Edit/Delete Options }}
           {{#if (can-mutate comment.user comment)}}
             <a class="dropdown-item" href="#" {{action (toggle "isEditing" this)}}>Edit Comment</a>
-            <a class="dropdown-item" href="#" {{action "deleteComment"}}>Delete Comment</a>
+
+            <a class="dropdown-item" href="#" {{action (toggle "deleteModalOpened" this)}}>Delete Comment</a>
+            {{#if deleteModalOpened}}
+              {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+                onConfirm=(action "deleteComment")
+                onClose=(toggle-action "deleteModalOpened" this)
+              )}}
+            {{/if}}
           {{/if}}
 
           {{! Report/Blocking Options }}
