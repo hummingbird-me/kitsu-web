@@ -1,6 +1,7 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import { guidFor } from 'ember-metal/utils';
 import service from 'ember-service/inject';
 import computed from 'ember-computed';
 import { task } from 'ember-concurrency';
@@ -25,34 +26,40 @@ export default Component.extend({
     }
   }),
 
-  /**
-   * set the activities to an array so any updates to a group from a feed load
-   * won't reset the activities relationship
-   */
   getNotifications: task(function* () {
     return yield get(this, 'store').query('feed', {
       type: 'notifications',
       id: get(this, 'session.account.id'),
       include: 'actor'
     }).then((groups) => {
-      const meta = get(groups, 'meta');
-      groups.forEach(group => set(group, 'activities', get(group, 'activities').toArray()));
-      groups.toArray().map(group => group.copy().then(copy => get(this, 'groups').addObject(copy)));
-      set(this, 'groups.meta', meta);
-      return get(this, 'groups');
+      groups.forEach((group) => {
+        const notification = get(this, 'store').createRecord('notification', {
+          streamId: get(group, 'id'),
+          group: get(group, 'group'),
+          isSeen: get(group, 'isSeen'),
+          isRead: get(group, 'isRead'),
+          activities: get(group, 'activities').toArray()
+        });
+        set(notification, 'id', guidFor(notification));
+      });
+      set(this, 'groups', get(this, 'store').peekAll('notification').toArray());
+      set(this, 'groups.meta', get(groups, 'meta'));
+      return get(groups, 'meta');
     });
   }).drop(),
 
   init() {
     this._super(...arguments);
     set(this, 'groups', []);
-    get(this, 'getNotifications').perform().then((data) => {
-      const { readonlyToken } = get(data, 'meta');
+    get(this, 'getNotifications').perform().then((meta) => {
+      const { readonlyToken } = meta;
       const id = get(this, 'session.account.id');
       const subscription = get(this, 'streamRealtime')
         .subscribe('notifications', id, readonlyToken, object => this._handleRealtime(object));
       set(this, 'subscription', subscription);
-    }).catch(() => {});
+    }).catch(() => {
+      get(this, 'notify').error('There was an issue retrieving your Notifications.');
+    });
   },
 
   willDestroyElement() {
@@ -63,6 +70,7 @@ export default Component.extend({
     }
   },
 
+  // TODO: Don't enrich locally but rerequest notifications with a limit
   _handleRealtime(object) {
     const groups = get(this, 'groups');
 
@@ -77,13 +85,15 @@ export default Component.extend({
           groups.removeObject(group);
           prependObjects(groups, [group]);
         } else {
-          const newGroup = get(this, 'store').createRecord('activity-group', {
-            id: get(enriched, 'id'),
+          const notification = get(this, 'store').createRecord('notification', {
+            streamId: get(activity, 'id'),
+            group: get(activity, 'group'),
             isSeen: false,
             isRead: false,
             activities: [enriched]
           });
-          prependObjects(groups, [newGroup]);
+          set(notification, 'id', guidFor(notification));
+          prependObjects(groups, [notification]);
         }
         get(this, 'notify').info(`You have a new notification from ${get(enriched, 'actor.name')}`);
       });
@@ -120,7 +130,7 @@ export default Component.extend({
     const feedUrl = `/feeds/notifications/${get(this, 'session.account.id')}/_${type}`;
     return get(this, 'ajax').request(feedUrl, {
       method: 'POST',
-      data: JSON.stringify(data.map(group => get(group, 'id'))),
+      data: JSON.stringify(data.map(group => get(group, 'streamId'))),
       contentType: 'application/json'
     });
   },
