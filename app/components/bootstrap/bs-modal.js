@@ -17,6 +17,7 @@ export default Component.extend({
   }),
 
   didInsertElement() {
+    this.$().modal('show');
     this.$().off('hidden.bs.modal').on('hidden.bs.modal', (event) => {
       invokeAction(this, 'onClose', event);
     });

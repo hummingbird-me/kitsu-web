@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- '5.9'
+- '6.9.1'
 
 sudo: false
 
@@ -18,8 +18,8 @@ after_script:
 
 cache:
   directories:
-  - node_modules
-  - bower_components
+  - $HOME/.npm
+  - $HOME/.cache
 
 addons:
     code_climate:

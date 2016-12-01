@@ -30,11 +30,19 @@ export default Session.extend({
   },
 
   getCurrentUser() {
-    return get(this, 'ajax').request('/users?filter[self]=true')
+    return get(this, 'ajax').request('/users?filter[self]=true&include=userRoles.role')
       .then((response) => {
         const [data] = response.data;
         const normalizedData = get(this, 'store').normalize('user', data);
         const user = get(this, 'store').push(normalizedData);
+
+        const included = response.included || [];
+        included.forEach((record) => {
+          let type = get(record, 'type');
+          type = type === 'userRoles' ? 'user-role' : 'role';
+          get(this, 'store').push(get(this, 'store').normalize(type, record));
+        });
+
         set(this, 'account', user);
         return user;
       });

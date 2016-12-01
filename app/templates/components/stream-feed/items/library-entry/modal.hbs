@@ -1,0 +1,10 @@
+{{#bootstrap/bs-modal onClose=onClose as |modal|}}
+  {{#modal.body}}
+    {{stream-feed/items/library-entry
+      group=group
+      feedId=feedId
+      positionInFeed=positionInFeed
+      showAll=true
+    }}
+  {{/modal.body}}
+{{/bootstrap/bs-modal}}

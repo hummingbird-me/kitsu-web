@@ -92,18 +92,6 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
       this._streamAnalytics(label, foreignId || `Post:${get(this, 'post.id')}`);
     },
 
-    blockUser() {
-      const block = get(this, 'store').createRecord('block', {
-        user: get(this, 'session.account'),
-        blocked: get(this, 'post.user')
-      });
-      block.save().then(() => {
-        get(this, 'notify').success(`You have blocked ${get(this, 'post.user')}`);
-      }).catch(err => (
-        get(this, 'notify').error(errorMessages(err))
-      ));
-    },
-
     deletePost() {
       get(this, 'post').destroyRecord()
         .then(() => {
@@ -120,6 +108,7 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
             }
             invokeAction(this, 'removePost', record);
           }
+          get(this, 'notify').success('Success! Your post has been deleted.');
         })
         .catch((err) => {
           get(this, 'post').rollbackAttributes();

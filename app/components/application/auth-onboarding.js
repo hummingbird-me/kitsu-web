@@ -12,11 +12,6 @@ export default Component.extend({
     }
   }),
 
-  didInsertElement() {
-    this._super(...arguments);
-    this.$('.modal').modal('show');
-  },
-
   actions: {
     onClose() {
       invokeAction(this, 'onClose');

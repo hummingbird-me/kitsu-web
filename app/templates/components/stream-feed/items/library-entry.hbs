@@ -25,13 +25,30 @@
           </div>
           {{stream-feed/items/library-entry/activities
             activities=timeGroup.activities
+            activityLimit=activityLimit
             feedId=feedId
             media=media
             class="aggregate-items"
             tagName="ul"
           }}
-      </div>
+        </div>
       {{/each}}
+
+      {{! aggregate button -- only show if we have more groups }}
+      {{#if (and hasMoreActivities (not showAll))}}
+        {{! TODO @Josh -- Aggregate button }}
+        <button class="button" onclick={{action (toggle "modalOpen" this)}}>
+          view all
+        </button>
+        {{#if modalOpen}}
+          {{to-elsewhere named="modal" send=(component "stream-feed/items/library-entry/modal"
+            group=group
+            feedId=feedId
+            positionInFeed=positionInFeed
+            onClose=(toggle-action "modalOpen" this)
+          )}}
+        {{/if}}
+      {{/if}}
     </div>
   </div>
 {{else}}

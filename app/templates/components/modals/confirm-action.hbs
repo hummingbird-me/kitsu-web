@@ -1,0 +1,17 @@
+{{#bootstrap/bs-modal
+  id=modalId
+  onClose=onClose as |modal|}}
+  {{#modal.body}}
+    {{#if hasBlock}}
+      {{yield}}
+    {{else}}
+      <h4 class="text-xs-center">Are you sure you want to do this?</h4>
+    {{/if}}
+  {{/modal.body}}
+
+  {{#modal.footer}}
+    <button class="button button--primary btn-lg btn-block" onclick={{action "onConfirm"}}>
+      Yes
+    </button>
+  {{/modal.footer}}
+{{/bootstrap/bs-modal}}

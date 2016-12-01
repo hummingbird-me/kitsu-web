@@ -1,4 +1,4 @@
-FROM node:7.1
+FROM node:6.9.1
 MAINTAINER Kitsu, Inc.
 
 RUN npm install -gq bower

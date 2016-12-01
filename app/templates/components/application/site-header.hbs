@@ -90,7 +90,10 @@
   </div>
 </nav>
 
+{{! Authentication Modal }}
 {{#if authOpened}}
   {{to-elsewhere named="modal" send=(component "application/auth-onboarding"
-    modalId="auth-modal" component=authComponent onClose=(toggle-action "authOpened" this))}}
+    modalId="auth-modal"
+    component=authComponent
+    onClose=(toggle-action "authOpened" this))}}
 {{/if}}
