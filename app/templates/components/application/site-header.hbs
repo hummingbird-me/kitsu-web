@@ -1,4 +1,11 @@
 <nav class="navbar navbar-fixed-top navbar-light primary-nav" role="navigation">
+  {{! staging banner }}
+  {{#if isStaging}}
+
+  {{/if}}
+  <div class="alert alert-info">
+    This is a sandbox. <br> All changes will be reset.
+  </div>
   <div class="container">
     <div class="row">
       <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
