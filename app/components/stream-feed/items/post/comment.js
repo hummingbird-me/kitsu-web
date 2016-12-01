@@ -138,18 +138,6 @@ export default Component.extend({
       }
     },
 
-    blockUser() {
-      const block = get(this, 'store').createRecord('block', {
-        user: get(this, 'session.account'),
-        blocked: get(this, 'comment.user')
-      });
-      block.save().then(() => {
-        get(this, 'notify').success(`You have blocked ${get(this, 'comment.user')}`);
-      }).catch(err => (
-        get(this, 'notify').error(errorMessages(err))
-      ));
-    },
-
     updateComment(component, event, content) {
       if (isEmpty(content) === true) { return; }
       const { shiftKey } = event;

@@ -158,6 +158,7 @@
               Copy Link to Post
             </a>
 
+            {{! Editing/Deleting Options }}
             {{#if (can-mutate post.user post)}}
               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#{{elementId}}-edit-modal" {{action (toggle "editModalOpened" this)}}>Edit Post</a>
               <a class="dropdown-item" href="#" {{action "deletePost"}}>Delete Post</a>
@@ -171,6 +172,7 @@
               {{/if}}
             {{/if}}
 
+            {{! Reporting/Blocking Options }}
             {{#if (and session.hasUser (not (is-self post.user)))}}
               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#{{elementId}}-report-content" {{action (toggle "reportingPost" this)}}>Report Post</a>
               {{#if reportingPost}}
@@ -181,7 +183,14 @@
                 )}}
               {{/if}}
 
-              <a class="dropdown-item" href="#" {{action "blockUser"}}>Block @{{post.user.name}}</a>
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#{{elementId}}-block-user" {{action (toggle "blockUserModal" this)}}>Block @{{post.user.name}}</a>
+              {{#if blockUserModal}}
+                {{to-elsewhere named="modal" send=(component "modals/block-user"
+                  user=post.user
+                  modalId=(concat elementId "-block-user")
+                  onClose=(toggle-action "blockUserModal" this)
+                )}}
+              {{/if}}
             {{/if}}
           </div>
         </span>
