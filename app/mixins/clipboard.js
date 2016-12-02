@@ -12,6 +12,8 @@ export default Mixin.create({
 
   willDestroyElement() {
     this._super(...arguments);
-    get(this, 'clipboard').destroy();
+    if (get(this, 'clipboard') !== undefined) {
+      get(this, 'clipboard').destroy();
+    }
   }
 });
