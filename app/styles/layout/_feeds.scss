@@ -330,6 +330,9 @@
     .comment-body {
       margin-bottom: 0;
       display: inline;
+      word-wrap: break-word;
+      word-break: break-all; // Fallback
+      word-break: break-word;
       p:last-child {
         margin-bottom: 0;
       }
@@ -524,10 +527,18 @@
   min-height: 100px;
   margin-top: 0;
   padding: 0 20px;
+  overflow: hidden;
 }
 
 .stream-content {
   word-wrap: break-word;
+  word-break: break-all; // Fallback
+  word-break: break-word;
+  overflow: hidden;
+
+  p {
+    overflow: hidden;
+  }
 }
 .new-post {
   @extend .animated;
