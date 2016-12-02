@@ -119,6 +119,7 @@ export default Component.extend({
       if (get(this, 'canPost') === false) {
         return;
       }
+      console.log(toMarkdown(get(this, 'content')));
 
       const options = {
         nsfw: get(this, 'nsfw'),
