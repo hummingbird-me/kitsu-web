@@ -14,14 +14,6 @@ export function initialize() {
 
     // Log the error to console
     console.error(error);
-
-    // send upstream
-    if (window.ga !== undefined) {
-      window.ga('send', 'exception', {
-        exDescription: error.message,
-        exFatal: false
-      });
-    }
   };
 }
 

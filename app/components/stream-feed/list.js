@@ -16,6 +16,7 @@ export default Component.extend({
   filter: 'all',
   readOnly: false,
 
+  headData: service(),
   notify: service(),
   session: service(),
   store: service(),
@@ -130,7 +131,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    set(this, 'originalTitle', window.document.title);
+    set(this, 'originalTitle', get(this, 'headData.title'));
   },
 
   didReceiveAttrs() {
@@ -180,6 +181,8 @@ export default Component.extend({
   _cancelSubscription() {
     const subscription = get(this, 'subscription');
     if (subscription !== undefined) {
+      const title = get(this, 'originalTitle');
+      get(this, 'headData').set('title', title);
       subscription.cancel();
     }
   },
@@ -207,7 +210,8 @@ export default Component.extend({
     get(this, 'newItems').endPropertyChanges();
 
     if (get(this, 'newItems.length') > 0) {
-      window.document.title = `(${get(this, 'newItems.length')}) ${get(this, 'originalTitle')}`;
+      const title = `(${get(this, 'newItems.length')}) ${get(this, 'originalTitle')}`;
+      get(this, 'headData').set('title', title);
     }
   },
 
@@ -234,7 +238,8 @@ export default Component.extend({
       get(this, 'getFeedData').perform(streamType, streamId, limit).then((data) => {
         set(this, 'newItems.length', 0);
         set(this, 'newItems.cache', []);
-        window.document.title = get(this, 'originalTitle');
+        const title = get(this, 'originalTitle');
+        get(this, 'headData').set('title', title);
 
         // remove dups from the feed and replace with updated activity
         const dups = get(this, 'feed').filter(group => (

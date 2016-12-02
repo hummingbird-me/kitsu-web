@@ -76,9 +76,13 @@
         selected=user.waifu
         onchange=(action (queue (action (mut user.waifu)) (action (mut user.waifuDirtyHack) true)))
         renderInPlace=true
+        placeholder="Find your special someone"
         as |character|
       }}
-        <strong>{{character.name}}</strong>
+        <span class="waifu-wrapper">
+          <img src={{image character.image}}>
+        </span>
+        <span class="waifu-name">{{character.name}}</span>
       {{/power-select}}
 
       {{#if user.waifu}}
@@ -93,7 +97,7 @@
       {{t "users.edit.about.bio"}}
     </label>
     <div class="col-xs-10">
-      {{one-way-textarea user.about
+      {{expanding-textarea user.about
         update=(action (mut user.about))
         name="about"
         id="bio-input"

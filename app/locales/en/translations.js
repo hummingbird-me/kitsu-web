@@ -13,6 +13,7 @@ export default {
       followers: '{{user}}\'s Followers',
       following: 'Followed by {{user}}'
     },
+    posts: 'Post by {{user}}',
     notifications: 'Notifications',
     settings: 'Settings',
     admin: 'Admin'

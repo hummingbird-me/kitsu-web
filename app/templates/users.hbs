@@ -14,16 +14,30 @@
               <div class="cover-cta">
                 {{#if (can-mutate user user)}}
                   <button class="button button--light-outline" onclick={{action (toggle "isEditing" this)}}>
-                    <span class="button-label button-defaultState js-buttonLabel">Edit</span>
+                    <span class="button-label button-defaultState">Edit</span>
                   </button>
                 {{/if}}
+
                 {{#if (not (is-self user))}}
                   {{follow-button user=user}}
                 {{/if}}
+
+                {{! admin actions }}
                 {{#if (has-role "admin" user)}}
+                  {{! Ban }}
+                  <button class="button button--light-outline" onclick={{action (toggle "banModal" this)}}>
+                    <span class="button-label button-defaultState">Ban</span>
+                  </button>
+                  {{#if banModal}}
+                    {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+                      onClose=(toggle-action "banModal" this)
+                    )}}
+                  {{/if}}
+
+                  {{! Previous names }}
                   {{#unless (is-empty user.pastNames)}}
                     {{#bootstrap/bs-dropdown class="d-inline" as |dropdown|}}
-                      {{#dropdown.button}}
+                      {{#dropdown.button class="button button--light-outline"}}
                         Previous Names
                       {{/dropdown.button}}
                       {{#dropdown.menu}}
