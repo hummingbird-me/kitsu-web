@@ -43,6 +43,8 @@
       {{/sortable-item}}
     {{/each}}
   {{/sortable-group}}
+
+  {{! pagination }}
   <div class="text-xs-center">
     {{paginated-resource/infinite model=items update=(action "updateNextPage")}}
   </div>

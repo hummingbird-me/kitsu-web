@@ -35,7 +35,8 @@ export default Component.extend({
         item_type: type
       },
       include: 'item',
-      sort: 'fav_rank'
+      sort: 'fav_rank',
+      page: { limit: 2 }
     });
   }).drop().maxConcurrency(3),
 
@@ -49,9 +50,9 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     get(this, 'getAllFavorites').perform().then(([anime, manga, chars]) => {
-      set(this, 'animeFavorites', get(anime, 'value').toArray());
-      set(this, 'mangaFavorites', get(manga, 'value').toArray());
-      set(this, 'characterFavorites', get(chars, 'value').toArray());
+      set(this, 'animeFavorites', get(anime, 'value'));
+      set(this, 'mangaFavorites', get(manga, 'value'));
+      set(this, 'characterFavorites', get(chars, 'value'));
 
       // add to meta records to check for dirty state
       get(anime, 'value').forEach(record => invokeAction(this, 'addRecord', record));
