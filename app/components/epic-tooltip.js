@@ -49,7 +49,6 @@ export default Component.extend({
     });
     set(this, 'tether', tether);
     tether.position();
-    jQuery(get(this, 'target')).on('resize.ett', () => tether.position());
 
     if (get(this, 'isStatic') === false) {
       // listen to hover events on the target
@@ -72,10 +71,13 @@ export default Component.extend({
     if (get(this, 'singleInstance') === true) {
       get(this, 'epicTooltip').remove(this);
     }
-    jQuery(get(this, 'target'))
-      .off('mouseenter.hoverIntent')
-      .off('mouseleave.hoverIntent')
-      .off('resize.ett');
+
+    if (get(this, 'isStatic') === false) {
+      jQuery(get(this, 'target'))
+        .off('mouseenter.hoverIntent')
+        .off('mouseleave.hoverIntent');
+    }
+
     get(this, 'tether').destroy();
     this.$().remove();
   },

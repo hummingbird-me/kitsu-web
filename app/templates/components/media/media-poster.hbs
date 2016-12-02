@@ -48,25 +48,28 @@
 {{! Tooltip }}
 {{#if hasHovered}}
   {{! TODO @josh -- make epic }}
-  {{#epic-tooltip target=(concat "#" elementId " .grid-poster") timeout=250 singleInstance=true constraints=constraints}}
-    <div class="p-a-1" style="background-color: #4B5360; color: #fff; width: 350px">
-      <span class="media-title" style="font-weight: bold; font-size: 14px">{{media.canonicalTitle}}</span>
-      <div class="media-ratings">
-        {{star-rating media.averageRating readOnly=true}}
+  {{! Wrap in div due to https://github.com/yapplabs/ember-wormhole/issues/66#issuecomment-263575168 }}
+  <div>
+    {{#epic-tooltip target=(concat "#" elementId " .grid-poster") timeout=250 singleInstance=true constraints=constraints}}
+      <div class="p-a-1" style="background-color: #4B5360; color: #fff; width: 350px">
+        <span class="media-title" style="font-weight: bold; font-size: 14px">{{media.canonicalTitle}}</span>
+        <div class="media-ratings">
+          {{star-rating media.averageRating readOnly=true}}
+        </div>
+        <div class="media-synopsis" style="font-size: 12px">
+          {{text-clipper media.synopsis length=200}}
+        </div>
+        {{#if session.hasUser}}
+          {{library-dropdown
+            entry=entry
+            type=(model-type media)
+            methods=(hash
+              create=(action "createEntry")
+              update=(action "updateEntry")
+              delete=(action "deleteEntry")
+            )}}
+        {{/if}}
       </div>
-      <div class="media-synopsis" style="font-size: 12px">
-        {{text-clipper media.synopsis length=200}}
-      </div>
-      {{#if session.hasUser}}
-        {{library-dropdown
-          entry=entry
-          type=(model-type media)
-          methods=(hash
-            create=(action "createEntry")
-            update=(action "updateEntry")
-            delete=(action "deleteEntry")
-          )}}
-      {{/if}}
-    </div>
-  {{/epic-tooltip}}
+    {{/epic-tooltip}}
+  </div>
 {{/if}}
