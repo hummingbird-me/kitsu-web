@@ -45,12 +45,14 @@
     {{/if}}
 {{/if}}
 
-{{#if (not readOnly)}}
-  <div class="add-comment-wrapper">
-    {{expanding-textarea
-      keyEvents=(hash 13=(action "createComment"))
-      placeholder="Leave a comment..."
-      class="form-control add-comment"
-    }}
-  </div>
-{{/if}}
+{{#unless getComments.isRunning}}
+  {{#if (not readOnly)}}
+    <div class="add-comment-wrapper">
+      {{expanding-textarea
+        keyEvents=(hash 13=(action "createComment"))
+        placeholder="Leave a comment..."
+        class="form-control add-comment"
+      }}
+    </div>
+  {{/if}}
+{{/unless}}
