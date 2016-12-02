@@ -10,6 +10,7 @@ import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   notify: service(),
+  session: service(),
   store: service(),
 
   updatePost: task(function* (content, options) {
