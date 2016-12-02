@@ -6,7 +6,7 @@
       <span class="stat-icon">
         {{svg-jar "sm-heart"}}
       </span>
-      <strong>{{user.waifuOrHusbando}}:</strong>
+      <strong>{{or user.waifuOrHusbando "Waifu/Husbando"}}:</strong>
         <span class="waifu-wrapper">
           <img src={{image user.waifu.image}}>
         </span>

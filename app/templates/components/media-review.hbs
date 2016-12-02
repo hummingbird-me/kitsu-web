@@ -61,7 +61,7 @@
   <div class="review-action pull-sm-right">
     {{! edit review }}
     {{#if (can-mutate review.user review)}}
-      <a data-toggle="modal" data-target="#{{elementId}}-review-modal" href="#" {{action (toggle "reviewOpen" this)}}>edit</a>
+      <a href="#" {{action (toggle "reviewOpen" this)}}>edit</a>
       {{#if reviewOpen}}
         {{to-elsewhere named="modal" send=(component "modals/media-review"
           modalId=(concat elementId "-review-modal")

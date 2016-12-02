@@ -4,6 +4,24 @@
     <div class="alert alert-info staging-alert">
       This is a sandbox. <br> All changes will be reset.
     </div>
+
+    {{#unless session.hasUser}}
+      <div class="staging-pro-gate">
+        <div class="pro-gate--message">
+          Sorry, this place is for people that are PRO. <a href="https://hummingbird.me/pro">Become PRO</a>
+        </div>
+        <img src="https://media.giphy.com/media/aiL0BGeWHbtRu/giphy.gif">
+        <div class="pro-secondary">
+          <a href="#"
+            {{action (queue
+              (action (mut authComponent) "sign-in")
+              (toggle "authOpened" this)
+            )}}>
+            Already PRO? Login
+          </a>
+        </div>
+      </div>
+    {{/unless}}
   {{/if}}
   <div class="container">
     <div class="row">
@@ -90,7 +108,10 @@
   </div>
 </nav>
 
+{{! Authentication Modal }}
 {{#if authOpened}}
   {{to-elsewhere named="modal" send=(component "application/auth-onboarding"
-    modalId="auth-modal" component=authComponent onClose=(toggle-action "authOpened" this))}}
+    modalId="auth-modal"
+    component=authComponent
+    onClose=(toggle-action "authOpened" this))}}
 {{/if}}

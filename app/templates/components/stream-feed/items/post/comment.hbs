@@ -59,21 +59,35 @@
           {{svg-jar "more"}}
         </a>
         <div class="dropdown-menu" aria-labelledby="moreDrop">
+          {{! Edit/Delete Options }}
           {{#if (can-mutate comment.user comment)}}
             <a class="dropdown-item" href="#" {{action (toggle "isEditing" this)}}>Edit Comment</a>
-            <a class="dropdown-item" href="#" {{action "deleteComment"}}>Delete Comment</a>
+            <a class="dropdown-item" href="#" {{action (toggle "deleteModalOpened" this)}}>Delete Comment</a>
+            {{#if deleteModalOpened}}
+              {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+                onConfirm=(action "deleteComment")
+                onClose=(toggle-action "deleteModalOpened" this)
+              )}}
+            {{/if}}
           {{/if}}
 
+          {{! Report/Blocking Options }}
           {{#if (and session.hasUser (not (is-self comment.user)))}}
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#{{elementId}}-report-content" {{action (toggle "reportingComment" this)}}>Report Comment</a>
-              {{#if reportingComment}}
-                {{to-elsewhere named="modal" send=(component "modals/report-content"
-                  content=comment
-                  modalId=(concat elementId "-report-content")
-                  onClose=(toggle-action "reportingComment" this)
+            <a class="dropdown-item" href="#" {{action (toggle "reportingComment" this)}}>Report Comment</a>
+            {{#if reportingComment}}
+              {{to-elsewhere named="modal" send=(component "modals/report-content"
+                content=comment
+                onClose=(toggle-action "reportingComment" this)
+              )}}
+            {{/if}}
+
+            <a class="dropdown-item" href="#" {{action (toggle "blockUserModal" this)}}>Block @{{comment.user.name}}</a>
+              {{#if blockUserModal}}
+                {{to-elsewhere named="modal" send=(component "modals/block-user"
+                  user=comment.user
+                  onClose=(toggle-action "blockUserModal" this)
                 )}}
               {{/if}}
-            <a class="dropdown-item" href="#" {{action "blockUser"}}>Block @{{comment.user.name}}</a>
           {{/if}}
         </div>
       </span>
@@ -93,6 +107,7 @@
               {{#paginated-resource/manual
                 model=replies
                 modelName="comment"
+                limit=10
                 offset=replies.length
                 update=(action "loadReplies") as |active|
               }}

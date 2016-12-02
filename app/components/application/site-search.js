@@ -16,7 +16,9 @@ export default Ember.Component.extend({
   isOpened: false,
   query: undefined,
 
+  metrics: service(),
   store: service(),
+
   animeTask: typeTask(),
   mangaTask: typeTask(),
   usersTask: typeTask(),
@@ -51,7 +53,7 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    jQuery(document.body).on('click.search', () => {
+    jQuery(document.body).on('click.search', (event) => {
       const target = get(event, 'target');
       const id = `#${get(this, 'elementId')}`;
       const isChild = jQuery(target).is(`${id} *, ${id}`);

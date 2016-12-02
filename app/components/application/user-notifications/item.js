@@ -1,6 +1,7 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import computed from 'ember-computed';
+import { isPresent } from 'ember-utils';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
 
 export default Component.extend({
@@ -29,12 +30,16 @@ export default Component.extend({
       const activity = get(this, 'activity');
       const [modelType, modelId] = get(activity, 'foreignId').split(':');
       if (modelType === 'Post') {
-        return hrefTo(this, 'posts', modelId);
+        if (isPresent(modelId) === true) {
+          return hrefTo(this, 'posts', modelId);
+        }
       } else if (modelType === 'Follow') {
         const actor = get(activity, 'actor');
-        return hrefTo(this, 'users', actor);
+        if (isPresent(actor) === true) {
+          return hrefTo(this, 'users', actor);
+        }
       } else if (modelType === 'Comment') {
-        if (get(activity, 'postId') !== undefined) {
+        if (isPresent(get(activity, 'postId')) === true) {
           return hrefTo(this, 'posts', get(activity, 'postId'));
         }
       }

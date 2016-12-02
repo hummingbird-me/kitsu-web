@@ -6,8 +6,7 @@ import config from '../../config/environment';
 export default function startApp(attrs) {
   let application;
 
-  let attributes = assign({}, config.APP);
-  attributes = assign(attributes, attrs); // use defaults, but you can override;
+  const attributes = assign({}, config.APP, attrs);
 
   run(() => {
     application = Application.create(attributes);
