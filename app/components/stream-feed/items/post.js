@@ -44,6 +44,14 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
     return `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   }),
 
+  isEditable: getter(function() {
+    if (get(this, 'session.account').hasRole('admin', get(this, 'post')) === true) {
+      return true;
+    }
+    const time = moment(get(this, 'post.createdAt')).add(30, 'minutes');
+    return !time.isBefore();
+  }),
+
   postEdited: computed('post.createdAt', 'post.updatedAt', {
     get() {
       return moment(get(this, 'post.createdAt')).isSame(get(this, 'post.updatedAt')) === false;
