@@ -54,6 +54,7 @@ module.exports = function(defaults) {
   app.import('bower_components/rangy/rangy-core.min.js');
   app.import('bower_components/rangy/rangy-classapplier.min.js');
   app.import('bower_components/to-markdown/dist/to-markdown.js');
+  app.import('bower_components/mobile-detect/mobile-detect.min.js');
 
   return app.toTree();
 };

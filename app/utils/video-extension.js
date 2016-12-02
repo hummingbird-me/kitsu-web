@@ -10,25 +10,6 @@ function _isYouTube(url) {
   return found;
 }
 
-function _getYouTubeParams(url) {
-  const hash = {};
-
-  if (typeof url === 'string') {
-    const pos = url.indexOf('?');
-    if (pos > -1) {
-      let params = url.substr(pos + 1, url.length);
-      params = params.split('&');
-
-      params.forEach((d) => {
-        const pair = d.split('=');
-        hash[pair[0]] = pair[1];
-      });
-    }
-  }
-
-  return hash;
-}
-
 rangy.init();
 
 export default MediumEditor.extensions.button.extend({

@@ -18,13 +18,25 @@
   <div class="add-content-expanded">
     {{! editor }}
 
-    {{medium-content-editable
-      value=content 
-      key-down=(action "keyDown")
-      class="stream-content-editor"
-      options=mediumEditorOptions
-    }}
-
+    {{#if !mobile}}
+      {{medium-content-editable
+        value=content 
+        key-down=(action "keyDown")
+        class="stream-content-editor"
+        options=mediumEditorOptions
+      }}
+    {{else}}
+      {{content-editable
+        value=content
+        type="text"
+        spellcheck=true
+        autofocus=true
+        key-down=(action "keyDown")
+        maxlength=maxLength
+        class="stream-content-editor"
+      }}
+    {{/if}}
+    
     <div class="tag-media">
       {{#if media}}
         <div class="tagged-media--wrapper">

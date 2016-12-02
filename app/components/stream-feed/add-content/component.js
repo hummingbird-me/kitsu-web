@@ -10,6 +10,7 @@ import { bind } from 'ember-runloop';
 import jQuery from 'jquery';
 import RSVP from 'rsvp';
 import VideoExtension from 'client/utils/video-extension';
+import isMobile from 'client/utils/is-mobile';
 
 export default Component.extend({
   classNameBindings: ['isExpanded:is-expanded'],
@@ -31,6 +32,10 @@ export default Component.extend({
     extensions: {
       video: new VideoExtension()
     }
+  },
+
+  mobile() {
+    return isMobile();
   },
 
   trueContentLength: computed('content', {
