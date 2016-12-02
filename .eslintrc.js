@@ -8,6 +8,12 @@ module.exports = {
   env: {
     browser: true
   },
+  globals: {
+    'MediumEditor': true,
+    'rangy': true,
+    'toMarkdown': true,
+    'MobileDetect': true
+  },
   rules: {
     'no-console': 'off',
     'comma-dangle': 'off',

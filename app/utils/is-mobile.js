@@ -1,5 +1,5 @@
 export default function() {
-	const md = new MobileDetect(window.navigator.userAgent);
+  const md = new MobileDetect(window.navigator.userAgent);
 
-	return md.mobile();
+  return md.mobile();
 }

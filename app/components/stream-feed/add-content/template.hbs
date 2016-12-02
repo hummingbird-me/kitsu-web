@@ -18,14 +18,7 @@
   <div class="add-content-expanded">
     {{! editor }}
 
-    {{#if !mobile}}
-      {{medium-content-editable
-        value=content 
-        key-down=(action "keyDown")
-        class="stream-content-editor"
-        options=mediumEditorOptions
-      }}
-    {{else}}
+    {{#if mobile}}
       {{content-editable
         value=content
         type="text"
@@ -34,6 +27,13 @@
         key-down=(action "keyDown")
         maxlength=maxLength
         class="stream-content-editor"
+      }}
+    {{else}}
+      {{medium-content-editable
+        value=content 
+        key-down=(action "keyDown")
+        class="stream-content-editor"
+        options=mediumEditorOptions
       }}
     {{/if}}
     
