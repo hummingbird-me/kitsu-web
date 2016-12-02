@@ -119,7 +119,6 @@ export default Component.extend({
       if (get(this, 'canPost') === false) {
         return;
       }
-      console.log(toMarkdown(get(this, 'content')));
 
       const options = {
         nsfw: get(this, 'nsfw'),
@@ -128,7 +127,7 @@ export default Component.extend({
       if (get(this, 'media') !== undefined) {
         options.media = get(this, 'media');
       }
-      invokeAction(this, 'onCreate', get(this, 'content'), options);
+      invokeAction(this, 'onCreate', toMarkdown(get(this, 'content')), options);
       this._resetProperties();
     },
 
