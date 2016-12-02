@@ -55,10 +55,10 @@
 
       {{! more dropdown }}
       <span class="more-wrapper">
-        <a href="#" class="more-drop" id="moreDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a href="#" class="more-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{svg-jar "more"}}
         </a>
-        <div class="dropdown-menu" aria-labelledby="moreDrop">
+        <div class="dropdown-menu">
           {{! Edit/Delete Options }}
           {{#if (can-mutate comment.user comment)}}
             <a class="dropdown-item" href="#" {{action (toggle "isEditing" this)}}>Edit Comment</a>
