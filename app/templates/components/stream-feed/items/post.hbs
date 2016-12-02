@@ -97,7 +97,7 @@
             {{/if}}
           {{/if}}
         {{else}}
-          {{{post.contentFormatted}}}
+          {{text-clipper post.contentFormatted length=1000 options=(hash html=true imageWidth=500)}}
         {{/if}}
 
         {{! media tag }}
