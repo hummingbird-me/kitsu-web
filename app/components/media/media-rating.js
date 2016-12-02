@@ -19,7 +19,7 @@ export default Component.extend({
       const liked = keys.slice(7).reduce((prev, curr) => (
         prev + (parseInt(freqs[decimalNumber([curr])], 10) || 0)
       ), 0);
-      const value = (liked / total) * 100;
+      const value = total === 0 ? 0 : (liked / total) * 100;
       return `${value.toFixed(0)}%`;
     }
   }).readOnly(),
