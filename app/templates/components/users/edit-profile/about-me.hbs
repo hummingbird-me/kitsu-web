@@ -65,6 +65,7 @@
         searchEnabled=false
         selected=user.waifuOrHusbando
         options=(array "Waifu" "Husbando")
+        placeholder="Waifu/Husbando"
         onchange=(action (mut user.waifuOrHusbando)) as |option|}}
         <span>{{option}}</span>
       {{/power-select}}
@@ -79,9 +80,12 @@
       }}
         <strong>{{character.name}}</strong>
       {{/power-select}}
-      <a href="#" class="pull-sm-right" {{action (action (queue (action (mut user.waifu) null) (action (mut user.waifuDirtyHack) true)))}}>
-        divorce
-      </a>
+
+      {{#if user.waifu}}
+        <a href="#" class="pull-sm-right" {{action (action (queue (action (mut user.waifu) null) (action (mut user.waifuDirtyHack) true)))}}>
+          divorce
+        </a>
+      {{/if}}
     </div>
   </div>
   <div class="form-group row">

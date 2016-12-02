@@ -8,7 +8,7 @@ import RSVP from 'rsvp';
 export default Component.extend({
   store: service(),
 
-  getFavorites: task(function* (type) {
+  getFavorites: task(function* (type, limit = 8) {
     return yield get(this, 'store').query('favorite', {
       filter: {
         user_id: get(this, 'user.id'),
@@ -16,14 +16,14 @@ export default Component.extend({
       },
       include: 'item',
       sort: 'fav_rank',
-      page: { limit: 4 }
+      page: { limit }
     });
   }).drop().maxConcurrency(3),
 
   getAllFavorites: task(function* () {
     const anime = get(this, 'getFavorites').perform('Anime');
     const manga = get(this, 'getFavorites').perform('Manga');
-    const chars = get(this, 'getFavorites').perform('Character');
+    const chars = get(this, 'getFavorites').perform('Character', 12);
     return yield RSVP.allSettled([anime, manga, chars], 'Get Favorites');
   }).drop(),
 

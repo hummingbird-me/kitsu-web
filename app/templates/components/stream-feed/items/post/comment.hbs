@@ -107,6 +107,7 @@
               {{#paginated-resource/manual
                 model=replies
                 modelName="comment"
+                limit=10
                 offset=replies.length
                 update=(action "loadReplies") as |active|
               }}
