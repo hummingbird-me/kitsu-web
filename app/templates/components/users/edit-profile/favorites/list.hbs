@@ -26,9 +26,9 @@
             {{lazy-image url=(image item.item.image) class="media-sort-thumb"}}
           </a>
         {{else}}
-          {{#link-to (concat type ".show") item.item.slug class="media-sort-thumb-wrapper"}}
+          <a class="media-sort-thumb-wrapper" href="{{href-to (concat type ".show") item.item.slug}}">
             {{lazy-image url=(image item.item.posterImage "tiny") class="media-sort-thumb"}}
-          {{/link-to}}
+          </a>
         {{/if}}
         <span class="media-sort-title">
           {{#if isCharacter}}
