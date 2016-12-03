@@ -45,7 +45,7 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
   }),
 
   isEditable: getter(function() {
-    if (get(this, 'session.account').hasRole('admin', get(this, 'post')) === true) {
+    if (get(this, 'session.account').hasRole('admin', get(this, 'post'))) {
       return true;
     }
     const time = moment(get(this, 'post.createdAt')).add(30, 'minutes');

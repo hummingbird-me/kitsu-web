@@ -22,10 +22,14 @@ export default Component.extend({
 
   session: service(),
   store: service(),
-  author: alias('session.account'),
 
   canPost: computed('content', {
     get() {
+      if (get(this, 'isEditing')) {
+        if (get(this, 'content') === get(this, 'contentOriginal')) {
+          return false;
+        }
+      }
       return isPresent(get(this, 'content')) &&
         get(this, 'content.length') <= get(this, 'maxLength');
     }
@@ -70,7 +74,7 @@ export default Component.extend({
     const isDeleted = jQuery(document.body).find(target).length === 0;
     if (isChild === false && isDeleted === false && get(this, 'isDestroyed') === false) {
       // don't collapse if user has text entered
-      if (isEmpty(get(this, 'content')) === true) {
+      if (isEmpty(get(this, 'content')) && !get(this, 'isEditing')) {
         set(this, 'isExpanded', false);
       }
     }
@@ -78,11 +82,13 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
+    set(this, 'author', get(this, 'session.account'));
     if (get(this, 'isEditing') === true) {
       setProperties(this, {
         media: get(this, 'post.media'),
         mediaReadOnly: true,
         content: get(this, 'post.content'),
+        contentOriginal: get(this, 'post.content'),
         spoiler: get(this, 'post.spoiler'),
         nsfw: get(this, 'post.nsfw'),
         author: get(this, 'post.user')
@@ -126,6 +132,12 @@ export default Component.extend({
       const { metaKey, ctrlKey } = event;
       if (metaKey === true || ctrlKey === true) {
         get(this, 'createPost').perform();
+      }
+    },
+
+    toggleExpand() {
+      if (!get(this, 'isEditing')) {
+        this.toggleProperty('isExpanded');
       }
     }
   }

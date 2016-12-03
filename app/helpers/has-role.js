@@ -15,11 +15,7 @@ export default Helper.extend({
     return get(this, 'session.hasUser') && get(this, 'session.account').hasRole(role, resource);
   },
 
-  didAuthenticate: observer('session.account', function() {
-    this.recompute();
-  }),
-
-  didGetRoles: observer('session.account.userRoles.@each.role', function() {
+  didAuthenticate: observer('session.hasUser', function() {
     this.recompute();
   })
 });

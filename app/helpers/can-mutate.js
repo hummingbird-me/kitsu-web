@@ -21,11 +21,7 @@ export default Helper.extend({
     return isOwner || isAdmin;
   },
 
-  didAuthenticate: observer('session.account', function() {
-    this.recompute();
-  }),
-
-  didGetRoles: observer('session.account.userRoles.@each.role', function() {
+  didAuthenticate: observer('session.hasUser', function() {
     this.recompute();
   })
 });

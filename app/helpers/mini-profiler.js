@@ -1,14 +1,16 @@
 import Helper from 'ember-helper';
 import service from 'ember-service/inject';
 import get from 'ember-metal/get';
+import set from 'ember-metal/set';
 import { isEmpty } from 'ember-utils';
 import observer from 'ember-metal/observer';
 
 export default Helper.extend({
   session: service(),
+  isInserted: false,
 
   compute() {
-    if (isEmpty(get(this, 'session.account'))) {
+    if (isEmpty(get(this, 'session.account')) || get(this, 'isInserted')) {
       return;
     }
 
@@ -32,10 +34,11 @@ export default Helper.extend({
       element.dataset.collapseResults = true;
       const script = document.getElementsByTagName('script')[0];
       script.parentNode.insertBefore(element, script);
+      set(this, 'isInserted', true);
     }
   },
 
-  didAuthenticate: observer('session.account', function() {
+  didAuthenticate: observer('session.hasUser', function() {
     this.recompute();
   })
 });
