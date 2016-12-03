@@ -26,6 +26,17 @@ export default Component.extend({
     }
   }),
 
+  hasUnread: computed('groups.@each.isRead', {
+    get() {
+      const groups = get(this, 'groups');
+      if (groups === undefined || groups.length === 0) {
+        return false;
+      }
+
+      return groups.some(curr => (!get(curr, 'isRead')));
+    }
+  }),
+
   getNotifications: task(function* () {
     return yield get(this, 'store').query('feed', {
       type: 'notifications',

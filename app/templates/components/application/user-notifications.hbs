@@ -13,7 +13,9 @@
 <div class="dropdown-menu notification-drop">
   <header>
     <a href={{href-to "notifications"}} class="see-all-notifications">See All Notifications</a>
-    <a href="#" class="mark-as-read" {{action "markRead"}}>Mark all as Read</a>
+    {{#if hasUnread}}
+      <a href="#" class="mark-as-read" {{action "markRead"}}>Mark all as Read</a>
+    {{/if}}
   </header>
   {{#if (eq groups.length 0)}}
     <p class="notifications-empty">You don't have any notifications yet!</p>
