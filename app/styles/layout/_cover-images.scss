@@ -18,25 +18,37 @@
       left: 0;
       background: linear-gradient(rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%);
     }
-    .navbar-nav {
-      opacity: 0;
+    .logo {
+      g {
+        fill: $white;
+      }
+    }
+    .navbar-toggler {
+      color: $white;
+    }
+    .primary-nav--drop {
+      background: rgba(255, 255, 255, 0.1);
+      a {
+        color: $white;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      }
     }
     .navbar-buttons {
       opacity: 1;
       li {
         svg {
           path {
-            fill: #fff;
+            fill: $white;
           }
         }
       }
       input {
         background: transparent;
       }
-    }
-    .logo {
-      g {
-        fill: #fff;
+      .nav-item {
+        a {
+          color: $white;
+        }
       }
     }
   }
@@ -68,14 +80,14 @@
     float: left;
   }
   .cover-username {
-    color: #fff;
+    color: $white;
     font-size: 30px;
     font-weight: 500;
     margin-top: 5px;
     margin-bottom: 10px;
   }
   .mini-bio {
-    color: #fff;
+    color: $white;
     font-size: 14px;
     float: left;
     margin-left: 25px;
@@ -191,7 +203,7 @@
   }
   a {
     display: inline-block;
-    background: #fff;
+    background: $white;
     padding: 8px;
     padding-bottom: 3px;
     border-radius: 3px;
