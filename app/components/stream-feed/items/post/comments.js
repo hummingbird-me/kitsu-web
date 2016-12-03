@@ -45,7 +45,7 @@ export default Component.extend({
     });
   }).drop(),
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
     set(this, 'comments', []);
     get(this, 'getComments').perform().then((comments) => {
