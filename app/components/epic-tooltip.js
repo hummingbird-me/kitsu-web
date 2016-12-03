@@ -96,8 +96,10 @@ export default Component.extend({
       addObserver(this, 'isHovered', this.targetLeave);
     } else {
       removeObserver(this, 'isHovered', this.targetLeave);
-      get(this, 'tether').disable();
-      this.$().hide();
+      if (!get(this, 'isDestroyed')) {
+        get(this, 'tether').disable();
+        this.$().hide();
+      }
     }
   }
 });
