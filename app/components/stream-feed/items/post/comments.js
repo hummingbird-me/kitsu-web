@@ -26,7 +26,7 @@ export default Component.extend({
 
   createComment: task(function* (content) {
     const comment = get(this, 'store').createRecord('comment', {
-      content,
+      content: content.replace('\\', '\\\\'),
       post: get(this, 'post'),
       user: get(this, 'session.account')
     });
