@@ -35,8 +35,7 @@ export default Component.extend({
         item_type: type
       },
       include: 'item',
-      sort: 'fav_rank',
-      page: { limit: 2 }
+      sort: 'fav_rank'
     });
   }).drop().maxConcurrency(3),
 
