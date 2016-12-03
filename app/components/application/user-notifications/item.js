@@ -29,21 +29,41 @@ export default Component.extend({
     get() {
       const activity = get(this, 'activity');
       const [modelType, modelId] = get(activity, 'foreignId').split(':');
-      if (modelType === 'Post') {
-        if (isPresent(modelId) === true) {
-          return hrefTo(this, 'posts', modelId);
+      switch (modelType) {
+        case 'Post': {
+          if (isPresent(modelId)) {
+            return hrefTo(this, 'posts', modelId);
+          }
+          break;
         }
-      } else if (modelType === 'Follow') {
-        const actor = get(activity, 'actor');
-        if (isPresent(actor) === true) {
-          return hrefTo(this, 'users', actor);
+        case 'Follow': {
+          const actor = get(activity, 'actor');
+          if (isPresent(actor)) {
+            return hrefTo(this, 'users', actor);
+          }
+          break;
         }
-      } else if (modelType === 'Comment') {
-        if (isPresent(get(activity, 'postId')) === true) {
-          return hrefTo(this, 'posts', get(activity, 'postId'));
+        case 'Comment': {
+          if (isPresent(get(activity, 'target.content'))) {
+            return hrefTo(this, 'posts', get(activity, 'target.id'));
+          }
+          break;
+        }
+        case 'PostLike':
+        case 'CommentLike': {
+          if (isPresent(get(activity, 'target.content'))) {
+            let id = get(activity, 'target.id');
+            if (modelType === 'CommentLike') {
+              id = get(activity, 'target.post.id');
+            }
+            return hrefTo(this, 'posts', id);
+          }
+          break;
+        }
+        default: {
+          return '#';
         }
       }
-      return '#';
     }
   })
 });

@@ -15,5 +15,6 @@ export default Base.extend({
   actor: belongsTo('user'),
   media: belongsTo('media'),
   subject: belongsTo('base'),
+  target: belongsTo('base'),
   unit: belongsTo('base')
 });

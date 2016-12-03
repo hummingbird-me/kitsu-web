@@ -21,7 +21,9 @@
             and <strong>{{otherCount}} others</strong>
           {{/if}}
         {{/if}}
+
         {{! type }}
+        {{! TODO: Refactor to helper }}
         {{#if (eq activity.verb "follow")}}
           followed you.
         {{/if}}
@@ -30,6 +32,12 @@
         {{/if}}
         {{#if (eq activity.verb "comment")}}
           mentioned you in a comment.
+        {{/if}}
+        {{#if (eq activity.verb "post_like")}}
+          liked your post.
+        {{/if}}
+        {{#if (eq activity.verb "comment_like")}}
+          liked your comment.
         {{/if}}
       </p>
       <small class="media-secondary">{{moment-from-now activity.time}}</small>

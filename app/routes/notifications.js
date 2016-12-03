@@ -7,7 +7,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     return get(this, 'store').query('feed', {
       type: 'notifications',
       id: get(this, 'session.account.id'),
-      include: 'actor'
+      include: 'actor,target.post'
     });
   }
 });
