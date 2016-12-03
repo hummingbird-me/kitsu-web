@@ -142,7 +142,8 @@ export default {
     review: 'Review',
     title: {
       anime: '{{link}} by {{user}} at Episode {{progress}}',
-      manga: '{{link}} by {{user}} at Chapter {{progress}}'
+      manga: '{{link}} by {{user}} at Chapter {{progress}}',
+      unprogressed: '{{link}} by {{user}}'
     }
   },
   // Global header

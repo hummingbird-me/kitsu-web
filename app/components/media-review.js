@@ -18,7 +18,8 @@ export default Component.extend({
     const review = get(this, 'i18n').t('reviews.review');
     const reviewLink = createLink(`/reviews/${get(this, 'review.id')}`, review);
     const userLink = createLink(`/users/${get(this, 'review.user.name')}`, get(this, 'review.user.name'));
-    const type = modelType([get(this, 'media') || get(this, 'review.media')]);
+    let type = modelType([get(this, 'media') || get(this, 'review.media')]);
+    if (!get(this, 'review.progress')) type = 'unprogressed';
     return get(this, 'i18n').t(`reviews.title.${type}`, {
       link: reviewLink,
       user: userLink,
