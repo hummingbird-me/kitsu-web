@@ -21,13 +21,15 @@
     class="media-sortable nav" as |group|}}
     {{#each items as |item|}}
       {{#sortable-item model=item group=group tagName="li" class="media-sort-item card"}}
-        <a class="media-sort-thumb-wrapper" href="#">
-          {{#if isCharacter}}
+        {{#if isCharacter}}
+          <a class="media-sort-thumb-wrapper" href="#">
             {{lazy-image url=(image item.item.image) class="media-sort-thumb"}}
-          {{else}}
+          </a>
+        {{else}}
+          {{#link-to (concat type ".show") item.item.slug class="media-sort-thumb-wrapper"}}
             {{lazy-image url=(image item.item.posterImage "tiny") class="media-sort-thumb"}}
-          {{/if}}
-        </a>
+          {{/link-to}}
+        {{/if}}
         <span class="media-sort-title">
           {{#if isCharacter}}
             {{item.item.name}}
