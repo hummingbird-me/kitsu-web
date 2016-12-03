@@ -178,3 +178,46 @@
   padding-bottom: 10px;
   margin-bottom: 10px;
 }
+
+#review-modal {
+  .modal-dialog {
+    max-width: 750px;
+  }
+  img {
+    border-radius: 3px;
+  }
+  textarea {
+    max-height: 350px;
+    overflow: auto !important;
+  }
+  h3 {
+    margin-bottom: 15px;
+  }
+  .col-xs-4 {
+    max-width: 225px;
+    @media (max-width: 544px) {
+      display: none;
+    }
+  }
+  .rating-wrapper {
+    display: inline-block;
+    border: 1px solid #eee;
+    padding: 0 10px;
+    border-radius: 3px;
+    padding-top: 5px;
+    h6 {
+      float: left;
+      font-weight: normal;
+      font-size: 12px;
+      margin-bottom: 0;
+      line-height: 29px;
+      margin-right: 10px;
+    }
+    svg {
+      width: 20px;
+    }
+  }
+  .review--cta {
+    margin-top: 25px;
+  }
+}

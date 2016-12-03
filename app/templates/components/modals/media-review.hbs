@@ -5,48 +5,50 @@
     {{#if (and media entry)}}
       {{! TODO - @Josh - Review creation modal )}}
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-xs-4 no-padding-right">
           {{lazy-image url=(image media.posterImage "medium")}}
         </div>
-        <div class="col-sm-8">
+        <div class="col-xs">
           <h3>{{media.canonicalTitle}}</h3>
-
-          {{! media rating -- required to be set for review }}
-          <div>
-            <h6>Your Media Rating</h6>
-            {{star-rating entry.rating onClick=(action "updateEntry" entry "rating")}}
-          </div>
 
           {{! review content! }}
           {{expanding-textarea content
             update=(action (mut content))
             rows=5
-            placeholder="Add a review..."
+            placeholder="What'd you think? ..."
           }}
 
-          {{! delete review}}
-          {{#if (and review (not review.isNew))}}
-            <button class="button btn-danger" {{action (perform delete)}}>
-              {{#if delete.isRunning}}
+          {{! media rating -- required to be set for review }}
+          <div class="rating-wrapper">
+            <h6>Your Rating:</h6>
+            {{star-rating entry.rating class="review-stars" onClick=(action "updateEntry" entry "rating")}}
+          </div>
+
+          <div class="review--cta">
+            {{! delete review}}
+            {{#if (and review (not review.isNew))}}
+              <button class="button btn-danger" {{action (perform delete)}}>
+                {{#if delete.isRunning}}
+                  {{loading-spinner size="small"}}
+                {{else}}
+                  Delete
+                {{/if}}
+              </button>
+            {{/if}}
+
+            {{! publish review }}
+            <button class="button button--primary" disabled={{unless isValid "disabled"}} {{action (perform publish)}}>
+              {{#if publish.isRunning}}
                 {{loading-spinner size="small"}}
               {{else}}
-                Delete
+                {{#if (and review (not review.isNew))}}
+                  Edit
+                {{else}}
+                  Publish
+                {{/if}}
               {{/if}}
             </button>
-          {{/if}}
-
-          {{! publish review }}
-          <button class="button button--primary" disabled={{unless isValid "disabled"}} {{action (perform publish)}}>
-            {{#if publish.isRunning}}
-              {{loading-spinner size="small"}}
-            {{else}}
-              {{#if (and review (not review.isNew))}}
-                Edit
-              {{else}}
-                Publish
-              {{/if}}
-            {{/if}}
-          </button>
+          </div>
         </div>
       </div>
     {{else}}
