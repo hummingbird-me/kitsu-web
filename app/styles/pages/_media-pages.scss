@@ -16,10 +16,8 @@
     display: block;
   }
   .comment-body {
+    @include word-break();
     font-size: 15px;
-    word-wrap: break-word;
-    word-break: break-all; // Fallback
-    word-break: break-word;
     overflow: hidden;
     p {
       margin-bottom: 10px;
@@ -156,6 +154,10 @@
   .media--airing-date {
     margin-right: 30px;
   }
+}
+
+.media-synopsis p {
+  @include word-break();
 }
 
 // Episode pages

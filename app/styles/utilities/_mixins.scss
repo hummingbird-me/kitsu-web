@@ -3,3 +3,9 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+@mixin word-break() {
+  word-wrap: break-word; // Fallback
+  word-break: break-all; // "      "
+  word-break: break-word;
+}

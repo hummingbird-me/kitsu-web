@@ -328,11 +328,9 @@
   .media-body {
     font-size: 14px;
     .comment-body {
+      @include word-break();
       margin-bottom: 0;
       display: inline;
-      word-wrap: break-word;
-      word-break: break-all; // Fallback
-      word-break: break-word;
       p:last-child {
         margin-bottom: 0;
       }
@@ -531,9 +529,7 @@
 }
 
 .stream-content {
-  word-wrap: break-word;
-  word-break: break-all; // Fallback
-  word-break: break-word;
+  @include word-break();
   overflow: hidden;
 
   p {

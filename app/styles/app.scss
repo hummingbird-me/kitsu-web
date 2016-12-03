@@ -19,6 +19,12 @@
   'base/_typography', // how text appears on the site
   'base/_animate.scss'; // animation library
 
+// Utilities
+// Gathers Sass tools and helpers used across the project. Global variables,
+// functions, mixins and placeholders should be placed here.
+@import
+  'utilities/_mixins'; // CSS Mixins used site-wide
+
 // Components
 // While layout/ is macro (defining the global wireframe), components/ is more
 // focused on widgets. It holds specific modules likes media, thumbnails, etc.
@@ -60,9 +66,3 @@
   'pages/_media-browse', // Browse anime, manga, etc.
   'pages/_media-pages', // Detail page for individual media
   'pages/_settings'; // User settings
-
-// Utilities
-// Gathers Sass tools and helpers used across the project. Global variables,
-// functions, mixins and placeholders should be placed here.
-@import
-  'utilities/_mixins'; // CSS Mixins used site-wide
