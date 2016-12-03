@@ -106,7 +106,7 @@ export default {
               other: '{{count}} chapters'
             },
             length: {
-              one: '({{total}} / {{length}} minutes)',
+              one: '({{length}} minutes)',
               other: '({{total}} / {{length}} minutes each)'
             }
           }
