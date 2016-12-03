@@ -26,5 +26,6 @@ export default Component.extend({
   willDestroyElement() {
     this.$().off('hidden.bs.modal');
     jQuery('.modal-backdrop').remove();
+    jQuery('body').removeClass('modal-open');
   }
 });
