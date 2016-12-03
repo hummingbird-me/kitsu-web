@@ -2,11 +2,10 @@ import Component from 'ember-component';
 import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set, { setProperties } from 'ember-metal/set';
-import { isEmpty } from 'ember-utils';
-import computed from 'ember-computed';
+import { isEmpty, isPresent } from 'ember-utils';
+import computed, { alias } from 'ember-computed';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
-import { bind } from 'ember-runloop';
 import jQuery from 'jquery';
 import RSVP from 'rsvp';
 
@@ -20,22 +19,19 @@ export default Component.extend({
   nsfw: false,
   spoiler: false,
   maxLength: 9000,
-  author: undefined,
 
   session: service(),
   store: service(),
+  author: alias('session.account'),
 
   canPost: computed('content', {
     get() {
-      return isEmpty(get(this, 'content')) === false && (get(this, 'content.length') <= get(this, 'maxLength'));
+      return isPresent(get(this, 'content')) &&
+        get(this, 'content.length') <= get(this, 'maxLength');
     }
   }).readOnly(),
 
   createPost: task(function* () {
-    if (get(this, 'canPost') === false) {
-      return;
-    }
-
     const options = {
       nsfw: get(this, 'nsfw'),
       spoiler: get(this, 'spoiler')
@@ -50,7 +46,7 @@ export default Component.extend({
   getMedia: task(function* (type, query) {
     return yield get(this, 'store').query(type, {
       filter: { text: query },
-      page: { limit: 2 }
+      page: { limit: 4 }
     });
   }).restartable().maxConcurrency(2),
 
@@ -82,7 +78,6 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    set(this, 'author', get(this, 'session.account'));
     if (get(this, 'isEditing') === true) {
       setProperties(this, {
         media: get(this, 'post.media'),
@@ -101,17 +96,13 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     if (get(this, 'isEditing') === false) {
-      const binding = bind(this, '_handleClick');
-      set(this, 'clickBinding', binding);
-      jQuery(document.body).on('click', binding);
+      jQuery(document.body).on('click.create-post', event => this._handleClick(event));
     }
   },
 
   willDestroyElement() {
     this._super(...arguments);
-    if (get(this, 'isEditing') === false) {
-      jQuery(document.body).off('click', get(this, 'clickBinding'));
-    }
+    jQuery(document.body).off('click.create-post');
   },
 
   _resetProperties() {
@@ -131,9 +122,9 @@ export default Component.extend({
   },
 
   actions: {
-    keyDown(value, event) {
-      const { keyCode, metaKey, ctrlKey } = event;
-      if (keyCode === 13 && (metaKey === true || ctrlKey === true)) {
+    createPost(component, event) {
+      const { metaKey, ctrlKey } = event;
+      if (metaKey === true || ctrlKey === true) {
         get(this, 'createPost').perform();
       }
     }

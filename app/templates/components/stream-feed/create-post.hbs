@@ -17,12 +17,12 @@
 {{#if isExpanded}}
   <div class="add-content-expanded">
     {{! editor }}
-    {{content-editable
-      value=content
-      type="text"
-      spellcheck=true
+    {{expanding-textarea content
+      update=(action (mut content))
+      keyEvents=(hash
+        13=(action "createPost")
+      )
       autofocus=true
-      key-down=(action "keyDown")
       maxlength=maxLength
       class="stream-content-editor"
     }}
