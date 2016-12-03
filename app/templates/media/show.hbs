@@ -11,12 +11,14 @@
                 </h3>
                 <div class="media--meta">
                   <ul>
-                    <li class="rating-content-type">
-                      {{#if media.ageRating}}
-                        <span>{{media.ageRating}}</span>
-                      {{/if}}
-                      <span>{{capitalize media.mediaType}}</span>
-                    </li>
+                    {{#if (or media.ageRating media.mediaType)}}
+                      <li class="rating-content-type">
+                        {{#if media.ageRating}}
+                          <span>{{media.ageRating}}</span>
+                        {{/if}}
+                        <span>{{capitalize media.mediaType}}</span>
+                      </li>
+                    {{/if}}
                     {{#each media.genres as |genre|}}
                       <li class="media--category-tag">
                         <a href={{href-to (concat (model-type media) ".index") (query-params genres=genre.name)}}>
