@@ -17,6 +17,11 @@ const RouterInstance = Router.extend({
       const page = get(this, 'url');
       const title = get(this, 'currentRouteName') || 'Unknown';
       get(this, 'metrics').trackPage({ page, title });
+
+      // mini-profiler
+      if (window.MiniProfiler !== undefined) {
+        window.MiniProfiler.pageTransition();
+      }
     });
   },
 
