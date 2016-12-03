@@ -27,10 +27,16 @@
       color: $white;
     }
     .primary-nav--drop {
-      background: rgba(255, 255, 255, 0.1);
+      &.in {
+        background-color: rgba(255, 255, 255, 0.1);
+        a, a:hover {
+          color: $white;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+          background: none;
+        }
+      }
       a {
         color: $white;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
       }
     }
     .navbar-buttons {
