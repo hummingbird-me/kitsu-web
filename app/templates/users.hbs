@@ -12,14 +12,15 @@
                 {{user.name}}
               </h3>
               <div class="cover-cta">
+                {{#if (not (is-self user))}}
+                  {{follow-button user=user}}
+                {{/if}}
+
+                {{! edit button }}
                 {{#if (can-mutate user user)}}
                   <button class="button button--light-outline" onclick={{action (toggle "isEditing" this)}}>
                     <span class="button-label button-defaultState">Edit</span>
                   </button>
-                {{/if}}
-
-                {{#if (not (is-self user))}}
-                  {{follow-button user=user}}
                 {{/if}}
 
                 {{! admin actions }}

@@ -83,7 +83,7 @@ export default {
           episodes: 'Episodes',
           rating: 'Rating',
           genres: 'Categories',
-          search: 'Search by title, character, or people...'
+          search: 'Search by title, character, or staff...'
         }
       },
       show: {
