@@ -37,6 +37,9 @@
       }
       a {
         color: $white;
+        &.active {
+          color: $porcelain
+        }
       }
     }
     .navbar-buttons {
@@ -54,6 +57,21 @@
       .nav-item {
         a {
           color: $white;
+        }
+        &.open {
+          .notification-drop {
+            a {
+              color: #939393;
+            }
+          }
+          .user-menu-drop {
+            background-color: rgba(255, 255, 255, 0.1);
+            a, a:hover {
+              color: $white;
+              border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+              background: none;
+            }
+          }
         }
       }
     }
