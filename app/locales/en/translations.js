@@ -268,6 +268,10 @@ export default {
         anime: 'Rewatched',
         manga: 'Reread'
       },
+      reconsuming: {
+        anime: 'Rewatching',
+        manga: 'Rereading'
+      },
       times: 'times',
       emptyOwner: 'You don\'t have any titles here! Ready to start something new? {{link}}',
       emptyGuest: 'Doesn\'t look like {{user}} has anything here!',

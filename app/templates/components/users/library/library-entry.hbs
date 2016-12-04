@@ -13,6 +13,14 @@
     <div class="col-md-12 col-lg-5 entry-right">
       {{! Entry Progress }}
       <div class="entry-progress">
+        {{#if (and (gt entry.reconsumeCount 0) (eq entry.status "current"))}}
+          <div class="entry-rewatching pull-sm-right">
+            <span class="hint--top hint--bounce hint--rounded" aria-label="{{t (concat "users.library.reconsuming." (model-type media))}}">
+              {{svg-jar "reconsuming"}}
+            </span>
+          </div>
+        {{/if}}
+
         {{#if (can-mutate user entry)}}
           {{one-way-number entry.progress
             min=0
