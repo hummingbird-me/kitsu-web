@@ -9,7 +9,7 @@ import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   tagName: 'button',
-  classNameBindings: ['isFollowing:active:inactive'],
+  classNameBindings: ['isFollowing:inactive:active'],
   classNames: ['button', 'button--primary'],
 
   metrics: service(),

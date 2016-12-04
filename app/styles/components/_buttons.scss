@@ -23,6 +23,13 @@
     background: $nobel;
     opacity: 1;
   }
+  &.inactive {
+    background: $gray;
+    color: $charcoal;
+    &:hover {
+      background: lighten($gray, 5);
+    }
+  }
 }
 
 .button--secondary {
