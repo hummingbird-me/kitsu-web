@@ -25,12 +25,13 @@
             updateNextPage=(action "updateNextPage" "anime")
             type="anime" class="favorite-media-grid row"}}
         {{else}}
-          {{! TODO/@Josh -- Style the empty states for owner & guest }}
-          {{#if (is-self user)}}
-            Add some Favorites
-          {{else}}
-            User has no favorites.
-          {{/if}}
+          <span class="favorite-placeholder">
+            {{#if (is-self user)}}
+              Add some Favorites.
+            {{else}}
+              User has no favorites.
+            {{/if}}
+          </span>
         {{/if}}
       </div>
 
@@ -43,12 +44,13 @@
             updateNextPage=(action "updateNextPage" "manga")
             type="manga" class="favorite-media-grid row"}}
         {{else}}
-          {{! TODO/@Josh -- Style the empty states for owner & guest }}
-          {{#if (is-self user)}}
-            Add some Favorites
-          {{else}}
-            User has no favorites.
-          {{/if}}
+          <span class="favorite-placeholder">
+            {{#if (is-self user)}}
+              Add some Favorites.
+            {{else}}
+              User has no favorites.
+            {{/if}}
+          </span>
         {{/if}}
       </div>
     </div>
@@ -69,12 +71,13 @@
         updateNextPage=(action "updateNextPage" "character")
         type="character" class="favorite-media-grid row"}}
     {{else}}
-      {{! TODO/@Josh -- Style the empty states for owner & guest }}
-      {{#if (is-self user)}}
-        Add some Favorites
-      {{else}}
-        User has no favorites.
-      {{/if}}
+      <span class="favorite-placeholder">
+        {{#if (is-self user)}}
+          Add some Favorites.
+        {{else}}
+          User has no favorites.
+        {{/if}}
+      </span>
     {{/if}}
   {{/if}}
 </div>
