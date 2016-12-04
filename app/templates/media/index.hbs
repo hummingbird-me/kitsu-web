@@ -130,7 +130,7 @@
                   selection=(map-by "siteName" availableStreamers)
                   onChange=(action (mut streamers)) as |option|
                 }}
-                  {{svg-jar (to-lower option) width="32" height="32" data-test-selector="filter-streamer"}}
+                  {{svg-jar (to-lower option) class=(to-lower option) width="32" height="32" data-test-selector="filter-streamer"}}
                 {{/media/filter-widgets/multi-select}}
               </div>
             {{/if}}
