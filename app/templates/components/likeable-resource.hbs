@@ -1,5 +1,7 @@
 {{#if (or getLikes.isRunning getLocalLike.isRunning)}}
-  {{loading-spinner size="small"}}
+  <span class="like-stream-item">
+    {{loading-spinner size="small"}}
+  </span>
 {{else}}
   <a href="#" class="like-stream-item {{if isLiked "is-liked"}}" {{action "toggleLike"}}>
     <span class="heart-wrapper"></span>
