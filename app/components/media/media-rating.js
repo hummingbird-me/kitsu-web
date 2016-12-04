@@ -5,13 +5,20 @@ import get from 'ember-metal/get';
 import { invokeAction } from 'ember-invoke-action';
 import { decimalNumber } from 'client/helpers/decimal-number';
 
+const THRESHOLD = 10;
+
 export default Component.extend({
   session: service(),
 
-  hasRating: computed('media.ratingFrequencies', {
+  hasCommunityRatings: computed('media.ratingFrequencies', {
     get() {
-      const freqs = get(this, 'media.ratingFrequencies');
-      return Object.keys(freqs).length > 2;
+      const ratingFrequencies = get(this, 'media.ratingFrequencies');
+      const ratingCount = Object.keys(ratingFrequencies).reduce((prev, curr) => {
+        if (curr === null || (curr % 0.5) !== 0) return prev;
+        return prev + parseInt(ratingFrequencies[curr]);
+      }, 0);
+
+      return ratingCount > THRESHOLD;
     }
   }).readOnly(),
 
