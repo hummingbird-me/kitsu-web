@@ -88,10 +88,6 @@ module.exports = function(environment) {
     ads: {
       enabled: false,
       client: undefined
-    },
-
-    bugherd: {
-      enabled: true
     }
   };
 
