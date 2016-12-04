@@ -1,19 +1,21 @@
 {{! community rating }}
-<div class="community-rating">
-  <div class="percentage-liked">
-    <div class="featured-number">
-      {{percentageLiked}}
+{{#if hasRating}}
+  <div class="community-rating">
+    <div class="percentage-liked">
+      <div class="featured-number">
+        {{percentageLiked}}
+      </div>
+      <span>Liked it</span>
     </div>
-    <span>Liked it</span>
-  </div>
-  <div class="average-rating">
-    <div class="featured-number">
-      <label>{{decimal-number media.averageRating}}</label>
-      {{star-rating media.averageRating anyPercent=true readOnly=true}}
+    <div class="average-rating">
+      <div class="featured-number">
+        <label>{{decimal-number media.averageRating}}</label>
+        {{star-rating media.averageRating anyPercent=true readOnly=true}}
+      </div>
+      <span>Avg. user rating</span>
     </div>
-    <span>Avg. user rating</span>
   </div>
-</div>
+{{/if}}
 
 {{#if (and entry (not (is-promise entry)))}}
   <div class="average-rating media-user-rating">

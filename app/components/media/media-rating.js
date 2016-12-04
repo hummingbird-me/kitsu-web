@@ -8,6 +8,13 @@ import { decimalNumber } from 'client/helpers/decimal-number';
 export default Component.extend({
   session: service(),
 
+  hasRating: computed('media.ratingFrequencies', {
+    get() {
+      const freqs = get(this, 'media.ratingFrequencies');
+      return Object.keys(freqs).length > 2;
+    }
+  }).readOnly(),
+
   percentageLiked: computed('media.ratingFrequencies', {
     get() {
       const freqs = get(this, 'media.ratingFrequencies');

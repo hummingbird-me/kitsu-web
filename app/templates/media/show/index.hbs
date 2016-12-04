@@ -1,13 +1,11 @@
 {{! Ratings }}
-{{#if hasSomeRatings}}
 <section>
-    {{media/media-rating
-      entry=entry
-      media=media
-      update=(route-action "updateEntry" entry "rating")
-    }}
+  {{media/media-rating
+    entry=entry
+    media=media
+    update=(route-action "updateEntry" entry "rating")
+  }}
 </section>
-{{/if}}
 
 {{! Synopsis }}
 <section class="media-synopsis">
