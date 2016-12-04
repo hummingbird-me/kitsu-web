@@ -5,7 +5,7 @@
       </div>
     {{else}}
       {{#if (not-eq post.topLevelCommentsCount comments.length)}}
-        <div class="comment-actions">
+        <div class="comment-actions clearfix">
           <div class="pull-sm-left">
             {{! TODO: i18n }}
             {{#paginated-resource/manual
