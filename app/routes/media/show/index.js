@@ -25,7 +25,6 @@ export default Route.extend({
     this._super(...arguments);
     const parentRoute = get(this, 'routeName').split('.').slice(0, 2).join('.');
     const parentController = this.controllerFor(parentRoute);
-    set(controller, 'media', get(parentController, 'media'));
-    set(controller, 'entry', get(parentController, 'entry'));
+    set(controller, 'parent', parentController);
   }
 });
