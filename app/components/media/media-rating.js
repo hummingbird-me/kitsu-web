@@ -14,8 +14,8 @@ export default Component.extend({
     get() {
       const ratingFrequencies = get(this, 'media.ratingFrequencies');
       const ratingCount = Object.keys(ratingFrequencies).reduce((prev, curr) => {
-        if (curr === null || (curr % 0.5) !== 0) return prev;
-        return prev + parseInt(ratingFrequencies[curr]);
+        if (curr === null || (parseFloat(curr) % 0.5) !== 0) return prev;
+        return prev + parseInt(ratingFrequencies[curr], 10);
       }, 0);
 
       return ratingCount > THRESHOLD;
