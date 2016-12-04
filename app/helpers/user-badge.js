@@ -15,9 +15,9 @@ export default Helper.extend({
     }
     const isStaff = userRoulette.hasRole('admin');
     if (isStaff) {
-      return htmlSafe('<span class="tag tag-default">STAFF</span>');
+      return htmlSafe('<span class="tag tag-default role-tag">STAFF</span>');
     } else if (isPro) {
-      return htmlSafe('<span class="tag tag-default">PRO</span>');
+      return htmlSafe('<span class="tag tag-default role-tag">PRO</span>');
     }
   },
 
