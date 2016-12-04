@@ -1,28 +1,4 @@
 <nav class="navbar navbar-fixed-top navbar-light primary-nav" role="navigation">
-  {{! staging banner }}
-  {{#if isStaging}}
-    <div class="alert alert-info staging-alert">
-      This is a sandbox. <br> All changes will be reset.
-    </div>
-
-    {{#unless session.hasUser}}
-      <div class="staging-pro-gate">
-        <div class="pro-gate--message">
-          Sorry, this place is for people that are PRO. <a href="https://hummingbird.me/pro">Become PRO</a>
-        </div>
-        <img src="https://media.giphy.com/media/aiL0BGeWHbtRu/giphy.gif">
-        <div class="pro-secondary">
-          <a href="#"
-            {{action (queue
-              (action (mut authComponent) "sign-in")
-              (toggle "authOpened" this)
-            )}}>
-            Already PRO? Login
-          </a>
-        </div>
-      </div>
-    {{/unless}}
-  {{/if}}
   <div class="container">
     <div class="row">
       <button class="navbar-toggler hidden-sm-up pull-xs-left" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">

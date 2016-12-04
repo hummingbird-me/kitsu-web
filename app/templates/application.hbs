@@ -7,14 +7,43 @@
 {{/if}}
 
 {{! content }}
-<div class="container global-container">
-  <div class="row global-row">
-    {{outlet}}
+{{#if (or session.hasUser (not isStaging))}}
+  <div class="container global-container">
+    <div class="row global-row">
+      {{outlet}}
+    </div>
   </div>
-</div>
+{{else}}
+  <div class="staging-pro-gate">
+    <div class="pro-gate--message">
+      Sorry, this place is for people that are PRO. <a href="https://hummingbird.me/pro">Become PRO</a>
+    </div>
+    <img src="https://media.giphy.com/media/aiL0BGeWHbtRu/giphy.gif">
+    <div class="pro-secondary">
+      <a href="#" {{action (toggle "authOpened" this)}}>
+        Already PRO? Login
+      </a>
+    </div>
+  </div>
+
+  {{! Authentication Modal }}
+  {{#if authOpened}}
+    {{to-elsewhere named="modal" send=(component "application/auth-onboarding"
+      modalId="auth-modal"
+      component="sign-in"
+      onClose=(toggle-action "authOpened" this))}}
+  {{/if}}
+{{/if}}
 
 {{from-elsewhere name="modal"}}
 {{ember-notify messageStyle="bootstrap" closeAfter=3000}}
+
+{{! staging }}
+{{#if isStaging}}
+  <div class="alert alert-info staging-alert">
+    This is a sandbox. <br> All changes will be reset.
+  </div>
+{{/if}}
 
 {{! miniprof }}
 {{mini-profiler}}
