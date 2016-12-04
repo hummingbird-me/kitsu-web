@@ -200,13 +200,20 @@
   border-bottom: 1px solid #eee;
 }
 
-.notification-drop {
+.notification-drop, .user-menu-drop {
   width: 400px;
   right: 0;
   left: initial;
   top: 55px;
   padding: 0;
   overflow: hidden;
+  @media (max-width: 460px) {
+    right: -30px;
+    max-width: 345px;
+  }
+}
+
+.notification-drop {
   header {
     font-size: 12px;
     padding: 5px 10px;
@@ -223,11 +230,6 @@
 }
 
 .user-menu-drop {
-  right: 0;
-  left: initial;
-  top: 55px;
-  padding: 0;
-  overflow: hidden;
   .dropdown-item {
     border-bottom: 1px solid #ddd;
     padding: 10px 20px;
