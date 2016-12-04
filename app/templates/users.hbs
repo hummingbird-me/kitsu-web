@@ -10,6 +10,7 @@
             <div class="mini-bio">
               <h3 class="cover-username" data-test-selector="username">
                 {{user.name}}
+                {{user-badge user}}
               </h3>
               <div class="cover-cta">
                 {{#if (not (is-self user))}}

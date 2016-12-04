@@ -35,7 +35,11 @@
           {{/if}}
         </span>
         <div class="author-info">
-          <a class="author-name" href={{href-to "users.index" post.user}} onclick={{action "trackEngagement" "click"}}>{{post.user.name}}</a>
+          <a class="author-name" href={{href-to "users.index" post.user}} onclick={{action "trackEngagement" "click"}}>
+            {{post.user.name}}
+          </a>
+          {{user-badge post.user}}
+
           {{#if post.targetUser}}
             {{#unless (eq post.targetUser.id userId)}}
               <span class="recipient-info">
@@ -43,6 +47,7 @@
                 <a href={{href-to "users.index" post.targetUser}} class="author-name" onclick={{action "trackEngagement" "click"}}>
                   {{post.targetUser.name}}
                 </a>
+                {{user-badge post.targetUser}}
               </span>
             {{/unless}}
           {{/if}}

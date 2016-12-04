@@ -5,8 +5,10 @@ import { validator, buildValidations } from 'ember-cp-validations';
 import { isEmpty } from 'ember-utils';
 import { classify } from 'ember-string';
 import service from 'ember-service/inject';
+import computed from 'ember-computed';
 import get from 'ember-metal/get';
 import { modelType } from 'client/helpers/model-type';
+import moment from 'moment';
 
 export const Validations = buildValidations({
   email: [
@@ -69,6 +71,7 @@ export default Base.extend(Validations, {
   password: attr('string'),
   pastNames: attr('array'),
   postsCount: attr('number'),
+  proExpiresAt: attr('utc'),
   ratingsCount: attr('number'),
   reviewsCount: attr('number'),
   roles: attr('array'),
@@ -86,6 +89,16 @@ export default Base.extend(Validations, {
   // HACK: We use this to flag the model as dirty when waifu changes, as ember-data
   // doesn't currently track the dirtiness of a relationship.
   waifuDirtyHack: attr('boolean', { defaultValue: false }),
+
+  isPro: computed('proExpiresAt', {
+    get() {
+      const date = get(this, 'proExpiresAt');
+      if (isEmpty(date)) {
+        return false;
+      }
+      return !moment(date).isBefore();
+    }
+  }).readOnly(),
 
   hasRole(roleName, resource) {
     const roles = get(this, 'userRoles').map(ur => get(ur, 'role'));
