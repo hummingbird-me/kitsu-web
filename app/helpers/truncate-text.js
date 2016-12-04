@@ -1,20 +1,13 @@
-import Ember from 'ember';
+import { helper } from 'ember-helper';
 
-const DEFAULT_LENGTH = 50;
-const DEFAULT_FUZZYNESS = 10;
+export function truncateText([text = ''], { size = 50, fuzzyness = 10 }) {
+  if (text.length <= size) return text;
 
-export function truncateText(text, settings) {
-  const input = text[0] || '';
-  const length = settings.size || DEFAULT_LENGTH;
-  const fuzzy = settings.fuzzyness || DEFAULT_FUZZYNESS;
-
-  if (input.length <= length) return input;
-
-  let end = input.indexOf(' ', length);
-  if (end > (length + fuzzy) || end === -1) end = length;
-  const final = input.substring(0, end);
+  let end = text.indexOf(' ', size);
+  if (end > (size + fuzzyness) || end === -1) end = size;
+  const final = text.substring(0, end);
 
   return `${final}...`;
 }
 
-export default Ember.Helper.helper(truncateText);
+export default helper(truncateText);

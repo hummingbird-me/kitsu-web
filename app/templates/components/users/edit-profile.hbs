@@ -1,5 +1,5 @@
 {{#bootstrap/bs-modal id=modalId onClose=(action "onClose") as |modal|}}
-  {{#modal.header}}
+  {{#modal.header class="modal-header-navbar"}}
     <div class="modal-cover-photo" style={{coverImageStyle}}>
       <a class="modal-overlay-button" {{action "triggerClick" "cover-input"}}>
         <span class="overlay-text">
