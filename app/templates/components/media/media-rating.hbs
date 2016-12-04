@@ -18,7 +18,7 @@
 {{/if}}
 
 {{#if (and entry (not (is-promise entry)))}}
-  <div class="average-rating media-user-rating">
+  <div class="average-rating media-user-rating {{unless hasCommunityRatings "lonely"}}">
     <div class="personal-rating">
       <div class="featured-number">
         {{! user rating }}
