@@ -128,7 +128,7 @@ export default Component.extend({
 
     toggleModal() {
       if (get(this, 'likesCount') > 0) {
-        this.togglePoperty('modalOpen');
+        this.toggleProperty('modalOpen');
       }
     }
   }
