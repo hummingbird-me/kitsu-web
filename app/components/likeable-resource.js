@@ -124,6 +124,12 @@ export default Component.extend({
       } else {
         get(this, 'createLike').perform();
       }
+    },
+
+    toggleModal() {
+      if (get(this, 'likesCount') > 0) {
+        this.togglePoperty('modalOpen');
+      }
     }
   }
 });

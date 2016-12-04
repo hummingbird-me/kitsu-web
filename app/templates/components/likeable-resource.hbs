@@ -17,14 +17,14 @@
           </li>
         {{/each}}
         {{#if (gt likesCount 4)}}
-          <li class="stream-like-count" {{action (toggle "modalOpen" this)}}>
+          <li class="stream-like-count" {{action "toggleModal"}}>
             <a>{{likesCount}}</a>
           </li>
         {{/if}}
       </ul>
     {{/if}}
   {{else}}
-    <span class="sm-comment-count" {{action (toggle "modalOpen" this)}}>{{likesCount}}</span>
+    <span class="sm-comment-count" {{action "toggleModal"}}>{{likesCount}}</span>
   {{/if}}
 {{/if}}
 
