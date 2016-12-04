@@ -18,12 +18,26 @@
   'base/_shame', // Declarations, hacks and naughty code we're not proud of.
   'base/_typography', // how text appears on the site
   'base/_animate.scss'; // animation library
-
+  
 // Utilities
 // Gathers Sass tools and helpers used across the project. Global variables,
 // functions, mixins and placeholders should be placed here.
 @import
   'utilities/_mixins'; // CSS Mixins used site-wide
+// Layout
+// Contains everything that takes part in laying out Kitsu. Things such as the
+// header, footer, forms, etc.
+@import
+  'layout/_z-index', // z-index scale
+  'layout/_navbar', // Navigation Bars
+  'layout/_cover-images', // Cover section found on user and media pages
+  'layout/_modals', // various pop-up modal styles
+  'layout/_linked-profiles', // profile connect view within edit profile modal
+  'layout/_favorites', // Favorites and edit favorites fields
+  'layout/_login-register-modal', // Onboarding, Login, Register, Forgot pass
+  'layout/_feeds', // Activity feeds
+  'layout/_sidebars', // Siderbars for feeds
+  'layout/_quick-update';
 
 // Components
 // While layout/ is macro (defining the global wireframe), components/ is more
@@ -43,21 +57,6 @@
   'components/_forums_widget', // Industry news widget in dashboard sidebar
   'components/_alerts',
   'components/_likeable-resource.scss'; // Post reacton modal
-
-// Layout
-// Contains everything that takes part in laying out Kitsu. Things such as the
-// header, footer, forms, etc.
-@import
-  'layout/_z-index', // z-index scale
-  'layout/_navbar', // Navigation Bars
-  'layout/_cover-images', // Cover section found on user and media pages
-  'layout/_modals', // various pop-up modal styles
-  'layout/_linked-profiles', // profile connect view within edit profile modal
-  'layout/_favorites', // Favorites and edit favorites fields
-  'layout/_login-register-modal', // Onboarding, Login, Register, Forgot pass
-  'layout/_feeds', // Activity feeds
-  'layout/_sidebars', // Siderbars for feeds
-  'layout/_quick-update';
 
 
 // Pages
