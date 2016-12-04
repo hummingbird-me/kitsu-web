@@ -41,10 +41,13 @@
   &.login-actions {
     text-align: center;
     .button {
-      width: 49%;
+      width: 50%;
       height: auto;
       font-size: 13px;
       display: inline-block;
+      @media (max-width: 543px) {
+        width: 100%;
+      }
     }
     .button-label--multiLine {
       display: block;
