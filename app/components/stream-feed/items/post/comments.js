@@ -31,6 +31,7 @@ export default Component.extend({
       user: get(this, 'session.account')
     });
     get(this, 'comments').addObject(comment);
+
     // update comments count
     invokeAction(this, 'countUpdate', get(this, 'post.topLevelCommentsCount') + 1);
     get(this, 'session.account').incrementProperty('commentsCount');
@@ -47,6 +48,10 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
+    if (get(this, 'postId') === get(this, 'post.id')) {
+      return;
+    }
+    set(this, 'postId', get(this, 'post.id'));
     set(this, 'comments', []);
     get(this, 'getComments').perform().then((comments) => {
       const content = comments.toArray().reverse();
