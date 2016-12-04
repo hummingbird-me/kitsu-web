@@ -7,6 +7,17 @@
       </div>
       <div class="entry-title" data-test-selector="library-entry-title">
         <span>{{media.canonicalTitle}}</span>
+
+        {{! Entry Notes }}
+        {{#if entry.notes}}
+          <div class="entry-rewatching pull-sm-right">
+            <span class="hint--left hint--bounce hint--rounded" aria-label="{{truncate-text entry.notes}}">
+              {{!-- TODO/@josh
+                {{svg-jar "notes"}}
+              --}}
+            </span>
+          </div>
+        {{/if}}
       </div>
     </div>
 
@@ -16,7 +27,9 @@
         {{#if (and (gt entry.reconsumeCount 0) (eq entry.status "current"))}}
           <div class="entry-rewatching pull-sm-right">
             <span class="hint--top hint--bounce hint--rounded" aria-label="{{t (concat "users.library.reconsuming." (model-type media))}}">
-              {{svg-jar "reconsuming"}}
+              {{!-- TODO/@josh
+                {{svg-jar "reconsuming"}}
+              --}}
             </span>
           </div>
         {{/if}}
