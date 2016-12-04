@@ -163,6 +163,16 @@
                 onClose=(toggle-action "deleteModalOpened" this)
               )}}
             {{/if}}
+
+            {{#if (eq session.account.pinnedPost.id post.id)}}
+              <a class="dropdown-item" href="#" {{action "pinOrUnpinPost" null}}>
+                Unpin Post from Profile
+              </a>
+            {{else}}
+              <a class="dropdown-item" href="#" {{action "pinOrUnpinPost" post}}>
+                Pin Post to Profile
+              </a>
+            {{/if}}
           {{/if}}
 
           {{! Reporting/Blocking Options }}

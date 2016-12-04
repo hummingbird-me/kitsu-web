@@ -122,6 +122,12 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
           get(this, 'post').rollbackAttributes();
           get(this, 'notify').error(errorMessages(err));
         });
+    },
+
+    pinOrUnpinPost (post = null) {
+      const user = get(this, 'session.account');
+      set(user, 'pinnedPost', post);
+      user.save();
     }
   }
 });
