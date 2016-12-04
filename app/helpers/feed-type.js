@@ -3,7 +3,7 @@ import get from 'ember-metal/get';
 import { dasherize } from 'ember-string';
 
 export function feedType([activities]) {
-  const activity = get(activities, 'firstObject');
+  const activity = get(activities, 'lastObject');
   const [type] = get(activity, 'foreignId').split(':');
   return dasherize(type);
 }

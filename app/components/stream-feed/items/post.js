@@ -26,7 +26,7 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
   host: getter(() => `${location.protocol}//${location.host}`),
 
   activity: getter(function() {
-    return get(this, 'group.activities.firstObject');
+    return get(this, 'group.activities.lastObject');
   }),
 
   tweetLink: getter(function() {

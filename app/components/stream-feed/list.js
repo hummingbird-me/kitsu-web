@@ -192,13 +192,18 @@ export default Component.extend({
 
     get(this, 'newItems').beginPropertyChanges();
     get(object, 'new').forEach((activity) => {
-      if (get(activity, 'foreign_id').split(':')[0] === 'Post') {
+      const type = get(activity, 'foreign_id').split(':')[0];
+      if (type === 'Post' || type === 'Comment') {
         // look for unknown post at first object by session user
         if (get(activity, 'actor').split(':')[1] === get(this, 'session.account.id')) {
-          const top = get(this, 'feed.firstObject.activities.firstObject');
-          if (get(top, 'foreignId') === 'Post:<unknown>' ||
-            get(top, 'foreignId') === get(activity, 'foreign_id')) {
-            return;
+          if (type === 'post') {
+            const top = get(this, 'feed.firstObject.activities.firstObject');
+            if (get(top, 'foreignId') === 'Post:<unknown>' ||
+              get(top, 'foreignId') === get(activity, 'foreign_id')) {
+              return;
+            }
+          } else {
+            return; // Don't show new activity and bump post for own users comments
           }
         }
       }
