@@ -9,6 +9,9 @@ module.exports = {
     browser: true
   },
   rules: {
+    // enable
+    'curly': 'error',
+    // disable
     'no-console': 'off',
     'comma-dangle': 'off',
     'import/no-extraneous-dependencies': 'off',
