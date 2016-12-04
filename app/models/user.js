@@ -80,6 +80,7 @@ export default Base.extend(Validations, {
   updatedAt: attr('utc'),
 
   waifu: belongsTo('character'),
+  pinnedPost: belongsTo('post', { inverse: null }),
 
   blocks: hasMany('block', { inverse: 'user' }),
   followers: hasMany('follow', { inverse: 'followed' }),
