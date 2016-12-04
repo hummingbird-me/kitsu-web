@@ -1,225 +1,204 @@
 {{! We have to check `post` here due to Stream & development environments }}
 {{#if post}}
-  {{#if post.isNew}}
-    <div class="stream-item-wrapper stream-item--loading col-sm-12">
-      <div class='panel-effect'>
-        <div class='fake-effect fe-0'></div>
-        <div class='fake-effect fe-1'></div>
-        <div class='fake-effect fe-2'></div>
-        <div class='fake-effect fe-3'></div>
-        <div class='fake-effect fe-4'></div>
-        <div class='fake-effect fe-5'></div>
-        <div class='fake-effect fe-6'></div>
-        <div class='fake-effect fe-7'></div>
-        <div class='fake-effect fe-8'></div>
-        <div class='fake-effect fe-9'></div>
-        <div class='fake-effect fe-10'></div>
-        <div class='fake-effect fe-11'></div>
-        <div class='fake-effect fe-12'></div>
-        <div class='fake-effect fe-13'></div>
-      </div>
-    </div>
-  {{else}}
-    <div class="stream-item-wrapper col-sm-12">
-      <div class="stream-item--title-block">
-        <span class="avatar-block">
-          <a href={{href-to "users.index" post.user}} class="author-avatar" onclick={{action "trackEngagement" "click"}}>
-            <img src={{image post.user.avatar "medium"}}>
-          </a>
-          {{#if post.targetUser}}
-            {{#unless (eq post.targetUser.id userId)}}
-              <a href={{href-to "users.index" post.targetUser}} class="author-avatar recipient-avatar" onclick={{action "trackEngagement" "click"}}>
-                <img src={{image post.targetUser.avatar "medium"}}>
+  <div class="stream-item-wrapper col-sm-12">
+    <div class="stream-item--title-block">
+      <span class="avatar-block">
+        <a href={{href-to "users.index" post.user}} class="author-avatar" onclick={{action "trackEngagement" "click"}}>
+          <img src={{image post.user.avatar "medium"}}>
+        </a>
+        {{#if post.targetUser}}
+          {{#unless (eq post.targetUser.id userId)}}
+            <a href={{href-to "users.index" post.targetUser}} class="author-avatar recipient-avatar" onclick={{action "trackEngagement" "click"}}>
+              <img src={{image post.targetUser.avatar "medium"}}>
+            </a>
+          {{/unless}}
+        {{/if}}
+      </span>
+      <div class="author-info">
+        <a class="author-name" href={{href-to "users.index" post.user}} onclick={{action "trackEngagement" "click"}}>
+          {{post.user.name}}
+        </a>
+        {{user-badge post.user}}
+
+        {{#if post.targetUser}}
+          {{#unless (eq post.targetUser.id userId)}}
+            <span class="recipient-info">
+              <small>to</small>
+              <a href={{href-to "users.index" post.targetUser}} class="author-name" onclick={{action "trackEngagement" "click"}}>
+                {{post.targetUser.name}}
               </a>
-            {{/unless}}
-          {{/if}}
-        </span>
-        <div class="author-info">
-          <a class="author-name" href={{href-to "users.index" post.user}} onclick={{action "trackEngagement" "click"}}>
-            {{post.user.name}}
-          </a>
-          {{user-badge post.user}}
-
-          {{#if post.targetUser}}
-            {{#unless (eq post.targetUser.id userId)}}
-              <span class="recipient-info">
-                <small>to</small>
-                <a href={{href-to "users.index" post.targetUser}} class="author-name" onclick={{action "trackEngagement" "click"}}>
-                  {{post.targetUser.name}}
-                </a>
-                {{user-badge post.targetUser}}
-              </span>
-            {{/unless}}
-          {{/if}}
-
-          <a href={{href-to "posts" post}} onclick={{action "trackEngagement" "click"}}>
-            <small class="author-secondary">
-              {{moment-from-now post.createdAt}}
-              {{#if postEdited}}
-                &middot; edited {{moment-from-now post.updatedAt}}
-              {{/if}}
-            </small>
-          </a>
-        </div>
-      </div>
-
-      <div class="stream-content">
-        {{#if isHidden}}
-          {{#if (and post.spoiler post.nsfw)}}
-            {{! TODO/@Josh -- gate when post is both spoiler/nsfw }}
-            <div class="nsfw-gate">
-                <a href="#" {{action (toggle "isHidden" this)}}>
-                  <div class="gate--label">This post contains NSFW content and spoilers.</div>
-                  <div class="gate--hover">My body is ready and I can handle the truth!</div>
-                </a>
-              </div>
-          {{else}}
-            {{#if post.nsfw}}
-              <div class="nsfw-gate">
-                <a href="#" {{action (toggle "isHidden" this)}}>
-                  <div class="gate--label">This post contains NSFW content.</div>
-                  <div class="gate--hover">My body is ready!</div>
-                </a>
-              </div>
-            {{/if}}
-            {{#if post.spoiler}}
-              <div class="spoiler-gate">
-                <a href="#" {{action (toggle "isHidden" this)}}>
-                  <div class="gate--label">
-                    This post contains spoilers.
-                    {{#if post.spoiledUnit}}
-                      {{t (concat "feeds.spoilers." (model-type post.media)) num=post.spoiledUnit.number}}
-                    {{/if}}
-                  </div>
-                  <div class="gate--hover">
-                    I can handle the truth!
-                    {{#if post.spoiledUnit}}
-                      {{t (concat "feeds.spoilers." (model-type post.media)) num=post.spoiledUnit.number}}
-                    {{/if}}
-                  </div>
-                </a>
-              </div>
-            {{/if}}
-          {{/if}}
-        {{else}}
-          {{text-clipper post.contentFormatted length=1000 options=(hash html=true imageWeight=500)}}
+              {{user-badge post.targetUser}}
+            </span>
+          {{/unless}}
         {{/if}}
 
-        {{! media tag }}
-        {{#if post.media}}
-          <div class="tagged-media--wrapper">
-            <div class="tagged-media row">
-              <div class="stream-item--media col-xs-1">
-                {{lazy-image url=(image post.media.posterImage "small")}}
-              </div>
-              <div class="col-sm no-padding-left">
-                <div class="stream-item--title-block">
-                  <div class="author-info">
-                    <a class="author-name" href={{href-to (concat (model-type post.media) ".show") post.media}}>
-                      {{post.media.canonicalTitle}}
-                    </a>
-                    <small class="author-secondary">
-                      <div class="media-tag-synopsis">
-                        {{text-clipper post.media.synopsis length=150}}
-                      </div>
-                    </small>
-                  </div>
+        <a href={{href-to "posts" post}} onclick={{action "trackEngagement" "click"}}>
+          <small class="author-secondary">
+            {{moment-from-now post.createdAt}}
+            {{#if postEdited}}
+              &middot; edited {{moment-from-now post.updatedAt}}
+            {{/if}}
+          </small>
+        </a>
+      </div>
+    </div>
+
+    <div class="stream-content">
+      {{#if isHidden}}
+        {{#if (and post.spoiler post.nsfw)}}
+          {{! TODO/@Josh -- gate when post is both spoiler/nsfw }}
+          <div class="nsfw-gate">
+              <a href="#" {{action (toggle "isHidden" this)}}>
+                <div class="gate--label">This post contains NSFW content and spoilers.</div>
+                <div class="gate--hover">My body is ready and I can handle the truth!</div>
+              </a>
+            </div>
+        {{else}}
+          {{#if post.nsfw}}
+            <div class="nsfw-gate">
+              <a href="#" {{action (toggle "isHidden" this)}}>
+                <div class="gate--label">This post contains NSFW content.</div>
+                <div class="gate--hover">My body is ready!</div>
+              </a>
+            </div>
+          {{/if}}
+          {{#if post.spoiler}}
+            <div class="spoiler-gate">
+              <a href="#" {{action (toggle "isHidden" this)}}>
+                <div class="gate--label">
+                  This post contains spoilers.
+                  {{#if post.spoiledUnit}}
+                    {{t (concat "feeds.spoilers." (model-type post.media)) num=post.spoiledUnit.number}}
+                  {{/if}}
+                </div>
+                <div class="gate--hover">
+                  I can handle the truth!
+                  {{#if post.spoiledUnit}}
+                    {{t (concat "feeds.spoilers." (model-type post.media)) num=post.spoiledUnit.number}}
+                  {{/if}}
+                </div>
+              </a>
+            </div>
+          {{/if}}
+        {{/if}}
+      {{else}}
+        {{text-clipper post.contentFormatted length=1000 options=(hash html=true imageWeight=500)}}
+      {{/if}}
+
+      {{! media tag }}
+      {{#if post.media}}
+        <div class="tagged-media--wrapper">
+          <div class="tagged-media row">
+            <div class="stream-item--media col-xs-1">
+              {{lazy-image url=(image post.media.posterImage "small")}}
+            </div>
+            <div class="col-sm no-padding-left">
+              <div class="stream-item--title-block">
+                <div class="author-info">
+                  <a class="author-name" href={{href-to (concat (model-type post.media) ".show") post.media}}>
+                    {{post.media.canonicalTitle}}
+                  </a>
+                  <small class="author-secondary">
+                    <div class="media-tag-synopsis">
+                      {{text-clipper post.media.synopsis length=150}}
+                    </div>
+                  </small>
                 </div>
               </div>
             </div>
           </div>
-        {{/if}}
-      </div>
-
-      {{! post likes }}
-      {{#if viewportEntered}}
-        <div class="stream-item-activity">
-          {{likeable-resource
-            resource=post
-            likesCount=post.postLikesCount
-            likesCountUpdate=(action (mut post.postLikesCount))
-            onCreate=(action "trackEngagement" "like")
-            showUsers=true
-          }}
         </div>
       {{/if}}
-
-      {{! post actions }}
-      <div class="stream-item-options">
-        <a href={{tweetLink}} target="_blank" {{action "trackEngagement" "click" preventDefault=false}}>
-          {{svg-jar "l-twitter"}}
-          Tweet
-        </a>
-        <a href={{facebookLink}} target="_blank" {{action "trackEngagement" "click" preventDefault=false}}>
-          {{svg-jar "l-facebook"}}
-          Share
-        </a>
-        <span class="more-wrapper">
-          <a href="#" class="more-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{svg-jar "more"}}
-          </a>
-          <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "posts" post.id)}} {{action "trackEngagement" "click"}}>
-              Copy Link to Post
-            </a>
-
-            {{! Editing/Deleting Options }}
-            {{#if (can-mutate post.user post)}}
-              {{#if isEditable}}
-                <a class="dropdown-item" href="#" {{action (toggle "editModalOpened" this)}}>Edit Post</a>
-                {{#if editModalOpened}}
-                  {{to-elsewhere named="modal" send=(component "stream-feed/edit-post"
-                    post=post
-                    isEditable=isEditable
-                    onClose=(toggle-action "editModalOpened" this)
-                  )}}
-                {{/if}}
-              {{/if}}
-
-              <a class="dropdown-item" href="#" {{action (toggle "deleteModalOpened" this)}}>Delete Post</a>
-              {{#if deleteModalOpened}}
-                {{to-elsewhere named="modal" send=(component "modals/confirm-action"
-                  onConfirm=(action "deletePost")
-                  onClose=(toggle-action "deleteModalOpened" this)
-                )}}
-              {{/if}}
-            {{/if}}
-
-            {{! Reporting/Blocking Options }}
-            {{#if (and session.hasUser (not (is-self post.user)))}}
-              <a class="dropdown-item" href="#" {{action (toggle "reportingPost" this)}}>Report Post</a>
-              {{#if reportingPost}}
-                {{to-elsewhere named="modal" send=(component "modals/report-content"
-                  content=post
-                  onClose=(toggle-action "reportingPost" this)
-                )}}
-              {{/if}}
-
-              <a class="dropdown-item" href="#" {{action (toggle "blockUserModal" this)}}>Block @{{post.user.name}}</a>
-              {{#if blockUserModal}}
-                {{to-elsewhere named="modal" send=(component "modals/block-user"
-                  user=post.user
-                  onClose=(toggle-action "blockUserModal" this)
-                )}}
-              {{/if}}
-            {{/if}}
-          </div>
-        </span>
-      </div>
     </div>
 
-    {{! comments }}
-    {{#unless isHidden}}
-      {{#if viewportEntered}}
-        {{stream-feed/items/post/comments
-          post=post
-          readOnly=readOnly
-          countUpdate=(action (mut post.topLevelCommentsCount))
-          trackEngagement=(action "trackEngagement")
+    {{! post likes }}
+    {{#if viewportEntered}}
+      <div class="stream-item-activity">
+        {{likeable-resource
+          resource=post
+          likesCount=post.postLikesCount
+          likesCountUpdate=(action (mut post.postLikesCount))
+          onCreate=(action "trackEngagement" "like")
+          showUsers=true
         }}
-      {{/if}}
-    {{/unless}}
-  {{/if}}
+      </div>
+    {{/if}}
+
+    {{! post actions }}
+    <div class="stream-item-options">
+      <a href={{tweetLink}} target="_blank" {{action "trackEngagement" "click" preventDefault=false}}>
+        {{svg-jar "l-twitter"}}
+        Tweet
+      </a>
+      <a href={{facebookLink}} target="_blank" {{action "trackEngagement" "click" preventDefault=false}}>
+        {{svg-jar "l-facebook"}}
+        Share
+      </a>
+      <span class="more-wrapper">
+        <a href="#" class="more-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{svg-jar "more"}}
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "posts" post.id)}} {{action "trackEngagement" "click"}}>
+            Copy Link to Post
+          </a>
+
+          {{! Editing/Deleting Options }}
+          {{#if (can-mutate post.user post)}}
+            {{#if isEditable}}
+              <a class="dropdown-item" href="#" {{action (toggle "editModalOpened" this)}}>Edit Post</a>
+              {{#if editModalOpened}}
+                {{to-elsewhere named="modal" send=(component "stream-feed/edit-post"
+                  post=post
+                  isEditable=isEditable
+                  onClose=(toggle-action "editModalOpened" this)
+                )}}
+              {{/if}}
+            {{/if}}
+
+            <a class="dropdown-item" href="#" {{action (toggle "deleteModalOpened" this)}}>Delete Post</a>
+            {{#if deleteModalOpened}}
+              {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+                onConfirm=(action "deletePost")
+                onClose=(toggle-action "deleteModalOpened" this)
+              )}}
+            {{/if}}
+          {{/if}}
+
+          {{! Reporting/Blocking Options }}
+          {{#if (and session.hasUser (not (is-self post.user)))}}
+            <a class="dropdown-item" href="#" {{action (toggle "reportingPost" this)}}>Report Post</a>
+            {{#if reportingPost}}
+              {{to-elsewhere named="modal" send=(component "modals/report-content"
+                content=post
+                onClose=(toggle-action "reportingPost" this)
+              )}}
+            {{/if}}
+
+            <a class="dropdown-item" href="#" {{action (toggle "blockUserModal" this)}}>Block @{{post.user.name}}</a>
+            {{#if blockUserModal}}
+              {{to-elsewhere named="modal" send=(component "modals/block-user"
+                user=post.user
+                onClose=(toggle-action "blockUserModal" this)
+              )}}
+            {{/if}}
+          {{/if}}
+        </div>
+      </span>
+    </div>
+  </div>
+
+  {{! comments }}
+  {{#unless isHidden}}
+    {{#if viewportEntered}}
+      {{stream-feed/items/post/comments
+        post=post
+        readOnly=readOnly
+        countUpdate=(action (mut post.topLevelCommentsCount))
+        trackEngagement=(action "trackEngagement")
+      }}
+    {{/if}}
+  {{/unless}}
 {{else}}
   <div class="stream-error-wrapper col-sm-12">
     {{t "errors.load"}}

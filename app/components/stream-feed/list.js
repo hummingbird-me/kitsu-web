@@ -96,6 +96,7 @@ export default Component.extend({
     get(this, 'session.account').incrementProperty('postsCount');
     return yield post.save()
       .then((record) => {
+        get(this, 'feed').insertAt(0, group);
         set(group, 'group', `Post:${get(record, 'id')}`);
         set(activity, 'foreignId', `Post:${get(record, 'id')}`);
         get(this, 'metrics').trackEvent({ category: 'post', action: 'create' });
@@ -125,7 +126,6 @@ export default Component.extend({
       group: 'Post:<unknown>',
       activities: [activity]
     });
-    get(this, 'feed').insertAt(0, group);
     return [group, activity];
   },
 
