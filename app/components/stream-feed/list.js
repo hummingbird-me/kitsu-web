@@ -17,6 +17,7 @@ export default Component.extend({
   readOnly: false,
 
   headData: service(),
+  headTags: service(),
   notify: service(),
   session: service(),
   store: service(),
@@ -183,6 +184,7 @@ export default Component.extend({
     if (subscription !== undefined) {
       const title = get(this, 'originalTitle');
       get(this, 'headData').set('title', title);
+      get(this, 'headTags').collectHeadTags();
       subscription.cancel();
     }
   },
@@ -217,6 +219,7 @@ export default Component.extend({
     if (get(this, 'newItems.length') > 0) {
       const title = `(${get(this, 'newItems.length')}) ${get(this, 'originalTitle')}`;
       get(this, 'headData').set('title', title);
+      get(this, 'headTags').collectHeadTags();
     }
   },
 
@@ -245,6 +248,7 @@ export default Component.extend({
         set(this, 'newItems.cache', []);
         const title = get(this, 'originalTitle');
         get(this, 'headData').set('title', title);
+        get(this, 'headTags').collectHeadTags();
 
         // remove dups from the feed and replace with updated activity
         const dups = get(this, 'feed').filter(group => (
