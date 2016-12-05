@@ -37,7 +37,7 @@ export default Component.extend({
   }).readOnly(),
 
   createReport: task(function* () {
-    if (isEmpty(get(this, 'explanation')) === true || isEmpty(get(this, 'reason')) === true) {
+    if (!get(this, 'canSubmit')) {
       return;
     }
 
