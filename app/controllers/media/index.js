@@ -14,7 +14,7 @@ export default Controller.extend({
   averageRating: [0.5, 5.0],
   genres: [],
   text: undefined,
-  year: [1914, 2018],
+  year: [1907, 2018],
 
   // Buffer values so we don't mutate the query params every update
   dirtyYear: [1907, 2018],
