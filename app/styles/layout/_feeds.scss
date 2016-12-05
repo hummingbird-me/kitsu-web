@@ -141,7 +141,6 @@
 .stream-item-activity {
   @extend .clearfix;
   margin-bottom: 5px;
-  margin-left: -3px;
   float: left;
   .like-stream-item {
     display: inline-block;
@@ -410,7 +409,7 @@
 }
 
 .stream-item--media {
-  padding: 20px;
+  padding: 15px;
   img {
     width: 100%;
     height: auto;
@@ -420,7 +419,7 @@
 }
 
 .stream-item--media-timeline {
-  padding: 15px 20px 0 0;
+  padding: 15px 20px 0 10px;
   padding-top: 0;
   margin-top: 15px;
 }
@@ -732,4 +731,77 @@
     background: none;
     padding: 0;
   }
+}
+
+.full-page-post {
+  margin: 0 auto;
+}
+
+// Stream review item
+.author-header {
+  @extend .clearfix;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  small {
+    font-family: $base-font-family;
+    font-size: 12px;
+    display: block;
+    text-transform: uppercase;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    letter-spacing: 1px;
+  }
+  a {
+    font-weight: normal;
+  }
+}
+.stream-review {
+  margin-bottom: 10px;
+}
+
+.stream-review-wrapper {
+  padding: 0 15px;
+  padding-top: 0;
+  .media {
+    display: block;
+  }
+  .stream-item--media {
+    padding-bottom: 5px;
+  }
+}
+
+.review-avatar {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  img {
+    border-radius: 999em;
+  }
+}
+
+.stream-review-content {
+  padding: 15px 15px 15px 10px;
+}
+
+.stream-review-rating {
+  position: relative;
+  top: 1px;
+  margin-left: 5px;
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.review-media-progress {
+  color: rgba(0,0,0,.4);
+  padding: 5px 15px;
+  border: 1px dashed #ddd;
+  display: inline-block;
+  background: #fafafa;
+  margin-bottom: 10px;
+  margin-top: 3px;
 }
