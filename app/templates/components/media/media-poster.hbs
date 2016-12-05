@@ -50,15 +50,25 @@
   {{! TODO @josh -- make epic }}
   {{! Wrap in div due to https://github.com/yapplabs/ember-wormhole/issues/66#issuecomment-263575168 }}
   <div>
-    {{#epic-tooltip target=(concat "#" elementId " .grid-poster") timeout=250 singleInstance=true constraints=constraints}}
-      <div class="p-a-1" style="background-color: #4B5360; color: #fff; width: 350px">
-        <span class="media-title" style="font-weight: bold; font-size: 14px">{{media.canonicalTitle}}</span>
+    {{#epic-tooltip target=(concat "#" elementId " .grid-poster") timeout=250 singleInstance=true constraints=constraints class="media-tooltip"}}
+      <div>
+        <span class="media-title">{{media.canonicalTitle}}</span>
         <div class="media-ratings">
           {{star-rating media.averageRating readOnly=true}}
         </div>
-        <div class="media-synopsis" style="font-size: 12px">
-          {{text-clipper media.synopsis length=200}}
+        <div class="media-synopsis">
+          {{text-clipper media.synopsis length=225 canExpand=false}}
         </div>
+        {{! Categories }}
+        <!--
+        <div class="media-genres">
+          {{#each media.genres as |genre|}}
+            <a href={{href-to (concat (model-type media) ".index") (query-params genres=genre.name)}}>
+                {{genre.name}}
+            </a>
+          {{/each}}
+        </div>
+        -->
         {{#if session.hasUser}}
           {{library-dropdown
             entry=entry
