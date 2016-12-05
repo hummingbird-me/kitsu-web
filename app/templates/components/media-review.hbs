@@ -73,6 +73,7 @@
           </a>
           <h5 class="name-heading person-heading left" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             <small>Review by</small>
+            {{! @vevix name needs hooked up }}
             <a href="#" itemprop="sameAs">Josh</a>
           </h5>
         </header>
@@ -99,6 +100,8 @@
         </small>
 
         {{! review content }}
+        {{! @vevix limit text length and have the 'read more' link
+            send user to permalink page instead of expanding. }}
         <div class="comment-body">
           {{! legacy reviews are from Hummingbird }}
           {{#if isExpanded}}
@@ -174,3 +177,5 @@
   </div>
 
 {{/if}}
+
+{{! @vevix xoxo <3 }}
