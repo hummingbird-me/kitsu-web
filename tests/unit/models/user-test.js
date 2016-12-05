@@ -17,7 +17,8 @@ moduleForModel('user', 'Unit | Model | user', {
     'model:character',
     'model:block',
     'model:follow',
-    'model:user-role'
+    'model:user-role',
+    'model:post'
   ],
 
   beforeEach() {
