@@ -26,16 +26,6 @@
 
                 {{! admin actions }}
                 {{#if (has-role "admin" user)}}
-                  {{! Ban }}
-                  <button class="button button--light-outline" onclick={{action (toggle "banModal" this)}}>
-                    <span class="button-label button-defaultState">Ban</span>
-                  </button>
-                  {{#if banModal}}
-                    {{to-elsewhere named="modal" send=(component "modals/confirm-action"
-                      onClose=(toggle-action "banModal" this)
-                    )}}
-                  {{/if}}
-
                   {{! Previous names }}
                   {{#unless (is-empty user.pastNames)}}
                     {{#bootstrap/bs-dropdown class="d-inline" as |dropdown|}}
