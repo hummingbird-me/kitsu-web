@@ -5,7 +5,18 @@
     {{#if hasBlock}}
       {{yield}}
     {{else}}
-      <h4 class="text-xs-center">Are you sure you want to do this?</h4>
+      <h4 class="text-xs-center">
+        {{#if title}}
+          {{title}}
+        {{else}}
+          Are you sure you want to do this?
+        {{/if}}
+      </h4>
+      {{#if text}}
+        <p class="text-xs">
+          {{text}}
+        </p>
+      {{/if}}
     {{/if}}
   {{/modal.body}}
 
