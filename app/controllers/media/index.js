@@ -17,7 +17,7 @@ export default Controller.extend({
   year: [1914, 2018],
 
   // Buffer values so we don't mutate the query params every update
-  dirtyYear: [1914, 2016],
+  dirtyYear: [1907, 2018],
   dirtyRating: [0.5, 5.0],
   dirtyEpisodes: [1, 100],
 
