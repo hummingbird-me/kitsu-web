@@ -127,7 +127,10 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
     pinOrUnpinPost (post = null) {
       const user = get(this, 'session.account');
       set(user, 'pinnedPost', post);
-      user.save();
+      user.save().then(() => {
+        const pastAction = (post === null) ? 'Your post has been unpinned.' : 'Your post has been pinned.';
+        get(this, 'notify').success(`Success! ${pastAction}`);
+      });
     }
   }
 });

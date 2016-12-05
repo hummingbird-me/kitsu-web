@@ -165,13 +165,25 @@
             {{/if}}
 
             {{#if (eq session.account.pinnedPost.id post.id)}}
-              <a class="dropdown-item" href="#" {{action "pinOrUnpinPost" null}}>
+              <a class="dropdown-item" href="#" {{action (toggle "unpinModalOpened" this)}}>
                 Unpin Post from Profile
               </a>
+              {{#if unpinModalOpened}}
+                {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+                  onConfirm=(queue (action "pinOrUnpinPost" null) (toggle-action "unpinModalOpened" this))
+                  onClose=(toggle-action "unpinModalOpened" this)
+                )}}
+              {{/if}}
             {{else}}
-              <a class="dropdown-item" href="#" {{action "pinOrUnpinPost" post}}>
+              <a class="dropdown-item" href="#" {{action (toggle "pinModalOpened" this)}}>
                 Pin Post to Profile
               </a>
+              {{#if pinModalOpened}}
+                {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+                  onConfirm=(queue (action "pinOrUnpinPost" post) (toggle-action "pinModalOpened" this))
+                  onClose=(toggle-action "pinModalOpened" this)
+                )}}
+              {{/if}}
             {{/if}}
           {{/if}}
 
