@@ -14,7 +14,7 @@ import moment from 'moment';
 import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend(ClipboardMixin, InViewportMixin, {
-  classNameBindings: ['post.isNew:new-post'],
+  classNameBindings: ['post.isNew:new-post', 'isPinnedPost:pinned-post'],
   classNames: ['stream-item', 'row'],
   isHidden: false,
 
