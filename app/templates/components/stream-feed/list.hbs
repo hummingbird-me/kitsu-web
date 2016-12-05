@@ -63,6 +63,15 @@
     </div>
   {{/each}}
 {{else}}
+  {{! Pinned Post }}
+  {{#if pinned}}
+    {{stream-feed/items/post
+      post=pinned.content
+      readOnly=(not session.hasUser)
+      isPinnedPost=true
+    }}
+  {{/if}}
+
   {{#each filteredFeed as |group index|}}
     {{component (concat "stream-feed/items/" (feed-type group.activities))
       group=group

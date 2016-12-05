@@ -2,6 +2,9 @@
 {{#if post}}
   <div class="stream-item-wrapper col-sm-12">
     <div class="stream-item--title-block">
+      {{#if isPinnedPost}}
+        <span class="pinned-indicator pull-xs-right">Pinned Post</span>
+      {{/if}}
       <span class="avatar-block">
         <a href={{href-to "users.index" post.user}} class="author-avatar" onclick={{action "trackEngagement" "click"}}>
           <img src={{image post.user.avatar "medium"}}>
