@@ -79,9 +79,10 @@ export default Base.extend(Validations, {
   website: attr('string'),
   updatedAt: attr('utc'),
 
-  // NOTE: This property is not needed for mapping posts to users,
-  // without it, ember-data will override pinnedPost null inverse!
+  // NOTE: These properties are not used for mapping posts to user
+  // without them, ember-data will override its null inverse!
   posts: hasMany('post', { inverse: 'user' }),
+  receivedPosts: hasMany('post', { inverse: 'targetUser' }),
 
   waifu: belongsTo('character'),
   pinnedPost: belongsTo('post', { inverse: null }),
