@@ -30,10 +30,11 @@ export default Route.extend(PaginationMixin, {
 
     if (status === 'all') {
       status = '1,2,3,4,5'; // eslint-disable-line no-param-reassign
-      Object.assign(options, { sort: 'status' });
+      Object.assign(options, { sort: 'status,-updated_at' });
     } else {
       // eslint-disable-next-line no-param-reassign
       status = libraryStatus.enumToNumber(status);
+      Object.assign(options, { sort: '-updated_at' });
     }
 
     Object.assign(options, {
@@ -43,8 +44,7 @@ export default Route.extend(PaginationMixin, {
         media_type: capitalize(media),
         status
       },
-      page: { offset: 0, limit: 200 },
-      sort: '-updated_at'
+      page: { offset: 0, limit: 200 }
     });
     return yield get(this, 'store').query('library-entry', options);
   }).restartable(),
