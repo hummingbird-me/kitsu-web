@@ -59,16 +59,6 @@
         <div class="media-synopsis">
           {{text-clipper media.synopsis length=225 canExpand=false}}
         </div>
-        {{! Categories }}
-        <!--
-        <div class="media-genres">
-          {{#each media.genres as |genre|}}
-            <a href={{href-to (concat (model-type media) ".index") (query-params genres=genre.name)}}>
-                {{genre.name}}
-            </a>
-          {{/each}}
-        </div>
-        -->
         {{#if session.hasUser}}
           {{library-dropdown
             entry=entry

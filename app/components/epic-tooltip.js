@@ -4,6 +4,7 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { assert } from 'ember-metal/utils';
 import { addObserver, removeObserver } from 'ember-metal/observer';
+import { later } from 'ember-runloop';
 import jQuery from 'jquery';
 /* global Tether */
 
@@ -39,11 +40,11 @@ export default Component.extend({
 
     // initialize tether
     const tether = new Tether({
+      enabled: true,
       element: this.$(),
       target: get(this, 'target'),
       attachment: get(this, 'attachment'),
       targetAttachment: get(this, 'targetAttachment'),
-      enabled: true,
       constraints: get(this, 'constraints'),
       offset: get(this, 'offset') || '0px 0px'
     });
@@ -60,7 +61,9 @@ export default Component.extend({
 
       // because hoverIntent `out` doesn't fire unless `over` has fired, we need to exit
       // for the first time
-      jQuery(get(this, 'target')).one('mouseleave', () => this.targetLeave());
+      jQuery(get(this, 'target')).one('mouseleave', () => {
+        later(() => this.targetLeave(), get(this, 'timeout') || 0);
+      });
     } else {
       this.targetEntered();
     }
