@@ -13,6 +13,7 @@ import errorMessages from 'client/utils/error-messages';
 export default Component.extend({
   errorMessage: undefined,
 
+  notify: service(),
   router: service('-routing'),
 
   _component: 'about-me',
@@ -52,6 +53,7 @@ export default Component.extend({
 
   actions: {
     onClose() {
+      get(this, 'records').filterBy('hasDirtyAttributes').map(record => record.rollbackAttributes());
       invokeAction(this, 'onClose');
     },
 
@@ -82,6 +84,7 @@ export default Component.extend({
       if (event.files && event.files[0]) {
         const reader = new FileReader();
         reader.onload = evt => run(() => set(this, property, evt.target.result));
+        reader.onerror = err => get(this, 'notify').error(errorMessages(err));
         reader.readAsDataURL(event.files[0]);
       }
     },
