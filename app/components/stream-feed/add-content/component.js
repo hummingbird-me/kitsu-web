@@ -21,7 +21,8 @@ export default Component.extend({
   nsfw: false,
   spoiler: false,
   maxLength: 9000,
-
+  isMobile: isMobile(),
+  
   session: service(),
   store: service(),
 
@@ -32,10 +33,6 @@ export default Component.extend({
     extensions: {
       video: new VideoExtension()
     }
-  },
-
-  mobile() {
-    return isMobile();
   },
 
   trueContentLength: computed('content', {

@@ -42,5 +42,11 @@ export default Session.extend({
 
   signUpModal() {
     jQuery('#sign-up-button').click();
+  },
+
+  isMobile() {
+    const md = new MobileDetect(window.navigator.userAgent);
+
+    return md.mobile();
   }
 });
