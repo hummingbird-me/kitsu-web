@@ -12,11 +12,12 @@ export default Component.extend(PaginationMixin, {
   router: service('-routing'),
   model: alias('likes'),
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
-    // load the next page instantly so we have more than the inital 4-5
     const count = get(this, 'likes.length');
-    if (get(this, 'nextLink') !== undefined && count <= 20) {
+    if (count === 0) {
+      strictInvokeAction(this, 'getLikes');
+    } else if (get(this, 'nextLink') !== undefined && count <= 20) {
       get(this, 'getNextData').perform().then(records => (
         this.send('updateNextPage', records, get(records, 'links'))
       ));

@@ -33,6 +33,7 @@
   {{to-elsewhere named="modal" send=(component "likeable-resource/modal"
     likes=likes
     updateLikes=(action (mut likes))
+    getLikes=(perform getLikes)
     modalId="likeable-resource-modal"
     onClose=(toggle-action "modalOpen" this)
   )}}

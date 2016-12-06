@@ -30,7 +30,22 @@ export default Component.extend({
       filter: { [key]: get(this, 'resource.id') },
       page: { limit: 4 },
       include: 'user'
-    });
+    }).then((likes) => {
+      set(this, 'likes', likes.toArray());
+      set(this, 'likes.links', get(likes, 'links'));
+
+      // look up session users like status if authenticated
+      if (get(this, 'session.isAuthenticated') === true) {
+        const like = likes.findBy('user.id', get(this, 'session.account.id'));
+        if (like === undefined) {
+          if (get(likes, 'length') >= 4) {
+            this._getStatus();
+          }
+        } else {
+          set(this, 'isLiked', true);
+        }
+      }
+    }).catch(() => {});
   }).drop(),
 
   getLocalLike: task(function* () {
@@ -82,23 +97,7 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     set(this, 'likes', []);
-
-    get(this, 'getLikes').perform().then((likes) => {
-      set(this, 'likes', likes.toArray());
-      set(this, 'likes.links', get(likes, 'links'));
-
-      // look up session users like status if authenticated
-      if (get(this, 'session.isAuthenticated') === true) {
-        const like = likes.findBy('user.id', get(this, 'session.account.id'));
-        if (like === undefined) {
-          if (get(likes, 'length') >= 4) {
-            this._getStatus();
-          }
-        } else {
-          set(this, 'isLiked', true);
-        }
-      }
-    }).catch(() => {});
+    get(this, 'getLikes').perform();
   },
 
   _getStatus() {
