@@ -4,7 +4,10 @@
   transform: translateY(-50%);
 }
 
-@mixin word-break() {
+@mixin word-break($break) {
+  @if $break == 'break' {
+    word-break: break-all;
+  }
   word-wrap: break-word;
   word-break: break-word;
 }
