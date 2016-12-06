@@ -168,20 +168,32 @@
   .media-poster-header {
     // TODO: @wopian search width spans remainder of page
     z-index: 11;
-    border-bottom: 1px solid $eggshell;
     background: RGBA(250, 250, 250, .98);
-    padding: 15px 0;
     position: fixed;
     top: 54px;
     width: 100%;
     margin-left: 265px;
-
+    @media (min-width: 1200px) {
+      max-width: 1140px - 240px - 25px;
+    }
+    @media (max-width: 1199px) {
+      max-width: 940px - 240px - 25px;
+    }
+    @media (max-width: 990px) {
+      max-width: 720px - 240px - 25px;
+    }
     @media (max-width: 768px) {
-      left: 0;
+      padding: 0 0 0 15px;
+      margin-left: -15px;
+      max-width: 576px;
+    }
+    @media (max-width: 600px) {
+      max-width: calc(100vw - 20px);
     }
     .search-media {
       @extend .col-xs;
       position: relative;
+      padding-right: 0;
       svg {
         position: absolute;
         line-height: 50px;
@@ -199,6 +211,7 @@
       font-size: 16px;
       width: 100%;
       background: transparent;
+      padding-right: 0;
     }
 
     .filter-container {
@@ -207,6 +220,8 @@
       width: 100%;
       overflow: hidden;
       word-wrap: break-word;
+      padding: 15px 0;
+      border-bottom: 1px solid $eggshell;
     }
 
     .active-filter {
