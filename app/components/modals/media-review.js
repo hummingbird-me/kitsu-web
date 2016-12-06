@@ -18,6 +18,7 @@ const Validations = buildValidations({
 });
 
 export default Component.extend(Validations, {
+  classNames: ['review-modal'],
   content: undefined,
 
   metrics: service(),
@@ -25,10 +26,13 @@ export default Component.extend(Validations, {
   session: service(),
   store: service(),
 
-  isValid: computed('validations.isInvalid', 'entry.rating', 'delete.isRunning', {
+  isValid: computed('validations.isInvalid', 'entry.rating', {
     get() {
-      return get(this, 'validations.isInvalid') === false &&
-        get(this, 'entry.rating') > 0 && get(this, 'delete.isRunning') === false;
+      let isValid = get(this, 'validations.isInvalid') === false &&
+        get(this, 'entry.rating') > 0;
+      isValid = get(this, 'review') === undefined ? isValid : isValid &&
+        get(this, 'content') !== get(this, 'review.content');
+      return isValid;
     }
   }).readOnly(),
 
@@ -54,15 +58,6 @@ export default Component.extend(Validations, {
         });
       })
       .catch(err => get(this, 'notify').error(errorMessages(err)));
-  }).drop(),
-
-  delete: task(function* () {
-    yield get(this, 'review').destroyRecord()
-      .then(() => this.$('.modal').modal('hide'))
-      .catch((err) => {
-        get(this, 'review').rollbackAttributes();
-        get(this, 'notify').error(errorMessages(err));
-      });
   }).drop(),
 
   init() {

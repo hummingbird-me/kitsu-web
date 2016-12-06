@@ -1,8 +1,119 @@
 {{#if review}}
   <div class="stream-item-wrapper stream-review-wrapper col-sm-12">
-    {{media-review
-      review=review.content
-    }}
+    <div class="stream-review row">
+      <div class="stream-item--media col-xs-4 col-sm-3">
+        <a href={{href-to (concat (model-type review.media) ".show") review.media}}>
+          {{lazy-image url=(image review.media.posterImage "large")}}
+        </a>
+      </div>
+      <div class="col-xs no-padding-left">
+        <div class="stream-review-content">
+          <header class="author-header">
+            <a class="review-avatar" href={{href-to "users.index" review.user}}>
+              {{lazy-image url=(image review.user.avatar "small")}}
+            </a>
+            <h5 class="name-heading person-heading left">
+              <small>Review by</small>
+              <a href={{href-to "users.index" review.user}}>{{review.user}}</a>
+            </h5>
+          </header>
+          <small class="media-heading">
+            <h6>
+              <a href={{href-to (concat (model-type review.media) ".show") review.media}}>
+                {{review.media.canonicalTitle}}
+              </a>
+              <span class="stream-review-rating">
+                {{star-rating review.rating readOnly=true}}
+              </span>
+            </h6>
+
+            {{#unless (eq review.progress review.media.unitCount)}}
+              <small class="review-media-progress">
+                {{t (concat "reviews.progress." (model-type review.media)) num=review.progress}}
+              </small>
+            {{/unless}}
+          </small>
+
+          {{! review content }}
+          <div class="comment-body">
+            {{! legacy reviews are from Hummingbird }}
+            {{#if review.legacy}}
+              {{text-clipper review.content length=480
+                expandText="Read More" expandHref=(href-to "reviews" review)
+                options=(hash html=true imageWeight=240)}}
+            {{else}}
+              {{text-clipper review.contentFormatted length=480
+                expandText="Read More" expandHref=(href-to "reviews" review)
+                options=(hash html=true)}}
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{! review likes }}
+    <div class="stream-item-activity">
+      {{likeable-resource
+        resource=review
+        likesCount=review.likesCount
+        likesCountUpdate=(action (mut review.likesCount))
+        showUsers=true
+      }}
+    </div>
+
+    <div class="stream-item-options">
+      <a href={{tweetLink}} target="_blank" {{action "trackEngagement" "click" preventDefault=false}}>
+        {{svg-jar "l-twitter"}}
+        Tweet
+      </a>
+      <a href={{facebookLink}} target="_blank" {{action "trackEngagement" "click" preventDefault=false}}>
+        {{svg-jar "l-facebook"}}
+        Share
+      </a>
+
+      {{! options }}
+      <span class="more-wrapper">
+        <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="more-drop">
+          <svg width="24" height="6" viewBox="0 0 24 6" xmlns="http://www.w3.org/2000/svg"><title>Shape</title><path d="M3 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm9 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm9 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" fill="#CACACA" fill-rule="evenodd"></path></svg>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a href="#" data-clipboard-text={{concat host (href-to "reviews" review.id)}} class="dropdown-item" {{action "trackEngagement" "click"}}>
+            Copy Link to Review
+          </a>
+
+          {{! edit/delete review }}
+          {{#if (can-mutate review.user review)}}
+            <a href="#" class="dropdown-item" {{action (toggle "editReview" this)}}>Edit Review</a>
+            {{#if editReview}}
+              {{to-elsewhere named="modal" send=(component "modals/media-review"
+                onClose=(toggle-action "editReview" this)
+                review=review
+                updateEntry=(action "updateEntry")
+              )}}
+            {{/if}}
+
+            <a class="dropdown-item" href="#" {{action (toggle "deleteModalOpened" this)}}>Delete Review</a>
+            {{#if deleteModalOpened}}
+              {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+                onConfirm=(action "deleteReview")
+                onClose=(toggle-action "deleteModalOpened" this)
+              )}}
+            {{/if}}
+          {{/if}}
+
+          {{! report }}
+          {{#if (and session.hasUser (not (is-self review.user)))}}
+            <a class="dropdown-item" href="#" {{action (toggle "reportReview" this)}}>Report Review</a>
+            {{#if reportReview}}
+              {{to-elsewhere named="modal" send=(component "modals/report-content"
+                content=review
+                onClose=(toggle-action "reportReview" this)
+              )}}
+            {{/if}}
+          {{/if}}
+        </div>
+      </span>
+    </div>
   </div>
 {{else}}
   <div class="stream-error-wrapper col-sm-12">

@@ -231,8 +231,8 @@ export default Component.extend({
       set(this, 'feed.links', links);
     },
 
-    removePost(post) {
-      get(this, 'feed').removeObject(post);
+    removeGroup(group) {
+      get(this, 'feed').removeObject(group);
     },
 
     /**

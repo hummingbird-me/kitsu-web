@@ -1,5 +1,4 @@
-{{! TODO @Josh -- Dedicated review page -- could show media/user info here }}
-{{media-review
-  isExpanded=true
-  review=model
-}}
+{{! TODO @Josh -- Dedicated review page }}
+<div class="col-md-8 col-xs-11 centered">
+  {{stream-feed/items/review review=model readOnly=(not session.hasUser)}}
+</div>

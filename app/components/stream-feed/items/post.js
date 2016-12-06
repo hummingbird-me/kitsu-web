@@ -114,7 +114,7 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
               record = get(this, 'store').peekAll('activity-group')
                 .find(group => get(group, 'activities').findBy('foreignId', `Post:${get(this, 'post.id')}`));
             }
-            invokeAction(this, 'removePost', record);
+            invokeAction(this, 'removeGroup', record);
           }
           get(this, 'notify').success('Success! Your post has been deleted.');
         })

@@ -6,7 +6,6 @@ import DataErrorMixin from 'client/mixins/routes/data-error';
 export default Route.extend(DataErrorMixin, {
   i18n: service(),
   metrics: service(),
-  session: service(),
 
   model({ id }) {
     return get(this, 'store').findRecord('post', id, { include: 'user,targetUser,media' });

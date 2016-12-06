@@ -14,6 +14,7 @@ export default {
       following: 'Followed by {{user}}'
     },
     posts: 'Post by {{user}}',
+    reviews: 'Review by {{user}}',
     notifications: 'Notifications',
     settings: 'Settings',
     admin: 'Admin'
@@ -140,10 +141,10 @@ export default {
   },
   reviews: {
     review: 'Review',
-    title: {
-      anime: '{{link}} by {{user}} at Episode {{progress}}',
-      manga: '{{link}} by {{user}} at Chapter {{progress}}',
-      unprogressed: '{{link}} by {{user}}'
+    reviewBy: 'Review by',
+    progress: {
+      anime: 'This is a review up to Episode {{num}}.',
+      manga: 'This is a review up to Chapter {{num}}.'
     }
   },
   // Global header

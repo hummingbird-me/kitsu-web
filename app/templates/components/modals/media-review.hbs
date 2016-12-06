@@ -23,19 +23,8 @@
             {{star-rating entry.rating class="review-stars" onClick=(action "updateEntry" entry "rating")}}
           </div>
 
+          {{! publish review }}
           <div class="review--cta">
-            {{! delete review}}
-            {{#if (and review (not review.isNew))}}
-              <button class="button btn-danger" {{action (perform delete)}}>
-                {{#if delete.isRunning}}
-                  {{loading-spinner size="small"}}
-                {{else}}
-                  Delete
-                {{/if}}
-              </button>
-            {{/if}}
-
-            {{! publish review }}
             <button class="button button--primary" disabled={{unless isValid "disabled"}} {{action (perform publish)}}>
               {{#if publish.isRunning}}
                 {{loading-spinner size="small"}}
