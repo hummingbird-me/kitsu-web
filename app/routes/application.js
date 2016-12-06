@@ -22,7 +22,6 @@ export default Route.extend(ApplicationRouteMixin, {
 
   headTags() {
     const desc = 'TODO @Josh: Kitsu Default Description';
-    console.log('uhhhh?', get(this, 'headData.title'));
     return [{
       type: 'title',
       tagId: 'title',

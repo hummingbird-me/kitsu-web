@@ -238,8 +238,6 @@ export default Component.extend({
       get(this, 'getFeedData').perform(streamType, streamId, limit).then((data) => {
         set(this, 'newItems.length', 0);
         set(this, 'newItems.cache', []);
-        const title = get(this, 'originalTitle');
-        get(this, 'headData').set('title', title);
         get(this, 'headTags').collectHeadTags();
 
         // remove dups from the feed and replace with updated activity
