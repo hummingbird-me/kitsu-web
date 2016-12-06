@@ -46,6 +46,7 @@ export default Component.extend(Validations, {
       });
       set(this, 'isNew', true);
     }
+    invokeAction(this, 'updateEntry', get(this, 'entry'), 'rating', get(this, 'entry.rating'));
     set(review, 'content', get(this, 'content'));
     yield review.save()
       .then(() => {
@@ -77,7 +78,7 @@ export default Component.extend(Validations, {
 
   actions: {
     updateEntry(entry, property, ...args) {
-      invokeAction(this, 'updateEntry', entry, property, ...args);
+      set(entry, 'rating', ...args);
     }
   }
 });
