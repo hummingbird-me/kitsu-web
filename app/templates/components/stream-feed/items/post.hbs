@@ -42,9 +42,9 @@
 
         <a href={{href-to "posts" post}} onclick={{action "trackEngagement" "click"}}>
           <small class="author-secondary">
-            {{moment-from-now post.createdAt}}
+            {{moment-from-now post.createdAt interval=60000}}
             {{#if postEdited}}
-              &middot; edited {{moment-from-now post.updatedAt}}
+              &middot; edited {{moment-from-now post.updatedAt interval=60000}}
             {{/if}}
           </small>
         </a>

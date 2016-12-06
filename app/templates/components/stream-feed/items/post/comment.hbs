@@ -47,9 +47,9 @@
 
       {{! comment timestamp }}
       <small class="comment-time">
-        {{moment-from-now comment.createdAt}}
+        {{moment-from-now comment.createdAt interval=60000}}
         {{#if commentEdited}}
-          &middot; edited {{moment-from-now comment.updatedAt}}
+          &middot; edited {{moment-from-now comment.updatedAt interval=60000}}
         {{/if}}
       </small>
 
