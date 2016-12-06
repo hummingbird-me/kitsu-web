@@ -9,6 +9,7 @@ import { invokeAction } from 'ember-invoke-action';
 import { scheduleOnce } from 'ember-runloop';
 import { prependObjects } from 'client/utils/array-utils';
 import errorMessages from 'client/utils/error-messages';
+import getter from 'client/utils/getter';
 import moment from 'moment';
 
 export default Component.extend({
@@ -22,6 +23,14 @@ export default Component.extend({
   notify: service(),
   session: service(),
   store: service(),
+
+  isEditable: getter(function() {
+    if (get(this, 'session.account').hasRole('admin', get(this, 'comment'))) {
+      return true;
+    }
+    const time = moment(get(this, 'comment.createdAt')).add(30, 'minutes');
+    return !time.isBefore();
+  }),
 
   commentEdited: computed('comment.createdAt', 'comment.updatedAt', {
     get() {
