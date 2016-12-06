@@ -130,13 +130,9 @@ export default Component.extend({
     return [group, activity];
   },
 
-  init() {
-    this._super(...arguments);
-    set(this, 'originalTitle', get(this, 'headData.title'));
-  },
-
   didReceiveAttrs() {
     this._super(...arguments);
+    get(this, 'headTags').collectHeadTags();
 
     // cancel any previous subscriptions
     this._cancelSubscription();
@@ -182,9 +178,6 @@ export default Component.extend({
   _cancelSubscription() {
     const subscription = get(this, 'subscription');
     if (subscription !== undefined) {
-      const title = get(this, 'originalTitle');
-      get(this, 'headData').set('title', title);
-      get(this, 'headTags').collectHeadTags();
       subscription.cancel();
     }
   },
@@ -217,9 +210,8 @@ export default Component.extend({
     get(this, 'newItems').endPropertyChanges();
 
     if (get(this, 'newItems.length') > 0) {
-      const title = `(${get(this, 'newItems.length')}) ${get(this, 'originalTitle')}`;
-      get(this, 'headData').set('title', title);
-      get(this, 'headTags').collectHeadTags();
+      const title = `(${get(this, 'newItems.length')}) ${get(this, 'headData.title')}`;
+      window.document.title = title;
     }
   },
 
