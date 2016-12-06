@@ -29,7 +29,7 @@
               {{#if publish.isRunning}}
                 {{loading-spinner size="small"}}
               {{else}}
-                {{#if (and review (not review.isNew))}}
+                {{#if (and review (not isNew))}}
                   Edit
                 {{else}}
                   Publish

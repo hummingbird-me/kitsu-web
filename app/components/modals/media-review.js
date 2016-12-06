@@ -44,6 +44,7 @@ export default Component.extend(Validations, {
         media: get(this, 'media'),
         user: get(this, 'session.account')
       });
+      set(this, 'isNew', true);
     }
     set(review, 'content', get(this, 'content'));
     yield review.save()
