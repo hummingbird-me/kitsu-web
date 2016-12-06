@@ -33,6 +33,7 @@ export default Mixin.create({
   deactivate() {
     this._super(...arguments);
     jQuery('body').removeClass('cover-page');
+    jQuery('.primary-nav').unbind('mouseenter').unbind('mouseleave');
     jQuery(document).off('scroll.cover');
   },
 
