@@ -25,11 +25,6 @@ export default Component.extend({
 
   canPost: computed('content', {
     get() {
-      if (get(this, 'isEditing')) {
-        if (get(this, 'content') === get(this, 'contentOriginal')) {
-          return false;
-        }
-      }
       return isPresent(get(this, 'content')) &&
         get(this, 'content.length') <= get(this, 'maxLength');
     }
