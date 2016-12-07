@@ -23,7 +23,7 @@
         {{/if}}
 
         {{! type }}
-        {{! TODO: Refactor to helper }}
+        {{! TODO(@vevix): Refactor to be better }}
         {{#if (eq activity.verb "follow")}}
           followed you.
         {{/if}}
@@ -31,7 +31,26 @@
           mentioned you in a post.
         {{/if}}
         {{#if (eq activity.verb "comment")}}
-          mentioned you in a comment.
+          {{#if (eq session.account.id (split-stream-id activity.replyToUser))}}
+            replied to your
+            {{#if (eq activity.replyToType "comment")}}
+              comment.
+            {{else}}
+              post.
+            {{/if}}
+          {{else}}
+            mentioned you in a comment.
+          {{/if}}
+
+          {{#if (eq activity.replyToType "comment")}}
+            {{#if (eq session.account.id (split-stream-id activity.replyToUser))}}
+              replied to your comment.
+            {{else}}
+              mentioned you in a comment.
+            {{/if}}
+          {{else}}
+
+          {{/if}}
         {{/if}}
         {{#if (eq activity.verb "post_like")}}
           liked your post.

@@ -7,6 +7,8 @@ export default Base.extend({
   postId: attr('number'),
   progress: attr('number'),
   rating: attr('number'),
+  replyToType: attr('string'),
+  replyToUser: attr('string'),
   status: attr('string'),
   streamId: attr('string'),
   time: attr('utc'),
