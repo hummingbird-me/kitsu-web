@@ -1,3 +1,153 @@
+<div class="settings--header">
+  <div class="container">
+    <div class="row">
+      <h2>Mod Reports</h2>
+
+      <!-- @vevix - temporary, need real nav here! -->
+      <ul class="settings--navigation">
+        {{#link-to "settings.profile" tagName="li" class="list-item"}}
+          <a href={{href-to "settings.profile"}}>All</a>
+        {{/link-to}}
+        {{#link-to "settings.password" tagName="li" class="list-item"}}
+          <a href={{href-to "settings.password"}}>Inappropriate</a>
+        {{/link-to}}
+        {{#link-to "settings.privacy" tagName="li" class="list-item"}}
+          <a href={{href-to "settings.privacy"}}>Spam</a>
+        {{/link-to}}
+        {{#link-to "settings.notifications" tagName="li" class="list-item"}}
+          <a href={{href-to "settings.notifications"}}>Other</a>
+        {{/link-to}}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container user-reports">
+  <div class="row">
+    <div class="card-columns">
+
+      <!-- @vevix - iterate over these little cards. They should
+        show reporter name, avatar and why they reported the post -->
+      <div class="card">
+        <a href="#" data-toggle="modal" data-target="#myModal">
+          <div class="card-header">
+            <div class="media">
+              <span class="media-left" href="#">
+                <img class="media-object" src="https://kitsu-media.s3.amazonaws.com/users/avatars/2/large.jpeg?1444332940">
+              </span>
+              <div class="media-body">
+                <h6 class="media-heading">Josh</h6>
+              </div>
+            </div>
+          </div>
+          <div class="card-block">
+          <p class="card-text">It's a spoiler, please use spoiler tags for it.</p>
+        </div>
+        </a>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<!-- @vevix - modal that shows if a user clicks on a report card.
+  Modal should embed reported post and show complaint beside it. -->
+<div class="modal fade report-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div id="ember6972" class="stream-item row ember-view">
+        <div class="stream-item-wrapper col-sm-12">
+          <div class="stream-item--title-block">
+            <span class="avatar-block">
+              <a href="/users/Josh" class="author-avatar">
+                <img src="https://kitsu-media.s3.amazonaws.com/users/avatars/2/medium.jpeg?1444332940">
+              </a>
+           </span>
+            <div class="author-info">
+              <a href="/users/Josh" class="author-name">
+                Josh
+              </a>
+              <span class="tag tag-default role-tag">STAFF</span>
+
+
+              <a href="/posts/772">
+                <small class="author-secondary">
+                  a few seconds ago
+                </small>
+              </a>
+            </div>
+          </div>
+
+          <div class="stream-content">
+            <div id="ember6973" class="ember-view">
+              <p>Whoa, these spoilers are nuts!</p>
+
+            </div>
+
+          </div>
+
+          <div class="stream-item-activity">
+            <div id="ember6985" class="d-inline ember-view">
+
+            </div>
+          </div>
+
+          <div class="stream-item-options">
+            <span class="more-wrapper">
+              <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="more-drop">
+                <svg width="24" height="6" viewBox="0 0 24 6" xmlns="http://www.w3.org/2000/svg"><title>Shape</title><path d="M3 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm9 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm9 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" fill="#CACACA" fill-rule="evenodd"></path></svg>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a href="#" data-clipboard-text="https://staging.kitsu.io/posts/750" class="dropdown-item" data-ember-action="" data-ember-action-2824="2824">
+                  Copy Link to Post
+                </a>
+
+                    <a href="#" class="dropdown-item" data-ember-action="" data-ember-action-2825="2825">Edit Post</a>
+
+                  <a href="#" class="dropdown-item" data-ember-action="" data-ember-action-2826="2826">Delete Post</a>
+
+                    <a href="#" class="dropdown-item" data-ember-action="" data-ember-action-2827="2827">
+                      Pin Post to Profile
+                    </a>
+
+                  <a href="#" class="dropdown-item" data-ember-action="" data-ember-action-2828="2828">Report Post</a>
+
+                  <a href="#" class="dropdown-item" data-ember-action="" data-ember-action-2829="2829">Block @Azuslu7jpg</a>
+              </div>
+            </span>
+          </div>
+        </div>
+        <div id="ember6987" class="stream-item-comments ember-view">
+          <div class="add-comment-wrapper">
+            <textarea placeholder="Leave a comment..." rows="1" id="ember6998" class="form-control add-comment ember-view" style="overflow: hidden; word-wrap: break-word; resize: none; height: 38px;"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-item">
+
+        <div class="card">
+          <div class="card-header">
+            <div class="media">
+              <span class="media-left" href="#">
+                <img class="media-object" src="https://kitsu-media.s3.amazonaws.com/users/avatars/2/large.jpeg?1444332940">
+              </span>
+            </div>
+          </div>
+          <div class="card-block">
+          <p class="card-text">It's a spoiler, please use spoiler tags for it.</p>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
 {{#each model as |report|}}
   {{! TODO: Once API is fixed }}
 {{/each}}

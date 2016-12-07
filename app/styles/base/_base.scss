@@ -2,6 +2,11 @@ body {
   background-color: $alabaster;
 }
 
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
 .staging-pro-gate {
   position: fixed;
   top: 0;
@@ -98,5 +103,72 @@ img {
     background-color: #f75239;
     padding: 4px 10px;
     top: -3px;
+  }
+}
+
+// @josh move to report css file
+.user-reports {
+  .card {
+    display: inline-block;
+    a {
+      color: #333;
+    }
+  }
+  .card-text {
+    font-style: italic;
+  }
+  .card-header {
+    padding: 15px;
+    img {
+      width: 25px;
+      border-radius: 999em;
+    }
+    h6 {
+      margin-bottom: 0;
+      position: relative;
+      top: 8px;
+    }
+  }
+}
+
+.report-modal {
+  .modal-content {
+    overflow: visible;
+  }
+  .stream-item {
+    max-width: 60%;
+    float: left;
+  }
+  .modal-dialog {
+    @media (min-width: 544px) {
+      max-width: 800px;
+    }
+  }
+  .card {
+    background: none;
+    box-shadow: none;
+    float: right;
+    width: 30%;
+    border: none;
+    .card-text {
+      color: #fff;
+      font-style: italic;
+    }
+  }
+  .card-header {
+    background: none;
+    border: none;
+    .media {
+      text-align: center;
+      img {
+        width: 60px;
+        border-radius: 999em;
+        display: inline-block;
+      }
+    }
+    .media-left {
+      width: 100%;
+      padding: 0;
+    }
   }
 }
