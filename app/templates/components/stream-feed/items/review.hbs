@@ -37,14 +37,22 @@
           {{! review content }}
           <div class="comment-body">
             {{! legacy reviews are from Hummingbird }}
-            {{#if review.legacy}}
-              {{text-clipper review.content length=480
-                expandText="Read More" expandHref=(href-to "reviews" review)
-                options=(hash html=true imageWeight=240)}}
+            {{#if isExpanded}}
+              {{#if review.legacy}}
+                {{{review.content}}}
+              {{else}}
+                {{{review.contentFormatted}}}
+              {{/if}}
             {{else}}
-              {{text-clipper review.contentFormatted length=480
-                expandText="Read More" expandHref=(href-to "reviews" review)
-                options=(hash html=true)}}
+              {{#if review.legacy}}
+                {{text-clipper review.content length=480
+                  expandText="Read More" expandHref=(href-to "reviews" review)
+                  options=(hash html=true imageWeight=240)}}
+              {{else}}
+                {{text-clipper review.contentFormatted length=480
+                  expandText="Read More" expandHref=(href-to "reviews" review)
+                  options=(hash html=true)}}
+              {{/if}}
             {{/if}}
           </div>
         </div>
