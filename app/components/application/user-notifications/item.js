@@ -3,7 +3,7 @@ import get from 'ember-metal/get';
 import computed from 'ember-computed';
 import service from 'ember-service/inject';
 import { isPresent } from 'ember-utils';
-import { hrefTo } from 'ember-href-to/helpers/href-to';
+import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
   session: service(),
@@ -28,27 +28,27 @@ export default Component.extend({
     }
   }),
 
-  link: computed('activity', {
+  target: computed('activity', {
     get() {
       const activity = get(this, 'activity');
       const [modelType, modelId] = get(activity, 'foreignId').split(':');
       switch (modelType) {
         case 'Post': {
           if (isPresent(modelId)) {
-            return hrefTo(this, 'posts', modelId);
+            return { route: 'posts', model: modelId };
           }
           break;
         }
         case 'Follow': {
           const actor = get(activity, 'actor');
           if (isPresent(actor)) {
-            return hrefTo(this, 'users', actor);
+            return { route: 'users', model: actor };
           }
           break;
         }
         case 'Comment': {
           if (isPresent(get(activity, 'target.content'))) {
-            return hrefTo(this, 'posts', get(activity, 'target.id'));
+            return { route: 'posts', model: get(activity, 'target.id') };
           }
           break;
         }
@@ -59,14 +59,20 @@ export default Component.extend({
             if (modelType === 'CommentLike') {
               id = get(activity, 'target.post.id');
             }
-            return hrefTo(this, 'posts', id);
+            return { route: 'posts', model: id };
           }
           break;
         }
         default: {
-          return '#';
+          return null;
         }
       }
     }
-  })
+  }),
+
+  actions: {
+    followNotification() {
+      invokeAction(this, 'followNotification', get(this, 'group'), get(this, 'target'));
+    }
+  }
 });
