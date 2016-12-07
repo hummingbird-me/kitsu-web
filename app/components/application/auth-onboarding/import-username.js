@@ -4,21 +4,20 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { classify } from 'ember-string';
 import { invokeAction } from 'ember-invoke-action';
-import { storageFor } from 'ember-local-storage';
 import { task } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
+  username: undefined,
   metrics: service(),
   notify: service(),
   session: service(),
   store: service(),
-  imports: storageFor('imports'),
 
   createImport: task(function* () {
     const list = get(this, 'store').createRecord('list-import', {
       strategy: 1, // obliterate
-      inputText: get(this, 'imports.username'),
+      inputText: get(this, 'username'),
       kind: `ListImport::${classify(get(this, 'siteName'))}`,
       user: get(this, 'session.account')
     });
