@@ -4,11 +4,12 @@ import computed from 'ember-computed';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import observer from 'ember-metal/observer';
+import { storageFor } from 'ember-local-storage';
 
 const MAGIC_NUMBER = 7;
 
 export default Controller.extend({
-  streamType: 'global',
+  feed: storageFor('feed'),
   session: service(),
 
   streamId: computed('streamType', {
@@ -18,19 +19,29 @@ export default Controller.extend({
   }).readOnly(),
 
   updateStreamType: observer('session.hasUser', 'session.account.followingCount', function() {
-    this._updateType();
+    const defaultType = this._getDefaultType();
+    set(this, 'streamType', get(this, 'feed.type') || defaultType);
   }),
 
   init() {
     this._super(...arguments);
-    this._updateType();
+    const defaultType = this._getDefaultType();
+    set(this, 'streamType', get(this, 'feed.type') || defaultType);
   },
 
-  _updateType() {
-    if (get(this, 'session.hasUser') === true) {
+  _getDefaultType() {
+    if (get(this, 'session.hasUser')) {
       if (get(this, 'session.account.followingCount') >= MAGIC_NUMBER) {
-        set(this, 'streamType', 'timeline');
+        return 'timeline';
       }
+    }
+    return 'global';
+  },
+
+  actions: {
+    switchFeed(type) {
+      set(this, 'streamType', type);
+      set(this, 'feed.type', type);
     }
   }
 });

@@ -15,8 +15,8 @@
       readOnly=(not session.hasUser)}}
       {{#if session.hasUser}}
         <div class="d-inline">
-          <a href="#" class="{{if (eq streamType "timeline") "active"}}" {{action (action (mut streamType) "timeline")}}>Following</a>
-          <a href="#" class="{{if (eq streamType "global") "active"}}" {{action (action (mut streamType) "global")}}>Global</a>
+          <a href="#" class="{{if (eq streamType "timeline") "active"}}" {{action "switchFeed" "timeline"}}>Following</a>
+          <a href="#" class="{{if (eq streamType "global") "active"}}" {{action "switchFeed" "global"}}>Global</a>
         </div>
       {{/if}}
     {{/stream-feed/list}}
