@@ -22,7 +22,11 @@
   {{else}}
     <ul class="notification-list">
       {{#each groups as |group|}}
-        {{application/user-notifications/item tagName="li" class="notification-item" group=group}}
+        {{application/user-notifications/item
+          tagName="li"
+          class="notification-item"
+          group=group
+          followNotification=(action "followNotification")}}
       {{/each}}
     </ul>
   {{/if}}

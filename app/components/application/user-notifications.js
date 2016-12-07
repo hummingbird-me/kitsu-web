@@ -10,6 +10,7 @@ import { isPresent } from 'ember-utils';
 import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
+  router: service('-routing'),
   ajax: service(),
   notify: service(),
   session: service(),
@@ -186,6 +187,17 @@ export default Component.extend({
           get(this, 'notify').error(errorMessages(err));
         });
       }
+    },
+
+    followNotification(group, target) {
+      set(group, 'isRead', true);
+      this._mark('read', [group]).catch((err) => {
+        set(group, 'isRead', false);
+        get(this, 'notify').error(errorMessages(err));
+      });
+
+      if (target === undefined || target === null) return;
+      get(this, 'router').transitionTo(target.route, [target.model]);
     }
   }
 });

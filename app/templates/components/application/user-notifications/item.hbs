@@ -1,6 +1,6 @@
 {{! guard due to development environments hitting shared stream }}
 {{#if activity.actor}}
-  <a href={{link}} class="media {{if (not group.isRead) "new"}}">
+  <a href="#" class="media {{if (not group.isRead) "new"}}" {{action "followNotification"}}>
     <span class="media-left" href="#">
       <img class="avatar-image avatar-image--small" src={{image activity.actor.avatar "small"}}>
     </span>
