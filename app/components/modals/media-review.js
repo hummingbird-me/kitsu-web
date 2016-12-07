@@ -30,7 +30,7 @@ export default Component.extend(Validations, {
   isValid: computed('validations.isInvalid', 'entry.rating', {
     get() {
       let isValid = get(this, 'validations.isInvalid') === false &&
-        get(this, 'entry.rating') > 0;
+        get(this, 'rating') > 0;
       isValid = get(this, 'review') === undefined ? isValid : isValid &&
         get(this, 'content') !== get(this, 'review.content');
       return isValid;
@@ -47,10 +47,10 @@ export default Component.extend(Validations, {
       });
       set(this, 'isNew', true);
     }
+    invokeAction(this, 'updateEntry', get(this, 'entry'), 'rating', get(this, 'rating'));
     set(review, 'content', get(this, 'content'));
     yield review.save()
       .then(() => {
-        invokeAction(this, 'updateEntry', get(this, 'entry'), 'rating', get(this, 'rating'));
         set(review, 'rating', get(this, 'entry.rating'));
         this.$('.modal').modal('hide');
         get(this, 'metrics').trackEvent({
@@ -81,7 +81,6 @@ export default Component.extend(Validations, {
   actions: {
     updateRating(rating) {
       set(this, 'rating', rating);
-      console.log(get(this, 'rating'));
     }
   }
 });
