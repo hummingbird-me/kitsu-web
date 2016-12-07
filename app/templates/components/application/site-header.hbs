@@ -5,7 +5,7 @@
         &#9776;
       </button>
       <div class="nav-item pull-xs-left">
-        <a href={{href-to "dashboard"}} class="navbar-brand nav-link">
+        <a href={{href-to "dashboard"}} class="navbar-brand nav-link" {{action "transitionToDashboard"}}>
           <span class="logo">
             {{svg-jar "kitsu-full"}}
           </span>
@@ -65,7 +65,6 @@
         {{/if}}
       </ul>
       <div class="collapse navbar-toggleable-xs pull-sm-left primary-nav--drop" id="exCollapsingNavbar2">
-
         <ul class="nav navbar-nav">
           {{#if session.hasUser}}
             <li class="nav-item">

@@ -120,6 +120,6 @@ export default Route.extend(ApplicationRouteMixin, {
       const controller = this.controllerFor(get(this, 'routeName'));
       set(controller, 'routeIsLoading', true);
       transition.promise.finally(() => set(controller, 'routeIsLoading', false));
-    },
+    }
   }
 });
