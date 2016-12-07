@@ -74,3 +74,130 @@
     }
   }
 }
+
+.settings-container {
+  width: 100%;
+  max-width: 500px;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin: 30px auto;
+  .form-group {
+    padding-bottom: 20px;
+    margin-bottom: 0;
+  }
+  small {
+    color: #909090;
+    display: block;
+  }
+  .col-form-label {
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
+
+.settings--section-head {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+  font-size: 12px;
+  color: #909090;
+  margin: 20px 0;
+
+}
+
+.notification-settings--table {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.notification-settings--headers {
+  margin-top: -20px;
+  background: #eee;
+  font-size: 12px;
+  margin-bottom: 15px;
+  padding: 5px 0;
+  color: #888;
+  input {
+    font-size: 12px;
+    padding: 5px 15px;
+  }
+  .btn {
+    font-size: 12px;
+    background-color: #9f9f9f;
+    border-color: #a4a4a5;
+    padding: 5px 10px;
+    border-radius: 3px;
+    &:hover {
+      background-color: $caribbean;
+      border-color: $caribbean;
+    }
+  }
+  .form-inline {
+    position: relative;
+    top: 3px;
+    right: -5px;
+  }
+}
+.notification-settings--item {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  &:last-child {
+    border: none;
+  }
+}
+
+.settings-column {
+  display: inline-block;
+  &.checkbox-wrapper {
+    text-align: center;
+  }
+}
+
+.blocked-user--list {
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    border: 1px solid #eee;
+    border-radius: 3px;
+    padding: 15px;
+    position: relative;
+    margin-bottom: 15px;
+    transition: all .2s ease-in;
+    &:hover {
+      border-color: #ddd;
+    }
+  }
+  .stream-item--title-block {
+    background: none;
+    padding-bottom: 0;
+  }
+  .author-avatar img {
+    width: 40px;
+    height: 40px;
+  }
+  .author-info {
+    top: 10px;
+  }
+}
+
+.unblock-cta {
+  font-size: 12px;
+  border: 1px solid #d6d6d6;
+  padding: 5px 10px;
+  border-radius: 3px;
+  background: #ebebeb;
+  color: #747474;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  transition: all .2s ease-in;
+  &:hover {
+    border-color: #c0392b;
+    background: #fbdbd8;
+    color: #c0392b;
+  }
+}
