@@ -150,10 +150,6 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
         });
     },
 
-    resetEntry(entry) {
-      entry.rollbackAttributes();
-    },
-
     saveEntryDebounced(entry) {
       get(this, 'saveEntryTask').perform(entry);
     }

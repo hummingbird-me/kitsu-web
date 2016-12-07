@@ -157,7 +157,7 @@
         {{#if reviewOpen}}
           {{to-elsewhere named="modal" send=(component "modals/media-review"
             modalId="review-modal"
-            onClose=(queue (route-action "resetEntry" entry) (toggle-action "reviewOpen" this))
+            onClose=(toggle-action "reviewOpen" this)
             media=media
             entry=entry
             updateEntry=(route-action "updateEntry")

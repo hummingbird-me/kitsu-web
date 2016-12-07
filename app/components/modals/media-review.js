@@ -20,6 +20,7 @@ const Validations = buildValidations({
 export default Component.extend(Validations, {
   classNames: ['review-modal'],
   content: undefined,
+  rating: 0,
 
   metrics: service(),
   notify: service(),
@@ -46,10 +47,10 @@ export default Component.extend(Validations, {
       });
       set(this, 'isNew', true);
     }
-    invokeAction(this, 'updateEntry', get(this, 'entry'), 'rating', get(this, 'entry.rating'));
     set(review, 'content', get(this, 'content'));
     yield review.save()
       .then(() => {
+        invokeAction(this, 'updateEntry', get(this, 'entry'), 'rating', get(this, 'rating'));
         set(review, 'rating', get(this, 'entry.rating'));
         this.$('.modal').modal('hide');
         get(this, 'metrics').trackEvent({
@@ -74,11 +75,13 @@ export default Component.extend(Validations, {
       get(this, 'review.media').then(media => set(this, 'media', media));
       get(this, 'review.libraryEntry').then(entry => set(this, 'entry', entry));
     }
+    set(this, 'rating', get(this, 'entry.rating'));
   },
 
   actions: {
-    updateEntry(entry, property, ...args) {
-      set(entry, 'rating', ...args);
+    updateRating(rating) {
+      set(this, 'rating', rating);
+      console.log(get(this, 'rating'));
     }
   }
 });
