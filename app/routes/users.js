@@ -15,7 +15,7 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
   },
 
   afterModel(model) {
-    const desc = `${get(model, 'name')} ${get(model, 'canonicalTitle')} is using Kitsu to share his anime & manga experiences.`;
+    const desc = `${get(model, 'name')} is using Kitsu to share their anime & manga experiences.`;
     set(this, 'headTags', [{
       type: 'meta',
       tagId: 'meta-og-type',
