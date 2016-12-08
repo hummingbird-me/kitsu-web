@@ -58,8 +58,8 @@ export default {
       type: {
         TV: 'TV',
         special: 'Special',
-        ONA: 'OVA',
-        OVA: 'ONA',
+        ONA: 'ONA',
+        OVA: 'OVA',
         movie: 'Movie',
         music: 'Music'
       }
