@@ -102,7 +102,7 @@
           {{loading-spinner size="small"}}
         </div>
       {{else}}
-        {{#if (not-eq comment.repliesCount replies.length)}}
+        {{#if (lt replies.length comment.repliesCount)}}
           <div class="comment-actions clearfix">
             <div class="pull-sm-left">
               {{! TODO: i18n }}

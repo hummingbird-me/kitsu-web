@@ -4,7 +4,7 @@
         {{loading-spinner size="small"}}
       </div>
     {{else}}
-      {{#if (not-eq post.topLevelCommentsCount comments.length)}}
+      {{#if (lt comments.length post.topLevelCommentsCount)}}
         <div class="comment-actions clearfix">
           <div class="pull-sm-left">
             {{! TODO: i18n }}
