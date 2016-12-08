@@ -1,4 +1,4 @@
-<a href="#" class="nav-link notifications {{if (gt count 0) "notifications--present"}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" {{action "markSeen"}}>
+<a class="nav-link notifications {{if (gt count 0) "notifications--present"}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" {{action "markSeen" preventDefault=false}}>
   {{#if getNotifications.isRunning}}
     {{loading-spinner}}
   {{else}}

@@ -41,16 +41,6 @@
           {{else}}
             mentioned you in a comment.
           {{/if}}
-
-          {{#if (eq activity.replyToType "comment")}}
-            {{#if (eq session.account.id (split-stream-id activity.replyToUser))}}
-              replied to your comment.
-            {{else}}
-              mentioned you in a comment.
-            {{/if}}
-          {{else}}
-
-          {{/if}}
         {{/if}}
         {{#if (eq activity.verb "post_like")}}
           liked your post.
