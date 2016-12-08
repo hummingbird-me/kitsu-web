@@ -8,6 +8,7 @@ import { task } from 'ember-concurrency';
 import { prependObjects } from 'client/utils/array-utils';
 import { isPresent } from 'ember-utils';
 import errorMessages from 'client/utils/error-messages';
+import { invoke } from 'ember-invoke-action';
 
 export default Component.extend({
   router: service('-routing'),
@@ -63,8 +64,26 @@ export default Component.extend({
     });
   },
 
+  didInsertElement() {
+    this._super(...arguments);
+    this.$().on('show.bs.dropdown', () => {
+      if (get(this, 'groups.length') === 0) {
+        return;
+      }
+      const groups = get(this, 'groups').filter(group => get(group, 'isSeen') === false);
+      if (get(groups, 'length') > 0) {
+        groups.forEach(group => set(group, 'isSeen', true));
+        this._mark('seen', groups).catch((err) => {
+          groups.forEach(group => set(group, 'isSeen', false));
+          get(this, 'notify').error(errorMessages(err));
+        });
+      }
+    });
+  },
+
   willDestroyElement() {
     this._super(...arguments);
+    this.$().off('show.bs.dropdown');
     const subscription = get(this, 'subscription');
     if (subscription !== undefined) {
       subscription.cancel();
@@ -161,20 +180,6 @@ export default Component.extend({
   },
 
   actions: {
-    markSeen() {
-      if (get(this, 'groups.length') === 0) {
-        return;
-      }
-      const groups = get(this, 'groups').filter(group => get(group, 'isSeen') === false);
-      if (get(groups, 'length') > 0) {
-        groups.forEach(group => set(group, 'isSeen', true));
-        this._mark('seen', groups).catch((err) => {
-          groups.forEach(group => set(group, 'isSeen', false));
-          get(this, 'notify').error(errorMessages(err));
-        });
-      }
-    },
-
     markRead() {
       if (get(this, 'groups.length') === 0) {
         return;
