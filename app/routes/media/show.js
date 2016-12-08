@@ -70,7 +70,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   },
 
   _headTags(model) {
-    const desc = `${get(model, 'canonicalTitle')} is using Kitsu to share his anime & manga experiences.`;
+    const desc = `Looking for ${get(model, 'canonicalTitle')}? Find it on Kitsu!`;
     return [{
       type: 'meta',
       tagId: 'meta-description',
