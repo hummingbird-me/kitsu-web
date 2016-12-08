@@ -16,8 +16,12 @@
   {{/modal.body}}
 
   {{#modal.footer}}
-    <button class="button button--primary btn-lg btn-block" {{action "blockUser"}}>
-      Block {{user.name}}
+    <button class="button button--primary btn-lg btn-block" disabled={{if blockUser.isRunning "disabled"}} onclick={{perform blockUser}}>
+      {{#if blockUser.isRunning}}
+        {{loading-spinner size="small"}}
+      {{else}}
+        Block {{user.name}}
+      {{/if}}
     </button>
   {{/modal.footer}}
 {{/bootstrap/bs-modal}}
