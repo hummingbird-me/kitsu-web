@@ -51,7 +51,7 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
   },
 
   afterModel() {
-    // TODO: @Josh - Custom Description for search page.
+    // @Vevix - Not sure what needs done here, still have a search page?
     const [mediaType] = get(this, 'routeName').split('.');
     const desc = `Check out ALL our ${mediaType}. TODO`;
     set(this, 'headTags', [{
