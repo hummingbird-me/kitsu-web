@@ -70,8 +70,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   },
 
   _headTags(model) {
-    // TODO - @Josh - Custom description for a user's profile (SEO / Embeds)
-    const desc = `Check out ${get(model, 'canonicalTitle')} on Kitsu.`;
+    const desc = `${get(model, 'canonicalTitle')} is using Kitsu to share his anime & manga experiences.`;
     return [{
       type: 'meta',
       tagId: 'meta-description',
