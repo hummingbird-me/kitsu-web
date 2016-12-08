@@ -76,13 +76,15 @@
 
   {{! feed items }}
   {{#each filteredFeed as |group index|}}
-    {{component (concat "stream-feed/items/" (feed-type group.activities))
-      group=group
-      feedId=feedId
-      positionInFeed=index
-      readOnly=readOnly
-      removeGroup=(action "removeGroup")
-    }}
+    {{#if group.activities.length}}
+      {{component (concat "stream-feed/items/" (feed-type group.activities))
+        group=group
+        feedId=feedId
+        positionInFeed=index
+        readOnly=readOnly
+        removeGroup=(action "removeGroup")
+      }}
+    {{/if}}
 
     {{! ads inserted }}
     {{#if (is-multiple-of (inc index) 10)}}

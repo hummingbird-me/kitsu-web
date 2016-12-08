@@ -96,7 +96,9 @@ export default Component.extend(ClipboardMixin, {
 
   willDestroyElement() {
     this._super(...arguments);
-    this.clearViewportCallback();
+    if (this.clearViewportCallback) {
+      this.clearViewportCallback();
+    }
   },
 
   _updateHidden: observer('post.nsfw', 'post.spoiler', function() {
