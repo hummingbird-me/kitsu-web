@@ -47,7 +47,6 @@
 
 {{! Tooltip }}
 {{#if hasHovered}}
-  {{! TODO @josh -- make epic }}
   {{! Wrap in div due to https://github.com/yapplabs/ember-wormhole/issues/66#issuecomment-263575168 }}
   <div>
     {{#epic-tooltip target=(concat "#" elementId " .grid-poster") timeout=250 singleInstance=true constraints=constraints class="media-tooltip"}}
