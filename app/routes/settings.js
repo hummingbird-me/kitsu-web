@@ -4,6 +4,8 @@ import DataErrorMixin from 'client/mixins/routes/data-error';
 import jQuery from 'jquery';
 
 export default Route.extend(AuthenticatedRouteMixin, DataErrorMixin, {
+  titleToken: 'Settings',
+
   activate() {
     this._super(...arguments);
     jQuery('body').addClass('settings-page');

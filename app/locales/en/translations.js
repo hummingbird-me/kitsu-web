@@ -16,7 +16,6 @@ export default {
     posts: 'Post by {{user}}',
     reviews: 'Review by {{user}}',
     notifications: 'Notifications',
-    settings: 'Settings',
     admin: 'Admin'
   },
   auth: {
