@@ -99,7 +99,7 @@ export default Component.extend({
     return yield post.save()
       .then((record) => {
         get(this, 'feed').insertAt(0, group);
-        set(group, 'group', `Post:${get(record, 'id')}`);
+        set(group, 'group', get(record, 'id'));
         set(activity, 'foreignId', `Post:${get(record, 'id')}`);
         get(this, 'metrics').trackEvent({ category: 'post', action: 'create' });
       })
@@ -125,7 +125,7 @@ export default Component.extend({
       foreignId: 'Post:<unknown>'
     });
     const group = get(this, 'store').createRecord('activity-group', {
-      group: 'Post:<unknown>',
+      group: '<unknown>',
       activities: [activity]
     });
     return [group, activity];
