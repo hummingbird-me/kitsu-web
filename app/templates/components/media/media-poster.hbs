@@ -53,7 +53,7 @@
       <div>
         <span class="media-title">{{media.canonicalTitle}}</span>
         <div class="media-ratings">
-          {{star-rating media.averageRating readOnly=true}}
+          {{star-rating media.averageRating anyPercent=true readOnly=true}}
         </div>
         <div class="media-synopsis">
           {{text-clipper media.synopsis length=225 canExpand=false}}
