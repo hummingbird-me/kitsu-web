@@ -251,6 +251,9 @@
   &.full-size {
     max-height: auto;
   }
+  .media-left {
+    padding-left: 10px;
+  }
   .media {
     padding: 15px;
     font-size: 12px;
@@ -258,9 +261,19 @@
     font-family: $base-font-family;
     border-bottom: 1px solid $eggshell;
     transition: all .2s ease-in-out;
-    opacity: .4;
+    background: $alabaster;
     &.new {
-      opacity: 1;
+      background: $white;
+      .media-left:before {
+        content: '';
+        position: absolute;
+        top: 14px;
+        left: -5px;
+        width: 6px;
+        height: 6px;
+        background: linear-gradient(RGBA(237,72,95,1),RGBA(242,124,54,1));
+        border-radius: 50%;
+      }
     }
     &:hover {
       text-decoration: none;
