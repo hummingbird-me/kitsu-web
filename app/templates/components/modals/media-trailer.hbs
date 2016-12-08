@@ -9,28 +9,32 @@
   {{/modal.header}}
   {{#modal.body}}
     <div class="trailer-info">
-      <div class="info-header">
+      <div class="info-header clearfix">
         <h4>{{media.canonicalTitle}}</h4>
-        <ul class="type-tags">
-          <li>{{capitalize media.mediaType}}</li>
-          <li>{{media.ageRating}}</li>
-        </ul>
-        {{! TODO - @Josh - rating stars on trailer modal }}
-        <span>{{star-rating media.averageRating readOnly=true}}</span>
-        {{#if session.hasUser}}
-          {{library-dropdown
-            entry=entry
-            type=(model-type media)
-            methods=(hash
-              create=methods.create
-              update=methods.update
-              delete=methods.delete
-            )
-          }}
-        {{/if}}
+        <div class="type-star-wrap pull-sm-left">
+          <ul class="type-tags pull-sm-left">
+            <li>{{capitalize media.mediaType}}</li>
+            <li>{{media.ageRating}}</li>
+          </ul>
+
+          <span class="pull-sm-left">{{star-rating media.averageRating readOnly=true}}</span>
+        </div>
+        <div class="pull-sm-right">
+          {{#if session.hasUser}}
+            {{library-dropdown
+              entry=entry
+              type=(model-type media)
+              methods=(hash
+                create=methods.create
+                update=methods.update
+                delete=methods.delete
+              )
+            }}
+          {{/if}}
+        </div>
       </div>
-      {{! TODO - @Josh - genres on trailer modal }}
-      <ul class="type-tags">
+
+      <!-- <ul class="type-tags">
         {{#if (not media.genres.isFulfilled)}}
           {{loading-spinner size="small"}}
         {{/if}}
@@ -38,7 +42,7 @@
         {{#each media.genres as |genre|}}
           <li>{{capitalize genre.name}}</li>
         {{/each}}
-      </ul>
+      </ul> -->
       <p>{{text-clipper media.synopsis length=400 options=(hash maxLines=4)}}</p>
     </div>
   {{/modal.body}}
