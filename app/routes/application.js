@@ -21,7 +21,7 @@ export default Route.extend(ApplicationRouteMixin, {
   },
 
   headTags() {
-    const desc = 'TODO @Josh: Kitsu Default Description';
+    const desc = 'Share anime and manga experiences, get recommendations and see what friends are watching or reading.';
     return [{
       type: 'title',
       tagId: 'title',
