@@ -611,7 +611,7 @@
   padding: 10px 20px 0 20px;
   color: #b4b4b4;
 }
-.nsfw-gate, .spoiler-gate {
+.nsfw-gate, .spoiler-gate, .combo-gate {
   a {
     background: #fafafa;
     border: 1px solid #eee;
@@ -686,6 +686,25 @@
     }
     &:hover {
       &::after {
+        content: "(◕‿◕)";
+      }
+    }
+  }
+}
+
+.combo-gate {
+  a {
+    &::before {
+      content: "(⊙_⊙)";
+      position: absolute;
+      left: 15px;
+      font-size: 42px;
+      top: -4px;
+      opacity: .3;
+      font-family: "Arial";
+    }
+    &:hover {
+      &::before {
         content: "(◕‿◕)";
       }
     }

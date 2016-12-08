@@ -54,11 +54,10 @@
     <div class="stream-content">
       {{#if isHidden}}
         {{#if (and post.spoiler post.nsfw)}}
-          {{! TODO/@Josh -- gate when post is both spoiler/nsfw }}
-          <div class="nsfw-gate">
+          <div class="combo-gate">
               <a href="#" {{action (toggle "isHidden" this)}}>
-                <div class="gate--label">This post contains NSFW content and spoilers.</div>
-                <div class="gate--hover">My body is ready and I can handle the truth!</div>
+                <div class="gate--label">Contains spoilers and NSFW.</div>
+                <div class="gate--hover">My body is ready!</div>
               </a>
             </div>
         {{else}}
