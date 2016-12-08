@@ -1,35 +1,39 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
-import set, { setProperties } from 'ember-metal/set';
+import set from 'ember-metal/set';
+import { isEmpty } from 'ember-utils';
 import observer from 'ember-metal/observer';
-import InViewportMixin from 'ember-in-viewport';
 import PaginationMixin from 'client/mixins/pagination';
+import spaniel from 'spaniel';
 
-export default Component.extend(InViewportMixin, PaginationMixin, {
+export default Component.extend(PaginationMixin, {
   loadingSize: 'small',
 
   init() {
     this._super(...arguments);
-    set(this, 'tolerance', get(this, 'tolerance') || { top: 0, left: 0, bottom: 0, right: 0 });
-    setProperties(this, {
-      viewportSpy: true,
-      viewportTolerance: get(this, 'tolerance')
-    });
-    this._disable();
+    set(this, 'watcher', new spaniel.Watcher({ ratio: get(this, 'ratio') || -2 }));
   },
 
-  didEnterViewport() {
+  didInsertElement() {
     this._super(...arguments);
-    get(this, 'getNextData').perform().catch(() => {});
+    this._setupViewport();
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    get(this, 'watcher').unwatch(get(this, 'element'));
   },
 
   _disableWhenLast: observer('nextLink', function() {
-    this._disable();
+    if (isEmpty(get(this, 'nextLink'))) {
+      get(this, 'watcher').unwatch(get(this, 'element'));
+    }
   }),
 
-  _disable() {
-    if (get(this, 'nextLink') === undefined) {
-      set(this, 'viewportEnabled', false);
-    }
+  _setupViewport() {
+    const el = get(this, 'element');
+    get(this, 'watcher').watch(el, () => {
+      get(this, 'getNextData').perform().catch(() => {});
+    });
   }
 });

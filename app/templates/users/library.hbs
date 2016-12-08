@@ -71,8 +71,8 @@
         <div class="text-xs-center">
           {{paginated-resource/infinite
             model=entries
+            ratio=-4
             update=(route-action "updateNextPage")
-            tolerance=(hash top=0 left=0 bottom=1000 right=0)
           }}
         </div>
       {{/if}}

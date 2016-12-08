@@ -8,21 +8,21 @@ import { typeOf } from 'ember-utils';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
-import InViewportMixin from 'ember-in-viewport';
 import errorMessages from 'client/utils/error-messages';
 import moment from 'moment';
 import { invokeAction } from 'ember-invoke-action';
 
-export default Component.extend(ClipboardMixin, InViewportMixin, {
+export default Component.extend(ClipboardMixin, {
   classNameBindings: ['post.isNew:new-post', 'isPinnedPost:pinned-post'],
   classNames: ['stream-item', 'row'],
   isHidden: false,
-
   notify: service(),
   router: service('-routing'),
   session: service(),
   store: service(),
   metrics: service(),
+  viewport: service(),
+
   host: getter(() => `${location.protocol}//${location.host}`),
 
   activity: getter(function() {
@@ -72,9 +72,10 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
 
   didInsertElement() {
     this._super(...arguments);
-    set(this, 'viewportTolerance', {
-      top: 0, bottom: 500, left: 0, right: 0
-    });
+    const el = get(this, 'element');
+    this.clearViewportCallback = get(this, 'viewport').onInViewportOnce(el, () => {
+      set(this, 'viewportEntered', true);
+    }, { ratio: -1 });
   },
 
   didReceiveAttrs() {
@@ -87,6 +88,11 @@ export default Component.extend(ClipboardMixin, InViewportMixin, {
     }
     const post = get(this, 'post');
     set(this, 'isHidden', get(post, 'nsfw') || get(post, 'spoiler'));
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    this.clearViewportCallback();
   },
 
   _updateHidden: observer('post.nsfw', 'post.spoiler', function() {

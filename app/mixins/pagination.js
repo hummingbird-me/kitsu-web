@@ -7,10 +7,6 @@ import { invokeAction } from 'ember-invoke-action';
 
 /**
  * Pagination based on JSON-API's top level links object.
- *
- * When this component enters the viewport it requests the next set of data
- * based on the `next` link within the `links` object. Those new records are
- * then sent up to be handled.
  */
 export default Mixin.create({
   store: service(),

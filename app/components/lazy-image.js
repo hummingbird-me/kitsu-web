@@ -1,27 +1,34 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
-import set from 'ember-metal/set';
+import service from 'ember-service/inject';
 import { assert } from 'ember-metal/utils';
-import InViewportMixin from 'ember-in-viewport';
 
-export default Component.extend(InViewportMixin, {
+export default Component.extend({
   attributeBindings: ['alt', 'title'],
   classNames: ['lazy-image'],
   tagName: 'img',
-
   alt: undefined,
   title: undefined,
   placeholder: undefined,
 
+  viewport: service(),
+
   init() {
     this._super(...arguments);
     assert('Must pass url to {{lazy-image}}', get(this, 'url') !== undefined);
-    set(this, 'viewportTolerance', Object.assign({ top: 200, bottom: 200, left: 0, right: 0 }, get(this, 'tolerance') || {}));
   },
 
-  didEnterViewport() {
+  didInsertElement() {
     this._super(...arguments);
-    this._loadImage();
+    const el = get(this, 'element');
+    this.clearViewportCallback = get(this, 'viewport').onInViewportOnce(el, () => {
+      this._loadImage();
+    }, { ratio: get(this, 'ratio') || -1 });
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    this.clearViewportCallback();
   },
 
   _loadImage() {
