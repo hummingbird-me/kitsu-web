@@ -81,7 +81,11 @@ export default Component.extend(ClipboardMixin, {
   didReceiveAttrs() {
     this._super(...arguments);
     if (get(this, 'group') !== undefined) {
-      set(this, 'post', get(this, 'activity.target.content') || get(this, 'activity.target'));
+      if (get(this, 'activity.foreignId').split(':')[0] === 'Comment') {
+        set(this, 'post', get(this, 'activity.target.content') || get(this, 'activity.target'));
+      } else {
+        set(this, 'post', get(this, 'activity.subject.content') || get(this, 'activity.subject'));
+      }
     }
     if (get(this, 'feedId') !== undefined) {
       set(this, 'userId', get(this, 'feedId').split(':')[1]);
