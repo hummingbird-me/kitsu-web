@@ -2,9 +2,15 @@ import { helper } from 'ember-helper';
 import get from 'ember-metal/get';
 import { dasherize } from 'ember-string';
 
+/**
+ * We check for comment as we currently push new comments into the same activity group as the
+ * post and Stream has a soft limit of 15 on activities returned with the group, this pushes the
+ * post out of the returned activities.
+ */
 export function feedType([activities]) {
-  const activity = get(activities, 'lastObject');
-  const [type] = get(activity, 'foreignId').split(':');
+  const activity = get(activities, 'firstObject');
+  let [type] = get(activity, 'foreignId').split(':');
+  type = type === 'Comment' ? 'post' : type;
   return dasherize(type);
 }
 

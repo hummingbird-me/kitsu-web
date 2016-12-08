@@ -61,10 +61,10 @@ export default Component.extend({
       id,
       include: [
         // activity
-        'media,actor,unit,subject',
+        'media,actor,unit,subject,target',
         // posts
-        'subject.user.user_roles.role,subject.target_user.user_roles.role,subject.spoiled_unit',
-        // library-entry/post
+        'target.user.user_roles.role,target.target_user.user_roles.role,target.spoiled_unit,target.media',
+        // library-entry
         'subject.media',
         // follow
         'subject.follower,subject.followed'

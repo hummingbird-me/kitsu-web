@@ -8,7 +8,7 @@
 {{/if}}
 
 <div class="feed-actions clearfix">
-  {{! TODO - @Josh -- new feed items block }}
+  {{! new activities block }}
   {{#if (gt newItems.length 0)}}
     <div class="card text-xs-center p-t-1 p-b-1" {{action "newActivities"}}>
       {{#if realtimeLoading}}
@@ -19,10 +19,12 @@
     </div>
   {{/if}}
 
+  {{! custom block (used on dashboard for switching feeds }}
   {{#if hasBlock}}
     {{yield}}
   {{/if}}
 
+  {{! feed content type filter }}
   <div class="pull-sm-right feed-filter">
     {{#bootstrap/bs-dropdown as |dropdown|}}
       {{#dropdown.button}}
@@ -72,6 +74,7 @@
     }}
   {{/if}}
 
+  {{! feed items }}
   {{#each filteredFeed as |group index|}}
     {{component (concat "stream-feed/items/" (feed-type group.activities))
       group=group
@@ -92,6 +95,7 @@
     </div>
   {{/each}}
 
+  {{! pagination }}
   <div class="w-100 text-xs-center m-t-2 m-b-2">
     {{paginated-resource/infinite
       model=feed

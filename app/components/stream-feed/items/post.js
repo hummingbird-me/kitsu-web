@@ -26,7 +26,7 @@ export default Component.extend(ClipboardMixin, {
   host: getter(() => `${location.protocol}//${location.host}`),
 
   activity: getter(function() {
-    return get(this, 'group.activities.lastObject');
+    return get(this, 'group.activities.firstObject');
   }),
 
   tweetLink: getter(function() {
@@ -81,7 +81,7 @@ export default Component.extend(ClipboardMixin, {
   didReceiveAttrs() {
     this._super(...arguments);
     if (get(this, 'group') !== undefined) {
-      set(this, 'post', get(this, 'activity.subject.content') || get(this, 'activity.subject'));
+      set(this, 'post', get(this, 'activity.target.content') || get(this, 'activity.target'));
     }
     if (get(this, 'feedId') !== undefined) {
       set(this, 'userId', get(this, 'feedId').split(':')[1]);
