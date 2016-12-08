@@ -8,7 +8,6 @@ import { task } from 'ember-concurrency';
 import { prependObjects } from 'client/utils/array-utils';
 import { isPresent } from 'ember-utils';
 import errorMessages from 'client/utils/error-messages';
-import { invoke } from 'ember-invoke-action';
 
 export default Component.extend({
   router: service('-routing'),
