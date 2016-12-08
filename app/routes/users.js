@@ -15,8 +15,7 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
   },
 
   afterModel(model) {
-    // TODO - @Josh - Custom description for a user's profile (SEO / Embeds)
-    const desc = `Check out ${get(model, 'name')}'s anime, manga, favorites, and more of what you love on Kitsu.`;
+    const desc = `${get(model, 'name')} ${get(model, 'canonicalTitle')} is using Kitsu to share his anime & manga experiences.`;
     set(this, 'headTags', [{
       type: 'meta',
       tagId: 'meta-og-type',
