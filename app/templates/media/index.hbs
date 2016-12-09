@@ -126,6 +126,8 @@
                 </div>
                 {{#media/filter-widgets/multi-select
                   class="box-select"
+                  tooltip=true
+                  tooltipClasses="hint--top hint--bounce hint--rounded"
                   selected=streamers
                   selection=(map-by "siteName" availableStreamers)
                   onChange=(action (mut streamers)) as |option|

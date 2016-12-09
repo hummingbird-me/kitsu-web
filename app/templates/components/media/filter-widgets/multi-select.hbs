@@ -3,8 +3,9 @@
     {{yield "All"}}
   </li>
 {{/if}}
+
 {{#each selection as |option|}}
-  <li class={{if (contains option selected) "active"}} {{action "toggle" option}}>
+  <li class="{{if (contains option selected) "active"}} {{if tooltip tooltipClasses}}" aria-label={{option}} {{action "toggle" option}}>
     {{yield option}}
   </li>
 {{/each}}
