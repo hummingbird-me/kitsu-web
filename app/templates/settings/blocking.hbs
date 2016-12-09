@@ -1,11 +1,12 @@
 <h1>Blocking</h1>
 
 <div class="settings--section-head">
-  Once you block someone, that person can no longer tag you, follow you, view your profile or see your feed posts.
+  Once you block someone, that person can no longer tag you, follow you, view your profile, or see your feed posts.
 </div>
 <div class="container">
+  {{!-- TODO(@Vevix)
   <div class="notification-settings--headers row">
-    <label for="example-email-input" class="col-xs-3 col-form-label">Block Users</label>
+    <label class="col-xs-3 col-form-label">Block Users</label>
     <div class="col-xs-9 text-xs-right">
       <div class="form-inline">
         <input type="input" class="form-control" placeholder="Search user to block...">
@@ -13,42 +14,40 @@
       </div>
     </div>
   </div>
+  --}}
   <div class="form-group row">
     <ul class="blocked-user--list">
-      <li>
-        <div class="stream-item--title-block">
-          <span class="avatar-block">
-            <a class="author-avatar">
-              <img src="https://kitsu-media.s3.amazonaws.com/users/avatars/2/medium.jpeg?1444332940">
-            </a>
-          </span>
-          <div class="author-info">
-            <a class="author-name">
-              Josh
-            </a>
-          </div>
-          <a href="#" class="unblock-cta">
-            Unblock
-          </a>
-        </div>
-      </li>
-      <li>
-        <div class="stream-item--title-block">
-          <span class="avatar-block">
-            <a class="author-avatar">
-              <img src="https://kitsu-media.s3.amazonaws.com/users/avatars/2/medium.jpeg?1444332940">
-            </a>
-          </span>
-          <div class="author-info">
-            <a class="author-name">
-              Josh
+      {{#each model as |block|}}
+        <li>
+          <div class="stream-item--title-block">
+            <span class="avatar-block">
+              <a class="author-avatar">
+                <img src={{image block.blocked.avatar "medium"}}>
+              </a>
+            </span>
+            <div class="author-info">
+              <a class="author-name">{{block.blocked.name}}</a>
+            </div>
+            <a href="#" class="unblock-cta" {{action "unblockUser" block}}>
+              Unblock
             </a>
           </div>
-          <a href="#" class="unblock-cta">
-            Unblock
-          </a>
-        </div>
-      </li>
+        </li>
+      {{else}}
+        <p class="text-xs-center">You aren't currently blocking anyone.</p>
+      {{/each}}
     </ul>
+  </div>
+
+  <div class="text-xs-center w-100">
+    {{#paginated-resource/manual
+      model=model
+      update=(route-action "updateNextPage") as |nextLink|}}
+      {{#if nextLink}}
+        <button class="button button--primary btn-block">
+          Load More
+        </button>
+      {{/if}}
+    {{/paginated-resource/manual}}
   </div>
 </div>
