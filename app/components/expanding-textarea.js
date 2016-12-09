@@ -1,6 +1,7 @@
 import OneWayTextAreaComponent from 'ember-one-way-controls/components/one-way-textarea';
 import get from 'ember-metal/get';
 import { invokeAction } from 'ember-invoke-action';
+import { later } from 'ember-runloop';
 /* global autosize */
 
 export default OneWayTextAreaComponent.extend({
@@ -15,6 +16,7 @@ export default OneWayTextAreaComponent.extend({
   didInsertElement() {
     this._super(...arguments);
     autosize(this.$());
+    later(() => this.resize(), 200);
   },
 
   willDestroyElement() {
@@ -30,6 +32,9 @@ export default OneWayTextAreaComponent.extend({
   },
 
   resize() {
+    if (get(this, 'isDestroyed')) {
+      return;
+    }
     const evt = document.createEvent('Event');
     evt.initEvent('autosize:update', true, false);
     this.$()[0].dispatchEvent(evt);
