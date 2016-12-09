@@ -24,6 +24,16 @@ module.exports = function(defaults) {
           }
         ]
       }
+    },
+    fingerprint: {
+      exclude: [
+        'android-chrome-192x192.png',
+        'android-chrome-512x512.png',
+        'mstile-70x70.png',
+        'mstile-150x150.png',
+        'mstile-310x150.png',
+        'mstile-310x310.png'
+      ]
     }
   });
 
