@@ -78,6 +78,7 @@ export default Base.extend(Validations, {
   reviewsCount: attr('number'),
   roles: attr('array'),
   sfwFilter: attr('boolean'),
+  shareToGlobal: attr('boolean'),
   timeZone: attr('string'),
   titleLanguagePreference: attr('string'),
   waifuOrHusbando: attr('string'),
