@@ -1,7 +1,8 @@
 <div class="footer-social">
-  <a href="#" class="kitsu-social">
+  <a href="https://github.com/hummingbird-me/hummingbird" class="kitsu-social">
     {{svg-jar "l-github"}}
   </a>
+  {{! TODO(@Josh) - Twitter/Facebook links }}
   <a href="#" class="kitsu-social">
     {{svg-jar "l-twitter"}}
   </a>
@@ -9,10 +10,10 @@
     {{svg-jar "l-facebook"}}
   </a>
 </div>
+
 <div class="footer-links">
-  <a href="#" class="site-link">Contact</a>
-  <a href="#" class="site-link">Jobs</a>
-  <a href="#" class="site-link">Privacy</a>
-  <a href="#" class="site-link">Terms</a>
-  <a href="#" class="site-link">About</a>
+  <a href="mailto:josh@kitsu.io" class="site-link">Contact</a>
+  <a href={{href-to "privacy"}} class="site-link">Privacy</a>
+  <a href={{href-to "terms"}} class="site-link">Terms</a>
+  <a href={{href-to "about"}} class="site-link">About</a>
 </div>

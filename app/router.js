@@ -72,6 +72,9 @@ RouterInstance.map(function() {
   this.route('notifications');
   this.route('password-reset');
   this.route('confirm-email');
+  this.route('privacy');
+  this.route('terms');
+  this.route('about');
 
   // These must remain at the bottom of the RouterInstance map
   this.route('server-error', { path: '/500' });
