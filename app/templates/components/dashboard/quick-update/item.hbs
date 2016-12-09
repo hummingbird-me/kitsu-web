@@ -66,5 +66,9 @@
   </div>
 
   {{! TODO/@vevix: Use episode thumbnail and fallback to posterImage }}
-  {{lazy-image url=(image entry.media.posterImage "medium")}}
+  {{#if entry.nextUnit}}
+    {{lazy-image url=(image entry.nextUnit.thumbnail) placeholder=(image entry.media.posterImage "medium")}}
+  {{else}}
+    {{lazy-image url=(image entry.media.posterImage "medium")}}
+  {{/if}}
 </div>

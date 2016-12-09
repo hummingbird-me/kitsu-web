@@ -31,5 +31,7 @@ export default Base.extend(Validations, {
 
   media: belongsTo('media'),
   review: belongsTo('review'),
+  unit: belongsTo('base'),
+  nextUnit: belongsTo('base'),
   user: belongsTo('user')
 });
