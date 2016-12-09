@@ -67,31 +67,23 @@ export default Component.extend({
     },
 
     addItem(item) {
+      const type = modelType([item]);
       const record = get(this, 'store').createRecord('favorite', {
         user: get(this, 'user'),
         item
       });
-      const type = modelType([item]);
-      record.save().then((favorite) => {
-        get(this, `${type}Favorites`).addObject(favorite);
-        invokeAction(this, 'addRecord', favorite);
-        // Increase count on user
-        get(this, 'session.account').incrementProperty('favoritesCount');
-      }).catch((err) => {
-        get(this, 'notify').error(errorMessages(err));
-      });
+
+      get(this, `${type}Favorites`).addObject(record);
+      invokeAction(this, 'addRecord', record);
+      get(this, 'session.account').incrementProperty('favoritesCount');
     },
 
     removeItem(item) {
       const type = modelType([get(item, 'item')]);
-      item.destroyRecord().then(() => {
-        const items = get(this, `${type}Favorites`);
-        items.removeObject(item);
-        items.forEach(record => set(record, 'favRank', items.indexOf(record) + 1));
-        invokeAction(this, 'removeRecord', item);
-      }).catch((err) => {
-        get(this, 'notify').error(errorMessages(err));
-      });
+      const items = get(this, `${type}Favorites`);
+      item.deleteRecord();
+      items.removeObject(item);
+      items.forEach(record => set(record, 'favRank', items.indexOf(record) + 1));
     },
 
     updateNextPage(type, records, links) {
