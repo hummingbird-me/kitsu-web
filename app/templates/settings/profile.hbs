@@ -1,8 +1,10 @@
 <h1>Profile</h1>
+
 <div class="settings--section-head">
   Account and region settings
 </div>
 <div class="container">
+  {{! username }}
   <div class="form-group row">
     <label class="col-xs-4 col-form-label">Username</label>
     <div class="col-xs-8">
@@ -13,6 +15,7 @@
       <small>https://kitsu.io/users/{{user.name}}</small>
     </div>
   </div>
+  {{! email }}
   <div class="form-group row">
     <label class="col-xs-4 col-form-label">Email</label>
     <div class="col-xs-8">
@@ -23,211 +26,30 @@
       <small>Email will not be publicly displayed.</small>
     </div>
   </div>
+  {{! language }}
   <div class="form-group row">
-    <label for="example-email-input" class="col-xs-4 col-form-label">Language</label>
+    <label class="col-xs-4 col-form-label">Language</label>
     <div class="col-xs-8">
-      <select class="form-control">
-        <option>Select Language...</option>
-        <option value="id">Bahasa Indonesia - Indonesian</option>
-        <option value="msa">Bahasa Melayu - Malay</option>
-        <option value="ca">Català - Catalan</option>
-        <option value="cs">Čeština - Czech</option>
-        <option value="da">Dansk - Danish</option>
-        <option value="de">Deutsch - German</option>
-        <option value="en" selected="">English</option>
-        <option value="en-gb">English UK - British English</option>
-        <option value="es">Español - Spanish</option>
-        <option value="eu">Euskara - Basque (beta)</option>
-        <option value="fil">Filipino</option>
-        <option value="fr">Français - French</option>
-        <option value="ga">Gaeilge - Irish (beta)</option>
-        <option value="gl">Galego - Galician (beta)</option>
-        <option value="hr">Hrvatski - Croatian</option>
-        <option value="it">Italiano - Italian</option>
-        <option value="xx-lc">LOLCATZ - Lolcat (beta)</option>
-        <option value="hu">Magyar - Hungarian</option>
-        <option value="nl">Nederlands - Dutch</option>
-        <option value="no">Norsk - Norwegian</option>
-        <option value="pl">Polski - Polish</option>
-        <option value="pt">Português - Portuguese</option>
-        <option value="ro">Română - Romanian</option>
-        <option value="sk">Slovenčina - Slovak</option>
-        <option value="fi">Suomi - Finnish</option>
-        <option value="sv">Svenska - Swedish</option>
-        <option value="vi">Tiếng Việt - Vietnamese</option>
-        <option value="tr">Türkçe - Turkish</option>
-        <option value="el">Ελληνικά - Greek</option>
-        <option value="bg">Български език - Bulgarian</option>
-        <option value="ru">Русский - Russian</option>
-        <option value="sr">Српски - Serbian</option>
-        <option value="uk">Українська мова - Ukrainian</option>
-        <option value="he">עִבְרִית - Hebrew</option>
-        <option value="ur">اردو - Urdu (beta)</option>
-        <option value="ar">العربية - Arabic</option>
-        <option value="fa">فارسی - Persian</option>
-        <option value="mr">मराठी - Marathi</option>
-        <option value="hi">हिन्दी - Hindi</option>
-        <option value="bn">বাংলা - Bengali</option>
-        <option value="gu">ગુજરાતી - Gujarati</option>
-        <option value="ta">தமிழ் - Tamil</option>
-        <option value="kn">ಕನ್ನಡ - Kannada</option>
-        <option value="th">ภาษาไทย - Thai</option>
-        <option value="ko">한국어 - Korean</option>
-        <option value="ja">日本語 - Japanese</option>
-        <option value="zh-cn">简体中文 - Simplified Chinese</option>
-        <option value="zh-tw">繁體中文 - Traditional Chinese</option>
-      </select>
-      <small>Interested in helping translate? <a href="#">Let's talk!</a></small>
+      {{one-way-select user.language
+        class="form-control"
+        options=languages
+        optionValuePath="id"
+        optionLabelPath="text"
+        optionTargetPath="id"
+        update=(action (mut user.language))
+      }}
+      <small>Interested in helping translate? <a href="mailto:josh@kitsu.io">Let's talk!</a></small>
     </div>
   </div>
+  {{! timezone }}
   <div class="form-group row">
-    <label for="example-email-input" class="col-xs-4 col-form-label">Time Zone</label>
+    <label class="col-xs-4 col-form-label">Time Zone</label>
     <div class="col-xs-8">
-      <select class="form-control">
-        <option data-offset="-39600" value="International Date Line West">(GMT-11:00) International Date Line West</option>
-        <option data-offset="-39600" value="Midway Island">(GMT-11:00) Midway Island</option>
-        <option data-offset="-39600" value="Samoa">(GMT-11:00) Samoa</option>
-        <option data-offset="-36000" value="Hawaii">(GMT-10:00) Hawaii</option>
-        <option data-offset="-32400" value="Alaska">(GMT-09:00) Alaska</option>
-        <option data-offset="-28800" value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
-        <option data-offset="-28800" value="Tijuana">(GMT-08:00) Tijuana</option>
-        <option data-offset="-25200" value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-        <option data-offset="-25200" value="Arizona">(GMT-07:00) Arizona</option>
-        <option data-offset="-25200" value="Chihuahua">(GMT-07:00) Chihuahua</option>
-        <option data-offset="-25200" value="Mazatlan">(GMT-07:00) Mazatlan</option>
-        <option data-offset="-21600" value="Central Time (US &amp; Canada)" selected="">(GMT-06:00) Central Time (US &amp; Canada)</option>
-        <option data-offset="-21600" value="Saskatchewan">(GMT-06:00) Saskatchewan</option>
-        <option data-offset="-21600" value="Guadalajara">(GMT-06:00) Guadalajara</option>
-        <option data-offset="-21600" value="Mexico City">(GMT-06:00) Mexico City</option>
-        <option data-offset="-21600" value="Monterrey">(GMT-06:00) Monterrey</option>
-        <option data-offset="-21600" value="Central America">(GMT-06:00) Central America</option>
-        <option data-offset="-18000" value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-        <option data-offset="-18000" value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
-        <option data-offset="-18000" value="Bogota">(GMT-05:00) Bogota</option>
-        <option data-offset="-18000" value="Lima">(GMT-05:00) Lima</option>
-        <option data-offset="-18000" value="Quito">(GMT-05:00) Quito</option>
-        <option data-offset="-14400" value="Atlantic Time (Canada)">(GMT-04:00) Atlantic Time (Canada)</option>
-        <option data-offset="-14400" value="Caracas">(GMT-04:00) Caracas</option>
-        <option data-offset="-14400" value="La Paz">(GMT-04:00) La Paz</option>
-        <option data-offset="-14400" value="Georgetown">(GMT-04:00) Georgetown</option>
-        <option data-offset="-12600" value="Newfoundland">(GMT-03:30) Newfoundland</option>
-        <option data-offset="-10800" value="Santiago">(GMT-03:00) Santiago</option>
-        <option data-offset="-10800" value="Buenos Aires">(GMT-03:00) Buenos Aires</option>
-        <option data-offset="-10800" value="Greenland">(GMT-03:00) Greenland</option>
-        <option data-offset="-7200" value="Brasilia">(GMT-02:00) Brasilia</option>
-        <option data-offset="-7200" value="Mid-Atlantic">(GMT-02:00) Mid-Atlantic</option>
-        <option data-offset="-3600" value="Azores">(GMT-01:00) Azores</option>
-        <option data-offset="-3600" value="Cape Verde Is.">(GMT-01:00) Cape Verde Is.</option>
-        <option data-offset="0" value="Dublin">(GMT) Dublin</option>
-        <option data-offset="0" value="Edinburgh">(GMT) Edinburgh</option>
-        <option data-offset="0" value="Lisbon">(GMT) Lisbon</option>
-        <option data-offset="0" value="London">(GMT) London</option>
-        <option data-offset="0" value="Casablanca">(GMT) Casablanca</option>
-        <option data-offset="0" value="Monrovia">(GMT) Monrovia</option>
-        <option data-offset="0" value="UTC">(GMT) UTC</option>
-        <option data-offset="3600" value="Belgrade">(GMT+01:00) Belgrade</option>
-        <option data-offset="3600" value="Bratislava">(GMT+01:00) Bratislava</option>
-        <option data-offset="3600" value="Budapest">(GMT+01:00) Budapest</option>
-        <option data-offset="3600" value="Ljubljana">(GMT+01:00) Ljubljana</option>
-        <option data-offset="3600" value="Prague">(GMT+01:00) Prague</option>
-        <option data-offset="3600" value="Sarajevo">(GMT+01:00) Sarajevo</option>
-        <option data-offset="3600" value="Skopje">(GMT+01:00) Skopje</option>
-        <option data-offset="3600" value="Warsaw">(GMT+01:00) Warsaw</option>
-        <option data-offset="3600" value="Zagreb">(GMT+01:00) Zagreb</option>
-        <option data-offset="3600" value="Brussels">(GMT+01:00) Brussels</option>
-        <option data-offset="3600" value="Copenhagen">(GMT+01:00) Copenhagen</option>
-        <option data-offset="3600" value="Madrid">(GMT+01:00) Madrid</option>
-        <option data-offset="3600" value="Paris">(GMT+01:00) Paris</option>
-        <option data-offset="3600" value="Amsterdam">(GMT+01:00) Amsterdam</option>
-        <option data-offset="3600" value="Berlin">(GMT+01:00) Berlin</option>
-        <option data-offset="3600" value="Bern">(GMT+01:00) Bern</option>
-        <option data-offset="3600" value="Rome">(GMT+01:00) Rome</option>
-        <option data-offset="3600" value="Stockholm">(GMT+01:00) Stockholm</option>
-        <option data-offset="3600" value="Vienna">(GMT+01:00) Vienna</option>
-        <option data-offset="3600" value="West Central Africa">(GMT+01:00) West Central Africa</option>
-        <option data-offset="7200" value="Bucharest">(GMT+02:00) Bucharest</option>
-        <option data-offset="7200" value="Cairo">(GMT+02:00) Cairo</option>
-        <option data-offset="7200" value="Helsinki">(GMT+02:00) Helsinki</option>
-        <option data-offset="7200" value="Kiev">(GMT+02:00) Kiev</option>
-        <option data-offset="7200" value="Kyiv">(GMT+02:00) Kyiv</option>
-        <option data-offset="7200" value="Riga">(GMT+02:00) Riga</option>
-        <option data-offset="7200" value="Sofia">(GMT+02:00) Sofia</option>
-        <option data-offset="7200" value="Tallinn">(GMT+02:00) Tallinn</option>
-        <option data-offset="7200" value="Vilnius">(GMT+02:00) Vilnius</option>
-        <option data-offset="7200" value="Athens">(GMT+02:00) Athens</option>
-        <option data-offset="7200" value="Jerusalem">(GMT+02:00) Jerusalem</option>
-        <option data-offset="7200" value="Harare">(GMT+02:00) Harare</option>
-        <option data-offset="7200" value="Pretoria">(GMT+02:00) Pretoria</option>
-        <option data-offset="10800" value="Istanbul">(GMT+03:00) Istanbul</option>
-        <option data-offset="10800" value="Minsk">(GMT+03:00) Minsk</option>
-        <option data-offset="10800" value="Moscow">(GMT+03:00) Moscow</option>
-        <option data-offset="10800" value="St. Petersburg">(GMT+03:00) St. Petersburg</option>
-        <option data-offset="10800" value="Volgograd">(GMT+03:00) Volgograd</option>
-        <option data-offset="10800" value="Kuwait">(GMT+03:00) Kuwait</option>
-        <option data-offset="10800" value="Riyadh">(GMT+03:00) Riyadh</option>
-        <option data-offset="10800" value="Nairobi">(GMT+03:00) Nairobi</option>
-        <option data-offset="10800" value="Baghdad">(GMT+03:00) Baghdad</option>
-        <option data-offset="12600" value="Tehran">(GMT+03:30) Tehran</option>
-        <option data-offset="14400" value="Abu Dhabi">(GMT+04:00) Abu Dhabi</option>
-        <option data-offset="14400" value="Muscat">(GMT+04:00) Muscat</option>
-        <option data-offset="14400" value="Baku">(GMT+04:00) Baku</option>
-        <option data-offset="14400" value="Tbilisi">(GMT+04:00) Tbilisi</option>
-        <option data-offset="14400" value="Yerevan">(GMT+04:00) Yerevan</option>
-        <option data-offset="16200" value="Kabul">(GMT+04:30) Kabul</option>
-        <option data-offset="18000" value="Ekaterinburg">(GMT+05:00) Ekaterinburg</option>
-        <option data-offset="18000" value="Islamabad">(GMT+05:00) Islamabad</option>
-        <option data-offset="18000" value="Karachi">(GMT+05:00) Karachi</option>
-        <option data-offset="18000" value="Tashkent">(GMT+05:00) Tashkent</option>
-        <option data-offset="19800" value="Chennai">(GMT+05:30) Chennai</option>
-        <option data-offset="19800" value="Kolkata">(GMT+05:30) Kolkata</option>
-        <option data-offset="19800" value="Mumbai">(GMT+05:30) Mumbai</option>
-        <option data-offset="19800" value="New Delhi">(GMT+05:30) New Delhi</option>
-        <option data-offset="19800" value="Sri Jayawardenepura">(GMT+05:30) Sri Jayawardenepura</option>
-        <option data-offset="20700" value="Kathmandu">(GMT+05:45) Kathmandu</option>
-        <option data-offset="21600" value="Astana">(GMT+06:00) Astana</option>
-        <option data-offset="21600" value="Dhaka">(GMT+06:00) Dhaka</option>
-        <option data-offset="21600" value="Almaty">(GMT+06:00) Almaty</option>
-        <option data-offset="21600" value="Urumqi">(GMT+06:00) Urumqi</option>
-        <option data-offset="23400" value="Rangoon">(GMT+06:30) Rangoon</option>
-        <option data-offset="25200" value="Novosibirsk">(GMT+07:00) Novosibirsk</option>
-        <option data-offset="25200" value="Bangkok">(GMT+07:00) Bangkok</option>
-        <option data-offset="25200" value="Hanoi">(GMT+07:00) Hanoi</option>
-        <option data-offset="25200" value="Jakarta">(GMT+07:00) Jakarta</option>
-        <option data-offset="25200" value="Krasnoyarsk">(GMT+07:00) Krasnoyarsk</option>
-        <option data-offset="28800" value="Beijing">(GMT+08:00) Beijing</option>
-        <option data-offset="28800" value="Chongqing">(GMT+08:00) Chongqing</option>
-        <option data-offset="28800" value="Hong Kong">(GMT+08:00) Hong Kong</option>
-        <option data-offset="28800" value="Kuala Lumpur">(GMT+08:00) Kuala Lumpur</option>
-        <option data-offset="28800" value="Singapore">(GMT+08:00) Singapore</option>
-        <option data-offset="28800" value="Taipei">(GMT+08:00) Taipei</option>
-        <option data-offset="28800" value="Perth">(GMT+08:00) Perth</option>
-        <option data-offset="28800" value="Irkutsk">(GMT+08:00) Irkutsk</option>
-        <option data-offset="28800" value="Ulaan Bataar">(GMT+08:00) Ulaan Bataar</option>
-        <option data-offset="32400" value="Seoul">(GMT+09:00) Seoul</option>
-        <option data-offset="32400" value="Osaka">(GMT+09:00) Osaka</option>
-        <option data-offset="32400" value="Sapporo">(GMT+09:00) Sapporo</option>
-        <option data-offset="32400" value="Tokyo">(GMT+09:00) Tokyo</option>
-        <option data-offset="32400" value="Yakutsk">(GMT+09:00) Yakutsk</option>
-        <option data-offset="34200" value="Darwin">(GMT+09:30) Darwin</option>
-        <option data-offset="36000" value="Brisbane">(GMT+10:00) Brisbane</option>
-        <option data-offset="36000" value="Vladivostok">(GMT+10:00) Vladivostok</option>
-        <option data-offset="36000" value="Guam">(GMT+10:00) Guam</option>
-        <option data-offset="36000" value="Port Moresby">(GMT+10:00) Port Moresby</option>
-        <option data-offset="36000" value="Solomon Is.">(GMT+10:00) Solomon Is.</option>
-        <option data-offset="37800" value="Adelaide">(GMT+10:30) Adelaide</option>
-        <option data-offset="39600" value="Canberra">(GMT+11:00) Canberra</option>
-        <option data-offset="39600" value="Melbourne">(GMT+11:00) Melbourne</option>
-        <option data-offset="39600" value="Sydney">(GMT+11:00) Sydney</option>
-        <option data-offset="39600" value="Hobart">(GMT+11:00) Hobart</option>
-        <option data-offset="39600" value="Magadan">(GMT+11:00) Magadan</option>
-        <option data-offset="39600" value="New Caledonia">(GMT+11:00) New Caledonia</option>
-        <option data-offset="43200" value="Kamchatka">(GMT+12:00) Kamchatka</option>
-        <option data-offset="43200" value="Marshall Is.">(GMT+12:00) Marshall Is.</option>
-        <option data-offset="46800" value="Fiji">(GMT+13:00) Fiji</option>
-        <option data-offset="46800" value="Auckland">(GMT+13:00) Auckland</option>
-        <option data-offset="46800" value="Wellington">(GMT+13:00) Wellington</option>
-        <option data-offset="50400" value="Nuku'alofa">(GMT+14:00) Nuku'alofa</option>
-      </select>
+      {{one-way-select (or user.timeZone timezoneGuess)
+        class="form-control"
+        options=timezones
+        update=(action (mut user.timeZone))
+      }}
     </div>
   </div>
 </div>
@@ -236,150 +58,62 @@
   Content on Kitsu
 </div>
 <div class="container">
+  {{! country }}
   <div class="form-group row">
-    <label for="example-email-input" class="col-xs-4 col-form-label">Country</label>
+    <label class="col-xs-4 col-form-label">Country</label>
     <div class="col-xs-8">
-      <select class="form-control">
-        <option value="xx" selected="">Worldwide</option>
-        <option value="al">Albania</option>
-        <option value="ar">Argentina</option>
-        <option value="am">Armenia</option>
-        <option value="au">Australia</option>
-        <option value="at">Austria</option>
-        <option value="az">Azerbaijan</option>
-        <option value="bs">Bahamas</option>
-        <option value="bh">Bahrain</option>
-        <option value="bd">Bangladesh</option>
-        <option value="by">Belarus</option>
-        <option value="be">Belgium</option>
-        <option value="bz">Belize</option>
-        <option value="bo">Bolivia</option>
-        <option value="ba">Bosnia &amp; Herzegovina</option>
-        <option value="br">Brazil</option>
-        <option value="bg">Bulgaria</option>
-        <option value="kh">Cambodia</option>
-        <option value="ca">Canada</option>
-        <option value="ky">Cayman Islands</option>
-        <option value="cl">Chile</option>
-        <option value="co">Colombia</option>
-        <option value="cr">Costa Rica</option>
-        <option value="hr">Croatia</option>
-        <option value="cu">Cuba</option>
-        <option value="cy">Cyprus</option>
-        <option value="cz">Czech Republic</option>
-        <option value="dk">Denmark</option>
-        <option value="do">Dominican Republic</option>
-        <option value="ec">Ecuador</option>
-        <option value="eg">Egypt</option>
-        <option value="sv">El Salvador</option>
-        <option value="ee">Estonia</option>
-        <option value="et">Ethiopia</option>
-        <option value="fi">Finland</option>
-        <option value="fr">France</option>
-        <option value="ge">Georgia</option>
-        <option value="de">Germany</option>
-        <option value="gh">Ghana</option>
-        <option value="gr">Greece</option>
-        <option value="gt">Guatemala</option>
-        <option value="gy">Guyana</option>
-        <option value="ht">Haiti</option>
-        <option value="hn">Honduras</option>
-        <option value="hk">Hong Kong SAR China</option>
-        <option value="hu">Hungary</option>
-        <option value="is">Iceland</option>
-        <option value="in">India</option>
-        <option value="id">Indonesia</option>
-        <option value="ir">Iran</option>
-        <option value="iq">Iraq</option>
-        <option value="ie">Ireland</option>
-        <option value="il">Israel</option>
-        <option value="it">Italy</option>
-        <option value="jm">Jamaica</option>
-        <option value="jp">Japan</option>
-        <option value="jo">Jordan</option>
-        <option value="kz">Kazakhstan</option>
-        <option value="ke">Kenya</option>
-        <option value="kw">Kuwait</option>
-        <option value="la">Laos</option>
-        <option value="lv">Latvia</option>
-        <option value="lb">Lebanon</option>
-        <option value="lt">Lithuania</option>
-        <option value="lu">Luxembourg</option>
-        <option value="my">Malaysia</option>
-        <option value="mv">Maldives</option>
-        <option value="mt">Malta</option>
-        <option value="mx">Mexico</option>
-        <option value="mn">Mongolia</option>
-        <option value="ma">Morocco</option>
-        <option value="nl">Netherlands</option>
-        <option value="nz">New Zealand</option>
-        <option value="ni">Nicaragua</option>
-        <option value="ng">Nigeria</option>
-        <option value="no">Norway</option>
-        <option value="om">Oman</option>
-        <option value="pk">Pakistan</option>
-        <option value="pa">Panama</option>
-        <option value="py">Paraguay</option>
-        <option value="pe">Peru</option>
-        <option value="ph">Philippines</option>
-        <option value="pl">Poland</option>
-        <option value="pt">Portugal</option>
-        <option value="qa">Qatar</option>
-        <option value="ro">Romania</option>
-        <option value="ru">Russia</option>
-        <option value="sa">Saudi Arabia</option>
-        <option value="rs">Serbia</option>
-        <option value="sg">Singapore</option>
-        <option value="sk">Slovakia</option>
-        <option value="si">Slovenia</option>
-        <option value="za">South Africa</option>
-        <option value="kr">South Korea</option>
-        <option value="es">Spain</option>
-        <option value="lk">Sri Lanka</option>
-        <option value="sr">Suriname</option>
-        <option value="se">Sweden</option>
-        <option value="ch">Switzerland</option>
-        <option value="tw">Taiwan</option>
-        <option value="tz">Tanzania</option>
-        <option value="th">Thailand</option>
-        <option value="tt">Trinidad &amp; Tobago</option>
-        <option value="tn">Tunisia</option>
-        <option value="tr">Turkey</option>
-        <option value="ug">Uganda</option>
-        <option value="ua">Ukraine</option>
-        <option value="ae">United Arab Emirates</option>
-        <option value="gb">United Kingdom</option>
-        <option value="us">United States</option>
-        <option value="uy">Uruguay</option>
-        <option value="uz">Uzbekistan</option>
-        <option value="ve">Venezuela</option>
-        <option value="vn">Vietnam</option>
-        <option value="zm">Zambia</option>
-        <option value="zw">Zimbabwe</option>
-      </select>
+      {{one-way-select user.country
+        options=countries
+        optionValuePath="id"
+        optionLabelPath="text"
+        optionTargetPath="id"
+        prompt="Worldwide"
+        promptIsSelectable=true
+        update=(action (mut user.country))
+        class="form-control"
+      }}
+    </div>
+  </div>
+
+  {{! titles }}
+  <div class="form-group row">
+    <label class="col-xs-4 col-form-label">Titles</label>
+    <div class="col-xs-8">
+      {{one-way-select user.titleLanguagePreference
+        options=titles
+        optionValuePath="id"
+        optionLabelPath="text"
+        optionTargetPath="id"
+        update=(action (mut user.titleLanguagePreference))
+        class="form-control"
+      }}
+      <small>How media titles will be displayed.</small>
+    </div>
+  </div>
+
+  {{! adult filter }}
+  <div class="form-group row">
+    <label class="col-xs-4 col-form-label">Adult Content</label>
+    <div class="col-xs-8">
+      {{one-way-select user.sfwFilter
+        options=filters
+        optionValuePath="value"
+        optionLabelPath="text"
+        optionTargetPath="value"
+        update=(action (mut user.sfwFilter))
+        class="form-control"
+      }}
+      <small>With adult content hidden, you won't see R18+ media in the feed, libraries, or search.</small>
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="example-email-input" class="col-xs-4 col-form-label">Titles</label>
-    <div class="col-xs-8">
-      <select class="form-control">
-        <option value="canon" selected="">Canonical</option>
-        <option value="roman">Romanized</option>
-        <option value="trans">Translated</option>
-      </select>
-      <small>How media titles will be displayed. <a href="#">Learn more</a></small>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="example-email-input" class="col-xs-4 col-form-label">Adult Content</label>
-    <div class="col-xs-8">
-      <select class="form-control">
-        <option value="canon" selected="">Hide Adult Content</option>
-        <option value="roman">Hide Adult Content + NSFW Posts</option>
-        <option value="trans">Show Adult Content (¬‿¬ )</option>
-      </select>
-      <small>With adult content hidden, you won't see R18+ media in the feed, libraries, or search.</small>
-    </div>
+    <button class="button button--primary btn-lg btn-block" disabled={{unless user.hasDirtyAttributes "disabled"}} onclick={{perform updateProfile}}>
+      {{#if updateProfile.isRunning}}
+        {{loading-spinner size="small"}}
+      {{else}}
+        Update Profile
+      {{/if}}
+    </button>
   </div>
 </div>

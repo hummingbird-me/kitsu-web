@@ -15,15 +15,9 @@
         {{#link-to "settings.privacy" tagName="li" class="list-item"}}
           <a href={{href-to "settings.privacy"}}>Privacy</a>
         {{/link-to}}
-        {{#link-to "settings.notifications" tagName="li" class="list-item"}}
-          <a href={{href-to "settings.notifications"}}>Notifications</a>
-        {{/link-to}}
         {{#link-to "settings.blocking" tagName="li" class="list-item"}}
           <a href={{href-to "settings.blocking"}}>Blocking</a>
         {{/link-to}}
-        <!-- {{#link-to "settings.apps" tagName="li" class="list-item"}}
-          <a href={{href-to "settings.apps"}}>Apps</a>
-        {{/link-to}} -->
       </ul>
     </div>
   </div>
@@ -32,74 +26,3 @@
 <div class="settings-container">
   {{outlet}}
 </div>
-
-<!--
-<div class="container">
-  <div class="row">
-    <div class="col-xs-6">
-    <form>
-      <div class="form-group">
-        <label for="username-input">Username</label>
-        {{one-way-text user.name
-          update=(action (mut user.name))
-          id="username-input"
-          class="form-control"
-        }}
-      </div>
-      <div class="form-group">
-        <label for="email-input">Email</label>
-        {{one-way-email user.email
-          update=(action (mut user.email))
-          id="email-input"
-          class="form-control"
-        }}
-      </div>
-      <div class="form-group">
-        <label for="password-input">New Password</label>
-        {{one-way-password user.password
-          update=(action (mut user.password))
-          id="password-input"
-          class="form-control"
-        }}
-      </div>
-    </form>
-
-    <button class="button button--primary btn-block" disabled={{unless user.hasDirtyAttributes "disabled"}} {{action (perform updateTask)}}>
-      {{#if updateTask.isRunning}}
-        Saving...
-      {{else}}
-        Save
-      {{/if}}
-    </button>
-  </div>
-  </div>
-
-  <div class="card">
-  <div class="card-header">
-    Import Media
-  </div>
-  <div class="card-block">
-     <h2>Your Imports</h2>
-    {{#if imports}}
-      {{! TODO -- @vevix -- List imports }}
-    {{else}}
-      <p>You haven't imported any data.</p>
-    {{/if}}
-
-    <button class="button button--primary" {{action (toggle "importModal" this)}}>
-      Import Media
-    </button>
-
-    {{! import modal }}
-    {{#if importModal}}
-      {{to-elsewhere named="modal" send=(component "application/auth-onboarding"
-        component="import-select"
-        componentData=(hash justImport=true)
-        modalId="import-modal"
-        onClose=(toggle-action "importModal" this)
-      )}}
-    {{/if}}
-  </div>
-</div>
-</div>
--->

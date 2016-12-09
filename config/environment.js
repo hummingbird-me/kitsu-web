@@ -74,7 +74,8 @@ module.exports = function(environment) {
 
     // ember-moment
     moment: {
-      allowEmpty: true
+      allowEmpty: true,
+      includeTimezone: '2010-2020'
     },
 
     stream: {
