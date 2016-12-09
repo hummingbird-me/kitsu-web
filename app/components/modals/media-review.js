@@ -32,7 +32,8 @@ export default Component.extend(Validations, {
       let isValid = get(this, 'validations.isInvalid') === false &&
         get(this, 'rating') > 0;
       isValid = get(this, 'review') === undefined ? isValid : isValid &&
-        get(this, 'content') !== get(this, 'review.content');
+        (get(this, 'content') !== get(this, 'review.content') ||
+          get(this, 'rating') !== get(this, 'review.rating'));
       return isValid;
     }
   }).readOnly(),
@@ -47,7 +48,7 @@ export default Component.extend(Validations, {
       });
       set(this, 'isNew', true);
     }
-    invokeAction(this, 'updateEntry', get(this, 'entry'), 'rating', get(this, 'rating'));
+    yield invokeAction(this, 'updateEntry', get(this, 'entry'), 'rating', get(this, 'rating'));
     set(review, 'content', get(this, 'content'));
     yield review.save()
       .then(() => {
@@ -66,16 +67,21 @@ export default Component.extend(Validations, {
   init() {
     this._super(...arguments);
     const review = get(this, 'review');
+    console.log(review);
     if (review === undefined) {
       assert('Must pass entry and media if review is new to {{media-review}}',
         get(this, 'media') !== undefined && get(this, 'entry') !== undefined);
+      set(this, 'rating', get(this, 'entry.rating'));
     } else {
       set(this, 'review', review);
       set(this, 'content', get(review, 'content'));
       get(this, 'review.media').then(media => set(this, 'media', media));
-      get(this, 'review.libraryEntry').then(entry => set(this, 'entry', entry));
+      console.log('fuck');
+      get(this, 'review.libraryEntry').then((entry) => {
+        set(this, 'entry', entry);
+        set(this, 'rating', get(this, 'entry.rating'));
+      });
     }
-    set(this, 'rating', get(this, 'entry.rating'));
   },
 
   actions: {

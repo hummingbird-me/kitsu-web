@@ -68,7 +68,9 @@ export default Component.extend({
         // library-entry
         'subject.media',
         // follow
-        'subject.follower,subject.followed'
+        'subject.follower,subject.followed',
+        // review
+        'subject.library_entry'
       ].join(','),
       page: { limit }
     });
