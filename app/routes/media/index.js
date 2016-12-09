@@ -85,6 +85,19 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
     jQuery(document).off('scroll', get(this, 'scrollBinding'));
   },
 
+  serializeQueryParam(value, key) {
+    let result = this._super(...arguments);
+    if (key === 'episodeCount') {
+      if (value !== undefined) {
+        const [lower, upper] = value;
+        if (upper === 100) {
+          result = `${lower}..`;
+        }
+      }
+    }
+    return result;
+  },
+
   _buildFilters(params) {
     const filters = { filter: {} };
     Object.keys(params).forEach((key) => {

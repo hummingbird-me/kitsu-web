@@ -24,6 +24,7 @@ export default Mixin.create({
       const isRange = value.includes('..');
       if (isRange) {
         return value.split('..').map((x) => {
+          if (isEmpty(x)) { return ''; }
           if (Number.isInteger(JSON.parse(x))) {
             return parseInt(x, 10);
           }
