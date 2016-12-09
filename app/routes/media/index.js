@@ -9,6 +9,7 @@ import jQuery from 'jquery';
 import QueryableMixin from 'client/mixins/routes/queryable';
 import PaginationMixin from 'client/mixins/routes/pagination';
 import SlideHeaderMixin from 'client/mixins/routes/slide-header';
+import moment from 'moment';
 
 export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
   mediaQueryParams: {
@@ -91,6 +92,13 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
       if (value !== undefined) {
         const [lower, upper] = value;
         if (upper === 100) {
+          result = `${lower}..`;
+        }
+      }
+    } else if (key === 'year') {
+      if (value !== undefined) {
+        const [lower, upper] = value;
+        if (upper === moment().year()) {
           result = `${lower}..`;
         }
       }

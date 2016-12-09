@@ -3,6 +3,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import jQuery from 'jquery';
 import getter from 'client/utils/getter';
+import moment from 'moment';
 
 export default Controller.extend({
   mediaQueryParams: [
@@ -14,10 +15,10 @@ export default Controller.extend({
   averageRating: [0.5, 5.0],
   genres: [],
   text: undefined,
-  year: [1907, 2018],
+  year: [1907, moment().year()],
 
   // Buffer values so we don't mutate the query params every update
-  dirtyYear: [1907, 2018],
+  dirtyYear: [1907, moment().year()],
   dirtyRating: [0.5, 5.0],
   dirtyEpisodes: [1, 100],
 
@@ -34,6 +35,8 @@ export default Controller.extend({
       return media.constructor.modelName === 'manga';
     }
   }),
+
+  currentYear: getter(() => moment().year()),
 
   init() {
     this._super(...arguments);

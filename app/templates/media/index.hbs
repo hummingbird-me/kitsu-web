@@ -10,18 +10,23 @@
                   {{t "media.routes.index.filter.year"}}
                 </label>
                 <span class="filter-values">
-                  {{dirtyYear.firstObject}} - {{dirtyYear.lastObject}}
+                  {{dirtyYear.firstObject}} -
+                  {{#if (eq dirtyYear.lastObject currentYear)}}
+                    ∞
+                  {{else}}
+                    {{dirtyYear.lastObject}}
+                  {{/if}}
                 </span>
               </div>
               <div class="filter-slider--wrapper">
                 {{media/filter-widgets/slider
-                  options=(hash range=(array 1907 2018) initial=year)
+                  options=(hash range=(array 1907 currentYear) initial=year)
                   onSlide=(action (mut dirtyYear))
                   onSet=(action (mut year) dirtyYear)}}
               </div>
               <div class="filter-legend">
                 <div class="low-value">1907</div>
-                <div class="high-value">2018</div>
+                <div class="high-value">∞</div>
               </div>
             </div>
 
