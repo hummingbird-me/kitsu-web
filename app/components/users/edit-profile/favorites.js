@@ -6,7 +6,6 @@ import { task, timeout } from 'ember-concurrency';
 import { modelType } from 'client/helpers/model-type';
 import { invokeAction } from 'ember-invoke-action';
 import RSVP from 'rsvp';
-import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   notify: service(),
