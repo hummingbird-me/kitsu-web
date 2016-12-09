@@ -49,9 +49,9 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     get(this, 'getAllFavorites').perform().then(([anime, manga, chars]) => {
-      set(this, 'animeFavorites', get(anime, 'value'));
-      set(this, 'mangaFavorites', get(manga, 'value'));
-      set(this, 'characterFavorites', get(chars, 'value'));
+      set(this, 'animeFavorites', get(anime, 'value').toArray());
+      set(this, 'mangaFavorites', get(manga, 'value').toArray());
+      set(this, 'characterFavorites', get(chars, 'value').toArray());
 
       // add to meta records to check for dirty state
       get(anime, 'value').forEach(record => invokeAction(this, 'addRecord', record));
