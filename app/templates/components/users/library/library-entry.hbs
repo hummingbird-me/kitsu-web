@@ -6,7 +6,7 @@
         {{lazy-image url=(image media.posterImage "tiny") class="drop-thumb"}}
       </div>
       <div class="entry-title" data-test-selector="library-entry-title">
-        <span>{{media.canonicalTitle}}</span>
+        <span>{{media.computedTitle}}</span>
 
         {{! Entry Notes }}
         {{#if entry.notes}}
@@ -84,7 +84,7 @@
       <div class="col-md-12 col-lg-7 columns">
         <h4 class="drop-title">
           <a href={{href-to (concat (model-type media) ".show") media}}>
-            {{media.canonicalTitle}}
+            {{media.computedTitle}}
           </a>
         </h4>
         <p class="drop-description">
@@ -97,7 +97,7 @@
                 (action (mut entry.notes))
                 (perform saveEntryDebounced)
               )
-              placeholder=(t "users.library.notes" title=media.canonicalTitle)
+              placeholder=(t "users.library.notes" title=media.computedTitle)
               class="personal-notes"
             }}
           {{else}} {{! Only show if the user has notes }}

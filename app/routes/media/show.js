@@ -44,7 +44,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   },
 
   titleToken(model) {
-    return get(model, 'canonicalTitle');
+    return get(model, 'computedTitle');
   },
 
   serialize(model) {

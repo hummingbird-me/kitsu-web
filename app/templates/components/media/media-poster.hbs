@@ -41,7 +41,7 @@
 {{! Title }}
 <div class="ellipsis">
   <a href={{href-to (concat (model-type media) ".show") media}} class="media-title">
-    {{media.canonicalTitle}}
+    {{media.computedTitle}}
   </a>
 </div>
 
@@ -51,7 +51,7 @@
   <div>
     {{#epic-tooltip target=(concat "#" elementId " .grid-poster") timeout=250 singleInstance=true constraints=constraints class="media-tooltip"}}
       <div>
-        <span class="media-title">{{media.canonicalTitle}}</span>
+        <span class="media-title">{{media.computedTitle}}</span>
         <div class="media-ratings">
           {{star-rating media.averageRating anyPercent=true readOnly=true}}
         </div>

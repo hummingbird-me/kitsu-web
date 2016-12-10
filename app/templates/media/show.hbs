@@ -7,7 +7,7 @@
             <div class="primary-info">
               <div class="mini-bio">
                 <h3 class="cover-username" data-test-selector="title">
-                  {{media.canonicalTitle}}
+                  {{media.computedTitle}}
                 </h3>
                 <div class="media--meta">
                   <ul>
@@ -84,8 +84,7 @@
 <div class="container sidebar-container">
   {{! sidebar }}
   <div class="media-sidebar">
-    <div>
-    {{! poster  }}
+    {{! poster }}
     {{lazy-image url=(image media.posterImage "large")}}
 
     {{! trailer }}
@@ -184,7 +183,6 @@
         {{/if}}
       </div>
     {{/if}}
-    </div>
   </div>
 
   <div class="media-container row">

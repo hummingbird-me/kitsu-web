@@ -9,7 +9,7 @@
     {{#if isCharacter}}
       {{item.name}}
     {{else}}
-      {{item.canonicalTitle}}
+      {{item.computedTitle}}
     {{/if}}
   </strong>
 {{/power-select}}
@@ -34,7 +34,7 @@
           {{#if isCharacter}}
             {{item.item.name}}
           {{else}}
-            {{item.item.canonicalTitle}}
+            {{item.item.computedTitle}}
           {{/if}}
         </span>
         <span class="media-sort-action">

@@ -1,5 +1,5 @@
 {{#each items as |favorite|}}
-  <div class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded" aria-label={{if isCharacter favorite.item.name favorite.item.canonicalTitle}}>
+  <div class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded" aria-label={{if isCharacter favorite.item.name favorite.item.computedTitle}}>
     {{#if isCharacter}}
       {{! TODO/@vevix: Link to character/media -- Server needed for this }}
       <a href="#">

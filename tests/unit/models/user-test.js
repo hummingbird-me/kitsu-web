@@ -6,6 +6,7 @@ moduleForModel('user', 'Unit | Model | user', {
   // Specify the other units that are required for this test.
   needs: [
     'service:i18n',
+    'service:session',
     'locale:en/translations',
     'util:i18n/missing-message',
     'util:i18n/compile-template',

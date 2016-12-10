@@ -20,7 +20,7 @@
           <small class="media-heading">
             <h6>
               <a href={{href-to (concat (model-type review.media) ".show") review.media}}>
-                {{review.media.canonicalTitle}}
+                {{review.media.computedTitle}}
               </a>
               <span class="stream-review-rating">
                 {{star-rating review.rating readOnly=true}}

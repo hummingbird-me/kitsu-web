@@ -38,7 +38,7 @@
               <div class="stream-item--title-block">
                 <div class="author-info">
                   <a class="author-name" href={{href-to (concat (model-type media) ".show") media}}>
-                    {{media.canonicalTitle}}
+                    {{media.computedTitle}}
                   </a>
                   <small class="author-secondary">
                     <div class="media-tag-synopsis">
@@ -58,7 +58,7 @@
       {{else}}
         {{! media tagging input }}
         {{#search-typeahead
-          value=media.canonicalTitle
+          value=media.computedTitle
           search=(perform search)
           disabled=mediaReadOnly
           placeholder="Type to tag a show or manga" as |_media|
@@ -66,7 +66,7 @@
           <div {{action (queue (action (mut media) _media) (action (mut spoiler) true))}}>
             <span class="tag-poster">{{lazy-image url=(image _media.posterImage "tiny")}}</span>
             <span class="tag tag-primary">{{capitalize (model-type _media)}}</span>
-            <span>{{_media.canonicalTitle}}</span>
+            <span>{{_media.computedTitle}}</span>
           </div>
         {{/search-typeahead}}
       {{/if}}

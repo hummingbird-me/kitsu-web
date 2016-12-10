@@ -6,7 +6,7 @@
     <div class="stream-item--title-block">
       <div class="author-info">
         <a class="author-name" href={{href-to (concat (model-type media) ".show") media.slug}} onclick={{action "trackEngagement" "click"}}>
-          {{media.canonicalTitle}}
+          {{media.computedTitle}}
         </a>
       </div>
     </div>

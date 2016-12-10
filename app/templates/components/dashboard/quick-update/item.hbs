@@ -4,7 +4,7 @@
       <div class="action-wrapper">
         {{#if (not isCompleted)}}
           <a class="update--entry-title" href={{href-to (concat (model-type entry.media) ".show") entry.media}}>
-            {{entry.media.canonicalTitle}}
+            {{entry.media.computedTitle}}
           </a>
           <button class="button button--quick-update" {{action (perform updateEntryTask)}}>
             {{#if updateEntryTask.isRunning}}
@@ -55,9 +55,9 @@
         {{/if}}
       </div>
     </div>
-    <div class="quick-update-title-block" title={{entry.media.canonicalTitle}}>
+    <div class="quick-update-title-block">
       <h6 class="series-title">
-        {{entry.media.canonicalTitle}}
+        {{entry.media.computedTitle}}
       </h6>
       <small class="series-progress">
         {{episodeText}}
