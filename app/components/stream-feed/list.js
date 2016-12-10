@@ -43,13 +43,15 @@ export default Component.extend({
       let result = feed;
       const filter = get(this, 'filter');
       if (filter === 'media') {
-        result = result.filter(group => (
-          get(group, 'activities.firstObject.foreignId').split(':')[0] === 'LibraryEntry'
-        ));
+        result = result.filter((group) => {
+          const [type] = get(group, 'activities.firstObject.foreignId').split(':');
+          return type === 'LibraryEntry' || type === 'Review';
+        });
       } else if (filter === 'user') {
-        result = result.reject(group => (
-          get(group, 'activities.firstObject.foreignId').split(':')[0] === 'LibraryEntry'
-        ));
+        result = result.reject((group) => {
+          const [type] = get(group, 'activities.firstObject.foreignId').split(':');
+          return type === 'LibraryEntry' || type === 'Review';
+        });
       }
       return result;
     }
