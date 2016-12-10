@@ -43,6 +43,7 @@ export default Component.extend({
   },
 
   _loadImage() {
+    if (get(this, 'isDestroyed') === true) { return; }
     // initial image might be blank and therefore use the defaultValue of the ember data transform.
     let url = get(this, 'url');
     if (DEFAULT.test(url)) {
