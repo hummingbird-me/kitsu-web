@@ -4,17 +4,27 @@
   Once you block someone, that person can no longer tag you, follow you, view your profile, or see your feed posts.
 </div>
 <div class="container">
-  {{!-- TODO(@Vevix)
   <div class="notification-settings--headers row">
     <label class="col-xs-3 col-form-label">Block Users</label>
-    <div class="col-xs-9 text-xs-right">
-      <div class="form-inline">
-        <input type="input" class="form-control" placeholder="Search user to block...">
-        <button type="submit" class="btn btn-primary">Block</button>
+    <div class="form-inline col-xs-9">
+      <div class="col-xs-9">
+        {{#power-select
+          search=(perform searchUsers)
+          selected=currentSelection
+          onchange=(action (mut currentSelection))
+          renderInPlace=true
+          allowClear=true
+          placeholder="Search users to block..."
+          as |item|
+        }}
+          <span>{{item.name}}</span>
+        {{/power-select}}
+      </div>
+      <div class="col-xs-3">
+        <button class="button" disabled={{unless currentSelection "disabled"}} onclick={{action "blockUser"}}>Block</button>
       </div>
     </div>
   </div>
-  --}}
   <div class="form-group row">
     <ul class="blocked-user--list">
       {{#each model as |block|}}
