@@ -14,7 +14,6 @@ import moment from 'moment';
 
 export default Component.extend({
   classNameBindings: ['comment.isNew:new-comment'],
-  isLiked: false,
   isEditing: false,
   isReplying: false,
   isTopLevel: false,
@@ -37,16 +36,6 @@ export default Component.extend({
       return moment(get(this, 'comment.createdAt')).isSame(get(this, 'comment.updatedAt')) === false;
     }
   }).readOnly(),
-
-  getLocalLike: task(function* () {
-    return yield get(this, 'store').query('comment-like', {
-      filter: { comment_id: get(this, 'comment.id'), user_id: get(this, 'session.account.id') }
-    }).then((records) => {
-      const like = get(records, 'firstObject');
-      set(this, 'like', like);
-      set(this, 'isLiked', like !== undefined);
-    }).catch(() => {});
-  }).drop(),
 
   getReplies: task(function* () {
     return yield get(this, 'store').query('comment', {
@@ -85,46 +74,9 @@ export default Component.extend({
     yield get(this, 'comment').save().catch(err => get(this, 'notify').error(errorMessages(err)));
   }).drop(),
 
-  createLike: task(function* () {
-    if (isEmpty(get(this, 'comment.id')) === true) {
-      return;
-    }
-    const like = get(this, 'store').createRecord('comment-like', {
-      comment: get(this, 'comment'),
-      user: get(this, 'session.account')
-    });
-    set(this, 'isLiked', true);
-    invokeAction(this, 'likesCountUpdate', get(this, 'comment.likesCount') + 1);
-    yield like.save().then((record) => {
-      invokeAction(this, 'trackEngagement', 'like', `Comment:${get(this, 'comment.id')}`);
-      set(this, 'like', record);
-    }).catch((err) => {
-      set(this, 'isLiked', false);
-      invokeAction(this, 'likesCountUpdate', get(this, 'comment.likesCount') - 1);
-      get(this, 'notify').error(errorMessages(err));
-    });
-  }).drop(),
-
-  destroyLike: task(function* () {
-    const like = get(this, 'like');
-    set(this, 'isLiked', false);
-    invokeAction(this, 'likesCountUpdate', get(this, 'comment.likesCount') - 1);
-    yield like.destroyRecord().catch(() => {
-      set(this, 'isLiked', true);
-      invokeAction(this, 'likesCountUpdate', get(this, 'comment.likesCount') + 1);
-    });
-  }).drop(),
-
   init() {
     this._super(...arguments);
     set(this, 'replies', []);
-
-    if (get(this, 'session.hasUser') === true) {
-      if (get(this, 'comment.id') !== null) {
-        get(this, 'getLocalLike').perform();
-      }
-    }
-
     if (get(this, 'isTopLevel') === true && get(this, 'comment.repliesCount') > 0) {
       get(this, 'getReplies').perform().then((replies) => {
         const content = replies.toArray().reverse();
@@ -135,18 +87,6 @@ export default Component.extend({
   },
 
   actions: {
-    toggleLike() {
-      if (get(this, 'session.hasUser') === false) {
-        return get(this, 'session.signUpModal')();
-      }
-      const isLiked = get(this, 'isLiked');
-      if (isLiked === true) {
-        get(this, 'destroyLike').perform();
-      } else {
-        get(this, 'createLike').perform();
-      }
-    },
-
     updateComment(component, event, content) {
       if (isEmpty(content) === true) { return; }
       const { shiftKey } = event;
@@ -200,7 +140,7 @@ export default Component.extend({
 
     loadReplies(records, links) {
       const content = get(this, 'replies').toArray();
-      prependObjects(content, records);
+      prependObjects(content, records.toArray().reverse());
       set(this, 'replies', content);
       set(this, 'replies.links', links);
       invokeAction(this, 'trackEngagement', 'click');

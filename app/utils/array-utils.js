@@ -4,7 +4,7 @@ import set from 'ember-metal/set';
 /* eslint-disable import/prefer-default-export */
 export function prependObjects(context, objects) {
   context.beginPropertyChanges();
-  objects.reverse().forEach((object) => {
+  objects.toArray().reverse().forEach((object) => {
     if (context.includes(object) === false) {
       context.insertAt(0, object);
     }

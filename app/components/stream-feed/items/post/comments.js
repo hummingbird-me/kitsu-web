@@ -78,7 +78,7 @@ export default Component.extend({
 
     loadComments(records, links) {
       const content = get(this, 'comments').toArray();
-      prependObjects(content, records);
+      prependObjects(content, records.toArray().reverse());
       set(this, 'comments', content);
       set(this, 'comments.links', links);
       invokeAction(this, 'trackEngagement', 'click');
