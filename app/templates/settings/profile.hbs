@@ -8,11 +8,11 @@
   <div class="form-group row">
     <label class="col-xs-4 col-form-label">Username</label>
     <div class="col-xs-8">
-      {{one-way-text user.name
-        update=(action (mut user.name))
+      {{one-way-text username
+        update=(action (mut username))
         class="form-control"
       }}
-      <small>https://kitsu.io/users/{{user.name}}</small>
+      <small>https://kitsu.io/users/{{username}}</small>
     </div>
   </div>
   {{! email }}
@@ -108,7 +108,7 @@
   </div>
 
   <div class="form-group row">
-    <button class="button button--primary btn-lg btn-block" disabled={{unless user.hasDirtyAttributes "disabled"}} onclick={{perform updateProfile}}>
+    <button class="button button--primary btn-lg btn-block" disabled={{unless isValid "disabled"}} onclick={{perform updateProfile}}>
       {{#if updateProfile.isRunning}}
         {{loading-spinner size="small"}}
       {{else}}
