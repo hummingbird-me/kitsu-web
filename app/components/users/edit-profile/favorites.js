@@ -4,6 +4,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { task, timeout } from 'ember-concurrency';
 import { modelType } from 'client/helpers/model-type';
+import { createArrayWithLinks } from 'client/utils/array-utils';
 import { invokeAction } from 'ember-invoke-action';
 import RSVP from 'rsvp';
 
@@ -48,9 +49,9 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     get(this, 'getAllFavorites').perform().then(([anime, manga, chars]) => {
-      set(this, 'animeFavorites', get(anime, 'value').toArray());
-      set(this, 'mangaFavorites', get(manga, 'value').toArray());
-      set(this, 'characterFavorites', get(chars, 'value').toArray());
+      set(this, 'animeFavorites', createArrayWithLinks(get(anime, 'value')));
+      set(this, 'mangaFavorites', createArrayWithLinks(get(manga, 'value')));
+      set(this, 'characterFavorites', createArrayWithLinks(get(chars, 'value')));
 
       // add to meta records to check for dirty state
       get(anime, 'value').forEach(record => invokeAction(this, 'addRecord', record));

@@ -53,7 +53,11 @@ export default Component.extend({
 
   actions: {
     onClose() {
-      get(this, 'records').filterBy('hasDirtyAttributes').map(record => record.rollbackAttributes());
+      get(this, 'records').filterBy('hasDirtyAttributes').forEach((record) => {
+        if (get(record, 'isNew') === false) {
+          record.rollbackAttributes();
+        }
+      });
       invokeAction(this, 'onClose');
     },
 
