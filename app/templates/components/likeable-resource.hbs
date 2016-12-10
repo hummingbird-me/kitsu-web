@@ -18,7 +18,7 @@
         {{/each}}
         {{#if (gt likesCount 4)}}
           <li class="stream-like-count" {{action "toggleModal"}}>
-            <a>{{likesCount}}</a>
+            <a>{{dec 4 likesCount}}</a>
           </li>
         {{/if}}
       </ul>
