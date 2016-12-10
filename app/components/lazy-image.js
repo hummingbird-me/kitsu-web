@@ -3,6 +3,7 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { assert } from 'ember-metal/utils';
+import { scheduleOnce } from 'ember-runloop';
 
 const DEFAULT = /\/images\/default_\S+/;
 
@@ -20,16 +21,18 @@ export default Component.extend({
     assert('Must pass url to {{lazy-image}}', get(this, 'url') !== undefined);
   },
 
-  didInsertElement() {
+  didReceiveAttrs() {
     this._super(...arguments);
-    if (Ember.testing) {
-      this._loadImage();
-    } else {
-      const el = get(this, 'element');
-      this.clearViewportCallback = get(this, 'viewport').onInViewportOnce(el, () => {
+    scheduleOnce('afterRender', () => {
+      if (Ember.testing) {
         this._loadImage();
-      }, { ratio: get(this, 'ratio') || -1 });
-    }
+      } else {
+        const el = get(this, 'element');
+        this.clearViewportCallback = get(this, 'viewport').onInViewportOnce(el, () => {
+          this._loadImage();
+        }, { ratio: get(this, 'ratio') || -1 });
+      }
+    });
   },
 
   willDestroyElement() {
