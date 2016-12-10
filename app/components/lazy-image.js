@@ -1,7 +1,10 @@
+import Ember from 'ember';
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { assert } from 'ember-metal/utils';
+
+const DEFAULT = /\/images\/default_\S+/;
 
 export default Component.extend({
   attributeBindings: ['alt', 'title'],
@@ -10,7 +13,6 @@ export default Component.extend({
   alt: undefined,
   title: undefined,
   placeholder: undefined,
-
   viewport: service(),
 
   init() {
@@ -20,22 +22,37 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    const el = get(this, 'element');
-    this.clearViewportCallback = get(this, 'viewport').onInViewportOnce(el, () => {
+    if (Ember.testing) {
       this._loadImage();
-    }, { ratio: get(this, 'ratio') || -1 });
+    } else {
+      const el = get(this, 'element');
+      this.clearViewportCallback = get(this, 'viewport').onInViewportOnce(el, () => {
+        this._loadImage();
+      }, { ratio: get(this, 'ratio') || -1 });
+    }
   },
 
   willDestroyElement() {
     this._super(...arguments);
-    this.clearViewportCallback();
+    if (this.clearViewportCallback) {
+      this.clearViewportCallback();
+    }
   },
 
   _loadImage() {
-    this.$().attr('src', get(this, 'url'));
+    // initial image might be blank and therefore use the defaultValue of the ember data transform.
+    let url = get(this, 'url');
+    if (DEFAULT.test(url)) {
+      url = this._getPlaceholder();
+    }
+    this.$().attr('src', url);
     this.$().one('error', () => {
       if (get(this, 'isDestroyed') === true) { return; }
-      this.$().attr('src', get(this, 'placeholder') || '/images/default_poster.jpg');
+      this.$().attr('src', this._getPlaceholder());
     });
+  },
+
+  _getPlaceholder() {
+    return get(this, 'placeholder') || '/images/default_poster.jpg';
   }
 });

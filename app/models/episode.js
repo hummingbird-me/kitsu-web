@@ -9,7 +9,6 @@ export default Base.extend({
   number: attr('number'),
   seasonNumber: attr('number'),
   synopsis: attr('string'),
-  // TODO: We need a empty image for missing episodes
   thumbnail: attr('object', { defaultValue: 'images/default_poster.jpg' }),
   titles: attr('object'),
 
