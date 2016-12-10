@@ -9,6 +9,7 @@ export default Base.extend({
   likesCount: attr('number'),
   progress: attr('number'),
   rating: attr('number'),
+  spoiler: attr('boolean'),
 
   libraryEntry: belongsTo('library-entry'),
   media: belongsTo('media'),

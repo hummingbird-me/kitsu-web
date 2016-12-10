@@ -7,7 +7,6 @@ import { task } from 'ember-concurrency';
 import { assert } from 'ember-metal/utils';
 import { invokeAction } from 'ember-invoke-action';
 import errorMessages from 'client/utils/error-messages';
-import { modelType } from 'client/helpers/model-type';
 import { validator, buildValidations } from 'ember-cp-validations';
 
 const Validations = buildValidations({
@@ -21,19 +20,21 @@ export default Component.extend(Validations, {
   classNames: ['review-modal'],
   content: undefined,
   rating: 0,
+  spoiler: false,
 
   metrics: service(),
   notify: service(),
   session: service(),
   store: service(),
 
-  isValid: computed('validations.isInvalid', 'entry.rating', {
+  isValid: computed('validations.isInvalid', 'entry.rating', 'spoiler', 'content', {
     get() {
       let isValid = get(this, 'validations.isInvalid') === false &&
         get(this, 'rating') > 0;
       isValid = get(this, 'review') === undefined ? isValid : isValid &&
         (get(this, 'content') !== get(this, 'review.content') ||
-          get(this, 'rating') !== get(this, 'review.rating'));
+          get(this, 'rating') !== get(this, 'review.rating') ||
+          get(this, 'spoiler') !== get(this, 'review.spoiler'));
       return isValid;
     }
   }).readOnly(),
@@ -50,15 +51,14 @@ export default Component.extend(Validations, {
     }
     yield invokeAction(this, 'updateEntry', get(this, 'entry'), 'rating', get(this, 'rating'));
     set(review, 'content', get(this, 'content'));
+    set(review, 'spoiler', get(this, 'spoiler'));
     yield review.save()
       .then(() => {
-        set(review, 'rating', get(this, 'entry.rating'));
         this.$('.modal').modal('hide');
         get(this, 'metrics').trackEvent({
           category: 'review',
           action: 'create',
-          label: modelType([get(review, 'media')]),
-          value: get(review, 'media.id')
+          value: get(review, 'id')
         });
       })
       .catch(err => get(this, 'notify').error(errorMessages(err)));
@@ -67,7 +67,6 @@ export default Component.extend(Validations, {
   init() {
     this._super(...arguments);
     const review = get(this, 'review');
-    console.log(review);
     if (review === undefined) {
       assert('Must pass entry and media if review is new to {{media-review}}',
         get(this, 'media') !== undefined && get(this, 'entry') !== undefined);
@@ -75,8 +74,8 @@ export default Component.extend(Validations, {
     } else {
       set(this, 'review', review);
       set(this, 'content', get(review, 'content'));
+      set(this, 'spoiler', get(review, 'spoiler'));
       get(this, 'review.media').then(media => set(this, 'media', media));
-      console.log('fuck');
       get(this, 'review.libraryEntry').then((entry) => {
         set(this, 'entry', entry);
         set(this, 'rating', get(this, 'entry.rating'));

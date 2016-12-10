@@ -42,6 +42,7 @@ export default Component.extend(ClipboardMixin, {
     if (get(this, 'group') !== undefined) {
       set(this, 'review', get(this, 'activity.subject.content') || get(this, 'activity.subject'));
     }
+    set(this, 'isHidden', get(this, 'review.spoiler'));
   },
 
   actions: {
@@ -59,10 +60,12 @@ export default Component.extend(ClipboardMixin, {
 
     updateEntry(entry, property, value) {
       set(entry, property, value);
-      return entry.save().catch((err) => {
-        entry.rollbackAttributes();
-        get(this, 'notify').error(errorMessages(err));
-      });
+      if (get(entry, 'hasDirtyAttributes')) {
+        return entry.save().catch((err) => {
+          entry.rollbackAttributes();
+          get(this, 'notify').error(errorMessages(err));
+        });
+      }
     },
 
     deleteReview() {

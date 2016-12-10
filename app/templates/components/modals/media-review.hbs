@@ -23,6 +23,13 @@
             {{star-rating rating class="review-stars" onClick=(action "updateRating")}}
           </div>
 
+          {{! review spoiler -- @Josh }}
+          <label class="custom-control custom-checkbox">
+            {{one-way-checkbox spoiler update=(action (mut spoiler)) class="custom-control-input"}}
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Spoiler</span>
+          </label>
+
           {{! publish review }}
           <div class="review--cta">
             <button class="button button--primary" disabled={{unless isValid "disabled"}} {{action (perform publish)}}>
