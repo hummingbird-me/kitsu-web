@@ -47,7 +47,9 @@ const QuickUpdateItemComponent = Component.extend({
       let text = get(this, 'i18n').t(`dashboard.quickUpdate.${key}`, { num });
       if (isPresent(get(this, 'entry.nextUnit.content'))) {
         const title = get(this, 'entry.nextUnit.canonicalTitle');
-        text = `${text} - ${title}`;
+        if (isPresent(title)) {
+          text = `${text} - ${title}`;
+        }
       }
       return text;
     }
