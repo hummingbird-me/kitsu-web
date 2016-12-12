@@ -118,7 +118,7 @@ module.exports = function(environment) {
   }
 
   if (process.env.HEROKU_EMBER_APP === 'staging') {
-    ENV.torii.providers['facebook-connect'].appId = '189034391502520';
+    ENV.torii.providers['facebook-connect'].appId = '325314560922421';
     ENV.metricsAdapters[0].config.id = 'UA-37633900-3';
     ENV.metricsAdapters[2].config.production.apiKey = 'ekx6xkn9v9xx';
     ENV.metricsAdapters[2].config.production.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.Loj_VZy_FKQzP3xLpX46xSF9bktOBfqcve8eYjwFmNc';
@@ -128,8 +128,8 @@ module.exports = function(environment) {
 
   if (environment === 'production' && process.env.HEROKU_EMBER_APP !== 'staging') {
     ENV.torii.providers['facebook-connect'].appId = '325314560922421';
-    ENV.stream.realtime.key = '3byr477gj7mj';
-    ENV.stream.realtime.app = '16897';
+    ENV.stream.realtime.key = 'eb6dvmba4ct3';
+    ENV.stream.realtime.app = '18373';
     ENV.metricsAdapters[1].config.appId = 'ca7x05fo';
     ENV.ads.enabled = true;
     ENV.ads.client = 'TODO-HERE';
