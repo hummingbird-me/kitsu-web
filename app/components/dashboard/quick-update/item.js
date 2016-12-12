@@ -48,7 +48,7 @@ const QuickUpdateItemComponent = Component.extend({
       if (isPresent(get(this, 'entry.nextUnit.content'))) {
         const title = get(this, 'entry.nextUnit.canonicalTitle');
         if (isPresent(title)) {
-          text = `${text} - ${title}`;
+          text = `${text} – ${title}`;
         }
       }
       return text;
