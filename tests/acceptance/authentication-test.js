@@ -3,10 +3,17 @@ import moduleForAcceptance from 'client/tests/helpers/module-for-acceptance';
 import { currentSession } from 'client/tests/helpers/ember-simple-auth';
 import testSelector from 'client/tests/helpers/ember-test-selectors';
 import jQuery from 'jquery';
+import sinon from 'sinon';
 
 moduleForAcceptance('Acceptance | Authentication', {
+  beforeEach() {
+    this.sandbox = sinon.sandbox.create();
+    this.notify = this.application.__container__.lookup('service:notify');
+  },
+
   afterEach() {
     jQuery('.modal-backdrop').remove();
+    this.sandbox.restore();
   }
 });
 
@@ -30,6 +37,9 @@ test('can create an account', function(assert) {
 });
 
 test('shows an error when using incorrect details on sign up', function(assert) {
+  this.sandbox.stub(this.notify, 'error', (message) => {
+    assert.equal(message, 'Email is already taken.');
+  });
   server.post('/users', { errors: [{ detail: 'email is already taken.' }] }, 400);
 
   visit('/');
@@ -39,11 +49,7 @@ test('shows an error when using incorrect details on sign up', function(assert) 
   fillIn(testSelector('selector', 'email'), 'bob@acme.com');
   fillIn(testSelector('selector', 'password'), 'password');
   click(testSelector('selector', 'create-account'));
-
-  andThen(() => {
-    const error = find(testSelector('selector', 'error-message')).text().trim();
-    assert.equal(error, 'Email is already taken.');
-  });
+  andThen(() => {});
 });
 
 test('shows validation warnings on input fields', function(assert) {
@@ -100,6 +106,9 @@ test('can sign into an account', function(assert) {
 });
 
 test('shows an error when using incorrect details on sign in', function(assert) {
+  this.sandbox.stub(this.notify, 'error', (message) => {
+    assert.equal(message, 'The provided credentials are invalid.');
+  });
   server.post('http://localhost:4201/api/oauth/token', { error: 'invalid_grant' }, 400);
 
   visit('/');
@@ -107,9 +116,5 @@ test('shows an error when using incorrect details on sign in', function(assert) 
   fillIn(testSelector('selector', 'identification'), 'bob');
   fillIn(testSelector('selector', 'password'), 'not_password');
   click(testSelector('selector', 'sign-in'));
-
-  andThen(() => {
-    const error = find(testSelector('selector', 'error-message')).text().trim();
-    assert.equal(error, 'The provided credentials are invalid.');
-  });
+  andThen(() => {});
 });
