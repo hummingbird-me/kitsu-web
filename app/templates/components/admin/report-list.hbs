@@ -1,0 +1,15 @@
+<thead class="thead-inverse">
+  <tr>
+    <th>User</th>
+    <th>Type</th>
+    <th>Reason</th>
+    <th>Explanation</th>
+    <th>Moderator</th>
+    <th>Actions</th>
+  </tr>
+</thead>
+<tbody>
+  {{#each filteredReports as |report|}}
+    {{admin/report-item report=report tagName="tr"}}
+  {{/each}}
+</tbody>

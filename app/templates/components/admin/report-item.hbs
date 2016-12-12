@@ -1,0 +1,20 @@
+<td>
+  <a href={{href-to "users.index" report.user}}>{{report.user.name}}</a>
+</td>
+<td>{{capitalize (model-type report.naughty)}}</td>
+<td>{{report.reason}}</td>
+<td>{{or report.explanation "No Explanation Provided."}}</td>
+<td>{{or report.moderator.name "Not Set"}}</td>
+<td>
+  <button class="btn btn-primary btn-sm" onclick={{action (toggle "reviewModal" this)}}>
+    Review
+  </button>
+  </td>
+
+{{! report modal }}
+{{#if reviewModal}}
+  {{to-elsewhere named="modal" send=(component "admin/report-modal"
+    report=report
+    onClose=(toggle-action "reviewModal" this)
+  )}}
+{{/if}}

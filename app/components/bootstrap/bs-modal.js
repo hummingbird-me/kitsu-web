@@ -13,7 +13,7 @@ export default Component.extend({
   renderInPlace: false,
 
   label: getter(function() {
-    return `${get(this, 'id')}-label`;
+    return `${get(this, 'id')}Label`;
   }),
 
   didInsertElement() {

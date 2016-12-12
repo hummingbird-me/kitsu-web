@@ -64,7 +64,10 @@ RouterInstance.map(function() {
   });
 
   this.route('admin', function() {
-    this.route('reports');
+    this.route('reports', function() {
+      this.route('latest');
+      this.route('declined');
+    });
   });
 
   this.route('posts', { path: '/posts/:id' });
