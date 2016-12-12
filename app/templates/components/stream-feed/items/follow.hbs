@@ -1,6 +1,26 @@
 {{! @Josh -- Followed Stream Item }}
 <div class="stream-item-wrapper col-sm-12">
-  {{follow.follower.name}}
-  Followed
-  {{follow.followed.name}}
+  <div class="stream-item--title-block">
+    <span class="avatar-block">
+      <a href={{href-to "users.index" follow.follower}} class="author-avatar" onclick={{action "trackEngagement" "click"}}>
+        <img src={{image follow.follower.avatar "medium"}}>
+      </a>
+      <a href={{href-to "users.index" follow.followed}} class="author-avatar recipient-avatar" onclick={{action "trackEngagement" "click"}}>
+        <img src={{image follow.followed.avatar "medium"}}>
+      </a>
+    </span>
+    <div class="author-info">
+      <a class="author-name" href={{href-to "users.index" follow.follower}} onclick={{action "trackEngagement" "click"}}>
+        {{follow.follower.name}}
+      </a>
+      {{user-badge follow.follower}}
+      <span class="recipient-info">
+        <small>followed</small>
+        <a href={{href-to "users.index" follow.followed}} class="author-name" onclick={{action "trackEngagement" "click"}}>
+          {{follow.followed.name}}
+        </a>
+        {{user-badge follow.followed}}
+      </span>
+    </div>
+  </div>
 </div>
