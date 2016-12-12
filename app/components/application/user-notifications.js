@@ -9,6 +9,10 @@ import { prependObjects } from 'client/utils/array-utils';
 import { isPresent } from 'ember-utils';
 import errorMessages from 'client/utils/error-messages';
 
+/**
+ * Refactor each notification item into its own individual component similar to
+ * the stream setup.
+ */
 export default Component.extend({
   router: service('-routing'),
   ajax: service(),
