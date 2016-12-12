@@ -27,7 +27,7 @@ test('it fallsback to the fallback image if src fails to load', function(assert)
 
 test('it loads placeholder if fallback fails to load', function(assert) {
   this.render(hbs`{{lazy-image url="/images/default_poster.png" fallback="/images/fallback.png"}}`);
-  return wait().then(() => {
-    assert.equal(this.$('img').attr('src'), '/images/default_poster.jpg');
-  });
+  return wait().then(() => (
+    wait().then(() => assert.equal(this.$('img').attr('src'), '/images/default_poster.jpg'))
+  ));
 });
