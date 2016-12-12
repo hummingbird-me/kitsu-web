@@ -99,7 +99,10 @@ export default Component.extend({
     this._super(...arguments);
     if (isEmpty(oldAttrs) || get(newAttrs.resource.value, 'id') !== get(oldAttrs.resource.value, 'id')) {
       set(this, 'likes', []);
-      get(this, 'getLikes').perform();
+      set(this, 'isLiked', false);
+      if (get(this, 'likesCount') > 0) {
+        get(this, 'getLikes').perform();
+      }
     }
   },
 

@@ -2,7 +2,7 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import { isEmpty } from 'ember-utils';
+import { isEmpty, isPresent } from 'ember-utils';
 import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
 import { prependObjects } from 'client/utils/array-utils';
@@ -46,18 +46,19 @@ export default Component.extend({
     });
   }).drop(),
 
-  didReceiveAttrs() {
+  didReceiveAttrs({ newAttrs, oldAttrs }) {
     this._super(...arguments);
-    if (get(this, 'postId') === get(this, 'post.id')) {
+    if (isPresent(oldAttrs) && get(newAttrs.post.value, 'id') === get(oldAttrs.post.value, 'id')) {
       return;
     }
-    set(this, 'postId', get(this, 'post.id'));
     set(this, 'comments', []);
-    get(this, 'getComments').perform().then((comments) => {
-      const content = comments.toArray().reverse();
-      set(content, 'links', get(comments, 'links'));
-      set(this, 'comments', content);
-    }).catch(() => {});
+    if (get(this, 'post.topLevelCommentsCount') > 0) {
+      get(this, 'getComments').perform().then((comments) => {
+        const content = comments.toArray().reverse();
+        set(content, 'links', get(comments, 'links'));
+        set(this, 'comments', content);
+      }).catch(() => {});
+    }
   },
 
   actions: {
