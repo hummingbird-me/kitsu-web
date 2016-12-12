@@ -34,3 +34,9 @@ test('it returns the default error message', function(assert) {
   result = errorMessages({});
   assert.equal(result, 'There was an issue with your request, please try again.');
 });
+
+test('it returns the default error message for 500', function(assert) {
+  let result = errorMessages(undefined);
+  result = errorMessages({ errors: [{ detail: 'Internal Server Error' }] });
+  assert.equal(result, 'There was an issue with your request, please try again.');
+});

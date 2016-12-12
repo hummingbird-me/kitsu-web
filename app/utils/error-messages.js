@@ -9,7 +9,8 @@ const lookupTable = {
 };
 
 export default function errorMessages(obj) {
-  let reason = 'There was an issue with your request, please try again.';
+  const defaultMessage = 'There was an issue with your request, please try again.';
+  let reason = defaultMessage;
   if (obj === undefined) {
     return reason;
   }
@@ -19,6 +20,9 @@ export default function errorMessages(obj) {
   if (isPresent(errors)) {
     reason = isEmberArray(errors) ? capitalize(get(errors[0], 'detail') || get(errors[0], 'title')) :
       get(lookupTable, errors);
+  }
+  if (reason === 'Internal Server Error' || reason.charAt(0) === '<') {
+    reason = defaultMessage;
   }
   return reason;
 }
