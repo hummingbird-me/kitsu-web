@@ -9,7 +9,7 @@ export default Base.extend({
   number: attr('number'),
   seasonNumber: attr('number'),
   synopsis: attr('string'),
-  thumbnail: attr('object', { defaultValue: '/images/default_poster.jpg' }),
+  thumbnail: attr('object'),
   titles: attr('object'),
 
   media: belongsTo('media'),

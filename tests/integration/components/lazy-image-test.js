@@ -18,7 +18,16 @@ test('it inserts the default placeholder then the url fails to load', function(a
   });
 });
 
-test('it inserts the placeholder as the src when url is a default image', function(assert) {
-  this.render(hbs`{{lazy-image url="/images/default_poster.png" placeholder="/images/placeholder.png"}}`);
-  assert.equal(this.$('img').attr('src'), '/images/placeholder.png');
+test('it fallsback to the fallback image if src fails to load', function(assert) {
+  this.render(hbs`{{lazy-image url="/images/default_poster.png" fallback="/images/default_poster.jpg"}}`);
+  return wait().then(() => {
+    assert.equal(this.$('img').attr('src'), '/images/default_poster.jpg');
+  });
+});
+
+test('it loads placeholder if fallback fails to load', function(assert) {
+  this.render(hbs`{{lazy-image url="/images/default_poster.png" fallback="/images/fallback.png"}}`);
+  return wait().then(() => {
+    assert.equal(this.$('img').attr('src'), '/images/default_poster.jpg');
+  });
 });
