@@ -16,7 +16,8 @@ export default Route.extend(PaginationMixin, {
       filter: {
         media_type: capitalize(modelType([media])),
         media_id: get(media, 'id')
-      }
+      },
+      sort: '-likes_count'
     });
   },
 

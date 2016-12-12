@@ -3,7 +3,7 @@
     {{! TODO @Josh - Reviews on the media page `/anime/sword-art-online/reviews` }}
     {{#each model as |review|}}
       <div class="col-xs-12">
-        {{stream-feed/items/review review=review}}
+        {{stream-feed/items/review review=review media=media hideImage=true}}
       </div>
     {{/each}}
   </ul>

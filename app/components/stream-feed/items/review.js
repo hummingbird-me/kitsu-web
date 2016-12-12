@@ -42,6 +42,10 @@ export default Component.extend(ClipboardMixin, {
     if (get(this, 'group') !== undefined) {
       set(this, 'review', get(this, 'activity.subject.content') || get(this, 'activity.subject'));
     }
+    // media might already exist in data
+    if (get(this, 'media') === undefined) {
+      set(this, 'media', get(this, 'review.media'));
+    }
     set(this, 'isHidden', get(this, 'review.spoiler'));
   },
 

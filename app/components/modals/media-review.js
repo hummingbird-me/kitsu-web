@@ -27,10 +27,9 @@ export default Component.extend(Validations, {
   session: service(),
   store: service(),
 
-  isValid: computed('validations.isInvalid', 'entry.rating', 'spoiler', 'content', {
+  isValid: computed('validations.isInvalid', 'rating', 'spoiler', 'content', {
     get() {
-      let isValid = get(this, 'validations.isInvalid') === false &&
-        get(this, 'rating') > 0;
+      let isValid = get(this, 'validations.isValid') && get(this, 'rating') > 0;
       isValid = get(this, 'review') === undefined ? isValid : isValid &&
         (get(this, 'content') !== get(this, 'review.content') ||
           get(this, 'rating') !== get(this, 'review.rating') ||
@@ -75,7 +74,9 @@ export default Component.extend(Validations, {
       set(this, 'review', review);
       set(this, 'content', get(review, 'content'));
       set(this, 'spoiler', get(review, 'spoiler'));
-      get(this, 'review.media').then(media => set(this, 'media', media));
+      if (get(this, 'media') === undefined) {
+        get(this, 'review.media').then(media => set(this, 'media', media));
+      }
       get(this, 'review.libraryEntry').then((entry) => {
         set(this, 'entry', entry);
         set(this, 'rating', get(this, 'entry.rating'));

@@ -1,11 +1,13 @@
 {{#if review}}
   <div class="stream-item-wrapper stream-review-wrapper col-sm-12">
     <div class="stream-review row">
-      <div class="stream-item--media col-xs-4 col-sm-3">
-        <a href={{href-to (concat (model-type review.media) ".show") review.media}}>
-          {{lazy-image url=(image review.media.posterImage "large") ratio=-2}}
-        </a>
-      </div>
+      {{#unless hideImage}}
+        <div class="stream-item--media col-xs-4 col-sm-3">
+          <a href={{href-to (concat (model-type media) ".show") media}}>
+            {{lazy-image url=(image media.posterImage "large") ratio=-2}}
+          </a>
+        </div>
+      {{/unless}}
       <div class="col-xs no-padding-left">
         <div class="stream-review-content">
           <header class="author-header">
@@ -19,17 +21,17 @@
           </header>
           <small class="media-heading">
             <h6>
-              <a href={{href-to (concat (model-type review.media) ".show") review.media}}>
-                {{review.media.computedTitle}}
+              <a href={{href-to (concat (model-type media) ".show") media}}>
+                {{media.computedTitle}}
               </a>
               <span class="stream-review-rating">
                 {{star-rating review.rating readOnly=true}}
               </span>
             </h6>
 
-            {{#unless (eq review.progress review.media.unitCount)}}
+            {{#unless (eq review.progress media.unitCount)}}
               <small class="review-media-progress">
-                {{t (concat "reviews.progress." (model-type review.media)) num=review.progress}}
+                {{t (concat "reviews.progress." (model-type media)) num=review.progress}}
               </small>
             {{/unless}}
           </small>
@@ -110,6 +112,7 @@
               {{to-elsewhere named="modal" send=(component "modals/media-review"
                 onClose=(toggle-action "editReview" this)
                 review=review
+                media=media
                 updateEntry=(action "updateEntry")
               )}}
             {{/if}}
