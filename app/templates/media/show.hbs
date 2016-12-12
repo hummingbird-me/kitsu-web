@@ -70,8 +70,10 @@
           {{#if (eq (model-type media) "anime")}}
             {{link-to (t "media.routes.show.nav.episodes") (concat (model-type media) ".show.episodes") class="nav-item nav-link"}}
           {{/if}}
+          {{!-- TODO: Needs Implementing
           {{link-to (t "media.routes.show.nav.cast") (concat (model-type media) ".show.cast") class="nav-item nav-link"}}
           {{link-to (t "media.routes.show.nav.installments") (concat (model-type media) ".show.installments") class="nav-item nav-link"}}
+          --}}
           {{#link-to (concat (model-type media) ".show.reviews") class="nav-item nav-link"}}
             {{t "media.routes.show.nav.reviews"}}
           {{/link-to}}

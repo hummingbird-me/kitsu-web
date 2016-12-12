@@ -40,7 +40,7 @@ RouterInstance.map(function() {
       this.route('show', { path: '/:slug' }, function() {
         this.route('episodes');
         this.route('installments');
-        this.route('cast');
+        // this.route('cast');
         this.route('reviews');
         this.route('quotes');
       });
@@ -58,9 +58,9 @@ RouterInstance.map(function() {
     this.route('profile');
     this.route('password');
     this.route('privacy');
-    this.route('notifications');
+    // this.route('notifications');
     this.route('blocking');
-    this.route('apps');
+    // this.route('apps');
   });
 
   this.route('admin', function() {
