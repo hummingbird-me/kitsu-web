@@ -12,7 +12,7 @@ export default Route.extend(PaginationMixin, {
     const parentRoute = get(this, 'routeName').split('.').slice(0, 2).join('.');
     const media = this.modelFor(parentRoute);
     return get(this, 'store').query('review', {
-      include: 'user',
+      include: 'user,media',
       filter: {
         media_type: capitalize(modelType([media])),
         media_id: get(media, 'id')

@@ -1,8 +1,10 @@
 {{#if model}}
-  <ul class="media-list">
+  <ul class="media-list w-100">
     {{! TODO @Josh - Reviews on the media page `/anime/sword-art-online/reviews` }}
     {{#each model as |review|}}
-      <p>TODO - Placeholder</p>
+      <div class="col-xs-12">
+        {{stream-feed/items/review review=review}}
+      </div>
     {{/each}}
   </ul>
 
@@ -14,6 +16,7 @@
     }}
   </div>
 {{else}}
-  {{! TODO @Josh -- No reviews for this media }}
-  <p>No reviews. [Placeholder]</p>
+  <div class="stream-error-wrapper col-sm-12">
+    {{t "errors.contentEmpty"}}
+  </div>
 {{/if}}
