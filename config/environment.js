@@ -131,7 +131,7 @@ module.exports = function(environment) {
     ENV.stream.realtime.key = 'eb6dvmba4ct3';
     ENV.stream.realtime.app = '18373';
     ENV.metricsAdapters[1].config.appId = 'ca7x05fo';
-    ENV.ads.enabled = true;
+    ENV.ads.enabled = false;
     ENV.ads.client = 'TODO-HERE';
   }
 
