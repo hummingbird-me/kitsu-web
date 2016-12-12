@@ -104,28 +104,29 @@
       {{else}}
         {{#if (lt replies.length comment.repliesCount)}}
           <div class="comment-actions clearfix">
-            <div class="pull-sm-left">
-              {{#paginated-resource/manual
-                model=replies
-                modelName="comment"
-                limit=10
-                offset=replies.length
-                update=(action "loadReplies") as |active|
-              }}
-                {{#if nextLink}}
+            {{#paginated-resource/manual
+              model=replies
+              modelName="comment"
+              limit=10
+              offset=replies.length
+              update=(action "loadReplies") as |nextLink running|
+            }}
+              {{#if nextLink}}
+                {{! action }}
+                <div class="pull-sm-left">
                   {{#if running}}
                     {{loading-spinner size="small"}}
                   {{else}}
-                    <a href="#">Show Previous Comments</a>
+                    <a href="#">Show Previous Replies</a>
                   {{/if}}
-                {{/if}}
-              {{/paginated-resource/manual}}
-            </div>
+                </div>
 
-            {{! Comment count }}
-            <div class="pull-sm-right">
-              {{replies.length}} of {{comment.repliesCount}}
-            </div>
+                {{! Comment count }}
+                <div class="pull-sm-right">
+                  {{replies.length}} of {{comment.repliesCount}}
+                </div>
+              {{/if}}
+            {{/paginated-resource/manual}}
           </div>
         {{/if}}
 
