@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Config from 'client/config/environment';
 
 const {
   Inflector: { inflector }
@@ -9,8 +10,13 @@ export function initialize() {
   inflector.uncountable('manga');
 }
 
-export default {
+const result = {
   name: 'inflections',
-  before: 'ember-cli-mirage',
   initialize
 };
+
+if (Config.environment === 'test') {
+  Object.assign(result, { before: 'ember-cli-mirage' });
+}
+
+export default result;
