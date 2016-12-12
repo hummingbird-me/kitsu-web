@@ -52,10 +52,12 @@
   </div>
 {{else}}
   {{#if isError}}
-    {{! TODO/@Josh -- Case when there is an error loading the data }}
-    <p>Error</p>
+    <div class="stream-error-wrapper m-t-1">
+      {{t "errors.load"}}
+    </div>
   {{else}}
-    {{! TODO/@Josh -- Case when user has no favorites }}
-    <p>You don't have any favorites! add them now!</p>
+    <div class="stream-error-wrapper m-t-1">
+      {{t "errors.contentEmpty"}}
+    </div>
   {{/if}}
 {{/if}}

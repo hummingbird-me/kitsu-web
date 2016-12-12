@@ -25,6 +25,7 @@
             updateNextPage=(action "updateNextPage" "anime")
             type="anime" class="favorite-media-grid row"}}
         {{else}}
+          {{! TODO(@Josh) - Improve look/messages of empty favorites on profile }}
           <span class="favorite-placeholder">
             {{#if (is-self user)}}
               Add some Favorites.

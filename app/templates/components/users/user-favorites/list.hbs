@@ -11,29 +11,15 @@
       </a>
     {{/if}}
   </div>
-{{else}}
-  {{#if isError}}
-    {{! TODO/@Josh -- case where data has an error while loading }}
-    <p>Error</p>
-  {{else}}
-    {{! TODO/@Josh -- style cases when user has no favorites for anime as both the profile owner and guest }}
-    {{#if (is-self user)}}
-      <p>Hey, make some favorites!</p>
-    {{else}}
-      <p>User has no favorites.</p>
-    {{/if}}
-  {{/if}}
 {{/each}}
 
-{{#if items}}
-  <div class="text-xs-center w-100">
-    {{! TODO/@Josh -- load more button }}
-    {{#paginated-resource/manual model=items update=(action "updateNextPage") as |nextLink|}}
-      {{#if nextLink}}
-        <button class="button button--primary">
-          Load More
-        </button>
-      {{/if}}
-    {{/paginated-resource/manual}}
-  </div>
-{{/if}}
+<div class="text-xs-center w-100">
+  {{! TODO/@Josh -- load more button }}
+  {{#paginated-resource/manual model=items update=(action "updateNextPage") as |nextLink|}}
+    {{#if nextLink}}
+      <button class="button button--primary">
+        Load More
+      </button>
+    {{/if}}
+  {{/paginated-resource/manual}}
+</div>
