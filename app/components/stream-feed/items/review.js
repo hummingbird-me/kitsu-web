@@ -14,6 +14,7 @@ export default Component.extend(ClipboardMixin, {
   metrics: service(),
   notify: service(),
   router: service('-routing'),
+  session: service(),
   store: service(),
   host: getter(() => `${location.protocol}//${location.host}`),
 
