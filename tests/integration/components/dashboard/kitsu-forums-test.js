@@ -1,9 +1,19 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import wait from 'ember-test-helpers/wait';
+import Pretender from 'pretender';
+import { jsonFactory as json } from 'client/tests/helpers/json';
 
 moduleForComponent('dashboard/kitsu-forums', 'Integration | Component | dashboard/kitsu-forums', {
-  integration: true
+  integration: true,
+
+  beforeEach() {
+    this.server = new Pretender();
+  },
+
+  afterEach() {
+    this.server.shutdown();
+  }
 });
 
 test('data is handled correctly', function(assert) {
@@ -19,7 +29,7 @@ test('data is handled correctly', function(assert) {
     }
   };
 
-  server.get('https://example.com/test.json', data, 200);
+  this.server.get('https://example.com/test.json', json(200, data), 300);
   this.render(hbs`{{dashboard/kitsu-forums
     endpoint="https://example.com/test.json"
   }}`);
