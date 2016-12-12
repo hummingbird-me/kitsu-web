@@ -105,7 +105,6 @@
         {{#if (lt replies.length comment.repliesCount)}}
           <div class="comment-actions clearfix">
             <div class="pull-sm-left">
-              {{! TODO: i18n }}
               {{#paginated-resource/manual
                 model=replies
                 modelName="comment"
@@ -113,13 +112,18 @@
                 offset=replies.length
                 update=(action "loadReplies") as |active|
               }}
-                <a href="#">Show Previous Replies</a>
+                {{#if nextLink}}
+                  {{#if running}}
+                    {{loading-spinner size="small"}}
+                  {{else}}
+                    <a href="#">Show Previous Comments</a>
+                  {{/if}}
+                {{/if}}
               {{/paginated-resource/manual}}
             </div>
 
             {{! Comment count }}
             <div class="pull-sm-right">
-              {{! TODO: i18n / pad left }}
               {{replies.length}} of {{comment.repliesCount}}
             </div>
           </div>

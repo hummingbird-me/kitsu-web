@@ -7,21 +7,25 @@
       {{#if (lt comments.length post.topLevelCommentsCount)}}
         <div class="comment-actions clearfix">
           <div class="pull-sm-left">
-            {{! TODO: i18n }}
             {{#paginated-resource/manual
               model=comments
               modelName="comment"
               limit=10
               offset=comments.length
-              update=(action "loadComments") as |active|
+              update=(action "loadComments") as |nextLink running|
             }}
-              <a href="#">Show Previous Comments</a>
+              {{#if nextLink}}
+                {{#if running}}
+                  {{loading-spinner size="small"}}
+                {{else}}
+                  <a href="#">Show Previous Comments</a>
+                {{/if}}
+              {{/if}}
             {{/paginated-resource/manual}}
           </div>
 
           {{! Comment count }}
           <div class="pull-sm-right">
-            {{! TODO: i18n / pad left }}
             {{comments.length}} of {{post.topLevelCommentsCount}}
           </div>
         </div>
