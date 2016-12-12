@@ -125,7 +125,7 @@
           resource=post
           likesCount=post.postLikesCount
           likesCountUpdate=(action (mut post.postLikesCount))
-          onCreate=(action "trackEngagement" "like")
+          onCreate=(action "likeCreated")
           showUsers=true
         }}
       </div>

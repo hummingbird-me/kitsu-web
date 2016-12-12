@@ -10,7 +10,7 @@ import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
 import errorMessages from 'client/utils/error-messages';
 import moment from 'moment';
-import { invokeAction } from 'ember-invoke-action';
+import { invoke, invokeAction } from 'ember-invoke-action';
 
 export default Component.extend(ClipboardMixin, {
   classNameBindings: ['post.isNew:new-post', 'isPinnedPost:pinned-post'],
@@ -110,6 +110,11 @@ export default Component.extend(ClipboardMixin, {
     trackEngagement(label, id) {
       const foreignId = typeOf(id) === 'string' ? id : undefined;
       this._streamAnalytics(label, foreignId || `Post:${get(this, 'post.id')}`);
+    },
+
+    likeCreated() {
+      get(this, 'session.account').incrementProperty('likesGivenCount');
+      invoke(this, 'trackEngagement', 'like');
     },
 
     deletePost() {
