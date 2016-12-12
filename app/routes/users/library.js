@@ -38,7 +38,7 @@ export default Route.extend(PaginationMixin, {
     }
 
     Object.assign(options, {
-      include: 'media.genres,user',
+      include: 'media,user',
       filter: {
         user_id: userId,
         media_type: capitalize(media),
