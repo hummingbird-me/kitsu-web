@@ -1,21 +1,8 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'client/tests/helpers/module-for-acceptance';
-import { invalidateSession } from 'client/tests/helpers/ember-simple-auth';
-import Pretender from 'pretender';
-import { jsonFactory as json } from 'client/tests/helpers/json';
+import { authenticateSession, invalidateSession } from 'client/tests/helpers/ember-simple-auth';
 
-moduleForAcceptance('Acceptance | Routing', {
-  beforeEach() {
-    this.server = new Pretender(function() {
-      this.get('https://forums.hummingbird.me/c/industry-news.json', json(200, { data: [] }));
-      this.get('/api/edge/feeds/global/global', json(200, { data: [] }));
-    });
-  },
-
-  afterEach() {
-    this.server.shutdown();
-  }
-});
+moduleForAcceptance('Acceptance | Routing');
 
 test('visiting `/dashboard` redirects to `/`', function(assert) {
   visit('/dashboard');
@@ -25,6 +12,31 @@ test('visiting `/dashboard` redirects to `/`', function(assert) {
 test('visiting `/` works when unauthenticated', function(assert) {
   invalidateSession(this.application);
   visit('/');
+  andThen(() => assert.equal(currentURL(), '/'));
+});
+
+test('visiting `/admin` redirects when unauthenticated', function(assert) {
+  invalidateSession(this.application);
+  visit('/admin');
+  andThen(() => assert.equal(currentURL(), '/'));
+});
+
+test('visiting `/settings` when unauthenticated redirects', function(assert) {
+  invalidateSession(this.application);
+  visit('/settings');
+  andThen(() => assert.equal(currentURL(), '/'));
+});
+
+test('visiting `/notifications` when unauthenticated redirects', function(assert) {
+  invalidateSession(this.application);
+  visit('/notifications');
+  andThen(() => assert.equal(currentURL(), '/'));
+});
+
+test('visiting /password-reset redirects when authenticated', function(assert) {
+  server.create('user');
+  authenticateSession(this.application);
+  visit('/password-reset');
   andThen(() => assert.equal(currentURL(), '/'));
 });
 

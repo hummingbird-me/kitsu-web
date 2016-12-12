@@ -1,4 +1,3 @@
-
 import { splitStreamId } from 'client/helpers/split-stream-id';
 import { module, test } from 'qunit';
 

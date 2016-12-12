@@ -1,4 +1,3 @@
-
 import { truncateText } from 'client/helpers/truncate-text';
 import { module, test } from 'qunit';
 

@@ -2,31 +2,11 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'client/tests/helpers/module-for-acceptance';
 import { currentSession } from 'client/tests/helpers/ember-simple-auth';
 import testSelector from 'client/tests/helpers/ember-test-selectors';
-import Pretender from 'pretender';
 import jQuery from 'jquery';
-import JaQuery from 'client/tests/ember-ja-query';
-import {
-  arrayResponse as usersResponse,
-  objectResponse as singleUser
-} from 'client/tests/responses/user';
-import tokenResponse from 'client/tests/responses/token';
-import { jsonFactory as json } from 'client/tests/helpers/json';
 
 moduleForAcceptance('Acceptance | Authentication', {
-  beforeEach() {
-    this.server = new Pretender(function() {
-      this.get('https://forums.hummingbird.me/c/industry-news.json', json(200, { data: [] }));
-      this.get('/api/edge/feeds/notifications/1', json(200, { data: [] }));
-      this.get('/api/edge/feeds/global/global', json(200, { data: [] }));
-      this.get('/api/edge/feeds/timeline/1', json(200, { data: [] }));
-      this.post('/api/edge/users', json(201, new JaQuery(singleUser).unwrap()));
-      this.get('/api/edge/users', json(200, new JaQuery(usersResponse).unwrap()));
-    });
-  },
-
   afterEach() {
     jQuery('.modal-backdrop').remove();
-    this.server.shutdown();
   }
 });
 
@@ -34,9 +14,6 @@ moduleForAcceptance('Acceptance | Authentication', {
  * Sign Up Tests
  */
 test('can create an account', function(assert) {
-  this.server.post('/api/oauth/token', json(201, tokenResponse));
-  this.server.get('/api/edge/library-entries', json(200, { data: [] }));
-
   visit('/');
   click(testSelector('selector', 'sign-up-header'));
   click(testSelector('selector', 'sign-up-email'));
@@ -48,12 +25,12 @@ test('can create an account', function(assert) {
   andThen(() => {
     const session = currentSession(this.application);
     assert.ok(session.get('isAuthenticated'));
-    assert.equal(session.get('account.name'), 'bob');
+    assert.equal(server.db.users[0].email, 'bob@acme.com');
   });
 });
 
 test('shows an error when using incorrect details on sign up', function(assert) {
-  this.server.post('/api/edge/users', json(400, { errors: [{ detail: 'email is already taken.' }] }));
+  server.post('/users', { errors: [{ detail: 'email is already taken.' }] }, 400);
 
   visit('/');
   click(testSelector('selector', 'sign-up-header'));
@@ -108,8 +85,7 @@ test('shows strength of password', function(assert) {
  * Sign In Tests
  */
 test('can sign into an account', function(assert) {
-  this.server.post('/api/oauth/token', json(200, tokenResponse));
-  this.server.get('/api/edge/library-entries', json(200, { data: [] }));
+  server.create('user', { name: 'bob', password: 'password' });
 
   visit('/');
   click(testSelector('selector', 'sign-in-header'));
@@ -124,7 +100,7 @@ test('can sign into an account', function(assert) {
 });
 
 test('shows an error when using incorrect details on sign in', function(assert) {
-  this.server.post('/api/oauth/token', json(400, { error: 'invalid_grant' }));
+  server.post('http://localhost:4201/api/oauth/token', { error: 'invalid_grant' }, 400);
 
   visit('/');
   click(testSelector('selector', 'sign-in-header'));

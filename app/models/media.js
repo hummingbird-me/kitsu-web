@@ -24,7 +24,6 @@ export default Base.extend({
   genres: hasMany('genre'),
   castings: hasMany('casting'),
   installments: hasMany('installment'),
-  mappings: hasMany('mapping'),
   reviews: hasMany('review'),
 
   mediaType: or('showType', 'mangaType'),

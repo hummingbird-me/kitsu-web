@@ -9,6 +9,10 @@ export default Route.extend(DataErrorMixin, {
 
   beforeModel() {
     const user = get(this, 'session.account');
+    if (user === undefined) {
+      return this.transitionTo('dashboard');
+    }
+
     return new RSVP.Promise((resolve) => {
       get(user, 'userRoles').then(roles => resolve(roles));
     }).then(roles => (

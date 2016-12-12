@@ -1,5 +1,5 @@
 {{#if includeAll}}
-  <li class={{if (is-empty selected) "active"}} {{action "clear"}}>
+  <li class={{if (is-empty selected) "active"}} aria-label="All" {{action "clear"}}>
     {{yield "All"}}
   </li>
 {{/if}}
