@@ -3,7 +3,7 @@
     {{#each model as |episode|}}
       <li class="media--episode-block col-md-4 col-sm-2">
         <div class="thumbnail-wrapper">
-          {{lazy-image url=(image episode.thumbnail) ratio=-2}}
+          {{lazy-image url=(image episode.thumbnail)}}
         </div>
         <div class="thumbnail-description">
           <h6>{{t "media.routes.show.episodes.episode"}} {{episode.number}}</h6>
@@ -14,7 +14,16 @@
       </li>
     {{/each}}
   </ul>
+
+  <div class="text-xs-center w-100">
+    {{paginated-resource/infinite
+      model=model
+      update=(route-action "updateNextPage")
+      loadingSize="large"
+    }}
+  </div>
 {{else}}
-  {{! TODO - @josh - empty state for episodes }}
-  <p>no episodes.</p>
+  <div class="stream-error-wrapper col-sm-12">
+    {{t "errors.contentEmpty"}}
+  </div>
 {{/if}}
