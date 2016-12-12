@@ -1,18 +1,17 @@
 import Component from 'ember-component';
 import get, { getProperties } from 'ember-metal/get';
-import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { task, taskGroup } from 'ember-concurrency';
-import errorMessage from 'client/utils/error-messages';
+import errorMessages from 'client/utils/error-messages';
 import { invokeAction } from 'ember-invoke-action';
 import { underscore } from 'ember-string';
 
 export default Component.extend({
   identification: undefined,
   password: undefined,
-  errorMessage: undefined,
 
   facebook: service(),
+  notify: service(),
   router: service('-routing'),
   session: service(),
   authentication: taskGroup().drop(),
@@ -22,7 +21,7 @@ export default Component.extend({
     yield get(this, 'session')
       .authenticateWithOAuth2(identification, password)
       .then(() => invokeAction(this, 'close'))
-      .catch(err => set(this, 'errorMessage', errorMessage(err)));
+      .catch(err => get(this, 'notify').error(errorMessages(err)));
   }).group('authentication'),
 
   loginWithFacebook: task(function* () {
@@ -34,9 +33,7 @@ export default Component.extend({
           get(this, 'facebook').getUserData().then((response) => {
             const data = { ...response, name: underscore(get(response, 'name')) };
             invokeAction(this, 'changeComponent', 'sign-up', data);
-          }).catch((err) => {
-            set(this, 'errorMessage', errorMessage(err));
-          });
+          }).catch(err => get(this, 'notify').error(errorMessages(err)));
         }
       });
   }).group('authentication'),

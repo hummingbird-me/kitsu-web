@@ -5,15 +5,14 @@ import set, { setProperties } from 'ember-metal/set';
 import { task } from 'ember-concurrency';
 import computed, { and } from 'ember-computed';
 import { isPresent } from 'ember-utils';
-import errorMessage from 'client/utils/error-messages';
+import errorMessages from 'client/utils/error-messages';
 import strength from 'password-strength';
 import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
-  errorMessage: '',
-
   i18n: service(),
   metrics: service(),
+  notify: service(),
   store: service(),
   session: service(),
 
@@ -76,7 +75,7 @@ export default Component.extend({
             set(user, 'password', undefined);
             invokeAction(this, 'changeComponent', 'import-select');
           })
-          .catch(err => set(this, 'errorMessage', errorMessage(err)));
+          .catch(err => get(this, 'notify').error(errorMessages(err)));
         const metrics = {
           category: 'account',
           action: 'create',
@@ -87,7 +86,7 @@ export default Component.extend({
         }
         get(this, 'metrics').trackEvent(metrics);
       })
-      .catch(err => set(this, 'errorMessage', errorMessage(err)));
+      .catch(err => get(this, 'notify').error(errorMessages(err)));
   }).drop(),
 
   actions: {

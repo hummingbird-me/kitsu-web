@@ -1,6 +1,5 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
-import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
@@ -8,10 +7,9 @@ import { underscore } from 'ember-string';
 import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
-  errorMessage: undefined,
-
   i18n: service(),
   facebook: service(),
+  notify: service(),
   session: service(),
 
   authenticateWithFacebook: task(function* () {
@@ -23,7 +21,7 @@ export default Component.extend({
           get(this, 'facebook').getUserData().then((response) => {
             const data = { ...response, name: underscore(get(response, 'name')) };
             invokeAction(this, 'changeComponent', 'sign-up', data);
-          }).catch(err => set(this, 'errorMessage', errorMessages(err)));
+          }).catch(err => get(this, 'notify').error(errorMessages(err)));
         }
       });
   }).drop(),
