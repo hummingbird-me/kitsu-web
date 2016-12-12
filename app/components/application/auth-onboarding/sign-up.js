@@ -4,6 +4,7 @@ import get, { getProperties } from 'ember-metal/get';
 import set, { setProperties } from 'ember-metal/set';
 import { task } from 'ember-concurrency';
 import computed, { and } from 'ember-computed';
+import { isPresent } from 'ember-utils';
 import errorMessage from 'client/utils/error-messages';
 import strength from 'password-strength';
 import { invokeAction } from 'ember-invoke-action';
@@ -12,6 +13,7 @@ export default Component.extend({
   errorMessage: '',
 
   i18n: service(),
+  metrics: service(),
   store: service(),
   session: service(),
 
@@ -75,6 +77,15 @@ export default Component.extend({
             invokeAction(this, 'changeComponent', 'import-select');
           })
           .catch(err => set(this, 'errorMessage', errorMessage(err)));
+        const metrics = {
+          category: 'account',
+          action: 'create',
+          value: get(this, 'user.id')
+        };
+        if (isPresent(get(user, 'facebookId'))) {
+          metrics.label = 'facebook';
+        }
+        get(this, 'metrics').trackEvent(metrics);
       })
       .catch(err => set(this, 'errorMessage', errorMessage(err)));
   }).drop(),
