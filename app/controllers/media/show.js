@@ -38,7 +38,7 @@ export default Controller.extend({
 
   coverImageStyle: computed('media.coverImage', {
     get() {
-      const coverImage = image(get(this, 'media.coverImage'), 'large');
+      const coverImage = image(get(this, 'media.coverImage'));
       return `background-image: url("${coverImage}")`.htmlSafe();
     }
   }).readOnly(),
