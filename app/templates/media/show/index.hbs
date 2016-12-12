@@ -8,19 +8,18 @@
 </section>
 
 {{! Synopsis }}
-<section class="media-synopsis">
+<section class="media-synopsis m-b-1">
   <h5>Synopsis</h5>
   <p>{{media.synopsis}}</p>
 </section>
 
 {{! Reviews }}
 {{#if reviews}}
-  <section>
+  <section class="m-b-1">
     <h5>Popular Reviews</h5>
-    <ul class="media-list">
-      {{! TODO: @Josh - 2x Popular Reviews - `/anime/sword-art-online` }}
+    <ul class="media-list w-100">
       {{#each reviews as |review|}}
-        <p>TODO - Placeholder</p>
+        {{stream-feed/items/review review=review media=media hideImage=true}}
       {{/each}}
     </ul>
   </section>
