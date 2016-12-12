@@ -3,6 +3,7 @@ import { task } from 'ember-concurrency';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import computed from 'ember-computed';
+import { isPresent } from 'ember-utils';
 import service from 'ember-service/inject';
 import getter from 'client/utils/getter';
 import { modelType } from 'client/helpers/model-type';
@@ -39,13 +40,16 @@ const QuickUpdateItemComponent = Component.extend({
     }
   }).readOnly(),
 
-  episodeText: computed('nextProgress', {
+  episodeText: computed('nextProgress', 'entry.nextUnit.canonicalTitle', {
     get() {
       const num = get(this, 'nextProgress');
       const key = get(this, 'unitType');
-      const start = get(this, 'i18n').t(`dashboard.quickUpdate.${key}`, { num });
-      // TODO: If we have the episode data, then append the `- Episode Title`.
-      return start;
+      let text = get(this, 'i18n').t(`dashboard.quickUpdate.${key}`, { num });
+      if (isPresent(get(this, 'entry.nextUnit.content'))) {
+        const title = get(this, 'entry.nextUnit.canonicalTitle');
+        text = `${text} - ${title}`;
+      }
+      return text;
     }
   }).readOnly(),
 
