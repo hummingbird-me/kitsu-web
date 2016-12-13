@@ -65,8 +65,8 @@ export default Component.extend({
         // activity
         'media,actor,unit,subject,target',
         // posts (and comment system)
-        'target.user.user_roles.role,target.target_user.user_roles.role,target.spoiled_unit,target.media',
-        'subject.user.user_roles.role,subject.target_user.user_roles.role,subject.spoiled_unit,subject.media',
+        'target.user,target.target_user,target.spoiled_unit,target.media',
+        'subject.user,subject.target_user,subject.spoiled_unit,subject.media',
         // library-entry
         'subject.media',
         // follow
