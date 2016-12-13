@@ -61,6 +61,8 @@ const QuickUpdateItemComponent = Component.extend({
 
     if (get(this, 'canComplete') === true) {
       set(entry, 'status', 'completed');
+      // load in review
+      yield get(entry, 'review');
     }
     if (get(this, 'nextProgress') !== progress) {
       set(entry, 'progress', progress + 1);

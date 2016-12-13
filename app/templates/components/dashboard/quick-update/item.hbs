@@ -31,11 +31,25 @@
             }}
           </div>
 
-          <button class="button button--quick-update" onclick={{action (toggle "reviewModal" this)}}>
-            Write Review
-          </button>
-          {{#if reviewModal}}
-            {{#unless (and entry.review (not entry.review.isNew))}}
+          {{#if (and entry.review.content (not entry.review.isNew))}}
+            <button class="button button--quick-update" onclick={{action (toggle "editReviewModal" this)}}>
+              Edit Review
+            </button>
+            {{#if editReviewModal}}
+              {{to-elsewhere named="modal" send=(component "modals/media-review"
+                modalId="review-modal"
+                onClose=(toggle-action "editReviewModal" this)
+                media=entry.media
+                entry=entry
+                review=entry.review.content
+                updateEntry=updateEntry
+              )}}
+            {{/if}}
+          {{else}}
+            <button class="button button--quick-update" onclick={{action (toggle "reviewModal" this)}}>
+              Write Review
+            </button>
+            {{#if reviewModal}}
               {{to-elsewhere named="modal" send=(component "modals/media-review"
                 modalId="review-modal"
                 onClose=(toggle-action "reviewModal" this)
@@ -43,14 +57,7 @@
                 entry=entry
                 updateEntry=updateEntry
               )}}
-            {{else}}
-              {{to-elsewhere named="modal" send=(component "modals/media-review"
-                modalId="review-modal"
-                onClose=(toggle-action "reviewModal" this)
-                review=entry.review.content
-                updateEntry=updateEntry
-              )}}
-            {{/unless}}
+            {{/if}}
           {{/if}}
         {{/if}}
       </div>

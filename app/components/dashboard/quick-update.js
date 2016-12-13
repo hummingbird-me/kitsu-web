@@ -33,7 +33,7 @@ export default Component.extend({
   getEntriesTask: task(function* () {
     const type = get(this, 'filter') === 'all' ? 'Anime,Manga' : capitalize(get(this, 'filter'));
     return yield get(this, 'store').query('library-entry', {
-      include: 'media,review,nextUnit',
+      include: 'media,nextUnit',
       filter: {
         media_type: type,
         user_id: get(this, 'session.account.id'),

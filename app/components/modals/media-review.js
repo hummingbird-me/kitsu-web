@@ -5,6 +5,7 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 import { assert } from 'ember-metal/utils';
+import { isEmpty } from 'ember-utils';
 import { invokeAction } from 'ember-invoke-action';
 import errorMessages from 'client/utils/error-messages';
 import { validator, buildValidations } from 'ember-cp-validations';
@@ -40,7 +41,7 @@ export default Component.extend(Validations, {
 
   publish: task(function* () {
     let review = get(this, 'review');
-    if (review === undefined) {
+    if (isEmpty(review)) {
       review = get(this, 'store').createRecord('review', {
         libraryEntry: get(this, 'entry'),
         media: get(this, 'media'),
@@ -51,16 +52,14 @@ export default Component.extend(Validations, {
     yield invokeAction(this, 'updateEntry', get(this, 'entry'), 'rating', get(this, 'rating'));
     set(review, 'content', get(this, 'content'));
     set(review, 'spoiler', get(this, 'spoiler'));
-    yield review.save()
-      .then(() => {
-        this.$('.modal').modal('hide');
-        get(this, 'metrics').trackEvent({
-          category: 'review',
-          action: 'create',
-          value: get(review, 'id')
-        });
-      })
-      .catch(err => get(this, 'notify').error(errorMessages(err)));
+    yield review.save().then(() => {
+      this.$('.modal').modal('hide');
+      get(this, 'metrics').trackEvent({
+        category: 'review',
+        action: 'create',
+        value: get(review, 'id')
+      });
+    }).catch(err => get(this, 'notify').error(errorMessages(err)));
   }).drop(),
 
   init() {
@@ -77,10 +76,14 @@ export default Component.extend(Validations, {
       if (get(this, 'media') === undefined) {
         get(this, 'review.media').then(media => set(this, 'media', media));
       }
-      get(this, 'review.libraryEntry').then((entry) => {
-        set(this, 'entry', entry);
+      if (get(this, 'entry') === undefined) {
+        get(this, 'review.libraryEntry').then((entry) => {
+          set(this, 'entry', entry);
+          set(this, 'rating', get(this, 'entry.rating'));
+        });
+      } else {
         set(this, 'rating', get(this, 'entry.rating'));
-      });
+      }
     }
   },
 
