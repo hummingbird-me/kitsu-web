@@ -80,6 +80,7 @@ export default Base.extend(Validations, {
   sfwFilter: attr('boolean'),
   shareToGlobal: attr('boolean'),
   timeZone: attr('string'),
+  title: attr('string'),
   titleLanguagePreference: attr('string', { defaultValue: 'canonical' }),
   waifuOrHusbando: attr('string'),
   website: attr('string'),
