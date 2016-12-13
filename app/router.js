@@ -58,6 +58,7 @@ RouterInstance.map(function() {
     this.route('profile');
     this.route('password');
     this.route('privacy');
+    this.route('imports');
     // this.route('notifications');
     this.route('blocking');
     // this.route('apps');

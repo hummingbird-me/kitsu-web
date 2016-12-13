@@ -16,7 +16,7 @@ export default Component.extend({
 
   createImport: task(function* () {
     const list = get(this, 'store').createRecord('list-import', {
-      strategy: 1, // obliterate
+      strategy: 'obliterate',
       inputText: get(this, 'username'),
       kind: `ListImport::${classify(get(this, 'siteName'))}`,
       user: get(this, 'session.account')
