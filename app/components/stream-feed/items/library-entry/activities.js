@@ -47,8 +47,6 @@ export default Component.extend({
         return `${verb}_${get(activity, 'progress')}`;
       case 'rated':
         return `${verb}_${get(activity, 'rating')}`;
-      case 'reviewed':
-        return verb;
       default:
         throw new Error('Unsupported activity.');
     }
