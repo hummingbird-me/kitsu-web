@@ -7,9 +7,6 @@ export default Route.extend(PaginationMixin, {
   session: service(),
 
   model() {
-    return get(this, 'store').query('block', {
-      include: 'blocked',
-      filter: { user: get(this, 'session.account.id') }
-    });
+    return get(this, 'store').findAll('block', { include: 'blocked' });
   }
 });
