@@ -14,6 +14,7 @@ export default {
       following: 'Followed by {{user}}'
     },
     posts: 'Post by {{user}}',
+    comments: 'Comment by {{user}}',
     reviews: 'Review by {{user}}',
     notifications: 'Notifications',
     admin: 'Admin'
@@ -348,6 +349,6 @@ export default {
       }
     },
     load: 'There was an issue loading the content',
-    contentEmpty: 'There doesn\'t seem to be anything here'
+    contentEmpty: 'Hmm, there doesn\'t seem to be anything here yet.'
   }
 };

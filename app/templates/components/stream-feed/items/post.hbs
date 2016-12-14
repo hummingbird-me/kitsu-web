@@ -1,7 +1,9 @@
 {{! We have to check `post` here due to Stream & development environments }}
 {{#if post}}
   <div class="stream-item-wrapper col-sm-12">
+    {{! Post Header }}
     <div class="stream-item--title-block">
+      {{! Pinned Post Indicator }}
       {{#if isPinnedPost}}
         <span class="pinned-indicator pull-xs-right">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
@@ -10,6 +12,8 @@
           Pinned Post
         </span>
       {{/if}}
+
+      {{! Avatar(s) }}
       <span class="avatar-block">
         <a href={{href-to "users.index" post.user}} class="author-avatar" onclick={{action "trackEngagement" "click"}}>
           <img src={{image post.user.avatar "medium"}}>
@@ -22,6 +26,8 @@
           {{/unless}}
         {{/if}}
       </span>
+
+      {{! Author(s) }}
       <div class="author-info">
         <a class="author-name" href={{href-to "users.index" post.user}} onclick={{action "trackEngagement" "click"}}>
           {{post.user.name}}
@@ -51,6 +57,7 @@
       </div>
     </div>
 
+    {{! Post Content }}
     <div class="stream-content">
       {{#if isHidden}}
         {{#if (and post.spoiler post.nsfw)}}
@@ -92,7 +99,7 @@
         {{text-clipper post.contentFormatted length=480 options=(hash html=true imageWeight=260)}}
       {{/if}}
 
-      {{! media tag }}
+      {{! Tagged Media  }}
       {{#if post.media}}
         <div class="tagged-media--wrapper">
           <div class="tagged-media row">
@@ -107,7 +114,7 @@
                   </a>
                   <small class="author-secondary">
                     <div class="media-tag-synopsis">
-                      {{text-clipper post.media.synopsis length=150}}
+                      {{truncate post.media.length 150}}
                     </div>
                   </small>
                 </div>
@@ -118,9 +125,9 @@
       {{/if}}
     </div>
 
-    {{! post likes }}
-    {{#if viewportEntered}}
-      <div class="stream-item-activity">
+    {{! Post Likes -- Don't load until we have entered viewport }}
+    <div class="stream-item-activity">
+      {{#if viewportEntered}}
         {{likeable-resource
           resource=post
           likesCount=post.postLikesCount
@@ -128,11 +135,12 @@
           onCreate=(action "likeCreated")
           showUsers=true
         }}
-      </div>
-    {{/if}}
+      {{/if}}
+    </div>
 
-    {{! post actions }}
+    {{! Post Actions }}
     <div class="stream-item-options">
+      {{! Share Links }}
       <a href={{tweetLink}} target="_blank" {{action "trackEngagement" "click" preventDefault=false}}>
         {{svg-jar "l-twitter"}}
         Tweet
@@ -141,11 +149,14 @@
         {{svg-jar "l-facebook"}}
         Share
       </a>
+
+      {{! Dropdown }}
       <span class="more-wrapper">
         <a href="#" class="more-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{svg-jar "more"}}
         </a>
         <div class="dropdown-menu dropdown-menu-right">
+          {{! Copy Permalink }}
           <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "posts" post.id)}} {{action "trackEngagement" "click"}}>
             Copy Link to Post
           </a>
@@ -224,11 +235,12 @@
     </div>
   </div>
 
-  {{! comments }}
+  {{! Post Comments }}
   {{#unless isHidden}}
     {{#if viewportEntered}}
       {{stream-feed/items/post/comments
         post=post
+        comment=comment
         readOnly=readOnly
         countUpdate=(action (mut post.topLevelCommentsCount))
         trackEngagement=(action "trackEngagement")

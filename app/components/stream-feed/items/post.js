@@ -22,7 +22,6 @@ export default Component.extend(ClipboardMixin, {
   store: service(),
   metrics: service(),
   viewport: service(),
-
   host: getter(() => `${location.protocol}//${location.host}`),
 
   activity: getter(function() {
