@@ -8,7 +8,10 @@ export default Route.extend(DataErrorMixin, {
   metrics: service(),
 
   model({ id }) {
-    return get(this, 'store').findRecord('post', id, { include: 'user,targetUser,media' });
+    return get(this, 'store').findRecord('post', id, {
+      include: 'user,targetUser,media',
+      reload: true
+    });
   },
 
   afterModel(model) {

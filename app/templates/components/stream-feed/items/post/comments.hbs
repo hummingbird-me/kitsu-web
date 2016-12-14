@@ -1,9 +1,18 @@
 {{#if post.topLevelCommentsCount}}
-    {{#if getComments.isRunning}}
-      <div class="p-t-1 p-b-1 text-xs-center">
-        {{loading-spinner size="small"}}
+  {{#if getComments.isRunning}}
+    <div class="p-t-1 p-b-1 text-xs-center">
+      {{loading-spinner size="small"}}
+    </div>
+  {{else}}
+    {{#if comment}}
+      {{! Viewing single comment }}
+      <div class="comment-actions clearfix">
+        <div class="pull-sm-left">
+          <a href={{href-to "posts" post}}>View all comments</a>
+        </div>
       </div>
     {{else}}
+      {{! Comment Pagination }}
       {{#if (lt comments.length post.topLevelCommentsCount)}}
         <div class="comment-actions clearfix">
           {{#paginated-resource/manual
@@ -30,25 +39,28 @@
           {{/paginated-resource/manual}}
         </div>
       {{/if}}
-
-      <ul class="media-list">
-        {{#each comments as |comment|}}
-          {{stream-feed/items/post/comment
-            isTopLevel=true
-            comment=comment
-            post=post
-            readOnly=readOnly
-            onDelete=(action "deletedComment")
-            likesCountUpdate=(action (mut comment.likesCount))
-            replyCountUpdate=(action (mut comment.repliesCount))
-            trackEngagement=(action "trackEngagement")
-            tagName="li"
-            class="media new-comment"}} {{! HACK: Until we have transitions }}
-        {{/each}}
-      </ul>
     {{/if}}
+
+    {{! List of comments }}
+    <ul class="media-list">
+      {{#each comments as |comment|}}
+        {{stream-feed/items/post/comment
+          isTopLevel=true
+          comment=comment
+          post=post
+          readOnly=readOnly
+          onDelete=(action "deletedComment")
+          likesCountUpdate=(action (mut comment.likesCount))
+          replyCountUpdate=(action (mut comment.repliesCount))
+          trackEngagement=(action "trackEngagement")
+          tagName="li"
+          class="media new-comment"}} {{! HACK: Until we have transitions }}
+      {{/each}}
+    </ul>
+  {{/if}}
 {{/if}}
 
+{{! Comment Box }}
 {{#unless getComments.isRunning}}
   {{#if (not readOnly)}}
     <div class="add-comment-wrapper">

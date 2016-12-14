@@ -47,17 +47,17 @@ export default Component.extend({
           break;
         }
         case 'Comment': {
-          if (isPresent(get(activity, 'target.content'))) {
-            return { route: 'posts', model: get(activity, 'target.id') };
+          if (isPresent(modelId)) {
+            return { route: 'comments', model: modelId };
           }
           break;
         }
         case 'PostLike':
         case 'CommentLike': {
           if (isPresent(get(activity, 'target.content'))) {
-            let id = get(activity, 'target.id');
+            const id = get(activity, 'target.id');
             if (modelType === 'CommentLike') {
-              id = get(activity, 'target.post.id');
+              return { route: 'comments', model: id };
             }
             return { route: 'posts', model: id };
           }

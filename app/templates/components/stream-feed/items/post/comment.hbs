@@ -46,12 +46,14 @@
       </small>
 
       {{! comment timestamp }}
-      <small class="comment-time">
-        {{moment-from-now comment.createdAt interval=60000}}
-        {{#if commentEdited}}
-          &middot; edited {{moment-from-now comment.updatedAt interval=60000}}
-        {{/if}}
-      </small>
+      <a href={{href-to "comments" comment.id}}>
+        <small class="comment-time">
+          {{moment-from-now comment.createdAt interval=60000}}
+          {{#if commentEdited}}
+            &middot; edited {{moment-from-now comment.updatedAt interval=60000}}
+          {{/if}}
+        </small>
+      </a>
 
       {{! more dropdown }}
       <span class="more-wrapper">
@@ -102,6 +104,7 @@
           {{loading-spinner size="small"}}
         </div>
       {{else}}
+        {{! Comment Pagination }}
         {{#if (lt replies.length comment.repliesCount)}}
           <div class="comment-actions clearfix">
             {{#paginated-resource/manual
@@ -130,11 +133,12 @@
           </div>
         {{/if}}
 
-        {{! TODO/@Josh -- Replies list }}
+        {{! Replies List }}
         {{#if (gt comment.repliesCount 0)}}
           <ul class="media-list reply-list">
             {{#each replies as |reply|}}
               {{stream-feed/items/post/comment
+                isTopLevel=false
                 comment=reply
                 post=post
                 onReply=(action "onReply")
