@@ -3,7 +3,7 @@ import get from 'ember-metal/get';
 import computed from 'ember-computed';
 import service from 'ember-service/inject';
 import { isPresent } from 'ember-utils';
-import { invokeAction } from 'ember-invoke-action';
+import { hrefTo } from 'ember-href-to/helpers/href-to';
 
 export default Component.extend({
   session: service(),
@@ -28,27 +28,29 @@ export default Component.extend({
     }
   }),
 
-  target: computed('activity', {
+  link: computed('activity', {
     get() {
       const activity = get(this, 'activity');
+      const streamId = get(this, 'group.streamId');
+      const queryParams = {isQueryParams: true, values: {notification: streamId}};
       const [modelType, modelId] = get(activity, 'foreignId').split(':');
       switch (modelType) {
         case 'Post': {
           if (isPresent(modelId)) {
-            return { route: 'posts', model: modelId };
+            return hrefTo(this, 'posts', modelId, queryParams);
           }
           break;
         }
         case 'Follow': {
           const actor = get(activity, 'actor');
           if (isPresent(actor)) {
-            return { route: 'users', model: actor };
+            return hrefTo(this, 'users', actor, queryParams);
           }
           break;
         }
         case 'Comment': {
           if (isPresent(modelId)) {
-            return { route: 'comments', model: modelId };
+            return hrefTo(this, 'comments', modelId, queryParams);
           }
           break;
         }
@@ -57,22 +59,16 @@ export default Component.extend({
           if (isPresent(get(activity, 'target.content'))) {
             const id = get(activity, 'target.id');
             if (modelType === 'CommentLike') {
-              return { route: 'comments', model: id };
+              return hrefTo(this, 'comments', id, queryParams);
             }
-            return { route: 'posts', model: id };
+            return hrefTo(this, 'posts', id, queryParams);
           }
           break;
         }
         default: {
-          return null;
+          return '#';
         }
       }
     }
-  }),
-
-  actions: {
-    followNotification() {
-      invokeAction(this, 'followNotification', get(this, 'group'), get(this, 'target'));
-    }
-  }
+  })
 });
