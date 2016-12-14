@@ -309,6 +309,13 @@
   float: right;
   position: relative;
   top: 0;
+  svg {
+    fill: #CACACA;
+    float: left;
+  }
+}
+
+.stream-item-options, .stream-comment-options {
   a {
     color: #979797;
     font-size: 12px;
@@ -316,10 +323,6 @@
     font-size: 12px;
     line-height: 22px;
     margin-right: 10px;
-  }
-  svg {
-    fill: #CACACA;
-    float: left;
   }
 }
 
@@ -341,7 +344,6 @@
   li {
     border-bottom: 1px solid #eee;
     padding: 10px 10px 0px 10px;
-    position: relative;
     z-index: $zIndex--stream-comments;
   }
   .media-object {
@@ -598,15 +600,6 @@
   .onebox + .onebox {
     margin-top: 1rem;
   }
-}
-.new-post {
-  @extend .animated;
-  @extend .fadeIn;
-}
-
-.new-comment {
-  @extend .animated;
-  @extend .fadeIn;
 }
 
 .comment-actions {

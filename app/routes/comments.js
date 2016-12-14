@@ -20,6 +20,6 @@ export default Route.extend({
 
   titleToken(model) {
     const commenter = get(model, 'user.name');
-    return get(this, 'i18n').t('titles.posts.comments', { user: commenter });
+    return get(this, 'i18n').t('titles.comments', { user: commenter });
   }
 });

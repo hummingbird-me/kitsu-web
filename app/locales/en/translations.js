@@ -13,10 +13,8 @@ export default {
       followers: '{{user}}\'s Followers',
       following: 'Followed by {{user}}'
     },
-    posts: {
-      index: 'Post by {{user}}',
-      comment: 'Comment by {{user}}'
-    },
+    posts: 'Post by {{user}}',
+    comments: 'Comment by {{user}}',
     reviews: 'Review by {{user}}',
     notifications: 'Notifications',
     admin: 'Admin'
