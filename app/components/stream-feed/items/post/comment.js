@@ -11,8 +11,9 @@ import { prependObjects } from 'client/utils/array-utils';
 import errorMessages from 'client/utils/error-messages';
 import getter from 'client/utils/getter';
 import moment from 'moment';
+import ClipboardMixin from 'client/mixins/clipboard';
 
-export default Component.extend({
+export default Component.extend(ClipboardMixin, {
   classNameBindings: ['comment.isNew:new-comment'],
   isEditing: false,
   isReplying: false,
@@ -22,6 +23,7 @@ export default Component.extend({
   notify: service(),
   session: service(),
   store: service(),
+  host: getter(() => `${location.protocol}//${location.host}`),
 
   isEditable: getter(function() {
     if (get(this, 'session.account').hasRole('admin', get(this, 'comment'))) {
