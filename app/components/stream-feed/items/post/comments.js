@@ -46,6 +46,11 @@ export default Component.extend({
     });
   }).drop(),
 
+  init() {
+    this._super(...arguments);
+    set(this, 'comments', []);
+  },
+
   didReceiveAttrs({ newAttrs, oldAttrs }) {
     this._super(...arguments);
 
