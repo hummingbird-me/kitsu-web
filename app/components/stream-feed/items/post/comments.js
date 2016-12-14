@@ -49,16 +49,20 @@ export default Component.extend({
   didReceiveAttrs({ newAttrs, oldAttrs }) {
     this._super(...arguments);
 
-    // don't reload if the we have received attrs but the post hasn't changed
-    if (isPresent(oldAttrs) && get(newAttrs.post.value, 'id') === get(oldAttrs.post.value, 'id')) {
-      return;
-    }
-
     // display single comment and its thread or load the comments for the post
-    set(this, 'comments', []);
     if (get(this, 'comment') !== undefined) {
+      // don't reload if the we have received attrs but the post hasn't changed
+      if (isPresent(oldAttrs) && get(newAttrs.comment.value, 'id') === get(oldAttrs.comment.value, 'id')) {
+        return;
+      }
+      set(this, 'comments', []);
       get(this, 'comments').addObject(get(this, 'comment'));
     } else if (get(this, 'post.topLevelCommentsCount') > 0) {
+      // don't reload if the we have received attrs but the post hasn't changed
+      if (isPresent(oldAttrs) && get(newAttrs.post.value, 'id') === get(oldAttrs.post.value, 'id')) {
+        return;
+      }
+      set(this, 'comments', []);
       get(this, 'getComments').perform().then((comments) => {
         const content = comments.toArray().reverse();
         set(content, 'links', get(comments, 'links'));
