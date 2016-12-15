@@ -16,7 +16,12 @@ export default OneWayTextAreaComponent.extend({
   didInsertElement() {
     this._super(...arguments);
     autosize(this.$());
-    later(() => this.resize(), 200);
+    later(() => {
+      this.resize();
+      if (get(this, 'autofocus')) {
+        this.$().focus();
+      }
+    }, 200);
   },
 
   willDestroyElement() {
