@@ -148,7 +148,6 @@ export default Component.extend({
     }
     set(this, 'feed', []);
     set(this, 'newItems', EmberObject.create({ length: 0, cache: [] }));
-
     get(this, 'getFeedData').perform(streamType, streamId).then((data) => {
       get(this, 'feed').addObjects(data);
       set(this, 'feed.links', get(data, 'links'));

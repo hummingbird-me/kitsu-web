@@ -12,7 +12,7 @@ export default Controller.extend({
   feed: storageFor('feed'),
   session: service(),
 
-  streamId: computed('streamType', {
+  streamId: computed('streamType', 'session.hasUser', {
     get() {
       return get(this, 'streamType') === 'global' ? 'global' : get(this, 'session.account.id');
     }
@@ -26,7 +26,11 @@ export default Controller.extend({
   init() {
     this._super(...arguments);
     const defaultType = this._getDefaultType();
-    set(this, 'streamType', get(this, 'feed.type') || defaultType);
+    if (get(this, 'session.hasUser')) {
+      set(this, 'streamType', get(this, 'feed.type') || defaultType);
+    } else {
+      set(this, 'streamType', defaultType);
+    }
   },
 
   _getDefaultType() {
