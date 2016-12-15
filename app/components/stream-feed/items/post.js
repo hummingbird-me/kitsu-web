@@ -5,6 +5,7 @@ import set from 'ember-metal/set';
 import observer from 'ember-metal/observer';
 import computed from 'ember-computed';
 import { typeOf } from 'ember-utils';
+import { scheduleOnce } from 'ember-runloop';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
@@ -16,6 +17,9 @@ export default Component.extend(ClipboardMixin, {
   classNameBindings: ['post.isNew:new-post', 'isPinnedPost:pinned-post'],
   classNames: ['stream-item', 'row'],
   isHidden: false,
+  isOverflowed: false,
+  isExpanded: false,
+
   notify: service(),
   router: service('-routing'),
   session: service(),
@@ -91,12 +95,28 @@ export default Component.extend(ClipboardMixin, {
     }
     const post = get(this, 'post');
     set(this, 'isHidden', get(post, 'nsfw') || get(post, 'spoiler'));
+
+    if (!get(this, 'isHidden')) {
+      scheduleOnce('afterRender', () => {
+        if (!get(this, 'isExpanded')) {
+          this._hideLongBody();
+          this.$('img').one('load', () => { this._hideLongBody(); });
+        }
+      });
+    }
   },
 
   willDestroyElement() {
     this._super(...arguments);
     if (this.clearViewportCallback) {
       this.clearViewportCallback();
+    }
+  },
+
+  _hideLongBody() {
+    const body = this.$('.stream-content-post');
+    if (body && body.height() >= 200) {
+      set(this, 'isOverflowed', true);
     }
   },
 
@@ -109,6 +129,16 @@ export default Component.extend(ClipboardMixin, {
     trackEngagement(label, id) {
       const foreignId = typeOf(id) === 'string' ? id : undefined;
       this._streamAnalytics(label, foreignId || `Post:${get(this, 'post.id')}`);
+    },
+
+    toggleHidden() {
+      this.toggleProperty('isHidden');
+      if (!get(this, 'isExpanded')) {
+        scheduleOnce('afterRender', () => {
+          this._hideLongBody();
+          this.$('img').one('load', () => { this._hideLongBody(); });
+        });
+      }
     },
 
     likeCreated() {

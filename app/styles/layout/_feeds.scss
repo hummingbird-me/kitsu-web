@@ -592,6 +592,17 @@
 .stream-content {
   @include word-break();
   overflow: hidden;
+  .stream-content-post {
+    display: block;
+    overflow: hidden;
+    max-height: 200px;
+    &.full-post {
+      max-height: none;
+    }
+  }
+  .view-more {
+    margin: { top: 15px; bottom: 15px };
+  }
 
   p {
     overflow: hidden;

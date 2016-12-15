@@ -62,7 +62,7 @@
       {{#if isHidden}}
         {{#if (and post.spoiler post.nsfw)}}
           <div class="combo-gate">
-              <a href="#" {{action (toggle "isHidden" this)}}>
+              <a href="#" {{action "toggleHidden"}}>
                 <div class="gate--label">Contains spoilers and NSFW.</div>
                 <div class="gate--hover">My body is ready!</div>
               </a>
@@ -70,7 +70,7 @@
         {{else}}
           {{#if post.nsfw}}
             <div class="nsfw-gate">
-              <a href="#" {{action (toggle "isHidden" this)}}>
+              <a href="#" {{action "toggleHidden"}}>
                 <div class="gate--label">This post contains NSFW content.</div>
                 <div class="gate--hover">My body is ready!</div>
               </a>
@@ -78,7 +78,7 @@
           {{/if}}
           {{#if post.spoiler}}
             <div class="spoiler-gate">
-              <a href="#" {{action (toggle "isHidden" this)}}>
+              <a href="#" {{action "toggleHidden"}}>
                 <div class="gate--label">
                   This post contains spoilers.
                   {{#if post.spoiledUnit}}
@@ -96,7 +96,21 @@
           {{/if}}
         {{/if}}
       {{else}}
-        {{text-clipper post.contentFormatted length=480 options=(hash html=true imageWeight=260)}}
+        <span class="stream-content-post {{if isExpanded "full-post"}}">
+          {{{post.contentFormatted}}}
+        </span>
+
+        {{#if isOverflowed}}
+          <div class="text-xs-center view-more">
+            <a href="#" {{action (toggle "isExpanded" this)}}>
+              {{#if isExpanded}}
+                View Less
+              {{else}}
+                View More
+              {{/if}}
+            </a>
+          </div>
+        {{/if}}
       {{/if}}
 
       {{! Tagged Media  }}

@@ -56,7 +56,7 @@
           {{star-rating media.averageRating anyPercent=true readOnly=true}}
         </div>
         <div class="media-synopsis">
-          {{text-clipper media.synopsis length=225 canExpand=false}}
+          {{truncate media.synopsis 225}}
         </div>
         {{#if session.hasUser}}
           {{library-dropdown
