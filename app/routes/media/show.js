@@ -21,10 +21,12 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
 
   saveEntryTask: task(function* (entry) {
     yield timeout(500);
-    return yield entry.save().catch((err) => {
-      entry.rollbackAttributes();
-      get(this, 'notify').error(errorMessages(err));
-    });
+    return yield entry.save()
+      .then(() => get(this, 'notify').success('Your library entry was updated!'))
+      .catch((err) => {
+        entry.rollbackAttributes();
+        get(this, 'notify').error(errorMessages(err));
+      });
   }).restartable(),
 
   model({ slug }) {
@@ -133,7 +135,9 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
 
     updateEntry(entry, property, value) {
       set(entry, property, value);
-      return entry.save().catch((err) => {
+      return entry.save().then(() => {
+        get(this, 'notify').success('Your library entry was updated!');
+      }).catch((err) => {
         entry.rollbackAttributes();
         get(this, 'notify').error(errorMessages(err));
       });

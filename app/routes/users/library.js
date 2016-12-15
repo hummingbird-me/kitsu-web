@@ -68,6 +68,7 @@ export default Route.extend(PaginationMixin, {
     saveEntry(entry) {
       if (get(entry, 'validations.isValid') === true) {
         return entry.save()
+          .then(() => get(this, 'notify').success('Your library entry was updated!'))
           .catch((err) => {
             entry.rollbackAttributes();
             get(this, 'notify').error(errorMessages(err));
