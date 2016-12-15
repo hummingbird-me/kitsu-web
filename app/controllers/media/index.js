@@ -1,6 +1,7 @@
 import Controller from 'ember-controller';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import service from 'ember-service/inject';
 import jQuery from 'jquery';
 import getter from 'client/utils/getter';
 import moment from 'moment';
@@ -17,18 +18,14 @@ export default Controller.extend({
   text: undefined,
   year: [1907, moment().year() + 1],
 
+  router: service('-routing'),
+
   isAnime: getter(function() {
-    const media = get(this, 'model.firstObject');
-    if (media !== undefined) {
-      return media.constructor.modelName === 'anime';
-    }
+    return get(this, 'router.currentRouteName').split('.')[0] === 'anime';
   }),
 
   isManga: getter(function() {
-    const media = get(this, 'model.firstObject');
-    if (media !== undefined) {
-      return media.constructor.modelName === 'manga';
-    }
+    return get(this, 'router.currentRouteName').split('.')[0] === 'manga';
   }),
 
   maxYear: getter(() => moment().year() + 1),

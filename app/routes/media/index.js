@@ -24,6 +24,10 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
     this.refresh();
   }).restartable(),
 
+  modelTask: task(function* (mediaType, options) {
+    return yield get(this, 'store').query(mediaType, options);
+  }).restartable(),
+
   init() {
     this._super(...arguments);
     const mediaQueryParams = get(this, 'mediaQueryParams');
@@ -47,7 +51,7 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
     const filters = this._buildFilters(params);
     const options = Object.assign(filters, hash);
     const [mediaType] = get(this, 'routeName').split('.');
-    return get(this, 'store').query(mediaType, options);
+    return { taskInstance: get(this, 'modelTask').perform(mediaType, options) };
   },
 
   afterModel() {

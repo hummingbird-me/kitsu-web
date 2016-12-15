@@ -4,6 +4,9 @@ export default {
     anime: {
       index: 'Explore Anime'
     },
+    manga: {
+      index: 'Explore Manga'
+    },
     'not-found': '404',
     'server-error': '500',
     users: {
