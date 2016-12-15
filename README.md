@@ -7,5 +7,8 @@ Ember.js application for Hummingbird. Check out the primary repo [here](https://
 
 * `npm test`
 
-Check out [ember-exam](https://github.com/trentmwillis/ember-exam) for testing
-options.
+## Contributing
+
+Check out the main [repo](https://github.com/hummingbird-me/hummingbird) for information on setting up a development environment and contributing.
+
+Please make all issues over there with the `client` label.
