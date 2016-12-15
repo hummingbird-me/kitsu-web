@@ -2,5 +2,6 @@
   {{stream-feed/items/post
     post=model.post.content
     comment=model
+    isReply=model.parent.content
     readOnly=(not session.hasUser)}}
 </div>

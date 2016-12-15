@@ -41,9 +41,11 @@
       }}
 
       {{! TODO/@Josh -- style reply action }}
-      <small class="comment-reply" {{action "showReply"}}>
-        Reply
-      </small>
+      {{#unless isReply}}
+        <small class="comment-reply" {{action "showReply"}}>
+          Reply
+        </small>
+      {{/unless}}
 
       {{! comment timestamp }}
       <a href={{href-to "comments" comment.id}}>

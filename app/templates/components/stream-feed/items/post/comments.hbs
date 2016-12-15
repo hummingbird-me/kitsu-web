@@ -8,7 +8,11 @@
       {{! Viewing single comment }}
       <div class="comment-actions clearfix">
         <div class="pull-sm-left">
-          <a href={{href-to "posts" post}}>View other comments</a>
+          <a href={{href-to "posts" post}}>View All Comments</a>
+          {{#if isReply}}
+            &mdash;
+            <a href={{href-to "comments" comment.parent.id}}>View Parent Comment</a>
+          {{/if}}
         </div>
       </div>
     {{else}}
@@ -46,6 +50,7 @@
       {{#each comments as |comment|}}
         {{stream-feed/items/post/comment
           isTopLevel=true
+          isReply=isReply
           comment=comment
           post=post
           readOnly=readOnly

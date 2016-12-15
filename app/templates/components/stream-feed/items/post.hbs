@@ -241,6 +241,7 @@
       {{stream-feed/items/post/comments
         post=post
         comment=comment
+        isReply=isReply
         readOnly=readOnly
         countUpdate=(action (mut post.topLevelCommentsCount))
         trackEngagement=(action "trackEngagement")

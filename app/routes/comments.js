@@ -8,7 +8,7 @@ export default Route.extend({
 
   model({ id }) {
     return get(this, 'store').findRecord('comment', id, {
-      include: 'user,post,post.user,post.targetUser,post.media',
+      include: 'user,parent,post,post.user,post.targetUser,post.media',
       reload: true
     });
   },
