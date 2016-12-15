@@ -17,7 +17,7 @@ export default Controller.extend({
 
   notificationTracker: observer('notification', function() {
     const notification = get(this, 'notification');
-    if (notification === null) return;
+    if (notification === null || !get(this, 'session.hasUser')) return;
 
     const feedUrl = `/feeds/notifications/${get(this, 'session.account.id')}/_read`;
 
@@ -27,10 +27,9 @@ export default Controller.extend({
       contentType: 'application/json'
     }).then(() => {
       set(this, 'notification', null);
-      const trackedItems = get(this, 'store').peekAll('notification')
-                                             .filter(item => (get(item, 'streamId') === notification));
+      const trackedItems = get(this, 'store').peekAll('notification').filterBy('streamId', notification);
       if (trackedItems.length === 1) {
-        const trackedItem = trackedItems[0];
+        const [trackedItem] = trackedItems;
         set(trackedItem, 'isRead', true);
       }
     }).catch(() => {});
