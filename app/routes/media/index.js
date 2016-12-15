@@ -1,7 +1,6 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import { bind } from 'ember-runloop';
 import { isEmpty, typeOf } from 'ember-utils';
 import { isEmberArray } from 'ember-array/utils';
 import { task, timeout } from 'ember-concurrency';
@@ -75,31 +74,36 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
   setupController(controller) {
     this._super(...arguments);
     jQuery(document.body).addClass('browse-page');
-    const binding = bind(controller, '_handleScroll');
-    set(this, 'scrollBinding', binding);
-    jQuery(document).on('scroll', binding);
+    jQuery(document).on('scroll.media', () => controller._handleScroll());
+    controller._setDirtyValues();
   },
 
   resetController() {
     this._super(...arguments);
     jQuery(document.body).removeClass('browse-page');
-    jQuery(document).off('scroll', get(this, 'scrollBinding'));
+    jQuery(document).off('scroll.media');
   },
 
   serializeQueryParam(value, key) {
     let result = this._super(...arguments);
-    if (key === 'episodeCount') {
+    if (key === 'year') {
       if (value !== undefined) {
         const [lower, upper] = value;
-        if (upper === 100) {
+        if (upper === (moment().year() + 1)) {
           result = `${lower}..`;
         }
       }
-    } else if (key === 'year') {
+    }
+    return result;
+  },
+
+  deserializeQueryParam(value, key) {
+    let result = this._super(...arguments);
+    if (key === 'year') {
       if (value !== undefined) {
-        const [lower, upper] = value;
-        if (upper === moment().year()) {
-          result = `${lower}..`;
+        const [lower, upper] = result;
+        if (isEmpty(upper)) {
+          result = [lower, moment().year() + 1];
         }
       }
     }

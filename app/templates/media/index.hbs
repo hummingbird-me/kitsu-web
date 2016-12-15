@@ -11,7 +11,7 @@
                 </label>
                 <span class="filter-values">
                   {{dirtyYear.firstObject}} -
-                  {{#if (eq dirtyYear.lastObject currentYear)}}
+                  {{#if (eq dirtyYear.lastObject maxYear)}}
                     ∞
                   {{else}}
                     {{dirtyYear.lastObject}}
@@ -20,7 +20,7 @@
               </div>
               <div class="filter-slider--wrapper">
                 {{media/filter-widgets/slider
-                  options=(hash range=(array 1907 currentYear) initial=year)
+                  options=(hash range=(array 1907 maxYear) initial=year)
                   onSlide=(action (mut dirtyYear))
                   onSet=(action (mut year) dirtyYear)}}
               </div>

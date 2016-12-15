@@ -1,6 +1,7 @@
 import MediaIndexRoute from 'client/routes/media/index';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import { isEmpty } from 'ember-utils';
 
 export default MediaIndexRoute.extend({
   queryParams: {
@@ -18,5 +19,31 @@ export default MediaIndexRoute.extend({
     get(this, 'store').query('streamer', {
       page: { limit: 10000, offset: 0 }
     }).then(streamers => set(controller, 'availableStreamers', streamers));
-  }
+  },
+
+  serializeQueryParam(value, key) {
+    let result = this._super(...arguments);
+    if (key === 'episodeCount') {
+      if (value !== undefined) {
+        const [lower, upper] = value;
+        if (upper === 100) {
+          result = `${lower}..`;
+        }
+      }
+    }
+    return result;
+  },
+
+  deserializeQueryParam(value, key) {
+    let result = this._super(...arguments);
+    if (key === 'episodeCount') {
+      if (value !== undefined) {
+        const [lower, upper] = result;
+        if (isEmpty(upper)) {
+          result = [lower, 100];
+        }
+      }
+    }
+    return result;
+  },
 });

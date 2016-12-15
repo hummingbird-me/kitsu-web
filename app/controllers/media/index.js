@@ -15,12 +15,7 @@ export default Controller.extend({
   averageRating: [0.5, 5.0],
   genres: [],
   text: undefined,
-  year: [1907, moment().year()],
-
-  // Buffer values so we don't mutate the query params every update
-  dirtyYear: [1907, moment().year()],
-  dirtyRating: [0.5, 5.0],
-  dirtyEpisodes: [1, 100],
+  year: [1907, moment().year() + 1],
 
   isAnime: getter(function() {
     const media = get(this, 'model.firstObject');
@@ -36,7 +31,7 @@ export default Controller.extend({
     }
   }),
 
-  currentYear: getter(() => moment().year()),
+  maxYear: getter(() => moment().year() + 1),
 
   init() {
     this._super(...arguments);
@@ -53,5 +48,10 @@ export default Controller.extend({
       jQuery('.filter-options').removeClass('scrolled');
       jQuery('.search-media').removeClass('scrolled');
     }
+  },
+
+  _setDirtyValues() {
+    set(this, 'dirtyYear', get(this, 'year'));
+    set(this, 'dirtyRating', get(this, 'averageRating'));
   }
 });
