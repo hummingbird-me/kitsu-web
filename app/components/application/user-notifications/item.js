@@ -32,7 +32,7 @@ export default Component.extend({
     get() {
       const activity = get(this, 'activity');
       const streamId = get(this, 'group.streamId');
-      const queryParams = {isQueryParams: true, values: {notification: streamId}};
+      const queryParams = { isQueryParams: true, values: { notification: streamId } };
       const [modelType, modelId] = get(activity, 'foreignId').split(':');
       switch (modelType) {
         case 'Post': {

@@ -20,11 +20,11 @@ export default Controller.extend({
 
     const feedUrl = `/feeds/notifications/${get(this, 'session.account.id')}/_read`;
 
-    return get(this, 'ajax').request(feedUrl, {
+    get(this, 'ajax').request(feedUrl, {
       method: 'POST',
       data: JSON.stringify([notification]),
       contentType: 'application/json'
-    }).then((payload) => {
+    }).then(() => {
       set(this, 'notification', null);
     }).catch(() => {});
   })
