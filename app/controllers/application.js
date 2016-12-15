@@ -11,6 +11,7 @@ export default Controller.extend({
   notification: null,
 
   ajax: service(),
+  store: service(),
   session: service(),
   isStaging: getter(() => Config.isStaging),
 
@@ -26,6 +27,12 @@ export default Controller.extend({
       contentType: 'application/json'
     }).then(() => {
       set(this, 'notification', null);
+      const trackedItems = get(this, 'store').peekAll('notification')
+                                             .filter(item => (get(item, 'streamId') === notification));
+      if (trackedItems.length === 1) {
+        const trackedItem = trackedItems[0];
+        set(trackedItem, 'isRead', true);
+      }
     }).catch(() => {});
   })
 });
