@@ -40,7 +40,7 @@ const QuickUpdateItemComponent = Component.extend({
     }
   }).readOnly(),
 
-  episodeText: computed('nextProgress', 'entry.nextUnit.canonicalTitle', {
+  episodeText: computed('nextProgress', 'entry.nextUnit', {
     get() {
       const num = get(this, 'nextProgress');
       const key = get(this, 'unitType');
@@ -67,7 +67,17 @@ const QuickUpdateItemComponent = Component.extend({
     if (get(this, 'nextProgress') !== progress) {
       set(entry, 'progress', progress + 1);
     }
-    yield entry.save().catch((err) => {
+    yield entry.save().then(() => {
+      const idWas = get(entry, 'nextUnit.id');
+      entry.belongsTo('nextUnit').reload().then((unit) => {
+        // unit will be the old value if reload returns null.
+        if (get(unit, 'id') === idWas) {
+          set(entry, 'nextUnit', null);
+        } else {
+          set(entry, 'nextUnit', unit);
+        }
+      }).catch(() => set(entry, 'nextUnit', null));
+    }).catch((err) => {
       entry.rollbackAttributes();
       get(this, 'notify').error(errorMessages(err));
     });
