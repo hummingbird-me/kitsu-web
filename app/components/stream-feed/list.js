@@ -255,7 +255,7 @@ export default Component.extend({
 
         set(this, 'realtimeLoading', false);
         this._trackImpressions(data);
-      });
+      }).catch(() => set(this, 'realtimeLoading', false));
     }
   }
 });
