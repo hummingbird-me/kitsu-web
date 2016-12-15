@@ -93,6 +93,13 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
           result = `${lower}..`;
         }
       }
+    } else if (key === 'averageRating') {
+      if (value !== undefined) {
+        const [lower, upper] = value;
+        if (lower === 0.5 && upper === 5.0) {
+          result = undefined;
+        }
+      }
     }
     return result;
   },
