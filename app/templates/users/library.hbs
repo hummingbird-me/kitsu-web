@@ -49,19 +49,17 @@
         <div class="text-xs-center w-100 m-t-1 m-b-1">
           {{t "errors.load"}}
         </div>
-      {{else if model.taskInstance.value}}
+      {{else}}
         {{#if (eq status 'all')}} {{! all status is selected }}
           {{#each-in sections as |status entries|}}
-            {{#if entries}}
-              {{users/library/library-entries
-                status=status
-                entries=entries
-                mediaType=media
-                user=user
-                save=(route-action "saveEntry")
-                delete=(route-action "deleteEntry")
-              }}
-            {{/if}}
+            {{users/library/library-entries
+              status=status
+              entries=entries
+              mediaType=media
+              user=user
+              save=(route-action "saveEntry")
+              delete=(route-action "deleteEntry")
+            }}
           {{/each-in}}
         {{else}} {{! active tab entires }}
           {{users/library/library-entries

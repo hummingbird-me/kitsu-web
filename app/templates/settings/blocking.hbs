@@ -25,39 +25,53 @@
       </div>
     </div>
   </div>
-  <div class="form-group row">
-    <ul class="blocked-user--list">
-      {{#each model as |block|}}
-        <li>
-          <div class="stream-item--title-block">
-            <span class="avatar-block">
-              <a class="author-avatar">
-                <img src={{image block.blocked.avatar "medium"}}>
-              </a>
-            </span>
-            <div class="author-info">
-              <a class="author-name">{{block.blocked.name}}</a>
-            </div>
-            <a href="#" class="unblock-cta" {{action "unblockUser" block}}>
-              Unblock
-            </a>
-          </div>
-        </li>
-      {{else}}
-        <p class="text-xs-center stream-error-wrapper">You aren't currently blocking anyone.</p>
-      {{/each}}
-    </ul>
-  </div>
 
-  <div class="text-xs-center w-100">
-    {{#paginated-resource/manual
-      model=model
-      update=(route-action "updateNextPage") as |nextLink|}}
-      {{#if nextLink}}
-        <button class="button button--primary btn-block">
-          Load More
-        </button>
-      {{/if}}
-    {{/paginated-resource/manual}}
-  </div>
+  {{#if model.taskInstance.isRunning}}
+    <div class="text-xs-center w-100 m-t-1 m-b-1">
+      {{loading-spinner size="large"}}
+      <p>Loading Users...</p>
+    </div>
+  {{else if model.taskInstance.error}}
+    <div class="text-xs-center w-100 m-t-1 m-b-1">
+      {{t "errors.load"}}
+    </div>
+  {{else if model.taskInstance.value}}
+    <div class="form-group row">
+      <ul class="blocked-user--list">
+        {{#each model.taskInstance.value as |block|}}
+          <li>
+            <div class="stream-item--title-block">
+              <span class="avatar-block">
+                <a class="author-avatar">
+                  <img src={{image block.blocked.avatar "medium"}}>
+                </a>
+              </span>
+              <div class="author-info">
+                <a class="author-name">{{block.blocked.name}}</a>
+              </div>
+              <a href="#" class="unblock-cta" {{action "unblockUser" block}}>
+                Unblock
+              </a>
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <div class="text-xs-center w-100">
+      {{#paginated-resource/manual
+        model=model.taskInstance.value
+        update=(route-action "updateNextPage") as |nextLink|}}
+        {{#if nextLink}}
+          <button class="button button--primary btn-block">
+            Load More
+          </button>
+        {{/if}}
+      {{/paginated-resource/manual}}
+    </div>
+  {{else}}
+    <p class="text-xs-center w-100 m-t-1 m-b-1">
+      You aren't currently blocking anyone.
+    </p>
+  {{/if}}
 </div>

@@ -14,7 +14,7 @@ export default Route.extend(PaginationMixin, {
         user_id: get(user, 'id')
       }
     });
-  }).restartable(),
+  }),
 
   model() {
     const user = this.modelFor('users');

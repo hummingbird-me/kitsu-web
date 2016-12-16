@@ -34,8 +34,6 @@
             </div>
           </div>
         {{/if}}
-      {{else}}
-        <p>No Users Found.</p>
       {{/each}}
 
       <div class="m-t-1 text-xs-center w-100">
@@ -44,6 +42,10 @@
           loadingSize="large"
           update=(route-action "updateNextPage")
         }}
+      </div>
+    {{else}}
+      <div class="text-xs-center w-100 m-t-1 m-b-1">
+        No Users Found.
       </div>
     {{/if}}
   </div>

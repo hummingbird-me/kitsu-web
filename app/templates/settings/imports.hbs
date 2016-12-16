@@ -24,9 +24,18 @@
 </div>
 <div class="container">
   <div class="form-group row">
-    {{#if model}}
+    {{#if model.taskInstance.isRunning}}
+      <div class="text-xs-center w-100 m-t-1 m-b-1">
+        {{loading-spinner size="large"}}
+        <p>Loading Imports...</p>
+      </div>
+    {{else if model.taskInstance.error}}
+      <div class="text-xs-center w-100 m-t-1 m-b-1">
+        {{t "errors.load"}}
+      </div>
+    {{else if model.taskInstance.value}}
       <div id="accordian" class="w-100">
-        {{#each model as |import index|}}
+        {{#each model.taskInstance.value as |import index|}}
           <div class="card">
             <div class="card-header" role="tab">
               <h6 class="m-b-0">
@@ -56,7 +65,7 @@
         {{/each}}
       </div>
     {{else}}
-      <div class="stream-error-wrapper w-100">
+      <div class="text-xs-center w-100 m-t-1 m-b-1">
         {{t "errors.contentEmpty"}}
       </div>
     {{/if}}

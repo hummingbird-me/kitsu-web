@@ -14,16 +14,28 @@
 </section>
 
 {{! Reviews }}
-{{#if reviews}}
-  <section class="m-b-1">
-    <h5>Popular Reviews</h5>
+<section class="m-b-1">
+  <h5>Popular Reviews</h5>
+  {{#if model.taskInstance.isRunning}}
+    <div class="text-xs-center w-100 m-t-1 m-b-1">
+      {{loading-spinner size="large"}}
+    </div>
+  {{else if model.taskInstance.error}}
+    <div class="text-xs-center w-100 m-t-1 m-b-1">
+      {{t "errors.load"}}
+    </div>
+  {{else if model.taskInstance.value}}
     <ul class="media-list w-100">
-      {{#each reviews as |review|}}
+      {{#each model.taskInstance.value as |review|}}
         {{stream-feed/items/review review=review media=media hideImage=true}}
       {{/each}}
     </ul>
-  </section>
-{{/if}}
+  {{else}}
+    <div class="m-t-1 m-b-1">
+      {{t "errors.contentEmpty"}}
+    </div>
+  {{/if}}
+</section>
 
 {{! Feed }}
 <section>

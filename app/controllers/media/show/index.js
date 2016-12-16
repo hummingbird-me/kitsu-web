@@ -6,5 +6,4 @@ export default Controller.extend({
   session: service(),
   entry: alias('parent.entry'),
   media: alias('parent.media'),
-  reviews: alias('model'),
 });

@@ -19,8 +19,10 @@
               </span>
             </div>
             <div class="filter-slider--wrapper">
-              {{media/filter-widgets/slider options=(hash range=(array 1907 maxYear) initial=year) onSlide=(action (mut dirtyYear)) onSet=(action
-              (mut year) dirtyYear)}}
+              {{media/filter-widgets/slider
+                options=(hash range=(array 1907 maxYear) initial=year)
+                onSlide=(action (mut dirtyYear))
+                onSet=(action (mut year) dirtyYear)}}
             </div>
             <div class="filter-legend">
               <div class="low-value">1907</div>
@@ -39,8 +41,10 @@
               </span>
             </div>
             <div class="filter-slider--wrapper">
-              {{media/filter-widgets/slider options=(hash range=(array 0.5 5.0) initial=averageRating step=0.1 decimal=1) onSlide=(action
-              (mut dirtyRating)) onSet=(action (mut averageRating) dirtyRating)}}
+              {{media/filter-widgets/slider
+                options=(hash range=(array 0.5 5.0) initial=averageRating step=0.1 decimal=1)
+                onSlide=(action (mut dirtyRating))
+                onSet=(action (mut averageRating) dirtyRating)}}
             </div>
             <div class="filter-legend">
               <div class="low-value">
@@ -74,8 +78,10 @@
                 </span>
               </div>
               <div class="filter-slider--wrapper">
-                {{media/filter-widgets/slider options=(hash range=(array 1 100) initial=episodeCount) onSlide=(action (mut dirtyEpisodes))
-                onSet=(action (mut episodeCount) dirtyEpisodes) }}
+                {{media/filter-widgets/slider
+                  options=(hash range=(array 1 100) initial=episodeCount)
+                  onSlide=(action (mut dirtyEpisodes))
+                  onSet=(action (mut episodeCount) dirtyEpisodes)}}
               </div>
               <div class="filter-legend">
                 <div class="low-value">1</div>
@@ -97,8 +103,13 @@
                   {{/if}}
                 </span>
               </div>
-              {{#media/filter-widgets/multi-select class="rating-select" includeAll=true selected=ageRating selection=availableRatings
-                onChange=(action (mut ageRating)) as |option| }}
+              {{#media/filter-widgets/multi-select
+                class="rating-select"
+                includeAll=true
+                selected=ageRating
+                selection=availableRatings
+                onChange=(action (mut ageRating)) as |option|
+              }}
                 {{capitalize option}}
               {{/media/filter-widgets/multi-select}}
             </div>
@@ -118,9 +129,14 @@
                     {{/if}}
                   </span>
                 </div>
-                {{#media/filter-widgets/multi-select class="box-select" tooltip=true tooltipClasses="hint--top hint--bounce hint--rounded"
-                  selected=streamers selection=(map-by "siteName" availableStreamers) onChange=(action (mut streamers)) as
-                  |option| }}
+                {{#media/filter-widgets/multi-select
+                  class="box-select"
+                  tooltip=true
+                  tooltipClasses="hint--top hint--bounce hint--rounded"
+                  selected=streamers
+                  selection=(map-by "siteName" availableStreamers)
+                  onChange=(action (mut streamers)) as |option|
+                }}
                   {{svg-jar (to-lower option) class=(to-lower option) width="32" height="32" data-test-selector="filter-streamer"}}
                 {{/media/filter-widgets/multi-select}}
               {{else}}
@@ -151,8 +167,13 @@
                   {{/if}}
                 </span>
               </div>
-              {{#media/filter-widgets/multi-select class="category-select" includeAll=true selected=genres selection=(map-by "name" availableGenres)
-                onChange=(action (mut genres)) as |option| }}
+              {{#media/filter-widgets/multi-select
+                class="category-select"
+                includeAll=true
+                selected=genres
+                selection=(map-by "name" availableGenres)
+                onChange=(action (mut genres)) as |option|
+              }}
                 <a href="#" data-test-selector="filter-genre">{{option}}</a>
                 <span class="exclude-genre hint--left hint--bounce hint--rounded" aria-label="Exclude?">{{svg-jar "close"}}</span>
                 <span class="include-genre hint--left hint--bounce hint--rounded" aria-label="Include?">{{svg-jar "checkmark"}}</span>
@@ -200,12 +221,20 @@
             {{#each model.taskInstance.value as |media|}}
               {{media/media-poster media=media}}
             {{/each}}
+          {{else}}
+            <div class="text-xs-center w-100 m-t-1">
+              No Results.
+            </div>
           {{/if}}
         </div>
 
         {{#if model.taskInstance.value}}
           <div class="m-t-1 text-xs-center">
-            {{paginated-resource/infinite model=model.taskInstance.value update=(route-action "updateNextPage") ratio=-4 loadingSize="large"
+            {{paginated-resource/infinite
+              model=model.taskInstance.value
+              update=(route-action "updateNextPage")
+              ratio=-4
+              loadingSize="large"
             }}
           </div>
         {{/if}}

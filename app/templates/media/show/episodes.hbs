@@ -1,6 +1,15 @@
-{{#if model}}
+{{#if model.taskInstance.isRunning}}
+  <div class="text-xs-center w-100 m-t-1 m-b-1">
+    {{loading-spinner size="large"}}
+    <p>Loading Episodes...</p>
+  </div>
+{{else if model.taskInstance.error}}
+  <div class="text-xs-center w-100 m-t-1 m-b-1">
+    {{t "errors.load"}}
+  </div>
+{{else if model.taskInstance.value}}
   <ul class="media--episode-grid row">
-    {{#each model as |episode|}}
+    {{#each model.taskInstance.value as |episode|}}
       <li class="media--episode-block col-md-4 col-sm-2">
         <div class="thumbnail-wrapper">
           {{lazy-image url=(image episode.thumbnail)}}
@@ -17,13 +26,13 @@
 
   <div class="text-xs-center w-100">
     {{paginated-resource/infinite
-      model=model
+      model=model.taskInstance.value
       update=(route-action "updateNextPage")
       loadingSize="large"
     }}
   </div>
 {{else}}
-  <div class="stream-error-wrapper col-sm-12">
+  <div class="text-xs-center w-100 m-t-1 m-b-1">
     {{t "errors.contentEmpty"}}
   </div>
 {{/if}}

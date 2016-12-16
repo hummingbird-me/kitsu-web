@@ -14,7 +14,7 @@ export default Route.extend(PaginationMixin, {
       include: 'follower',
       sort: '-created_at'
     });
-  }).restartable(),
+  }),
 
   model() {
     const user = this.modelFor('users');

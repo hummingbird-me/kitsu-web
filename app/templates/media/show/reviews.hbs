@@ -1,8 +1,17 @@
-{{#if model}}
+{{#if model.taskInstance.isRunning}}
+  <div class="text-xs-center w-100 m-t-1 m-b-1">
+    {{loading-spinner size="large"}}
+    <p>Loading Reviews...</p>
+  </div>
+{{else if model.taskInstance.error}}
+  <div class="text-xs-center w-100 m-t-1 m-b-1">
+    {{t "errors.load"}}
+  </div>
+{{else if model.taskInstance.value}}
   <ul class="media-list w-100">
     {{! TODO @Josh - Reviews on the media page `/anime/sword-art-online/reviews` }}
-    {{#each model as |review|}}
-      <div class="col-xs-12">
+    {{#each model.taskInstance.value as |review|}}
+      <div class="w-100">
         {{stream-feed/items/review review=review media=media hideImage=true}}
       </div>
     {{/each}}
@@ -10,13 +19,13 @@
 
   <div class="text-xs-center w-100">
     {{paginated-resource/infinite
-      model=model
+      model=model.taskInstance.value
       update=(route-action "updateNextPage")
       loadingSize="large"
     }}
   </div>
 {{else}}
-  <div class="stream-error-wrapper col-sm-12">
+  <div class="text-xs-center w-100 m-t-1 m-b-1">
     {{t "errors.contentEmpty"}}
   </div>
 {{/if}}

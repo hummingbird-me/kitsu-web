@@ -2,15 +2,16 @@ import Route from 'ember-route';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { capitalize } from 'ember-string';
+import { task } from 'ember-concurrency';
 import { modelType } from 'client/helpers/model-type';
 
 export default Route.extend({
   templateName: 'media/show/index',
 
-  model() {
+  modelTask: task(function* () {
     const parentRoute = get(this, 'routeName').split('.').slice(0, 2).join('.');
     const media = this.modelFor(parentRoute);
-    return get(this, 'store').query('review', {
+    return yield get(this, 'store').query('review', {
       include: 'user',
       filter: {
         media_id: get(media, 'id'),
@@ -19,6 +20,10 @@ export default Route.extend({
       page: { limit: 2 },
       sort: '-likes_count'
     });
+  }),
+
+  model() {
+    return { taskInstance: get(this, 'modelTask').perform() };
   },
 
   setupController(controller) {
