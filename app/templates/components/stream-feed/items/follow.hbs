@@ -2,18 +2,18 @@
 <div class="stream-item-wrapper col-sm-12">
   <div class="stream-item--title-block">
     <span class="avatar-block">
-      <a href={{href-to "users.index" follow.follower}} class="author-avatar" onclick={{action "trackEngagement" "click"}}>
-        <img src={{image follow.follower.avatar "medium"}}>
+      <a href={{href-to "users.index" activity.actor}} class="author-avatar" onclick={{action "trackEngagement" "click"}}>
+        <img src={{image activity.actor.avatar "medium"}}>
       </a>
       <a href={{href-to "users.index" follow.followed}} class="author-avatar recipient-avatar" onclick={{action "trackEngagement" "click"}}>
         <img src={{image follow.followed.avatar "medium"}}>
       </a>
     </span>
     <div class="author-info">
-      <a class="author-name" href={{href-to "users.index" follow.follower}} onclick={{action "trackEngagement" "click"}}>
-        {{follow.follower.name}}
+      <a class="author-name" href={{href-to "users.index" activity.actor}} onclick={{action "trackEngagement" "click"}}>
+        {{activity.actor.name}}
       </a>
-      {{user-badge follow.follower}}
+      {{user-badge activity.actor}}
       <span class="recipient-info">
         <small>followed</small>
         <a href={{href-to "users.index" follow.followed}} class="author-name" onclick={{action "trackEngagement" "click"}}>

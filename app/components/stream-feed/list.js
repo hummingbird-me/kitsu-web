@@ -67,10 +67,8 @@ export default Component.extend({
         // posts (and comment system)
         'target.user,target.target_user,target.spoiled_unit,target.media',
         'subject.user,subject.target_user,subject.spoiled_unit,subject.media',
-        // library-entry
-        'subject.media',
         // follow
-        'subject.follower,subject.followed',
+        'subject.followed',
         // review
         'subject.library_entry'
       ].join(','),
