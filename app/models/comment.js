@@ -7,7 +7,7 @@ export default Base.extend({
   content: attr('string'),
   contentFormatted: attr('string'),
   createdAt: attr('utc', { defaultValue() { return new Date(); } }),
-  deletedAt: attr('utc'),
+  editedAt: attr('utc'),
   likesCount: attr('number'),
   repliesCount: attr('number'),
   updatedAt: attr('utc'),

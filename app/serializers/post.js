@@ -7,6 +7,7 @@ export default ApplicationSerializer.extend({
     postLikesCount: { serialize: false },
     topLevelCommentsCount: { serialize: false },
     createdAt: { serialize: false },
+    editedAt: { serialize: false },
     updatedAt: { serialize: false }
   }
 });

@@ -55,9 +55,10 @@ export default Component.extend(ClipboardMixin, {
     return !time.isBefore();
   }),
 
-  postEdited: computed('post.createdAt', 'post.updatedAt', {
+  postEdited: computed('post.createdAt', 'post.editedAt', {
     get() {
-      return moment(get(this, 'post.createdAt')).isSame(get(this, 'post.updatedAt')) === false;
+      if (!get(this, 'post.editedAt')) { return false; }
+      return !moment(get(this, 'post.createdAt')).isSame(get(this, 'post.editedAt'));
     }
   }).readOnly(),
 
