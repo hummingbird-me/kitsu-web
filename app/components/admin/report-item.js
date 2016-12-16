@@ -6,6 +6,7 @@ import { task, taskGroup } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
+  tagName: 'tr',
   session: service(),
   notify: service(),
   reportTask: taskGroup().drop(),
@@ -26,7 +27,6 @@ export default Component.extend({
         report.rollbackAttributes();
         get(this, 'notify').error(errorMessages(err));
       });
-    this.$('.modal').modal('hide');
   }).group('reportTask'),
 
   declineReport: task(function* () {
@@ -39,6 +39,5 @@ export default Component.extend({
       report.rollbackAttributes();
       get(this, 'notify').error(errorMessages(err));
     });
-    this.$('.modal').modal('hide');
   }).group('reportTask')
 });

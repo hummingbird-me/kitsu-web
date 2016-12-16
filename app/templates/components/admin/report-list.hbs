@@ -5,11 +5,12 @@
     <th>Reason</th>
     <th>Explanation</th>
     <th>Moderator</th>
-    <th>Actions</th>
+    <th>Status</th>
+    <th class="text-xs-center">Actions</th>
   </tr>
 </thead>
 <tbody>
-  {{#each filteredReports as |report|}}
-    {{admin/report-item report=report tagName="tr"}}
+  {{#each reports as |report|}}
+    {{admin/report-item report=report}}
   {{/each}}
 </tbody>

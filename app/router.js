@@ -55,7 +55,7 @@ RouterInstance.map(function() {
   });
 
   this.route('settings', function() {
-    this.route('profile');
+    this.route('index', { path: '/profile' });
     this.route('password');
     this.route('privacy');
     this.route('imports');
@@ -66,8 +66,8 @@ RouterInstance.map(function() {
 
   this.route('admin', function() {
     this.route('reports', function() {
-      this.route('latest');
-      this.route('declined');
+      this.route('index', { path: '/open' });
+      this.route('closed');
     });
   });
 

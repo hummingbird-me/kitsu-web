@@ -95,7 +95,7 @@ export default Component.extend({
 
     transitionToSettings() {
       this.$('.modal').on('hidden.bs.modal', () => {
-        get(this, 'router').transitionTo('settings.profile');
+        get(this, 'router').transitionTo('settings');
       }).modal('hide');
     }
   }

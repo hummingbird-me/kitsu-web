@@ -1,20 +1,23 @@
 <td>
   <a href={{href-to "users.index" report.user}}>{{report.user.name}}</a>
 </td>
-<td>{{capitalize (model-type report.naughty)}}</td>
+<td>
+  {{create-link (capitalize (model-type report.naughty)) (concat (model-type report.naughty) "s") report.naughty.id}}
+</td>
 <td>{{report.reason}}</td>
 <td>{{or report.explanation "No Explanation Provided."}}</td>
 <td>{{or report.moderator.name "Not Set"}}</td>
-<td>
-  <button class="btn btn-primary btn-sm" onclick={{action (toggle "reviewModal" this)}}>
-    Review
-  </button>
-  </td>
+<td>{{report.status}}</td>
+<td class="text-xs-center">
+  {{#if (or (eq report.status "declined") (eq report.status "reported"))}}
+    <button class="btn btn-primary btn-sm" onclick={{perform resolveReport}}>
+      Resolve
+    </button>
+  {{/if}}
 
-{{! report modal }}
-{{#if reviewModal}}
-  {{to-elsewhere named="modal" send=(component "admin/report-modal"
-    report=report
-    onClose=(toggle-action "reviewModal" this)
-  )}}
-{{/if}}
+  {{#unless (eq report.status "declined")}}
+    <button class="btn btn-danger btn-sm" onclick={{perform declineReport}}>
+      Reject
+    </button>
+  {{/unless}}
+</td>

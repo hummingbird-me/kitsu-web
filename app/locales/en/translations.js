@@ -20,7 +20,10 @@ export default {
     comments: 'Comment by {{user}}',
     reviews: 'Review by {{user}}',
     notifications: 'Notifications',
-    admin: 'Admin'
+    admin: {
+      index: 'Admin',
+      reports: 'Reports'
+    }
   },
   auth: {
     signUp: {

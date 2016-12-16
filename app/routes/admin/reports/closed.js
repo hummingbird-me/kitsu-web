@@ -5,7 +5,7 @@ export default Route.extend({
   model() {
     return get(this, 'store').query('report', {
       include: 'user,naughty,moderator',
-      filter: { status: 2 },
+      filter: { status: '1,2' },
       page: { limit: 20 }
     });
   }
