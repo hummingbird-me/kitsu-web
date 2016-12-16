@@ -4,6 +4,7 @@ import set from 'ember-metal/set';
 import { capitalize } from 'ember-string';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
+import { storageFor } from 'ember-local-storage';
 import libraryStatus from 'client/utils/library-status';
 import PaginationMixin from 'client/mixins/routes/pagination';
 import errorMessages from 'client/utils/error-messages';
@@ -18,6 +19,7 @@ export default Route.extend(PaginationMixin, {
   notify: service(),
   metrics: service(),
   session: service(),
+  lastUsed: storageFor('last-used'),
 
   /**
    * Restartable task that queries the library entries for the current status,
@@ -48,6 +50,17 @@ export default Route.extend(PaginationMixin, {
     });
     return yield get(this, 'store').query('library-entry', options);
   }).restartable(),
+
+  beforeModel({ queryParams }) {
+    if (queryParams.media === undefined) {
+      if (get(this, 'session').isCurrentUser(this.modelFor('users'))) {
+        const type = get(this, 'lastUsed.libraryType');
+        if (type) {
+          this.replaceWith({ queryParams: { media: type } });
+        }
+      }
+    }
+  },
 
   model({ media, status }) {
     return get(this, 'modelTask').perform(media, status);

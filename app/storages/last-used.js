@@ -4,7 +4,7 @@ const Storage = StorageObject.extend();
 
 Storage.reopenClass({
   initialState() {
-    return { type: undefined };
+    return {};
   }
 });
 

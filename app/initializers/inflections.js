@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Config from 'client/config/environment';
+import config from 'client/config/environment';
 
 const {
   Inflector: { inflector }
@@ -15,7 +15,9 @@ const result = {
   initialize
 };
 
-if (Config.environment === 'test') {
+// run before mirage in testing, we can't do this by default as mirage doesn't include its files
+// in other environments.
+if (config.environment === 'test') {
   Object.assign(result, { before: 'ember-cli-mirage' });
 }
 

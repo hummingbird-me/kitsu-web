@@ -1,7 +1,8 @@
-import Config from 'client/config/environment';
+import config from 'client/config/environment';
 
 export function initialize() {
-  if (Config.ads.enabled === true) {
+  const { enabled } = config.ads;
+  if (enabled) {
     const element = document.createElement('script');
     element.async = true;
     element.src = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';

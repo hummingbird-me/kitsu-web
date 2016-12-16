@@ -2,7 +2,10 @@ import Controller from 'ember-controller';
 import computed, { alias } from 'ember-computed';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import observer from 'ember-metal/observer';
+import service from 'ember-service/inject';
 import controller from 'ember-controller/inject';
+import { storageFor } from 'ember-local-storage';
 import libraryStatus from 'client/utils/library-status';
 
 export default Controller.extend({
@@ -11,8 +14,10 @@ export default Controller.extend({
   status: 'current',
 
   application: controller(),
+  session: service(),
   entries: alias('model'),
   isLoading: alias('application.routeIsLoading'),
+  lastUsed: storageFor('last-used'),
 
   /**
    * Returns an array of the other library page options
@@ -46,5 +51,16 @@ export default Controller.extend({
   init() {
     this._super(...arguments);
     set(this, 'statuses', ['all', ...libraryStatus.getEnumKeys()]);
-  }
+  },
+
+  _saveFilter: observer('media', function() {
+    // its possible for this to proc before setupController from the route has fired
+    // we don't actually want to update the cache when it's a direct route request anyway.
+    if (get(this, 'user')) {
+      if (get(this, 'session').isCurrentUser(get(this, 'user'))) {
+        const lastUsed = get(this, 'lastUsed');
+        set(lastUsed, 'libraryType', get(this, 'media'));
+      }
+    }
+  })
 });

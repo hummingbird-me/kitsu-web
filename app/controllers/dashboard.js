@@ -9,7 +9,7 @@ import { storageFor } from 'ember-local-storage';
 const MAGIC_NUMBER = 7;
 
 export default Controller.extend({
-  feed: storageFor('feed'),
+  lastUsed: storageFor('last-used'),
   session: service(),
 
   streamId: computed('streamType', 'session.hasUser', {
@@ -20,14 +20,14 @@ export default Controller.extend({
 
   updateStreamType: observer('session.hasUser', 'session.account.followingCount', function() {
     const defaultType = this._getDefaultType();
-    set(this, 'streamType', get(this, 'feed.type') || defaultType);
+    set(this, 'streamType', get(this, 'lastUsed.feedType') || defaultType);
   }),
 
   init() {
     this._super(...arguments);
     const defaultType = this._getDefaultType();
     if (get(this, 'session.hasUser')) {
-      set(this, 'streamType', get(this, 'feed.type') || defaultType);
+      set(this, 'streamType', get(this, 'lastUsed.feedType') || defaultType);
     } else {
       set(this, 'streamType', defaultType);
     }
@@ -45,7 +45,7 @@ export default Controller.extend({
   actions: {
     switchFeed(type) {
       set(this, 'streamType', type);
-      set(this, 'feed.type', type);
+      set(this, 'lastUsed.feedType', type);
     }
   }
 });
