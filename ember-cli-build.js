@@ -5,6 +5,7 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     storeConfigInMeta: false,
     babel: {
+      comments: false,
       includePolyfill: true
     },
     sassOptions: {
