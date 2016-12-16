@@ -218,7 +218,7 @@
               {{t "errors.load"}}
             </div>
           {{else if model.taskInstance.value}}
-            {{#each model.taskInstance.value as |media|}}
+            {{#each taskValue as |media|}}
               {{media/media-poster media=media}}
             {{/each}}
           {{else}}
@@ -228,11 +228,11 @@
           {{/if}}
         </div>
 
-        {{#if model.taskInstance.value}}
+        {{#if taskValue}}
           <div class="m-t-1 text-xs-center">
             {{paginated-resource/infinite
-              model=model.taskInstance.value
-              update=(route-action "updateNextPage")
+              model=taskValue
+              update=(route-action "updateNextPage" "taskValue")
               ratio=-4
               loadingSize="large"
             }}

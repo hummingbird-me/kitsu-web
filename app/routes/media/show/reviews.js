@@ -19,6 +19,10 @@ export default Route.extend(PaginationMixin, {
         media_id: get(media, 'id')
       },
       sort: '-likes_count'
+    }).then((results) => {
+      const controller = this.controllerFor(get(this, 'routeName'));
+      set(controller, 'taskValue', results);
+      return results;
     });
   }),
 

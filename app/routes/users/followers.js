@@ -13,6 +13,10 @@ export default Route.extend(PaginationMixin, {
       filter: { followed: get(user, 'id') },
       include: 'follower',
       sort: '-created_at'
+    }).then((results) => {
+      const controller = this.controllerFor(get(this, 'routeName'));
+      set(controller, 'taskValue', results);
+      return results;
     });
   }),
 

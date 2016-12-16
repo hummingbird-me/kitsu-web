@@ -13,7 +13,7 @@ export default Controller.extend({
   status: 'current',
 
   session: service(),
-  entries: alias('model.taskInstance.value'),
+  entries: alias('taskValue'),
   lastUsed: storageFor('last-used'),
 
   /**

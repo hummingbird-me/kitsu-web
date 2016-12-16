@@ -10,7 +10,7 @@
 {{else if model.taskInstance.value}}
   <ul class="media-list w-100">
     {{! TODO @Josh - Reviews on the media page `/anime/sword-art-online/reviews` }}
-    {{#each model.taskInstance.value as |review|}}
+    {{#each taskValue as |review|}}
       <div class="w-100">
         {{stream-feed/items/review review=review media=media hideImage=true}}
       </div>
@@ -19,8 +19,8 @@
 
   <div class="text-xs-center w-100">
     {{paginated-resource/infinite
-      model=model.taskInstance.value
-      update=(route-action "updateNextPage")
+      model=taskValue
+      update=(route-action "updateNextPage" "taskValue")
       loadingSize="large"
     }}
   </div>

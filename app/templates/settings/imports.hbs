@@ -35,7 +35,7 @@
       </div>
     {{else if model.taskInstance.value}}
       <div id="accordian" class="w-100">
-        {{#each model.taskInstance.value as |import index|}}
+        {{#each taskValue as |import index|}}
           <div class="card">
             <div class="card-header" role="tab">
               <h6 class="m-b-0">
@@ -63,6 +63,18 @@
             </div>
           </div>
         {{/each}}
+
+        <div class="text-xs-center w-100">
+          {{#paginated-resource/manual
+            model=taskValue
+            update=(route-action "updateNextPage" "taskValue") as |nextLink|}}
+            {{#if nextLink}}
+              <button class="button button--primary btn-block">
+                Load More
+              </button>
+            {{/if}}
+          {{/paginated-resource/manual}}
+        </div>
       </div>
     {{else}}
       <div class="text-xs-center w-100 m-t-1 m-b-1">

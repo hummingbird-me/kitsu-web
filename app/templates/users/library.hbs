@@ -73,15 +73,13 @@
         {{/if}}
 
         {{! pagination }}
-        {{#if (not isLoading)}}
-          <div class="text-xs-center">
-            {{paginated-resource/infinite
-              model=entries
-              ratio=-4
-              update=(route-action "updateNextPage")
-            }}
-          </div>
-        {{/if}}
+        <div class="text-xs-center">
+          {{paginated-resource/infinite
+            model=entries
+            ratio=-4
+            update=(route-action "updateNextPage" "taskValue")
+          }}
+        </div>
       {{/if}}
     </div>
   </div>

@@ -11,7 +11,7 @@
   {{else if model.taskInstance.value}}
     <ul class="media-list w-100">
       {{! TODO @Josh - Reviews on the users page `/users/Josh/reviews` }}
-      {{#each model.taskInstance.value as |review|}}
+      {{#each taskValue as |review|}}
         <div class="col-xs-11 centered">
           {{stream-feed/items/review review=review}}
         </div>
@@ -20,8 +20,8 @@
 
     <div class="text-xs-center w-100">
       {{paginated-resource/infinite
-        model=model.taskInstance.value
-        update=(route-action "updateNextPage")
+        model=taskValue
+        update=(route-action "updateNextPage" "taskValue")
         loadingSize="large"
       }}
     </div>

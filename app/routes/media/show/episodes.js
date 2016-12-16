@@ -1,5 +1,6 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
+import set from 'ember-metal/set';
 import { capitalize } from 'ember-string';
 import { task } from 'ember-concurrency';
 import PaginationMixin from 'client/mixins/routes/pagination';
@@ -15,6 +16,10 @@ export default Route.extend(PaginationMixin, {
         media_type: capitalize(mediaType),
         media_id: get(media, 'id')
       }
+    }).then((results) => {
+      const controller = this.controllerFor(get(this, 'routeName'));
+      set(controller, 'taskValue', results);
+      return results;
     });
   }),
 

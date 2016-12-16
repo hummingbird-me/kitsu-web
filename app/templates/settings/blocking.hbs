@@ -38,7 +38,7 @@
   {{else if model.taskInstance.value}}
     <div class="form-group row">
       <ul class="blocked-user--list">
-        {{#each model.taskInstance.value as |block|}}
+        {{#each taskValue as |block|}}
           <li>
             <div class="stream-item--title-block">
               <span class="avatar-block">
@@ -60,8 +60,8 @@
 
     <div class="text-xs-center w-100">
       {{#paginated-resource/manual
-        model=model.taskInstance.value
-        update=(route-action "updateNextPage") as |nextLink|}}
+        model=taskValue
+        update=(route-action "updateNextPage" "taskValue") as |nextLink|}}
         {{#if nextLink}}
           <button class="button button--primary btn-block">
             Load More

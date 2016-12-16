@@ -10,7 +10,7 @@
         {{t "erros.load"}}
       </div>
     {{else if model.taskInstance.value}}
-      {{#each model.taskInstance.value as |follow|}}
+      {{#each taskValue as |follow|}}
         {{#if follow.followed}}
           <div class="card user-card col-sm-3">
             <a href={{href-to "users.index" follow.followed}}>
@@ -38,9 +38,9 @@
 
       <div class="m-t-1 text-xs-center w-100">
         {{paginated-resource/infinite
-          model=model.taskInstance.value
+          model=taskValue
           loadingSize="large"
-          update=(route-action "updateNextPage")
+          update=(route-action "updateNextPage" "taskValue")
         }}
       </div>
     {{else}}
