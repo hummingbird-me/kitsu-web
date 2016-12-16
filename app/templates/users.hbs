@@ -22,6 +22,12 @@
                   <button class="button button--light-outline" onclick={{action (toggle "isEditing" this)}}>
                     <span class="button-label button-defaultState">Edit</span>
                   </button>
+                  {{#if isEditing}}
+                    {{to-elsewhere named="modal" send=(component "users/edit-profile"
+                      user=user
+                      modalId="edit-profile-modal"
+                      onClose=(toggle-action "isEditing" this))}}
+                  {{/if}}
                 {{/if}}
 
                 {{! admin actions }}
@@ -86,10 +92,3 @@
 
 {{! users/* templates rendered here }}
 {{outlet}}
-
-{{#if isEditing}}
-  {{to-elsewhere named="modal" send=(component "users/edit-profile"
-    user=user
-    modalId="edit-profile-modal"
-    onClose=(toggle-action "isEditing" this))}}
-{{/if}}

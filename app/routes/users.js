@@ -47,6 +47,11 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
     }]);
   },
 
+  resetController(controller) {
+    this._super(...arguments);
+    set(controller, 'isEditing', false);
+  },
+
   serialize(model) {
     return { name: get(model, 'name') };
   }
