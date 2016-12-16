@@ -15,7 +15,7 @@ export default Controller.extend({
 
   application: controller(),
   session: service(),
-  entries: alias('model'),
+  entries: alias('model.taskInstance.value'),
   isLoading: alias('application.routeIsLoading'),
   lastUsed: storageFor('last-used'),
 

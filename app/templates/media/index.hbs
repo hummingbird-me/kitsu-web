@@ -192,11 +192,11 @@
               {{loading-spinner size="large"}}
               <p>Loading Media...</p>
             </div>
-            {{else if model.taskInstance.error}}
+          {{else if model.taskInstance.error}}
             <div class="text-xs-center w-100 m-t-1">
               {{t "errors.load"}}
             </div>
-            {{else if model.taskInstance.value}}
+          {{else if model.taskInstance.value}}
             {{#each model.taskInstance.value as |media|}}
               {{media/media-poster media=media}}
             {{/each}}

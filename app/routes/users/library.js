@@ -63,7 +63,7 @@ export default Route.extend(PaginationMixin, {
   },
 
   model({ media, status }) {
-    return get(this, 'modelTask').perform(media, status);
+    return { taskInstance: get(this, 'modelTask').perform(media, status) };
   },
 
   setupController(controller) {

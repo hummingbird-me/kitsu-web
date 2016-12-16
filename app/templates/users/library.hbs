@@ -40,41 +40,51 @@
       </div> -->
 
       {{! Library Entries }}
-      {{#if (eq status 'all')}} {{! all status is selected }}
-        {{#each-in sections as |status entries|}}
-          {{#if entries}}
-            {{users/library/library-entries
-              status=status
-              entries=entries
-              mediaType=media
-              user=user
-              isLoading=isLoading
-              save=(route-action "saveEntry")
-              delete=(route-action "deleteEntry")
-            }}
-          {{/if}}
-        {{/each-in}}
-      {{else}} {{! active tab entires }}
-        {{users/library/library-entries
-          status=status
-          entries=entries
-          mediaType=media
-          user=user
-          isLoading=isLoading
-          save=(route-action "saveEntry")
-          delete=(route-action "deleteEntry")
-        }}
-      {{/if}}
-
-      {{! pagination }}
-      {{#if (not isLoading)}}
-        <div class="text-xs-center">
-          {{paginated-resource/infinite
-            model=entries
-            ratio=-4
-            update=(route-action "updateNextPage")
-          }}
+      {{#if model.taskInstance.isRunning}}
+        <div class="text-xs-center w-100">
+          {{loading-spinner size="large"}}
         </div>
+      {{else if model.taskInstance.error}}
+        <div class="text-xs-center w-100 m-t-1 m-b-1">
+          {{t "errors.load"}}
+        </div>
+      {{else if model.taskInstance.value}}
+        {{#if (eq status 'all')}} {{! all status is selected }}
+          {{#each-in sections as |status entries|}}
+            {{#if entries}}
+              {{users/library/library-entries
+                status=status
+                entries=entries
+                mediaType=media
+                user=user
+                isLoading=isLoading
+                save=(route-action "saveEntry")
+                delete=(route-action "deleteEntry")
+              }}
+            {{/if}}
+          {{/each-in}}
+        {{else}} {{! active tab entires }}
+          {{users/library/library-entries
+            status=status
+            entries=entries
+            mediaType=media
+            user=user
+            isLoading=isLoading
+            save=(route-action "saveEntry")
+            delete=(route-action "deleteEntry")
+          }}
+        {{/if}}
+
+        {{! pagination }}
+        {{#if (not isLoading)}}
+          <div class="text-xs-center">
+            {{paginated-resource/infinite
+              model=entries
+              ratio=-4
+              update=(route-action "updateNextPage")
+            }}
+          </div>
+        {{/if}}
       {{/if}}
     </div>
   </div>
