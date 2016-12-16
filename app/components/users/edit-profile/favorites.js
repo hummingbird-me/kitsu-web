@@ -91,6 +91,7 @@ export default Component.extend({
       content.addObjects(records);
       set(this, `${type}Favorites`, content);
       set(this, `${type}Favorites.links`, links);
+      records.forEach(record => invokeAction(this, 'addRecord', record));
     }
   }
 });
