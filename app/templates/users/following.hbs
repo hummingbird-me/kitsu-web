@@ -1,40 +1,50 @@
 <div class="container">
   <div class="row">
-    {{#each model as |follow|}}
-      {{#if follow.followed}}
-        <div class="card user-card col-sm-3">
-          <a href={{href-to "users.index" follow.followed}}>
-            <img class="card-img-top" src={{image follow.followed.coverImage}}>
-          </a>
-          <div class="card-block">
+    {{#if model.taskInstance.isRunning}}
+      <div class="text-xs-center w-100 m-t-1 m-b-1">
+        {{loading-spinner size="large"}}
+        <p>Loading Users...</p>
+      </div>
+    {{else if model.taskInstance.error}}
+      <div class="text-xs-center w-100 m-t-1 m-b-1">
+        {{t "erros.load"}}
+      </div>
+    {{else if model.taskInstance.value}}
+      {{#each model.taskInstance.value as |follow|}}
+        {{#if follow.followed}}
+          <div class="card user-card col-sm-3">
             <a href={{href-to "users.index" follow.followed}}>
-              <img class="card-img-avatar" src={{image follow.followed.avatar "medium"}}>
+              <img class="card-img-top" src={{image follow.followed.coverImage}}>
             </a>
-            <a href={{href-to "users.index" follow.followed}}>
-              <h4 class="card-title">{{follow.followed.name}}</h4>
-            </a>
+            <div class="card-block">
+              <a href={{href-to "users.index" follow.followed}}>
+                <img class="card-img-avatar" src={{image follow.followed.avatar "medium"}}>
+              </a>
+              <a href={{href-to "users.index" follow.followed}}>
+                <h4 class="card-title">{{follow.followed.name}}</h4>
+              </a>
 
-            {{#if (not (is-self follow.followed))}}
-              {{follow-button user=follow.followed}}
-            {{else}}
-              <button class="button button--primary" disabled="disabled">
-                Hey, that's you!
-              </button>
-            {{/if}}
+              {{#if (not (is-self follow.followed))}}
+                {{follow-button user=follow.followed}}
+              {{else}}
+                <button class="button button--primary" disabled="disabled">
+                  Hey, that's you!
+                </button>
+              {{/if}}
+            </div>
           </div>
-        </div>
-      {{/if}}
-    {{else}}
-      {{! @Josh -- Following empty state }}
-      <p>{{user.name}} is not following anyone.</p>
-    {{/each}}
+        {{/if}}
+      {{else}}
+        <p>No Users Found.</p>
+      {{/each}}
 
-    <div class="m-t-1 text-xs-center w-100">
-      {{paginated-resource/infinite
-        model=model
-        loadingSize="large"
-        update=(route-action "updateNextPage")
-      }}
-    </div>
+      <div class="m-t-1 text-xs-center w-100">
+        {{paginated-resource/infinite
+          model=model.taskInstance.value
+          loadingSize="large"
+          update=(route-action "updateNextPage")
+        }}
+      </div>
+    {{/if}}
   </div>
 </div>

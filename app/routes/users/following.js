@@ -2,18 +2,23 @@ import Route from 'ember-route';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
+import { task } from 'ember-concurrency';
 import PaginationMixin from 'client/mixins/routes/pagination';
 
 export default Route.extend(PaginationMixin, {
   i18n: service(),
 
-  model() {
-    const user = this.modelFor('users');
-    return get(this, 'store').query('follow', {
+  modelTask: task(function* (user) {
+    return yield get(this, 'store').query('follow', {
       filter: { follower: get(user, 'id') },
       include: 'followed',
       sort: '-created_at'
     });
+  }).restartable(),
+
+  model() {
+    const user = this.modelFor('users');
+    return { taskInstance: get(this, 'modelTask').perform(user) };
   },
 
   setupController(controller) {

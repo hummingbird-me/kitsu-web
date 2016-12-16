@@ -41,8 +41,9 @@
 
       {{! Library Entries }}
       {{#if model.taskInstance.isRunning}}
-        <div class="text-xs-center w-100">
+        <div class="text-xs-center w-100 m-t-1 m-b-1">
           {{loading-spinner size="large"}}
+          <p>Loading Library...</p>
         </div>
       {{else if model.taskInstance.error}}
         <div class="text-xs-center w-100 m-t-1 m-b-1">
