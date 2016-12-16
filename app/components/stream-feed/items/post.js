@@ -98,12 +98,7 @@ export default Component.extend(ClipboardMixin, {
     set(this, 'isHidden', get(post, 'nsfw') || get(post, 'spoiler'));
 
     if (!get(this, 'isHidden')) {
-      scheduleOnce('afterRender', () => {
-        if (!get(this, 'isExpanded')) {
-          this._hideLongBody();
-          this.$('img').one('load', () => { this._hideLongBody(); });
-        }
-      });
+      this._overflow();
     }
   },
 
@@ -116,14 +111,29 @@ export default Component.extend(ClipboardMixin, {
 
   _hideLongBody() {
     const body = this.$('.stream-content-post');
-    if (body && body.height() >= 200) {
+    if (body && body.height() >= 480) {
       set(this, 'isOverflowed', true);
+    } else {
+      set(this, 'isOverflowed', false);
+    }
+  },
+
+  _overflow() {
+    if (!get(this, 'isExpanded')) {
+      scheduleOnce('afterRender', () => {
+        this._hideLongBody();
+        this.$('img').one('load', () => { this._hideLongBody(); });
+      });
     }
   },
 
   _updateHidden: observer('post.nsfw', 'post.spoiler', function() {
     const post = get(this, 'post');
     set(this, 'isHidden', get(post, 'nsfw') || get(post, 'spoiler'));
+  }),
+
+  _updateContent: observer('post.contentFormatted', function() {
+    this._overflow();
   }),
 
   actions: {
@@ -134,12 +144,7 @@ export default Component.extend(ClipboardMixin, {
 
     toggleHidden() {
       this.toggleProperty('isHidden');
-      if (!get(this, 'isExpanded')) {
-        scheduleOnce('afterRender', () => {
-          this._hideLongBody();
-          this.$('img').one('load', () => { this._hideLongBody(); });
-        });
-      }
+      this._overflow();
     },
 
     likeCreated() {
