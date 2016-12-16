@@ -2,6 +2,7 @@ import Component from 'ember-component';
 import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import observer from 'ember-metal/observer';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import { isEmpty } from 'ember-utils';
@@ -98,11 +99,15 @@ export default Component.extend({
   didReceiveAttrs({ newAttrs, oldAttrs }) {
     this._super(...arguments);
     if (isEmpty(oldAttrs) || get(newAttrs.resource.value, 'id') !== get(oldAttrs.resource.value, 'id')) {
-      set(this, 'likes', []);
-      set(this, 'isLiked', false);
-      if (get(this, 'likesCount') > 0) {
-        get(this, 'getLikes').perform();
-      }
+      this._getLikes();
+    }
+  },
+
+  _getLikes() {
+    set(this, 'likes', []);
+    set(this, 'isLiked', false);
+    if (get(this, 'likesCount') > 0) {
+      get(this, 'getLikes').perform();
     }
   },
 
@@ -116,6 +121,10 @@ export default Component.extend({
       }
     }).catch(() => {});
   },
+
+  _didAuthenticate: observer('session.hasUser', function() {
+    this._getLikes();
+  }),
 
   actions: {
     toggleLike() {
