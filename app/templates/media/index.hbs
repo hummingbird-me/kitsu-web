@@ -150,6 +150,33 @@
                 </div>
               {{/if}}
             </div>
+
+            {{! Season Filter }}
+            <div class="filter-widget category-filter">
+              <div class="filter-header">
+                <label class="filter-title">
+                  {{t "media.routes.index.filter.seasons"}}
+                </label>
+                <span class="filter-values">
+                  {{#if (is-empty season)}}
+                    {{availableSeasons.length}}
+                  {{else}}
+                    {{season.length}}
+                  {{/if}}
+                </span>
+              </div>
+              {{#media/filter-widgets/multi-select
+                class="category-select"
+                includeAll=true
+                selected=season
+                selection=availableSeasons
+                onChange=(action (mut season)) as |option|
+              }}
+                <a href="#" data-test-selector="filter-season">{{capitalize option}}</a>
+                <span class="exclude-genre hint--left hint--bounce hint--rounded" aria-label="Exclude?">{{svg-jar "close"}}</span>
+                <span class="include-genre hint--left hint--bounce hint--rounded" aria-label="Include?">{{svg-jar "checkmark"}}</span>
+              {{/media/filter-widgets/multi-select}}
+            </div>
           {{/if}}
 
           {{! Genre Filter }}

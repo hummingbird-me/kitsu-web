@@ -7,7 +7,8 @@ export default MediaIndexRoute.extend({
   queryParams: {
     ageRating: { refreshModel: true, replace: true },
     episodeCount: { refreshModel: true, replace: true },
-    streamers: { refreshModel: true, replace: true }
+    streamers: { refreshModel: true, replace: true },
+    season: { refreshModel: true, replace: true }
   },
 
   beforeModel() {

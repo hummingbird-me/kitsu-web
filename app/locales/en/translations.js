@@ -86,6 +86,7 @@ export default {
         filter: {
           year: 'Year',
           score: 'Score',
+          seasons: 'Seasons',
           streamers: 'Streamers (U.S.)',
           episodes: 'Episodes',
           rating: 'Rating',

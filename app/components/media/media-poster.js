@@ -54,6 +54,7 @@ export default Component.extend({
         media_id: get(media, 'id')
       },
     }).then((results) => {
+      if (get(this, 'isDestroyed')) { return; }
       const entry = get(results, 'firstObject');
       set(this, 'entry', entry);
       if (entry !== undefined) {
