@@ -87,7 +87,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .entry-progress, .entry-rating, .entry-type {
+  .entry-indicators, .entry-progress, .entry-rating, .entry-type {
     display: inline-block;
     @media (max-width: 992px) {
       width: 33.3%;
@@ -131,6 +131,16 @@
   overflow: hidden;
   margin-right: 15px;
   border-radius: 3px;
+}
+
+.entry-indicators {
+  margin-right: 20px;
+  position: relative;
+  top: 8px;
+  .loading {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .entry-progress {

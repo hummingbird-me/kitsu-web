@@ -40,7 +40,7 @@ export default Component.extend({
   }).restartable(),
 
   saveEntryDebounced: task(function* () {
-    yield timeout(500);
+    yield timeout(1500);
     yield get(this, 'saveEntry').perform();
   }).restartable(),
 

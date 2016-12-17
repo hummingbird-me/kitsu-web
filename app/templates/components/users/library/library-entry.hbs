@@ -7,33 +7,42 @@
       </div>
       <div class="entry-title" data-test-selector="library-entry-title">
         <span>{{media.computedTitle}}</span>
-
-        {{! Entry Notes }}
-        {{#if entry.notes}}
-          <div class="entry-rewatching pull-sm-right">
-            <span class="hint--left hint--bounce hint--rounded" aria-label="{{truncate-text entry.notes}}">
-              {{!-- TODO/@josh
-                {{svg-jar "notes"}}
-              --}}
-            </span>
-          </div>
-        {{/if}}
       </div>
     </div>
 
     <div class="col-md-12 col-lg-5 entry-right">
-      {{! Entry Progress }}
-      <div class="entry-progress">
-        {{#if (and (gt entry.reconsumeCount 0) (eq entry.status "current"))}}
-          <div class="entry-rewatching pull-sm-right">
-            <span class="hint--top hint--bounce hint--rounded" aria-label="{{t (concat "users.library.reconsuming." (model-type media))}}">
-              {{!-- TODO/@josh
-                {{svg-jar "reconsuming"}}
-              --}}
+      {{! Entry Indicators }}
+      <div class="entry-indicators">
+        {{! Saving Activity }}
+        {{#if (or saveEntry.isRunning saveEntryDebounced.isRunning)}}
+          <div class="entry-indicator-saving d-inline-block">
+            <span class="hint--top hint--bounce hint--rounded" aria-label="Saving...">
+              {{loading-spinner size="small"}}
             </span>
           </div>
         {{/if}}
 
+        {{! Rewatching }}
+        {{#if (and (gt entry.reconsumeCount 0) (eq entry.status "current"))}}
+          <div class="entry-indicator-rewatching d-inline-block">
+            <span class="hint--top hint--bounce hint--rounded" aria-label="{{t (concat "users.library.reconsuming." (model-type media))}}">
+              {{! @Josh -- Rewatching SVG }}
+            </span>
+          </div>
+        {{/if}}
+
+        {{! Notes }}
+        {{#if entry.notes}}
+          <div class="entry-indicator-notes d-inline-block">
+            <span class="hint--top hint--bounce hint--rounded" aria-label="{{truncate entry.notes 60}}">
+              {{! @Josh -- Notes SVG }}
+            </span>
+          </div>
+        {{/if}}
+      </div>
+
+      {{! Entry Progress }}
+      <div class="entry-progress">
         {{#if (can-mutate user entry)}}
           {{one-way-number entry.progress
             min=0
