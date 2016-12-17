@@ -6,6 +6,7 @@ import { task, timeout } from 'ember-concurrency';
 import jQuery from 'jquery';
 import { invokeAction } from 'ember-invoke-action';
 import { modelType } from 'client/helpers/model-type';
+import { decimalNumber } from 'client/helpers/decimal-number';
 
 export default Component.extend({
   isExpanded: false,
@@ -23,7 +24,8 @@ export default Component.extend({
 
   ratingText: computed('entry.rating', {
     get() {
-      return get(this, 'entry.rating') || '-';
+      const rating = get(this, 'entry.rating');
+      return rating ? decimalNumber([rating]) : '-';
     }
   }).readOnly(),
 

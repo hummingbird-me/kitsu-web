@@ -67,6 +67,9 @@
 
       {{! Entry Rating }}
       <div class="entry-rating">
+        {{#if entry.rating}}
+          <span class="entry-rating-star">{{svg-jar "star"}}</span>
+        {{/if}}
         <span>{{ratingText}}</span>
       </div>
 
