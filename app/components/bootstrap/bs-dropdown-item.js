@@ -1,5 +1,5 @@
 import Component from 'ember-component';
-import get from 'ember-metal/get';
+import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
   tagName: 'a',
@@ -7,9 +7,6 @@ export default Component.extend({
   attributeBindings: ['data-test-selector'],
 
   click() {
-    const onClick = get(this, 'onClick');
-    if (onClick !== undefined) {
-      onClick();
-    }
+    invokeAction(this, 'onClick');
   }
 });

@@ -1,1 +1,21 @@
-{{admin/report-list reports=(filter-by "status" "reported" model)}}
+{{#if model.taskInstance.isRunning}}
+  <div class="text-xs-center w-100 m-t-1">
+    {{loading-spinner size="large"}}
+    <p>Loading Reports...</p>
+  </div>
+{{else if model.taskInstance.error}}
+  <div class="text-xs-center w-100 m-t-1">
+    {{t "errors.load"}}
+  </div>
+{{else}}
+  {{admin/report-list reports=(filter-by "status" "reported" taskValue)}}
+{{/if}}
+
+{{#if taskValue}}
+  <div class="text-xs-center w-100 m-t-1">
+    {{paginated-resource/infinite
+      model=taskValue
+      update=(route-action "updateNextPage" "taskValue")
+    }}
+  </div>
+{{/if}}

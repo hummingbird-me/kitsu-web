@@ -9,15 +9,26 @@
 <td>{{or report.moderator.name "Not Set"}}</td>
 <td>{{report.status}}</td>
 <td class="text-xs-center">
-  {{#if (or (eq report.status "declined") (eq report.status "reported"))}}
-    <button class="btn btn-primary btn-sm" onclick={{perform resolveReport}}>
-      Resolve
-    </button>
-  {{/if}}
-
-  {{#unless (eq report.status "declined")}}
-    <button class="btn btn-danger btn-sm" onclick={{perform declineReport}}>
-      Reject
-    </button>
-  {{/unless}}
+  {{#bootstrap/bs-dropdown as |dropdown|}}
+    {{#dropdown.button class="btn-primary" type="btn-sm"}}
+      Actions
+    {{/dropdown.button}}
+    {{#dropdown.menu}}
+      {{#if (or (eq report.status "resolved") (eq report.status "declined"))}}
+        {{#dropdown.menu-item onClick=(action "changeStatus" "reported")}}
+          Mark Open
+        {{/dropdown.menu-item}}
+      {{/if}}
+      {{#if (not (eq report.status "resolved"))}}
+        {{#dropdown.menu-item onClick=(action "changeStatus" "resolved")}}
+          Mark Resolved
+        {{/dropdown.menu-item}}
+      {{/if}}
+      {{#if (not (eq report.status "declined"))}}
+        {{#dropdown.menu-item onClick=(action "changeStatus" "declined")}}
+          Mark Closed
+        {{/dropdown.menu-item}}
+      {{/if}}
+    {{/dropdown.menu}}
+  {{/bootstrap/bs-dropdown}}
 </td>

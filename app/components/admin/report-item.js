@@ -11,33 +11,21 @@ export default Component.extend({
   notify: service(),
   reportTask: taskGroup().drop(),
 
-  resolveReport: task(function* () {
+  updateReport: task(function* (status) {
     const report = get(this, 'report');
-    set(report, 'status', 'resolved');
+    set(report, 'status', status);
     set(report, 'moderator', get(this, 'session.account'));
     yield report.save()
-      .then(() => {
-        get(report, 'naughty.content').destroyRecord()
-          .then(() => get(this, 'notify').success('The content has been deleted.'))
-          .catch((err) => {
-            get(report, 'naughty.content').rollbackAttributes();
-            get(this, 'notify').error(errorMessages(err));
-          });
-      }).catch((err) => {
+      .then(() => get(this, 'notify').success(`Report was marked as ${status}.`))
+      .catch((err) => {
         report.rollbackAttributes();
         get(this, 'notify').error(errorMessages(err));
       });
-  }).group('reportTask'),
+  }).drop(),
 
-  declineReport: task(function* () {
-    const report = get(this, 'report');
-    set(report, 'status', 'declined');
-    set(report, 'moderator', get(this, 'session.account'));
-    yield report.save().then(() => {
-      get(this, 'notify').success('The report has been declined.');
-    }).catch((err) => {
-      report.rollbackAttributes();
-      get(this, 'notify').error(errorMessages(err));
-    });
-  }).group('reportTask')
+  actions: {
+    changeStatus(status) {
+      get(this, 'updateReport').perform(status);
+    }
+  }
 });
