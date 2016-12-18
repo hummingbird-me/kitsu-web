@@ -21,9 +21,9 @@ test('visiting `/admin` redirects when unauthenticated', function(assert) {
   andThen(() => assert.equal(currentURL(), '/'));
 });
 
-test('visiting `/settings` when unauthenticated redirects', function(assert) {
+test('visiting `/settings/*` when unauthenticated redirects', function(assert) {
   invalidateSession(this.application);
-  visit('/settings');
+  visit('/settings/profile');
   andThen(() => assert.equal(currentURL(), '/'));
 });
 

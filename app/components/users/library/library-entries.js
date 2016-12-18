@@ -3,7 +3,6 @@ import computed from 'ember-computed';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import moment from 'moment';
-import { invokeAction } from 'ember-invoke-action';
 /* global humanizeDuration */
 
 export default Component.extend({
