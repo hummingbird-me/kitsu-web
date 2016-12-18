@@ -6,8 +6,8 @@
 {{#each entries as |entry|}}
   {{users/library/library-entry
     entry=entry
-    save=(action "save" entry)
-    delete=(action "delete" entry)
+    save=save
+    delete=delete
   }}
 {{else}}
   <div class="empty-wrapper">

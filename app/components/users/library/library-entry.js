@@ -38,7 +38,7 @@ export default Component.extend({
   }).readOnly(),
 
   saveEntry: task(function* () {
-    yield invokeAction(this, 'save');
+    yield invokeAction(this, 'save', get(this, 'entry'));
   }).restartable(),
 
   saveEntryDebounced: task(function* () {
@@ -67,7 +67,7 @@ export default Component.extend({
     },
 
     delete() {
-      invokeAction(this, 'delete');
+      invokeAction(this, 'delete', get(this, 'entry'));
     }
   }
 });

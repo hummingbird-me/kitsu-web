@@ -46,15 +46,5 @@ export default Component.extend({
       });
       return humanizeDuration(time.asMilliseconds());
     }
-  }),
-
-  actions: {
-    save(...args) {
-      invokeAction(this, 'save', ...args);
-    },
-
-    delete(...args) {
-      invokeAction(this, 'delete', ...args);
-    }
-  }
+  })
 });
