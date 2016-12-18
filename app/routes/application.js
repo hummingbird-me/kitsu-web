@@ -3,11 +3,13 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+import moment from 'moment';
 
 export default Route.extend(ApplicationRouteMixin, {
   i18n: service(),
   headData: service(),
   metrics: service(),
+  moment: service(),
   session: service(),
 
   // If the user is authenticated on first load, grab the users data
@@ -104,6 +106,7 @@ export default Route.extend(ApplicationRouteMixin, {
   _getCurrentUser() {
     return get(this, 'session').getCurrentUser()
       .then((user) => {
+        get(this, 'moment').changeTimeZone(get(user, 'timeZone') || moment.tz.guess());
         get(this, 'metrics').identify({
           distinctId: get(user, 'id'),
           alias: get(user, 'name'), // google uses alias > name
