@@ -19,7 +19,9 @@
                         <span>{{capitalize media.mediaType}}</span>
                       </li>
                     {{/if}}
-                    {{#each media.genres as |genre|}}
+
+                    {{! genres }}
+                    {{#each (sort-by "name" media.genres) as |genre|}}
                       <li class="media--category-tag">
                         <a href={{href-to (concat (model-type media) ".index") (query-params genres=genre.name)}}>
                           {{genre.name}}

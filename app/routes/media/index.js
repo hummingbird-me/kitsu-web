@@ -47,7 +47,7 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
     }
     get(this, 'store').query('genre', {
       page: { limit: 10000, offset: 0 }
-    }).then(genres => set(controller, 'availableGenres', genres));
+    }).then(genres => set(controller, 'availableGenres', genres.sortBy('name')));
   },
 
   model(params) {
