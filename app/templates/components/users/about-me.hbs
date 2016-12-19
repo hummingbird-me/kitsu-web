@@ -40,7 +40,7 @@
     <strong>Birthday:</strong>
     <span>
       {{#if user.birthday}}
-        {{moment-format user.birthday "MMMM Do"}}
+        {{moment-format user.birthday "MMMM Do" timeZone="UTC"}}
       {{else}}
         {{t "users.about.empty"}}
       {{/if}}
