@@ -111,7 +111,7 @@ export default Component.extend(ClipboardMixin, {
 
   _hideLongBody() {
     const body = this.$('.stream-content-post');
-    if (body && body.height() >= 480) {
+    if (body && body.height() > 480) {
       set(this, 'isOverflowed', true);
     } else {
       set(this, 'isOverflowed', false);
