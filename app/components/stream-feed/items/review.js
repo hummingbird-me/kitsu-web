@@ -21,8 +21,8 @@ export default Component.extend(ClipboardMixin, {
   tweetLink: getter(function() {
     const host = get(this, 'host');
     const link = hrefTo(this, 'reviews', get(this, 'review.id'));
-    const title = get(this, 'review.media.canonicalTitle');
-    const text = encodeURIComponent(`Check out this review for ${title} on #kitsu`);
+    const title = get(this, 'media.canonicalTitle');
+    const text = encodeURIComponent(`Check out this review of ${title} on #kitsu`);
     const url = `${host}${link}`;
     return `https://twitter.com/share?text=${text}&url=${url}`;
   }),
@@ -54,7 +54,7 @@ export default Component.extend(ClipboardMixin, {
     trackEngagement(label) {
       const data = {
         label,
-        content: { foreign_id: get(this, 'activity.foreignId') },
+        content: { foreign_id: `Review:${get(this, 'review.id')}` },
         position: get(this, 'positionInFeed') || 0
       };
       if (get(this, 'feedId') !== undefined) {
