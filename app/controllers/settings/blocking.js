@@ -18,10 +18,10 @@ export default Controller.extend({
       page: { limit: 5 }
     });
     return users.reject(user => (
-      get(this, 'model').find(block => get(block, 'blocked.id') === get(user, 'id')) ||
+      get(this, 'taskValue').find(block => get(block, 'blocked.id') === get(user, 'id')) ||
         user === get(this, 'session.account')
     ));
-  }).keepLatest(),
+  }).restartable(),
 
   actions: {
     blockUser() {
@@ -35,9 +35,9 @@ export default Controller.extend({
         .then(() => {
           get(this, 'notify').success(`${get(user, 'name')} was blocked.`);
           set(this, 'currentSelection', null);
-          const content = get(this, 'model').toArray();
+          const content = get(this, 'taskValue').toArray();
           content.addObject(block);
-          set(this, 'model', content);
+          set(this, 'taskValue', content);
         })
         .catch(err => get(this, 'notify').error(errorMessages(err)));
     },
@@ -47,7 +47,7 @@ export default Controller.extend({
       block.destroyRecord()
         .then(() => {
           get(this, 'notify').success(`${name} was unblocked.`);
-          get(this, 'model').removeObject(block);
+          get(this, 'taskValue').removeObject(block);
         })
         .catch(err => get(this, 'notify').error(errorMessages(err)));
     }
