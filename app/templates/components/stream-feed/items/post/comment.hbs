@@ -1,9 +1,14 @@
-{{#if comment.isNew}}
+{{#if (or comment.isNew updateComment.isRunning)}}
   {{! TODO - @Josh - Loading effect for new comments }}
-  <div class="text-xs-center w-100">
+  <div class="text-xs-center w-100 m-t-1 m-b-1">
     {{loading-spinner size="small"}}
   </div>
+{{else if comment.isDeleted}}
+  <div class="text-xs-center w-100">
+    <p class="font-italic">Comment Deleting...</p>
+  </div>
 {{else}}
+  {{! comment author }}
   <div class="media-left">
     <a href={{href-to "users.index" comment.user}}>
       <img class="media-object" src={{image comment.user.avatar "small"}}>
@@ -16,6 +21,7 @@
       </a>
     </h4>
 
+    {{! comment content }}
     <span class="comment-body">
       {{#if isEditing}}
         {{expanding-textarea comment.content
@@ -23,11 +29,7 @@
           keyEvents=(hash 13=(action "updateComment"))
           class="form-control add-comment"}}
       {{else}}
-        {{#if updateComment.isRunning}}
-          {{loading-spinner size="small"}}
-        {{else}}
-          {{{comment.contentFormatted}}}
-        {{/if}}
+        {{{comment.contentFormatted}}}
       {{/if}}
     </span>
 

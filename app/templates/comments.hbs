@@ -1,7 +1,8 @@
 <div class="col-md-8 col-xs-11 centered">
   {{stream-feed/items/post
-    post=model.post.content
+    post=post
+    isExpanded=true
     comment=model
-    isReply=model.parent.content
+    isReply=parent
     readOnly=(not session.hasUser)}}
 </div>

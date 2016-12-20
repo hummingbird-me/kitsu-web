@@ -14,9 +14,12 @@ export default Route.extend(DataErrorMixin, {
     });
   },
 
-  setupController(controller) {
+  setupController(controller, model) {
     this._super(...arguments);
-    set(controller, 'post', this.modelFor('posts'));
+    const postId = get(model, 'post.id');
+    const parentId = get(model, 'parent.id');
+    set(controller, 'post', get(this, 'store').peekRecord('post', postId));
+    set(controller, 'parent', get(this, 'store').peekRecord('comment', parentId));
   },
 
   titleToken(model) {
