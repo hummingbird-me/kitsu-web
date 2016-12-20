@@ -66,32 +66,37 @@
   .library-sort-left {
     font-size: 12px;
     line-height: 40px;
+    float: left;
   }
   .library-sort-right {
     text-align: right;
     font-size: 12px;
     line-height: 40px;
+    float: right;
   }
   .library-sort {
     display: inline-block;
     font-weight: bold;
     text-align: center;
+    > div { display: inline-block; }
+    svg {
+      width: 14px;
+      height: 14px;
+      top: 4px;
+      position: relative;
+    }
   }
   .library-sort-title {
     text-align: left;
-    padding-left: 15px;
   }
   .library-sort-progress {
-    border-right: 1px solid #ddd;
     padding-right: 55px;
   }
   .library-sort-rating {
-    border-right: 1px solid #ddd;
     width: 85px;
   }
   .library-sort-type {
-    display: inline-block;
-    width: 100px;
+    width: 85px;
   }
 }
 

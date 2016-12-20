@@ -4,9 +4,15 @@ import set from 'ember-metal/set';
 import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
     this._resetActiveSort();
+    const sort = get(this, 'sort');
+    if (sort !== undefined) {
+      const type = sort.charAt(0) === '-' ? sort.slice(1) : sort;
+      const direction = sort.charAt(0) === '-' ? 'desc' : 'asc';
+      set(this, 'active', { type, direction });
+    }
   },
 
   _updateActiveSort(type) {
