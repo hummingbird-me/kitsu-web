@@ -1,8 +1,10 @@
 .media-container {
   margin-left: 205px;
-  max-width: 800px;
   .media {
     margin-top: 15px;
+  }
+  h5 {
+    font-size: 15px;
   }
   .media-left {
     width: 40px;
@@ -26,14 +28,13 @@
 }
 
 .community-rating {
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   margin-right: 15px;
   float: left;
 }
 
 .percentage-liked, .average-rating {
   background: #3498DB;
-  border: 1px solid #3498DB;
   color: #fff;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
@@ -68,7 +69,6 @@
   border-bottom-right-radius: 3px;
   background: #BEDCF0;
   color: #16659A;
-  border: 1px solid #3498DB;
   text-align: left;
   svg {
     width: 14px;
@@ -85,7 +85,7 @@
 }
 
 .media-user-rating {
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   border-radius: 3px;
   border: none;
   background: none;
@@ -173,4 +173,110 @@
   h6 {
     margin-bottom: 0;
   }
+}
+
+.media--sidebar {
+  padding-right: 0;
+  border-left: 1px solid #ddd;
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+  }
+  h5 {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+  }
+  section {
+    margin-bottom: 20px;
+  }
+}
+
+.media-rankings {
+  border-top: 1px solid #ddd;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  .ranking {
+    svg {
+      width: 12px;
+      height: 12px;
+      position: relative;
+      top: 1px;
+      margin-right: 2px;
+      fill: #e74c3c;
+    }
+    &:last-child {
+      float: right;
+      svg {
+        fill: #f39c12;
+      }
+    }
+  }
+}
+
+.media-preview {
+  margin-bottom: 20px;
+}
+
+.media--tags {
+  ul {
+    list-style-type: none;
+    padding: 0;
+    li {
+      display: inline-block;
+      font-size: 12px;
+    }
+  }
+}
+
+.media--category-tag a {
+  color: #858585;
+  background: #e5e5e5;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 4px 8px;
+}
+
+.media--related {
+  margin-bottom: 10px;
+}
+
+.related--title {
+  font-size: 12px;
+  font-weight: 500;
+  background: #f1f1f1;
+  display: inline-block;
+  position: relative;
+  padding: 0;
+  top: -15px;
+}
+
+.related--panel {
+  display: inline-block;
+  margin: 10px 0;
+}
+
+.related--wrapper {
+  display: inline-block;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  padding: 0 10px;
+  position: relative;
+}
+
+.related--item {
+  display: inline-block;
+  width: 50px;
+  height: 60px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.related--posters {
+  margin-top: -10px;
 }
