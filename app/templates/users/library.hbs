@@ -32,13 +32,15 @@
       </div>
 
       {{! Filter Search }}
-      {{!-- @TODO: API is not yet searchable
+      {{!-- @TODO: API is not yet searchable --}}
       <div class="search-library">
         {{one-way-search
             class="search-input"
             placeholder=(t "users.library.search")}}
       </div>
-      --}}
+
+      {{! Library Sorting }}
+      {{users/library/library-sorting onSortChange=(route-action "changeSort")}}
 
       {{! Library Entries }}
       {{#if model.taskInstance.isRunning}}

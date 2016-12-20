@@ -12,7 +12,8 @@ import errorMessages from 'client/utils/error-messages';
 export default Route.extend(PaginationMixin, {
   queryParams: {
     media: { refreshModel: true },
-    status: { refreshModel: true }
+    status: { refreshModel: true },
+    sort: { refreshModel: true }
   },
 
   i18n: service(),
@@ -25,7 +26,7 @@ export default Route.extend(PaginationMixin, {
    * Restartable task that queries the library entries for the current status,
    * and media type.
    */
-  modelTask: task(function* (media, status) {
+  modelTask: task(function* (media, status, sort) {
     const user = this.modelFor('users');
     const userId = get(user, 'id');
     const options = {};
@@ -37,6 +38,10 @@ export default Route.extend(PaginationMixin, {
       // eslint-disable-next-line no-param-reassign
       status = libraryStatus.enumToNumber(status);
       Object.assign(options, { sort: '-updated_at' });
+    }
+
+    if (sort !== undefined) {
+      Object.assign(options, { sort: this._getUsableSort(sort) });
     }
 
     Object.assign(options, {
@@ -64,8 +69,8 @@ export default Route.extend(PaginationMixin, {
     }
   },
 
-  model({ media, status }) {
-    return { taskInstance: get(this, 'modelTask').perform(media, status) };
+  model({ media, status, sort }) {
+    return { taskInstance: get(this, 'modelTask').perform(media, status, sort) };
   },
 
   setupController(controller) {
@@ -77,6 +82,18 @@ export default Route.extend(PaginationMixin, {
     const model = this.modelFor('users');
     const name = get(model, 'name');
     return get(this, 'i18n').t('titles.users.library', { user: name });
+  },
+
+  _getUsableSort(sort) {
+    const controller = this.controllerFor(get(this, 'routeName'));
+    if (sort === 'type' || sort === '-type') {
+      const mediaType = get(controller, 'media');
+      return mediaType === 'anime' ? 'media.show_type' : 'media.manga_type';
+    } else if (sort === 'title' || sort === '-title') {
+      // TODO: Has to respect user title choices
+      return sort.charAt(0) === '-' ? '-media.canonical_title' : 'media.canonical_title';
+    }
+    return sort;
   },
 
   actions: {
@@ -97,6 +114,12 @@ export default Route.extend(PaginationMixin, {
           entry.rollbackAttributes();
           get(this, 'notify').error(errorMessages(err));
         });
+    },
+
+    changeSort({ type, direction }) {
+      const controller = this.controllerFor(get(this, 'routeName'));
+      const sort = direction === 'desc' ? `-${type}` : type;
+      set(controller, 'sort', sort);
     }
   }
 });

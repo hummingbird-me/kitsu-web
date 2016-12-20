@@ -60,6 +60,41 @@
   }
 }
 
+.library-sorting {
+  @extend .clearfix;
+  border-top: 1px solid $eggshell;
+  .library-sort-left {
+    font-size: 12px;
+    line-height: 40px;
+  }
+  .library-sort-right {
+    text-align: right;
+    font-size: 12px;
+    line-height: 40px;
+  }
+  .library-sort {
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+  }
+  .library-sort-title {
+    text-align: left;
+    padding-left: 15px;
+  }
+  .library-sort-progress {
+    border-right: 1px solid #ddd;
+    padding-right: 55px;
+  }
+  .library-sort-rating {
+    border-right: 1px solid #ddd;
+    width: 85px;
+  }
+  .library-sort-type {
+    display: inline-block;
+    width: 100px;
+  }
+}
+
 .section-head {
   background: lighten($eggshell, 5);
   border-bottom: 1px solid $eggshell;
