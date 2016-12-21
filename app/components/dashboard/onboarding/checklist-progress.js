@@ -5,6 +5,7 @@ import service from 'ember-service/inject';
 import observer from 'ember-metal/observer';
 
 export default Component.extend({
+  classNameBindings: ['isCompleted'],
   metrics: service(),
 
   hasRatings: gte('user.ratingsCount', 5),

@@ -93,3 +93,18 @@ body {
 .kitsu-ad {
   display: none;
 }
+
+
+// Remove the top spacing for the sidebar element after an onboarding widget,
+// if the onboarding is completed and the widget is thus hidden. Currently,
+// sidebar widgets are not encapsulated in their own container and the onboarding
+// widget container will always be present, it just won't yield content when completed,
+// so this is currently the easiest way to remove spacing everywhere without
+// breaking other components unintendedly.
+.feed-sidebar {
+  .is-completed + div {
+    .panel-heading {
+      margin-top: 0;
+    }
+  }
+}

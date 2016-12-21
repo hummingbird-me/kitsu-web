@@ -14,6 +14,8 @@ const isObjectComputed = property => (
 );
 
 export default Component.extend({
+  classNameBindings: ['isCompleted'],
+
   metrics: service(),
   hasRatings: gte('user.ratingsCount', 5),
   hasAvatar: isObjectComputed('user.avatar'),
