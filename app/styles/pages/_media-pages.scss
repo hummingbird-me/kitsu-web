@@ -280,3 +280,71 @@
 .related--posters {
   margin-top: -10px;
 }
+
+
+// character grid
+
+.character-grid {
+  column-count: 5;
+  column-gap: 10px;
+  @media (max-width: 990px) {
+    column-count: 3;
+  }
+}
+
+.character-wrapper {
+  @extend .card;
+}
+
+.character-image {
+  max-height: 175px;
+  overflow: hidden;
+  &:hover {
+    opacity: .8;
+  }
+}
+
+.character-name a {
+  font-size: 12px;
+  padding: 10px;
+  text-align: center;
+  font-weight: 500;
+  display: block;
+  color: #333;
+}
+
+.media-character {
+  display: flex;
+  width:  100%;
+  min-height: initial;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.character-voice-actors {
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+
+.va {
+  border-radius: 3px;
+  height: 25px;
+  overflow: hidden;
+  font-size: 12px;
+  font-family: $base-font-family;
+  font-weight: 500;
+  line-height: 25px;
+  color: #333;
+  background: #f2f2f2;
+  margin-bottom: 5px;
+  display: block;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  img {
+    width: 25px;
+    float: left;
+    margin-top: -5px;
+    margin-right: 5px;
+  }
+}
