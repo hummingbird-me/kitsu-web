@@ -31,7 +31,7 @@
       {{/dropdown.button}}
       {{#dropdown.menu}}
         {{#each filterOptions as |option|}}
-          {{#dropdown.menu-item onClick=(action (mut filter) option)}}
+          {{#dropdown.menu-item onClick=(action "updateFilter" option)}}
             {{t (concat "feeds.filter." option)}}
           {{/dropdown.menu-item}}
         {{/each}}
