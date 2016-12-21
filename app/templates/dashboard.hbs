@@ -24,7 +24,7 @@
 
   <div class="feed-sidebar col-sm-4">
     {{! Onboarding }}
-    {{#if session.hasUser}}
+    {{#if (and session.hasUser (not session.account.feedCompleted))}}
       {{dashboard/onboarding/checklist-progress user=session.account}}
     {{/if}}
 
