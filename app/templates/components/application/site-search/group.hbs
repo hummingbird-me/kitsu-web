@@ -29,7 +29,7 @@
   {{else}}
     <ul class="media-list search--results">
       {{#each items as |item|}}
-        {{application/site-search/group/item item=item close=(action "close")}}
+        {{application/site-search/group/item item=item close=close}}
       {{/each}}
     </ul>
   {{/if}}
