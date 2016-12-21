@@ -1,0 +1,18 @@
+<li class="media col-sm-12">
+  <a class="search--result-link" href="{{link}}" {{action "transitionTo" link}}>
+    <div class="media-left col-sm-2 no-padding-left">
+      {{#if (eq group "users")}}
+        {{lazy-image url=(image item.avatar "small")}}
+      {{else}}
+        {{lazy-image url=(image item.posterImage "small")}}
+      {{/if}}
+    </div>
+    <div class="media-body col-sm no-padding-left">
+      {{#if (eq group "users")}}
+        <p>{{item.name}}</p>
+      {{else}}
+        <p>{{item.computedTitle}}</p>
+      {{/if}}
+    </div>
+  </a>
+</li>
