@@ -29,13 +29,12 @@
               </span>
             </h6>
 
-            {{#unless review.legacy}}
-              {{#unless (eq review.progress media.unitCount)}}
-                <small class="review-media-progress">
-                  {{t (concat "reviews.progress." (model-type media)) num=review.progress}}
-                </small>
-              {{/unless}}
-            {{/unless}}
+            {{! review media progress -- progress > 0 && !(progress === unitCount) }}
+            {{#if (and (gt review.progress 0) (not (eq review.progress media.unitCount)))}}
+              <small class="review-media-progress">
+                {{t (concat "reviews.progress." (model-type media)) num=review.progress}}
+              </small>
+            {{/if}}
           </small>
 
           {{! review content }}
