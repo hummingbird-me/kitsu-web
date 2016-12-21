@@ -23,6 +23,12 @@ export default Controller.extend({
     }
   }).readOnly(),
 
+  airedLongerThanOneDay: computed('media.startDate', 'media.endDate', {
+    get() {
+      return !(get(this, 'media.startDate').isSame(get(this, 'media.endDate')));
+    }
+  }).readOnly(),
+
   totalProgressText: computed('media.unitCount', {
     get() {
       return get(this, 'media.unitCount') || '-';

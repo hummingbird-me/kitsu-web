@@ -34,7 +34,7 @@
                       <li class="media--airing-date">
                         <span>
                           {{moment-format media.startDate "MMM D, YYYY"}}
-                          {{#if media.endDate}}
+                          {{#if (and media.endDate airedLongerThanOneDay)}}
                             to {{moment-format media.endDate "MMM D, YYYY"}}
                           {{/if}}
                         </span>
