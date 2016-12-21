@@ -74,7 +74,7 @@
   {{/if}}
 
   {{! feed items }}
-  {{#each filteredFeed as |group index|}}
+  {{#each feed as |group index|}}
     {{#if group.activities.length}}
       {{component (concat "stream-feed/items/" (feed-type group.activities))
         group=group
