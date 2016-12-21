@@ -203,24 +203,31 @@ export default Component.extend({
 
   _handleRealtime(object) {
     const groupCache = get(this, 'newItems.cache');
+    const filter = get(this, 'filter');
 
     get(this, 'newItems').beginPropertyChanges();
     get(object, 'new').forEach((activity) => {
       const type = get(activity, 'foreign_id').split(':')[0];
-      if (type === 'Post' || type === 'Comment') {
-        // look for unknown post at first object by session user
-        if (get(activity, 'actor').split(':')[1] === get(this, 'session.account.id')) {
-          if (type === 'post') {
-            const top = get(this, 'feed.firstObject.activities.firstObject');
-            if (get(top, 'foreignId') === 'Post:<unknown>' ||
-              get(top, 'foreignId') === get(activity, 'foreign_id')) {
-              return;
-            }
-          } else {
-            return; // Don't show new activity and bump post for own users comments
-          }
+
+      // filter out content not apart of the current filter
+      if (filter === 'media') {
+        if (type === 'Post' || type === 'Comment') {
+          return;
+        }
+      } else if (filter === 'user') {
+        if (type !== 'Post' && type !== 'Comment') {
+          return;
         }
       }
+
+      // don't show a new activity action if the actor is the sessioned user
+      if (type === 'Post' || type === 'Comment') {
+        if (get(activity, 'actor').split(':')[1] === get(this, 'session.account.id')) {
+          return;
+        }
+      }
+
+      // add to new activities cache
       if (groupCache.indexOf(get(activity, 'group')) === -1) {
         set(this, 'newItems.length', get(this, 'newItems.length') + 1);
         groupCache.addObject(get(activity, 'group'));
