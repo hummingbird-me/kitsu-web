@@ -25,6 +25,8 @@
             activityLimit=activityLimit
             feedId=feedId
             media=media
+            deleteActivity=deleteActivity
+            removeGroup=(action "removeGroup")
             class="aggregate-items"
             tagName="ul"
           }}
@@ -42,6 +44,8 @@
             group=group
             feedId=feedId
             positionInFeed=positionInFeed
+            deleteActivity=deleteActivity
+            removeGroup=(action "removeGroup")
             onClose=(toggle-action "modalOpen" this)
           )}}
         {{/if}}
