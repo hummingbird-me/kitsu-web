@@ -11,16 +11,14 @@ export default Route.extend(PaginationMixin, {
   modelTask: task(function* () {
     const [mediaType] = get(this, 'routeName').split('.');
     const media = this.modelFor(`${mediaType}.show`);
-    return yield get(this, 'store').query('episode', {
+    const results = yield get(this, 'store').query('episode', {
       filter: {
         media_type: capitalize(mediaType),
         media_id: get(media, 'id')
       }
-    }).then((results) => {
-      const controller = this.controllerFor(get(this, 'routeName'));
-      set(controller, 'taskValue', results);
-      return results;
     });
+    const controller = this.controllerFor(get(this, 'routeName'));
+    set(controller, 'taskValue', results);
   }),
 
   model() {

@@ -5,11 +5,9 @@ import { task } from 'ember-concurrency';
 
 export default Route.extend({
   modelTask: task(function* () {
-    return yield get(this, 'store').findAll('list-import').then((results) => {
-      const controller = this.controllerFor(get(this, 'routeName'));
-      set(controller, 'taskValue', results);
-      return results;
-    });
+    const results = yield get(this, 'store').findAll('list-import');
+    const controller = this.controllerFor(get(this, 'routeName'));
+    set(controller, 'taskValue', results);
   }),
 
   model() {

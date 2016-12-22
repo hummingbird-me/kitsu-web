@@ -9,7 +9,7 @@
       <div class="text-xs-center w-100 m-t-1 m-b-1">
         {{t "erros.load"}}
       </div>
-    {{else if model.taskInstance.value}}
+    {{else if taskValue}}
       {{#each taskValue as |follow|}}
         {{#if follow.followed}}
           <div class="card user-card col-sm-3">

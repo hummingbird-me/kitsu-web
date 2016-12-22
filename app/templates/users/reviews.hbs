@@ -8,7 +8,7 @@
     <div class="text-xs-center w-100 m-t-1">
       {{t "errors.load"}}
     </div>
-  {{else if model.taskInstance.value}}
+  {{else if taskValue}}
     <ul class="media-list w-100">
       {{! TODO @Josh - Reviews on the users page `/users/Josh/reviews` }}
       {{#each taskValue as |review|}}
