@@ -7,7 +7,7 @@
   <div class="text-xs-center w-100 m-t-1 m-b-1">
     {{t "errors.load"}}
   </div>
-{{else if model.taskInstance.value}}
+{{else if taskValue}}
   <ul class="media--episode-grid row">
     {{#each taskValue as |episode|}}
       <li class="media--episode-block col-md-4 col-sm-2">

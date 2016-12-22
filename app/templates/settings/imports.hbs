@@ -33,7 +33,7 @@
       <div class="text-xs-center w-100 m-t-1 m-b-1">
         {{t "errors.load"}}
       </div>
-    {{else if model.taskInstance.value}}
+    {{else if taskValue}}
       <div id="accordian" class="w-100">
         {{#each taskValue as |import index|}}
           <div class="card">
