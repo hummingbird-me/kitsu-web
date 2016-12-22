@@ -260,7 +260,7 @@
           {{/if}}
         </div>
 
-        {{#if (and model.taskInstance.value (not model.taskInstance.isRunning))}}
+        {{#if (and taskValue (not model.taskInstance.isRunning))}}
           <div class="m-t-1 text-xs-center">
             {{paginated-resource/infinite
               model=taskValue
