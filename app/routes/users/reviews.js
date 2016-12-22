@@ -9,16 +9,14 @@ export default Route.extend(PaginationMixin, {
   i18n: service(),
 
   modelTask: task(function* (user) {
-    return yield get(this, 'store').query('review', {
+    const results = yield get(this, 'store').query('review', {
       include: 'user,media',
       filter: {
         user_id: get(user, 'id')
       }
-    }).then((results) => {
-      const controller = this.controllerFor(get(this, 'routeName'));
-      set(controller, 'taskValue', results);
-      return results;
     });
+    const controller = this.controllerFor(get(this, 'routeName'));
+    set(controller, 'taskValue', results);
   }),
 
   model() {

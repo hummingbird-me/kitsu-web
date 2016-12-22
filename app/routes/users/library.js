@@ -48,11 +48,9 @@ export default Route.extend(PaginationMixin, {
       },
       page: { offset: 0, limit: 200 }
     });
-    return yield get(this, 'store').query('library-entry', options).then((results) => {
-      const controller = this.controllerFor(get(this, 'routeName'));
-      set(controller, 'taskValue', results);
-      return results;
-    });
+    const entries = yield get(this, 'store').query('library-entry', options);
+    const controller = this.controllerFor(get(this, 'routeName'));
+    set(controller, 'taskValue', entries);
   }).restartable(),
 
   beforeModel({ queryParams }) {

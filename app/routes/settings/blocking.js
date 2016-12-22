@@ -9,11 +9,9 @@ export default Route.extend(PaginationMixin, {
   session: service(),
 
   modelTask: task(function* () {
-    return yield get(this, 'store').findAll('block', { include: 'blocked' }).then((results) => {
-      const controller = this.controllerFor(get(this, 'routeName'));
-      set(controller, 'taskValue', results);
-      return results;
-    });
+    const results = yield get(this, 'store').findAll('block', { include: 'blocked' });
+    const controller = this.controllerFor(get(this, 'routeName'));
+    set(controller, 'taskValue', results);
   }),
 
   model() {

@@ -6,15 +6,13 @@ import PaginationMixin from 'client/mixins/routes/pagination';
 
 export default Route.extend(PaginationMixin, {
   modelTask: task(function* () {
-    return yield get(this, 'store').query('report', {
+    const results = yield get(this, 'store').query('report', {
       include: 'user,naughty,moderator',
       filter: { status: 0 },
       page: { limit: 20 }
-    }).then((results) => {
-      const controller = this.controllerFor(get(this, 'routeName'));
-      set(controller, 'taskValue', results);
-      return results;
     });
+    const controller = this.controllerFor(get(this, 'routeName'));
+    set(controller, 'taskValue', results);
   }),
 
   model() {

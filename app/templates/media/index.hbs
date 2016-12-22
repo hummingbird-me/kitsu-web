@@ -227,8 +227,13 @@
             <span class="tag-name">Year</span>
             <a class="tag-remove"></a>
           --}}
-          {{search-input class="search-media tag-input" icon=true text=text update=(action (mut text)) placeholder=(t
-            "media.routes.index.filter.search") }}
+          {{search-input
+            class="search-media tag-input"
+            icon=true
+            text=text
+            update=(action (mut text))
+            placeholder=(t "media.routes.index.filter.search")
+          }}
         </div>
       </div>
 
@@ -244,7 +249,7 @@
             <div class="text-xs-center w-100 m-t-1">
               {{t "errors.load"}}
             </div>
-          {{else if model.taskInstance.value}}
+          {{else if taskValue}}
             {{#each taskValue as |media|}}
               {{media/media-poster media=media}}
             {{/each}}
@@ -255,7 +260,7 @@
           {{/if}}
         </div>
 
-        {{#if (and model.taskInstance.value (not model.taskInstance.isRunning))}}
+        {{#if (and taskValue (not model.taskInstance.isRunning))}}
           <div class="m-t-1 text-xs-center">
             {{paginated-resource/infinite
               model=taskValue

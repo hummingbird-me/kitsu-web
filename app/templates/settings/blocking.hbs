@@ -35,7 +35,7 @@
     <div class="text-xs-center w-100 m-t-1 m-b-1">
       {{t "errors.load"}}
     </div>
-  {{else if model.taskInstance.value}}
+  {{else if taskValue}}
     <div class="form-group row">
       <ul class="blocked-user--list">
         {{#each taskValue as |block|}}
