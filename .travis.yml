@@ -16,6 +16,9 @@ install:
 after_script:
 - codeclimate-test-reporter < coverage/lcov.info
 
+after_success:
+- bash yarn.sh
+
 cache:
   directories:
   - $HOME/.npm
