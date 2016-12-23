@@ -5,28 +5,28 @@ node_js:
 sudo: false
 
 before_install:
-- npm config set spin false
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.18.1
+- export PATH=$HOME/.yarn/bin:$PATH
 
 install:
-- travis_retry npm install -g bower
-- travis_retry npm install phantomjs-prebuilt
-- travis_retry npm install
+- travis_retry yarn global add bower
+- travis_retry yarn add phantomjs-prebuilt
+- travis_retry yarn install
 - travis_retry bower install
-
-after_script:
-- codeclimate-test-reporter < coverage/lcov.info
 
 after_success:
 - bash yarn.sh
 
+after_script:
+- codeclimate-test-reporter < coverage/lcov.info
+
 cache:
   directories:
-  - $HOME/.npm
-  - $HOME/.cache
+  - $HOME/.cache/yarn
 
 addons:
-    code_climate:
-        repo_token: f15069c85832661086a0f758b25cf410e58ae1f80dbcbc762021dfc71feb8f71
+  code_climate:
+    repo_token: f15069c85832661086a0f758b25cf410e58ae1f80dbcbc762021dfc71feb8f71
 
 notifications:
   slack:
