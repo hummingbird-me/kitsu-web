@@ -71,6 +71,7 @@
     <div class="add-comment-wrapper">
       {{expanding-textarea
         keyEvents=(hash 13=(action "createComment"))
+        disabled=createComment.isRunning
         rows="1"
         placeholder="Leave a comment..."
         class="form-control add-comment"
