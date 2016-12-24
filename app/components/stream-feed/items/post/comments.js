@@ -45,7 +45,7 @@ export default Component.extend({
       get(this, 'session.account').decrementProperty('commentsCount');
       get(this, 'notify').error(errorMessages(err));
     });
-  }).enqueue(),
+  }).drop(),
 
   init() {
     this._super(...arguments);

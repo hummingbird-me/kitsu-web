@@ -168,6 +168,7 @@
         {{#if (and isReplying (not readOnly))}}
           {{expanding-textarea
             keyEvents=(hash 13=(action "createReply"))
+            disabled=createReply.isRunning
             rows="1"
             placeholder="Add a reply..."
             class="form-control reply-comment"}}
