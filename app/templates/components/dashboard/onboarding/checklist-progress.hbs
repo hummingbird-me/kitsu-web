@@ -1,74 +1,72 @@
-{{#unless isCompleted}}
-  <div class="checklist card">
-    <h4>Set-Up Your Feed</h4>
-    <ul>
-      {{! default checked }}
-      <li class="step step--complete">
-        <span class="step-status">{{svg-jar "success"}}</span>
-        <span class="step-description">Visit your feed</span>
-      </li>
+<div class="checklist card">
+  <h4>Set-Up Your Feed</h4>
+  <ul>
+    {{! default checked }}
+    <li class="step step--complete">
+      <span class="step-status">{{svg-jar "success"}}</span>
+      <span class="step-description">Visit your feed</span>
+    </li>
 
-      <li class="step {{if hasRatings "step--complete"}}">
-        <span class="step-status">
-          {{#if hasRatings}}
-            {{svg-jar "success"}}
-          {{else}}
-            {{svg-jar "empty"}}
-          {{/if}}
-        </span>
-        <span class="step-description">
-          {{#if hasRatings}}
-            Rate 5 anime or manga
-          {{else}}
-            Rate {{ratingsLeft}} anime or manga
-          {{/if}}
-        </span>
-      </li>
+    <li class="step {{if hasRatings "step--complete"}}">
+      <span class="step-status">
+        {{#if hasRatings}}
+          {{svg-jar "success"}}
+        {{else}}
+          {{svg-jar "empty"}}
+        {{/if}}
+      </span>
+      <span class="step-description">
+        {{#if hasRatings}}
+          Rate 5 anime or manga
+        {{else}}
+          Rate {{ratingsLeft}} anime or manga
+        {{/if}}
+      </span>
+    </li>
 
-      <li class="step {{if hasFollows "step--complete"}}">
-        <span class="step-status">
-          {{#if hasFollows}}
-            {{svg-jar "success"}}
-          {{else}}
-            {{svg-jar "empty"}}
-          {{/if}}
-        </span>
-        <span class="step-description">
-          {{#if hasFollows}}
-            Follow 5 users
-          {{else}}
-            Follow {{pluralize followsLeft "user"}}
-          {{/if}}
-        </span>
-      </li>
+    <li class="step {{if hasFollows "step--complete"}}">
+      <span class="step-status">
+        {{#if hasFollows}}
+          {{svg-jar "success"}}
+        {{else}}
+          {{svg-jar "empty"}}
+        {{/if}}
+      </span>
+      <span class="step-description">
+        {{#if hasFollows}}
+          Follow 5 users
+        {{else}}
+          Follow {{pluralize followsLeft "user"}}
+        {{/if}}
+      </span>
+    </li>
 
-      <li class="step {{if hasComments "step--complete"}}">
-        <span class="step-status">
-          {{#if hasComments}}
-            {{svg-jar "success"}}
-          {{else}}
-            {{svg-jar "empty"}}
-          {{/if}}
-        </span>
-        <span class="step-description">Comment on an activity</span>
-      </li>
+    <li class="step {{if hasComments "step--complete"}}">
+      <span class="step-status">
+        {{#if hasComments}}
+          {{svg-jar "success"}}
+        {{else}}
+          {{svg-jar "empty"}}
+        {{/if}}
+      </span>
+      <span class="step-description">Comment on an activity</span>
+    </li>
 
-      <li class="step {{if hasLikes "step--complete"}}">
-        <span class="step-status">
-          {{#if hasLikes}}
-            {{svg-jar "success"}}
-          {{else}}
-            {{svg-jar "empty"}}
-          {{/if}}
-        </span>
-        <span class="step-description">
-          {{#if hasLikes}}
-            Like 3 feed posts
-          {{else}}
-            Like {{likesLeft}} feed posts
-          {{/if}}
-        </span>
-      </li>
-    </ul>
-  </div>
-{{/unless}}
+    <li class="step {{if hasLikes "step--complete"}}">
+      <span class="step-status">
+        {{#if hasLikes}}
+          {{svg-jar "success"}}
+        {{else}}
+          {{svg-jar "empty"}}
+        {{/if}}
+      </span>
+      <span class="step-description">
+        {{#if hasLikes}}
+          Like 3 feed posts
+        {{else}}
+          Like {{likesLeft}} feed posts
+        {{/if}}
+      </span>
+    </li>
+  </ul>
+</div>

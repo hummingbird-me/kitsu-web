@@ -1,74 +1,72 @@
-{{#unless isCompleted}}
-  <div class="checklist card">
-    <h4>Set-Up Your Profile</h4>
-    <ul>
-      {{! default checked }}
-      <li class="step step--complete">
-        <span class="step-status">{{svg-jar "success"}}
-        </span>
-        <span class="step-description">Visit your personal feed</span>
-      </li>
+<div class="checklist card">
+  <h4>Set-Up Your Profile</h4>
+  <ul>
+    {{! default checked }}
+    <li class="step step--complete">
+      <span class="step-status">{{svg-jar "success"}}
+      </span>
+      <span class="step-description">Visit your personal feed</span>
+    </li>
 
-      <li class="step {{if hasRatings "step--complete"}}">
-        <span class="step-status">
-          {{#if hasRatings}}
-            {{svg-jar "success"}}
-          {{else}}
-            {{svg-jar "empty"}}
-          {{/if}}
-        </span>
-        <span class="step-description">
-          {{#if hasRatings}}
-            Rate 5 anime or manga
-          {{else}}
-            Rate {{ratingsLeft}} anime or manga
-          {{/if}}
-        </span>
-      </li>
+    <li class="step {{if hasRatings "step--complete"}}">
+      <span class="step-status">
+        {{#if hasRatings}}
+          {{svg-jar "success"}}
+        {{else}}
+          {{svg-jar "empty"}}
+        {{/if}}
+      </span>
+      <span class="step-description">
+        {{#if hasRatings}}
+          Rate 5 anime or manga
+        {{else}}
+          Rate {{ratingsLeft}} anime or manga
+        {{/if}}
+      </span>
+    </li>
 
-      <li class="step {{if hasAvatar "step--complete"}}">
-        <span class="step-status">
-          {{#if hasAvatar}}
-            {{svg-jar "success"}}
-          {{else}}
-            {{svg-jar "empty"}}
-          {{/if}}
-        </span>
-        <span class="step-description">Set your user avatar</span>
-      </li>
+    <li class="step {{if hasAvatar "step--complete"}}">
+      <span class="step-status">
+        {{#if hasAvatar}}
+          {{svg-jar "success"}}
+        {{else}}
+          {{svg-jar "empty"}}
+        {{/if}}
+      </span>
+      <span class="step-description">Set your user avatar</span>
+    </li>
 
-      <li class="step {{if hasCover "step--complete"}}">
-        <span class="step-status">
-          {{#if hasCover}}
-            {{svg-jar "success"}}
-          {{else}}
-            {{svg-jar "empty"}}
-          {{/if}}
-        </span>
-        <span class="step-description">Set a profile cover image</span>
-      </li>
+    <li class="step {{if hasCover "step--complete"}}">
+      <span class="step-status">
+        {{#if hasCover}}
+          {{svg-jar "success"}}
+        {{else}}
+          {{svg-jar "empty"}}
+        {{/if}}
+      </span>
+      <span class="step-description">Set a profile cover image</span>
+    </li>
 
-      <li class="step {{if hasAbout "step--complete"}}">
-        <span class="step-status">
-          {{#if hasAbout}}
-            {{svg-jar "success"}}
-          {{else}}
-            {{svg-jar "empty"}}
-          {{/if}}
-        </span>
-        <span class="step-description">Complete your <i>About Me</i></span>
-      </li>
+    <li class="step {{if hasAbout "step--complete"}}">
+      <span class="step-status">
+        {{#if hasAbout}}
+          {{svg-jar "success"}}
+        {{else}}
+          {{svg-jar "empty"}}
+        {{/if}}
+      </span>
+      <span class="step-description">Complete your <i>About Me</i></span>
+    </li>
 
-      <li class="step {{if hasFavorites "step--complete"}}">
-        <span class="step-status">
-          {{#if hasFavorites}}
-            {{svg-jar "success"}}
-          {{else}}
-            {{svg-jar "empty"}}
-          {{/if}}
-        </span>
-        <span class="step-description">Pick your favorite anime / manga</span>
-      </li>
-    </ul>
-  </div>
-{{/unless}}
+    <li class="step {{if hasFavorites "step--complete"}}">
+      <span class="step-status">
+        {{#if hasFavorites}}
+          {{svg-jar "success"}}
+        {{else}}
+          {{svg-jar "empty"}}
+        {{/if}}
+      </span>
+      <span class="step-description">Pick your favorite anime / manga</span>
+    </li>
+  </ul>
+</div>

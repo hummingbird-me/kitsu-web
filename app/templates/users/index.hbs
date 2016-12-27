@@ -15,7 +15,7 @@
     </div>
 
     <div class="feed-sidebar col-sm-4">
-      {{#if (is-self user)}}
+      {{#if (and (is-self user) (not user.profileCompleted))}}
         {{users/onboarding/checklist-progress user=user}}
       {{/if}}
 
