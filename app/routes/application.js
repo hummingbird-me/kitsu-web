@@ -104,18 +104,20 @@ export default Route.extend(ApplicationRouteMixin, {
   },
 
   _getCurrentUser() {
-    return get(this, 'session').getCurrentUser()
-      .then((user) => {
-        get(this, 'moment').changeTimeZone(get(user, 'timeZone') || moment.tz.guess());
-        get(this, 'metrics').identify({
-          distinctId: get(user, 'id'),
-          alias: get(user, 'name'), // google uses alias > name
-          name: get(user, 'name'),
-          email: get(user, 'email'),
-          created_at: get(user, 'createdAt')
-        });
-      })
-      .catch(() => get(this, 'session').invalidate());
+    return get(this, 'session').getCurrentUser().then((user) => {
+      get(this, 'moment').changeTimeZone(get(user, 'timeZone') || moment.tz.guess());
+      get(this, 'metrics').identify({
+        distinctId: get(user, 'id'),
+        alias: get(user, 'name'), // google uses alias > name
+        name: get(user, 'name'),
+        email: get(user, 'email'),
+        created_at: get(user, 'createdAt')
+      });
+      get(this, 'raven').callRaven('setUserContext', {
+        id: get(user, 'id'),
+        username: get(user, 'name')
+      });
+    }).catch(() => get(this, 'session').invalidate());
   },
 
   actions: {
