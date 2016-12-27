@@ -144,5 +144,13 @@ module.exports = function(environment) {
     ENV.ads.client = 'TODO-HERE';
   }
 
+  // Heroku environment
+  if (process.env.HEROKU_EMBER_APP) {
+    ENV.APP.heroku = true;
+    if (process.env.HEROKU_SLUG_COMMIT) {
+      ENV.APP.herokuCommit = process.env.HEROKU_SLUG_COMMIT.slice(0, 7);
+    }
+  }
+
   return ENV;
 };
