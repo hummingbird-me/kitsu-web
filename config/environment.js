@@ -67,6 +67,13 @@ module.exports = function(environment) {
       }
     ],
 
+    // ember-cli-sentry
+    sentry: {
+      dsn: 'https://9c9c723278a1456299a9da5842251bdf@sentry.io/119044',
+      cdn: 'https://cdn.ravenjs.com/3.9.1/raven.min.js',
+      development: environment !== 'production'
+    },
+
     // ember-i18n
     i18n: {
       defaultLocale: 'en'
@@ -117,6 +124,7 @@ module.exports = function(environment) {
     ENV.stream.realtime.enabled = false;
   }
 
+  // Staging app @ Heroku
   if (process.env.HEROKU_EMBER_APP === 'staging') {
     ENV.torii.providers['facebook-connect'].appId = '325314560922421';
     ENV.metricsAdapters[0].config.id = 'UA-37633900-3';
@@ -124,6 +132,7 @@ module.exports = function(environment) {
     ENV.metricsAdapters[2].config.production.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.Loj_VZy_FKQzP3xLpX46xSF9bktOBfqcve8eYjwFmNc';
     ENV.stream.realtime.key = 'ekx6xkn9v9xx';
     ENV.stream.realtime.app = '17647';
+    ENV.sentry.dsn = 'https://cd7634b1400644688ff55bda89171367@sentry.io/125035';
   }
 
   if (environment === 'production' && process.env.HEROKU_EMBER_APP !== 'staging') {
@@ -133,6 +142,14 @@ module.exports = function(environment) {
     ENV.metricsAdapters[1].config.appId = 'ca7x05fo';
     ENV.ads.enabled = false;
     ENV.ads.client = 'TODO-HERE';
+  }
+
+  // Heroku environment
+  if (process.env.HEROKU_EMBER_APP) {
+    ENV.APP.heroku = true;
+    if (process.env.HEROKU_SLUG_COMMIT) {
+      ENV.APP.herokuCommit = process.env.HEROKU_SLUG_COMMIT.slice(0, 7);
+    }
   }
 
   return ENV;
