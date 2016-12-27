@@ -10,6 +10,7 @@ export default ApplicationSerializer.extend({
     likesGivenCount: { serialize: false },
     postsCount: { serialize: false },
     profileCompleted: { serialize: false },
+    ratingsCount: { serialize: false },
     waifuDirtyHack: { serialize: false }
   }
 });
