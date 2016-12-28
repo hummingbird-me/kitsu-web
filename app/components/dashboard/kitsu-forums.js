@@ -6,7 +6,6 @@ import set from 'ember-metal/set';
 
 export default Component.extend({
   endpoint: 'https://forums.hummingbird.me/c/industry-news.json',
-
   ajax: service(),
 
   getTopics: task(function* () {
@@ -16,9 +15,14 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
+    this._getNews();
+  },
+
+  _getNews() {
     get(this, 'getTopics').perform().then((data) => {
-      const topics = get(data, 'topic_list.topics') || undefined;
+      const topics = get(data, 'topic_list.topics');
       if (topics !== undefined) {
+        // Skip first object as it is going to be a stickied topic unrelated to news.
         set(this, 'topics', topics.slice(1, 5).map(topic => ({
           title: topic.title,
           href: `https://forums.hummingbird.me/t/${topic.slug}/${topic.id}`
