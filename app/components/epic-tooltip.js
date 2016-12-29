@@ -86,6 +86,7 @@ export default Component.extend({
   },
 
   targetEntered() {
+    if (get(this, 'isDestroyed')) { return; }
     if (get(this, 'singleInstance') === true) {
       get(this, 'epicTooltip').all().forEach(component => component.targetLeave());
     }
