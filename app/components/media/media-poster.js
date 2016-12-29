@@ -42,7 +42,7 @@ export default Component.extend({
 
   _getLibraryEntry() {
     // already done a request
-    if (get(this, 'entry') !== null) {
+    if (get(this, 'entry') !== null || !get(this, 'session.hasUser')) {
       return;
     }
 
