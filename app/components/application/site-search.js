@@ -39,9 +39,9 @@ export default Ember.Component.extend({
   search: task(function* (query) {
     if (get(this, 'query') === query) { return; }
     yield timeout(250);
-    get(this, 'animeTask').perform('anime', 'text', query).then(data => set(this, 'groups.anime', data));
-    get(this, 'mangaTask').perform('manga', 'text', query).then(data => set(this, 'groups.manga', data));
-    get(this, 'usersTask').perform('user', 'query', query).then(data => set(this, 'groups.users', data));
+    get(this, 'animeTask').perform('anime', 'text', query).then(data => set(this, 'groups.anime', data)).catch(() => {});
+    get(this, 'mangaTask').perform('manga', 'text', query).then(data => set(this, 'groups.manga', data)).catch(() => {});
+    get(this, 'usersTask').perform('user', 'query', query).then(data => set(this, 'groups.users', data)).catch(() => {});
     set(this, 'query', query);
     get(this, 'metrics').trackEvent({ category: 'search', action: 'query', label: query });
   }).restartable(),

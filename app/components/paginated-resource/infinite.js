@@ -33,7 +33,7 @@ export default Component.extend(PaginationMixin, {
   _setupViewport() {
     const el = get(this, 'element');
     get(this, 'watcher').watch(el, () => {
-      get(this, 'getNextData').perform().catch(() => {});
+      get(this, 'getNextData').perform();
     });
   }
 });

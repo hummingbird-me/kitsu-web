@@ -149,7 +149,7 @@ export default Component.extend({
           const message = `You have a new notification from ${actor}`;
           get(this, 'notify').info(message);
         });
-      });
+      }).catch(() => {});
     }
 
     // deleted activities

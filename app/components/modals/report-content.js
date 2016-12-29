@@ -74,6 +74,6 @@ export default Component.extend({
         set(this, 'hasReported', true);
         set(this, 'report', get(report, 'firstObject'));
       }
-    });
+    }).catch(() => {});
   }
 });

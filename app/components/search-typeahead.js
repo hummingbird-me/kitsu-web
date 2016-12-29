@@ -26,7 +26,7 @@ export default Component.extend({
         get(this, 'request').perform(value).then((items) => {
           set(this, 'items', items);
           set(this, 'isOpened', true);
-        });
+        }).catch(() => {});
       }
     },
 

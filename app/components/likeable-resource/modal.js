@@ -20,7 +20,7 @@ export default Component.extend(PaginationMixin, {
     } else if (get(this, 'nextLink') !== undefined && count <= 20) {
       get(this, 'getNextData').perform().then(records => (
         this.send('updateNextPage', records, get(records, 'links'))
-      ));
+      )).catch(() => {});
     }
   },
 

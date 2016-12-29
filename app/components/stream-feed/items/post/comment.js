@@ -85,7 +85,7 @@ export default Component.extend(ClipboardMixin, {
         const content = replies.toArray().reverse();
         set(content, 'links', get(replies, 'links'));
         set(this, 'replies', content);
-      });
+      }).catch(() => {});
     }
   },
 
