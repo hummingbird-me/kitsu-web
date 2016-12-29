@@ -7,7 +7,9 @@ export default StarRatingComponent.extend({
   session: service(),
 
   click() {
-    get(this, 'session.account').incrementProperty('ratingsCount');
+    if (get(this, 'session.hasUser')) {
+      get(this, 'session.account').incrementProperty('ratingsCount');
+    }
     this._super(...arguments);
   },
 
