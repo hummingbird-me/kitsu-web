@@ -18,7 +18,7 @@ export default OneWayTextAreaComponent.extend({
     autosize(this.$());
     later(() => {
       this.resize();
-      if (get(this, 'autofocus')) {
+      if (get(this, 'autofocus') && !get(this, 'isDestroyed')) {
         this.$().focus();
       }
     }, 200);
