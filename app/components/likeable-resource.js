@@ -132,6 +132,10 @@ export default Component.extend({
         return get(this, 'session.signUpModal')();
       }
 
+      if (get(this, 'createLike.isRunning') || get(this, 'destroyLike.isRunning')) {
+        return;
+      }
+
       const isLiked = get(this, 'isLiked');
       if (isLiked === true) {
         get(this, 'destroyLike').perform();
