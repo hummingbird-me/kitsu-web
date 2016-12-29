@@ -12,6 +12,9 @@ export default Mixin.create({
         links = records;  // eslint-disable-line no-param-reassign
       }
       const controller = this.controllerFor(get(this, 'routeName'));
+      if (controller === undefined) {
+        return;
+      }
       const content = get(controller, property).toArray();
       content.addObjects(records);
       set(controller, property, content);
