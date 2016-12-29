@@ -3,12 +3,13 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
-import { notEmpty } from 'ember-computed';
+import { or, notEmpty } from 'ember-computed';
 import observer from 'ember-metal/observer';
 import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   tagName: 'button',
+  attributeBindings: ['isDisabled:disabled'],
   classNameBindings: ['isFollowing:inactive:active'],
   classNames: ['button', 'button--primary'],
 
@@ -17,6 +18,7 @@ export default Component.extend({
   session: service(),
   store: service(),
   isFollowing: notEmpty('relationship'),
+  isDisabled: or('getFollowStatus.isRunning', 'toggleFollow.isRunning'),
 
   didAuthenticate: observer('session.hasUser', function() {
     this._getData();
