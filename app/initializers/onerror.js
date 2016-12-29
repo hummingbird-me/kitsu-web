@@ -11,6 +11,7 @@ export function initialize() {
     if (error.name === 'SecurityError' && error.code === 18) {
       return later(() => window.location.reload());
     }
+    console.error(error);
   };
 }
 
