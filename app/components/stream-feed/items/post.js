@@ -121,6 +121,7 @@ export default Component.extend(ClipboardMixin, {
   _overflow() {
     if (!get(this, 'isExpanded')) {
       scheduleOnce('afterRender', () => {
+        if (get(this, 'isDestroyed')) { return; }
         this._hideLongBody();
         this.$('img').one('load', () => { this._hideLongBody(); });
       });
