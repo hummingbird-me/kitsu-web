@@ -16,6 +16,7 @@ export default Component.extend({
   filter: 'all',
   readOnly: false,
 
+  ajax: service(),
   headData: service(),
   headTags: service(),
   notify: service(),
@@ -112,26 +113,12 @@ export default Component.extend({
       });
   }).drop(),
 
-  /**
-   * Create a temporary activity group record so that we can push a new
-   * post into the feed without a refresh.
-   *
-   * TODO:
-   * When we enable real-time updates, we'll need to grab all groups that
-   * don't have a set id, match the content from the real-time update and
-   * fill in the missing details.
-   */
-  _createTempActivity(record) {
-    const activity = get(this, 'store').createRecord('activity', {
-      subject: record,
-      foreignId: 'Post:<unknown>'
-    });
-    const group = get(this, 'store').createRecord('activity-group', {
-      group: '<unknown>',
-      activities: [activity]
-    });
-    return [group, activity];
-  },
+  deleteActivity: task(function* (activity) {
+    const activityId = get(activity, 'id');
+    const actorId = get(activity, 'actor.id');
+    const feedUrl = `/feeds/user/${actorId}/activities/${activityId}`;
+    return yield get(this, 'ajax').delete(feedUrl);
+  }).enqueue(),
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -164,6 +151,22 @@ export default Component.extend({
   willDestroyElement() {
     this._super(...arguments);
     this._cancelSubscription();
+  },
+
+  /**
+   * Create a temporary activity group record so that we can push a new
+   * post into the feed without a refresh.
+   */
+  _createTempActivity(record) {
+    const activity = get(this, 'store').createRecord('activity', {
+      subject: record,
+      foreignId: 'Post:<unknown>'
+    });
+    const group = get(this, 'store').createRecord('activity-group', {
+      group: '<unknown>',
+      activities: [activity]
+    });
+    return [group, activity];
   },
 
   _trackImpressions(data) {
@@ -223,6 +226,17 @@ export default Component.extend({
       dup.addObjects(records);
       set(this, 'feed', dup);
       set(this, 'feed.links', links);
+    },
+
+    deleteActivity(activity, callback) {
+      get(this, 'deleteActivity').perform(activity).then(() => {
+        if (callback !== undefined) {
+          callback(...arguments);
+        }
+        get(this, 'notify').success('Your feed activity was deleted.');
+      }).catch((err) => {
+        get(this, 'notify').error(errorMessages(err));
+      });
     },
 
     removeGroup(group) {

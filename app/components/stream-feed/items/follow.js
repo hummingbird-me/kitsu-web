@@ -1,6 +1,7 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
+import { strictInvokeAction } from 'ember-invoke-action';
 import getter from 'client/utils/getter';
 
 export default Component.extend({
@@ -27,5 +28,11 @@ export default Component.extend({
       }
       get(this, 'metrics').invoke('trackEngagement', 'Stream', data);
     },
+
+    deleteActivity() {
+      strictInvokeAction(this, 'deleteActivity', get(this, 'activity'), () => {
+        strictInvokeAction(this, 'removeGroup', get(this, 'group'));
+      });
+    }
   }
 });

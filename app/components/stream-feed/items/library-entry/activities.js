@@ -1,6 +1,7 @@
 import Component from 'ember-component';
 import computed from 'ember-computed';
 import get from 'ember-metal/get';
+import { strictInvokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
   shouldGroup: computed('feedId', {
@@ -10,14 +11,15 @@ export default Component.extend({
     }
   }).readOnly(),
 
-  groupedActivities: computed('activities', {
+  groupedActivities: computed('activities.@each.isDeleted', {
     get() {
       if (get(this, 'shouldGroup') === false) {
         return get(this, 'activities')
+          .filterBy('isDeleted', false)
           .map(activity => ({ activity })).slice(0, get(this, 'activityLimit'));
       }
       const groups = {};
-      const activities = get(this, 'activities');
+      const activities = get(this, 'activities').filterBy('isDeleted', false);
       activities.forEach((activity) => {
         const key = this._getGroupingKey(activity);
         groups[key] = groups[key] || [];
@@ -38,6 +40,7 @@ export default Component.extend({
     }
   }).readOnly(),
 
+
   _getGroupingKey(activity) {
     const verb = get(activity, 'verb');
     switch (verb) {
@@ -49,6 +52,15 @@ export default Component.extend({
         return `${verb}_${get(activity, 'rating')}`;
       default:
         throw new Error('Unsupported activity.');
+    }
+  },
+
+  actions: {
+    onDelete(activity) {
+      get(this, 'activities').removeObject(activity);
+      if (get(this, 'activities.length') === 0) {
+        strictInvokeAction(this, 'removeGroup');
+      }
     }
   }
 });

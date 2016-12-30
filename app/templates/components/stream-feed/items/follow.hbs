@@ -23,4 +23,21 @@
       </span>
     </div>
   </div>
+
+  {{! Dropdown }}
+  {{#if (is-self activity.actor)}}
+    <div class="stream-item-options m-b-1">
+      <span class="more-wrapper">
+        <a href="#" class="more-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{svg-jar "more"}}
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          {{! delete activity }}
+          <a class="dropdown-item" href="#" {{action "deleteActivity"}}>
+            Delete Activity
+          </a>
+        </div>
+      </span>
+    </div>
+  {{/if}}
 </div>
