@@ -71,7 +71,8 @@ module.exports = function(environment) {
     sentry: {
       dsn: 'https://9c9c723278a1456299a9da5842251bdf@sentry.io/119044',
       cdn: 'https://cdn.ravenjs.com/3.9.1/raven.min.js',
-      development: environment !== 'production'
+      development: environment !== 'production',
+      whitelistUrls: [/kitsu\.io/, /staging\.kitsu\.io/]
     },
 
     // ember-i18n
