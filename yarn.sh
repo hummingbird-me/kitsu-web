@@ -17,7 +17,7 @@ git log --name-status HEAD^..HEAD | grep "update" || exit 0
 yarn
 
 # Commit and push yarn.lock file
-git config --global user.email "no@no.com"
+git config --global user.email "hello@vevix.net"
 git config --global user.name "Travis CI"
 git config --global push.default simple
 
