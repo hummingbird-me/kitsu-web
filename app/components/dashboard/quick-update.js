@@ -64,6 +64,7 @@ export default Component.extend({
       set(this, 'initialEntries', entries);
       this._clean();
       scheduleOnce('afterRender', () => {
+        if (get(this, 'isDestroyed')) { return; }
         set(this, 'carousel', this.$('.carousel').flickity(this._options()));
       });
     }).catch(() => {});
