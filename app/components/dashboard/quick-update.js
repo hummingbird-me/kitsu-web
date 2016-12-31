@@ -78,6 +78,7 @@ export default Component.extend({
 
   _appendToFlickty() {
     scheduleOnce('afterRender', () => {
+      if (get(this, 'isDestroyed')) { return; }
       const index = get(this, 'carousel').data('flickity').cells.length - 1;
       get(this, 'carousel').flickity('insert', this.$('.new-entries').children(), index);
     });

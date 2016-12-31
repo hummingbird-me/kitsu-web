@@ -110,6 +110,7 @@ export default Component.extend(ClipboardMixin, {
   },
 
   _hideLongBody() {
+    if (get(this, 'isDestroyed')) { return; }
     const body = this.$('.stream-content-post');
     if (body && body[0] && body.height() < body[0].scrollHeight) {
       set(this, 'isOverflowed', true);
