@@ -63,17 +63,19 @@ export default Component.extend({
       }
       set(this, 'comments', []);
       get(this, 'comments').addObject(get(this, 'comment'));
-    } else if (get(this, 'post.topLevelCommentsCount') > 0) {
+    } else {
       // don't reload if the we have received attrs but the post hasn't changed
       if (isPresent(oldAttrs) && get(newAttrs.post.value, 'id') === get(oldAttrs.post.value, 'id')) {
         return;
       }
       set(this, 'comments', []);
-      get(this, 'getComments').perform().then((comments) => {
-        const content = comments.toArray().reverse();
-        set(content, 'links', get(comments, 'links'));
-        set(this, 'comments', content);
-      }).catch(() => {});
+      if (get(this, 'post.topLevelCommentsCount') > 0) {
+        get(this, 'getComments').perform().then((comments) => {
+          const content = comments.toArray().reverse();
+          set(content, 'links', get(comments, 'links'));
+          set(this, 'comments', content);
+        }).catch(() => {});
+      }
     }
   },
 
