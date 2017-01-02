@@ -1,8 +1,10 @@
 <div class="add-content-header" {{action "toggleExpand"}}>
-  {{! avatar }}
-  <div style="display: inline-block; margin-right: 10px;">
-    <img style="width: 36px; height: 36px; border-radius: 100%;" src={{image author.avatar "small"}}>
-  </div>
+  {{#if author}}
+    {{! avatar }}
+    <div style="display: inline-block; margin-right: 10px;">
+      <img style="width: 36px; height: 36px; border-radius: 100%;" src={{image author.avatar "small"}}>
+    </div>
+  {{/if}}
 
   {{! placeholder/name }}
   <div style="display: inline-block; font-size: 16px; color: #999; vertical-align: middle;">

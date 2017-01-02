@@ -75,7 +75,7 @@ export default Component.extend({
     }
   },
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
     set(this, 'author', get(this, 'session.account'));
     if (get(this, 'isEditing') === true) {
@@ -131,7 +131,9 @@ export default Component.extend({
     },
 
     toggleExpand() {
-      if (!get(this, 'isEditing')) {
+      if (get(this, 'readOnly')) {
+        get(this, 'session').signUpModal();
+      } else if (!get(this, 'isEditing')) {
         this.toggleProperty('isExpanded');
       }
     }

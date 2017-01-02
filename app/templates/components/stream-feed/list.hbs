@@ -1,11 +1,10 @@
-{{#if (not readOnly)}}
-  {{stream-feed/create-post
-    placeholder="Write here..."
-    media=media
-    user=user
-    onCreate=(perform createPost)
-  }}
-{{/if}}
+{{stream-feed/create-post
+  readOnly=readOnly
+  placeholder="Create a post..."
+  media=media
+  user=user
+  onCreate=(perform createPost)
+}}
 
 <div class="feed-actions clearfix">
   {{! new activities block }}
