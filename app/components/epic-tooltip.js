@@ -81,7 +81,9 @@ export default Component.extend({
         .off('mouseleave.hoverIntent');
     }
 
-    get(this, 'tether').destroy();
+    if (get(this, 'tether')) {
+      get(this, 'tether').destroy();
+    }
     this.$().remove();
   },
 
