@@ -1,5 +1,8 @@
 <div class="favorite-series-panel">
-  <h6 class="panel-heading">Favorite Series</h6>
+  <h6 class="panel-heading">
+    Favorite Series
+    <a href="#" class="panel-btn">Manage</a>
+  </h6>
   {{#if getAllFavorites.isRunning}}
     <div class="text-xs-center">
       {{loading-spinner size="large"}}
@@ -17,6 +20,7 @@
 
     <div class="tab-content">
       {{! anime }}
+      {{! @vevix - trigger favorite anime / manga edit modal}}
       <div class="tab-pane active" id="favorite-anime" role="tabpanel">
         {{#if animeFavorites}}
           {{users/user-favorites/list
@@ -59,7 +63,11 @@
 </div>
 
 <div class="favorite-characters-panel">
-  <h6 class="panel-heading">Favorite Characters</h6>
+  <h6 class="panel-heading">
+    Favorite Characters
+    {{! @vevix - trigger favorite character edit modal}}
+    <a href="#" class="panel-btn">Manage</a>
+  </h6>
   {{#if getAllFavorites.isRunning}}
     <div class="text-xs-center">
       {{loading-spinner size="large"}}
