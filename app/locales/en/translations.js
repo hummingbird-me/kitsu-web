@@ -212,7 +212,7 @@ export default {
           female: 'Female',
           custom: 'Custom'
         },
-        genderCustom: 'Attack Helicopter',
+        genderCustom: 'How do you identify?',
         waifu: 'Waifu',
         waifuPlaceholder: 'Who is your waifu / husbando?',
         bio: 'Bio',
