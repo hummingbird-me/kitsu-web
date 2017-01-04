@@ -3,6 +3,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import computed from 'ember-computed';
 import service from 'ember-service/inject';
+import { isPresent } from 'ember-utils';
 import { task, timeout } from 'ember-concurrency';
 import jQuery from 'jquery';
 
@@ -23,9 +24,10 @@ export default Ember.Component.extend({
   mangaTask: typeTask(),
   usersTask: typeTask(),
 
-  inputClass: computed('isOpened', {
+  inputClass: computed('isOpened', 'query', {
     get() {
-      return `site-search__input ${get(this, 'isOpened') ? 'active' : ''}`;
+      const isActive = get(this, 'isOpened') || isPresent(get(this, 'query'));
+      return `site-search__input ${isActive ? 'active' : ''}`;
     }
   }).readOnly(),
 
@@ -58,8 +60,13 @@ export default Ember.Component.extend({
       const id = `#${get(this, 'elementId')}`;
       const isChild = jQuery(target).is(`${id} *, ${id}`);
       const isPopover = jQuery(target).is('#search-popover *, #search-popover');
-      if (isChild === true || isPopover === true) {
-        if (isChild === true) { this.$('input').focus(); }
+      if (isChild || isPopover) {
+        if (isChild) {
+          this.$('input').focus();
+          if (!get(this, 'isOpened')) {
+            set(this, 'isOpened', true);
+          }
+        }
         return;
       }
       set(this, 'isOpened', false);
