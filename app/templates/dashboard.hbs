@@ -1,8 +1,22 @@
 {{#if session.hasUser}}
   {{dashboard/quick-update}}
+{{else}}
+  <div class="guest-banner">
+    <div class="container">
+      <div class="row">
+        <div class="guest-cta--wrapper">
+          <h1>Meet your next favorite anime or manga.</h1>
+          <p>Kitsu makes it easy to track, share and discuss the titles you love.</p>
+          <a class="community-btn btn-primary" {{action "joinCommunity"}}>
+            Join the Community
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 {{/if}}
 
-<div class="feed-container row {{if session.hasUser "quick-update-enabled"}}">
+<div class="feed-container row {{if session.hasUser "quick-update-enabled" "guest-banner-enabled"}}">
   {{! Feed }}
   <div class="feed-stream col-sm-12 col-md-8">
     {{#if (and session.hasUser (and (eq streamType "global") (eq session.account.postsCount 0)))}}

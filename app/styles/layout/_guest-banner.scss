@@ -1,0 +1,62 @@
+.guest-banner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50px;
+  height: 370px;
+  background-color: #332532;
+  // @vevix need to place this image somewhere locally
+  background-image: url(http://i.imgur.com/cJGLnTp.jpg);
+  background-size: contain;
+  background-position: right;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  @media (max-width: 1080px) {
+    background-size: cover;
+  }
+  @media (max-width: 960px) {
+    background-image: none;
+  }
+  @media (max-width: 600px) {
+    height: 330px;
+  }
+}
+
+.guest-cta--wrapper {
+  max-width: 450px;
+  margin-top: 50px;
+  h1 {
+    font-size: 2.6rem;
+    color: $white;
+  }
+  p {
+    font-size: 25px;
+    color: #ccb8cb;
+  }
+  @media (max-width: 600px) {
+    padding: 0 15px;
+    h1 {
+      font-size: 2rem;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+}
+
+.community-btn {
+  background: $white;
+  border-radius: 5px;
+  padding: 15px 50px;
+  color: $voodoo;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 15px;
+  display: inline-block;
+  &:hover {
+    background: darken($white,10);
+  }
+  &:active {
+    background: darken($white,20) !important; // This is gross. I'm gross.
+  }
+}
