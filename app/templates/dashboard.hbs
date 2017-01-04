@@ -7,14 +7,13 @@
         <div class="guest-cta--wrapper">
           <h1>Meet your next favorite anime or manga.</h1>
           <p>Kitsu makes it easy to track, share and discuss the titles you love.</p>
-          <a class="community-btn btn-primary">
+          <a class="community-btn btn-primary" {{action "joinCommunity"}}>
             Join the Community
           </a>
         </div>
       </div>
     </div>
   </div>
-
 {{/if}}
 
 <div class="feed-container row {{if session.hasUser "quick-update-enabled" "guest-banner-enabled"}}">
