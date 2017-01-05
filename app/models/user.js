@@ -50,9 +50,7 @@ export default Base.extend(Validations, {
   i18n: service(),
 
   about: attr('string'),
-  aboutFormatted: attr('string'),
   avatar: attr('object', { defaultValue: '/images/default_avatar.png' }),
-  bio: attr('string'),
   birthday: attr('utc'),
   commentsCount: attr('number'),
   confirmed: attr('boolean', { defaultValue: false }),
