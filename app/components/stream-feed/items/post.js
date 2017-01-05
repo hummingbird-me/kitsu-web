@@ -125,7 +125,7 @@ export default Component.extend(ClipboardMixin, {
         if (get(this, 'isDestroyed')) { return; }
         this._hideLongBody();
         const image = this.$('img');
-        if (image.length > 0) {
+        if (image && image.length > 0) {
           this.$('img').one('load', () => { this._hideLongBody(); });
         }
       });

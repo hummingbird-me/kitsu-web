@@ -64,7 +64,7 @@ export default Component.extend({
       set(this, 'initialEntries', entries);
       this._clean();
       scheduleOnce('afterRender', () => {
-        if (get(this, 'isDestroyed')) { return; }
+        if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
         set(this, 'carousel', this.$('.carousel').flickity(this._options()));
       });
     }).catch(() => {});
@@ -78,7 +78,7 @@ export default Component.extend({
 
   _appendToFlickty() {
     scheduleOnce('afterRender', () => {
-      if (get(this, 'isDestroyed')) { return; }
+      if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
       const index = get(this, 'carousel').data('flickity').cells.length - 1;
       get(this, 'carousel').flickity('insert', this.$('.new-entries').children(), index);
     });
