@@ -12,14 +12,13 @@ import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   errorMessage: undefined,
-
   notify: service(),
   router: service('-routing'),
 
-  _component: 'about-me',
-  componentName: computed('_component', {
+  component: 'about-me',
+  componentName: computed('component', {
     get() {
-      return `users/edit-profile/${get(this, '_component')}`;
+      return `users/edit-profile/${get(this, 'component')}`;
     }
   }).readOnly(),
 
@@ -30,9 +29,9 @@ export default Component.extend({
     }
   }).readOnly(),
 
-  isAboutActive: equal('_component', 'about-me'),
-  isProfilesActive: equal('_component', 'linked-profiles'),
-  isFavoritesActive: equal('_component', 'favorites'),
+  isAboutActive: equal('component', 'about-me'),
+  isProfilesActive: equal('component', 'linked-profiles'),
+  isFavoritesActive: equal('component', 'favorites'),
   isDirty: filterBy('records', 'hasDirtyAttributes'),
 
   updateProfileTask: task(function* () {
@@ -62,7 +61,7 @@ export default Component.extend({
     },
 
     changeComponent(component) {
-      set(this, '_component', component);
+      set(this, 'component', component);
       this.$('.modal').data('bs.modal')._handleUpdate();
     },
 

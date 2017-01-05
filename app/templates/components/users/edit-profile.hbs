@@ -44,7 +44,11 @@
   {{/modal.header}}
 
   {{#modal.body}}
-    {{component componentName user=user addRecord=(action "addRecord") removeRecord=(action "removeRecord")}}
+    {{component componentName
+      user=user
+      componentData=componentData
+      addRecord=(action "addRecord")
+      removeRecord=(action "removeRecord")}}
   {{/modal.body}}
 
   {{#modal.footer}}

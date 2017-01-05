@@ -1,5 +1,19 @@
 <div class="favorite-series-panel">
-  <h6 class="panel-heading">Favorite Series</h6>
+  <h6 class="panel-heading">
+    Favorite Series
+    {{! manage series favorites }}
+    {{#if (is-self user)}}
+      <a href="#" class="panel-btn" {{action (toggle-action "isManagingSeries" this)}}>Manage</a>
+      {{#if isManagingSeries}}
+        {{to-elsewhere named="modal" send=(component "users/edit-profile"
+          component="favorites"
+          componentData=(hash tab=activeTab)
+          user=user
+          modalId="edit-profile-modal"
+          onClose=(toggle-action "isManagingSeries" this))}}
+      {{/if}}
+    {{/if}}
+  </h6>
   {{#if getAllFavorites.isRunning}}
     <div class="text-xs-center">
       {{loading-spinner size="large"}}
@@ -8,10 +22,14 @@
     {{! TODO: @Josh -- Style tab headings here }}
     <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" href="#favorite-anime" data-toggle="tab" role="tab">Anime</a>
+        <a class="nav-link active" href="#favorite-anime" data-toggle="tab" role="tab" {{action (mut activeTab) "anime"}}>
+          Anime
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#favorite-manga" data-toggle="tab" role="tab">Manga</a>
+        <a class="nav-link" href="#favorite-manga" data-toggle="tab" role="tab" {{action (mut activeTab) "manga"}}>
+          Manga
+        </a>
       </li>
     </ul>
 
@@ -59,7 +77,21 @@
 </div>
 
 <div class="favorite-characters-panel">
-  <h6 class="panel-heading">Favorite Characters</h6>
+  <h6 class="panel-heading">
+    Favorite Characters
+    {{! manage character favorites }}
+    {{#if (is-self user)}}
+      <a href="#" class="panel-btn" {{action (toggle-action "isManagingChars" this)}}>Manage</a>
+      {{#if isManagingChars}}
+        {{to-elsewhere named="modal" send=(component "users/edit-profile"
+          component="favorites"
+          componentData=(hash tab="characters")
+          user=user
+          modalId="edit-profile-modal"
+          onClose=(toggle-action "isManagingChars" this))}}
+      {{/if}}
+    {{/if}}
+  </h6>
   {{#if getAllFavorites.isRunning}}
     <div class="text-xs-center">
       {{loading-spinner size="large"}}
