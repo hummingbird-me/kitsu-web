@@ -17,13 +17,10 @@ export default Component.extend({
   // Search media and filter out records that are already favorites of the user
   search: task(function* (type, value) {
     yield timeout(250);
-    let field = 'text';
-    if (type === 'character') {
-      field = 'name';
-    }
+    const field = type === 'character' ? 'name' : 'text';
     return yield get(this, 'store').query(type, {
       filter: { [field]: value },
-      page: { limit: 3 }
+      page: { limit: 5 }
     }).then(records => records.reject(record => (
       get(this, `${type}Favorites`).map(item => get(item, 'item.id')).includes(get(record, 'id'))
     )));
