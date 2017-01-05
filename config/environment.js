@@ -72,7 +72,24 @@ module.exports = function(environment) {
       dsn: 'https://9c9c723278a1456299a9da5842251bdf@sentry.io/119044',
       cdn: 'https://cdn.ravenjs.com/3.9.1/raven.min.js',
       development: environment !== 'production',
-      whitelistUrls: [/kitsu\.io/, /staging\.kitsu\.io/]
+      whitelistUrls: [/https?:\/\/((staging)\.)?kitsu\.io/],
+      ravenOptions: {
+        ignoreErrors: [
+          // Random plugins/extensions
+          'top.GLOBALS',
+          // Facebook borked
+          'fb_xd_fragment'
+        ],
+        ignoreUrls: [
+          // Facebook flakiness
+          /graph\.facebook\.com/i,
+          // Facebook blocked
+          /connect\.facebook\.net\/en_US\/all\.js/i,
+          // Chrome extensions
+          /extensions\//i,
+          /^chrome:\/\//i,
+        ]
+      }
     },
 
     // ember-i18n
