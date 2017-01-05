@@ -40,7 +40,7 @@ export default Component.extend({
     return yield new RSVP.Promise((resolve, reject) => {
       RSVP.allSettled(saving).then((data) => {
         const failed = data.filterBy('state', 'rejected');
-        return failed.length > 0 ? reject() : resolve();
+        return failed.length > 0 ? reject(failed) : resolve();
       });
     });
   }).restartable(),
@@ -80,7 +80,10 @@ export default Component.extend({
     updateProfile() {
       get(this, 'updateProfileTask').perform()
         .then(() => this.$('.modal').modal('hide'))
-        .catch(err => set(this, 'errorMessage', errorMessages(err)));
+        .catch((errors) => {
+          const firstError = get(errors, 'firstObject.reason');
+          set(this, 'errorMessage', errorMessages(firstError));
+        });
     },
 
     updateImage(property, event) {
