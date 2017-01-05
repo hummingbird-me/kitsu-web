@@ -99,14 +99,14 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
       tagId: 'meta-og-image',
       attrs: {
         property: 'og:image',
-        content: `${window.location.protocol}//${window.location.host}${image(get(model, 'posterImage'), 'medium')}`
+        content: `${image(get(model, 'posterImage'), 'medium')}`
       }
     }, {
       type: 'meta',
       tagID: 'meta-twitter-image',
       attrs: {
         name: 'twitter:image',
-        content: `${window.location.protocol}//${window.location.host}${image(get(model, 'posterImage'), 'medium')}`
+        content: `${image(get(model, 'posterImage'), 'medium')}`
       }
     }];
   },
