@@ -51,12 +51,14 @@
                 </div>
               </div>
             </div>
+            {{#unless mediaReadOnly}}
+              <a href="#" class="tagged-media--remove hint--top hint--bounce hint--rounded" aria-label="Remove?" {{action
+                (queue (action (mut _usableMedia) null) (action (mut spoiler) false))
+              }}>
+                {{svg-jar "close"}}
+              </a>
+            {{/unless}}
           </div>
-          {{#unless mediaReadOnly}}
-            <a href="#" class="tagged-media--remove" {{action (queue (action (mut _usableMedia) null) (action (mut spoiler) false))}}>
-              remove tag
-            </a>
-          {{/unless}}
         </div>
       {{else}}
         {{! media tagging input }}
