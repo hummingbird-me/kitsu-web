@@ -3,7 +3,7 @@
   left: 0;
   right: 0;
   top: 50px;
-  height: 180px;
+  height: 226px;
   background: $voodoo;
   overflow: hidden;
 }
@@ -34,6 +34,15 @@
 .quick-update--rate {
   margin-top: 38px;
   margin-bottom: 15px;
+  .star-empty path {
+    fill: rgba(255,255,255,.6);
+  }
+  .star-full .star-rating-filled, .star-half .star-rating-filled, .star-variable .star-rating-filled {
+    stop-color: $white;
+  }
+  .star-full .star-rating-base, .star-half .star-rating-base, .star-variable .star-rating-base {
+    stop-color: rgba(255,255,255,.6);
+  }
 }
 
 .flickity-viewport {
@@ -72,14 +81,15 @@
   }
 
   .quick-update-item {
-    width: 19%;
-    min-width: 240px;
+    width: 12%;
+    min-width: 150px;
     max-width: 275px;
-    height: 150px;
+    height: 200px;
     border-radius: 3px;
     margin-right: 15px;
     overflow: hidden;
     animation-delay: .5s;
+    position: relative;
     .quick-update-media-wrapper {
       background: #677086;
       transition: opacity .2s ease-in;
@@ -97,9 +107,6 @@
         @extend .animated;
         @extend .fadeIn;
         animation-duration: .5s;
-      }
-      .quick-update-title-block {
-        display: none;
       }
     }
   }
@@ -124,22 +131,14 @@
     text-align: center;
     height: 100%;
     padding: 0 20px;
-    .update--entry-title {
-      color: #fff;
-      margin-top: 40px;
-      margin-bottom: 15px;
-      display: inline-block;
-      font-weight: 700;
-      width: 100%;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
+
+
     .button {
       display: inline-block;
       vertical-align: middle;
       width: 100%;
       height: 45px;
+      margin-top: 70px;
       &:hover {
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
       }
@@ -150,7 +149,33 @@
         margin-right: 2px;
       }
     }
+
+    .review-button {
+      margin-top: 0;
+    }
   }
+}
+
+a.update--entry-title {
+  color: $white;
+  display: inline-block;
+  font-weight: 700;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  &:hover {
+    color: $white;
+    opacity: .7;
+  }
+}
+
+.series-progress {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .empty-panel {
@@ -159,7 +184,7 @@
   svg {
     width: 60px;
     fill: rgba(255,255,255,.1);
-    margin-top: 40px;
+    margin-top: 70px;
   }
 }
 
@@ -210,5 +235,25 @@
   }
   &.previous {
     left: 0;
+  }
+}
+
+.progress-bar {
+  display: block;
+  position: relative;
+  height: 3px;
+  background-color: rgba(255,255,255,.3);
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -moz-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  margin: 1px 8px 0 0;
+  .progress-completed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background-color: #E50914;
   }
 }

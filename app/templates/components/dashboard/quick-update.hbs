@@ -17,7 +17,6 @@
 </div>
 
 {{#if getEntriesTask.isRunning}}
-  {{! TODO -- @josh -- Loading State? }}
 {{else}}
   <div class="carousel">
     {{#each initialEntries as |entry|}}
@@ -31,6 +30,7 @@
           {{t "dashboard.quickUpdate.hint.discover"}}
         </a>
       </div>
+
 
       {{#each (repeat remaining) as |_|}}
         <div class="quick-update-item empty-panel">
