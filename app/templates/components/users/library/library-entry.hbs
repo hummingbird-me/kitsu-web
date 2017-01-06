@@ -48,10 +48,9 @@
             min=0
             max=media.unitCount
             update=(queue
-              (action (mut entry.progress))
+              (pipe-action (action "sanitizeNumber") (action (mut entry.progress)))
               (perform saveEntryDebounced)
             )
-            sanitizeInput=(action "sanitizeNumber")
             placeholder="0"
           }}
           <span>
@@ -192,10 +191,9 @@
               {{#if (can-mutate user entry)}}
                 {{one-way-number entry.reconsumeCount
                   update=(queue
-                    (action (mut entry.reconsumeCount))
+                    (pipe-action (action "sanitizeNumber") (action (mut entry.reconsumeCount)))
                     (perform saveEntryDebounced)
                   )
-                  sanitizeInput=(action "sanitizeNumber")
                 }}
               {{else}}
                 <span>{{entry.reconsumeCount}}</span>
