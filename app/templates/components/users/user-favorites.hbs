@@ -42,11 +42,12 @@
             user=user
             updateNextPage=(action "updateNextPage" "anime")
             type="anime" class="favorite-media-grid row"}}
+          <a href="#" class="button button--secondary" {{action (toggle-action "isManagingSeries" this)}}>Edit favorite anime</a>
         {{else}}
           {{! TODO(@Josh) - Improve look/messages of empty favorites on profile }}
           <span class="favorite-placeholder">
             {{#if (is-self user)}}
-              Add some Favorites.
+              <p>You haven't listed your favorite anime yet!</p>
             {{else}}
               User has no favorites.
             {{/if}}
@@ -62,10 +63,12 @@
             user=user
             updateNextPage=(action "updateNextPage" "manga")
             type="manga" class="favorite-media-grid row"}}
+          <a href="#" class="button button--secondary" {{action (toggle-action "isManagingSeries" this)}}>Edit favorite manga</a>
         {{else}}
           <span class="favorite-placeholder">
             {{#if (is-self user)}}
-              Add some Favorites.
+              <p>You haven't listed your favorite manga yet!</p>
+              <a href="#" class="button button--primary" {{action (toggle-action "isManagingSeries" this)}}>Choose favorite anime</a>
             {{else}}
               User has no favorites.
             {{/if}}
@@ -103,10 +106,12 @@
         user=user
         updateNextPage=(action "updateNextPage" "character")
         type="character" class="favorite-media-grid row"}}
+      <a href="#" class="button button--secondary" {{action (toggle-action "isManagingChars" this)}}>Edit favorite characters</a>
     {{else}}
       <span class="favorite-placeholder">
         {{#if (is-self user)}}
-          Add some Favorites.
+          <p>You haven't listed your favorite characters yet!</p>
+          <a href="#" class="button button--primary" {{action (toggle-action "isManagingChars" this)}}>Choose favorite characters</a>
         {{else}}
           User has no favorites.
         {{/if}}

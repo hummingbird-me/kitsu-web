@@ -121,17 +121,30 @@
 }
 
 .favorite-series-panel {
-  .favorite-placeholder {
-    padding-top: 10px;
-  }
   .nav {
     text-align: center;
     .active {
-      color: $nobel;
+      color: #333;
+      background: #f1f1f1;
     }
+  }
+  .nav-tabs {
+    background-color: #f1f1f1;
   }
   a {
     font-size: 12px;
+  }
+}
+
+.favorite-placeholder {
+  padding: 15px 15px 20px 15px;
+  border: 1px dashed #ddd;
+  margin-top: 20px;
+  .button {
+    font-size: 12px;
+    &:hover {
+      color: $white;
+    }
   }
 }
 
@@ -164,5 +177,19 @@
 .favorite-characters-panel {
   .favorite-item a {
     width: 100%;
+  }
+  .favorite-placeholder {
+    margin-top: 10px;
+  }
+}
+
+.favorite-series-panel, .favorite-characters-panel {
+  .button--secondary {
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px;
+    &:hover {
+      color: $white;
+    }
   }
 }
