@@ -72,10 +72,6 @@
     </div>
   </div>
 
-  {{! Episode Thumbnail / Media Poster }}
-  {{#if entry.nextUnit}}
-    {{lazy-image url=(image entry.nextUnit.thumbnail) fallback=(image entry.media.posterImage "medium")}}
-  {{else}}
-    {{lazy-image url=(image entry.media.posterImage "medium")}}
-  {{/if}}
+  {{! Media Poster }}
+  {{lazy-image url=(image entry.media.posterImage "medium")}}
 </div>
