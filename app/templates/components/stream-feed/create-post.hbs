@@ -29,22 +29,23 @@
       class="stream-content-editor"
     }}
 
+    {{! media tagging }}
     <div class="tag-media">
-      {{#if media}}
+      {{#if _usableMedia}}
         <div class="tagged-media--wrapper">
           <div class="tagged-media row">
             <div class="stream-item--media col-xs-1">
-              {{lazy-image url=(image media.posterImage "small")}}
+              {{lazy-image url=(image _usableMedia.posterImage "small")}}
             </div>
             <div class="col-sm no-padding-left">
               <div class="stream-item--title-block">
                 <div class="author-info">
-                  <a class="author-name" href={{href-to (concat (model-type media) ".show") media}}>
-                    {{media.computedTitle}}
+                  <a class="author-name" href={{href-to (concat (model-type _usableMedia) ".show") _usableMedia}}>
+                    {{_usableMedia.computedTitle}}
                   </a>
                   <small class="author-secondary">
                     <div class="media-tag-synopsis">
-                      {{truncate media.synopsis 150}}
+                      {{truncate _usableMedia.synopsis 150}}
                     </div>
                   </small>
                 </div>
@@ -52,7 +53,7 @@
             </div>
           </div>
           {{#unless mediaReadOnly}}
-            <a href="#" class="tagged-media--remove" {{action (queue (action (mut media) undefined) (action (mut spoiler) false))}}>
+            <a href="#" class="tagged-media--remove" {{action (queue (action (mut _usableMedia) null) (action (mut spoiler) false))}}>
               remove tag
             </a>
           {{/unless}}
@@ -60,15 +61,15 @@
       {{else}}
         {{! media tagging input }}
         {{#search-typeahead
-          value=media.computedTitle
+          value=_usableMedia.computedTitle
           search=(perform search)
           disabled=mediaReadOnly
-          placeholder="Type to tag a show or manga" as |_media|
+          placeholder="Type to tag a show or manga" as |media|
         }}
-          <div {{action (queue (action (mut media) _media) (action (mut spoiler) true))}}>
-            <span class="tag-poster">{{lazy-image url=(image _media.posterImage "tiny")}}</span>
-            <span class="tag tag-primary">{{capitalize (model-type _media)}}</span>
-            <span>{{_media.computedTitle}}</span>
+          <div {{action (queue (action (mut _usableMedia) media) (action (mut spoiler) true))}}>
+            <span class="tag-poster">{{lazy-image url=(image media.posterImage "tiny")}}</span>
+            <span class="tag tag-primary">{{capitalize (model-type media)}}</span>
+            <span>{{media.computedTitle}}</span>
           </div>
         {{/search-typeahead}}
       {{/if}}

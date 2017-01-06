@@ -19,6 +19,7 @@ export default Component.extend({
   nsfw: false,
   spoiler: false,
   maxLength: 9000,
+  _usableMedia: null,
 
   session: service(),
   store: service(),
@@ -35,8 +36,8 @@ export default Component.extend({
       nsfw: get(this, 'nsfw'),
       spoiler: get(this, 'spoiler')
     };
-    if (get(this, 'media') !== undefined) {
-      options.media = get(this, 'media');
+    if (this._usableMedia !== null) {
+      options.media = this._usableMedia;
     }
     yield invokeAction(this, 'onCreate', get(this, 'content'), options);
     this._resetProperties();
@@ -78,9 +79,9 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
     set(this, 'author', get(this, 'session.account'));
-    if (get(this, 'isEditing') === true) {
+    if (get(this, 'isEditing') === true && get(this, 'post')) {
       setProperties(this, {
-        media: get(this, 'post.media'),
+        _usableMedia: get(this, 'post.media'),
         mediaReadOnly: true,
         content: get(this, 'post.content'),
         contentOriginal: get(this, 'post.content'),
@@ -89,6 +90,7 @@ export default Component.extend({
         author: get(this, 'post.user')
       });
     } else if (get(this, 'media') !== undefined) {
+      set(this, '_usableMedia', get(this, 'media'));
       set(this, 'mediaReadOnly', true);
       set(this, 'spoiler', true);
     }
@@ -117,7 +119,7 @@ export default Component.extend({
       nsfw: false
     });
     if (get(this, 'mediaReadOnly') === false) {
-      set(this, 'media', undefined);
+      set(this, '_usableMedia', null);
       set(this, 'spoiler', false);
     }
   },
