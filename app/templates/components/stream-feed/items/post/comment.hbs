@@ -146,7 +146,7 @@
         {{/if}}
 
         {{! Replies List }}
-        {{#if (gt comment.repliesCount 0)}}
+        {{#if replies}}
           <ul class="media-list reply-list">
             {{#each replies as |reply|}}
               {{stream-feed/items/post/comment
