@@ -135,10 +135,9 @@
                 min=0
                 max=media.unitCount
                 update=(queue
-                  (action (mut entry.progress))
+                  (pipe-action (action "sanitizeNumber") (action (mut entry.progress)))
                   (route-action "saveEntryDebounced" entry)
                 )
-                sanitizeInput=(action "sanitizeNumber")
                 placeholder="0"
               }}
               <span>
