@@ -2,6 +2,7 @@ import { assign } from 'ember-platform';
 import run from 'ember-runloop';
 import Application from '../../app';
 import config from '../../config/environment';
+import './percy/register-helpers';
 
 export default function startApp(attrs) {
   let application;

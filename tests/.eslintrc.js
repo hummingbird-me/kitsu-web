@@ -3,7 +3,8 @@ module.exports = {
     embertest: true
   },
   globals: {
-    'server': true
+    'server': true,
+    'percySnapshot': true
   },
   rules: {
     'prefer-arrow-callback': 'off'
