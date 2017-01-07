@@ -47,6 +47,11 @@ module.exports = function(environment) {
         config: { id: 'UA-37633900-4' }
       },
       {
+        name: 'Heap',
+        environments: ['production'],
+        config: { appId: '3718300691' }
+      },
+      {
         name: 'Intercom',
         environments: ['production', 'development'],
         config: { appId: 'elre1t9q' }
