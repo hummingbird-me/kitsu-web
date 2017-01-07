@@ -151,8 +151,8 @@ module.exports = function(environment) {
   if (process.env.HEROKU_EMBER_APP === 'staging') {
     ENV.torii.providers['facebook-connect'].appId = '325314560922421';
     ENV.metricsAdapters[0].config.id = 'UA-37633900-3';
-    ENV.metricsAdapters[2].config.production.apiKey = 'ekx6xkn9v9xx';
-    ENV.metricsAdapters[2].config.production.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.Loj_VZy_FKQzP3xLpX46xSF9bktOBfqcve8eYjwFmNc';
+    ENV.metricsAdapters[3].config.production.apiKey = 'ekx6xkn9v9xx';
+    ENV.metricsAdapters[3].config.production.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.Loj_VZy_FKQzP3xLpX46xSF9bktOBfqcve8eYjwFmNc';
     ENV.stream.realtime.key = 'ekx6xkn9v9xx';
     ENV.stream.realtime.app = '17647';
     ENV.sentry.dsn = 'https://cd7634b1400644688ff55bda89171367@sentry.io/125035';
@@ -162,7 +162,7 @@ module.exports = function(environment) {
     ENV.torii.providers['facebook-connect'].appId = '325314560922421';
     ENV.stream.realtime.key = 'eb6dvmba4ct3';
     ENV.stream.realtime.app = '18373';
-    ENV.metricsAdapters[1].config.appId = 'ca7x05fo';
+    ENV.metricsAdapters[2].config.appId = 'ca7x05fo';
     ENV.ads.enabled = false;
     ENV.ads.client = 'TODO-HERE';
   }
