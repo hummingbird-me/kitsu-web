@@ -1,19 +1,6 @@
+{{! anime / manga }}
 <div class="favorite-series-panel">
-  <h6 class="panel-heading">
-    Favorite Series
-    {{! manage series favorites }}
-    {{#if (is-self user)}}
-      <a href="#" class="panel-btn" {{action (toggle-action "isManagingSeries" this)}}>Manage</a>
-      {{#if isManagingSeries}}
-        {{to-elsewhere named="modal" send=(component "users/edit-profile"
-          component="favorites"
-          componentData=(hash tab=activeTab)
-          user=user
-          modalId="edit-profile-modal"
-          onClose=(toggle-action "isManagingSeries" this))}}
-      {{/if}}
-    {{/if}}
-  </h6>
+  <h6 class="panel-heading">Favorite Series</h6>
   {{#if getAllFavorites.isRunning}}
     <div class="text-xs-center">
       {{loading-spinner size="large"}}
@@ -22,12 +9,12 @@
     {{! TODO: @Josh -- Style tab headings here }}
     <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" href="#favorite-anime" data-toggle="tab" role="tab" {{action (mut activeTab) "anime"}}>
+        <a class="nav-link active" href="#favorite-anime" data-toggle="tab" role="tab">
           Anime
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#favorite-manga" data-toggle="tab" role="tab" {{action (mut activeTab) "manga"}}>
+        <a class="nav-link" href="#favorite-manga" data-toggle="tab" role="tab">
           Manga
         </a>
       </li>
@@ -41,13 +28,16 @@
             items=animeFavorites
             user=user
             updateNextPage=(action "updateNextPage" "anime")
-            type="anime" class="favorite-media-grid row"}}
-          <a href="#" class="button button--secondary" {{action (toggle-action "isManagingSeries" this)}}>Edit favorite anime</a>
+            type="anime" class="favorite-media-grid row"
+          }}
+          {{#if (is-self user)}}
+            <a href="#" class="button button--secondary" {{action (queue (action (mut activeTab) "anime") (toggle-action "isManaging" this))}}>Edit favorite anime</a>
+          {{/if}}
         {{else}}
-          {{! TODO(@Josh) - Improve look/messages of empty favorites on profile }}
           <span class="favorite-placeholder">
             {{#if (is-self user)}}
               <p>You haven't listed your favorite anime yet!</p>
+              <a href="#" class="button button--primary" {{action (queue (action (mut activeTab) "anime") (toggle-action "isManaging" this))}}>Choose favorite anime</a>
             {{else}}
               User has no favorites.
             {{/if}}
@@ -62,13 +52,16 @@
             items=mangaFavorites
             user=user
             updateNextPage=(action "updateNextPage" "manga")
-            type="manga" class="favorite-media-grid row"}}
-          <a href="#" class="button button--secondary" {{action (toggle-action "isManagingSeries" this)}}>Edit favorite manga</a>
+            type="manga" class="favorite-media-grid row"
+          }}
+          {{#if (is-self user)}}
+            <a href="#" class="button button--secondary" {{action (queue (action (mut activeTab) "manga") (toggle-action "isManaging" this))}}>Edit favorite manga</a>
+          {{/if}}
         {{else}}
           <span class="favorite-placeholder">
             {{#if (is-self user)}}
               <p>You haven't listed your favorite manga yet!</p>
-              <a href="#" class="button button--primary" {{action (toggle-action "isManagingSeries" this)}}>Choose favorite anime</a>
+              <a href="#" class="button button--primary" {{action (queue (action (mut activeTab) "manga") (toggle-action "isManaging" this))}}>Choose favorite manga</a>
             {{else}}
               User has no favorites.
             {{/if}}
@@ -79,39 +72,31 @@
   {{/if}}
 </div>
 
+{{! characters }}
 <div class="favorite-characters-panel">
-  <h6 class="panel-heading">
-    Favorite Characters
-    {{! manage character favorites }}
-    {{#if (is-self user)}}
-      <a href="#" class="panel-btn" {{action (toggle-action "isManagingChars" this)}}>Manage</a>
-      {{#if isManagingChars}}
-        {{to-elsewhere named="modal" send=(component "users/edit-profile"
-          component="favorites"
-          componentData=(hash tab="characters")
-          user=user
-          modalId="edit-profile-modal"
-          onClose=(toggle-action "isManagingChars" this))}}
-      {{/if}}
-    {{/if}}
-  </h6>
+  <h6 class="panel-heading">Favorite Characters</h6>
+  {{! loader }}
   {{#if getAllFavorites.isRunning}}
     <div class="text-xs-center">
       {{loading-spinner size="large"}}
     </div>
   {{else}}
+    {{! list / manage }}
     {{#if characterFavorites}}
       {{users/user-favorites/list
         items=characterFavorites
         user=user
         updateNextPage=(action "updateNextPage" "character")
-        type="character" class="favorite-media-grid row"}}
-      <a href="#" class="button button--secondary" {{action (toggle-action "isManagingChars" this)}}>Edit favorite characters</a>
+        type="character" class="favorite-media-grid row"
+      }}
+      {{#if (is-self user)}}
+        <a href="#" class="button button--secondary" {{action (queue (action (mut activeTab) "characters") (toggle-action "isManaging" this))}}>Edit favorite characters</a>
+      {{/if}}
     {{else}}
       <span class="favorite-placeholder">
         {{#if (is-self user)}}
           <p>You haven't listed your favorite characters yet!</p>
-          <a href="#" class="button button--primary" {{action (toggle-action "isManagingChars" this)}}>Choose favorite characters</a>
+          <a href="#" class="button button--primary" {{action (queue (action (mut activeTab) "characters") (toggle-action "isManaging" this))}}>Choose favorite characters</a>
         {{else}}
           User has no favorites.
         {{/if}}
@@ -119,3 +104,13 @@
     {{/if}}
   {{/if}}
 </div>
+
+
+{{#if isManaging}}
+  {{to-elsewhere named="modal" send=(component "users/edit-profile"
+    component="favorites"
+    componentData=(hash tab=activeTab)
+    user=user
+    modalId="edit-profile-modal"
+    onClose=(toggle-action "isManaging" this))}}
+{{/if}}
