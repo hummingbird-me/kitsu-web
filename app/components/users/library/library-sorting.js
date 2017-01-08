@@ -19,13 +19,13 @@ export default Component.extend({
     const active = get(this, 'active');
     if (get(active, 'type') === type) {
       // same type, toggle direction
-      if (get(active, 'direction') === 'desc') {
-        set(active, 'direction', 'asc');
-      } else if (get(active, 'direction') === 'asc') {
+      if (get(active, 'direction') === 'asc') {
+        set(active, 'direction', 'desc');
+      } else if (get(active, 'direction') === 'desc') {
         this._resetActiveSort();
       }
     } else {
-      set(this, 'active', { type, direction: 'desc' });
+      set(this, 'active', { type, direction: 'asc' });
     }
   },
 
