@@ -8,7 +8,7 @@ import { modelType } from 'client/helpers/model-type';
 export default Component.extend({
   showCount: 0,
 
-  showableItems: computed('items', 'showCount', {
+  showableItems: computed('items.[]', 'showCount', {
     get() {
       return get(this, 'items').slice(0, get(this, 'showCount'));
     }
@@ -25,7 +25,7 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    set(this, 'showCount', this._getCount());
+    set(this, 'showCount', get(this, 'showCount') + this._getCount());
   },
 
   _getCount() {
@@ -40,7 +40,7 @@ export default Component.extend({
 
   actions: {
     showMore() {
-      set(this, 'showCount', this._getCount());
+      set(this, 'showCount', get(this, 'showCount') + this._getCount());
     }
   }
 });
