@@ -1,5 +1,5 @@
 import Route from 'ember-route';
-import get from 'ember-metal/get';
+import get, { getProperties } from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { capitalize } from 'ember-string';
 import service from 'ember-service/inject';
@@ -60,11 +60,12 @@ export default Route.extend(PaginationMixin, {
   }).restartable(),
 
   beforeModel({ queryParams }) {
-    if (queryParams.media === undefined) {
+    if (queryParams.media === undefined || queryParams.sort === undefined) {
       if (get(this, 'session').isCurrentUser(this.modelFor('users'))) {
-        const type = get(this, 'lastUsed.libraryType');
-        if (type) {
-          this.replaceWith({ queryParams: { media: type } });
+        const lastUsed = get(this, 'lastUsed');
+        const { libraryType, librarySort } = getProperties(lastUsed, 'libraryType', 'librarySort');
+        if (libraryType || librarySort) {
+          this.replaceWith({ queryParams: { media: libraryType, sort: librarySort } });
         }
       }
     }

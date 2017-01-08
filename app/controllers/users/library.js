@@ -50,13 +50,14 @@ export default Controller.extend({
     set(this, 'statuses', ['all', ...libraryStatus.getEnumKeys()]);
   },
 
-  _saveFilter: observer('media', function() {
+  _saveFilter: observer('media', 'sort', function() {
     // its possible for this to proc before setupController from the route has fired
     // we don't actually want to update the cache when it's a direct route request anyway.
     if (get(this, 'user')) {
       if (get(this, 'session').isCurrentUser(get(this, 'user'))) {
         const lastUsed = get(this, 'lastUsed');
         set(lastUsed, 'libraryType', get(this, 'media'));
+        set(lastUsed, 'librarySort', get(this, 'sort'));
       }
     }
   })
