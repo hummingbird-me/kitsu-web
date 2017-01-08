@@ -4,8 +4,8 @@
       {{loading-spinner size="small"}}
     </div>
   {{else}}
+    {{! Viewing single comment }}
     {{#if comment}}
-      {{! Viewing single comment }}
       <div class="comment-actions clearfix">
         <div class="pull-sm-left">
           <a href={{href-to "posts" post}}>View All Comments</a>
@@ -15,34 +15,30 @@
           {{/if}}
         </div>
       </div>
-    {{else}}
-      {{! Comment Pagination }}
-      {{#if (lt comments.length post.topLevelCommentsCount)}}
-        <div class="comment-actions clearfix">
-          {{#paginated-resource/manual
-            model=comments
-            modelName="comment"
-            limit=10
-            offset=comments.length
-            update=(action "loadComments") as |nextLink running|
-          }}
-            {{#if nextLink}}
-              {{! action }}
-              <div class="pull-sm-left">
-                {{#if running}}
-                  {{loading-spinner size="small"}}
-                {{else}}
-                  <a href="#">Show Previous Comments</a>
-                {{/if}}
-              </div>
-              {{! Comment count }}
-              <div class="pull-sm-right">
-                {{comments.length}} of {{post.topLevelCommentsCount}}
-              </div>
-            {{/if}}
-          {{/paginated-resource/manual}}
-        </div>
-      {{/if}}
+    {{else if comments}} {{! Comment Pagination }}
+      {{#paginated-resource/manual
+        model=comments
+        modelName="comment"
+        limit=10
+        update=(action "loadComments") as |nextLink running|
+      }}
+        {{#if nextLink}}
+          <div class="comment-actions clearfix">
+            {{! action }}
+            <div class="pull-sm-left">
+              {{#if running}}
+                {{loading-spinner size="small"}}
+              {{else}}
+                <a href="#">Show Previous Comments</a>
+              {{/if}}
+            </div>
+            {{! Comment count }}
+            <div class="pull-sm-right">
+              {{comments.length}} of {{post.topLevelCommentsCount}}
+            </div>
+          </div>
+        {{/if}}
+      {{/paginated-resource/manual}}
     {{/if}}
 
     {{! List of comments }}
