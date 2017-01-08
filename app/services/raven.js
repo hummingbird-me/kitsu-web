@@ -8,7 +8,7 @@ export default RavenLogger.extend({
 
   ignoreError(reason) {
     if (!this.shouldReportError()) {
-      return;
+      return true;
     }
     const { message } = reason;
     return get(this, 'errorsToIgnore').any(error => message.includes(error));
