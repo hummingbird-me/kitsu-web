@@ -11,12 +11,12 @@
                 </h3>
                 <div class="media--meta">
                   <ul>
-                    {{#if (or media.ageRating media.mediaType)}}
+                    {{#if (or media.ageRating media.subtype)}}
                       <li class="rating-content-type">
                         {{#if media.ageRating}}
                           <span>{{media.ageRating}}</span>
                         {{/if}}
-                        <span>{{capitalize media.mediaType}}</span>
+                        <span>{{capitalize media.subtype}}</span>
                       </li>
                     {{/if}}
 

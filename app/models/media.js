@@ -18,6 +18,7 @@ export default Base.extend({
   ratingFrequencies: attr('object'),
   slug: attr('string'),
   startDate: attr('utc'),
+  subtype: attr('string'),
   synopsis: attr('string'),
   titles: attr('object'),
 
@@ -26,7 +27,6 @@ export default Base.extend({
   installments: hasMany('installment'),
   reviews: hasMany('review'),
 
-  mediaType: or('showType', 'mangaType'),
   unitCount: or('episodeCount', 'chapterCount'),
   computedTitle: computed('session.account.titleLanguagePreference', 'titles', {
     get() {
