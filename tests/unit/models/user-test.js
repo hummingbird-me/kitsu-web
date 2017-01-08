@@ -17,6 +17,7 @@ moduleForModel('user', 'Unit | Model | user', {
     'validator:messages',
     'model:character',
     'model:block',
+    'model:favorite',
     'model:follow',
     'model:user-role',
     'model:post'
