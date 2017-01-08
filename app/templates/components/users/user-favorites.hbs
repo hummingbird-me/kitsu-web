@@ -1,7 +1,7 @@
 {{! anime / manga }}
 <div class="favorite-series-panel">
   <h6 class="panel-heading">Favorite Series</h6>
-  {{#if getAllFavorites.isRunning}}
+  {{#if getFavorites.isRunning}}
     <div class="text-xs-center">
       {{loading-spinner size="large"}}
     </div>
@@ -25,11 +25,8 @@
       <div class="tab-pane active" id="favorite-anime" role="tabpanel">
         {{#if animeFavorites}}
           {{users/user-favorites/list
-            items=animeFavorites
-            user=user
-            updateNextPage=(action "updateNextPage" "anime")
-            type="anime" class="favorite-media-grid row"
-          }}
+              items=animeFavorites user=user count=animeCount
+              class="favorite-media-grid row"}}
           {{#if (is-self user)}}
             <a href="#" class="button button--secondary" {{action (queue (action (mut activeTab) "anime") (toggle-action "isManaging" this))}}>Edit favorite anime</a>
           {{/if}}
@@ -49,11 +46,8 @@
       <div class="tab-pane" id="favorite-manga" role="tabpanel">
         {{#if mangaFavorites}}
           {{users/user-favorites/list
-            items=mangaFavorites
-            user=user
-            updateNextPage=(action "updateNextPage" "manga")
-            type="manga" class="favorite-media-grid row"
-          }}
+            items=mangaFavorites user=user count=mangaCount
+            class="favorite-media-grid row"}}
           {{#if (is-self user)}}
             <a href="#" class="button button--secondary" {{action (queue (action (mut activeTab) "manga") (toggle-action "isManaging" this))}}>Edit favorite manga</a>
           {{/if}}
@@ -75,8 +69,7 @@
 {{! characters }}
 <div class="favorite-characters-panel">
   <h6 class="panel-heading">Favorite Characters</h6>
-  {{! loader }}
-  {{#if getAllFavorites.isRunning}}
+  {{#if getFavorites.isRunning}}
     <div class="text-xs-center">
       {{loading-spinner size="large"}}
     </div>
@@ -84,11 +77,8 @@
     {{! list / manage }}
     {{#if characterFavorites}}
       {{users/user-favorites/list
-        items=characterFavorites
-        user=user
-        updateNextPage=(action "updateNextPage" "character")
-        type="character" class="favorite-media-grid row"
-      }}
+        items=characterFavorites user=user count=characterCount
+          class="favorite-media-grid row"}}
       {{#if (is-self user)}}
         <a href="#" class="button button--secondary" {{action (queue (action (mut activeTab) "characters") (toggle-action "isManaging" this))}}>Edit favorite characters</a>
       {{/if}}
@@ -105,7 +95,7 @@
   {{/if}}
 </div>
 
-
+{{! edit modal }}
 {{#if isManaging}}
   {{to-elsewhere named="modal" send=(component "users/edit-profile"
     component="favorites"

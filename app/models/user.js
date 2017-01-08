@@ -94,6 +94,7 @@ export default Base.extend(Validations, {
   pinnedPost: belongsTo('post', { inverse: null }),
 
   blocks: hasMany('block', { inverse: 'user' }),
+  favorites: hasMany('favorite', { inverse: 'user' }),
   followers: hasMany('follow', { inverse: 'followed' }),
   following: hasMany('follow', { inverse: 'follower' }),
   userRoles: hasMany('user-role'),

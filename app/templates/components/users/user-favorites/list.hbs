@@ -1,7 +1,6 @@
-{{#each items as |favorite|}}
+{{#each showableItems  as |favorite|}}
   <div class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded" aria-label={{if isCharacter favorite.item.name favorite.item.computedTitle}}>
     {{#if isCharacter}}
-      {{! TODO/@vevix: Link to character/media -- Server needed for this }}
       <a href="#">
         {{lazy-image url=(image favorite.item.image)}}
       </a>
@@ -13,13 +12,10 @@
   </div>
 {{/each}}
 
-<div class="text-xs-center w-100">
-  {{! TODO/@Josh -- load more button }}
-  {{#paginated-resource/manual model=items update=(action "updateNextPage") as |nextLink|}}
-    {{#if nextLink}}
-      <button class="button button--primary">
-        Load More
-      </button>
-    {{/if}}
-  {{/paginated-resource/manual}}
-</div>
+{{#unless (eq items.length showCount)}}
+  <div class="text-xs-center w-100">
+    <button class="button button--primary" onclick={{action "showMore"}}>
+      Show More
+    </button>
+  </div>
+{{/unless}}

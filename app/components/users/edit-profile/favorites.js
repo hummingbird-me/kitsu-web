@@ -42,7 +42,7 @@ export default Component.extend({
     const manga = get(this, 'getFavorites').perform('Manga');
     const chars = get(this, 'getFavorites').perform('Character');
     return yield RSVP.allSettled([anime, manga, chars], 'Get Favorites');
-  }).drop().cancelOn('willDestroyElement'),
+  }).drop(),
 
   init() {
     this._super(...arguments);
@@ -80,7 +80,6 @@ export default Component.extend({
         user: get(this, 'user'),
         item
       });
-
       get(this, `${type}Favorites`).addObject(record);
       invokeAction(this, 'addRecord', record);
       get(this, 'session.account').incrementProperty('favoritesCount');
