@@ -1,11 +1,24 @@
 import RavenLogger from 'ember-cli-sentry/services/raven';
-import { typeOf } from 'ember-utils';
+import get from 'ember-metal/get';
 
 export default RavenLogger.extend({
+  errorsToIgnore: [
+    'TransitionAborted'
+  ],
+
   ignoreError(reason) {
-    if (typeOf(reason) === 'object' && reason.message === 'TransitionAborted') {
-      return true;
+    if (!this.shouldReportError()) {
+      return;
     }
-    return this._super(...arguments);
+    const { message } = reason;
+    return get(this, 'errorsToIgnore').any(error => message.includes(error));
+  },
+
+  /**
+   * Sentry recommends only reporting a small subset of the actual
+   * frontend errors. This can get *very* noisy otherwise.
+   */
+  shouldReportError() {
+    return (Math.random() * 100 <= 10);
   }
 });
