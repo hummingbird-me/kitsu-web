@@ -8,6 +8,7 @@ import { storageFor } from 'ember-local-storage';
 import libraryStatus from 'client/utils/library-status';
 import PaginationMixin from 'client/mixins/routes/pagination';
 import errorMessages from 'client/utils/error-messages';
+import getTitleField from 'client/utils/get-title-field';
 
 export default Route.extend(PaginationMixin, {
   queryParams: {
@@ -86,12 +87,20 @@ export default Route.extend(PaginationMixin, {
 
   _getUsableSort(sort) {
     const controller = this.controllerFor(get(this, 'routeName'));
+    const mediaType = get(controller, 'media');
     if (sort === 'type' || sort === '-type') {
-      const mediaType = get(controller, 'media');
-      return mediaType === 'anime' ? 'media.show_type' : 'media.manga_type';
+      const field = `${mediaType}.subtype`;
+      return sort.charAt(0) === '-' ? `-${field}` : field;
     } else if (sort === 'title' || sort === '-title') {
-      // TODO: Has to respect user title choices
-      return sort.charAt(0) === '-' ? '-media.canonical_title' : 'media.canonical_title';
+      let field = `${mediaType}.titles`;
+      if (get(this, 'session.hasUser')) {
+        const preference = get(this, 'session.account.titleLanguagePreference').toLowerCase();
+        const key = getTitleField(preference);
+        field = `${field}.${key}`;
+      } else {
+        field = `${field}.canonical`;
+      }
+      return sort.charAt(0) === '-' ? `-${field}` : field;
     }
     return sort;
   },

@@ -4,6 +4,7 @@ import { hasMany } from 'ember-data/relationships';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import computed, { or } from 'ember-computed';
+import getTitleField from 'client/utils/get-title-field';
 
 export default Base.extend({
   session: service(),
@@ -34,14 +35,9 @@ export default Base.extend({
         return get(this, 'canonicalTitle');
       }
       const preference = get(this, 'session.account.titleLanguagePreference').toLowerCase();
-      switch (preference) {
-        case 'english':
-          return get(this, 'titles.en') || get(this, 'canonicalTitle');
-        case 'romanized':
-          return get(this, 'titles.en_jp') || get(this, 'canonicalTitle');
-        default:
-          return get(this, 'canonicalTitle');
-      }
+      const key = getTitleField(preference);
+      return key !== undefined ? get(this, `titles.${key}`) || get(this, 'canonicalTitle') :
+        get(this, 'canonicalTitle');
     }
   }).readOnly()
 });
