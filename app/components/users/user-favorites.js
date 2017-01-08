@@ -10,7 +10,7 @@ const favoriteComputed = (...args) => {
       const records = get(this, 'user.favorites') || [];
       return records.filter(record => (
         modelType([get(record, 'item')]) === type
-      )).rejectBy('isDeleted').toArray();
+      )).rejectBy('isDeleted').sortBy('favRank').toArray();
     }
   }).readOnly();
 };
