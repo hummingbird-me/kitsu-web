@@ -17,6 +17,9 @@
 </div>
 
 {{#if getEntriesTask.isRunning}}
+  <div class="quick-update-loading">
+    {{loading-spinner size="large" class="white"}}
+  </div>
 {{else}}
   <div class="carousel">
     {{#each initialEntries as |entry|}}
