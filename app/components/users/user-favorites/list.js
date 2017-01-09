@@ -6,8 +6,6 @@ import getter from 'client/utils/getter';
 import { modelType } from 'client/helpers/model-type';
 
 export default Component.extend({
-  showCount: 0,
-
   showableItems: computed('items.[]', 'showCount', {
     get() {
       return get(this, 'items').slice(0, get(this, 'showCount'));
@@ -25,22 +23,29 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    set(this, 'showCount', get(this, 'showCount') + this._getCount());
+    // reset the count if transitioning between users
+    if (get(this, 'userIdWas') !== get(this, 'user.id')) {
+      set(this, 'showCount', get(this, 'count'));
+    } else {
+      set(this, 'showCount', this._getCount());
+    }
+    set(this, 'userIdWas', get(this, 'user.id'));
   },
 
   _getCount() {
-    const current = get(this, 'showCount');
-    const chunk = get(this, 'count');
-    const total = get(this, 'items.length');
-    if ((total - current) < chunk) {
-      return total - current;
+    if (get(this, 'showCount') < get(this, 'items.length')) {
+      const value = get(this, 'showCount') + get(this, 'count');
+      if (value > get(this, 'items.length')) {
+        return get(this, 'showCount') + (get(this, 'items.length') - get(this, 'showCount'));
+      }
+      return value;
     }
-    return current + chunk;
+    return get(this, 'showCount');
   },
 
   actions: {
     showMore() {
-      set(this, 'showCount', get(this, 'showCount') + this._getCount());
+      set(this, 'showCount', this._getCount());
     }
   }
 });

@@ -5,6 +5,6 @@ import { belongsTo } from 'ember-data/relationships';
 export default Base.extend({
   favRank: attr('number'),
 
-  user: belongsTo('user'),
+  user: belongsTo('user', { inverse: 'favorites' }),
   item: belongsTo('base')
 });
