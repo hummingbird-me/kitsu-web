@@ -25,7 +25,7 @@ export default Component.extend({
     this._super(...arguments);
     // reset the count if transitioning between users
     if (get(this, 'userIdWas') !== get(this, 'user.id')) {
-      set(this, 'showCount', get(this, 'count'));
+      set(this, 'showCount', Math.min(get(this, 'count'), get(this, 'items.length')));
     } else {
       set(this, 'showCount', this._getCount());
     }

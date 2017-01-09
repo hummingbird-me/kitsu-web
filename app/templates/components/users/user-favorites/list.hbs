@@ -12,7 +12,7 @@
   </div>
 {{/each}}
 
-{{#unless (eq items.length showCount)}}
+{{#unless (gte showCount items.length)}}
   <div class="text-xs-center w-100">
     <button class="button button--primary" onclick={{action "showMore"}}>
       Show More
