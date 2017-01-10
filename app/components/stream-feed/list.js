@@ -92,25 +92,23 @@ export default Component.extend({
           media_id: get(data, 'media.id')
         },
         include: 'unit'
-      });
+      }).then(results => get(results, 'firstObject'));
       set(data, 'spoiledUnit', get(entry, 'unit'));
     }
     const post = get(this, 'store').createRecord('post', data);
     const [group, activity] = this._createTempActivity(post);
     // update post counter
     get(this, 'session.account').incrementProperty('postsCount');
-    return yield post.save()
-      .then((record) => {
-        get(this, 'feed').insertAt(0, group);
-        set(group, 'group', get(record, 'id'));
-        set(activity, 'foreignId', `Post:${get(record, 'id')}`);
-        get(this, 'metrics').trackEvent({ category: 'post', action: 'create' });
-      })
-      .catch((err) => {
-        get(this, 'feed').removeObject(group);
-        get(this, 'session.account').decrementProperty('postsCount');
-        get(this, 'notify').error(errorMessages(err));
-      });
+    return yield post.save().then((record) => {
+      get(this, 'feed').insertAt(0, group);
+      set(group, 'group', get(record, 'id'));
+      set(activity, 'foreignId', `Post:${get(record, 'id')}`);
+      get(this, 'metrics').trackEvent({ category: 'post', action: 'create' });
+    }).catch((err) => {
+      get(this, 'feed').removeObject(group);
+      get(this, 'session.account').decrementProperty('postsCount');
+      get(this, 'notify').error(errorMessages(err));
+    });
   }).drop(),
 
   deleteActivity: task(function* (activity) {
