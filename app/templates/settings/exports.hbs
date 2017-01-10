@@ -1,0 +1,73 @@
+<h1>Exports</h1>
+
+<div class="settings--section-head">
+  Automatically export changes to your library to other providers
+</div>
+<div class="container">
+  <div class="form-group row">
+    <button class="button button--primary btn-lg btn-block" onclick={{action (toggle "exportModal" this)}}>
+      Export Media
+    </button>
+
+    {{#if exportModal}}
+      {{! actual modal for adding export }}
+    {{/if}}
+  </div>
+</div>
+
+<div class="settings--section-head">
+  Your active exports
+</div>
+<div class="container">
+  <div class="form-group row">
+    {{#if model.taskInstance.isRunning}}
+      <div class="text-xs-center w-100 m-t-1 m-b-1">
+        {{loading-spinner size="large"}}
+        <p>Loading Exports...</p>
+      </div>
+    {{else if model.taskInstance.error}}
+      <div class="text-xs-center w-100 m-t-1 m-b-1">
+        {{t "errors.load"}}
+      </div>
+    {{else if taskValue}}
+      <div id="accordian" class="w-100">
+        {{#each taskValue as |export index|}}
+          <div class="card">
+            <div class="card-header" role="tab">
+              <h6 class="m-b-0">
+                <a data-toggle="collapse" data-parent="#accordian" href="#export-tab-{{index}}">
+                  {{strip-namespace export.kind}} - {{moment-format export.createdAt "MMM, YYYY"}}
+                </a>
+              </h6>
+            </div>
+
+            <div id="export-tab-{{index}}" class="collapse" role="tabpanel">
+              <div class="card-block">
+                <p class="card-text">
+                  <span class="font-weight-bold">Status:</span> active<br>
+                  {{! remove button }}
+                </p>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+
+        <div class="text-xs-center w-100">
+          {{#paginated-resource/manual
+            model=taskValue
+            update=(route-action "updateNextPage" "taskValue") as |nextLink|}}
+            {{#if nextLink}}
+              <button class="button button--primary btn-block">
+                Load More
+              </button>
+            {{/if}}
+          {{/paginated-resource/manual}}
+        </div>
+      </div>
+    {{else}}
+      <div class="text-xs-center w-100 m-t-1 m-b-1">
+        {{t "errors.contentEmpty"}}
+      </div>
+    {{/if}}
+  </div>
+</div>
