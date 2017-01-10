@@ -7,7 +7,7 @@
       {{/dropdown.button}}
       {{#dropdown.menu}}
         {{#each filterOptions as |option|}}
-          {{#dropdown.menu-item onClick=(action (mut filter) option)}}
+          {{#dropdown.menu-item onClick=(action "changeFilter" option)}}
             {{t (concat "dashboard.quickUpdate.filter." option)}}
           {{/dropdown.menu-item}}
         {{/each}}
@@ -17,6 +17,9 @@
 </div>
 
 {{#if getEntriesTask.isRunning}}
+  <div class="quick-update-loading">
+    {{loading-spinner size="large" class="white"}}
+  </div>
 {{else}}
   <div class="carousel">
     {{#each initialEntries as |entry|}}

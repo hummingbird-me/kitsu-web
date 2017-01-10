@@ -6,17 +6,17 @@ import { task } from 'ember-concurrency';
 import computed from 'ember-computed';
 import { scheduleOnce } from 'ember-runloop';
 import { capitalize } from 'ember-string';
-import observer from 'ember-metal/observer';
 import errorMessages from 'client/utils/error-messages';
+import { storageFor } from 'ember-local-storage';
 
 export default Component.extend({
   classNames: ['quick-update'],
-  filter: 'all',
   pageLimit: 12,
 
   notify: service(),
   session: service(),
   store: service(),
+  lastUsed: storageFor('last-used'),
 
   filterOptions: computed('filter', {
     get() {
@@ -44,12 +44,10 @@ export default Component.extend({
     });
   }).drop(),
 
-  _updateType: observer('filter', function() {
-    this._getEntries();
-  }),
-
   init() {
     this._super(...arguments);
+    const filter = get(this, 'lastUsed.quickUpdateFilter') || 'all';
+    set(this, 'filter', filter);
     this._getEntries();
   },
 
@@ -84,6 +82,9 @@ export default Component.extend({
     });
   },
 
+  /**
+   * Options for flickity
+   */
   _options() {
     return {
       cellAlign: 'left',
@@ -108,5 +109,11 @@ export default Component.extend({
         get(this, 'notify').error(errorMessages(err));
       });
     },
+
+    changeFilter(option) {
+      set(this, 'filter', option);
+      set(this, 'lastUsed.quickUpdateFilter', option);
+      this._getEntries();
+    }
   }
 });
