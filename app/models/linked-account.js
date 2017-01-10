@@ -5,7 +5,7 @@ import { belongsTo } from 'ember-data/relationships';
 export default Base.extend({
   externalUserId: attr('string'),
   token: attr('string'),
-  type: attr('string'),
+  kind: attr('string'),
 
   shareFrom: attr('boolean'),
   shareTo: attr('boolean'),

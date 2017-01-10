@@ -2,7 +2,6 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import { classify } from 'ember-string';
 import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
@@ -27,7 +26,7 @@ export default Component.extend({
     const exporter = get(this, 'store').createRecord('linked-account', {
       externalUserId: get(this, 'username'),
       token: get(this, 'token'),
-      type: 'MyAnimeList',
+      kind: get(this, 'siteName'),
 
       shareFrom: false,
       shareTo: false,
