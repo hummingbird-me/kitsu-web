@@ -1,0 +1,152 @@
+.trending-sections {
+  margin-top: 450px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.trending-row {
+  text-align: center;
+  padding: 50px 0;
+  .flickity-viewport {
+    margin-top: 0;
+    height: 300px;
+    overflow: visible;
+  }
+  &:nth-child(even) {
+    background: #fbfbfb;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  }
+  &:first-child {
+    padding-top: 0;
+  }
+  .trending-row--title {
+    margin-bottom: 15px;
+  }
+  .nav {
+    margin-bottom: 5px;
+    .nav-link {
+      padding: 1px 10px;
+      border-radius: 3px;
+      margin-right: 5px;
+      &:hover {
+        background: #ececec;
+      }
+    }
+    .active {
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      &:hover {
+        background: none;
+      }
+    }
+  }
+}
+
+.trending-row--header {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.trending-media {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 3px;
+  height: 350px;
+}
+
+.trending-cell {
+  padding: 0;
+  width: 19%;
+  margin-right: 15px;
+  .media-poster {
+    display: inline-block;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+  img {
+    width: 100%;
+    border-radius: 3px;
+  }
+  .media-title {
+    color: #383D48;
+    font-size: 14px;
+    font-weight: 600;
+    display: block;
+    margin-top: 10px;
+  }
+  .review-author {
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    right: 0;
+    text-align: center;
+    bottom: -25px;
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 999em;
+      border: 3px solid #fafafa;
+    }
+  }
+}
+
+.just-reviewed {
+  .trending-media {
+    height: 240px;
+  }
+  .trending-cell {
+    width: 150px;
+    margin-right: 15px;
+  }
+}
+
+.trending-review-section {
+  width: 100%;
+  .trending-review {
+    text-align: left;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 20px;
+    width: 70%;
+    margin-right: 50px;
+    p {
+      color: $charcoal;
+      font-size: 15px;
+    }
+  }
+  .review-header {
+    h4 {
+      margin-bottom: 5px;
+      a {
+        color: $charcoal;
+      }
+    }
+  }
+  .review-avatar {
+    width: 30px;
+    height: 30px;
+  }
+  .stream-review-rating {
+    line-height: 30px;
+  }
+  .review-author {
+    font-weight: 600;
+  }
+  .attribution-block {
+    margin-bottom: 5px;
+  }
+  .media-poster {
+    width: 90px;
+    display: inline-block;
+    float: left;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-right: 20px;
+  }
+  .review-content {
+    max-width: 600px;
+    display: inline-block;
+  }
+}
