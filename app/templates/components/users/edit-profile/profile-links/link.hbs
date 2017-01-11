@@ -6,10 +6,15 @@
     </label>
   </div>
   <div class="col-xs-12">
-    {{one-way-text url
+    {{one-way-text link.url
       update=(action "update")
       class="form-control"
       placeholder=(concat "Enter your " link.site.name " details")
     }}
+    {{#if (and link.url (or (not link.isNew) (eq link.site.name "Website")))}}
+      <div>
+        <a href="#" onclick={{action "remove"}}>Remove from profile</a>
+      </div>
+    {{/if}}
   </div>
 </div>

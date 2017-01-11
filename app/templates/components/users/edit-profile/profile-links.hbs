@@ -9,7 +9,7 @@
     <ul class="profile-links nav" role="tablist">
       {{#each availableLinks as |link|}}
         <li class="profile-item nav-item">
-          <a href="#" class="nav-link hint--top hint--bounce hint--rounded {{if (eq link.site.name currentLink.site.name) "active"}} {{if link.hasProfile "filled"}}" aria-label={{link.site.name}} {{action (mut currentLink) link}}>
+          <a href="#" class="nav-link hint--top hint--bounce hint--rounded {{if (eq link.site.name currentLink.site.name) "active"}} {{if (and link.url (or (not link.isNew) (eq link.site.name "Website"))) "filled"}}" aria-label={{link.site.name}} {{action (mut currentLink) link}}>
             {{svg-jar (profile-link-to-svg link.site.name)}}
             <span class="fill-mark">{{svg-jar "success"}}</span>
           </a>
@@ -22,6 +22,7 @@
       {{users/edit-profile/profile-links/link
         link=currentLink
         update=(action "updateProfileLink")
+        remove=(action "removeProfileLink")
       }}
     </div>
   {{/if}}

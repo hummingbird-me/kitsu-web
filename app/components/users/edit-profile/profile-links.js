@@ -8,7 +8,6 @@ import { isEmpty } from 'ember-utils';
 
 export default Component.extend({
   store: service(),
-
   getSites: task(function* () {
     return yield get(this, 'store').query('profile-link-site', { page: { limit: 20 } });
   }).keepLatest(),
@@ -17,49 +16,65 @@ export default Component.extend({
     this._super(...arguments);
     set(this, 'currentLink', this._createWebsiteLink());
     get(this, 'getSites').perform().then((sites) => {
-      const data = sites.toArray().map((site) => {
-        const profileLink = get(this, 'user.profileLinks').findBy('site.name', get(site, 'name'));
+      const data = sites.map((site) => {
+        let profileLink = get(this, 'user.profileLinks').findBy('site.name', get(site, 'name'));
         if (profileLink !== undefined) {
-          invokeAction(this, 'addRecord', profileLink);
+          if (!get(profileLink, 'isNew')) {
+            invokeAction(this, 'addRecord', profileLink);
+          }
+        } else {
+          profileLink = get(this, 'store').createRecord('profile-link', {
+            site,
+            user: get(this, 'user')
+          });
         }
-        return { site, profile: profileLink, hasProfile: profileLink !== undefined };
+        return profileLink;
       });
-      set(this, 'availableLinks', [this._createWebsiteLink(), ...data]);
+      data.unshiftObject(this._createWebsiteLink());
+      set(this, 'availableLinks', data);
     }).catch(() => {});
   },
 
+  /**
+   * Create local ember-data record for a Website profile link as the website is stored
+   * on the user model rather than as a ProfileLink on the backend
+   */
   _createWebsiteLink() {
     if (get(this, 'websiteLink')) { return get(this, 'websiteLink'); }
     const website = get(this, 'store').createRecord('profile-link', {
-      url: get(this, 'user.website'),
-      site: { name: 'Website' }
+      url: get(this, 'user.website')
     });
-    const hasProfile = get(this, 'user.website');
-    const data = { site: { name: 'Website' }, profile: website, hasProfile };
-    return set(this, 'websiteLink', data);
+    const site = get(this, 'store').createRecord('profile-link-site', {
+      name: 'Website'
+    });
+    set(website, 'site', site);
+    return set(this, 'websiteLink', website);
   },
 
   actions: {
-    updateProfileLink(content) {
-      const currentLink = get(this, 'currentLink');
-      if (get(currentLink, 'site.name') === 'Website') {
+    updateProfileLink(link, content) {
+      // since website is on the user model, we need to handle it differently here
+      if (get(link, 'site.name') === 'Website') {
+        // null so that we don't dirty the user record by using an empty string
         set(this, 'user.website', isEmpty(content) ? null : content);
-        set(currentLink, 'profile.url', get(this, 'user.website'));
+        set(link, 'url', get(this, 'user.website'));
       } else {
-        let profile = get(currentLink, 'profile');
-        if (profile === undefined) {
-          profile = get(this, 'store').createRecord('profile-link', {
-            profileLinkSite: get(currentLink, 'site'),
-            user: get(this, 'user')
-          });
-          set(currentLink, 'profile', profile);
+        // add or remove from meta record list if this is a new record
+        if (get(link, 'isNew')) {
+          const action = isEmpty(content) ? 'removeRecord' : 'addRecord';
+          invokeAction(this, action, link);
         }
-        if (isEmpty(content)) {
-          invokeAction(this, 'removeRecord', profile);
-        } else {
-          invokeAction(this, 'addRecord', profile);
-        }
-        set(profile, 'url', content);
+        // update the URL content
+        set(link, 'url', content);
+      }
+    },
+
+    removeProfileLink(link) {
+      set(link, 'url', null);
+      if (get(link, 'site.name') === 'Website') {
+        set(this, 'user.website', null);
+      } else {
+        link.deleteRecord();
       }
     }
   }
