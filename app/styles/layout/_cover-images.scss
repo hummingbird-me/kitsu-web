@@ -107,6 +107,11 @@
   .primary-info {
     float: left;
     height: 100px;
+    @media (max-width: 992px) {
+      width: 100%;
+      float: initial;
+      margin-bottom: 15px;
+    }
   }
   .cover-avatar {
     float: left;
@@ -149,6 +154,13 @@
     bottom: 0;
     .about-me-profiles {
       text-align: center;
+      max-width: 350px;
+      max-height: 110px;
+      overflow: hidden;
+      &:hover {
+        max-height: none;
+      }
+
       .profile-icon {
         display: inline-block;
         position: relative;
@@ -161,6 +173,12 @@
           width: 40px;
           margin-right: 5px;
         }
+      }
+    }
+    @media (max-width: 992px) {
+      position: relative;
+      .about-me-profiles {
+        max-width: 100%;
       }
     }
   }
