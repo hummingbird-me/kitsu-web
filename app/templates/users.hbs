@@ -53,11 +53,22 @@
           </div>
           <div class="cover-profiles">
             <div class="about-me-profiles">
-              <!-- TODO: NYI on server -->
-              <a href="#" class="profile-icon hint--top hint--bounce hint--rounded" aria-label="Twitter">{{svg-jar "twitter"}}</a>
-              <a href="#" class="profile-icon hint--top hint--bounce hint--rounded" aria-label="Facebook">{{svg-jar "facebook"}}</a>
-              <a href="#" class="profile-icon hint--top hint--bounce hint--rounded" aria-label="Twitch">{{svg-jar "twitch"}}</a>
-              <a href="#" class="profile-icon hint--top hint--bounce hint--rounded" aria-label="Youtube">{{svg-jar "youtube"}}</a>
+              {{#if user.website}}
+                <a href={{user.website}} target="_blank" class="profile-icon hint--top hint--bounce hint--rounded" aria-label="Website">
+                  {{svg-jar "website"}}
+                </a>
+              {{/if}}
+              {{#each user.profileLinks as |profile|}}
+                {{#if profile.isURL}}
+                  <a href="javascript:void();" class="profile-icon hint--top hint--bounce hint--rounded" aria-label={{concat profile.site.name ": " profile.url}}>
+                    {{svg-jar (profile-link-to-svg profile.site.name)}}
+                  </a>
+                {{else}}
+                  <a href={{profile.url}} target="_blank" class="profile-icon hint--top hint--bounce hint--rounded" aria-label={{profile.site.name}}>
+                    {{svg-jar (profile-link-to-svg profile.site.name)}}
+                  </a>
+                {{/if}}
+              {{/each}}
             </div>
           </div>
         </div>

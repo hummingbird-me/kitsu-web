@@ -20,7 +20,8 @@ moduleForModel('user', 'Unit | Model | user', {
     'model:favorite',
     'model:follow',
     'model:user-role',
-    'model:post'
+    'model:post',
+    'model:profile-link'
   ],
 
   beforeEach() {
