@@ -303,8 +303,8 @@ export default {
       review: 'review'
     },
     spoilers: {
-      anime: 'Ep. {{num}} - {{title}}',
-      manga: 'Ch. {{num}} - {{title}}'
+      anime: 'Ep. {{num}}',
+      manga: 'Ch. {{num}}'
     }
   },
   // ember-power-select locale
