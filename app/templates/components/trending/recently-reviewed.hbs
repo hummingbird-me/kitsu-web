@@ -22,7 +22,7 @@
             <a href={{href-to (concat (model-type item.media) ".show") item.media.slug}} class="media-poster">
               {{lazy-image url=(image item.media.posterImage "large")}}
             </a>
-            <a href="#" class="review-author">
+            <a href={{href-to "users.index" item.user.name}} class="review-author">
               {{lazy-image url=(image item.user.avatar "large")}}
             </a>
           </div>
