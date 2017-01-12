@@ -257,10 +257,10 @@ export default Component.extend({
      * so we reduce the logic and handling of all the relationships needed for display.
      */
     newActivities() {
-      const { streamType, streamId } = getProperties(this, 'streamType', 'streamId');
+      const { streamType, streamId, filter } = getProperties(this, 'streamType', 'streamId', 'filter');
       const limit = get(this, 'newItems.length');
       set(this, 'realtimeLoading', true);
-      get(this, 'getFeedData').perform(streamType, streamId, limit).then((data) => {
+      get(this, 'getFeedData').perform(streamType, streamId, limit, filter).then((data) => {
         set(this, 'newItems.length', 0);
         set(this, 'newItems.cache', []);
         get(this, 'headTags').collectHeadTags();
