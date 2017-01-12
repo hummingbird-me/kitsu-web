@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="trending-row--header">
+      <h3 class="trending-row--title">Popular {{capitalize currentTab}} Reviews</h3>
+      <nav class="nav nav-simple">
+        <a class="nav-link {{if (eq currentTab "anime") "active"}}" href="#" {{action "changeTab" "anime"}}>Anime</a>
+        <a class="nav-link {{if (eq currentTab "manga") "active"}}" href="#" {{action "changeTab" "manga"}}>Manga</a>
+      </nav>
+    </div>
+
+    {{#if getDataTask.isRunning}}
+      <div class="text-xs-center w-100 m-t-3 m-b-3">
+        {{loading-spinner size="large"}}
+      </div>
+    {{else if isSwitchingTab}}
+      {{! ---- see trending/-base.js ---- }}
+    {{else}}
+      {{#em-flickity class="trending-review-section" cellAlign="center" prevNextButtons=false showSlides=(gt currentItems.length 0)}}
+        {{#each currentItems as |item|}}
+          <div class="trending-review">
+            <a href={{href-to (concat (model-type item.media) ".show") item.media.slug}} class="media-poster">
+              {{lazy-image url=(image item.media.posterImage "large")}}
+            </a>
+            <div class="review-content">
+              <div class="review-header clearfix">
+                <h4>
+                  <a href={{href-to (concat (model-type item.media) ".show") item.media.slug}}>{{item.media.computedTitle}}</a>
+                </h4>
+                <div class="attribution-block">
+                  <a href={{href-to "users.index" item.user.name}} class="review-avatar">
+                    {{lazy-image url=(image item.user.avatar "small")}}
+                  </a>
+                  <a href={{href-to "users.index" item.user.name}} class="review-author">
+                    {{item.user.name}}
+                  </a>
+                  <span class="stream-review-rating">
+                    {{star-rating item.rating readOnly=true}}
+                  </span>
+                </div>
+              </div>
+              <blockquote class="body-text">
+                {{text-clipper item.contentFormatted length=480
+                  expandText="Read More" expandHref=(href-to "reviews" item.id)
+                  options=(hash html=true)}}
+              </blockquote>
+            </div>
+          </div>
+        {{/each}}
+      {{/em-flickity}}
+    {{/if}}
+  </div>
+</div>

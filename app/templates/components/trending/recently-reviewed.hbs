@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="trending-row--header">
+      <h3 class="trending-row--title">Recently Reviewed {{capitalize currentTab}}</h3>
+      <nav class="nav nav-simple">
+        <a class="nav-link {{if (eq currentTab "anime") "active"}}" href="#" {{action "changeTab" "anime"}}>Anime</a>
+        <a class="nav-link {{if (eq currentTab "manga") "active"}}" href="#" {{action "changeTab" "manga"}}>Manga</a>
+      </nav>
+    </div>
+
+    {{! Check for isSwitchingTab so we can destroy flickity and recreate it }}
+    {{#if getDataTask.isRunning}}
+      <div class="text-xs-center w-100 m-t-3 m-b-3">
+        {{loading-spinner size="large"}}
+      </div>
+    {{else if isSwitchingTab}}
+      {{! ---- see trending/-base.js ---- }}
+    {{else}}
+      {{#em-flickity class="trending-media" showSlides=(gt currentItems.length 0)}}
+        {{#each currentItems as |item|}}
+          <div class="trending-cell">
+            <a href={{href-to (concat (model-type item.media) ".show") item.media.slug}} class="media-poster">
+              {{lazy-image url=(image item.media.posterImage "large")}}
+            </a>
+            <a href="#" class="review-author">
+              {{lazy-image url=(image item.user.avatar "large")}}
+            </a>
+          </div>
+        {{/each}}
+      {{/em-flickity}}
+    {{/if}}
+  </div>
+</div>

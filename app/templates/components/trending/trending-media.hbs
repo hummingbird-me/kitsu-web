@@ -1,0 +1,146 @@
+<div class="container">
+  <div class="row">
+    <div class="trending-row--header">
+      {{! TODO: Should be the active type }}
+      <h3 class="trending-row--title">{{capitalize currentTab}} Trending this Week</h3>
+      <nav class="nav nav-simple">
+        <a class="nav-link {{if (eq currentTab "anime") "active"}}" href="#" {{action "changeTab" "anime"}}>Anime</a>
+        <a class="nav-link {{if (eq currentTab "manga") "active"}}" href="#" {{action "changeTab" "manga"}}>Manga</a>
+      </nav>
+    </div>
+
+    {{! TODO: Hookup when API is implemented }}
+    {{#em-flickity class="trending-media" cellAlign="left" showSlides=true}}
+      <div class="trending-cell">
+        <a href="#" class="media-poster">
+          <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
+        </a>
+        <div class="ellipsis">
+          <a href="/anime/fullmetal-alchemist-brotherhood" class="media-title">
+            Fullmetal Alchemist: Brotherhood
+          </a>
+        </div>
+      </div>
+      <div class="trending-cell">
+        <a href="#" class="media-poster">
+          <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
+        </a>
+        <div class="ellipsis">
+          <a href="/anime/fullmetal-alchemist-brotherhood" class="media-title">
+            Fullmetal Alchemist: Brotherhood
+          </a>
+        </div>
+      </div>
+      <div class="trending-cell">
+        <a href="#" class="media-poster">
+          <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
+        </a>
+        <div class="ellipsis">
+          <a href="/anime/fullmetal-alchemist-brotherhood" class="media-title">
+            Fullmetal Alchemist: Brotherhood
+          </a>
+        </div>
+      </div>
+      <div class="trending-cell">
+        <a href="#" class="media-poster">
+          <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
+        </a>
+        <div class="ellipsis">
+          <a href="/anime/fullmetal-alchemist-brotherhood" class="media-title">
+            Fullmetal Alchemist: Brotherhood
+          </a>
+        </div>
+      </div>
+      <div class="trending-cell">
+        <a href="#" class="media-poster">
+          <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
+        </a>
+        <div class="ellipsis">
+          <a href="/anime/fullmetal-alchemist-brotherhood" class="media-title">
+            Fullmetal Alchemist: Brotherhood
+          </a>
+        </div>
+      </div>
+      <div class="trending-cell">
+        <a href="#" class="media-poster">
+          <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
+        </a>
+        <div class="ellipsis">
+          <a href="/anime/fullmetal-alchemist-brotherhood" class="media-title">
+            Fullmetal Alchemist: Brotherhood
+          </a>
+        </div>
+      </div>
+      <div class="trending-cell">
+        <a href="#" class="media-poster">
+          <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
+        </a>
+        <div class="ellipsis">
+          <a href="/anime/fullmetal-alchemist-brotherhood" class="media-title">
+            Fullmetal Alchemist: Brotherhood
+          </a>
+        </div>
+      </div>
+      <div class="trending-cell">
+        <a href="#" class="media-poster">
+          <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
+        </a>
+        <div class="ellipsis">
+          <a href="/anime/fullmetal-alchemist-brotherhood" class="media-title">
+            Fullmetal Alchemist: Brotherhood
+          </a>
+        </div>
+      </div>
+      <div class="trending-cell">
+        <a href="#" class="media-poster">
+          <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
+        </a>
+        <div class="ellipsis">
+          <a href="/anime/fullmetal-alchemist-brotherhood" class="media-title">
+            Fullmetal Alchemist: Brotherhood
+          </a>
+        </div>
+      </div>
+      <div class="trending-cell">
+        <a href="#" class="media-poster">
+          <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
+        </a>
+        <div class="ellipsis">
+          <a href="/anime/fullmetal-alchemist-brotherhood" class="media-title">
+            Fullmetal Alchemist: Brotherhood
+          </a>
+        </div>
+      </div>
+      <div class="trending-cell">
+        <a href="#" class="media-poster">
+          <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
+        </a>
+        <div class="ellipsis">
+          <a href="/anime/fullmetal-alchemist-brotherhood" class="media-title">
+            Fullmetal Alchemist: Brotherhood
+          </a>
+        </div>
+      </div>
+      <div class="trending-cell">
+        <a href="#" class="media-poster">
+          <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
+        </a>
+        <div class="ellipsis">
+          <a href="/anime/fullmetal-alchemist-brotherhood" class="media-title">
+            Fullmetal Alchemist: Brotherhood
+          </a>
+        </div>
+      </div>
+      <div class="trending-cell">
+        <a href="#" class="media-poster">
+          <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
+        </a>
+        <div class="ellipsis">
+          <a href="/anime/fullmetal-alchemist-brotherhood" class="media-title">
+            Fullmetal Alchemist: Brotherhood
+          </a>
+        </div>
+      </div>
+    {{/em-flickity}}
+  </div>
+</div>
