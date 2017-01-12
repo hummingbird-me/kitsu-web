@@ -104,14 +104,10 @@ export default Component.extend({
     this._getFeedData(10, get(this, 'filter'));
   }),
 
-  init() {
-    this._super(...arguments);
-    set(this, 'filter', get(this, 'lastUsed.feedFilter') || 'all');
-  },
-
   didReceiveAttrs() {
     this._super(...arguments);
     get(this, 'headTags').collectHeadTags();
+    set(this, 'filter', get(this, 'lastUsed.feedFilter') || get(this, 'streamFilter') || 'all');
 
     // cancel any previous subscriptions
     this._cancelSubscription();

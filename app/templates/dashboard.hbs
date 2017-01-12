@@ -26,6 +26,7 @@
     {{#stream-feed/list
       streamType=streamType
       streamId=streamId
+      streamFilter=(if (eq streamType "global") "user" "all")
       readOnly=(not session.hasUser)}}
       {{#if session.hasUser}}
         <div class="d-inline">

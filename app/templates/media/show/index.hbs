@@ -43,6 +43,7 @@
   {{stream-feed/list
     streamType="media_aggr"
     streamId=(concat (capitalize (model-type media)) "-" media.id)
+    streamFilter="user"
     readOnly=(not session.hasUser)
     media=media
   }}
