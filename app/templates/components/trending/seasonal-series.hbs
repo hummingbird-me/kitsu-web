@@ -16,7 +16,7 @@
         {{else if isSwitchingTab}}
           {{! ---- see trending/-base.js ---- }}
         {{else}}
-          {{#em-flickity class="trending-media" wrapAround=true showSlides=(gt currentItems.length 0)}}
+          {{#em-flickity class="trending-media" wrapAround=true cellAlign="left" showSlides=(gt currentItems.length 0)}}
             {{#each currentItems as |item|}}
               <div class="trending-cell">
                 <a href={{href-to "anime.show" item.slug}} class="media-poster">
