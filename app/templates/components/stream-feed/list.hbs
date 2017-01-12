@@ -31,7 +31,7 @@
       {{/dropdown.button}}
       {{#dropdown.menu}}
         {{#each filterOptions as |option|}}
-          {{#dropdown.menu-item onClick=(action (mut filter) option)}}
+          {{#dropdown.menu-item onClick=(action "updateFilter" option)}}
             {{t (concat "feeds.filter." option)}}
           {{/dropdown.menu-item}}
         {{/each}}
@@ -74,7 +74,7 @@
   {{/if}}
 
   {{! feed items }}
-  {{#each filteredFeed as |group index|}}
+  {{#each feed as |group index|}}
     {{#if group.activities.length}}
       {{component (concat "stream-feed/items/" (feed-type group.activities))
         group=group
