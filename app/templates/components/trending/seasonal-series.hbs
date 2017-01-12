@@ -1,7 +1,7 @@
     <div class="container">
       <div class="row">
         <div class="trending-row--header">
-          <h3 class="trending-row--title">{{capitalize currentTab}} Anime of 2017</h3>
+          <h3 class="trending-row--title">{{capitalize currentTab}} Anime of {{compute (action "getYear") currentTab}}</h3>
           <nav class="nav nav-simple">
             <a class="nav-link {{if (eq currentTab "winter") "active"}}" href="#" {{action "changeTab" "winter"}}>Winter 2017</a>
             <a class="nav-link {{if (eq currentTab "fall") "active"}}" href="#" {{action "changeTab" "fall"}}>Fall 2016</a>
@@ -16,7 +16,7 @@
         {{else if isSwitchingTab}}
           {{! ---- see trending/-base.js ---- }}
         {{else}}
-          {{#em-flickity class="trending-media" showSlides=(gt currentItems.length 0)}}
+          {{#em-flickity class="trending-media" wrapAround=true showSlides=(gt currentItems.length 0)}}
             {{#each currentItems as |item|}}
               <div class="trending-cell">
                 <a href={{href-to "anime.show" item.slug}} class="media-poster">

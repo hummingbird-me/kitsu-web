@@ -2,7 +2,6 @@ import BaseComponent from 'client/components/trending/-base';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
-import { capitalize } from 'ember-string';
 
 /**
  * TODO:
@@ -18,11 +17,22 @@ export default BaseComponent.extend({
   getDataTask: task(function* (type) {
     return yield get(this, 'store').query('anime', {
       filter: {
-        year: 2017,
+        year: this._getYear(),
         season: type
       },
       sort: '-user_count',
       page: { limit: 10 }
     });
-  }).restartable()
+  }).restartable(),
+
+  _getYear() {
+    const type = get(this, 'currentTab');
+    return type === 'winter' ? 2017 : 2016;
+  },
+
+  actions: {
+    getYear() {
+      return this._getYear();
+    }
+  }
 });

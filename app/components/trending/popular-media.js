@@ -12,6 +12,7 @@ export default BaseComponent.extend({
 
   getDataTask: task(function* (type) {
     return yield get(this, 'store').query(type, {
+      filter: { year: get(this, 'lastYear') },
       sort: '-user_count',
       page: { limit: 10 }
     });
