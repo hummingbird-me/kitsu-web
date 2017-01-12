@@ -7,7 +7,6 @@ import { isEmpty } from 'ember-utils';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import { scheduleOnce } from 'ember-runloop';
-import { prependObjects } from 'client/utils/array-utils';
 import errorMessages from 'client/utils/error-messages';
 import getter from 'client/utils/getter';
 import moment from 'moment';
@@ -143,7 +142,7 @@ export default Component.extend(ClipboardMixin, {
 
     loadReplies(records, links) {
       const content = get(this, 'replies').toArray();
-      prependObjects(content, records.toArray().reverse());
+      content.unshiftObjects(records.toArray().reverse());
       set(this, 'replies', content);
       set(this, 'replies.links', links);
       invokeAction(this, 'trackEngagement', 'click');

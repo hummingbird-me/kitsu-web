@@ -5,7 +5,6 @@ import { guidFor } from 'ember-metal/utils';
 import service from 'ember-service/inject';
 import computed from 'ember-computed';
 import { task } from 'ember-concurrency';
-import { prependObjects } from 'client/utils/array-utils';
 import { isPresent } from 'ember-utils';
 import errorMessages from 'client/utils/error-messages';
 
@@ -143,7 +142,7 @@ export default Component.extend({
           }
         });
         const notifications = this._createTempNotifications(groups);
-        prependObjects(get(this, 'groups'), notifications);
+        get(this, 'groups').unshiftObjects(notifications);
         notifications.forEach((notification) => {
           const actor = get(notification, 'activities.firstObject.actor.name');
           const message = `You have a new notification from ${actor}`;
