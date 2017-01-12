@@ -20,6 +20,7 @@ export default {
     comments: 'Comment by {{user}}',
     reviews: 'Review by {{user}}',
     notifications: 'Notifications',
+    trending: 'Trending',
     admin: {
       index: 'Admin',
       reports: 'Reports'
@@ -159,7 +160,7 @@ export default {
     library: 'Library',
     anime: 'Anime',
     manga: 'Manga',
-    forums: 'Forums',
+    trending: 'Trending',
     apps: 'Apps',
     signIn: 'Sign In',
     signUp: 'Sign Up',

@@ -1,5 +1,3 @@
 import Route from 'ember-route';
 
-export default Route.extend({
-  titleToken: 'Trending'
-});
+export default Route.extend();
