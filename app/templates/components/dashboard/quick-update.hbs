@@ -21,7 +21,7 @@
     {{loading-spinner size="large" class="white"}}
   </div>
 {{else}}
-  <div class="carousel">
+  {{#em-flickity class="carousel" contain=false cellAlign="left" groupCells=1 setGallerySize=true showSlides=true}}
     {{#each initialEntries as |entry|}}
       {{dashboard/quick-update/item entry updateEntry=(action "updateEntry") class="quick-update-item"}}
     {{/each}}
@@ -33,8 +33,6 @@
           {{t "dashboard.quickUpdate.hint.discover"}}
         </a>
       </div>
-
-
       {{#each (repeat remaining) as |_|}}
         <div class="quick-update-item empty-panel">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" enable-background="new 0 0 50 50">
@@ -51,7 +49,7 @@
         update=(action "updateNextPage")
       }}
     {{/if}}
-  </div>
+  {{/em-flickity}}
 
   {{! Temporary storage for paginated entries }}
   <div class="new-entries" style="display: none">
