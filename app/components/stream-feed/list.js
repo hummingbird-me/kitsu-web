@@ -12,7 +12,6 @@ import { storageFor } from 'ember-local-storage';
 import getter from 'client/utils/getter';
 import { modelType } from 'client/helpers/model-type';
 import errorMessages from 'client/utils/error-messages';
-import { prependObjects } from 'client/utils/array-utils';
 
 export default Component.extend({
   readOnly: false,
@@ -272,8 +271,7 @@ export default Component.extend({
         get(this, 'feed').removeObjects(dups);
 
         // prepend the new activities
-        prependObjects(get(this, 'feed'), data.toArray().reverse());
-
+        get(this, 'feed').unshiftObjects(data.toArray());
         set(this, 'realtimeLoading', false);
         this._trackImpressions(data);
       }).catch(() => set(this, 'realtimeLoading', false));
