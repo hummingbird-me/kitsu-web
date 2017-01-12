@@ -39,9 +39,9 @@
                 </div>
               </div>
               <blockquote class="body-text">
-                {{text-clipper item.contentFormatted length=480
+                {{text-clipper item.contentFormatted length=380
                   expandText="Read More" expandHref=(href-to "reviews" item.id)
-                  options=(hash html=true)}}
+                  options=(hash html=true maxLines=5)}}
               </blockquote>
             </div>
           </div>
