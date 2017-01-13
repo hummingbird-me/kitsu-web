@@ -1,0 +1,42 @@
+{{#if isOpened}}
+  <div> {{! https://github.com/yapplabs/ember-wormhole/issues/66#issuecomment-263575168 }}
+  {{#epic-tooltip
+    id="search-popover"
+    isStatic=true
+    singleInstance=true
+    tetherOptions=(hash
+      target=target
+      attachment=(or attachment "top right")
+      targetAttachment=(or targetAttachment "bottom right")
+      offset=(or offset "-30px 0px")
+    )
+  }}
+    <div class="search--drop">
+      <p class="search--header">Search Results</p>
+      <div style="overflow: auto">
+        {{! anime group }}
+        {{search-results/group
+          group="anime"
+          items=groups.anime
+          isLoading=animeTask.isRunning
+          moreLink=(href-to "anime.index" (query-params text=query))
+          close=(action "close")}}
+        {{! manga group }}
+        {{search-results/group
+          group="manga"
+          items=groups.manga
+          isLoading=mangaTask.isRunning
+          moreLink=(href-to "manga.index" (query-params text=query))
+          close=(action "close")}}
+        {{! users group }}
+        {{search-results/group
+          group="users"
+          items=groups.users
+          isLoading=usersTask.isRunning
+          update=(action "updatePage" "users")
+          close=(action "close")}}
+      </div>
+    </div>
+  {{/epic-tooltip}}
+  </div>
+{{/if}}

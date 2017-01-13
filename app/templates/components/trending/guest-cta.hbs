@@ -13,19 +13,33 @@
       </div>
     </div>
   </div>
-  {{! TODO: NYI -- What will UI Look like? }}
-  <section class="guest-search">
+
+  {{! Search }}
+  <section id="guest-search" class="guest-search">
     <div class="container">
       <div class="row">
         <div class="guest-search--wrapper">
           <span class="icon">
             {{svg-jar "search"}}
           </span>
-          <input class="guest-search" type="search" placeholder="Search for an anime, manga, user..." id="guest-search">
+          {{one-way-search query
+            update=(action (mut query))
+            class="guest-search"
+            placeholder="Search for an anime, manga, user..."
+          }}
         </div>
       </div>
     </div>
   </section>
+
+  {{search-results
+    target="#guest-search"
+    attachment="top middle"
+    targetAttachment="bottom middle"
+    offset="0px 0px"
+    query=query
+    isOpened=(gt query.length 2)
+  }}
 </div>
 
 {{! TODO: Clean this up with a proper modal invoke system --- This is a hack implemenation }}

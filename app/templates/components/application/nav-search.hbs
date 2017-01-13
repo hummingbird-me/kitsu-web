@@ -1,0 +1,18 @@
+{{one-way-input query
+  update=(action (mut query))
+  id="search"
+  class=inputClass
+  placeholder="Search..."
+  autocomplete="off"
+}}
+<label for="search" class="site-search__icon" {{action (action (mut isOpened) true)}}>
+  <span class="icon">
+    {{svg-jar "search"}}
+  </span>
+</label>
+
+{{search-results
+  target=(concat "#" elementId)
+  query=query
+  isOpened=(and isOpened (gt query.length 2))
+  onClose=(action "close")}}
