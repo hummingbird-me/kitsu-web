@@ -26,7 +26,7 @@ export default Component.extend({
     const exporter = get(this, 'store').createRecord('linked-account', {
       externalUserId: get(this, 'username'),
       token: get(this, 'token'),
-      kind: get(this, 'siteName'),
+      kind: `LinkedAccount::${get(this, 'siteName')}`,
 
       shareFrom: false,
       shareTo: false,
