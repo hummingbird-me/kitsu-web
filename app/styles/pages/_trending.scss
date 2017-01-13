@@ -154,3 +154,97 @@
     display: inline-block;
   }
 }
+
+// trending banner
+.trending-banner {
+  background: $voodoo;
+  color: #fff;
+  margin-top: -26px;
+}
+
+.trending-banner--header {
+  padding-left: 10px;
+  .trending-row--title {
+    margin-bottom: 30px;
+  }
+}
+
+.trending-banner--titles {
+  padding: 30px 23px 15px 5px;
+  .trending-poster {
+    display: inline-block;
+    margin-bottom: 30px;
+    padding: 0 8px;
+  }
+  .media-poster {
+    display: inline-block;
+    img {
+      border-radius: 3px;
+    }
+  }
+}
+
+.trending-banner--activity {
+  background: darken($voodoo, 2);
+  border-left: 1px solid darken($voodoo, 4);
+  border-right: 1px solid darken($voodoo, 4);
+}
+
+.participating-following {
+  padding: 0;
+  margin-bottom: 0;
+  margin-top: 10px;
+  .stream-like {
+    width: 25px;
+    margin-right: 3px;
+    img {
+      border-radius: 999em;
+    }
+  }
+  .stream-like-count {
+    position: relative;
+    display: inline-block;
+    a {
+      width: 25px;
+      height: 25px;
+      background: rgba(255,255,255,.2);
+      display: inline-block;
+      font-size: 12px;
+      border-radius: 999em;
+      line-height: 25px;
+      text-align: center;
+      color: $white;
+      &:hover {
+        background: rgba(255,255,255,.3);
+      }
+    }
+  }
+}
+
+.trending-activity--header {
+  border-bottom: 1px solid darken($voodoo, 6);
+  padding: 20px 0;
+  text-align: center;
+  h5 {
+    margin-bottom: 0;
+  }
+}
+
+.following-activity {
+  margin: 0;
+  margin-top: 15px;
+  padding: 0;
+  list-style-type: none;
+  .activity-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid darken($voodoo, 6);
+    .media-poster {
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+      border-radius: 3px;
+      margin-right: 15px;
+    }
+  }
+}
