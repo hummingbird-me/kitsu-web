@@ -15,7 +15,7 @@ export default BaseComponent.extend({
   getDataTask: task(function* (type) {
     return yield get(this, 'store').query('anime', {
       filter: {
-        year: this._getYear(),
+        season_year: this._getYear(),
         season: type
       },
       sort: '-user_count',
