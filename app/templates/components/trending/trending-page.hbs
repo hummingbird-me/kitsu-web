@@ -11,7 +11,7 @@
   {{trending/guest-cta}}
 {{/if}}
 
-<div class="trending-sections">
+<div class="trending-sections {{if session.hasUser "logged-in"}}">
   {{! Trending Media }}
   {{trending/trending-media}}
 

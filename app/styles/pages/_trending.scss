@@ -6,6 +6,9 @@
   margin-top: 450px;
   width: 100%;
   overflow-x: hidden;
+  &.logged-in {
+    margin-top: 50px;
+  }
 }
 
 .trending-row {
@@ -166,6 +169,7 @@
   padding-left: 10px;
   .trending-row--title {
     margin-bottom: 30px;
+    color: #cebdcc;
   }
 }
 
@@ -188,6 +192,15 @@
   background: darken($voodoo, 2);
   border-left: 1px solid darken($voodoo, 4);
   border-right: 1px solid darken($voodoo, 4);
+  padding: 0;
+  &:after {
+    content: '';
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    background: linear-gradient(to bottom, RGBA(45, 33, 44, 0), RGBA(45, 33, 44, 1.00));
+  }
 }
 
 .participating-following {
@@ -223,21 +236,28 @@
 
 .trending-activity--header {
   border-bottom: 1px solid darken($voodoo, 6);
-  padding: 20px 0;
+  padding: 30px 0 20px 0;
   text-align: center;
+  color: #cebdcc;
   h5 {
     margin-bottom: 0;
   }
 }
 
+.media-body {
+  color: #e4dee3;
+}
 .following-activity {
   margin: 0;
   margin-top: 15px;
   padding: 0;
   list-style-type: none;
+  height: 570px;
+  overflow: auto;
+  position: relative;
   .activity-item {
     margin-bottom: 15px;
-    padding-bottom: 15px;
+    padding: 0 15px 15px 15px;
     border-bottom: 1px solid darken($voodoo, 6);
     .media-poster {
       width: 100px;
