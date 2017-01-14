@@ -111,15 +111,18 @@ export default Component.extend({
 
     // cancel any previous subscriptions
     this._cancelSubscription();
-    this._getFeedData(10, get(this, 'filter')).then((data) => {
-      if (isEmpty(data)) { return; }
-      // realtime
-      const { streamType, streamId } = getProperties(this, 'streamType', 'streamId');
-      const { readonlyToken } = get(data, 'meta');
-      const subscription = get(this, 'streamRealtime')
-        .subscribe(streamType, streamId, readonlyToken, object => this._handleRealtime(object));
-      set(this, 'subscription', subscription);
-    });
+    const promise = this._getFeedData(10, get(this, 'filter'));
+    if (promise !== undefined) {
+      promise.then((data) => {
+        if (isEmpty(data)) { return; }
+        // realtime
+        const { streamType, streamId } = getProperties(this, 'streamType', 'streamId');
+        const { readonlyToken } = get(data, 'meta');
+        const subscription = get(this, 'streamRealtime')
+          .subscribe(streamType, streamId, readonlyToken, object => this._handleRealtime(object));
+        set(this, 'subscription', subscription);
+      });
+    }
   },
 
   willDestroyElement() {
