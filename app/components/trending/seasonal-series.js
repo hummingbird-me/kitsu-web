@@ -1,6 +1,5 @@
 import BaseComponent from 'client/components/trending/-base';
 import get from 'ember-metal/get';
-import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 
 /**
@@ -12,7 +11,6 @@ import { task } from 'ember-concurrency';
 export default BaseComponent.extend({
   classNames: ['seasonal-series'],
   currentTab: 'winter',
-  store: service(),
 
   getDataTask: task(function* (type) {
     return yield get(this, 'store').query('anime', {
