@@ -110,7 +110,7 @@
   }
 }
 
-.seasonal-series, .annual-trending {
+.seasonal-series, .weekly-trending, .annual-trending {
   min-height: 545px;
 }
 
@@ -171,6 +171,24 @@
   color: #fff;
   margin-top: -26px;
   min-height: 658px;
+  .trending-filter {
+    display: inline-block;
+    .selected > svg {
+      width: 14px;
+      height: 14px;
+    }
+    button {
+      padding: 3px 5px;
+      font-size: 12px;
+      background: transparent;
+      border: 1px solid #a3a9b7;
+      margin-left: 10px;
+      color: #a3a9b7;
+      &:hover {
+        background: rgba(255,255,255,.1);
+      }
+    }
+  }
 }
 
 .trending-banner--header {
@@ -178,6 +196,7 @@
   .trending-row--title {
     margin-bottom: 30px;
     color: #cebdcc;
+    display: inline-block;
   }
 }
 
@@ -266,9 +285,6 @@
   }
 }
 
-.media-body {
-  color: #e4dee3;
-}
 .following-activity {
   margin: 0;
   margin-top: 15px;
@@ -280,6 +296,9 @@
   position: relative;
   @media (max-width: 767px) {
     overflow: hidden;
+  }
+  .media-body {
+    color: #e4dee3;
   }
   .activity-item {
     margin-bottom: 15px;

@@ -4,6 +4,7 @@ import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 
 export default BaseComponent.extend({
+  classNames: ['weekly-trending'],
   currentTab: 'anime',
   ajax: service(),
 

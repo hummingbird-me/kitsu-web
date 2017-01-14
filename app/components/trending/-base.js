@@ -24,6 +24,7 @@ export default Component.extend({
     const type = get(this, 'currentTab');
     // return if we already have results, since we don't want to reload each tab switch
     if (get(this, `${type}Results`) && get(this, `${type}Results.length`)) {
+      get(this, 'getDataTask').cancelAll();
       return set(this, 'currentItems', get(this, `${type}Results`));
     }
     // request trending media for the specified type

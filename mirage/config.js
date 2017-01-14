@@ -27,6 +27,8 @@ function _defineRoutes(server) {
   server.get('/users');
   server.get('/users/:id');
   server.post('/users');
+
+  server.get('/trending/:namespace', { data: [] });
 }
 
 // test

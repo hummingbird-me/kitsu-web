@@ -24,7 +24,7 @@
           </span>
           {{one-way-search query
             update=(action (mut query))
-            class="guest-search"
+            class="guest-search-input"
             placeholder="Search for an anime, manga, user..."
           }}
         </div>
@@ -33,10 +33,9 @@
   </section>
 
   {{search-results
-    resultsClass="guest-search-results"
-    target="#guest-search"
-    attachment="top middle"
-    targetAttachment="bottom middle"
+    target=".guest-search-input"
+    attachment="top left"
+    targetAttachment="bottom left"
     offset="0px 0px"
     query=query
     isOpened=(gt query.length 2)
