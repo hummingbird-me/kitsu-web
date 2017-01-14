@@ -7,222 +7,35 @@
           <h5 class="trending-row--title">Trending in your Network</h5>
         </div>
 
-        <!-- trending post -->
-        <div class="trending-poster col-md-3">
-          <a href="#" class="media-poster">
-            <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
-          </a>
-          <ul class="participating-following">
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
+        {{#if taskInstance.isRunning}} {{! Loading State }}
+          <div class="text-xs-center w-100 m-t-3">
+            {{loading-spinner size="large" class="white"}}
+          </div>
+        {{else if taskInstance.error}} {{! Error during AJAX request }}
+          <div class="text-xs-center m-t-3">
+            <p>{{t "errors.load"}}</p>
+          </div>
+        {{else if taskInstance.value}} {{! Recent stories }}
+          {{#each taskInstance.value as |item|}}
+            <div class="trending-poster col-md-3">
+              <a href={{href-to (concat (model-type item) ".show") item.slug}} class="media-poster">
+                {{lazy-image url=(image item.posterImage "large")}}
               </a>
-            </li>
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li class="stream-like-count" data-ember-action="" data-ember-action-3951="3951">
-              <a>28</a>
-            </li>
-          </ul>
-        </div>
 
-        <!-- trending post -->
-        <div class="trending-poster col-md-3">
-          <a href="#" class="media-poster">
-            <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
-          </a>
-          <ul class="participating-following">
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li class="stream-like-count" data-ember-action="" data-ember-action-3951="3951">
-              <a>28</a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- trending post -->
-        <div class="trending-poster col-md-3">
-          <a href="#" class="media-poster">
-            <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
-          </a>
-          <ul class="participating-following">
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li class="stream-like-count" data-ember-action="" data-ember-action-3951="3951">
-              <a>28</a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- trending post -->
-        <div class="trending-poster col-md-3">
-          <a href="#" class="media-poster">
-            <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
-          </a>
-          <ul class="participating-following">
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li class="stream-like-count" data-ember-action="" data-ember-action-3951="3951">
-              <a>28</a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- trending post -->
-        <div class="trending-poster col-md-3">
-          <a href="#" class="media-poster">
-            <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
-          </a>
-          <ul class="participating-following">
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li class="stream-like-count" data-ember-action="" data-ember-action-3951="3951">
-              <a>28</a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- trending post -->
-        <div class="trending-poster col-md-3">
-          <a href="#" class="media-poster">
-            <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
-          </a>
-          <ul class="participating-following">
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li class="stream-like-count" data-ember-action="" data-ember-action-3951="3951">
-              <a>28</a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- trending post -->
-        <div class="trending-poster col-md-3">
-          <a href="#" class="media-poster">
-            <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
-          </a>
-          <ul class="participating-following">
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li class="stream-like-count" data-ember-action="" data-ember-action-3951="3951">
-              <a>28</a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- trending post -->
-        <div class="trending-poster col-md-3">
-          <a href="#" class="media-poster">
-            <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
-          </a>
-          <ul class="participating-following">
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li aria-label="Rentacletape" class="hint--top hint--bounce hint--rounded stream-like  ">
-              <a href="/users/Rentacletape" class="like-avatar">
-                <img src="https://media.kitsu.io/users/avatars/99965/tiny.gif?1474208476">
-              </a>
-            </li>
-            <li class="stream-like-count" data-ember-action="" data-ember-action-3951="3951">
-              <a>28</a>
-            </li>
-          </ul>
-        </div>
-
+              {{! Users }
+              {{!-- TODO: Broken on server
+              {{trending/trending-banner/participants
+                item=item
+                itemType=(model-type item)
+                class="participating-following"
+                tagName="ul"}}
+            </div>
+          {{/each}}
+        {{else}} {{! No recent media stories }}
+          <div class="text-xs-center m-t-3">
+            <p>{{t "errors.contentEmpty"}}</p>
+          </div>
+        {{/if}}
       </div>
     </div>
 
