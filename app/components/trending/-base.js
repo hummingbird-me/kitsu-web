@@ -5,7 +5,7 @@ import { next } from 'ember-runloop';
 
 export default Component.extend({
   tagName: 'section',
-  classNames: 'trending-row',
+  classNames: ['trending-row'],
   currentTab: null,
   currentItems: null,
 

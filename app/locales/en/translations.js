@@ -356,7 +356,7 @@ export default {
         starts: 'This field must start with a letter or number'
       }
     },
-    load: 'There was an issue loading the content',
+    load: 'There was an issue loading the content.',
     contentEmpty: 'Hmm, there doesn\'t seem to be anything here yet.'
   }
 };

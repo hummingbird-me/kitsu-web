@@ -1,0 +1,74 @@
+<div class="trending-activity--header">
+  <h5>Recent Activity</h5>
+</div>
+
+{{#if taskInstance.isRunning}} {{! Loading State }}
+  <div class="text-xs-center w-100 m-t-3">
+    {{loading-spinner size="large" class="white"}}
+  </div>
+{{else if taskInstance.error}} {{! Error during AJAX request }}
+  <div class="text-xs-center m-t-3">
+    <p>{{t "errors.load"}}</p>
+  </div>
+{{else if taskInstance.value}} {{! Recent stories }}
+  <ul class="following-activity">
+    {{#each taskInstance.value as |activityGroup|}}
+      {{trending/trending-banner/recent-activity/activity
+        group=activityGroup
+        class="activity-item"
+        tagName="li"}}
+    {{/each}}
+  </ul>
+{{else}} {{! No recent media stories }}
+  <div class="text-xs-center m-t-3">
+    <p>{{t "errors.contentEmpty"}}</p>
+  </div>
+{{/if}}
+
+<!--
+<ul class="following-activity">
+  <li class="activity-item">
+    <div class="media">
+      <a href="#" class="media-poster">
+        <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
+      </a>
+      <div class="media-body">
+        <div class="agg-item ember-view">
+          <span class="agg-avatar">
+            <img src="https://media.kitsu.io/users/avatars/81817/tiny.gif?1459378850">
+          </span>
+          <span class="agg-action">
+            <a href="/users/Jelly_Belly">Jelly_Belly</a>
+            and <strong>12 others</strong>
+            watched episode 2
+          </span>
+        </div>
+        <h5 class="mt-0">Fullmetal Alchemist: Brotherhood</h5>
+        <small>12 minutes ago</small>
+      </div>
+    </div>
+  </li>
+
+  <li class="activity-item">
+    <div class="media">
+      <a href="#" class="media-poster">
+        <img src="https://media.kitsu.io/anime/poster_images/3936/large.jpg?1419000387">
+      </a>
+      <div class="media-body">
+        <div class="agg-item ember-view">
+          <span class="agg-avatar">
+            <img src="https://media.kitsu.io/users/avatars/81817/tiny.gif?1459378850">
+          </span>
+          <span class="agg-action">
+            <a href="/users/Jelly_Belly">Jelly_Belly</a>
+            and <strong>12 others</strong>
+            watched episode 2
+          </span>
+        </div>
+        <h5 class="mt-0">Fullmetal Alchemist: Brotherhood</h5>
+        <small>12 minutes ago</small>
+      </div>
+    </div>
+  </li>
+</ul>
+-->
