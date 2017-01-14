@@ -17,7 +17,7 @@
           </div>
         {{else if taskInstance.value}} {{! Recent stories }}
           {{#each taskInstance.value as |item|}}
-            <div class="trending-poster col-md-3">
+            <div class="trending-poster col-xs-6 col-sm-4 col-lg-3">
               <a href={{href-to (concat (model-type item) ".show") item.slug}} class="media-poster">
                 {{lazy-image url=(image item.posterImage "large")}}
               </a>

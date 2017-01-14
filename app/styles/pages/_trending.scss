@@ -64,7 +64,7 @@
 
 .trending-cell {
   padding: 0;
-  width: 19%;
+  width: 220px;
   margin-right: 15px;
   .media-poster {
     display: inline-block;
@@ -123,6 +123,8 @@
     padding: 20px;
     width: 70%;
     margin-right: 50px;
+    max-height: 300px;
+    overflow: auto;
     p {
       color: $charcoal;
       font-size: 15px;
@@ -181,6 +183,9 @@
 
 .trending-banner--titles {
   padding: 30px 23px 15px 5px;
+  @media (max-width: 767px) {
+    padding: 30px 5px;
+  }
   .trending-poster {
     display: inline-block;
     margin-bottom: 30px;
@@ -200,6 +205,13 @@
   border-right: 1px solid darken($voodoo, 4);
   padding: 0;
   height: 658px;
+  @media (max-width: 767px) {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border: 1px solid #271c26;
+    height: 450px;
+    overflow: hidden;
+  }
   &:after {
     content: '';
     bottom: 0;
@@ -246,6 +258,9 @@
   padding: 30px 0 20px 0;
   text-align: center;
   color: #cebdcc;
+  @media (max-width: 767px) {
+    padding: 15px;
+  }
   h5 {
     margin-bottom: 0;
   }
@@ -263,6 +278,9 @@
   height: 570px;
   overflow: auto;
   position: relative;
+  @media (max-width: 767px) {
+    overflow: hidden;
+  }
   .activity-item {
     margin-bottom: 15px;
     padding: 0 15px 15px 15px;
