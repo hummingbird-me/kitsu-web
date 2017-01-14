@@ -13,7 +13,7 @@ test('it returns `en_jp` for `romanized`', function(assert) {
   assert.equal(result, 'en_jp');
 });
 
-test('it returns `undefined`', function(assert) {
+test('it returns `canonical` as default', function(assert) {
   const result = getTitleField('something_else');
-  assert.equal(result, undefined);
+  assert.equal(result, 'canonical');
 });
