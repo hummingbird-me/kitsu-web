@@ -35,7 +35,6 @@ RouterInstance.map(function() {
       this.route('show', { path: '/:slug' }, function() {
         this.route('episodes');
         this.route('characters');
-        this.route('cast');
         this.route('reviews');
         this.route('quotes');
       });

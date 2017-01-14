@@ -1,6 +1,6 @@
 <div class="row">
+  {{! Primary Content }}
   <div class="col-sm-8">
-
     {{! Synopsis }}
     <section class="media-synopsis m-b-1">
       <p>
@@ -21,7 +21,7 @@
       }}
     </section>
 
-    {{! genres }}
+    {{! Genres }}
     <section class="media--tags">
       <ul>
         <li><strong>Tags:</strong></li>
@@ -47,6 +47,7 @@
       </span>
     </section>
 
+    {{! Installments }}
     <section class="media--related">
       <h5>
         Franchise
@@ -134,38 +135,27 @@
       {{/if}}
     </section>
   </div>
+
+  {{! Secondary Content }}
+  {{! TODO: Componentize }}
   <div class="col-sm media--sidebar">
-    <div class="media-preview embed-responsive embed-responsive-16by9">
-      <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/btEMOocfnig" frameborder="0" allowfullscreen></iframe>
-    </div>
+    {{! Trailer }}
+    {{#if media.youtubeVideoId}}
+      <div class="media-preview embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/{{media.youtubeVideoId}}" frameborder="0" allowfullscreen></iframe>
+      </div>
+    {{/if}}
+
+    {{! Featured Characters }}
     <section class="media--main-characters">
       <div class="favorite-characters-panel">
         <h5>Characters</h5>
         <div class="favorite-media-grid row">
-          <div aria-label="Guts" class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded">
-            <a href="#">
-              <img src="https://media.kitsu.io/characters/images/1173/original.jpg?1416182377">
-            </a>
-          </div>
-
-          <div aria-label="Asuka Langley" class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded">
-            <a href="#">
-              <img src="https://media.kitsu.io/characters/images/1155/original.jpg?1416182347">
-            </a>
-          </div>
-
-          <div aria-label="Watashi" class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded">
-            <a href="#">
-              <img src="https://media.kitsu.io/characters/images/34296/original.jpg?1416232643">
-            </a>
-          </div>
-
           <div aria-label="Hachiman Hikigaya" class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded">
             <a href="#">
               <img src="https://media.kitsu.io/characters/images/37854/original.jpg?1416238436">
             </a>
           </div>
-
           <div class="text-xs-center w-100">
             <button class="button button--primary">
               View All
@@ -174,50 +164,63 @@
         </div>
       </div>
     </section>
+
+    {{! Title  Information }}
     <section class="media--alt-titles">
       <h5>Alternative Titles</h5>
       <ul>
-        <li>
-          <strong>English:</strong>
-          Naruto
-        </li>
-        <li>
-          <strong>Synonyms:</strong>
-          NARUTO
-        </li>
-        <li>
-          <strong>Japanese:</strong>
-          ナルト
-        </li>
+        {{#each-in media.titles as |key value|}}
+          <li>
+            <strong>{{t (concat "media.routes.show.titles." key)}}:</strong>
+            {{value}}
+          </li>
+        {{/each-in}}
+        {{#if media.abbreviatedTitles}}
+          <li>
+            <strong>Synonyms:</strong>
+            {{join ", " media.abbreviatedTitles}}
+          </li>
+        {{/if}}
       </ul>
     </section>
+
+    {{! Media Information }}
     <section class="media--information">
       <h5>Information</h5>
       <ul>
-        <li>
-          <strong>Type:</strong>
-          TV
-        </li>
-        <li>
-          <strong>Episodes:</strong>
-          220
-        </li>
+        {{#if media.subtype}}
+          <li>
+            <strong>Type:</strong>
+            {{media.subtype}}
+          </li>
+        {{/if}}
+        {{#if media.episodeCount}}
+          <li>
+            <strong>Episodes:</strong>
+            {{media.episodeCount}}
+          </li>
+        {{/if}}
         <li>
           <strong>Status:</strong>
           Finished Airing
         </li>
-        <li>
-          <strong>Aired:</strong>
-          Oct 3, 2002 to Feb 8, 2007
-        </li>
-        <li>
-          <strong>Premiered:</strong>
-          <a href="#">Fall 2002</a>
-        </li>
-        <li>
-          <strong>Broadcast:</strong>
-          Thursdays at 19:30 (JST)
-        </li>
+        {{#if media.startDate}}
+          <li>
+            <strong>Aired:</strong>
+            {{moment-format media.startDate "MMM D, YYYY"}}
+            {{#if (and media.endDate airedLongerThanOneDay)}}
+              to {{moment-format media.endDate "MMM D, YYYY"}}
+            {{/if}}
+          </li>
+          <li>
+            {{! TODO!! }}
+            <strong>Premiered:</strong>
+            <a href={{href-to (concat (model-type media) ".index") (query-params season=season year=seasonYear)}}>
+              {{season}} {{seasonYear}}
+            </a>
+          </li>
+        {{/if}}
+        {{! No info on these yet }}
         <li>
           <strong>Producers: </strong>
           <a href="#">TV Tokyo</a>, <a href="#">Aniplex</a>
@@ -230,14 +233,21 @@
           <strong>Studios:</strong>
           <a href="#">Studio Pierrot</a>
         </li>
-        <li>
-          <strong>Duration:</strong>
-          84 hours total (23 min. each)
-        </li>
-        <li>
-          <strong>Rating:</strong>
-          PG-13 - Teens 13 or older
-        </li>
+        {{#if media.episodeLength}}
+          <li>
+            <strong>Duration:</strong>
+            {{t "media.routes.show.meta.unit.length" total=totalTime length=media.episodeLength count=media.unitCount}}
+          </li>
+        {{/if}}
+        {{#if media.ageRating}}
+          <li>
+            <strong>Rating:</strong>
+            {{media.ageRating}}
+            {{#if media.ageRatingGuide}}
+              - {{media.ageRatingGuide}}
+            {{/if}}
+          </li>
+        {{/if}}
       </ul>
     </section>
   </div>
