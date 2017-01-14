@@ -1,6 +1,7 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import service from 'ember-service/inject';
 import { next } from 'ember-runloop';
 
 export default Component.extend({
@@ -8,6 +9,7 @@ export default Component.extend({
   classNames: ['trending-row'],
   currentTab: null,
   currentItems: null,
+  store: service(),
 
   getDataTask() {
     throw new Error('You must define your own `getDataTask`');
@@ -28,6 +30,8 @@ export default Component.extend({
     get(this, 'getDataTask').perform(type).then((results) => {
       set(this, `${type}Results`, results);
       set(this, 'currentItems', results);
+    }).catch((error) => {
+      get(this, 'raven').logException(error);
     });
   },
 
