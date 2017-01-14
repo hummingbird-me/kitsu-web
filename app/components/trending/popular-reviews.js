@@ -5,7 +5,7 @@ import { task } from 'ember-concurrency';
 import { capitalize } from 'ember-string';
 
 export default BaseComponent.extend({
-  classNames: ['just-reviewed'],
+  classNames: ['popular-reviews'],
   currentTab: 'anime',
   store: service(),
 
