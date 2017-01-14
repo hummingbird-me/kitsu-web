@@ -46,7 +46,7 @@ export default {
       hint: {
         text: 'Media you\'ve added or updated within your {{link}} willl show up here for you to quickly update.',
         library: 'Library',
-        discover: 'Discover Anime'
+        discover: 'Discover Media'
       },
       mark: 'Mark',
       episode: 'Ep. {{num}}',
