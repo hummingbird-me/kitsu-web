@@ -32,17 +32,22 @@ export default Route.extend(PaginationMixin, {
     const userId = get(user, 'id');
     const options = {};
 
+    // apply user sort selection
+    if (sort !== undefined) {
+      Object.assign(options, { sort: this._getUsableSort(sort) });
+    }
+
     if (status === 'all') {
       status = '1,2,3,4,5'; // eslint-disable-line no-param-reassign
-      Object.assign(options, { sort: 'status,-updated_at' });
+      if (sort !== undefined) {
+        Object.assign(options, { sort: ['status', get(options, 'sort')].join(',') });
+      } else {
+        Object.assign(options, { sort: 'status,-updated_at' });
+      }
     } else {
       // eslint-disable-next-line no-param-reassign
       status = libraryStatus.enumToNumber(status);
       Object.assign(options, { sort: '-updated_at' });
-    }
-
-    if (sort !== undefined) {
-      Object.assign(options, { sort: this._getUsableSort(sort) });
     }
 
     Object.assign(options, {

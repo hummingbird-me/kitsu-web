@@ -5,6 +5,6 @@ export default function getTitleField(preference) {
     case 'romanized':
       return 'en_jp';
     default:
-      return undefined;
+      return 'canonical';
   }
 }
