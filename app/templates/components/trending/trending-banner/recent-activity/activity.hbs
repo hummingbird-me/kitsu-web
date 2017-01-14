@@ -3,26 +3,12 @@
     {{lazy-image url=(image activity.media.posterImage "small")}}
   </a>
   <div class="media-body">
-    <div class="agg-item">
-      {{stream-feed/items/library-entry/activity
-        activity=activity
-        group=group
-        media=activity.media
-        readOnly=true}}
-      <!--
-      <span class="agg-avatar">
-        {{lazy-image url=(image activity.actor.avatar "tiny")}}
-      </span>
-      <span class="agg-action">
-        <a href={{href-to "users.index" activity.actor.name}}>{{activity.actor.name}}</a>
-      </span>
-      {{#if (gt others.length 0)}}
-
-      {{/if}}
-
-      and <strong>12 others</strong>
-      watched episode 2-->
-    </div>
+    {{stream-feed/items/library-entry/activity
+      class="agg-item"
+      activity=activity
+      group=group
+      media=activity.media
+      readOnly=true}}
     <h5 class="mt-0">{{activity.media.computedTitle}}</h5>
     <small>{{moment-from-now activity.time}}</small>
   </div>
