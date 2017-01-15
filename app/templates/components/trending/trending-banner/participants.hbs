@@ -1,12 +1,16 @@
-{{#each taskInstance.value as |entry|}}
-  {{#with entry.user as |user|}}
-    <li class="hint--top hint--bounce hint--rounded stream-like" aria-label={{user.name}}>
-      <a href={{href-to "users.index" user.name}} class="like-avatar">
-        {{lazy-image url=(image user.avatar "tiny")}}
-      </a>
-    </li>
-  {{/with}}
-{{/each}}
+{{#if taskInstance.isRunning}}
+  {{loading-spinner size="small" class="white"}}
+{{else if taskInstance.value}}
+  {{#each taskInstance.value as |entry|}}
+    {{#with entry.user as |user|}}
+      <li class="hint--top hint--bounce hint--rounded stream-like" aria-label={{user.name}}>
+        <a href={{href-to "users.index" user.name}} class="like-avatar">
+          {{lazy-image url=(image user.avatar "tiny")}}
+        </a>
+      </li>
+    {{/with}}
+  {{/each}}
+{{/if}}
 {{!-- No API Support for max number
 <li class="stream-like-count" data-ember-action="" data-ember-action-3951="3951">
   <a>28</a>
