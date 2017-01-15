@@ -241,12 +241,31 @@
 .participating-following {
   padding: 0;
   margin-bottom: 0;
-  margin-top: 10px;
+  margin-top: 5px;
+  text-align: center;
   .stream-like {
     width: 25px;
-    margin-right: 3px;
+    height: 25px;
+    margin-right: -10px;
+    transition: .2s ease-in-out;
+    &:hover {
+      margin-right: -5px;
+      margin-left: 6px;
+    }
+    &:first-child {
+      margin-left: -10px;
+      &:hover {
+        margin-left: -10px;
+        margin-right: -5px;
+      }
+    }
+    &:last-child {
+      margin-right: -10px;
+      margin-left: 6px;
+    }
     img {
       border-radius: 999em;
+      border: 2px solid #332532;
     }
   }
   .stream-like-count {
