@@ -16,6 +16,7 @@ export default Component.extend({
         following: get(this, 'session.account.id')
       },
       include: 'user',
+      sort: '-updated_at',
       page: { limit: 5 }
     });
   }).drop(),
