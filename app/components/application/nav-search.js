@@ -22,7 +22,7 @@ export default Ember.Component.extend({
       const target = get(event, 'target');
       const id = `#${get(this, 'elementId')}`;
       const isChild = jQuery(target).is(`${id} *, ${id}`);
-      const isPopover = jQuery(target).is('.search-popover *, .search-popover');
+      const isPopover = jQuery(target).is('.navbar-search-results *, .navbar-search-results');
       if (isChild || isPopover) {
         if (isChild) {
           this.$('input').focus();
