@@ -22,7 +22,7 @@
     {{#if media.subtype}}
       <li>
         <strong>Type:</strong>
-        {{media.subtype}}
+        {{t (concat "media." (model-type media) ".type." media.subtype)}}
       </li>
     {{/if}}
     {{#if media.episodeCount}}
