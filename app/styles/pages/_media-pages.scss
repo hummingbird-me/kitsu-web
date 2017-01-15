@@ -27,14 +27,7 @@
   }
 }
 
-.community-rating {
-  margin-bottom: 15px;
-  margin-right: 15px;
-  float: left;
-}
-
 .percentage-liked, .average-rating {
-  background: #3498DB;
   color: #fff;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
@@ -67,8 +60,6 @@
   border-bottom-left-radius: 0;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
-  background: #BEDCF0;
-  color: #16659A;
   text-align: left;
   svg {
     width: 14px;
@@ -76,10 +67,101 @@
     position: relative;
     top: -1px;
   }
+}
 
-  .star-full, .star-half, .star-variable {
-    .star-rating-filled {
-      stop-color: #16659A;
+.community-rating {
+  margin-bottom: 15px;
+  margin-right: 15px;
+  float: left;
+  &.percent-quarter-1 {
+    .percentage-liked {
+      background: #E62738;
+      color: $white;
+    }
+    .average-rating {
+      background: lighten(#E62738,15);
+      color: #461115;
+      .star-full, .star-half, .star-variable {
+        .star-rating-filled {
+          stop-color: #461115;
+        }
+        .star-rating-base {
+          stop-color: lighten(#461115, 20);
+        }
+      }
+      .star-empty {
+        .star-rating-base {
+          stop-color: lighten(#461115, 20);
+        }
+      }
+    }
+  }
+  &.percent-quarter-2 {
+    .percentage-liked {
+      background: #FF893B;
+      color: #6f340b;
+    }
+    .average-rating {
+      background: lighten(#FF893B,15);
+      color: #6f340b;
+      .star-full, .star-half, .star-variable {
+        .star-rating-filled {
+          stop-color: #6f340b;
+        }
+        .star-rating-base {
+          stop-color: lighten(#6f340b, 20);
+        }
+      }
+      .star-empty {
+        .star-rating-base {
+          stop-color: lighten(#6f340b, 20);
+        }
+      }
+    }
+  }
+  &.percent-quarter-3 {
+    .percentage-liked {
+      background: #FFCA53;
+      color: #805f16;
+    }
+    .average-rating {
+      background: lighten(#FFCA53,15);
+      color: #805f16;
+      .star-full, .star-half, .star-variable {
+        .star-rating-filled {
+          stop-color: #805f16;
+        }
+        .star-rating-base {
+          stop-color: lighten(#805f16, 20);
+        }
+      }
+      .star-empty {
+        .star-rating-base {
+          stop-color: lighten(#805f16, 20);
+        }
+      }
+    }
+  }
+  &.percent-quarter-4 {
+    .percentage-liked {
+      background: #3498db;
+    }
+    .average-rating {
+      background: lighten(#3498db,15);
+      color: #16659A;
+      .star-full, .star-half, .star-variable {
+        .star-rating-filled {
+          stop-color: #16659A;
+        }
+        .star-rating-base {
+          stop-color: lighten(#16659A, 10);
+        }
+      }
+      .star-empty {
+        .star-rating-base {
+          stop-color: lighten(#16659A, 10);
+        }
+      }
     }
   }
 }
