@@ -185,71 +185,7 @@
     </section>
 
     {{! Media Information }}
-    <section class="media--information">
-      <h5>Information</h5>
-      <ul>
-        {{#if media.subtype}}
-          <li>
-            <strong>Type:</strong>
-            {{media.subtype}}
-          </li>
-        {{/if}}
-        {{#if media.episodeCount}}
-          <li>
-            <strong>Episodes:</strong>
-            {{media.episodeCount}}
-          </li>
-        {{/if}}
-        <li>
-          <strong>Status:</strong>
-          Finished Airing
-        </li>
-        {{#if media.startDate}}
-          <li>
-            <strong>Aired:</strong>
-            {{moment-format media.startDate "MMM D, YYYY"}}
-            {{#if (and media.endDate airedLongerThanOneDay)}}
-              to {{moment-format media.endDate "MMM D, YYYY"}}
-            {{/if}}
-          </li>
-          <li>
-            {{! TODO!! }}
-            <strong>Premiered:</strong>
-            <a href={{href-to (concat (model-type media) ".index") (query-params season=season year=seasonYear)}}>
-              {{season}} {{seasonYear}}
-            </a>
-          </li>
-        {{/if}}
-        {{! No info on these yet }}
-        <li>
-          <strong>Producers: </strong>
-          <a href="#">TV Tokyo</a>, <a href="#">Aniplex</a>
-        </li>
-        <li>
-          <strong>Licensors:</strong>
-          <a href="#">Viz Media</a>
-        </li>
-        <li>
-          <strong>Studios:</strong>
-          <a href="#">Studio Pierrot</a>
-        </li>
-        {{#if media.episodeLength}}
-          <li>
-            <strong>Duration:</strong>
-            {{t "media.routes.show.meta.unit.length" total=totalTime length=media.episodeLength count=media.unitCount}}
-          </li>
-        {{/if}}
-        {{#if media.ageRating}}
-          <li>
-            <strong>Rating:</strong>
-            {{media.ageRating}}
-            {{#if media.ageRatingGuide}}
-              - {{media.ageRatingGuide}}
-            {{/if}}
-          </li>
-        {{/if}}
-      </ul>
-    </section>
+    {{media/information-sidebar tagName="section" class="media--information" media=media}}
   </div>
 </div>
 
