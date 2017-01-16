@@ -103,20 +103,14 @@ export default {
           reviews: 'Reviews',
           quotes: 'Quotes'
         },
-        meta: {
-          unit: {
-            anime: {
-              one: '{{count}} episode',
-              other: '{{count}} episodes'
-            },
-            manga: {
-              one: '{{count}} chapter',
-              other: '{{count}} chapters'
-            },
-            length: {
-              one: '{{length}} minutes',
-              other: '{{total}} total ({{length}} minutes each)'
-            }
+        ranking: {
+          popularity: {
+            anime: 'Rank {{rank}} (Most Popular Anime)',
+            manga: 'Rank {{rank}} (Most Popular Manga)'
+          },
+          rating: {
+            anime: 'Rank {{rank}} (Highest Rated Anime)',
+            manga: 'Rank {{rank}} (Highest Rated Manga)'
           }
         },
         titles: {
@@ -151,6 +145,10 @@ export default {
           season: 'Season',
           serialization: 'Serialization',
           duration: 'Duration',
+          length: {
+            one: '{{length}} minutes',
+            other: '{{total}} total ({{length}} minutes each)'
+          },
           rating: 'Rating'
         },
         episodes: {
