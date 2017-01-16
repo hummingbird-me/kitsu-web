@@ -1,12 +1,21 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import getter from 'client/utils/getter';
+import { modelType } from 'client/helpers/model-type';
 import moment from 'moment';
 /* global humanizeDuration */
 
 export default Component.extend({
   tagName: 'section',
   classNames: ['media--information'],
+
+  isAnime: getter(function() {
+    return modelType([get(this, 'media')]) === 'anime';
+  }),
+
+  isManga: getter(function() {
+    return !get(this, 'isAnime');
+  }),
 
   season: getter(function() {
     const start = get(this, 'media.startDate');
@@ -50,8 +59,8 @@ export default Component.extend({
     const start = get(this, 'media.startDate');
     const end = get(this, 'media.endDate');
     if (moment(start).isBefore() || moment(start).isSame()) {
-      return (moment(end).isBefore() || moment(end).isSame()) ? 'Finished Airing' : 'Currently Airing';
+      return (moment(end).isBefore() || moment(end).isSame()) ? 'finished' : 'current';
     }
-    return 'Not Yet Aired';
+    return 'nya';
   })
 });

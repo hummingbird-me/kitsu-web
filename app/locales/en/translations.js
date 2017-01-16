@@ -124,6 +124,35 @@ export default {
           en_jp: 'Romanized',
           ja_jp: 'Japanese'
         },
+        information: {
+          type: 'Type',
+          volumes: 'Volumes',
+          unit: {
+            anime: 'Episodes',
+            manga: 'Chapters'
+          },
+          start: {
+            anime: 'Aired',
+            manga: 'Published'
+          },
+          status: 'Status',
+          statuses: {
+            anime: {
+              current: 'Currently Airing',
+              finished: 'Finished Airing',
+              nya: 'Not Yet Aired'
+            },
+            manga: {
+              current: 'Publishing',
+              finished: 'Finished',
+              nya: 'Not Yet Published'
+            }
+          },
+          season: 'Season',
+          serialization: 'Serialization',
+          duration: 'Duration',
+          rating: 'Rating'
+        },
         episodes: {
           episode: 'Episode'
         }

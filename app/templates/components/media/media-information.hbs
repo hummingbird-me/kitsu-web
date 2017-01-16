@@ -1,57 +1,74 @@
 <h5>Information</h5>
 <ul>
+  {{! Type }}
   {{#if media.subtype}}
     <li>
-      <strong>Type:</strong>
+      <strong>{{t "media.routes.show.information.type"}}:</strong>
       {{t (concat "media." (model-type media) ".type." media.subtype)}}
     </li>
   {{/if}}
-  {{#if media.episodeCount}}
+
+  {{! Volumes }}
+  {{#if (and isManga media.volumeCount)}}
     <li>
-      <strong>Episodes:</strong>
-      {{media.episodeCount}}
+      <strong>{{t "media.routes.show.information.volumes"}}:</strong>
+      {{media.volumeCount}}
     </li>
   {{/if}}
+
+  {{! Episodes / Chapters }}
+  {{#if media.unitCount}}
+    <li>
+      <strong>{{t (concat "media.routes.show.information.unit." (model-type media))}}:</strong>
+      {{media.unitCount}}
+    </li>
+  {{/if}}
+
+  {{! Status }}
   <li>
-    <strong>Status:</strong>
-    {{airingStatus}}
+    <strong>{{t "media.routes.show.information.status"}}:</strong>
+    {{t (concat "media.routes.show.information.statuses." (model-type media) "." airingStatus)}}
   </li>
+
+  {{! Airing / Status }}
   {{#if media.startDate}}
     <li>
-      <strong>Aired:</strong>
+      <strong>{{t (concat "media.routes.show.information.start." (model-type media))}}:</strong>
       {{moment-format media.startDate "MMM D, YYYY"}}
       {{#if (and media.endDate airedLongerThanOneDay)}}
         to {{moment-format media.endDate "MMM D, YYYY"}}
       {{/if}}
     </li>
+    {{#if isAnime}}
+      <li>
+        <strong>{{t "media.routes.show.information.season"}}:</strong>
+        <a href={{href-to (concat (model-type media) ".index") (query-params season=season year=seasonYear)}}>
+          {{capitalize season}} {{seasonYear}}
+        </a>
+      </li>
+    {{/if}}
+  {{/if}}
+
+  {{! Serialization }}
+  {{#if (and isManga media.serialization)}}
     <li>
-      <strong>Premiered:</strong>
-      <a href={{href-to (concat (model-type media) ".index") (query-params season=season year=seasonYear)}}>
-        {{capitalize season}} {{seasonYear}}
-      </a>
+      <strong>{{t "media.routes.show.information.serialization"}}:</strong>
+      {{media.serialization}}
     </li>
   {{/if}}
-  {{!<li>
-    <strong>Producers: </strong>
-    <a href="#">TV Tokyo</a>, <a href="#">Aniplex</a>
-  </li>
-  <li>
-    <strong>Licensors:</strong>
-    <a href="#">Viz Media</a>
-  </li>
-  <li>
-    <strong>Studios:</strong>
-    <a href="#">Studio Pierrot</a>
-  </li>}}
-  {{#if media.episodeLength}}
+
+  {{! Duration }}
+  {{#if (and isAnime media.episodeLength)}}
     <li>
-      <strong>Duration:</strong>
+      <strong>{{t "media.routes.show.information.duration"}}:</strong>
       {{t "media.routes.show.meta.unit.length" total=totalTime length=media.episodeLength count=media.unitCount}}
     </li>
   {{/if}}
+
+  {{! Age Rating }}
   {{#if media.ageRating}}
     <li>
-      <strong>Rating:</strong>
+      <strong>{{t "media.routes.show.information.rating"}}:</strong>
       {{media.ageRating}}
       {{#if media.ageRatingGuide}}
         - {{media.ageRatingGuide}}
