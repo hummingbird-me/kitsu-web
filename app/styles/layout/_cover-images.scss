@@ -110,6 +110,9 @@
   .primary-info {
     float: left;
     height: 100px;
+    @media (max-width: 575px) {
+      padding: 0 20px;
+    }
     @media (max-width: 992px) {
       width: 100%;
       float: initial;
@@ -125,6 +128,17 @@
     font-weight: 500;
     margin-top: 5px;
     margin-bottom: 10px;
+  }
+  .mini-bio--poster {
+    float: left;
+    width: 100px;
+    margin-right: 25px;
+    img {
+      border-radius: 3px;
+    }
+    @media (min-width: 768px) {
+      display: none;
+    }
   }
   .mini-bio {
     color: $white;
@@ -192,6 +206,15 @@
   position: relative;
   top: -201px;
   float: left;
+  @media (max-width: 767px) {
+    width: 100%;
+    float: none;
+    top: 0;
+    margin-top: -20px;
+    margin-bottom: 15px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+  }
 
   &:after {
     content: '';
@@ -204,10 +227,16 @@
   > div {
     position: relative;
     right: 15px;
+    @media (max-width: 767px) {
+      right: 0;
+    }
   }
   // New stuff above
   img {
     border-radius: 3px;
+    @media (max-width: 767px) {
+      display: none;
+    }
   }
   .button--primary {
     padding: 10px;
@@ -222,12 +251,14 @@
 
 // Browser natively supports `position: sticky`
 @supports (position: sticky) {
-  .media-sidebar {
-    position: sticky;
-    top: 274px;
+  @media (min-width: 768px) {
+    .media-sidebar {
+      position: sticky;
+      top: 274px;
 
-    > div {
-      top: -201px;
+      > div {
+        top: -201px;
+      }
     }
   }
 }
@@ -257,9 +288,15 @@
   width: 100%;
   .mini-bio {
     margin-left: 220px;
+    @media (max-width: 767px) {
+      margin-left: 0;
+    }
   }
   .cover-nav .navbar-nav {
     padding-left: 220px;
+    @media (max-width: 767px) {
+      padding-left: 0;
+    }
   }
 }
 

@@ -1,5 +1,15 @@
 .media-container {
   margin-left: 205px;
+  @media (max-width: 767px) {
+    margin-left: 0;
+    padding-right: 15px;
+  }
+  @media (max-width: 991px) {
+    .col-sm-8 {
+      max-width: 100%;
+      flex: 0 0 100%;
+    }
+  }
   .media {
     margin-top: 15px;
   }
@@ -260,6 +270,10 @@
 .media--sidebar {
   padding-right: 0;
   border-left: 1px solid #ddd;
+  @media (max-width: 767px) {
+    width: 100%;
+    padding: 0 15px;
+  }
   ul {
     list-style-type: none;
     padding: 0;
@@ -283,6 +297,10 @@
   font-weight: 500;
   margin-bottom: 20px;
   .ranking {
+    @media (max-width: 767px) {
+      width: 100%;
+      display: block;
+    }
     svg {
       width: 12px;
       height: 12px;

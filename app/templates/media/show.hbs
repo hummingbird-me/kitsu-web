@@ -5,6 +5,10 @@
         <div class="row">
           <div class="cover-user-info cover-media-info">
             <div class="primary-info">
+              {{! poster }}
+              <div class="mini-bio--poster">
+                {{lazy-image url=(image media.posterImage "large")}}
+              </div>
               <div class="mini-bio">
                 <h3 class="cover-username" data-test-selector="title">
                   {{media.computedTitle}}
@@ -47,10 +51,6 @@
       {{! trailer }}
       {{#if media.youtubeVideoId}}
         <div class="trailer">
-          {{! TODO - @Josh - trailer button on media page -- might be good to overlay again like browse page }}
-          <button class="button button--primary" onclick={{action (toggle "trailerOpen" this)}}>
-            Watch Trailer
-          </button>
           {{#if trailerOpen}}
             {{to-elsewhere named="modal" send=(component "modals/media-trailer"
               modalId="media-trailer"
