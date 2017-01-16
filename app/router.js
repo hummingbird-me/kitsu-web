@@ -80,6 +80,8 @@ RouterInstance.map(function() {
   // These must remain at the bottom of the RouterInstance map
   this.route('server-error', { path: '/500' });
   this.route('not-found', { path: '/*path' });
+  this.route('people');
+  this.route('characters');
 });
 
 export default RouterInstance;
