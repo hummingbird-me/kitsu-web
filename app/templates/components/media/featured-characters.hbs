@@ -1,0 +1,31 @@
+<div class="favorite-characters-panel">
+  <h5>Characters</h5>
+  <div class="favorite-media-grid row">
+    {{#if taskInstance.isRunning}}
+      <div class="text-xs-center w-100 m-t-1 m-b-1">
+        {{loading-spinner size="large"}}
+      </div>
+    {{else if taskInstance.error}}
+      <div class="text-xs-center w-100 font-italic">
+        {{t "errors.load"}}
+      </div>
+    {{else if taskInstance.value}}
+      {{#each taskInstance.value as |casting|}}
+        <div aria-label={{casting.character.name}} class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded">
+          <a href="#">
+            {{lazy-image url=(image casting.character.image)}}
+          </a>
+        </div>
+      {{/each}}
+      <div class="text-xs-center w-100">
+        <a href={{href-to (concat (model-type media) ".show.characters")}} class="button button--primary">
+          View All
+        </a>
+      </div>
+    {{else}}
+      <div class="text-xs-center w-100 font-italic">
+        {{t "errors.contentEmpty"}}
+      </div>
+    {{/if}}
+  </div>
+</div>

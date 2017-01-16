@@ -5,6 +5,9 @@ import moment from 'moment';
 /* global humanizeDuration */
 
 export default Component.extend({
+  tagName: 'section',
+  classNames: ['media--information'],
+
   season: getter(function() {
     const start = get(this, 'media.startDate');
     if (!start) { return null; }

@@ -1,0 +1,15 @@
+<h5>Alternative Titles</h5>
+<ul>
+  {{#each-in media.titles as |key value|}}
+    <li>
+      <strong>{{t (concat "media.routes.show.titles." key)}}:</strong>
+      {{value}}
+    </li>
+  {{/each-in}}
+  {{#if media.abbreviatedTitles}}
+    <li>
+      <strong>Synonyms:</strong>
+      {{join ", " media.abbreviatedTitles}}
+    </li>
+  {{/if}}
+</ul>

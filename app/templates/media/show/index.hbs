@@ -1,5 +1,4 @@
 <div class="row">
-  {{! Primary Content }}
   <div class="col-sm-8">
     {{! Synopsis }}
     <section class="media-synopsis m-b-1">
@@ -102,7 +101,6 @@
           </div>
         </div>
       </div>
-
     </section>
 
     {{! Reviews }}
@@ -131,9 +129,9 @@
   </div>
 
   {{! Secondary Content }}
-  {{! TODO: Componentize }}
   <div class="col-sm media--sidebar">
     {{! Trailer }}
+    {{! TODO: Open in modal }}
     {{#if media.youtubeVideoId}}
       <div class="media-preview embed-responsive embed-responsive-16by9">
         <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/{{media.youtubeVideoId}}" frameborder="0" allowfullscreen></iframe>
@@ -141,26 +139,11 @@
     {{/if}}
 
     {{! Featured Characters }}
-    <section class="media--main-characters">
-      <div class="favorite-characters-panel">
-        <h5>Characters</h5>
-        <div class="favorite-media-grid row">
-          <div aria-label="Hachiman Hikigaya" class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded">
-            <a href="#">
-              <img src="https://media.kitsu.io/characters/images/37854/original.jpg?1416238436">
-            </a>
-          </div>
-          <div class="text-xs-center w-100">
-            <button class="button button--primary">
-              View All
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
+    {{media/featured-characters media=media}}
 
     {{! Media Information }}
-    {{media/information-sidebar media=media}}
+    {{media/media-titles media=media}}
+    {{media/media-information media=media}}
   </div>
 </div>
 
