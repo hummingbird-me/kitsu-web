@@ -6,6 +6,146 @@
   height: 270px;
   background: $voodoo;
   overflow: hidden;
+  .flickity-viewport {
+    @extend .container;
+    height: 250px;
+    margin-top: 15px;
+    overflow: visible;
+    .flickity-slider {
+      width: 100vw;
+    }
+    .quick-update-actions {
+      flex: 1;
+      opacity: 0;
+      background: linear-gradient(to right,RGBA(237, 72, 95, .7),RGBA(242, 124, 54, .7));
+      border-radius: 3px;
+    }
+
+    .quick-update-title-block {
+      text-align: left;
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      right: 15px;
+      color: $white;
+      opacity: 1;
+      .series-title {
+        margin-bottom: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .quick-update-item {
+      width: 12%;
+      min-width: 190px;
+      max-width: 275px;
+      height: 200px;
+      border-radius: 3px;
+      margin-right: 15px;
+      overflow: hidden;
+      animation-delay: .5s;
+      position: relative;
+      .quick-update-media-wrapper {
+        background: #677086;
+        transition: opacity .2s ease-in;
+      }
+      &.is-selected {
+        .quick-update-media-wrapper {
+          opacity: 1;
+        }
+      }
+      img {
+        width: 100%;
+      }
+      &:hover {
+        .quick-update-actions {
+          @extend .animated;
+          @extend .fadeIn;
+          animation-duration: .5s;
+        }
+      }
+    }
+
+
+    .overlay-panel {
+      display: flex;
+      flex-direction: column;
+      background-image: -webkit-linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.7) 100%);
+      background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.7) 100%);
+      background-size: auto 200%;
+      background-repeat: repeat-x;
+      border-radius: 3px;
+      text-align: center;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transition: background-position .3s ease-in-out;
+    }
+    .action-wrapper {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      height: 100%;
+      padding: 0 20px;
+
+
+      .button {
+        display: inline-block;
+        vertical-align: middle;
+        width: 100%;
+        min-height: 45px;
+        white-space: normal;
+        &:hover {
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        }
+        .loading {
+          position: relative;
+          top: 3px;
+          margin-left: 2px;
+          margin-right: 2px;
+        }
+      }
+
+      .review-button {
+        margin-top: 0;
+        margin-bottom: 50px;
+      }
+    }
+  }
+  .flickity-prev-next-button {
+    top: 90px;
+    height: 200px;
+    margin-top: 10px;
+    bottom: 0;
+    border-radius: 0;
+    background: rgba(0,0,0,1);
+    transition: all .2s ease-in;
+    opacity: .3;
+    svg {
+      top: 14%;
+    }
+    .arrow {
+      fill: $white;
+    }
+    &:disabled {
+      opacity: 0 !important;
+    }
+    &:hover {
+      background: rgba(0,0,0,1);
+      opacity: .6;
+    }
+    &.next {
+      right: 0;
+    }
+    &.previous {
+      left: 0;
+    }
+  }
 }
 
 .quick-update-loading {
@@ -47,119 +187,6 @@
   }
   .star-full .star-rating-base, .star-half .star-rating-base, .star-variable .star-rating-base {
     stop-color: rgba(255,255,255,.6);
-  }
-}
-
-.flickity-viewport {
-  @extend .container;
-  height: 250px;
-  margin-top: 15px;
-  overflow: visible;
-  .flickity-slider {
-    width: 100vw;
-  }
-  .quick-update-actions {
-    display: flex;
-    flex: 1;
-    opacity: 0;
-    background: linear-gradient(to right,RGBA(237, 72, 95, .7),RGBA(242, 124, 54, .7));
-    border-radius: 3px;
-  }
-
-  .quick-update-title-block {
-    text-align: left;
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-    right: 15px;
-    color: $white;
-    opacity: 1;
-    .series-title {
-      margin-bottom: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-
-  .quick-update-item {
-    width: 12%;
-    min-width: 190px;
-    max-width: 275px;
-    height: 200px;
-    border-radius: 3px;
-    margin-right: 15px;
-    overflow: hidden;
-    animation-delay: .5s;
-    position: relative;
-    .quick-update-media-wrapper {
-      background: #677086;
-      transition: opacity .2s ease-in;
-    }
-    &.is-selected {
-      .quick-update-media-wrapper {
-        opacity: 1;
-      }
-    }
-    img {
-      width: 100%;
-    }
-    &:hover {
-      .quick-update-actions {
-        @extend .animated;
-        @extend .fadeIn;
-        animation-duration: .5s;
-      }
-    }
-  }
-
-
-  .overlay-panel {
-    display: flex;
-    flex-direction: column;
-    background-image: -webkit-linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.7) 100%);
-    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.7) 100%);
-    background-size: auto 200%;
-    background-repeat: repeat-x;
-    border-radius: 3px;
-    text-align: center;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    transition: background-position .3s ease-in-out;
-  }
-  .action-wrapper {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    padding: 0 20px;
-
-
-    .button {
-      display: inline-block;
-      vertical-align: middle;
-      width: 100%;
-      min-height: 45px;
-      white-space: normal;
-      &:hover {
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-      }
-      .loading {
-        position: relative;
-        top: 3px;
-        margin-left: 2px;
-        margin-right: 2px;
-      }
-    }
-
-    .review-button {
-      margin-top: 0;
-      margin-bottom: 50px;
-    }
   }
 }
 
@@ -213,36 +240,6 @@ a.update--entry-title {
     &:hover {
       color: $white;
     }
-  }
-}
-
-.flickity-prev-next-button {
-  top: 90px;
-  height: 200px;
-  margin-top: 10px;
-  bottom: 0;
-  border-radius: 0;
-  background: rgba(0,0,0,1);
-  transition: all .2s ease-in;
-  opacity: .3;
-  svg {
-    top: 14%;
-  }
-  .arrow {
-    fill: $white;
-  }
-  &:disabled {
-    opacity: 0 !important;
-  }
-  &:hover {
-    background: rgba(0,0,0,1);
-    opacity: .6;
-  }
-  &.next {
-    right: 0;
-  }
-  &.previous {
-    left: 0;
   }
 }
 

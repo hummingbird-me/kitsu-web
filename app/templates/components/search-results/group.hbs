@@ -7,9 +7,9 @@
       {{else}}
         {{#paginated-resource/manual
           model=items
-          update=update as |nextLink|}}
+          update=(action (queue (toggle-action "isLoadingMore" this) update)) as |nextLink|}}
           {{#if nextLink}}
-            <a href="#" {{action "noop"}}>more</a>
+            <a href="#" {{action (toggle-action "isLoadingMore" this)}}>more</a>
           {{/if}}
         {{/paginated-resource/manual}}
       {{/if}}
@@ -26,7 +26,7 @@
     <div class="text-xs-center w-100 m-t-1 m-b-1">
       {{loading-spinner size="small"}}
     </div>
-  {{else}}
+  {{else if items}}
     <ul class="media-list search--results">
       {{#each items as |item|}}
         <li class="media col-sm-12" {{action "transitionTo" item}}>
@@ -46,6 +46,11 @@
           </div>
         </li>
       {{/each}}
+      {{#if isLoadingMore}}
+        <div class="text-xs-center w-100 m-t-1 m-b-1">
+          {{loading-spinner size="small"}}
+        </div>
+      {{/if}}
     </ul>
   {{/if}}
 </ul>

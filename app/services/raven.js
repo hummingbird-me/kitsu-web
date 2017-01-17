@@ -4,8 +4,14 @@ import get from 'ember-metal/get';
 export default RavenLogger.extend({
   errorsToIgnore: ['TransitionAborted'],
 
-  ignoreError(reason) {
-    const { message } = reason;
-    return get(this, 'errorsToIgnore').any(error => message.includes(error));
+  ignoreError(error) {
+    const { message } = error;
+    return get(this, 'errorsToIgnore').any(ignored => message.includes(ignored));
   },
+
+  logException(error) {
+    if (!this.ignoreError(error)) {
+      this.captureException(error);
+    }
+  }
 });

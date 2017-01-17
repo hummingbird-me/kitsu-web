@@ -46,10 +46,6 @@ export default Controller.extend({
     switchFeed(type) {
       set(this, 'streamType', type);
       set(this, 'lastUsed.feedType', type);
-    },
-
-    joinCommunity() {
-      get(this, 'session').signUpModal();
     }
   }
 });

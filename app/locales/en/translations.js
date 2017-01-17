@@ -20,6 +20,7 @@ export default {
     comments: 'Comment by {{user}}',
     reviews: 'Review by {{user}}',
     notifications: 'Notifications',
+    trending: 'Trending',
     admin: {
       index: 'Admin',
       reports: 'Reports'
@@ -45,7 +46,7 @@ export default {
       hint: {
         text: 'Media you\'ve added or updated within your {{link}} willl show up here for you to quickly update.',
         library: 'Library',
-        discover: 'Discover Anime'
+        discover: 'Discover Media'
       },
       mark: 'Mark',
       episode: 'Ep. {{num}}',
@@ -159,7 +160,7 @@ export default {
     library: 'Library',
     anime: 'Anime',
     manga: 'Manga',
-    forums: 'Forums',
+    trending: 'Trending',
     apps: 'Apps',
     signIn: 'Sign In',
     signUp: 'Sign Up',
@@ -355,7 +356,7 @@ export default {
         starts: 'This field must start with a letter or number'
       }
     },
-    load: 'There was an issue loading the content',
+    load: 'There was an issue loading the content.',
     contentEmpty: 'Hmm, there doesn\'t seem to be anything here yet.'
   }
 };

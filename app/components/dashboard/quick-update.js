@@ -12,7 +12,6 @@ import { storageFor } from 'ember-local-storage';
 export default Component.extend({
   classNames: ['quick-update'],
   pageLimit: 12,
-
   notify: service(),
   session: service(),
   store: service(),
@@ -51,48 +50,19 @@ export default Component.extend({
     this._getEntries();
   },
 
-  willDestroyElement() {
-    this._super(...arguments);
-    this._clean();
-  },
-
   _getEntries() {
     set(this, 'initialEntries', []);
     get(this, 'getEntriesTask').perform().then((entries) => {
       set(this, 'initialEntries', entries);
-      this._clean();
-      scheduleOnce('afterRender', () => {
-        if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
-        set(this, 'carousel', this.$('.carousel').flickity(this._options()));
-      });
     }).catch(() => {});
-  },
-
-  _clean() {
-    if (get(this, 'carousel') !== undefined) {
-      get(this, 'carousel').flickity('destroy');
-    }
   },
 
   _appendToFlickty() {
     scheduleOnce('afterRender', () => {
       if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
-      const index = get(this, 'carousel').data('flickity').cells.length - 1;
-      get(this, 'carousel').flickity('insert', this.$('.new-entries').children(), index);
+      const index = this.$('.carousel').data('flickity').cells.length - 1;
+      this.$('.carousel').flickity('insert', this.$('.new-entries').children(), index);
     });
-  },
-
-  /**
-   * Options for flickity
-   */
-  _options() {
-    return {
-      cellAlign: 'left',
-      contain: false,
-      pageDots: false,
-      groupCells: 1,
-      autoPlay: false
-    };
   },
 
   actions: {

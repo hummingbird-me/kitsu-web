@@ -1,0 +1,32 @@
+{{! TODO: Move to CSS class that can be applied }}
+<style>
+  .global-container {
+    max-width: 100%;
+  }
+</style>
+
+{{#if session.hasUser}}
+  {{trending/trending-banner}}
+{{else}}
+  {{trending/guest-banner}}
+{{/if}}
+
+<div class="trending-sections {{if session.hasUser "logged-in"}}">
+  {{! Trending Media }}
+  {{trending/trending-media}}
+
+  {{! Recently Reviewed Media }}
+  {{trending/recently-reviewed}}
+
+  {{! Popular Reviews }}
+  {{trending/popular-reviews}}
+
+  {{! Seasonal Anime }}
+  {{trending/seasonal-series}}
+
+  {{! Highest Rated }}
+  {{trending/highest-rated}}
+
+  {{! Popular Media }}
+  {{trending/popular-media}}
+</div>
