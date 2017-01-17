@@ -19,7 +19,7 @@
       {{#em-flickity class="trending-media" wrapAround=true cellAlign="left" showSlides=(gt currentItems.length 0)}}
         {{#each currentItems as |item|}}
           <div class="trending-cell">
-            <a href={{href-to (concat (model-type item.media) ".show") item.media.slug}} class="media-poster">
+            <a href={{href-to "reviews" item.id}} class="media-poster">
               {{lazy-image url=(image item.media.posterImage "large")}}
             </a>
             <a href={{href-to "users.index" item.user.name}} class="review-author">
