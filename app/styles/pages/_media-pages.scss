@@ -403,11 +403,9 @@
 }
 
 .character-grid {
-  column-count: 5;
-  column-gap: 10px;
-  @media (max-width: 990px) {
-    column-count: 3;
-  }
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .character-wrapper {
@@ -433,10 +431,14 @@
 
 .media-character {
   display: flex;
-  width:  100%;
-  min-height: initial;
-  page-break-inside: avoid;
-  break-inside: avoid;
+  max-width: 173px;
+  margin-right: 10px;
+  &:nth-child(5n+5) {
+    margin-right: 0px;
+    @media (max-width: 990px) {
+      margin-right: 10px;
+    }
+  }
 }
 
 .character-voice-actors {
