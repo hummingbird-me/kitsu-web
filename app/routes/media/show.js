@@ -14,7 +14,6 @@ import clip from 'clip';
 
 export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   templateName: 'media/show',
-
   metrics: service(),
   notify: service(),
   session: service(),
@@ -31,11 +30,16 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
 
   model({ slug }) {
     const [type] = get(this, 'routeName').split('.');
+    let include = ['genres'];
+    if (type === 'anime') {
+      include.push('animeProductions.producer');
+    }
+    include = include.join(',');
     if (slug.match(/\D+/)) {
-      return get(this, 'store').query(type, { filter: { slug }, include: 'genres' })
+      return get(this, 'store').query(type, { filter: { slug }, include })
         .then(records => get(records, 'firstObject'));
     }
-    return get(this, 'store').findRecord(type, slug, { include: 'genres' });
+    return get(this, 'store').findRecord(type, slug, { include });
   },
 
   setupController(controller, model) {

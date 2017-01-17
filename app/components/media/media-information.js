@@ -5,9 +5,20 @@ import { modelType } from 'client/helpers/model-type';
 import moment from 'moment';
 /* global humanizeDuration */
 
+const computedProduction = key => (
+  getter(function() {
+    const productions = get(this, 'media.animeProductions');
+    return productions.filterBy('role', key).mapBy('producer.name').join(', ');
+  })
+);
+
 export default Component.extend({
   tagName: 'section',
   classNames: ['media--information'],
+
+  producers: computedProduction('producer'),
+  licensors: computedProduction('licensor'),
+  studios: computedProduction('studio'),
 
   isAnime: getter(function() {
     return modelType([get(this, 'media')]) === 'anime';
@@ -55,6 +66,9 @@ export default Component.extend({
     return humanizeDuration(time.asMilliseconds(), { largest: 1 });
   }),
 
+  /**
+   * Returns keys used in our translation file.
+   */
   airingStatus: getter(function() {
     const start = get(this, 'media.startDate');
     const end = get(this, 'media.endDate');

@@ -8,5 +8,6 @@ export default Media.extend(EpisodicMixin, {
   ageRatingGuide: attr('string'),
   youtubeVideoId: attr('string'),
 
+  animeProductions: hasMany('anime-production'),
   streamingLinks: hasMany('streaming-link')
 });

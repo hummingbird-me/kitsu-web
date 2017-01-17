@@ -143,6 +143,9 @@ export default {
             }
           },
           season: 'Season',
+          producers: 'Producers',
+          licensors: 'Licensors',
+          studios: 'Studios',
           serialization: 'Serialization',
           duration: 'Duration',
           length: {

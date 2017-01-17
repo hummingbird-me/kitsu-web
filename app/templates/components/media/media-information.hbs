@@ -49,6 +49,27 @@
     {{/if}}
   {{/if}}
 
+  {{#if (and isAnime media.animeProductions)}}
+    {{#if producers}}
+      <li>
+        <strong>{{t "media.routes.show.information.producers"}}:</strong>
+        {{producers}}
+      </li>
+    {{/if}}
+    {{#if licensors}}
+      <li>
+        <strong>{{t "media.routes.show.information.licensors"}}:</strong>
+        {{licensors}}
+      </li>
+    {{/if}}
+    {{#if studios}}
+      <li>
+        <strong>{{t "media.routes.show.information.studios"}}:</strong>
+        {{studios}}
+      </li>
+    {{/if}}
+  {{/if}}
+
   {{! Serialization }}
   {{#if (and isManga media.serialization)}}
     <li>
