@@ -112,12 +112,12 @@ export default {
         },
         ranking: {
           popularity: {
-            anime: 'Rank {{rank}} (Most Popular Anime)',
-            manga: 'Rank {{rank}} (Most Popular Manga)'
+            anime: 'Rank #{{rank}} (Most Popular Anime)',
+            manga: 'Rank #{{rank}} (Most Popular Manga)'
           },
           rating: {
-            anime: 'Rank {{rank}} (Highest Rated Anime)',
-            manga: 'Rank {{rank}} (Highest Rated Manga)'
+            anime: 'Rank #{{rank}} (Highest Rated Anime)',
+            manga: 'Rank #{{rank}} (Highest Rated Manga)'
           }
         },
         relationships: {
