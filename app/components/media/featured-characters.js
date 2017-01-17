@@ -13,7 +13,7 @@ export default Component.extend({
   store: service(),
 
   getCharacters: task(function* (mediaType, mediaId) {
-    let language = null;
+    let language;
     if (mediaType === 'anime') {
       const languages = yield get(this, 'ajax').request(`/anime/${mediaId}/_languages`);
       language = languages.find(item => item === 'Japanese') || get(languages, 'firstObject');
