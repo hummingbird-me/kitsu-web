@@ -3,6 +3,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { capitalize } from 'ember-string';
+import { isPresent } from 'ember-utils';
 import { task } from 'ember-concurrency';
 import { modelType } from 'client/helpers/model-type';
 
@@ -16,7 +17,10 @@ export default Component.extend({
     let language;
     if (mediaType === 'anime') {
       const languages = yield get(this, 'ajax').request(`/anime/${mediaId}/_languages`);
-      language = languages.find(item => item === 'Japanese') || get(languages, 'firstObject');
+      console.log(languages);
+      if (isPresent(languages)) {
+        language = languages.find(item => item === 'Japanese') || get(languages, 'firstObject');
+      }
     }
     return yield get(this, 'store').query('casting', {
       filter: Object.assign({
