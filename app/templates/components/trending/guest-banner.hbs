@@ -1,0 +1,52 @@
+<div class="guest-banner">
+  <div class="guest-container container">
+    <div class="row">
+      <div class="guest-cta--wrapper">
+        <h1>Meet your next favorite anime or manga.</h1>
+        <p>Kitsu is a social platform for anime and manga fans. <br> We'll help you find and share more of what you love.</p>
+      </div>
+      <div class="modal-actions">
+        {{facebook-button text="Login with Facebook" onclick=(action "facebookLogin")}}
+        <a class="community-btn btn-primary" {{action "joinCommunity"}}>
+          Join the Community
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {{! Search }}
+  <section id="guest-search" class="guest-search">
+    <div class="container">
+      <div class="row">
+        <div class="guest-search--wrapper">
+          <span class="icon">
+            {{svg-jar "search"}}
+          </span>
+          {{one-way-search query
+            update=(action (mut query))
+            class="guest-search-input"
+            placeholder="Search for an anime, manga, user..."
+          }}
+        </div>
+      </div>
+    </div>
+  </section>
+  {{search-results
+    tooltipClass="guest-search-dropdown"
+    target=".guest-search-input"
+    attachment="top left"
+    targetAttachment="bottom left"
+    offset="0px 0px"
+    query=query
+    isOpened=(gt query.length 2)
+  }}
+</div>
+
+{{! TODO: Clean this up with a proper modal invoke system --- This is a hack implemenation }}
+{{#if showFacebookSignUp}}
+  {{to-elsewhere named="modal" send=(component "application/auth-onboarding"
+    modalId="auth-modal"
+    component="sign-up"
+    componentData=facebookSignUpData
+    onClose=(toggle-action "showFacebookSignUp" this))}}
+{{/if}}

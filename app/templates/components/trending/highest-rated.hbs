@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="trending-row--header">
+      <h3 class="trending-row--title">Highest Rated {{capitalize currentTab}} {{lastYear}}</h3>
+      <nav class="nav nav-simple">
+        <a class="nav-link {{if (eq currentTab "anime") "active"}}" href="#" {{action "changeTab" "anime"}}>Anime</a>
+        <a class="nav-link {{if (eq currentTab "manga") "active"}}" href="#" {{action "changeTab" "manga"}}>Manga</a>
+      </nav>
+    </div>
+    {{#if getDataTask.isRunning}}
+      <div class="text-xs-center w-100 m-t-3 m-b-3">
+        {{loading-spinner size="large"}}
+      </div>
+    {{else if isSwitchingTab}}
+      {{! ---- see trending/-base.js ---- }}
+    {{else}}
+      {{#em-flickity class="trending-media" wrapAround=true cellAlign="left" showSlides=(gt currentItems.length 0)}}
+        {{#each currentItems as |item|}}
+          <div class="trending-cell">
+            <a href={{href-to (concat (model-type item) ".show") item.slug}} class="media-poster">
+              {{lazy-image url=(image item.posterImage "large")}}
+            </a>
+            <div class="ellipsis">
+              <a href={{href-to (concat (model-type item) ".show") item.slug}} class="media-title">
+                {{item.computedTitle}}
+              </a>
+            </div>
+          </div>
+        {{/each}}
+      {{/em-flickity}}
+    {{/if}}
+  </div>
+</div>

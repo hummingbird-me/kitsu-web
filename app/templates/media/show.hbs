@@ -3,59 +3,20 @@
     <div class="cover-photo" style={{coverImageStyle}}>
       <div class="container">
         <div class="row">
-          <div class="cover-user-info">
+          <div class="cover-user-info cover-media-info">
             <div class="primary-info">
+              {{! poster }}
+              <div class="mini-bio--poster">
+                {{lazy-image url=(image media.posterImage "large")}}
+              </div>
               <div class="mini-bio">
                 <h3 class="cover-username" data-test-selector="title">
                   {{media.computedTitle}}
                 </h3>
-                <div class="media--meta">
-                  <ul>
-                    {{#if (or media.ageRating media.subtype)}}
-                      <li class="rating-content-type">
-                        {{#if media.ageRating}}
-                          <span>{{media.ageRating}}</span>
-                        {{/if}}
-                        <span>{{capitalize media.subtype}}</span>
-                      </li>
-                    {{/if}}
-
-                    {{! genres }}
-                    {{#each (sort-by "name" media.genres) as |genre|}}
-                      <li class="media--category-tag">
-                        <a href={{href-to (concat (model-type media) ".index") (query-params genres=genre.name)}}>
-                          {{genre.name}}
-                        </a>
-                      </li>
-                    {{/each}}
-                  </ul>
-                  <ul class="media--secondary-meta">
-                    {{#if media.startDate}}
-                      <li class="media--airing-date">
-                        <span>
-                          {{moment-format media.startDate "MMM D, YYYY"}}
-                          {{#if (and media.endDate airedLongerThanOneDay)}}
-                            to {{moment-format media.endDate "MMM D, YYYY"}}
-                          {{/if}}
-                        </span>
-                      </li>
-                    {{/if}}
-                    {{#if media.unitCount}}
-                      <li class="media--content-length">
-                        <span>
-                          {{t (concat "media.routes.show.meta.unit." (model-type media)) count=media.unitCount}}
-                          {{#if media.episodeLength}}
-                            {{t "media.routes.show.meta.unit.length" total=totalTime length=media.episodeLength count=media.unitCount}}
-                          {{/if}}
-                        </span>
-                      </li>
-                    {{/if}}
-                  </ul>
+                <div class="cover-cta media-follow">
+                  {{media/media-follow media=media}}
                 </div>
               </div>
-            </div>
-            <div class="cover-cta media-follow">
-              {{media/media-follow media=media}}
             </div>
           </div>
         </div>
@@ -72,13 +33,8 @@
           {{#if (eq (model-type media) "anime")}}
             {{link-to (t "media.routes.show.nav.episodes") (concat (model-type media) ".show.episodes") class="nav-item nav-link"}}
           {{/if}}
-          {{!-- TODO: Needs Implementing
-          {{link-to (t "media.routes.show.nav.cast") (concat (model-type media) ".show.cast") class="nav-item nav-link"}}
-          {{link-to (t "media.routes.show.nav.installments") (concat (model-type media) ".show.installments") class="nav-item nav-link"}}
-          --}}
-          {{#link-to (concat (model-type media) ".show.reviews") class="nav-item nav-link"}}
-            {{t "media.routes.show.nav.reviews"}}
-          {{/link-to}}
+          {{link-to (t "media.routes.show.nav.characters") (concat (model-type media) ".show.characters") class="nav-item nav-link"}}
+          {{link-to (t "media.routes.show.nav.reviews") (concat (model-type media) ".show.reviews") class="nav-item nav-link"}}
         </div>
       </div>
     </div>
@@ -95,10 +51,6 @@
       {{! trailer }}
       {{#if media.youtubeVideoId}}
         <div class="trailer">
-          {{! TODO - @Josh - trailer button on media page -- might be good to overlay again like browse page }}
-          <button class="button button--primary" onclick={{action (toggle "trailerOpen" this)}}>
-            Watch Trailer
-          </button>
           {{#if trailerOpen}}
             {{to-elsewhere named="modal" send=(component "modals/media-trailer"
               modalId="media-trailer"

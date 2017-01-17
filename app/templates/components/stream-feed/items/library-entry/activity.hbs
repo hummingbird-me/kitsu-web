@@ -28,7 +28,7 @@
   {{/if}}
 
   {{! Deletion }}
-  {{#if (is-self activity.actor)}}
+  {{#if (and (is-self activity.actor) (not readOnly))}}
     &mdash;
     {{#if isDeleteing}}
       deleting...

@@ -13,8 +13,9 @@
       </div>
 
       <ul class="nav navbar-nav pull-xs-right navbar-buttons">
+        {{! Search }}
         <li class="nav-item">
-          {{application/site-search class="site-search"}}
+          {{application/nav-search class="site-search"}}
         </li>
 
         {{#if session.hasUser}}
@@ -76,6 +77,9 @@
           </li>
           <li class="nav-item">
             {{link-to (t "header.manga") "manga.index" class="nav-link"}}
+          </li>
+          <li class="nav-item">
+            {{link-to (t "header.trending") "trending" class="nav-link"}}
           </li>
         </ul>
       </div>

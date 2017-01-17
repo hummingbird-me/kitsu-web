@@ -13,6 +13,7 @@ import RSVP from 'rsvp';
 export const REMOVE_KEY = 'library.remove';
 
 export default Component.extend({
+  classNameBindings: ['entry:has-entry'],
   entryIsLoaded: false,
   i18n: service(),
   metrics: service(),
