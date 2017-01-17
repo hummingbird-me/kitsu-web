@@ -123,7 +123,7 @@ export default {
           summary: 'Summary',
           full_story: 'Full story',
           spinoff: 'Spin-off',
-          adaptation: 'Adaption',
+          adaptation: 'Adaptation',
           character: 'Character',
           other: 'Other'
         },
