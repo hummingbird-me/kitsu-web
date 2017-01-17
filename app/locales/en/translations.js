@@ -103,6 +103,13 @@ export default {
           reviews: 'Reviews',
           quotes: 'Quotes'
         },
+        characters: {
+          title: '{{title}} Characters',
+          subtitle: {
+            anime: 'The following is a full list of characters and their {{language}} voice actors from the anime {{title}}',
+            manga: 'The following is a full list of characters for the manga {{title}}'
+          }
+        },
         ranking: {
           popularity: {
             anime: 'Rank {{rank}} (Most Popular Anime)',

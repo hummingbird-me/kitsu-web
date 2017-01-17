@@ -1,101 +1,69 @@
-<h2>Naruto Characters</h2>
-<p>The following is a full list of characters and their english voice actors from the anime Naruto</p>
+<h2 class="d-inline-block">{{t "media.routes.show.characters.title" title=media.computedTitle}}</h2>
+{{#if (and taskValue (gt availableLanguages.length 1))}}
+  <div class="characters--language--header">
+    {{#bootstrap/bs-dropdown as |dropdown|}}
+      {{#dropdown.button}}
+        {{capitalize language}}
+      {{/dropdown.button}}
+      {{#dropdown.menu}}
+        {{#each availableLanguages as |option|}}
+          {{#dropdown.menu-item onClick=(action (mut language) (to-lower option))}}
+            {{option}}
+            {{#if (eq (to-lower option) language)}}
+              {{svg-jar "checkmark"}}
+            {{/if}}
+          {{/dropdown.menu-item}}
+        {{/each}}
+      {{/dropdown.menu}}
+    {{/bootstrap/bs-dropdown}}
+  </div>
+{{/if}}
+<p>{{t (concat "media.routes.show.characters.subtitle." (model-type media)) language=(capitalize language) title=media.computedTitle}}</p>
 
-<section class="character-grid">
-  <article class="media-character">
-    <div class="character-wrapper">
-      <div class="character-image">
-        <a href="#">
-          <img src="https://cdn.anilist.co/img/dir/character/reg/17.jpg">
-        </a>
-      </div>
-      <div class="character-name">
-        <a href="#">Naruto Uzumaki</a>
-      </div>
-      <div class="character-voice-actors">
-        <a href="#" class="va">
-          <img src="https://myanimelist.cdn-dena.com/images/voiceactors/3/43050.jpg">
-          Takahashi, Hidenori
-        </a>
-        <a href="#" class="va">
-          <img src="https://myanimelist.cdn-dena.com/images/voiceactors/3/43050.jpg">
-          Takahashi, Hidenori
-        </a>
-      </div>
-    </div>
-  </article>
-  <article class="media-character">
-    <div class="character-wrapper">
-      <div class="character-image">
-        <a href="#">
-          <img src="https://cdn.anilist.co/img/dir/character/reg/13.jpg">
-        </a>
-      </div>
-      <div class="character-name">
-        <a href="#">Sasuke Uchiha</a>
-      </div>
-      <div class="character-voice-actors">
-        <a href="#" class="va">
-          <img src="https://myanimelist.cdn-dena.com/images/voiceactors/3/43050.jpg">
-          Takahashi, Hidenori
-        </a>
-      </div>
-    </div>
-  </article>
-  <article class="media-character">
-    <div class="character-wrapper">
-      <div class="character-image">
-        <a href="#">
-          <img src="https://cdn.anilist.co/img/dir/character/reg/85.jpg">
-        </a>
-      </div>
-      <div class="character-name">
-        <a href="#">Kakashi Hatake</a>
-      </div>
-      <div class="character-voice-actors">
-        <a href="#" class="va">
-          <img src="https://myanimelist.cdn-dena.com/images/voiceactors/3/43050.jpg">
-          Takahashi, Hidenori
-        </a>
-      </div>
-    </div>
-  </article>
-  <article class="media-character">
-    <div class="character-wrapper">
-      <div class="character-image">
-        <a href="#">
-          <img src="https://cdn.anilist.co/img/dir/character/reg/145.jpg">
-        </a>
-      </div>
-      <div class="character-name">
-        <a href="#">Sakura Haruno</a>
-      </div>
-      <div class="character-voice-actors">
-        <a href="#" class="va">
-          <a href="#">
-            <img src="https://myanimelist.cdn-dena.com/images/voiceactors/3/43050.jpg">
-          </a>
-          Takahashi, Hidenori
-        </a>
-      </div>
-    </div>
-  </article>
-  <article class="media-character">
-    <div class="character-wrapper">
-      <div class="character-image">
-        <a href="#">
-          <img src="https://myanimelist.cdn-dena.com/images/characters/2/292433.webp">
-        </a>
-      </div>
-      <div class="character-name">
-        <a href="#"  href="#">Torune Aburame</a>
-      </div>
-      <div class="character-voice-actors">
-        <a href="#"  class="va">
-          <img src="https://myanimelist.cdn-dena.com/images/voiceactors/3/43050.jpg">
-          Takahashi, Hidenori
-        </a>
-      </div>
-    </div>
-  </article>
-</section>
+{{#if model.taskInstance.isRunning}}
+  <div class="text-xs-center w-100 m-t-1 m-b-1">
+    {{loading-spinner size="large"}}
+    <p>Loading Characters...</p>
+  </div>
+{{else if model.taskInstance.error}}
+  <div class="text-xs-center w-100 m-t-1 m-b-1">
+    {{t "errors.load"}}
+  </div>
+{{else if taskValue}}
+  <section class="character-grid">
+    {{#each taskValue as |casting|}}
+      <article class="media-character">
+        <div class="character-wrapper">
+          <div class="character-image">
+            <a href={{href-to "characters" casting.character.id}}>
+              {{lazy-image url=(image casting.character.image)}}
+            </a>
+          </div>
+          <div class="character-name">
+            <a href={{href-to "characters" casting.character.id}}>{{casting.character.name}}</a>
+          </div>
+          {{#if casting.person}}
+            <div class="character-voice-actors">
+              <a href={{href-to "people" casting.person.id}} class="va">
+                {{lazy-image url=(image casting.person.image)}}
+                {{casting.person.name}}
+              </a>
+            </div>
+          {{/if}}
+        </div>
+      </article>
+    {{/each}}
+  </section>
+
+  <div class="text-xs-center w-100">
+    {{paginated-resource/infinite
+      model=taskValue
+      update=(route-action "updateNextPage" "taskValue")
+      loadingSize="large"
+    }}
+  </div>
+{{else}}
+  <div class="text-xs-center w-100 m-t-1 m-b-1">
+    {{t "errors.contentEmpty"}}
+  </div>
+{{/if}}
