@@ -136,6 +136,7 @@ export default {
         },
         titles: {
           en: 'English',
+          en_us: 'English',
           en_jp: 'Romanized',
           ja_jp: 'Japanese'
         },

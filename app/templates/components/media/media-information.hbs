@@ -79,7 +79,7 @@
   {{/if}}
 
   {{! Duration }}
-  {{#if (and isAnime media.episodeLength)}}
+  {{#if (and isAnime (and media.unitCount media.episodeLength))}}
     <li>
       <strong>{{t "media.routes.show.information.duration"}}:</strong>
       {{t "media.routes.show.information.length" total=totalTime length=media.episodeLength count=media.unitCount}}
