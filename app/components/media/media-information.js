@@ -31,7 +31,7 @@ export default Component.extend({
   season: getter(function() {
     const start = get(this, 'media.startDate');
     if (!start) { return null; }
-    const month = moment(start).month();
+    const month = moment(start).month() + 1;
     if ([12, 1, 2].includes(month)) {
       return 'winter';
     } else if ([3, 4, 5].includes(month)) {
