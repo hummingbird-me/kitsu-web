@@ -20,6 +20,7 @@ export default {
     comments: 'Comment by {{user}}',
     reviews: 'Review by {{user}}',
     notifications: 'Notifications',
+    trending: 'Trending',
     admin: {
       index: 'Admin',
       reports: 'Reports'
@@ -45,7 +46,7 @@ export default {
       hint: {
         text: 'Media you\'ve added or updated within your {{link}} willl show up here for you to quickly update.',
         library: 'Library',
-        discover: 'Discover Anime'
+        discover: 'Discover Media'
       },
       mark: 'Mark',
       episode: 'Ep. {{num}}',
@@ -98,26 +99,82 @@ export default {
         nav: {
           summary: 'Summary',
           episodes: 'Episodes',
-          installments: 'Franchise',
-          cast: 'Cast',
+          characters: 'Characters',
           reviews: 'Reviews',
           quotes: 'Quotes'
         },
-        meta: {
+        characters: {
+          title: '{{title}} Characters',
+          subtitle: {
+            anime: 'The following is a full list of characters and their {{language}} voice actors from the anime {{title}}',
+            manga: 'The following is a full list of characters for the manga {{title}}'
+          }
+        },
+        ranking: {
+          popularity: {
+            anime: 'Rank #{{rank}} (Most Popular Anime)',
+            manga: 'Rank #{{rank}} (Most Popular Manga)'
+          },
+          rating: {
+            anime: 'Rank #{{rank}} (Highest Rated Anime)',
+            manga: 'Rank #{{rank}} (Highest Rated Manga)'
+          }
+        },
+        relationships: {
+          sequel: 'Sequel',
+          prequel: 'Prequel',
+          alternate_setting: 'Alternate setting',
+          alternate_version: 'Alternate version',
+          side_story: 'Side story',
+          parent_story: 'Parent story',
+          summary: 'Summary',
+          full_story: 'Full story',
+          spinoff: 'Spin-off',
+          adaptation: 'Adaptation',
+          character: 'Character',
+          other: 'Other'
+        },
+        titles: {
+          en: 'English',
+          en_us: 'English',
+          en_jp: 'Romanized',
+          ja_jp: 'Japanese'
+        },
+        information: {
+          type: 'Type',
+          volumes: 'Volumes',
           unit: {
+            anime: 'Episodes',
+            manga: 'Chapters'
+          },
+          start: {
+            anime: 'Aired',
+            manga: 'Published'
+          },
+          status: 'Status',
+          statuses: {
             anime: {
-              one: '{{count}} episode',
-              other: '{{count}} episodes'
+              current: 'Currently Airing',
+              finished: 'Finished Airing',
+              nya: 'Not Yet Aired'
             },
             manga: {
-              one: '{{count}} chapter',
-              other: '{{count}} chapters'
-            },
-            length: {
-              one: '({{length}} minutes)',
-              other: '({{total}} / {{length}} minutes each)'
+              current: 'Publishing',
+              finished: 'Finished',
+              nya: 'Not Yet Published'
             }
-          }
+          },
+          season: 'Season',
+          producers: 'Producers',
+          licensors: 'Licensors',
+          studios: 'Studios',
+          serialization: 'Serialization',
+          duration: 'Duration',
+          length: {
+            one: '{{length}} minutes',
+            other: '{{total}} total ({{length}} minutes each)'
+          },
+          rating: 'Rating'
         },
         episodes: {
           episode: 'Episode'
@@ -159,7 +216,7 @@ export default {
     library: 'Library',
     anime: 'Anime',
     manga: 'Manga',
-    forums: 'Forums',
+    trending: 'Trending',
     apps: 'Apps',
     signIn: 'Sign In',
     signUp: 'Sign Up',
@@ -200,7 +257,7 @@ export default {
     edit: {
       editCover: 'Change your cover photo',
       aboutMe: 'About Me',
-      linkedProfiles: 'Linked Profiles',
+      profileLinks: 'Profile Links',
       about: {
         location: 'Location',
         locationPlaceholder: 'Where do you live?',
@@ -212,7 +269,7 @@ export default {
           female: 'Female',
           custom: 'Custom'
         },
-        genderCustom: 'Attack Helicopter',
+        genderCustom: 'How do you identify?',
         waifu: 'Waifu',
         waifuPlaceholder: 'Who is your waifu / husbando?',
         bio: 'Bio',
@@ -355,7 +412,7 @@ export default {
         starts: 'This field must start with a letter or number'
       }
     },
-    load: 'There was an issue loading the content',
+    load: 'There was an issue loading the content.',
     contentEmpty: 'Hmm, there doesn\'t seem to be anything here yet.'
   }
 };

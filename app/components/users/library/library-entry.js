@@ -29,10 +29,10 @@ export default Component.extend({
     }
   }).readOnly(),
 
-  typeText: computed('media.mediaType', {
+  typeText: computed('media.subtype', {
     get() {
       const media = modelType([get(this, 'media')]);
-      const type = get(this, 'media.mediaType');
+      const type = get(this, 'media.subtype');
       return get(this, 'i18n').t(`media.${media}.type.${type}`);
     }
   }).readOnly(),

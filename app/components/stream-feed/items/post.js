@@ -4,7 +4,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import observer from 'ember-metal/observer';
 import computed from 'ember-computed';
-import { typeOf } from 'ember-utils';
+import { typeOf, isEmpty } from 'ember-utils';
 import { scheduleOnce } from 'ember-runloop';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
 import getter from 'client/utils/getter';
@@ -45,6 +45,11 @@ export default Component.extend(ClipboardMixin, {
     const link = hrefTo(this, 'posts', get(this, 'post.id'));
     const url = `${host}${link}`;
     return `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+  }),
+
+  postEpisodeText: getter(function() {
+    const unit = get(this, 'post.spoiledUnit');
+    return isEmpty(get(unit, 'canonicalTitle')) ? '' : `- ${get(unit, 'canonicalTitle')}`;
   }),
 
   isEditable: getter(function() {
@@ -124,7 +129,10 @@ export default Component.extend(ClipboardMixin, {
       scheduleOnce('afterRender', () => {
         if (get(this, 'isDestroyed')) { return; }
         this._hideLongBody();
-        this.$('img').one('load', () => { this._hideLongBody(); });
+        const image = this.$('img');
+        if (image && image.length > 0) {
+          this.$('img').one('load', () => { this._hideLongBody(); });
+        }
       });
     }
   },

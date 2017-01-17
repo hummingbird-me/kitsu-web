@@ -15,6 +15,7 @@ export default Component.extend({
   notify: service(),
   store: service(),
   session: service(),
+  tracking: service(),
 
   hasValidName: and('user.name', 'user.validations.attrs.name.isValid'),
   hasValidEmail: and('user.email', 'user.validations.attrs.email.isValid'),
@@ -85,6 +86,7 @@ export default Component.extend({
           metrics.label = 'facebook';
         }
         get(this, 'metrics').trackEvent(metrics);
+        get(this, 'tracking').trackConversion(863549170, 'jvhFCLzuhG0Q8u3imwM');
       })
       .catch(err => get(this, 'notify').error(errorMessages(err)));
   }).drop(),

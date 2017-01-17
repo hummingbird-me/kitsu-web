@@ -7,7 +7,7 @@
       {{/dropdown.button}}
       {{#dropdown.menu}}
         {{#each filterOptions as |option|}}
-          {{#dropdown.menu-item onClick=(action (mut filter) option)}}
+          {{#dropdown.menu-item onClick=(action "changeFilter" option)}}
             {{t (concat "dashboard.quickUpdate.filter." option)}}
           {{/dropdown.menu-item}}
         {{/each}}
@@ -17,9 +17,11 @@
 </div>
 
 {{#if getEntriesTask.isRunning}}
-  {{! TODO -- @josh -- Loading State? }}
+  <div class="quick-update-loading">
+    {{loading-spinner size="large" class="white"}}
+  </div>
 {{else}}
-  <div class="carousel">
+  {{#em-flickity class="carousel" contain=false cellAlign="left" groupCells=1 setGallerySize=true showSlides=true}}
     {{#each initialEntries as |entry|}}
       {{dashboard/quick-update/item entry updateEntry=(action "updateEntry") class="quick-update-item"}}
     {{/each}}
@@ -27,11 +29,10 @@
     {{#if (lt initialEntries.length 4)}}
       <div class="quick-update-item hint-panel">
         {{t "dashboard.quickUpdate.hint.text" link=(create-link (t "dashboard.quickUpdate.hint.library") 'users.library' session.account.name)}}
-        <a href={{href-to "anime.index"}} class="button button--primary">
+        <a href={{href-to "trending"}} class="button button--primary">
           {{t "dashboard.quickUpdate.hint.discover"}}
         </a>
       </div>
-
       {{#each (repeat remaining) as |_|}}
         <div class="quick-update-item empty-panel">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" enable-background="new 0 0 50 50">
@@ -48,7 +49,7 @@
         update=(action "updateNextPage")
       }}
     {{/if}}
-  </div>
+  {{/em-flickity}}
 
   {{! Temporary storage for paginated entries }}
   <div class="new-entries" style="display: none">

@@ -1,0 +1,348 @@
+.trending-page {
+  width: 100%;
+}
+
+.trending-sections {
+  margin-top: 450px;
+  width: 100%;
+  overflow-x: hidden;
+  &.logged-in {
+    margin-top: 50px;
+  }
+}
+
+.trending-row {
+  text-align: center;
+  padding: 50px 0;
+  .flickity-viewport {
+    margin-top: 0;
+    height: 300px;
+    overflow: visible;
+  }
+  &:nth-child(even) {
+    background: #fbfbfb;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  }
+  &:first-child {
+    padding-top: 0;
+  }
+  .trending-row--title {
+    margin-bottom: 15px;
+  }
+  .nav {
+    margin-bottom: 5px;
+    .nav-link {
+      padding: 1px 10px;
+      border-radius: 3px;
+      margin-right: 5px;
+      &:hover {
+        background: #ececec;
+      }
+    }
+    .active {
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      &:hover {
+        background: none;
+      }
+    }
+  }
+}
+
+.trending-row--header {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.trending-media {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 3px;
+  height: 350px;
+}
+
+.trending-cell {
+  padding: 0;
+  width: 220px;
+  margin-right: 15px;
+  .media-poster {
+    display: inline-block;
+  }
+  img {
+    width: 100%;
+    border-radius: 3px;
+  }
+  .media-title {
+    color: #383D48;
+    font-size: 14px;
+    font-weight: 600;
+    display: block;
+    margin-top: 10px;
+  }
+  .review-author {
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    right: 0;
+    text-align: center;
+    bottom: -25px;
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 999em;
+      border: 3px solid #fafafa;
+    }
+  }
+}
+
+.just-reviewed {
+  min-height: 435px;
+  .trending-media {
+    height: 240px;
+  }
+  .trending-cell {
+    width: 150px;
+    margin-right: 15px;
+  }
+}
+
+.seasonal-series, .weekly-trending, .annual-trending {
+  min-height: 545px;
+}
+
+.trending-review-section {
+  width: 100%;
+  .trending-review {
+    text-align: left;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 20px;
+    width: 70%;
+    margin-right: 50px;
+    max-height: 300px;
+    overflow: auto;
+    p {
+      color: $charcoal;
+      font-size: 15px;
+    }
+  }
+  .review-header {
+    h4 {
+      margin-bottom: 5px;
+      a {
+        color: $charcoal;
+      }
+    }
+  }
+  .review-avatar {
+    width: 30px;
+    height: 30px;
+  }
+  .stream-review-rating {
+    line-height: 30px;
+  }
+  .review-author {
+    font-weight: 600;
+  }
+  .attribution-block {
+    margin-bottom: 5px;
+  }
+  .media-poster {
+    width: 90px;
+    display: inline-block;
+    float: left;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-right: 20px;
+  }
+  .review-content {
+    max-width: 600px;
+    display: inline-block;
+  }
+}
+
+// trending banner
+.trending-banner {
+  background: $voodoo;
+  color: #fff;
+  margin-top: -26px;
+  min-height: 658px;
+  .trending-filter {
+    display: inline-block;
+    .selected > svg {
+      width: 14px;
+      height: 14px;
+    }
+    button {
+      padding: 3px 5px;
+      font-size: 12px;
+      background: transparent;
+      border: 1px solid #a3a9b7;
+      margin-left: 10px;
+      color: #a3a9b7;
+      &:hover {
+        background: rgba(255,255,255,.1);
+      }
+    }
+  }
+}
+
+.trending-banner--header {
+  padding-left: 10px;
+  .trending-row--title {
+    margin-bottom: 30px;
+    color: #cebdcc;
+    display: inline-block;
+  }
+}
+
+.trending-banner--titles {
+  padding: 30px 23px 15px 5px;
+  @media (max-width: 767px) {
+    padding: 30px 5px;
+  }
+  .trending-poster {
+    display: inline-block;
+    margin-bottom: 30px;
+    padding: 0 8px;
+  }
+  .media-poster {
+    display: inline-block;
+    img {
+      border-radius: 3px;
+    }
+  }
+}
+
+.trending-banner--activity {
+  background: darken($voodoo, 2);
+  border-left: 1px solid darken($voodoo, 4);
+  border-right: 1px solid darken($voodoo, 4);
+  padding: 0;
+  height: 658px;
+  @media (max-width: 767px) {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border: 1px solid #271c26;
+    height: 450px;
+    overflow: hidden;
+  }
+  &:after {
+    content: '';
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    background: linear-gradient(to bottom, RGBA(45, 33, 44, 0), RGBA(45, 33, 44, 1.00));
+  }
+}
+
+.participating-following {
+  padding: 0;
+  margin-bottom: 0;
+  margin-top: 5px;
+  text-align: center;
+  .stream-like {
+    width: 25px;
+    height: 25px;
+    margin-right: -10px;
+    transition: .2s ease-in-out;
+    &:hover {
+      margin-right: -5px;
+      margin-left: 6px;
+    }
+    &:first-child {
+      margin-left: -10px;
+      &:hover {
+        margin-left: -10px;
+        margin-right: -5px;
+      }
+    }
+    &:last-child {
+      margin-right: -10px;
+    }
+    img {
+      border-radius: 999em;
+      border: 2px solid #332532;
+    }
+  }
+  .stream-like-count {
+    position: relative;
+    display: inline-block;
+    a {
+      width: 25px;
+      height: 25px;
+      background: rgba(255,255,255,.2);
+      display: inline-block;
+      font-size: 12px;
+      border-radius: 999em;
+      line-height: 25px;
+      text-align: center;
+      color: $white;
+      &:hover {
+        background: rgba(255,255,255,.3);
+      }
+    }
+  }
+}
+
+.trending-activity--header {
+  border-bottom: 1px solid darken($voodoo, 6);
+  padding: 30px 0 20px 0;
+  text-align: center;
+  color: #cebdcc;
+  @media (max-width: 767px) {
+    padding: 15px;
+  }
+  h5 {
+    margin-bottom: 0;
+  }
+}
+
+.following-activity {
+  margin: 0;
+  margin-top: 15px;
+  padding: 0;
+  padding-top: 4px;
+  list-style-type: none;
+  height: 570px;
+  overflow: auto;
+  position: relative;
+  @media (max-width: 767px) {
+    overflow: hidden;
+  }
+  .media-body {
+    color: #e4dee3;
+  }
+  .activity-item {
+    margin-bottom: 15px;
+    padding: 0 15px 15px 15px;
+    border-bottom: 1px solid darken($voodoo, 6);
+    .media-poster {
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+      border-radius: 3px;
+      margin-right: 15px;
+    }
+    .agg-avatar {
+      margin-right: 5px;
+    }
+  }
+}
+
+.guest-search-dropdown {
+  .search-drop {
+    border: 1px solid #ddd;
+    border-top: none;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    box-shadow: none;
+  }
+  .search-group--header {
+    &:first-child {
+      border-top: none;
+    }
+  }
+}

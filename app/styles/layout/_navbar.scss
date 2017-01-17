@@ -29,6 +29,11 @@
           background-color: lighten($eggshell, 4);
         }
       }
+      .nav-item:last-child {
+        .nav-link {
+          border-bottom: none;
+        }
+      }
     }
   }
   a {
@@ -159,10 +164,6 @@
     width: 300px;
     padding-left: 15px;
   }
-}
-
-#search-popover {
-  z-index: $zIndex-5;
 }
 
 .search--drop {

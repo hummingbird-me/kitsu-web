@@ -5,7 +5,6 @@ import service from 'ember-service/inject';
 import { isEmpty, isPresent } from 'ember-utils';
 import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
-import { prependObjects } from 'client/utils/array-utils';
 import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
@@ -102,7 +101,7 @@ export default Component.extend({
 
     loadComments(records, links) {
       const content = get(this, 'comments').toArray();
-      prependObjects(content, records.toArray().reverse());
+      content.unshiftObjects(records.toArray().reverse());
       set(this, 'comments', content);
       set(this, 'comments.links', links);
       invokeAction(this, 'trackEngagement', 'click');

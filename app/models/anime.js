@@ -6,8 +6,8 @@ import EpisodicMixin from 'client/mixins/models/episodic';
 export default Media.extend(EpisodicMixin, {
   ageRating: attr('string'),
   ageRatingGuide: attr('string'),
-  showType: attr('string'),
   youtubeVideoId: attr('string'),
 
+  animeProductions: hasMany('anime-production'),
   streamingLinks: hasMany('streaming-link')
 });

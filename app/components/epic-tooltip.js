@@ -10,8 +10,6 @@ import jQuery from 'jquery';
 
 export default Component.extend({
   classNames: ['epic-tooltip'],
-  attachment: 'middle left',
-  targetAttachment: 'middle right',
   isHovered: false,
   isStatic: false,
 
@@ -39,17 +37,18 @@ export default Component.extend({
     this._super(...arguments);
 
     // initialize tether
+    const tetherOptions = get(this, 'tetherOptions');
     const tether = new Tether({
       enabled: true,
       element: this.$(),
-      target: get(this, 'target'),
-      attachment: get(this, 'attachment'),
-      targetAttachment: get(this, 'targetAttachment'),
-      constraints: get(this, 'constraints'),
-      offset: get(this, 'offset') || '0px 0px'
+      attachment: 'middle left',
+      targetAttachment: 'middle right',
+      offset: '0px 0px',
+      ...tetherOptions
     });
     set(this, 'tether', tether);
     tether.position();
+    set(this, 'target', get(tetherOptions, 'target'));
 
     if (get(this, 'isStatic') === false) {
       // listen to hover events on the target
@@ -81,7 +80,9 @@ export default Component.extend({
         .off('mouseleave.hoverIntent');
     }
 
-    get(this, 'tether').destroy();
+    if (get(this, 'tether')) {
+      get(this, 'tether').destroy();
+    }
     this.$().remove();
   },
 

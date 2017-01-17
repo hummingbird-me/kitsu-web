@@ -59,7 +59,6 @@ module.exports = function(defaults) {
   app.import('bower_components/nouislider/distribute/nouislider.min.css');
   app.import('bower_components/humanize-duration/humanize-duration.js');
   app.import('bower_components/flickity/dist/flickity.min.css');
-  app.import('bower_components/flickity/dist/flickity.pkgd.min.js');
   app.import('bower_components/clipboard/dist/clipboard.min.js');
   app.import('bower_components/autosize/dist/autosize.min.js');
   app.import('bower_components/jquery-hoverintent/jquery.hoverIntent.js');

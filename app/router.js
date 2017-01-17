@@ -34,8 +34,7 @@ RouterInstance.map(function() {
     this.route(media, function() {
       this.route('show', { path: '/:slug' }, function() {
         this.route('episodes');
-        this.route('installments');
-        // this.route('cast');
+        this.route('characters');
         this.route('reviews');
         this.route('quotes');
       });
@@ -68,9 +67,9 @@ RouterInstance.map(function() {
 
   this.route('posts', { path: '/posts/:id' });
   this.route('comments', { path: '/comments/:id' });
-
   this.route('reviews', { path: '/reviews/:id' });
   this.route('notifications');
+  this.route('trending');
   this.route('password-reset');
   this.route('confirm-email');
   this.route('privacy');
@@ -80,6 +79,8 @@ RouterInstance.map(function() {
   // These must remain at the bottom of the RouterInstance map
   this.route('server-error', { path: '/500' });
   this.route('not-found', { path: '/*path' });
+  this.route('people');
+  this.route('characters');
 });
 
 export default RouterInstance;

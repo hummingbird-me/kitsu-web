@@ -1,84 +1,94 @@
+{{! anime / manga }}
 <div class="favorite-series-panel">
   <h6 class="panel-heading">Favorite Series</h6>
-  {{#if getAllFavorites.isRunning}}
-    <div class="text-xs-center">
-      {{loading-spinner size="large"}}
-    </div>
-  {{else}}
-    {{! TODO: @Josh -- Style tab headings here }}
-    <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" href="#favorite-anime" data-toggle="tab" role="tab">Anime</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#favorite-manga" data-toggle="tab" role="tab">Manga</a>
-      </li>
-    </ul>
+  {{! TODO: @Josh -- Style tab headings here }}
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" href="#favorite-anime" data-toggle="tab" role="tab">
+        Anime
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#favorite-manga" data-toggle="tab" role="tab">
+        Manga
+      </a>
+    </li>
+  </ul>
 
-    <div class="tab-content">
-      {{! anime }}
-      <div class="tab-pane active" id="favorite-anime" role="tabpanel">
-        {{#if animeFavorites}}
-          {{users/user-favorites/list
-            items=animeFavorites
-            user=user
-            updateNextPage=(action "updateNextPage" "anime")
-            type="anime" class="favorite-media-grid row"}}
-        {{else}}
-          {{! TODO(@Josh) - Improve look/messages of empty favorites on profile }}
-          <span class="favorite-placeholder">
-            {{#if (is-self user)}}
-              Add some Favorites.
-            {{else}}
-              User has no favorites.
-            {{/if}}
-          </span>
+  <div class="tab-content">
+    {{! anime }}
+    <div class="tab-pane active" id="favorite-anime" role="tabpanel">
+      {{#if animeFavorites}}
+        {{users/user-favorites/list
+            items=animeFavorites user=user count=animeCount
+            class="favorite-media-grid row"}}
+        {{#if (is-self user)}}
+          <a href="#" class="button button--secondary" {{action (queue (action (mut activeTab) "anime") (toggle-action "isManaging" this))}}>Edit favorite anime</a>
         {{/if}}
-      </div>
-
-      {{! manga }}
-      <div class="tab-pane" id="favorite-manga" role="tabpanel">
-        {{#if mangaFavorites}}
-          {{users/user-favorites/list
-            items=mangaFavorites
-            user=user
-            updateNextPage=(action "updateNextPage" "manga")
-            type="manga" class="favorite-media-grid row"}}
-        {{else}}
-          <span class="favorite-placeholder">
-            {{#if (is-self user)}}
-              Add some Favorites.
-            {{else}}
-              User has no favorites.
-            {{/if}}
-          </span>
-        {{/if}}
-      </div>
+      {{else}}
+        <span class="favorite-placeholder">
+          {{#if (is-self user)}}
+            <p>You haven't listed your favorite anime yet!</p>
+            <a href="#" class="button button--primary" {{action (queue (action (mut activeTab) "anime") (toggle-action "isManaging" this))}}>Choose favorite anime</a>
+          {{else}}
+            User has no favorites.
+          {{/if}}
+        </span>
+      {{/if}}
     </div>
-  {{/if}}
+
+    {{! manga }}
+    <div class="tab-pane" id="favorite-manga" role="tabpanel">
+      {{#if mangaFavorites}}
+        {{users/user-favorites/list
+          items=mangaFavorites user=user count=mangaCount
+          class="favorite-media-grid row"}}
+        {{#if (is-self user)}}
+          <a href="#" class="button button--secondary" {{action (queue (action (mut activeTab) "manga") (toggle-action "isManaging" this))}}>Edit favorite manga</a>
+        {{/if}}
+      {{else}}
+        <span class="favorite-placeholder">
+          {{#if (is-self user)}}
+            <p>You haven't listed your favorite manga yet!</p>
+            <a href="#" class="button button--primary" {{action (queue (action (mut activeTab) "manga") (toggle-action "isManaging" this))}}>Choose favorite manga</a>
+          {{else}}
+            User has no favorites.
+          {{/if}}
+        </span>
+      {{/if}}
+    </div>
+  </div>
 </div>
 
+{{! characters }}
 <div class="favorite-characters-panel">
   <h6 class="panel-heading">Favorite Characters</h6>
-  {{#if getAllFavorites.isRunning}}
-    <div class="text-xs-center">
-      {{loading-spinner size="large"}}
-    </div>
-  {{else}}
-    {{#if characterFavorites}}
-      {{users/user-favorites/list
-        items=characterFavorites
-        user=user
-        updateNextPage=(action "updateNextPage" "character")
-        type="character" class="favorite-media-grid row"}}
-    {{else}}
-      <span class="favorite-placeholder">
-        {{#if (is-self user)}}
-          Add some Favorites.
-        {{else}}
-          User has no favorites.
-        {{/if}}
-      </span>
+  {{! list / manage }}
+  {{#if characterFavorites}}
+    {{users/user-favorites/list
+      items=characterFavorites user=user count=characterCount
+        class="favorite-media-grid row"}}
+    {{#if (is-self user)}}
+      <a href="#" class="button button--secondary" {{action (queue (action (mut activeTab) "characters") (toggle-action "isManaging" this))}}>Edit favorite characters</a>
     {{/if}}
+  {{else}}
+    <span class="favorite-placeholder">
+      {{#if (is-self user)}}
+        <p>You haven't listed your favorite characters yet!</p>
+        <a href="#" class="button button--primary" {{action (queue (action (mut activeTab) "characters") (toggle-action "isManaging" this))}}>Choose favorite characters</a>
+      {{else}}
+        User has no favorites.
+      {{/if}}
+    </span>
   {{/if}}
 </div>
+
+{{! edit modal }}
+{{#if isManaging}}
+  {{to-elsewhere named="modal" send=(component "users/edit-profile"
+    component="favorites"
+    componentData=(hash tab=activeTab)
+    user=user
+    modalId="edit-profile-modal"
+    onClose=(toggle-action "isManaging" this))}}
+{{/if}}

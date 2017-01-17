@@ -27,8 +27,12 @@ export default MediaIndexRoute.extend({
     if (key === 'episodeCount') {
       if (value !== undefined) {
         const [lower, upper] = value;
-        if (upper === 100) {
+        if (lower === 1 && upper === 100) {
+          return;
+        } else if (upper === 100) {
           result = `${lower}..`;
+        } else if (lower === 1) {
+          result = `..${upper}`;
         }
       }
     }
@@ -42,6 +46,8 @@ export default MediaIndexRoute.extend({
         const [lower, upper] = result;
         if (isEmpty(upper)) {
           result = [lower, 100];
+        } else if (isEmpty(lower) && !isEmpty(upper)) {
+          result = [1, upper];
         }
       }
     }

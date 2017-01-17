@@ -116,17 +116,16 @@
           {{loading-spinner size="small"}}
         </div>
       {{else}}
-        {{! Comment Pagination }}
-        {{#if (lt replies.length comment.repliesCount)}}
-          <div class="comment-actions clearfix">
-            {{#paginated-resource/manual
-              model=replies
-              modelName="comment"
-              limit=10
-              offset=replies.length
-              update=(action "loadReplies") as |nextLink running|
-            }}
-              {{#if nextLink}}
+        {{! Reply  Pagination }}
+        {{#if replies}}
+          {{#paginated-resource/manual
+            model=replies
+            modelName="comment"
+            limit=10
+            update=(action "loadReplies") as |nextLink running|
+          }}
+            {{#if nextLink}}
+              <div class="comment-actions clearfix">
                 {{! action }}
                 <div class="pull-sm-left">
                   {{#if running}}
@@ -140,14 +139,12 @@
                 <div class="pull-sm-right">
                   {{replies.length}} of {{comment.repliesCount}}
                 </div>
-              {{/if}}
-            {{/paginated-resource/manual}}
-          </div>
-        {{/if}}
+              </div>
+            {{/if}}
+          {{/paginated-resource/manual}}
 
-        {{! Replies List }}
-        {{#if (gt comment.repliesCount 0)}}
-          <ul class="media-list reply-list">
+          {{! Replies list }}
+           <ul class="media-list reply-list">
             {{#each replies as |reply|}}
               {{stream-feed/items/post/comment
                 isTopLevel=false

@@ -6,6 +6,11 @@ import service from 'ember-service/inject';
 export default Route.extend({
   i18n: service(),
 
+  model() {
+    const user = this.modelFor('users');
+    return get(user, 'pinnedPost');
+  },
+
   setupController(controller) {
     this._super(...arguments);
     set(controller, 'user', this.modelFor('users'));

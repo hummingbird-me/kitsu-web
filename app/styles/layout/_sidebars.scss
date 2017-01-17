@@ -5,7 +5,7 @@
   right: -15px;
   bottom: 0;
   padding: 0 0 60px 0;
-  div:first-child {
+  > div:first-child {
     .panel-heading {
       margin-top: 0;
     }
@@ -107,18 +107,44 @@
   color: $charcoal;
 }
 
+.panel-btn {
+  float: right;
+  font-weight: normal;
+  line-height: 1;
+  color: #333;
+  margin-left: 10px;
+  border: 1px solid #c5c5c5;
+  padding: 4px 5px;
+  position: relative;
+  top: -2px;
+  font-size: 12px;
+}
+
 .favorite-series-panel {
-  .favorite-placeholder {
-    padding-top: 10px;
-  }
   .nav {
     text-align: center;
     .active {
-      color: $nobel;
+      color: #333;
+      background: #f1f1f1;
     }
+  }
+  .nav-tabs {
+    background-color: #f1f1f1;
   }
   a {
     font-size: 12px;
+  }
+}
+
+.favorite-placeholder {
+  padding: 15px 15px 20px 15px;
+  border: 1px dashed #ddd;
+  margin-top: 20px;
+  .button {
+    font-size: 12px;
+    &:hover {
+      color: $white;
+    }
   }
 }
 
@@ -151,5 +177,22 @@
 .favorite-characters-panel {
   .favorite-item a {
     width: 100%;
+  }
+  .favorite-placeholder {
+    margin-top: 10px;
+  }
+  a {
+    font-size: 12px;
+  }
+}
+
+.favorite-series-panel, .favorite-characters-panel {
+  .button--secondary {
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px;
+    &:hover {
+      color: $white;
+    }
   }
 }

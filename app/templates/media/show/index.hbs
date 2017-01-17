@@ -1,41 +1,85 @@
-{{! Ratings }}
-<section>
-  {{media/media-rating
-    entry=entry
-    media=media
-    update=(route-action "updateEntry" entry "rating")
-  }}
-</section>
+<div class="row">
+  <div class="col-sm-8">
+    {{! Synopsis }}
+    <section class="media-synopsis m-b-1">
+      <p>{{media.synopsis}}</p>
+    </section>
 
-{{! Synopsis }}
-<section class="media-synopsis m-b-1">
-  <h5>Synopsis</h5>
-  <p>{{media.synopsis}}</p>
-</section>
+    {{! Ratings }}
+    <section class="clearfix">
+      {{media/media-rating
+        entry=entry
+        media=media
+        update=(route-action "updateEntry" entry "rating")
+      }}
+    </section>
 
-{{! Reviews }}
-<section class="m-b-1">
-  <h5>Popular Reviews</h5>
-  {{#if model.taskInstance.isRunning}}
-    <div class="text-xs-center w-100 m-t-1 m-b-1">
-      {{loading-spinner size="large"}}
-    </div>
-  {{else if model.taskInstance.error}}
-    <div class="text-xs-center w-100 m-t-1 m-b-1">
-      {{t "errors.load"}}
-    </div>
-  {{else if model.taskInstance.value}}
-    <ul class="media-list w-100">
-      {{#each model.taskInstance.value as |review|}}
-        {{stream-feed/items/review review=review media=media hideImage=true}}
-      {{/each}}
-    </ul>
-  {{else}}
-    <div class="m-t-1 m-b-1">
-      {{t "errors.contentEmpty"}}
-    </div>
-  {{/if}}
-</section>
+    {{! Genres }}
+    <section class="media--tags">
+      <ul>
+        <li><strong>Tags:</strong></li>
+        {{#each (sort-by "name" media.genres) as |genre|}}
+          <li class="media--category-tag">
+            <a href={{href-to (concat (model-type media) ".index") (query-params genres=genre.name)}}>
+              {{genre.name}}
+            </a>
+          </li>
+        {{/each}}
+      </ul>
+    </section>
+
+    {{! Rankings }}
+    {{media/media-rankings media=media}}
+
+    {{! Installments }}
+    {{#if media.mediaRelationships}}
+       {{media/media-relationships media=media}}
+    {{/if}}
+
+    {{! Reviews }}
+    <section class="m-b-1">
+      <h5>Popular Reviews</h5>
+      {{#if model.taskInstance.isRunning}}
+        <div class="text-xs-center w-100 m-t-1 m-b-1">
+          {{loading-spinner size="large"}}
+        </div>
+      {{else if model.taskInstance.error}}
+        <div class="text-xs-center w-100 m-t-1 m-b-1">
+          {{t "errors.load"}}
+        </div>
+      {{else if model.taskInstance.value}}
+        <ul class="media-list w-100">
+          {{#each model.taskInstance.value as |review|}}
+            {{stream-feed/items/review review=review media=media hideImage=true}}
+          {{/each}}
+        </ul>
+      {{else}}
+        <div class="m-t-1 m-b-1">
+          {{t "errors.contentEmpty"}}
+        </div>
+      {{/if}}
+    </section>
+  </div>
+
+  {{! Secondary Content }}
+  <div class="col-sm media--sidebar">
+    {{! Trailer }}
+    {{! TODO: Open in modal }}
+    {{#if media.youtubeVideoId}}
+      <div class="media-preview embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/{{media.youtubeVideoId}}" frameborder="0" allowfullscreen></iframe>
+      </div>
+    {{/if}}
+
+    {{! Featured Characters }}
+    {{media/featured-characters media=media}}
+
+    {{! Media Information }}
+    {{media/media-titles media=media}}
+    {{media/media-information media=media}}
+  </div>
+</div>
+
 
 {{! Feed }}
 <section>
@@ -43,6 +87,7 @@
   {{stream-feed/list
     streamType="media_aggr"
     streamId=(concat (capitalize (model-type media)) "-" media.id)
+    streamFilter="user"
     readOnly=(not session.hasUser)
     media=media
   }}

@@ -50,9 +50,7 @@ export default Base.extend(Validations, {
   i18n: service(),
 
   about: attr('string'),
-  aboutFormatted: attr('string'),
   avatar: attr('object', { defaultValue: '/images/default_avatar.png' }),
-  bio: attr('string'),
   birthday: attr('utc'),
   commentsCount: attr('number'),
   confirmed: attr('boolean', { defaultValue: false }),
@@ -96,8 +94,10 @@ export default Base.extend(Validations, {
   pinnedPost: belongsTo('post', { inverse: null }),
 
   blocks: hasMany('block', { inverse: 'user' }),
+  favorites: hasMany('favorite', { inverse: 'user' }),
   followers: hasMany('follow', { inverse: 'followed' }),
   following: hasMany('follow', { inverse: 'follower' }),
+  profileLinks: hasMany('profile-link', { inverse: 'user' }),
   userRoles: hasMany('user-role'),
 
   // HACK: We use this to flag the model as dirty when waifu changes, as ember-data

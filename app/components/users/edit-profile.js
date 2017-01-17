@@ -12,14 +12,13 @@ import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   errorMessage: undefined,
-
   notify: service(),
   router: service('-routing'),
 
-  _component: 'about-me',
-  componentName: computed('_component', {
+  component: 'about-me',
+  componentName: computed('component', {
     get() {
-      return `users/edit-profile/${get(this, '_component')}`;
+      return `users/edit-profile/${get(this, 'component')}`;
     }
   }).readOnly(),
 
@@ -30,9 +29,9 @@ export default Component.extend({
     }
   }).readOnly(),
 
-  isAboutActive: equal('_component', 'about-me'),
-  isProfilesActive: equal('_component', 'linked-profiles'),
-  isFavoritesActive: equal('_component', 'favorites'),
+  isAboutActive: equal('component', 'about-me'),
+  isProfilesActive: equal('component', 'profile-links'),
+  isFavoritesActive: equal('component', 'favorites'),
   isDirty: filterBy('records', 'hasDirtyAttributes'),
 
   updateProfileTask: task(function* () {
@@ -41,7 +40,7 @@ export default Component.extend({
     return yield new RSVP.Promise((resolve, reject) => {
       RSVP.allSettled(saving).then((data) => {
         const failed = data.filterBy('state', 'rejected');
-        return failed.length > 0 ? reject() : resolve();
+        return failed.length > 0 ? reject(failed) : resolve();
       });
     });
   }).restartable(),
@@ -62,7 +61,7 @@ export default Component.extend({
     },
 
     changeComponent(component) {
-      set(this, '_component', component);
+      set(this, 'component', component);
       this.$('.modal').data('bs.modal')._handleUpdate();
     },
 
@@ -81,7 +80,10 @@ export default Component.extend({
     updateProfile() {
       get(this, 'updateProfileTask').perform()
         .then(() => this.$('.modal').modal('hide'))
-        .catch(err => set(this, 'errorMessage', errorMessages(err)));
+        .catch((errors) => {
+          const firstError = get(errors, 'firstObject.reason');
+          set(this, 'errorMessage', errorMessages(firstError));
+        });
     },
 
     updateImage(property, event) {

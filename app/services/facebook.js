@@ -4,6 +4,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import RSVP from 'rsvp';
 
+// TODO: Refactor into generic oauth2 service
 export default Service.extend({
   ajax: service(),
   torii: service(),

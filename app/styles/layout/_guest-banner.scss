@@ -1,0 +1,130 @@
+.guest-banner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50px;
+  height: 370px;
+  background-color: #332532;
+  background-image: url(/images/guest-cta.jpg);
+  background-size: contain;
+  background-position: right;
+  background-repeat: no-repeat;
+  .modal-actions {
+    display: block;
+    width: 100%;
+    .button--facebook {
+      width: auto;
+      border-radius: 5px;
+      padding: 15px 30px 15px 50px;
+      font-family: "Asap", sans-serif;
+      font-weight: 600;
+      position: relative;
+      font-size: 18px;
+      height: 57px;
+      margin-bottom: 5px;
+    }
+    .svgIcon {
+      vertical-align: middle;
+      padding-right: 8px;
+      top: 13px;
+      left: 13px;
+      position: absolute;
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+  .guest-container {
+    height: 100%;
+  }
+  @media (max-width: 1080px) {
+    background-size: cover;
+  }
+  @media (max-width: 960px) {
+    background-image: none;
+  }
+  @media (max-width: 600px) {
+    height: 400px;
+  }
+}
+
+.guest-cta--wrapper {
+  max-width: 500px;
+  margin-top: 50px;
+  h1 {
+    font-size: 2.6rem;
+    color: $white;
+  }
+  p {
+    font-size: 18px;
+    color: #ccb8cb;
+  }
+  @media (max-width: 600px) {
+    padding: 0 15px;
+    h1 {
+      font-size: 2rem;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
+}
+
+.community-btn {
+  background: $white;
+  border-radius: 5px;
+  padding: 15px 50px;
+  color: $voodoo;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 15px;
+  display: inline-block;
+  &:hover {
+    background: darken($white,10);
+  }
+  &:active {
+    background: darken($white,20) !important; // This is gross. I'm gross.
+  }
+}
+
+.guest-search--wrapper {
+  position: relative;
+  width: 100%;
+  .icon {
+    position: absolute;
+    left: -10px;
+    top: 12px;
+  }
+  svg {
+    width: 40px;
+    height: 40px;
+    fill: #ACACAC;
+  }
+  &:hover {
+    svg {
+      fill: #333;
+    }
+  }
+}
+
+.guest-search {
+  width: 100%;
+  background-color: $white;
+  height: 65px;
+  border-bottom: 1px solid #dedede;
+  input {
+    width: 100%;
+    line-height: 64px;
+    height: 64px;
+    border: none;
+    outline: none;
+    font-family: $base-font-family;
+    font-size: 1.3em;
+    box-shadow: none;
+    text-indent: 0;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+}

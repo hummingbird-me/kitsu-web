@@ -3,9 +3,6 @@
     <div class="quick-update-actions">
       <div class="action-wrapper">
         {{#if (not isCompleted)}}
-          <a class="update--entry-title" href={{href-to (concat (model-type entry.media) ".show") entry.media}}>
-            {{entry.media.computedTitle}}
-          </a>
           <button class="button button--quick-update" {{action (perform updateEntryTask)}}>
             {{#if updateEntryTask.isRunning}}
               {{t "dashboard.quickUpdate.mark"}}
@@ -32,7 +29,7 @@
           </div>
 
           {{#if (and entry.review.content (not entry.review.isNew))}}
-            <button class="button button--quick-update" onclick={{action (toggle "editReviewModal" this)}}>
+            <button class="button button--quick-update review-button" onclick={{action (toggle "editReviewModal" this)}}>
               Edit Review
             </button>
             {{#if editReviewModal}}
@@ -46,7 +43,7 @@
               )}}
             {{/if}}
           {{else}}
-            <button class="button button--quick-update" onclick={{action (toggle "reviewModal" this)}}>
+            <button class="button button--quick-update review-button" onclick={{action (toggle "reviewModal" this)}}>
               Write Review
             </button>
             {{#if reviewModal}}
@@ -64,7 +61,9 @@
     </div>
     <div class="quick-update-title-block">
       <h6 class="series-title">
-        {{entry.media.computedTitle}}
+        <a class="update--entry-title" href={{href-to (concat (model-type entry.media) ".show") entry.media}}>
+          {{entry.media.computedTitle}}
+        </a>
       </h6>
       <small class="series-progress">
         {{episodeText}}
@@ -72,10 +71,12 @@
     </div>
   </div>
 
-  {{! Episode Thumbnail / Media Poster }}
-  {{#if entry.nextUnit}}
-    {{lazy-image url=(image entry.nextUnit.thumbnail) fallback=(image entry.media.posterImage "medium")}}
-  {{else}}
-    {{lazy-image url=(image entry.media.posterImage "medium")}}
-  {{/if}}
+  {{! Media Poster }}
+  {{lazy-image url=(image entry.media.posterImage "medium")}}
+</div>
+
+<div class="progress">
+  <span class="progress-bar">
+    <span role="presentation" class="progress-completed" style="width: 12%;"></span>
+  </span>
 </div>

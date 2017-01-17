@@ -47,6 +47,11 @@ module.exports = function(environment) {
         config: { id: 'UA-37633900-4' }
       },
       {
+        name: 'Heap',
+        environments: ['production'],
+        config: { appId: '3718300691', enabled: true }
+      },
+      {
         name: 'Intercom',
         environments: ['production', 'development'],
         config: { appId: 'elre1t9q' }
@@ -72,7 +77,24 @@ module.exports = function(environment) {
       dsn: 'https://9c9c723278a1456299a9da5842251bdf@sentry.io/119044',
       cdn: 'https://cdn.ravenjs.com/3.9.1/raven.min.js',
       development: environment !== 'production',
-      whitelistUrls: [/kitsu\.io/, /staging\.kitsu\.io/]
+      whitelistUrls: [/https?:\/\/((staging)\.)?kitsu\.io/],
+      ravenOptions: {
+        ignoreErrors: [
+          // Random plugins/extensions
+          'top.GLOBALS',
+          // Facebook borked
+          'fb_xd_fragment'
+        ],
+        ignoreUrls: [
+          // Facebook flakiness
+          /graph\.facebook\.com/i,
+          // Facebook blocked
+          /connect\.facebook\.net\/en_US\/all\.js/i,
+          // Chrome extensions
+          /extensions\//i,
+          /^chrome:\/\//i,
+        ]
+      }
     },
 
     // ember-i18n
@@ -99,9 +121,12 @@ module.exports = function(environment) {
       }
     },
 
-    ads: {
-      enabled: false,
-      client: undefined
+    google: {
+      adwords: false,
+      ads: {
+        enabled: false,
+        client: undefined
+      }
     }
   };
 
@@ -127,25 +152,36 @@ module.exports = function(environment) {
 
   // Staging app @ Heroku
   if (process.env.HEROKU_EMBER_APP === 'staging') {
+    // facebook app id
     ENV.torii.providers['facebook-connect'].appId = '325314560922421';
+    // google analytics
     ENV.metricsAdapters[0].config.id = 'UA-37633900-3';
-    ENV.metricsAdapters[2].config.production.apiKey = 'ekx6xkn9v9xx';
-    ENV.metricsAdapters[2].config.production.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.Loj_VZy_FKQzP3xLpX46xSF9bktOBfqcve8eYjwFmNc';
+    // Heap
+    ENV.metricsAdapters[1].config.enabled = false;
+    // Stream
+    ENV.metricsAdapters[3].config.production.apiKey = 'ekx6xkn9v9xx';
+    ENV.metricsAdapters[3].config.production.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.Loj_VZy_FKQzP3xLpX46xSF9bktOBfqcve8eYjwFmNc';
     ENV.stream.realtime.key = 'ekx6xkn9v9xx';
     ENV.stream.realtime.app = '17647';
+    // Sentry
     ENV.sentry.dsn = 'https://cd7634b1400644688ff55bda89171367@sentry.io/125035';
   }
 
   if (environment === 'production' && process.env.HEROKU_EMBER_APP !== 'staging') {
+    // facebook app id
     ENV.torii.providers['facebook-connect'].appId = '325314560922421';
+    // stream app
     ENV.stream.realtime.key = 'eb6dvmba4ct3';
     ENV.stream.realtime.app = '18373';
-    ENV.metricsAdapters[1].config.appId = 'ca7x05fo';
-    ENV.ads.enabled = false;
-    ENV.ads.client = 'TODO-HERE';
+    // intercom app
+    ENV.metricsAdapters[2].config.appId = 'ca7x05fo';
+    // google settings
+    ENV.google.ads.enabled = false;
+    ENV.google.ads.client = 'TODO-HERE';
+    ENV.google.adwords = true;
   }
 
-  // Heroku environment
+  // Heroku environment - So that we can append the git hash to the version
   if (process.env.HEROKU_EMBER_APP) {
     ENV.APP.heroku = true;
     if (process.env.HEROKU_SLUG_COMMIT) {

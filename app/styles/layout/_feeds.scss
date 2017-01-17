@@ -12,7 +12,13 @@
     margin: 0;
   }
   &.quick-update-enabled {
-    margin-top: 180px;
+    margin-top: 270px;
+  }
+  &.guest-banner-enabled {
+    margin-top: 400px;
+    @media (max-width: 600px) {
+      margin-top: 300px;
+    }
   }
 }
 
@@ -429,14 +435,14 @@
 }
 
 .stream-error-wrapper {
-  background: #fafafa;
+  background: #f1f1f1;
   border: 1px dashed #ddd;
   border-radius: 3px;
   font-size: 12px;
   text-align: center;
   padding: 10px;
   color: #8e8e8e;
-  box-shadow: 0px 1px 0px 5px #fafafa;
+  box-shadow: 0px 1px 0px 5px #f1f1f1;
 }
 
 .stream-item--media {
@@ -764,8 +770,12 @@
     padding: 0;
   }
   .tagged-media--remove {
-    font-size: 12px;
-    float: right;
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 5px;
+    right: 5px;
   }
 }
 
@@ -776,6 +786,7 @@
 }
 
 .tagged-media {
+  position: relative;
   border: 1px solid #eee;
   border-radius: 3px;
   background: #fafafa;

@@ -60,6 +60,52 @@
   }
 }
 
+.library-sorting {
+  @extend .clearfix;
+  border-top: 1px solid $eggshell;
+  .sorting-icon {
+    .sorting-asc {
+      svg { transform: rotateX(180deg); }
+    }
+  }
+  .library-sort-left {
+    font-size: 12px;
+    line-height: 40px;
+    float: left;
+  }
+  .library-sort-right {
+    text-align: right;
+    font-size: 12px;
+    line-height: 40px;
+    float: right;
+  }
+  .library-sort {
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    &:hover { color: $cinnabar; }
+    > div { display: inline-block; }
+    svg {
+      width: 14px;
+      height: 14px;
+      top: 4px;
+      position: relative;
+    }
+  }
+  .library-sort-title {
+    text-align: left;
+  }
+  .library-sort-progress {
+    padding-right: 55px;
+  }
+  .library-sort-rating {
+    width: 85px;
+  }
+  .library-sort-type {
+    width: 85px;
+  }
+}
+
 .section-head {
   background: lighten($eggshell, 5);
   border-bottom: 1px solid $eggshell;
@@ -203,13 +249,19 @@
   cursor: pointer;
   border-bottom: 1px solid $eggshell;
   line-height: 40px;
-  transition: .3s ease-in-out;
+  transition: .1s ease-in-out;
   @media (max-width: 992px) {
     padding-bottom: 0;
     padding-top: 20px;
   }
   &:hover {
     background: $alabaster;
+  }
+}
+
+.has-entry {
+  .button--primary {
+    background: #757575;
   }
 }
 .library-dropdown {

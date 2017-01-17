@@ -6,17 +6,16 @@ import { task } from 'ember-concurrency';
 import computed from 'ember-computed';
 import { scheduleOnce } from 'ember-runloop';
 import { capitalize } from 'ember-string';
-import observer from 'ember-metal/observer';
 import errorMessages from 'client/utils/error-messages';
+import { storageFor } from 'ember-local-storage';
 
 export default Component.extend({
   classNames: ['quick-update'],
-  filter: 'all',
   pageLimit: 12,
-
   notify: service(),
   session: service(),
   store: service(),
+  lastUsed: storageFor('last-used'),
 
   filterOptions: computed('filter', {
     get() {
@@ -44,54 +43,26 @@ export default Component.extend({
     });
   }).drop(),
 
-  _updateType: observer('filter', function() {
-    this._getEntries();
-  }),
-
   init() {
     this._super(...arguments);
+    const filter = get(this, 'lastUsed.quickUpdateFilter') || 'all';
+    set(this, 'filter', filter);
     this._getEntries();
-  },
-
-  willDestroyElement() {
-    this._super(...arguments);
-    this._clean();
   },
 
   _getEntries() {
     set(this, 'initialEntries', []);
     get(this, 'getEntriesTask').perform().then((entries) => {
       set(this, 'initialEntries', entries);
-      this._clean();
-      scheduleOnce('afterRender', () => {
-        if (get(this, 'isDestroyed')) { return; }
-        set(this, 'carousel', this.$('.carousel').flickity(this._options()));
-      });
     }).catch(() => {});
-  },
-
-  _clean() {
-    if (get(this, 'carousel') !== undefined) {
-      get(this, 'carousel').flickity('destroy');
-    }
   },
 
   _appendToFlickty() {
     scheduleOnce('afterRender', () => {
-      if (get(this, 'isDestroyed')) { return; }
-      const index = get(this, 'carousel').data('flickity').cells.length - 1;
-      get(this, 'carousel').flickity('insert', this.$('.new-entries').children(), index);
+      if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
+      const index = this.$('.carousel').data('flickity').cells.length - 1;
+      this.$('.carousel').flickity('insert', this.$('.new-entries').children(), index);
     });
-  },
-
-  _options() {
-    return {
-      cellAlign: 'left',
-      contain: false,
-      pageDots: false,
-      groupCells: 1,
-      autoPlay: false
-    };
   },
 
   actions: {
@@ -108,5 +79,11 @@ export default Component.extend({
         get(this, 'notify').error(errorMessages(err));
       });
     },
+
+    changeFilter(option) {
+      set(this, 'filter', option);
+      set(this, 'lastUsed.quickUpdateFilter', option);
+      this._getEntries();
+    }
   }
 });

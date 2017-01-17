@@ -1,5 +1,5 @@
 import Route from 'ember-route';
-import get from 'ember-metal/get';
+import get, { getProperties } from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { capitalize } from 'ember-string';
 import service from 'ember-service/inject';
@@ -8,11 +8,13 @@ import { storageFor } from 'ember-local-storage';
 import libraryStatus from 'client/utils/library-status';
 import PaginationMixin from 'client/mixins/routes/pagination';
 import errorMessages from 'client/utils/error-messages';
+import getTitleField from 'client/utils/get-title-field';
 
 export default Route.extend(PaginationMixin, {
   queryParams: {
     media: { refreshModel: true },
-    status: { refreshModel: true }
+    status: { refreshModel: true },
+    sort: { refreshModel: true }
   },
 
   i18n: service(),
@@ -25,18 +27,29 @@ export default Route.extend(PaginationMixin, {
    * Restartable task that queries the library entries for the current status,
    * and media type.
    */
-  modelTask: task(function* (media, status) {
+  modelTask: task(function* (media, status, sort) {
     const user = this.modelFor('users');
     const userId = get(user, 'id');
     const options = {};
 
+    // apply user sort selection
+    if (sort !== undefined) {
+      Object.assign(options, { sort: this._getUsableSort(sort) });
+    }
+
     if (status === 'all') {
       status = '1,2,3,4,5'; // eslint-disable-line no-param-reassign
-      Object.assign(options, { sort: 'status,-updated_at' });
+      if (sort !== undefined) {
+        Object.assign(options, { sort: ['status', get(options, 'sort')].join(',') });
+      } else {
+        Object.assign(options, { sort: 'status,-updated_at' });
+      }
     } else {
       // eslint-disable-next-line no-param-reassign
       status = libraryStatus.enumToNumber(status);
-      Object.assign(options, { sort: '-updated_at' });
+      if (sort === undefined) {
+        Object.assign(options, { sort: '-updated_at' });
+      }
     }
 
     Object.assign(options, {
@@ -54,18 +67,19 @@ export default Route.extend(PaginationMixin, {
   }).restartable(),
 
   beforeModel({ queryParams }) {
-    if (queryParams.media === undefined) {
+    if (queryParams.media === undefined || queryParams.sort === undefined) {
       if (get(this, 'session').isCurrentUser(this.modelFor('users'))) {
-        const type = get(this, 'lastUsed.libraryType');
-        if (type) {
-          this.replaceWith({ queryParams: { media: type } });
+        const lastUsed = get(this, 'lastUsed');
+        const { libraryType, librarySort } = getProperties(lastUsed, 'libraryType', 'librarySort');
+        if (libraryType || librarySort) {
+          this.replaceWith({ queryParams: { media: libraryType, sort: librarySort } });
         }
       }
     }
   },
 
-  model({ media, status }) {
-    return { taskInstance: get(this, 'modelTask').perform(media, status) };
+  model({ media, status, sort }) {
+    return { taskInstance: get(this, 'modelTask').perform(media, status, sort) };
   },
 
   setupController(controller) {
@@ -77,6 +91,26 @@ export default Route.extend(PaginationMixin, {
     const model = this.modelFor('users');
     const name = get(model, 'name');
     return get(this, 'i18n').t('titles.users.library', { user: name });
+  },
+
+  _getUsableSort(sort) {
+    const controller = this.controllerFor(get(this, 'routeName'));
+    const mediaType = get(controller, 'media');
+    if (sort === 'type' || sort === '-type') {
+      const field = `${mediaType}.subtype`;
+      return sort.charAt(0) === '-' ? `-${field}` : field;
+    } else if (sort === 'title' || sort === '-title') {
+      let field = `${mediaType}.titles`;
+      if (get(this, 'session.hasUser')) {
+        const preference = get(this, 'session.account.titleLanguagePreference').toLowerCase();
+        const key = getTitleField(preference);
+        field = `${field}.${key}`;
+      } else {
+        field = `${field}.canonical`;
+      }
+      return sort.charAt(0) === '-' ? `-${field}` : field;
+    }
+    return sort;
   },
 
   actions: {
@@ -97,6 +131,12 @@ export default Route.extend(PaginationMixin, {
           entry.rollbackAttributes();
           get(this, 'notify').error(errorMessages(err));
         });
+    },
+
+    changeSort({ type, direction }) {
+      const controller = this.controllerFor(get(this, 'routeName'));
+      const sort = direction === 'desc' ? `-${type}` : type;
+      set(controller, 'sort', sort);
     }
   }
 });

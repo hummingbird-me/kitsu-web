@@ -1,0 +1,7 @@
+{{#if (eq sort.type sortKey)}}
+  {{#if (eq sort.direction "asc")}}
+    <span class="sorting-asc">{{svg-jar "arrow-down"}}</span>
+  {{else}}
+    <span class="sorting-desc">{{svg-jar "arrow-down"}}</span>
+  {{/if}}
+{{/if}}

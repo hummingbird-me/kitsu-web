@@ -1,18 +1,21 @@
 {{! TODO/@Josh -- favorite dropdown -- Might need some styling -- we can display anything in the dropdown from the media. }}
-{{#power-select
-  search=(action "search")
-  onchange=(action "addItem")
-  renderInPlace=true
-  as |item|
-}}
-  <strong>
+<div class="m-t-1">
+  {{#power-select
+    search=(action "search")
+    onchange=(action "addItem")
+    renderInPlace=true
+    as |item|
+  }}
     {{#if isCharacter}}
-      {{item.name}}
+      <span class="waifu-wrapper">
+        {{lazy-image url=(image item.image)}}
+      </span>
+      <strong>{{item.name}}</strong>
     {{else}}
-      {{item.computedTitle}}
+      <strong>{{item.computedTitle}}</strong>
     {{/if}}
-  </strong>
-{{/power-select}}
+  {{/power-select}}
+</div>
 
 {{#if items}}
   {{#sortable-group
@@ -52,11 +55,11 @@
   </div>
 {{else}}
   {{#if isError}}
-    <div class="stream-error-wrapper m-t-1">
+    <div class="text-xs-center w-100 m-b-1 m-t-1">
       {{t "errors.load"}}
     </div>
   {{else}}
-    <div class="stream-error-wrapper m-t-1">
+    <div class="text-xs-center w-100 m-b-1 m-t-1">
       {{t "errors.contentEmpty"}}
     </div>
   {{/if}}

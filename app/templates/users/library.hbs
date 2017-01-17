@@ -40,6 +40,9 @@
       </div>
       --}}
 
+      {{! Library Sorting }}
+      {{users/library/library-sorting sort=sort onSortChange=(route-action "changeSort")}}
+
       {{! Library Entries }}
       {{#if model.taskInstance.isRunning}}
         <div class="text-xs-center w-100 m-t-1 m-b-1">

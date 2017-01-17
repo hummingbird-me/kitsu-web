@@ -1,11 +1,17 @@
 import RavenLogger from 'ember-cli-sentry/services/raven';
-import { typeOf } from 'ember-utils';
+import get from 'ember-metal/get';
 
 export default RavenLogger.extend({
-  ignoreError(reason) {
-    if (typeOf(reason) === 'object' && reason.message === 'TransitionAborted') {
-      return true;
+  errorsToIgnore: ['TransitionAborted'],
+
+  ignoreError(error) {
+    const { message } = error;
+    return get(this, 'errorsToIgnore').any(ignored => message.includes(ignored));
+  },
+
+  logException(error) {
+    if (!this.ignoreError(error)) {
+      this.captureException(error);
     }
-    return this._super(...arguments);
   }
 });

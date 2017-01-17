@@ -63,8 +63,18 @@
         {{#if (and post.spoiler post.nsfw)}}
           <div class="combo-gate">
               <a href="#" {{action "toggleHidden"}}>
-                <div class="gate--label">Contains spoilers and NSFW.</div>
-                <div class="gate--hover">My body is ready!</div>
+                <div class="gate--label">
+                  Contains spoilers and NSFW.
+                  {{#if post.spoiledUnit}}
+                    <small>{{t (concat "feeds.spoilers." (model-type post.media)) num=post.spoiledUnit.number}} {{postEpisodeText}}</small>
+                  {{/if}}
+                </div>
+                <div class="gate--hover">
+                  My body is ready!
+                  {{#if post.spoiledUnit}}
+                    <small>{{t (concat "feeds.spoilers." (model-type post.media)) num=post.spoiledUnit.number}} {{postEpisodeText}}</small>
+                  {{/if}}
+                </div>
               </a>
             </div>
         {{else}}
@@ -82,13 +92,13 @@
                 <div class="gate--label">
                   This post contains spoilers.
                   {{#if post.spoiledUnit}}
-                    {{t (concat "feeds.spoilers." (model-type post.media)) num=post.spoiledUnit.number}}
+                    <small>{{t (concat "feeds.spoilers." (model-type post.media)) num=post.spoiledUnit.number}} {{postEpisodeText}}</small>
                   {{/if}}
                 </div>
                 <div class="gate--hover">
                   I can handle the truth!
                   {{#if post.spoiledUnit}}
-                    {{t (concat "feeds.spoilers." (model-type post.media)) num=post.spoiledUnit.number}}
+                    <small>{{t (concat "feeds.spoilers." (model-type post.media)) num=post.spoiledUnit.number}} {{postEpisodeText}}</small>
                   {{/if}}
                 </div>
               </a>

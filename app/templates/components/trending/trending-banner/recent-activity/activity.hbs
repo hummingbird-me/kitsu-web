@@ -1,0 +1,15 @@
+<div class="media">
+  <a href={{href-to (concat (model-type activity.media) ".show") activity.media.slug}} class="media-poster">
+    {{lazy-image url=(image activity.media.posterImage "small")}}
+  </a>
+  <div class="media-body">
+    {{stream-feed/items/library-entry/activity
+      class="agg-item"
+      activity=activity
+      group=group
+      media=activity.media
+      readOnly=true}}
+    <h5 class="mt-0">{{activity.media.computedTitle}}</h5>
+    <small>{{moment-from-now activity.time}}</small>
+  </div>
+</div>

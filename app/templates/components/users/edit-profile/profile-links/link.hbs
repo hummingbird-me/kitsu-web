@@ -1,0 +1,20 @@
+<h6>{{link.site.name}}</h6>
+<div class="form-group row">
+  <div class="col-xs-12">
+    <label class="col-form-label">
+      Enter your {{link.site.name}} details to add a badge to your profile.
+    </label>
+  </div>
+  <div class="col-xs-12">
+    {{one-way-text link.url
+      update=(action "update")
+      class="form-control"
+      placeholder=(concat "Enter your " link.site.name " details")
+    }}
+    {{#if (and link.url (or (not link.isNew) (eq link.site.name "Website")))}}
+      <div>
+        <a href="#" onclick={{action "remove"}}>Remove from profile</a>
+      </div>
+    {{/if}}
+  </div>
+</div>

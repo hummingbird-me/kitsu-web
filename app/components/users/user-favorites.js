@@ -1,47 +1,29 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
-import { task } from 'ember-concurrency';
-import RSVP from 'rsvp';
+import computed from 'ember-computed';
+import { modelType } from 'client/helpers/model-type';
+
+const favoriteComputed = (...args) => {
+  const type = args.pop();
+  return computed(...args, {
+    get() {
+      const records = get(this, 'user.favorites') || [];
+      return records.filter(record => (
+        modelType([get(record, 'item')]) === type
+      )).rejectBy('isDeleted').sortBy('favRank').toArray();
+    }
+  }).readOnly();
+};
 
 export default Component.extend({
-  store: service(),
+  /**
+   * Number of entries to show before the fold
+   */
+  animeCount: 8,
+  mangaCount: 8,
+  characterCount: 12,
 
-  getFavorites: task(function* (type, limit = 8) {
-    return yield get(this, 'store').query('favorite', {
-      filter: {
-        user_id: get(this, 'user.id'),
-        item_type: type
-      },
-      include: 'item',
-      sort: 'fav_rank',
-      page: { limit }
-    });
-  }).drop().maxConcurrency(3),
-
-  getAllFavorites: task(function* () {
-    const anime = get(this, 'getFavorites').perform('Anime');
-    const manga = get(this, 'getFavorites').perform('Manga');
-    const chars = get(this, 'getFavorites').perform('Character', 12);
-    return yield RSVP.allSettled([anime, manga, chars], 'Get Favorites');
-  }).drop(),
-
-  didReceiveAttrs() {
-    this._super(...arguments);
-    get(this, 'getAllFavorites').perform().then(([anime, manga, chars]) => {
-      set(this, 'animeFavorites', get(anime, 'value'));
-      set(this, 'mangaFavorites', get(manga, 'value'));
-      set(this, 'characterFavorites', get(chars, 'value'));
-    }).catch(() => {});
-  },
-
-  actions: {
-    updateNextPage(type, records, links) {
-      const content = get(this, `${type}Favorites`).toArray();
-      content.addObjects(records);
-      set(this, `${type}Favorites`, content);
-      set(this, `${type}Favorites.links`, links);
-    }
-  }
+  animeFavorites: favoriteComputed('user.favorites.@each.isDeleted', 'anime'),
+  mangaFavorites: favoriteComputed('user.favorites.@each.isDeleted', 'manga'),
+  characterFavorites: favoriteComputed('user.favorites.@each.isDeleted', 'character')
 });
