@@ -25,9 +25,9 @@ export default Base.extend({
   synopsis: attr('string'),
   titles: attr('object'),
 
-  genres: hasMany('genre'),
   castings: hasMany('casting'),
-  installments: hasMany('installment'),
+  genres: hasMany('genre'),
+  mediaRelationships: hasMany('media-relationship'),
   reviews: hasMany('review'),
 
   unitCount: or('episodeCount', 'chapterCount'),

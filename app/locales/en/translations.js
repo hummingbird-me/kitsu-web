@@ -113,6 +113,20 @@ export default {
             manga: 'Rank {{rank}} (Highest Rated Manga)'
           }
         },
+        relationships: {
+          sequel: 'Sequel',
+          prequel: 'Prequel',
+          alternate_setting: 'Alternate setting',
+          alternate_version: 'Alternate version',
+          side_story: 'Side story',
+          parent_story: 'Parent story',
+          summary: 'Summary',
+          full_story: 'Full story',
+          spinoff: 'Spin-off',
+          adaptation: 'Adaption',
+          character: 'Character',
+          other: 'Other'
+        },
         titles: {
           en: 'English',
           en_jp: 'Romanized',

@@ -32,67 +32,9 @@
     {{media/media-rankings media=media}}
 
     {{! Installments }}
-    <section class="media--related">
-      <h5>
-        Franchise
-      </h5>
-      <div class="related--panel">
-        <div class="related--wrapper">
-          <div class="related--title">
-            Adaptation:
-          </div>
-          <div class="related--posters">
-            <a href="#" class="related--item">
-              <img class="media-object" src="https://myanimelist.cdn-dena.com/images/manga/3/117681.webp" alt="Generic placeholder image">
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="related--panel">
-        <div class="related--wrapper">
-          <div class="related--title">
-            Sequel:
-          </div>
-          <div class="related--posters">
-            <a href="#" class="related--item">
-              <img class="media-object" src="https://myanimelist.cdn-dena.com/images/anime/5/17407.webp" alt="Generic placeholder image">
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="related--panel">
-        <div class="related--wrapper">
-          <div class="related--title">
-            Side Story:
-          </div>
-          <div class="related--posters">
-            <a href="#" class="related--item">
-              <img class="media-object" src="https://myanimelist.cdn-dena.com/images/anime/6/76015.webp" alt="Generic placeholder image">
-            </a>
-            <a href="#" class="related--item">
-              <img class="media-object" src="https://myanimelist.cdn-dena.com/images/anime/11/20921.webp" alt="Generic placeholder image">
-            </a>
-            <a href="#" class="related--item">
-              <img class="media-object" src="https://myanimelist.cdn-dena.com/images/anime/12/11240.webp" alt="Generic placeholder image">
-            </a>
-            <a href="#" class="related--item">
-              <img class="media-object" src="https://myanimelist.cdn-dena.com/images/anime/11/76016.webp" alt="Generic placeholder image">
-            </a>
-            <a href="#" class="related--item">
-              <img class="media-object" src="https://myanimelist.cdn-dena.com/images/anime/10/11244.webp" alt="Generic placeholder image">
-            </a>
-            <a href="#" class="related--item">
-              <img class="media-object" src="https://myanimelist.cdn-dena.com/images/anime/6/76017.webp" alt="Generic placeholder image">
-            </a>
-            <a href="#" class="related--item">
-              <img class="media-object" src="https://myanimelist.cdn-dena.com/images/anime/11/27050.webp" alt="Generic placeholder image">
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+    {{#if media.mediaRelationships}}
+       {{media/media-relationships media=media}}
+    {{/if}}
 
     {{! Reviews }}
     <section class="m-b-1">
