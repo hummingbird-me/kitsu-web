@@ -47,7 +47,9 @@ export default Route.extend(PaginationMixin, {
     } else {
       // eslint-disable-next-line no-param-reassign
       status = libraryStatus.enumToNumber(status);
-      Object.assign(options, { sort: '-updated_at' });
+      if (sort === undefined) {
+        Object.assign(options, { sort: '-updated_at' });
+      }
     }
 
     Object.assign(options, {
