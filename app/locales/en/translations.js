@@ -99,26 +99,82 @@ export default {
         nav: {
           summary: 'Summary',
           episodes: 'Episodes',
-          installments: 'Franchise',
-          cast: 'Cast',
+          characters: 'Characters',
           reviews: 'Reviews',
           quotes: 'Quotes'
         },
-        meta: {
+        characters: {
+          title: '{{title}} Characters',
+          subtitle: {
+            anime: 'The following is a full list of characters and their {{language}} voice actors from the anime {{title}}',
+            manga: 'The following is a full list of characters for the manga {{title}}'
+          }
+        },
+        ranking: {
+          popularity: {
+            anime: 'Rank {{rank}} (Most Popular Anime)',
+            manga: 'Rank {{rank}} (Most Popular Manga)'
+          },
+          rating: {
+            anime: 'Rank {{rank}} (Highest Rated Anime)',
+            manga: 'Rank {{rank}} (Highest Rated Manga)'
+          }
+        },
+        relationships: {
+          sequel: 'Sequel',
+          prequel: 'Prequel',
+          alternate_setting: 'Alternate setting',
+          alternate_version: 'Alternate version',
+          side_story: 'Side story',
+          parent_story: 'Parent story',
+          summary: 'Summary',
+          full_story: 'Full story',
+          spinoff: 'Spin-off',
+          adaptation: 'Adaptation',
+          character: 'Character',
+          other: 'Other'
+        },
+        titles: {
+          en: 'English',
+          en_us: 'English',
+          en_jp: 'Romanized',
+          ja_jp: 'Japanese'
+        },
+        information: {
+          type: 'Type',
+          volumes: 'Volumes',
           unit: {
+            anime: 'Episodes',
+            manga: 'Chapters'
+          },
+          start: {
+            anime: 'Aired',
+            manga: 'Published'
+          },
+          status: 'Status',
+          statuses: {
             anime: {
-              one: '{{count}} episode',
-              other: '{{count}} episodes'
+              current: 'Currently Airing',
+              finished: 'Finished Airing',
+              nya: 'Not Yet Aired'
             },
             manga: {
-              one: '{{count}} chapter',
-              other: '{{count}} chapters'
-            },
-            length: {
-              one: '({{length}} minutes)',
-              other: '({{total}} / {{length}} minutes each)'
+              current: 'Publishing',
+              finished: 'Finished',
+              nya: 'Not Yet Published'
             }
-          }
+          },
+          season: 'Season',
+          producers: 'Producers',
+          licensors: 'Licensors',
+          studios: 'Studios',
+          serialization: 'Serialization',
+          duration: 'Duration',
+          length: {
+            one: '{{length}} minutes',
+            other: '{{total}} total ({{length}} minutes each)'
+          },
+          rating: 'Rating'
         },
         episodes: {
           episode: 'Episode'

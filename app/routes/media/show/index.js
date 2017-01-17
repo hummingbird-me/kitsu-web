@@ -20,7 +20,7 @@ export default Route.extend({
       page: { limit: 2 },
       sort: '-likes_count'
     });
-  }),
+  }).restartable(),
 
   model() {
     return { taskInstance: get(this, 'modelTask').perform() };

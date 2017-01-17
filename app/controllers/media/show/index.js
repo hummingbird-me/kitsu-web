@@ -5,5 +5,5 @@ import { alias } from 'ember-computed';
 export default Controller.extend({
   session: service(),
   entry: alias('parent.entry'),
-  media: alias('parent.media'),
+  media: alias('parent.media')
 });
