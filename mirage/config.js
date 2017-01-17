@@ -15,6 +15,7 @@ function _defineRoutes(server) {
 
   server.get('/anime');
   server.get('/anime/:id');
+  server.get('/anime/:id/_languages');
 
   server.get('/genres');
   server.get('/streamers');
@@ -29,6 +30,7 @@ function _defineRoutes(server) {
   server.post('/users');
 
   server.get('/trending/:namespace', { data: [] });
+  server.get('/castings', { data: [] });
 }
 
 // test
