@@ -68,9 +68,6 @@ RouterInstance.map(function() {
   this.route('posts', { path: '/posts/:id' });
   this.route('comments', { path: '/comments/:id' });
   this.route('reviews', { path: '/reviews/:id' });
-  this.route('characters', { path: '/characters/:id' });
-  this.route('people', { path: '/people/:id' });
-
   this.route('notifications');
   this.route('trending');
   this.route('password-reset');
