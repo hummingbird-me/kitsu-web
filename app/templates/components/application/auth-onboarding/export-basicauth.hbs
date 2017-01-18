@@ -1,7 +1,7 @@
 <div class="modal-wrapper">
   <div class="auth-section active">
     <h6 class="auth-section-title">Okay, let's setup your {{siteName}} exporter</h6>
-    <p class="auth-section-helper">Our {{siteName}} exporter will update your anime and manga lists on {{siteName}} every time you update them on Kitsu. Please not that we do <strong>not</strong>delete entries from your {{siteName}} library.</p>
+    <p class="auth-section-helper">Our {{siteName}} exporter will update your anime and manga lists on {{siteName}} every time you update them on Kitsu. Please note that we do <strong>not</strong> delete entries from your {{siteName}} library.</p>
     <div class="form-group">
       {{one-way-text username
         update=(action (mut username))
@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="form-cta">
-    <button type="button" class="button button--primary m-b-1" {{action "changeComponent" "import-select"}}>
+    <button type="button" class="button button--primary m-b-1" {{action "changeComponent" "export-select"}}>
       Back to Export Select
     </button>
 
@@ -27,7 +27,7 @@
       {{#if createImport.isRunning}}
         {{loading-spinner size="small"}}
       {{else}}
-        Start {{siteName}} Export
+        Setup {{siteName}} Export
       {{/if}}
     </button>
   </div>
