@@ -13,5 +13,11 @@ export default Route.extend(PaginationMixin, {
 
   model() {
     return { taskInstance: get(this, 'modelTask').perform() };
+  },
+
+  actions: {
+    removeExport(exporter) {
+      exporter.destroyRecord();
+    }
   }
 });
