@@ -8,6 +8,7 @@ import errorMessages from 'client/utils/error-messages';
 import computed from 'ember-computed';
 
 export default Component.extend({
+  editedExporter: undefined,
   username: undefined,
   password: undefined,
   notify: service(),
@@ -25,14 +26,15 @@ export default Component.extend({
   createExport: task(function* () {
     const exporter = get(this, 'store').createRecord('linked-account', {
       externalUserId: get(this, 'username'),
-      token: get(this, 'token'),
+      token: get(this, 'password'),
       kind: `LinkedAccount::${get(this, 'siteName')}`,
-
       shareFrom: false,
       shareTo: false,
       syncTo: true,
       user: get(this, 'session.account')
     });
+
+    set(this, 'editedExporter', exporter);
     return yield exporter.save();
   }).drop(),
 
@@ -44,11 +46,15 @@ export default Component.extend({
   actions: {
     setupExport() {
       get(this, 'createExport').perform()
-        .then(() => {
-          // NOTE: Probably a cleaner solution to add a "completed!" tab
-          invokeAction(this, 'close');
-        })
-        .catch(err => get(this, 'notify').error(errorMessages(err)));
+        .then(() => invokeAction(this, 'close'))
+        .catch((err) => {
+          get(this, 'notify').error(errorMessages(err));
+          get(this, 'editedExporter').deleteRecord();
+        });
+    },
+
+    changeComponent(component, siteName) {
+      invokeAction(this, 'changeComponent', component, { ...get(this, 'componentData'), siteName });
     }
   }
 });
