@@ -53,4 +53,16 @@ export default MediaIndexRoute.extend({
     }
     return result;
   },
+
+  _buildFilters() {
+    const filters = this._super(...arguments);
+    const { year, season } = filters.filter;
+    if (!year || !season) { return filters; }
+    const [lower, upper] = year.split('..');
+    if (parseInt(lower, 10) === parseInt(upper, 10)) {
+      delete filters.filter.year;
+      filters.filter.season_year = lower;
+    }
+    return filters;
+  }
 });
