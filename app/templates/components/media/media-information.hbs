@@ -42,7 +42,7 @@
     {{#if isAnime}}
       <li>
         <strong>{{t "media.routes.show.information.season"}}:</strong>
-        <a href={{href-to (concat (model-type media) ".index") (query-params season=season year=seasonYear)}}>
+        <a href={{href-to (concat (model-type media) ".index") (query-params season=season year=(concat seasonYear ".." seasonYear))}}>
           {{capitalize season}} {{seasonYear}}
         </a>
       </li>

@@ -1,8 +1,13 @@
-<span class="ranking">
-  {{svg-jar "heart-filled"}}
-  {{t (concat "media.routes.show.ranking.popularity." (model-type media)) rank=media.popularityRank}}
-</span>
-<span class="ranking">
-  {{svg-jar "star"}}
-  {{t (concat "media.routes.show.ranking.rating." (model-type media)) rank=media.ratingRank}}
-</span>
+{{#if media.popularityRank}}
+  <span class="ranking ranking-popularity">
+    {{svg-jar "heart-filled"}}
+    {{t (concat "media.routes.show.ranking.popularity." (model-type media)) rank=media.popularityRank}}
+  </span>
+{{/if}}
+
+{{#if media.ratingRank}}
+  <span class="ranking ranking-rating">
+    {{svg-jar "star"}}
+    {{t (concat "media.routes.show.ranking.rating." (model-type media)) rank=media.ratingRank}}
+  </span>
+{{/if}}
