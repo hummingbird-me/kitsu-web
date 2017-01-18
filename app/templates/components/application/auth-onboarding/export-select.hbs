@@ -2,14 +2,16 @@
   <div class="auth-section active">
     <h6 class="auth-section-title">Do you want other lists to stay in sync with Kitsu?</h6>
     <p class="auth-section-helper">If you currently track your anime and manga on Kitsu but want other platforms to be updated as well whenever you edit your library, you can set up an export that will update external lists for you.</p>
-    <a href="#" class="import-option" {{action "changeComponent" "export-basicauth" "MyAnimeList"}}>
-      <span class="import-logo">
-        <img src="/images/mal.png">
-      </span>
-      <span class="import-title">
-        Setup Export to MyAnimeList Account
-      </span>
-    </a>
+    {{#unless hasExporterForMal}}
+      <a href="#" class="import-option" {{action "changeComponent" "export-basicauth" "MyAnimeList"}}>
+        <span class="import-logo">
+          <img src="/images/mal.png">
+        </span>
+        <span class="import-title">
+          Setup Export to MyAnimeList Account
+        </span>
+      </a>
+    {{/unless}}
   </div>
   <div class="form-cta">
     <button type="button" class="button button--primary" {{action close}}>
