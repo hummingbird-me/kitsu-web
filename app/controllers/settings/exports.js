@@ -1,9 +1,3 @@
 import Controller from 'ember-controller';
 
-export default Controller.extend({
-  actions: {
-    removeExport(exporter) {
-      exporter.destroyRecord();
-    }
-  }
-});
+export default Controller.extend();
