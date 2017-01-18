@@ -39,7 +39,7 @@
             <div class="card-header" role="tab">
               <h6 class="m-b-0">
                 <a data-toggle="collapse" data-parent="#accordian" href="#export-tab-{{index}}">
-                  {{strip-namespace export.kind}} - {{moment-format export.createdAt "MMM, YYYY"}}
+                  {{strip-namespace export.kind}}
                 </a>
               </h6>
             </div>
@@ -47,8 +47,12 @@
             <div id="export-tab-{{index}}" class="collapse" role="tabpanel">
               <div class="card-block">
                 <p class="card-text">
+                  <span class="export-remove">
+                    <a class="hint--left hint--bounce hint--rounded" aria-label="Remove exporter" {{action "removeExport" export}}>
+                      {{svg-jar "cancel"}}
+                    </a>
+                  </span>
                   <span class="font-weight-bold">Status:</span> active<br>
-                  <a href="#" {{action "removeExport" export}}>[remove]</a>
                 </p>
               </div>
             </div>
