@@ -176,8 +176,8 @@ module.exports = function(environment) {
     // intercom app
     ENV.metricsAdapters[2].config.appId = 'ca7x05fo';
     // google settings
-    ENV.google.ads.enabled = false;
-    ENV.google.ads.client = 'TODO-HERE';
+    ENV.google.ads.enabled = true;
+    ENV.google.ads.client = 'ca-pub-1730996169473196';
     ENV.google.adwords = true;
   }
 
