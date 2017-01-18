@@ -24,7 +24,7 @@
     </button>
 
     <button type="button" class="button button--primary" disabled={{if (or (is-empty username) (is-empty password)) "disabled"}} {{action "setupExport"}}>
-      {{#if createImport.isRunning}}
+      {{#if createExport.isRunning}}
         {{loading-spinner size="small"}}
       {{else}}
         Setup {{siteName}} Export

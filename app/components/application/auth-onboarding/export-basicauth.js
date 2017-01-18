@@ -48,7 +48,11 @@ export default Component.extend({
       get(this, 'createExport').perform()
         .then(() => invokeAction(this, 'close'))
         .catch((err) => {
-          get(this, 'notify').error(errorMessages(err));
+          if (get(err, 'errors.firstObject.status') === 422) {
+            get(this, 'notify').error('Authorization failed! Please check your username and password.');
+          } else {
+            get(this, 'notify').error(errorMessages(err));
+          }
           get(this, 'editedExporter').deleteRecord();
         });
     },
