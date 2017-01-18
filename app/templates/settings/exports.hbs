@@ -10,8 +10,9 @@
     </button>
 
     {{#if exportModal}}
-      {{to-elsewhere named="modal" send=(component "application/auth-onboarding"
-        modalId="auth-modal"
+      {{to-elsewhere named="modal" send=(component "application/progressing-modal"
+        modalId="export-modal"
+        modalBase="settings/export"
         component="export-select"
         onClose=(toggle-action "exportModal" this))}}
     {{/if}}
