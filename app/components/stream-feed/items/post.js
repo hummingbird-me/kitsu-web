@@ -100,7 +100,11 @@ export default Component.extend(ClipboardMixin, {
       set(this, 'userId', get(this, 'feedId').split(':')[1]);
     }
     const post = get(this, 'post');
-    set(this, 'isHidden', get(post, 'nsfw') || get(post, 'spoiler'));
+    if (get(this, 'session').isCurrentUser(get(post, 'user'))) {
+      set(this, 'isHidden', get(post, 'nsfw'));
+    } else {
+      set(this, 'isHidden', get(post, 'nsfw') || get(post, 'spoiler'));
+    }
 
     if (!get(this, 'isHidden')) {
       this._overflow();

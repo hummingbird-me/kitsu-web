@@ -47,7 +47,9 @@ export default Component.extend(ClipboardMixin, {
     if (get(this, 'media') === undefined) {
       set(this, 'media', get(this, 'review.media'));
     }
-    set(this, 'isHidden', get(this, 'review.spoiler'));
+    if (!get(this, 'session').isCurrentUser(get(this, 'review.user'))) {
+      set(this, 'isHidden', get(this, 'review.spoiler'));
+    }
   },
 
   actions: {
