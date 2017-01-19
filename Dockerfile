@@ -1,7 +1,7 @@
-FROM node:6.9.1
+FROM node:6.9
 MAINTAINER Kitsu, Inc.
 
-RUN curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.18.1
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.19.1
 ENV PATH="/root/.yarn/bin:${PATH}"
 RUN yarn global add bower
 RUN mkdir -p /opt/kitsu/client
