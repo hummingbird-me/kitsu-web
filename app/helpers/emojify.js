@@ -1,6 +1,6 @@
 import { helper } from 'ember-helper';
 import { htmlSafe } from 'ember-string';
-import emojione from 'emojione';
+/* global emojione */
 
 export function emojify([str]) {
   const emojified = emojione.toImage(str);
