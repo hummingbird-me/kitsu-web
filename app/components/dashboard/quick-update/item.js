@@ -56,9 +56,10 @@ const QuickUpdateItemComponent = Component.extend({
   }).readOnly(),
 
   updateEntryTask: task(function* () {
+    if (get(this, 'isDragging')) { return; }
+
     const entry = get(this, 'entry');
     const progress = get(entry, 'progress');
-
     if (get(this, 'canComplete') === true) {
       set(entry, 'status', 'completed');
       // load in review

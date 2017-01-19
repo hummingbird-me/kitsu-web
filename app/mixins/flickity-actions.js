@@ -9,7 +9,7 @@ import canUseDOM from 'ember-metrics/utils/can-use-dom';
  * to fire or not.
  */
 export default Mixin.create({
-  isFlickityDraging: false,
+  isFlickityDragging: false,
 
   didRender() {
     this._super(...arguments);
@@ -32,14 +32,14 @@ export default Mixin.create({
   },
 
   _onDragStart() {
-    set(this, 'isFlickityDraging', true);
+    set(this, 'isFlickityDragging', true);
     this.$('a[href^="/"]').attr('data-href-to-ignore', true);
   },
 
   _onDragEnd() {
-    set(this, 'isFlickityDraging', false);
     // 250ms later so that we don't instantly remove the attribute and then have href-to proc.
     later(() => {
+      set(this, 'isFlickityDragging', false);
       this.$('a[href^="/"]').removeAttr('data-href-to-ignore');
     }, 250);
   }
