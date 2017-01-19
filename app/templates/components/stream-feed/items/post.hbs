@@ -128,7 +128,9 @@
         <div class="tagged-media--wrapper">
           <div class="tagged-media row">
             <div class="stream-item--media col-xs-1">
-              {{lazy-image url=(image post.media.posterImage "small")}}
+              <a href={{href-to (concat (model-type post.media) ".show") post.media}}>
+                {{lazy-image url=(image post.media.posterImage "small")}}
+              </a>
             </div>
             <div class="col-sm no-padding-left">
               <div class="stream-item--title-block">

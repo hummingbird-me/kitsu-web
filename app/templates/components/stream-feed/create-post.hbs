@@ -35,12 +35,14 @@
         <div class="tagged-media--wrapper">
           <div class="tagged-media row">
             <div class="stream-item--media col-xs-1">
-              {{lazy-image url=(image _usableMedia.posterImage "small")}}
+              <a href={{href-to (concat (model-type _usableMedia) ".show") _usableMedia.slug}}>
+                {{lazy-image url=(image _usableMedia.posterImage "small")}}
+              </a>
             </div>
             <div class="col-sm no-padding-left">
               <div class="stream-item--title-block">
                 <div class="author-info">
-                  <a class="author-name" href={{href-to (concat (model-type _usableMedia) ".show") _usableMedia}}>
+                  <a class="author-name" href={{href-to (concat (model-type _usableMedia) ".show") _usableMedia.slug}}>
                     {{_usableMedia.computedTitle}}
                   </a>
                   <small class="author-secondary">
@@ -52,9 +54,7 @@
               </div>
             </div>
             {{#unless mediaReadOnly}}
-              <a href="#" class="tagged-media--remove hint--top hint--bounce hint--rounded" aria-label="Remove?" {{action
-                (queue (action (mut _usableMedia) null) (action (mut spoiler) false))
-              }}>
+              <a href="#" class="tagged-media--remove hint--top hint--bounce hint--rounded" aria-label="Remove?" {{action (queue (action (mut _usableMedia) null) (action (mut spoiler) false))}}>
                 {{svg-jar "close"}}
               </a>
             {{/unless}}
