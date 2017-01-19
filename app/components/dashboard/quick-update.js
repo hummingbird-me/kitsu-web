@@ -8,8 +8,9 @@ import { scheduleOnce } from 'ember-runloop';
 import { capitalize } from 'ember-string';
 import errorMessages from 'client/utils/error-messages';
 import { storageFor } from 'ember-local-storage';
+import FlickityActionsMixin from 'client/mixins/flickity-actions';
 
-export default Component.extend({
+export default Component.extend(FlickityActionsMixin, {
   classNames: ['quick-update'],
   pageLimit: 12,
   notify: service(),

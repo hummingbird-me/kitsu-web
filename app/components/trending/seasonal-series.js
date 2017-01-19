@@ -1,6 +1,7 @@
 import BaseComponent from 'client/components/trending/-base';
 import get from 'ember-metal/get';
 import { task } from 'ember-concurrency';
+import FlickityActionsMixin from 'client/mixins/flickity-actions';
 
 /**
  * TODO:
@@ -8,7 +9,7 @@ import { task } from 'ember-concurrency';
  * This component is currently using hardcoded seasons. It should be changed in the future
  * to determine what the current season is and the previous 3 season.
  */
-export default BaseComponent.extend({
+export default BaseComponent.extend(FlickityActionsMixin, {
   classNames: ['seasonal-series'],
   currentTab: 'winter',
 
