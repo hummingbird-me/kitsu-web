@@ -52,23 +52,12 @@
                 </a>
               </div>
             {{else}}
-              {{! legacy reviews are from Hummingbird }}
               {{#if isExpanded}}
-                {{#if review.legacy}}
-                  {{{review.content}}}
-                {{else}}
-                  {{{review.contentFormatted}}}
-                {{/if}}
+                {{{review.contentFormatted}}}
               {{else}}
-                {{#if review.legacy}}
-                  {{text-clipper review.content length=480
-                    expandText="Read More" expandHref=(href-to "reviews" review.id)
-                    options=(hash html=true imageWeight=240)}}
-                {{else}}
-                  {{text-clipper review.contentFormatted length=480
-                    expandText="Read More" expandHref=(href-to "reviews" review.id)
-                    options=(hash html=true)}}
-                {{/if}}
+                {{text-clipper review.contentFormatted length=480
+                  expandText="Read More" expandHref=(href-to "reviews" review.id)
+                  options=(hash html=true)}}
               {{/if}}
             {{/if}}
           </div>

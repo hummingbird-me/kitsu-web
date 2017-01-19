@@ -5,7 +5,6 @@ import { belongsTo } from 'ember-data/relationships';
 export default Base.extend({
   content: attr('string'),
   contentFormatted: attr('string'),
-  legacy: attr('boolean'),
   likesCount: attr('number'),
   progress: attr('number'),
   rating: attr('number'),
