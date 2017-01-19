@@ -190,7 +190,7 @@ export default Component.extend(ClipboardMixin, {
         });
     },
 
-    pinOrUnpinPost (post = null) {
+    pinOrUnpinPost(post = null) {
       const user = get(this, 'session.account');
       set(user, 'pinnedPost', post);
       user.save().then(() => {

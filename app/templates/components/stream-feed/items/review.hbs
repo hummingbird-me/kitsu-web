@@ -55,7 +55,7 @@
               {{#if isExpanded}}
                 {{emojify review.contentFormatted}}
               {{else}}
-                {{text-clipper review.contentFormatted length=480
+                {{text-clipper (emojify review.contentFormatted) length=480
                   expandText="Read More" expandHref=(href-to "reviews" review.id)
                   options=(hash html=true)}}
               {{/if}}
@@ -94,6 +94,15 @@
           <a href="#" data-clipboard-text={{concat host (href-to "reviews" review.id)}} class="dropdown-item" {{action "trackEngagement" "click"}}>
             Copy Link to Review
           </a>
+
+          {{! Re-hide the review }}
+          {{#if review.spoiler}}
+            {{#if isHidden}}
+              <a class="dropdown-item" href="#" {{action (toggle "isHidden" this)}}>Show Review Content</a>
+            {{else}}
+              <a class="dropdown-item" href="#" {{action (toggle "isHidden" this)}}>Hide Review Content</a>
+            {{/if}}
+          {{/if}}
 
           {{! edit/delete review }}
           {{#if (can-mutate review.user review)}}

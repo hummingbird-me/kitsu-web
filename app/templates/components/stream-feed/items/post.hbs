@@ -44,7 +44,8 @@
           {{/unless}}
         {{/if}}
 
-        <a href={{href-to "posts" post}} onclick={{action "trackEngagement" "click"}}>
+        {{! Timestamp }}
+        <a href={{href-to "posts" post.id}} onclick={{action "trackEngagement" "click"}}>
           <small class="author-secondary">
             {{moment-from-now post.createdAt interval=60000}}
             {{#if postEdited}}
@@ -184,6 +185,15 @@
           <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "posts" post.id)}} {{action "trackEngagement" "click"}}>
             Copy Link to Post
           </a>
+
+          {{! Re-hide the post }}
+          {{#if (or post.spoiler post.nsfw)}}
+            {{#if isHidden}}
+              <a class="dropdown-item" href="#" {{action "toggleHidden"}}>Show Post Content</a>
+            {{else}}
+              <a class="dropdown-item" href="#" {{action "toggleHidden"}}>Hide Post Content</a>
+            {{/if}}
+          {{/if}}
 
           {{! Editing/Deleting Options }}
           {{#if (can-mutate post.user post)}}
