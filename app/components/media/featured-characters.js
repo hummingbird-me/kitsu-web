@@ -17,7 +17,6 @@ export default Component.extend({
     let language;
     if (mediaType === 'anime') {
       const languages = yield get(this, 'ajax').request(`/anime/${mediaId}/_languages`);
-      console.log(languages);
       if (isPresent(languages)) {
         language = languages.find(item => item === 'Japanese') || get(languages, 'firstObject');
       }
