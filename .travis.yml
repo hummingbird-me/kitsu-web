@@ -1,16 +1,15 @@
 language: node_js
 node_js:
-- '6.9.1'
+- '6.9'
 
 sudo: false
 
 before_install:
-- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.18.1
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.19.1
 - export PATH=$HOME/.yarn/bin:$PATH
 
 install:
-- travis_retry yarn global add bower
-- travis_retry yarn add phantomjs-prebuilt
+- travis_retry yarn global add bower phantomjs-prebuilt
 - travis_retry yarn install
 - travis_retry bower install
 

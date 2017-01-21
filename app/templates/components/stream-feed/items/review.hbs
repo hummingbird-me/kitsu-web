@@ -3,7 +3,7 @@
     <div class="stream-review row">
       {{#unless hideImage}}
         <div class="stream-item--media col-xs-4 col-sm-3">
-          <a href={{href-to (concat (model-type media) ".show") media}}>
+          <a href={{href-to (concat (model-type media) ".show") media.slug}}>
             {{lazy-image url=(image media.posterImage "large") ratio=-2}}
           </a>
         </div>
@@ -11,17 +11,17 @@
       <div class="col-xs no-padding-left">
         <div class="stream-review-content">
           <header class="author-header">
-            <a class="review-avatar" href={{href-to "users.index" review.user}}>
+            <a class="review-avatar" href={{href-to "users.index" review.user.name}}>
               {{lazy-image url=(image review.user.avatar "small")}}
             </a>
             <h5 class="name-heading person-heading left">
               <small>Review by</small>
-              <a href={{href-to "users.index" review.user}}>{{review.user.name}}</a>
+              <a href={{href-to "users.index" review.user.name}}>{{review.user.name}}</a>
             </h5>
           </header>
           <small class="media-heading">
             <h6>
-              <a href={{href-to (concat (model-type media) ".show") media}}>
+              <a href={{href-to (concat (model-type media) ".show") media.slug}}>
                 {{media.computedTitle}}
               </a>
               <span class="stream-review-rating">
@@ -52,23 +52,12 @@
                 </a>
               </div>
             {{else}}
-              {{! legacy reviews are from Hummingbird }}
               {{#if isExpanded}}
-                {{#if review.legacy}}
-                  {{{review.content}}}
-                {{else}}
-                  {{{review.contentFormatted}}}
-                {{/if}}
+                {{emojify review.contentFormatted}}
               {{else}}
-                {{#if review.legacy}}
-                  {{text-clipper review.content length=480
-                    expandText="Read More" expandHref=(href-to "reviews" review)
-                    options=(hash html=true imageWeight=240)}}
-                {{else}}
-                  {{text-clipper review.contentFormatted length=480
-                    expandText="Read More" expandHref=(href-to "reviews" review)
-                    options=(hash html=true)}}
-                {{/if}}
+                {{text-clipper (emojify review.contentFormatted) length=480
+                  expandText="Read More" expandHref=(href-to "reviews" review.id)
+                  options=(hash html=true)}}
               {{/if}}
             {{/if}}
           </div>
@@ -99,12 +88,21 @@
       {{! options }}
       <span class="more-wrapper">
         <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="more-drop">
-          <svg width="24" height="6" viewBox="0 0 24 6" xmlns="http://www.w3.org/2000/svg"><title>Shape</title><path d="M3 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm9 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm9 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" fill="#CACACA" fill-rule="evenodd"></path></svg>
+          {{svg-jar "more"}}
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <a href="#" data-clipboard-text={{concat host (href-to "reviews" review.id)}} class="dropdown-item" {{action "trackEngagement" "click"}}>
             Copy Link to Review
           </a>
+
+          {{! Re-hide the review }}
+          {{#if review.spoiler}}
+            {{#if isHidden}}
+              <a class="dropdown-item" href="#" {{action (toggle "isHidden" this)}}>Show Review Content</a>
+            {{else}}
+              <a class="dropdown-item" href="#" {{action (toggle "isHidden" this)}}>Hide Review Content</a>
+            {{/if}}
+          {{/if}}
 
           {{! edit/delete review }}
           {{#if (can-mutate review.user review)}}

@@ -2,8 +2,9 @@ import BaseComponent from 'client/components/trending/-base';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
+import FlickityActionsMixin from 'client/mixins/flickity-actions';
 
-export default BaseComponent.extend({
+export default BaseComponent.extend(FlickityActionsMixin, {
   classNames: ['weekly-trending'],
   currentTab: 'anime',
   ajax: service(),

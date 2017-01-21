@@ -39,7 +39,15 @@ export default Component.extend({
   groupByTimeAll: computed('group.activities.@each.isDeleted', {
     get() {
       const temp = {};
-      get(this, 'group.activities').forEach((activity) => {
+      const activities = get(this, 'group.activities').toArray().sort((a, b) => {
+        if (moment(get(a, 'time')).isBefore(get(b, 'time'))) {
+          return 1;
+        } else if (moment(get(a, 'time')).isAfter(get(b, 'time'))) {
+          return -1;
+        }
+        return 0;
+      });
+      activities.forEach((activity) => {
         const time = get(activity, 'time');
         const calendar = moment(time).calendar(null, {
           sameDay: '[Today]',

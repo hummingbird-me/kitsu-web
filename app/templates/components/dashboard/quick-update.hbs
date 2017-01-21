@@ -23,7 +23,10 @@
 {{else}}
   {{#em-flickity class="carousel" contain=false cellAlign="left" groupCells=1 setGallerySize=true showSlides=true}}
     {{#each initialEntries as |entry|}}
-      {{dashboard/quick-update/item entry updateEntry=(action "updateEntry") class="quick-update-item"}}
+      {{dashboard/quick-update/item entry
+        isDragging=isFlickityDragging
+        updateEntry=(action "updateEntry")
+        class="quick-update-item"}}
     {{/each}}
 
     {{#if (lt initialEntries.length 4)}}
@@ -54,7 +57,10 @@
   {{! Temporary storage for paginated entries }}
   <div class="new-entries" style="display: none">
     {{#each newEntries as |entry|}}
-      {{dashboard/quick-update/item entry updateEntry=(action "updateEntry") class="quick-update-item"}}
+      {{dashboard/quick-update/item entry
+        isDragging=isFlickityDragging
+        updateEntry=(action "updateEntry")
+        class="quick-update-item"}}
     {{/each}}
   </div>
 {{/if}}

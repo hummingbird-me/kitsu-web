@@ -2,8 +2,9 @@ import BaseComponent from 'client/components/trending/-base';
 import get from 'ember-metal/get';
 import { task } from 'ember-concurrency';
 import moment from 'moment';
+import FlickityActionsMixin from 'client/mixins/flickity-actions';
 
-export default BaseComponent.extend({
+export default BaseComponent.extend(FlickityActionsMixin, {
   classNames: ['annual-trending'],
   currentTab: 'anime',
   lastYear: moment().year() - 1,
