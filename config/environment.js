@@ -69,6 +69,11 @@ module.exports = function(environment) {
             token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.PwcarwpGmUWY57rhorNKYPbTOZt0ppmX2U4AyYwzrw0'
           }
         }
+      },
+      {
+        name: 'FacebookPixel',
+        environments: ['production'],
+        config: { id: '237149646711154' }
       }
     ],
 

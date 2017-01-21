@@ -1,7 +1,11 @@
 import Service from 'ember-service';
+import service from 'ember-service/inject';
+import get from 'ember-metal/get';
 
 export default Service.extend({
-  trackConversion(id, label, params = {}, remarketing = false) {
+  metrics: service(),
+
+  googleTrackConversion(id, label, params = {}, remarketing = false) {
     if (window.google_trackConversion) {
       window.google_trackConversion({
         google_conversion_id: id,
@@ -11,5 +15,9 @@ export default Service.extend({
         google_conversion_format: '3'
       });
     }
+  },
+
+  facebookTrackConversion(event, params = {}) {
+    get(this, 'metrics').invoke('trackEvent', 'FacebookPixel', { event, ...params });
   }
 });

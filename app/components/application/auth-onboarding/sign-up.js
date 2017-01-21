@@ -86,7 +86,11 @@ export default Component.extend({
           metrics.label = 'facebook';
         }
         get(this, 'metrics').trackEvent(metrics);
-        get(this, 'tracking').trackConversion(863549170, 'jvhFCLzuhG0Q8u3imwM');
+        get(this, 'tracking').googleTrackConversion(863549170, 'jvhFCLzuhG0Q8u3imwM');
+        get(this, 'tracking').facebookTrackConversion('CompleteRegistration', {
+          value: 25.00,
+          currency: 'USD'
+        });
       })
       .catch(err => get(this, 'notify').error(errorMessages(err)));
   }).drop(),
