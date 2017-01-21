@@ -25,11 +25,10 @@ export default Component.extend({
 
   groupByTimeLimited: computed('groupByTimeAll', {
     get() {
-      const result = get(this, 'groupByTimeAll').slice(0, 1);
-      if (result.length > 1) {
-        set(this, 'hasMoreActivities', true);
-      }
-      if (get(result, 'firstObject.activities.length') > get(this, 'activityLimit')) {
+      const groups = get(this, 'groupByTimeAll');
+      const activityCount = get(this, 'group.activities.length');
+      const result = groups.slice(0, 1);
+      if (activityCount > get(this, 'activityLimit')) {
         set(this, 'hasMoreActivities', true);
       }
       return result;
