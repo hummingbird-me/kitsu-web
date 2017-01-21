@@ -7,9 +7,6 @@ export default MetricsService.extend({
     if (environment === 'production' && Config.isStaging) {
       environment = 'staging';
     }
-    let { environments } = adapterOption;
-    environments = environments || ['all'];
-    const wrappedEnvironments = [environments];
-    return wrappedEnvironments.indexOf('all') > -1 || wrappedEnvironments.indexOf(environment) > -1;
+    return this._super(adapterOption, environment);
   }
 });
