@@ -7,10 +7,10 @@ export default Service.extend({
   init() {
     this._super(...arguments);
     if (window.stream !== undefined) {
-      const { enabled, key, app } = get(Config, 'stream.realtime');
-      if (enabled === false) {
-        return;
-      }
+      const { enabled, config } = get(Config, 'stream.realtime');
+      if (!enabled) { return; }
+      const environment = Config.isStaging ? 'staging' : Config.environment;
+      const { app, key } = get(config, environment);
       const client = window.stream.connect(key, null, app);
       set(this, 'client', client);
     }
@@ -18,9 +18,7 @@ export default Service.extend({
 
   subscribe(feed, id, token, callback) {
     const client = get(this, 'client');
-    if (client === undefined) {
-      return;
-    }
+    if (!client) { return; }
     const connection = client.feed(feed, id, token);
     return connection.subscribe(data => callback(data));
   }
