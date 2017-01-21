@@ -168,6 +168,8 @@ module.exports = function(environment) {
     ENV.metricsAdapters[3].config.production.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.Loj_VZy_FKQzP3xLpX46xSF9bktOBfqcve8eYjwFmNc';
     ENV.stream.realtime.key = 'ekx6xkn9v9xx';
     ENV.stream.realtime.app = '17647';
+    // Facebook
+    ENV.metricsAdapters[4].config.id = undefined;
     // Sentry
     ENV.sentry.dsn = 'https://cd7634b1400644688ff55bda89171367@sentry.io/125035';
   }
