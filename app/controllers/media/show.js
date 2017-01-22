@@ -21,23 +21,10 @@ export default Controller.extend({
     }
   }).readOnly(),
 
-  totalProgressText: computed('media.unitCount', {
-    get() {
-      return get(this, 'media.unitCount') || '-';
-    }
-  }).readOnly(),
-
   coverImageStyle: computed('media.coverImage', {
     get() {
       const coverImage = image(get(this, 'media.coverImage'));
       return `background-image: url("${coverImage}")`.htmlSafe();
     }
-  }).readOnly(),
-
-  actions: {
-    sanitizeNumber(value) {
-      const parsed = parseInt(value, 10);
-      return isNaN(parsed) ? value : parsed;
-    }
-  }
+  }).readOnly()
 });
