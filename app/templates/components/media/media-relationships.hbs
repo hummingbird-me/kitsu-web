@@ -5,7 +5,7 @@
       <div class="related--title">{{t (concat "media.routes.show.relationships." type)}}:</div>
       <div class="related--posters">
         {{#each medias as |media|}}
-          <a href={{href-to (concat (model-type media) ".show") media.slug}} class="related--item">
+          <a href={{href-to (concat (model-type media) ".show") media.slug}} class="related--item" data-toggle="tooltip" title={{media.computedTitle}}>
             {{lazy-image url=(image media.posterImage "small")}}
           </a>
         {{/each}}

@@ -23,5 +23,10 @@ export default Component.extend({
       });
       return sortedResults;
     }
-  }).readOnly()
+  }).readOnly(),
+
+  didInsertElement() {
+    this._super(...arguments);
+    this.$('[data-toggle="tooltip"]').tooltip();
+  }
 });
