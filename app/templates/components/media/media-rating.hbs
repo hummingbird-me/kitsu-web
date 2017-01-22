@@ -7,39 +7,7 @@
       {{star-rating media.averageRating anyPercent=true readOnly=true}}
     </span>
     <span class="ratings-count">
-      327,435 ratings - 23,456 favorites
+      {{totalRatings}} ratings - 23,456 favorites
     </span>
   </div>
 {{/if}}
-
-<!-- {{! community rating }}
-{{#if hasCommunityRatings}}
-  <div class="community-rating {{percentageClass}}">
-    <div class="percentage-liked">
-      <div class="featured-number">
-        {{percentageLiked}}%
-      </div>
-      <span>Liked it</span>
-    </div>
-    <div class="average-rating">
-      <div class="featured-number">
-        <label>{{decimal-number media.averageRating}}</label>
-        {{star-rating media.averageRating anyPercent=true readOnly=true}}
-      </div>
-      <span>Avg. user rating</span>
-    </div>
-  </div>
-{{/if}}
-
-{{#if (and entry (not (is-promise entry)))}}
-  <div class="average-rating media-user-rating {{unless hasCommunityRatings "lonely"}}">
-    <div class="personal-rating">
-      <div class="featured-number">
-        {{! user rating }}
-        <label>{{decimal-number entry.rating}}</label>
-        {{star-rating entry.rating onClick=(action "update")}}
-      </div>
-      <span>Your rating</span>
-    </div>
-  </div>
-{{/if}} -->
