@@ -1,14 +1,5 @@
 <div class="row">
   <div class="col-sm-8">
-    {{! Synopsis }}
-    <section class="media-synopsis m-b-1">
-      {{text-clipper media.synopsis length=600
-        expandText="Read More"
-        collapseText="Read Less"
-        options=(hash maxLines=7 html=true)
-        tagName="p"}}
-    </section>
-
     {{! Ratings }}
     <section class="clearfix">
       {{media/media-rating
@@ -20,7 +11,11 @@
 
     {{! Synopsis }}
     <section class="media-synopsis m-b-1">
-      <p>{{media.synopsis}}</p>
+      {{text-clipper media.synopsis length=600
+        expandText="Read More"
+        collapseText="Read Less"
+        options=(hash maxLines=7 html=true)
+        tagName="p"}}
     </section>
 
     {{! Genres }}
