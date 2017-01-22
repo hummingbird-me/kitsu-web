@@ -5,8 +5,34 @@
   width: 100%;
   &.primary-nav {
     z-index: $zIndex--primary-nav;
+    background: #402f3f;
     .row {
       display: inherit;
+    }
+    .navbar-nav .nav-link {
+      color: RGBA(237, 240, 241, .6);
+      &:hover, &.active {
+        color: RGBA(237, 240, 241, 1);
+      }
+    }
+    #exCollapsingNavbar2 {
+      position: relative;
+      top: 1px;
+      @media (max-width: 545px) {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        left: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        .nav-link {
+          border-color: #291e28;
+          &:hover {
+            background: transparent;
+          }
+        }
+      }
     }
   }
   .primary-nav--drop {
@@ -43,7 +69,7 @@
     }
   }
   .logo {
-    width: 80px;
+    width: 90px;
     display: inline-block;
     position: relative;
     top: 3px;
@@ -100,7 +126,7 @@
   font-size: 13px;
   position: relative;
   top: 3px;
-  border: 1px solid #eee;
+  border: 1px solid RGBA(237, 240, 241, 0.6);
   font-family: $heading-font-family;
   &.notifications--present {
     background: linear-gradient(RGBA(237, 72, 95, 1), RGBA(242, 124, 54, 1));
@@ -116,7 +142,7 @@
     position: relative;
     top: -5px;
     width: 20px;
-    fill: rgba(0,0,0,.44);
+    fill: RGBA(237, 240, 241, 0.8);
   }
 }
 
@@ -144,11 +170,12 @@
   position: absolute;
   left: -25px;
   top: 12px;
-  fill: rgba(0,0,0,.44);
+  fill: RGBA(237, 240, 241, 0.8);
 }
 .site-search__input {
   border-radius: 20px;
-  border: 1px solid $eggshell;
+  border: 1px solid RGBA(237, 240, 241, 0.6);
+  background: transparent;
   cursor: pointer;
   height: 32px;
   width: 32px;
@@ -298,4 +325,8 @@
     display: block;
     opacity: .6;
   }
+}
+
+.navbar-toggler {
+  color: RGBA(237, 240, 241, .6);
 }
