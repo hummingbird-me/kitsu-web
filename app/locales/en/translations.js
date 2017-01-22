@@ -123,8 +123,8 @@ export default {
         relationships: {
           sequel: 'Sequel',
           prequel: 'Prequel',
-          alternate_setting: 'Alternate setting',
-          alternate_version: 'Alternate version',
+          alternative_setting: 'Alternative setting',
+          alternative_version: 'Alternative version',
           side_story: 'Side story',
           parent_story: 'Parent story',
           summary: 'Summary',
