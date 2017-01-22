@@ -131,6 +131,8 @@ export default {
           full_story: 'Full story',
           spinoff: 'Spin-off',
           adaptation: 'Adaptation',
+          anime_adaptation: 'Anime adaptation',
+          manga_adaptation: 'Manga adaptation',
           character: 'Character',
           other: 'Other'
         },
