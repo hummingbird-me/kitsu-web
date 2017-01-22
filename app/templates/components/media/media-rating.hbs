@@ -1,4 +1,18 @@
-{{! community rating }}
+{{#if hasCommunityRatings}}
+  <div class="rating-bar clearfix">
+    <span class="community-percentage {{percentageClass}}">
+      {{decimal-number media.averageRating 2}}
+    </span>
+    <span class="average-rating-stars">
+      {{star-rating media.averageRating anyPercent=true readOnly=true}}
+    </span>
+    <span class="ratings-count">
+      327,435 ratings - 23,456 favorites
+    </span>
+  </div>
+{{/if}}
+
+<!-- {{! community rating }}
 {{#if hasCommunityRatings}}
   <div class="community-rating {{percentageClass}}">
     <div class="percentage-liked">
@@ -28,4 +42,4 @@
       <span>Your rating</span>
     </div>
   </div>
-{{/if}}
+{{/if}} -->
