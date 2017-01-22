@@ -1,0 +1,48 @@
+{{! rating }}
+<div class="rating-box row">
+  <span class="user-star-rating clearfix col-sm">
+    {{star-rating entry.rating onClick=(action "update" "rating")}}
+  </span>
+  <a href="#" class="media-favorite {{if isFavorite "is-favorite"}}" {{action "toggleFavorite"}}>
+    <span class="heart-wrapper"></span>
+  </a>
+</div>
+
+{{! progress }}
+<div class="entry-progress--mini-wrapper">
+  <span>Progress</span>
+  <div class="entry-progress entry-progress--mini">
+    {{one-way-number entry.progress
+      min=0
+      max=media.unitCount
+      update=(queue
+        (pipe-action (action "sanitizeNumber") (action (mut entry.progress)))
+        debouncedUpdate
+      )
+      placeholder="0"
+    }}
+    <span>
+      <span class="sep">/</span>
+      {{totalProgressText}}
+    </span>
+  </div>
+</div>
+
+{{! review }}
+{{#unless (or (and entry.review (not entry.review.isNew)) (eq entry.progress 0))}}
+  <div>
+    <button class="button button--primary" onclick={{action (toggle "reviewOpen" this)}}>
+      Write a review
+    </button>
+  </div>
+{{/unless}}
+
+{{#if reviewOpen}}
+  {{to-elsewhere named="modal" send=(component "modals/media-review"
+    modalId="review-modal"
+    onClose=(toggle-action "reviewOpen" this)
+    media=media
+    entry=entry
+    updateEntry=update
+  )}}
+{{/if}}

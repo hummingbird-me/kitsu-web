@@ -20,7 +20,7 @@ export default Component.extend({
 
   totalRatings: computed('media.ratingFrequencies', {
     get() {
-      return this._getTotalRatings();
+      return this._getTotalRatings().toLocaleString();
     }
   }).readOnly(),
 
