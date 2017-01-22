@@ -60,6 +60,16 @@
         )}}
 
         {{#if (and entry (not (is-promise entry)))}}
+          {{! rating }}
+          <div class="rating-box row">
+            <span class="user-star-rating clearfix col-sm">
+              {{star-rating entry.rating onClick=(route-action "updateEntry" entry "rating")}}
+            </span>
+            <a href="#" class="media-favorite">
+              <span class="heart-wrapper"></span>
+            </a>
+          </div>
+
           {{! progress }}
           <div class="entry-progress--mini-wrapper">
             <span>Progress</span>
@@ -78,11 +88,6 @@
                 {{totalProgressText}}
               </span>
             </div>
-          </div>
-
-          {{! rating }}
-          <div>
-            {{star-rating entry.rating onClick=(route-action "updateEntry" entry "rating")}}
           </div>
 
           {{! review }}
