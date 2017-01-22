@@ -73,7 +73,9 @@ export default Component.extend({
     const start = get(this, 'media.startDate');
     const end = get(this, 'media.endDate');
     if (moment(start).isBefore() || moment(start).isSame()) {
-      return (moment(end).isBefore() || moment(end).isSame()) ? 'finished' : 'current';
+      const isOneDay = get(this, 'media.unitCount') === 1;
+      const isPastDate = moment(end).isBefore() || moment(end).isSame();
+      return (isOneDay || isPastDate) ? 'finished' : 'current';
     }
     return 'nya';
   })
