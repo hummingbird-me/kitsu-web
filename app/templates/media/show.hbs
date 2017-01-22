@@ -48,25 +48,6 @@
       {{! poster }}
       {{lazy-image url=(image media.posterImage "large")}}
 
-      {{! trailer }}
-      {{#if media.youtubeVideoId}}
-        <div class="trailer">
-          {{#if trailerOpen}}
-            {{to-elsewhere named="modal" send=(component "modals/media-trailer"
-              modalId="media-trailer"
-              onClose=(toggle-action "trailerOpen" this)
-              media=media
-              entry=entry
-              methods=(hash
-                create=(route-action "createEntry")
-                update=(route-action "updateEntry" entry "status")
-                delete=(route-action "deleteEntry" entry)
-              )
-            )}}
-          {{/if}}
-        </div>
-      {{/if}}
-
       {{! library entry }}
       {{#if session.hasUser}}
         {{library-dropdown
@@ -100,7 +81,6 @@
           </div>
 
           {{! review }}
-          {{! TODO - @Josh - review button on media page }}
           {{#unless (or (and entry.review (not entry.review.isNew)) (eq entry.progress 0))}}
             <div>
               <button class="button button--primary" onclick={{action (toggle "reviewOpen" this)}}>
