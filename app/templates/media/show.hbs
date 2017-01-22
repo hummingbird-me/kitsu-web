@@ -80,6 +80,11 @@
             </div>
           </div>
 
+          {{! rating }}
+          <div>
+            {{star-rating entry.rating onClick=(route-action "updateEntry" entry "rating")}}
+          </div>
+
           {{! review }}
           {{#unless (or (and entry.review (not entry.review.isNew)) (eq entry.progress 0))}}
             <div>
