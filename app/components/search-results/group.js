@@ -16,9 +16,9 @@ export default Component.extend({
       } else {
         const type = modelType([item]);
         if (type === 'user') {
-          get(this, 'router').transitionTo('users.index', [item]);
+          get(this, 'router').transitionTo('users.index', [get(item, 'name')]);
         } else {
-          get(this, 'router').transitionTo(`${type}.show`, [item]);
+          get(this, 'router').transitionTo(`${type}.show`, [get(item, 'slug')]);
         }
       }
     },
