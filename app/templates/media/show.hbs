@@ -46,7 +46,7 @@
   <div class="media-sidebar">
     <div>
       {{! poster }}
-      {{lazy-image url=(image media.posterImage "large")}}
+      <span class="media-poster">{{lazy-image url=(image media.posterImage "large")}}</span>
 
       {{! library entry }}
       {{#if session.hasUser}}
