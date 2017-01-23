@@ -6,7 +6,7 @@
   &.primary-nav {
     z-index: $zIndex--primary-nav;
     background: #402f3f;
-    border-bottom: 1px solid darken($voodoo, 6);
+    border-bottom: 1px solid darken($voodoo, 4);
     .row {
       display: inherit;
     }
@@ -127,7 +127,7 @@
   font-size: 13px;
   position: relative;
   top: 3px;
-  border: 1px solid RGBA(237, 240, 241, 0.6);
+  border: 1px solid #a8a3a9;
   font-family: $heading-font-family;
   &.notifications--present {
     background: linear-gradient(RGBA(237, 72, 95, 1), RGBA(242, 124, 54, 1));
@@ -136,7 +136,7 @@
       color: #fff;
     }
     &:hover {
-      opacity: .9;
+      border-color: #EDF0F1;
     }
   }
   svg {
@@ -175,7 +175,7 @@
 }
 .site-search__input {
   border-radius: 20px;
-  border: 1px solid RGBA(237, 240, 241, 0.6);
+  border: 1px solid #a8a3a9;
   background: transparent;
   cursor: pointer;
   height: 32px;
@@ -191,6 +191,9 @@
     text-indent: 0;
     width: 300px;
     padding-left: 15px;
+  }
+  &:hover {
+    border-color: #EDF0F1;
   }
 }
 
