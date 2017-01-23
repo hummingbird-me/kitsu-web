@@ -73,6 +73,7 @@ export default Component.extend({
     },
 
     toggleFavorite() {
+      if (get(this, 'getFavorite.isRunning')) { return; }
       if (get(this, 'isFavorite')) {
         this._destroyFavorite();
       } else {
