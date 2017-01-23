@@ -15,6 +15,7 @@ export default Base.extend({
   coverImage: attr('object', { defaultValue: '/images/default_cover.png' }),
   coverImageTopOffset: attr('number'),
   endDate: attr('utc'),
+  favoritesCount: attr('number'),
   popularityRank: attr('number'),
   posterImage: attr('object', { defaultValue: '/images/default_poster.jpg' }),
   ratingFrequencies: attr('object'),

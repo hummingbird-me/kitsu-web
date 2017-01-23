@@ -24,6 +24,10 @@ export default Component.extend({
     }
   }).readOnly(),
 
+  totalFavorites: computed('media.favoritesCount', function() {
+    return get(this, 'media.favoritesCount').toLocaleString();
+  }).readOnly(),
+
   percentageClass: computed('media.ratingFrequencies', {
     get() {
       const liked = this._calculatePercentage();
