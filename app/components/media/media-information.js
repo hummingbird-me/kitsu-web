@@ -1,15 +1,15 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
-import getter from 'client/utils/getter';
+import computed from 'ember-computed';
 import { modelType } from 'client/helpers/model-type';
 import moment from 'moment';
 /* global humanizeDuration */
 
 const computedProduction = key => (
-  getter(function() {
+  computed('media.animeProductions', function() {
     const productions = get(this, 'media.animeProductions');
     return productions.filterBy('role', key).mapBy('producer.name').join(', ');
-  })
+  }).readOnly()
 );
 
 export default Component.extend({
@@ -20,15 +20,15 @@ export default Component.extend({
   licensors: computedProduction('licensor'),
   studios: computedProduction('studio'),
 
-  isAnime: getter(function() {
+  isAnime: computed('media', function() {
     return modelType([get(this, 'media')]) === 'anime';
   }),
 
-  isManga: getter(function() {
+  isManga: computed('isAnime', function() {
     return !get(this, 'isAnime');
   }),
 
-  season: getter(function() {
+  season: computed('media.startDate', function() {
     const start = get(this, 'media.startDate');
     if (!start) { return null; }
     const month = moment(start).month() + 1;
@@ -43,7 +43,7 @@ export default Component.extend({
     }
   }),
 
-  seasonYear: getter(function() {
+  seasonYear: computed('season', function() {
     const season = get(this, 'season');
     if (!season) { return null; }
     const start = get(this, 'media.startDate');
@@ -55,11 +55,11 @@ export default Component.extend({
     return year;
   }),
 
-  airedLongerThanOneDay: getter(function() {
+  airedLongerThanOneDay: computed('media.{startDate,endDate}', function() {
     return !get(this, 'media.startDate').isSame(get(this, 'media.endDate'));
   }),
 
-  totalTime: getter(function() {
+  totalTime: computed('media.{episodeCount,episodeLength}', function() {
     const count = get(this, 'media.episodeCount');
     const length = get(this, 'media.episodeLength');
     const time = moment.duration(count * length, 'minutes');
@@ -69,7 +69,7 @@ export default Component.extend({
   /**
    * Returns keys used in our translation file.
    */
-  airingStatus: getter(function() {
+  airingStatus: computed('media.{startDate,endDate,unitCount}', function() {
     const start = get(this, 'media.startDate');
     const end = get(this, 'media.endDate');
     if (moment(start).isBefore() || moment(start).isSame()) {
