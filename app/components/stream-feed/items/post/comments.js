@@ -6,6 +6,7 @@ import { isEmpty, isPresent } from 'ember-utils';
 import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
+import { unshiftObjects } from 'client/utils/array-utils';
 
 export default Component.extend({
   classNames: ['stream-item-comments'],
@@ -101,7 +102,7 @@ export default Component.extend({
 
     loadComments(records, links) {
       const content = get(this, 'comments').toArray();
-      content.unshiftObjects(records.toArray().reverse());
+      unshiftObjects(content, records.toArray().reverse());
       set(this, 'comments', content);
       set(this, 'comments.links', links);
       invokeAction(this, 'trackEngagement', 'click');

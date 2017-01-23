@@ -7,6 +7,7 @@ import computed from 'ember-computed';
 import { task } from 'ember-concurrency';
 import { isPresent } from 'ember-utils';
 import errorMessages from 'client/utils/error-messages';
+import { unshiftObjects } from 'client/utils/array-utils';
 
 /**
  * Refactor each notification item into its own individual component similar to
@@ -142,7 +143,7 @@ export default Component.extend({
           }
         });
         const notifications = this._createTempNotifications(groups);
-        get(this, 'groups').unshiftObjects(notifications);
+        unshiftObjects(get(this, 'groups'), notifications);
         notifications.forEach((notification) => {
           const actor = get(notification, 'activities.firstObject.actor.name');
           const message = `You have a new notification from ${actor}`;

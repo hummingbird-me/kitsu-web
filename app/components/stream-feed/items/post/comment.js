@@ -11,6 +11,7 @@ import errorMessages from 'client/utils/error-messages';
 import getter from 'client/utils/getter';
 import moment from 'moment';
 import ClipboardMixin from 'client/mixins/clipboard';
+import { unshiftObjects } from 'client/utils/array-utils';
 
 export default Component.extend(ClipboardMixin, {
   classNameBindings: ['comment.isNew:new-comment'],
@@ -142,7 +143,7 @@ export default Component.extend(ClipboardMixin, {
 
     loadReplies(records, links) {
       const content = get(this, 'replies').toArray();
-      content.unshiftObjects(records.toArray().reverse());
+      unshiftObjects(content, records.toArray().reverse());
       set(this, 'replies', content);
       set(this, 'replies.links', links);
       invokeAction(this, 'trackEngagement', 'click');
