@@ -1,6 +1,6 @@
 <a href="#" class="nav-link notifications {{if (gt count 0) "notifications--present"}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
   {{#if getNotifications.isRunning}}
-    {{loading-spinner}}
+    {{loading-spinner class="white"}}
   {{else}}
     {{#if (gt count 0)}}
       <span>{{count}}</span>
