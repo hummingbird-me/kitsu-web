@@ -129,6 +129,9 @@
   top: 3px;
   border: 1px solid #a8a3a9;
   font-family: $heading-font-family;
+  &:hover, &:active {
+    border-color: #EDF0F1;
+  }
   &.notifications--present {
     background: linear-gradient(RGBA(237, 72, 95, 1), RGBA(242, 124, 54, 1));
     border: none;
@@ -136,7 +139,7 @@
       color: #fff;
     }
     &:hover {
-      border-color: #EDF0F1;
+      opacity: .9;
     }
   }
   svg {
