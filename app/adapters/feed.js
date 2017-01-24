@@ -6,7 +6,7 @@ export default ApplicationAdapter.extend({
     const { type, id } = query;
     delete query.type; // eslint-disable-line no-param-reassign
     delete query.id; // eslint-disable-line no-param-reassign
-    const url = `${get(this, 'namespace')}/feeds/${type}`;
+    const url = `${get(this, 'host')}${get(this, 'namespace')}/feeds/${type}`;
     return `${url}/${id}`;
   }
 });
