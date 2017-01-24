@@ -7,6 +7,7 @@ module.exports = function(environment) {
     rootURL: '/',
     locationType: 'auto',
     isStaging: isStaging,
+    APIHost: undefined,
     EmberENV: {
       FEATURES: {}
     },
@@ -165,6 +166,10 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.stream.realtime.enabled = false;
+  }
+
+  if (environment === 'production') {
+    ENV.APIHost = 'https://kitsu.io';
   }
 
   // Staging app @ Heroku
