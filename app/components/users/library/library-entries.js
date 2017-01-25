@@ -3,7 +3,7 @@ import computed from 'ember-computed';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import moment from 'moment';
-/* global humanizeDuration */
+import humanizeDuration from 'client/utils/humanize-duration';
 
 export default Component.extend({
   i18n: service(),
@@ -43,7 +43,7 @@ export default Component.extend({
         const length = get(entry, 'media.episodeLength');
         time.add(count * length, 'minutes');
       });
-      return humanizeDuration(time.asMilliseconds());
+      return humanizeDuration(time);
     }
   })
 });
