@@ -1,5 +1,9 @@
 import config from 'client/config/environment';
 
+/**
+ * Checks if the script has already been added to the DOM, this prevents the Ember initialization
+ * adding a second script after FastBoot (if running FastBoot).
+ */
 function _doesScriptExist(DOM, src) {
   let child = DOM.head.firstChild;
   while (child !== DOM.head.lastChild) {
@@ -21,7 +25,7 @@ function _addGoogleAdWords(DOM) {
 }
 
 function _addGoogleAdSense(DOM) {
-  const { ads: { enabled, client } } = config.google;
+  const { ads: { enabled, client, pageads } } = config.google;
   const src = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
   if (_doesScriptExist(DOM, src) || !enabled) { return; }
   const element = DOM.createRawHTMLSection(`
@@ -29,7 +33,7 @@ function _addGoogleAdSense(DOM) {
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({
         google_ad_client: "${client}",
-        enable_page_level_ads: true
+        enable_page_level_ads: ${pageads}
       });
     </script>
   `);
@@ -37,10 +41,8 @@ function _addGoogleAdSense(DOM) {
 }
 
 /**
- * Inject Google `<script/>` elements into the DOM either at fastboots rendering time, or embers
+ * Inject Google `<script/>` elements into the DOM either at FastBoot's rendering time, or Ember's
  * initialization.
- *
- * Once we are shipping fastboot to all users the support for non-fastboot could be removed.
  */
 export function initialize(application) {
   const DOM = application.lookup('service:-document');
