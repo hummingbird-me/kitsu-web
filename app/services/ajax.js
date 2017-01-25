@@ -3,9 +3,10 @@ import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import AjaxService from 'ember-ajax/services/ajax';
 import config from 'client/config/environment';
+import getter from 'client/utils/getter';
 
 export default AjaxService.extend({
-  host: config.APIHost,
+  host: getter(() => config.APP.APIHost),
   namespace: '/api/edge',
   session: service(),
 

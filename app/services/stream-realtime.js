@@ -9,7 +9,7 @@ export default Service.extend({
     if (window.stream !== undefined) {
       const { enabled, config } = get(Config, 'stream.realtime');
       if (!enabled) { return; }
-      const environment = Config.isStaging ? 'staging' : Config.environment;
+      const environment = Config.APP.isStaging ? 'staging' : Config.environment;
       const { app, key } = get(config, environment);
       const client = window.stream.connect(key, null, app);
       set(this, 'client', client);

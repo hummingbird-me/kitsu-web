@@ -6,13 +6,11 @@ module.exports = function(environment) {
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
-    isStaging: isStaging,
-    APIHost: undefined,
     EmberENV: {
       FEATURES: {}
     },
     APP: {
-      APIHost: 'https://kitsu.io',
+      APIHost: undefined,
       isStaging: isStaging,
     },
     EXTEND_PROTOTYPES: {
@@ -97,9 +95,6 @@ module.exports = function(environment) {
         ]
       }
     },
-    i18n: { defaultLocale: 'en' },
-    moment: { allowEmpty: true, includeTimezone: '2010-2020' },
-    'ember-cli-mirage': { enabled: environment === 'test' },
     stream: {
       realtime: {
         enabled: true,
@@ -118,6 +113,9 @@ module.exports = function(environment) {
           }
         }
       }
+    },
+    'ember-cli-mirage': {
+      enabled: environment === 'test'
     },
     google: {
       adwords: environment === 'production' && !isStaging,

@@ -18,7 +18,7 @@ export default BaseAdapter.extend({
   },
 
   init() {
-    const environment = Config.isStaging ? 'staging' : Config.environment;
+    const environment = Config.APP.isStaging ? 'staging' : Config.environment;
     const config = get(this, `config.${environment}`);
     assert('[ember-metrics] You must pass a valid `apiKey` and `token` to this adapter',
       get(config, 'apiKey') && get(config, 'token'));

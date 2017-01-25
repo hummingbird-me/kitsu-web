@@ -13,7 +13,7 @@ export default Controller.extend({
   ajax: service(),
   store: service(),
   session: service(),
-  isStaging: getter(() => Config.isStaging),
+  isStaging: getter(() => Config.APP.isStaging),
 
   notificationTracker: observer('notification', function() {
     const notification = get(this, 'notification');
