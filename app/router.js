@@ -3,6 +3,7 @@ import service from 'ember-service/inject';
 import { scheduleOnce } from 'ember-runloop';
 import get from 'ember-metal/get';
 import config from 'client/config/environment';
+import canUseDOM from 'client/utils/can-use-dom';
 import RouterScroll from 'ember-router-scroll';
 
 const RouterInstance = Router.extend(RouterScroll, {
@@ -13,12 +14,9 @@ const RouterInstance = Router.extend(RouterScroll, {
 
   didTransition() {
     this._super(...arguments);
-    if (typeof FastBoot === 'undefined') {
-      scheduleOnce('afterRender', this, () => {
-        const page = get(this, 'url');
-        const title = get(this, 'currentRouteName');
-        get(this, 'metrics').trackPage({ page, title });
-      });
+    // Check for DOM access so we don't send 2x page events from fastboot and browser
+    if (canUseDOM) {
+      this._trackPage();
     }
   },
 
@@ -27,7 +25,7 @@ const RouterInstance = Router.extend(RouterScroll, {
   },
 
   _trackPage() {
-    scheduleOnce('afterRender', this, () => {
+    scheduleOnce('afterRender', () => {
       const page = get(this, 'url');
       const title = get(this, 'currentRouteName');
       get(this, 'metrics').trackPage({ page, title });
@@ -80,8 +78,12 @@ RouterInstance.map(function() {
   this.route('reviews', { path: '/reviews/:id' });
   this.route('notifications');
   this.route('trending');
+  this.route('people');
+  this.route('characters');
+
   this.route('password-reset');
   this.route('confirm-email');
+
   this.route('privacy');
   this.route('terms');
   this.route('about');
@@ -89,8 +91,6 @@ RouterInstance.map(function() {
   // These must remain at the bottom of the RouterInstance map
   this.route('server-error', { path: '/500' });
   this.route('not-found', { path: '/*path' });
-  this.route('people');
-  this.route('characters');
 });
 
 export default RouterInstance;

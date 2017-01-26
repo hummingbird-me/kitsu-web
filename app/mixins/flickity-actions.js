@@ -1,12 +1,11 @@
 import Mixin from 'ember-metal/mixin';
 import set from 'ember-metal/set';
 import { later } from 'ember-runloop';
-import canUseDOM from 'ember-metrics/utils/can-use-dom';
+import canUseDOM from 'client/utils/can-use-dom';
 
 /**
- * This Mixin disables all <a/> HTML elements that use `ember-href-to` when flickity is
- * actively dragging, and provides a flag that actions can check against to determine wether
- * to fire or not.
+ * Enables the `ember-href-to` `data-href-to-ignore` property if Flickity is in
+ * a dragging state.
  */
 export default Mixin.create({
   isFlickityDragging: false,
