@@ -1,25 +1,19 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+# See https://help.github.com/ignore-files/ for more about ignoring files.
 
-# client
+# compiled output
+/dist
+/tmp
+/coverage
 
-dist
-fastboot-dist
-node_modules
-bower_components
-public/system/*
-.coverage
+# dependencies
+/node_modules
+/bower_components
 
-# general
-
-tmp/
-*.log
-.DS_Store
-coverage
-.zeus.sock
-aws_env
-.sass-cache
-connect.lock
-sftp-config.json
-jsconfig.json
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log*
+testem.log
 .vscode/
-github_key

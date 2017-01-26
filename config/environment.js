@@ -1,9 +1,9 @@
-/* eslint-disable */
+/* eslint-env node */
 const isStaging = process.env.HEROKU_EMBER_APP === 'staging';
 module.exports = function(environment) {
-  var ENV = {
+  const ENV = {
     modulePrefix: 'client',
-    environment: environment,
+    environment,
     rootURL: '/',
     locationType: 'auto',
     EmberENV: {
@@ -11,7 +11,7 @@ module.exports = function(environment) {
     },
     APP: {
       APIHost: undefined,
-      isStaging: isStaging,
+      isStaging,
     },
     EXTEND_PROTOTYPES: {
       Date: false

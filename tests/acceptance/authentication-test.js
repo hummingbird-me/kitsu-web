@@ -109,7 +109,7 @@ test('shows an error when using incorrect details on sign in', function(assert) 
   this.sandbox.stub(this.notify, 'error', (message) => {
     assert.equal(message, 'The provided credentials are invalid.');
   });
-  server.post('http://localhost:4201/api/oauth/token', { error: 'invalid_grant' }, 400);
+  server.post('http://localhost:7357/api/oauth/token', { error: 'invalid_grant' }, 400);
 
   visit('/');
   click(testSelector('selector', 'sign-in-header'));
