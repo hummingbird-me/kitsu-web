@@ -7,7 +7,10 @@
       {{star-rating media.averageRating anyPercent=true readOnly=true}}
     </span>
     <span class="ratings-count">
-      {{totalRatings}} ratings {{!-- - {{totalFavorites}} favorites --}}
+      {{totalRatings}} ratings
+      {{#if media.favoritesCount}}
+         - {{totalFavorites}} favorites
+      {{/if}}
     </span>
   </div>
 {{/if}}
