@@ -2,9 +2,10 @@ import Router from 'ember-router';
 import service from 'ember-service/inject';
 import { scheduleOnce } from 'ember-runloop';
 import get from 'ember-metal/get';
-import config from './config/environment';
+import config from 'client/config/environment';
+import RouterScroll from 'ember-router-scroll';
 
-const RouterInstance = Router.extend({
+const RouterInstance = Router.extend(RouterScroll, {
   location: config.locationType,
   rootURL: config.rootURL,
   metrics: service(),
@@ -12,16 +13,25 @@ const RouterInstance = Router.extend({
 
   didTransition() {
     this._super(...arguments);
-    scheduleOnce('afterRender', this, () => {
-      get(this, 'headData').set('url', `${window.location.protocol}//${window.location.host}${get(this, 'url')}`);
-      const page = get(this, 'url');
-      const title = get(this, 'currentRouteName') || 'Unknown';
-      get(this, 'metrics').trackPage({ page, title });
-    });
+    if (typeof FastBoot === 'undefined') {
+      scheduleOnce('afterRender', this, () => {
+        const page = get(this, 'url');
+        const title = get(this, 'currentRouteName');
+        get(this, 'metrics').trackPage({ page, title });
+      });
+    }
   },
 
   setTitle(title) {
     get(this, 'headData').set('title', title);
+  },
+
+  _trackPage() {
+    scheduleOnce('afterRender', this, () => {
+      const page = get(this, 'url');
+      const title = get(this, 'currentRouteName');
+      get(this, 'metrics').trackPage({ page, title });
+    });
   }
 });
 
