@@ -23,11 +23,19 @@ export default Route.extend(ApplicationRouteMixin, {
   },
 
   headTags() {
+    const title = get(this, 'headData.title');
     const desc = 'Share anime and manga experiences, get recommendations and see what friends are watching or reading.';
     return [{
       type: 'title',
       tagId: 'title',
-      content: get(this, 'headData.title')
+      content: title
+    }, {
+      type: 'link',
+      tagId: 'link-canonical',
+      attrs: {
+        rel: 'canonical',
+        href: window.location.href
+      }
     }, {
       type: 'meta',
       tagId: 'meta-description',
@@ -37,10 +45,17 @@ export default Route.extend(ApplicationRouteMixin, {
       }
     }, {
       type: 'meta',
+      tagId: 'meta-og-url',
+      attrs: {
+        property: 'og:url',
+        content: window.location.href
+      }
+    }, {
+      type: 'meta',
       tagId: 'meta-og-title',
       attrs: {
         property: 'og:title',
-        content: get(this, 'headData.title')
+        content: title
       }
     }, {
       type: 'meta',
