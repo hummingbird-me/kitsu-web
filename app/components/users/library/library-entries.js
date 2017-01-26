@@ -2,8 +2,6 @@ import Component from 'ember-component';
 import computed from 'ember-computed';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
-import moment from 'moment';
-import humanizeDuration from 'client/utils/humanize-duration';
 
 export default Component.extend({
   i18n: service(),
@@ -22,28 +20,9 @@ export default Component.extend({
   stats: computed('entries', {
     get() {
       const entries = get(this, 'entries');
-      const count = entries !== undefined ? get(entries, 'length') : 0;
-      const time = get(this, 'time');
+      const count = entries !== undefined ? get(entries, 'meta.count') : 0;
       const text = count === 1 ? 'title' : 'titles';
-      const mediaType = get(this, 'mediaType');
-      if (mediaType === 'manga') {
-        return `${count} ${text}`;
-      }
-      return `${count} ${text} — ${time}`;
-    }
-  }),
-
-  // Displays the total time of all entries in this section
-  time: computed('entries', {
-    get() {
-      const entries = get(this, 'entries') || [];
-      const time = moment.duration();
-      entries.forEach((entry) => {
-        const count = get(entry, 'media.episodeCount');
-        const length = get(entry, 'media.episodeLength');
-        time.add(count * length, 'minutes');
-      });
-      return humanizeDuration(time);
+      return `${count} ${text}`;
     }
   })
 });
