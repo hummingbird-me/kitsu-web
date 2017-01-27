@@ -9,7 +9,6 @@ import { invokeAction } from 'ember-invoke-action';
 import { scheduleOnce } from 'ember-runloop';
 import errorMessages from 'client/utils/error-messages';
 import getter from 'client/utils/getter';
-import moment from 'moment';
 import ClipboardMixin from 'client/mixins/clipboard';
 import { unshiftObjects } from 'client/utils/array-utils';
 
@@ -29,14 +28,14 @@ export default Component.extend(ClipboardMixin, {
     if (get(this, 'session.account').hasRole('admin', get(this, 'comment'))) {
       return true;
     }
-    const time = moment(get(this, 'comment.createdAt')).add(30, 'minutes');
+    const time = get(this, 'comment.createdAt').add(30, 'minutes');
     return !time.isBefore();
   }),
 
   commentEdited: computed('comment.createdAt', 'comment.editedAt', {
     get() {
       if (!get(this, 'comment.editedAt')) { return false; }
-      return !moment(get(this, 'comment.createdAt')).isSame(get(this, 'comment.editedAt'));
+      return !get(this, 'comment.createdAt').isSame(get(this, 'comment.editedAt'));
     }
   }).readOnly(),
 

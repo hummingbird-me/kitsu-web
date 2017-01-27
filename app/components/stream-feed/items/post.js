@@ -10,7 +10,6 @@ import { hrefTo } from 'ember-href-to/helpers/href-to';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
 import errorMessages from 'client/utils/error-messages';
-import moment from 'moment';
 import { invoke, invokeAction } from 'ember-invoke-action';
 
 export default Component.extend(ClipboardMixin, {
@@ -56,14 +55,14 @@ export default Component.extend(ClipboardMixin, {
     if (get(this, 'session.account').hasRole('admin', get(this, 'post'))) {
       return true;
     }
-    const time = moment(get(this, 'post.createdAt')).add(30, 'minutes');
+    const time = get(this, 'post.createdAt').add(30, 'minutes');
     return !time.isBefore();
   }),
 
   postEdited: computed('post.createdAt', 'post.editedAt', {
     get() {
       if (!get(this, 'post.editedAt')) { return false; }
-      return !moment(get(this, 'post.createdAt')).isSame(get(this, 'post.editedAt'));
+      return !get(this, 'post.createdAt').isSame(get(this, 'post.editedAt'));
     }
   }).readOnly(),
 

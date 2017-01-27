@@ -1,8 +1,8 @@
 import BaseComponent from 'client/components/trending/-base';
 import get from 'ember-metal/get';
 import { task } from 'ember-concurrency';
-import moment from 'moment';
 import FlickityActionsMixin from 'client/mixins/flickity-actions';
+import { moment } from 'client/utils/moment';
 
 export default BaseComponent.extend(FlickityActionsMixin, {
   classNames: ['annual-trending'],

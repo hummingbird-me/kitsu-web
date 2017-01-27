@@ -8,7 +8,7 @@ import jQuery from 'jquery';
 import QueryableMixin from 'client/mixins/routes/queryable';
 import PaginationMixin from 'client/mixins/routes/pagination';
 import SlideHeaderMixin from 'client/mixins/routes/slide-header';
-import moment from 'moment';
+import { moment } from 'client/utils/moment';
 
 export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
   mediaQueryParams: {

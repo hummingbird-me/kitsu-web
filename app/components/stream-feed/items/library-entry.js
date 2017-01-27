@@ -5,7 +5,7 @@ import service from 'ember-service/inject';
 import computed from 'ember-computed';
 import getter from 'client/utils/getter';
 import { invokeAction } from 'ember-invoke-action';
-import moment from 'moment';
+import { momentUser } from 'client/utils/moment';
 
 export default Component.extend({
   classNames: ['stream-item', 'row'],
@@ -39,26 +39,26 @@ export default Component.extend({
     get() {
       const temp = {};
       const activities = get(this, 'group.activities').toArray().sort((a, b) => {
-        if (moment(get(a, 'time')).isBefore(get(b, 'time'))) {
+        if (get(a, 'time').isBefore(get(b, 'time'))) {
           return 1;
-        } else if (moment(get(a, 'time')).isAfter(get(b, 'time'))) {
+        } else if (get(a, 'time').isAfter(get(b, 'time'))) {
           return -1;
         }
         return 0;
       });
       activities.forEach((activity) => {
-        const time = get(activity, 'time');
-        const calendar = moment(time).calendar(null, {
+        const time = momentUser(this, get(activity, 'time'));
+        const calendar = time.calendar(null, {
           sameDay: '[Today]',
           lastDay: '[Yesterday]',
           lastWeek: 'dddd',
           sameElse: 'dddd',
         });
-        const key = `${calendar}-${moment(time).format('DD')}`;
+        const key = `${calendar}-${time.format('DD')}`;
         if (get(temp, key) === undefined) {
           temp[key] = {
             calendar,
-            date: moment(time).format('MMM Do'),
+            date: time.format('MMM Do'),
             activities: []
           };
         }

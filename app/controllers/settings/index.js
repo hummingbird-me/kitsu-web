@@ -13,16 +13,18 @@ export default Controller.extend({
   notify: service(),
   session: service(),
   user: alias('session.account'),
-
   languages: getter(() => [{ id: 'en', text: 'English' }]),
   timezoneGuess: getter(() => moment.tz.guess()),
   timezones: getter(() => moment.tz.names()),
+
   countries: getter(() => (
     Object.keys(COUNTRIES).map(key => ({ id: key, text: COUNTRIES[key] })).sortBy('text')
   )),
+
   titles: getter(() => ['Canonical', 'Romanized', 'English'].map(key => (
     { id: key.toLowerCase(), text: key }
   ))),
+
   filters: getter(() => (
     [{ value: true, text: 'Hide Adult Content' },
     { value: false, text: 'Show Adult Content (¬‿¬ )' }]

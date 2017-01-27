@@ -4,7 +4,7 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import jQuery from 'jquery';
 import getter from 'client/utils/getter';
-import moment from 'moment';
+import { moment } from 'client/utils/moment';
 
 export default Controller.extend({
   mediaQueryParams: [

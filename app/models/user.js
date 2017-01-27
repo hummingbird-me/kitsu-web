@@ -8,7 +8,6 @@ import service from 'ember-service/inject';
 import computed from 'ember-computed';
 import get from 'ember-metal/get';
 import { modelType } from 'client/helpers/model-type';
-import moment from 'moment';
 
 export const Validations = buildValidations({
   email: [
@@ -110,7 +109,7 @@ export default Base.extend(Validations, {
       if (isEmpty(date)) {
         return false;
       }
-      return !moment(date).isBefore();
+      return !date.isBefore();
     }
   }).readOnly(),
 
