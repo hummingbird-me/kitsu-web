@@ -26,7 +26,7 @@ test('#identify calls setUser with right data', function(assert) {
 });
 
 test('#trackImpression calls trackImpression with right data', function(assert) {
-  const adapter = this.subject({ config: this.config, userSet: true, router: { currentRouteName: 'hello' } });
+  const adapter = this.subject({ config: this.config, hasUser: true, router: { currentRouteName: 'hello' } });
   this.sandbox.stub(window, 'StreamAnalytics', () => function() { });
   const stub = this.sandbox.stub(adapter.get('client'), 'trackImpression', () => true);
   adapter.trackImpression({
@@ -36,7 +36,7 @@ test('#trackImpression calls trackImpression with right data', function(assert) 
 });
 
 test('#trackEngagement calls trackEngagement with right data', function(assert) {
-  const adapter = this.subject({ config: this.config, userSet: true, router: { currentRouteName: 'hello' } });
+  const adapter = this.subject({ config: this.config, hasUser: true, router: { currentRouteName: 'hello' } });
   this.sandbox.stub(window, 'StreamAnalytics', () => function() { });
   const stub = this.sandbox.stub(adapter.get('client'), 'trackEngagement', () => true);
   adapter.trackEngagement({

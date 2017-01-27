@@ -20,7 +20,8 @@ export default Component.extend({
   stats: computed('entries', {
     get() {
       const entries = get(this, 'entries');
-      const count = entries !== undefined ? get(entries, 'meta.count') : 0;
+      let count = entries !== undefined ? get(entries, 'meta.count') : 0;
+      count = count === undefined ? 0 : count;
       const text = count === 1 ? 'title' : 'titles';
       return `${count} ${text}`;
     }
