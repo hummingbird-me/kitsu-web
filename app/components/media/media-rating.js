@@ -1,6 +1,5 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
-import set from 'ember-metal/set';
 import computed from 'ember-computed';
 import { decimalNumber } from 'client/helpers/decimal-number';
 
@@ -20,7 +19,7 @@ export default Component.extend({
 
   totalRatings: computed('media.ratingFrequencies', {
     get() {
-      return this._getTotalRatings().toLocaleString();
+      return get(this, 'media.totalRatings').toLocaleString();
     }
   }).readOnly(),
 
@@ -43,27 +42,14 @@ export default Component.extend({
     }
   }).readOnly(),
 
-  init() {
-    this._super(...arguments);
-    set(this, 'ratingKeys', [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0].map(k => k.toString()));
-  },
-
   _calculatePercentage() {
     const freqs = get(this, 'media.ratingFrequencies');
-    const keys = get(this, 'ratingKeys');
-    const total = this._getTotalRatings();
+    const keys = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0].map(k => k.toString());
+    const total = get(this, 'media.totalRatings');
     const liked = keys.slice(7).reduce((prev, curr) => (
       prev + (parseInt(freqs[decimalNumber([curr])], 10) || 0)
     ), 0);
     const value = total === 0 ? 0 : (liked / total) * 100;
     return value.toFixed(0);
-  },
-
-  _getTotalRatings() {
-    const freqs = get(this, 'media.ratingFrequencies');
-    const keys = get(this, 'ratingKeys');
-    return keys.reduce((prev, curr) => (
-      prev + (parseInt(freqs[decimalNumber([curr])], 10) || 0)
-    ), 0);
   }
 });

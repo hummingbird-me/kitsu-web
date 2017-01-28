@@ -5,6 +5,7 @@ import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import computed, { or } from 'ember-computed';
 import getTitleField from 'client/utils/get-title-field';
+import { decimalNumber } from 'client/helpers/decimal-number';
 
 export default Base.extend({
   session: service(),
@@ -42,5 +43,13 @@ export default Base.extend({
       return key !== undefined ? get(this, `titles.${key}`) || get(this, 'canonicalTitle') :
         get(this, 'canonicalTitle');
     }
+  }).readOnly(),
+
+  totalRatings: computed('ratingFrequencies', function() {
+    const keys = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0].map(k => k.toString());
+    const freqs = get(this, 'ratingFrequencies');
+    return keys.reduce((prev, curr) => (
+      prev + (parseInt(freqs[decimalNumber([curr])], 10) || 0)
+    ), 0);
   }).readOnly()
 });
