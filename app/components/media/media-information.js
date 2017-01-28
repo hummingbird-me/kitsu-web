@@ -52,7 +52,9 @@ export default Component.extend({
   }).readOnly(),
 
   airedLongerThanOneDay: computed('media.{startDate,endDate}', function() {
-    return !get(this, 'media.startDate').isSame(get(this, 'media.endDate'));
+    const start = get(this, 'media.startDate');
+    if (!start) { return false; }
+    return !start.isSame(get(this, 'media.endDate'));
   }).readOnly(),
 
   totalTime: computed('media.{episodeCount,episodeLength}', function() {
@@ -68,9 +70,9 @@ export default Component.extend({
   airingStatus: computed('media.{startDate,endDate,unitCount}', function() {
     const start = get(this, 'media.startDate');
     const end = get(this, 'media.endDate');
-    if (start.isBefore() || start.isSame()) {
+    if (start && (start.isBefore() || start.isSame())) {
       const isOneDay = get(this, 'media.unitCount') === 1;
-      const isPastDate = end.isBefore() || end.isSame();
+      const isPastDate = end && (end.isBefore() || end.isSame());
       return (isOneDay || isPastDate) ? 'finished' : 'current';
     }
     return 'nya';
