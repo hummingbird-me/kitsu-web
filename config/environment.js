@@ -145,18 +145,15 @@ module.exports = function(environment) {
     ENV.stream.realtime.enabled = false;
   }
 
-  if (environment === 'production') {
-    ENV.APP.APIHost = 'https://kitsu.io';
-  }
-
   // Staging app @ Heroku
   if (process.env.HEROKU_EMBER_APP === 'staging') {
+    ENV.APP.APIHost = 'https://staging.kitsu.io';
     ENV.sentry.dsn = 'https://cd7634b1400644688ff55bda89171367@sentry.io/125035';
   }
 
   // Production app @ Heroku
   if (environment === 'production' && process.env.HEROKU_EMBER_APP !== 'staging') {
-     // ...
+    ENV.APP.APIHost = 'https://kitsu.io';
   }
 
   // Heroku environment - So that we can append the git hash to the version
