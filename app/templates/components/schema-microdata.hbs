@@ -1,0 +1,13 @@
+{{#each data as |data|}}
+  {{#if (eq data.type "meta")}}
+    <meta itemprop={{data.name}} content={{data.content}}>
+  {{else if (eq data.type "link")}}
+    <link itemprop={{data.name}} href={{data.content}}>
+  {{else if (eq data.type "scope")}}
+    <span itemprop={{data.name}} itemscope itemtype="http://schema.org/{{data.scope}}">
+      {{#each data.content as |content|}}
+        <meta itemprop={{content.name}} content={{content.content}}>
+      {{/each}}
+    </span>
+  {{/if}}
+{{/each}}
