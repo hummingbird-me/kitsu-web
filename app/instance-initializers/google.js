@@ -20,7 +20,9 @@ function _addGoogleAdWords(DOM) {
   const { adwords } = config.google;
   const src = '//www.googleadservices.com/pagead/conversion_async.js';
   if (_doesScriptExist(DOM, src) || !adwords) { return; }
-  const element = DOM.createRawHTMLSection(`<script async src="${src}"></script>`);
+  const element = DOM.createElement('script');
+  element.setAttribute('async', '');
+  element.setAttribute('src', src);
   DOM.head.appendChild(element);
 }
 
@@ -28,16 +30,19 @@ function _addGoogleAdSense(DOM) {
   const { ads: { enabled, client, pageads } } = config.google;
   const src = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
   if (_doesScriptExist(DOM, src) || !enabled) { return; }
-  const element = DOM.createRawHTMLSection(`
-    <script async src="${src}"></script>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "${client}",
-        enable_page_level_ads: ${pageads}
-      });
-    </script>
+  const element = DOM.createElement('script');
+  element.setAttribute('async', '');
+  element.setAttribute('src', src);
+  const initElement = DOM.createElement('script');
+  const child = DOM.createTextNode(`
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "${client}",
+      enable_page_level_ads: ${pageads}
+    });
   `);
+  initElement.appendChild(child);
   DOM.head.appendChild(element);
+  DOM.head.appendChild(initElement);
 }
 
 /**
