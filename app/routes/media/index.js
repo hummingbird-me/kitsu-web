@@ -59,7 +59,7 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
   afterModel() {
     // @Vevix - Not sure what needs done here, still have a search page?
     const [mediaType] = get(this, 'routeName').split('.');
-    const desc = `Check out ALL our ${mediaType}. TODO`;
+    const desc = `Looking for that ${mediaType}? Find all the best anime and manga on Kitsu!`;
     set(this, 'headTags', [{
       type: 'meta',
       tagId: 'meta-description',

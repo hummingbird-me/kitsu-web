@@ -1,5 +1,7 @@
 import MediaShowRoute from 'client/routes/media/show';
 import set from 'ember-metal/set';
+import get from 'ember-metal/get';
+import { capitalize } from 'ember-string';
 
 export default MediaShowRoute.extend({
   afterModel(model) {
@@ -13,5 +15,11 @@ export default MediaShowRoute.extend({
       }
     });
     set(this, 'headTags', headTags);
+  },
+
+  titleToken(model) {
+    const title = get(model, 'computedTitle');
+    const subtype = capitalize(get(model, 'subtype'));
+    return `${title} | ${subtype}`;
   }
 });
