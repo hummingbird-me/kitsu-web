@@ -8,7 +8,6 @@ import { task, timeout } from 'ember-concurrency';
 import CanonicalRedirectMixin from 'client/mixins/routes/canonical-redirect';
 import CoverPageMixin from 'client/mixins/routes/cover-page';
 import { modelType } from 'client/helpers/model-type';
-import { image } from 'client/helpers/image';
 import errorMessages from 'client/utils/error-messages';
 import clip from 'clip';
 
@@ -76,13 +75,13 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   },
 
   _headTags(model) {
-    const desc = `Looking for ${get(model, 'canonicalTitle')}? Find it on Kitsu!`;
-    return [{
+    const desc = clip(get(model, 'synopsis'), 200);
+    const data = [{
       type: 'meta',
       tagId: 'meta-description',
       attrs: {
         name: 'description',
-        content: clip(`${desc} ${get(model, 'synopsis')}`, 150)
+        content: desc
       }
     }, {
       type: 'meta',
@@ -96,23 +95,49 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
       tagId: 'meta-og-description',
       attrs: {
         property: 'og:description',
-        content: `${desc} ${get(model, 'synopsis')}`
+        content: desc
       }
     }, {
       type: 'meta',
       tagId: 'meta-og-image',
       attrs: {
         property: 'og:image',
-        content: `${image(get(model, 'posterImage'), 'medium')}`
-      }
-    }, {
-      type: 'meta',
-      tagID: 'meta-twitter-image',
-      attrs: {
-        name: 'twitter:image',
-        content: `${image(get(model, 'posterImage'), 'medium')}`
+        content: get(model, 'posterImage.large')
       }
     }];
+    if (get(model, 'averageRating')) {
+      const rating = `${get(model, 'averageRating').toFixed(2)} out of 5`;
+      data.push({
+        type: 'meta',
+        tagId: 'meta-twitter-label1',
+        attrs: {
+          property: 'twitter:label1',
+          content: 'Average rating'
+        }
+      }, {
+        type: 'meta',
+        tagId: 'meta-twitter-data1',
+        attrs: {
+          property: 'twitter:data1',
+          content: rating
+        }
+      }, {
+        type: 'meta',
+        tagId: 'meta-twitter-label2',
+        attrs: {
+          property: 'twitter:label2',
+          content: 'Total ratings'
+        }
+      }, {
+        type: 'meta',
+        tagId: 'meta-twitter-data2',
+        attrs: {
+          property: 'twitter:data2',
+          content: get(model, 'totalRatings').toLocaleString()
+        }
+      });
+    }
+    return data;
   },
 
   // if the user authenticates while on this page, attempt to get their entry

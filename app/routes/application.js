@@ -78,13 +78,6 @@ export default Route.extend(ApplicationRouteMixin, {
         property: 'og:description',
         content: desc
       }
-    }, {
-      type: 'meta',
-      tagId: 'meta-twitter-image',
-      attrs: {
-        name: 'twitter:image',
-        content: `${window.location.protocol}//${window.location.host}/kitsu-256.png`,
-      }
     }];
   },
 
