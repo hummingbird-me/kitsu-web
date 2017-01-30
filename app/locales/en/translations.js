@@ -140,7 +140,8 @@ export default {
           en: 'English',
           en_us: 'English',
           en_jp: 'Romanized',
-          ja_jp: 'Japanese'
+          ja_jp: 'Japanese',
+          synonyms: 'Synonyms'
         },
         information: {
           type: 'Type',
