@@ -7,7 +7,7 @@ export default ApplicationAdapter.extend({
     delete query.type; // eslint-disable-line no-param-reassign
     delete query.id; // eslint-disable-line no-param-reassign
     const host = get(this, 'host') || '';
-    const url = `${host}${get(this, 'namespace')}/feeds/${type}`;
+    const url = `${host}/${get(this, 'namespace')}/feeds/${type}`;
     return `${url}/${id}`;
   }
 });

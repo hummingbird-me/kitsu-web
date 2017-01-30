@@ -6,6 +6,6 @@ import getter from 'client/utils/getter';
 export default JSONAPIAdapter.extend(DataAdapaterMixin, {
   authorizer: 'authorizer:application',
   host: getter(() => config.APP.APIHost),
-  namespace: '/api/edge',
+  namespace: 'api/edge',
   coalesceFindRequests: true
 });
