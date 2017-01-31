@@ -141,6 +141,12 @@ export default {
           en_us: 'English',
           en_jp: 'Romanized',
           ja_jp: 'Japanese',
+          en_cn: 'Romanized',
+          zh_cn: 'Chinese',
+          en_th: 'Romanized',
+          tn_th: 'Thai',
+          en_kr: 'Romanized',
+          ko_kr: 'Korean',
           synonyms: 'Synonyms'
         },
         information: {
