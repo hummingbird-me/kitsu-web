@@ -57,7 +57,6 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
   },
 
   afterModel() {
-    // @Vevix - Not sure what needs done here, still have a search page?
     const [mediaType] = get(this, 'routeName').split('.');
     const desc = `Looking for that ${mediaType}? Find all the best anime and manga on Kitsu!`;
     set(this, 'headTags', [{
@@ -104,6 +103,8 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
         const [lower, upper] = value;
         if (lower === 0.5 && upper === 5.0) {
           result = undefined;
+        } else if (lower === 0.5) {
+          result = `..${upper}`;
         }
       }
     }
@@ -117,6 +118,13 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
         const [lower, upper] = result;
         if (isEmpty(upper)) {
           result = [lower, moment().year() + 1];
+        }
+      }
+    } else if (key === 'averageRating') {
+      if (value !== undefined) {
+        const [lower, upper] = result;
+        if (isEmpty(lower)) {
+          result = [0.5, upper];
         }
       }
     }
