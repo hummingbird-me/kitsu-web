@@ -47,6 +47,7 @@
       overflow: hidden;
       animation-delay: .5s;
       position: relative;
+      z-index: $zIndex-1;
       .quick-update-media-wrapper {
         background: #677086;
         transition: opacity .2s ease-in;
@@ -242,22 +243,25 @@ a.update--entry-title {
   }
 }
 
-.progress-bar {
-  display: block;
-  position: relative;
-  height: 3px;
-  background-color: rgba(255,255,255,.3);
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -moz-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  margin: 1px 8px 0 0;
-  .progress-completed {
+.quick-update-item {
+  .progress {
     position: absolute;
-    top: 0;
-    left: 0;
+    bottom: 0px;
     height: 2px;
-    background-color: #E50914;
+    margin-bottom: 0px;
+    border-radius: 3px;
+    .progress-bar {
+      display: block;
+      position: relative;
+      height: 2px;
+      background-color: rgba(255,255,255,.3);
+      .progress-completed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 2px;
+        background-color: #E50914;
+      }
+    }
   }
 }

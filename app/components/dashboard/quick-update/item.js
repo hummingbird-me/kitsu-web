@@ -54,6 +54,12 @@ const QuickUpdateItemComponent = Component.extend({
     }
   }).readOnly(),
 
+  completedPercent: computed('entry.progress', function() {
+    const progress = get(this, 'entry.progress');
+    const total = get(this, 'entry.media.unitCount');
+    return ((progress / total) * 100).toFixed(2);
+  }).readOnly(),
+
   updateEntryTask: task(function* () {
     if (get(this, 'isDragging')) { return; }
 

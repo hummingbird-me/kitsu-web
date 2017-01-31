@@ -75,8 +75,11 @@
   {{lazy-image url=(image entry.media.posterImage "medium")}}
 </div>
 
-<div class="progress">
-  <span class="progress-bar">
-    <span role="presentation" class="progress-completed" style="width: 12%;"></span>
-  </span>
-</div>
+{{! Progress }}
+{{#if entry.media.unitCount}}
+  <div class="progress">
+    <span class="progress-bar">
+      <span role="presentation" class="progress-completed" style="width: {{completedPercent}}%;"></span>
+    </span>
+  </div>
+{{/if}}
