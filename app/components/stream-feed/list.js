@@ -5,12 +5,10 @@ import set from 'ember-metal/set';
 import observer from 'ember-metal/observer';
 import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
-import { capitalize } from 'ember-string';
 import computed from 'ember-computed';
 import EmberObject from 'ember-object';
 import { storageFor } from 'ember-local-storage';
 import getter from 'client/utils/getter';
-import { modelType } from 'client/helpers/model-type';
 import errorMessages from 'client/utils/error-messages';
 import { unshiftObjects } from 'client/utils/array-utils';
 
@@ -68,11 +66,12 @@ export default Component.extend({
     }
     // spoiler + media set
     if (get(data, 'spoiler') === true && get(data, 'media') !== undefined) {
+      const type = get(data, 'media.modelType');
       const entry = yield get(this, 'store').query('library-entry', {
         filter: {
           user_id: get(this, 'session.account.id'),
-          media_type: capitalize(modelType([get(data, 'media')])),
-          media_id: get(data, 'media.id')
+          kind: type,
+          [`${type}_id`]: get(data, 'media.id')
         },
         include: 'unit'
       }).then(results => get(results, 'firstObject'));

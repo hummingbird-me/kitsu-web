@@ -2,9 +2,7 @@ import Component from 'ember-component';
 import set from 'ember-metal/set';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
-import { capitalize } from 'ember-string';
 import observer from 'ember-metal/observer';
-import { modelType } from 'client/helpers/model-type';
 import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
@@ -47,18 +45,19 @@ export default Component.extend({
     }
 
     const media = get(this, 'media');
+    const type = get(media, 'modelType');
     const promise = get(this, 'store').query('library-entry', {
       filter: {
-        user_id: get(this, 'session.account.id'),
-        media_type: capitalize(modelType([media])),
-        media_id: get(media, 'id')
+        kind: type,
+        [`${type}_id`]: get(media, 'id'),
+        user_id: get(this, 'session.account.id')
       },
     }).then((results) => {
       if (get(this, 'isDestroyed')) { return; }
       const entry = get(results, 'firstObject');
       set(this, 'entry', entry);
       if (entry !== undefined) {
-        set(this, 'entry.media', media);
+        set(this, `entry.${type}`, media);
       }
     });
     set(this, 'entry', promise);
@@ -73,10 +72,11 @@ export default Component.extend({
 
     createEntry(status) {
       const user = get(this, 'session.account');
+      const type = get(this, 'media.modelType');
       const entry = get(this, 'store').createRecord('library-entry', {
         status,
         user,
-        media: get(this, 'media')
+        [type]: get(this, 'media')
       });
       return entry.save().then(() => set(this, 'entry', entry))
         .catch(err => get(this, 'notify').error(errorMessages(err)));

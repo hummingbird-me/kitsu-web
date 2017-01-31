@@ -65,11 +65,12 @@ export default Component.extend({
 
     createLibraryEntry(media, rating) {
       const user = get(this, 'session.account');
+      const type = get(media, 'modelType');
       const entry = get(this, 'store').createRecord('library-entry', {
         status: 'completed',
         rating,
         user,
-        media
+        [type]: media
       });
       this.incrementProperty('numRated');
       entry.save().catch(() => this.decrementProperty('numRated'));

@@ -13,10 +13,11 @@ moduleForModel('library-entry', 'Unit | Model | library-entry', {
     'validator:presence',
     'validator:number',
     'validator:messages',
-    'model:media',
+    'model:anime',
+    'model:manga',
     'model:user',
     'model:review',
-    'model:base'
+    'model:-base'
   ],
 
   beforeEach() {

@@ -5,7 +5,6 @@ import set from 'ember-metal/set';
 import { task } from 'ember-concurrency';
 import computed from 'ember-computed';
 import { scheduleOnce } from 'ember-runloop';
-import { capitalize } from 'ember-string';
 import errorMessages from 'client/utils/error-messages';
 import { storageFor } from 'ember-local-storage';
 import FlickityActionsMixin from 'client/mixins/flickity-actions';
@@ -31,11 +30,11 @@ export default Component.extend(FlickityActionsMixin, {
   }).readOnly(),
 
   getEntriesTask: task(function* () {
-    const type = get(this, 'filter') === 'all' ? 'Anime,Manga' : capitalize(get(this, 'filter'));
+    const type = get(this, 'filter') !== 'all' ? get(this, 'filter') : undefined;
     return yield get(this, 'store').query('library-entry', {
-      include: 'media,nextUnit',
+      include: 'anime,manga,nextUnit',
       filter: {
-        media_type: type,
+        kind: type,
         user_id: get(this, 'session.account.id'),
         status: '1,2'
       },

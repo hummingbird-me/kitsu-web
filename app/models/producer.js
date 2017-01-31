@@ -1,4 +1,4 @@
-import Base from 'client/models/base';
+import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { hasMany } from 'ember-data/relationships';
 

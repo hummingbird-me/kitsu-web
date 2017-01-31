@@ -1,4 +1,4 @@
-import Base from 'client/models/base';
+import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
 
@@ -16,7 +16,7 @@ export default Base.extend({
 
   actor: belongsTo('user'),
   media: belongsTo('media'),
-  subject: belongsTo('base'),
-  target: belongsTo('base'),
-  unit: belongsTo('base')
+  subject: belongsTo('-base'),
+  target: belongsTo('-base'),
+  unit: belongsTo('-base')
 });

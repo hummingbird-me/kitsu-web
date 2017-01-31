@@ -1,7 +1,8 @@
-import Base from 'client/models/base';
+import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
+import { or } from 'ember-computed';
 
 const Validations = buildValidations({
   progress: [
@@ -29,9 +30,12 @@ export default Base.extend(Validations, {
   status: attr('string'),
   updatedAt: attr('utc'),
 
-  media: belongsTo('media'),
+  anime: belongsTo('anime'),
+  manga: belongsTo('manga'),
   review: belongsTo('review'),
-  unit: belongsTo('base'),
-  nextUnit: belongsTo('base'),
-  user: belongsTo('user')
+  unit: belongsTo('-base'),
+  nextUnit: belongsTo('-base'),
+  user: belongsTo('user'),
+
+  media: or('anime', 'manga').readOnly()
 });

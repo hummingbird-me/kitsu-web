@@ -1,7 +1,6 @@
 import Route from 'ember-route';
 import get, { getProperties } from 'ember-metal/get';
 import set from 'ember-metal/set';
-import { capitalize } from 'ember-string';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 import { storageFor } from 'ember-local-storage';
@@ -53,10 +52,10 @@ export default Route.extend(PaginationMixin, {
     }
 
     Object.assign(options, {
-      include: 'media,user',
+      include: 'anime,manga,user',
       filter: {
         user_id: userId,
-        media_type: capitalize(media),
+        kind: media,
         status
       },
       page: { offset: 0, limit: 200 }

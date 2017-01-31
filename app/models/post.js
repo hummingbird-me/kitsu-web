@@ -1,4 +1,4 @@
-import Base from 'client/models/base';
+import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
 
@@ -16,7 +16,7 @@ export default Base.extend({
   updatedAt: attr('utc', { defaultValue() { return new Date(); } }),
 
   media: belongsTo('media'),
-  spoiledUnit: belongsTo('base'),
+  spoiledUnit: belongsTo('-base'),
   targetUser: belongsTo('user'),
   user: belongsTo('user'),
 

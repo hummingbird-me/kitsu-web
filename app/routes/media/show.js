@@ -2,12 +2,10 @@ import Route from 'ember-route';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import { capitalize } from 'ember-string';
 import observer from 'ember-metal/observer';
 import { task, timeout } from 'ember-concurrency';
 import CanonicalRedirectMixin from 'client/mixins/routes/canonical-redirect';
 import CoverPageMixin from 'client/mixins/routes/cover-page';
-import { modelType } from 'client/helpers/model-type';
 import errorMessages from 'client/utils/error-messages';
 import clip from 'clip';
 
@@ -57,18 +55,19 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   },
 
   _getLibraryEntry(controller, media) {
+    const type = get(media, 'modelType');
     const promise = get(this, 'store').query('library-entry', {
       include: 'review',
       filter: {
         user_id: get(this, 'session.account.id'),
-        media_type: capitalize(modelType([media])),
-        media_id: get(media, 'id')
+        kind: type,
+        [`${type}_id`]: get(media, 'id')
       },
     }).then((results) => {
       const entry = get(results, 'firstObject');
       set(controller, 'entry', entry);
       if (entry !== undefined) {
-        set(controller, 'entry.media', media);
+        set(controller, `entry.${type}`, media);
       }
     });
     set(controller, 'entry', promise);
@@ -152,10 +151,11 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
       const controller = this.controllerFor(get(this, 'routeName'));
       const user = get(this, 'session.account');
       const media = this.modelFor(get(this, 'routeName'));
+      const type = get(media, 'modelType');
       const entry = get(this, 'store').createRecord('library-entry', {
         status,
         user,
-        media
+        [type]: media
       });
       return entry.save().then(() => set(controller, 'entry', entry)).catch((err) => {
         get(this, 'notify').error(errorMessages(err));

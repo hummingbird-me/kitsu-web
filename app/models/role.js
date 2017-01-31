@@ -1,4 +1,4 @@
-import Base from 'client/models/base';
+import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
 
@@ -7,5 +7,5 @@ export default Base.extend({
   resourceId: attr('number'),
   resourceType: attr('string'),
 
-  resource: belongsTo('base')
+  resource: belongsTo('-base')
 });

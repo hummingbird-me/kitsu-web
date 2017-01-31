@@ -108,7 +108,7 @@ export default Route.extend(ApplicationRouteMixin, {
     if (window.Intercom !== undefined) {
       window.Intercom('shutdown');
     }
-    this._super(...arguments);
+    // this._super(...arguments);
   },
 
   _getCurrentUser() {
@@ -125,7 +125,10 @@ export default Route.extend(ApplicationRouteMixin, {
         id: get(user, 'id'),
         username: get(user, 'name')
       });
-    }).catch(() => get(this, 'session').invalidate());
+    }).catch((error) => {
+      console.error(error);
+      get(this, 'session').invalidate();
+    });
   },
 
   actions: {
