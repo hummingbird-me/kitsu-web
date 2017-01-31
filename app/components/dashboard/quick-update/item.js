@@ -6,7 +6,6 @@ import computed from 'ember-computed';
 import { isPresent } from 'ember-utils';
 import service from 'ember-service/inject';
 import getter from 'client/utils/getter';
-import { modelType } from 'client/helpers/model-type';
 import errorMessages from 'client/utils/error-messages';
 
 const QuickUpdateItemComponent = Component.extend({
@@ -14,7 +13,7 @@ const QuickUpdateItemComponent = Component.extend({
   notify: service(),
 
   isAnime: getter(function() {
-    return modelType([get(this, 'entry.media')]) === 'anime';
+    return get(this, 'entry.media.modelType') === 'anime';
   }),
 
   unitType: getter(function() {

@@ -6,7 +6,6 @@ import computed from 'ember-computed';
 import { task } from 'ember-concurrency';
 import { capitalize } from 'ember-string';
 import { strictInvokeAction } from 'ember-invoke-action';
-import { modelType } from 'client/helpers/model-type';
 
 export default Component.extend({
   isFavorite: false,
@@ -14,7 +13,7 @@ export default Component.extend({
   session: service(),
 
   getFavorite: task(function* () {
-    const mediaType = modelType([get(this, 'media')]);
+    const mediaType = get(this, 'media.modelType');
     const mediaId = get(this, 'media.id');
     return yield get(this, 'store').query('favorite', {
       filter: {

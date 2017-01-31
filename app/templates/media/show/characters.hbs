@@ -18,7 +18,7 @@
     {{/bootstrap/bs-dropdown}}
   </div>
 {{/if}}
-<p class="w-100">{{t (concat "media.routes.show.characters.subtitle." (model-type media)) language=(capitalize language) title=media.computedTitle}}</p>
+<p class="w-100">{{t (concat "media.routes.show.characters.subtitle." media.modelType) language=(capitalize language) title=media.computedTitle}}</p>
 
 {{#if model.taskInstance.isRunning}}
   <div class="text-xs-center w-100 m-t-1 m-b-1">

@@ -7,7 +7,6 @@ import { classify } from 'ember-string';
 import service from 'ember-service/inject';
 import computed from 'ember-computed';
 import get from 'ember-metal/get';
-import { modelType } from 'client/helpers/model-type';
 
 export const Validations = buildValidations({
   email: [
@@ -118,7 +117,7 @@ export default Base.extend(Validations, {
     const validRoles = roles.filter((r) => {
       let hasRole = get(r, 'name') === roleName && get(r, 'hasDirtyAttributes') === false;
       if (hasRole && get(r, 'resourceType') !== null && resource !== undefined) {
-        hasRole = hasRole && get(r, 'resourceType') === classify(modelType([resource]));
+        hasRole = hasRole && get(r, 'resourceType') === classify(get(resource, 'modelType'));
       }
       return hasRole;
     });

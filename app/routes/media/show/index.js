@@ -3,7 +3,6 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { capitalize } from 'ember-string';
 import { task } from 'ember-concurrency';
-import { modelType } from 'client/helpers/model-type';
 
 export default Route.extend({
   templateName: 'media/show/index',
@@ -15,7 +14,7 @@ export default Route.extend({
       include: 'user',
       filter: {
         media_id: get(media, 'id'),
-        media_type: capitalize(modelType([media]))
+        media_type: capitalize(get(media, 'modelType'))
       },
       page: { limit: 2 },
       sort: '-likes_count'

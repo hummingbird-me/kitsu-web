@@ -3,7 +3,7 @@
     <div class="stream-review row">
       {{#unless hideImage}}
         <div class="stream-item--media col-xs-4 col-sm-3">
-          <a href={{href-to (concat (model-type media) ".show") media.slug}}>
+          <a href={{href-to (concat media.modelType ".show") media.slug}}>
             {{lazy-image url=(image media.posterImage "large") ratio=-2}}
           </a>
         </div>
@@ -21,7 +21,7 @@
           </header>
           <small class="media-heading">
             <h6>
-              <a href={{href-to (concat (model-type media) ".show") media.slug}}>
+              <a href={{href-to (concat media.modelType ".show") media.slug}}>
                 {{media.computedTitle}}
               </a>
               <span class="stream-review-rating">
@@ -32,7 +32,7 @@
             {{! review media progress -- progress > 0 && !(progress === unitCount) }}
             {{#if (and (gt review.progress 0) (not (eq review.progress media.unitCount)))}}
               <small class="review-media-progress">
-                {{t (concat "reviews.progress." (model-type media)) num=review.progress}}
+                {{t (concat "reviews.progress." media.modelType) num=review.progress}}
               </small>
             {{/if}}
           </small>

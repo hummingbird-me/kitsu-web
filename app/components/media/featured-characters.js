@@ -5,7 +5,6 @@ import service from 'ember-service/inject';
 import { capitalize } from 'ember-string';
 import { isPresent } from 'ember-utils';
 import { task } from 'ember-concurrency';
-import { modelType } from 'client/helpers/model-type';
 
 export default Component.extend({
   tagName: 'section',
@@ -34,7 +33,7 @@ export default Component.extend({
   }).restartable(),
 
   didReceiveAttrs() {
-    const type = modelType([get(this, 'media')]);
+    const type = get(this, 'media.modelType');
     const id = get(this, 'media.id');
     const taskInstance = get(this, 'getCharacters').perform(type, id);
     set(this, 'taskInstance', taskInstance);

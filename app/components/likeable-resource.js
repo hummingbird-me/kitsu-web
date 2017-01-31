@@ -6,7 +6,6 @@ import observer from 'ember-metal/observer';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import { isEmpty } from 'ember-utils';
-import { modelType } from 'client/helpers/model-type';
 import getter from 'client/utils/getter';
 
 export default Component.extend({
@@ -19,11 +18,11 @@ export default Component.extend({
   metrics: service(),
 
   resourceFilterKey: getter(function() {
-    return `${modelType([get(this, 'resource')])}_id`;
+    return `${get(this, 'resource.modelType')}_id`;
   }),
 
   resourceLikeType: getter(function() {
-    return `${modelType([get(this, 'resource')])}-like`;
+    return `${get(this, 'resource.modelType')}-like`;
   }),
 
   getLikes: task(function* () {
@@ -58,7 +57,7 @@ export default Component.extend({
   }).drop(),
 
   createLike: task(function* () {
-    const key = modelType([get(this, 'resource')]);
+    const key = get(this, 'resource.modelType');
     const like = get(this, 'store').createRecord(get(this, 'resourceLikeType'), {
       [key]: get(this, 'resource'),
       user: get(this, 'session.account')

@@ -1,7 +1,6 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import computed, { not } from 'ember-computed';
-import { modelType } from 'client/helpers/model-type';
 import humanizeDuration from 'client/utils/humanize-duration';
 import moment from 'moment';
 
@@ -20,7 +19,7 @@ export default Component.extend({
   studios: computedProduction('studio'),
 
   isAnime: computed('media', function() {
-    return modelType([get(this, 'media')]) === 'anime';
+    return get(this, 'media.modelType') === 'anime';
   }).readOnly(),
   isManga: not('isAnime').readOnly(),
 

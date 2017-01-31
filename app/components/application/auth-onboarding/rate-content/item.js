@@ -2,7 +2,6 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import computed from 'ember-computed';
 import { invokeAction } from 'ember-invoke-action';
-import { modelType } from 'client/helpers/model-type';
 import { storageFor } from 'ember-local-storage';
 
 export default Component.extend({
@@ -11,7 +10,7 @@ export default Component.extend({
   rating: computed('item', 'ratings.[]', {
     get() {
       const cache = get(this, 'ratings').find(obj => (
-        obj.id === get(this, 'item.id') && obj.type === modelType([get(this, 'item')])
+        obj.id === get(this, 'item.id') && obj.type === get(this, 'item.modelType')
       ));
       return cache !== undefined ? cache.rating : 0;
     }
@@ -20,7 +19,7 @@ export default Component.extend({
   actions: {
     onClick(rating) {
       get(this, 'ratings').addObject({
-        type: modelType([get(this, 'item')]),
+        type: get(this, 'item.modelType'),
         id: get(this, 'item.id'),
         rating
       });

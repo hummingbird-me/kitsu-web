@@ -25,7 +25,7 @@
         {{! Rewatching }}
         {{#if (and (gt entry.reconsumeCount 0) (eq entry.status "current"))}}
           <div class="entry-indicator-rewatching d-inline-block">
-            <span class="hint--top hint--bounce hint--rounded" aria-label="{{t (concat "users.library.reconsuming." (model-type media))}}">
+            <span class="hint--top hint--bounce hint--rounded" aria-label="{{t (concat "users.library.reconsuming." media.modelType)}}">
               {{! @Josh -- Rewatching SVG }}
             </span>
           </div>
@@ -94,7 +94,7 @@
       {{! Media Info }}
       <div class="col-md-12 col-lg-7 columns">
         <h4 class="drop-title">
-          <a href={{href-to (concat (model-type media) ".show") media}}>
+          <a href={{href-to (concat media.modelType ".show") media}}>
             {{media.computedTitle}}
           </a>
         </h4>
@@ -182,12 +182,12 @@
                 (action (mut entry.progress) 0)
                 (action (mut entry.status) "current")
                 (perform saveEntry))}}>
-                {{t (concat "users.library.reconsume." (model-type media))}}
+                {{t (concat "users.library.reconsume." media.modelType)}}
               </button>
             {{/if}}
 
             <label>
-              <span>{{t (concat "users.library.reconsumed." (model-type media))}}</span>
+              <span>{{t (concat "users.library.reconsumed." media.modelType)}}</span>
               {{#if (can-mutate user entry)}}
                 {{one-way-number entry.reconsumeCount
                   update=(queue

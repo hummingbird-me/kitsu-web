@@ -7,7 +7,6 @@ import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import libraryStatus from 'client/utils/library-status';
 import getter from 'client/utils/getter';
-import { modelType as getType } from 'client/helpers/model-type';
 import RSVP from 'rsvp';
 
 export const REMOVE_KEY = 'library.remove';
@@ -19,7 +18,7 @@ export default Component.extend({
   metrics: service(),
 
   mediaType: getter(function() {
-    return get(this, 'type') || getType([get(this, 'entry.media')]);
+    return get(this, 'type') || get(this, 'entry.media.modelType');
   }),
 
   currentStatus: computed('entry.status', {

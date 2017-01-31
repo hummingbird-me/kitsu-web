@@ -1,7 +1,6 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import computed from 'ember-computed';
-import { modelType } from 'client/helpers/model-type';
 
 const favoriteComputed = (...args) => {
   const type = args.pop();
@@ -9,7 +8,7 @@ const favoriteComputed = (...args) => {
     get() {
       const records = get(this, 'user.favorites') || [];
       return records.filter(record => (
-        modelType([get(record, 'item')]) === type
+        get(record, 'item.modelType') === type
       )).rejectBy('isDeleted').sortBy('favRank').toArray();
     }
   }).readOnly();

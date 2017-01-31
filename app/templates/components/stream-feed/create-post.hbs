@@ -35,14 +35,14 @@
         <div class="tagged-media--wrapper">
           <div class="tagged-media row">
             <div class="stream-item--media col-xs-1">
-              <a href={{href-to (concat (model-type _usableMedia) ".show") _usableMedia.slug}}>
+              <a href={{href-to (concat _usableMedia.modelType ".show") _usableMedia.slug}}>
                 {{lazy-image url=(image _usableMedia.posterImage "small")}}
               </a>
             </div>
             <div class="col-sm no-padding-left">
               <div class="stream-item--title-block">
                 <div class="author-info">
-                  <a class="author-name" href={{href-to (concat (model-type _usableMedia) ".show") _usableMedia.slug}}>
+                  <a class="author-name" href={{href-to (concat _usableMedia.modelType ".show") _usableMedia.slug}}>
                     {{_usableMedia.computedTitle}}
                   </a>
                   <small class="author-secondary">
@@ -70,7 +70,7 @@
         }}
           <div {{action (queue (action (mut _usableMedia) media) (action (mut spoiler) true))}}>
             <span class="tag-poster">{{lazy-image url=(image media.posterImage "tiny")}}</span>
-            <span class="tag tag-primary">{{capitalize (model-type media)}}</span>
+            <span class="tag tag-primary">{{capitalize media.modelType}}</span>
             <span>{{media.computedTitle}}</span>
           </div>
         {{/search-typeahead}}

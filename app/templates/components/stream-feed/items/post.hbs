@@ -65,13 +65,13 @@
                 <div class="gate--label">
                   Contains spoilers and NSFW.
                   {{#if post.spoiledUnit}}
-                    <small>{{t (concat "feeds.spoilers." (model-type post.media)) num=post.spoiledUnit.number}} {{postEpisodeText}}</small>
+                    <small>{{t (concat "feeds.spoilers." post.media.modelType) num=post.spoiledUnit.number}} {{postEpisodeText}}</small>
                   {{/if}}
                 </div>
                 <div class="gate--hover">
                   My body is ready!
                   {{#if post.spoiledUnit}}
-                    <small>{{t (concat "feeds.spoilers." (model-type post.media)) num=post.spoiledUnit.number}} {{postEpisodeText}}</small>
+                    <small>{{t (concat "feeds.spoilers." post.media.modelType) num=post.spoiledUnit.number}} {{postEpisodeText}}</small>
                   {{/if}}
                 </div>
               </a>
@@ -91,13 +91,13 @@
                 <div class="gate--label">
                   This post contains spoilers.
                   {{#if post.spoiledUnit}}
-                    <small>{{t (concat "feeds.spoilers." (model-type post.media)) num=post.spoiledUnit.number}} {{postEpisodeText}}</small>
+                    <small>{{t (concat "feeds.spoilers." post.media.modelType) num=post.spoiledUnit.number}} {{postEpisodeText}}</small>
                   {{/if}}
                 </div>
                 <div class="gate--hover">
                   I can handle the truth!
                   {{#if post.spoiledUnit}}
-                    <small>{{t (concat "feeds.spoilers." (model-type post.media)) num=post.spoiledUnit.number}} {{postEpisodeText}}</small>
+                    <small>{{t (concat "feeds.spoilers." post.media.modelType) num=post.spoiledUnit.number}} {{postEpisodeText}}</small>
                   {{/if}}
                 </div>
               </a>
@@ -127,14 +127,14 @@
         <div class="tagged-media--wrapper">
           <div class="tagged-media row">
             <div class="stream-item--media col-xs-1">
-              <a href={{href-to (concat (model-type post.media) ".show") post.media}}>
+              <a href={{href-to (concat post.media.modelType ".show") post.media}}>
                 {{lazy-image url=(image post.media.posterImage "small")}}
               </a>
             </div>
             <div class="col-sm no-padding-left">
               <div class="stream-item--title-block">
                 <div class="author-info">
-                  <a class="author-name" href={{href-to (concat (model-type post.media) ".show") post.media}}>
+                  <a class="author-name" href={{href-to (concat post.media.modelType ".show") post.media}}>
                     {{post.media.computedTitle}}
                   </a>
                   <small class="author-secondary">

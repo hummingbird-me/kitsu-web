@@ -18,13 +18,13 @@
       {{#em-flickity class="trending-review-section" wrapAround=true showSlides=(gt currentItems.length 0)}}
         {{#each currentItems as |item|}}
           <div class="trending-review">
-            <a href={{href-to (concat (model-type item.media) ".show") item.media.slug}} class="media-poster">
+            <a href={{href-to (concat item.media.modelType ".show") item.media.slug}} class="media-poster">
               {{lazy-image url=(image item.media.posterImage "large")}}
             </a>
             <div class="review-content">
               <div class="review-header clearfix">
                 <h4>
-                  <a href={{href-to (concat (model-type item.media) ".show") item.media.slug}}>{{item.media.computedTitle}}</a>
+                  <a href={{href-to (concat item.media.modelType ".show") item.media.slug}}>{{item.media.computedTitle}}</a>
                 </h4>
                 <div class="attribution-block">
                   <a href={{href-to "users.index" item.user.name}} class="review-avatar">

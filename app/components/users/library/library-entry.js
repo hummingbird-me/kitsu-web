@@ -5,7 +5,6 @@ import service from 'ember-service/inject';
 import { task, timeout } from 'ember-concurrency';
 import jQuery from 'jquery';
 import { invokeAction } from 'ember-invoke-action';
-import { modelType } from 'client/helpers/model-type';
 import { decimalNumber } from 'client/helpers/decimal-number';
 
 export default Component.extend({
@@ -31,7 +30,7 @@ export default Component.extend({
 
   typeText: computed('media.subtype', {
     get() {
-      const media = modelType([get(this, 'media')]);
+      const media = get(this, 'media.modelType');
       const type = get(this, 'media.subtype');
       return get(this, 'i18n').t(`media.${media}.type.${type}`);
     }

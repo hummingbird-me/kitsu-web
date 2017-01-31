@@ -2,7 +2,7 @@
   <a href={{href-to "users.index" report.user}}>{{report.user.name}}</a>
 </td>
 <td>
-  {{create-link (capitalize (model-type report.naughty)) (concat (model-type report.naughty) "s") report.naughty.id}}
+  {{create-link (capitalize report.naughty.modelType) (concat report.naughty.modelType "s") report.naughty.id}}
 </td>
 <td>{{report.reason}}</td>
 <td>{{or report.explanation "No Explanation Provided."}}</td>

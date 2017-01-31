@@ -1,5 +1,5 @@
 <div class="media">
-  <a href={{href-to (concat (model-type activity.media) ".show") activity.media.slug}} class="media-poster">
+  <a href={{href-to (concat activity.media.modelType ".show") activity.media.slug}} class="media-poster">
     {{lazy-image url=(image activity.media.posterImage "small")}}
   </a>
   <div class="media-body">

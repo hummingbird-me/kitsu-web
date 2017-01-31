@@ -3,7 +3,6 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import computed from 'ember-computed';
 import getter from 'client/utils/getter';
-import { modelType } from 'client/helpers/model-type';
 
 export default Component.extend({
   showableItems: computed('items.[]', 'showCount', {
@@ -14,7 +13,7 @@ export default Component.extend({
 
   type: getter(function() {
     const first = get(this, 'items.firstObject');
-    return modelType([get(first, 'item')]);
+    return get(first, 'item.modelType');
   }),
 
   isCharacter: getter(function() {

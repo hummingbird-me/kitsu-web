@@ -7,7 +7,6 @@ import { isEmpty } from 'ember-utils';
 import { capitalize } from 'ember-string';
 import { task } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
-import { modelType } from 'client/helpers/model-type';
 
 export default Component.extend({
   hasReported: false,
@@ -61,7 +60,7 @@ export default Component.extend({
       filter: {
         user_id: get(this, 'session.account.id'),
         naughty_id: get(this, 'content.id'),
-        naughty_type: capitalize(modelType([get(this, 'content')]))
+        naughty_type: capitalize(get(this, 'content.modelType'))
       }
     });
   }).drop(),

@@ -24,7 +24,7 @@
         <li><strong>Tags:</strong></li>
         {{#each (sort-by "name" media.genres) as |genre|}}
           <li class="media--category-tag">
-            <a href={{href-to (concat (model-type media) ".index") (query-params genres=genre.name)}}>
+            <a href={{href-to (concat media.modelType ".index") (query-params genres=genre.name)}}>
               {{genre.name}}
             </a>
           </li>
@@ -90,7 +90,7 @@
   <h5>Community Feed</h5>
   {{stream-feed/list
     streamType="media_aggr"
-    streamId=(concat (capitalize (model-type media)) "-" media.id)
+    streamId=(concat (capitalize media.modelType) "-" media.id)
     streamFilter="user"
     readOnly=(not session.hasUser)
     media=media

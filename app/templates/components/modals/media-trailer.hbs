@@ -23,7 +23,7 @@
           {{#if session.hasUser}}
             {{library-dropdown
               entry=entry
-              type=(model-type media)
+              type=media.modelType
               methods=(hash
                 create=methods.create
                 update=methods.update

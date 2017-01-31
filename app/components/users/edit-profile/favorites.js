@@ -3,7 +3,6 @@ import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { task, timeout } from 'ember-concurrency';
-import { modelType } from 'client/helpers/model-type';
 import { createArrayWithLinks } from 'client/utils/array-utils';
 import { invokeAction } from 'ember-invoke-action';
 import RSVP from 'rsvp';
@@ -75,7 +74,7 @@ export default Component.extend({
     },
 
     addItem(item) {
-      const type = modelType([item]);
+      const type = get(item, 'modelType');
       const record = get(this, 'store').createRecord('favorite', {
         user: get(this, 'user'),
         item
@@ -86,7 +85,7 @@ export default Component.extend({
     },
 
     removeItem(item) {
-      const type = modelType([get(item, 'item')]);
+      const type = get(item, 'modelType');
       const items = get(this, `${type}Favorites`);
       items.removeObject(item);
       items.forEach(record => set(record, 'favRank', items.indexOf(record) + 1));
