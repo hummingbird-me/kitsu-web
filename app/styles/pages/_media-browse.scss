@@ -366,21 +366,22 @@
           opacity: .8;
         }
         path {
-          fill: inherit;
           opacity: 1;
         }
       }
-    }
-    svg {
-      width: 25px;
-      height: 26px;
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    path {
-      fill: #a3a9b7;
-      opacity: .5;
+      &:not(.active) {
+        path {
+          fill: #a3a9b7;
+          opacity: .5;
+        }
+      }
+      svg {
+        width: 25px;
+        height: 26px;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
   }
 
