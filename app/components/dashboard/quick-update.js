@@ -31,8 +31,9 @@ export default Component.extend(FlickityActionsMixin, {
 
   getEntriesTask: task(function* () {
     const type = get(this, 'filter') !== 'all' ? get(this, 'filter') : undefined;
+    const includes = type || 'anime,manga';
     return yield get(this, 'store').query('library-entry', {
-      include: 'anime,manga,nextUnit',
+      include: `${includes},nextUnit`,
       filter: {
         kind: type,
         user_id: get(this, 'session.account.id'),

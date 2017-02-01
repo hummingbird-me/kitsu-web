@@ -15,7 +15,6 @@ export default Route.extend(PaginationMixin, {
     status: { refreshModel: true },
     sort: { refreshModel: true }
   },
-
   i18n: service(),
   notify: service(),
   metrics: service(),
@@ -52,7 +51,7 @@ export default Route.extend(PaginationMixin, {
     }
 
     Object.assign(options, {
-      include: 'anime,manga,user',
+      include: `${media},user`,
       filter: {
         user_id: userId,
         kind: media,

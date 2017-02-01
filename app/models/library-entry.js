@@ -2,7 +2,7 @@ import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
-import { or } from 'ember-computed';
+import computed from 'ember-computed';
 
 const Validations = buildValidations({
   progress: [
@@ -37,5 +37,8 @@ export default Base.extend(Validations, {
   nextUnit: belongsTo('-base'),
   user: belongsTo('user'),
 
-  media: or('anime', 'manga').readOnly()
+  // Can't use `or` as it may try to load the anime relationship, so check values
+  media: computed('anime', 'manga', function() {
+    return this.belongsTo('anime').value() || this.belongsTo('manga').value();
+  }).readOnly()
 });
