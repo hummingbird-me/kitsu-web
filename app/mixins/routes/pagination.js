@@ -19,6 +19,7 @@ export default Mixin.create({
       content.addObjects(records);
       set(controller, property, content);
       set(controller, `${property}.links`, links);
+      set(controller, `${property}.meta`, get(records, 'meta'));
     }
   }
 });

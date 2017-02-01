@@ -2,6 +2,7 @@ import Component from 'ember-component';
 import computed from 'ember-computed';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
+import getter from 'client/utils/getter';
 
 export default Component.extend({
   i18n: service(),
@@ -17,13 +18,10 @@ export default Component.extend({
   }),
 
   // Displays the number of entries within this section
-  stats: computed('entries', {
-    get() {
-      const entries = get(this, 'entries');
-      let count = entries !== undefined ? get(entries, 'meta.count') : 0;
-      count = count === undefined ? 0 : count;
-      const text = count === 1 ? 'title' : 'titles';
-      return `${count} ${text}`;
-    }
+  stats: getter(function() {
+    const entries = get(this, 'entries');
+    const count = entries !== undefined ? get(entries, 'meta.count') : 0;
+    const text = count === 1 ? 'title' : 'titles';
+    return count ? `${count} ${text}` : '';
   })
 });
