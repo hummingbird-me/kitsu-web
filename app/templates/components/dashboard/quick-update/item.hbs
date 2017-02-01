@@ -1,67 +1,46 @@
 <div class="quick-update-media-wrapper">
   <div class="overlay-panel">
+    {{! Update actions }}
     <div class="quick-update-actions">
       <div class="action-wrapper">
-        {{#if (not isCompleted)}}
-          <button class="button button--quick-update" {{action (perform updateEntryTask)}}>
+        {{#unless isCompleted}}
+          <button class="button button--quick-update" onclick={{perform updateEntryTask}}>
             {{#if updateEntryTask.isRunning}}
               {{t "dashboard.quickUpdate.mark"}}
               <span class="loading loading--small"></span>
-              {{t "dashboard.quickUpdate.complete"}}
-            {{else}}
-              {{#if canComplete}}
-                {{t "dashboard.quickUpdate.complete"}}
-              {{else}}
-                {{t "dashboard.quickUpdate.mark"}}
-                <span class="progress-count">
-                  {{t (concat "dashboard.quickUpdate." unitType) num=nextProgress}}
-                </span>
-                {{t "dashboard.quickUpdate.complete"}}
-              {{/if}}
+            {{else if (not canComplete)}}
+              {{t "dashboard.quickUpdate.mark"}}
+              <span class="progress-count">{{currentProgress}}</span>
             {{/if}}
+            {{t "dashboard.quickUpdate.complete"}}
           </button>
         {{else}}
-
+          {{! Rating }}
           <div class="quick-update--rate">
-            {{star-rating entry.rating
-              onClick=(action "rateEntry")
-            }}
+            {{star-rating entry.rating onClick=(action "rateEntry")}}
           </div>
 
-          {{#if (and entry.review.content (not entry.review.isNew))}}
-            <button class="button button--quick-update review-button" onclick={{action (toggle "editReviewModal" this)}}>
-              Edit Review
-            </button>
-            {{#if editReviewModal}}
-              {{to-elsewhere named="modal" send=(component "modals/media-review"
-                modalId="review-modal"
-                onClose=(toggle-action "editReviewModal" this)
-                media=entry.media
-                entry=entry
-                review=entry.review.content
-                updateEntry=updateEntry
-              )}}
+          {{! Review }}
+          <button class="button button--quick-update review-button" onclick={{action (toggle "showModal" this)}}>
+            {{#if entry.review.isNew}}
+              {{t "dashboard.quickUpdate.reviews.write"}}
+            {{else}}
+              {{t "dashboard.quickUpdate.reviews.edit"}}
             {{/if}}
-          {{else}}
-            <button class="button button--quick-update review-button" onclick={{action (toggle "reviewModal" this)}}>
-              Write Review
-            </button>
-            {{#if reviewModal}}
-              {{to-elsewhere named="modal" send=(component "modals/media-review"
-                modalId="review-modal"
-                onClose=(toggle-action "reviewModal" this)
-                media=entry.media
-                entry=entry
-                updateEntry=updateEntry
-              )}}
-            {{/if}}
+          </button>
+          {{#if showModal}}
+            {{to-elsewhere named="modal" send=(component "modals/media-review"
+              onClose=(toggle-action "showModal" this)
+              review=entry.review.content
+            )}}
           {{/if}}
-        {{/if}}
+        {{/unless}}
       </div>
     </div>
+    {{! Media information }}
     <div class="quick-update-title-block">
       <h6 class="series-title">
-        <a class="update--entry-title" href={{href-to (concat entry.media.modelType ".show") entry.media}}>
+        <a class="update--entry-title" href={{href-to (concat entry.media.modelType ".show") entry.media.slug}}>
           {{entry.media.computedTitle}}
         </a>
       </h6>
@@ -79,7 +58,7 @@
 {{#if entry.media.unitCount}}
   <div class="progress">
     <span class="progress-bar">
-      <span role="presentation" class="progress-completed" style="width: {{completedPercent}}%;"></span>
+      <span role="presentation" class="progress-completed" style={{completedPercent}}></span>
     </span>
   </div>
 {{/if}}

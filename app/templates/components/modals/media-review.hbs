@@ -1,18 +1,27 @@
-{{#bootstrap/bs-modal
-  id=modalId
-  onClose=onClose as |modal|}}
+{{#bootstrap/bs-modal id=modalId onClose=onClose as |modal|}}
   {{#modal.body}}
-    {{#if (and media entry)}}
+    {{#if loadRelationships.isRunning}}
+      <div class="text-xs-center w-100">
+        {{loading-spinner size="large"}}
+      </div>
+    {{else}}
       <div class="row">
         <div class="col-xs-4 no-padding-right">
-          {{lazy-image url=(image media.posterImage "medium")}}
+          {{lazy-image url=(image review.media.posterImage "medium")}}
         </div>
         <div class="col-xs">
-          <h3>{{media.computedTitle}}</h3>
+          <h3>{{review.media.computedTitle}}</h3>
+
+          {{! errors }}
+          {{#if showError}}
+            <div class="alert alert-danger">
+              {{errorMessage}}
+            </div>
+          {{/if}}
 
           {{! review content! }}
-          {{expanding-textarea content
-            update=(action (mut content))
+          {{expanding-textarea review.body
+            update=(action (mut review.body))
             rows=5
             placeholder="What'd you think? ..."
           }}
@@ -20,35 +29,27 @@
           {{! media rating -- required to be set for review }}
           <div class="rating-wrapper">
             <h6>Your Rating:</h6>
-            {{star-rating rating class="review-stars" onClick=(action "updateRating")}}
+            {{star-rating rating class="review-stars" onClick=(action (mut rating))}}
           </div>
 
-          {{! review spoiler -- @Josh }}
+          {{! review spoiler }}
           <label class="custom-control custom-checkbox">
-            {{one-way-checkbox spoiler update=(action (mut spoiler)) class="custom-control-input"}}
+            {{one-way-checkbox review.spoiler update=(action (mut review.spoiler)) class="custom-control-input"}}
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">Spoiler</span>
           </label>
 
           {{! publish review }}
           <div class="review--cta">
-            <button class="button button--primary" disabled={{unless isValid "disabled"}} {{action (perform publish)}}>
-              {{#if publish.isRunning}}
+            <button class="button button--primary" disabled={{if (is-empty review.body) "disabled"}} onclick={{perform saveReview}}>
+              {{#if saveReview.isRunning}}
                 {{loading-spinner size="small"}}
               {{else}}
-                {{#if (and review (not isNew))}}
-                  Edit
-                {{else}}
-                  Publish
-                {{/if}}
+                Save
               {{/if}}
             </button>
           </div>
         </div>
-      </div>
-    {{else}}
-      <div class="text-xs-center w-100">
-        {{loading-spinner size="large"}}
       </div>
     {{/if}}
   {{/modal.body}}

@@ -19,15 +19,15 @@ export default Mixin.create({
   },
 
   _cleanEvents() {
-    this.$('.flickity-enabled').off('dragStart.flickity').off('dragEnd.flickity');
+    this.$('.flickity-enabled')
+      .off('dragStart.flickity')
+      .off('dragEnd.flickity');
   },
 
   _setupEvents() {
-    this.$('.flickity-enabled').on('dragStart.flickity', () => {
-      this._onDragStart();
-    }).on('dragEnd.flickity', () => {
-      this._onDragEnd();
-    });
+    this.$('.flickity-enabled')
+      .on('dragStart.flickity', this._onDragStart())
+      .on('dragEnd.flickity', this._onDragEnd());
   },
 
   _onDragStart() {

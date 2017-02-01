@@ -49,9 +49,15 @@ export default {
         discover: 'Discover Media'
       },
       mark: 'Mark',
-      episode: 'Ep. {{num}}',
-      chapter: 'Ch. {{num}}',
-      complete: 'Complete'
+      progress: {
+        anime: 'Ep. {{num}}',
+        manga: 'Ch. {{num}}'
+      },
+      complete: 'Complete',
+      reviews: {
+        write: 'Write Review',
+        edit: 'Edit Review'
+      }
     },
     streamOnboarding: {
       welcome: 'Hey {{user}}, welcome to Kitsu!',
@@ -422,6 +428,7 @@ export default {
       }
     },
     load: 'There was an issue loading the content.',
-    contentEmpty: 'Hmm, there doesn\'t seem to be anything here yet.'
+    contentEmpty: 'Hmm, there doesn\'t seem to be anything here yet.',
+    request: 'There was an issue with the request. Please try agian.'
   }
 };

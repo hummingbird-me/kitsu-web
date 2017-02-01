@@ -29,20 +29,18 @@
 </div>
 
 {{! review }}
-{{#unless (or (and entry.review (not entry.review.isNew)) (eq entry.progress 0))}}
-  <div>
-    <button class="button button--primary" onclick={{action (toggle "reviewOpen" this)}}>
-      Write a review
-    </button>
-  </div>
-{{/unless}}
-
-{{#if reviewOpen}}
-  {{to-elsewhere named="modal" send=(component "modals/media-review"
-    modalId="review-modal"
-    onClose=(toggle-action "reviewOpen" this)
-    media=media
-    entry=entry
-    updateEntry=update
-  )}}
+{{#if (not-eq entry.progress 0)}}
+  <button class="button button--primary" onclick={{action "openReview"}}>
+    {{#if (or (not entry.review) entry.review.isNew)}}
+      Write Review
+    {{else}}
+      Edit Review
+    {{/if}}
+  </button>
+  {{#if reviewOpen}}
+    {{to-elsewhere named="modal" send=(component "modals/media-review"
+      onClose=(toggle-action "reviewOpen" this)
+      review=entry.review.content
+    )}}
+  {{/if}}
 {{/if}}

@@ -12,6 +12,10 @@ export default Component.extend({
   store: service(),
   session: service(),
 
+  totalProgressText: computed('media.unitCount', function() {
+    return get(this, 'media.unitCount') || '-';
+  }).readOnly(),
+
   getFavorite: task(function* () {
     const mediaType = get(this, 'media.modelType');
     const mediaId = get(this, 'media.id');
@@ -24,12 +28,6 @@ export default Component.extend({
     });
   }).restartable(),
 
-  totalProgressText: computed('media.unitCount', {
-    get() {
-      return get(this, 'media.unitCount') || '-';
-    }
-  }).readOnly(),
-
   didReceiveAttrs() {
     this._super(...arguments);
     get(this, 'getFavorite').perform().then((results) => {
@@ -38,6 +36,8 @@ export default Component.extend({
         set(this, 'favoriteRecord', record);
         set(this, 'isFavorite', true);
       }
+    }).catch((error) => {
+      get(this, 'raven').logException(error);
     });
   },
 
@@ -65,6 +65,19 @@ export default Component.extend({
     sanitizeNumber(value) {
       const parsed = parseInt(value, 10);
       return isNaN(parsed) ? value : parsed;
+    },
+
+    openReview() {
+      const value = get(this, 'entry').belongsTo('review').value();
+      if (!value) {
+        const review = get(this, 'store').createRecord('review', {
+          libraryEntry: get(this, 'entry'),
+          media: get(this, 'entry.media'),
+          user: get(this, 'session.account')
+        });
+        set(this, 'entry.review', review);
+      }
+      this.toggleProperty('reviewOpen');
     },
 
     update(property, value) {

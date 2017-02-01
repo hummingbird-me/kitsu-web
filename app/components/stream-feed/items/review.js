@@ -10,7 +10,6 @@ import ClipboardMixin from 'client/mixins/clipboard';
 
 export default Component.extend(ClipboardMixin, {
   classNames: ['stream-item', 'row'],
-
   metrics: service(),
   notify: service(),
   router: service('-routing'),
@@ -63,16 +62,6 @@ export default Component.extend(ClipboardMixin, {
         data.feed_id = get(this, 'feedId');
       }
       get(this, 'metrics').invoke('trackEngagement', 'Stream', data);
-    },
-
-    updateEntry(entry, property, value) {
-      set(entry, property, value);
-      if (get(entry, 'hasDirtyAttributes')) {
-        return entry.save().catch((err) => {
-          entry.rollbackAttributes();
-          get(this, 'notify').error(errorMessages(err));
-        });
-      }
     },
 
     deleteReview() {

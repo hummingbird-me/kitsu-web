@@ -1,3 +1,4 @@
+{{! Quick update filter }}
 <div class="quick-update--header container">
   <div class="row">
     <h6>Quick Update</h6>
@@ -9,6 +10,9 @@
         {{#each filterOptions as |option|}}
           {{#dropdown.menu-item onClick=(action "changeFilter" option)}}
             {{t (concat "dashboard.quickUpdate.filter." option)}}
+            {{#if (eq option filter)}}
+              <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+            {{/if}}
           {{/dropdown.menu-item}}
         {{/each}}
       {{/dropdown.menu}}
@@ -21,14 +25,16 @@
     {{loading-spinner size="large" class="white"}}
   </div>
 {{else}}
+  {{! Quick update items }}
   {{#em-flickity class="carousel" contain=false cellAlign="left" groupCells=1 setGallerySize=true showSlides=true}}
     {{#each initialEntries as |entry|}}
-      {{dashboard/quick-update/item entry
-        isDragging=isFlickityDragging
-        updateEntry=(action "updateEntry")
-        class="quick-update-item"}}
+      {{dashboard/quick-update/item
+        entry=entry
+        updateEntry=(action "updateEntry" entry)
+        reloadUnit=(action "reloadUnit" entry)}}
     {{/each}}
 
+    {{! Hint/Empty panels }}
     {{#if (lt initialEntries.length 4)}}
       <div class="quick-update-item hint-panel">
         {{t "dashboard.quickUpdate.hint.text" link=(create-link (t "dashboard.quickUpdate.hint.library") 'users.library' session.account.name)}}
@@ -57,10 +63,10 @@
   {{! Temporary storage for paginated entries }}
   <div class="new-entries" style="display: none">
     {{#each newEntries as |entry|}}
-      {{dashboard/quick-update/item entry
-        isDragging=isFlickityDragging
-        updateEntry=(action "updateEntry")
-        class="quick-update-item"}}
+      {{dashboard/quick-update/item
+        entry=entry
+        updateEntry=(action "updateEntry" entry)
+        reloadUnit=(action "reloadUnit" entry)}}
     {{/each}}
   </div>
 {{/if}}

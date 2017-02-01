@@ -1,32 +1,25 @@
 import Component from 'ember-component';
 import service from 'ember-service/inject';
 import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import { task } from 'ember-concurrency';
+import set, { setProperties } from 'ember-metal/set';
 import computed from 'ember-computed';
+import { typeOf } from 'ember-utils';
+import { task } from 'ember-concurrency';
 import { scheduleOnce } from 'ember-runloop';
-import errorMessages from 'client/utils/error-messages';
 import { storageFor } from 'ember-local-storage';
 import FlickityActionsMixin from 'client/mixins/flickity-actions';
 
 export default Component.extend(FlickityActionsMixin, {
   classNames: ['quick-update'],
+  filterOptions: ['all', 'anime', 'manga'],
   pageLimit: 12,
   notify: service(),
   session: service(),
   store: service(),
   lastUsed: storageFor('last-used'),
 
-  filterOptions: computed('filter', {
-    get() {
-      return ['all', 'anime', 'manga'].removeObject(get(this, 'filter'));
-    }
-  }).readOnly(),
-
-  remaining: computed('initialEntries.length', {
-    get() {
-      return 3 - (get(this, 'initialEntries.length') || 0);
-    }
+  remaining: computed('initialEntries.length', function() {
+    return 3 - (get(this, 'initialEntries.length') || 0);
   }).readOnly(),
 
   getEntriesTask: task(function* () {
@@ -37,7 +30,7 @@ export default Component.extend(FlickityActionsMixin, {
       filter: {
         kind: type,
         user_id: get(this, 'session.account.id'),
-        status: '1,2'
+        status: 'current,planned'
       },
       sort: 'status,-updated_at',
       page: { limit: get(this, 'pageLimit') }
@@ -55,7 +48,9 @@ export default Component.extend(FlickityActionsMixin, {
     set(this, 'initialEntries', []);
     get(this, 'getEntriesTask').perform().then((entries) => {
       set(this, 'initialEntries', entries);
-    }).catch(() => {});
+    }).catch((error) => {
+      get(this, 'raven').logException(error);
+    });
   },
 
   _appendToFlickty() {
@@ -74,10 +69,25 @@ export default Component.extend(FlickityActionsMixin, {
     },
 
     updateEntry(entry, property, value) {
-      set(entry, property, value);
-      return entry.save().catch((err) => {
+      if (get(this, 'isFlickityDraging')) { return; }
+      if (typeOf(property) === 'object') {
+        setProperties(entry, property);
+      } else {
+        set(entry, property, value);
+      }
+      return entry.save().catch(() => {
         entry.rollbackAttributes();
-        get(this, 'notify').error(errorMessages(err));
+      });
+    },
+
+    reloadUnit(entry) {
+      const idWas = get(entry, 'nextUnit.id');
+      return entry.belongsTo('nextUnit').reload().then((unit) => {
+        // if the id hasn't changed then that means the API returned a `null` value
+        const value = get(unit, 'id') === idWas ? null : unit;
+        set(entry, 'nextUnit', value);
+      }).catch(() => {
+        set(entry, 'nextUnit', null);
       });
     },
 
