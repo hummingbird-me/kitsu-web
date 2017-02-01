@@ -6,21 +6,18 @@ moduleForComponent('library-dropdown', 'Integration | Component | library-dropdo
   integration: true
 });
 
-test('it lists the correct statuses', function(assert) {
-  this.set('entry', { status: 'planned' });
-  this.render(hbs`{{library-dropdown entry=entry type="anime"}}`);
-
+test('it lists current <-> dropped when entry is undefined', function(assert) {
+  this.render(hbs`{{library-dropdown}}`);
   const statuses = libraryStatus.getEnumKeys();
-  let $el = this.$('[data-test-selector="library-dropdown-item"]');
+  const $el = this.$('[data-test-selector="library-dropdown-item"]');
   assert.equal($el.length, statuses.length);
-  assert.equal($el.eq(0).text().trim(), 'Currently Watching');
+});
 
-  // At this point, the current status should be removed and the REMOVE_KEY added
+test('it adds the remove option when entry is defined', function(assert) {
   this.set('entry', { status: 'current' });
-  $el = this.$('[data-test-selector="library-dropdown-item"]');
-  assert.equal($el.length, statuses.length);
-  assert.equal($el.eq(0).text().trim(), 'Plan To Watch');
-  assert.equal($el.last().text().trim(), 'Remove from Library');
+  this.render(hbs`{{library-dropdown entry=entry}}`);
+  const element = this.$('[data-test-selector="library-dropdown-item"]:last');
+  assert.equal(element.text().trim(), 'Remove from Library');
 });
 
 test('actions are invoked based on entry status', function(assert) {

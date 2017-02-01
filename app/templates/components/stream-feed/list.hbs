@@ -33,6 +33,9 @@
         {{#each filterOptions as |option|}}
           {{#dropdown.menu-item onClick=(action "updateFilter" option)}}
             {{t (concat "feeds.filter." option)}}
+            {{#if (eq option filter)}}
+              <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+            {{/if}}
           {{/dropdown.menu-item}}
         {{/each}}
       {{/dropdown.menu}}

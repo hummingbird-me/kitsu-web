@@ -11,22 +11,10 @@ export default Controller.extend({
   queryParams: ['media', 'status'],
   media: 'anime',
   status: 'current',
-
+  mediaList: ['anime', 'manga'],
   session: service(),
   entries: alias('taskValue'),
   lastUsed: storageFor('last-used'),
-
-  /**
-   * Returns an array of the other library page options
-   */
-  mediaList: computed('media', {
-    get() {
-      const list = ['anime', 'manga'];
-      const media = get(this, 'media');
-      list.splice(list.findIndex(m => m === media), 1);
-      return list;
-    }
-  }).readOnly(),
 
   /**
    * Filters the entries by their status and state into an object of

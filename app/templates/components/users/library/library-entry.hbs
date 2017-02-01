@@ -148,14 +148,18 @@
                   {{if entry.private (t "users.library.private") (t "users.library.public")}}
                 {{/dropdown.button}}
                 {{#dropdown.menu}}
-                  {{#dropdown.menu-item
-                    onClick=(queue
+                  {{#each (w "public" "private") as |key|}}
+                    {{#dropdown.menu-item onClick=(queue
                       (action (mut entry.private) (not entry.private))
-                      (perform saveEntry)
-                    )
-                  }}
-                    {{if entry.private (t "users.library.public") (t "users.library.private")}}
-                  {{/dropdown.menu-item}}
+                      (perform saveEntry))}}
+                        {{t (concat "users.library." key)}}
+                        {{#if (and entry.private (eq key "private"))}}
+                          <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+                        {{else if (and (not entry.private) (eq key "public"))}}
+                          <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+                        {{/if}}
+                    {{/dropdown.menu-item}}
+                  {{/each}}
                 {{/dropdown.menu}}
               {{/bootstrap/bs-dropdown}}
             {{else}}

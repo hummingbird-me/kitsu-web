@@ -5,7 +5,6 @@ import set from 'ember-metal/set';
 import observer from 'ember-metal/observer';
 import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
-import computed from 'ember-computed';
 import EmberObject from 'ember-object';
 import { storageFor } from 'ember-local-storage';
 import getter from 'client/utils/getter';
@@ -14,7 +13,7 @@ import { unshiftObjects } from 'client/utils/array-utils';
 
 export default Component.extend({
   readOnly: false,
-
+  filterOptions: ['all', 'media', 'user'],
   ajax: service(),
   headData: service(),
   headTags: service(),
@@ -28,12 +27,6 @@ export default Component.extend({
   feedId: getter(function() {
     return `${get(this, 'streamType')}:${get(this, 'streamId')}`;
   }),
-
-  filterOptions: computed('filter', {
-    get() {
-      return ['all', 'media', 'user'].removeObject(get(this, 'filter'));
-    }
-  }).readOnly(),
 
   getFeedData: task(function* (type, id, limit = 10, kind = null) {
     const options = {

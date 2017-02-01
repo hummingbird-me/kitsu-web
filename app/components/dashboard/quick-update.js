@@ -92,6 +92,7 @@ export default Component.extend(FlickityActionsMixin, {
     },
 
     changeFilter(option) {
+      if (get(this, 'filter') === option) { return; }
       set(this, 'filter', option);
       set(this, 'lastUsed.quickUpdateFilter', option);
       this._getEntries();

@@ -15,6 +15,9 @@
     {{#each statuses as |status|}}
       {{#dropdown.menu-item data-test-selector="library-dropdown-item" onClick=(perform updateTask status)}}
         {{status.string}}
+        {{#if (eq entry.status status.key)}}
+          <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+        {{/if}}
       {{/dropdown.menu-item}}
     {{/each}}
   {{/dropdown.menu}}

@@ -36,18 +36,17 @@ export default Component.extend({
         key,
         string: get(this, 'i18n').t(`library.statuses.${type}.${key}`).toString()
       }));
-      if (get(this, 'entry') === undefined) {
-        return statuses;
+      if (get(this, 'entry')) {
+        const removeKey = get(this, 'i18n').t(REMOVE_KEY).toString();
+        return statuses.concat([{ key: REMOVE_KEY, string: removeKey }]);
       }
-      const status = get(this, 'currentStatus');
-      statuses.splice(statuses.findIndex(el => el.string === status), 1);
-      const removeKey = get(this, 'i18n').t(REMOVE_KEY).toString();
-      return statuses.concat([{ key: REMOVE_KEY, string: removeKey }]);
+      return statuses;
     }
   }).readOnly(),
 
   updateTask: task(function* (status) {
     const entry = get(this, 'entry');
+    if (entry && get(entry, 'status') === status.key) { return; }
     const actions = get(this, 'methods');
     let eventCategory;
     if (entry === undefined) {

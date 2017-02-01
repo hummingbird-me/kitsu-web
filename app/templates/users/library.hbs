@@ -11,6 +11,9 @@
             {{#each mediaList as |_media|}}
               {{#dropdown.menu-item onClick=(action (mut media) _media)}}
                 {{t "users.library.library" type=(t (concat "media." _media ".name"))}}
+                {{#if (eq media _media)}}
+                  <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+                {{/if}}
               {{/dropdown.menu-item}}
             {{/each}}
           {{/dropdown.menu}}
