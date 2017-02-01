@@ -144,7 +144,7 @@ export default {
           en_cn: 'Romanized',
           zh_cn: 'Chinese',
           en_th: 'Romanized',
-          tn_th: 'Thai',
+          th_th: 'Thai',
           en_kr: 'Romanized',
           ko_kr: 'Korean',
           synonyms: 'Synonyms'
