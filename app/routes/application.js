@@ -101,7 +101,6 @@ export default Route.extend(ApplicationRouteMixin, {
   // This method is fired by ESA when authentication is successful
   sessionAuthenticated() {
     this._getCurrentUser();
-    this._super(...arguments);
   },
 
   sessionInvalidated() {
