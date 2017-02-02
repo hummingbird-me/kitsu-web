@@ -14,10 +14,9 @@ moduleFor('metrics-adapter:stream', 'stream adapter', {
   }
 });
 
-test('#identify calls setUser with right data', function(assert) {
+test('#identify calls setUser with right arguments', function(assert) {
   const adapter = this.subject({ config: this.config });
-  this.sandbox.stub(window, 'StreamAnalytics', () => function() { });
-  const stub = this.sandbox.stub(adapter.get('client'), 'setUser', () => true);
+  const stub = this.sandbox.stub(adapter.client, 'setUser', () => true);
   adapter.identify({
     distinctId: 1234,
     alias: 'Bob'
@@ -26,9 +25,12 @@ test('#identify calls setUser with right data', function(assert) {
 });
 
 test('#trackImpression calls trackImpression with right data', function(assert) {
-  const adapter = this.subject({ config: this.config, hasUser: true, router: { currentRouteName: 'hello' } });
-  this.sandbox.stub(window, 'StreamAnalytics', () => function() { });
-  const stub = this.sandbox.stub(adapter.get('client'), 'trackImpression', () => true);
+  const adapter = this.subject({
+    config: this.config,
+    hasUser: true,
+    router: { currentRouteName: 'hello' }
+  });
+  const stub = this.sandbox.stub(adapter.client, 'trackImpression', () => true);
   adapter.trackImpression({
     content_list: ['feed:1234', 'feed:5678']
   });
@@ -36,9 +38,12 @@ test('#trackImpression calls trackImpression with right data', function(assert) 
 });
 
 test('#trackEngagement calls trackEngagement with right data', function(assert) {
-  const adapter = this.subject({ config: this.config, hasUser: true, router: { currentRouteName: 'hello' } });
-  this.sandbox.stub(window, 'StreamAnalytics', () => function() { });
-  const stub = this.sandbox.stub(adapter.get('client'), 'trackEngagement', () => true);
+  const adapter = this.subject({
+    config: this.config,
+    hasUser: true,
+    router: { currentRouteName: 'hello' }
+  });
+  const stub = this.sandbox.stub(adapter.client, 'trackEngagement', () => true);
   adapter.trackEngagement({
     label: 'like',
     content: 'post:1234'

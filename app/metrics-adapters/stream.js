@@ -31,6 +31,7 @@ export default BaseAdapter.extend({
       set(this, 'hasUser', true);
     }
   },
+
   trackEvent() {},
   trackPage() {},
 

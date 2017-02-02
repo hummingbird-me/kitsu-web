@@ -4,11 +4,10 @@ import { isPresent } from 'ember-utils';
 import { htmlSafe } from 'ember-string';
 
 export function userBadge([user]) {
-  const isPro = get(user, 'isPro');
   if (isPresent(get(user, 'title'))) {
     const title = get(user, 'title').toUpperCase();
     return htmlSafe(`<span class="tag tag-default role-tag">${title}</span>`);
-  } else if (isPro) {
+  } else if (get(user, 'isPro')) {
     return htmlSafe('<span class="tag tag-default role-tag">PRO</span>');
   }
 }

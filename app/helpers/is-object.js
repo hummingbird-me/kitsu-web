@@ -1,8 +1,8 @@
 import { helper } from 'ember-helper';
-import jQuery from 'jquery';
+import { typeOf } from 'ember-utils';
 
 export function isObject([object]) {
-  return jQuery.isPlainObject(object);
+  return typeOf(object) === 'object';
 }
 
 export default helper(isObject);

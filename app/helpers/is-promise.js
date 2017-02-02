@@ -1,8 +1,8 @@
 import { helper } from 'ember-helper';
-import jQuery from 'jquery';
+import { typeOf } from 'ember-utils';
 
 export function isPromise([promise]) {
-  return promise === undefined ? false : jQuery.isFunction(promise.then);
+  return promise === undefined ? false : typeOf(promise.then) === 'function';
 }
 
 export default helper(isPromise);

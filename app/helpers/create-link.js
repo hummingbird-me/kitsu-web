@@ -1,8 +1,9 @@
 import Helper from 'ember-helper';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
+import { htmlSafe } from 'ember-string';
 
 export function createLink(href, text) {
-  return `<a href="${href}">${text}</a>`.htmlSafe();
+  return htmlSafe(`<a href="${href}">${text}</a>`);
 }
 
 export default Helper.extend({

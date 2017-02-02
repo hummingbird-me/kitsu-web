@@ -3,18 +3,19 @@ import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import observer from 'ember-metal/observer';
 
-export function isSelf(session, user) {
-  return session === user;
+export function isSelf(self, other) {
+  return get(self, 'id') === get(other, 'id');
 }
 
 export default Helper.extend({
   session: service(),
 
   compute([user]) {
-    return isSelf(get(this, 'session.account.id'), get(user, 'id'));
+    const self = get(this, 'session.account');
+    return isSelf(self, user);
   },
 
-  didAuthenticate: observer('session.account', function() {
+  _didAuthenticate: observer('session.account', function() {
     this.recompute();
   })
 });

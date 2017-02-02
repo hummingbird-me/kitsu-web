@@ -8,7 +8,7 @@ test('it returns value when not an object', function(assert) {
   assert.equal(result, '/images/hello.png');
 });
 
-test('it returns the original style when not specified', function(assert) {
+test('it returns the original key value when not specified', function(assert) {
   const result = image({
     original: '/images/original.png',
     small: '/images/small.png'
