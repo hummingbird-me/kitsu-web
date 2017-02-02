@@ -19,11 +19,6 @@ module.exports = function(environment) {
     },
     i18n: { defaultLocale: 'en' },
     moment: { allowEmpty: true, includeTimezone: '2010-2020' },
-    'ember-simple-auth': {
-      authenticationRoute: 'dashboard',
-      routeIfAlreadyAuthenticated: 'dashboard',
-      store: 'session-store:adaptive'
-    },
     torii: {
       providers: {
         'facebook-connect': {

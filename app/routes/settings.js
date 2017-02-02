@@ -4,6 +4,7 @@ import DataErrorMixin from 'client/mixins/routes/data-error';
 import jQuery from 'jquery';
 
 export default Route.extend(AuthenticatedRouteMixin, DataErrorMixin, {
+  authenticationRoute: 'dashboard',
   titleToken: 'Settings',
 
   activate() {
