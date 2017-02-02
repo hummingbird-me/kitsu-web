@@ -101,6 +101,7 @@ export default Route.extend(ApplicationRouteMixin, {
   // This method is fired by ESA when authentication is successful
   sessionAuthenticated() {
     this._getCurrentUser();
+    this._super(...arguments);
   },
 
   sessionInvalidated() {
@@ -108,7 +109,7 @@ export default Route.extend(ApplicationRouteMixin, {
     if (window.Intercom !== undefined) {
       window.Intercom('shutdown');
     }
-    // this._super(...arguments);
+    this._super(...arguments);
   },
 
   _getCurrentUser() {

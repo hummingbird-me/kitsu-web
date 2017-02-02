@@ -1,7 +1,7 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'client/tests/helpers/module-for-acceptance';
 import { authenticateSession } from 'client/tests/helpers/ember-simple-auth';
-import testSelector from 'client/tests/helpers/ember-test-selectors';
+import testSelector from 'ember-test-selectors';
 
 moduleForAcceptance('Acceptance | Anime');
 
