@@ -3,7 +3,7 @@ function _defineRoutes(server) {
   server.passthrough('/write-coverage');
 
   // authentication
-  server.post('/api/oauth/token', {});
+  server.post('/api/oauth/token', { access_token: 'it is a secret, shh' });
 
   // Forums
   server.get('https://forums.hummingbird.me/c/industry-news.json', {});

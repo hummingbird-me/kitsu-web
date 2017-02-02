@@ -1,7 +1,7 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'client/tests/helpers/module-for-acceptance';
 import { currentSession } from 'client/tests/helpers/ember-simple-auth';
-import testSelector from 'client/tests/helpers/ember-test-selectors';
+import testSelector from 'ember-test-selectors';
 import jQuery from 'jquery';
 import sinon from 'sinon';
 
@@ -29,6 +29,7 @@ test('can create an account', function(assert) {
   fillIn(testSelector('selector', 'password'), 'password');
   click(testSelector('selector', 'create-account'));
 
+  andThen(() => {});
   andThen(() => {
     const session = currentSession(this.application);
     assert.ok(session.get('isAuthenticated'));
@@ -99,6 +100,7 @@ test('can sign into an account', function(assert) {
   fillIn(testSelector('selector', 'password'), 'password');
   click(testSelector('selector', 'sign-in'));
 
+  andThen(() => {});
   andThen(() => {
     const session = currentSession(this.application);
     assert.ok(session.get('isAuthenticated'));
