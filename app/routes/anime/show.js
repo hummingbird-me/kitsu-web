@@ -20,5 +20,14 @@ export default MediaShowRoute.extend({
       }
     });
     set(this, 'headTags', headTags);
+  },
+
+  _schemaData(model) {
+    const data = this._super(...arguments);
+    data['@type'] = 'TVSeries';
+    if (get(model, 'episodeCount')) {
+      data.numberOfEpisodes = get(model, 'episodeCount');
+    }
+    return data;
   }
 });

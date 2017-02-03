@@ -1,5 +1,3 @@
 import MediaShowController from 'client/controllers/media/show';
 
-export default MediaShowController.extend({
-  schemaType: 'CreativeWorkSeries'
-});
+export default MediaShowController.extend();

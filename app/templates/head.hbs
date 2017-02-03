@@ -1,1 +1,6 @@
 {{head-tags headTags=model.headTags}}
+{{#if model.structuredData}}
+  <script type="application/ld+json">
+    {{model.structuredData}}
+  </script>
+{{/if}}

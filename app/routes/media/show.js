@@ -11,6 +11,7 @@ import clip from 'clip';
 
 export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   templateName: 'media/show',
+  headData: service(),
   metrics: service(),
   notify: service(),
   session: service(),
@@ -41,6 +42,8 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
 
   setupController(controller, model) {
     this._super(...arguments);
+    const data = this._schemaData(model);
+    get(this, 'headData').set('structuredData', JSON.stringify(data));
     if (get(this, 'session.hasUser')) {
       this._getLibraryEntry(controller, model);
     }
@@ -73,6 +76,9 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
     set(controller, 'entry', promise);
   },
 
+  /**
+   * Meta tags with ember-cli-meta-tags
+   */
   _headTags(model) {
     const desc = clip(get(model, 'synopsis'), 200);
     const data = [{
@@ -135,6 +141,36 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
           content: get(model, 'totalRatings').toLocaleString()
         }
       });
+    }
+    return data;
+  },
+
+  /**
+   * Structured data with ember-cli-head
+   */
+  _schemaData(model) {
+    const data = {
+      '@context': 'http://schema.org',
+      '@type': 'CreativeWorkSeries',
+      name: get(model, 'canonicalTitle'),
+      description: get(model, 'synopsis'),
+      image: get(model, 'posterImage.large'),
+      genre: get(model, 'genres').mapBy('name')
+    };
+    if (get(model, 'averageRating')) {
+      data.aggregateRating = {
+        '@type': 'AggregateRating',
+        bestRating: 5.0,
+        worstRating: 0.5,
+        ratingValue: get(model, 'averageRating').toFixed(2),
+        ratingCount: get(model, 'totalRatings')
+      };
+    }
+    if (get(model, 'startDate')) {
+      data.startDate = get(model, 'startDate').format('YYYY-MM-DD');
+    }
+    if (get(model, 'endDate')) {
+      data.endate = get(model, 'endDate').format('YYYY-MM-DD');
     }
     return data;
   },
