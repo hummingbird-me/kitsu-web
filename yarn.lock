@@ -1387,6 +1387,12 @@ bytes@2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-2.4.0.tgz#7d97196f9d5baf7f6935e25985549edd2a6c2339"
 
+calculate-cache-key-for-tree@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/calculate-cache-key-for-tree/-/calculate-cache-key-for-tree-1.1.0.tgz#0c3e42c9c134f3c9de5358c0f16793627ea976d6"
+  dependencies:
+    json-stable-stringify "^1.0.1"
+
 caller-path@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/caller-path/-/caller-path-0.1.0.tgz#94085ef63581ecd3daa92444a8fe94e82577751f"
@@ -2868,10 +2874,11 @@ ember-source@^2.11.0:
     rsvp "^3.3.3"
     simple-dom "^0.3.0"
 
-ember-spaniel@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/ember-spaniel/-/ember-spaniel-0.1.1.tgz#405dc709e359e0f5d92f7f8e8d61c71f24db9363"
+ember-spaniel@0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/ember-spaniel/-/ember-spaniel-0.1.2.tgz#3384d9af2c7dff1d097f3b8ec1ed831610113b41"
   dependencies:
+    calculate-cache-key-for-tree "^1.1.0"
     ember-cli-babel "^5.1.7"
     ember-rollup "^0.3.1"
     spaniel "^2.1.1"
