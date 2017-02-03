@@ -1,0 +1,38 @@
+{{! poster }}
+<span class="media-poster">{{lazy-image url=(image media.posterImage "large")}}</span>
+
+{{! library entry }}
+{{#if session.hasUser}}
+  {{library-dropdown
+    entry=entry
+    type=media.modelType
+    methods=(hash
+      create=(route-action "createEntry")
+      update=(route-action "updateEntry" entry "status")
+      delete=(route-action "deleteEntry" entry)
+  )}}
+  {{#if (and entry (not (is-promise entry)))}}
+    {{media/user-library entry=entry media=media
+      update=(route-action "updateEntry")
+      debouncedUpdate=(route-action "saveEntryDebounced" entry)}}
+  {{/if}}
+{{/if}}
+
+{{#if media.streamingLinks}}
+  <div class="where-to-watch-widget">
+    <h6>Where to Watch</h6>
+    {{#if isStreamersLoaded}}
+      <ul class="nav">
+        {{#each media.streamingLinks as |link|}}
+          <li>
+            <a href={{link.url}} class="hint--top hint--bounce hint--rounded" aria-label={{link.streamer.siteName}}>
+              {{svg-jar (to-lower link.streamer.siteName)}}
+            </a>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      {{loading-spinner size="small"}}
+    {{/if}}
+  </div>
+{{/if}}

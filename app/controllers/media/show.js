@@ -12,19 +12,6 @@ export default Controller.extend({
     return this._schemaData();
   }).readOnly(),
 
-  // Determine if the streamers are loaded so we can show a async loading state
-  isStreamersLoaded: computed('media.streamingLinks.@each.streamer', {
-    get() {
-      const links = get(this, 'media.streamingLinks');
-      if (get(links, 'isLoaded') === false) {
-        return false;
-      }
-      return get(this, 'media.streamingLinks').toArray()
-        .map(r => get(r, 'streamer'))
-        .every(r => get(r, 'isLoaded') === true);
-    }
-  }).readOnly(),
-
   coverImageStyle: computed('media.coverImage', {
     get() {
       const coverImage = image(get(this, 'media.coverImage'));
