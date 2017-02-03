@@ -41,7 +41,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
 
   setupController(controller, model) {
     this._super(...arguments);
-    if (get(this, 'session.hasUser') === true) {
+    if (get(this, 'session.hasUser')) {
       this._getLibraryEntry(controller, model);
     }
   },
@@ -141,8 +141,11 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
 
   // if the user authenticates while on this page, attempt to get their entry
   _userAuthenticated: observer('session.hasUser', function() {
-    if (get(this, 'session.hasUser') === true) {
-      this._getLibraryEntry(this.controllerFor(get(this, 'routeName')), this.modelFor(get(this, 'routeName')));
+    if (get(this, 'session.hasUser')) {
+      const routeName = get(this, 'routeName');
+      const controller = this.controllerFor(routeName);
+      const model = this.modelFor(routeName);
+      this._getLibraryEntry(controller, model);
     }
   }),
 
