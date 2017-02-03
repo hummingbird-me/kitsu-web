@@ -43,7 +43,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   setupController(controller, model) {
     this._super(...arguments);
     const data = this._schemaData(model);
-    get(this, 'headData').set('structuredData', JSON.stringify(data));
+    get(this, 'headData').set('structuredData', data);
     if (get(this, 'session.hasUser')) {
       this._getLibraryEntry(controller, model);
     }
@@ -170,7 +170,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
       data.startDate = get(model, 'startDate').format('YYYY-MM-DD');
     }
     if (get(model, 'endDate')) {
-      data.endate = get(model, 'endDate').format('YYYY-MM-DD');
+      data.endDate = get(model, 'endDate').format('YYYY-MM-DD');
     }
     return data;
   },
