@@ -85,7 +85,7 @@ export default Component.extend({
     },
 
     removeItem(item) {
-      const type = get(item, 'modelType');
+      const type = get(item, 'item.modelType');
       const items = get(this, `${type}Favorites`);
       items.removeObject(item);
       items.forEach(record => set(record, 'favRank', items.indexOf(record) + 1));
