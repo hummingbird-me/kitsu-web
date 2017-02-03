@@ -12,6 +12,7 @@ export default Helper.extend({
 
   compute([user]) {
     const self = get(this, 'session.account');
+    if (!self || !user) { return false; }
     return isSelf(self, user);
   },
 
