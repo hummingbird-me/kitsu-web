@@ -1,5 +1,5 @@
 <span class="agg-avatar">
-  <img src={{image activity.actor.avatar "tiny"}}>
+  {{lazy-image src=(image activity.actor.avatar "tiny")}}
 </span>
 <span class="agg-action">
   <a href={{href-to "users.index" activity.actor}}>{{activity.actor.name}}</a>

@@ -87,11 +87,17 @@
     right: 0;
     text-align: center;
     bottom: -25px;
-    img {
+    .lazy-image {
+      border: 3px solid #fafafa;
+    }
+    .lazy-image, img {
       width: 50px;
       height: 50px;
       border-radius: 999em;
-      border: 3px solid #fafafa;
+      margin: 0 auto;
+    }
+    img {
+      height: 100%;
     }
   }
 }
@@ -100,6 +106,12 @@
   min-height: 435px;
   .trending-media {
     height: 240px;
+    .media-poster {
+      img {
+        width: 150px;
+        height: 212px;
+      }
+    }
   }
   .trending-cell {
     width: 150px;
@@ -109,6 +121,10 @@
 
 .seasonal-series, .weekly-trending, .annual-trending {
   min-height: 545px;
+  img {
+    width: 220px;
+    height: 312px;
+  }
 }
 
 .trending-review-section {
@@ -211,6 +227,12 @@
     display: inline-block;
     img {
       border-radius: 3px;
+      width: 150px;
+      height: 213px;
+      @media (max-width: 767px) {
+        width: 200px;
+        height: 285px;
+      }
     }
   }
 }
@@ -262,9 +284,18 @@
     &:last-child {
       margin-right: -10px;
     }
-    img {
-      border-radius: 999em;
-      border: 2px solid #332532;
+    .like-avatar {
+      display: block;
+      .lazy-image {
+        border: 2px solid #332532;
+      }
+      .lazy-image, img {
+        border-radius: 999em;
+      }
+      img {
+        width: 21px;
+        height: 21px;
+      }
     }
   }
   .stream-like-count {
@@ -325,9 +356,17 @@
       overflow: hidden;
       border-radius: 3px;
       margin-right: 15px;
+      img {
+        width: 100px;
+        height: 142px;
+      }
     }
     .agg-avatar {
       margin-right: 5px;
+      img {
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 }

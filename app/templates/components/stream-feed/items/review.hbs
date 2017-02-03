@@ -4,7 +4,7 @@
       {{#unless hideImage}}
         <div class="stream-item--media col-xs-4 col-sm-3">
           <a href={{href-to (concat media.modelType ".show") media.slug}}>
-            {{lazy-image url=(image media.posterImage "large") ratio=-2}}
+            {{lazy-image src=(image media.posterImage "large") ratio=-2}}
           </a>
         </div>
       {{/unless}}
@@ -12,7 +12,7 @@
         <div class="stream-review-content">
           <header class="author-header">
             <a class="review-avatar" href={{href-to "users.index" review.user.name}}>
-              {{lazy-image url=(image review.user.avatar "small")}}
+              {{lazy-image src=(image review.user.avatar "small")}}
             </a>
             <h5 class="name-heading person-heading left">
               <small>Review by</small>

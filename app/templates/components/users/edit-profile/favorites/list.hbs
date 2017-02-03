@@ -8,7 +8,7 @@
   }}
     {{#if isCharacter}}
       <span class="waifu-wrapper">
-        {{lazy-image url=(image item.image)}}
+        {{lazy-image src=(image item.image)}}
       </span>
       <strong>{{item.name}}</strong>
     {{else}}
@@ -26,11 +26,11 @@
       {{#sortable-item model=item group=group tagName="li" class="media-sort-item card"}}
         {{#if isCharacter}}
           <a class="media-sort-thumb-wrapper" href="#">
-            {{lazy-image url=(image item.item.image) class="media-sort-thumb"}}
+            {{lazy-image src=(image item.item.image) class="media-sort-thumb"}}
           </a>
         {{else}}
           <a class="media-sort-thumb-wrapper" href="{{href-to (concat type ".show") item.item.slug}}">
-            {{lazy-image url=(image item.item.posterImage "tiny") class="media-sort-thumb"}}
+            {{lazy-image src=(image item.item.posterImage "tiny") class="media-sort-thumb"}}
           </a>
         {{/if}}
         <span class="media-sort-title">

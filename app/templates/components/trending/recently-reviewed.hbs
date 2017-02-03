@@ -20,10 +20,10 @@
         {{#each currentItems as |item|}}
           <div class="trending-cell">
             <a href={{href-to "reviews" item.id}} class="media-poster">
-              {{lazy-image url=(image item.media.posterImage "large")}}
+              {{lazy-image src=(image item.media.posterImage "large")}}
             </a>
             <a href={{href-to "users.index" item.user.name}} class="review-author">
-              {{lazy-image url=(image item.user.avatar "large")}}
+              {{lazy-image src=(image item.user.avatar "large")}}
             </a>
           </div>
         {{/each}}

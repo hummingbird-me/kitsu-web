@@ -11,7 +11,7 @@
   {{! comment author }}
   <div class="media-left">
     <a href={{href-to "users.index" comment.user}}>
-      <img class="media-object" src={{image comment.user.avatar "small"}}>
+      {{lazy-image class="media-object" src=(image comment.user.avatar "small")}}
     </a>
   </div>
   <div class="media-body">

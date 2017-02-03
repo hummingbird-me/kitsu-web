@@ -3,10 +3,10 @@
   <div class="stream-item--title-block">
     <span class="avatar-block">
       <a href={{href-to "users.index" activity.actor}} class="author-avatar" onclick={{action "trackEngagement" "click"}}>
-        <img src={{image activity.actor.avatar "medium"}}>
+        {{lazy-image src=(image activity.actor.avatar "medium")}}
       </a>
       <a href={{href-to "users.index" follow.followed}} class="author-avatar recipient-avatar" onclick={{action "trackEngagement" "click"}}>
-        <img src={{image follow.followed.avatar "medium"}}>
+        {{lazy-image src=(image follow.followed.avatar "medium")}}
       </a>
     </span>
     <div class="author-info">

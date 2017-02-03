@@ -18,7 +18,7 @@
         {{#each currentItems as |item|}}
           <div class="trending-cell">
             <a href={{href-to (concat item.modelType ".show") item.slug}} class="media-poster">
-              {{lazy-image url=(image item.posterImage "large")}}
+              {{lazy-image src=(image item.posterImage "large")}}
             </a>
             <div class="ellipsis">
               <a href={{href-to (concat item.modelType ".show") item.slug}} class="media-title">

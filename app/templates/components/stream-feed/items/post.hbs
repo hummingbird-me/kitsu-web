@@ -14,12 +14,12 @@
       {{! Avatar(s) }}
       <span class="avatar-block">
         <a href={{href-to "users.index" post.user}} class="author-avatar" onclick={{action "trackEngagement" "click"}}>
-          <img src={{image post.user.avatar "medium"}}>
+          {{lazy-image src=(image post.user.avatar "medium")}}
         </a>
         {{#if post.targetUser}}
           {{#unless (eq post.targetUser.id userId)}}
             <a href={{href-to "users.index" post.targetUser}} class="author-avatar recipient-avatar" onclick={{action "trackEngagement" "click"}}>
-              <img src={{image post.targetUser.avatar "medium"}}>
+              {{lazy-image src=(image post.targetUser.avatar "medium")}}
             </a>
           {{/unless}}
         {{/if}}
@@ -128,7 +128,7 @@
           <div class="tagged-media row">
             <div class="stream-item--media col-xs-1">
               <a href={{href-to (concat post.media.modelType ".show") post.media}}>
-                {{lazy-image url=(image post.media.posterImage "small")}}
+                {{lazy-image src=(image post.media.posterImage "small")}}
               </a>
             </div>
             <div class="col-sm no-padding-left">

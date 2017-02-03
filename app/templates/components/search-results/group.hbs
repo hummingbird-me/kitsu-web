@@ -32,9 +32,9 @@
         <li class="media col-sm-12" {{action "transitionTo" item}}>
           <div class="media-left col-sm-2 no-padding-left">
             {{#if (eq group "users")}}
-              {{lazy-image url=(image item.avatar "small")}}
+              {{lazy-image src=(image item.avatar "small")}}
             {{else}}
-              {{lazy-image url=(image item.posterImage "small")}}
+              {{lazy-image src=(image item.posterImage "small")}}
             {{/if}}
           </div>
           <div class="media-body col-sm no-padding-left">

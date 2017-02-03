@@ -36,7 +36,7 @@
         <div class="character-wrapper">
           <div class="character-image">
             <a href="#">
-              {{lazy-image url=(image casting.character.image)}}
+              {{lazy-image src=(image casting.character.image)}}
             </a>
           </div>
           <div class="character-name">
@@ -45,7 +45,7 @@
           {{#if casting.person}}
             <div class="character-voice-actors">
               <a href="#" class="va">
-                {{lazy-image url=(image casting.person.image)}}
+                {{lazy-image src=(image casting.person.image)}}
                 {{casting.person.name}}
               </a>
             </div>

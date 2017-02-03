@@ -19,7 +19,7 @@
         {{#each currentItems as |item|}}
           <div class="trending-review">
             <a href={{href-to (concat item.media.modelType ".show") item.media.slug}} class="media-poster">
-              {{lazy-image url=(image item.media.posterImage "large")}}
+              {{lazy-image src=(image item.media.posterImage "large")}}
             </a>
             <div class="review-content">
               <div class="review-header clearfix">
@@ -28,7 +28,7 @@
                 </h4>
                 <div class="attribution-block">
                   <a href={{href-to "users.index" item.user.name}} class="review-avatar">
-                    {{lazy-image url=(image item.user.avatar "small")}}
+                    {{lazy-image src=(image item.user.avatar "small")}}
                   </a>
                   <a href={{href-to "users.index" item.user.name}} class="review-author">
                     {{item.user.name}}

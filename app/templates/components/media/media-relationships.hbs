@@ -6,7 +6,7 @@
       <div class="related--posters">
         {{#each medias as |media|}}
           <a href={{href-to (concat media.modelType ".show") media.slug}} class="related--item" data-toggle="tooltip" title={{media.computedTitle}}>
-            {{lazy-image url=(image media.posterImage "small")}}
+            {{lazy-image src=(image media.posterImage "small")}}
           </a>
         {{/each}}
       </div>

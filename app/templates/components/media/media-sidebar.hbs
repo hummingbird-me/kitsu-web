@@ -1,5 +1,7 @@
 {{! poster }}
-<span class="media-poster">{{lazy-image url=(image media.posterImage "large")}}</span>
+<span class="media-poster">
+  {{lazy-image src=(image media.posterImage "large")}}
+</span>
 
 {{! library entry }}
 {{#if session.hasUser}}
