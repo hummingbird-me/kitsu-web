@@ -1,5 +1,6 @@
 {{schema-microdata type=schemaType data=schemaData}}
 
+{{! Cover Image }}
 <div class="media-cover-wrapper">
   <div class="user-cover no-edit">
     <div class="cover-photo" style={{coverImageStyle}}>
@@ -7,14 +8,12 @@
         <div class="row">
           <div class="cover-user-info cover-media-info">
             <div class="primary-info">
-              {{! poster }}
-              <div class="mini-bio--poster">
-                {{lazy-image url=(image media.posterImage "large")}}
-              </div>
               <div class="mini-bio">
+                {{! Media title }}
                 <h3 class="cover-username" data-test-selector="title">
                   {{media.computedTitle}}
                 </h3>
+                {{! media follow button}}
                 <div class="cover-cta media-follow">
                   {{media/media-follow media=media}}
                 </div>
@@ -27,6 +26,7 @@
     </div>
   </div>
 
+  {{! Media navigation }}
   <nav class="cover-nav navbar navbar-light">
     <div class="container">
       <div class="row">
@@ -43,52 +43,13 @@
   </nav>
 </div>
 
-<div class="container sidebar-container">
+<div class="container">
   {{! sidebar }}
-  <div class="media-sidebar">
-    <div>
-      {{! poster }}
-      <span class="media-poster">{{lazy-image url=(image media.posterImage "large")}}</span>
-
-      {{! library entry }}
-      {{#if session.hasUser}}
-        {{library-dropdown
-          entry=entry
-          type=media.modelType
-          methods=(hash
-            create=(route-action "createEntry")
-            update=(route-action "updateEntry" entry "status")
-            delete=(route-action "deleteEntry" entry)
-        )}}
-
-        {{#if (and entry (not (is-promise entry)))}}
-          {{media/user-library entry=entry media=media
-            update=(route-action "updateEntry")
-            debouncedUpdate=(route-action "saveEntryDebounced" entry)}}
-        {{/if}}
-      {{/if}}
-
-      {{#if media.streamingLinks}}
-        <div class="where-to-watch-widget">
-          <h6>Where to Watch</h6>
-          {{#if isStreamersLoaded}}
-            <ul class="nav">
-              {{#each media.streamingLinks as |link|}}
-                <li>
-                  <a href={{link.url}} class="hint--top hint--bounce hint--rounded" aria-label={{link.streamer.siteName}}>
-                    {{svg-jar (to-lower link.streamer.siteName)}}
-                  </a>
-                </li>
-              {{/each}}
-            </ul>
-          {{else}}
-            {{loading-spinner size="small"}}
-          {{/if}}
-        </div>
-      {{/if}}
-    </div>
+  <div class="is-sticky media-sidebar--sticky">
+    {{media/media-sidebar media=media entry=entry}}
   </div>
 
+  {{! media/* content }}
   <div class="media-container row">
     {{outlet}}
   </div>

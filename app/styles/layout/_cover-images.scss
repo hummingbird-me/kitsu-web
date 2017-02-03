@@ -205,15 +205,11 @@
   }
 }
 
-.sidebar-container {
-  z-index: 301;
-}
-
-.media-sidebar {
-  width: 195px;
-  // Falls back to relative if browser doesn't support `position: sticky`
+.media-sidebar--sticky {
+  // disable sticky due to chrome issue
   position: relative;
-  top: -201px;
+  //top: 274px;
+  width: 195px;
   float: left;
   @media (max-width: 767px) {
     width: 100%;
@@ -233,40 +229,27 @@
     clear: both;
   }
 
-  > div {
+  .media-sidebar {
     position: relative;
+    top: -201px;
     right: 15px;
     @media (max-width: 767px) {
       right: 0;
+      top: 0;
     }
-  }
-  // New stuff above
-  img {
-    border-radius: 3px;
-    @media (max-width: 767px) {
-      display: none;
+    img {
+      border-radius: 3px;
+      @media (max-width: 767px) {
+        display: none;
+      }
     }
-  }
-  .button--primary {
-    padding: 10px;
-    width: 100%;
-    font-size: 12px;
-    margin-top: 10px;
-    &:hover {
-      box-shadow: none;
-    }
-  }
-}
-
-// Browser natively supports `position: sticky`
-@supports (position: sticky) {
-  @media (min-width: 768px) {
-    .media-sidebar {
-      position: sticky;
-      top: 274px;
-
-      > div {
-        top: -201px;
+    .button--primary {
+      padding: 10px;
+      width: 100%;
+      font-size: 12px;
+      margin-top: 10px;
+      &:hover {
+        box-shadow: none;
       }
     }
   }
