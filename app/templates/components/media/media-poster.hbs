@@ -14,10 +14,7 @@
     {{! Trailer }}
     {{#if media.youtubeVideoId}}
       <div class="trailer" data-test-selector="media-poster-trailer">
-        <a href="#" {{action (queue
-          (action "getLibrary")
-          (toggle "trailerOpen" this)
-        )}}>
+        <a href="#" {{action (toggle "trailerOpen" this)}}>
           {{svg-jar "play"}}
         </a>
         {{#if trailerOpen}}
@@ -48,37 +45,10 @@
 {{! Tooltip }}
 {{#if showTooltip}}
   <div>
-  {{#ember-tether class="media-tooltip"
+  {{media-popover
     target=(concat "#" elementId " .grid-poster")
-    attachment="middle left"
-    targetAttachment="middle right"
-    offset="0px 0px"
-    constraints=(array (hash
-      to="scrollParent"
-      attachment="together"
-    ))
+    media=media
     onHover=(action (mut isTooltipHovered) true)
-    onLeave=(action (mut isTooltipHovered) false)
-  }}
-    <div>
-    <span class="media-title">{{media.computedTitle}}</span>
-    <div class="media-ratings">
-      {{star-rating media.averageRating anyPercent=true readOnly=true}}
-    </div>
-    <div class="media-synopsis">
-      {{truncate media.synopsis 200}}
-    </div>
-    {{#if session.hasUser}}
-      {{library-dropdown
-        entry=entry
-        type=media.modelType
-        methods=(hash
-          create=(action "createEntry")
-          update=(action "updateEntry")
-          delete=(action "deleteEntry")
-        )}}
-    {{/if}}
-    </div>
-  {{/ember-tether}}
+    onLeave=(action (mut isTooltipHovered) false)}}
   </div>
 {{/if}}

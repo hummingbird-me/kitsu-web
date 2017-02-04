@@ -1,0 +1,32 @@
+{{#ember-tether class="media-tooltip"
+  target=target
+  attachment="middle left"
+  targetAttachment="middle right"
+  offset="0px 0px"
+  constraints=(array (hash
+    to="scrollParent"
+    attachment="together"
+  ))
+  onHover=onHover
+  onLeave=onLeave
+}}
+  <div>
+  <span class="media-title">{{media.computedTitle}}</span>
+  <div class="media-ratings">
+    {{star-rating media.averageRating anyPercent=true readOnly=true}}
+  </div>
+  <div class="media-synopsis">
+    {{truncate media.synopsis 200}}
+  </div>
+  {{#if session.hasUser}}
+    {{library-dropdown
+      entry=entry
+      type=media.modelType
+      methods=(hash
+        create=(action "createEntry")
+        update=(action "updateEntry")
+        delete=(action "deleteEntry")
+      )}}
+  {{/if}}
+  </div>
+{{/ember-tether}}
