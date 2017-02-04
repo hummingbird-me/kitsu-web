@@ -2,7 +2,7 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import { scheduleOnce } from 'ember-runloop';
+import { scheduleOnce, next } from 'ember-runloop';
 import canUseDOM from 'client/utils/can-use-dom';
 
 export default Component.extend({
@@ -51,7 +51,9 @@ export default Component.extend({
     } else {
       image.onload = () => {
         if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
-        set(this, 'isLoaded', true);
+        next(() => {
+          set(this, 'isLoaded', true);
+        });
       };
     }
   },
