@@ -3,17 +3,24 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { scheduleOnce } from 'ember-runloop';
+import canUseDOM from 'client/utils/can-use-dom';
 
 export default Component.extend({
   classNames: ['lazy-image'],
   classNameBindings: ['isLoaded'],
+  isLazy: canUseDOM,
   isLoaded: false,
   viewport: service(),
 
   didReceiveAttrs() {
     this._super(...arguments);
     scheduleOnce('afterRender', () => {
-      this._setupViewport();
+      if (get(this, 'isLazy')) {
+        this._setupViewport();
+      } else {
+        this._swapAttributes();
+        this._loadImage();
+      }
     });
   },
 
