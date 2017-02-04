@@ -1,39 +1,7 @@
-{{#bootstrap/bs-modal
-  id=modalId
-  class="trailer-modal"
-  onClose=onClose as |modal|}}
-  {{#modal.header}}
+{{#bootstrap/bs-modal id=modalId class="trailer-modal" largeModal=true onClose=onClose as |modal|}}
+  {{#modal.body}}
     <div class="embed-responsive embed-responsive-16by9" {{action "playVideo" preventDefault=false}}>
       <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{media.youtubeVideoId}}?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
-    </div>
-  {{/modal.header}}
-  {{#modal.body}}
-    <div class="trailer-info">
-      <div class="info-header clearfix">
-        <h4>{{media.computedTitle}}</h4>
-        <div class="type-star-wrap pull-sm-left">
-          <ul class="type-tags pull-sm-left">
-            <li>{{capitalize media.subtype}}</li>
-            <li>{{media.ageRating}}</li>
-          </ul>
-
-          <span class="pull-sm-left">{{star-rating media.averageRating anyPercent=true readOnly=true}}</span>
-        </div>
-        <div class="pull-sm-right">
-          {{#if session.hasUser}}
-            {{library-dropdown
-              entry=entry
-              type=media.modelType
-              methods=(hash
-                create=methods.create
-                update=methods.update
-                delete=methods.delete
-              )
-            }}
-          {{/if}}
-        </div>
-      </div>
-      <p>{{text-clipper media.synopsis length=400 options=(hash maxLines=4)}}</p>
     </div>
   {{/modal.body}}
 {{/bootstrap/bs-modal}}

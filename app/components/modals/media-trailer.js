@@ -4,7 +4,6 @@ import service from 'ember-service/inject';
 
 export default Component.extend({
   metrics: service(),
-  session: service(),
 
   actions: {
     playVideo() {

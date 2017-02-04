@@ -1,4 +1,4 @@
-<div class="modal-dialog" role="document">
+<div class="modal-dialog {{if largeModal "modal-lg"}}" role="document">
   <div class="modal-content">
     {{yield (hash
       header=(component "bootstrap/bs-modal-header" label=label)

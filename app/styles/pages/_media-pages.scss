@@ -361,7 +361,28 @@
 }
 
 .media-preview {
+  position: relative;
   margin-bottom: 20px;
+  .media-preview--overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.8) 100%);
+    background-size: auto 200%;
+    svg {
+      fill: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 999em;
+      border: 1px solid #fff;
+      opacity: .7;
+    }
+  }
 }
 
 .media--tags {

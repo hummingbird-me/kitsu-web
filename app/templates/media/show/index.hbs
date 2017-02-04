@@ -68,11 +68,19 @@
   {{! Secondary Content }}
   <div class="col-sm media--sidebar">
     {{! Trailer }}
-    {{! TODO: Open in modal }}
     {{#if media.youtubeVideoId}}
-      <div class="media-preview embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/{{media.youtubeVideoId}}" frameborder="0" allowfullscreen></iframe>
+      <div class="media-preview" {{action (toggle "trailerOpen" this)}}>
+        <img src="https://img.youtube.com/vi/{{media.youtubeVideoId}}/mqdefault.jpg">
+        <div class="media-preview--overlay">
+          {{svg-jar "play"}}
+        </div>
       </div>
+      {{#if trailerOpen}}
+        {{to-elsewhere named="modal" send=(component "modals/media-trailer"
+          onClose=(toggle-action "trailerOpen" this)
+          media=media
+        )}}
+      {{/if}}
     {{/if}}
 
     {{! Featured Characters }}
