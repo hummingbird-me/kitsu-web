@@ -1,32 +1,34 @@
 <div class="grid-poster" data-test-selector="media-poster">
-  {{! Media Poster }}
-  {{lazy-image src=(image media.posterImage "medium")}}
+  {{#media-popover media=media}}
+    {{! Media Poster }}
+    {{lazy-image src=(image media.posterImage "medium")}}
 
-  <div class="poster-overlay">
-    <a href={{href-to (concat media.modelType ".show") media}}></a>
-    {{!-- TODO/@vevix: Friends (Server needed for this)
-    <div class="shared-friends">
-      <a href="#" class="friend-avatar"><img src="https://static.hummingbird.me/users/avatars/000/044/425/thumb_small/tumblr_mjf1jtHNm61s7110mo1_250.jpg?1440141803"></a>
-      <a href="#" class="friend-count">03</a>
-    </div>
-    --}}
-
-    {{! Trailer }}
-    {{#if media.youtubeVideoId}}
-      <div class="trailer" data-test-selector="media-poster-trailer">
-        <a href="#" {{action (toggle "trailerOpen" this)}}>
-          {{svg-jar "play"}}
-        </a>
-        {{#if trailerOpen}}
-          {{to-elsewhere named="modal" send=(component "modals/media-trailer"
-            modalId=(concat elementId "-trailer")
-            onClose=(toggle-action "trailerOpen" this)
-            media=media
-          )}}
-        {{/if}}
+    <div class="poster-overlay">
+      <a href={{href-to (concat media.modelType ".show") media}}></a>
+      {{!-- TODO/@vevix: Friends (Server needed for this)
+      <div class="shared-friends">
+        <a href="#" class="friend-avatar"><img src="https://static.hummingbird.me/users/avatars/000/044/425/thumb_small/tumblr_mjf1jtHNm61s7110mo1_250.jpg?1440141803"></a>
+        <a href="#" class="friend-count">03</a>
       </div>
-    {{/if}}
-  </div>
+      --}}
+
+      {{! Trailer }}
+      {{#if media.youtubeVideoId}}
+        <div class="trailer" data-test-selector="media-poster-trailer">
+          <a href="#" {{action (toggle "trailerOpen" this)}}>
+            {{svg-jar "play"}}
+          </a>
+          {{#if trailerOpen}}
+            {{to-elsewhere named="modal" send=(component "modals/media-trailer"
+              modalId=(concat elementId "-trailer")
+              onClose=(toggle-action "trailerOpen" this)
+              media=media
+            )}}
+          {{/if}}
+        </div>
+      {{/if}}
+    </div>
+  {{/media-popover}}
 </div>
 
 {{! Title }}
@@ -35,14 +37,3 @@
     {{media.computedTitle}}
   </a>
 </div>
-
-{{! Tooltip }}
-{{#if showTooltip}}
-  <div>
-  {{media-popover
-    target=(concat "#" elementId " .grid-poster")
-    media=media
-    onHover=(action (mut isTooltipHovered) true)
-    onLeave=(action (mut isTooltipHovered) false)}}
-  </div>
-{{/if}}
