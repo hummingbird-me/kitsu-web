@@ -6,6 +6,11 @@
     display: none;
     visibility: hidden;
   }
+  &.light {
+    > div {
+      background-color: lighten($voodoo, 4);
+    }
+  }
   > div {
     background-color: $voodoo;
     color: lighten($voodoo, 60);
@@ -14,7 +19,6 @@
     position: relative;
     height: 189px;
     width: 282px;
-    //top: 22px;
     @media (min-width: 1421px) {
       height: 232px;
       width: 341px;
@@ -77,6 +81,13 @@
   }
 }
 .media-tooltip.ember-tether-target-attached-right{
+  &.light {
+    > div {
+      &:before {
+        border-right: 10px solid lighten($voodoo, 4);
+      }
+    }
+  }
   > div {
     left: 15px;
     &:before {
@@ -86,6 +97,13 @@
   }
 }
 .media-tooltip.ember-tether-target-attached-left {
+  &.light {
+    > div {
+      &:after {
+        border-left: 10px solid lighten($voodoo, 4);
+      }
+    }
+  }
   > div {
     right: 15px;
     &:after {

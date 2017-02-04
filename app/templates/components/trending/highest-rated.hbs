@@ -17,9 +17,11 @@
       {{#em-flickity class="trending-media" wrapAround=true cellAlign="left" showSlides=(gt currentItems.length 0)}}
         {{#each currentItems as |item|}}
           <div class="trending-cell">
-            <a href={{href-to (concat item.modelType ".show") item.slug}} class="media-poster">
-              {{lazy-image src=(image item.posterImage "large")}}
-            </a>
+            {{#media-popover media=item}}
+              <a href={{href-to (concat item.modelType ".show") item.slug}} class="media-poster">
+                {{lazy-image src=(image item.posterImage "large")}}
+              </a>
+            {{/media-popover}}
             <div class="ellipsis">
               <a href={{href-to (concat item.modelType ".show") item.slug}} class="media-title">
                 {{item.computedTitle}}

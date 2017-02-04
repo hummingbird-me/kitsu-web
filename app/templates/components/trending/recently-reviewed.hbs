@@ -19,9 +19,11 @@
       {{#em-flickity class="trending-media" wrapAround=true cellAlign="left" showSlides=(gt currentItems.length 0)}}
         {{#each currentItems as |item|}}
           <div class="trending-cell">
-            <a href={{href-to "reviews" item.id}} class="media-poster">
-              {{lazy-image src=(image item.media.posterImage "large")}}
-            </a>
+            {{#media-popover media=item.media}}
+              <a href={{href-to "reviews" item.id}} class="media-poster">
+                {{lazy-image src=(image item.media.posterImage "large")}}
+              </a>
+            {{/media-popover}}
             <a href={{href-to "users.index" item.user.name}} class="review-author">
               {{lazy-image src=(image item.user.avatar "large")}}
             </a>
