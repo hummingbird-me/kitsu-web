@@ -2,41 +2,61 @@ import Component from 'ember-component';
 import set from 'ember-metal/set';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
-import observer from 'ember-metal/observer';
+import observer, { addObserver, removeObserver } from 'ember-metal/observer';
 import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   classNames: ['poster-wrapper'],
-  constraints: [{ to: 'scrollParent', attachment: 'together' }],
   entry: null,
   media: undefined,
   trailerOpen: false,
-  hasHovered: false,
-
+  showTooltip: false,
+  isTooltipHovered: false,
   notify: service(),
   session: service(),
   store: service(),
 
   didInsertElement() {
     this._super(...arguments);
-    this.$().hoverIntent(() => {
-      if (get(this, 'hasHovered') === false) {
-        this._getLibraryEntry();
-        set(this, 'hasHovered', true);
-      }
+    this.$('.grid-poster').hoverIntent({
+      over: () => this._onMouseEnter(),
+      out: () => this._onMouseLeave(),
+      timeout: 250
     });
   },
 
   willDestroyElement() {
     this._super(...arguments);
-    this.$().off('mouseenter.hoverIntent');
+    this.$('.grid-poster').off('mouseenter.hoverIntent');
   },
 
-  _onAuthentication: observer('session.hasUser', function() {
-    if (get(this, 'hasHovered') === true) {
+  /**
+   * Called by hoverIntent when the user hovers this component
+   */
+  _onMouseEnter() {
+    // If this is the first time the component is hovered,
+    // then load the library entry
+    if (!get(this, 'hasHovered')) {
       this._getLibraryEntry();
     }
-  }),
+    // enable the tether tooltip
+    set(this, 'showTooltip', true);
+  },
+
+  /**
+   * Called by hoverIntent when the user's mouse leaves this component
+   */
+  _onMouseLeave() {
+    // We don't want to close the tooltip if the tooltip itself is hovered.
+    // The tooltip communicates that to us via the onHover/onLeave actions
+    if (get(this, 'isTooltipHovered')) {
+      // tooltip is currently hovered, so observe the variable and exit after
+      addObserver(this, 'isTooltipHovered', this._onMouseLeave);
+    } else {
+      removeObserver(this, 'isTooltipHovered', this._onMouseLeave);
+      set(this, 'showTooltip', false);
+    }
+  },
 
   _getLibraryEntry() {
     // already done a request
@@ -53,7 +73,7 @@ export default Component.extend({
         user_id: get(this, 'session.account.id')
       },
     }).then((results) => {
-      if (get(this, 'isDestroyed')) { return; }
+      if (get(this, 'isDestroying') || get(this, 'isDestroyed')) { return; }
       const entry = get(results, 'firstObject');
       set(this, 'entry', entry);
       if (entry !== undefined) {
@@ -62,6 +82,16 @@ export default Component.extend({
     });
     set(this, 'entry', promise);
   },
+
+  /**
+   * If user authenticates on this page and we have already requested the library entry
+   * then re-request it.
+   */
+  _onAuthentication: observer('session.hasUser', function() {
+    if (get(this, 'hasHovered')) {
+      this._getLibraryEntry();
+    }
+  }),
 
   actions: {
     getLibrary() {
@@ -84,20 +114,19 @@ export default Component.extend({
 
     updateEntry(status) {
       set(this, 'entry.status', status);
-      get(this, 'entry').save()
-        .catch((err) => {
-          get(this, 'entry').rollbackAttributes();
-          get(this, 'notify').error(errorMessages(err));
-        });
+      return get(this, 'entry').save().catch((err) => {
+        get(this, 'entry').rollbackAttributes();
+        get(this, 'notify').error(errorMessages(err));
+      });
     },
 
     deleteEntry() {
-      get(this, 'entry').destroyRecord()
-        .then(() => set(this, 'entry', undefined))
-        .catch((err) => {
-          get(this, 'entry').rollbackAttributes();
-          get(this, 'notify').error(errorMessages(err));
-        });
+      return get(this, 'entry').destroyRecord().then(() => {
+        set(this, 'entry', undefined);
+      }).catch((err) => {
+        get(this, 'entry').rollbackAttributes();
+        get(this, 'notify').error(errorMessages(err));
+      });
     }
   }
 });

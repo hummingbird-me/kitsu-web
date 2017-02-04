@@ -46,37 +46,39 @@
 </div>
 
 {{! Tooltip }}
-{{#if hasHovered}}
-  {{! Wrap in div due to https://github.com/yapplabs/ember-wormhole/issues/66#issuecomment-263575168 }}
+{{#if showTooltip}}
   <div>
-    {{#epic-tooltip
-      timeout=250
-      singleInstance=true
-      tetherOptions=(hash
-        target=(concat "#" elementId " .grid-poster")
-        constraints=constraints
-      )
-      class="media-tooltip"
-    }}
-      <div>
-        <span class="media-title">{{media.computedTitle}}</span>
-        <div class="media-ratings">
-          {{star-rating media.averageRating anyPercent=true readOnly=true}}
-        </div>
-        <div class="media-synopsis">
-          {{truncate media.synopsis 225}}
-        </div>
-        {{#if session.hasUser}}
-          {{library-dropdown
-            entry=entry
-            type=media.modelType
-            methods=(hash
-              create=(action "createEntry")
-              update=(action "updateEntry")
-              delete=(action "deleteEntry")
-            )}}
-        {{/if}}
-      </div>
-    {{/epic-tooltip}}
+  {{#ember-tether class="media-tooltip"
+    target=(concat "#" elementId " .grid-poster")
+    attachment="middle left"
+    targetAttachment="middle right"
+    offset="0px 0px"
+    constraints=(array (hash
+      to="scrollParent"
+      attachment="together"
+    ))
+    onHover=(action (mut isTooltipHovered) true)
+    onLeave=(action (mut isTooltipHovered) false)
+  }}
+    <div>
+    <span class="media-title">{{media.computedTitle}}</span>
+    <div class="media-ratings">
+      {{star-rating media.averageRating anyPercent=true readOnly=true}}
+    </div>
+    <div class="media-synopsis">
+      {{truncate media.synopsis 200}}
+    </div>
+    {{#if session.hasUser}}
+      {{library-dropdown
+        entry=entry
+        type=media.modelType
+        methods=(hash
+          create=(action "createEntry")
+          update=(action "updateEntry")
+          delete=(action "deleteEntry")
+        )}}
+    {{/if}}
+    </div>
+  {{/ember-tether}}
   </div>
 {{/if}}
