@@ -18,11 +18,6 @@ export default Component.extend({
     return this._sortResults(results);
   }).readOnly(),
 
-  didInsertElement() {
-    this._super(...arguments);
-    this.$('[data-toggle="tooltip"]').tooltip();
-  },
-
   _sortResults(results) {
     const sortedKeys = Object.keys(results).sort();
     const sortedResults = {};

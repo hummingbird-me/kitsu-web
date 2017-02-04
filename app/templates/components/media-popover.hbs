@@ -1,7 +1,7 @@
 {{#ember-tether class="media-tooltip"
   target=target
-  attachment="middle left"
-  targetAttachment="middle right"
+  attachment=(or attachment "middle left")
+  targetAttachment=(or targetAttachment "middle right")
   offset="0px 0px"
   constraints=(array (hash
     to="scrollParent"

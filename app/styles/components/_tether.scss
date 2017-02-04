@@ -66,23 +66,6 @@
       height: 93px;
       overflow: hidden;
     }
-    /*.media-genres {
-      font-size: 10px;
-      margin-top: 8px;
-      a {
-        padding: 3px 6px;
-        margin-right: 5px;
-        //border: 1px solid $eggshell;
-        background: lighten($voodoo, 4);
-        color: lighten($voodoo, 60);
-        text-decoration: none;
-        text-align: center;
-        border-radius: 3px;
-        &:last-child {
-          margin-right: 0;
-        }
-      }
-    }*/
     > div:last-child:not(.media-synopsis) {
       position: absolute;
       bottom: 16px;
@@ -111,6 +94,20 @@
     }
     @media (max-width: 990px) {
       left: -15px;
+    }
+  }
+}
+
+.media-tooltip.ember-tether-target-attached-top {
+  > div {
+    top: initial;
+    bottom: 15px;
+    &:before {
+      top: initial;
+      bottom: -15px;
+      left: 49%;
+      border-right: 10px solid $voodoo;
+      transform: rotateZ(270deg);
     }
   }
 }
