@@ -36,6 +36,7 @@ export default Component.extend({
    * Called by hoverIntent when the user's mouse leaves this component
    */
   _onMouseLeave() {
+    if (get(this, 'isDestroying') || get(this, 'isDestroyed')) { return; }
     // We don't want to close the tooltip if the tooltip itself is hovered.
     // The tooltip communicates that to us via the onHover/onLeave actions
     if (get(this, 'isTooltipHovered')) {
