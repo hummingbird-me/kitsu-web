@@ -15,7 +15,12 @@
     {{else if isSwitchingTab}}
       {{! ---- see trending/-base.js ---- }}
     {{else}}
-      {{#em-flickity class="trending-review-section" wrapAround=true showSlides=(gt currentItems.length 0)}}
+      {{#em-flickity class="trending-review-section"
+        wrapAround=true
+        showSlides=(gt currentItems.length 0)
+        dragStart=(action "flickityOnDragStart")
+        dragEnd=(action "flickityOnDragEnd")
+      }}
         {{#each currentItems as |item|}}
           <div class="trending-review">
             <a href={{href-to (concat item.media.modelType ".show") item.media.slug}} class="media-poster">

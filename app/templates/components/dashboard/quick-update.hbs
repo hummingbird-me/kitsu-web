@@ -26,7 +26,15 @@
   </div>
 {{else}}
   {{! Quick update items }}
-  {{#em-flickity class="carousel" contain=false cellAlign="left" groupCells=1 setGallerySize=true showSlides=true}}
+  {{#em-flickity class="carousel"
+    contain=false
+    cellAlign="left"
+    groupCells=1
+    setGallerySize=true
+    showSlides=true
+    dragStart=(action "flickityOnDragStart")
+    dragEnd=(action "flickityOnDragEnd")
+  }}
     {{#each initialEntries as |entry|}}
       {{dashboard/quick-update/item
         entry=entry

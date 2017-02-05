@@ -16,7 +16,13 @@
         {{else if isSwitchingTab}}
           {{! ---- see trending/-base.js ---- }}
         {{else}}
-          {{#em-flickity class="trending-media" wrapAround=true cellAlign="left" showSlides=(gt currentItems.length 0)}}
+          {{#em-flickity class="trending-media"
+            wrapAround=true
+            cellAlign="left"
+            showSlides=(gt currentItems.length 0)
+            dragStart=(action "flickityOnDragStart")
+            dragEnd=(action "flickityOnDragEnd")
+          }}
             {{#each currentItems as |item|}}
               <div class="trending-cell">
                 {{#media-popover media=item}}
