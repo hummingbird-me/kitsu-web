@@ -3,12 +3,11 @@ import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { addObserver, removeObserver } from 'ember-metal/observer';
-import { storageFor } from 'ember-local-storage';
 
 export default Component.extend({
+  cache: service('local-cache'),
   session: service(),
   store: service(),
-  entries: storageFor('local-library-entries'),
 
   didInsertElement() {
     this._super(...arguments);
@@ -66,7 +65,7 @@ export default Component.extend({
     const mediaId = get(this, 'media.id');
     const mediaType = get(this, 'media.modelType');
     const lookupKey = `${mediaType}-${mediaId}`;
-    const id = get(this, 'entries').get(lookupKey);
+    const id = get(this, 'cache').getFromCache('library-entry', lookupKey);
     return get(this, 'store').peekRecord('library-entry', id);
   },
 
@@ -95,7 +94,8 @@ export default Component.extend({
     const type = get(this, 'media.modelType');
     const id = get(this, 'media.id');
     const lookupKey = `${type}-${id}`;
-    get(this, 'entries').set(lookupKey, get(this, 'entry.id'));
+    const entryId = get(this, 'entry.id');
+    get(this, 'cache').addToCache('library-entry', lookupKey, entryId);
   },
 
   actions: {
