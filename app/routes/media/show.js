@@ -11,6 +11,7 @@ import clip from 'clip';
 
 export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   templateName: 'media/show',
+  cache: service('local-cache'),
   headData: service(),
   metrics: service(),
   notify: service(),
@@ -59,21 +60,29 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
 
   _getLibraryEntry(controller, media) {
     const type = get(media, 'modelType');
-    const promise = get(this, 'store').query('library-entry', {
-      include: 'review',
-      filter: {
-        user_id: get(this, 'session.account.id'),
-        kind: type,
-        [`${type}_id`]: get(media, 'id')
-      },
-    }).then((results) => {
-      const entry = get(results, 'firstObject');
+    const lookupKey = `${type}-${get(media, 'id')}`;
+    const cacheEntryId = get(this, 'cache').getFromCache('library-entry', lookupKey);
+    if (cacheEntryId) {
+      const entry = get(this, 'store').peekRecord('library-entry', cacheEntryId);
       set(controller, 'entry', entry);
-      if (entry !== undefined) {
-        set(controller, `entry.${type}`, media);
-      }
-    });
-    set(controller, 'entry', promise);
+    } else {
+      const promise = get(this, 'store').query('library-entry', {
+        include: 'review',
+        filter: {
+          user_id: get(this, 'session.account.id'),
+          kind: type,
+          [`${type}_id`]: get(media, 'id')
+        },
+      }).then((results) => {
+        const entry = get(results, 'firstObject');
+        set(controller, 'entry', entry);
+        if (entry !== undefined) {
+          set(controller, `entry.${type}`, media);
+          get(this, 'cache').addToCache('library-entry', get(entry, 'id'));
+        }
+      });
+      set(controller, 'entry', promise);
+    }
   },
 
   /**
