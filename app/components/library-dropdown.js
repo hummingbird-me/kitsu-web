@@ -68,10 +68,11 @@ export default Component.extend({
     }
   }).drop(),
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
+    set(this, 'entryIsLoaded', false);
     RSVP.resolve(get(this, 'entry')).then(() => {
-      if (get(this, 'isDestroyed') === false) {
+      if (!get(this, 'isDestroying') || !get(this, 'isDestroyed')) {
         set(this, 'entryIsLoaded', true);
       }
     });

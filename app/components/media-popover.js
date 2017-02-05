@@ -29,6 +29,7 @@ export default Component.extend({
   _onMouseEnter() {
     this._getLibraryEntry();
     set(this, 'showTooltip', true);
+    set(this, 'isTooltipHovered', false);
   },
 
   /**
@@ -123,7 +124,6 @@ export default Component.extend({
     deleteEntry() {
       return get(this, 'entry').destroyRecord().then(() => {
         set(this, 'entry', undefined);
-        // TODO: Remove key from storage object
       }).catch(() => {
         get(this, 'entry').rollbackAttributes();
       });

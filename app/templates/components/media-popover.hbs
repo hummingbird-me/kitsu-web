@@ -21,7 +21,7 @@
       {{star-rating media.averageRating anyPercent=true readOnly=true}}
     </div>
     <div class="media-synopsis">
-      {{truncate media.synopsis 200}}
+      {{text-clipper media.synopsis length=200 canExpand=false options=(hash maxLines=2)}}
     </div>
     {{#if session.hasUser}}
       {{library-dropdown
