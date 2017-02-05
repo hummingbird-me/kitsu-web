@@ -5,15 +5,17 @@
       <div class="related--title">{{t (concat "media.routes.show.relationships." type)}}:</div>
       <div class="related--posters">
         {{#each medias as |media|}}
-          {{#media-popover class="related--item"
-            attachment="bottom middle"
-            targetAttachment="top middle"
-            media=media
-          }}
-            <a href={{href-to (concat media.modelType ".show") media.slug}}>
-              {{lazy-image src=(image media.posterImage "small")}}
-            </a>
-          {{/media-popover}}
+          <div class="related--item">
+            {{#media-popover
+              attachment="bottom middle"
+              targetAttachment="top middle"
+              media=media
+            }}
+              <a href={{href-to (concat media.modelType ".show") media.slug}}>
+                {{lazy-image src=(image media.posterImage "small")}}
+              </a>
+            {{/media-popover}}
+          </div>
         {{/each}}
       </div>
     </div>
