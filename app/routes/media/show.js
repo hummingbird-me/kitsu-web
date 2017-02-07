@@ -61,10 +61,9 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   _getLibraryEntry(controller, media) {
     const type = get(media, 'modelType');
     const lookupKey = `${type}-${get(media, 'id')}`;
-    const cacheEntryId = get(this, 'cache').getFromCache('library-entry', lookupKey);
-    if (cacheEntryId) {
-      const entry = get(this, 'store').peekRecord('library-entry', cacheEntryId);
-      set(controller, 'entry', entry);
+    const localEntry = this._getLibraryEntryFromCache(lookupKey);
+    if (localEntry) {
+      set(controller, 'entry', localEntry);
     } else {
       const promise = get(this, 'store').query('library-entry', {
         include: 'review',
@@ -82,6 +81,13 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
         }
       });
       set(controller, 'entry', promise);
+    }
+  },
+
+  _getLibraryEntryFromCache(key) {
+    const id = get(this, 'cache').getFromCache('library-entry', key);
+    if (id) {
+      return get(this, 'store').peekRecord('library-entry', id);
     }
   },
 
