@@ -113,10 +113,18 @@ module.exports = function(environment) {
     'ember-cli-mirage': {
       enabled: environment === 'test'
     },
+    // google: {
+    //   adwords: environment === 'production' && !isStaging,
+    //   ads: {
+    //     enabled: environment === 'production' && !isStaging,
+    //     client: 'ca-pub-1730996169473196',
+    //     pageads: true
+    //   }
+    // }
     google: {
-      adwords: environment === 'production' && !isStaging,
+      adwords: environment === 'production',
       ads: {
-        enabled: environment === 'production' && !isStaging,
+        enabled: environment === 'production',
         client: 'ca-pub-1730996169473196',
         pageads: true
       }
