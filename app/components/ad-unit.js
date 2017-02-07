@@ -1,7 +1,8 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import { assert, isPresent } from 'ember-metal/utils';
+import { assert } from 'ember-metal/utils';
+import { isPresent } from 'ember-utils';
 import { scheduleOnce } from 'ember-runloop';
 import Config from 'client/config/environment';
 

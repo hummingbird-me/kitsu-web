@@ -1,4 +1,9 @@
 <div class="row">
+  <div class="col-sm-12 no-padding-right">
+    {{! Kitsu Media Synopsis }}
+    {{ad-unit slot="5235877066"}}
+  </div>
+
   <div class="col-sm-8">
     {{! Ratings }}
     <section class="clearfix">
@@ -8,6 +13,7 @@
         update=(route-action "updateEntry" entry "rating")
       }}
     </section>
+
 
     {{! Synopsis }}
     <section class="media-synopsis m-b-1">
@@ -63,6 +69,8 @@
         </div>
       {{/if}}
     </section>
+    {{! Kitsu Media Reviews }}
+    {{ad-unit slot="7292863067"}}
   </div>
 
   {{! Secondary Content }}
@@ -85,6 +93,9 @@
 
     {{! Featured Characters }}
     {{media/featured-characters media=media}}
+
+    {{! Kitsu Media Sidebar }}
+    {{ad-unit slot="5816129868"}}
 
     {{! Media Information }}
     {{media/media-titles media=media}}
