@@ -74,8 +74,20 @@ body {
 }
 
 // Need to find the cause of horizontal scroll on mobile devices
-.container {
-  .global-container{
+.global-container {
+  @media (max-width: 554px) {
     overflow-x: hidden;
+  }
+}
+// Allow scrolling on the reports page until the overflow hack is no longer needed
+.user-reports {
+  @media (max-width: 554px) {
+    overflow-x: auto;
+  }
+}
+// Hide extra whitespace created by the overflow hack
+body {
+  @media (max-width: 554px) {
+    padding-top: 55px;
   }
 }
