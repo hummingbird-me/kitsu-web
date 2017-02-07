@@ -162,6 +162,8 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
       '@context': 'http://schema.org',
       '@type': 'CreativeWorkSeries',
       name: get(model, 'canonicalTitle'),
+      alternateName: Object.values(get(model, 'titles'))
+        .reject(title => title === get(model, 'canonicalTitle')),
       description: get(model, 'synopsis'),
       image: get(model, 'posterImage.large'),
       genre: get(model, 'genres').mapBy('name')
@@ -169,9 +171,9 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
     if (get(model, 'averageRating')) {
       data.aggregateRating = {
         '@type': 'AggregateRating',
-        bestRating: 5.0,
-        worstRating: 0.5,
-        ratingValue: get(model, 'averageRating').toFixed(2),
+        bestRating: 10,
+        worstRating: 1,
+        ratingValue: (get(model, 'averageRating').toFixed(2) * 2),
         ratingCount: get(model, 'totalRatings')
       };
     }
