@@ -2,7 +2,8 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import { alias } from 'ember-computed';
+import computed, { alias } from 'ember-computed';
+import { isPresent } from 'ember-utils';
 import { task } from 'ember-concurrency';
 import { translationMacro as t } from 'ember-i18n';
 
@@ -13,15 +14,21 @@ export default Component.extend({
   rating: alias('review.libraryEntry.rating'),
   errorMessage: t('errors.request'),
 
+  isValid: computed('rating', 'review.content', function() {
+    return (get(this, 'rating') > 0) && isPresent(get(this, 'review.content'));
+  }).readOnly(),
+
   saveReview: task(function* () {
     set(this, 'showError', false);
     // review ratings are copied from the library entries rating, so we have to update the
     // entry first
-    set(this, 'rating', get(this, 'rating'));
-    yield get(this, 'review.libraryEntry.content').save().catch(() => {
-      set(this, 'showError', true);
-      throw new Error(''); // exit out of the execution
-    });
+    const entry = get(this, 'review.libraryEntry');
+    if (get(entry, 'hasDirtyAttributes')) {
+      yield get(this, 'review.libraryEntry.content').save().catch(() => {
+        set(this, 'showError', true);
+        throw new Error(''); // exit out of the execution
+      });
+    }
     yield get(this, 'review').save().then(() => {
       this.$('.modal').modal('hide');
       this._trackCreation();
@@ -45,6 +52,11 @@ export default Component.extend({
     const entry = get(this, 'review').belongsTo('libraryEntry');
     const media = get(this, 'review').belongsTo('media');
     get(this, 'loadRelationships').perform(entry, media);
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    get(this, 'review').rollbackAttributes();
   },
 
   _trackCreation() {

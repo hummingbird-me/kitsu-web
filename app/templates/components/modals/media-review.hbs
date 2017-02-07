@@ -41,7 +41,7 @@
 
           {{! publish review }}
           <div class="review--cta">
-            <button class="button button--primary" disabled={{if (is-empty review.body) "disabled"}} onclick={{perform saveReview}}>
+            <button class="button button--primary" disabled={{unless isValid "disabled"}} onclick={{perform saveReview}}>
               {{#if saveReview.isRunning}}
                 {{loading-spinner size="small"}}
               {{else}}
