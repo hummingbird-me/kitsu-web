@@ -39,13 +39,16 @@
       {{t "users.edit.about.gender"}}
     </label>
     <div class="col-xs-10">
-      {{one-way-select selectedGender
-        options=genderOptions
-        update=(action "updateGender")
-        id="gender-input"
+      {{#power-select
         class="form-control"
-        size="1"
+        renderInPlace=true
+        searchEnabled=false
+        selected=selectedGender
+        options=genderOptions
+        onchange=(action "updateGender") as |option|
       }}
+        {{option}}
+      {{/power-select}}
 
       {{#if (eq selectedGender (get this 'genderOptions.lastObject'))}}
         {{one-way-text (capitalize user.gender)
