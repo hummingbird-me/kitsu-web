@@ -429,6 +429,6 @@ export default {
     },
     load: 'There was an issue loading the content.',
     contentEmpty: 'Hmm, there doesn\'t seem to be anything here yet.',
-    request: 'There was an issue with the request. Please try agian.'
+    request: 'There was an issue with the request. Please try again.'
   }
 };
