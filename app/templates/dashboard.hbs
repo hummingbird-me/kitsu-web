@@ -2,6 +2,7 @@
   {{dashboard/quick-update}}
 
   <div class="feed-container row {{if session.hasUser "quick-update-enabled" "guest-banner-enabled"}}">
+    {{ad-unit slot="3272962666"}}
     {{! Feed }}
     <div class="feed-stream col-sm-12 col-md-8">
       {{#if (and session.hasUser (and (eq streamType "global") (eq session.account.postsCount 0)))}}
