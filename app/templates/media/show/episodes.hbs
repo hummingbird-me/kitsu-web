@@ -1,5 +1,7 @@
 {{! Kitsu Media Episodes 1 }}
-{{ad-unit slot="8769596264"}}
+{{#unless session.account.isPro}}
+  {{ad-unit slot="8769596264"}}
+{{/unless}}
 
 {{#if model.taskInstance.isRunning}}
   <div class="text-xs-center w-100 m-t-1 m-b-1">
@@ -41,4 +43,6 @@
 {{/if}}
 
 {{! Kitsu Media Episodes 2 }}
-{{ad-unit slot="1246329464"}}
+{{#unless session.account.isPro}}
+  {{ad-unit slot="1246329464"}}
+{{/unless}}

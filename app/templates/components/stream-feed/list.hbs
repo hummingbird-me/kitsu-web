@@ -91,7 +91,9 @@
 
     {{! ads inserted }}
     {{#if (is-multiple-of (inc index) 10)}}
-      {{ad-unit slot="5447699866"}}
+      {{#unless session.account.isPro}}
+        {{ad-unit slot="5447699866"}}
+      {{/unless}}
     {{/if}}
   {{else}}
     <div class="stream-error-wrapper col-sm-12">

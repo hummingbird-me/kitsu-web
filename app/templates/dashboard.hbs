@@ -2,7 +2,10 @@
   {{dashboard/quick-update}}
 
   <div class="feed-container row {{if session.hasUser "quick-update-enabled" "guest-banner-enabled"}}">
-    {{ad-unit slot="3272962666"}}
+    {{#unless session.account.isPro}}
+      {{ad-unit slot="3272962666"}}
+    {{/unless}}
+
     {{! Feed }}
     <div class="feed-stream col-sm-12 col-md-8">
       {{#if (and session.hasUser (and (eq streamType "global") (eq session.account.postsCount 0)))}}
@@ -26,20 +29,19 @@
     <div class="feed-sidebar col-sm-4">
       {{! Onboarding }}
       {{#if (and session.hasUser (not session.account.feedCompleted))}}
-        {{dashboard/onboarding/checklist-progress user=session.account}}
+        {{dashboard/onboarding/checklist-progress user=session.account class="sidebar-item"}}
       {{/if}}
 
       {{! Kitsu Dashboard Sidebar Ad }}
-      {{ad-unit slot="8682197864"}}
+      {{#unless session.account.isPro}}
+        {{ad-unit slot="8682197864"}}
+      {{/unless}}
 
       {{! News }}
-      {{dashboard/kitsu-forums}}
-
-      {{! sidebar ad }}
-      {{! TODO: ad here }}
+      {{dashboard/kitsu-forums class="sidebar-item"}}
 
       {{! Footer }}
-      {{sidebar-footer}}
+      {{sidebar-footer class="sidebar-item"}}
     </div>
   </div>
 {{else}}

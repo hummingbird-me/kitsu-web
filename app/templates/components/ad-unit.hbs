@@ -1,7 +1,8 @@
 {{#if isEnabled}}
-  <ins class="adsbygoogle" data-ad-slot={{slot}} data-ad-client={{client}} data-ad-format="auto"></ins>
+  <ins class="adsbygoogle" data-ad-slot={{slot}} data-ad-client={{client}} data-ad-format={{format}}></ins>
 {{else}}
+  {{! @TODO(@Josh): We might want to do something more than text here. }}
   <div class="empty-container">
-    <p>Ads suck, but that's how we keep the lights on. Please disable your adblocker.</p>
+    <p>Ads suck, but that's how we keep the lights on. Please whitelist us in your adblocker.</p>
   </div>
 {{/if}}

@@ -6,6 +6,7 @@ export default RavenLogger.extend({
 
   ignoreError(error) {
     const { message } = error;
+    if (!message) { return false; }
     return get(this, 'errorsToIgnore').any(ignored => message.includes(ignored));
   },
 

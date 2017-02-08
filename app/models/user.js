@@ -102,14 +102,12 @@ export default Base.extend(Validations, {
   // doesn't currently track the dirtiness of a relationship.
   waifuDirtyHack: attr('boolean', { defaultValue: false }),
 
-  isPro: computed('proExpiresAt', {
-    get() {
-      const date = get(this, 'proExpiresAt');
-      if (isEmpty(date)) {
-        return false;
-      }
-      return !date.isBefore();
+  isPro: computed('proExpiresAt', function() {
+    const date = get(this, 'proExpiresAt');
+    if (isEmpty(date)) {
+      return false;
     }
+    return !date.isBefore();
   }).readOnly(),
 
   hasRole(roleName, resource) {

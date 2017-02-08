@@ -8,16 +8,6 @@ export function initialize() {
     if (google.adwords) {
       injectScript('//www.googleadservices.com/pagead/conversion_async.js');
     }
-    const { ads } = google;
-    if (ads.enabled) {
-      injectScript('//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js').then(() => {
-        window.adsbygoogle = window.adsbygoogle || [];
-        window.adsbygoogle.push({
-          google_ad_client: ads.client,
-          enable_page_level_ads: ads.pageads
-        });
-      });
-    }
   }
 }
 
