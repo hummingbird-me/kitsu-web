@@ -21,7 +21,6 @@ export default Component.extend(ClipboardMixin, {
 
   notify: service(),
   router: service('-routing'),
-  session: service(),
   store: service(),
   metrics: service(),
   viewport: service(),

@@ -6,7 +6,6 @@ import { addObserver, removeObserver } from 'ember-metal/observer';
 
 export default Component.extend({
   cache: service('local-cache'),
-  session: service(),
   store: service(),
 
   didInsertElement() {

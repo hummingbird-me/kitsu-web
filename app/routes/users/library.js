@@ -18,7 +18,6 @@ export default Route.extend(PaginationMixin, {
   i18n: service(),
   notify: service(),
   metrics: service(),
-  session: service(),
   lastUsed: storageFor('last-used'),
 
   /**

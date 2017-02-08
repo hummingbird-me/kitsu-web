@@ -12,8 +12,6 @@ export default Component.extend({
   classNames: ['d-inline'],
   isLiked: false,
   showUsers: false,
-
-  session: service(),
   store: service(),
   metrics: service(),
 

@@ -18,7 +18,6 @@ export default Component.extend({
   headData: service(),
   headTags: service(),
   notify: service(),
-  session: service(),
   store: service(),
   metrics: service(),
   streamRealtime: service(),

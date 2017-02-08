@@ -9,7 +9,6 @@ import { task, taskGroup } from 'ember-concurrency';
 export default Component.extend({
   facebook: service(),
   notify: service(),
-  session: service(),
   tasks: taskGroup().drop(),
 
   connectFacebook: task(function* () {

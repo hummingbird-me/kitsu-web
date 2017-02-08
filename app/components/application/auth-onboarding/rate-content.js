@@ -12,9 +12,7 @@ export default Component.extend({
   searchQuery: '',
   media: undefined,
   numRated: 0,
-
   store: service(),
-  session: service(),
 
   numRatedLeft: computed('numRated', {
     get() {

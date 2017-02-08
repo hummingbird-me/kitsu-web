@@ -10,7 +10,6 @@ import RSVP from 'rsvp';
 export default Component.extend({
   initialTab: 'anime',
   notify: service(),
-  session: service(),
   store: service(),
 
   // Search media and filter out records that are already favorites of the user

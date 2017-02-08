@@ -3,7 +3,6 @@ import computed, { alias } from 'ember-computed';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import observer from 'ember-metal/observer';
-import service from 'ember-service/inject';
 import { storageFor } from 'ember-local-storage';
 import libraryStatus from 'client/utils/library-status';
 
@@ -12,7 +11,6 @@ export default Controller.extend({
   media: 'anime',
   status: 'current',
   mediaList: ['anime', 'manga'],
-  session: service(),
   entries: alias('taskValue'),
   lastUsed: storageFor('last-used'),
 

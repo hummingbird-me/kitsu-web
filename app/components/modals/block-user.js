@@ -8,7 +8,6 @@ import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   notify: service(),
-  session: service(),
   store: service(),
 
   blockUser: task(function* () {

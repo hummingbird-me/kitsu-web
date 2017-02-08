@@ -13,7 +13,6 @@ export default Component.extend({
   facebook: service(),
   notify: service(),
   router: service('-routing'),
-  session: service(),
   authentication: taskGroup().drop(),
 
   login: task(function* () {

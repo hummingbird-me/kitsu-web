@@ -7,7 +7,6 @@ import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   tagName: 'tr',
-  session: service(),
   notify: service(),
   reportTask: taskGroup().drop(),
 

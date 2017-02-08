@@ -10,7 +10,6 @@ export default Route.extend(ApplicationRouteMixin, {
   headData: service(),
   metrics: service(),
   moment: service(),
-  session: service(),
 
   // If the user is authenticated on first load, grab the users data
   beforeModel() {

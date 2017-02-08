@@ -6,7 +6,6 @@ import { underscore } from 'ember-string';
 
 export default Component.extend({
   facebook: service(),
-  session: service(),
 
   actions: {
     facebookLogin() {

@@ -1,11 +1,8 @@
 import StarRatingComponent from 'ember-star-rating/components/star-rating';
-import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import { invokeAction } from 'ember-invoke-action';
 
 export default StarRatingComponent.extend({
-  session: service(),
-
   click() {
     if (get(this, 'session.hasUser')) {
       get(this, 'session.account').incrementProperty('ratingsCount');

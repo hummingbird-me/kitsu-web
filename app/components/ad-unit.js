@@ -1,8 +1,6 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import service from 'ember-service/inject';
-import { and } from 'ember-computed';
 import { scheduleOnce } from 'ember-runloop';
 import config from 'client/config/environment';
 import injectScript from 'client/utils/inject-script';

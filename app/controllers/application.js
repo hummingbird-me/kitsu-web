@@ -9,10 +9,8 @@ import set from 'ember-metal/set';
 export default Controller.extend({
   queryParams: ['notification'],
   notification: null,
-
   ajax: service(),
   store: service(),
-  session: service(),
   isStaging: getter(() => Config.APP.isStaging),
 
   notificationTracker: observer('notification', function() {

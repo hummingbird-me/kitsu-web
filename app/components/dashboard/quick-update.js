@@ -14,7 +14,6 @@ export default Component.extend(FlickityActionsMixin, {
   filterOptions: ['all', 'anime', 'manga'],
   pageLimit: 12,
   notify: service(),
-  session: service(),
   store: service(),
   lastUsed: storageFor('last-used'),
 

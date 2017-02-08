@@ -1,5 +1,4 @@
 import Controller from 'ember-controller';
-import service from 'ember-service/inject';
 import computed from 'ember-computed';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
@@ -10,7 +9,6 @@ const MAGIC_NUMBER = 7;
 
 export default Controller.extend({
   lastUsed: storageFor('last-used'),
-  session: service(),
 
   streamId: computed('streamType', 'session.hasUser', {
     get() {

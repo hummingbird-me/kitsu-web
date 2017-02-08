@@ -20,8 +20,6 @@ export default Component.extend({
   spoiler: false,
   maxLength: 9000,
   _usableMedia: null,
-
-  session: service(),
   store: service(),
 
   canPost: computed('content', {

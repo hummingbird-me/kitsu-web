@@ -6,7 +6,6 @@ export default Component.extend({
   authOpened: false,
   authComponent: 'social-auth',
   router: service('-routing'),
-  session: service(),
 
   actions: {
     invalidateSession() {

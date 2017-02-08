@@ -12,7 +12,6 @@ export default Component.extend({
   classNames: ['stream-item-comments'],
   metrics: service(),
   notify: service(),
-  session: service(),
   store: service(),
   router: service('-routing'),
 

@@ -10,7 +10,6 @@ export default Component.extend({
   i18n: service(),
   facebook: service(),
   notify: service(),
-  session: service(),
 
   authenticateWithFacebook: task(function* () {
     yield get(this, 'session').authenticateWithFacebook()

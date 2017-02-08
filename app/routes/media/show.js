@@ -15,7 +15,6 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   headData: service(),
   metrics: service(),
   notify: service(),
-  session: service(),
 
   saveEntryTask: task(function* (entry) {
     yield timeout(500);

@@ -14,7 +14,6 @@ export default Component.extend({
   metrics: service(),
   notify: service(),
   store: service(),
-  session: service(),
   tracking: service(),
 
   hasValidName: and('user.name', 'user.validations.attrs.name.isValid'),

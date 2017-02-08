@@ -17,10 +17,8 @@ export default Component.extend(ClipboardMixin, {
   isEditing: false,
   isReplying: false,
   isTopLevel: false,
-
   metrics: service(),
   notify: service(),
-  session: service(),
   store: service(),
   host: getter(() => `${location.protocol}//${location.host}`),
 

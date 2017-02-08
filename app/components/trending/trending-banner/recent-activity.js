@@ -5,7 +5,6 @@ import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
-  session: service(),
   store: service(),
 
   getRecentActivity: task(function* () {

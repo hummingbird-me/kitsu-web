@@ -11,7 +11,6 @@ import moment from 'moment';
 
 export default Controller.extend({
   notify: service(),
-  session: service(),
   user: alias('session.account'),
   languages: getter(() => [{ id: 'en', text: 'English' }]),
   timezoneGuess: getter(() => moment.tz.guess()),

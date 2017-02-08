@@ -8,7 +8,6 @@ import errorMessages from 'client/utils/error-messages';
 
 export default Controller.extend({
   notify: service(),
-  session: service(),
   store: service(),
 
   searchUsers: task(function* (query) {

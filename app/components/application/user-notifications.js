@@ -17,7 +17,6 @@ export default Component.extend({
   router: service('-routing'),
   ajax: service(),
   notify: service(),
-  session: service(),
   store: service(),
   streamRealtime: service(),
 

@@ -6,7 +6,6 @@ import getter from 'client/utils/getter';
 
 export default Component.extend({
   i18n: service(),
-  session: service(),
 
   // Returns the i18n version of our status
   statusName: computed('status', {

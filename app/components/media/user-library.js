@@ -10,7 +10,6 @@ import { strictInvokeAction } from 'ember-invoke-action';
 export default Component.extend({
   isFavorite: false,
   store: service(),
-  session: service(),
 
   totalProgressText: computed('media.unitCount', function() {
     return get(this, 'media.unitCount') || '-';

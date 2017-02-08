@@ -9,7 +9,6 @@ import errorMessages from 'client/utils/error-messages';
 
 export default Controller.extend({
   notify: service(),
-  session: service(),
   user: alias('session.account'),
 
   isValid: computed('user.password', 'passwordConfirm', {

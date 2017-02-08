@@ -1,13 +1,10 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import computed from 'ember-computed';
-import service from 'ember-service/inject';
 import { isPresent } from 'ember-utils';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
 
 export default Component.extend({
-  session: service(),
-
   activity: computed('group.activities.[]', {
     get() {
       return get(this, 'group.activities.firstObject');

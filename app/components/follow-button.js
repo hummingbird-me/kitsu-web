@@ -15,7 +15,6 @@ export default Component.extend({
 
   metrics: service(),
   notify: service(),
-  session: service(),
   store: service(),
   isFollowing: notEmpty('relationship'),
   isDisabled: or('getFollowStatus.isRunning', 'toggleFollow.isRunning'),

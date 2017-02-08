@@ -12,9 +12,7 @@ export default Component.extend({
   hasReported: false,
   explanation: undefined,
   reason: undefined,
-
   notify: service(),
-  session: service(),
   store: service(),
   isExplanationRequired: equal('reason', 'Other').readOnly(),
 

@@ -11,7 +11,6 @@ export default Component.extend({
   username: undefined,
   metrics: service(),
   notify: service(),
-  session: service(),
   store: service(),
 
   createImport: task(function* () {
