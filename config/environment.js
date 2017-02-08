@@ -11,7 +11,7 @@ module.exports = function(environment) {
       FEATURES: {}
     },
     APP: {
-      APIHost: 'https://kitsu.io',
+      APIHost: undefined,
       isStaging,
     },
     EXTEND_PROTOTYPES: {
@@ -124,7 +124,7 @@ module.exports = function(environment) {
     google: {
       adwords: environment === 'production',
       ads: {
-        enabled: true,
+        enabled: environment === 'production',
         client: 'ca-pub-1730996169473196',
         pageads: true
       }
