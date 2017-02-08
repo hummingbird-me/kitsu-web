@@ -26,7 +26,7 @@ export default MediaShowRoute.extend({
         set(controller, 'availableLanguages', languages);
         this._languageCheck(queryParams);
       }).catch((error) => {
-        get(this, 'raven').logException(error);
+        get(this, 'raven').captureException(error);
       });
     }
     this._languageCheck(queryParams);

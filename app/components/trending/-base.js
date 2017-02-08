@@ -32,7 +32,7 @@ export default Component.extend({
       set(this, `${type}Results`, results);
       set(this, 'currentItems', results);
     }).catch((error) => {
-      get(this, 'raven').logException(error);
+      get(this, 'raven').captureException(error);
     });
   },
 

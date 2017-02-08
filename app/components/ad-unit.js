@@ -61,7 +61,7 @@ export default Component.extend({
       // an error occurred, maybe blocked by an adblock or failed network request
       if (get(this, 'isDestroying') || get(this, 'isDestroyed')) { return; }
       set(this, 'isEnabled', false);
-      get(this, 'raven').logException(error);
+      get(this, 'raven').captureException(error);
     });
   },
 });

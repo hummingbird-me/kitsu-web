@@ -48,7 +48,7 @@ export default Component.extend(FlickityActionsMixin, {
     get(this, 'getEntriesTask').perform().then((entries) => {
       set(this, 'initialEntries', entries);
     }).catch((error) => {
-      get(this, 'raven').logException(error);
+      get(this, 'raven').captureException(error);
     });
   },
 

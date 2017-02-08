@@ -78,7 +78,9 @@ module.exports = function(environment) {
           // Random plugins/extensions
           'top.GLOBALS',
           // Facebook borked
-          'fb_xd_fragment'
+          'fb_xd_fragment',
+          // Ember
+          'TransitionAborted'
         ],
         ignoreUrls: [
           // Facebook flakiness

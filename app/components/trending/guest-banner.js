@@ -17,7 +17,7 @@ export default Component.extend({
             set(this, 'facebookSignUpData', data);
           });
         } else {
-          get(this, 'raven').logException(error);
+          get(this, 'raven').captureException(error);
         }
       });
     },

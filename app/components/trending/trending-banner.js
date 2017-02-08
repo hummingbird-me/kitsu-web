@@ -24,7 +24,7 @@ export default Component.extend({
       // TODO: Remove when server API limit works
       return records.slice(0, 8);
     }).catch((error) => {
-      get(this, 'raven').logException(error);
+      get(this, 'raven').captureException(error);
     });
   }).restartable(),
 
