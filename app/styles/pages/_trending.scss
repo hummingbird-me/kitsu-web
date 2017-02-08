@@ -106,12 +106,6 @@
   min-height: 435px;
   .trending-media {
     height: 240px;
-    .media-poster {
-      img {
-        width: 150px;
-        height: 212px;
-      }
-    }
   }
   .trending-cell {
     width: 150px;
@@ -121,10 +115,6 @@
 
 .seasonal-series, .weekly-trending, .annual-trending {
   min-height: 545px;
-  img {
-    width: 220px;
-    height: 312px;
-  }
 }
 
 .trending-review-section {
@@ -222,6 +212,12 @@
   @media (max-width: 767px) {
     padding: 30px 5px;
   }
+  .row {
+    @media (max-width: 767px) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
   .trending-poster {
     display: inline-block;
     margin-bottom: 30px;
@@ -231,12 +227,6 @@
     display: inline-block;
     img {
       border-radius: 3px;
-      width: 150px;
-      height: 213px;
-      @media (max-width: 767px) {
-        width: 200px;
-        height: 285px;
-      }
     }
   }
 }
@@ -360,10 +350,6 @@
       overflow: hidden;
       border-radius: 3px;
       margin-right: 15px;
-      img {
-        width: 100px;
-        height: 142px;
-      }
     }
     .agg-avatar {
       margin-right: 5px;
