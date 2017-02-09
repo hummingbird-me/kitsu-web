@@ -1,5 +1,197 @@
 <div class="container">
   <div class="row">
+    <div class="library-content col-sm-12 col-md-8">
+      <h4>My Anime Library</h4>
+      <span class="list-type">
+        {{! need to do svgs here}}
+        <a href="#">Grid</a>
+        <a href="#">List</a>
+      </span>
+      {{! Search }}
+      <section id="library-search" class="library-search">
+        <div class="container">
+          <div class="row">
+            <div class="library-search--wrapper">
+              <span class="icon">
+                {{svg-jar "search"}}
+              </span>
+              {{one-way-search query
+                update=(action (mut query))
+                class="library-search-input"
+                placeholder="Search Josh's Library..."
+              }}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="library-result-header clearfix">
+        <strong>Showing 25 of 235</strong>
+        <div class="library-filters">
+          <form class="form-inline">
+            <label class="mr-sm-2" for="inlineFormCustomSelect">Per page:</label>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+              <option selected>25</option>
+              <option value="1">50</option>
+              <option value="2">100</option>
+              <option value="3">200</option>
+            </select>
+          </form>
+          <form class="form-inline">
+            <label class="mr-sm-2" for="inlineFormCustomSelect">Sort by:</label>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+              <option selected>Date Watched: Recent First</option>
+              <option value="1">Date Watched: Oldest First</option>
+              <option value="2">Rating: High to Low</option>
+              <option value="3">Rating: Low to High</option>
+              <option value="4">Length: Shortest First</option>
+              <option value="5">Length: Longest First</option>
+            </select>
+          </form>
+        </div>
+      </section>
+
+      {{! Kitsu Library Content Ad }}
+      {{#unless session.account.isPro}}
+        {{ad-unit slot="8096455061"}}
+      {{/unless}}
+
+      <section class="media-browse col-sm-12">
+        <div class="media-grid container">
+          <div class="row">
+
+            <div class="poster-wrapper">
+              <div class="grid-poster">
+                <div class="ember-view">
+                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
+                  <div class="poster-overlay">
+                    <a href="/anime/attack-on-titan"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="poster-wrapper">
+              <div class="grid-poster">
+                <div class="ember-view">
+                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
+                  <div class="poster-overlay">
+                    <a href="/anime/attack-on-titan"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="poster-wrapper">
+              <div class="grid-poster">
+                <div class="ember-view">
+                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
+                  <div class="poster-overlay">
+                    <a href="/anime/attack-on-titan"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="poster-wrapper">
+              <div class="grid-poster">
+                <div class="ember-view">
+                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
+                  <div class="poster-overlay">
+                    <a href="/anime/attack-on-titan"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="poster-wrapper">
+              <div class="grid-poster">
+                <div class="ember-view">
+                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
+                  <div class="poster-overlay">
+                    <a href="/anime/attack-on-titan"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="navigation">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </section>
+
+    </div>
+    <div class="library-sidebar card col-sm-12 col-md-4">
+      <h6>Filter Library</h6>
+      <ul class="library-sections">
+        <li class="active">
+          <a href="#">
+            All Anime
+            <span class="library-section--count">325</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Currently Watching
+            <span class="library-section--count">325</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Plan to Watch
+            <span class="library-section--count">325</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Completed
+            <span class="library-section--count">325</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            On Hold
+            <span class="library-section--count">325</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Dropped
+            <span class="library-section--count">325</span>
+          </a>
+        </li>
+      </ul>
+      <h6>Tools</h6>
+      <ul class="library-tools">
+        <li>
+          <a href="#">Stats</a>
+        </li>
+        <li>
+          <a href="#">Import / Export</a>
+        </li>
+        <li>
+          <a href="#">Batch Edit</a>
+        </li>
+      </ul>
+      {{! Kitsu Library Sidebar Ad }}
+      {{#unless session.account.isPro}}
+        {{ad-unit slot="6628225068"}}
+      {{/unless}}
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container">
+  <div class="row">
     <div class="library-list col-sm-12">
       <div class="nav-wrapper">
         {{! Library type dropdown }}
@@ -91,4 +283,4 @@
       {{/if}}
     </div>
   </div>
-</div>
+</div> -->
