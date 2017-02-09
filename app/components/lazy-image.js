@@ -42,12 +42,14 @@ export default Component.extend({
     if (image.complete) {
       set(this, 'isLoaded', true);
     } else {
-      image.onload = () => {
+      const fn = () => {
         if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
         next(() => {
           set(this, 'isLoaded', true);
         });
       };
+      image.onload = () => { fn(); };
+      image.onerror = () => { fn(); };
     }
   },
 
