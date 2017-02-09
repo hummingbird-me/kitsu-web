@@ -6,7 +6,7 @@ export function initialize() {
   const { google } = config;
   if (canUseDOM) {
     if (google.adwords) {
-      injectScript('//www.googleadservices.com/pagead/conversion_async.js');
+      injectScript('//www.googleadservices.com/pagead/conversion_async.js').catch(() => {});
     }
   }
 }
