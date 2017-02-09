@@ -4,7 +4,7 @@
       {{#unless hideImage}}
         <div class="stream-item--media col-xs-4 col-sm-3">
           <a href={{href-to (concat media.modelType ".show") media.slug}}>
-            {{lazy-image src=(image media.posterImage "large") ratio=-2}}
+            {{lazy-image src=(image media.posterImage "large")}}
           </a>
         </div>
       {{/unless}}

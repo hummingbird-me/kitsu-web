@@ -59,12 +59,22 @@ export default Component.extend({
       if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
       this._swapAttributes();
       this._loadImage();
-    }, { ratio: get(this, 'ratio') || -1 });
+    }, { rootMargin: this._getRootMargin() });
   },
 
   _teardownViewport() {
     if (this.clearViewportCallback) {
       this.clearViewportCallback();
     }
+  },
+
+  _getRootMargin() {
+    const rootMargin = get(this, 'rootMargin');
+    return Object.assign({
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: -300
+    }, rootMargin);
   }
 });

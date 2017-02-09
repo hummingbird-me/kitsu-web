@@ -82,7 +82,7 @@ export default Component.extend(ClipboardMixin, {
     const el = get(this, 'element');
     this.clearViewportCallback = get(this, 'viewport').onInViewportOnce(el, () => {
       set(this, 'viewportEntered', true);
-    }, { ratio: -1 });
+    }, { rootMargin: { top: 0, left: 0, right: 0, bottom: -600 } });
   },
 
   didReceiveAttrs() {

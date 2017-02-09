@@ -83,7 +83,7 @@
         <div class="text-xs-center m-t-1 m-b-1">
           {{paginated-resource/infinite
             model=entries
-            ratio=-4
+            rootMargin=(hash bottom=-600)
             update=(route-action "updateNextPage" "taskValue")
             loadingSize="large"
           }}
