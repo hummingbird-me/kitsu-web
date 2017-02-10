@@ -1,6 +1,6 @@
 import { helper } from 'ember-helper';
 
-export function profileLinkToSVG([str]) {
+export function profileLinkToSVG([str = '']) {
   return str.replace(/(\.|\!)/, '').toLowerCase();
 }
 
