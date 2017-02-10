@@ -8,8 +8,8 @@ import { invokeAction } from 'ember-invoke-action';
 import RSVP from 'rsvp';
 
 export default Component.extend({
+  classNames: ['tab-pane'],
   initialTab: 'anime',
-  notify: service(),
   store: service(),
 
   // Search media and filter out records that are already favorites of the user
@@ -57,7 +57,7 @@ export default Component.extend({
     }).catch(() => {});
 
     // are we opening this component to a specific tab?
-    const data = get(this, 'componentData');
+    const data = get(this, 'externalData');
     if (data) {
       const tab = get(data, 'tab');
       if (tab) {

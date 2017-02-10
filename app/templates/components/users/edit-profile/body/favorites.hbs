@@ -28,7 +28,7 @@
     <div class="tab-content edit-favorite-content">
       {{! Anime }}
       <div id="edit-favorite-anime" class="tab-pane {{if (eq initialTab "anime") "active"}}" role="tabpanel">
-        {{users/edit-profile/favorites/list items=animeFavorites type="anime"
+        {{users/edit-profile/body/favorites/list items=animeFavorites type="anime"
           search=(perform search "anime")
           reorderItems=(action "reorderItems" "anime")
           addItem=(action "addItem")
@@ -38,7 +38,7 @@
 
       {{! Manga }}
       <div id="edit-favorite-manga" class="tab-pane {{if (eq initialTab "manga") "active"}}" role="tabpanel">
-        {{users/edit-profile/favorites/list items=mangaFavorites type="manga"
+        {{users/edit-profile/body/favorites/list items=mangaFavorites type="manga"
           search=(perform search "manga")
           reorderItems=(action "reorderItems" "manga")
           addItem=(action "addItem")
@@ -48,7 +48,7 @@
 
       {{! Characters }}
       <div id="edit-favorite-characters" class="tab-pane {{if (eq initialTab "characters") "active"}}" role="tabpanel">
-        {{users/edit-profile/favorites/list items=characterFavorites type="character"
+        {{users/edit-profile/body/favorites/list items=characterFavorites type="character"
           search=(perform search "character")
           reorderItems=(action "reorderItems" "character")
           addItem=(action "addItem")

@@ -7,10 +7,12 @@ import { invokeAction } from 'ember-invoke-action';
 import { isEmpty } from 'ember-utils';
 
 export default Component.extend({
+  classNames: ['tab-pane'],
   store: service(),
+
   getSites: task(function* () {
     return yield get(this, 'store').query('profile-link-site', { page: { limit: 20 } });
-  }).keepLatest(),
+  }).drop(),
 
   init() {
     this._super(...arguments);

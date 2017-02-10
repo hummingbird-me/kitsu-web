@@ -1,74 +1,26 @@
 {{#bootstrap/bs-modal id=modalId onClose=(action "onClose") as |modal|}}
   {{#modal.header class="modal-header-navbar"}}
-    <div class="modal-cover-photo" style={{coverImageStyle}}>
-      <a class="modal-overlay-button" {{action "triggerClick" "cover-input"}}>
-        <span class="overlay-text">
-          {{svg-jar "picture"}}
-          <h6>{{t 'users.edit.editCover'}}</h6>
-        </span>
-      </a>
-      {{file-select
-        id="cover-input"
-        update=(action "updateImage" "user.coverImage")}}
-    </div>
-    <div class="modal-user-avatar">
-      <div class="modal-avatar-wrapper">
-        <a class="modal-overlay-button" {{action "triggerClick" "avatar-input"}}>
-          <span class="overlay-text">
-            {{svg-jar "picture"}}
-          </span>
-        </a>
-        <img src={{image user.avatar "medium"}} class="avatar-image avatar-image--medium">
-        {{file-select
-          id="avatar-input"
-          update=(action "updateImage" "user.avatar")}}
-      </div>
-    </div>
-    <nav class="cover-nav edit-nav navbar navbar-light">
-      <div class="container">
-        <div class="row">
-          <div class="nav navbar-nav">
-            <a class="nav-item nav-link {{if isAboutActive "active"}}" {{action "changeComponent" "about-me"}}>
-              {{t 'users.edit.aboutMe'}}
-            </a>
-            <a class="nav-item nav-link {{if isProfilesActive "active"}}" {{action "changeComponent" "profile-links"}}>
-              {{t 'users.edit.profileLinks'}}
-            </a>
-            <a class="nav-item nav-link {{if isFavoritesActive "active"}}" {{action "changeComponent" "favorites"}}>
-              {{t 'users.edit.favorites'}}
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
+    {{users/edit-profile/header user=user
+      tab=tab
+      onError=(action (mut errorMessage))
+      onChange=(action (mut tab))}}
   {{/modal.header}}
 
   {{#modal.body}}
     <span class="alert">Notice: Max upload size is currently 750kb</span>
-    {{component componentName
-      user=user
-      componentData=componentData
+    {{users/edit-profile/body user=user
+      tab=tab
+      externalData=externalData
+      onError=(action (mut errorMessage))
       addRecord=(action "addRecord")
       removeRecord=(action "removeRecord")}}
   {{/modal.body}}
 
   {{#modal.footer}}
-    {{#if errorMessage}}
-      <div class="alert alert-danger" data-test-selector="error-message">
-        {{errorMessage}}
-      </div>
-    {{/if}}
-
-    <p class="link-note">
-      Visit your <a href={{href-to "settings"}} {{action "transitionToSettings"}}>settings page</a> to change your username, email, notification settings, and more.
-    </p>
-    <button class="button button--save-edit button--primary"
-      disabled={{if (is-empty isDirty) "disabled"}} {{action "updateProfile"}}>
-      {{#if updateProfileTask.isRunning}}
-        {{loading-spinner}}
-      {{else}}
-        Update Profile
-      {{/if}}
-    </button>
+    {{users/edit-profile/footer errorMessage=errorMessage
+      isDirty=isDirty
+      updateTask=updateProfileTask
+      transition=(action "transitionToSettings")
+      onUpdate=(action "hideModal")}}
   {{/modal.footer}}
 {{/bootstrap/bs-modal}}

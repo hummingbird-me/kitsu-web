@@ -86,8 +86,8 @@
 {{! edit modal }}
 {{#if isManaging}}
   {{to-elsewhere named="modal" send=(component "users/edit-profile"
-    component="favorites"
-    componentData=(hash tab=activeTab)
+    tab="favorites"
+    externalData=(hash tab=activeTab)
     user=user
     modalId="edit-profile-modal"
     onClose=(toggle-action "isManaging" this))}}

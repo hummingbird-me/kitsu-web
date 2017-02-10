@@ -9,7 +9,7 @@ import { invokeAction } from 'ember-invoke-action';
 const GENDER_KEYS = ['secret', 'male', 'female', 'custom'];
 
 export default Component.extend({
-  selectedGender: undefined,
+  classNames: ['tab-pane'],
   i18n: service(),
   store: service(),
 
@@ -38,7 +38,6 @@ export default Component.extend({
 
   _setGender() {
     const gender = get(this, 'user.gender');
-
     if (isEmpty(gender) === true) {
       set(this, 'selectedGender', this._translateGender(get(GENDER_KEYS, 'firstObject')));
     } else if (GENDER_KEYS.includes(gender) === true) {
