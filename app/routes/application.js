@@ -124,8 +124,7 @@ export default Route.extend(ApplicationRouteMixin, {
         id: get(user, 'id'),
         username: get(user, 'name')
       });
-    }).catch((error) => {
-      console.error(error);
+    }).catch(() => {
       get(this, 'session').invalidate();
     });
   },
