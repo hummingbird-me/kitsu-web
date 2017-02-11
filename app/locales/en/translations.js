@@ -44,7 +44,7 @@ export default {
         manga: 'Manga'
       },
       hint: {
-        text: 'Media you\'ve added or updated within your {{link}} willl show up here for you to quickly update.',
+        text: 'Media you\'ve added or updated within your {{link}} will show up here for you to quickly update.',
         library: 'Library',
         discover: 'Discover Media'
       },
