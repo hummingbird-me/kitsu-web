@@ -19,8 +19,21 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
   },
 
   afterModel(model) {
+    set(this, 'headTags', this._headTags(model));
+  },
+
+  resetController(controller) {
+    this._super(...arguments);
+    set(controller, 'isEditing', false);
+  },
+
+  serialize(model) {
+    return { name: get(model, 'name') };
+  },
+
+  _headTags(model) {
     const desc = `${get(model, 'name')} is using Kitsu to share their anime & manga experiences. ${get(model, 'about')}`;
-    set(this, 'headTags', [{
+    return [{
       type: 'meta',
       tagId: 'meta-og-type',
       attrs: {
@@ -41,15 +54,6 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
         name: 'description',
         content: desc
       }
-    }]);
-  },
-
-  resetController(controller) {
-    this._super(...arguments);
-    set(controller, 'isEditing', false);
-  },
-
-  serialize(model) {
-    return { name: get(model, 'name') };
+    }];
   }
 });

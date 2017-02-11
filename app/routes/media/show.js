@@ -40,10 +40,19 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
     return get(this, 'store').findRecord(type, slug, { include });
   },
 
+  afterModel(model) {
+    set(this, 'breadcrumb', get(model, 'canonicalTitle'));
+  },
+
   setupController(controller, model) {
     this._super(...arguments);
+
+    // add structured data for this route
+    const head = get(this, 'headData');
     const data = this._schemaData(model);
-    get(this, 'headData').set('structuredData', data);
+    set(head, 'structuredData.media-show', data);
+
+    // get the users library entry if they're logged in
     if (get(this, 'session.hasUser')) {
       this._getLibraryEntry(controller, model);
     }

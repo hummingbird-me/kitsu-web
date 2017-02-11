@@ -14,6 +14,10 @@ export default Route.extend(DataErrorMixin, {
     });
   },
 
+  afterModel(model) {
+    set(this, 'breadcrumb', `Comment by ${get(model, 'user.name')}`);
+  },
+
   setupController(controller, model) {
     this._super(...arguments);
     const postId = get(model, 'post.id');

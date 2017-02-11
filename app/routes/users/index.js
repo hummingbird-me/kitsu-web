@@ -13,7 +13,9 @@ export default Route.extend({
 
   setupController(controller) {
     this._super(...arguments);
-    set(controller, 'user', this.modelFor('users'));
+    const model = this.modelFor('users');
+    set(this, 'breadcrumb', get(model, 'name'));
+    set(controller, 'user', model);
   },
 
   titleToken() {

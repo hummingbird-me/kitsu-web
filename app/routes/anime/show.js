@@ -4,6 +4,8 @@ import set from 'ember-metal/set';
 
 export default MediaShowRoute.extend({
   afterModel(model) {
+    this._super(...arguments);
+
     let type = 'video.other';
     if (get(model, 'subtype') === 'TV') {
       type = 'video.tv_show';

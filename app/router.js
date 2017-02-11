@@ -1,12 +1,13 @@
 import Router from 'ember-router';
+import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { scheduleOnce } from 'ember-runloop';
-import get from 'ember-metal/get';
+import RouterScroll from 'ember-router-scroll';
+import Breadcrumbs from 'client/mixins/breadcrumbs';
 import config from 'client/config/environment';
 import canUseDOM from 'client/utils/can-use-dom';
-import RouterScroll from 'ember-router-scroll';
 
-const RouterInstance = Router.extend(RouterScroll, {
+const RouterInstance = Router.extend(RouterScroll, Breadcrumbs, {
   location: config.locationType,
   rootURL: config.rootURL,
   metrics: service(),
@@ -14,7 +15,6 @@ const RouterInstance = Router.extend(RouterScroll, {
 
   didTransition() {
     this._super(...arguments);
-    // Check for DOM access so we don't send 2x page events from fastboot and browser
     if (canUseDOM) {
       this._trackPage();
     }

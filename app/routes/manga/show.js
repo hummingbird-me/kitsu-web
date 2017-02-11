@@ -5,6 +5,8 @@ import { capitalize } from 'ember-string';
 
 export default MediaShowRoute.extend({
   afterModel(model) {
+    this._super(...arguments);
+
     const headTags = this._headTags(model);
     headTags.push({
       type: 'meta',

@@ -1,4 +1,7 @@
+{{! title / meta tags }}
 {{head-tags headTags=model.headTags}}
-{{#if model.structuredData}}
-  {{structured-data data=model.structuredData}}
-{{/if}}
+
+{{! structured schema data }}
+{{#each-in model.structuredData as |key data|}}
+  {{structured-data data=data}}
+{{/each-in}}
