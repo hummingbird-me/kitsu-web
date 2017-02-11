@@ -3,13 +3,12 @@
     {{! @josh: We need a way to switch between anime/manga }}
 
     <div class="library-content col-sm-12 col-md-8">
-      <h4>My Anime Library</h4>
+      <h4>{{t "users.library.library" type=(t (concat "media." media ".name"))}}</h4>
 
-      {{! @TODO: Hookup Different Layouts }}
+      {{! @TODO: need to do svgs here}}
       <span class="list-type">
-        {{! @TODO: need to do svgs here}}
         <a href="#" {{action (mut layoutType) "grid"}}>Grid</a>
-        <a href="#" {{action (mut layoutType) "list"}}>List</a>
+        <a href="#">List</a>
       </span>
 
       {{! @TODO: Hookup with API when available }}
@@ -31,32 +30,15 @@
       </section>
 
       {{! Header }}
-      {{! @TODO: Componentize }}
-      <section class="library-result-header clearfix">
-        <strong>Showing 25 of 235</strong>
-        <div class="library-filters">
-          <form class="form-inline">
-            <label class="mr-sm-2" for="inlineFormCustomSelect">Per page:</label>
-            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-              <option selected>25</option>
-              <option value="1">50</option>
-              <option value="2">100</option>
-              <option value="3">200</option>
-            </select>
-          </form>
-          <form class="form-inline">
-            <label class="mr-sm-2" for="inlineFormCustomSelect">Sort by:</label>
-            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-              <option selected>Date Watched: Recent First</option>
-              <option value="1">Date Watched: Oldest First</option>
-              <option value="2">Rating: High to Low</option>
-              <option value="3">Rating: Low to High</option>
-              <option value="4">Length: Shortest First</option>
-              <option value="5">Length: Longest First</option>
-            </select>
-          </form>
-        </div>
-      </section>
+      {{users/library/library-header
+        class="library-result-header clearfix"
+        tagName="section"
+        entries=entries
+        limit=limit
+        sort=sort
+        isLoading=model.taskInstance.isRunning
+        onLimitChange=(action (mut limit))
+        onSortChange=(route-action "changeSort")}}
 
       {{! Kitsu Library Content Ad }}
       {{#unless session.account.isPro}}
@@ -71,8 +53,7 @@
     </div>
 
     {{! Sidebar }}
-    {{! @TODO: This should be sticky instead of expanding }}
-    {{users/library/library-sidebar class="library-sidebar card col-sm-12 col-md-4"
+    {{users/library/library-sidebar class="library-sidebar is-sticky card col-sm-12 col-md-4"
       status=status
       media=media
       onStatusChange=(action (mut status))}}

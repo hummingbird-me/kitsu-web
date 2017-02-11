@@ -6,10 +6,13 @@ import observer from 'ember-metal/observer';
 import { storageFor } from 'ember-local-storage';
 
 export default Controller.extend({
-  queryParams: ['media', 'status', 'preserveScrollPosition'],
+  queryParams: ['media', 'status', 'sort', 'limt', 'preserveScrollPosition'],
   media: 'anime',
   status: 'current',
+  sort: undefined,
+  limit: 25,
   preserveScrollPosition: true,
+
   layoutType: 'grid',
   mediaList: ['anime', 'manga'],
   entries: alias('taskValue'),

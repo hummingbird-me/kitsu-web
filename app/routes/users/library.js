@@ -13,7 +13,8 @@ export default Route.extend(PaginationMixin, {
   queryParams: {
     media: { refreshModel: true },
     status: { refreshModel: true },
-    sort: { refreshModel: true }
+    sort: { refreshModel: true },
+    limit: { refreshModel: true }
   },
   i18n: service(),
   notify: service(),
@@ -24,7 +25,9 @@ export default Route.extend(PaginationMixin, {
    * Restartable task that queries the library entries for the current status,
    * and media type.
    */
-  modelTask: task(function* (media, status, sort) {
+  modelTask: task(function* (params) {
+    const { media, sort, limit } = params;
+    let { status } = params;
     const user = this.modelFor('users');
     const userId = get(user, 'id');
     const options = {};
@@ -56,7 +59,7 @@ export default Route.extend(PaginationMixin, {
         kind: media,
         status
       },
-      page: { offset: 0, limit: 200 }
+      page: { offset: 0, limit }
     });
     const entries = yield get(this, 'store').query('library-entry', options);
     const controller = this.controllerFor(get(this, 'routeName'));
@@ -75,8 +78,8 @@ export default Route.extend(PaginationMixin, {
     }
   },
 
-  model({ media, status, sort }) {
-    return { taskInstance: get(this, 'modelTask').perform(media, status, sort) };
+  model(params) {
+    return { taskInstance: get(this, 'modelTask').perform(params) };
   },
 
   setupController(controller) {
@@ -130,10 +133,9 @@ export default Route.extend(PaginationMixin, {
         });
     },
 
-    changeSort({ type, direction }) {
+    changeSort(sortKey) {
       const controller = this.controllerFor(get(this, 'routeName'));
-      const sort = direction === 'desc' ? `-${type}` : type;
-      set(controller, 'sort', sort);
+      set(controller, 'sort', sortKey);
     }
   }
 });

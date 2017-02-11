@@ -323,7 +323,7 @@ export default {
       }
     },
     library: {
-      library: '{{type}} Library',
+      library: 'My {{type}} Library',
       search: 'Search this library...',
       notes: 'Personal notes about {{title}}',
       public: 'Public',

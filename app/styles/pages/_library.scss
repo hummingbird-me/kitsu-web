@@ -1,5 +1,7 @@
 .library-sidebar {
   padding: 20px;
+  height: 100%;
+  top: 80px
 }
 
 .library-sections {
@@ -110,6 +112,16 @@
     margin-right: 15px;
     &:last-child {
       margin-right: 0;
+    }
+    .library-filter-select {
+      display: inline-block;
+      vertical-align: middle;
+      &.filter-page {
+        width: 80px;
+      }
+      &.filter-sort {
+        width: 200px;
+      }
     }
   }
 }
