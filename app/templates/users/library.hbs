@@ -2,12 +2,14 @@
   <div class="row">
     <div class="library-content col-sm-12 col-md-8">
       <h4>My Anime Library</h4>
+      {{! TODO: Hookup Different Layouts }}
       <span class="list-type">
-        {{! need to do svgs here}}
+        {{! @TODO: need to do svgs here}}
         <a href="#">Grid</a>
         <a href="#">List</a>
       </span>
-      {{! Search }}
+
+      {{! @TODO: Hookup with API when available }}
       <section id="library-search" class="library-search">
         <div class="container">
           <div class="row">
@@ -130,63 +132,9 @@
       </section>
 
     </div>
-    <div class="library-sidebar card col-sm-12 col-md-4">
-      <h6>Filter Library</h6>
-      <ul class="library-sections">
-        <li class="active">
-          <a href="#">
-            All Anime
-            <span class="library-section--count">325</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Currently Watching
-            <span class="library-section--count">325</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Plan to Watch
-            <span class="library-section--count">325</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Completed
-            <span class="library-section--count">325</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            On Hold
-            <span class="library-section--count">325</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Dropped
-            <span class="library-section--count">325</span>
-          </a>
-        </li>
-      </ul>
-      <h6>Tools</h6>
-      <ul class="library-tools">
-        <li>
-          <a href="#">Stats</a>
-        </li>
-        <li>
-          <a href="#">Import / Export</a>
-        </li>
-        <li>
-          <a href="#">Batch Edit</a>
-        </li>
-      </ul>
-      {{! Kitsu Library Sidebar Ad }}
-      {{#unless session.account.isPro}}
-        {{ad-unit slot="6628225068"}}
-      {{/unless}}
-    </div>
+
+    {{! Sidebar }}
+    {{users/library/library-sidebar class="library-sidebar card col-sm-12 col-md-4"}}
   </div>
 </div>
 

@@ -1,0 +1,55 @@
+<h6>Filter Library</h6>
+<ul class="library-sections">
+  <li class="active">
+    <a href="#">
+      All Anime
+      <span class="library-section--count">325</span>
+    </a>
+  </li>
+  <li>
+    <a href="#">
+      Currently Watching
+      <span class="library-section--count">325</span>
+    </a>
+  </li>
+  <li>
+    <a href="#">
+      Plan to Watch
+      <span class="library-section--count">325</span>
+    </a>
+  </li>
+  <li>
+    <a href="#">
+      Completed
+      <span class="library-section--count">325</span>
+    </a>
+  </li>
+  <li>
+    <a href="#">
+      On Hold
+      <span class="library-section--count">325</span>
+    </a>
+  </li>
+  <li>
+    <a href="#">
+      Dropped
+      <span class="library-section--count">325</span>
+    </a>
+  </li>
+</ul>
+
+{{! Tools Section }}
+<h6>Tools</h6>
+<ul class="library-tools">
+  {{! @TODO: Needs Impl. }}
+  <li><a href="#">Stats</a></li>
+  <li><a href={{href-to "settings.imports"}}>Import List</a></li>
+  {{! @TODO: NYI }}
+  <li><a href="#">Export List</a></li>
+</ul>
+
+
+{{! Kitsu Library Sidebar Ad }}
+{{#unless session.account.isPro}}
+  {{ad-unit slot="6628225068"}}
+{{/unless}}
