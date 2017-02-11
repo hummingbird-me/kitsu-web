@@ -52,6 +52,8 @@ export default Session.extend({
       // set reference of the user
       set(this, 'account', user);
       return user;
+    }).catch(() => {
+      this.invalidate();
     });
   },
 
