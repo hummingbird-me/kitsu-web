@@ -1,41 +1,12 @@
 <h6>Filter Library</h6>
 <ul class="library-sections">
-  <li class="active">
-    <a href="#">
-      All Anime
-      <span class="library-section--count">325</span>
-    </a>
-  </li>
-  <li>
-    <a href="#">
-      Currently Watching
-      <span class="library-section--count">325</span>
-    </a>
-  </li>
-  <li>
-    <a href="#">
-      Plan to Watch
-      <span class="library-section--count">325</span>
-    </a>
-  </li>
-  <li>
-    <a href="#">
-      Completed
-      <span class="library-section--count">325</span>
-    </a>
-  </li>
-  <li>
-    <a href="#">
-      On Hold
-      <span class="library-section--count">325</span>
-    </a>
-  </li>
-  <li>
-    <a href="#">
-      Dropped
-      <span class="library-section--count">325</span>
-    </a>
-  </li>
+  {{#each statuses as |_status|}}
+    {{users/library/library-status
+      status=_status
+      media=media
+      isActive=(eq status _status)
+      onClick=onStatusChange}}
+  {{/each}}
 </ul>
 
 {{! Tools Section }}

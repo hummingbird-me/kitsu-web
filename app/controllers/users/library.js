@@ -4,12 +4,12 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import observer from 'ember-metal/observer';
 import { storageFor } from 'ember-local-storage';
-import libraryStatus from 'client/utils/library-status';
 
 export default Controller.extend({
-  queryParams: ['media', 'status'],
+  queryParams: ['media', 'status', 'preserveScrollPosition'],
   media: 'anime',
   status: 'current',
+  preserveScrollPosition: true,
   layoutType: 'grid',
   mediaList: ['anime', 'manga'],
   entries: alias('taskValue'),
@@ -29,11 +29,6 @@ export default Controller.extend({
     });
     return sections;
   }).readOnly(),
-
-  init() {
-    this._super(...arguments);
-    set(this, 'statuses', ['all', ...libraryStatus.getEnumKeys()]);
-  },
 
   _saveFilter: observer('media', 'sort', function() {
     // its possible for this to proc before setupController from the route has fired

@@ -64,11 +64,18 @@
       {{/unless}}
 
       {{! Layout }}
-      {{component (concat "users/library/library-layout-" layoutType)}}
+      {{component (concat "users/library/library-layout-" layoutType)
+        entries=entries
+        isLoading=model.taskInstance.isRunning
+        onPagination=(route-action "updateNextPage" "taskValue")}}
     </div>
 
     {{! Sidebar }}
-    {{users/library/library-sidebar class="library-sidebar card col-sm-12 col-md-4"}}
+    {{! @TODO: This should be sticky instead of expanding }}
+    {{users/library/library-sidebar class="library-sidebar card col-sm-12 col-md-4"
+      status=status
+      media=media
+      onStatusChange=(action (mut status))}}
   </div>
 </div>
 
