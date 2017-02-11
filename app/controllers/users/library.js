@@ -10,6 +10,7 @@ export default Controller.extend({
   queryParams: ['media', 'status'],
   media: 'anime',
   status: 'current',
+  layoutType: 'grid',
   mediaList: ['anime', 'manga'],
   entries: alias('taskValue'),
   lastUsed: storageFor('last-used'),

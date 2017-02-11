@@ -1,12 +1,15 @@
 <div class="container">
   <div class="row">
+    {{! @josh: We need a way to switch between anime/manga }}
+
     <div class="library-content col-sm-12 col-md-8">
       <h4>My Anime Library</h4>
-      {{! TODO: Hookup Different Layouts }}
+
+      {{! @TODO: Hookup Different Layouts }}
       <span class="list-type">
         {{! @TODO: need to do svgs here}}
-        <a href="#">Grid</a>
-        <a href="#">List</a>
+        <a href="#" {{action (mut layoutType) "grid"}}>Grid</a>
+        <a href="#" {{action (mut layoutType) "list"}}>List</a>
       </span>
 
       {{! @TODO: Hookup with API when available }}
@@ -27,6 +30,8 @@
         </div>
       </section>
 
+      {{! Header }}
+      {{! @TODO: Componentize }}
       <section class="library-result-header clearfix">
         <strong>Showing 25 of 235</strong>
         <div class="library-filters">
@@ -58,79 +63,8 @@
         {{ad-unit slot="8096455061"}}
       {{/unless}}
 
-      <section class="media-browse col-sm-12">
-        <div class="media-grid container">
-          <div class="row">
-
-            <div class="poster-wrapper">
-              <div class="grid-poster">
-                <div class="ember-view">
-                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
-                  <div class="poster-overlay">
-                    <a href="/anime/attack-on-titan"></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="poster-wrapper">
-              <div class="grid-poster">
-                <div class="ember-view">
-                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
-                  <div class="poster-overlay">
-                    <a href="/anime/attack-on-titan"></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="poster-wrapper">
-              <div class="grid-poster">
-                <div class="ember-view">
-                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
-                  <div class="poster-overlay">
-                    <a href="/anime/attack-on-titan"></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="poster-wrapper">
-              <div class="grid-poster">
-                <div class="ember-view">
-                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
-                  <div class="poster-overlay">
-                    <a href="/anime/attack-on-titan"></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="poster-wrapper">
-              <div class="grid-poster">
-                <div class="ember-view">
-                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
-                  <div class="poster-overlay">
-                    <a href="/anime/attack-on-titan"></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <section aria-label="navigation">
-        <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-      </section>
-
+      {{! Layout }}
+      {{component (concat "users/library/library-layout-" layoutType)}}
     </div>
 
     {{! Sidebar }}
