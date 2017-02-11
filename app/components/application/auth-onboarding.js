@@ -6,10 +6,8 @@ import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
   component: 'social-auth',
-  componentName: computed('component', {
-    get() {
-      return `application/auth-onboarding/${get(this, 'component')}`;
-    }
+  componentName: computed('component', function() {
+    return `application/auth-onboarding/${get(this, 'component')}`;
   }),
 
   actions: {

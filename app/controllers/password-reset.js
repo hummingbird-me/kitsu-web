@@ -20,11 +20,9 @@ export default Controller.extend(Validations, {
   /**
    * Password passes validation and matches the password confirmation.
    */
-  passwordValid: computed('password', 'passwordConfirm', {
-    get() {
-      return get(this, 'validations.attrs.password.isValid') &&
-        get(this, 'password') === get(this, 'passwordConfirm');
-    }
+  passwordValid: computed('password', 'passwordConfirm', function() {
+    return get(this, 'validations.attrs.password.isValid') &&
+      get(this, 'password') === get(this, 'passwordConfirm');
   }).readOnly(),
 
   /**

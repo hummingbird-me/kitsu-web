@@ -16,21 +16,17 @@ export default Component.extend({
   store: service(),
   isExplanationRequired: equal('reason', 'Other').readOnly(),
 
-  explanationPlaceholder: computed('isExplanationRequired', {
-    get() {
-      const base = 'What\'s wrong with this content?';
-      return get(this, 'isExplanationRequired') ? `${base} (Required)` : `${base} (Optional)`;
-    }
+  explanationPlaceholder: computed('isExplanationRequired', function() {
+    const base = 'What\'s wrong with this content?';
+    return get(this, 'isExplanationRequired') ? `${base} (Required)` : `${base} (Optional)`;
   }).readOnly(),
 
-  canSubmit: computed('isExplanationRequired', 'reason', 'explanation', {
-    get() {
-      let canSubmit = isEmpty(get(this, 'reason')) === false && get(this, 'hasReported') === false;
-      if (get(this, 'isExplanationRequired') === true) {
-        canSubmit = canSubmit && isEmpty(get(this, 'explanation')) === false;
-      }
-      return canSubmit;
+  canSubmit: computed('isExplanationRequired', 'reason', 'explanation', function() {
+    let canSubmit = isEmpty(get(this, 'reason')) === false && get(this, 'hasReported') === false;
+    if (get(this, 'isExplanationRequired') === true) {
+      canSubmit = canSubmit && isEmpty(get(this, 'explanation')) === false;
     }
+    return canSubmit;
   }).readOnly(),
 
   createReport: task(function* () {

@@ -5,10 +5,8 @@ import computed from 'ember-computed';
 import getter from 'client/utils/getter';
 
 export default Component.extend({
-  showableItems: computed('items.[]', 'showCount', {
-    get() {
-      return get(this, 'items').slice(0, get(this, 'showCount'));
-    }
+  showableItems: computed('items.[]', 'showCount', function() {
+    return get(this, 'items').slice(0, get(this, 'showCount'));
   }).readOnly(),
 
   type: getter(function() {

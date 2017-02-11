@@ -21,27 +21,23 @@ export default Component.extend({
     return get(this, 'type') || get(this, 'entry.media.modelType');
   }),
 
-  currentStatus: computed('entry.status', {
-    get() {
-      const status = get(this, 'entry.status');
-      const type = get(this, 'mediaType');
-      return get(this, 'i18n').t(`library.statuses.${type}.${status}`).toString();
-    }
+  currentStatus: computed('entry.status', function() {
+    const status = get(this, 'entry.status');
+    const type = get(this, 'mediaType');
+    return get(this, 'i18n').t(`library.statuses.${type}.${status}`).toString();
   }).readOnly(),
 
-  statuses: computed('entry', 'currentStatus', {
-    get() {
-      const type = get(this, 'mediaType');
-      const statuses = libraryStatus.getEnumKeys().map(key => ({
-        key,
-        string: get(this, 'i18n').t(`library.statuses.${type}.${key}`).toString()
-      }));
-      if (get(this, 'entry')) {
-        const removeKey = get(this, 'i18n').t(REMOVE_KEY).toString();
-        return statuses.concat([{ key: REMOVE_KEY, string: removeKey }]);
-      }
-      return statuses;
+  statuses: computed('entry', 'currentStatus', function() {
+    const type = get(this, 'mediaType');
+    const statuses = libraryStatus.getEnumKeys().map(key => ({
+      key,
+      string: get(this, 'i18n').t(`library.statuses.${type}.${key}`).toString()
+    }));
+    if (get(this, 'entry')) {
+      const removeKey = get(this, 'i18n').t(REMOVE_KEY).toString();
+      return statuses.concat([{ key: REMOVE_KEY, string: removeKey }]);
     }
+    return statuses;
   }).readOnly(),
 
   updateTask: task(function* (status) {

@@ -14,25 +14,19 @@ export default Component.extend({
   media: alias('entry.media'),
   user: alias('entry.user'),
 
-  totalProgressText: computed('media.unitCount', {
-    get() {
-      return get(this, 'media.unitCount') || '-';
-    }
+  totalProgressText: computed('media.unitCount', function() {
+    return get(this, 'media.unitCount') || '-';
   }).readOnly(),
 
-  ratingText: computed('entry.rating', {
-    get() {
-      const rating = get(this, 'entry.rating');
-      return rating ? decimalNumber([rating]) : '-';
-    }
+  ratingText: computed('entry.rating', function() {
+    const rating = get(this, 'entry.rating');
+    return rating ? decimalNumber([rating]) : '-';
   }).readOnly(),
 
-  typeText: computed('media.subtype', {
-    get() {
-      const media = get(this, 'media.modelType');
-      const type = get(this, 'media.subtype');
-      return get(this, 'i18n').t(`media.${media}.type.${type}`);
-    }
+  typeText: computed('media.subtype', function() {
+    const media = get(this, 'media.modelType');
+    const type = get(this, 'media.subtype');
+    return get(this, 'i18n').t(`media.${media}.type.${type}`);
   }).readOnly(),
 
   saveEntry: task(function* () {

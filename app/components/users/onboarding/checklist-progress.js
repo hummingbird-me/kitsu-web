@@ -4,10 +4,8 @@ import get from 'ember-metal/get';
 import { isObject } from 'client/helpers/is-object';
 
 const isObjectComputed = property => (
-  computed(property, {
-    get() {
-      return isObject([get(this, property)]);
-    }
+  computed(property, function() {
+    return isObject([get(this, property)]);
   }).readOnly()
 );
 
@@ -18,9 +16,7 @@ export default Component.extend({
   hasAbout: alias('user.about'),
   hasFavorites: gte('user.favoritesCount', 1),
 
-  ratingsLeft: computed('user.ratingsCount', {
-    get() {
-      return 5 - get(this, 'user.ratingsCount');
-    }
+  ratingsLeft: computed('user.ratingsCount', function() {
+    return 5 - get(this, 'user.ratingsCount');
   }).readOnly()
 });

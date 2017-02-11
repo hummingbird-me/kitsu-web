@@ -29,11 +29,9 @@ export default Controller.extend({
     { value: false, text: 'Show Adult Content (¬‿¬ )' }]
   )),
 
-  isValid: computed('username', 'user.hasDirtyAttributes', 'user.name', {
-    get() {
-      if (get(this, 'user.hasDirtyAttributes')) { return true; }
-      return get(this, 'user.name') !== get(this, 'username');
-    }
+  isValid: computed('username', 'user.hasDirtyAttributes', 'user.name', function() {
+    if (get(this, 'user.hasDirtyAttributes')) { return true; }
+    return get(this, 'user.name') !== get(this, 'username');
   }).readOnly(),
 
   updateProfile: task(function* () {

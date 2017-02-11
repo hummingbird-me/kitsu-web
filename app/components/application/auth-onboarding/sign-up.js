@@ -24,27 +24,23 @@ export default Component.extend({
   hasInvalidEmail: and('user.email', 'user.validations.attrs.email.isInvalid'),
   hasInvalidPassword: and('user.password', 'user.validations.attrs.password.isInvalid'),
 
-  passwordStrength: computed('user.password', {
-    get() {
-      return strength(get(this, 'user.password') || '');
-    }
+  passwordStrength: computed('user.password', function() {
+    return strength(get(this, 'user.password') || '');
   }),
 
-  buttonText: computed('hasValidName', 'hasValidEmail', 'hasValidPassword', {
-    get() {
-      const { hasValidName, hasValidEmail, hasValidPassword }
-        = getProperties(this, 'hasValidName', 'hasValidEmail', 'hasValidPassword');
-      const allValid = hasValidName && hasValidEmail && hasValidPassword;
-      let step = 'base';
-      if (hasValidName && (!hasValidEmail && !hasValidPassword)) {
-        step = 'first';
-      } else if (hasValidEmail && (hasValidName && !hasValidPassword)) {
-        step = 'second';
-      } else if (allValid) {
-        step = 'last';
-      }
-      return get(this, 'i18n').t(`auth.signUp.submit.${step}`);
+  buttonText: computed('hasValidName', 'hasValidEmail', 'hasValidPassword', function() {
+    const { hasValidName, hasValidEmail, hasValidPassword }
+      = getProperties(this, 'hasValidName', 'hasValidEmail', 'hasValidPassword');
+    const allValid = hasValidName && hasValidEmail && hasValidPassword;
+    let step = 'base';
+    if (hasValidName && (!hasValidEmail && !hasValidPassword)) {
+      step = 'first';
+    } else if (hasValidEmail && (hasValidName && !hasValidPassword)) {
+      step = 'second';
+    } else if (allValid) {
+      step = 'last';
     }
+    return get(this, 'i18n').t(`auth.signUp.submit.${step}`);
   }),
 
   init() {

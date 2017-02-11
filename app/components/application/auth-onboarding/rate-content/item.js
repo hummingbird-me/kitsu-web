@@ -7,13 +7,11 @@ import { storageFor } from 'ember-local-storage';
 export default Component.extend({
   ratings: storageFor('onboarding-ratings'),
 
-  rating: computed('item', 'ratings.[]', {
-    get() {
-      const cache = get(this, 'ratings').find(obj => (
-        obj.id === get(this, 'item.id') && obj.type === get(this, 'item.modelType')
-      ));
-      return cache !== undefined ? cache.rating : 0;
-    }
+  rating: computed('item', 'ratings.[]', function() {
+    const cache = get(this, 'ratings').find(obj => (
+      obj.id === get(this, 'item.id') && obj.type === get(this, 'item.modelType')
+    ));
+    return cache !== undefined ? cache.rating : 0;
   }).readOnly(),
 
   actions: {

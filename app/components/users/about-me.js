@@ -7,14 +7,12 @@ export default Component.extend({
   classNames: ['about-me-panel'],
   i18n: service(),
 
-  gender: computed('user.gender', {
-    get() {
-      const gender = get(this, 'user.gender') || 'secret';
-      const trans = get(this, 'i18n').t(`users.about.gender.${gender}`);
-      if (trans.toString().includes('Missing translation')) {
-        return gender;
-      }
-      return trans;
+  gender: computed('user.gender', function() {
+    const gender = get(this, 'user.gender') || 'secret';
+    const trans = get(this, 'i18n').t(`users.about.gender.${gender}`);
+    if (trans.toString().includes('Missing translation')) {
+      return gender;
     }
+    return trans;
   })
 });

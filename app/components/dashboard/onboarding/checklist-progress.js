@@ -8,21 +8,15 @@ export default Component.extend({
   hasComments: gte('user.commentsCount', 1),
   hasLikes: gte('user.likesGivenCount', 3),
 
-  ratingsLeft: computed('user.ratingsCount', {
-    get() {
-      return 5 - get(this, 'user.ratingsCount');
-    }
+  ratingsLeft: computed('user.ratingsCount', function() {
+    return 5 - get(this, 'user.ratingsCount');
   }).readOnly(),
 
-  followsLeft: computed('user.followingCount', {
-    get() {
-      return 5 - get(this, 'user.followingCount');
-    }
+  followsLeft: computed('user.followingCount', function() {
+    return 5 - get(this, 'user.followingCount');
   }).readOnly(),
 
-  likesLeft: computed('user.likesGivenCount', {
-    get() {
-      return 3 - get(this, 'user.likesGivenCount');
-    }
+  likesLeft: computed('user.likesGivenCount', function() {
+    return 3 - get(this, 'user.likesGivenCount');
   }).readOnly()
 });

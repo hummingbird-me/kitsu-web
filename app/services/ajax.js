@@ -10,18 +10,16 @@ export default AjaxService.extend({
   namespace: '/api/edge',
   session: service(),
 
-  headers: computed('session.isAuthenticated', {
-    get() {
-      const headers = {
-        accept: 'application/vnd.api+json'
-      };
-      const isAuthenticated = get(this, 'session.isAuthenticated');
-      if (isAuthenticated) {
-        get(this, 'session').authorize('authorizer:application', (headerName, headerValue) => {
-          headers[headerName] = headerValue;
-        });
-      }
-      return headers;
+  headers: computed('session.isAuthenticated', function() {
+    const headers = {
+      accept: 'application/vnd.api+json'
+    };
+    const isAuthenticated = get(this, 'session.isAuthenticated');
+    if (isAuthenticated) {
+      get(this, 'session').authorize('authorizer:application', (headerName, headerValue) => {
+        headers[headerName] = headerValue;
+      });
     }
-  })
+    return headers;
+  }).readOnly()
 });

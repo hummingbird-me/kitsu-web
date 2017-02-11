@@ -22,11 +22,9 @@ export default Component.extend({
   _usableMedia: null,
   store: service(),
 
-  canPost: computed('content', {
-    get() {
-      return isPresent(get(this, 'content')) &&
-        get(this, 'content.length') <= get(this, 'maxLength');
-    }
+  canPost: computed('content', function() {
+    return isPresent(get(this, 'content')) &&
+      get(this, 'content.length') <= get(this, 'maxLength');
   }).readOnly(),
 
   createPost: task(function* () {

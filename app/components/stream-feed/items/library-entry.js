@@ -23,49 +23,45 @@ export default Component.extend({
     return get(this, 'showAll') === true ? get(this, 'groupByTimeAll') : get(this, 'groupByTimeLimited');
   }),
 
-  groupByTimeLimited: computed('groupByTimeAll', {
-    get() {
-      const groups = get(this, 'groupByTimeAll');
-      const activityCount = get(this, 'group.activities.length');
-      const result = groups.slice(0, 1);
-      if (activityCount > get(this, 'activityLimit')) {
-        set(this, 'hasMoreActivities', true);
-      }
-      return result;
+  groupByTimeLimited: computed('groupByTimeAll', function() {
+    const groups = get(this, 'groupByTimeAll');
+    const activityCount = get(this, 'group.activities.length');
+    const result = groups.slice(0, 1);
+    if (activityCount > get(this, 'activityLimit')) {
+      set(this, 'hasMoreActivities', true);
     }
+    return result;
   }),
 
-  groupByTimeAll: computed('group.activities.@each.isDeleted', {
-    get() {
-      const temp = {};
-      const activities = get(this, 'group.activities').toArray().sort((a, b) => {
-        if (get(a, 'time').isBefore(get(b, 'time'))) {
-          return 1;
-        } else if (get(a, 'time').isAfter(get(b, 'time'))) {
-          return -1;
-        }
-        return 0;
+  groupByTimeAll: computed('group.activities.@each.isDeleted', function() {
+    const temp = {};
+    const activities = get(this, 'group.activities').toArray().sort((a, b) => {
+      if (get(a, 'time').isBefore(get(b, 'time'))) {
+        return 1;
+      } else if (get(a, 'time').isAfter(get(b, 'time'))) {
+        return -1;
+      }
+      return 0;
+    });
+    activities.forEach((activity) => {
+      const time = momentUser(this, get(activity, 'time'));
+      const calendar = time.calendar(null, {
+        sameDay: '[Today]',
+        lastDay: '[Yesterday]',
+        lastWeek: 'dddd',
+        sameElse: 'dddd',
       });
-      activities.forEach((activity) => {
-        const time = momentUser(this, get(activity, 'time'));
-        const calendar = time.calendar(null, {
-          sameDay: '[Today]',
-          lastDay: '[Yesterday]',
-          lastWeek: 'dddd',
-          sameElse: 'dddd',
-        });
-        const key = `${calendar}-${time.format('DD')}`;
-        if (get(temp, key) === undefined) {
-          temp[key] = {
-            calendar,
-            date: time.format('MMM Do'),
-            activities: []
-          };
-        }
-        temp[key].activities.push(activity);
-      });
-      return Object.values(temp);
-    }
+      const key = `${calendar}-${time.format('DD')}`;
+      if (get(temp, key) === undefined) {
+        temp[key] = {
+          calendar,
+          date: time.format('MMM Do'),
+          activities: []
+        };
+      }
+      temp[key].activities.push(activity);
+    });
+    return Object.values(temp);
   }),
 
   actions: {

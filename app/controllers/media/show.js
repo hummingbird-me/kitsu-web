@@ -6,10 +6,8 @@ import { image } from 'client/helpers/image';
 export default Controller.extend({
   media: alias('model'),
 
-  coverImageStyle: computed('media.coverImage', {
-    get() {
-      const coverImage = image(get(this, 'media.coverImage'));
-      return `background-image: url("${coverImage}")`.htmlSafe();
-    }
+  coverImageStyle: computed('media.coverImage', function() {
+    const coverImage = image(get(this, 'media.coverImage'));
+    return `background-image: url("${coverImage}")`.htmlSafe();
   }).readOnly()
 });

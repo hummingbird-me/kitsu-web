@@ -14,13 +14,11 @@ export default Component.extend({
   numRated: 0,
   store: service(),
 
-  numRatedLeft: computed('numRated', {
-    get() {
-      if (get(this, 'numRated') > 5) {
-        return 0;
-      }
-      return 5 - get(this, 'numRated');
+  numRatedLeft: computed('numRated', function() {
+    if (get(this, 'numRated') > 5) {
+      return 0;
     }
+    return 5 - get(this, 'numRated');
   }),
 
   query: task(function* () {

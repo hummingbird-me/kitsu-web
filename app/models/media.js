@@ -33,16 +33,14 @@ export default Base.extend({
   reviews: hasMany('review'),
 
   unitCount: or('episodeCount', 'chapterCount'),
-  computedTitle: computed('session.account.titleLanguagePreference', 'titles', {
-    get() {
-      if (!get(this, 'session.hasUser')) {
-        return get(this, 'canonicalTitle');
-      }
-      const preference = get(this, 'session.account.titleLanguagePreference').toLowerCase();
-      const key = getTitleField(preference);
-      return key !== undefined ? get(this, `titles.${key}`) || get(this, 'canonicalTitle') :
-        get(this, 'canonicalTitle');
+  computedTitle: computed('session.account.titleLanguagePreference', 'titles', function() {
+    if (!get(this, 'session.hasUser')) {
+      return get(this, 'canonicalTitle');
     }
+    const preference = get(this, 'session.account.titleLanguagePreference').toLowerCase();
+    const key = getTitleField(preference);
+    return key !== undefined ? get(this, `titles.${key}`) || get(this, 'canonicalTitle') :
+      get(this, 'canonicalTitle');
   }).readOnly(),
 
   totalRatings: computed('ratingFrequencies', function() {

@@ -7,10 +7,8 @@ export default Controller.extend({
   isEditing: false,
   user: alias('model'),
 
-  coverImageStyle: computed('user.coverImage', {
-    get() {
-      const coverImage = image(get(this, 'user.coverImage'));
-      return `background-image: url("${coverImage}")`.htmlSafe();
-    }
+  coverImageStyle: computed('user.coverImage', function() {
+    const coverImage = image(get(this, 'user.coverImage'));
+    return `background-image: url("${coverImage}")`.htmlSafe();
   }).readOnly()
 });

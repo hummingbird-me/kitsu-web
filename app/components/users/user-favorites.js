@@ -4,13 +4,11 @@ import computed from 'ember-computed';
 
 const favoriteComputed = (...args) => {
   const type = args.pop();
-  return computed(...args, {
-    get() {
-      const records = get(this, 'user.favorites') || [];
-      return records.filter(record => (
-        get(record, 'item.modelType') === type
-      )).rejectBy('isDeleted').sortBy('favRank').toArray();
-    }
+  return computed(...args, function() {
+    const records = get(this, 'user.favorites') || [];
+    return records.filter(record => (
+      get(record, 'item.modelType') === type
+    )).rejectBy('isDeleted').sortBy('favRank').toArray();
   }).readOnly();
 };
 

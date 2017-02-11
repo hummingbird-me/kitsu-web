@@ -9,11 +9,9 @@ export default Ember.Component.extend({
   isOpened: false,
   query: undefined,
 
-  inputClass: computed('isOpened', 'query', {
-    get() {
-      const isActive = get(this, 'isOpened') || isPresent(get(this, 'query'));
-      return `site-search__input ${isActive ? 'active' : ''}`;
-    }
+  inputClass: computed('isOpened', 'query', function() {
+    const isActive = get(this, 'isOpened') || isPresent(get(this, 'query'));
+    return `site-search__input ${isActive ? 'active' : ''}`;
   }).readOnly(),
 
   didInsertElement() {

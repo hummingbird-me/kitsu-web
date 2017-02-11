@@ -30,11 +30,9 @@ export default Component.extend(ClipboardMixin, {
     return !time.isBefore();
   }),
 
-  commentEdited: computed('comment.createdAt', 'comment.editedAt', {
-    get() {
-      if (!get(this, 'comment.editedAt')) { return false; }
-      return !get(this, 'comment.createdAt').isSame(get(this, 'comment.editedAt'));
-    }
+  commentEdited: computed('comment.createdAt', 'comment.editedAt', function() {
+    if (!get(this, 'comment.editedAt')) { return false; }
+    return !get(this, 'comment.createdAt').isSame(get(this, 'comment.editedAt'));
   }).readOnly(),
 
   getReplies: task(function* () {

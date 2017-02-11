@@ -10,10 +10,8 @@ const MAGIC_NUMBER = 7;
 export default Controller.extend({
   lastUsed: storageFor('last-used'),
 
-  streamId: computed('streamType', 'session.hasUser', {
-    get() {
-      return get(this, 'streamType') === 'global' ? 'global' : get(this, 'session.account.id');
-    }
+  streamId: computed('streamType', 'session.hasUser', function() {
+    return get(this, 'streamType') === 'global' ? 'global' : get(this, 'session.account.id');
   }).readOnly(),
 
   updateStreamType: observer('session.hasUser', 'session.account.followingCount', function() {

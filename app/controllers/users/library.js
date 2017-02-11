@@ -18,17 +18,15 @@ export default Controller.extend({
    * Filters the entries by their status and state into an object of
    * `{ status: entries, ... }`
    */
-  sections: computed('entries.@each.{status,isDeleted}', {
-    get() {
-      const sections = {};
-      get(this, 'statuses').slice(1).forEach((status) => {
-        const entries = get(this, 'entries')
-          .filterBy('status', status)
-          .filterBy('isDeleted', false);
-        sections[status] = entries;
-      });
-      return sections;
-    }
+  sections: computed('entries.@each.{status,isDeleted}', function() {
+    const sections = {};
+    get(this, 'statuses').slice(1).forEach((status) => {
+      const entries = get(this, 'entries')
+        .filterBy('status', status)
+        .filterBy('isDeleted', false);
+      sections[status] = entries;
+    });
+    return sections;
   }).readOnly(),
 
   init() {

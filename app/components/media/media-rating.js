@@ -6,39 +6,33 @@ import { decimalNumber } from 'client/helpers/decimal-number';
 const THRESHOLD = 10;
 
 export default Component.extend({
-  hasCommunityRatings: computed('media.ratingFrequencies', {
-    get() {
-      const ratingFrequencies = get(this, 'media.ratingFrequencies');
-      const ratingCount = Object.keys(ratingFrequencies).reduce((prev, curr) => {
-        if (curr === null || (parseFloat(curr) % 0.5) !== 0) return prev;
-        return prev + parseInt(ratingFrequencies[curr], 10);
-      }, 0);
-      return ratingCount > THRESHOLD;
-    }
+  hasCommunityRatings: computed('media.ratingFrequencies', function() {
+    const ratingFrequencies = get(this, 'media.ratingFrequencies');
+    const ratingCount = Object.keys(ratingFrequencies).reduce((prev, curr) => {
+      if (curr === null || (parseFloat(curr) % 0.5) !== 0) return prev;
+      return prev + parseInt(ratingFrequencies[curr], 10);
+    }, 0);
+    return ratingCount > THRESHOLD;
   }).readOnly(),
 
-  totalRatings: computed('media.ratingFrequencies', {
-    get() {
-      return get(this, 'media.totalRatings').toLocaleString();
-    }
+  totalRatings: computed('media.ratingFrequencies', function() {
+    return get(this, 'media.totalRatings').toLocaleString();
   }).readOnly(),
 
   totalFavorites: computed('media.favoritesCount', function() {
     return get(this, 'media.favoritesCount').toLocaleString();
   }).readOnly(),
 
-  percentageClass: computed('media.ratingFrequencies', {
-    get() {
-      const liked = this._calculatePercentage();
-      if (liked <= 25) {
-        return 'percent-quarter-1';
-      } else if (liked <= 50) {
-        return 'percent-quarter-2';
-      } else if (liked <= 75) {
-        return 'percent-quarter-3';
-      } else if (liked <= 100) {
-        return 'percent-quarter-4';
-      }
+  percentageClass: computed('media.ratingFrequencies', function() {
+    const liked = this._calculatePercentage();
+    if (liked <= 25) {
+      return 'percent-quarter-1';
+    } else if (liked <= 50) {
+      return 'percent-quarter-2';
+    } else if (liked <= 75) {
+      return 'percent-quarter-3';
+    } else if (liked <= 100) {
+      return 'percent-quarter-4';
     }
   }).readOnly(),
 

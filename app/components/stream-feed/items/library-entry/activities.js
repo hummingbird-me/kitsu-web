@@ -4,40 +4,36 @@ import get from 'ember-metal/get';
 import { strictInvokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
-  shouldGroup: computed('feedId', {
-    get() {
-      const [feed] = get(this, 'feedId').split(':');
-      return feed !== 'user_aggr';
-    }
+  shouldGroup: computed('feedId', function() {
+    const [feed] = get(this, 'feedId').split(':');
+    return feed !== 'user_aggr';
   }).readOnly(),
 
-  groupedActivities: computed('activities.@each.isDeleted', {
-    get() {
-      if (get(this, 'shouldGroup') === false) {
-        return get(this, 'activities')
-          .filterBy('isDeleted', false)
-          .map(activity => ({ activity })).slice(0, get(this, 'activityLimit'));
-      }
-      const groups = {};
-      const activities = get(this, 'activities').filterBy('isDeleted', false);
-      activities.forEach((activity) => {
-        const key = this._getGroupingKey(activity);
-        groups[key] = groups[key] || [];
-        groups[key].addObject(activity);
-      });
-      const result = [];
-      Object.keys(groups).forEach((key) => {
-        const group = groups[key];
-        const others = group.toArray().slice(1).reject(a => (
-          get(a, 'actor.id') === get(group, 'firstObject.actor.id')
-        ));
-        result.addObject({
-          activity: get(group, 'firstObject'),
-          others
-        });
-      });
-      return result.slice(0, get(this, 'activityLimit'));
+  groupedActivities: computed('activities.@each.isDeleted', function() {
+    if (get(this, 'shouldGroup') === false) {
+      return get(this, 'activities')
+        .filterBy('isDeleted', false)
+        .map(activity => ({ activity })).slice(0, get(this, 'activityLimit'));
     }
+    const groups = {};
+    const activities = get(this, 'activities').filterBy('isDeleted', false);
+    activities.forEach((activity) => {
+      const key = this._getGroupingKey(activity);
+      groups[key] = groups[key] || [];
+      groups[key].addObject(activity);
+    });
+    const result = [];
+    Object.keys(groups).forEach((key) => {
+      const group = groups[key];
+      const others = group.toArray().slice(1).reject(a => (
+        get(a, 'actor.id') === get(group, 'firstObject.actor.id')
+      ));
+      result.addObject({
+        activity: get(group, 'firstObject'),
+        others
+      });
+    });
+    return result.slice(0, get(this, 'activityLimit'));
   }).readOnly(),
 
 

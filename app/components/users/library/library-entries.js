@@ -8,12 +8,10 @@ export default Component.extend({
   i18n: service(),
 
   // Returns the i18n version of our status
-  statusName: computed('status', {
-    get() {
-      const status = get(this, 'status');
-      const mediaType = get(this, 'mediaType');
-      return get(this, 'i18n').t(`library.statuses.${mediaType}.${status}`);
-    }
+  statusName: computed('status', function() {
+    const status = get(this, 'status');
+    const mediaType = get(this, 'mediaType');
+    return get(this, 'i18n').t(`library.statuses.${mediaType}.${status}`);
   }),
 
   // Displays the number of entries within this section

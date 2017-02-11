@@ -23,25 +23,20 @@ export default Component.extend({
   /**
    * Count notifications that are unseen.
    */
-  count: computed('groups.@each.isSeen', {
-    get() {
-      const groups = get(this, 'groups');
-      if (groups === undefined) {
-        return 0;
-      }
-      return groups.reduce((prev, curr) => (prev + (get(curr, 'isSeen') ? 0 : 1)), 0);
+  count: computed('groups.@each.isSeen', function() {
+    const groups = get(this, 'groups');
+    if (groups === undefined) {
+      return 0;
     }
+    return groups.reduce((prev, curr) => (prev + (get(curr, 'isSeen') ? 0 : 1)), 0);
   }),
 
-  hasUnread: computed('groups.@each.isRead', {
-    get() {
-      const groups = get(this, 'groups');
-      if (groups === undefined || groups.length === 0) {
-        return false;
-      }
-
-      return groups.some(curr => (!get(curr, 'isRead')));
+  hasUnread: computed('groups.@each.isRead', function() {
+    const groups = get(this, 'groups');
+    if (groups === undefined || groups.length === 0) {
+      return false;
     }
+    return groups.some(curr => (!get(curr, 'isRead')));
   }),
 
   getNotifications: task(function* (limit = 15) {

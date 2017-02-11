@@ -11,11 +11,9 @@ export default Controller.extend({
   notify: service(),
   user: alias('session.account'),
 
-  isValid: computed('user.password', 'passwordConfirm', {
-    get() {
-      return isPresent(get(this, 'user.password')) &&
-        get(this, 'user.password') === get(this, 'passwordConfirm');
-    }
+  isValid: computed('user.password', 'passwordConfirm', function() {
+    return isPresent(get(this, 'user.password')) &&
+      get(this, 'user.password') === get(this, 'passwordConfirm');
   }).readOnly(),
 
   updatePassword: task(function* () {

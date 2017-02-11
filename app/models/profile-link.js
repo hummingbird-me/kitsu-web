@@ -12,10 +12,8 @@ export default Base.extend({
   user: belongsTo('user', { inverse: 'profileLinks' }),
 
   site: alias('profileLinkSite'),
-  isURL: computed('url', {
-    get() {
-      const url = get(this, 'url');
-      return !regularExpressions.url.test(url);
-    }
+  isURL: computed('url', function() {
+    const url = get(this, 'url');
+    return !regularExpressions.url.test(url);
   }).readOnly()
 });
