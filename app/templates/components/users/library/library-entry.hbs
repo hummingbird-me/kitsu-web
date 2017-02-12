@@ -43,7 +43,7 @@
 
       {{! Entry Progress }}
       <div class="entry-progress">
-        {{#if (can-mutate user entry)}}
+        {{#if (can "edit library-entry" entry user=user)}}
           {{one-way-number entry.progress
             min=0
             max=media.unitCount
@@ -102,7 +102,7 @@
           {{text-clipper media.synopsis length=350 options=(hash maxLines=3)}}
         </p>
         <div class="entry-notes">
-          {{#if (can-mutate user entry)}}
+          {{#if (can "edit library-entry" entry user=user)}}
             {{one-way-textarea entry.notes
               update=(queue
                 (action (mut entry.notes))
@@ -124,7 +124,7 @@
       {{! Options }}
       <div class="col-md-12 col-lg-4 columns">
         <div class="drop-options">
-          {{#if (can-mutate user entry)}}
+         {{#if (can "edit library-entry" entry user=user)}}
             {{! Library Status }}
             <div class="status-select">
               {{library-dropdown
@@ -142,7 +142,7 @@
 
           <div class="dropdown-rating">
             {{! Privacy }}
-            {{#if (can-mutate user entry)}}
+            {{#if (can "edit library-entry" entry user=user)}}
               {{#bootstrap/bs-dropdown as |dropdown|}}
                 {{#dropdown.button}}
                   {{if entry.private (t "users.library.private") (t "users.library.public")}}
@@ -169,7 +169,7 @@
             {{! Rating }}
             <div class="rating-options">
               {{star-rating entry.rating
-                readOnly=(not (can-mutate user entry))
+                readOnly=(cannot "edit library-entry" entry user=user)
                 onClick=(queue
                   (action (mut entry.rating))
                   (perform saveEntry)
@@ -180,7 +180,7 @@
 
           {{! Rewatch }}
           <div class="rewatch">
-            {{#if (can-mutate user entry)}}
+            {{#if (can "edit library-entry" entry user=user)}}
               <button type="button" class="button" {{action (queue
                 (action (mut entry.reconsumeCount) (inc entry.reconsumeCount))
                 (action (mut entry.progress) 0)
@@ -192,7 +192,7 @@
 
             <label>
               <span>{{t (concat "users.library.reconsumed." media.modelType)}}</span>
-              {{#if (can-mutate user entry)}}
+              {{#if (can "edit library-entry" entry user=user)}}
                 {{one-way-number entry.reconsumeCount
                   update=(queue
                     (pipe-action (action "sanitizeNumber") (action (mut entry.reconsumeCount)))

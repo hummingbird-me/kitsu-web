@@ -196,7 +196,7 @@
           {{/if}}
 
           {{! Editing/Deleting Options }}
-          {{#if (can-mutate post.user post)}}
+          {{#if (can "edit post" post)}}
             {{#if isEditable}}
               <a class="dropdown-item" href="#" {{action (toggle "editModalOpened" this)}}>Edit Post</a>
               {{#if editModalOpened}}

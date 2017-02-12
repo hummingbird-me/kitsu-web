@@ -117,7 +117,7 @@
     streamType="media_aggr"
     streamId=(concat (capitalize media.modelType) "-" media.id)
     streamFilter="user"
-    readOnly=(not session.hasUser)
+    readOnly=(cannot "write post")
     media=media
   }}
 </section>

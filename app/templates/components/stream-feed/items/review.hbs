@@ -105,7 +105,7 @@
           {{/if}}
 
           {{! edit/delete review }}
-          {{#if (can-mutate review.user review)}}
+          {{#if (can "edit review" review)}}
             <a href="#" class="dropdown-item" {{action (toggle "editReview" this)}}>Edit Review</a>
             {{#if editReview}}
               {{to-elsewhere named="modal" send=(component "modals/media-review"

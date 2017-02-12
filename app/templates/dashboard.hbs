@@ -16,7 +16,7 @@
         streamType=streamType
         streamId=streamId
         streamFilter=(if (eq streamType "global") "user" "all")
-        readOnly=(not session.hasUser)}}
+        readOnly=(cannot "write post")}}
           {{#if session.hasUser}}
             <div class="d-inline">
               <a href="#" class="{{if (eq streamType "timeline") "active"}}" {{action "switchFeed" "timeline"}}>Following</a>
