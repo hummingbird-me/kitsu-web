@@ -20,9 +20,9 @@ export default Controller.extend({
     Object.keys(COUNTRIES).map(key => ({ id: key, text: COUNTRIES[key] })).sortBy('text')
   )),
 
-  titles: getter(() => ['Canonical', 'Romanized', 'English'].map(key => (
-    { id: key.toLowerCase(), text: key }
-  ))),
+  titles: getter(() => (
+    ['Canonical', 'Romanized', 'English'].map(key => ({ id: key.toLowerCase(), text: key }))
+  )),
 
   filters: getter(() => (
     [{ value: true, text: 'Hide Adult Content' },
@@ -47,6 +47,43 @@ export default Controller.extend({
 
   init() {
     this._super(...arguments);
+    // copy so we aren't manipulating the user's name directly
     set(this, 'username', get(this, 'user.name'));
+
+    // find our object associated with our user properties
+    const language = get(this, 'languages')
+      .find(item => get(item, 'id') === get(this, 'user.language'));
+    set(this, 'selectedLanguage', language);
+    const country = get(this, 'countries')
+      .find(item => get(item, 'id') === get(this, 'user.country'));
+    set(this, 'selectedCountry', country);
+    const title = get(this, 'titles')
+      .find(item => get(item, 'id') === get(this, 'user.titleLanguagePreference'));
+    set(this, 'selectedTitle', title);
+    const filter = get(this, 'filters')
+      .find(item => get(item, 'value') === get(this, 'user.sfwFilter'));
+    set(this, 'selectedFilter', filter);
+  },
+
+  actions: {
+    changeLanguage(language) {
+      set(this, 'selectedLanguage', language);
+      set(this, 'user.language', get(language, 'id'));
+    },
+
+    changeCountry(country) {
+      set(this, 'selectedCountry', country);
+      set(this, 'user.country', get(country, 'id'));
+    },
+
+    changeTitle(title) {
+      set(this, 'selectedTitle', title);
+      set(this, 'user.titleLanguagePreference', get(title, 'id'));
+    },
+
+    changeFilter(filter) {
+      set(this, 'selectedFilter', filter);
+      set(this, 'user.sfwFilter', get(filter, 'value'));
+    }
   }
 });

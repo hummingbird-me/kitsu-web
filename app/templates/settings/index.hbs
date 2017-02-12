@@ -30,14 +30,15 @@
   <div class="form-group row">
     <label class="col-xs-4 col-form-label">Language</label>
     <div class="col-xs-8">
-      {{one-way-select user.language
-        class="form-control"
+      {{#power-select
+        renderInPlace=true
+        selected=(or selectedLanguage (get languages "firstObject"))
         options=languages
-        optionValuePath="id"
-        optionLabelPath="text"
-        optionTargetPath="id"
-        update=(action (mut user.language))
+        searchEnabled=false
+        onchange=(action "changeLanguage") as |language|
       }}
+        {{language.text}}
+      {{/power-select}}
       <small>Interested in helping translate? <a href="mailto:josh@kitsu.io">Let's talk!</a></small>
     </div>
   </div>
@@ -45,11 +46,14 @@
   <div class="form-group row">
     <label class="col-xs-4 col-form-label">Time Zone</label>
     <div class="col-xs-8">
-      {{one-way-select (or user.timeZone timezoneGuess)
-        class="form-control"
+      {{#power-select
+        renderInPlace=true
+        selected=(or user.timeZone timezoneGuess)
         options=timezones
-        update=(action (mut user.timeZone))
+        onchange=(action (mut user.timeZone)) as |timezone|
       }}
+        {{timezone}}
+      {{/power-select}}
     </div>
   </div>
 </div>
@@ -62,16 +66,16 @@
   <div class="form-group row">
     <label class="col-xs-4 col-form-label">Country</label>
     <div class="col-xs-8">
-      {{one-way-select user.country
+      {{#power-select
+        renderInPlace=true
         options=countries
-        optionValuePath="id"
-        optionLabelPath="text"
-        optionTargetPath="id"
-        prompt="Worldwide"
-        promptIsSelectable=true
-        update=(action (mut user.country))
-        class="form-control"
+        selected=selectedCountry
+        searchField="text"
+        placeholder="Worldwide"
+        onchange=(action "changeCountry") as |country|
       }}
+        {{country.text}}
+      {{/power-select}}
     </div>
   </div>
 
@@ -79,14 +83,15 @@
   <div class="form-group row">
     <label class="col-xs-4 col-form-label">Titles</label>
     <div class="col-xs-8">
-      {{one-way-select user.titleLanguagePreference
+      {{#power-select
+        renderInPlace=true
         options=titles
-        optionValuePath="id"
-        optionLabelPath="text"
-        optionTargetPath="id"
-        update=(action (mut user.titleLanguagePreference))
-        class="form-control"
+        selected=selectedTitle
+        searchEnabled=false
+        onchange=(action "changeTitle") as |title|
       }}
+        {{title.text}}
+      {{/power-select}}
       <small>How media titles will be displayed.</small>
     </div>
   </div>
@@ -95,14 +100,15 @@
   <div class="form-group row">
     <label class="col-xs-4 col-form-label">Adult Content</label>
     <div class="col-xs-8">
-      {{one-way-select user.sfwFilter
+      {{#power-select
+        renderInPlace=true
         options=filters
-        optionValuePath="value"
-        optionLabelPath="text"
-        optionTargetPath="value"
-        update=(action (mut user.sfwFilter))
-        class="form-control"
+        selected=selectedFilter
+        searchEnabled=false
+        onchange=(action "changeFilter") as |filter|
       }}
+        {{filter.text}}
+      {{/power-select}}
       <small>With adult content hidden, you won't see R18+ media in the feed, libraries, or search.</small>
     </div>
   </div>
