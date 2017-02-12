@@ -9,7 +9,7 @@ export default Controller.extend({
   queryParams: ['media', 'status', 'sort', 'limt', 'preserveScrollPosition'],
   media: 'anime',
   status: 'current',
-  sort: undefined,
+  sort: '-updated_at',
   limit: 25,
   preserveScrollPosition: true,
 

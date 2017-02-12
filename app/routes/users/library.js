@@ -4,9 +4,7 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 import { storageFor } from 'ember-local-storage';
-import libraryStatus from 'client/utils/library-status';
 import PaginationMixin from 'client/mixins/routes/pagination';
-import errorMessages from 'client/utils/error-messages';
 import getTitleField from 'client/utils/get-title-field';
 
 export default Route.extend(PaginationMixin, {
@@ -28,28 +26,18 @@ export default Route.extend(PaginationMixin, {
   modelTask: task(function* (params) {
     const { media, sort, limit } = params;
     let { status } = params;
+
     const user = this.modelFor('users');
     const userId = get(user, 'id');
-    const options = {};
+    const options = {
+      sort: this._getUsableSort(sort)
+    };
 
-    // apply user sort selection
-    if (sort !== undefined) {
-      Object.assign(options, { sort: this._getUsableSort(sort) });
-    }
-
+    // if we are getting all, then sort by status first
     if (status === 'all') {
-      status = '1,2,3,4,5'; // eslint-disable-line no-param-reassign
-      if (sort !== undefined) {
-        Object.assign(options, { sort: ['status', get(options, 'sort')].join(',') });
-      } else {
-        Object.assign(options, { sort: 'status,-updated_at' });
-      }
-    } else {
       // eslint-disable-next-line no-param-reassign
-      status = libraryStatus.enumToNumber(status);
-      if (sort === undefined) {
-        Object.assign(options, { sort: '-updated_at' });
-      }
+      status = 'current,planned,completed,on_hold,dropped';
+      Object.assign(options, { sort: ['status', get(options, 'sort')].join(',') });
     }
 
     Object.assign(options, {
@@ -116,21 +104,19 @@ export default Route.extend(PaginationMixin, {
   actions: {
     saveEntry(entry) {
       if (get(entry, 'validations.isValid') === true) {
-        return entry.save()
-          .then(() => get(this, 'notify').success('Your library entry was updated!'))
-          .catch((err) => {
-            entry.rollbackAttributes();
-            get(this, 'notify').error(errorMessages(err));
-          });
+        // @TODO: Feedback should be removed from notify
+        return entry.save().then(() => {
+          get(this, 'notify').success('Your library entry was updated!');
+        }).catch(() => {
+          entry.rollbackAttributes();
+        });
       }
     },
 
     deleteEntry(entry) {
-      return entry.destroyRecord()
-        .catch((err) => {
-          entry.rollbackAttributes();
-          get(this, 'notify').error(errorMessages(err));
-        });
+      return entry.destroyRecord().catch(() => {
+        entry.rollbackAttributes();
+      });
     },
 
     changeSort(sortKey) {
