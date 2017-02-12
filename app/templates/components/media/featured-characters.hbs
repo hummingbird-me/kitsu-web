@@ -1,7 +1,8 @@
 <div class="favorite-characters-panel">
-  <h5>Characters</h5>
+  <h5>{{t "media.show.summary.characters.header"}}</h5>
   <div class="favorite-media-grid row">
     {{#if taskInstance.isRunning}}
+      {{! @TODO: Custom Loader }}
       <div class="text-xs-center w-100 m-t-1 m-b-1">
         {{loading-spinner size="large"}}
       </div>
@@ -19,7 +20,7 @@
       {{/each}}
       <div class="text-xs-center w-100">
         <a href={{href-to (concat media.modelType ".show.characters")}} class="button button--primary">
-          View All
+          {{t "media.show.summary.characters.more"}}
         </a>
       </div>
     {{else}}

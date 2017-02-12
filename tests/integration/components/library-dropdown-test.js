@@ -3,11 +3,15 @@ import hbs from 'htmlbars-inline-precompile';
 import libraryStatus from 'client/utils/library-status';
 
 moduleForComponent('library-dropdown', 'Integration | Component | library-dropdown', {
-  integration: true
+  integration: true,
+  beforeEach() {
+    const service = this.container.lookup('service:intl');
+    service.setLocale('en-us');
+  }
 });
 
 test('it lists current <-> dropped when entry is undefined', function(assert) {
-  this.render(hbs`{{library-dropdown}}`);
+  this.render(hbs`{{library-dropdown type="anime"}}`);
   const statuses = libraryStatus.getEnumKeys();
   const $el = this.$('[data-test-selector="library-dropdown-item"]');
   assert.equal($el.length, statuses.length);
@@ -15,7 +19,7 @@ test('it lists current <-> dropped when entry is undefined', function(assert) {
 
 test('it adds the remove option when entry is defined', function(assert) {
   this.set('entry', { status: 'current' });
-  this.render(hbs`{{library-dropdown entry=entry}}`);
+  this.render(hbs`{{library-dropdown entry=entry type="anime"}}`);
   const element = this.$('[data-test-selector="library-dropdown-item"]:last');
   assert.equal(element.text().trim(), 'Remove from Library');
 });

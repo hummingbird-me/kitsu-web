@@ -29,12 +29,12 @@
     <div class="container">
       <div class="row">
         <div class="nav navbar-nav">
-          {{link-to (t "media.routes.show.nav.summary") (concat media.modelType ".show.index") class="nav-item nav-link"}}
+          {{link-to (t "media.show.navigation.summary") (concat media.modelType ".show.index") class="nav-item nav-link"}}
           {{#if (eq media.modelType "anime")}}
-            {{link-to (t "media.routes.show.nav.episodes") (concat media.modelType ".show.episodes") class="nav-item nav-link"}}
+            {{link-to (t "media.show.navigation.episodes") (concat media.modelType ".show.episodes") class="nav-item nav-link"}}
           {{/if}}
-          {{link-to (t "media.routes.show.nav.characters") (concat media.modelType ".show.characters") class="nav-item nav-link"}}
-          {{link-to (t "media.routes.show.nav.reviews") (concat media.modelType ".show.reviews") class="nav-item nav-link"}}
+          {{link-to (t "media.show.navigation.characters") (concat media.modelType ".show.characters") class="nav-item nav-link"}}
+          {{link-to (t "media.show.navigation.reviews") (concat media.modelType ".show.reviews") class="nav-item nav-link"}}
         </div>
       </div>
     </div>

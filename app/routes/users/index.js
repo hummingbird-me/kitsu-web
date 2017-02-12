@@ -4,7 +4,7 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 
 export default Route.extend({
-  i18n: service(),
+  intl: service(),
 
   model() {
     const user = this.modelFor('users');
@@ -21,6 +21,6 @@ export default Route.extend({
   titleToken() {
     const model = this.modelFor('users');
     const name = get(model, 'name');
-    return get(this, 'i18n').t('titles.users.index', { user: name });
+    return get(this, 'intl').t('titles.users.index', { user: name });
   }
 });

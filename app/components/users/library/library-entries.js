@@ -5,13 +5,13 @@ import service from 'ember-service/inject';
 import getter from 'client/utils/getter';
 
 export default Component.extend({
-  i18n: service(),
+  intl: service(),
 
-  // Returns the i18n version of our status
+  // Returns the intl version of our status
   statusName: computed('status', function() {
     const status = get(this, 'status');
-    const mediaType = get(this, 'mediaType');
-    return get(this, 'i18n').t(`library.statuses.${mediaType}.${status}`);
+    const type = get(this, 'mediaType');
+    return get(this, 'intl').t(`library-shared.${status}`, { type });
   }),
 
   // Displays the number of entries within this section

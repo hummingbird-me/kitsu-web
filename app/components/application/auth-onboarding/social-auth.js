@@ -7,7 +7,6 @@ import { underscore } from 'ember-string';
 import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
-  i18n: service(),
   facebook: service(),
   notify: service(),
 

@@ -6,7 +6,7 @@ import { task } from 'ember-concurrency';
 import PaginationMixin from 'client/mixins/routes/pagination';
 
 export default Route.extend(PaginationMixin, {
-  i18n: service(),
+  intl: service(),
 
   modelTask: task(function* (user) {
     const results = yield get(this, 'store').query('review', {
@@ -27,6 +27,6 @@ export default Route.extend(PaginationMixin, {
   titleToken() {
     const model = this.modelFor('users');
     const name = get(model, 'name');
-    return get(this, 'i18n').t('titles.users.reviews', { user: name });
+    return get(this, 'intl').t('titles.users.reviews', { user: name });
   }
 });

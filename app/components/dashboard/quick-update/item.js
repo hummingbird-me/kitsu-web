@@ -9,7 +9,7 @@ import { strictInvokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
   classNames: ['quick-update-item'],
-  i18n: service(),
+  intl: service(),
   store: service(),
   isCompleted: equal('entry.status', 'completed').readOnly(),
 
@@ -23,17 +23,18 @@ export default Component.extend({
     return get(this, 'nextProgress') === get(this, 'entry.media.unitCount');
   }).readOnly(),
 
-  currentProgress: computed('nextProgress', function() {
-    const num = get(this, 'nextProgress');
-    const key = get(this, 'entry.media.modelType');
-    return get(this, 'i18n').t(`dashboard.quickUpdate.progress.${key}`, { num });
-  }).readOnly(),
-
-  episodeText: computed('isCompleted', 'currentProgress', 'entry.nextUnit', function() {
+  /**
+   * Get the translated subtext for the quick update item
+   */
+  episodeText: computed('isCompleted', 'nextProgress', 'entry.nextUnit', function() {
+    // Completed?
     if (get(this, 'isCompleted')) {
-      return get(this, 'i18n').t('dashboard.quickUpdate.complete');
+      return get(this, 'intl').t('dashboard.quick-update.media.complete');
     }
-    const text = get(this, 'currentProgress');
+    const type = get(this, 'entry.media.modelType');
+    const num = get(this, 'nextProgress');
+    const text = get(this, 'intl').t('dashboard.quick-update.media.episode', { type, num });
+    // do we have the next unit information for this entry?
     const nextUnit = get(this, 'entry').belongsTo('nextUnit').value();
     if (nextUnit) {
       const title = get(this, 'entry.nextUnit.canonicalTitle');

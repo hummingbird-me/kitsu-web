@@ -4,12 +4,12 @@
     <h6>Quick Update</h6>
     {{#bootstrap/bs-dropdown as |dropdown|}}
       {{#dropdown.button}}
-        {{t (concat "dashboard.quickUpdate.filter." filter)}}
+        {{t (concat "dashboard.quick-update.filter." filter)}}
       {{/dropdown.button}}
       {{#dropdown.menu}}
         {{#each filterOptions as |option|}}
           {{#dropdown.menu-item onClick=(action "changeFilter" option)}}
-            {{t (concat "dashboard.quickUpdate.filter." option)}}
+            {{t (concat "dashboard.quick-update.filter." option)}}
             {{#if (eq option filter)}}
               <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
             {{/if}}
@@ -21,6 +21,7 @@
 </div>
 
 {{#if getEntriesTask.isRunning}}
+  {{! @TODO: Custom loader (Greeking) }}
   <div class="quick-update-loading">
     {{loading-spinner size="large" class="white"}}
   </div>
@@ -45,11 +46,12 @@
     {{! Hint/Empty panels }}
     {{#if (lt initialEntries.length 4)}}
       <div class="quick-update-item hint-panel">
-        {{t "dashboard.quickUpdate.hint.text" link=(create-link (t "dashboard.quickUpdate.hint.library") 'users.library' session.account.name)}}
+        {{t-html "dashboard.quick-update.empty.html" link=(href-to "users.library" session.account.name)}}
         <a href={{href-to "trending"}} class="button button--primary">
-          {{t "dashboard.quickUpdate.hint.discover"}}
+          {{t "dashboard.quick-update.empty.discover"}}
         </a>
       </div>
+
       {{#each (repeat remaining) as |_|}}
         <div class="quick-update-item empty-panel">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" enable-background="new 0 0 50 50">

@@ -3,7 +3,7 @@
   {{ad-unit slot="4199795864"}}
 {{/unless}}
 
-<h2 class="d-inline-block">{{t "media.routes.show.characters.title" title=media.computedTitle}}</h2>
+<h2 class="d-inline-block">{{t "media.show.characters.header" title=media.computedTitle}}</h2>
 {{#if (and taskValue (gt availableLanguages.length 1))}}
   <div class="characters--language--header">
     {{#bootstrap/bs-dropdown as |dropdown|}}
@@ -23,9 +23,10 @@
     {{/bootstrap/bs-dropdown}}
   </div>
 {{/if}}
-<p class="w-100">{{t (concat "media.routes.show.characters.subtitle." media.modelType) language=(capitalize language) title=media.computedTitle}}</p>
+<p class="w-100">{{t "media.show.characters.sub-header" type=media.modelType language=(capitalize language) title=media.computedTitle}}</p>
 
 {{#if model.taskInstance.isRunning}}
+  {{! @TODO: Replace with character loader }}
   <div class="text-xs-center w-100 m-t-1 m-b-1">
     {{loading-spinner size="large"}}
     <p>Loading Characters...</p>
@@ -36,6 +37,7 @@
   </div>
 {{else if taskValue}}
   <section class="character-grid">
+    {{! @TODO: Componentize }}
     {{#each taskValue as |casting|}}
       <article class="media-character">
         <div class="character-wrapper">

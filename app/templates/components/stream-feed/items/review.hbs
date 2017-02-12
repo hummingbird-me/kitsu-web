@@ -32,7 +32,7 @@
             {{! review media progress -- progress > 0 && !(progress === unitCount) }}
             {{#if (and (gt review.progress 0) (not (eq review.progress media.unitCount)))}}
               <small class="review-media-progress">
-                {{t (concat "reviews.progress." media.modelType) num=review.progress}}
+                {{t "feeds.review.progress" type=media.modelType num=review.progress}}
               </small>
             {{/if}}
           </small>

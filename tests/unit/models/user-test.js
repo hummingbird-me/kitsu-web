@@ -1,16 +1,11 @@
 import { moduleForModel, test } from 'ember-qunit';
-import localeConfig from 'ember-i18n/config/en';
 import testValidations from 'client/tests/helpers/test-validations';
 
 moduleForModel('user', 'Unit | Model | user', {
   // Specify the other units that are required for this test.
   needs: [
-    'service:i18n',
-    'service:session',
-    'locale:en/translations',
-    'util:i18n/missing-message',
-    'util:i18n/compile-template',
     'config:environment',
+    'service:session',
     'validator:presence',
     'validator:length',
     'validator:format',
@@ -22,11 +17,7 @@ moduleForModel('user', 'Unit | Model | user', {
     'model:user-role',
     'model:post',
     'model:profile-link'
-  ],
-
-  beforeEach() {
-    this.registry.register('locale:en/config', localeConfig);
-  }
+  ]
 });
 
 test('model validations', function(assert) {

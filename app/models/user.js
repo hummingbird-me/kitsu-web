@@ -4,7 +4,6 @@ import { belongsTo, hasMany } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
 import { isEmpty } from 'ember-utils';
 import { classify } from 'ember-string';
-import service from 'ember-service/inject';
 import computed from 'ember-computed';
 import get from 'ember-metal/get';
 
@@ -21,21 +20,15 @@ export const Validations = buildValidations({
     validator('length', { min: 3, max: 20 }),
     validator('format', {
       regex: /^[_a-zA-Z0-9]+$/,
-      message() {
-        return get(this, 'model.i18n').t('errors.user.name.invalid').toString();
-      }
+      messageKey: 'errors.user.name.invalid'
     }),
     validator('format', {
       regex: /(?!^\d+$)^.+$/,
-      message() {
-        return get(this, 'model.i18n').t('errors.user.name.numbers').toString();
-      }
+      messageKey: 'errors.user.name.numbers'
     }),
     validator('format', {
       regex: /^[a-zA-Z0-9]/,
-      message() {
-        return get(this, 'model.i18n').t('errors.user.name.starts').toString();
-      }
+      messageKey: 'errors.user.name.starts'
     })
   ],
   password: [
@@ -45,8 +38,6 @@ export const Validations = buildValidations({
 });
 
 export default Base.extend(Validations, {
-  i18n: service(),
-
   about: attr('string'),
   avatar: attr('object', { defaultValue: '/images/default_avatar.png' }),
   birthday: attr('utc'),

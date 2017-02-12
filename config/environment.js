@@ -17,7 +17,6 @@ module.exports = function(environment) {
     EXTEND_PROTOTYPES: {
       Date: false
     },
-    i18n: { defaultLocale: 'en' },
     moment: { allowEmpty: true, includeTimezone: '2010-2020' },
     torii: {
       providers: {
@@ -112,17 +111,12 @@ module.exports = function(environment) {
         }
       }
     },
+    'polyfill-io': {
+      features: ['Intl.~locale.en-US']
+    },
     'ember-cli-mirage': {
       enabled: environment === 'test'
     },
-    // google: {
-    //   adwords: environment === 'production' && !isStaging,
-    //   ads: {
-    //     enabled: environment === 'production' && !isStaging,
-    //     client: 'ca-pub-1730996169473196',
-    //     pageads: true
-    //   }
-    // }
     google: {
       adwords: environment === 'production',
       ads: {
@@ -149,6 +143,8 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.APIHost = undefined;
     ENV.stream.realtime.enabled = false;
+    ENV.intl_cp_validations = ENV.intl_cp_validations || {};
+    ENV.intl_cp_validations.suppressWarnings = true;
   }
 
   // Staging app @ Heroku

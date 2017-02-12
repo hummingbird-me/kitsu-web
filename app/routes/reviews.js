@@ -5,7 +5,7 @@ import DataErrorMixin from 'client/mixins/routes/data-error';
 import clip from 'clip';
 
 export default Route.extend(DataErrorMixin, {
-  i18n: service(),
+  intl: service(),
   metrics: service(),
 
   model({ id }) {
@@ -25,7 +25,7 @@ export default Route.extend(DataErrorMixin, {
   titleToken() {
     const model = this.modelFor('reviews');
     const name = get(model, 'user.name');
-    return get(this, 'i18n').t('titles.reviews', { user: name });
+    return get(this, 'intl').t('titles.reviews', { user: name });
   },
 
   headTags() {

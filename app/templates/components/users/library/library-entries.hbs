@@ -14,9 +14,9 @@
     <div class="library-section-empty">
       <span>
         {{#if (can "edit user" user)}}
-          {{t "users.library.emptyOwner" link=(create-link (t "users.library.browse" type=(capitalize mediaType)) (concat mediaType ".index"))}}
+          {{t-html "users.library.empty.owner" link=(href-to (concat mediaType ".index")) type=(capitalize mediaType)}}
         {{else}}
-          {{t "users.library.emptyGuest" user=user.name}}
+          {{t "users.library.empty.guest" user=user.name}}
         {{/if}}
       </span>
     </div>

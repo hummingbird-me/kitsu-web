@@ -4,6 +4,7 @@
 {{/unless}}
 
 {{#if model.taskInstance.isRunning}}
+  {{! @TODO: Episode loader }}
   <div class="text-xs-center w-100 m-t-1 m-b-1">
     {{loading-spinner size="large"}}
     <p>Loading Episodes...</p>
@@ -20,7 +21,7 @@
           {{lazy-image src=(image episode.thumbnail)}}
         </div>
         <div class="thumbnail-description">
-          <h6>{{t "media.routes.show.episodes.episode"}} {{episode.number}}</h6>
+          <h6>{{t "media.show.episodes.episode"}} {{episode.number}}</h6>
           <div class="info-emphasis thumb-caption">
             <span>{{episode.canonicalTitle}}</span>
           </div>

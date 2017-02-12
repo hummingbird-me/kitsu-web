@@ -1,14 +1,14 @@
-<h5>Alternative Titles</h5>
+<h5>{{t "media.show.summary.titles.header"}}</h5>
 <ul>
   {{#each-in media.titles as |key value|}}
     <li>
-      <strong>{{t (concat "media.routes.show.titles." key)}}:</strong>
+      <strong>{{t (concat "media.show.summary.titles." key)}}:</strong>
       {{value}}
     </li>
   {{/each-in}}
   {{#if media.abbreviatedTitles}}
     <li>
-      <strong>{{t "media.routes.show.titles.synonyms"}}:</strong>
+      <strong>{{t "media.show.summary.titles.synonyms"}}:</strong>
       {{join ", " media.abbreviatedTitles}}
     </li>
   {{/if}}

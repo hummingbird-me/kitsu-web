@@ -9,7 +9,7 @@ import { decimalNumber } from 'client/helpers/decimal-number';
 
 export default Component.extend({
   isExpanded: false,
-  i18n: service(),
+  intl: service(),
   metrics: service(),
   media: alias('entry.media'),
   user: alias('entry.user'),
@@ -25,8 +25,8 @@ export default Component.extend({
 
   typeText: computed('media.subtype', function() {
     const media = get(this, 'media.modelType');
-    const type = get(this, 'media.subtype');
-    return get(this, 'i18n').t(`media.${media}.type.${type}`);
+    const type = get(this, 'media.subtype').toLowerCase();
+    return get(this, 'intl').t(`media-shared.types.${media}.${type}`);
   }).readOnly(),
 
   saveEntry: task(function* () {

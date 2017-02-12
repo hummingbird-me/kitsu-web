@@ -9,12 +9,12 @@ import libraryStatus from 'client/utils/library-status';
 import getter from 'client/utils/getter';
 import RSVP from 'rsvp';
 
-export const REMOVE_KEY = 'library.remove';
+export const REMOVE_KEY = 'library-dropdown.remove';
 
 export default Component.extend({
   classNameBindings: ['entry:has-entry'],
   entryIsLoaded: false,
-  i18n: service(),
+  intl: service(),
   metrics: service(),
 
   mediaType: getter(function() {
@@ -24,17 +24,17 @@ export default Component.extend({
   currentStatus: computed('entry.status', function() {
     const status = get(this, 'entry.status');
     const type = get(this, 'mediaType');
-    return get(this, 'i18n').t(`library.statuses.${type}.${status}`).toString();
+    return get(this, 'intl').t(`library-shared.${status}`, { type }).toString();
   }).readOnly(),
 
   statuses: computed('entry', 'currentStatus', function() {
     const type = get(this, 'mediaType');
     const statuses = libraryStatus.getEnumKeys().map(key => ({
       key,
-      string: get(this, 'i18n').t(`library.statuses.${type}.${key}`).toString()
+      string: get(this, 'intl').t(`library-shared.${key}`, { type }).toString()
     }));
     if (get(this, 'entry')) {
-      const removeKey = get(this, 'i18n').t(REMOVE_KEY).toString();
+      const removeKey = get(this, 'intl').t(REMOVE_KEY).toString();
       return statuses.concat([{ key: REMOVE_KEY, string: removeKey }]);
     }
     return statuses;

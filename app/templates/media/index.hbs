@@ -1,3 +1,4 @@
+{{! @TODO: Componentize }}
 <div class="media-browse col-sm-12">
   <div class="media-grid container">
     <div class="row">
@@ -7,7 +8,7 @@
           <div class="filter-widget">
             <div class="filter-header">
               <label class="filter-title">
-                {{t "media.routes.index.filter.year"}}
+                {{t "media.index.filters.year"}}
               </label>
               <span class="filter-values">
                 {{dirtyYear.firstObject}} -
@@ -34,7 +35,7 @@
           <div class="filter-widget">
             <div class="filter-header">
               <label class="filter-title">
-                {{t "media.routes.index.filter.score"}}
+                {{t "media.index.filters.score"}}
               </label>
               <span class="filter-values">
                 {{dirtyRating.firstObject}} - {{dirtyRating.lastObject}}
@@ -48,7 +49,7 @@
             </div>
             <div class="filter-legend">
               <div class="low-value">
-                {{! TODO - @Josh - half star svg }}
+                {{! @TODO - @Josh - half star svg }}
                 {{svg-jar "star"}}
               </div>
               <div class="high-value">
@@ -65,7 +66,7 @@
             <div class="filter-widget">
               <div class="filter-header">
                 <label class="filter-title">
-                  {{t "media.routes.index.filter.episodes"}}
+                  {{t "media.index.filters.episodes"}}
                 </label>
                 <span class="filter-values">
                   {{dirtyEpisodes.firstObject}}
@@ -93,7 +94,7 @@
             <div class="filter-widget">
               <div class="filter-header">
                 <label class="filter-title">
-                  {{t "media.routes.index.filter.rating"}}
+                  {{t "media.index.filters.rating"}}
                 </label>
                 <span class="filter-values">
                   {{#if (is-empty ageRating)}}
@@ -119,7 +120,7 @@
               {{#if availableStreamers}}
                 <div class="filter-header">
                   <label class="filter-title">
-                    {{t "media.routes.index.filter.streamers"}}
+                    {{t "media.index.filters.streamers"}}
                   </label>
                   <span class="filter-values">
                     {{#if (is-empty streamers)}}
@@ -142,7 +143,7 @@
               {{else}}
                 <div class="filter-header">
                   <label class="filter-title">
-                    {{t "media.routes.index.filter.streamers"}}
+                    {{t "media.index.filters.streamers"}}
                   </label>
                 </div>
                 <div class="text-xs-center m-t-1">
@@ -155,7 +156,7 @@
             <div class="filter-widget category-filter">
               <div class="filter-header">
                 <label class="filter-title">
-                  {{t "media.routes.index.filter.seasons"}}
+                  {{t "media.index.filters.seasons"}}
                 </label>
                 <span class="filter-values">
                   {{#if (is-empty season)}}
@@ -184,7 +185,7 @@
             {{#if availableGenres}}
               <div class="filter-header">
                 <label class="filter-title">
-                  {{t "media.routes.index.filter.genres"}}
+                  {{t "media.index.filters.genres"}}
                 </label>
                 <span class="filter-values">
                   {{#if (is-empty genres)}}
@@ -208,7 +209,7 @@
             {{else}}
               <div class="filter-header">
                 <label class="filter-title">
-                  {{t "media.routes.index.filter.genres"}}
+                  {{t "media.index.filters.genres"}}
                 </label>
               </div>
               <div class="text-xs-center m-t-1">
@@ -232,7 +233,7 @@
             icon=true
             text=text
             update=(action (mut text))
-            placeholder=(t "media.routes.index.filter.search")
+            placeholder=(t "media.index.search")
           }}
         </div>
       </div>

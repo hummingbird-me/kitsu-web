@@ -1,21 +1,21 @@
 import PowerSelectComponent from 'ember-power-select/components/power-select';
-import service from 'ember-service/inject';
 import computed from 'ember-computed';
 import get from 'ember-metal/get';
+import service from 'ember-service/inject';
 
-// Override `ember-power-select` to support i18n messages
+// Override `ember-power-select` to support intl messages
 export default PowerSelectComponent.extend({
-  i18n: service(),
+  intl: service(),
 
-  loadingMessage: computed('i18n.locale', function() {
-    return get(this, 'i18n').t('selects.loading');
+  loadingMessage: computed('intl.locale', function() {
+    return get(this, 'intl').t('selects.loading');
   }),
 
-  noMatchesMessage: computed('i18n.locale', function() {
-    return get(this, 'i18n').t('selects.none');
+  noMatchesMessage: computed('intl.locale', function() {
+    return get(this, 'intl').t('selects.none');
   }),
 
-  searchMessage: computed('i18n.locale', function() {
-    return get(this, 'i18n').t('selects.search');
+  searchMessage: computed('intl.locale', function() {
+    return get(this, 'intl').t('selects.search');
   })
 });

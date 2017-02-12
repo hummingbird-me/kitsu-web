@@ -5,11 +5,10 @@ import service from 'ember-service/inject';
 import computed, { alias } from 'ember-computed';
 import { isPresent } from 'ember-utils';
 import { task } from 'ember-concurrency';
-import { translationMacro as t } from 'ember-i18n';
+import { translationMacro as t } from 'ember-intl';
 
 export default Component.extend({
   classNames: ['review-modal'],
-  i18n: service(),
   metrics: service(),
   rating: alias('review.libraryEntry.rating'),
   errorMessage: t('errors.request'),

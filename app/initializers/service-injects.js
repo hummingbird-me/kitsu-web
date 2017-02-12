@@ -1,4 +1,5 @@
 export function initialize(app) {
+  // sessions
   app.inject('controller', 'session', 'service:session');
   app.inject('component', 'session', 'service:session');
   app.inject('route', 'session', 'service:session');
@@ -6,6 +7,6 @@ export function initialize(app) {
 }
 
 export default {
-  name: 'session',
+  name: 'service-injects',
   initialize
 };

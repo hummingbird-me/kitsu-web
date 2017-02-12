@@ -5,12 +5,12 @@
         {{! Library type dropdown }}
         {{#bootstrap/bs-dropdown class="library-type" as |dropdown|}}
           {{#dropdown.button class="button--dark-outline button--small"}}
-            {{t "users.library.library" type=(t (concat "media." media ".name"))}}
+            {{t "users.library.type" type=(capitalize media)}}
           {{/dropdown.button}}
           {{#dropdown.menu}}
             {{#each mediaList as |_media|}}
               {{#dropdown.menu-item onClick=(action (mut media) _media)}}
-                {{t "users.library.library" type=(t (concat "media." _media ".name"))}}
+                {{t "users.library.type" type=(capitalize _media)}}
                 {{#if (eq media _media)}}
                   <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
                 {{/if}}
