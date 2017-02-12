@@ -9,6 +9,7 @@ import { strictInvokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
   classNames: ['quick-update-item'],
+  intl: service(),
   store: service(),
   isCompleted: equal('entry.status', 'completed').readOnly(),
 

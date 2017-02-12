@@ -1,9 +1,12 @@
 import Component from 'ember-component';
 import computed from 'ember-computed';
 import get from 'ember-metal/get';
+import service from 'ember-service/inject';
 import getter from 'client/utils/getter';
 
 export default Component.extend({
+  intl: service(),
+
   // Returns the intl version of our status
   statusName: computed('status', function() {
     const status = get(this, 'status');

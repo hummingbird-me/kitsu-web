@@ -7,6 +7,7 @@ import moment from 'moment';
 
 export default Route.extend(ApplicationRouteMixin, {
   headData: service(),
+  intl: service(),
   metrics: service(),
   moment: service(),
 

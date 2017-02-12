@@ -5,6 +5,7 @@ import service from 'ember-service/inject';
 import DataErrorMixin from 'client/mixins/routes/data-error';
 
 export default Route.extend(DataErrorMixin, {
+  intl: service(),
   metrics: service(),
 
   model({ id }) {

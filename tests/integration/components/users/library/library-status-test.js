@@ -2,7 +2,11 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('users/library/library-status', 'Integration | Component | users/library/library status', {
-  integration: true
+  integration: true,
+  beforeEach() {
+    const service = this.container.lookup('service:intl');
+    service.setLocale('en-us');
+  }
 });
 
 test('renders the current status', function(assert) {
@@ -26,6 +30,7 @@ test('triggers the action with the status key', function(assert) {
 
   this.render(hbs`{{users/library/library-status
     status=status
+    mediaType="anime"
     isActive=isActive
     onClick=action
   }}`);

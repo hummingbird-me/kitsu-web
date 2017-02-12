@@ -14,6 +14,7 @@ export const REMOVE_KEY = 'library-dropdown.remove';
 export default Component.extend({
   classNameBindings: ['entry:has-entry'],
   entryIsLoaded: false,
+  intl: service(),
   metrics: service(),
 
   mediaType: getter(function() {

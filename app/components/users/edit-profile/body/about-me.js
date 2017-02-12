@@ -10,6 +10,7 @@ const GENDER_KEYS = ['secret', 'male', 'female', 'custom'];
 
 export default Component.extend({
   classNames: ['tab-pane'],
+  intl: service(),
   store: service(),
 
   searchCharacters: task(function* (query) {

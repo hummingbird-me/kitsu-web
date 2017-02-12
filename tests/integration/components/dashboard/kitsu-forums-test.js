@@ -9,6 +9,8 @@ moduleForComponent('dashboard/kitsu-forums', 'Integration | Component | dashboar
 
   beforeEach() {
     this.server = new Pretender();
+    const service = this.container.lookup('service:intl');
+    service.setLocale('en-us');
   },
 
   afterEach() {

@@ -15,6 +15,7 @@ export default Route.extend(PaginationMixin, {
     status: { refreshModel: true },
     sort: { refreshModel: true }
   },
+  intl: service(),
   notify: service(),
   metrics: service(),
   lastUsed: storageFor('last-used'),

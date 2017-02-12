@@ -17,9 +17,10 @@ export default Factory.extend({
   },
   slug: 'kitsu-the-anime',
   startDate() { return faker.date.past(); },
+  subtype() { return faker.list.random('TV', 'Movie')(); },
   synopsis() { return faker.lorem.paragraphs(); },
   titles: {
     en: 'Kitsu The Anime - Engish',
-    ja_en: 'Kitsu The Anime',
+    en_jp: 'Kitsu The Anime',
   }
 });

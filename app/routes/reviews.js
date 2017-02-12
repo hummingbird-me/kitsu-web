@@ -5,6 +5,7 @@ import DataErrorMixin from 'client/mixins/routes/data-error';
 import clip from 'clip';
 
 export default Route.extend(DataErrorMixin, {
+  intl: service(),
   metrics: service(),
 
   model({ id }) {

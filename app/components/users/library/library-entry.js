@@ -9,6 +9,7 @@ import { decimalNumber } from 'client/helpers/decimal-number';
 
 export default Component.extend({
   isExpanded: false,
+  intl: service(),
   metrics: service(),
   media: alias('entry.media'),
   user: alias('entry.user'),
