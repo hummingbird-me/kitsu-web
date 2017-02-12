@@ -6,7 +6,6 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 import moment from 'moment';
 
 export default Route.extend(ApplicationRouteMixin, {
-  i18n: service(),
   headData: service(),
   metrics: service(),
   moment: service(),
@@ -86,8 +85,8 @@ export default Route.extend(ApplicationRouteMixin, {
     // name from the `titles` table in translations.
     const hasTokens = tokens && tokens.length > 0;
     if (hasTokens === false) {
-      let title = get(this, 'i18n')
-        .t(`titles.${get(this, 'router.currentRouteName')}`) || undefined;
+      const key = `titles.${get(this, 'router.currentRouteName')}`;
+      let title = get(this, 'intl').t(key);
       if (title && title.toString().includes('Missing translation')) {
         title = undefined;
       }

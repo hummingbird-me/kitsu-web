@@ -15,7 +15,6 @@ export default Route.extend(PaginationMixin, {
     status: { refreshModel: true },
     sort: { refreshModel: true }
   },
-  i18n: service(),
   notify: service(),
   metrics: service(),
   lastUsed: storageFor('last-used'),
@@ -87,7 +86,7 @@ export default Route.extend(PaginationMixin, {
   titleToken() {
     const model = this.modelFor('users');
     const name = get(model, 'name');
-    return get(this, 'i18n').t('titles.users.library', { user: name });
+    return get(this, 'intl').t('titles.users.library', { user: name });
   },
 
   _getUsableSort(sort) {

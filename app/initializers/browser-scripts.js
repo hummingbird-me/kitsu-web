@@ -4,10 +4,8 @@ import injectScript from 'client/utils/inject-script';
 
 export function initialize() {
   const { google } = config;
-  if (canUseDOM) {
-    if (google.adwords) {
-      injectScript('//www.googleadservices.com/pagead/conversion_async.js').catch(() => {});
-    }
+  if (canUseDOM && google.adwords) {
+    injectScript('//www.googleadservices.com/pagead/conversion_async.js').catch(() => {});
   }
 }
 

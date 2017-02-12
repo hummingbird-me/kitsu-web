@@ -10,7 +10,6 @@ import strength from 'password-strength';
 import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
-  i18n: service(),
   metrics: service(),
   notify: service(),
   store: service(),
@@ -28,19 +27,19 @@ export default Component.extend({
     return strength(get(this, 'user.password') || '');
   }),
 
-  buttonText: computed('hasValidName', 'hasValidEmail', 'hasValidPassword', function() {
+  step: computed('hasValidName', 'hasValidEmail', 'hasValidPassword', function() {
     const { hasValidName, hasValidEmail, hasValidPassword }
       = getProperties(this, 'hasValidName', 'hasValidEmail', 'hasValidPassword');
     const allValid = hasValidName && hasValidEmail && hasValidPassword;
-    let step = 'base';
+    let step = 0;
     if (hasValidName && (!hasValidEmail && !hasValidPassword)) {
-      step = 'first';
+      step = 1;
     } else if (hasValidEmail && (hasValidName && !hasValidPassword)) {
-      step = 'second';
+      step = 2;
     } else if (allValid) {
-      step = 'last';
+      step = 3;
     }
-    return get(this, 'i18n').t(`auth.signUp.submit.${step}`);
+    return step;
   }),
 
   init() {

@@ -1,17 +1,17 @@
-<h5>Information</h5>
+<h5>{{t "media.show.summary.information.header"}}</h5>
 <ul>
   {{! Type }}
   {{#if media.subtype}}
     <li>
-      <strong>{{t "media.routes.show.information.type"}}:</strong>
-      {{t (concat "media." media.modelType ".type." media.subtype)}}
+      <strong>{{t "media.show.summary.information.type"}}:</strong>
+      {{t (concat "media-shared.types." media.modelType "." (to-lower media.subtype))}}
     </li>
   {{/if}}
 
   {{! Volumes }}
   {{#if (and isManga media.volumeCount)}}
     <li>
-      <strong>{{t "media.routes.show.information.volumes"}}:</strong>
+      <strong>{{t "media.show.summary.information.volumes"}}:</strong>
       {{media.volumeCount}}
     </li>
   {{/if}}
@@ -19,21 +19,21 @@
   {{! Episodes / Chapters }}
   {{#if media.unitCount}}
     <li>
-      <strong>{{t (concat "media.routes.show.information.unit." media.modelType)}}:</strong>
+      <strong>{{t "media.show.summary.information.unit" type=media.modelType}}:</strong>
       {{media.unitCount}}
     </li>
   {{/if}}
 
   {{! Status }}
   <li>
-    <strong>{{t "media.routes.show.information.status"}}:</strong>
-    {{t (concat "media.routes.show.information.statuses." media.modelType "." airingStatus)}}
+    <strong>{{t "media.show.summary.information.status"}}:</strong>
+    {{t (concat "media.show.summary.information.statuses." media.modelType "." airingStatus)}}
   </li>
 
   {{! Airing / Status }}
   {{#if media.startDate}}
     <li>
-      <strong>{{t (concat "media.routes.show.information.start." media.modelType)}}:</strong>
+      <strong>{{t "media.show.summary.information.start" type=media.modelType}}:</strong>
       {{moment-format media.startDate "MMM D, YYYY"}}
       {{#if (and media.endDate airedLongerThanOneDay)}}
         to {{moment-format media.endDate "MMM D, YYYY"}}
@@ -41,8 +41,11 @@
     </li>
     {{#if isAnime}}
       <li>
-        <strong>{{t "media.routes.show.information.season"}}:</strong>
-        <a href={{href-to (concat media.modelType ".index") (query-params season=season year=(concat seasonYear ".." seasonYear))}}>
+        <strong>{{t "media.show.summary.information.season"}}:</strong>
+        <a href={{href-to (concat media.modelType ".index") (query-params
+          season=season
+          year=(concat seasonYear ".." seasonYear)
+        )}}>
           {{capitalize season}} {{seasonYear}}
         </a>
       </li>
@@ -52,19 +55,19 @@
   {{#if (and isAnime media.animeProductions)}}
     {{#if producers}}
       <li>
-        <strong>{{t "media.routes.show.information.producers"}}:</strong>
+        <strong>{{t "media.show.summary.information.producers"}}:</strong>
         {{producers}}
       </li>
     {{/if}}
     {{#if licensors}}
       <li>
-        <strong>{{t "media.routes.show.information.licensors"}}:</strong>
+        <strong>{{t "media.show.summary.information.licensors"}}:</strong>
         {{licensors}}
       </li>
     {{/if}}
     {{#if studios}}
       <li>
-        <strong>{{t "media.routes.show.information.studios"}}:</strong>
+        <strong>{{t "media.show.summary.information.studios"}}:</strong>
         {{studios}}
       </li>
     {{/if}}
@@ -73,7 +76,7 @@
   {{! Serialization }}
   {{#if (and isManga media.serialization)}}
     <li>
-      <strong>{{t "media.routes.show.information.serialization"}}:</strong>
+      <strong>{{t "media.show.summary.information.serialization"}}:</strong>
       {{media.serialization}}
     </li>
   {{/if}}
@@ -81,15 +84,15 @@
   {{! Duration }}
   {{#if (and isAnime (and media.unitCount media.episodeLength))}}
     <li>
-      <strong>{{t "media.routes.show.information.duration"}}:</strong>
-      {{t "media.routes.show.information.length" total=totalTime length=media.episodeLength count=media.unitCount}}
+      <strong>{{t "media.show.summary.information.duration"}}:</strong>
+      {{t "media.show.summary.information.length" total=totalTime length=media.episodeLength count=media.unitCount}}
     </li>
   {{/if}}
 
   {{! Age Rating }}
   {{#if media.ageRating}}
     <li>
-      <strong>{{t "media.routes.show.information.rating"}}:</strong>
+      <strong>{{t "media.show.summary.information.rating"}}:</strong>
       {{media.ageRating}}
       {{#if media.ageRatingGuide}}
         - {{media.ageRatingGuide}}

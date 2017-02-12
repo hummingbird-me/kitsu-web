@@ -1,8 +1,8 @@
-<h5>Franchise</h5>
+<h5>{{t "media.show.summary.relationships.header"}}</h5>
 {{#each-in relationships as |type medias|}}
   <div class="related--panel">
     <div class="related--wrapper">
-      <div class="related--title">{{t (concat "media.routes.show.relationships." type)}}:</div>
+      <div class="related--title">{{t (concat "media.show.summary.relationships." type)}}:</div>
       <div class="related--posters">
         {{#each medias as |media|}}
           <div class="related--item">

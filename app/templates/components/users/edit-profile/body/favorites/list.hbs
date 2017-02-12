@@ -1,4 +1,4 @@
-{{! TODO/@Josh -- favorite dropdown -- Might need some styling -- we can display anything in the dropdown from the media. }}
+{{! @TODO/@Josh -- favorite dropdown -- Might need some styling -- we can display anything in the dropdown from the media. }}
 <div class="m-t-1">
   {{#power-select
     search=(action "search")
@@ -41,7 +41,7 @@
           {{/if}}
         </span>
         <span class="media-sort-action">
-          <a class="hint--left hint--bounce hint--rounded" aria-label={{t "users.edit.favorite.remove"}} {{action "removeItem" item}}>
+          <a class="hint--left hint--bounce hint--rounded" aria-label={{t "users.edit-modal.favorites.remove"}} {{action "removeItem" item}}>
             {{svg-jar "cancel"}}
           </a>
         </span>

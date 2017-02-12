@@ -1,19 +1,19 @@
 <div class="modal-wrapper">
   <h4 class="edit-heading">
-    {{t "users.edit.aboutMe"}}
+    {{t "users.edit-modal.about.header"}}
   </h4>
 
   {{! location }}
   <div class="form-group row">
     <label for="location-input" class="col-xs-2 col-form-label">
-      {{t "users.edit.about.location"}}
+      {{t "users.edit-modal.about.location.label"}}
     </label>
     <div class="col-xs-10">
       {{one-way-text user.location
         update=(action (mut user.location))
         id="location-input"
         class="form-control"
-        placeholder=(t "users.edit.about.locationPlaceholder")
+        placeholder=(t "users.edit-modal.about.location.placeholder")
       }}
     </div>
   </div>
@@ -21,7 +21,7 @@
   {{! birthday }}
   <div class="form-group row">
     <label for="birthday-input" class="col-xs-2 col-form-label">
-      {{t "users.edit.about.birthday"}}
+      {{t "users.edit-modal.about.birthday"}}
     </label>
     <div class="col-xs-10">
       {{pikaday-input
@@ -41,7 +41,7 @@
   {{! gender }}
   <div class="form-group row">
     <label for="gender-input" class="col-xs-2 col-form-label">
-      {{t "users.edit.about.gender"}}
+      {{t "users.edit-modal.about.gender.label"}}
     </label>
     <div class="col-xs-10">
       {{#power-select
@@ -59,7 +59,7 @@
         {{one-way-text (capitalize user.gender)
           update=(action (mut user.gender))
           class="form-control form-toggle-field"
-          placeholder=(t "users.edit.about.genderCustom")
+          placeholder=(t "users.edit.about.gender.options.custom")
         }}
       {{/if}}
     </div>
@@ -68,7 +68,7 @@
   {{! waifu }}
   <div class="form-group row">
     <label for="waifu-search" class="col-xs-2 col-form-label">
-      {{t "users.edit.about.waifu"}}
+      {{t "users.edit-modal.about.waifu.label"}}
     </label>
     <div class="col-xs-4">
       {{#power-select
@@ -76,7 +76,7 @@
         searchEnabled=false
         selected=user.waifuOrHusbando
         options=(array "Waifu" "Husbando")
-        placeholder="Waifu/Husbando"
+        placeholder=(t "users.edit-modal.about.waifu.placeholder")
         onchange=(action (mut user.waifuOrHusbando)) as |option|}}
         <span>{{option}}</span>
       {{/power-select}}
@@ -87,7 +87,7 @@
         selected=user.waifu
         onchange=(action (queue (action (mut user.waifu)) (action (mut user.waifuDirtyHack) true)))
         renderInPlace=true
-        placeholder="Find your special someone"
+        placeholder=(t "users.edit-modal.about.waifu.search")
         as |character|
       }}
         <span class="waifu-wrapper">
@@ -107,7 +107,7 @@
   {{! bio }}
   <div class="form-group row">
     <label for="bio-input" class="col-xs-2 col-form-label">
-      {{t "users.edit.about.bio"}}
+      {{t "users.edit-modal.about.bio.label"}}
     </label>
     <div class="col-xs-10">
       {{expanding-textarea user.about
@@ -115,7 +115,7 @@
         name="about"
         id="bio-input"
         class="about"
-        placeholder=(t "users.edit.about.bioPlaceholder")
+        placeholder=(t "users.edit-modal.about.bio.placeholder")
         rows="2"
       }}
     </div>

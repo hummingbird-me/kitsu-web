@@ -6,13 +6,15 @@
         {{#unless isCompleted}}
           <button class="button button--quick-update" onclick={{perform updateEntryTask}}>
             {{#if updateEntryTask.isRunning}}
-              {{t "dashboard.quickUpdate.mark"}}
-              <span class="loading loading--small"></span>
-            {{else if (not canComplete)}}
-              {{t "dashboard.quickUpdate.mark"}}
-              <span class="progress-count">{{currentProgress}}</span>
+              {{loading-spinner}}
+            {{else unless canComplete}}
+              {{t-html "dashboard.quick-update.overlay.button.html"
+                type=entry.media.modelType
+                num=nextProgress
+                class="progress-count"}}
+            {{else}}
+              {{t "dashboard.quick-update.overlay.button.complete"}}
             {{/if}}
-            {{t "dashboard.quickUpdate.complete"}}
           </button>
         {{else}}
           {{! Rating }}
@@ -23,9 +25,9 @@
           {{! Review }}
           <button class="button button--quick-update review-button" onclick={{action (toggle "showModal" this)}}>
             {{#if entry.review.isNew}}
-              {{t "dashboard.quickUpdate.reviews.write"}}
+              {{t "dashboard.quick-update.overlay.review.write"}}
             {{else}}
-              {{t "dashboard.quickUpdate.reviews.edit"}}
+              {{t "dashboard.quick-update.overlay.review.edit"}}
             {{/if}}
           </button>
           {{#if showModal}}

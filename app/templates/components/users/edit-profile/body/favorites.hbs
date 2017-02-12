@@ -1,8 +1,9 @@
 <div class="modal-wrapper">
   <h4 class="edit-heading">
-    {{t "users.edit.favorites"}}
+    {{t "users.edit-modal.favorites.header"}}
   </h4>
   {{#if getAllFavorites.isRunning}}
+    {{! @TODO: Favorites Loader }}
     <div class="text-xs-center">
       {{loading-spinner size="large"}}
     </div>
@@ -10,17 +11,17 @@
     <ul class="nav nav-tabs soft-tabs" role="tablist">
       <li class="nav-item">
         <a class="nav-link {{if (eq initialTab "anime") "active"}}" data-toggle="tab" href="#edit-favorite-anime" role="tab">
-          {{t "users.edit.favorite.anime"}}
+          {{t "users.edit-modal.favorites.anime"}}
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link {{if (eq initialTab "manga") "active"}}" data-toggle="tab" href="#edit-favorite-manga" role="tab">
-          {{t "users.edit.favorite.manga"}}
+          {{t "users.edit-modal.favorites.manga"}}
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link {{if (eq initialTab "characters") "active"}}" data-toggle="tab" href="#edit-favorite-characters" role="tab">
-          {{t "users.edit.favorite.characters"}}
+          {{t "users.edit-modal.favorites.characters"}}
         </a>
       </li>
     </ul>

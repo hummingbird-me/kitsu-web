@@ -10,7 +10,7 @@
 
 {{! progress }}
 <div class="entry-progress--mini-wrapper">
-  <span>Progress</span>
+  <span>{{t "media.show.sidebar.progress"}}</span>
   <div class="entry-progress entry-progress--mini">
     {{one-way-number entry.progress
       min=0
@@ -32,9 +32,9 @@
 {{#if (not-eq entry.progress 0)}}
   <button class="button button--primary" onclick={{action "openReview"}}>
     {{#if (or (not entry.review) entry.review.isNew)}}
-      Write Review
+      {{t "media.show.sidebar.review.write"}}
     {{else}}
-      Edit Review
+      {{t "media.show.sidebar.review.edit"}}
     {{/if}}
   </button>
   {{#if reviewOpen}}

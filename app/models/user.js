@@ -22,19 +22,19 @@ export const Validations = buildValidations({
     validator('format', {
       regex: /^[_a-zA-Z0-9]+$/,
       message() {
-        return get(this, 'model.i18n').t('errors.user.name.invalid').toString();
+        return get(this, 'model.intl').t('errors.user.name.invalid').toString();
       }
     }),
     validator('format', {
       regex: /(?!^\d+$)^.+$/,
       message() {
-        return get(this, 'model.i18n').t('errors.user.name.numbers').toString();
+        return get(this, 'model.intl').t('errors.user.name.numbers').toString();
       }
     }),
     validator('format', {
       regex: /^[a-zA-Z0-9]/,
       message() {
-        return get(this, 'model.i18n').t('errors.user.name.starts').toString();
+        return get(this, 'model.intl').t('errors.user.name.starts').toString();
       }
     })
   ],
@@ -45,7 +45,7 @@ export const Validations = buildValidations({
 });
 
 export default Base.extend(Validations, {
-  i18n: service(),
+  intl: service(),
 
   about: attr('string'),
   avatar: attr('object', { defaultValue: '/images/default_avatar.png' }),

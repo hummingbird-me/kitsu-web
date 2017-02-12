@@ -5,7 +5,6 @@ import service from 'ember-service/inject';
 import DataErrorMixin from 'client/mixins/routes/data-error';
 
 export default Route.extend(DataErrorMixin, {
-  i18n: service(),
   metrics: service(),
 
   model({ id }) {
@@ -26,6 +25,6 @@ export default Route.extend(DataErrorMixin, {
   titleToken() {
     const model = this.modelFor('posts');
     const name = get(model, 'user.name');
-    return get(this, 'i18n').t('titles.posts', { user: name });
+    return get(this, 'intl').t('titles.posts', { user: name });
   }
 });

@@ -27,9 +27,10 @@
     </section>
 
     {{! Genres }}
+    {{! @TODO: Componentize }}
     <section class="media--tags">
       <ul>
-        <li><strong>Tags:</strong></li>
+        <li><strong>{{t "media.show.summary.tags"}}:</strong></li>
         {{#each (sort-by "name" media.genres) as |genre|}}
           <li class="media--category-tag">
             <a href={{href-to (concat media.modelType ".index") (query-params genres=genre.name)}}>
@@ -49,9 +50,11 @@
     {{/if}}
 
     {{! Reviews }}
+    {{! @TODO: Componentize }}
     <section class="m-b-1">
-      <h5>Popular Reviews</h5>
+      <h5>{{t "media.show.summary.reviews.header"}}</h5>
       {{#if model.taskInstance.isRunning}}
+        {{! @TODO: Replace with feed loader }}
         <div class="text-xs-center w-100 m-t-1 m-b-1">
           {{loading-spinner size="large"}}
         </div>
@@ -66,11 +69,12 @@
           {{/each}}
         </ul>
       {{else}}
-        <div class="m-t-1 m-b-1">
+        <div class="text-xs-center w-100 m-t-1 m-b-1">
           {{t "errors.contentEmpty"}}
         </div>
       {{/if}}
     </section>
+
     {{! Kitsu Media Reviews }}
     {{#unless session.account.isPro}}
       {{ad-unit slot="7292863067"}}
@@ -78,6 +82,7 @@
   </div>
 
   {{! Secondary Content }}
+  {{! @TODO: Componentize }}
   <div class="col-sm media--sidebar">
     {{! Trailer }}
     {{#if media.youtubeVideoId}}
@@ -112,7 +117,7 @@
 
 {{! Feed }}
 <section>
-  <h5>Community Feed</h5>
+  <h5>{{t "media.show.summary.feed.header"}}</h5>
   {{stream-feed/list
     streamType="media_aggr"
     streamId=(concat (capitalize media.modelType) "-" media.id)

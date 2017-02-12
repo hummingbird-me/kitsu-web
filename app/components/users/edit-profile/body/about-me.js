@@ -10,7 +10,6 @@ const GENDER_KEYS = ['secret', 'male', 'female', 'custom'];
 
 export default Component.extend({
   classNames: ['tab-pane'],
-  i18n: service(),
   store: service(),
 
   searchCharacters: task(function* (query) {
@@ -48,7 +47,7 @@ export default Component.extend({
   },
 
   _translateGender(key) {
-    return get(this, 'i18n').t(`users.edit.about.genderOptions.${key}`).string;
+    return get(this, 'intl').t(`users.edit-modal.about.gender.options.${key}`);
   },
 
   actions: {

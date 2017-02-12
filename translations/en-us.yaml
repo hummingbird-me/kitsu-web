@@ -37,11 +37,11 @@ header:
 # authentication modal
 auth-modal:
   sign-up:
-    submit:
-      base: "Let's get some basic info first"
-      first: "Very witty - email is next!"
-      second: "Looks legit, how about a password?"
-      last: "Cool - Let's create that account"
+    submit: "{step, select,
+      0 {Let's get some basic info first}
+      1 {Very witty - email is next!}
+      2 {Looks legit, how about a password?}
+      3 {Cool- Let's create that account}}"
 # dashboard
 dashboard:
   quick-update:
@@ -50,17 +50,19 @@ dashboard:
       anime: "Anime"
       manga: "Manga"
     empty:
-      hint:
-        html: "Media you've added or updated within your <a href={link}>{text}</a> will show up
-          here for you to quickly update."
-        library: "Library"
-        discover: "Discover Media"
+      html: "Media you've added or updated within your <a href={link}>Library</a> will show up
+        here for you to quickly update."
+      discover: "Discover Media"
+    media:
+      complete: "Complete"
+      episode: "{type, select,
+        anime {Ep. {num}}
+        manga {Ch. {num}}}"
     overlay:
       button:
-        mark: "Mark"
-        progress:
-          anime: "Ep. {num}"
-          manga: "Ch. {num}"
+        html: "Mark {type, select,
+          anime {<span class={class}>Ep. {num}</span> Complete}
+          manga {<span class={class}>Ch. {num}</span> Complete}}"
         complete: "Complete"
       review:
         write: "Write Review"
@@ -76,6 +78,7 @@ dashboard:
 # media pages
 media:
   index:
+    search: "Search by title, character, or cast..."
     filters:
       year: "Year"
       score: "Score"
@@ -84,22 +87,32 @@ media:
       episodes: "Episodes"
       rating: "Rating"
       genres: "Genres"
-      search: "Search by title, character, or cast..."
   show:
     navigation:
       summary: "Summary"
       episodes: "Episodes"
       characters: "Characters"
       reviews: "Reviews"
+    sidebar:
+      progress: "Progress"
+      review:
+        write: "Write Review"
+        edit: "Edit Review"
+      watch: "Where to Watch"
     summary:
+      ratings:
+        total: "{total} ratings"
+        favorites: "{total} favorites"
       ranking:
-        popularity:
-          anime: "Rank #{rank} (Most Popular Anime)"
-          manga: "Rank #{rank} (Most Popular Manga)"
-        rating:
-          anime: "Rank #{rank} (Highest Rated Anime)"
-          manga: "Rank #{rank} (Highest Rated Manga)"
+        popularity: "{type, select,
+          anime {Rank #{rank} (Most Popular Anime)}
+          manga {Rank #{rank} (Most Popular Manga)}}"
+        rating: "{type, select,
+          anime {Rank #{rank} (Highest Rated Anime)}
+          manga {Rank #{rank} (Highest Rated Manga)}}"
+      tags: "Tags"
       relationships:
+        header: "Franchise"
         sequel: "Sequel"
         prequel: "Prequel"
         alternative_setting: "Alt. setting"
@@ -114,7 +127,13 @@ media:
         manga_adaptation: "Manga"
         character: "Character"
         other: "Other"
+      reviews:
+        header: "Popular Reviews"
+      characters:
+        header: "Characters"
+        more: "View All"
       titles:
+        header: "Alternative Titles"
         en: "English"
         en_us: "English"
         en_jp: "Romanized"
@@ -127,14 +146,15 @@ media:
         ko_kr: "Korean"
         synonyms: "Synonyms"
       information:
+        header: "Information"
         type: "Type"
         volumes: "Volumes"
-        unit:
-          anime: "Episodes"
-          manga: "Chapters"
-        start:
-          anime: "Aired"
-          manga: "Published"
+        unit: "{type, select,
+          anime {Episodes}
+          manga {Chapters}}"
+        start: "{type, select,
+          anime {Aired}
+          manga {Published}}"
         status: "Status"
         statuses:
           anime:
@@ -152,17 +172,19 @@ media:
         serialization: "Serialization"
         duration: "Duration"
         length: "{count, plural,
-          =0 {{length} minutes}
-          =1 {{total} total ({length} minutes each)}"
+          =1 {{length} minutes}
+          other {{total} total ({length} minutes each)}}"
         rating: "Rating"
+      feed:
+        header: "Community Feed"
     episodes:
       episode: "Episode"
     characters:
       header: "{title} Characters"
-      sub-header:
-        anime: "The following is a full list of characters and their {language} voice actors for
-          the anime {title}"
-        manga: "The following is a full list of characters for the manga {title}"
+      sub-header: "{type, select,
+        anime {The following is a full list of characters and their {language} voice actors for
+          the anime {title}}
+        manga {The following is a full list of characters for the manga {title}}}"
 # users page
 users:
   navigation:
@@ -178,6 +200,7 @@ users:
       profile-links: "Profile Links"
       favorites: "Favorites"
     about:
+      header: "About Me"
       location:
         label: "Location"
         placeholder: "Where you you live?"
@@ -191,11 +214,13 @@ users:
           custom: "Custom"
       waifu:
         label: "Waifu"
-        placeholder: "Who is your waifu / husbando?"
+        placeholder: "Waifu/Husbando"
+        search: "Find your special someone"
       bio:
         label: "Bio"
         placeholder: "Tell the world your story."
     profile-links:
+      header: "Profile Links"
       sites:
         website:
           about: "Enter your personal website below to add a link to your profile."
@@ -258,11 +283,11 @@ users:
           about: "Enter your Patreon project name to add a link to your profile."
           placeholder: "Your Patreon project name"
     favorites:
+      header: "Favorites"
       anime: "Anime"
       manga: "Manga"
       characters: "Characters"
-      actions:
-        remove: "Remove Favorite?"
+      remove: "Remove Favorite?"
   activity:
     onboarding:
       welcome: "Hey {user}, this page is all about YOU!"
@@ -296,23 +321,51 @@ users:
     empty:
       owner: "You don't have any titles here! Ready to start something new? <a href={link}>Browse {type}</a>"
       guest: "Doesn't look like {user} has any titles here!"
-# components
-library-dropdown:
-  actions:
+# shared: media
+media-shared:
+  types:
     anime:
-      current: "Currently Watching"
-      planned: "Plan to Watch"
-      completed: "Completed"
-      on_hold: "On Hold"
-      dropped: "Dropped"
-      remove: "Remove from Library"
+      tv: "TV"
+      special: "Special"
+      ona: "ONA"
+      ova: "OVA"
+      movie: "Movie"
+      music: "Music"
     manga:
-      current: "Currently Reading"
-      planned: "Plan to Read"
-      completed: "Completed"
-      on_hold: "On Hold"
-      dropped: "Dropped"
-      remove: "Remove from Library"
+      manga: "Manga"
+      novel: "Novel"
+      manhua: "Manhua"
+      oneshot: "One-shot"
+      doujin: "Doujin"
+# shared: library
+library-shared:
+  all: "{type, select,
+    anime {All Anime}
+    manga {All Manga}}"
+  current: "{type, select,
+    anime {Currently Watching}
+    manga {Currently Reading}}"
+  planned: "{type, select,
+    anime {Plan to Watch}
+    manga {Plan to Read}}"
+  completed: "{type, select,
+    anime {Completed}
+    manga {Completed}}"
+  on_hold: "{type, select,
+    anime {On Hold}
+    manga {On Hold}}"
+  dropped: "{type, select,
+    anime {Dropped}
+    manga {Dropped}}"
+# component: library-dropdown
+library-dropdown:
+  add: "Add to Library"
+  remove: "Remove from Library"
+# component: follow-button
+follow-button:
+  follow: "Follow"
+  unfollow: "Unfollow"
+# component: kitsu-feed
 feeds:
   filter:
     all: "All Activity"
@@ -321,19 +374,19 @@ feeds:
   library:
     updated: "moved this to {status}"
     rated: "rated it"
-    progressed:
-      anime: "watched episode {num}"
-      manga: "read chapter {num}"
+    progressed: "{type, select,
+      anime {watched episode {num}}
+      manga {read chapter {num}}}"
   post:
-    spoilers:
-      anime: "Ep. {num}"
-      manga: "Ch. {num}"
+    spoilers: "{type, select,
+      anime {Ep. {num}}
+      manga {Ch. {num}}}"
   review:
     review: "Review"
     author: "Review by {user}"
-    progress:
-      anime: "This is a review up to Episode {num}."
-      manga: "This is a review up to Chapter {num}."
+    progress: "{type, select,
+      anime {This is a review up to Episode {num}.}
+      manga {This is a review up to Chapter {num}.}}"
 # ember-power-select
 selects:
   loading: "Loading..."

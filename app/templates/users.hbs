@@ -1,3 +1,4 @@
+{{! @TODO: Componentize }}
 <div class="user-cover no-edit">
   <div class="cover-photo" style={{coverImageStyle}}>
     <div class="container">
@@ -65,22 +66,23 @@
   </div>
 </div>
 
+{{! @TODO: Componentize }}
 <nav class="cover-nav navbar navbar-light">
   <div class="container">
     <div class="row">
       <div class="nav navbar-nav">
-        {{link-to (t "users.nav.activity") "users.index" class="nav-item nav-link"}}
-        {{link-to (t "users.nav.library") "users.library" class="nav-item nav-link"}}
+        {{link-to (t "users.navigation.activity") "users.index" class="nav-item nav-link"}}
+        {{link-to (t "users.navigation.library") "users.library" class="nav-item nav-link"}}
         {{#link-to "users.reviews" class="nav-item nav-link"}}
-          {{t "users.nav.reviews"}}
+          {{t "users.navigation.reviews"}}
           <span class="tag tag-default">{{user.reviewsCount}}</span>
         {{/link-to}}
         {{#link-to "users.followers" class="nav-item nav-link"}}
-          {{t "users.nav.followers"}}
+          {{t "users.navigation.followers"}}
           <span class="tag tag-default">{{user.followersCount}}</span>
         {{/link-to}}
         {{#link-to "users.following" class="nav-item nav-link"}}
-          {{t "users.nav.following"}}
+          {{t "users.navigation.following"}}
           <span class="tag tag-default">{{user.followingCount}}</span>
         {{/link-to}}
       </div>
