@@ -1,6 +1,4 @@
-{{#bootstrap/bs-modal
-  id=modalId
-  onClose=onClose as |modal|}}
+{{#bootstrap/bs-modal id=modalId onClose=onClose as |modal|}}
   {{#modal.body}}
     {{#if hasBlock}}
       {{yield}}
@@ -22,7 +20,7 @@
 
   {{#modal.footer}}
     <button class="button button--primary btn-lg btn-block" onclick={{action "onConfirm"}}>
-      Yes
+      Confirm
     </button>
   {{/modal.footer}}
 {{/bootstrap/bs-modal}}
