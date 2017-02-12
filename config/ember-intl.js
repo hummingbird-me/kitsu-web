@@ -1,6 +1,7 @@
 /* eslint-env node */
 module.exports = function() {
   return {
-    baseLocale: 'en-us'
+    baseLocale: 'en-us',
+    disablePolyfill: true
   };
 };
