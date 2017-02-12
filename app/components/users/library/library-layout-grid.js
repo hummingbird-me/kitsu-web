@@ -1,6 +1,8 @@
 import Component from 'ember-component';
 
+/**
+ * Tagless component
+ */
 export default Component.extend({
-  tagName: 'section',
-  classNames: ['media-browse', 'col-sm-12']
+  tagName: ''
 });

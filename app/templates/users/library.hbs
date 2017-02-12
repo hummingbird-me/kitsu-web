@@ -6,6 +6,7 @@
       <h4>{{t "users.library.library" type=(t (concat "media." media ".name"))}}</h4>
 
       {{! @TODO: need to do svgs here}}
+      {{! @TODO: List layout implemented }}
       <span class="list-type">
         <a href="#" {{action (mut layoutType) "grid"}}>Grid</a>
         <a href="#">List</a>
@@ -29,31 +30,19 @@
         </div>
       </section>
 
-      {{! Header }}
-      {{users/library/library-header
-        class="library-result-header clearfix"
-        tagName="section"
-        entries=entries
-        limit=limit
-        sort=sort
-        isLoading=model.taskInstance.isRunning
-        onLimitChange=(action (mut limit))
-        onSortChange=(route-action "changeSort")}}
-
-      {{! Kitsu Library Content Ad }}
-      {{#unless session.account.isPro}}
-        {{ad-unit slot="8096455061"}}
-      {{/unless}}
-
       {{! Layout }}
       {{component (concat "users/library/library-layout-" layoutType)
         entries=entries
+        sort=sort
+        limit=limit
         isLoading=model.taskInstance.isRunning
+        onLimitChange=(action (mut limit))
+        onSortChange=(route-action "changeSort")
         onPagination=(route-action "updateNextPage" "taskValue")}}
     </div>
 
     {{! Sidebar }}
-    {{users/library/library-sidebar class="library-sidebar is-sticky card col-sm-12 col-md-4"
+    {{users/library/library-sidebar class="library-sidebar card col-sm-12 col-md-4"
       status=status
       media=media
       onStatusChange=(action (mut status))}}
