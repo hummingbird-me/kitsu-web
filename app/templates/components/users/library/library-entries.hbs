@@ -13,7 +13,7 @@
   <div class="empty-wrapper">
     <div class="library-section-empty">
       <span>
-        {{#if (can-mutate user)}}
+        {{#if (can "edit user" user)}}
           {{t "users.library.emptyOwner" link=(create-link (t "users.library.browse" type=(capitalize mediaType)) (concat mediaType ".index"))}}
         {{else}}
           {{t "users.library.emptyGuest" user=user.name}}

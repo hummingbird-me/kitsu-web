@@ -18,7 +18,7 @@
                 {{/if}}
 
                 {{! edit button }}
-                {{#if (can-mutate user user)}}
+                {{#if (can "edit user" user)}}
                   <button class="button button--light-outline" onclick={{action (toggle "isEditing" this)}}>
                     <span class="button-label button-defaultState">Edit</span>
                   </button>
@@ -31,7 +31,7 @@
                 {{/if}}
 
                 {{! admin actions }}
-                {{#if (has-role "admin" user)}}
+                {{#if (can "view admin" user)}}
                   {{! Previous names }}
                   {{#unless (is-empty user.pastNames)}}
                     {{#bootstrap/bs-dropdown class="d-inline" as |dropdown|}}

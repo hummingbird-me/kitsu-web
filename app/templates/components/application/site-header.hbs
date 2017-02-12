@@ -34,7 +34,7 @@
               <a href={{href-to "settings"}} class="dropdown-item">
                 {{t "header.user.settings"}}
               </a>
-              {{#if (has-role "admin")}}
+              {{#if (can "view admin")}}
                 <a href={{href-to "admin.index"}} class="dropdown-item">
                   {{t "header.user.admin"}}
                 </a>
