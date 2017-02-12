@@ -201,7 +201,7 @@ export default {
     remove: 'Remove from Library',
     statuses: {
       anime: {
-        all: 'All',
+        all: 'All Anime',
         current: 'Currently Watching',
         planned: 'Plan To Watch',
         completed: 'Completed',
@@ -209,7 +209,7 @@ export default {
         dropped: 'Dropped'
       },
       manga: {
-        all: 'All',
+        all: 'All Manga',
         current: 'Currently Reading',
         planned: 'Plan To Read',
         completed: 'Completed',
@@ -323,7 +323,7 @@ export default {
       }
     },
     library: {
-      library: '{{type}} Library',
+      library: 'My {{type}} Library',
       search: 'Search this library...',
       notes: 'Personal notes about {{title}}',
       public: 'Public',

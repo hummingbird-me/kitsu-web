@@ -1,94 +1,61 @@
 <div class="container">
   <div class="row">
-    <div class="library-list col-sm-12">
-      <div class="nav-wrapper">
-        {{! Library type dropdown }}
-        {{#bootstrap/bs-dropdown class="library-type" as |dropdown|}}
-          {{#dropdown.button class="button--dark-outline button--small"}}
-            {{t "users.library.library" type=(t (concat "media." media ".name"))}}
-          {{/dropdown.button}}
-          {{#dropdown.menu}}
-            {{#each mediaList as |_media|}}
-              {{#dropdown.menu-item onClick=(action (mut media) _media)}}
-                {{t "users.library.library" type=(t (concat "media." _media ".name"))}}
-                {{#if (eq media _media)}}
-                  <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
-                {{/if}}
-              {{/dropdown.menu-item}}
-            {{/each}}
-          {{/dropdown.menu}}
-        {{/bootstrap/bs-dropdown}}
+    {{! @josh: We need a way to switch between anime/manga }}
 
-        {{! Library status selection }}
-        <div class="library-status">
-          <div class="btn-group" role="group" aria-label="Library Status">
-            {{#each statuses as |_status|}}
-              {{users/library/library-status
-                status=_status
-                mediaType=media
-                isActive=(eq _status status)
-                onClick=(action (mut status))
+    {{! Content }}
+    <div class="library-content col-sm-12 col-md-8">
+      <h4>{{t "users.library.library" type=(t (concat "media." media ".name"))}}</h4>
+
+      {{! @TODO: need to do svgs here}}
+      {{! @TODO: List layout implemented }}
+      <span class="list-type">
+        <a href="#" {{action (mut layoutType) "grid"}}>Grid</a>
+        <a href="#" {{action (mut layoutType) "list"}}>List</a>
+      </span>
+
+      {{! @TODO: Hookup with API when available }}
+      <section id="library-search" class="library-search">
+        <div class="container">
+          <div class="row">
+            <div class="library-search--wrapper">
+              <span class="icon">
+                {{svg-jar "search"}}
+              </span>
+              {{one-way-search query
+                update=(action (mut query))
+                class="library-search-input"
+                placeholder="Search Josh's Library..."
               }}
-            {{/each}}
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {{! Filter Search }}
-      {{!-- @TODO: API is not yet searchable
-      <div class="search-library">
-        {{one-way-search
-            class="search-input"
-            placeholder=(t "users.library.search")}}
-      </div>
-      --}}
+      {{! Kitsu Library Content Ad }}
+      {{#unless session.account.isPro}}
+        {{ad-unit slot="8096455061"}}
+      {{/unless}}
 
-      {{! Library Sorting }}
-      {{users/library/library-sorting sort=sort onSortChange=(route-action "changeSort")}}
-
-      {{! Library Entries }}
-      {{#if model.taskInstance.isRunning}}
-        <div class="text-xs-center w-100 m-t-1 m-b-1">
-          {{loading-spinner size="large"}}
-          <p>Loading Library...</p>
-        </div>
-      {{else if model.taskInstance.error}}
-        <div class="text-xs-center w-100 m-t-1 m-b-1">
-          {{t "errors.load"}}
-        </div>
-      {{else}}
-        {{#if (eq status 'all')}} {{! all status is selected }}
-          {{#each-in sections as |status entries|}}
-            {{users/library/library-entries
-              status=status
-              entries=entries
-              mediaType=media
-              user=user
-              save=(route-action "saveEntry")
-              delete=(route-action "deleteEntry")
-            }}
-          {{/each-in}}
-        {{else}} {{! active tab entires }}
-          {{users/library/library-entries
-            status=status
-            entries=entries
-            mediaType=media
-            user=user
-            save=(route-action "saveEntry")
-            delete=(route-action "deleteEntry")
-          }}
-        {{/if}}
-
-        {{! pagination }}
-        <div class="text-xs-center m-t-1 m-b-1">
-          {{paginated-resource/infinite
-            model=entries
-            rootMargin=(hash bottom=-600)
-            update=(route-action "updateNextPage" "taskValue")
-            loadingSize="large"
-          }}
-        </div>
-      {{/if}}
+      {{! Layout }}
+      {{component (concat "users/library/library-layout-" layoutType)
+        entries=entries
+        media=media
+        status=status
+        sort=sort
+        limit=limit
+        user=user
+        isLoading=model.taskInstance.isRunning
+        onLimitChange=(action (mut limit))
+        onSortChange=(route-action "changeSort")
+        onPagination=(route-action "updateNextPage" "taskValue")
+        saveEntry=(route-action "saveEntry")
+        deleteEntry=(route-action "deleteEntry")}}
     </div>
+
+    {{! Sidebar }}
+    {{users/library/library-sidebar class="library-sidebar card col-sm-12 col-md-4"
+      status=status
+      media=media
+      onStatusChange=(action (mut status))}}
   </div>
 </div>

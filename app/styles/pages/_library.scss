@@ -1,3 +1,143 @@
+.library-sidebar {
+  @extend .is-sticky;
+  padding: 20px;
+  height: 100%;
+  top: 80px;
+}
+
+.library-sections {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 20px;
+  li {
+    background: $alabaster;
+    margin-bottom: 3px;
+    font-size: 14px;
+    padding: 10px;
+    a {
+      color: $voodoo;
+      font-family: $base-font-family;
+      font-weight: 600;
+      &:hover {
+        color: $voodoo;
+      }
+      .library-section--count {
+        float: right;
+        opacity: .6;
+      }
+    }
+    &:hover {
+      background: lighten($voodoo, 70);
+    }
+    &.active {
+      background: $voodoo;
+      a {
+        color: $white;
+      }
+    }
+  }
+}
+
+.library-tools {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 14px;
+  li {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 5px;
+    &:last-child {
+      border-bottom: none;
+      margin-right: 0;
+    }
+  }
+  a {
+    color: $voodoo;
+    padding-bottom: 5px;
+    display: block;
+    width: 100%;
+    &:hover {
+      color: $cinnabar;
+    }
+  }
+}
+
+.library-search {
+  width: 100%;
+  margin: 20px 0;
+  input {
+    width: 100%;
+    line-height: 50px;
+    height: 50px;
+    border: none;
+    outline: none;
+    font-family: $base-font-family;
+    font-size: 1em;
+    box-shadow: none;
+    text-indent: 0;
+    padding-left: 50px;
+    padding-right: 40px;
+    border: 1px solid #F0F0F0;
+    border-radius: 5px;
+  }
+  .library-search--wrapper {
+    position: relative;
+    width: 100%;
+    .icon {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+    }
+    svg {
+      width: 30px;
+      height: 30px;
+      fill: #ACACAC;
+    }
+    &:hover {
+      svg {
+        fill: #333;
+      }
+    }
+  }
+}
+
+.library-result-header {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.library-filters {
+  font-size: 12px;
+  float: right;
+  .form-inline {
+    display: inline-block;
+    margin-right: 15px;
+    &:last-child {
+      margin-right: 0;
+    }
+    .library-filter-select {
+      display: inline-block;
+      vertical-align: middle;
+      &.filter-page {
+        width: 80px;
+      }
+      &.filter-sort {
+        width: 200px;
+      }
+    }
+  }
+}
+
+.library-content {
+
+  .media-browse {
+    padding: 0;
+    margin-bottom: 15px;
+  }
+  .media-grid {
+    padding-right: 0;
+  }
+}
+
 // User Library
 .library-list {
   background: #fff;

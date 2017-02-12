@@ -1,0 +1,26 @@
+<h6>Filter Library</h6>
+<ul class="library-sections">
+  {{#each statuses as |_status|}}
+    {{users/library/library-sidebar/status
+      status=_status
+      media=media
+      isActive=(eq status _status)
+      onClick=onStatusChange}}
+  {{/each}}
+</ul>
+
+{{! Tools Section }}
+<h6>Tools</h6>
+<ul class="library-tools">
+  {{! @TODO: Needs Impl. }}
+  <li><a href="#">Stats</a></li>
+  <li><a href={{href-to "settings.imports"}}>Import List</a></li>
+  {{! @TODO: NYI }}
+  <li><a href="#">Export List</a></li>
+</ul>
+
+
+{{! Kitsu Library Sidebar Ad }}
+{{#unless session.account.isPro}}
+  {{ad-unit slot="6628225068"}}
+{{/unless}}

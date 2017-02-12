@@ -1,0 +1,37 @@
+{{#if isLoading}}
+  {{loading-spinner}}
+{{else}}
+  <strong>Showing {{entries.length}} of {{entries.meta.count}}</strong>
+{{/if}}
+
+<div class="library-filters">
+  <div class="form-inline">
+    <label class="mr-sm-2">Per page:</label>
+      {{#power-select
+        tagName="div"
+        class="library-filter-select filter-page"
+        renderInPlace=true
+        searchEnabled=false
+        selected=limit
+        options=limitOptions
+        onchange=onLimitChange as |option|
+      }}
+        {{option}}
+      {{/power-select}}
+  </div>
+
+  <div class="form-inline">
+    <label class="mr-sm-2">Sort by:</label>
+    {{#power-select
+      tagName="div"
+      class="library-filter-select filter-sort"
+      renderInPlace=true
+      searchEnabled=false
+      selected=selectedSort
+      options=sortingOptions
+      onchange=(action "updateSort") as |option|
+    }}
+      {{option.value}}
+    {{/power-select}}
+  </div>
+</div>

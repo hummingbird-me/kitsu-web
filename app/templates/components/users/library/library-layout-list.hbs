@@ -1,0 +1,38 @@
+<section class="library-list col-sm-12">
+  {{! Header }}
+  {{users/library/library-layout-list/header
+    sort=sort
+    onSortChange=onSortChange}}
+
+  {{! Content }}
+  {{#if isLoading}}
+    <div class="text-xs-center w-100 m-t-2 m-b-2">
+      {{! @TODO: List specific loader }}
+      {{loading-spinner size="large"}}
+    </div>
+  {{else}}
+    {{#if entries}}
+      {{users/library/library-layout-list/entries
+        status=status
+        entries=entries
+        mediaType=media
+        user=user
+        save=saveEntry
+        delete=deleteEntry}}
+    {{else}}
+      {{! @TODO: No entries found }}
+    {{/if}}
+  {{/if}}
+
+  {{! Infinite Pagination }}
+  {{! @TODO: List specific loader }}
+  {{#unless isLoading}}
+    <div class="text-xs-center w-100 m-t-2 m-b-2">
+      {{paginated-resource/infinite
+        model=entries
+        loadingSize="large"
+        update=onPagination
+      }}
+    </div>
+  {{/unless}}
+</section>

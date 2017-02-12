@@ -1,0 +1,49 @@
+{{! Header }}
+{{users/library/library-layout-grid/header
+  class="library-result-header clearfix"
+  tagName="section"
+  entries=entries
+  limit=limit
+  sort=sort
+  isLoading=isLoading
+  onLimitChange=onLimitChange
+  onSortChange=onSortChange}}
+
+{{! Content }}
+<section class="media-browse col-sm-12">
+  <div class="media-grid container">
+    <div class="row">
+      {{#if isLoading}}
+        {{! @TODO: Grid specific loader }}
+        <div class="text-xs-center w-100 m-t-2 m-b-2">
+          {{loading-spinner size="large"}}
+        </div>
+      {{else}}
+        {{#each entries as |entry|}}
+          <div class="poster-wrapper">
+            <div class="grid-poster">
+              {{lazy-image src=(image entry.media.posterImage "medium")}}
+              <div class="poster-overlay">
+                <a href={{href-to (concat entry.media.modelType ".show") entry.media.slug}}></a>
+              </div>
+            </div>
+          </div>
+        {{else}}
+          {{! @TODO: No entries found! }}
+        {{/each}}
+      {{/if}}
+
+      {{! Infinite Pagination }}
+      {{! @TODO: Grid specific loader }}
+      {{#unless isLoading}}
+        <div class="text-xs-center w-100 m-t-2 m-b-2">
+          {{paginated-resource/infinite
+            model=entries
+            loadingSize="large"
+            update=onPagination
+          }}
+        </div>
+      {{/unless}}
+    </div>
+  </div>
+</section>
