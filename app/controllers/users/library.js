@@ -33,15 +33,25 @@ export default Controller.extend({
     return sections;
   }).readOnly(),
 
-  _saveFilter: observer('media', 'sort', function() {
+  /**
+   * Remember certain properties that the user has selected in our storage object.
+   */
+  _saveFilter: observer('media', 'sort', 'layoutType', function() {
     // its possible for this to proc before setupController from the route has fired
     // we don't actually want to update the cache when it's a direct route request anyway.
-    if (get(this, 'user')) {
-      if (get(this, 'session').isCurrentUser(get(this, 'user'))) {
-        const lastUsed = get(this, 'lastUsed');
-        set(lastUsed, 'libraryType', get(this, 'media'));
-        set(lastUsed, 'librarySort', get(this, 'sort'));
-      }
+    if (get(this, 'user') && get(this, 'session').isCurrentUser(get(this, 'user'))) {
+      const lastUsed = get(this, 'lastUsed');
+      set(lastUsed, 'libraryType', get(this, 'media'));
+      set(lastUsed, 'librarySort', get(this, 'sort'));
+      set(lastUsed, 'libraryLayout', get(this, 'layoutType'));
     }
-  })
+  }),
+
+  init() {
+    this._super(...arguments);
+    const savedLayout = get(this, 'lastUsed.libraryLayout');
+    if (savedLayout) {
+      set(this, 'layoutType', savedLayout);
+    }
+  }
 });
