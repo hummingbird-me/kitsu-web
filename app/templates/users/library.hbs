@@ -31,6 +31,11 @@
         </div>
       </section>
 
+      {{! Kitsu Library Content Ad }}
+      {{#unless session.account.isPro}}
+        {{ad-unit slot="8096455061"}}
+      {{/unless}}
+
       {{! Layout }}
       {{component (concat "users/library/library-layout-" layoutType)
         entries=entries
