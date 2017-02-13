@@ -31,11 +31,9 @@ module.exports = function(defaults) {
         ]
       }
     },
-    // Fingerprint disabled as we aren't generating the manifest file at this time
+    // can be removed when ember-web-app supports mstile
     fingerprint: {
       exclude: [
-        'android-chrome-192x192.png',
-        'android-chrome-512x512.png',
         'mstile-70x70.png',
         'mstile-150x150.png',
         'mstile-310x150.png',
