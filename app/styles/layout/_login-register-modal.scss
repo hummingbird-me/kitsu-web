@@ -213,6 +213,8 @@
   padding-left: 10px;
   padding-right: 10px;
   margin-bottom: 15px;
+  text-overflow: ellipsis;
+  overflow: hidden;
   img {
     width: 100%;
     border-radius: 3px;
@@ -220,11 +222,15 @@
     background: $eggshell;
     text-align: center;
   }
+  small {
+    white-space: nowrap;
+  }
   .rating-container {
     width: 100% !important;
     height: auto;
     padding: 0;
     svg {
+      cursor: pointer;
       width: 16px;
     }
   }
