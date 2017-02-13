@@ -20,11 +20,40 @@ export default Route.extend(PaginationMixin, {
   metrics: service(),
   lastUsed: storageFor('last-used'),
 
+  beforeModel({ queryParams }) {
+    if (queryParams.media === undefined || queryParams.sort === undefined) {
+      if (get(this, 'session').isCurrentUser(this.modelFor('users'))) {
+        const lastUsed = get(this, 'lastUsed');
+        const { libraryType, librarySort } = getProperties(lastUsed, 'libraryType', 'librarySort');
+        if (libraryType || librarySort) {
+          this.replaceWith({ queryParams: { media: libraryType, sort: librarySort } });
+        }
+      }
+    }
+  },
+
+  model(params) {
+    return {
+      taskInstance: get(this, 'queryLibraryEntriesTask').perform(params)
+    };
+  },
+
+  setupController(controller) {
+    this._super(...arguments);
+    set(controller, 'user', this.modelFor('users'));
+  },
+
+  titleToken() {
+    const model = this.modelFor('users');
+    const name = get(model, 'name');
+    return get(this, 'intl').t('titles.users.library', { user: name });
+  },
+
   /**
    * Restartable task that queries the library entries for the current status,
    * and media type.
    */
-  modelTask: task(function* (media, status, sort) {
+  queryLibraryEntriesTask: task(function* ({ media, status, sort }) {
     const user = this.modelFor('users');
     const userId = get(user, 'id');
     const options = {};
@@ -58,37 +87,8 @@ export default Route.extend(PaginationMixin, {
       },
       page: { offset: 0, limit: 200 }
     });
-    const entries = yield get(this, 'store').query('library-entry', options);
-    const controller = this.controllerFor(get(this, 'routeName'));
-    set(controller, 'taskValue', entries);
+    return yield get(this, 'store').query('library-entry', options);
   }).restartable(),
-
-  beforeModel({ queryParams }) {
-    if (queryParams.media === undefined || queryParams.sort === undefined) {
-      if (get(this, 'session').isCurrentUser(this.modelFor('users'))) {
-        const lastUsed = get(this, 'lastUsed');
-        const { libraryType, librarySort } = getProperties(lastUsed, 'libraryType', 'librarySort');
-        if (libraryType || librarySort) {
-          this.replaceWith({ queryParams: { media: libraryType, sort: librarySort } });
-        }
-      }
-    }
-  },
-
-  model({ media, status, sort }) {
-    return { taskInstance: get(this, 'modelTask').perform(media, status, sort) };
-  },
-
-  setupController(controller) {
-    this._super(...arguments);
-    set(controller, 'user', this.modelFor('users'));
-  },
-
-  titleToken() {
-    const model = this.modelFor('users');
-    const name = get(model, 'name');
-    return get(this, 'intl').t('titles.users.library', { user: name });
-  },
 
   _getUsableSort(sort) {
     const controller = this.controllerFor(get(this, 'routeName'));

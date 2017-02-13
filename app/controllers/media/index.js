@@ -1,6 +1,7 @@
 import Controller from 'ember-controller';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import { reads } from 'ember-computed';
 import service from 'ember-service/inject';
 import jQuery from 'jquery';
 import getter from 'client/utils/getter';
@@ -19,6 +20,8 @@ export default Controller.extend({
   year: [1907, moment().year() + 1],
 
   router: service('-routing'),
+  taskValue: reads('model.taskInstance.value'),
+  maxYear: getter(() => moment().year() + 1),
 
   isAnime: getter(function() {
     return get(this, 'router.currentRouteName').split('.')[0] === 'anime';
@@ -27,8 +30,6 @@ export default Controller.extend({
   isManga: getter(function() {
     return get(this, 'router.currentRouteName').split('.')[0] === 'manga';
   }),
-
-  maxYear: getter(() => moment().year() + 1),
 
   init() {
     this._super(...arguments);

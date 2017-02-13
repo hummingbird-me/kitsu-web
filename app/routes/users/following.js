@@ -9,13 +9,11 @@ export default Route.extend(PaginationMixin, {
   intl: service(),
 
   modelTask: task(function* (user) {
-    const results = yield get(this, 'store').query('follow', {
+    return yield get(this, 'store').query('follow', {
       filter: { follower: get(user, 'id') },
       include: 'followed',
       sort: '-created_at'
     });
-    const controller = this.controllerFor(get(this, 'routeName'));
-    set(controller, 'taskValue', results);
   }),
 
   model() {

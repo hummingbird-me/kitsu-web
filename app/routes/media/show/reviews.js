@@ -12,7 +12,7 @@ export default Route.extend(PaginationMixin, {
 
   modelTask: task(function* () {
     const media = this._getParentModel();
-    const results = yield get(this, 'store').query('review', {
+    return yield get(this, 'store').query('review', {
       include: 'user,media',
       filter: {
         media_type: capitalize(get(media, 'modelType')),
@@ -20,8 +20,6 @@ export default Route.extend(PaginationMixin, {
       },
       sort: '-likes_count'
     });
-    const controller = this.controllerFor(get(this, 'routeName'));
-    set(controller, 'taskValue', results);
   }),
 
   model() {

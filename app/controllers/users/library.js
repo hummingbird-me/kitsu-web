@@ -1,5 +1,5 @@
 import Controller from 'ember-controller';
-import computed, { alias } from 'ember-computed';
+import computed, { reads } from 'ember-computed';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import observer from 'ember-metal/observer';
@@ -11,7 +11,7 @@ export default Controller.extend({
   media: 'anime',
   status: 'current',
   mediaList: ['anime', 'manga'],
-  entries: alias('taskValue'),
+  entries: reads('model.taskInstance.value'),
   lastUsed: storageFor('last-used'),
 
   /**

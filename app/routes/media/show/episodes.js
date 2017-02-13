@@ -1,6 +1,5 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
-import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { capitalize } from 'ember-string';
 import { task } from 'ember-concurrency';
@@ -12,14 +11,12 @@ export default Route.extend(PaginationMixin, {
 
   modelTask: task(function* () {
     const media = this._getParentModel();
-    const results = yield get(this, 'store').query('episode', {
+    return yield get(this, 'store').query('episode', {
       filter: {
         media_type: capitalize(get(media, 'modelType')),
         media_id: get(media, 'id')
       }
     });
-    const controller = this.controllerFor(get(this, 'routeName'));
-    set(controller, 'taskValue', results);
   }),
 
   model() {

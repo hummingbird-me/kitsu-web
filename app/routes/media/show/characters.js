@@ -12,7 +12,7 @@ export default Route.extend(PaginationMixin, {
 
   modelTask: task(function* (filters = {}) {
     const media = this._getParentModel();
-    const results = yield get(this, 'store').query('casting', {
+    return yield get(this, 'store').query('casting', {
       filter: Object.assign({
         media_type: capitalize(get(media, 'modelType')),
         media_id: get(media, 'id'),
@@ -21,8 +21,6 @@ export default Route.extend(PaginationMixin, {
       include: 'character,person',
       sort: '-featured'
     });
-    const controller = this.controllerFor(get(this, 'routeName'));
-    set(controller, 'taskValue', results);
   }).restartable(),
 
   model(...args) {

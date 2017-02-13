@@ -25,9 +25,7 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
   }).restartable(),
 
   modelTask: task(function* (mediaType, options) {
-    const results = yield get(this, 'store').query(mediaType, options);
-    const controller = this.controllerFor(get(this, 'routeName'));
-    set(controller, 'taskValue', results);
+    return yield get(this, 'store').query(mediaType, options);
   }).restartable(),
 
   init() {

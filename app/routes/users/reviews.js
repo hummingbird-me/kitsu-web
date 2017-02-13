@@ -1,6 +1,5 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
-import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 import PaginationMixin from 'client/mixins/routes/pagination';
@@ -9,14 +8,12 @@ export default Route.extend(PaginationMixin, {
   intl: service(),
 
   modelTask: task(function* (user) {
-    const results = yield get(this, 'store').query('review', {
+    return yield get(this, 'store').query('review', {
       include: 'user,media',
       filter: {
         user_id: get(user, 'id')
       }
     });
-    const controller = this.controllerFor(get(this, 'routeName'));
-    set(controller, 'taskValue', results);
   }),
 
   model() {
