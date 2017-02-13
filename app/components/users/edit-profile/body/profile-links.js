@@ -65,6 +65,8 @@ export default Component.extend({
         if (get(link, 'isNew')) {
           const action = isEmpty(content) ? 'removeRecord' : 'addRecord';
           invokeAction(this, action, link);
+        } else if (get(link, 'isDeleted')) {
+          link.rollbackAttributes();
         }
         // update the URL content
         set(link, 'url', content);

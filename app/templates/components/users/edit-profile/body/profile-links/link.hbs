@@ -7,12 +7,13 @@
   </div>
   <div class="col-xs-12">
     {{one-way-text link.url
-                    update=(action "update")
-                    class="form-control"
-                    placeholder=(t
-                      (concat "users.edit-modal.profile-links.sites." (profile-link-to-svg link.site.name) ".placeholder")
-                    )}}
-    {{#if (or (not link.isNew) (and (eq link.site.name "Website") link.url))}}
+      update=(action "update")
+      class="form-control"
+      placeholder=(t
+        (concat "users.edit-modal.profile-links.sites." (profile-link-to-svg link.site.name) ".placeholder")
+      )}}
+    {{! @TODO: Move to CP }}
+    {{#if (or (and (not link.isNew) (not link.isDeleted)) (and (eq link.site.name "Website") link.url))}}
       <div class="profile-link-remove">
         <a href="#" onclick={{action "remove"}}>Remove from profile</a>
       </div>

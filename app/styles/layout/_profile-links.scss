@@ -1,10 +1,12 @@
 // Linked Profiles
 .profile-item {
   display: inline-block;
-  margin-right: 2.5px;
-  margin-left: 2.5px;
+  margin-right: 2px;
+  margin-left: 2px;
   position: relative;
   svg {
+    width: 38px;
+    height: 38px;
     filter: grayscale(100%);
     opacity: .6;
     &:hover {
@@ -15,8 +17,8 @@
   .fill-mark {
     opacity: 0;
     position: absolute;
-    top: -3px;
-    right: 0px;
+    top: -12px;
+    right: -3px;
   }
   .active {
     svg {
@@ -38,7 +40,7 @@
   }
 }
 
-.profile-forms {
+.profile-link-active {
   margin-top: 30px;
   h6 {
     margin-bottom: 0;
@@ -49,19 +51,5 @@
   }
   .form-group {
     margin-bottom: 0;
-  }
-}
-
-.profile-settings {
-  margin-top: 15px;
-  li {
-    @extend .clearfix;
-    border-top: 1px solid #ddd;
-    padding: 10px 0;
-    line-height: 30px;
-  }
-  .switch {
-    float: left;
-    margin-right: 15px;
   }
 }
