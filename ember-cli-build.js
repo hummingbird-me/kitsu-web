@@ -12,7 +12,8 @@ module.exports = function(defaults) {
       includePolyfill: true
     },
     sourcemaps: {
-      enabled: true
+      enabled: true,
+      extensions: ['js']
     },
     sassOptions: {
       includePaths: ['bower_components/bootstrap/scss']

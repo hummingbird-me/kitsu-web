@@ -17,7 +17,7 @@ module.exports = function(environment) {
     EXTEND_PROTOTYPES: {
       Date: false
     },
-    moment: { allowEmpty: true, includeTimezone: '2010-2020' },
+
     torii: {
       providers: {
         'facebook-connect': {
@@ -27,6 +27,7 @@ module.exports = function(environment) {
         }
       }
     },
+
     metricsAdapters: [
       {
         name: 'GoogleAnalytics',
@@ -67,6 +68,7 @@ module.exports = function(environment) {
         config: { id: '237149646711154' }
       }
     ],
+
     sentry: {
       dsn: 'https://9c9c723278a1456299a9da5842251bdf@sentry.io/119044',
       cdn: 'https://cdn.ravenjs.com/3.10.0/raven.min.js',
@@ -92,6 +94,7 @@ module.exports = function(environment) {
         ]
       }
     },
+
     stream: {
       realtime: {
         enabled: true,
@@ -111,12 +114,20 @@ module.exports = function(environment) {
         }
       }
     },
+
+    moment: {
+      allowEmpty: true,
+      includeTimezone: '2010-2020'
+    },
+
     'polyfill-io': {
       features: ['Intl.~locale.en-US']
     },
+
     'ember-cli-mirage': {
       enabled: environment === 'test'
     },
+
     google: {
       adwords: environment === 'production',
       ads: {
