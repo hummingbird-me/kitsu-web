@@ -40,6 +40,15 @@ module.exports = function(defaults) {
         'mstile-310x150.png',
         'mstile-310x310.png'
       ]
+    },
+    svgJar: {
+      optimizer: {
+        plugins: [
+          { removeTitle: true },
+          { removeDesc: true },
+          { removeXMLNS: true }
+        ]
+      }
     }
   });
 
