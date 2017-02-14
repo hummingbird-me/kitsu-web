@@ -1,4 +1,6 @@
-{{#if isEnabled}}
+{{#if (and session.hasUser session.account.isPro)}}
+  {{! no child element for Pro users at all }}
+{{else if isEnabled}}
   <div id={{adUnitId}}></div>
 {{else}}
   {{! @TODO(@Josh): We might want to do something more than text here. }}

@@ -8,9 +8,12 @@ import config from 'client/config/environment';
 import injectScript from 'client/utils/inject-script';
 import RSVP from 'rsvp';
 
+/**
+ * Borrowed from Discourse's method of loading scripts by Components.
+ * This allows us to skip loading and injecting this script for PRO users.
+ */
 let _scriptIsLoaded = false;
 let _promise = null;
-
 const loadGPTScript = () => {
   if (_scriptIsLoaded) {
     return RSVP.resolve();
@@ -33,15 +36,28 @@ const loadGPTScript = () => {
   return _promise;
 };
 
-// @TODO: isPro support
+/**
+ * Renders a GPT responsive ad unit.
+ *
+ *  {{ad-unit unit="<ad_unit_code>" sizes=(hash
+ *    mobile=(array ...)
+ *    tablet=(array ...)
+ *    desktop=(array ...)
+ *  )}}
+ *
+ * @TODO: Can observe the viewport size and refresh ads when it drops below a breakpoint.
+ * @TODO: Can be extracted into a more generalized/supported addon.
+ */
 export default Component.extend({
   classNames: ['kitsu-ad'],
-  classNameBindings: ['isEnabled', 'isPro'],
+  classNameBindings: ['isEnabled'],
+  /** Default viewport breakpoints (width, height) */
   viewports: {
     mobile: [340, 400],
     tablet: [750, 200],
     desktop: [1050, 200]
   },
+  session: service(),
   viewport: service(),
 
   adUnitPath: computed('unit', function() {
@@ -60,6 +76,11 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
+    // don't continue if this is a PRO user
+    if (get(this, 'session.hasUser') && get(this, 'session.account.isPro')) {
+      return;
+    }
+    // initialize the ad
     if (get(this, 'isEnabled')) {
       scheduleOnce('afterRender', () => {
         this._initAds();
@@ -71,24 +92,27 @@ export default Component.extend({
     this._super(...arguments);
     if (get(this, 'isEnabled')) {
       this._teardownViewport();
-      const divId = get(this, 'adUnitId');
-      window.googletag.destroySlots([divId]);
+      if (window.googletag) {
+        const divId = get(this, 'adUnitId');
+        window.googletag.destroySlots([divId]);
+      }
     }
   },
 
+  /** Initializes the loading of the GPT script and catches failed loads */
   _initAds() {
     loadGPTScript().then(() => {
       window.googletag.cmd.push(() => {
         this._setupViewport();
       });
-    }).catch((error) => {
+    }).catch(() => {
       // an error occurred, maybe blocked by an adblock or failed network request
       if (get(this, 'isDestroying') || get(this, 'isDestroyed')) { return; }
       set(this, 'isEnabled', false);
-      console.warn('Ad: Failed to load GPT Script', error);
     });
   },
 
+  /** Setup the viewport observer on the element to deliver the ad */
   _setupViewport() {
     const element = get(this, 'element');
     this.clearViewportCallback = get(this, 'viewport').onInViewportOnce(element, () => {
@@ -97,12 +121,14 @@ export default Component.extend({
     });
   },
 
+  /** Remove the viewport observer */
   _teardownViewport() {
     if (this.clearViewportCallback) {
       this.clearViewportCallback();
     }
   },
 
+  /** Setup all the GPT code required to deliver this ad */
   _deliverAd() {
     const viewports = get(this, 'viewports');
     const sizes = get(this, 'sizes');
@@ -127,6 +153,7 @@ export default Component.extend({
       .defineSizeMapping(mapping)
       .addService(window.googletag.pubads());
 
+    // request and refresh the ad
     window.googletag.display(divId);
     window.googletag.pubads().refresh([slot]);
   }
