@@ -1,7 +1,8 @@
-{{! Kitsu Media Characters 1 }}
-{{#unless session.account.isPro}}
-  {{ad-unit slot="4199795864"}}
-{{/unless}}
+{{! Kitsu Media Characters Top }}
+{{ad-unit unit="kitsu.media.characters.top" sizes=(hash
+  mobile=(array (array 300 250) (array 320 100) (array 320 50))
+  tablet=(array 728 90)
+)}}
 
 <h2 class="d-inline-block">{{t "media.show.characters.header" title=media.computedTitle}}</h2>
 {{#if (and taskValue (gt availableLanguages.length 1))}}
@@ -75,7 +76,8 @@
   </div>
 {{/if}}
 
-{{! Kitsu Media Characters 2 }}
-{{#unless session.account.isPro}}
-  {{ad-unit slot="7153262266"}}
-{{/unless}}
+{{! Kitsu Media Characters Bottom }}
+{{ad-unit unit="kitsu.media.characters.bottom" sizes=(hash
+  mobile=(array (array 300 250) (array 320 100) (array 320 50))
+  tablet=(array 728 90)
+)}}

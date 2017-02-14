@@ -22,18 +22,20 @@
       {{! About User }}
       {{users/about-me user=user}}
 
-      {{! Kitsu Profile Sidebar 1 }}
-      {{#unless session.account.isPro}}
-        {{ad-unit slot="6852211067"}}
-      {{/unless}}
+      {{! Kitsu Profile Sidebar Top }}
+      {{ad-unit unit="kitsu.profile.sidebar.top" sizes=(hash
+        mobile=(array 300 250)
+        tablet=(array (array 336 280) (array 300 250))
+      )}}
 
       {{! Favorites }}
       {{users/user-favorites user=user}}
 
-      {{! Kitsu Profile Sidebar 2 }}
-      {{#unless session.account.isPro}}
-        {{ad-unit slot="9805677468"}}
-      {{/unless}}
+      {{! Kitsu Profile Sidebar Bottom }}
+      {{ad-unit unit="kitsu.profile.sidebar.bottom" sizes=(hash
+        mobile=(array 300 250)
+        tablet=(array (array 336 280) (array 300 250))
+      )}}
 
       {{! Footer }}
       {{sidebar-footer}}

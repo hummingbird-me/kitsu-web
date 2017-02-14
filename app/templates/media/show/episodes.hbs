@@ -1,7 +1,8 @@
-{{! Kitsu Media Episodes 1 }}
-{{#unless session.account.isPro}}
-  {{ad-unit slot="8769596264"}}
-{{/unless}}
+{{! Kitsu Media Episodes Top }}
+{{ad-unit unit="kitsu.media.episodes.top" sizes=(hash
+  mobile=(array (array 300 250) (array 320 100) (array 320 50))
+  tablet=(array 728 90)
+)}}
 
 {{#if model.taskInstance.isRunning}}
   {{! @TODO: Episode loader }}
@@ -43,7 +44,8 @@
   </div>
 {{/if}}
 
-{{! Kitsu Media Episodes 2 }}
-{{#unless session.account.isPro}}
-  {{ad-unit slot="1246329464"}}
-{{/unless}}
+{{! Kitsu Media Episodes Bottom }}
+{{ad-unit unit="kitsu.media.episodes.bottom" sizes=(hash
+  mobile=(array (array 300 250) (array 320 100) (array 320 50))
+  tablet=(array 728 90)
+)}}

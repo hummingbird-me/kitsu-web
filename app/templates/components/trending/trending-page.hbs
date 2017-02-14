@@ -15,10 +15,12 @@
   {{! Trending Media }}
   {{trending/trending-media}}
 
-  {{! Kitsu Media Trending 1 }}
-  {{#unless session.account.isPro}}
-    {{ad-unit slot="2443861064"}}
-  {{/unless}}
+  {{! Kitsu Media Trending Top }}
+  {{ad-unit unit="kitsu.trending.top" sizes=(hash
+    mobile=(array (array 336 280) (array 300 250) (array 320 100) (array 320 50))
+    tablet=(array 728 90)
+    desktop=(array (array 970 90) (array 728 90))
+  )}}
 
   {{! Recently Reviewed Media }}
   {{trending/recently-reviewed}}
@@ -26,10 +28,12 @@
   {{! Popular Reviews }}
   {{trending/popular-reviews}}
 
-  {{! Kitsu Media Trending 2 }}
-  {{#unless session.account.isPro}}
-    {{ad-unit slot="3920594268"}}
-  {{/unless}}
+  {{! Kitsu Media Trending Middle }}
+  {{ad-unit unit="kitsu.trending.middle" sizes=(hash
+    mobile=(array (array 336 280) (array 300 250) (array 320 100) (array 320 50))
+    tablet=(array 728 90)
+    desktop=(array (array 970 90) (array 728 90))
+  )}}
 
   {{! Seasonal Anime }}
   {{trending/seasonal-series}}
@@ -37,10 +41,12 @@
   {{! Highest Rated }}
   {{trending/highest-rated}}
 
-  {{! Kitsu Media Trending 3 }}
-  {{#unless session.account.isPro}}
-    {{ad-unit slot="6874060669"}}
-  {{/unless}}
+  {{! Kitsu Media Trending Bottom }}
+  {{ad-unit unit="kitsu.trending.bottom" sizes=(hash
+    mobile=(array (array 336 280) (array 300 250) (array 320 100) (array 320 50))
+    tablet=(array 728 90)
+    desktop=(array (array 970 90) (array 728 90))
+  )}}
 
   {{! Popular Media }}
   {{trending/popular-media}}
