@@ -92,9 +92,9 @@ export default Component.extend({
     this._super(...arguments);
     if (get(this, 'isEnabled')) {
       this._teardownViewport();
-      if (window.googletag) {
-        const divId = get(this, 'adUnitId');
-        window.googletag.destroySlots([divId]);
+      const slotRef = get(this, 'adSlotRef');
+      if (window.googletag && slotRef) {
+        window.googletag.destroySlots([slotRef]);
       }
     }
   },
@@ -159,6 +159,7 @@ export default Component.extend({
     const slot = window.googletag.defineSlot(adUnitPath, initialSize || [], divId)
       .defineSizeMapping(mapping)
       .addService(window.googletag.pubads());
+    set(this, 'adSlotRef', slot);
 
     // request and refresh the ad
     window.googletag.display(divId);
