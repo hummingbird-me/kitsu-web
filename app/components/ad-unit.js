@@ -55,7 +55,7 @@ export default Component.extend({
   viewports: {
     mobile: [340, 400],
     tablet: [750, 200],
-    desktop: [1050, 200]
+    desktop: [1024, 200]
   },
   session: service(),
   viewport: service(),
