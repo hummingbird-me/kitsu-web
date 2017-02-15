@@ -102,12 +102,14 @@ export default Component.extend({
   /** Initializes the loading of the GPT script and catches failed loads */
   _initAds() {
     loadGPTScript().then(() => {
+      if (get(this, 'isDestroying') || get(this, 'isDestroyed')) { return; }
       // some adblockers redirect to a script that NOOP's the functions.
       const version = window.googletag.getVersion();
       if (!version) {
         set(this, 'isEnabled', false);
       } else {
         // API might not be ready yet.
+        window.googletag.cmd = window.googletag.cmd || [];
         window.googletag.cmd.push(() => {
           this._setupViewport();
         });
