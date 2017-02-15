@@ -1,11 +1,11 @@
 import Controller from 'ember-controller';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import { reads } from 'ember-computed';
 import service from 'ember-service/inject';
 import jQuery from 'jquery';
 import getter from 'client/utils/getter';
 import { moment } from 'client/utils/moment';
+import { fork } from 'client/utils/computed-macros';
 
 export default Controller.extend({
   mediaQueryParams: [
@@ -20,7 +20,7 @@ export default Controller.extend({
   year: [1907, moment().year() + 1],
 
   router: service('-routing'),
-  taskValue: reads('model.taskInstance.value'),
+  taskValue: fork('_taskValue', 'model.taskInstance.value'),
   maxYear: getter(() => moment().year() + 1),
 
   isAnime: getter(function() {

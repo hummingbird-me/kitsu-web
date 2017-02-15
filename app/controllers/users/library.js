@@ -1,9 +1,10 @@
 import Controller from 'ember-controller';
-import computed, { reads } from 'ember-computed';
+import computed from 'ember-computed';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import observer from 'ember-metal/observer';
 import { storageFor } from 'ember-local-storage';
+import { fork } from 'client/utils/computed-macros';
 import libraryStatus from 'client/utils/library-status';
 
 export default Controller.extend({
@@ -11,7 +12,7 @@ export default Controller.extend({
   media: 'anime',
   status: 'current',
   mediaList: ['anime', 'manga'],
-  entries: reads('model.taskInstance.value'),
+  entries: fork('_taskValue', 'model.taskInstance.value'),
   lastUsed: storageFor('last-used'),
 
   /**

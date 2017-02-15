@@ -1,6 +1,6 @@
 import Controller from 'ember-controller';
-import { reads } from 'ember-computed';
+import { fork } from 'client/utils/computed-macros';
 
 export default Controller.extend({
-  taskValue: reads('model.taskInstance.value')
+  taskValue: fork('_taskValue', 'model.taskInstance.value'),
 });
