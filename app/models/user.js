@@ -104,8 +104,8 @@ export default Base.extend(Validations, {
   hasRole(roleName, resource) {
     const roles = get(this, 'userRoles').map(ur => get(ur, 'role'));
     const validRoles = roles.filter((r) => {
-      let hasRole = get(r, 'name') === roleName && get(r, 'hasDirtyAttributes') === false;
-      if (hasRole && get(r, 'resourceType') !== null && resource !== undefined) {
+      let hasRole = get(r, 'name') === roleName && !get(r, 'hasDirtyAttributes');
+      if (hasRole && get(r, 'resourceType') && resource) {
         hasRole = hasRole && get(r, 'resourceType') === classify(get(resource, 'modelType'));
       }
       return hasRole;
@@ -114,7 +114,7 @@ export default Base.extend(Validations, {
     let valid = false;
     validRoles.forEach((role) => {
       // Class based role or record based role
-      if (isEmpty(get(role, 'resourceId')) === true || get(role, 'resourceId') === get(resource, 'id')) {
+      if (isEmpty(get(role, 'resourceId')) || get(role, 'resourceId') === get(resource, 'id')) {
         valid = true;
       }
     });
