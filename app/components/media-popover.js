@@ -26,6 +26,7 @@ export default Component.extend({
    * Called by hoverIntent when the user hovers this component
    */
   _onMouseEnter() {
+    if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
     this._getLibraryEntry();
     set(this, 'showTooltip', true);
     set(this, 'isTooltipHovered', false);
