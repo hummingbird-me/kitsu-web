@@ -1,7 +1,8 @@
-{{! Kitsu Media Reviews 1 }}
-{{#unless session.account.isPro}}
-  {{ad-unit slot="2583461862"}}
-{{/unless}}
+{{! Kitsu Media Reviews Top }}
+{{ad-unit unit="kitsu.media.reviews.top" sizes=(hash
+  mobile=(array (array 300 250) (array 320 100) (array 320 50))
+  desktop=(array 728 90)
+)}}
 
 {{#if model.taskInstance.isRunning}}
   <div class="text-xs-center w-100 m-t-1 m-b-1">
@@ -35,7 +36,8 @@
   </div>
 {{/if}}
 
-{{! Kitsu Media Reviews 2 }}
-{{#unless session.account.isPro}}
-  {{ad-unit slot="4060195062"}}
-{{/unless}}
+{{! Kitsu Media Reviews Bottom }}
+{{ad-unit unit="kitsu.media.reviews.bottom" sizes=(hash
+  mobile=(array (array 300 250) (array 320 100) (array 320 50))
+  desktop=(array 728 90)
+)}}

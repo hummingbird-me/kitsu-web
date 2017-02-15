@@ -132,8 +132,7 @@ module.exports = function(environment) {
       adwords: environment === 'production',
       ads: {
         enabled: environment === 'production',
-        client: 'ca-pub-1730996169473196',
-        pageads: true
+        networkId: '20370372407'
       }
     }
   };

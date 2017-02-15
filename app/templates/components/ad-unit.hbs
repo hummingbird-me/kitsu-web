@@ -1,5 +1,7 @@
-{{#if isEnabled}}
-  <ins class="adsbygoogle" data-ad-slot={{slot}} data-ad-client={{client}} data-ad-format={{format}}></ins>
+{{#if (and session.hasUser session.account.isPro)}}
+  {{! no child element for Pro users at all }}
+{{else if isEnabled}}
+  <div id={{adUnitId}}></div>
 {{else}}
   {{! @TODO(@Josh): We might want to do something more than text here. }}
   <div class="empty-container">
