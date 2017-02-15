@@ -254,23 +254,21 @@
             {{#each taskValue as |media|}}
               {{media/media-poster media=media}}
             {{/each}}
+
+            <div class="m-t-2 m-b-2 w-100 text-xs-center">
+              {{paginated-resource/infinite
+                model=taskValue
+                update=(route-action "updateNextPage" "taskValue")
+                rootMargin=(hash bottom=-400)
+                loadingSize="large"
+              }}
+            </div>
           {{else}}
             <div class="text-xs-center w-100 m-t-1">
               No Results.
             </div>
           {{/if}}
         </div>
-
-        {{#if (and taskValue (not model.taskInstance.isRunning))}}
-          <div class="m-t-1 text-xs-center">
-            {{paginated-resource/infinite
-              model=taskValue
-              update=(route-action "updateNextPage" "taskValue")
-              rootMargin=(hash bottom=-400)
-              loadingSize="large"
-            }}
-          </div>
-        {{/if}}
       </div>
     </div>
   </div>

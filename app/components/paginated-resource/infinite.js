@@ -37,8 +37,10 @@ export default Component.extend(PaginationMixin, {
 
   _setupViewport() {
     const element = get(this, 'element');
-    get(this, 'watcher').watch(element, () => {
-      get(this, 'getNextData').perform();
+    spaniel.scheduleWork(() => {
+      get(this, 'watcher').watch(element, () => {
+        get(this, 'getNextData').perform();
+      });
     });
   },
 

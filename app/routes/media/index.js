@@ -47,6 +47,14 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
   },
 
   model(params) {
+    // If the request hasn't changed since the last successful request,
+    // then just return that value.
+    const lastTask = get(this, 'modelTask.lastSuccessful');
+    const paramsChanged = JSON.stringify(params) !== JSON.stringify(get(this, 'lastParams'));
+    if (lastTask && !paramsChanged) {
+      return { taskInstance: lastTask };
+    }
+    set(this, 'lastParams', params);
     const hash = { page: { offset: 0, limit: 20 } };
     const filters = this._buildFilters(params);
     const options = Object.assign(filters, hash);
