@@ -48,6 +48,11 @@ module.exports = function(defaults) {
           { removeXMLNS: true }
         ]
       }
+    },
+    nodeAssets: {
+      blockadblock: {
+        import: ['blockadblock.js']
+      }
     }
   });
 

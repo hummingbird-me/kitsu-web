@@ -3,10 +3,10 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import computed from 'ember-computed';
 import service from 'ember-service/inject';
-import { scheduleOnce } from 'ember-runloop';
 import config from 'client/config/environment';
 import injectScript from 'client/utils/inject-script';
 import RSVP from 'rsvp';
+/* global blockAdBlock */
 
 /**
  * Borrowed from Discourse's method of loading scripts by Components.
@@ -80,11 +80,19 @@ export default Component.extend({
     if (get(this, 'session.hasUser') && get(this, 'session.account.isPro')) {
       return;
     }
-    // initialize the ad
+
     if (get(this, 'isEnabled')) {
-      scheduleOnce('afterRender', () => {
-        this._initAds();
-      });
+      // Check to see if an ad blocker is disabled so we can show the PRO CTA
+      if (!blockAdBlock) {
+        set(this, 'isEnabled', false);
+      } else {
+        blockAdBlock.onDetected(() => {
+          if (get(this, 'isDestroying') || get(this, 'isDestroyed')) { return; }
+          set(this, 'isEnabled', false);
+          this._destroyAd();
+        });
+        this._initAd();
+      }
     }
   },
 
@@ -92,33 +100,31 @@ export default Component.extend({
     this._super(...arguments);
     if (get(this, 'isEnabled')) {
       this._teardownViewport();
-      const slotRef = get(this, 'adSlotRef');
-      if (window.googletag && slotRef) {
-        window.googletag.destroySlots([slotRef]);
-      }
+      this._destroyAd();
     }
   },
 
   /** Initializes the loading of the GPT script and catches failed loads */
-  _initAds() {
+  _initAd() {
     loadGPTScript().then(() => {
       if (get(this, 'isDestroying') || get(this, 'isDestroyed')) { return; }
-      // some adblockers redirect to a script that NOOP's the functions.
-      const version = window.googletag.getVersion();
-      if (!version) {
-        set(this, 'isEnabled', false);
-      } else {
-        // API might not be ready yet.
-        window.googletag.cmd = window.googletag.cmd || [];
-        window.googletag.cmd.push(() => {
-          this._setupViewport();
-        });
-      }
+      // API might not be ready yet.
+      window.googletag.cmd = window.googletag.cmd || [];
+      window.googletag.cmd.push(() => {
+        this._setupViewport();
+      });
     }).catch(() => {
       // an error occurred, maybe blocked by an adblock or failed network request
       if (get(this, 'isDestroying') || get(this, 'isDestroyed')) { return; }
       set(this, 'isEnabled', false);
     });
+  },
+
+  _destroyAd() {
+    const slotRef = get(this, 'adSlotRef');
+    if (window.googletag && slotRef) {
+      window.googletag.destroySlots([slotRef]);
+    }
   },
 
   /** Setup the viewport observer on the element to deliver the ad */
