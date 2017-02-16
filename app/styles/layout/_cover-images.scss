@@ -174,7 +174,11 @@
     .about-me-profiles {
       text-align: right;
       max-width: 340px;
-
+      > div {
+        display: flex;
+        flex-wrap: wrap-reverse;
+        justify-content: flex-end
+      }
       .profile-icon {
         display: inline-block;
         position: relative;
