@@ -91,7 +91,6 @@ export default Component.extend(ClipboardMixin, {
       if (shiftKey === false) {
         event.preventDefault();
         get(this, 'updateComment').perform();
-        component.clear();
         this.toggleProperty('isEditing');
       }
     },
