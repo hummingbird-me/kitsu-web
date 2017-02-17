@@ -11,7 +11,6 @@ before_install:
 install:
 - travis_retry yarn global add bower phantomjs-prebuilt
 - travis_retry yarn install
-- travis_retry bower install
 
 after_success:
 - bash yarn.sh
@@ -23,7 +22,6 @@ cache:
   directories:
   - $HOME/.cache/yarn
   - node_modules
-  - bower_components
 
 addons:
   code_climate:

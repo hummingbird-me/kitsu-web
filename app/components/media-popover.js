@@ -3,6 +3,7 @@ import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { addObserver, removeObserver } from 'ember-metal/observer';
+/* global hoverintent */
 
 export default Component.extend({
   cache: service('local-cache'),
@@ -10,11 +11,12 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    this.$().hoverIntent({
-      over: () => this._onMouseEnter(),
-      out: () => this._onMouseLeave(),
-      timeout: 250
-    });
+    const element = get(this, 'element');
+    hoverintent(element, () => {
+      this._onMouseEnter();
+    }, () => {
+      this._onMouseLeave();
+    }).options({ timeout: 250 });
   },
 
   willDestroyElement() {

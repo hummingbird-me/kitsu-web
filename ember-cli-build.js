@@ -16,7 +16,7 @@ module.exports = function(defaults) {
       extensions: ['js']
     },
     sassOptions: {
-      includePaths: ['bower_components/bootstrap/scss']
+      includePaths: ['node_modules/bootstrap/scss']
     },
     postcssOptions: {
       compile: { enabled: false },
@@ -50,21 +50,38 @@ module.exports = function(defaults) {
       }
     },
     nodeAssets: {
+      autosize: {
+        srcDir: 'dist',
+        import: ['autosize.js']
+      },
       blockadblock: {
         import: ['blockadblock.js']
+      },
+      clipboard: {
+        srcDir: 'dist',
+        import: ['clipboard.js']
+      },
+      hoverintent: {
+        srcDir: 'dist',
+        import: ['hoverintent.min.js']
+      },
+      nouislider: {
+        srcDir: 'distribute',
+        import: ['nouislider.css', 'nouislider.js']
+      },
+      'stream-analytics': {
+        srcDir: 'dist/js',
+        import: ['stream-analytics.js']
+      },
+      zxcvbn: {
+        srcDir: 'dist',
+        import: [{
+          path: 'zxcvbn.js',
+          sourceMap: 'zxcvbn.js.map'
+        }]
       }
     }
   });
-
-  app.import('bower_components/tether/dist/js/tether.min.js');
-  app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
-  app.import('bower_components/nouislider/distribute/nouislider.js');
-  app.import('bower_components/nouislider/distribute/nouislider.min.css');
-  app.import('bower_components/flickity/dist/flickity.min.css');
-  app.import('bower_components/clipboard/dist/clipboard.min.js');
-  app.import('bower_components/autosize/dist/autosize.min.js');
-  app.import('bower_components/jquery-hoverintent/jquery.hoverIntent.js');
-  app.import('bower_components/getstream/dist/js_min/getstream.js');
 
   return app.toTree();
 };
