@@ -61,6 +61,10 @@ module.exports = function(defaults) {
         srcDir: 'dist',
         import: ['clipboard.js']
       },
+      getstream: {
+        srcDir: 'dist/js',
+        import: ['getstream.js']
+      },
       hoverintent: {
         srcDir: 'dist',
         import: ['hoverintent.min.js']
@@ -68,10 +72,6 @@ module.exports = function(defaults) {
       nouislider: {
         srcDir: 'distribute',
         import: ['nouislider.css', 'nouislider.js']
-      },
-      'stream-analytics': {
-        srcDir: 'dist/js',
-        import: ['stream-analytics.js']
       },
       zxcvbn: {
         srcDir: 'dist',
