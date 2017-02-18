@@ -1,0 +1,13 @@
+{{yield}}
+
+{{! Viewport Element }}
+<div id={{viewportDivId}}
+     style="width: 100%; height: 1px; background-color: transparent">
+</div>
+
+{{! Loader }}
+{{#if isLoading}}
+  <div class="w-100 text-xs-center m-t-2 m-b-2">
+    {{loading-spinner size=loaderSize}}
+  </div>
+{{/if}}
