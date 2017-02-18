@@ -23,7 +23,11 @@
 {{#if media.streamingLinks}}
   <div class="where-to-watch-widget">
     <h6>{{t "media.show.sidebar.watch"}}</h6>
-    {{#if isStreamersLoaded}}
+    {{#if getStreamersTask.isRunning}}
+      <div class="text-xs-center w-100 m-t-1">
+        {{loading-spinner size="small"}}
+      </div>
+    {{else if getStreamersTask.last.value}}
       <ul class="nav">
         {{#each media.streamingLinks as |link|}}
           <li>
@@ -33,10 +37,6 @@
           </li>
         {{/each}}
       </ul>
-    {{else}}
-      <div class="text-xs-center w-100 m-t-1">
-        {{loading-spinner size="small"}}
-      </div>
     {{/if}}
   </div>
 {{/if}}

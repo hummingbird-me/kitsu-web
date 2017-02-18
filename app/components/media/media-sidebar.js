@@ -1,16 +1,28 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
-import computed from 'ember-computed';
+import { task } from 'ember-concurrency';
+import RSVP from 'rsvp';
 
 export default Component.extend({
   classNames: ['media-sidebar'],
 
-  // Determine if the streamers are loaded so we can show a async loading state
-  isStreamersLoaded: computed('media.streamingLinks.@each.streamer', function() {
-    const links = get(this, 'media.streamingLinks');
-    if (!get(links, 'isLoaded')) { return false; }
-    return get(this, 'media.streamingLinks').toArray()
-      .map(r => get(r, 'streamer'))
-      .every(r => get(r, 'isLoaded'));
-  }).readOnly(),
+  didReceiveAttrs() {
+    this._super(...arguments);
+    if (get(this, 'media.modelType') === 'anime') {
+      get(this, 'getStreamersTask').perform();
+    }
+  },
+
+  getStreamersTask: task(function* () {
+    const media = get(this, 'media');
+    const streamingLinks = media.hasMany('streamingLinks');
+    if (streamingLinks.value()) {
+      return yield RSVP.all(streamingLinks.value().map(streamingLink => (
+        streamingLink.belongsTo('streamer').load()
+      )));
+    }
+    return yield streamingLinks.load().then(records => (
+      RSVP.all(records.map(record => record.belongsTo('streamer').load()))
+    ));
+  }).restartable()
 });
