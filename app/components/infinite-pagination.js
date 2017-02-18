@@ -19,6 +19,7 @@ export default Component.extend({
   tagName: '',
   loaderSize: 'large',
   isLoading: false,
+  showLoader: true,
 
   viewportDivId: computed(function() {
     const GUID = guidFor(this);
@@ -69,6 +70,6 @@ export default Component.extend({
   },
 
   _getDefaultRootMargin() {
-    return { top: 0, left: 0, right: 0, bottom: 200 };
+    return { top: 0, left: 0, right: 0, bottom: 400 };
   }
 });

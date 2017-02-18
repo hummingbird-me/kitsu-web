@@ -63,16 +63,16 @@
 
     {{! don't add the pagination component as a cell if we have less than the initial request length }}
     {{#if (gte initialEntries.length pageLimit)}}
-      {{paginated-resource/infinite
-        model=initialEntries
-        update=(action "updateNextPage")
-      }}
+      {{infinite-pagination
+        showLoader=false
+        rootMargin=(hash bottom=0 left=-400)
+        onPagination=(action "onPagination")}}
     {{/if}}
   {{/em-flickity}}
 
   {{! Temporary storage for paginated entries }}
   <div class="new-entries" style="display: none">
-    {{#each newEntries as |entry|}}
+    {{#each paginatedElements as |entry|}}
       {{dashboard/quick-update/item
         entry=entry
         updateEntry=(action "updateEntry" entry)

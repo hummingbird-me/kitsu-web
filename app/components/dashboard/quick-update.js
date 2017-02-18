@@ -8,8 +8,9 @@ import { task } from 'ember-concurrency';
 import { scheduleOnce } from 'ember-runloop';
 import { storageFor } from 'ember-local-storage';
 import FlickityActionsMixin from 'client/mixins/flickity-actions';
+import InfinitePagination from 'client/mixins/infinite-pagination';
 
-export default Component.extend(FlickityActionsMixin, {
+export default Component.extend(FlickityActionsMixin, InfinitePagination, {
   classNames: ['quick-update'],
   filterOptions: ['all', 'anime', 'manga'],
   pageLimit: 12,
@@ -20,6 +21,13 @@ export default Component.extend(FlickityActionsMixin, {
   remaining: computed('initialEntries.length', function() {
     return 3 - (get(this, 'initialEntries.length') || 0);
   }).readOnly(),
+
+  init() {
+    this._super(...arguments);
+    const filter = get(this, 'lastUsed.quickUpdateFilter') || 'all';
+    set(this, 'filter', filter);
+    this._getEntries();
+  },
 
   getEntriesTask: task(function* () {
     const type = get(this, 'filter') !== 'all' ? get(this, 'filter') : undefined;
@@ -36,37 +44,12 @@ export default Component.extend(FlickityActionsMixin, {
     });
   }).drop(),
 
-  init() {
+  onPagination() {
     this._super(...arguments);
-    const filter = get(this, 'lastUsed.quickUpdateFilter') || 'all';
-    set(this, 'filter', filter);
-    this._getEntries();
-  },
-
-  _getEntries() {
-    set(this, 'initialEntries', []);
-    get(this, 'getEntriesTask').perform().then((entries) => {
-      set(this, 'initialEntries', entries);
-    }).catch((error) => {
-      get(this, 'raven').captureException(error);
-    });
-  },
-
-  _appendToFlickty() {
-    scheduleOnce('afterRender', () => {
-      if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
-      const index = this.$('.carousel').data('flickity').cells.length - 1;
-      this.$('.carousel').flickity('insert', this.$('.new-entries').children(), index);
-    });
+    this._appendToFlickity();
   },
 
   actions: {
-    updateNextPage(records, links) {
-      set(this, 'newEntries', records);
-      set(this, 'initialEntries.links', links);
-      this._appendToFlickty();
-    },
-
     updateEntry(entry, property, value) {
       if (get(this, 'isFlickityDraging')) { return; }
       if (typeOf(property) === 'object') {
@@ -96,5 +79,24 @@ export default Component.extend(FlickityActionsMixin, {
       set(this, 'lastUsed.quickUpdateFilter', option);
       this._getEntries();
     }
+  },
+
+  _getEntries() {
+    set(this, 'initialEntries', []);
+    set(this, 'paginatedElements', []);
+    get(this, 'getEntriesTask').perform().then((entries) => {
+      set(this, 'initialEntries', entries);
+      this.updatePageState(entries);
+    }).catch((error) => {
+      get(this, 'raven').captureException(error);
+    });
+  },
+
+  _appendToFlickity() {
+    scheduleOnce('afterRender', () => {
+      if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
+      const index = this.$('.carousel').data('flickity').cells.length - 1;
+      this.$('.carousel').flickity('insert', this.$('.new-entries').children(), index);
+    });
   }
 });

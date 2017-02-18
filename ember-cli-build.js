@@ -61,6 +61,10 @@ module.exports = function(defaults) {
         srcDir: 'dist',
         import: ['clipboard.js']
       },
+      flickity: {
+        srcDir: 'dist',
+        import: ['flickity.css']
+      },
       getstream: {
         srcDir: 'dist/js',
         import: ['getstream.js']
