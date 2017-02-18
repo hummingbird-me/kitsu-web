@@ -10,17 +10,17 @@
   {{else}}
     <ul class="nav nav-tabs soft-tabs" role="tablist">
       <li class="nav-item">
-        <a class="nav-link {{if (eq initialTab "anime") "active"}}" data-toggle="tab" href="#edit-favorite-anime" role="tab">
+        <a class="nav-link {{if (eq tab "anime") "active"}}" data-toggle="tab" href="#edit-favorite-anime" role="tab" {{action (action (mut tab) "anime")}}>
           {{t "users.edit-modal.favorites.anime"}}
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{if (eq initialTab "manga") "active"}}" data-toggle="tab" href="#edit-favorite-manga" role="tab">
+        <a class="nav-link {{if (eq tab "manga") "active"}}" data-toggle="tab" href="#edit-favorite-manga" role="tab" {{action (action (mut tab) "manga")}}>
           {{t "users.edit-modal.favorites.manga"}}
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{if (eq initialTab "characters") "active"}}" data-toggle="tab" href="#edit-favorite-characters" role="tab">
+        <a class="nav-link {{if (eq tab "characters") "active"}}" data-toggle="tab" href="#edit-favorite-characters" role="tab" {{action (action (mut tab) "characters")}}>
           {{t "users.edit-modal.favorites.characters"}}
         </a>
       </li>
@@ -28,33 +28,33 @@
 
     <div class="tab-content edit-favorite-content">
       {{! Anime }}
-      <div id="edit-favorite-anime" class="tab-pane {{if (eq initialTab "anime") "active"}}" role="tabpanel">
+      <div id="edit-favorite-anime" class="tab-pane {{if (eq tab "anime") "active"}}" role="tabpanel">
         {{users/edit-profile/body/favorites/list items=animeFavorites type="anime"
           search=(perform search "anime")
           reorderItems=(action "reorderItems" "anime")
           addItem=(action "addItem")
           removeItem=(action "removeItem")
-          updateNextPage=(action "updateNextPage" "anime")}}
+          onPagination=(action "onPagination" "Anime")}}
       </div>
 
       {{! Manga }}
-      <div id="edit-favorite-manga" class="tab-pane {{if (eq initialTab "manga") "active"}}" role="tabpanel">
+      <div id="edit-favorite-manga" class="tab-pane {{if (eq tab "manga") "active"}}" role="tabpanel">
         {{users/edit-profile/body/favorites/list items=mangaFavorites type="manga"
           search=(perform search "manga")
           reorderItems=(action "reorderItems" "manga")
           addItem=(action "addItem")
           removeItem=(action "removeItem")
-          updateNextPage=(action "updateNextPage" "manga")}}
+          onPagination=(action "onPagination" "Manga")}}
       </div>
 
       {{! Characters }}
-      <div id="edit-favorite-characters" class="tab-pane {{if (eq initialTab "characters") "active"}}" role="tabpanel">
+      <div id="edit-favorite-characters" class="tab-pane {{if (eq tab "characters") "active"}}" role="tabpanel">
         {{users/edit-profile/body/favorites/list items=characterFavorites type="character"
           search=(perform search "character")
           reorderItems=(action "reorderItems" "character")
           addItem=(action "addItem")
           removeItem=(action "removeItem")
-          updateNextPage=(action "updateNextPage" "character")}}
+          onPagination=(action "onPagination" "Character")}}
       </div>
     </div>
   {{/if}}

@@ -1,6 +1,8 @@
 import Mixin from 'ember-metal/mixin';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import service from 'ember-service/inject';
+import computed from 'ember-computed';
 import Route from 'ember-route';
 import RSVP from 'rsvp';
 import Ember from 'ember';
@@ -10,6 +12,12 @@ const {
 } = Ember;
 
 export default Mixin.create({
+  store: service(),
+
+  hasNextPage: computed('internalPageState.hasNextPage', function() {
+    return this._hasNextPage();
+  }).readOnly(),
+
   init() {
     this._super(...arguments);
     set(this, 'paginatedElements', []);
@@ -17,10 +25,6 @@ export default Mixin.create({
       hasNextPage: false,
       nextPageLink: null
     });
-  },
-
-  hasNextPage() {
-    return get(this, 'internalPageState.hasNextPage');
   },
 
   updatePageState(records) {
@@ -42,15 +46,23 @@ export default Mixin.create({
   actions: {
     /** Execute a pagination request. This must be overriden by the consumer. */
     onPagination(recordType, customOptions = {}) {
-      const hasNextPage = this.hasNextPage();
-      if (!hasNextPage) { return RSVP.resolve(); }
-      const options = Object.assign(this._getPaginationRequestOptions(), customOptions);
-      const modelName = recordType || this._getPaginationRecordType();
-      return get(this, 'store').query(modelName, options).then((records) => {
-        this.onPagination(records);
-        this.updatePageState(records);
-      });
+      this._doPaginationRequest(recordType, customOptions);
     }
+  },
+
+  _hasNextPage() {
+    return get(this, 'internalPageState.hasNextPage');
+  },
+
+  _doPaginationRequest(recordType, customOptions = {}) {
+    const hasNextPage = this._hasNextPage();
+    if (!hasNextPage) { return RSVP.resolve(); }
+    const options = Object.assign(this._getPaginationRequestOptions(), customOptions);
+    const modelName = recordType || this._getPaginationRecordType();
+    return get(this, 'store').query(modelName, options).then((records) => {
+      this.updatePageState(records);
+      this.onPagination(records);
+    });
   },
 
   _getPaginationRequestOptions() {

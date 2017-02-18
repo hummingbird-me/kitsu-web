@@ -16,8 +16,7 @@ export default Component.extend({
 
   // Displays the number of entries within this section
   stats: getter(function() {
-    const entries = get(this, 'entries');
-    const count = entries !== undefined ? get(entries, 'meta.count') : 0;
+    const count = get(this, 'metaCount') || 0;
     const text = count === 1 ? 'title' : 'titles';
     return count ? `${count} ${text}` : '';
   })

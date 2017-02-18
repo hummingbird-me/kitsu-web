@@ -11,8 +11,9 @@ import errorMessages from 'client/utils/error-messages';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
 import { unshiftObjects } from 'client/utils/array-utils';
+import InfinitePagination from 'client/mixins/infinite-pagination';
 
-export default Component.extend(ClipboardMixin, {
+export default Component.extend(ClipboardMixin, InfinitePagination, {
   classNameBindings: ['comment.isNew:new-comment'],
   isEditing: false,
   isReplying: false,
@@ -80,8 +81,15 @@ export default Component.extend(ClipboardMixin, {
         const content = replies.toArray().reverse();
         set(content, 'links', get(replies, 'links'));
         set(this, 'replies', content);
+        this.updatePageState(replies);
       }).catch(() => {});
     }
+  },
+
+  onPagination(records) {
+    set(this, 'isLoading', false);
+    unshiftObjects(get(this, 'replies'), records.toArray().reverse());
+    invokeAction(this, 'trackEngagement', 'click');
   },
 
   actions: {
@@ -135,12 +143,16 @@ export default Component.extend(ClipboardMixin, {
       scheduleOnce('afterRender', () => this.$('.reply-comment').val(`@${name} `));
     },
 
+    onPagination() {
+      set(this, 'isLoading', true);
+      this._super(null, { page: { limit: 10, offset: get(this, 'replies.length') } });
+    },
+
     loadReplies(records, links) {
       const content = get(this, 'replies').toArray();
       unshiftObjects(content, records.toArray().reverse());
       set(this, 'replies', content);
       set(this, 'replies.links', links);
-      invokeAction(this, 'trackEngagement', 'click');
     },
 
     trackEngagement(label) {

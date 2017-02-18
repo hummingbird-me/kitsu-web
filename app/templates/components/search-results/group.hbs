@@ -5,13 +5,9 @@
       {{#if moreLink}}
         <a href="#" {{action "transitionTo" moreLink}}>more</a>
       {{else}}
-        {{#paginated-resource/manual
-          model=items
-          update=(action (queue (toggle-action "isLoadingMore" this) update)) as |nextLink|}}
-          {{#if nextLink}}
-            <a href="#" {{action (toggle-action "isLoadingMore" this)}}>more</a>
-          {{/if}}
-        {{/paginated-resource/manual}}
+        {{#if hasNextPage}}
+          <a href="#" {{action "onPagination"}}>more</a>
+        {{/if}}
       {{/if}}
     {{else}}
       {{#unless isLoading}}
@@ -46,6 +42,7 @@
           </div>
         </li>
       {{/each}}
+
       {{#if isLoadingMore}}
         <div class="text-xs-center w-100 m-t-1 m-b-1">
           {{loading-spinner size="small"}}

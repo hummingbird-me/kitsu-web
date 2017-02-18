@@ -9,18 +9,12 @@
   {{/modal.body}}
 
   {{#modal.footer}}
-    {{#paginated-resource/manual
-      model=likes
-      limit=limit
-      update=(action "updateNextPage") as |active isLoading|
-    }}
-      <button class="button button--primary btn-lg btn-block" disabled={{unless active "disabled"}}>
-        {{#if (or getNextData.isRunning isLoading)}}
-          {{loading-spinner size="small"}}
-        {{else}}
-          Load More
-        {{/if}}
-      </button>
-    {{/paginated-resource/manual}}
+    <button class="button button--primary btn-lg btn-block" disabled={{if isDisabled "disabled"}} {{action "onPagination"}}>
+      {{#if isLoading}}
+        Loading...
+      {{else}}
+        Load More
+      {{/if}}
+    </button>
   {{/modal.footer}}
 {{/bootstrap/bs-modal}}

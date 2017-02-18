@@ -64,11 +64,10 @@ export default Component.extend({
       invokeAction(this, 'onClose');
     },
 
-    updatePage(type, records, links) {
-      const content = get(this, `groups.${type}`).toArray();
-      content.addObjects(records);
-      set(content, 'links', links);
-      set(this, `groups.${type}`, content);
+    updatePage(records) {
+      const dup = get(this, 'groups.users').toArray().addObjects(records);
+      set(this, 'groups.users', dup);
+      set(this, 'groups.users.links', get(records, 'links'));
     }
   }
 });

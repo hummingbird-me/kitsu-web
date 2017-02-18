@@ -74,6 +74,7 @@
               status=status
               entries=entries
               mediaType=media
+              metaCount=(get model.taskInstance.value "meta.count")
               user=user
               save=(route-action "saveEntry")
               delete=(route-action "deleteEntry")

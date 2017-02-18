@@ -24,6 +24,7 @@
     {{! comment content }}
     <span class="comment-body">
       {{#if isEditing}}
+        {{log comment}}
         {{expanding-textarea comment.content
           update=(action (mut comment.content))
           keyEvents=(hash 13=(action "updateComment"))
@@ -117,30 +118,23 @@
       {{else}}
         {{! Reply  Pagination }}
         {{#if replies}}
-          {{#paginated-resource/manual
-            model=replies
-            modelName="comment"
-            limit=10
-            update=(action "loadReplies") as |nextLink running|
-          }}
-            {{#if nextLink}}
-              <div class="comment-actions clearfix">
-                {{! action }}
-                <div class="pull-sm-left">
-                  {{#if running}}
-                    {{loading-spinner size="small"}}
-                  {{else}}
-                    <a href="#">Show Previous Replies</a>
-                  {{/if}}
-                </div>
-
-                {{! Comment count }}
-                <div class="pull-sm-right">
-                  {{replies.length}} of {{comment.repliesCount}}
-                </div>
+          {{#if hasNextPage}}
+            <div class="comment-actions clearfix">
+              {{! action }}
+              <div class="pull-sm-left">
+                {{#if isLoading}}
+                  {{loading-spinner size="small"}}
+                {{else}}
+                  <a href="#" {{action "onPagination"}}>Show Previous Replies</a>
+                {{/if}}
               </div>
-            {{/if}}
-          {{/paginated-resource/manual}}
+
+              {{! Comment count }}
+              <div class="pull-sm-right">
+                {{replies.length}} of {{comment.repliesCount}}
+              </div>
+            </div>
+          {{/if}}
 
           {{! Replies list }}
            <ul class="media-list reply-list">

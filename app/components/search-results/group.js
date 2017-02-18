@@ -1,13 +1,30 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
+import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { typeOf } from 'ember-utils';
 import { invokeAction } from 'ember-invoke-action';
+import InfinitePagination from 'client/mixins/infinite-pagination';
 
-export default Component.extend({
+export default Component.extend(InfinitePagination, {
   router: service('-routing'),
 
+  didReceiveAttrs() {
+    this._super(...arguments);
+    this.updatePageState(get(this, 'items'));
+  },
+
+  onPagination(records) {
+    invokeAction(this, 'update', records);
+    set(this, 'isLoadingMore', false);
+  },
+
   actions: {
+    onPagination() {
+      set(this, 'isLoadingMore', true);
+      this._super();
+    },
+
     transitionTo(item) {
       invokeAction(this, 'close');
       if (typeOf(item) === 'string') {
@@ -20,8 +37,6 @@ export default Component.extend({
           get(this, 'router').transitionTo(`${type}.show`, [get(item, 'slug')]);
         }
       }
-    },
-
-    noop() { }
+    }
   }
 });

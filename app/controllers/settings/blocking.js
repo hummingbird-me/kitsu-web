@@ -4,13 +4,13 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
 import { task, timeout } from 'ember-concurrency';
-import { fork } from 'client/utils/computed-macros';
+import { concat } from 'client/utils/computed-macros';
 import errorMessages from 'client/utils/error-messages';
 
 export default Controller.extend({
   notify: service(),
   store: service(),
-  taskValue: fork('_taskValue', 'model.taskInstance.value'),
+  taskValue: concat('model.taskInstance.value', 'model.paginatedElements'),
 
   /** Query API for users */
   searchUsers: task(function* (query) {
@@ -35,9 +35,7 @@ export default Controller.extend({
         get(this, 'notify').success(`${get(user, 'name')} was blocked.`);
         set(this, 'currentSelection', null);
         // add this block to our store
-        const content = get(this, 'taskValue').toArray();
-        content.addObject(block);
-        set(this, 'taskValue', content);
+        get(this, 'model.paginatedElements').addObject(block);
       }).catch((err) => {
         get(this, 'notify').error(errorMessages(err));
       });

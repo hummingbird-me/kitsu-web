@@ -16,29 +16,22 @@
         </div>
       </div>
     {{else if comments}} {{! Comment Pagination }}
-      {{#paginated-resource/manual
-        model=comments
-        modelName="comment"
-        limit=10
-        update=(action "loadComments") as |nextLink running|
-      }}
-        {{#if nextLink}}
-          <div class="comment-actions clearfix">
-            {{! action }}
-            <div class="pull-sm-left">
-              {{#if running}}
-                {{loading-spinner size="small"}}
-              {{else}}
-                <a href="#">Show Previous Comments</a>
-              {{/if}}
-            </div>
-            {{! Comment count }}
-            <div class="pull-sm-right">
-              {{comments.length}} of {{post.topLevelCommentsCount}}
-            </div>
+      {{#if hasNextPage}}
+        <div class="comment-actions clearfix">
+          {{! action }}
+          <div class="pull-sm-left">
+            {{#if isLoading}}
+              {{loading-spinner size="small"}}
+            {{else}}
+              <a href="#" {{action "onPagination"}}>Show Previous Comments</a>
+            {{/if}}
           </div>
-        {{/if}}
-      {{/paginated-resource/manual}}
+          {{! Comment count }}
+          <div class="pull-sm-right">
+            {{comments.length}} of {{post.topLevelCommentsCount}}
+          </div>
+        </div>
+      {{/if}}
     {{/if}}
 
     {{! List of comments }}

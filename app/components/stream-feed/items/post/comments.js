@@ -7,8 +7,9 @@ import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
 import { unshiftObjects } from 'client/utils/array-utils';
+import InfinitePagination from 'client/mixins/infinite-pagination';
 
-export default Component.extend({
+export default Component.extend(InfinitePagination, {
   classNames: ['stream-item-comments'],
   metrics: service(),
   notify: service(),
@@ -73,12 +74,24 @@ export default Component.extend({
           const content = comments.toArray().reverse();
           set(content, 'links', get(comments, 'links'));
           set(this, 'comments', content);
+          this.updatePageState(comments);
         }).catch(() => {});
       }
     }
   },
 
+  onPagination(records) {
+    set(this, 'isLoading', false);
+    unshiftObjects(get(this, 'comments'), records.toArray().reverse());
+    invokeAction(this, 'trackEngagement', 'click');
+  },
+
   actions: {
+    onPagination() {
+      set(this, 'isLoading', true);
+      this._super(null, { page: { limit: 10, offset: get(this, 'comments.length') } });
+    },
+
     createComment(component, event, content) {
       if (isEmpty(content) === true) { return; }
       const { shiftKey } = event;
@@ -97,14 +110,6 @@ export default Component.extend({
         get(this, 'comments').removeObject(comment);
         invokeAction(this, 'countUpdate', get(this, 'post.topLevelCommentsCount') - 1);
       }
-    },
-
-    loadComments(records, links) {
-      const content = get(this, 'comments').toArray();
-      unshiftObjects(content, records.toArray().reverse());
-      set(this, 'comments', content);
-      set(this, 'comments.links', links);
-      invokeAction(this, 'trackEngagement', 'click');
     },
 
     trackEngagement(...args) {
