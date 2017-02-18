@@ -26,50 +26,40 @@
   <div class="tab-content container onboarding-media-wrapper">
     <div class="tab-pane active row" id="anime" role="tabpanel">
       <div class="modal-grid row">
-        {{#if query.isRunning}}
+        {{#if queryTask.isRunning}}
           <div class="m-t-1 text-xs-center w-100">
             {{loading-spinner size="large"}}
           </div>
         {{else}}
-          {{#each media as |anime|}}
-            {{application/auth-onboarding/rate-content/item
-              class="onboarding-media col-sm-3"
-              item=anime
-              onClick=(action "createLibraryEntry" anime)
-            }}
-          {{/each}}
-
-          <div class="m-t-1 text-xs-center w-100">
-            {{paginated-resource/infinite
-              model=media
-              update=(action "updateNextPage")
-            }}
-          </div>
+          {{#infinite-pagination onPagination=(action "onPagination")}}
+            {{#each media as |anime|}}
+              {{application/auth-onboarding/rate-content/item
+                class="onboarding-media col-sm-3"
+                item=anime
+                onClick=(action "createLibraryEntry" anime)
+              }}
+            {{/each}}
+          {{/infinite-pagination}}
         {{/if}}
       </div>
     </div>
 
     <div class="tab-pane row" id="manga" role="tabpanel">
       <div class="modal-grid row">
-        {{#if query.isRunning}}
+        {{#if queryTask.isRunning}}
           <div class="m-t-1 text-xs-center w-100">
             {{loading-spinner size="large"}}
           </div>
         {{else}}
-          {{#each media as |manga|}}
-            {{application/auth-onboarding/rate-content/item
-              class="onboarding-media col-sm-3"
-              item=manga
-              onClick=(action "createLibraryEntry" manga)
-            }}
-          {{/each}}
-
-          <div class="m-t-1 text-xs-center w-100">
-            {{paginated-resource/infinite
-              model=media
-              update=(action "updateNextPage")
-            }}
-          </div>
+          {{#infinite-pagination onPagination=(action "onPagination")}}
+            {{#each media as |manga|}}
+              {{application/auth-onboarding/rate-content/item
+                class="onboarding-media col-sm-3"
+                item=manga
+                onClick=(action "createLibraryEntry" manga)
+              }}
+            {{/each}}
+          {{/infinite-pagination}}
         {{/if}}
       </div>
     </div>

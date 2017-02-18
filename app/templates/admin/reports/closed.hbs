@@ -8,14 +8,7 @@
     {{t "errors.load"}}
   </div>
 {{else}}
-  {{admin/report-list reports=(reject-by "status" "reported" taskValue)}}
-{{/if}}
-
-{{#if taskValue}}
-  <div class="text-xs-center w-100 m-t-1">
-    {{paginated-resource/infinite
-      model=taskValue
-      update=(route-action "updateNextPage" "taskValue")
-    }}
-  </div>
+  {{#infinite-pagination onPagination=(route-action "onPagination")}}
+    {{admin/report-list reports=(reject-by "status" "reported" taskValue)}}
+  {{/infinite-pagination}}
 {{/if}}

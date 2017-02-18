@@ -77,39 +77,29 @@
   {{/if}}
 
   {{! feed items }}
-  {{#each feed as |group index|}}
-    {{#if group.activities.length}}
-      {{component (concat "stream-feed/items/" (feed-type group.activities))
-        group=group
-        feedId=feedId
-        positionInFeed=index
-        readOnly=readOnly
-        removeGroup=(action "removeGroup")
-        deleteActivity=(action "deleteActivity")
-      }}
-    {{/if}}
+  {{#infinite-pagination infiniteScrollPoint=2000 onPagination=(action "onPagination")}}
+    {{#each allFeedItems as |group index|}}
+      {{#if group.activities.length}}
+        {{component (concat "stream-feed/items/" (feed-type group.activities))
+          group=group
+          feedId=feedId
+          positionInFeed=index
+          readOnly=readOnly
+          removeGroup=(action "removeGroup")
+          deleteActivity=(action "deleteActivity")
+        }}
+      {{/if}}
 
-    {{! ads inserted }}
-    {{#if (is-multiple-of (inc index) 10)}}
-      {{ad-unit unit="kitsu.feeds.inline" sizes=(hash
-        mobile=(array (array 336 280) (array 300 250) (array 320 100) (array 320 50))
-      )}}
-    {{/if}}
-  {{else}}
-    <div class="stream-error-wrapper col-sm-12">
-      {{t "errors.contentEmpty"}}
-    </div>
-  {{/each}}
-
-  {{! pagination }}
-  <div class="w-100 text-xs-center m-t-2 m-b-2">
-    {{paginated-resource/infinite
-      model=feed
-      modelName="feed"
-      loadingSize="large"
-      rootMargin=(hash bottom=-600)
-      options=(hash type=streamType id=streamId)
-      update=(action "updateNextPage")
-    }}
-  </div>
+      {{! ads inserted }}
+      {{#if (is-multiple-of (inc index) 10)}}
+        {{ad-unit unit="kitsu.feeds.inline" sizes=(hash
+          mobile=(array (array 336 280) (array 300 250) (array 320 100) (array 320 50))
+        )}}
+      {{/if}}
+    {{else}}
+      <div class="stream-error-wrapper col-sm-12">
+        {{t "errors.contentEmpty"}}
+      </div>
+    {{/each}}
+  {{/infinite-pagination}}
 {{/if}}

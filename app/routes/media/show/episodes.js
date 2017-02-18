@@ -3,24 +3,17 @@ import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { capitalize } from 'ember-string';
 import { task } from 'ember-concurrency';
-import PaginationMixin from 'client/mixins/routes/pagination';
+import InfinitePagination from 'client/mixins/infinite-pagination';
 
-export default Route.extend(PaginationMixin, {
+export default Route.extend(InfinitePagination, {
   templateName: 'media/show/episodes',
   intl: service(),
 
-  modelTask: task(function* () {
-    const media = this._getParentModel();
-    return yield get(this, 'store').query('episode', {
-      filter: {
-        media_type: capitalize(get(media, 'modelType')),
-        media_id: get(media, 'id')
-      }
-    });
-  }),
-
   model() {
-    return { taskInstance: get(this, 'modelTask').perform() };
+    return {
+      taskInstance: get(this, 'modelTask').perform(),
+      paginatedElements: []
+    };
   },
 
   titleToken() {
@@ -28,6 +21,20 @@ export default Route.extend(PaginationMixin, {
     const title = get(model, 'computedTitle');
     return get(this, 'intl').t('titles.media.show.episodes', { title });
   },
+
+  modelTask: task(function* () {
+    const media = this._getParentModel();
+    const options = {
+      filter: {
+        media_type: capitalize(get(media, 'modelType')),
+        media_id: get(media, 'id')
+      }
+    };
+    return yield get(this, 'store').query('episode', options).then((records) => {
+      this.updatePageState(records);
+      return records;
+    });
+  }),
 
   _getParentModel() {
     const [mediaType] = get(this, 'routeName').split('.');

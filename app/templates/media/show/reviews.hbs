@@ -14,22 +14,16 @@
     {{t "errors.load"}}
   </div>
 {{else if taskValue}}
-  <ul class="media-list w-100">
-    {{! TODO @Josh - Reviews on the media page `/anime/sword-art-online/reviews` }}
-    {{#each taskValue as |review|}}
-      <div class="w-100">
-        {{stream-feed/items/review review=review media=media hideImage=true}}
-      </div>
-    {{/each}}
-  </ul>
-
-  <div class="text-xs-center w-100">
-    {{paginated-resource/infinite
-      model=taskValue
-      update=(route-action "updateNextPage" "taskValue")
-      loadingSize="large"
-    }}
-  </div>
+  {{#infinite-pagination onPagination=(route-action "onPagination")}}
+    <ul class="media-list w-100">
+      {{! TODO @Josh - Reviews on the media page `/anime/sword-art-online/reviews` }}
+      {{#each taskValue as |review|}}
+        <div class="w-100">
+          {{stream-feed/items/review review=review media=media hideImage=true}}
+        </div>
+      {{/each}}
+    </ul>
+  {{/infinite-pagination}}
 {{else}}
   <div class="text-xs-center w-100 m-t-1 m-b-1">
     {{t "errors.contentEmpty"}}

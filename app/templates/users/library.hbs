@@ -57,8 +57,19 @@
           {{t "errors.load"}}
         </div>
       {{else}}
-        {{#if (eq status 'all')}} {{! all status is selected }}
-          {{#each-in sections as |status entries|}}
+        {{#infinite-pagination onPagination=(route-action "onPagination")}}
+          {{#if (eq status 'all')}} {{! all status is selected }}
+            {{#each-in sections as |status entries|}}
+              {{users/library/library-entries
+                status=status
+                entries=entries
+                mediaType=media
+                user=user
+                save=(route-action "saveEntry")
+                delete=(route-action "deleteEntry")
+              }}
+            {{/each-in}}
+          {{else}} {{! active tab entires }}
             {{users/library/library-entries
               status=status
               entries=entries
@@ -67,27 +78,8 @@
               save=(route-action "saveEntry")
               delete=(route-action "deleteEntry")
             }}
-          {{/each-in}}
-        {{else}} {{! active tab entires }}
-          {{users/library/library-entries
-            status=status
-            entries=entries
-            mediaType=media
-            user=user
-            save=(route-action "saveEntry")
-            delete=(route-action "deleteEntry")
-          }}
-        {{/if}}
-
-        {{! pagination }}
-        <div class="text-xs-center m-t-1 m-b-1">
-          {{paginated-resource/infinite
-            model=entries
-            rootMargin=(hash bottom=-600)
-            update=(route-action "updateNextPage" "entries")
-            loadingSize="large"
-          }}
-        </div>
+          {{/if}}
+        {{/infinite-pagination}}
       {{/if}}
     </div>
   </div>

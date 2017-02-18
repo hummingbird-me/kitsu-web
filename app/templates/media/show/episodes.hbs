@@ -15,29 +15,24 @@
     {{t "errors.load"}}
   </div>
 {{else if taskValue}}
-  <ul class="media--episode-grid row">
-    {{#each taskValue as |episode|}}
-      <li class="media--episode-block col-md-4 col-sm-2">
-        <div class="thumbnail-wrapper">
-          {{lazy-image src=(image episode.thumbnail)}}
-        </div>
-        <div class="thumbnail-description">
-          <h6>{{t "media.show.episodes.episode"}} {{episode.number}}</h6>
-          <div class="info-emphasis thumb-caption">
-            <span>{{episode.canonicalTitle}}</span>
+  {{#infinite-pagination onPagination=(route-action "onPagination")}}
+    {{! @TODO: Componentsize }}
+    <ul class="media--episode-grid row">
+      {{#each taskValue as |episode|}}
+        <li class="media--episode-block col-md-4 col-sm-2">
+          <div class="thumbnail-wrapper">
+            {{lazy-image src=(image episode.thumbnail)}}
           </div>
-        </div>
-      </li>
-    {{/each}}
-  </ul>
-
-  <div class="text-xs-center w-100">
-    {{paginated-resource/infinite
-      model=taskValue
-      update=(route-action "updateNextPage" "taskValue")
-      loadingSize="large"
-    }}
-  </div>
+          <div class="thumbnail-description">
+            <h6>{{t "media.show.episodes.episode"}} {{episode.number}}</h6>
+            <div class="info-emphasis thumb-caption">
+              <span>{{episode.canonicalTitle}}</span>
+            </div>
+          </div>
+        </li>
+      {{/each}}
+    </ul>
+  {{/infinite-pagination}}
 {{else}}
   <div class="text-xs-center w-100 m-t-1 m-b-1">
     {{t "errors.contentEmpty"}}

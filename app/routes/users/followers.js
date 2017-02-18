@@ -3,22 +3,16 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
-import PaginationMixin from 'client/mixins/routes/pagination';
+import InfinitePagination from 'client/mixins/infinite-pagination';
 
-export default Route.extend(PaginationMixin, {
+export default Route.extend(InfinitePagination, {
   intl: service(),
 
-  modelTask: task(function* (user) {
-    return yield get(this, 'store').query('follow', {
-      filter: { followed: get(user, 'id') },
-      include: 'follower',
-      sort: '-created_at'
-    });
-  }),
-
   model() {
-    const user = this.modelFor('users');
-    return { taskInstance: get(this, 'modelTask').perform(user) };
+    return {
+      taskInstance: get(this, 'modelTask').perform(),
+      paginatedElements: []
+    };
   },
 
   setupController(controller) {
@@ -30,5 +24,18 @@ export default Route.extend(PaginationMixin, {
     const model = this.modelFor('users');
     const name = get(model, 'name');
     return get(this, 'intl').t('titles.users.followers', { user: name });
-  }
+  },
+
+  modelTask: task(function* () {
+    const user = this.modelFor('users');
+    const options = {
+      filter: { followed: get(user, 'id') },
+      include: 'follower',
+      sort: '-created_at'
+    };
+    return yield get(this, 'store').query('follow', options).then((records) => {
+      this.updatePageState(records);
+      return records;
+    });
+  })
 });

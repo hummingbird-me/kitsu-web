@@ -6,13 +6,15 @@ import computed from 'ember-computed';
 import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
 import { invokeAction } from 'ember-invoke-action';
+import { concat } from 'client/utils/computed-macros';
+import InfinitePagination from 'client/mixins/infinite-pagination';
 
-export default Component.extend({
+export default Component.extend(InfinitePagination, {
   activeTab: 'anime',
   searchQuery: '',
-  media: undefined,
   numRated: 0,
   store: service(),
+  media: concat('queryTask.lastSuccessful.value', 'paginatedElements'),
 
   numRatedLeft: computed('numRated', function() {
     if (get(this, 'numRated') > 5) {
@@ -21,19 +23,14 @@ export default Component.extend({
     return 5 - get(this, 'numRated');
   }),
 
-  query: task(function* () {
+  init() {
+    this._super(...arguments);
+    get(this, 'queryTask').perform();
+  },
+
+  queryTask: task(function* () {
+    set(this, 'paginatedElements', []);
     const mediaType = get(this, 'activeTab');
-    const data = yield get(this, 'store').query(mediaType, this._getFilters());
-    set(this, 'media', data);
-  }).restartable(),
-
-  updateSearchQuery: task(function* (query) {
-    set(this, 'searchQuery', query);
-    yield timeout(1000);
-    get(this, 'query').perform();
-  }).restartable(),
-
-  _getFilters() {
     const filters = { page: { limit: 20 } };
     const query = get(this, 'searchQuery');
     if (isEmpty(query) === true) {
@@ -41,13 +38,18 @@ export default Component.extend({
     } else {
       filters.filter = { text: query };
     }
-    return filters;
-  },
+    return yield get(this, 'store').query(mediaType, filters).then((records) => {
+      set(this, 'paginatedElements', []);
+      this.updatePageState(records);
+      return records;
+    });
+  }).restartable(),
 
-  init() {
-    this._super(...arguments);
-    get(this, 'query').perform();
-  },
+  updateSearchQuery: task(function* (query) {
+    set(this, 'searchQuery', query);
+    yield timeout(1000);
+    yield get(this, 'queryTask').perform();
+  }).restartable(),
 
   actions: {
     changeComponent(component) {
@@ -56,7 +58,7 @@ export default Component.extend({
 
     updateTab(tab) {
       set(this, 'activeTab', tab);
-      get(this, 'query').perform();
+      get(this, 'queryTask').perform();
     },
 
     createLibraryEntry(media, rating) {
@@ -70,13 +72,6 @@ export default Component.extend({
       });
       this.incrementProperty('numRated');
       entry.save().catch(() => this.decrementProperty('numRated'));
-    },
-
-    updateNextPage(records, links) {
-      const content = get(this, 'media').toArray();
-      content.addObjects(records);
-      set(this, 'media', content);
-      set(this, 'media.links', links);
     }
   }
 });

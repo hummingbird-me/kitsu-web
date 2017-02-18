@@ -4,26 +4,17 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { capitalize } from 'ember-string';
 import { task } from 'ember-concurrency';
-import PaginationMixin from 'client/mixins/routes/pagination';
+import InfinitePagination from 'client/mixins/infinite-pagination';
 
-export default Route.extend(PaginationMixin, {
+export default Route.extend(InfinitePagination, {
   templateName: 'media/show/reviews',
   intl: service(),
 
-  modelTask: task(function* () {
-    const media = this._getParentModel();
-    return yield get(this, 'store').query('review', {
-      include: 'user,media',
-      filter: {
-        media_type: capitalize(get(media, 'modelType')),
-        media_id: get(media, 'id')
-      },
-      sort: '-likes_count'
-    });
-  }),
-
   model() {
-    return { taskInstance: get(this, 'modelTask').perform() };
+    return {
+      taskInstance: get(this, 'modelTask').perform(),
+      paginatedElements: []
+    };
   },
 
   setupController(controller) {
@@ -36,6 +27,22 @@ export default Route.extend(PaginationMixin, {
     const title = get(model, 'computedTitle');
     return get(this, 'intl').t('titles.media.show.reviews', { title });
   },
+
+  modelTask: task(function* () {
+    const media = this._getParentModel();
+    const options = {
+      include: 'user,media',
+      filter: {
+        media_type: capitalize(get(media, 'modelType')),
+        media_id: get(media, 'id')
+      },
+      sort: '-likes_count'
+    };
+    return yield get(this, 'store').query('review', options).then((records) => {
+      this.updatePageState(records);
+      return records;
+    });
+  }),
 
   _getParentModel() {
     const [mediaType] = get(this, 'routeName').split('.');

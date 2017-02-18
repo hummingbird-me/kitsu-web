@@ -251,18 +251,13 @@
               {{t "errors.load"}}
             </div>
           {{else if taskValue}}
-            {{#each taskValue as |media|}}
-              {{media/media-poster media=media}}
-            {{/each}}
-
-            <div class="m-t-2 m-b-2 w-100 text-xs-center">
-              {{paginated-resource/infinite
-                model=taskValue
-                update=(route-action "updateNextPage" "taskValue")
-                rootMargin=(hash bottom=-400)
-                loadingSize="large"
-              }}
-            </div>
+            {{#infinite-pagination onPagination=(route-action "onPagination")}}
+              <div class="media-posters-list">
+                {{#each taskValue as |media|}}
+                  {{media/media-poster media=media}}
+                {{/each}}
+              </div>
+            {{/infinite-pagination}}
           {{else}}
             <div class="text-xs-center w-100 m-t-1">
               No Results.

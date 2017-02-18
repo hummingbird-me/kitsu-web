@@ -37,39 +37,33 @@
     {{t "errors.load"}}
   </div>
 {{else if taskValue}}
-  <section class="character-grid">
-    {{! @TODO: Componentize }}
-    {{#each taskValue as |casting|}}
-      <article class="media-character">
-        <div class="character-wrapper">
-          <div class="character-image">
-            <a href="#">
-              {{lazy-image src=(image casting.character.image)}}
-            </a>
-          </div>
-          <div class="character-name">
-            <a href="#">{{casting.character.name}}</a>
-          </div>
-          {{#if casting.person}}
-            <div class="character-voice-actors">
-              <a href="#" class="va">
-                {{lazy-image src=(image casting.person.image)}}
-                {{casting.person.name}}
+  {{#infinite-pagination onPagination=(route-action "onPagination")}}
+    <section class="character-grid">
+      {{! @TODO: Componentize }}
+      {{#each taskValue as |casting|}}
+        <article class="media-character">
+          <div class="character-wrapper">
+            <div class="character-image">
+              <a href="#">
+                {{lazy-image src=(image casting.character.image)}}
               </a>
             </div>
-          {{/if}}
-        </div>
-      </article>
-    {{/each}}
-  </section>
-
-  <div class="text-xs-center w-100">
-    {{paginated-resource/infinite
-      model=taskValue
-      update=(route-action "updateNextPage" "taskValue")
-      loadingSize="large"
-    }}
-  </div>
+            <div class="character-name">
+              <a href="#">{{casting.character.name}}</a>
+            </div>
+            {{#if casting.person}}
+              <div class="character-voice-actors">
+                <a href="#" class="va">
+                  {{lazy-image src=(image casting.person.image)}}
+                  {{casting.person.name}}
+                </a>
+              </div>
+            {{/if}}
+          </div>
+        </article>
+      {{/each}}
+    </section>
+  {{/infinite-pagination}}
 {{else}}
   <div class="text-xs-center w-100 m-t-1 m-b-1">
     {{t "errors.contentEmpty"}}

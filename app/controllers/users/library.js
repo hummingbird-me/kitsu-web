@@ -4,7 +4,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import observer from 'ember-metal/observer';
 import { storageFor } from 'ember-local-storage';
-import { fork } from 'client/utils/computed-macros';
+import { concat } from 'client/utils/computed-macros';
 import libraryStatus from 'client/utils/library-status';
 
 export default Controller.extend({
@@ -12,7 +12,7 @@ export default Controller.extend({
   media: 'anime',
   status: 'current',
   mediaList: ['anime', 'manga'],
-  entries: fork('_taskValue', 'model.taskInstance.value'),
+  entries: concat('model.taskInstance.value', 'model.paginatedElements'),
   lastUsed: storageFor('last-used'),
 
   /**

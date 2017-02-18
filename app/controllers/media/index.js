@@ -5,7 +5,7 @@ import service from 'ember-service/inject';
 import jQuery from 'jquery';
 import getter from 'client/utils/getter';
 import { moment } from 'client/utils/moment';
-import { fork } from 'client/utils/computed-macros';
+import { concat } from 'client/utils/computed-macros';
 
 export default Controller.extend({
   mediaQueryParams: [
@@ -20,7 +20,7 @@ export default Controller.extend({
   year: [1907, moment().year() + 1],
 
   router: service('-routing'),
-  taskValue: fork('_taskValue', 'model.taskInstance.value'),
+  taskValue: concat('model.taskInstance.value', 'model.paginatedElements'),
   maxYear: getter(() => moment().year() + 1),
 
   isAnime: getter(function() {

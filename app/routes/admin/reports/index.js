@@ -1,12 +1,13 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
 import { task } from 'ember-concurrency';
-import PaginationMixin from 'client/mixins/routes/pagination';
+import InfinitePagination from 'client/mixins/infinite-pagination';
 
-export default Route.extend(PaginationMixin, {
+export default Route.extend(InfinitePagination, {
   model() {
     return {
-      taskInstance: get(this, 'queryOpenedReportsTask').perform()
+      taskInstance: get(this, 'queryOpenedReportsTask').perform(),
+      paginatedElements: []
     };
   },
 
@@ -14,7 +15,10 @@ export default Route.extend(PaginationMixin, {
     return yield get(this, 'store').query('report', {
       include: 'user,naughty,moderator',
       filter: { status: 0 },
-      page: { limit: 20 }
+      page: { offset: 0, limit: 20 }
+    }).then((records) => {
+      this.updatePageState(records);
+      return records;
     });
   })
 });

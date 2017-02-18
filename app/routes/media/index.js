@@ -6,11 +6,11 @@ import { isEmberArray } from 'ember-array/utils';
 import { task, timeout } from 'ember-concurrency';
 import jQuery from 'jquery';
 import QueryableMixin from 'client/mixins/routes/queryable';
-import PaginationMixin from 'client/mixins/routes/pagination';
 import SlideHeaderMixin from 'client/mixins/routes/slide-header';
+import InfinitePagination from 'client/mixins/infinite-pagination';
 import { moment } from 'client/utils/moment';
 
-export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
+export default Route.extend(SlideHeaderMixin, QueryableMixin, InfinitePagination, {
   mediaQueryParams: {
     averageRating: { refreshModel: true, replace: true },
     genres: { refreshModel: true, replace: true },
@@ -25,7 +25,10 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
   }).restartable(),
 
   modelTask: task(function* (mediaType, options) {
-    return yield get(this, 'store').query(mediaType, options);
+    return yield get(this, 'store').query(mediaType, options).then((records) => {
+      this.updatePageState(records);
+      return records;
+    });
   }).restartable(),
 
   init() {
@@ -59,10 +62,14 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, PaginationMixin, {
     const filters = this._buildFilters(params);
     const options = Object.assign(filters, hash);
     const [mediaType] = get(this, 'routeName').split('.');
-    return { taskInstance: get(this, 'modelTask').perform(mediaType, options) };
+    return {
+      taskInstance: get(this, 'modelTask').perform(mediaType, options),
+      paginatedElements: []
+    };
   },
 
   afterModel() {
+    // meta tags
     const [mediaType] = get(this, 'routeName').split('.');
     const desc = `Looking for that ${mediaType}? Find all the best anime and manga on Kitsu!`;
     set(this, 'headTags', [{

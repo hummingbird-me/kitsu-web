@@ -5,11 +5,11 @@ import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 import { storageFor } from 'ember-local-storage';
 import libraryStatus from 'client/utils/library-status';
-import PaginationMixin from 'client/mixins/routes/pagination';
 import errorMessages from 'client/utils/error-messages';
 import getTitleField from 'client/utils/get-title-field';
+import InfinitePagination from 'client/mixins/infinite-pagination';
 
-export default Route.extend(PaginationMixin, {
+export default Route.extend(InfinitePagination, {
   queryParams: {
     media: { refreshModel: true },
     status: { refreshModel: true },
@@ -34,7 +34,8 @@ export default Route.extend(PaginationMixin, {
 
   model(params) {
     return {
-      taskInstance: get(this, 'queryLibraryEntriesTask').perform(params)
+      taskInstance: get(this, 'queryLibraryEntriesTask').perform(params),
+      paginatedElements: []
     };
   },
 
@@ -53,41 +54,12 @@ export default Route.extend(PaginationMixin, {
    * Restartable task that queries the library entries for the current status,
    * and media type.
    */
-  queryLibraryEntriesTask: task(function* ({ media, status, sort }) {
-    const user = this.modelFor('users');
-    const userId = get(user, 'id');
-    const options = {};
-
-    // apply user sort selection
-    if (sort !== undefined) {
-      Object.assign(options, { sort: this._getUsableSort(sort) });
-    }
-
-    if (status === 'all') {
-      status = '1,2,3,4,5'; // eslint-disable-line no-param-reassign
-      if (sort !== undefined) {
-        Object.assign(options, { sort: ['status', get(options, 'sort')].join(',') });
-      } else {
-        Object.assign(options, { sort: 'status,-updated_at' });
-      }
-    } else {
-      // eslint-disable-next-line no-param-reassign
-      status = libraryStatus.enumToNumber(status);
-      if (sort === undefined) {
-        Object.assign(options, { sort: '-updated_at' });
-      }
-    }
-
-    Object.assign(options, {
-      include: `${media},user`,
-      filter: {
-        user_id: userId,
-        kind: media,
-        status
-      },
-      page: { offset: 0, limit: 200 }
+  queryLibraryEntriesTask: task(function* (params) {
+    const options = this._getRequestOptions(params);
+    return yield get(this, 'store').query('library-entry', options).then((records) => {
+      this.updatePageState(records);
+      return records;
     });
-    return yield get(this, 'store').query('library-entry', options);
   }).restartable(),
 
   _getUsableSort(sort) {
@@ -135,5 +107,41 @@ export default Route.extend(PaginationMixin, {
       const sort = direction === 'desc' ? `-${type}` : type;
       set(controller, 'sort', sort);
     }
+  },
+
+  _getRequestOptions({ media, status, sort }) {
+    const user = this.modelFor('users');
+    const userId = get(user, 'id');
+    const options = {};
+
+    // apply user sort selection
+    if (sort !== undefined) {
+      Object.assign(options, { sort: this._getUsableSort(sort) });
+    }
+
+    if (status === 'all') {
+      status = '1,2,3,4,5'; // eslint-disable-line no-param-reassign
+      if (sort !== undefined) {
+        Object.assign(options, { sort: ['status', get(options, 'sort')].join(',') });
+      } else {
+        Object.assign(options, { sort: 'status,-updated_at' });
+      }
+    } else {
+      // eslint-disable-next-line no-param-reassign
+      status = libraryStatus.enumToNumber(status);
+      if (sort === undefined) {
+        Object.assign(options, { sort: '-updated_at' });
+      }
+    }
+
+    return Object.assign(options, {
+      include: `${media},user`,
+      filter: {
+        user_id: userId,
+        kind: media,
+        status
+      },
+      page: { offset: 0, limit: 200 }
+    });
   }
 });

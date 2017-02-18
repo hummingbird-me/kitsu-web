@@ -9,22 +9,16 @@
       {{t "errors.load"}}
     </div>
   {{else if taskValue}}
-    <ul class="media-list w-100">
-      {{! TODO @Josh - Reviews on the users page `/users/Josh/reviews` }}
-      {{#each taskValue as |review|}}
-        <div class="col-xs-11 centered">
-          {{stream-feed/items/review review=review}}
-        </div>
-      {{/each}}
-    </ul>
-
-    <div class="text-xs-center w-100">
-      {{paginated-resource/infinite
-        model=taskValue
-        update=(route-action "updateNextPage" "taskValue")
-        loadingSize="large"
-      }}
-    </div>
+    {{#infinite-pagination onPagination=(route-action "onPagination")}}
+      <ul class="media-list w-100">
+        {{! TODO @Josh - Reviews on the users page `/users/Josh/reviews` }}
+        {{#each taskValue as |review|}}
+          <div class="col-xs-11 centered">
+            {{stream-feed/items/review review=review}}
+          </div>
+        {{/each}}
+      </ul>
+    {{/infinite-pagination}}
   {{else}}
     <div class="text-xs-center w-100 m-t-1">
       No Reviews Found.

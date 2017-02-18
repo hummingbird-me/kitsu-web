@@ -10,10 +10,13 @@ import { storageFor } from 'ember-local-storage';
 import getter from 'client/utils/getter';
 import errorMessages from 'client/utils/error-messages';
 import { unshiftObjects } from 'client/utils/array-utils';
+import { concat } from 'client/utils/computed-macros';
+import InfinitePagination from 'client/mixins/infinite-pagination';
 
-export default Component.extend({
+export default Component.extend(InfinitePagination, {
   readOnly: false,
   filterOptions: ['all', 'media', 'user'],
+  allFeedItems: concat('feed', 'paginatedElements'),
   ajax: service(),
   headData: service(),
   headTags: service(),
@@ -27,7 +30,9 @@ export default Component.extend({
     return `${get(this, 'streamType')}:${get(this, 'streamId')}`;
   }),
 
-  getFeedData: task(function* (type, id, limit = 10, kind = null) {
+  getFeedData: task(function* (limit = 10) {
+    const { streamType: type, streamId: id } = getProperties(this, 'streamType', 'streamId');
+    const kind = get(this, 'filter');
     const options = {
       type,
       id,
@@ -47,7 +52,11 @@ export default Component.extend({
     if (!isEmpty(kind) && kind !== 'all') {
       options.filter = { kind: kind === 'user' ? 'posts' : kind };
     }
-    return yield get(this, 'store').query('feed', options);
+    return yield get(this, 'store').query('feed', options).then((records) => {
+      set(this, 'paginatedElements', []);
+      this.updatePageState(records);
+      return records;
+    });
   }).restartable(),
 
   createPost: task(function* (content, options) {
@@ -93,7 +102,7 @@ export default Component.extend({
   }).enqueue(),
 
   handleFilter: observer('filter', function() {
-    this._getFeedData(10, get(this, 'filter'));
+    this._getFeedData(10);
   }),
 
   didReceiveAttrs() {
@@ -103,7 +112,7 @@ export default Component.extend({
 
     // cancel any previous subscriptions
     this._cancelSubscription();
-    const promise = this._getFeedData(10, get(this, 'filter'));
+    const promise = this._getFeedData(10);
     if (promise !== undefined) {
       promise.then((data) => {
         if (isEmpty(data)) { return; }
@@ -122,14 +131,15 @@ export default Component.extend({
     this._cancelSubscription();
   },
 
-  _getFeedData(limit = 10, kind = null) {
+  _getFeedData(limit = 10) {
     const { streamType, streamId } = getProperties(this, 'streamType', 'streamId');
     if (isEmpty(streamType) || isEmpty(streamId)) {
       return;
     }
     set(this, 'feed', []);
+    set(this, 'paginatedElements', []);
     set(this, 'newItems', EmberObject.create({ length: 0, cache: [] }));
-    return get(this, 'getFeedData').perform(streamType, streamId, limit, kind).then((data) => {
+    return get(this, 'getFeedData').perform(limit).then((data) => {
       get(this, 'feed').addObjects(data);
       set(this, 'feed.links', get(data, 'links'));
 
@@ -215,11 +225,11 @@ export default Component.extend({
   },
 
   actions: {
-    updateNextPage(records, links) {
-      const dup = get(this, 'feed').toArray();
-      dup.addObjects(records);
-      set(this, 'feed', dup);
-      set(this, 'feed.links', links);
+    onPagination() {
+      return this._super('feed', {
+        type: get(this, 'streamType'),
+        id: get(this, 'streamId')
+      });
     },
 
     deleteActivity(activity, callback) {

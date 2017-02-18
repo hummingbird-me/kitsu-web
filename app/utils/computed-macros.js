@@ -22,6 +22,21 @@ export function fork(property, key) {
   });
 }
 
+/**
+ * Concat an array target onto an array source
+ *
+ * @export
+ * @param {any} source
+ * @param {any} target
+ * @returns
+ */
+export function concat(source, target) {
+  return computed(`${source}.[]`, `${target}.[]`, function() {
+    return (get(this, source) || []).slice().concat((get(this, target) || []).slice());
+  }).readOnly();
+}
+
 export default {
-  fork
+  fork,
+  concat
 };
