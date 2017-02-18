@@ -37,14 +37,11 @@ export default Component.extend({
     const Watcher = get(this, 'Watcher');
     if (Watcher) {
       const element = document.querySelector(`#${get(this, 'viewportDivId')}`);
-      Watcher.watch(element, (eventName) => {
-        // `exposed` is at least 1px visible in the viewport
-        if (eventName === 'exposed') {
-          set(this, 'isLoading', true);
-          strictInvokeAction(this, 'onPagination').finally(() => {
-            set(this, 'isLoading', false);
-          });
-        }
+      Watcher.watch(element, () => {
+        set(this, 'isLoading', true);
+        strictInvokeAction(this, 'onPagination').finally(() => {
+          set(this, 'isLoading', false);
+        });
       });
     }
   },

@@ -1,11 +1,9 @@
-{{! @TODO/@Josh -- favorite dropdown -- Might need some styling -- we can display anything in the dropdown from the media. }}
-<div class="m-t-1">
+<div class="favorite-search m-t-2 m-b-2">
   {{#power-select
-    search=(action "search")
-    onchange=(action "addItem")
+    search=(perform searchTask)
+    onchange=(action "addFavorite")
     renderInPlace=true
-    as |item|
-  }}
+    as |item|}}
     {{#if isCharacter}}
       <span class="waifu-wrapper">
         {{lazy-image src=(image item.image)}}
@@ -17,50 +15,46 @@
   {{/power-select}}
 </div>
 
-{{#if items}}
-  {{#sortable-group
-    onChange=(action "reorderItems")
-    tagName="ul"
-    class="media-sortable nav" as |group|}}
-    {{#each items as |item|}}
-      {{#sortable-item model=item group=group tagName="li" class="media-sort-item card"}}
-        {{#if isCharacter}}
-          <a class="media-sort-thumb-wrapper" href="#">
-            {{lazy-image src=(image item.item.image) class="media-sort-thumb"}}
-          </a>
-        {{else}}
-          <a class="media-sort-thumb-wrapper" href="{{href-to (concat type ".show") item.item.slug}}">
-            {{lazy-image src=(image item.item.posterImage "tiny") class="media-sort-thumb"}}
-          </a>
-        {{/if}}
-        <span class="media-sort-title">
-          {{#if isCharacter}}
-            {{item.item.name}}
-          {{else}}
-            {{item.item.computedTitle}}
-          {{/if}}
-        </span>
-        <span class="media-sort-action">
-          <a class="hint--left hint--bounce hint--rounded" aria-label={{t "users.edit-modal.favorites.remove"}} {{action "removeItem" item}}>
-            {{svg-jar "cancel"}}
-          </a>
-        </span>
-      {{/sortable-item}}
-    {{/each}}
-  {{/sortable-group}}
-
-  {{! pagination }}
-  <div class="text-xs-center">
-    {{paginated-resource/infinite model=items update=(action "updateNextPage")}}
+{{#if getFavoritesTask.last.isRunning}}
+  <div class="text-xs-center w-100 m-b-2 m-t-2">
+    {{loading-spinner size="large"}}
   </div>
+{{else if getFavoritesTask.last.error}}
+  <div class="text-xs-center w-100 m-b-2 m-t-2">
+    {{t "errors.load"}}
+  </div>
+{{else if filteredFavorites}}
+  {{#infinite-pagination onPagination=(action "onPagination")}}
+    {{#sortable-group tagName="ul" class="media-sortable nav" onChange=(action "reorderItems") as |group|}}
+      {{#each filteredFavorites as |favorite|}}
+        {{#sortable-item model=favorite group=group tagName="li" class="media-sort-item card"}}
+          {{#if isCharacter}}
+            <a class="media-sort-thumb-wrapper" href="#">
+              {{lazy-image src=(image favorite.item.image) class="media-sort-thumb"}}
+            </a>
+          {{else}}
+            <a class="media-sort-thumb-wrapper" href={{href-to (concat type ".show") favorite.item.slug}}>
+              {{lazy-image src=(image favorite.item.posterImage "tiny") class="media-sort-thumb"}}
+            </a>
+          {{/if}}
+          <span class="media-sort-title">
+            {{#if isCharacter}}
+              {{favorite.item.name}}
+            {{else}}
+              {{favorite.item.computedTitle}}
+            {{/if}}
+          </span>
+          <span class="media-sort-action">
+            <a class="hint--left hint--bounce hint--rounded" aria-label={{t "users.edit-modal.favorites.remove"}} {{action "removeFavorite" favorite}}>
+              {{svg-jar "cancel"}}
+            </a>
+          </span>
+        {{/sortable-item}}
+      {{/each}}
+    {{/sortable-group}}
+  {{/infinite-pagination}}
 {{else}}
-  {{#if isError}}
-    <div class="text-xs-center w-100 m-b-1 m-t-1">
-      {{t "errors.load"}}
-    </div>
-  {{else}}
-    <div class="text-xs-center w-100 m-b-1 m-t-1">
-      {{t "errors.contentEmpty"}}
-    </div>
-  {{/if}}
+  <div class="text-xs-center w-100 m-b-2 m-t-2">
+    {{t "errors.contentEmpty"}}
+  </div>
 {{/if}}
