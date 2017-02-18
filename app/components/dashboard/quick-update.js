@@ -8,9 +8,9 @@ import { task } from 'ember-concurrency';
 import { scheduleOnce } from 'ember-runloop';
 import { storageFor } from 'ember-local-storage';
 import FlickityActionsMixin from 'client/mixins/flickity-actions';
-import InfinitePagination from 'client/mixins/infinite-pagination';
+import Pagination from 'client/mixins/pagination';
 
-export default Component.extend(FlickityActionsMixin, InfinitePagination, {
+export default Component.extend(FlickityActionsMixin, Pagination, {
   classNames: ['quick-update'],
   filterOptions: ['all', 'anime', 'manga'],
   pageLimit: 12,

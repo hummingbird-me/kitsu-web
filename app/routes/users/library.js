@@ -7,9 +7,9 @@ import { storageFor } from 'ember-local-storage';
 import libraryStatus from 'client/utils/library-status';
 import errorMessages from 'client/utils/error-messages';
 import getTitleField from 'client/utils/get-title-field';
-import InfinitePagination from 'client/mixins/infinite-pagination';
+import Pagination from 'client/mixins/pagination';
 
-export default Route.extend(InfinitePagination, {
+export default Route.extend(Pagination, {
   queryParams: {
     media: { refreshModel: true },
     status: { refreshModel: true },

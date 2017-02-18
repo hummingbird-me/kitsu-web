@@ -4,9 +4,9 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { typeOf } from 'ember-utils';
 import { invokeAction } from 'ember-invoke-action';
-import InfinitePagination from 'client/mixins/infinite-pagination';
+import Pagination from 'client/mixins/pagination';
 
-export default Component.extend(InfinitePagination, {
+export default Component.extend(Pagination, {
   router: service('-routing'),
 
   didReceiveAttrs() {

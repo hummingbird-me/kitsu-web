@@ -7,9 +7,9 @@ import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
 import { unshiftObjects } from 'client/utils/array-utils';
-import InfinitePagination from 'client/mixins/infinite-pagination';
+import Pagination from 'client/mixins/pagination';
 
-export default Component.extend(InfinitePagination, {
+export default Component.extend(Pagination, {
   classNames: ['stream-item-comments'],
   metrics: service(),
   notify: service(),

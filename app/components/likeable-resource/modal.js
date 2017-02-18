@@ -5,9 +5,9 @@ import service from 'ember-service/inject';
 import computed from 'ember-computed';
 import { strictInvokeAction } from 'ember-invoke-action';
 import { concat } from 'client/utils/computed-macros';
-import InfinitePagination from 'client/mixins/infinite-pagination';
+import Pagination from 'client/mixins/pagination';
 
-export default Component.extend(InfinitePagination, {
+export default Component.extend(Pagination, {
   limit: 20,
   router: service('-routing'),
   model: concat('likes', 'paginatedRecords'),

@@ -7,9 +7,9 @@ import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
 import { invokeAction } from 'ember-invoke-action';
 import { concat } from 'client/utils/computed-macros';
-import InfinitePagination from 'client/mixins/infinite-pagination';
+import Pagination from 'client/mixins/pagination';
 
-export default Component.extend(InfinitePagination, {
+export default Component.extend(Pagination, {
   activeTab: 'anime',
   searchQuery: '',
   numRated: 0,

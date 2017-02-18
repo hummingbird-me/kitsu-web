@@ -7,9 +7,9 @@ import { capitalize } from 'ember-string';
 import { task, timeout } from 'ember-concurrency';
 import { strictInvokeAction } from 'ember-invoke-action';
 import { concat } from 'client/utils/computed-macros';
-import InfinitePagination from 'client/mixins/infinite-pagination';
+import Pagination from 'client/mixins/pagination';
 
-export default Component.extend(InfinitePagination, {
+export default Component.extend(Pagination, {
   store: service(),
   favorites: concat('getFavoritesTask.lastSuccessful.value', 'paginatedRecords'),
   filteredFavorites: computed('favorites.@each.{isDeleted,favRank}', function() {

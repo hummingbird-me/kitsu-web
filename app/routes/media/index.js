@@ -7,10 +7,10 @@ import { task, timeout } from 'ember-concurrency';
 import jQuery from 'jquery';
 import QueryableMixin from 'client/mixins/routes/queryable';
 import SlideHeaderMixin from 'client/mixins/routes/slide-header';
-import InfinitePagination from 'client/mixins/infinite-pagination';
+import Pagination from 'client/mixins/pagination';
 import { moment } from 'client/utils/moment';
 
-export default Route.extend(SlideHeaderMixin, QueryableMixin, InfinitePagination, {
+export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
   mediaQueryParams: {
     averageRating: { refreshModel: true, replace: true },
     genres: { refreshModel: true, replace: true },

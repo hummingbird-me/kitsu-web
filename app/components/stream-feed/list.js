@@ -11,9 +11,9 @@ import getter from 'client/utils/getter';
 import errorMessages from 'client/utils/error-messages';
 import { unshiftObjects } from 'client/utils/array-utils';
 import { concat } from 'client/utils/computed-macros';
-import InfinitePagination from 'client/mixins/infinite-pagination';
+import Pagination from 'client/mixins/pagination';
 
-export default Component.extend(InfinitePagination, {
+export default Component.extend(Pagination, {
   readOnly: false,
   filterOptions: ['all', 'media', 'user'],
   allFeedItems: concat('feed', 'paginatedRecords'),

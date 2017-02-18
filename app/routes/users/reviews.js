@@ -2,9 +2,9 @@ import Route from 'ember-route';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
-import InfinitePagination from 'client/mixins/infinite-pagination';
+import Pagination from 'client/mixins/pagination';
 
-export default Route.extend(InfinitePagination, {
+export default Route.extend(Pagination, {
   intl: service(),
 
   model() {

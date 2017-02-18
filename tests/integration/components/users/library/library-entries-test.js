@@ -9,16 +9,15 @@ moduleForComponent('users/library/library-entries', 'Integration | Component | u
   }
 });
 
-
 test('it renders', function(assert) {
   assert.expect(2);
   this.set('entries', [{
     media: { episodeCount: 13, episodeLength: 24, posterImage: 'pi', subtype: 'TV' },
   }]);
-  this.set('entries.meta', { count: 2 });
 
   this.render(hbs`{{users/library/library-entries
       entries=entries
+      metaCount=2
       status="current"
       mediaType="anime"}}`);
   assert.ok(this.$('[data-test-selector="library-entries"]').length);

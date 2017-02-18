@@ -3,9 +3,9 @@ import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { capitalize } from 'ember-string';
 import { task } from 'ember-concurrency';
-import InfinitePagination from 'client/mixins/infinite-pagination';
+import Pagination from 'client/mixins/pagination';
 
-export default Route.extend(InfinitePagination, {
+export default Route.extend(Pagination, {
   templateName: 'media/show/episodes',
   intl: service(),
 
