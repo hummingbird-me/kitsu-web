@@ -55,7 +55,7 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
     const lastTask = get(this, 'modelTask.lastSuccessful');
     const paramsChanged = JSON.stringify(params) !== JSON.stringify(get(this, 'lastParams'));
     if (lastTask && !paramsChanged) {
-      return { taskInstance: lastTask };
+      return { taskInstance: lastTask, paginatedRecords: [] };
     }
     set(this, 'lastParams', params);
     const hash = { page: { offset: 0, limit: 20 } };
