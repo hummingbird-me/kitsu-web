@@ -12,7 +12,7 @@ export default Controller.extend({
   media: 'anime',
   status: 'current',
   mediaList: ['anime', 'manga'],
-  entries: concat('model.taskInstance.value', 'model.paginatedElements'),
+  entries: concat('model.taskInstance.value', 'model.paginatedRecords'),
   lastUsed: storageFor('last-used'),
 
   /**

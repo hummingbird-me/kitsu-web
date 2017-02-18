@@ -13,7 +13,7 @@ export default Route.extend(InfinitePagination, {
   model(...args) {
     return {
       taskInstance: get(this, 'modelTask').perform(this._getFilters(...args)),
-      paginatedElements: []
+      paginatedRecords: []
     };
   },
 

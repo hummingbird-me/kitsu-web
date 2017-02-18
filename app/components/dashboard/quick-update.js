@@ -83,7 +83,7 @@ export default Component.extend(FlickityActionsMixin, InfinitePagination, {
 
   _getEntries() {
     set(this, 'initialEntries', []);
-    set(this, 'paginatedElements', []);
+    set(this, 'paginatedRecords', []);
     get(this, 'getEntriesTask').perform().then((entries) => {
       set(this, 'initialEntries', entries);
       this.updatePageState(entries);

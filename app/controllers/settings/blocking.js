@@ -10,7 +10,7 @@ import errorMessages from 'client/utils/error-messages';
 export default Controller.extend({
   notify: service(),
   store: service(),
-  taskValue: concat('model.taskInstance.value', 'model.paginatedElements'),
+  taskValue: concat('model.taskInstance.value', 'model.paginatedRecords'),
 
   /** Query API for users */
   searchUsers: task(function* (query) {
@@ -35,7 +35,7 @@ export default Controller.extend({
         get(this, 'notify').success(`${get(user, 'name')} was blocked.`);
         set(this, 'currentSelection', null);
         // add this block to our store
-        get(this, 'model.paginatedElements').addObject(block);
+        get(this, 'model.paginatedRecords').addObject(block);
       }).catch((err) => {
         get(this, 'notify').error(errorMessages(err));
       });

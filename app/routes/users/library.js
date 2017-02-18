@@ -35,7 +35,7 @@ export default Route.extend(InfinitePagination, {
   model(params) {
     return {
       taskInstance: get(this, 'queryLibraryEntriesTask').perform(params),
-      paginatedElements: []
+      paginatedRecords: []
     };
   },
 

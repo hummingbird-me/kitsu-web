@@ -8,7 +8,7 @@ export default Route.extend(InfinitePagination, {
   model() {
     return {
       taskInstance: get(this, 'getImportsTask').perform(),
-      paginatedElements: []
+      paginatedRecords: []
     };
   },
 

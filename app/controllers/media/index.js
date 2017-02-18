@@ -20,7 +20,7 @@ export default Controller.extend({
   year: [1907, moment().year() + 1],
 
   router: service('-routing'),
-  taskValue: concat('model.taskInstance.value', 'model.paginatedElements'),
+  taskValue: concat('model.taskInstance.value', 'model.paginatedRecords'),
   maxYear: getter(() => moment().year() + 1),
 
   isAnime: getter(function() {

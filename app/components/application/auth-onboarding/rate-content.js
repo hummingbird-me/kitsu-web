@@ -14,7 +14,7 @@ export default Component.extend(InfinitePagination, {
   searchQuery: '',
   numRated: 0,
   store: service(),
-  media: concat('queryTask.lastSuccessful.value', 'paginatedElements'),
+  media: concat('queryTask.lastSuccessful.value', 'paginatedRecords'),
 
   numRatedLeft: computed('numRated', function() {
     if (get(this, 'numRated') > 5) {
@@ -29,7 +29,7 @@ export default Component.extend(InfinitePagination, {
   },
 
   queryTask: task(function* () {
-    set(this, 'paginatedElements', []);
+    set(this, 'paginatedRecords', []);
     const mediaType = get(this, 'activeTab');
     const filters = { page: { limit: 20 } };
     const query = get(this, 'searchQuery');
@@ -39,7 +39,7 @@ export default Component.extend(InfinitePagination, {
       filters.filter = { text: query };
     }
     return yield get(this, 'store').query(mediaType, filters).then((records) => {
-      set(this, 'paginatedElements', []);
+      set(this, 'paginatedRecords', []);
       this.updatePageState(records);
       return records;
     });

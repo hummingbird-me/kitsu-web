@@ -64,7 +64,7 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, InfinitePagination
     const [mediaType] = get(this, 'routeName').split('.');
     return {
       taskInstance: get(this, 'modelTask').perform(mediaType, options),
-      paginatedElements: []
+      paginatedRecords: []
     };
   },
 

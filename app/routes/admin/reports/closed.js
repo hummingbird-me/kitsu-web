@@ -7,7 +7,7 @@ export default Route.extend(InfinitePagination, {
   model() {
     return {
       taskInstance: get(this, 'queryClosedReportsTask').perform(),
-      paginatedElements: []
+      paginatedRecords: []
     };
   },
 

@@ -72,7 +72,7 @@
 
   {{! Temporary storage for paginated entries }}
   <div class="new-entries" style="display: none">
-    {{#each paginatedElements as |entry|}}
+    {{#each paginatedRecords as |entry|}}
       {{dashboard/quick-update/item
         entry=entry
         updateEntry=(action "updateEntry" entry)

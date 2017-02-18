@@ -8,7 +8,7 @@ export default Route.extend(InfinitePagination, {
   model() {
     return {
       taskInstance: get(this, 'findBlockedUsersTask').perform(),
-      paginatedElements: []
+      paginatedRecords: []
     };
   },
 

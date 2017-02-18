@@ -16,7 +16,7 @@ import InfinitePagination from 'client/mixins/infinite-pagination';
 export default Component.extend(InfinitePagination, {
   readOnly: false,
   filterOptions: ['all', 'media', 'user'],
-  allFeedItems: concat('feed', 'paginatedElements'),
+  allFeedItems: concat('feed', 'paginatedRecords'),
   ajax: service(),
   headData: service(),
   headTags: service(),
@@ -53,7 +53,7 @@ export default Component.extend(InfinitePagination, {
       options.filter = { kind: kind === 'user' ? 'posts' : kind };
     }
     return yield get(this, 'store').query('feed', options).then((records) => {
-      set(this, 'paginatedElements', []);
+      set(this, 'paginatedRecords', []);
       this.updatePageState(records);
       return records;
     });
@@ -137,7 +137,7 @@ export default Component.extend(InfinitePagination, {
       return;
     }
     set(this, 'feed', []);
-    set(this, 'paginatedElements', []);
+    set(this, 'paginatedRecords', []);
     set(this, 'newItems', EmberObject.create({ length: 0, cache: [] }));
     return get(this, 'getFeedData').perform(limit).then((data) => {
       get(this, 'feed').addObjects(data);

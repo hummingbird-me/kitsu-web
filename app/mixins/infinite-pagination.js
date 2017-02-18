@@ -20,7 +20,7 @@ export default Mixin.create({
 
   init() {
     this._super(...arguments);
-    set(this, 'paginatedElements', []);
+    set(this, 'paginatedRecords', []);
     set(this, 'internalPageState', {
       hasNextPage: false,
       nextPageLink: null
@@ -37,9 +37,9 @@ export default Mixin.create({
   onPagination(records) {
     if (this instanceof Route) {
       const controller = this.controllerFor(get(this, 'routeName'));
-      get(controller, 'model.paginatedElements').addObjects(records);
+      get(controller, 'model.paginatedRecords').addObjects(records);
     } else {
-      get(this, 'paginatedElements').addObjects(records);
+      get(this, 'paginatedRecords').addObjects(records);
     }
   },
 

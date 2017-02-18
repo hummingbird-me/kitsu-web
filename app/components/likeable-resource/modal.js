@@ -10,7 +10,7 @@ import InfinitePagination from 'client/mixins/infinite-pagination';
 export default Component.extend(InfinitePagination, {
   limit: 20,
   router: service('-routing'),
-  model: concat('likes', 'paginatedElements'),
+  model: concat('likes', 'paginatedRecords'),
 
   isDisabled: computed('isLoading', function() {
     return get(this, 'isLoading') || !get(this, 'hasNextPage');
