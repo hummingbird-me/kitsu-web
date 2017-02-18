@@ -58,7 +58,6 @@ export default Component.extend({
     desktop: [1024, 200]
   },
   session: service(),
-  viewport: service(),
 
   adUnitPath: computed('unit', function() {
     const { networkId } = get(this, 'googleConfig');
@@ -87,7 +86,7 @@ export default Component.extend({
         set(this, 'isEnabled', false);
       } else {
         blockAdBlock.onDetected(() => {
-          if (get(this, 'isDestroying') || get(this, 'isDestroyed')) { return; }
+          if (get(this, 'isDestroyed')) { return; }
           set(this, 'isEnabled', false);
           this._destroyAd();
         });
@@ -99,7 +98,6 @@ export default Component.extend({
   willDestroyElement() {
     this._super(...arguments);
     if (get(this, 'isEnabled')) {
-      this._teardownViewport();
       this._destroyAd();
     }
   },
@@ -107,15 +105,16 @@ export default Component.extend({
   /** Initializes the loading of the GPT script and catches failed loads */
   _initAd() {
     loadGPTScript().then(() => {
-      if (get(this, 'isDestroying') || get(this, 'isDestroyed')) { return; }
+      if (get(this, 'isDestroyed')) { return; }
       // API might not be ready yet.
       window.googletag.cmd = window.googletag.cmd || [];
       window.googletag.cmd.push(() => {
-        this._setupViewport();
+        if (get(this, 'isDestroyed')) { return; }
+        this._deliverAd();
       });
     }).catch(() => {
       // an error occurred, maybe blocked by an adblock or failed network request
-      if (get(this, 'isDestroying') || get(this, 'isDestroyed')) { return; }
+      if (get(this, 'isDestroyed')) { return; }
       set(this, 'isEnabled', false);
     });
   },
@@ -124,22 +123,6 @@ export default Component.extend({
     const slotRef = get(this, 'adSlotRef');
     if (window.googletag && slotRef) {
       window.googletag.destroySlots([slotRef]);
-    }
-  },
-
-  /** Setup the viewport observer on the element to deliver the ad */
-  _setupViewport() {
-    const element = get(this, 'element');
-    this.clearViewportCallback = get(this, 'viewport').onInViewportOnce(element, () => {
-      if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
-      this._deliverAd();
-    });
-  },
-
-  /** Remove the viewport observer */
-  _teardownViewport() {
-    if (this.clearViewportCallback) {
-      this.clearViewportCallback();
     }
   },
 
