@@ -202,6 +202,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
       const routeName = get(this, 'routeName');
       const controller = this.controllerFor(routeName);
       const model = this.modelFor(routeName);
+      if (!model) { return; }
       this._getLibraryEntry(controller, model);
     }
   }),
