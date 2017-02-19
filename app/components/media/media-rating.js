@@ -1,29 +1,24 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
+import service from 'ember-service/inject';
 import computed from 'ember-computed';
-import { decimalNumber } from 'client/helpers/decimal-number';
-
-const THRESHOLD = 10;
 
 export default Component.extend({
-  hasCommunityRatings: computed('media.ratingFrequencies', function() {
-    const ratingFrequencies = get(this, 'media.ratingFrequencies');
-    const ratingCount = Object.keys(ratingFrequencies).reduce((prev, curr) => {
-      if (curr === null || (parseFloat(curr) % 0.5) !== 0) return prev;
-      return prev + parseInt(ratingFrequencies[curr], 10);
-    }, 0);
-    return ratingCount > THRESHOLD;
-  }).readOnly(),
+  intl: service(),
 
   totalRatings: computed('media.ratingFrequencies', function() {
-    return get(this, 'media.totalRatings').toLocaleString();
+    return get(this, 'intl').formatNumber(get(this, 'media.totalRatings'));
   }).readOnly(),
 
   totalFavorites: computed('media.favoritesCount', function() {
-    return get(this, 'media.favoritesCount').toLocaleString();
+    return get(this, 'intl').formatNumber(get(this, 'media.favoritesCount'));
   }).readOnly(),
 
+  /** Determines what class to use based on the percentage value. */
   percentageClass: computed('media.ratingFrequencies', function() {
+    if (!get(this, 'media.averageRating')) {
+      return '';
+    }
     const liked = this._calculatePercentage();
     if (liked <= 25) {
       return 'percent-quarter-1';
@@ -36,13 +31,20 @@ export default Component.extend({
     }
   }).readOnly(),
 
+  /**
+   * Calculates the "liked" percentage of this media, by taking the ratings of 4, 4.5, and 5.
+   * and calculating it against the total ratings.
+   *
+   * @returns {Number} Percentage value
+   */
   _calculatePercentage() {
     const freqs = get(this, 'media.ratingFrequencies');
-    const keys = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0].map(k => k.toString());
+    const keys = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0];
     const total = get(this, 'media.totalRatings');
-    const liked = keys.slice(7).reduce((prev, curr) => (
-      prev + (parseInt(freqs[decimalNumber([curr])], 10) || 0)
-    ), 0);
+    const liked = keys.slice(7).reduce((prev, curr) => {
+      const decimal = curr.toFixed(1).toString();
+      return prev + (parseInt(freqs[decimal], 10) || 0);
+    }, 0);
     const value = total === 0 ? 0 : (liked / total) * 100;
     return value.toFixed(0);
   }

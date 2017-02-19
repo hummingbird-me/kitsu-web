@@ -1,16 +1,14 @@
-{{#if hasCommunityRatings}}
-  <div class="rating-bar clearfix">
-    <span class="community-percentage {{percentageClass}}">
-      {{decimal-number media.averageRating 2}}
-    </span>
-    <span class="average-rating-stars">
-      {{star-rating media.averageRating anyPercent=true readOnly=true}}
-    </span>
-    <span class="ratings-count">
-      {{t "media.show.summary.ratings.total" total=totalRatings}}
-      {{#if media.favoritesCount}}
-         - {{t "media.show.summary.ratings.favorites" total=totalFavorites}}
-      {{/if}}
-    </span>
-  </div>
-{{/if}}
+<div class="rating-bar clearfix">
+  <span class="community-percentage {{percentageClass}}">
+    {{format-number media.averageRating minimumFractionDigits=2 maximumFractionDigits=2 fallback="0.0"}}
+  </span>
+  <span class="average-rating-stars">
+    {{star-rating media.averageRating anyPercent=true readOnly=true}}
+  </span>
+  <span class="ratings-count">
+    {{t "media.show.summary.ratings.total" total=totalRatings}}
+    {{#if media.favoritesCount}}
+        - {{t "media.show.summary.ratings.favorites" total=totalFavorites}}
+    {{/if}}
+  </span>
+</div>

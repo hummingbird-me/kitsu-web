@@ -69,7 +69,12 @@
         {{#if entry.rating}}
           <span class="entry-rating-star">{{svg-jar "star"}}</span>
         {{/if}}
-        <span>{{ratingText}}</span>
+        <span>
+          {{format-number entry.rating
+            minimumFractionDigits=1
+            maximumFractionDigits=1
+            fallback="-"}}
+        </span>
       </div>
 
       {{! Entry Type }}

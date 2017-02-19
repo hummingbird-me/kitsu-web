@@ -5,7 +5,6 @@ import service from 'ember-service/inject';
 import { task, timeout } from 'ember-concurrency';
 import jQuery from 'jquery';
 import { invokeAction } from 'ember-invoke-action';
-import { decimalNumber } from 'client/helpers/decimal-number';
 
 export default Component.extend({
   isExpanded: false,
@@ -16,11 +15,6 @@ export default Component.extend({
 
   totalProgressText: computed('media.unitCount', function() {
     return get(this, 'media.unitCount') || '-';
-  }).readOnly(),
-
-  ratingText: computed('entry.rating', function() {
-    const rating = get(this, 'entry.rating');
-    return rating ? decimalNumber([rating]) : '-';
   }).readOnly(),
 
   typeText: computed('media.subtype', function() {
