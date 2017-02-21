@@ -1403,10 +1403,6 @@ broccoli-writer@^0.1.1, broccoli-writer@~0.1.1:
     quick-temp "^0.1.0"
     rsvp "^3.0.6"
 
-"browser-request@git://github.com/matthisk/browser-request":
-  version "0.3.2"
-  resolved "git://github.com/matthisk/browser-request#253fa31d99bbb4d03bb72e11a5a1c73ccc85ac71"
-
 browserslist@^1.7.2:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-1.7.3.tgz#25ead9c917b278ad668b83f39c8025697797b2ab"
@@ -2362,18 +2358,18 @@ ember-cli-meta-tags@3.0.4:
     ember-cli-htmlbars "^1.0.10"
     ember-runtime-enumerable-includes-polyfill "^1.0.2"
 
-ember-cli-mirage@0.2.5:
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/ember-cli-mirage/-/ember-cli-mirage-0.2.5.tgz#2936e0240e0cf7e07c36533b60cd3d30573800be"
+ember-cli-mirage@0.2.6:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/ember-cli-mirage/-/ember-cli-mirage-0.2.6.tgz#d8aecfbd47a6cbfcaf9531f920e04acb782a78c2"
   dependencies:
     broccoli-funnel "^1.0.2"
     broccoli-merge-trees "^1.1.0"
     broccoli-unwatched-tree "^0.1.1"
     chalk "^1.1.1"
-    ember-cli-babel "^5.1.5"
+    ember-cli-babel "^5.1.7"
     ember-cli-node-assets "^0.1.4"
     ember-inflector "^1.9.2"
-    ember-lodash "0.0.9"
+    ember-lodash "^4.0"
     exists-sync "0.0.3"
     fake-xml-http-request "^1.4.0"
     faker "^3.0.0"
@@ -2823,13 +2819,15 @@ ember-local-storage@1.3.5:
     ember-cli-version-checker "^1.1.7"
     ember-getowner-polyfill "^1.1.1"
 
-ember-lodash@0.0.9:
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/ember-lodash/-/ember-lodash-0.0.9.tgz#5cc559a10c2fb4e89de6df3951cfd9a691aff6b4"
+ember-lodash@^4.0:
+  version "4.17.0"
+  resolved "https://registry.yarnpkg.com/ember-lodash/-/ember-lodash-4.17.0.tgz#15ffb72b050131f28c8dd6bf00146c64ff7496c7"
   dependencies:
+    broccoli-funnel "^1.1.0"
     broccoli-merge-trees "^1.1.1"
-    ember-cli-babel "^5.1.5"
-    lodash-es "^3.10.0"
+    broccoli-string-replace "^0.1.1"
+    ember-cli-babel "^5.1.6"
+    lodash-es "^4.17.2"
 
 ember-macro-helpers@^0.4.0:
   version "0.4.0"
@@ -4722,10 +4720,6 @@ jsesc@~0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
 
-json-loader@^0.5.3:
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/json-loader/-/json-loader-0.5.4.tgz#8baa1365a632f58a3c46d20175fc6002c96e37de"
-
 json-parse-helpfulerror@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/json-parse-helpfulerror/-/json-parse-helpfulerror-1.0.3.tgz#13f14ce02eed4e981297b64eb9e3b932e2dd13dc"
@@ -4882,9 +4876,9 @@ lockfile@~1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/lockfile/-/lockfile-1.0.3.tgz#2638fc39a0331e9cac1a04b71799931c9c50df79"
 
-lodash-es@^3.10.0:
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-3.10.1.tgz#a1c85d9829c9009004339dc3846dbabb46cf4e19"
+lodash-es@^4.17.2:
+  version "4.17.4"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
 
 lodash._arraycopy@^3.0.0:
   version "3.0.0"
@@ -6339,7 +6333,7 @@ repeating@^2.0.0:
   dependencies:
     is-finite "^1.0.0"
 
-request@2, request@>=2.67.0, request@^2.55.0, request@^2.61.0, request@^2.64.0, request@^2.74.0, request@~2.74.0:
+request@2, request@>=2.67.0, request@^2.55.0, request@^2.61.0, request@^2.74.0, request@~2.74.0:
   version "2.74.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.74.0.tgz#7693ca768bbb0ea5c8ce08c084a45efa05b892ab"
   dependencies:
@@ -6835,15 +6829,6 @@ stdout-stream@^1.4.0:
   dependencies:
     readable-stream "^2.0.1"
 
-stream-analytics@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/stream-analytics/-/stream-analytics-2.6.0.tgz#4531a55d390153f16a36f45671c1e209fb1b9308"
-  dependencies:
-    browser-request "git://github.com/matthisk/browser-request"
-    json-loader "^0.5.3"
-    request "^2.64.0"
-    validate.js "^0.9.0"
-
 string-template@~0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/string-template/-/string-template-0.2.1.tgz#42932e598a352d01fc22ec3367d9d84eec6c9add"
@@ -7290,10 +7275,6 @@ validate-npm-package-name@^2.0.1, validate-npm-package-name@~2.2.2:
   resolved "https://registry.yarnpkg.com/validate-npm-package-name/-/validate-npm-package-name-2.2.2.tgz#f65695b22f7324442019a3c7fa39a6e7fd299085"
   dependencies:
     builtins "0.0.7"
-
-validate.js@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/validate.js/-/validate.js-0.9.0.tgz#8acf0144f1520a19835c6cc663f45e0836aa56c8"
 
 vary@~1.1.0:
   version "1.1.0"
