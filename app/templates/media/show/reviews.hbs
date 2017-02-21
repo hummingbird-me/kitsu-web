@@ -1,8 +1,12 @@
 {{! Kitsu Media Reviews Top }}
-{{ad-unit unit="kitsu.media.reviews.top" sizes=(hash
-  mobile=(array (array 300 250) (array 320 100) (array 320 50))
-  desktop=(array 728 90)
-)}}
+{{ad-unit unit="kitsu.media.reviews.top"
+  targeting=(hash
+    section="media"
+    media=media.slug)
+  sizes=(hash
+    mobile=(array (array 300 250) (array 320 100) (array 320 50))
+    desktop=(array 728 90))
+}}
 
 {{#if model.taskInstance.isRunning}}
   <div class="text-xs-center w-100 m-t-1 m-b-1">
@@ -31,7 +35,11 @@
 {{/if}}
 
 {{! Kitsu Media Reviews Bottom }}
-{{ad-unit unit="kitsu.media.reviews.bottom" sizes=(hash
-  mobile=(array (array 300 250) (array 320 100) (array 320 50))
-  desktop=(array 728 90)
-)}}
+{{ad-unit unit="kitsu.media.reviews.bottom"
+  targeting=(hash
+    section="media"
+    media=media.slug)
+  sizes=(hash
+    mobile=(array (array 300 250) (array 320 100) (array 320 50))
+    desktop=(array 728 90))
+}}

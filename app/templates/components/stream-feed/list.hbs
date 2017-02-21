@@ -92,9 +92,13 @@
 
       {{! ads inserted }}
       {{#if (is-multiple-of (inc index) 10)}}
-        {{ad-unit unit="kitsu.feeds.inline" sizes=(hash
-          mobile=(array (array 336 280) (array 300 250) (array 320 100) (array 320 50))
-        )}}
+        {{ad-unit
+          unit="kitsu.feeds.inline"
+          targeting=(hash section="feed")
+          sizes=(hash
+            mobile=(array (array 336 280) (array 300 250) (array 320 100) (array 320 50))
+          )
+        }}
       {{/if}}
     {{else}}
       <div class="stream-error-wrapper col-sm-12">

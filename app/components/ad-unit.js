@@ -146,10 +146,14 @@ export default Component.extend({
     // define the ad slot
     const adUnitPath = get(this, 'adUnitPath');
     const divId = get(this, 'adUnitId');
+    const targeting = get(this, 'targeting') || {};
     const initialSize = Object.values(sizes)[0];
     const slot = window.googletag.defineSlot(adUnitPath, initialSize || [], divId)
       .defineSizeMapping(mapping)
       .addService(window.googletag.pubads());
+    Object.keys(targeting).forEach((targetingKey) => {
+      slot.setTargeting(targetingKey, targeting[targetingKey]);
+    });
     set(this, 'adSlotRef', slot);
 
     // request and refresh the ad

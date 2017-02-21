@@ -2,11 +2,14 @@
   {{dashboard/quick-update}}
 
   <div class="feed-container row {{if session.hasUser "quick-update-enabled" "guest-banner-enabled"}}">
-    {{ad-unit unit="kitsu.dashboard.top" sizes=(hash
-      mobile=(array (array 320 100) (array 320 50))
-      tablet=(array 728 90)
-      desktop=(array (array 970 90) (array 728 90))
-    )}}
+    {{! Kitsu Dashboard Top }}
+    {{ad-unit unit="kitsu.dashboard.top"
+      targeting=(hash section="dashboard")
+      sizes=(hash
+        mobile=(array (array 320 100) (array 320 50))
+        tablet=(array 728 90)
+        desktop=(array (array 970 90) (array 728 90))
+      )}}
 
     {{! Feed }}
     <div class="feed-stream col-sm-12 col-md-8">
@@ -36,9 +39,11 @@
 
       {{! Kitsu Dashboard Sidebar Ad }}
       {{! Hidden on mobile currently }}
-      {{ad-unit unit="kitsu.dashboard.sidebar" sizes=(hash
-        tablet=(array (array 336 280) (array 300 250))
-      )}}
+      {{ad-unit unit="kitsu.dashboard.sidebar"
+        targeting=(hash section="dashboard")
+        sizes=(hash
+          tablet=(array (array 336 280) (array 300 250))
+        )}}
 
       {{! News }}
       {{dashboard/kitsu-forums class="sidebar-item"}}

@@ -1,8 +1,12 @@
 {{! Kitsu Media Characters Top }}
-{{ad-unit unit="kitsu.media.characters.top" sizes=(hash
-  mobile=(array (array 300 250) (array 320 100) (array 320 50))
-  desktop=(array 728 90)
-)}}
+{{ad-unit unit="kitsu.media.characters.top"
+  targeting=(hash
+    section="media"
+    media=media.slug)
+  sizes=(hash
+    mobile=(array (array 300 250) (array 320 100) (array 320 50))
+    desktop=(array 728 90))
+}}
 
 <h2 class="d-inline-block">{{t "media.show.characters.header" title=media.computedTitle}}</h2>
 {{#if (and taskValue (gt availableLanguages.length 1))}}
@@ -71,7 +75,11 @@
 {{/if}}
 
 {{! Kitsu Media Characters Bottom }}
-{{ad-unit unit="kitsu.media.characters.bottom" sizes=(hash
-  mobile=(array (array 300 250) (array 320 100) (array 320 50))
-  desktop=(array 728 90)
-)}}
+{{ad-unit unit="kitsu.media.characters.bottom"
+  targeting=(hash
+    section="media"
+    media=media.slug)
+  sizes=(hash
+    mobile=(array (array 300 250) (array 320 100) (array 320 50))
+    desktop=(array 728 90))
+}}

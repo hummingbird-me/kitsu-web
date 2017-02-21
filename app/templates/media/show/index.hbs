@@ -1,10 +1,13 @@
 <div class="row">
   <div class="col-sm-12 no-padding-right">
     {{! Kitsu Media Summary Top }}
-    {{ad-unit unit="kitsu.media.summary.top" sizes=(hash
-      mobile=(array (array 300 250) (array 320 100) (array 320 50))
-      desktop=(array 728 90)
-    )}}
+    {{ad-unit unit="kitsu.media.summary.top"
+      targeting=(hash
+        section="media"
+        media=media.slug)
+      sizes=(hash
+        mobile=(array (array 300 250) (array 320 100) (array 320 50))
+        desktop=(array 728 90))}}
   </div>
 
   <div class="col-sm-8">
@@ -77,10 +80,14 @@
     </section>
 
     {{! Kitsu Media Summary Bottom }}
-    {{ad-unit unit="kitsu.media.summary.bottom" sizes=(hash
-      mobile=(array (array 300 250) (array 320 100) (array 320 50))
-      tablet=(array (array 468 60) (array 300 250))
-    )}}
+    {{ad-unit unit="kitsu.media.summary.bottom"
+      targeting=(hash
+        section="media"
+        media=media.slug)
+      sizes=(hash
+        mobile=(array (array 300 250) (array 320 100) (array 320 50))
+        tablet=(array (array 468 60) (array 300 250)))
+    }}
   </div>
 
   {{! Secondary Content }}
@@ -106,10 +113,14 @@
     {{media/featured-characters media=media}}
 
     {{! Kitsu Media Summary Sidebar }}
-    {{ad-unit unit="kitsu.media.summary.sidebar" sizes=(hash
-      mobile=(array (array 300 250) (array 320 100) (array 320 50))
-      tablet=(array (array 336 280) (array 300 250))
-    )}}
+    {{ad-unit unit="kitsu.media.summary.sidebar"
+      targeting=(hash
+        section="media"
+        media=media.slug)
+      sizes=(hash
+        mobile=(array (array 300 250) (array 320 100) (array 320 50))
+        tablet=(array (array 336 280) (array 300 250)))
+    }}
 
     {{! Media Information }}
     {{media/media-titles media=media}}

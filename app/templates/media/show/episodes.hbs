@@ -1,8 +1,12 @@
 {{! Kitsu Media Episodes Top }}
-{{ad-unit unit="kitsu.media.episodes.top" sizes=(hash
-  mobile=(array (array 300 250) (array 320 100) (array 320 50))
-  desktop=(array 728 90)
-)}}
+{{ad-unit unit="kitsu.media.episodes.top"
+  targeting=(hash
+    section="media"
+    media=media.slug)
+  sizes=(hash
+    mobile=(array (array 300 250) (array 320 100) (array 320 50))
+    desktop=(array 728 90))
+}}
 
 {{#if model.taskInstance.isRunning}}
   {{! @TODO: Episode loader }}
@@ -40,7 +44,11 @@
 {{/if}}
 
 {{! Kitsu Media Episodes Bottom }}
-{{ad-unit unit="kitsu.media.episodes.bottom" sizes=(hash
-  mobile=(array (array 300 250) (array 320 100) (array 320 50))
-  desktop=(array 728 90)
-)}}
+{{ad-unit unit="kitsu.media.episodes.bottom"
+  targeting=(hash
+    section="media"
+    media=media.slug)
+  sizes=(hash
+    mobile=(array (array 300 250) (array 320 100) (array 320 50))
+    desktop=(array 728 90))
+}}
