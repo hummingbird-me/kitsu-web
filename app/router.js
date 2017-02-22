@@ -58,16 +58,20 @@ RouterInstance.map(function() {
     });
   });
 
-  this.route('groups', { path: '/groups/:slug' }, function() {
-    this.route('rules');
-    this.route('members');
-    this.route('leaders');
-    this.route('neighbors');
-    this.route('dashboard', function() {
-      this.route('help-desk');
+  // @TODO: Redirect to /new
+  this.route('groups', function() {
+    this.route('new');
+    this.route('group', { path: '/:slug' }, function() {
+      this.route('rules');
       this.route('members');
       this.route('leaders');
-      this.route('settings');
+      this.route('neighbors');
+      this.route('dashboard', function() {
+        this.route('help-desk');
+        this.route('members');
+        this.route('leaders');
+        this.route('settings');
+      });
     });
   });
 
