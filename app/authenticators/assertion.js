@@ -14,8 +14,9 @@ export default Base.extend({
         const data = { grant_type: 'assertion', assertion: get(providerResponse, 'accessToken'), provider };
         this.makeRequest(get(this, 'serverTokenEndpoint'), data).then((response) => {
           run(() => {
-            const expiresAt = this._absolutizeExpirationTime(response.expires_in);
-            this._scheduleAccessTokenRefresh(response.expires_in, expiresAt, response.refresh_token); // eslint-disable-line
+            const expiresIn = response.expires_in;
+            const expiresAt = this._absolutizeExpirationTime(expiresIn);
+            this._scheduleAccessTokenRefresh(expiresIn, expiresAt, response.refresh_token);
             if (!isEmpty(expiresAt)) {
               return resolve(Object.assign(response, { expires_at: expiresAt }));
             }
