@@ -1,8 +1,24 @@
 import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { hasMany } from 'ember-data/relationships';
+import { validator, buildValidations } from 'ember-cp-validations';
 
-export default Base.extend({
+export const Validations = buildValidations({
+  name: [
+    validator('presence', true),
+    validator('length', { min: 4, max: 255 })
+  ],
+  about: [validator('presence', true)],
+  // avatar: [validator('presence', true)],
+  // coverImage: [validator('presence', true)],
+  privacy: [
+    validator('presence', true),
+    validator('inclusion', { in: ['open', 'closed', 'restricted'] })
+  ],
+  rules: [validator('presence', true)]
+});
+
+export default Base.extend(Validations, {
   about: attr('string'),
   avatar: attr('object'),
   coverImage: attr('object'),
@@ -14,7 +30,7 @@ export default Base.extend({
   rules: attr('string'),
   rulesFormatted: attr('string'),
   slug: attr('string'),
-  tags: attr('string'),
+  tags: attr('array'),
 
   members: hasMany('group-member')
 });

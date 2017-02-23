@@ -1,1 +1,107 @@
-{{! ... }}
+<div class="w-100">
+  <h1>Create a Group</h1>
+
+  {{! Group Name }}
+  <div class="form-group">
+    <label>Name</label>
+    {{one-way-text
+      update=(action (mut group.name))
+      minlength=4
+      class="form-control"
+    }}
+    <small class="form-text text-muted">The display name of your group.</small>
+  </div>
+
+  {{! Group Bio }}
+  <div class="form-group">
+    <label>About</label>
+    {{expanding-textarea
+      update=(action (mut group.about))
+      class="form-control"
+    }}
+    <small class="form-text text-muted">Description of your group. This helps tell others what your group is all about.</small>
+  </div>
+
+  {{! Images }}
+  <div class="form-group">
+    <label>Group Image</label>
+    <div>
+      TODO: Preview Area
+    </div>
+    <small class="form-text text-muted">Your groups recognizable avatar that will be used throughout the site.</small>
+  </div>
+
+  <div class="form-group">
+    <label>Group Cover Image</label>
+    <div>
+      TODO: Preview Area
+    </div>
+    <small class="form-text text-muted">Your groups cover image will be shown on your group page.</small>
+  </div>
+
+  {{! NSFW }}
+  {{! @TODO(Groups): Toggle }}
+  <div class="form-group">
+    <label>NSFW</label>
+    {{one-way-checkbox
+      update=(action (mut group.nsfw))
+      class="form-control"
+    }}
+    <small class="form-text text-muted">Does your group contain NSFW (Not Safe For Work) content?</small>
+  </div>
+
+  {{! Privacy }}
+  {{! @TODO(Groups): Move options to export on model }}
+  <div class="form-group">
+    <label>Privacy Setting</label>
+    {{#power-select
+      selected=(capitalize group.privacy)
+      options=(w "open" "closed" "restricted")
+      onchange=(action (mut group.privacy))
+      renderInPlace=true
+      searchEnabled=false
+      placeholder="Privacy Settings"
+      as |privacyOption|
+    }}
+      {{capitalize privacyOption}}
+    {{/power-select}}
+    <small class="form-text text-muted">Select the privacy option for your group. Hover the `?` icon for more information</small>
+  </div>
+
+  {{! Rules }}
+  <div class="form-group">
+    <label>Group Rules</label>
+    {{expanding-textarea
+      update=(action (mut group.rules))
+      class="form-control"
+    }}
+    <small class="form-text text-muted">Rules for your group's community to follow. Supports Markdown (No HTML)</small>
+  </div>
+
+  {{! Tags }}
+  <div class="form-group">
+    <label>Group Tags</label>
+    {{#power-select-multiple
+      options=addedTags
+      selected=group.tags
+      onchange=(action (mut group.tags))
+      onkeydown=(action "createTag")
+      renderInPlace=true
+      as |tag|
+    }}
+      {{tag}}
+    {{/power-select-multiple}}
+    <small class="form-text text-muted">Users can use tags to discover new groups.</small>
+  </div>
+
+  {{! Submit }}
+  <div class="form-group">
+    <button class="button button--primary" disabled={{unless isValid "disabled"}} {{action (route-action "createGroup")}}>
+      {{#if isSaving}}
+        Creating... {{loading-spinner size="small"}}
+      {{else}}
+        Create your Group!
+      {{/if}}
+    </button>
+  </div>
+</div>
