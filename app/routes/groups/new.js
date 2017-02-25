@@ -16,9 +16,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
       const group = get(controller, 'group');
       set(controller, 'isSaving', true);
       return group.save().then(() => {
-        this.transitionTo('groups.group.index', group);
+        this.transitionTo('groups.group.group-page', group);
       }).catch((error) => {
-        // TODO: Pass error to controller for error display.
+        // @TODO(Groups): Pass error to controller for error display.
       }).finally(() => {
         set(controller, 'isSaving', false);
       });

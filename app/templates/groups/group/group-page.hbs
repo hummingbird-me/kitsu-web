@@ -1,0 +1,30 @@
+{{! Cover Overlay }}
+{{! @TODO(Groups): Componentize }}
+{{! ... }}
+
+{{! Navigation }}
+{{! @TODO(Groups): Componentize }}
+<nav class="cover-nav navbar navbar-light">
+  <div class="container">
+    <div class="row">
+      <div class="nav navbar-nav">
+        {{link-to (t "groups.navigation.activity") "groups.group.group-page.index" class="nav-item nav-link"}}
+        {{link-to (t "groups.navigation.rules") "groups.group.group-page.rules" class="nav-item nav-link"}}
+        {{#link-to "groups.group.group-page.members" class="nav-item nav-link"}}
+          {{t "groups.navigation.members"}}
+          <span class="tag tag-default">{{group.membersCount}}</span>
+        {{/link-to}}
+        {{#link-to "groups.group.group-page.leaders" class="nav-item nav-link"}}
+          {{t "groups.navigation.leaders"}}
+          <span class="tag tag-default">NYI</span>
+        {{/link-to}}
+        {{#link-to "groups.group.group-page.neighbors" class="nav-item nav-link"}}
+          {{t "groups.navigation.neighbors"}}
+          <span class="tag tag-default">NYI</span>
+        {{/link-to}}
+      </div>
+    </div>
+  </div>
+</nav>
+
+{{outlet}}

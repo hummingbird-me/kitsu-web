@@ -1,0 +1,20 @@
+{{! Activity Page }}
+<div class="container no-padding">
+  <div class="feed-container row">
+    {{! Group Feed }}
+    <div class="feed-stream col-sm-12 col-md-8">
+      {{#stream-feed/list
+        streamType="group_aggr"
+        streamId=group.id
+        kitsuGroup=group
+        readOnly=(cannot "write post in group")}}
+        <span>Group Activity</span>
+      {{/stream-feed/list}}
+    </div>
+
+    {{! Sidebar }}
+    <div class="feed-sidebar col-sm-4">
+
+    </div>
+  </div>
+</div>
