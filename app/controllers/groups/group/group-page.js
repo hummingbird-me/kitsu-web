@@ -7,7 +7,8 @@ import { image } from 'client/helpers/image';
 
 export default Controller.extend({
   store: service(),
-  group: alias('model'),
+  group: alias('model.group'),
+  membership: alias('model.membership'),
 
   coverImageStyle: computed('group.coverImage', function() {
     const coverImage = image(get(this, 'group.coverImage'));

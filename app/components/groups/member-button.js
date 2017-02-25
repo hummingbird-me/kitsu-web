@@ -18,9 +18,7 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
     if (!get(this, 'session.hasUser')) { return; }
-    get(this, 'getMemberStatusTask').perform().then((record) => {
-      this._updateMemberState(record);
-    }).catch(() => {});
+    this._updateMemberState(get(this, 'membership'));
   },
 
   click() {
@@ -47,16 +45,6 @@ export default Component.extend({
       }).catch(() => {});
     }
   },
-
-  /** Get the status of the membership for this group and the authenticated user */
-  getMemberStatusTask: task(function* () {
-    return yield get(this, 'store').query('group-member', {
-      filter: {
-        group: get(this, 'group.id'),
-        user: get(this, 'session.account.id')
-      }
-    }).then(records => get(records, 'firstObject'));
-  }).restartable(),
 
   joinGroupTask: task(function* () {
     const record = get(this, 'store').createRecord('group-member', {

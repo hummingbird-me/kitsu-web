@@ -15,17 +15,17 @@ export default Route.extend(Pagination, {
   },
 
   getGroupMembersTask: task(function* () {
-    const group = this.modelFor('groups.group.group-page');
+    const model = this.modelFor('groups.group.group-page');
     return yield get(this, 'store').query('group-member', {
       include: 'user',
-      filter: { group: get(group, 'id') },
+      filter: { group: get(model, 'group.id') },
       page: { limit: 20 }
     });
   }).restartable(),
 
   titleToken() {
     const model = this.modelFor('groups.group.group-page');
-    const group = get(model, 'name');
+    const group = get(model, 'group.name');
     return get(this, 'intl').t('titles.groups.group.group-page.members', { group });
   },
 });

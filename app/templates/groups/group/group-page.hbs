@@ -13,11 +13,11 @@
               <h3 class="cover-username">{{group.name}}</h3>
               <div class="cover-cta">
                 {{! Join/Leave Button }}
-                {{groups/member-button group=group}}
+                {{groups/member-button group=group membership=membership}}
 
-                {{#if (can "view dashboard for group")}}
+                {{#if (can "view dashboard for group" membership)}}
                   {{#link-to "groups.group.dashboard.index" tagName="button" class="button button--primary"}}
-                    {{t "groups.dashboard"}}
+                    <span class="button-label">{{t "groups.dashboard"}}</span>
                   {{/link-to}}
                 {{/if}}
               </div>
