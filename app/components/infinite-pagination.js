@@ -40,6 +40,7 @@ export default Component.extend({
       Watcher.watch(element, () => {
         set(this, 'isLoading', true);
         strictInvokeAction(this, 'onPagination').finally(() => {
+          if (get(this, 'isDestroyed')) { return; }
           set(this, 'isLoading', false);
         });
       });
