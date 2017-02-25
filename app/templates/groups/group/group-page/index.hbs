@@ -14,7 +14,17 @@
 
     {{! Sidebar }}
     <div class="feed-sidebar col-sm-4">
+      <div class="sidebar-item">
+        <h6 class="panel-heading">{{t "groups.activity.about" group=group.name}}</h6>
+        <p>{{group.about}}</p>
+      </div>
 
+      {{! Group Members }}
+      {{groups/activity/group-members group=group class="sidebar-item"}}
+
+      {{! Group Neighbors }}
+      {{! @TODO(Groups): Should be hidden if neighborsCount === 0 }}
+      {{groups/activity/group-neighbors group=group class="sidebar-item"}}
     </div>
   </div>
 </div>

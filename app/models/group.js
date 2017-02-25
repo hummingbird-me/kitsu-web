@@ -1,6 +1,7 @@
 import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { hasMany } from 'ember-data/relationships';
+import { equal } from 'ember-computed';
 import { validator, buildValidations } from 'ember-cp-validations';
 
 export const Validations = buildValidations({
@@ -32,5 +33,9 @@ export default Base.extend(Validations, {
   slug: attr('string'),
   tags: attr('array'),
 
-  members: hasMany('group-member')
+  members: hasMany('group-member'),
+
+  isOpen: equal('privacy', 'isOpen'),
+  isClosed: equal('privacy', 'closed'),
+  isRestricted: equal('privacy', 'restricted')
 });

@@ -1,6 +1,34 @@
 {{! Cover Overlay }}
 {{! @TODO(Groups): Componentize }}
-{{! ... }}
+<div class="user-cover no-edit">
+  <div class="cover-photo" style={{coverImageStyle}}>
+    <div class="container">
+      <div class="row">
+        <div class="cover-user-info">
+          <div class="primary-info">
+            <div class="cover-avatar avatar">
+              {{lazy-image src=(image group.avatar "large") class="avatar-image avatar-image--large"}}
+            </div>
+            <div class="mini-bio">
+              <h3 class="cover-username">{{group.name}}</h3>
+              <div class="cover-cta">
+                {{! Join/Leave Button }}
+                {{groups/member-button group=group}}
+
+                {{#if (can "view dashboard for group")}}
+                  {{#link-to "groups.group.dashboard.index" tagName="button" class="button button--primary"}}
+                    {{t "groups.dashboard"}}
+                  {{/link-to}}
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dark-cover-overlay"></div>
+  </div>
+</div>
 
 {{! Navigation }}
 {{! @TODO(Groups): Componentize }}
@@ -16,10 +44,6 @@
         {{/link-to}}
         {{#link-to "groups.group.group-page.leaders" class="nav-item nav-link"}}
           {{t "groups.navigation.leaders"}}
-          <span class="tag tag-default">NYI</span>
-        {{/link-to}}
-        {{#link-to "groups.group.group-page.neighbors" class="nav-item nav-link"}}
-          {{t "groups.navigation.neighbors"}}
           <span class="tag tag-default">NYI</span>
         {{/link-to}}
       </div>

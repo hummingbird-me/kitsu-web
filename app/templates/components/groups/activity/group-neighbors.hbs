@@ -1,0 +1,14 @@
+<h6 class="panel-heading">{{t "groups.activity.neighbors"}}</h6>
+{{#if getNeighborsTask.isRunning}}
+  <div class="w-100 text-xs-center m-t-1 m-b-1">
+    {{loading-spinner size="large"}}
+  </div>
+{{else if getNeighborsTask.last.error}}
+  <p>{{t "errors.load"}}</p>
+{{else if getNeighborsTask.last.value}}
+  <div class="group-member-avatars">
+    {{#each getNeighborsTask.last.value as |neighbor|}}
+      {{log neighbor}}
+    {{/each}}
+  </div>
+{{/if}}
