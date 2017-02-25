@@ -1,1 +1,31 @@
-{{outlet}}
+<div class="settings--header">
+  <div class="container">
+    <div class="row">
+      <div class="settings--avatar">
+        {{lazy-image src=(image session.account.avatar "small") imgClass="avatar-image avatar-image--small"}}
+      </div>
+      <h2>{{group.name}}</h2>
+      <ul class="settings--navigation">
+        {{#link-to "groups.group.dashboard.index" tagName="li" class="list-item"}}
+          <a href={{href-to "groups.group.dashboard.index"}}>{{t "groups.dashboard.navigation.overview"}}</a>
+        {{/link-to}}
+        {{#link-to "groups.group.dashboard.help-desk" tagName="li" class="list-item"}}
+          <a href={{href-to "groups.group.dashboard.help-desk"}}>{{t "groups.dashboard.navigation.help-desk"}}</a>
+        {{/link-to}}
+        {{#link-to "groups.group.dashboard.members" tagName="li" class="list-item"}}
+          <a href={{href-to "groups.group.dashboard.members"}}>{{t "groups.dashboard.navigation.members"}}</a>
+        {{/link-to}}
+        {{#link-to "groups.group.dashboard.leaders" tagName="li" class="list-item"}}
+          <a href={{href-to "groups.group.dashboard.leaders"}}>{{t "groups.dashboard.navigation.leaders"}}</a>
+        {{/link-to}}
+        {{#link-to "groups.group.dashboard.settings" tagName="li" class="list-item"}}
+          <a href={{href-to "groups.group.dashboard.settings"}}>{{t "groups.dashboard.navigation.settings"}}</a>
+        {{/link-to}}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="settings-container">
+  {{outlet}}
+</div>
