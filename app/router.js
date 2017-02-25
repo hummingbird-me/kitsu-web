@@ -65,7 +65,6 @@ RouterInstance.map(function() {
         this.route('rules');
         this.route('members');
         this.route('leaders');
-        this.route('neighbors');
       });
       this.route('dashboard', function() {
         this.route('help-desk');
