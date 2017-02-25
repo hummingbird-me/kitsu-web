@@ -10,7 +10,12 @@
               {{lazy-image src=(image group.avatar "large") class="avatar-image avatar-image--large"}}
             </div>
             <div class="mini-bio">
-              <h3 class="cover-username">{{group.name}}</h3>
+              <h3 class="cover-username">
+                {{group.name}}
+                {{#if group.nsfw}}
+                  <span class="tag tag-default">{{t "groups.nsfw"}}</span>
+                {{/if}}
+              </h3>
               <div class="cover-cta">
                 {{! Join/Leave Button }}
                 {{groups/member-button group=group membership=membership}}
