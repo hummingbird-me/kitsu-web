@@ -10,6 +10,8 @@
         {{t "errors.load"}}
       </div>
     {{else if taskValue}}
+      {{! @TODO(Groups): Send Message Button }}
+
       {{#infinite-pagination onPagination=(route-action "onPagination")}}
         {{! @TODO: Componentnize }}
         {{#each taskValue as |member|}}
@@ -29,11 +31,6 @@
               {{#each member.permissions as |permission|}}
                 <span class="tag tag-default m-b-1">{{capitalize permission.permission}}</span>
               {{/each}}
-
-              {{! @TODO(Groups): NYI }}
-              <button class="button button--primary" disabled="disabled">
-                Send Message
-              </button>
             </div>
           </div>
         {{/each}}

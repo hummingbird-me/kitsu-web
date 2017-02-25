@@ -19,7 +19,7 @@ export default Component.extend({
     this._super(...arguments);
     if (!get(this, 'session.hasUser')) { return; }
     get(this, 'getMemberStatusTask').perform().then((record) => {
-      this._updateMemberState(!!record);
+      this._updateMemberState(record);
     }).catch(() => {});
   },
 
@@ -43,7 +43,7 @@ export default Component.extend({
       });
     } else {
       get(this, 'joinGroupTask').perform().then((record) => {
-        this._updateMemberState(!!record);
+        this._updateMemberState(record);
       }).catch(() => {});
     }
   },
