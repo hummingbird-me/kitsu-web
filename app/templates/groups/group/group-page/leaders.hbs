@@ -31,6 +31,14 @@
               {{#each member.permissions as |permission|}}
                 <span class="tag tag-default m-b-1">{{capitalize permission.permission}}</span>
               {{/each}}
+
+              {{#if (not (is-self member.user))}}
+                {{follow-button user=member.user}}
+              {{else}}
+                <button class="button button--primary" disabled="disabled">
+                  Hey, that's you!
+                </button>
+              {{/if}}
             </div>
           </div>
         {{/each}}
