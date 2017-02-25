@@ -21,3 +21,53 @@
     }
   }
 }
+
+.group-dashboard {
+  flex-direction: column;
+  .stats-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  .card-stats {
+    display: flex;
+    margin-top: 40px;
+    .card-stat {
+      width: 150px;
+      padding: 15px;
+      &:first-child {
+        margin-right: 15px;
+      }
+      &--members-today {
+        background-color: $caribbean;
+      }
+      &--members-total {
+        background-color: $nobel;
+      }
+      &--posts {
+        background-color: #2980b9;
+      }
+      &--comments {
+        background-color: #34495e;
+      }
+      &--tickets {
+        background-color: #e67e22;
+      }
+      &--reports {
+        background-color: #795548;
+      }
+      .card-stat-title {
+        display: block;
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+      }
+      .card-stat-value {
+        @extend .card-stat-title;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 5px;
+      }
+    }
+  }
+}

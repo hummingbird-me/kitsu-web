@@ -26,6 +26,12 @@
   </div>
 </div>
 
-<div class="settings-container">
-  {{outlet}}
+<div class="container">
+  <div class="row group-dashboard">
+    <a href={{href-to "groups.group.group-page.index"}}>
+      &lt; {{t "groups.dashboard.back" group=group.name}}
+    </a>
+
+    {{outlet}}
+  </div>
 </div>
