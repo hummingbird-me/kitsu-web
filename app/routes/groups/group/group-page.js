@@ -12,9 +12,10 @@ export default Route.extend(CoverPageMixin, {
   },
 
   _getMembershipStatus() {
+    if (!get(this, 'session.hasUser')) { return RSVP.resolve(); }
     const group = this.modelFor('groups.group');
     return get(this, 'store').query('group-member', {
-      include: 'user',
+      include: 'user,permissions',
       filter: {
         group: get(group, 'id'),
         user: get(this, 'session.account.id')
