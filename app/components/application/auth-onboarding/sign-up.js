@@ -67,7 +67,7 @@ export default Component.extend({
         get(this, 'session')
           .authenticateWithOAuth2(identification, password)
           .then(() => {
-            set(user, 'password', undefined);
+            set(user, 'password', null);
             invokeAction(this, 'changeComponent', 'import-select');
           })
           .catch(err => get(this, 'notify').error(errorMessages(err)));
