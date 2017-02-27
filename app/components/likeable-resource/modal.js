@@ -38,6 +38,7 @@ export default Component.extend(Pagination, {
     this._super(...arguments);
     set(this, 'isLoading', false);
     strictInvokeAction(this, 'updateLikes', get(this, 'model'));
+    set(this, 'paginatedRecords', []);
   },
 
   actions: {
