@@ -23,8 +23,9 @@
       {{groups/activity/group-members group=group class="sidebar-item"}}
 
       {{! Group Neighbors }}
-      {{! @TODO(Groups): Should be hidden if neighborsCount === 0 }}
-      {{groups/activity/group-neighbors group=group class="sidebar-item"}}
+      {{#if (gt group.neighborsCount 0)}}
+        {{groups/activity/group-neighbors group=group class="sidebar-item"}}
+      {{/if}}
     </div>
   </div>
 </div>
