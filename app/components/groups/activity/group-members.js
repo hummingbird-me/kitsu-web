@@ -17,11 +17,15 @@ export default Component.extend({
    * then by the creation date of the group membership
    */
   getMembersTask: task(function* () {
+    const sort = ['-created_at'];
+    if (get(this, 'session.hasUser')) {
+      sort.unshiftObject('following');
+    }
     return yield get(this, 'store').query('group-member', {
       include: 'user',
       filter: { group: get(this, 'group.id') },
       page: { limit: 14 },
-      sort: 'following,-created_at'
+      sort: sort.join(',')
     });
   }).restartable()
 });
