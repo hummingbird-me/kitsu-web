@@ -7,8 +7,9 @@
         streamType="group_aggr"
         streamId=group.id
         kitsuGroup=group
-        readOnly=(cannot "write post in group")}}
-        <span>Group Activity</span>
+        hidePostEditor=(cannot "write post in group" group membership=membership)
+        readOnly=(cannot "write post")}}
+        <span>{{t "groups.activity.feed-header"}}</span>
       {{/stream-feed/list}}
     </div>
 

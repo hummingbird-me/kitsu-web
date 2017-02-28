@@ -1,12 +1,14 @@
-{{stream-feed/create-post
-  readOnly=readOnly
-  placeholder="Create a post..."
-  media=media
-  user=user
-  onCreate=(perform createPost)
-}}
+{{#unless hidePostEditor}}
+  {{stream-feed/create-post
+    readOnly=readOnly
+    placeholder="Create a post..."
+    media=media
+    user=user
+    onCreate=(perform createPost)
+  }}
+{{/unless}}
 
-<div class="feed-actions clearfix">
+<div class="feed-actions clearfix {{if hidePostEditor "is-hidden"}}">
   {{! new activities block }}
   {{#if (gt newItems.length 0)}}
     <div class="card text-xs-center p-t-1 p-b-1" {{action "newActivities"}}>

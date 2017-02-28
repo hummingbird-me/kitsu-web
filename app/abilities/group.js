@@ -11,5 +11,28 @@ export default Ability.extend({
       return get(this, 'model.permissions.firstObject.permission') !== 'content';
     }
     return hasPermissions;
+  }).readOnly(),
+
+  /**
+   * Determine if the user has the correct group permissions to create a post.
+   */
+  canWritePost: computed('model', 'membership', function() {
+    const group = get(this, 'model');
+    const membership = get(this, 'membership');
+    const user = get(this, 'session.hasUser') && get(this, 'session.account');
+
+    // If the user isn't authenticated or a member of the group, exit early
+    if (!user || !membership) {
+      return false;
+    }
+
+    // If this is a restricted group, then posting is limited to leaders
+    // @TODO(Groups): Move to constant
+    if (get(group, 'privacy') === 'restricted') {
+      return get(membership, 'permissions').any(permission => (
+        get(permission, 'permission') === 'owner' || get(permission, 'permission') === 'content'
+      ));
+    }
+    return true;
   }).readOnly()
 });
