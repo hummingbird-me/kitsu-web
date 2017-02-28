@@ -12,12 +12,16 @@ export default Component.extend({
     get(this, 'getMembersTask').perform();
   },
 
-  // @TODO(Groups): This needs to be sorted by followers
+  /**
+   * Returns 14 members of the group sorted by the follow relationships of the sessioned user
+   * then by the creation date of the group membership
+   */
   getMembersTask: task(function* () {
     return yield get(this, 'store').query('group-member', {
       include: 'user',
       filter: { group: get(this, 'group.id') },
-      page: { limit: 14 }
+      page: { limit: 14 },
+      sort: 'following,-created_at'
     });
   }).restartable()
 });
