@@ -7,6 +7,6 @@ export default Route.extend({
   },
 
   titleToken(model) {
-    return get(model, 'name');
+    return get(model, 'group.name');
   }
 });
