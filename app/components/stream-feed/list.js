@@ -40,8 +40,8 @@ export default Component.extend(Pagination, {
         // activity
         'media,actor,unit,subject,target',
         // posts (and comment system)
-        'target.user,target.target_user,target.spoiled_unit,target.media',
-        'subject.user,subject.target_user,subject.spoiled_unit,subject.media',
+        'target.user,target.target_user,target.spoiled_unit,target.media,target.target_group',
+        'subject.user,subject.target_user,subject.spoiled_unit,subject.media,subject.target_group',
         // follow
         'subject.followed',
         // review

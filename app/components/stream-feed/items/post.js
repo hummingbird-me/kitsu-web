@@ -11,8 +11,9 @@ import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
 import errorMessages from 'client/utils/error-messages';
 import { invoke, invokeAction } from 'ember-invoke-action';
+import { CanMixin } from 'ember-can';
 
-export default Component.extend(ClipboardMixin, {
+export default Component.extend(ClipboardMixin, CanMixin, {
   classNameBindings: ['post.isNew:new-post', 'isPinnedPost:pinned-post'],
   classNames: ['stream-item', 'row'],
   isHidden: false,
@@ -63,6 +64,17 @@ export default Component.extend(ClipboardMixin, {
     return !get(this, 'post.createdAt').isSame(get(this, 'post.editedAt'));
   }).readOnly(),
 
+  canEditPost: computed(function() {
+    const group = get(this, 'post').belongsTo('targetGroup').value();
+    if (group) {
+      return this.can('edit post in group', group, {
+        membership: get(this, 'groupMembership'),
+        post: get(this, 'post')
+      });
+    }
+    return this.can('edit post', get(this, 'post'));
+  }).readOnly(),
+
   _streamAnalytics(label, foreignId) {
     const data = {
       label,
@@ -95,11 +107,28 @@ export default Component.extend(ClipboardMixin, {
     if (get(this, 'feedId') !== undefined) {
       set(this, 'userId', get(this, 'feedId').split(':')[1]);
     }
+
     const post = get(this, 'post');
     if (get(post, 'user') && get(this, 'session').isCurrentUser(get(post, 'user'))) {
       set(this, 'isHidden', get(post, 'nsfw'));
     } else {
       set(this, 'isHidden', get(post, 'nsfw') || get(post, 'spoiler'));
+    }
+
+    // groups
+    const group = post.belongsTo('targetGroup').value();
+    if (group) {
+      if (get(this, 'kitsuGroupMembership')) {
+        set(this, 'groupMembership', get(this, 'kitsuGroupMembership'));
+      } else {
+        get(this, 'store').query('group-member', {
+          filter: { group, user: get(this, 'session.account') },
+          include: 'permissions'
+        }).then((records) => {
+          const record = get(records, 'firstObject');
+          set(this, 'groupMembership', record);
+        }).catch(() => {});
+      }
     }
 
     if (!get(this, 'isHidden')) {

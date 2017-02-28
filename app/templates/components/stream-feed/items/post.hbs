@@ -196,7 +196,7 @@
           {{/if}}
 
           {{! Editing/Deleting Options }}
-          {{#if (can "edit post" post)}}
+          {{#if canEditPost}}
             {{#if isEditable}}
               <a class="dropdown-item" href="#" {{action (toggle "editModalOpened" this)}}>Edit Post</a>
               {{#if editModalOpened}}
@@ -277,6 +277,7 @@
         comment=comment
         isReply=isReply
         readOnly=readOnly
+        kitsuGroupMembership=kitsuGroupMembership
         countUpdate=(action (mut post.topLevelCommentsCount))
         trackEngagement=(action "trackEngagement")
       }}

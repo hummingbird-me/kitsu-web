@@ -73,7 +73,7 @@
             </a>
 
             {{! Edit/Delete Options }}
-            {{#if (can "edit comment" comment)}}
+            {{#if canEditComment}}
               {{#if isEditable}}
                 <a class="dropdown-item" href="#" {{action (toggle "isEditing" this)}}>Edit Comment</a>
               {{/if}}
@@ -143,6 +143,7 @@
                 isTopLevel=false
                 comment=reply
                 post=post
+                kitsuGroupMembership=kitsuGroupMembership
                 onReply=(action "onReply")
                 onDelete=(action "deletedReply")
                 likesCountUpdate=(action (mut reply.likesCount))
