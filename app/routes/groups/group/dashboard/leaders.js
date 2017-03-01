@@ -10,7 +10,7 @@ export default Route.extend({
   },
 
   titleToken(model) {
-    const group = get(model, 'name');
+    const group = get(model, 'group.name');
     return get(this, 'intl').t('titles.groups.group.dashboard.leaders', { group });
   }
 });
