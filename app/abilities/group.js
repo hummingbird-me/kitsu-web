@@ -22,15 +22,11 @@ export default Ability.extend({
    * Determine if the user has the correct group permissions to create a post.
    */
   canWritePost: computed('model', 'membership', function() {
-    const group = get(this, 'model');
-    const membership = get(this, 'membership');
-    const user = get(this, 'session.hasUser') && get(this, 'session.account');
-    // If the user isn't authenticated or a member of the group, exit early
-    if (!user || !membership) {
-      return false;
-    }
+    const membership = this._isGroupMember();
+    if (!membership) { return false; }
     // If this is a restricted group, then posting is limited to leaders
     // @TODO(Groups): Move to constant
+    const group = get(this, 'model');
     if (get(group, 'privacy') === 'restricted') {
       return get(membership, 'permissions').any(permission => (
         get(permission, 'permission') === 'owner' || get(permission, 'permission') === 'content'
@@ -44,11 +40,8 @@ export default Ability.extend({
    * User = Admin, Owner, or has required group permissions
    */
   canEditPost: computed('model', 'membership', 'post', function() {
-    const membership = get(this, 'membership');
-    const user = get(this, 'session.hasUser') && get(this, 'session.account');
-    if (!user || !membership) {
-      return false;
-    }
+    const membership = this._isGroupMember();
+    if (!membership) { return false; }
     const canEditPost = get(this, 'postAbility.canEdit');
     const hasPermissions = get(membership, 'permissions').any(permission => (
       get(permission, 'permission') === 'owner' || get(permission, 'permission') === 'content'
@@ -60,9 +53,7 @@ export default Ability.extend({
    * Determine if the user can write a comment on a group post.
    */
   canWriteComment: computed('model', 'membership', function() {
-    const membership = get(this, 'membership');
-    const user = get(this, 'session.hasUser') && get(this, 'session.account');
-    return user && membership;
+    return this._isGroupMember();
   }).readOnly(),
 
   /**
@@ -70,15 +61,18 @@ export default Ability.extend({
    * User = Admin, Owner, or has required group permissions
    */
   canEditComment: computed('model', 'membership', 'comment', function() {
-    const membership = get(this, 'membership');
-    const user = get(this, 'session.hasUser') && get(this, 'session.account');
-    if (!user || !membership) {
-      return false;
-    }
+    const membership = this._isGroupMember();
+    if (!membership) { return false; }
     const canEditComment = get(this, 'commentAbility.canEdit');
     const hasPermissions = get(membership, 'permissions').any(permission => (
       get(permission, 'permission') === 'owner' || get(permission, 'permission') === 'content'
     ));
     return canEditComment || hasPermissions;
   }).readOnly(),
+
+  _isGroupMember() {
+    const membership = get(this, 'membership');
+    const user = get(this, 'session.hasUser') && get(this, 'session.account');
+    return user && membership;
+  }
 });
