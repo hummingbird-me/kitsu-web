@@ -9,18 +9,30 @@
         {{#link-to "groups.group.dashboard.index" tagName="li" class="list-item"}}
           <a href={{href-to "groups.group.dashboard.index"}}>{{t "groups.dashboard.navigation.overview"}}</a>
         {{/link-to}}
-        {{#link-to "groups.group.dashboard.help-desk" tagName="li" class="list-item"}}
-          <a href={{href-to "groups.group.dashboard.help-desk"}}>{{t "groups.dashboard.navigation.help-desk"}}</a>
-        {{/link-to}}
-        {{#link-to "groups.group.dashboard.members" tagName="li" class="list-item"}}
-          <a href={{href-to "groups.group.dashboard.members"}}>{{t "groups.dashboard.navigation.members"}}</a>
-        {{/link-to}}
-        {{#link-to "groups.group.dashboard.leaders" tagName="li" class="list-item"}}
-          <a href={{href-to "groups.group.dashboard.leaders"}}>{{t "groups.dashboard.navigation.leaders"}}</a>
-        {{/link-to}}
-        {{#link-to "groups.group.dashboard.settings" tagName="li" class="list-item"}}
-          <a href={{href-to "groups.group.dashboard.settings"}}>{{t "groups.dashboard.navigation.settings"}}</a>
-        {{/link-to}}
+        {{! Should only be viewable to members with permission }}
+        {{#if (can "manage helpdesk for group" membership=membership)}}
+          {{#link-to "groups.group.dashboard.help-desk" tagName="li" class="list-item"}}
+            <a href={{href-to "groups.group.dashboard.help-desk"}}>{{t "groups.dashboard.navigation.help-desk"}}</a>
+          {{/link-to}}
+        {{/if}}
+        {{! Should only be viewable to members with permission }}
+        {{#if (can "manage members for group" membership=membership)}}
+          {{#link-to "groups.group.dashboard.members" tagName="li" class="list-item"}}
+            <a href={{href-to "groups.group.dashboard.members"}}>{{t "groups.dashboard.navigation.members"}}</a>
+          {{/link-to}}
+        {{/if}}
+        {{! Should only be viewable to members with permission }}
+        {{#if (can "manage leaders for group" membership=membership)}}
+          {{#link-to "groups.group.dashboard.leaders" tagName="li" class="list-item"}}
+            <a href={{href-to "groups.group.dashboard.leaders"}}>{{t "groups.dashboard.navigation.leaders"}}</a>
+          {{/link-to}}
+        {{/if}}
+        {{! Should only be viewable to members with permission }}
+        {{#if (can "manage settings for group" membership=membership)}}
+          {{#link-to "groups.group.dashboard.settings" tagName="li" class="list-item"}}
+            <a href={{href-to "groups.group.dashboard.settings"}}>{{t "groups.dashboard.navigation.settings"}}</a>
+          {{/link-to}}
+        {{/if}}
       </ul>
     </div>
   </div>

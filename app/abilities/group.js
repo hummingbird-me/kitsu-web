@@ -2,74 +2,79 @@ import { Ability, computed as ability } from 'ember-can';
 import get from 'ember-metal/get';
 import computed from 'ember-computed';
 
+const canManage = permission => (
+  computed('membership', function() {
+    return this._isGroupMember() && get(this, 'membership').hasPermission(permission);
+  }).readOnly()
+);
+
 export default Ability.extend({
   postAbility: ability.ability('post', 'post'),
   commentAbility: ability.ability('comment', 'comment'),
 
-  /**
-   * Determine if the group member has enough permissions to view the admin dashboard
-   */
-  canViewDashboard: computed('model', function() {
-    const hasPermissions = get(this, 'model') && (get(this, 'model.permissions.length') > 0);
-    // content permission is for feed only, not dashboard
-    if (hasPermissions && get(this, 'model.permissions.length') === 1) {
-      return get(this, 'model.permissions.firstObject.permission') !== 'content';
-    }
-    return hasPermissions;
+  canViewDashboard: computed('membership', function() {
+    const isMember = this._isGroupMember();
+    return isMember && (get(get(this, 'membership'), 'permissions.length') > 0);
   }).readOnly(),
 
-  /**
-   * Determine if the user has the correct group permissions to create a post.
-   */
+  canManageHelpdesk: computed('membership', function() {
+    return get(this, 'canManageReports') || get(this, 'canManageTickets');
+  }).readOnly(),
+
+  canManageMembers: canManage('members'),
+  canManageLeaders: canManage('leaders'),
+  canManageSettings: canManage('community'),
+  canManageReports: canManage('content'),
+  canManageTickets: canManage('tickets'),
+
   canWritePost: computed('model', 'membership', function() {
+    // can only write a post if you're a group member'
     const membership = this._isGroupMember();
     if (!membership) { return false; }
+
     // If this is a restricted group, then posting is limited to leaders
-    // @TODO(Groups): Move to constant
     const group = get(this, 'model');
-    if (get(group, 'privacy') === 'restricted') {
-      return get(membership, 'permissions').any(permission => (
-        get(permission, 'permission') === 'owner' || get(permission, 'permission') === 'content'
-      ));
+    if (get(group, 'isRestricted')) {
+      return membership.hasPermission('content');
     }
     return true;
   }).readOnly(),
 
-  /**
-   * Determines if the user can edit the post within the feed.
-   * User = Admin, Owner, or has required group permissions
-   */
   canEditPost: computed('model', 'membership', 'post', function() {
+    // If you're the owner of the content, or a site-admin then the post is editable
+    const canEditPost = get(this, 'postAbility.canEdit');
+    if (canEditPost) { return true; }
+
+    // If you're not a group member then you can't edit a group post
     const membership = this._isGroupMember();
     if (!membership) { return false; }
-    const canEditPost = get(this, 'postAbility.canEdit');
-    const hasPermissions = get(membership, 'permissions').any(permission => (
-      get(permission, 'permission') === 'owner' || get(permission, 'permission') === 'content'
-    ));
-    return canEditPost || hasPermissions;
+
+    // Do you have the correct group permissions to edit community content?
+    return membership.hasPermission('content');
   }).readOnly(),
 
-  /**
-   * Determine if the user can write a comment on a group post.
-   */
   canWriteComment: computed('model', 'membership', function() {
     return this._isGroupMember();
   }).readOnly(),
 
-  /**
-   * Determines if the user can edit the post within the feed.
-   * User = Admin, Owner, or has required group permissions
-   */
   canEditComment: computed('model', 'membership', 'comment', function() {
+    // If you're the owner of the comment, or a site admin then you can edit
+    const canEditComment = get(this, 'commentAbility.canEdit');
+    if (canEditComment) { return true; }
+
+    // You have to be a group member
     const membership = this._isGroupMember();
     if (!membership) { return false; }
-    const canEditComment = get(this, 'commentAbility.canEdit');
-    const hasPermissions = get(membership, 'permissions').any(permission => (
-      get(permission, 'permission') === 'owner' || get(permission, 'permission') === 'content'
-    ));
-    return canEditComment || hasPermissions;
+
+    // Requires the correct permissions
+    return membership.hasPermission('content');
   }).readOnly(),
 
+  /**
+   * Checks if the user is authenticated and that they are a group member.
+   *
+   * @returns {Boolean}
+   */
   _isGroupMember() {
     const membership = get(this, 'membership');
     const user = get(this, 'session.hasUser') && get(this, 'session.account');

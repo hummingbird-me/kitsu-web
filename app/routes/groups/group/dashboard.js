@@ -16,7 +16,8 @@ export default Route.extend(AuthenticatedRouteMixin, CanMixin, {
   },
 
   afterModel(model) {
-    if (!this.can('view dashboard for group', get(model, 'membership'))) {
+    const membership = get(model, 'membership');
+    if (!this.can('view dashboard for group', { membership })) {
       this.transitionTo('groups.group.group-page.index');
     }
   },
