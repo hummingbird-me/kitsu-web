@@ -9,6 +9,7 @@
         <tr>
           <th>{{t "groups.dashboard.members.invites-list.table.users"}}</th>
           <th>{{t "groups.dashboard.members.invites-list.table.senders"}}</th>
+          <th>{{t "groups.dashboard.members.invites-list.table.actions"}}</th>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +26,15 @@
                 <span>
                   {{lazy-image src=(image invitee.sender.avatar "small")}}
                   {{invitee.sender.name}}
+                </span>
+              </td>
+              <td>
+                <span>
+                  <button class="btn btn-sm btn-danger hint--round hint--bounce hint--top" aria-label="Remove"
+                    disabled={{if removeInviteTask.isRunning "disabled"}}
+                    onclick={{perform removeInviteTask invitee}}>
+                    {{svg-jar "trash"}}
+                  </button>
                 </span>
               </td>
             </tr>
