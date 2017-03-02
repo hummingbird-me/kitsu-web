@@ -1,6 +1,8 @@
-{{yield}}
+{{#if hasBlock}}
+  {{yield}}
+{{/if}}
 
-{{! Viewport Element }}
+{{! Viewport Sentinel }}
 <div id={{viewportDivId}}
      style="width: 100%; height: 1px; background-color: transparent">
 </div>

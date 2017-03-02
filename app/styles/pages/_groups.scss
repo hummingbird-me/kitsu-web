@@ -24,20 +24,25 @@
 
 .group-dashboard {
   flex-direction: column;
+
   .stats-container {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
   }
+
   .card-stats {
     display: flex;
     margin-top: 30px;
+
     .card-stat {
       width: 150px;
       padding: 15px;
+
       &:first-child {
         margin-right: 15px;
       }
+
       &--members-today {
         background-color: $caribbean;
       }
@@ -56,17 +61,94 @@
       &--reports {
         background-color: #795548;
       }
+
       .card-stat-title {
         display: block;
         text-align: center;
         color: #fff;
         font-size: 14px;
       }
+
       .card-stat-value {
         @extend .card-stat-title;
         font-size: 20px;
         font-weight: bold;
         margin-top: 5px;
+      }
+    }
+  }
+
+  h4 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+
+  .group-member-row {
+    td {
+      height: 40px;
+      > span {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+    }
+
+    svg {
+      fill: white;
+    }
+
+    .lazy-image {
+      margin-right: 15px;
+      img {
+        width: 36px;
+        height: 36px;
+        border-radius: 999em;
+      }
+    }
+  }
+
+  .invite-member-button {
+    margin: { left: 5px; right: 5px; };
+    vertical-align: middle;
+    &.is-opened {
+      svg {
+        transform: none;
+      }
+    }
+    svg {
+      width: 20px;
+      height: 20px;
+      transform: rotateZ(45deg);
+      transition: transform .2s;
+    }
+  }
+
+  .invite-users {
+    margin-bottom: 15px;
+
+    .user-search-list {
+      background-color: white;
+      min-height: 40px;
+      border: 1px solid $gray;
+
+      .user-search-item {
+        display: flex;
+        align-items: center;
+        padding: { left: 10px; top: 5px; bottom: 5px; right: 10px; };
+        border-bottom: 1px solid $gray;
+
+        img {
+          width: 32px;
+          height: 32px;
+          border-radius: 999em;
+          margin-right: 10px;
+        }
+
+        .user-search-item-actions {
+          display: flex;
+          flex: 1;
+          justify-content: flex-end;
+        }
       }
     }
   }

@@ -9,8 +9,9 @@ export default Route.extend({
     return this.modelFor('groups.group.dashboard');
   },
 
-  titleToken(model) {
-    const group = get(model, 'name');
+  titleToken() {
+    const model = this.modelFor('groups.group.dashboard');
+    const group = get(model, 'group.name');
     return get(this, 'intl').t('titles.groups.group.dashboard.members', { group });
   }
 });

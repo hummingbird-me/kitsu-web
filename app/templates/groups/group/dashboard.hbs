@@ -40,9 +40,11 @@
 
 <div class="container">
   <div class="row group-dashboard">
-    <a href={{href-to "groups.group.group-page.index"}}>
-      &lt; {{t "groups.dashboard.back" group=group.name}}
-    </a>
+    <div>
+      <a href={{href-to "groups.group.group-page.index"}}>
+        &lt; {{t "groups.dashboard.back" group=group.name}}
+      </a>
+    </div>
 
     {{outlet}}
   </div>
