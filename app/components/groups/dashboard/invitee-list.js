@@ -16,7 +16,8 @@ export default Component.extend(Pagination, {
     const group = get(this, 'group.id');
     return yield get(this, 'store').query('group-invite', {
       filter: { group },
-      include: 'user,sender'
+      include: 'user,sender',
+      page: { limit: 20 }
     }).then((records) => {
       this.updatePageState(records);
       return records;

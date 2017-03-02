@@ -19,7 +19,8 @@ export default Component.extend(Pagination, {
     const group = get(this, 'group.id');
     return yield get(this, 'store').query('group-member', {
       filter: { group },
-      include: 'user,permissions'
+      include: 'user,permissions',
+      page: { limit: 20 }
     }).then((records) => {
       this.updatePageState(records);
       return records;
