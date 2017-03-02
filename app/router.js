@@ -74,6 +74,7 @@ RouterInstance.map(function() {
       });
     });
   });
+  this.route('group-invite', { path: '/group-invite/:id' });
 
   this.route('users', { path: '/users/:name' }, function() {
     this.route('library');

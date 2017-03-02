@@ -6,51 +6,46 @@
     </span>
     <div class="media-body">
       <p class="media-heading">
-        {{#if (eq activity.verb "imported")}}
-          {{!-- TODO --}}
-        {{else}}
-          <a href={{href-to "users.index" activity.actor}}>{{activity.actor.name}}</a>
-          {{! more than one? }}
-          {{#if (gt others.length 0)}}
-            {{#if (eq others.length 1)}}
-              {{#with (get others "firstObject") as |other|}}
-                {{#if other.actor}}
-                  and <a href={{href-to "users.index" other.actor}}>{{other.actor.name}}</a>
-                {{else}}
-                  and Unknown.
-                {{/if}}
-              {{/with}}
-            {{else}}
-              and <strong>{{otherCount}} others</strong>
-            {{/if}}
-          {{/if}}
+        <a href={{href-to "users.index" activity.actor}}>{{activity.actor.name}}</a>
 
-          {{! type }}
-          {{! TODO(@vevix): Refactor to be better }}
-          {{#if (eq activity.verb "follow")}}
-            followed you.
-          {{/if}}
-          {{#if (eq activity.verb "post")}}
-            mentioned you in a post.
-          {{/if}}
-          {{#if (eq activity.verb "comment")}}
-            {{#if (eq session.account.id (split-stream-id activity.replyToUser))}}
-              replied to your
-              {{#if (eq activity.replyToType "comment")}}
-                comment.
+        {{! more than one? }}
+        {{#if (gt others.length 0)}}
+          {{#if (eq others.length 1)}}
+            {{#with (get others "firstObject") as |other|}}
+              {{#if other.actor}}
+                and <a href={{href-to "users.index" other.actor}}>{{other.actor.name}}</a>
               {{else}}
-                post.
+                and Unknown.
               {{/if}}
+            {{/with}}
+          {{else}}
+            and <strong>{{otherCount}} others</strong>
+          {{/if}}
+        {{/if}}
+
+        {{! type }}
+        {{! TODO(@vevix): Refactor to be better }}
+        {{#if (eq activity.verb "follow")}}
+          followed you.
+        {{else if (eq activity.verb "post")}}
+          mentioned you in a post.
+        {{else if (eq activity.verb "comment")}}
+          {{#if (eq session.account.id (split-stream-id activity.replyToUser))}}
+            replied to your
+            {{#if (eq activity.replyToType "comment")}}
+              comment.
             {{else}}
-              mentioned you in a comment.
+              post.
             {{/if}}
+          {{else}}
+            mentioned you in a comment.
           {{/if}}
-          {{#if (eq activity.verb "post_like")}}
-            liked your post.
-          {{/if}}
-          {{#if (eq activity.verb "comment_like")}}
-            liked your comment.
-          {{/if}}
+        {{else if (eq activity.verb "post_like")}}
+          liked your post.
+        {{else if (eq activity.verb "comment_like")}}
+          liked your comment.
+        {{else if (eq activity.verb "invited")}}
+          invited you to a group.
         {{/if}}
       </p>
       <small class="media-secondary">{{moment-from-now activity.time interval=60000}}</small>
