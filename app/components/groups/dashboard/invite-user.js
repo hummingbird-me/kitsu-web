@@ -3,6 +3,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
+import RSVP from 'rsvp';
 
 export default Component.extend({
   tagName: '',
@@ -10,20 +11,21 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    get(this, 'getInviteStatusTask').perform().then((record) => {
-      if (record) {
+    get(this, 'getUserState').perform().then(([invite, member]) => {
+      if (invite || member) {
         set(this, 'isInvited', true);
       }
     }).catch(() => {});
   },
 
-  getInviteStatusTask: task(function* () {
-    return yield get(this, 'store').query('group-invite', {
-      filter: {
-        group: get(this, 'group.id'),
-        user: get(this, 'user.id')
-      }
-    }).then(records => get(records, 'firstObject'));
+  /**
+   * Determines if the user is already invited or already a group member
+   */
+  getUserState: task(function* () {
+    return yield RSVP.all([
+      get(this, '_getInviteStatusTask').perform(),
+      get(this, '_getMemberStatusTask').perform()
+    ]);
   }),
 
   inviteMemberTask: task(function* (user) {
@@ -35,5 +37,23 @@ export default Component.extend({
     yield invite.save().then(() => {
       set(this, 'isInvited', true);
     });
+  }),
+
+  _getInviteStatusTask: task(function* () {
+    return yield get(this, 'store').query('group-invite', {
+      filter: {
+        group: get(this, 'group.id'),
+        user: get(this, 'user.id')
+      }
+    }).then(records => get(records, 'firstObject'));
+  }),
+
+  _getMemberStatusTask: task(function* () {
+    return yield get(this, 'store').query('group-member', {
+      filter: {
+        group: get(this, 'group.id'),
+        user: get(this, 'user.id')
+      }
+    }).then(records => get(records, 'firstObject'));
   })
 });

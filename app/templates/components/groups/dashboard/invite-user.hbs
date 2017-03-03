@@ -5,15 +5,13 @@
   </a>
   <div class="user-search-item-actions">
     {{#unless (or isInvited (is-self user))}}
-      <button class="button button--primary"
-        disabled={{if (or inviteMemberTask.isRunning getInviteStatusTask.isRunning) "disabled"}}
-        onclick={{perform inviteMemberTask user}}>
-        {{#if (or inviteMemberTask.isRunning getInviteStatusTask.isRunning)}}
-          {{loading-spinner}}
-        {{else}}
+      {{#if (or inviteMemberTask.isRunning getUserState.isRunning)}}
+        {{loading-spinner}}
+      {{else}}
+        <button class="button button--primary" onclick={{perform inviteMemberTask user}}>
           {{t "groups.dashboard.members.invites-list.invite"}}
-        {{/if}}
-      </button>
+        </button>
+      {{/if}}
     {{/unless}}
   </div>
 </div>
