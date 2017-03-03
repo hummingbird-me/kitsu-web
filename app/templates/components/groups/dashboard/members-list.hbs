@@ -31,10 +31,15 @@
             <td>
               <span>
                 {{#unless (is-self member.user)}}
-                  <button class="btn btn-sm btn-danger hint--round hint--bounce hint--top" aria-label="Remove"
-                    disabled={{if removeMemberTask.isRunning "disabled"}}
+                  <button class="btn btn-sm btn-danger hint--rounded hint--bounce hint--top" aria-label="Remove"
+                    disabled={{if actionsTaskGroup.isRunning "disabled"}}
                     onclick={{perform removeMemberTask member}}>
                     {{svg-jar "trash"}}
+                  </button>
+                  <button class="btn btn-sm btn-danger hint--rounded hint--bounce hint--top" aria-label="Ban"
+                    disabled={{if actionsTaskGroup.isRunning "disabled"}}
+                    onclick={{perform banMemberTask member}}>
+                    {{svg-jar "ban"}}
                   </button>
                 {{/unless}}
               </span>

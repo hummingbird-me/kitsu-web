@@ -1,7 +1,7 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
-import { task } from 'ember-concurrency';
+import { task, taskGroup } from 'ember-concurrency';
 import { concat } from 'client/utils/computed-macros';
 import Pagination from 'client/mixins/pagination';
 
@@ -9,6 +9,7 @@ export default Component.extend(Pagination, {
   intl: service(),
   notify: service(),
   members: concat('getMembersTask.last.value', 'paginatedRecords'),
+  actionsTaskGroup: taskGroup(),
 
   init() {
     this._super(...arguments);
@@ -31,5 +32,15 @@ export default Component.extend(Pagination, {
     yield member.destroyRecord().catch(() => {
       get(this, 'notify').error(get(this, 'intl').t('errors.request'));
     });
-  })
+  }).group('actionsTaskGroup'),
+
+  banMemberTask: task(function* (member) {
+    yield get(this, 'store').createRecord('group-ban', {
+      group: get(this, 'group'),
+      user: get(member, 'user'),
+      moderator: get(this, 'session.account')
+    }).save().catch(() => {
+      get(this, 'notify').error(get(this, 'intl').t('errors.request'));
+    });
+  }).group('actionsTaskGroup')
 });
