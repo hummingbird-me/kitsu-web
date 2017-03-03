@@ -6,12 +6,14 @@
     <div class="card-stats">
       <div class="card-stat card-stat--members-today">
         <span class="card-stat-title">{{t "groups.dashboard.overview.members.today"}}</span>
-        <span class="card-stat-value">NYI</span>
+        <span class="card-stat-value">
+          {{format-number membersToday fallback="-"}}
+        </span>
       </div>
       <div class="card-stat card-stat--members-total">
         <span class="card-stat-title">{{t "groups.dashboard.overview.members.total"}}</span>
         <span class="card-stat-value">
-          {{format-number group.membersCount fallback="0"}}
+          {{format-number membersTotal fallback="-"}}
         </span>
       </div>
     </div>
@@ -26,11 +28,15 @@
     <div class="card-stats">
       <div class="card-stat card-stat--posts">
         <span class="card-stat-title">{{t "groups.dashboard.overview.activity.posts"}}</span>
-        <span class="card-stat-value">NYI</span>
+        <span class="card-stat-value">
+          {{format-number postsToday fallback="-"}}
+        </span>
       </div>
       <div class="card-stat card-stat--comments">
         <span class="card-stat-title">{{t "groups.dashboard.overview.activity.comments"}}</span>
-        <span class="card-stat-value">NYI</span>
+        <span class="card-stat-value">
+          {{format-number commentsToday fallback="-"}}
+        </span>
       </div>
     </div>
   </div>
@@ -44,11 +50,15 @@
     <div class="card-stats">
       <div class="card-stat card-stat--tickets">
         <span class="card-stat-title">{{t "groups.dashboard.overview.help-desk.tickets"}}</span>
-        <span class="card-stat-value">NYI</span>
+        <span class="card-stat-value">
+          {{format-number ticketsTotal fallback="-"}}
+        </span>
       </div>
       <div class="card-stat card-stat--reports">
         <span class="card-stat-title">{{t "groups.dashboard.overview.help-desk.reports"}}</span>
-        <span class="card-stat-value">NYI</span>
+        <span class="card-stat-value">
+          {{format-number reportsTotal fallback="-"}}
+        </span>
       </div>
     </div>
   </div>
