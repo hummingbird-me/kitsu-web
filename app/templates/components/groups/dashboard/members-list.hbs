@@ -24,9 +24,7 @@
             </td>
             <td>
               <span>
-                {{#each (map-by "permission" member.permissions) as |permission|}}
-                  <span class="tag tag-default">{{capitalize permission}}</span>
-                {{/each}}
+                {{capitalize member.rank}}
               </span>
             </td>
             <td><span>{{format-date member.createdAt timeZone="UTC"}}</span></td>

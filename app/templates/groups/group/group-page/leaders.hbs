@@ -26,11 +26,7 @@
               <a href={{href-to "users.index" member.user.name}}>
                 <h4 class="card-title">{{member.user.name}}</h4>
               </a>
-
-              {{! Permissions }}
-              {{#each member.permissions as |permission|}}
-                <span class="tag tag-default m-b-1">{{capitalize permission.permission}}</span>
-              {{/each}}
+              <span class="tag tag-default m-b-1">{{capitalize member.rank}}</span>
 
               {{#if (not (is-self member.user))}}
                 {{follow-button user=member.user}}
