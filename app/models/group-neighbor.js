@@ -3,5 +3,5 @@ import { belongsTo } from 'ember-data/relationships';
 
 export default Base.extend({
   destination: belongsTo('group'),
-  source: belongsTo('group'),
+  source: belongsTo('group', { inverse: 'neighbors' }),
 });

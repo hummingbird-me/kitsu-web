@@ -35,7 +35,12 @@ export default Base.extend(Validations, {
   slug: attr('string'),
   tags: attr('array'),
 
+  actionLogs: hasMany('group-action-log'),
+  invites: hasMany('group-invite'),
   members: hasMany('group-member'),
+  neighbors: hasMany('group-neighbor', { inverse: 'source' }),
+  reports: hasMany('group-report'),
+  tickets: hasMany('group-ticket'),
 
   isOpen: equal('privacy', 'isOpen'),
   isClosed: equal('privacy', 'closed'),

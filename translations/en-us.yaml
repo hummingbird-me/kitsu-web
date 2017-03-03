@@ -384,6 +384,7 @@ groups:
         reports: "Reports"
       tickets: "Latest Help Desk Requests"
       reports: "Latest Reports"
+      log: "Leader Log"
     members:
       headers:
         invitees: "Pending Invites"
@@ -400,6 +401,22 @@ groups:
           permissions: "Rank"
           joined: "Joined"
           actions: "Actions"
+    audit:
+      group-ban: "banned <a href={link}>{user}</a>."
+      group-invite: "invited <a href={link}>{user}</a> to join the community."
+      group-neighbor:
+        added_neighbor: "added <a href={link}>{group}</a> as a neighbor."
+        removed_neighbor: "removed <a href={link}>{group}</a> as a neighbor."
+      group-permission:
+        granted: "granted permission {permission} to <a href={link}>{user}</a>."
+        revoked: "removed permission {permission} from <a href={link}>{user}</a>."
+      group-report:
+        resolved: "resolved a <a href={link}>report</a>."
+        declined: "declined a <a href={link}>report</a>."
+        escalated: "esclated a <a href={link}>report</a>."
+      group-ticket:
+        assigned: "assigned a <a href={ticketLink}>ticket</a> to <a href={userLink}>{user}</a>."
+        resolved: "marked a <a href={ticketLink}>ticket</a> as resolved."
 group-invite:
   header: "Group Invite"
   subtitle: "You have been invited to {group} by {sender}"
