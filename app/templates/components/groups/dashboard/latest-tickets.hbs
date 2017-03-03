@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-block">
+    <h5 class="card-title">{{t "groups.dashboard.overview.tickets"}}</h5>
+    <hr>
+    {{#if getLatestTicketsTask.isRunning}}
+      <div class="w-100 text-xs-center m-t-3 m-b-2">
+        {{loading-spinner size="large"}}
+      </div>
+    {{else}}
+      {{#each getLatestTicketsTask.last.value as |ticket|}}
+        <div class="report-item">
+          {{lazy-image src=(image ticket.user.avatar "small")}}
+          <div class="report-meta">
+            <a href="#">{{ticket.title}}</a>
+            <span class="report-timestamp">
+              {{format-relative ticket.createdAt interval=1000}}
+            </span>
+          </div>
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+</div>

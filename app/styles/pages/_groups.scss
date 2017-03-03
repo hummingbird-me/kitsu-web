@@ -26,11 +26,14 @@
   flex-direction: column;
 
   .stats-container {
-    display: flex;
-    justify-content: space-between;
+    column-count: 3;
     margin-top: 20px;
+    margin-bottom: 20px;
     @media (max-width: 768px) {
-      flex-direction: column;
+      column-count: 1;
+    }
+    .card {
+      break-inside: avoid;
     }
   }
 
@@ -160,6 +163,41 @@
           flex: 1;
           justify-content: flex-end;
         }
+      }
+    }
+  }
+
+  .latest-cards {
+    column-count: 2;
+    @media (max-width: 768px) {
+      column-count: 1;
+    }
+    .card {
+      break-inside: avoid;
+      img {
+        width: 42px;
+        height: 42px;
+        border-radius: 999em;
+        margin-right: 15px;
+      }
+      .report-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      .report-meta {
+        display: flex;
+        flex-direction: column;
+      }
+      .report-timestamp {
+        color: $nobel;
+      }
+      .report-reason {
+        text-transform: uppercase;
+        color: $nobel;
       }
     }
   }
