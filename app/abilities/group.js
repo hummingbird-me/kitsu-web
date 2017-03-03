@@ -2,7 +2,7 @@ import { Ability, computed as ability } from 'ember-can';
 import get from 'ember-metal/get';
 import computed from 'ember-computed';
 
-const canManage = permission => (
+const hasPermission = permission => (
   computed('membership', function() {
     return this._isGroupMember() && get(this, 'membership').hasPermission(permission);
   }).readOnly()
@@ -21,11 +21,11 @@ export default Ability.extend({
     return get(this, 'canManageReports') || get(this, 'canManageTickets');
   }).readOnly(),
 
-  canManageMembers: canManage('members'),
-  canManageLeaders: canManage('leaders'),
-  canManageSettings: canManage('community'),
-  canManageReports: canManage('content'),
-  canManageTickets: canManage('tickets'),
+  canManageMembers: hasPermission('members'),
+  canManageLeaders: hasPermission('leaders'),
+  canManageSettings: hasPermission('community'),
+  canManageReports: hasPermission('content'),
+  canManageTickets: hasPermission('tickets'),
 
   canWritePost: computed('model', 'membership', function() {
     // can only write a post if you're a group member'
