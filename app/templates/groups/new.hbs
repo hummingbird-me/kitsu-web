@@ -3,13 +3,12 @@
 
   {{! Group Name }}
   <div class="form-group">
-    <label>Name</label>
+    <label>Name <span class="form-required">*</span></label>
     {{one-way-text
       update=(action (mut group.name))
       minlength=4
       class="form-control"
     }}
-    <small class="form-text text-muted">The display name of your group.</small>
   </div>
 
   {{! Group Bio }}
@@ -25,47 +24,30 @@
   {{! Images }}
   <div class="form-group">
     <label>Group Image</label>
-    <div>
-      TODO: Preview Area
-    </div>
-    <small class="form-text text-muted">Your groups recognizable avatar that will be used throughout the site.</small>
+    {{image-form update=(action (mut group.avatar))}}
+    <small class="form-text text-muted">Your groups recognizable avatar that will be used throughout the site and on social media links.</small>
   </div>
 
   <div class="form-group">
     <label>Group Cover Image</label>
-    <div>
-      TODO: Preview Area
-    </div>
+    {{image-form update=(action (mut group.coverImage))}}
     <small class="form-text text-muted">Your groups cover image will be shown on your group page.</small>
   </div>
 
-  {{! NSFW }}
-  {{! @TODO(Groups): Toggle }}
-  <div class="form-group">
-    <label>NSFW</label>
-    {{one-way-checkbox
-      update=(action (mut group.nsfw))
-      class="form-control"
-    }}
-    <small class="form-text text-muted">Does your group contain NSFW (Not Safe For Work) content?</small>
-  </div>
-
   {{! Privacy }}
-  {{! @TODO(Groups): Move options to export on model }}
   <div class="form-group">
-    <label>Privacy Setting</label>
+    <label>Privacy Setting <span class="form-required">*</span></label>
     {{#power-select
       selected=(capitalize group.privacy)
       options=(w "open" "closed" "restricted")
       onchange=(action (mut group.privacy))
       renderInPlace=true
       searchEnabled=false
-      placeholder="Privacy Settings"
       as |privacyOption|
     }}
       {{capitalize privacyOption}}
     {{/power-select}}
-    <small class="form-text text-muted">Select the privacy option for your group. Hover the `?` icon for more information</small>
+    <small class="form-text text-muted">Select the privacy option for your group. Hover the `?` icon for more information.</small>
   </div>
 
   {{! Rules }}
@@ -75,7 +57,7 @@
       update=(action (mut group.rules))
       class="form-control"
     }}
-    <small class="form-text text-muted">Rules for your group's community to follow. Supports Markdown (No HTML)</small>
+    <small class="form-text text-muted">Rules for your group members to follow. Supports Markdown (No HTML).</small>
   </div>
 
   {{! Tags }}
@@ -87,11 +69,23 @@
       onchange=(action (mut group.tags))
       onkeydown=(action "createTag")
       renderInPlace=true
+      searchEnabled=false
+      noMatchesMessage="Type a tag and hit enter."
       as |tag|
     }}
       {{tag}}
     {{/power-select-multiple}}
     <small class="form-text text-muted">Users can use tags to discover new groups.</small>
+  </div>
+
+  {{! NSFW }}
+  <div class="form-group">
+    <label class="custom-control custom-checkbox">
+      {{one-way-checkbox update=(action (mut group.nsfw)) class="custom-control-input"}}
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description">NSFW?</span>
+    </label>
+    <small class="form-text text-muted">Does your group contain NSFW (Not Safe For Work) content?</small>
   </div>
 
   {{! Submit }}
