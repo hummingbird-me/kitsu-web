@@ -252,6 +252,7 @@
             {{#if reportingPost}}
               {{to-elsewhere named="modal" send=(component "modals/report-content"
                 content=post
+                group=post.targetGroup
                 onClose=(toggle-action "reportingPost" this)
               )}}
             {{/if}}

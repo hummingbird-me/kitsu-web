@@ -92,6 +92,7 @@
               {{#if reportingComment}}
                 {{to-elsewhere named="modal" send=(component "modals/report-content"
                   content=comment
+                  group=post.targetGroup
                   onClose=(toggle-action "reportingComment" this)
                 )}}
               {{/if}}
