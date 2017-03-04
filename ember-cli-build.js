@@ -76,6 +76,10 @@ module.exports = function(defaults) {
         srcDir: 'dist',
         import: ['clipboard.js']
       },
+      cropperjs: {
+        srcDir: 'dist',
+        import: ['cropper.css', 'cropper.js']
+      },
       flickity: {
         srcDir: 'dist',
         import: ['flickity.css']

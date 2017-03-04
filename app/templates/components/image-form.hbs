@@ -1,6 +1,22 @@
-<div class="card image-card">
+<div class="card image-card" {{action "triggerFileSelect"}}>
   <div class="card-block">
-    {{svg-jar "image"}}
-    <p>{{t "image-form.help-text"}}</p>
+    {{#if image}}
+      <img src={{image image}} style="width: {{width}}px; height: {{height}}px">
+    {{else}}
+      {{svg-jar "image"}}
+      <p>{{t "image-form.help-text"}}</p>
+    {{/if}}
   </div>
 </div>
+
+{{! hidden file input }}
+{{file-select update=(action "selectedImage")}}
+
+{{! cropperjs }}
+{{#if showCropperModal}}
+  {{to-elsewhere named="modal" send=(component "modals/image-cropper"
+    image=dataURI
+    update=(action "updateImage")
+    onClose=(action "closeModal")
+  )}}
+{{/if}}

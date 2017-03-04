@@ -24,14 +24,22 @@
   {{! Images }}
   <div class="form-group">
     <label>Group Image</label>
-    {{image-form update=(action (mut group.avatar))}}
-    <small class="form-text text-muted">Your groups recognizable avatar that will be used throughout the site and on social media links.</small>
+    {{image-form
+      image=group.avatar
+      width=200
+      height=200
+      update=(action (mut group.avatar))}}
+    <small class="form-text text-muted">Your groups recognizable avatar that will be used throughout the site and on social media links. Your avatar will be resized to 200x200.</small>
   </div>
 
   <div class="form-group">
     <label>Group Cover Image</label>
-    {{image-form update=(action (mut group.coverImage))}}
-    <small class="form-text text-muted">Your groups cover image will be shown on your group page.</small>
+    {{image-form
+      image=group.coverImage
+      width=3360
+      height=800
+      update=(action (mut group.coverImage))}}
+    <small class="form-text text-muted">Your groups cover image will be shown on your group page. Your cover image will be resized to 3360x800.</small>
   </div>
 
   {{! Privacy }}
