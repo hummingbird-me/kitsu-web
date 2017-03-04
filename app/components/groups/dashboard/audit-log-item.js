@@ -19,18 +19,18 @@ export default Component.extend({
 
   buildMessageTask: task(function* () {
     const targetType = get(this, 'item.target.modelType');
+    const verb = get(this, 'item.verb');
     switch (targetType) {
       case 'group-ban':
       case 'group-invite': {
         yield this._loadRelationship('user');
         const user = get(this, 'item.target.user.name');
-        return get(this, 'intl').t(`groups.dashboard.audit.${targetType}`, {
+        return get(this, 'intl').t(`groups.dashboard.audit.${targetType}.${verb}`, {
           user,
           link: hrefTo(this, 'users.index', user)
         });
       }
       case 'group-neighbor': {
-        const verb = get(this, 'item.verb');
         yield this._loadRelationship('destination');
         const group = get(this, 'item.target.destination.name');
         return get(this, 'intl').t(`groups.dashboard.audit.group-neighbor.${verb}`, {
@@ -39,7 +39,6 @@ export default Component.extend({
         });
       }
       case 'group-permission': {
-        const verb = get(this, 'item.verb');
         yield this._loadRelationship('groupMember');
         yield this._loadRelationship('user', 'item.target.groupMember.content');
         const permission = capitalize(get(this, 'item.target.permission'));
@@ -51,13 +50,11 @@ export default Component.extend({
         });
       }
       case 'group-report': {
-        const verb = get(this, 'item.verb');
         return get(this, 'intl').t(`groups.dashboard.audit.group-report.${verb}`, {
           link: '#'
         });
       }
       case 'group-ticket': {
-        const verb = get(this, 'item.verb');
         if (verb === 'assigned') {
           yield this._loadRelationship('assignee');
           const user = get(this, 'item.target.assignee.name');
