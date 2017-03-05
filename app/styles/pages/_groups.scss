@@ -239,3 +239,240 @@
     justify-content: center;
   }
 }
+
+// Group discovery page
+
+.group-categories {
+  margin-right: 20px;
+  width: 210px;
+}
+
+.group-category-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.group-category-wrapper {
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 4px;
+  border: 1px solid $alabaster;
+  &.active {
+    border: 1px solid #e5e5e5;
+    background-color: $white;
+    a {
+      font-weight: bold;
+    }
+    .group-category-icon {
+      background: none;
+    }
+  }
+  &:hover {
+    border: 1px solid #e5e5e5;
+    background-color: darken($white, 1.5);
+  }
+  a {
+    display: block;
+    width: 100%;
+    height: 24px;
+    color: $charcoal;
+  }
+  img {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    margin-right: 10px;
+    float: left;
+  }
+}
+.group-category-title {
+  font-size: 14px;
+  display: inline-block;
+  line-height: 24px;
+  position: relative;
+  top: -1px;
+}
+
+.group-category-icon {
+  width: 24px;
+  height: 24px;
+  background: #ececec;
+  display: inline-block;
+  float: left;
+  border-radius: 5px;
+  margin-right: 10px;
+  padding: 2px;
+  svg {
+    fill: #7d7d7d;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.group-result-list {
+  flex: 1;
+  min-width: 0;
+  .group-results {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li:last-child {
+      a {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.group-result-secondary {
+  width: 260px;
+  margin-left: 20px;
+}
+
+.group-result-header {
+  @extend .clearfix;
+  margin: 0 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #e8e8e8;
+  .result-filter-wrapper {
+    position: relative;
+    width: 200px;
+    float: left;
+  }
+  .filter-icon {
+    position: absolute;
+    top: 5px;
+    left: 8px;
+  }
+  input {
+    background: #fff;
+    border-radius: 3px;
+    border: 0;
+    border: 1px solid #e8e8e8;
+    box-sizing: border-box;
+    height: 30px;
+    padding-left: 32px;
+    padding-right: 12px;
+    padding-top: 2px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .result-sort-wrapper {
+    width: 200px;
+    float: right;
+    select {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    select.form-control:not([size]):not([multiple]) {
+      height: 30px;
+    }
+  }
+}
+
+.group-link-wrapper {
+  padding: 25px;
+  display: flex;
+  color: $charcoal;
+  border-bottom: 1px solid #e8e8e8;
+  position: relative;
+  &:hover {
+    background: #f9f9f9;
+    color: $charcoal;
+  }
+}
+
+.group-result-thumb {
+  margin-right: 25px;
+  img {
+    border-radius: 5px;
+  }
+}
+
+.group-result-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.group-result-title {
+  font-size: 20px;
+  font-weight: 200;
+  letter-spacing: .2px;
+  line-height: 24px;
+  margin-bottom: 0;
+}
+
+.group-result-description {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.group-result-meta {
+  display: flex;
+  align-items: center;
+  bottom: 25px;
+  justify-content: space-between;
+  position: absolute;
+  @media (min-width: 769px) {
+    left: 130px;
+    right: 25px;
+  }
+  .group-result-category {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .join-button, .category-button, .member-button {
+    border-radius: 3px;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    outline: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none!important;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: .6px;
+    line-height: 16px;
+    text-transform: uppercase;
+    background: #f5f5f5;
+    border-color: #e8e8e8;
+    color: #999;
+    height: 24px;
+    padding: 0 8px;
+  }
+  .category-button {
+    border-radius: 999em;
+    padding: 0 15px;
+  }
+  .join-button {
+    margin-right: 10px;
+    background: $caribbean;
+    border-color: $caribbean;
+    color: $white;
+  }
+  .member-button {
+    background: $white;
+    svg {
+      width: 14px;
+      position: relative;
+      top: 2px;
+      fill: #757575;
+    }
+  }
+}
+
+.group-result-stats {
+  display: flex;
+  flex-shrink: 0;
+  margin-left: auto;
+}
