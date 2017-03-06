@@ -245,6 +245,9 @@
 .group-categories {
   margin-right: 20px;
   width: 210px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .group-category-list {
@@ -327,6 +330,18 @@
 .group-result-secondary {
   width: 260px;
   margin-left: 20px;
+  @media (max-width: 1199px) {
+    display: none;
+  }
+  .card {
+    padding: 20px;
+    font-size: 14px;
+    .button--primary {
+      padding: 10px 0;
+      margin-top: 20px;
+      width: 100%;
+    }
+  }
 }
 
 .group-result-header {
@@ -359,7 +374,6 @@
     line-height: 18px;
   }
   .result-sort-wrapper {
-    width: 200px;
     float: right;
     select {
       font-size: 14px;
@@ -387,6 +401,8 @@
   margin-right: 25px;
   img {
     border-radius: 5px;
+    width: 80px;
+    height: auto;
   }
 }
 
@@ -453,15 +469,27 @@
   .category-button {
     border-radius: 999em;
     padding: 0 15px;
+    &:hover {
+      color: #999;
+      background: darken(#f5f5f5, 5);
+    }
   }
   .join-button {
     margin-right: 10px;
     background: $caribbean;
     border-color: $caribbean;
     color: $white;
+    &:hover {
+      color: $white;
+      background: darken($caribbean, 5);
+    }
   }
   .member-button {
     background: $white;
+    &:hover {
+      color: #999;
+      background: darken(white, 5);
+    }
     svg {
       width: 14px;
       position: relative;
