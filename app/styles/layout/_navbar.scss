@@ -252,12 +252,14 @@
   padding: 0;
   overflow: hidden;
   @media (max-width: 460px) {
-    right: -30px;
     width: calc(100vw - 30px);
   }
 }
 
 .notification-drop {
+  @media (max-width: 460px) {
+    right: -30px;
+  }
   header {
     font-size: 12px;
     padding: 5px 10px;
