@@ -1,6 +1,3 @@
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-
 export function unshiftObject(target, object) {
   const included = target.includes(object);
   if (!included) {
