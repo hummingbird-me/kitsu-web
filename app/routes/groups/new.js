@@ -2,12 +2,16 @@ import Route from 'ember-route';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import RSVP from 'rsvp';
 
 export default Route.extend(AuthenticatedRouteMixin, {
   authenticationRoute: 'dashboard',
 
   model() {
-    return get(this, 'store').createRecord('group');
+    return RSVP.hash({
+      group: get(this, 'store').createRecord('group'),
+      categories: get(this, 'store').findAll('group-category')
+    });
   },
 
   actions: {

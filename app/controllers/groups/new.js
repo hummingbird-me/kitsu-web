@@ -1,12 +1,24 @@
 import Controller from 'ember-controller';
 import get from 'ember-metal/get';
+import set from 'ember-metal/set';
+import service from 'ember-service/inject';
 import computed, { alias } from 'ember-computed';
-import { isBlank } from 'ember-utils';
 
 export default Controller.extend({
   addedTags: [],
   isSaving: false,
-  group: alias('model'),
+  privacyOptions: ['open', 'closed', 'restricted'],
+  store: service(),
+  group: alias('model.group'),
+
+  categories: computed('model.categories', function() {
+    return get(this, 'model.categories').map(category => (
+      { id: get(category, 'id'),
+        name: get(category, 'name'),
+        slug: get(category, 'slug')
+      }
+    ));
+  }).readOnly(),
 
   /** Determines if the submit button is disabled/enabled. */
   isValid: computed('group.validations.isValid', 'isSaving', function() {
@@ -14,24 +26,9 @@ export default Controller.extend({
   }).readOnly(),
 
   actions: {
-    /**
-     * Allow creating a tag from user input with ember-power-select-multiple.
-     *
-     * @param {Ember.Component} select
-     * @param {Event} event
-     */
-    createTag(select, event) {
-      if (event.keyCode === 13) {
-        // power-select valid
-        if (!select.isOpen || select.isHighlighted || isBlank(select.searchText)) {
-          return;
-        }
-        const selected = get(this, 'group.tags') || [];
-        if (!selected.includes(select.searchText)) {
-          get(this, 'addedTags').addObject(select.searchText);
-          select.actions.choose(select.searchText);
-        }
-      }
-    }
+    selectCategory(category) {
+      set(this, 'selectedCategory', category);
+      set(this, 'group.category', get(this, 'store').peekRecord('group-category', get(category, 'id')));
+    },
   }
 });

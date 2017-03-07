@@ -7,9 +7,7 @@
     {{#each (sort-by "slug" categories) as |category|}}
       <li class="group-category-wrapper {{if (eq currentCategory category.slug) "active"}}">
         <a href="#" {{action "switchCategory" category}}>
-          <span class="group-category-icon">
-            {{svg-jar category.slug}}
-          </span>
+          <span class="group-category-icon">{{svg-jar category.slug}}</span>
           <span class="group-category-title">{{category.name}}</span>
         </a>
       </li>

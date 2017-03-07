@@ -9,17 +9,16 @@ export const Validations = buildValidations({
     validator('presence', true),
     validator('length', { min: 4, max: 50 })
   ],
-  about: [validator('presence', true)],
-  // avatar: [validator('presence', true)],
-  // coverImage: [validator('presence', true)],
   privacy: [
     validator('presence', true),
     validator('inclusion', { in: ['open', 'closed', 'restricted'] })
   ],
-  rules: [validator('presence', true)],
   tagline: [
     validator('presence', true),
     validator('length', { max: 60 })
+  ],
+  category: [
+    validator('presence', true)
   ]
 });
 
@@ -33,7 +32,7 @@ export default Base.extend(Validations, {
   name: attr('string'),
   neighborsCount: attr('number'),
   nsfw: attr('boolean'),
-  privacy: attr('string'),
+  privacy: attr('string', { defaultValue: 'open' }),
   rules: attr('string'),
   rulesFormatted: attr('string'),
   slug: attr('string'),

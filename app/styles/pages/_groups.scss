@@ -375,13 +375,6 @@
   }
   .result-sort-wrapper {
     float: right;
-    select {
-      font-size: 14px;
-      line-height: 18px;
-    }
-    select.form-control:not([size]):not([multiple]) {
-      height: 30px;
-    }
   }
 }
 
@@ -574,6 +567,13 @@
     outline: 0;
     padding: 0;
     width: 100%;
+  }
+  .icon {
+    @extend .group-category-icon;
+    background: none;
+    position: relative;
+    top: 2px;
+    left: 5px;
   }
 }
 
