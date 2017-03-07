@@ -49,6 +49,20 @@ module.exports = function(defaults) {
         ]
       }
     },
+    // service worker
+    'esw-index': {
+      location: 'index.html',
+      version: '1'
+    },
+    'asset-cache': {
+      include: ['assets/**/*', 'images/**/*', '**/*.png'],
+      version: '1'
+    },
+    'esw-cache-first': {
+      patterns: ['https://media.kitsu.io/(.+)'],
+      version: '1'
+    },
+    // assets
     nodeAssets: {
       autosize: {
         srcDir: 'dist',

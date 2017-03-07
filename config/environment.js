@@ -11,7 +11,7 @@ module.exports = function(environment) {
       FEATURES: {}
     },
     APP: {
-      APIHost: undefined,
+      APIHost: 'https://kitsu.io',
       isStaging,
     },
     EXTEND_PROTOTYPES: {

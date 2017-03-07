@@ -9,8 +9,17 @@
 
     {{content-for 'head'}}
 
+    <link rel="preconnect" href="//kitsu.io">
+    <link rel="preconnect" href="//media.kitsu.io">
+    <link rel="preconnect" href="//fonts.gstatic.com">
+    <link rel="preconnect" href="//analytics.getstream.io">
+    <link rel="preconnect" href="//www.googletagservices.com">
+    <link rel="preconnect" href="//www.googleadservices.com">
+    <link rel="preconnect" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+
     <link href='//fonts.googleapis.com/css?family=Asap:400,700|Open+Sans:400' rel='stylesheet' type='text/css'>
-    <script src="//cdn.jsdelivr.net/emojione/2.2.7/lib/js/emojione.min.js"></script>
+    <script async src="//cdn.jsdelivr.net/emojione/2.2.7/lib/js/emojione.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/emojione/2.2.7/assets/css/emojione.min.css"/>
 
     <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
@@ -60,8 +69,7 @@
     </noscript>
     {{content-for 'body'}}
 
-    <script src="{{rootURL}}assets/vendor.js"></script>
-    <script src="{{rootURL}}assets/client.js"></script>
+    <script async src="{{rootURL}}assets/app.js"></script>
 
     {{content-for 'body-footer'}}
   </body>
