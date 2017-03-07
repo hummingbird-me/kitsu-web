@@ -8,6 +8,7 @@ export default Controller.extend({
   addedTags: [],
   isSaving: false,
   privacyOptions: ['open', 'closed', 'restricted'],
+  hoveredField: 'name',
   store: service(),
   group: alias('model.group'),
 

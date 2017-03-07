@@ -4,7 +4,7 @@
   </div>
   <div class="card">
     {{! Group Name }}
-    <label class="field-wrapper">
+    {{#groups/group-form-field id="form-name" onHover=(action (mut hoveredField) "name")}}
       <span class="field-title">{{t "groups.create.form.name"}}</span>
       <div class="field-input-wrapper">
         {{one-way-text
@@ -16,10 +16,10 @@
       </div>
       <span class="field-notice">{{t "groups.create.form.required"}}</span>
       <hr class="ruler">
-    </label>
+    {{/groups/group-form-field}}
 
     {{! Group Tagline }}
-    <label class="field-wrapper">
+    {{#groups/group-form-field id="form-tagline" onHover=(action (mut hoveredField) "tagline")}}
       <span class="field-title">{{t "groups.create.form.tagline"}}</span>
       <div class="field-input-wrapper">
         {{one-way-text
@@ -30,10 +30,10 @@
       </div>
       <span class="field-notice">{{t "groups.create.form.required"}}</span>
       <hr class="ruler">
-    </label>
+    {{/groups/group-form-field}}
 
     {{! Group Privacy }}
-    <label class="field-wrapper">
+    {{#groups/group-form-field id="form-privacy" onHover=(action (mut hoveredField) "privacy")}}
       <span class="field-title">{{t "groups.create.form.privacy"}}</span>
       <div class="field-input-wrapper">
         <fieldset>
@@ -57,10 +57,10 @@
         </fieldset>
       </div>
       <hr class="ruler">
-    </label>
+    {{/groups/group-form-field}}
 
     {{! Category }}
-    <label class="field-wrapper">
+    {{#groups/group-form-field id="form-category" onHover=(action (mut hoveredField) "category")}}
       <span class="field-title">{{t "groups.create.form.category"}}</span>
       <div class="field-input-wrapper">
         {{#power-select
@@ -79,7 +79,7 @@
       </div>
       <span class="field-notice">{{t "groups.create.form.required"}}</span>
       <hr class="ruler">
-    </label>
+    {{/groups/group-form-field}}
 
     {{! Submit }}
     <div class="form-group clearfix">
@@ -92,18 +92,22 @@
       </button>
     </div>
 
-    <div class="group-create-helper">
-      <!-- @vevix, when a user hovers over a diffrent section of the create group form,
-      this helper should change it's title and text to provide context. The changed text
-      should persist until the user hovers over a new section. -->
-      <div class="group-create-helper--title">
-        Tagline
-      </div>
-      <span class="group-create-helper--description">
-        <span>
-          <p>Summarize the purpose and content of your community in 60 characters or less. Try to avoid overly clever or vague descriptions.</p>
-        </span>
-      </span>
+    {{! Helper }}
+    <div>
+      {{#ember-tether
+        target=(concat "#form-" hoveredField)
+        attachment="bottom left"
+        offset="0 -40px"
+      }}
+        <div class="group-create-helper">
+          <div class="group-create-helper--title">{{t (concat "groups.create.form.helper." hoveredField ".header")}}</div>
+          <span class="group-create-helper--description">
+            <span>
+              <p>{{t (concat "groups.create.form.helper." hoveredField ".desc")}}</p>
+            </span>
+          </span>
+        </div>
+      {{/ember-tether}}
     </div>
   </div>
 </div>
