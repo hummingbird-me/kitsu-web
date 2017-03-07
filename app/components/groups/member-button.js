@@ -3,7 +3,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { bool } from 'ember-computed';
-import { task } from 'ember-concurrency';
+import { task, taskGroup } from 'ember-concurrency';
 
 export default Component.extend({
   store: service(),
@@ -11,17 +11,28 @@ export default Component.extend({
   tagName: 'button',
   classNames: ['button', 'button--primary'],
   classNameBindings: ['isMemberOfGroup:inactive'],
-  attributeBindings: ['getMemberStatusTask.isRunning:disabled'],
+  attributeBindings: ['groupTasks.isRunning:disabled', 'href'],
   memberRecord: null,
   isMemberOfGroup: bool('memberRecord'),
+  groupTasks: taskGroup(),
 
   didReceiveAttrs() {
     this._super(...arguments);
     if (!get(this, 'session.hasUser')) { return; }
-    this._updateMemberState(get(this, 'membership'));
+    if (get(this, 'membership') !== undefined) {
+      this._updateMemberState(get(this, 'membership'));
+    } else {
+      get(this, 'getMemberStatusTask').perform().then((record) => {
+        this._updateMemberState(record);
+      }).catch(() => {});
+    }
   },
 
   click() {
+    if (get(this, 'groupTasks.isRunning')) {
+      return false;
+    }
+
     // open sign up modal if unauthenticated
     if (!get(this, 'session.hasUser')) {
       get(this, 'session').signUpModal();
@@ -44,6 +55,8 @@ export default Component.extend({
         this._updateMemberState(record);
       }).catch(() => {});
     }
+
+    return false;
   },
 
   joinGroupTask: task(function* () {
@@ -52,11 +65,20 @@ export default Component.extend({
       user: get(this, 'session.account')
     });
     return yield record.save();
-  }),
+  }).group('groupTasks'),
 
   leaveGroupTask: task(function* () {
     return yield get(this, 'memberRecord').destroyRecord();
-  }),
+  }).group('groupTasks'),
+
+  getMemberStatusTask: task(function* () {
+    return yield get(this, 'store').query('group-member', {
+      filter: {
+        group: get(this, 'group.id'),
+        user: get(this, 'session.account.id')
+      }
+    }).then(records => get(records, 'firstObject'));
+  }).group('groupTasks'),
 
   _updateMemberState(value) {
     if (get(this, 'isDestroyed')) { return; }

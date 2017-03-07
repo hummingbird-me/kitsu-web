@@ -20,6 +20,6 @@ export default Route.extend(CoverPageMixin, {
         group: get(group, 'id'),
         user: get(this, 'session.account.id')
       }
-    }).then(records => get(records, 'firstObject'));
+    }).then(records => get(records, 'firstObject') || null);
   }
 });

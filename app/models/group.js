@@ -1,13 +1,13 @@
 import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
-import { hasMany } from 'ember-data/relationships';
+import { belongsTo, hasMany } from 'ember-data/relationships';
 import { equal } from 'ember-computed';
 import { validator, buildValidations } from 'ember-cp-validations';
 
 export const Validations = buildValidations({
   name: [
     validator('presence', true),
-    validator('length', { min: 4, max: 255 })
+    validator('length', { min: 4, max: 50 })
   ],
   about: [validator('presence', true)],
   // avatar: [validator('presence', true)],
@@ -16,7 +16,11 @@ export const Validations = buildValidations({
     validator('presence', true),
     validator('inclusion', { in: ['open', 'closed', 'restricted'] })
   ],
-  rules: [validator('presence', true)]
+  rules: [validator('presence', true)],
+  tagline: [
+    validator('presence', true),
+    validator('length', { max: 60 })
+  ]
 });
 
 export default Base.extend(Validations, {
@@ -33,7 +37,9 @@ export default Base.extend(Validations, {
   rules: attr('string'),
   rulesFormatted: attr('string'),
   slug: attr('string'),
-  tags: attr('array'),
+  tagLine: attr('string'),
+
+  category: belongsTo('group-category'),
 
   actionLogs: hasMany('group-action-log'),
   invites: hasMany('group-invite'),
