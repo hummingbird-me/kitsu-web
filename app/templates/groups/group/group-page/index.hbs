@@ -18,7 +18,13 @@
     <div class="feed-sidebar col-sm-4">
       <div class="sidebar-item">
         <h6 class="panel-heading">{{t "groups.activity.about" group=group.name}}</h6>
-        <p>{{group.about}}</p>
+        <p>
+          {{#if group.about}}
+            {{group.about}}
+          {{else}}
+            {{t "errors.contentEmpty"}}
+          {{/if}}
+        </p>
       </div>
 
       {{! Group Members }}

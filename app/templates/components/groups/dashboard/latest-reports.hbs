@@ -3,22 +3,20 @@
     <h5 class="card-title">{{t "groups.dashboard.overview.reports"}}</h5>
     <hr>
     {{#if getLatestReportsTask.isRunning}}
-      <div class="w-100 text-xs-center m-t-3 m-b-2">
-        {{loading-spinner size="large"}}
+      <div class="w-100 text-xs-center">
+        {{loading-spinner size="small"}}
       </div>
     {{else}}
       {{#each getLatestReportsTask.last.value as |report|}}
         <div class="report-item">
           {{lazy-image src=(image report.user.avatar "small")}}
           <div class="report-meta">
-            <a href="#">
-              {{truncate report.explanation 50}}
-            </a>
-            <span class="report-reason">
-              {{report.reason}}
-            </span>
+            <a href="#">{{truncate report.explanation 50}}</a>
+            <span class="report-reason">{{report.reason}}</span>
           </div>
         </div>
+      {{else}}
+        <p>{{t "errors.contentEmpty"}}</p>
       {{/each}}
     {{/if}}
   </div>

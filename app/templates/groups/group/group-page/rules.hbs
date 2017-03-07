@@ -2,6 +2,10 @@
 <div class="container group-community-rules">
   <div class="row">
     <h2>{{t "groups.rules.header" group=group.name}}</h2>
-    {{html-safe group.rulesFormatted}}
+    {{#if group.rules}}
+      {{html-safe group.rulesFormatted}}
+    {{else}}
+      {{t "errors.contentEmpty"}}
+    {{/if}}
   </div>
 </div>
