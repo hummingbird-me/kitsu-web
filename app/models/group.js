@@ -36,7 +36,7 @@ export default Base.extend(Validations, {
   rules: attr('string'),
   rulesFormatted: attr('string'),
   slug: attr('string'),
-  tagLine: attr('string'),
+  tagline: attr('string'),
 
   category: belongsTo('group-category'),
 

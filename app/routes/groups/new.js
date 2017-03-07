@@ -1,11 +1,14 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import service from 'ember-service/inject';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import RSVP from 'rsvp';
 
 export default Route.extend(AuthenticatedRouteMixin, {
   authenticationRoute: 'dashboard',
+  intl: service(),
+  notify: service(),
 
   model() {
     return RSVP.hash({
@@ -21,8 +24,8 @@ export default Route.extend(AuthenticatedRouteMixin, {
       set(controller, 'isSaving', true);
       return group.save().then(() => {
         this.transitionTo('groups.group.group-page', group);
-      }).catch((error) => {
-        // @TODO(Groups): Pass error to controller for error display.
+      }).catch(() => {
+        get(this, 'notify').error(get(this, 'intl').t('errors.request'));
       }).finally(() => {
         set(controller, 'isSaving', false);
       });
