@@ -56,7 +56,8 @@ module.exports = function(defaults) {
     },
     'asset-cache': {
       include: ['assets/**/*', 'images/**/*', '**/*.png'],
-      version: '1'
+      manual: ['assets/app.js'],
+      version: '2'
     },
     'esw-cache-first': {
       patterns: ['https://media.kitsu.io/(.+)'],
