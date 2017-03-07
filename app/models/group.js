@@ -24,8 +24,8 @@ export const Validations = buildValidations({
 
 export default Base.extend(Validations, {
   about: attr('string'),
-  avatar: attr('object'),
-  coverImage: attr('object'),
+  avatar: attr('object', { defaultValue: '/images/default_avatar.png' }),
+  coverImage: attr('object', { defaultValue: '/images/default_cover.png' }),
   leadersCount: attr('number'),
   locale: attr('string'),
   membersCount: attr('number'),
