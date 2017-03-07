@@ -17,8 +17,6 @@ export default Route.extend(ApplicationRouteMixin, {
     if (get(session, 'isAuthenticated')) {
       return this._getCurrentUser();
     }
-    // boot intercom for guests
-    get(this, 'metrics').invoke('identify', 'Intercom', {});
   },
 
   headTags() {
@@ -100,14 +98,6 @@ export default Route.extend(ApplicationRouteMixin, {
   // This method is fired by ESA when authentication is successful
   sessionAuthenticated() {
     this._getCurrentUser();
-  },
-
-  sessionInvalidated() {
-    // destroy the intercom cookies before we reload the page
-    if (window.Intercom !== undefined) {
-      window.Intercom('shutdown');
-    }
-    this._super(...arguments);
   },
 
   _getCurrentUser() {
