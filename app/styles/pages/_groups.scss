@@ -504,3 +504,210 @@
   flex-shrink: 0;
   margin-left: auto;
 }
+
+
+// group create page
+
+.group-create-wrapper {
+  max-width: 1000px;
+  width: 100%;
+  .card {
+    position: relative;
+    @media (min-width: 769px) {
+      margin-right: 300px;
+      padding: 0 20px;
+    }
+  }
+}
+
+.group-create-header {
+  margin: 0 0 30px;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 34px;
+}
+
+.group-create-helper {
+  position: absolute;
+  top: 70px;
+  right: -300px;
+  width: 280px;
+}
+
+.group-create-helper--title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.group-create-helper--description {
+  font-size: 14px;
+  color: #999;
+}
+
+.field-wrapper {
+  display: flex;
+  margin: 0 0 30px;
+  min-height: 50px;
+  position: relative;
+  &:first-child {
+    margin-top: 40px;
+  }
+}
+
+.field-title {
+  font-size: 14px;
+  line-height: 18px;
+  box-sizing: border-box;
+  padding: 0 15px 0 0;
+  width: 100px;
+  color: #999;
+}
+
+.field-input-wrapper {
+  flex: 1;
+  font-size: 14px;
+  line-height: 18px;
+  input, textarea {
+    border: 0;
+    line-height: inherit;
+    margin: 0 0 25px;
+    outline: 0;
+    padding: 0;
+    width: 100%;
+  }
+}
+
+.field-notice {
+  background: #fff;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0 0 0 10px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .6px;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.ruler {
+  background: #e8e8e8;
+  border: 0;
+  bottom: 0;
+  height: 1px;
+  left: 100px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  box-sizing: content-box;
+}
+
+$primary: #00cc99;
+
+//
+//  Radio Card Group
+//
+.radio-card-group {
+  display: flex;
+  margin: auto;
+  width: 100%;
+  max-width: 600px;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  //
+  //  Radio Card
+  //
+  .radio-card {
+    margin: 5px 0;
+    flex: 1 1 170px;
+    position: relative;
+    label {
+      display: block;
+      margin: 5px;
+      padding: 0;
+      height: 140px;
+      border: 1px solid #ddd;
+      color: shade($primary, 70);
+      border-radius: 5px;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        cursor: pointer;
+        background: tint($primary, 85);
+      }
+      &:active {
+        border-image: linear-gradient(RGBA(237, 72, 95, 1), RGBA(242, 124, 54, 1));
+        color: tint($primary, 80);
+      }
+    }
+    input[type="radio"]:checked ~ label {
+      background: $white;
+      background: lighten($caribbean, 60);
+      border: 1px solid $caribbean;
+    }
+  }
+
+  //
+  //  Card Title and Description
+  //
+
+  .card-title {
+    display: block;
+    margin: 0 10px;
+    padding: 5px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 0;
+  }
+
+  .card-desc {
+    display: block;
+    padding: 10px 25px;
+    font-size: 12px;
+  }
+
+  //
+  //  Submit Button
+  //
+
+  input[type="radio"] {
+    position: absolute;
+    top: 24px;
+    right: 20px;
+    display: inline-block;
+    width: auto;
+  }
+
+  input[type="submit"] {
+    display: block;
+    margin: auto;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    background: $primary;
+    color: white;
+    font-size: 16px;
+    transition: all 0.5s;
+    &:hover {
+      cursor: pointer;
+      background: shade($primary, 5);
+      color: white;
+    }
+    &:focus, &:active {
+      outline: none;
+      background: $primary;
+    }
+    &:disabled {
+      background: #ddd;
+      cursor: default;
+    }
+  }
+}
+
+.group-create-cta {
+  float: right;
+  margin-bottom: 10px;
+}
