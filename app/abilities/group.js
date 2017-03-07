@@ -17,10 +17,6 @@ export default Ability.extend({
     return isMember && (get(get(this, 'membership'), 'permissions.length') > 0);
   }).readOnly(),
 
-  canManageHelpdesk: computed('membership', function() {
-    return get(this, 'canManageReports') || get(this, 'canManageTickets');
-  }).readOnly(),
-
   canManageMembers: hasPermission('members'),
   canManageLeaders: hasPermission('leaders'),
   canManageSettings: hasPermission('community'),

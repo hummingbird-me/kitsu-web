@@ -9,7 +9,7 @@ export default Route.extend(CanMixin, {
   beforeModel() {
     const model = this.modelFor('groups.group.dashboard');
     const membership = get(model, 'membership');
-    if (!this.can('manage helpdesk for group', { membership })) {
+    if (!this.can('manage tickets for group', { membership })) {
       return this.transitionTo('groups.group.dashboard.index');
     }
   },
@@ -20,6 +20,6 @@ export default Route.extend(CanMixin, {
 
   titleToken(model) {
     const group = get(model, 'group.name');
-    return get(this, 'intl').t('titles.groups.group.dashboard.help-desk', { group });
+    return get(this, 'intl').t('titles.groups.group.dashboard.tickets', { group });
   }
 });

@@ -10,9 +10,14 @@
           <a href={{href-to "groups.group.dashboard.index"}}>{{t "groups.dashboard.navigation.overview"}}</a>
         {{/link-to}}
         {{! Should only be viewable to members with permission }}
-        {{#if (can "manage helpdesk for group" membership=membership)}}
-          {{#link-to "groups.group.dashboard.help-desk" tagName="li" class="list-item"}}
-            <a href={{href-to "groups.group.dashboard.help-desk"}}>{{t "groups.dashboard.navigation.help-desk"}}</a>
+        {{#if (can "manage reports for group" membership=membership)}}
+          {{#link-to "groups.group.dashboard.reports" tagName="li" class="list-item"}}
+            <a href={{href-to "groups.group.dashboard.reports"}}>{{t "groups.dashboard.navigation.reports"}}</a>
+          {{/link-to}}
+        {{/if}}
+        {{#if (can "manage tickets for group" membership=membership)}}
+          {{#link-to "groups.group.dashboard.tickets" tagName="li" class="list-item"}}
+            <a href={{href-to "groups.group.dashboard.tickets"}}>{{t "groups.dashboard.navigation.tickets"}}</a>
           {{/link-to}}
         {{/if}}
         {{! Should only be viewable to members with permission }}
