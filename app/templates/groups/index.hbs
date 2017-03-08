@@ -8,13 +8,9 @@
   <div class="card">
     <div class="group-result-header">
       <span class="result-filter-wrapper">
-        <label class="filter-icon">
-          <span>{{svg-jar "search" fill="#bbb"}}</span>
-        </label>
-        {{one-way-text dirtyQuery
-          update=(perform debouncedQueryTask)
-          placeholder=(t "groups.index.filter")
-        }}
+        {{search-input
+          update=(action (mut query))
+          placeholder=(t "groups.index.filter")}}
       </span>
 
       <span class="result-sort-wrapper">
