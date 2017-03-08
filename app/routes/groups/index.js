@@ -1,5 +1,6 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
+import { isPresent } from 'ember-utils';
 import { task } from 'ember-concurrency';
 import Pagination from 'client/mixins/pagination';
 
@@ -7,6 +8,7 @@ export default Route.extend(Pagination, {
   queryParams: {
     category: { refreshModel: true, replace: true },
     sort: { refreshModel: true, replace: true },
+    query: { refreshModel: true, replace: true }
   },
 
   model(params) {
@@ -16,9 +18,12 @@ export default Route.extend(Pagination, {
     };
   },
 
-  getGroupsTask: task(function* ({ category, sort }) {
+  getGroupsTask: task(function* ({ category, sort, query }) {
     const options = {
-      filter: { category: category !== 'all' ? category : undefined },
+      filter: {
+        category: category !== 'all' ? category : undefined,
+        query: isPresent(query) ? query : undefined
+      },
       sort: this._getRealSort(sort),
       include: 'category'
     };

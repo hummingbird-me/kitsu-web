@@ -11,7 +11,10 @@
         <label class="filter-icon">
           <span>{{svg-jar "search" fill="#bbb"}}</span>
         </label>
-        <input type="text" placeholder={{t "groups.index.filter"}}>
+        {{one-way-text dirtyQuery
+          update=(perform debouncedQueryTask)
+          placeholder=(t "groups.index.filter")
+        }}
       </span>
 
       <span class="result-sort-wrapper">
