@@ -701,7 +701,7 @@ $primary: #00cc99;
     &:hover {
       cursor: pointer;
       background: shade($primary, 5);
-      color: white;
+      color: $white;
     }
     &:focus, &:active {
       outline: none;
@@ -717,4 +717,67 @@ $primary: #00cc99;
 .group-create-cta {
   float: right;
   margin-bottom: 10px;
+}
+
+
+// Dashboard
+
+.reports-content {
+  max-width: 1000px;
+  width: 100%;
+}
+
+.report-wrapper {
+  .group-result-header {
+    margin: 0;
+  }
+}
+
+.ticket-list {
+  list-style-type: none;
+  margin: 15px 0;
+  padding: 0;
+  li:last-child {
+    .inbox-item {
+      border-bottom: none;
+    }
+  }
+  .inbox-item {
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+    padding: 10px 0;
+    position: relative;
+    display: block;
+    &:hover {
+      background: darken($white, 2);
+    }
+    .inbox-item-img {
+      display: block;
+      float: left;
+      margin-right: 15px;
+      width: 40px;
+    }
+    img {
+      width: 40px;
+      border-radius: 999em;
+    }
+    .inbox-item-author {
+      color: $charcoal;
+      display: block;
+      margin: 0;
+    }
+    .inbox-item-text {
+      color: #999;
+      display: block;
+      font-size: 12px;
+      margin: 0;
+    }
+    .inbox-item-date {
+      color: #999;
+      font-size: 12px;
+      position: absolute;
+      right: 0px;
+      top: 15px;
+    }
+  }
 }
