@@ -1,5 +1,7 @@
 {{! Group Filter }}
-{{groups/group-categories-list onChange=(action (mut category))}}
+{{groups/group-categories-list
+  currentCategory=category
+  onChange=(action (mut category))}}
 
 {{! Group Results }}
 <div class="group-result-list">
@@ -38,12 +40,16 @@
         <div class="text-xs-center w-100 m-t-2 m-b-2">
           {{loading-spinner size="large"}}
         </div>
-      {{else}}
+      {{else if model.taskInstance.value}}
         {{#infinite-pagination onPagination=(route-action "onPagination")}}
           {{#each groups as |group|}}
             {{groups/group-result group=group tagName="li"}}
           {{/each}}
         {{/infinite-pagination}}
+      {{else}}
+        <div class="text-xs-center m-t-1 m-b-1">
+          <p>{{t "errors.contentEmpty"}}</p>
+        </div>
       {{/if}}
     </ul>
   </div>

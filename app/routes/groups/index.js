@@ -18,7 +18,7 @@ export default Route.extend(Pagination, {
 
   getGroupsTask: task(function* ({ category, sort }) {
     const options = {
-      filters: { category },
+      filter: { category: category !== 'all' ? category : undefined },
       sort: this._getRealSort(sort),
       include: 'category'
     };
@@ -32,7 +32,7 @@ export default Route.extend(Pagination, {
       case 'oldest':
         return 'created_at';
       default:
-        return '';
+        return undefined;
     }
   }
 });
