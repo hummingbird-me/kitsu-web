@@ -424,6 +424,23 @@ groups:
         leader: "Leader Note"
       create-btn: "Send Reply"
       reply-placeholder: "Type your message"
+  reports:
+    no-explanation: "No Explanation Provided"
+    filter:
+      open: "Open Reports"
+      resolved: "Resolved Reports"
+      all: "All Reports"
+    show-more: "Show {num} reports"
+    hide-more: "Hide {num} reports"
+    status:
+      resolved: "This report was resolved by {user}."
+      declined: "This report was declined by {user}."
+      escalated: "This report was escalated by {user}."
+    actions:
+      close: "Close Report"
+      remove: "Remove Content"
+      escalate: "Notify Kitsu"
+      view: "View Content"
   dashboard:
     back: "Back to {group}"
     navigation:
@@ -446,8 +463,7 @@ groups:
         header: "Open Cases"
         tickets: "Tickets"
         reports: "Reports"
-      tickets: "Latest Help Desk Requests"
-      tickets-clean: ""
+      tickets: "Latest Tickets"
       reports: "Latest Reports"
       log: "Leader Log"
     members:
@@ -485,7 +501,6 @@ groups:
       group-ticket:
         assigned: "assigned a <a href={ticketLink}>ticket</a> to <a href={userLink}>{user}</a>."
         resolved: "marked a <a href={ticketLink}>ticket</a> as resolved."
-
 group-invite:
   header: "Group Invite"
   subtitle: "You have been invited to {group} by {sender}"
