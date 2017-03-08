@@ -1,162 +1,55 @@
-{{! help desk page }}
 <div class="container">
   <div class="row">
-
     <div class="group-create-wrapper ticket-wrapper">
       <div class="card">
         <div class="group-result-header">
           <span class="result-filter-wrapper">
-            <label class="filter-icon">
-              <span>{{svg-jar "search" fill="#bbb"}}</span>
-            </label>
-            <input type="text" placeholder="Search Tickets">
+            {{search-input
+              update=(action (mut query))
+              placeholder=(t "groups.tickets.search")
+              icon=true}}
           </span>
-
           <span class="result-sort-wrapper">
-            <select>
-              <option>Open Tickets</option>
-              <option>Resolved Tickets</option>
-              <option>All Tickets</option>
-            </select>
+            {{#bootstrap/bs-dropdown as |dropdown|}}
+              {{#dropdown.button type="button--dark-outline" class="button--small"}}
+                {{t (concat "groups.tickets.filter." filter)}}
+              {{/dropdown.button}}
+              {{#dropdown.menu}}
+                {{#each filterOptions as |_filter|}}
+                  {{#dropdown.menu-item onClick=(action (mut filter) _filter)}}
+                    {{t (concat "groups.tickets.filter." _filter)}}
+                    {{#if (eq filter _filter)}}
+                      <span class="dropdown-checkmark">
+                        {{svg-jar "checkmark"}}
+                      </span>
+                    {{/if}}
+                  {{/dropdown.menu-item}}
+                {{/each}}
+              {{/dropdown.menu}}
+            {{/bootstrap/bs-dropdown}}
           </span>
         </div>
 
         <ul class="ticket-list">
-          <li>
-            <a class="inbox-item" href="#" data-toggle="modal" data-target="#exampleModal">
-              <div class="inbox-item-img"><img src="/images/default_avatar.png" class="img-circle" alt=""></div>
-              <p class="inbox-item-author">Teshro</p>
-              <p class="inbox-item-text">Hey! Is there any chance you could please unban me?</p>
-              <p class="inbox-item-date">Today, 1:40 PM</p>
-            </a>
-          </li>
-          <li>
-            <a class="inbox-item" href="#" data-toggle="modal" data-target="#exampleModal">
-              <div class="inbox-item-img"><img src="/images/default_avatar.png" class="img-circle" alt=""></div>
-              <p class="inbox-item-author">Teshro</p>
-              <p class="inbox-item-text">Hey! Is there any chance you could please unban me?</p>
-              <p class="inbox-item-date">Today, 1:40 PM</p>
-            </a>
-          </li>
-          <li>
-            <a class="inbox-item" href="#" data-toggle="modal" data-target="#exampleModal">
-              <div class="inbox-item-img"><img src="/images/default_avatar.png" class="img-circle" alt=""></div>
-              <p class="inbox-item-author">Teshro</p>
-              <p class="inbox-item-text">Hey! Is there any chance you could please unban me?</p>
-              <p class="inbox-item-date">Today, 1:40 PM</p>
-            </a>
-          </li>
-          <li>
-            <a class="inbox-item" href="#" data-toggle="modal" data-target="#exampleModal">
-              <div class="inbox-item-img"><img src="/images/default_avatar.png" class="img-circle" alt=""></div>
-              <p class="inbox-item-author">Teshro</p>
-              <p class="inbox-item-text">Hey! Is there any chance you could please unban me?</p>
-              <p class="inbox-item-date">Today, 1:40 PM</p>
-            </a>
-          </li>
-          <li>
-            <a class="inbox-item" href="#" data-toggle="modal" data-target="#exampleModal">
-              <div class="inbox-item-img"><img src="/images/default_avatar.png" class="img-circle" alt=""></div>
-              <p class="inbox-item-author">Teshro</p>
-              <p class="inbox-item-text">Hey! Is there any chance you could please unban me?</p>
-              <p class="inbox-item-date">Today, 1:40 PM</p>
-            </a>
-          </li>
+          {{#if model.taskInstance.isRunning}}
+            <div class="text-xs-center m-t-1 m-b-1">
+              {{loading-spinner size="small"}}
+            </div>
+          {{else if model.taskInstance.value}}
+            {{#infinite-pagination onPagination=(route-action "onPagination")}}
+              {{#each tickets as |ticket|}}
+                {{groups/tickets/ticket-item
+                  ticket=ticket
+                  tagName="li"}}
+              {{/each}}
+            {{/infinite-pagination}}
+          {{else}}
+            <div class="text-xs-center m-t-1 m-b-1">
+              {{t "errors.contentEmpty"}}
+            </div>
+          {{/if}}
         </ul>
       </div>
     </div>
   </div>
 </div>
-
-{{#bootstrap/bs-modal id="exampleModal" class="ticket-modal" largeModal=true onClose=onClose as |modal|}}
-  {{#modal.body}}
-
-    <div class="ticket">
-      <div class="ticket-header clearfix">
-        <img src="/images/default_avatar.png">
-
-        <div class="ticket-about">
-          <div class="ticket-with">Ticket from <a href="#">Teshro</a></div>
-          <div class="ticket-actions">
-            <a href="#" class="close-ticket">Mark Resolved</a>
-            <a href="#" class="escalate-ticket">Notify Kitsu</a>
-          </div>
-        </div>
-      </div> <!-- end ticket-header -->
-
-      <div class="ticket-history">
-        <ul>
-
-          <li>
-            <div class="message-data">
-              <span class="message-data-name">
-                <a href="#">Teshro</a>
-              </span>
-              <span class="message-data-time">10:12 AM, Today</span>
-            </div>
-            <div class="message leader-message">
-              Hey! Is there any chance you could please unban me?
-            </div>
-          </li>
-
-          <li class="clearfix">
-            <div class="message-data align-right">
-              <span class="message-data-time">10:14 AM, Today</span> &nbsp; &nbsp;
-              <span class="message-data-name">
-                <a href="#">Josh</a>
-              </span>
-
-            </div>
-            <div class="message other-message float-right">
-              Do you think you can stop being so toxic?
-            </div>
-          </li>
-
-          <li>
-            <div class="message-data">
-              <span class="message-data-name">
-                <a href="#">Teshro</a>
-              </span>
-              <span class="message-data-time">10:20 AM, Today</span>
-            </div>
-            <div class="message leader-message">
-              Nevermind, I guess I'll stay banned.
-            </div>
-          </li>
-
-          <li class="clearfix">
-            <div class="message-data align-right">
-              <span class="message-data-time">10:14 AM, Today</span> &nbsp; &nbsp;
-              <span class="message-data-name">
-                <a href="#">Josh</a>
-              </span>
-
-            </div>
-            <div class="message mod-note float-right">
-              Hey! This is a leader note!
-            </div>
-          </li>
-
-        </ul>
-
-      </div>
-
-      <div class="ticket-message clearfix">
-        <nav class="nav">
-          <a class="nav-link active" href="#">Reply to User</a>
-          <a class="nav-link" href="#">Leader Note</a>
-        </nav>
-        <!-- vevix, can you please add a class to the text area when leader notes are on? -->
-        <textarea name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
-
-        <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
-        <i class="fa fa-file-image-o"></i>
-
-        <button>Send Reply</button>
-
-      </div>
-
-    </div>
-
-  {{/modal.body}}
-{{/bootstrap/bs-modal}}

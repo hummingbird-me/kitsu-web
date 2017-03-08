@@ -263,9 +263,6 @@
     text-align: right;
   }
 
-  .float-right {
-    float: right;
-  }
   .ticket {
     border-radius: 3px;
     font-size: 14px;
@@ -286,7 +283,6 @@
       top: 0;
 
       img {
-        float: left;
         width: 55px;
         border-radius: 999em;
       }
@@ -313,7 +309,7 @@
             background: #fafafa;
           }
         }
-        .close-ticket {
+        .resolve-ticket {
           background: $caribbean;
           border: 1px solid $caribbean;
           color: $white;
@@ -323,13 +319,6 @@
             border-color: darken($caribbean, 5);
           }
         }
-      }
-
-      .fa-star {
-        float: right;
-        color: #D8DADF;
-        font-size: 20px;
-        margin-top: 12px;
       }
     }
 
@@ -369,17 +358,19 @@
 
       .leader-message {
         background: #86BB71;
+        float: right;
       }
 
       .other-message {
         background: #7fafdc;
       }
+
       .mod-note {
         background: #f9eab0;
         border: 1px dashed #e2bb7e;
         color: #886c40;
+        float: right;
       }
-
     }
 
     .ticket-message {
@@ -402,13 +393,6 @@
         margin-bottom: 10px;
         border-radius: 5px;
         resize: none;
-      }
-
-      .fa-file-o, .fa-file-image-o {
-        font-size: 16px;
-        color: gray;
-        cursor: pointer;
-
       }
 
       .nav {
