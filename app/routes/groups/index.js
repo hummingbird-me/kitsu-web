@@ -27,7 +27,10 @@ export default Route.extend(Pagination, {
       sort: this._getRealSort(sort),
       include: 'category'
     };
-    return yield get(this, 'store').query('group', options);
+    return yield get(this, 'store').query('group', options).then((records) => {
+      this.updatePageState(records);
+      return records;
+    });
   }).restartable(),
 
   _getRealSort(sort) {
