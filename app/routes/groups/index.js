@@ -32,7 +32,7 @@ export default Route.extend(Pagination, {
       case 'oldest':
         return 'created_at';
       default:
-        return undefined;
+        return '-last_activity_at';
     }
   }
 });
