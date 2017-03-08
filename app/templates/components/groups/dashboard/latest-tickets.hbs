@@ -11,7 +11,7 @@
         <div class="report-item">
           {{lazy-image src=(image ticket.user.avatar "small")}}
           <div class="report-meta">
-            <a href="#">{{ticket.title}}</a>
+            <a href="#">{{truncate ticket.messages.firstObject.content 50}}</a>
             <span class="report-timestamp">
               {{format-relative ticket.createdAt interval=1000}}
             </span>
