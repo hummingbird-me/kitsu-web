@@ -1,16 +1,14 @@
 {{! Invites }}
-{{#if group.isClosed}}
-  <h4>
-    {{t "groups.dashboard.members.headers.invitees"}}
-    <span class="invite-member-button {{if showInviteComponent "is-opened"}}" {{action (toggle "showInviteComponent" this)}}>
-      {{svg-jar "close"}}
-    </span>
-  </h4>
-  {{#if showInviteComponent}}
-    {{groups/dashboard/invite-search group=group}}
-  {{/if}}
-  {{groups/dashboard/invitee-list group=group}}
+<h4>
+  {{t "groups.dashboard.members.headers.invitees"}}
+  <span class="invite-member-button {{if showInviteComponent "is-opened"}}" {{action (toggle "showInviteComponent" this)}}>
+    {{svg-jar "close"}}
+  </span>
+</h4>
+{{#if showInviteComponent}}
+  {{groups/dashboard/invite-search group=group}}
 {{/if}}
+{{groups/dashboard/invitee-list group=group}}
 
 {{! Members List }}
 <h4>{{t "groups.dashboard.members.headers.members"}}</h4>

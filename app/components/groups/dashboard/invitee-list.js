@@ -18,7 +18,7 @@ export default Component.extend(Pagination, {
   getInvitesTask: task(function* () {
     const group = get(this, 'group.id');
     return yield get(this, 'store').query('group-invite', {
-      filter: { group },
+      filter: { group, status: 'pending' },
       include: 'user,sender',
       page: { limit: 20 }
     }).then((records) => {
