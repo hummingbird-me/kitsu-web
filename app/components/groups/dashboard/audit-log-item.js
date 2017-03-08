@@ -21,53 +21,42 @@ export default Component.extend({
     const targetType = get(this, 'item.target.modelType');
     const verb = get(this, 'item.verb');
     switch (targetType) {
-      case 'group-ban':
-      case 'group-invite': {
-        yield this._loadRelationship('user');
-        const user = get(this, 'item.target.user.name');
+      // ban, invite, permission
+      case 'user': {
+        const user = get(this, 'item.target.name');
         return get(this, 'intl').t(`groups.dashboard.audit.${targetType}.${verb}`, {
           user,
           link: hrefTo(this, 'users.index', user)
         });
       }
-      case 'group-neighbor': {
-        yield this._loadRelationship('destination');
-        const group = get(this, 'item.target.destination.name');
-        return get(this, 'intl').t(`groups.dashboard.audit.group-neighbor.${verb}`, {
+
+      // neighbor
+      case 'group': {
+        const group = get(this, 'item.target.name');
+        return get(this, 'intl').t(`groups.dashboard.audit.${targetType}.${verb}`, {
           group,
           link: hrefTo(this, 'groups.group.group-page.index', group)
         });
       }
-      case 'group-permission': {
-        yield this._loadRelationship('groupMember');
-        yield this._loadRelationship('user', 'item.target.groupMember.content');
-        const permission = capitalize(get(this, 'item.target.permission'));
-        const user = get(this, 'item.target.groupMember.user.name');
-        return get(this, 'intl').t(`groups.dashboard.audit.group-permission.${verb}`, {
-          permission,
-          user,
-          link: hrefTo(this, 'users.index', user)
-        });
-      }
+
+      // reports
       case 'group-report': {
-        return get(this, 'intl').t(`groups.dashboard.audit.group-report.${verb}`, {
-          link: '#'
-        });
+        return get(this, 'intl').t(`groups.dashboard.audit.${targetType}.${verb}`);
       }
+
+      // tickets
       case 'group-ticket': {
         if (verb === 'assigned') {
           yield this._loadRelationship('assignee');
           const user = get(this, 'item.target.assignee.name');
-          return get(this, 'intl').t('groups.dashboard.audit.group-ticket.assigned', {
+          return get(this, 'intl').t(`groups.dashboard.audit.${targetType}.${verb}`, {
             user,
-            ticketLink: '#',
-            userLink: hrefTo(this, 'users.index', user)
+            link: hrefTo(this, 'users.index', user)
           });
         }
-        return get(this, 'intl').t('groups.dashboard.audit.group-ticket.resolved', {
-          ticketLink: '#'
-        });
+        return get(this, 'intl').t(`groups.dashboard.audit.${targetType}.${verb}`);
       }
+
       default: {
         return '';
       }
