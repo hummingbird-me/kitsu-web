@@ -157,6 +157,9 @@
     display: inline-block;
     height: 100%;
     border-right: 1px solid #ddd;
+    @media (max-width: 992px) {
+      padding-right: 5px;
+    }
     .entry-rating-star {
       position: relative;
       top: 4px;
@@ -182,10 +185,6 @@
   overflow: hidden;
   margin-right: 15px;
   border-radius: 3px;
-  img {
-    width: 40px;
-    height: 40px;
-  }
 }
 
 .entry-indicators {
@@ -320,6 +319,8 @@
   .drop-thumb {
     max-width: 100%;
     border-radius: 3px;
+    width: 40px;
+    height: 40px;
   }
   .drop-title {
     font-size: 18px;
