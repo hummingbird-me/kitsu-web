@@ -4,7 +4,6 @@ import { belongsTo } from 'ember-data/relationships';
 
 export default Base.extend({
   content: attr('string'),
-  contentFormatted: attr('string'),
   createdAt: attr('utc'),
   kind: attr('string'),
 

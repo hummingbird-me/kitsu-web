@@ -5,14 +5,19 @@
   </div>
 {{else if getNeighborsTask.last.error}}
   <p>{{t "errors.load"}}</p>
-{{else if getNeighborsTask.last.value}}
-  {{#each getNeighborsTask.last.value as |neighbor|}}
+{{else if filteredNeighbors}}
+  {{#each filteredNeighbors as |neighbor|}}
     <div class="card group-neighbor-item">
       <div class="media">
         {{lazy-image src=(image neighbor.destination.avatar "small") imgClass="avatar-image--small"}}
         <div class="media-body">
-          <h5 class="m-t-0">{{neighbor.destination.name}}</h5>
+          <h5>{{neighbor.destination.name}}</h5>
           {{neighbor.destination.tagline}}
+          {{#if canRemove}}
+            <div class="remove-action" {{action "onRemove" neighbor}}>
+              {{svg-jar "close"}}
+            </div>
+          {{/if}}
         </div>
       </div>
     </div>

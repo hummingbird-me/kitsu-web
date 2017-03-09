@@ -27,6 +27,7 @@ export default Route.extend(CanMixin, {
 
   setupController(controller, model) {
     this._super(...arguments);
+    get(controller, 'records').addObject(get(model, 'group'));
     const category = get(model, 'category');
     set(controller, 'selectedCategory', {
       id: get(category, 'id'),

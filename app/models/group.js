@@ -39,6 +39,7 @@ export default Base.extend(Validations, {
   tagline: attr('string'),
 
   category: belongsTo('group-category'),
+  categoryHack: attr('boolean'),
 
   actionLogs: hasMany('group-action-log'),
   invites: hasMany('group-invite'),
