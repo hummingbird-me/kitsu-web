@@ -61,15 +61,11 @@
         {{/each}}
 
         <div class="text-xs-center w-100">
-          {{#paginated-resource/manual
-            model=taskValue
-            update=(route-action "updateNextPage" "taskValue") as |nextLink|}}
-            {{#if nextLink}}
-              <button class="button button--primary btn-block">
-                Load More
-              </button>
-            {{/if}}
-          {{/paginated-resource/manual}}
+          {{#if hasNextPage}}
+            <button class="button button--primary btn-block" disabled={{if isLoading "disabled"}} {{action (route-action "onPagination")}}>
+              Load More
+          </button>
+          {{/if}}
         </div>
       </div>
     {{else}}
