@@ -855,6 +855,10 @@ $primary: #00cc99;
 
 
 // leader-actions
+.leader-wrapper, .settings-wrapper {
+  margin-top: 30px;
+}
+
 .leader-chat {
   &.leader-tickets {
     .card {
@@ -935,13 +939,15 @@ $primary: #00cc99;
   .leader-input {
     flex: 1;
     margin-right: 15px;
-    padding: 0 10px;
+    padding: 6px 10px;
     border-radius: 3px;
     border: 1px solid #ddd;
     box-shadow: none;
+    max-height: 100px;
   }
   .btn {
     width: 100px;
+    max-height: 38px;
     background: $caribbean;
     border-color: $caribbean;
     &:hover {
@@ -953,7 +959,11 @@ $primary: #00cc99;
 
 .leader-table-card {
   width: 310px;
+  max-height: 419px;
   padding: 15px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .leader-table-wrapper {

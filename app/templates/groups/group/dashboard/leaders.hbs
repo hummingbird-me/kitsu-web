@@ -1,45 +1,11 @@
 <div class="container">
-  <div class="row">
-    <div class="leader-chat">
-      <div class="card">
-        <div class="leader-chat--header">
-          <h6>Leader Chat</h6>
-        </div>
-        <ul class="leader-chat-wrapper">
-          <li>
-            <div class="media">
-              <img class="d-flex mr-3" src="http://localhost:32778/images/default_avatar.png" alt="Generic placeholder image">
-              <div class="media-body">
-                <h5 class="mt-0">Josh <small class="time">4:46 PM</small></h5>
-                Okay, thoughts? Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="media">
-              <img class="d-flex mr-3" src="http://localhost:32778/images/default_avatar.png" alt="Generic placeholder image">
-              <div class="media-body">
-                <h5 class="mt-0">Vevix <small class="time">4:46 PM</small></h5>
-                Sounds good!
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="media">
-              <img class="d-flex mr-3" src="http://localhost:32778/images/default_avatar.png" alt="Generic placeholder image">
-              <div class="media-body">
-                <h5 class="mt-0">Nuck <small class="time">4:46 PM</small></h5>
-                I disagree on principle.
-              </div>
-            </div>
-          </li>
-        </ul>
-        <div class="leader-chat--footer">
-          <input type="text" class="leader-input" placeholder="Send message to leaders">
-          <button type="submit" class="btn btn-primary">Post</button>
-        </div>
-      </div>
-    </div>
+  <div class="row leader-wrapper">
+    {{groups/dashboard/leaders/leader-chat
+      group=group
+      membership=membership
+      class="leader-chat"
+    }}
+
     <div class="leader-table-card card">
       <div class="leader-chat--header">
         <h6>Leaders</h6>
@@ -88,6 +54,7 @@
   </div>
 </div>
 
+<!--
 {{#bootstrap/bs-modal id="permissionModal" class="ticket-modal" largeModal=true onClose=onClose as |modal|}}
   {{#modal.body}}
 
@@ -143,3 +110,4 @@
 
   {{/modal.body}}
 {{/bootstrap/bs-modal}}
+-->
