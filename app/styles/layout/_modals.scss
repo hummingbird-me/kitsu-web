@@ -429,14 +429,19 @@
   }
 }
 
-.user-permissions {
+.leader-permissions {
   background: $white;
   border-radius: 3px;
   height: 100%;
-  .user-permission--header {
+  position: relative;
+  overflow: hidden;
+  .leader-permission--header {
     text-align: center;
     border-bottom: 1px solid #ddd;
     padding: 15px;
+    background: #fafafa;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
   }
   img {
     width: 80px;
@@ -447,5 +452,56 @@
     margin-top: 15px;
     margin-bottom: 0;
     font-size: 20px;
+  }
+  .leader-permission--content {
+    padding: 15px;
+    margin-top: 10px;
+    height: 100%;
+    padding-bottom: 80px;
+    h6 {
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+  }
+
+  .leader-permission--list {
+    height: 100%;
+    overflow: auto;
+    padding-bottom: 200px;
+    li {
+      @extend .clearfix;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      line-height: 30px;
+      &:last-child {
+        padding-bottom: 0;
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+    }
+    .toggle {
+      float: right;
+    }
+  }
+  .leader-permission--save {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    background: #fff;
+    z-index: 1;
+    border-top: 1px solid #ddd;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    text-align: right;
+    padding: 15px;
+    .button--secondary {
+      padding: 10px 20px;
+      margin-right: 10px;
+    }
+    .button--primary {
+      padding: 10px 20px;
+    }
   }
 }
