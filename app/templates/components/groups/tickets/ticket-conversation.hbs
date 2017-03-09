@@ -10,14 +10,16 @@
               name=ticket.user.name
               link=(href-to "users.index" ticket.user.name)}}
           </div>
-          <div class="ticket-actions">
-            <a href="#" class="resolve-ticket" {{action "markResolved"}}>
-              {{t "groups.tickets.conversation.mark-resolved"}}
-            </a>
-            <a href="#" class="close-ticket" {{action "markClosed"}}>
-              {{t "groups.tickets.conversation.mark-closed"}}
-            </a>
-          </div>
+          {{#unless isNewTicket}}
+            <div class="ticket-actions">
+              <a href="#" class="resolve-ticket" {{action "markResolved"}}>
+                {{t "groups.tickets.conversation.mark-resolved"}}
+              </a>
+              <a href="#" class="close-ticket" {{action "markClosed"}}>
+                {{t "groups.tickets.conversation.mark-closed"}}
+              </a>
+            </div>
+          {{/unless}}
         </div>
       </div>
 
@@ -37,7 +39,7 @@
       {{! footer }}
       <div class="ticket-message clearfix">
         {{! only show if within dashboard }}
-        {{#if showNav}}
+        {{#if (and showNav (not isNewTicket))}}
           <nav class="nav">
             <a class="nav-link {{if (eq activeTab "message") "active"}}" href="#" {{action (action (mut activeTab) "message")}}>
               {{t "groups.tickets.conversation.nav.reply"}}
@@ -54,7 +56,11 @@
           {{#if postMessageTask.isRunning}}
             {{loading-spinner size="small"}}
           {{else}}
-            {{t "groups.tickets.conversation.create-btn"}}
+            {{#if isNewTicket}}
+              {{t "groups.tickets.conversation.create-btn"}}
+            {{else}}
+              {{t "groups.tickets.conversation.reply-btn"}}
+            {{/if}}
           {{/if}}
         </button>
       </div>

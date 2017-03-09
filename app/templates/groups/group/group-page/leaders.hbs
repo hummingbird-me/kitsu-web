@@ -1,136 +1,17 @@
 <div class="container">
   <div class="row leader-team">
-    <div class="leader-chat leader-tickets">
-      <div class="card">
-        <div class="group-result-header">
-          <span class="result-filter-wrapper">
-            <div id="ember1551" class="ember-view">
-              <label class="filter-icon">
-                <span>
-                  <svg class="svgIcon-use" width="25" height="25" viewBox="0 0 25 25" fill="#bbb">
-                    <path d="M20.067 18.933l-4.157-4.157a6 6 0 1 0-.884.884l4.157 4.157a.624.624 0 1 0 .884-.884zM6.5 11c0-2.62 2.13-4.75 4.75-4.75S16 8.38 16 11s-2.13 4.75-4.75 4.75S6.5 13.62 6.5 11z"></path>
-                  </svg>
-                </span>
-              </label>
+    {{groups/tickets/ticket-list
+      peronsalTickets=true
+      group=group
+      filter=filter
+      query=query
+      updateQueryParam=(action "updateQueryParam")
+      class="leader-chat leader-tickets"}}
 
-              <input placeholder="Search Tickets" type="search" id="ember1560" class="ember-view">
-            </div>
-          </span>
-          <span class="result-sort-wrapper">
-            <div id="ember1563" class="dropdown ember-view">
-              <button data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" id="ember1563-dropdown" role="button" class="button--small button dropdown-toggle button--dark-outline ember-view">
-                Open Tickets
-              </button>
-              <div aria-labelledby="ember1563-dropdown" id="ember1586" class="dropdown-menu ember-view">
-                <a id="ember1595" class="dropdown-item ember-view">
-                  Open Tickets
-                  <span class="dropdown-checkmark">
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 24 24"><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M19.281 5.281L9 15.563 4.719 11.28 3.28 12.72l5 5 .719.687.719-.687 11-11L19.28 5.28z" color="#000" overflow="visible" font-family="Bitstream Vera Sans"></path></svg>
-                  </span>
-                </a>
-                <a id="ember1597" class="dropdown-item ember-view">Resolved Tickets</a>
-                <a id="ember1599" class="dropdown-item ember-view">All Tickets</a>
-              </div>
-            </div>
-          </span>
-        </div>
-
-        <ul class="ticket-list">
-          <div class="text-xs-center m-t-1 m-b-1">
-            Hmm, there doesn't seem to be anything here yet.
-          </div>
-        </ul>
-      </div>
-    </div>
-
-    <div class="leader-table-card card">
-      <div class="leader-chat--header">
-        <h6>Leaders</h6>
-      </div>
-      <div class="leader-table-wrapper">
-        <table class="leader-table">
-        <tbody>
-          <tr>
-            <th scope="row">
-              <img src="http://localhost:32778/images/default_avatar.png">
-            </th>
-            <td class="leader-name">Josh</td>
-            <td class="edit-leader">
-              <a href="#" data-toggle="modal" data-target="#permissionModal">Edit</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <img src="http://localhost:32778/images/default_avatar.png">
-            </th>
-            <td class="leader-name">Vevix</td>
-            <td class="edit-leader">
-              <a href="#" data-toggle="modal" data-target="#permissionModal">Edit</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <img src="http://localhost:32778/images/default_avatar.png">
-            </th>
-            <td class="leader-name">Nuck</td>
-            <td class="edit-leader">
-              <a href="#" data-toggle="modal" data-target="#permissionModal">Edit</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
-      <div class="leader-chat--footer add-leader">
-        <button type="submit" class="btn btn-primary message-leaders">Message the leaders</button>
-      </div>
-    </div>
-
+    {{groups/leaders/leader-list
+      group=group
+      isManaging=false
+      class="leader-table-card card"
+    }}
   </div>
 </div>
-
-
-
-<!-- {{! leaders page }}
-<div class="container">
-  <div class="row">
-    {{#if model.taskInstance.isRunning}}
-      <div class="text-xs-center w-100 m-t-1 m-b-1">
-        {{loading-spinner size="large"}}
-      </div>
-    {{else if model.taskInstance.error}}
-      <div class="text-xs-center w-100 m-t-1 m-b-1">
-        {{t "errors.load"}}
-      </div>
-    {{else if taskValue}}
-      {{! @TODO(Groups): Send Message Button }}
-
-      {{#infinite-pagination onPagination=(route-action "onPagination")}}
-        {{! @TODO: Componentnize }}
-        {{#each taskValue as |member|}}
-          <div class="card user-card col-sm-3">
-            <a href={{href-to "users.index" member.user.name}}>
-              <img class="card-img-top" src={{image member.user.coverImage}}>
-            </a>
-            <div class="card-block">
-              <a href={{href-to "users.index" member.user.name}}>
-                <img class="card-img-avatar" src={{image member.user.avatar "medium"}}>
-              </a>
-              <a href={{href-to "users.index" member.user.name}}>
-                <h4 class="card-title">{{member.user.name}}</h4>
-              </a>
-              <span class="tag tag-default m-b-1">{{capitalize member.rank}}</span>
-
-              {{#if (not (is-self member.user))}}
-                {{follow-button user=member.user}}
-              {{else}}
-                <button class="button button--primary" disabled="disabled">
-                  Hey, that's you!
-                </button>
-              {{/if}}
-            </div>
-          </div>
-        {{/each}}
-      {{/infinite-pagination}}
-    {{/if}}
-  </div>
-</div> -->

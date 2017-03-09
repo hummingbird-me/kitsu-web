@@ -10,6 +10,10 @@ export default Component.extend({
   store: service(),
 
   postMessageTask: task(function* () {
+    // if the ticket is new then save that first
+    if (get(this, 'isNewTicket')) {
+      yield get(this, 'ticket').save();
+    }
     const kind = get(this, 'activeTab') === 'message' ? 'message' : 'mod_note';
     const message = get(this, 'store').createRecord('group-ticket-message', {
       ticket: get(this, 'ticket'),
@@ -17,7 +21,11 @@ export default Component.extend({
       content: get(this, 'replyContent'),
       kind
     });
-    yield message.save().catch(() => {});
+    yield message.save().then(() => {
+      if (get(this, 'isNewTicket')) {
+        this.$('.modal').modal('hide');
+      }
+    }).catch(() => {});
   }),
 
   updateStatusTask: task(function* (status) {

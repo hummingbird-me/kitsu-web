@@ -1,27 +1,17 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
-import { task } from 'ember-concurrency';
-import Pagination from 'client/mixins/pagination';
 
-export default Route.extend(Pagination, {
+export default Route.extend({
+  queryParams: {
+    filter: { replace: true },
+    query: { replace: true }
+  },
   intl: service(),
 
   model() {
-    return {
-      taskInstance: get(this, 'getGroupMembersTask').perform(),
-      paginatedRecords: []
-    };
+    return this.modelFor('groups.group.group-page');
   },
-
-  getGroupMembersTask: task(function* () {
-    const model = this.modelFor('groups.group.group-page');
-    return yield get(this, 'store').query('group-member', {
-      include: 'user,permissions',
-      filter: { group: get(model, 'group.id'), rank: 'admin,mod' },
-      page: { limit: 20 }
-    });
-  }).restartable(),
 
   titleToken() {
     const model = this.modelFor('groups.group.group-page');

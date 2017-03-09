@@ -1,14 +1,12 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
-import { task } from 'ember-concurrency';
 import { CanMixin } from 'ember-can';
-import Pagination from 'client/mixins/pagination';
 
-export default Route.extend(CanMixin, Pagination, {
+export default Route.extend(CanMixin, {
   queryParams: {
-    filter: { refreshModel: true, replace: true },
-    query: { refreshModel: true, replace: true }
+    filter: { replace: true },
+    query: { replace: true }
   },
   intl: service(),
 
@@ -20,41 +18,12 @@ export default Route.extend(CanMixin, Pagination, {
     }
   },
 
-  model(params) {
-    return {
-      taskInstance: get(this, 'getTicketsTask').perform(params),
-      paginatedRecords: []
-    };
+  model() {
+    return this.modelFor('groups.group.dashboard');
   },
 
   titleToken(model) {
     const group = get(model, 'group.name');
     return get(this, 'intl').t('titles.groups.group.dashboard.tickets', { group });
-  },
-
-  getTicketsTask: task(function* ({ filter }) {
-    const model = this.modelFor('groups.group.dashboard');
-    return yield get(this, 'store').query('group-ticket', {
-      filter: {
-        group: get(model, 'group.id'),
-        status: this._getRealStatus(filter)
-      },
-      include: 'user,messages.user',
-      page: { limit: 20 }
-    }).then((records) => {
-      this.updatePageState(records);
-      return records;
-    });
-  }),
-
-  _getRealStatus(filter) {
-    switch (filter) {
-      case 'open':
-        return 'created';
-      case 'resolved':
-        return 'resolved';
-      default:
-        return undefined;
-    }
   }
 });

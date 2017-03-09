@@ -8,6 +8,7 @@ import { concat } from 'client/utils/computed-macros';
 import Pagination from 'client/mixins/pagination';
 
 export default Component.extend(Pagination, {
+  isManaging: true,
   intl: service(),
   notify: service(),
   store: service(),
@@ -42,7 +43,7 @@ export default Component.extend(Pagination, {
     }).then(records => get(records, 'firstObject'));
     if (member) {
       set(this, 'foundMember', member);
-      set(this, 'showModal', true);
+      set(this, 'permissionsModal', true);
     } else {
       get(this, 'notify').error(get(this, 'intl').t('groups.dashboard.leaders.list.not-found'));
     }
@@ -52,6 +53,15 @@ export default Component.extend(Pagination, {
     addNewMember(member) {
       set(member, 'rank', 'mod');
       get(this, 'paginatedRecords').addObject(member);
+    },
+
+    openTicketModal() {
+      const ticket = get(this, 'store').createRecord('group-ticket', {
+        group: get(this, 'group'),
+        user: get(this, 'session.account')
+      });
+      set(this, 'newTicket', ticket);
+      set(this, 'ticketModal', true);
     }
   }
 });
