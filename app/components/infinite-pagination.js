@@ -18,6 +18,7 @@ import spaniel from 'spaniel';
 export default Component.extend({
   tagName: '',
   loaderSize: 'large',
+  isTop: false,
   isLoading: false,
   showLoader: true,
 
