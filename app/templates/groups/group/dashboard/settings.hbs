@@ -51,33 +51,31 @@
         {{/groups/group-form-field}}
 
         {{! Privacy }}
-        {{#unless group.isClosed}}
-          {{#groups/group-form-field id="form-privacy" onHover=(action (mut hoveredField) "privacy")}}
-            <span class="field-title">{{t "groups.create.form.privacy"}}</span>
-            <div class="field-input-wrapper">
-              <fieldset>
-                <div class="radio-card-group">
-                  {{#each privacyOptions as |option|}}
-                    <div class="radio-card">
-                      {{one-way-radio
-                        id=(concat "radio-" option)
-                        value=group.privacy
-                        option=option
-                        update=(action (mut group.privacy))}}
-                      <label for="radio-{{option}}">
-                        <span class="card-title">{{t (concat "groups.create.form.privacy-options." option)}}</span>
-                        <ul class="card-desc">
-                          {{t-html (concat "groups.create.form.privacy-features." option)}}
-                        </ul>
-                      </label>
-                    </div>
-                  {{/each}}
-                </div>
-              </fieldset>
-            </div>
-            <hr class="ruler">
-          {{/groups/group-form-field}}
-        {{/unless}}
+        {{#groups/group-form-field id="form-privacy" onHover=(action (mut hoveredField) "privacy")}}
+          <span class="field-title">{{t "groups.create.form.privacy"}}</span>
+          <div class="field-input-wrapper">
+            <fieldset>
+              <div class="radio-card-group">
+                {{#each privacyOptions as |option|}}
+                  <div class="radio-card">
+                    {{one-way-radio
+                      id=(concat "radio-" option)
+                      value=group.privacy
+                      option=option
+                      update=(action (mut group.privacy))}}
+                    <label for="radio-{{option}}">
+                      <span class="card-title">{{t (concat "groups.create.form.privacy-options." option)}}</span>
+                      <ul class="card-desc">
+                        {{t-html (concat "groups.create.form.privacy-features." option)}}
+                      </ul>
+                    </label>
+                  </div>
+                {{/each}}
+              </div>
+            </fieldset>
+          </div>
+          <hr class="ruler">
+        {{/groups/group-form-field}}
 
         {{! Category }}
         {{#groups/group-form-field id="form-category" onHover=(action (mut hoveredField) "category")}}

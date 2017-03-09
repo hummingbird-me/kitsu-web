@@ -28,6 +28,10 @@ export default Route.extend(CanMixin, {
   setupController(controller, model) {
     this._super(...arguments);
     get(controller, 'records').addObject(get(model, 'group'));
+
+    const options = get(model, 'group.isClosed') ? ['closed'] : ['open', 'closed', 'restricted'];
+    set(controller, 'privacyOptions', options);
+
     const category = get(model, 'category');
     set(controller, 'selectedCategory', {
       id: get(category, 'id'),

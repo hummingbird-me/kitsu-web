@@ -10,7 +10,6 @@ export default Controller.extend({
   addedNeighbors: [],
   records: [],
   hoveredField: 'tagline',
-  privacyOptions: ['open', 'closed', 'restricted'],
   store: service(),
   group: alias('model.group'),
   isDirty: filterBy('records', 'hasDirtyAttributes'),
