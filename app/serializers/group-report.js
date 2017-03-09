@@ -3,7 +3,9 @@ import { isPresent } from 'ember-utils';
 
 export default ApplicationSerializer.extend({
   attrs: {
-    createdAt: { serialize: false }
+    createdAt: { serialize: false },
+    naughtyType: { serialize: false },
+    naughtyId: { serialize: false }
   },
 
   serializeBelongsTo(snapshot, json, relationship) {
