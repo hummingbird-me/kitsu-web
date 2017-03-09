@@ -2,9 +2,9 @@ import Route from 'ember-route';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { task } from 'ember-concurrency';
-import PaginationMixin from 'client/mixins/routes/pagination';
+import Pagination from 'client/mixins/pagination';
 
-export default Route.extend(PaginationMixin, {
+export default Route.extend(Pagination, {
   modelTask: task(function* () {
     const results = yield get(this, 'store').findAll('linked-account');
     const controller = this.controllerFor(get(this, 'routeName'));
