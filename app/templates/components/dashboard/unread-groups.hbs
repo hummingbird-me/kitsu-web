@@ -1,0 +1,22 @@
+<h6 class="panel-heading">{{t "dashboard.groups.header"}}</h6>
+{{#if getGroupsTask.isRunning}}
+  <div class="w-100 text-xs-center m-t-1 m-b-1">
+    {{loading-spinner size="large"}}
+  </div>
+{{else if getGroupsTask.last.error}}
+  <p>{{t "errors.load"}}</p>
+{{else if getGroupsTask.last.value}}
+  {{#each getGroupsTask.last.value as |group|}}
+    <div class="card group-neighbor-item">
+      <div class="media">
+        {{lazy-image src=(image group.avatar "small") imgClass="avatar-image--small"}}
+        <div class="media-body">
+          <h5>{{group.name}}</h5>
+          {{group.tagline}}
+        </div>
+      </div>
+    </div>
+  {{/each}}
+{{else}}
+  <p>{{t "errors.contentEmpty"}}</p>
+{{/if}}
