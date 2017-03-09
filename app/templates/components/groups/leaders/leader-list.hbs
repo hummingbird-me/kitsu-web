@@ -54,6 +54,7 @@
 {{#if ticketModal}}
   {{to-elsewhere named="modal" send=(component "groups/tickets/ticket-conversation"
     ticket=newTicket
+    isPersonalTicket=true
     isNewTicket=true
     onClose=(toggle-action "ticketModal" this)
   )}}

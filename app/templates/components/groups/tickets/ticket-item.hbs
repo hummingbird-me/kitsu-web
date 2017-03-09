@@ -14,6 +14,7 @@
 {{#if isCoversationOpened}}
   {{to-elsewhere named="modal" send=(component "groups/tickets/ticket-conversation"
     ticket=ticket
+    isPersonalTicket=isPersonalTicket
     onClose=(toggle-action "isCoversationOpened" this)
   )}}
 {{/if}}
