@@ -3,7 +3,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
-import { next } from 'ember-runloop';
+import { scheduleOnce } from 'ember-runloop';
 import { task } from 'ember-concurrency';
 import { concat } from 'client/utils/computed-macros';
 import Pagination from 'client/mixins/pagination';
@@ -16,7 +16,11 @@ export default Component.extend(Pagination, {
   init() {
     this._super(...arguments);
     set(this, 'newMessages', []);
-    get(this, 'getChatMessagesTask').perform();
+    get(this, 'getChatMessagesTask').perform().then(() => {
+      scheduleOnce('afterRender', () => {
+        this._scrollToBottom();
+      });
+    }).catch(() => {});
   },
 
   onPagination(records) {
@@ -45,9 +49,15 @@ export default Component.extend(Pagination, {
     yield message.save().then(() => {
       get(this, 'newMessages').addObject(message);
       set(this, 'messageContent', '');
-      next(() => {
+      scheduleOnce('afterRender', () => {
+        this._scrollToBottom();
         autosize.update(get(this, 'element').getElementsByClassName('leader-input'));
       });
     });
-  }).drop()
+  }).drop(),
+
+  _scrollToBottom() {
+    const [element] = get(this, 'element').getElementsByClassName('leader-chat-wrapper');
+    element.scrollTop = (element.scrollHeight - element.clientHeight);
+  }
 });
