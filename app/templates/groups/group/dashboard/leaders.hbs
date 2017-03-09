@@ -6,108 +6,13 @@
       class="leader-chat"
     }}
 
-    <div class="leader-table-card card">
-      <div class="leader-chat--header">
-        <h6>Leaders</h6>
-      </div>
-      <div class="leader-table-wrapper">
-        <table class="leader-table">
-        <tbody>
-          <tr>
-            <th scope="row">
-              <img src="http://localhost:32778/images/default_avatar.png">
-            </th>
-            <td class="leader-name">Josh</td>
-            <td class="edit-leader">
-              <a href="#" data-toggle="modal" data-target="#permissionModal">Edit</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <img src="http://localhost:32778/images/default_avatar.png">
-            </th>
-            <td class="leader-name">Vevix</td>
-            <td class="edit-leader">
-              <a href="#" data-toggle="modal" data-target="#permissionModal">Edit</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <img src="http://localhost:32778/images/default_avatar.png">
-            </th>
-            <td class="leader-name">Nuck</td>
-            <td class="edit-leader">
-              <a href="#" data-toggle="modal" data-target="#permissionModal">Edit</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
-      <div class="leader-chat--footer add-leader">
-        <input type="text" class="leader-input" placeholder="Username">
-        <button type="submit" class="btn btn-primary">Add</button>
-      </div>
-    </div>
+    {{groups/dashboard/leaders/leader-list
+      group=group
+      class="leader-table-card card"
+    }}
   </div>
+
   <div class="row audit-row">
     {{groups/dashboard/audit-log group=group}}
   </div>
 </div>
-
-<!--
-{{#bootstrap/bs-modal id="permissionModal" class="ticket-modal" largeModal=true onClose=onClose as |modal|}}
-  {{#modal.body}}
-
-    <div class="leader-permissions">
-      <div class="leader-permission--header">
-        <img src="/images/default_avatar.png">
-        <h4 class="leader-name">Josh</h4>
-      </div>
-      <div class="leader-permission--content">
-        <h6>Leader Permissions:</h6>
-        <ul class="leader-permission--list">
-          <li>
-            Manage Tickets & Reports
-            <div class="toggle">
-              <input type="checkbox" checked="checked" id="p1" />
-              <label for="p1"></label>
-            </div>
-          </li>
-          <li>
-            Invite and Ban Users
-            <div class="toggle">
-              <input type="checkbox" checked="checked" id="p2" />
-              <label for="p2"></label>
-            </div>
-          </li>
-          <li>
-            Edit and Remove Leaders
-            <div class="toggle">
-              <input type="checkbox" checked="checked" id="p3" />
-              <label for="p3"></label>
-            </div>
-          </li>
-          <li>
-            Edit Settings & Appearance
-            <div class="toggle">
-              <input type="checkbox" checked="checked" id="p4" />
-              <label for="p4"></label>
-            </div>
-          </li>
-          <li>
-            Manage Posts & Comments
-            <div class="toggle">
-              <input type="checkbox" checked="checked" id="p5" />
-              <label for="p5"></label>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="leader-permission--save">
-        <button class="button button--secondary">Cancel</button><button class="button button--primary">Save Permissions</button>
-      </div>
-    </div>
-
-  {{/modal.body}}
-{{/bootstrap/bs-modal}}
--->

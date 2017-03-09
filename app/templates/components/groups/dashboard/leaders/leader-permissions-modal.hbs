@@ -1,0 +1,77 @@
+{{#bootstrap/bs-modal class="ticket-modal" onClose=onClose as |modal|}}
+  {{#modal.body}}
+    <div class="leader-permissions">
+      <div class="leader-permission--header">
+        {{lazy-image src=(image leader.user.avatar "small")}}
+        <h4 class="leader-name">{{leader.user.name}}</h4>
+      </div>
+      <div class="leader-permission--content">
+        <h6>{{t "groups.dashboard.leaders.list.modal.header"}}</h6>
+        <ul class="leader-permission--list">
+          <li>
+            {{t "groups.dashboard.leaders.list.modal.owner"}}
+            {{toggle-input
+              value=(can "manage everything for group" membership=leader)
+              update=(action "updatePermission" "owner")
+            }}
+          </li>
+          {{#if (can "manage everything for group" membership=leader)}}
+            <li>
+              <p class="text-xs-center">
+                {{t "groups.dashboard.leaders.list.modal.owner-help"}}
+              </p>
+            </li>
+          {{else}}
+            <li>
+              {{t "groups.dashboard.leaders.list.modal.tickets"}}
+              {{toggle-input
+                value=(can "manage tickets for group" membership=leader)
+                update=(action "updatePermission" "tickets")
+              }}
+            </li>
+            <li>
+              {{t "groups.dashboard.leaders.list.modal.members"}}
+              {{toggle-input
+                value=(can "manage members for group" membership=leader)
+                update=(action "updatePermission" "members")
+              }}
+            </li>
+            <li>
+              {{t "groups.dashboard.leaders.list.modal.leaders"}}
+              {{toggle-input
+                value=(can "manage leaders for group" membership=leader)
+                update=(action "updatePermission" "leaders")
+              }}
+            </li>
+            <li>
+              {{t "groups.dashboard.leaders.list.modal.community"}}
+              {{toggle-input
+                value=(can "manage settings for group" membership=leader)
+                update=(action "updatePermission" "community")
+              }}
+            </li>
+            <li>
+              {{t "groups.dashboard.leaders.list.modal.content"}}
+              {{toggle-input
+                value=(can "manage reports for group" membership=leader)
+                update=(action "updatePermission" "content")
+              }}
+            </li>
+          {{/if}}
+        </ul>
+      </div>
+      <div class="leader-permission--save">
+        <button class="button button--secondary" disabled={{if savePermissionsTask.isRunning "disabled"}} {{action "closeModal"}}>
+          {{t "groups.dashboard.leaders.list.modal.cancel-btn"}}
+        </button>
+        <button class="button button--primary" disabled={{if savePermissionsTask.isRunning "disabled"}} onclick={{perform savePermissionsTask}}>
+          {{#if savePermissionsTask.isRunning}}
+            {{loading-spinner size="small"}}
+          {{else}}
+            {{t "groups.dashboard.leaders.list.modal.save-btn"}}
+          {{/if}}
+        </button>
+      </div>
+    </div>
+  {{/modal.body}}
+{{/bootstrap/bs-modal}}

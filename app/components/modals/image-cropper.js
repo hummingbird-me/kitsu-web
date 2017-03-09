@@ -40,9 +40,7 @@ export default Component.extend({
 
   actions: {
     closeModal() {
-      this.$('.modal').on('hidden.bs.modal', () => {
-        invokeAction(this, 'onClose');
-      }).modal('hide');
+      this.$('.modal').modal('hide');
     },
 
     updateImage() {

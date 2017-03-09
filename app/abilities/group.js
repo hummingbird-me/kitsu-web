@@ -3,7 +3,7 @@ import get from 'ember-metal/get';
 import computed from 'ember-computed';
 
 const hasPermission = permission => (
-  computed('membership', function() {
+  computed('membership.permissions.@each.hasDirtyAttributes', function() {
     return this._isGroupMember() && get(this, 'membership').hasPermission(permission);
   }).readOnly()
 );
@@ -17,6 +17,7 @@ export default Ability.extend({
     return isMember && (get(get(this, 'membership'), 'permissions.length') > 0);
   }).readOnly(),
 
+  canManageEverything: hasPermission('owner'),
   canManageMembers: hasPermission('members'),
   canManageLeaders: hasPermission('leaders'),
   canManageSettings: hasPermission('community'),

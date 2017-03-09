@@ -2,7 +2,6 @@ import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
 import get from 'ember-metal/get';
-import { equal } from 'ember-computed';
 
 export default Base.extend({
   createdAt: attr('utc'),
@@ -13,9 +12,6 @@ export default Base.extend({
 
   permissions: hasMany('group-permission', { inverse: 'groupMember' }),
 
-  isOwner: equal('rank', 'admin'),
-  isMod: equal('rank', 'mod'),
-
   /**
    * Checks to see if the group member has a specific permission.
    *
@@ -23,12 +19,12 @@ export default Base.extend({
    * @returns {Boolean}
    */
   hasPermission(permission) {
-    // Owner of the group has all permissions
-    if (get(this, 'isOwner')) { return true; }
-
     const permissions = this.hasMany('permissions').value();
     if (permissions) {
-      return permissions.any(perm => get(perm, 'permission') === permission);
+      const record = permissions.find(perm => (
+        get(perm, 'permission') === 'owner' || get(perm, 'permission') === permission
+      ));
+      return record ? !get(record, 'hasDirtyAttributes') : false;
     }
     return false;
   }

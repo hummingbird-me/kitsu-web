@@ -1,0 +1,16 @@
+<th scope="row">
+  {{lazy-image src=(image leader.user.avatar "small")}}
+</th>
+<td class="leader-name">{{leader.user.name}}</td>
+<td class="edit-leader">
+  <a href="#" {{action (toggle "showModal" this)}}>
+    {{t "groups.dashboard.leaders.list.edit-btn"}}
+  </a>
+</td>
+
+{{#if showModal}}
+  {{to-elsewhere named="modal" send=(component "groups/dashboard/leaders/leader-permissions-modal"
+    leader=leader
+    onClose=(toggle-action "showModal" this)
+  )}}
+{{/if}}
