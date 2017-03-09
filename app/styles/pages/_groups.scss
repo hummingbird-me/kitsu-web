@@ -508,7 +508,7 @@
 .group-create-wrapper {
   max-width: 1000px;
   width: 100%;
-  .card {
+  >.card {
     position: relative;
     @media (min-width: 769px) {
       margin-right: 300px;
@@ -615,7 +615,6 @@ $primary: #00cc99;
   display: flex;
   margin: auto;
   width: 100%;
-  max-width: 600px;
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -998,5 +997,13 @@ $primary: #00cc99;
   .group-audit-log {
     width: 100%;
     margin-top: 5px;
+  }
+}
+
+
+.avatar-upload {
+  .image-card {
+    width: 150px;
+    height: 150px;
   }
 }

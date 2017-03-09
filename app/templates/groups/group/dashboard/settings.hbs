@@ -1,1 +1,115 @@
-{{! settings page }}
+<div class="container">
+  <div class="row">
+    <div class="group-create-wrapper">
+      <div class="card">
+
+      {{! Group Name }}
+      <label id="form-name" class="field-wrapper">
+        <span class="field-title">Name</span>
+        <div class="field-input-wrapper">
+          <input maxlength="50" minlength="4" type="text" class="form-control" value="Kitsu Feedback">
+        </div>
+        <span class="field-notice">Required</span>
+        <hr class="ruler">
+      </label>
+
+      {{! Tagline }}
+      <label id="form-name" class="field-wrapper">
+        <span class="field-title">Tagline</span>
+        <div class="field-input-wrapper">
+          <input maxlength="50" minlength="4" type="text" class="form-control" value="A great place to give general feedback on Kitsu!">
+        </div>
+        <span class="field-notice">Required</span>
+        <hr class="ruler">
+      </label>
+
+
+      {{! Description }}
+      <label id="form-name" class="field-wrapper">
+        <span class="field-title">Description</span>
+        <div class="field-input-wrapper">
+          <textarea type="text" class="form-control" value="A great place to give general feedback on Kitsu!"></textarea>
+        </div>
+        <hr class="ruler">
+      </label>
+
+      {{! Neighbors }}
+      <label id="form-name" class="field-wrapper">
+        <span class="field-title">Neighbors</span>
+        <div class="field-input-wrapper">
+          <!-- @Vevix, ideally we're showing tags in an input field here -->
+          <input maxlength="50" minlength="4" type="text" class="form-control">
+        </div>
+        <hr class="ruler">
+      </label>
+
+
+      {{! Privacy }}
+      <label id="form-privacy" class="field-wrapper ember-view ember-tether-target ember-tether-enabled ember-tether-element-attached-bottom ember-tether-element-attached-left ember-tether-target-attached-top ember-tether-target-attached-right">      <span class="field-title">Privacy</span>
+        <div class="field-input-wrapper">
+          <fieldset>
+            <div class="radio-card-group">
+                <div class="radio-card">
+                  <input id="radio-open" type="radio" value="open" class="ember-view">
+                  <label for="radio-open">
+                    <span class="card-title">Public</span>
+                    <ul class="card-desc">
+                      <li>Anyone can view</li> <li>Anyone can join</li> <li>Anyone can post or comment</li>
+                    </ul>
+                  </label>
+                </div>
+                <div class="radio-card">
+                  <input id="radio-closed" type="radio" value="closed" class="ember-view">
+                  <label for="radio-closed">
+                    <span class="card-title">Private</span>
+                    <ul class="card-desc">
+                      <li>Hidden from public</li> <li>Users may only join via invitation</li> <li>Can't be made public</li>
+                    </ul>
+                  </label>
+                </div>
+                <div class="radio-card">
+                  <input id="radio-restricted" type="radio" value="restricted" class="ember-view">
+                  <label for="radio-restricted">
+                    <span class="card-title">Restricted</span>
+                    <ul class="card-desc">
+                      <li>Anyone can view</li> <li>Anyone can join</li> <li>Only leaders can create new posts.</li>
+                    </ul>
+                  </label>
+                </div>
+            </div>
+          </fieldset>
+        </div>
+      </label>
+
+      {{! Avatar }}
+      <label id="form-name" class="field-wrapper">
+        <span class="field-title">Avatar</span>
+        <div class="field-input-wrapper avatar-upload">
+          {{image-form
+        image=group.avatar
+        width=200
+        height=200
+        update=(action (mut group.avatar))}}
+        </div>
+      </label>
+
+      {{! Cover Photo }}
+      <label id="form-name" class="field-wrapper">
+        <span class="field-title">Cover Image</span>
+        <div class="field-input-wrapper">
+          {{image-form
+        image=group.coverImage
+        width=3360
+        height=300
+        update=(action (mut group.coverImage))}}
+        </div>
+      </label>
+      <div class="form-group clearfix">
+        <button class="button button--primary group-create-cta">
+          Save Changes
+        </button>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
