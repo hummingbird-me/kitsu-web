@@ -37,6 +37,7 @@ export default Component.extend(Pagination, {
     if (isEmpty(username)) { return; }
     const member = yield get(this, 'store').query('group-member', {
       filter: { query: username },
+      include: 'user,permissions',
       page: { limit: 1 }
     }).then(records => get(records, 'firstObject'));
     if (member) {
