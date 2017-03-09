@@ -1,5 +1,6 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
+import service from 'ember-service/inject';
 import { CanMixin } from 'ember-can';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import RSVP from 'rsvp';
@@ -7,11 +8,14 @@ import jQuery from 'jquery';
 
 export default Route.extend(AuthenticatedRouteMixin, CanMixin, {
   authenticationRoute: 'dashboard',
+  ajax: service(),
 
   model() {
+    const group = this.modelFor('groups.group');
     return RSVP.hash({
-      group: this.modelFor('groups.group'),
-      membership: this._getMembershipStatus()
+      group,
+      membership: this._getMembershipStatus(),
+      stats: get(this, 'ajax').request(`/groups/${get(group, 'id')}/_stats`)
     });
   },
 

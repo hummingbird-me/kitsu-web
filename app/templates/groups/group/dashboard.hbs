@@ -15,7 +15,11 @@
             <a href={{href-to "groups.group.dashboard.reports"}}>
               {{t "groups.dashboard.navigation.reports"}}
               {{! Only show if one or more open reports present }}
-              <span class="nav-counter">04</span>
+              {{#if (gt stats.total.openReports 0)}}
+                <span class="nav-counter">
+                  {{format-number stats.total.openReports}}
+                </span>
+              {{/if}}
             </a>
           {{/link-to}}
         {{/if}}
@@ -24,7 +28,11 @@
             <a href={{href-to "groups.group.dashboard.tickets"}}>
               {{t "groups.dashboard.navigation.tickets"}}
               {{! Only show if one or more open tickets present }}
-              <span class="nav-counter">17</span>
+              {{#if (gt stats.total.openTickets 0)}}
+                <span class="nav-counter">
+                  {{format-number stats.total.openTickets}}
+                </span>
+              {{/if}}
             </a>
           {{/link-to}}
         {{/if}}

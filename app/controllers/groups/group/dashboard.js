@@ -3,5 +3,6 @@ import { alias } from 'ember-computed';
 
 export default Controller.extend({
   group: alias('model.group'),
-  membership: alias('model.membership')
+  membership: alias('model.membership'),
+  stats: alias('model.stats')
 });
