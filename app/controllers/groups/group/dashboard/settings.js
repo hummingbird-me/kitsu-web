@@ -3,11 +3,11 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import computed, { alias } from 'ember-computed';
+import { task, timeout } from 'ember-concurrency';
 
 export default Controller.extend({
-  isSaving: false,
-  privacyOptions: ['open', 'closed', 'restricted'],
   hoveredField: 'name',
+  privacyOptions: ['open', 'closed', 'restricted'],
   store: service(),
   group: alias('model.group'),
 
@@ -20,15 +20,21 @@ export default Controller.extend({
     ));
   }).readOnly(),
 
-  /** Determines if the submit button is disabled/enabled. */
-  isValid: computed('group.validations.isValid', 'isSaving', function() {
-    return get(this, 'group.validations.isValid') && !get(this, 'isSaving');
-  }).readOnly(),
+  searchGroupsTask: task(function* (query) {
+    yield timeout(250);
+    return yield get(this, 'store').query('group', {
+      filter: { query }
+    });
+  }).restartable(),
 
   actions: {
     selectCategory(category) {
       set(this, 'selectedCategory', category);
       set(this, 'group.category', get(this, 'store').peekRecord('group-category', get(category, 'id')));
     },
+
+    addNeighbor(group) {
+
+    }
   }
 });

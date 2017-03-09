@@ -6,9 +6,17 @@
 {{else if getNeighborsTask.last.error}}
   <p>{{t "errors.load"}}</p>
 {{else if getNeighborsTask.last.value}}
-  <div class="group-member-avatars">
-    {{#each getNeighborsTask.last.value as |neighbor|}}
-      {{log neighbor}}
-    {{/each}}
-  </div>
+  {{#each getNeighborsTask.last.value as |neighbor|}}
+    <div class="card group-neighbor-item">
+      <div class="media">
+        {{lazy-image src=(image neighbor.destination.avatar "small") imgClass="avatar-image--small"}}
+        <div class="media-body">
+          <h5 class="m-t-0">{{neighbor.destination.name}}</h5>
+          {{neighbor.destination.tagline}}
+        </div>
+      </div>
+    </div>
+  {{/each}}
+{{else}}
+  <p>{{t "errors.contentEmpty"}}</p>
 {{/if}}
