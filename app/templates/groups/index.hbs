@@ -4,55 +4,14 @@
   onChange=(action (mut category))}}
 
 {{! Group Results }}
-<div class="group-result-list">
-  <div class="card">
-    <div class="group-result-header">
-      <span class="result-filter-wrapper">
-        {{search-input
-          update=(action (mut query))
-          placeholder=(t "groups.index.filter")}}
-      </span>
-
-      <span class="result-sort-wrapper">
-        {{#bootstrap/bs-dropdown as |dropdown|}}
-          {{#dropdown.button type="button--dark-outline" class="button--small"}}
-            {{t (concat "groups.index.sort." sort)}}
-          {{/dropdown.button}}
-          {{#dropdown.menu}}
-            {{#each sortOptions as |filter|}}
-              {{#dropdown.menu-item onClick=(action (mut sort) filter)}}
-                {{t (concat "groups.index.sort." filter)}}
-                {{#if (eq sort filter)}}
-                  <span class="dropdown-checkmark">
-                    {{svg-jar "checkmark"}}
-                  </span>
-                {{/if}}
-              {{/dropdown.menu-item}}
-            {{/each}}
-          {{/dropdown.menu}}
-        {{/bootstrap/bs-dropdown}}
-      </span>
-    </div>
-
-    <ul class="group-results">
-      {{#if model.taskInstance.isRunning}}
-        <div class="text-xs-center w-100 m-t-2 m-b-2">
-          {{loading-spinner size="large"}}
-        </div>
-      {{else if model.taskInstance.value}}
-        {{#infinite-pagination onPagination=(route-action "onPagination")}}
-          {{#each groups as |group|}}
-            {{groups/group-result group=group tagName="li"}}
-          {{/each}}
-        {{/infinite-pagination}}
-      {{else}}
-        <div class="text-xs-center m-t-1 m-b-1">
-          <p>{{t "errors.contentEmpty"}}</p>
-        </div>
-      {{/if}}
-    </ul>
-  </div>
-</div>
+{{groups/group-list
+  sort=sort
+  query=query
+  groups=groups
+  isLoading=model.taskInstance.isRunning
+  onPagination=(route-action "onPagination")
+  updateQueryParam=(action "updateQueryParam")
+  class="group-result-list"}}
 
 {{! Group Action }}
 <div class="group-result-secondary">
@@ -62,6 +21,7 @@
       {{t "groups.index.create-btn"}}
     </button>
   </div>
+
   {{! Groups }}
   {{dashboard/unread-groups class="sidebar-item"}}
 </div>

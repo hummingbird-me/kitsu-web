@@ -82,6 +82,7 @@ RouterInstance.map(function() {
     this.route('reviews');
     this.route('followers');
     this.route('following');
+    this.route('groups');
   });
 
   this.route('settings', function() {
