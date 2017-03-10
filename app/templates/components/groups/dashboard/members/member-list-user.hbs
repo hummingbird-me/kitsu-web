@@ -1,7 +1,9 @@
 <td>
   <span>
     {{lazy-image src=(image member.user.avatar "small")}}
-    {{member.user.name}}
+    <a href={{href-to "users.index" member.user.name}}>
+      {{member.user.name}}
+    </a>
   </span>
 </td>
 <td><span>{{capitalize member.rank}}</span></td>
