@@ -2,15 +2,15 @@
   {{#modal.body}}
     <div class="ticket">
       {{! header }}
+      {{#unless isPersonalTicket}}
       <div class="ticket-header clearfix">
         {{lazy-image src=(image ticket.user.avatar "small") class="pull-sm-left"}}
         <div class="ticket-about">
-          <div class="ticket-with">
-            {{t-html "groups.tickets.conversation.title"
-              name=ticket.user.name
-              link=(href-to "users.index" ticket.user.name)}}
-          </div>
-          {{#unless isPersonalTicket}}
+            <div class="ticket-with">
+              {{t-html "groups.tickets.conversation.title"
+                name=ticket.user.name
+                link=(href-to "users.index" ticket.user.name)}}
+            </div>
             <div class="ticket-actions">
               <a href="#" class="resolve-ticket" {{action "markResolved"}}>
                 {{t "groups.tickets.conversation.mark-resolved"}}
@@ -19,9 +19,9 @@
                 {{t "groups.tickets.conversation.mark-closed"}}
               </a>
             </div>
-          {{/unless}}
+          </div>
         </div>
-      </div>
+      {{/unless}}
 
       {{! conversation list }}
       <div class="ticket-history">
