@@ -33,6 +33,13 @@
               class="clearfix"
               tagName="li"}}
           {{/each}}
+          {{#if (and isNewTicket ticket.isNew)}}
+            <li class="card">
+              <div class="card-block">
+                {{t "groups.tickets.conversation.helper"}}
+              </div>
+            </li>
+          {{/if}}
         </ul>
       </div>
 
