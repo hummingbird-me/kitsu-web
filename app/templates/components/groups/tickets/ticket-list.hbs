@@ -30,7 +30,7 @@
   <ul class="ticket-list">
     {{#if getTicketsTask.isRunning}}
       <div class="text-xs-center m-t-1 m-b-1">
-        {{loading-spinner size="small"}}
+        {{loading-spinner size="large"}}
       </div>
     {{else if tickets}}
       {{#infinite-pagination onPagination=(action "onPagination")}}
@@ -43,7 +43,11 @@
       {{/infinite-pagination}}
     {{else}}
       <div class="text-xs-center m-t-1 m-b-1">
-        {{t "errors.contentEmpty"}}
+        {{#if isPersonalTicket}}
+          {{t "groups.tickets.helper"}}
+        {{else}}
+          {{t "groups.tickets.empty"}}
+        {{/if}}
       </div>
     {{/if}}
   </ul>
