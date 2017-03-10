@@ -113,6 +113,17 @@
           <hr class="ruler">
         {{/groups/group-form-field}}
 
+        {{! NSFW }}
+        {{#groups/group-form-field id="form-nsfw" onHover=(action (mut hoveredField) "nsfw")}}
+          <span class="field-title">{{t "groups.create.form.nsfw"}}</span>
+          <div class="field-input-wrapper">
+            {{toggle-input
+              value=group.nsfw
+              update=(action (mut group.nsfw))}}
+          </div>
+          <hr class="ruler">
+        {{/groups/group-form-field}}
+
         {{! Avatar }}
         {{#groups/group-form-field id="form-avatar" onHover=(action (mut hoveredField) "avatar")}}
           <span class="field-title">{{t "groups.create.form.avatar"}}</span>
