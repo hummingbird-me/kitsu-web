@@ -6,6 +6,7 @@ import computed from 'ember-computed';
 
 export default Base.extend({
   acceptedAt: attr('utc'),
+  createdAt: attr('utc'),
   declinedAt: attr('utc'),
 
   group: belongsTo('group'),
