@@ -907,6 +907,9 @@ $primary: #00cc99;
     }
     .media-body {
       font-size: 14px;
+      p:last-child {
+        margin-bottom: 0;
+      }
     }
     img {
       width: 35px;
@@ -948,7 +951,7 @@ $primary: #00cc99;
 
   .leader-input {
     flex: 1;
-    margin-right: 15px;
+    margin-right: 10px;
     padding: 6px 10px;
     border-radius: 3px;
     border: 1px solid #ddd;
@@ -959,10 +962,9 @@ $primary: #00cc99;
     width: 100px;
     max-height: 38px;
     background: $caribbean;
-    border-color: $caribbean;
+    border: none;
     &:hover {
       background-color: darken($caribbean,5);
-      border-color: darken($caribbean,5);
     }
   }
 }
@@ -971,8 +973,17 @@ $primary: #00cc99;
   width: 310px;
   max-height: 419px;
   padding: 15px;
+  min-height: 250px;
   @media (max-width: 768px) {
     width: 100%;
+  }
+  &.banned-members {
+    .leader-chat--footer .btn {
+      background: #c0392b;
+      &:hover {
+        background: darken(#c0392b, 10);
+      }
+    }
   }
 }
 
@@ -1063,6 +1074,19 @@ $primary: #00cc99;
   }
 }
 
+.pending-invites {
+  .edit-leader {
+    width: 100px;
+  }
+  .invite-time {
+    text-align: right;
+    font-size: 14px;
+    color: #888;
+  }
+  .leader-table-wrapper {
+    height: 200px;
+  }
+}
 
 
 // Groups widget
@@ -1090,7 +1114,10 @@ $primary: #00cc99;
   }
   .group-name {
     flex: 1;
-    font-weight: 700;
+    font-weight: bold;
+    font-family: "Open Sans",sans-serif;
+    font-size: 14px;
+    line-height: 25px;
   }
   .unread-counter {
     position: absolute;

@@ -1,5 +1,84 @@
-{{! Invites }}
-<h4>
+<div class="container">
+  <div class="row leader-wrapper">
+    {{! Invites }}
+    <div class="leader-chat pending-invites">
+      <div class="card">
+      <div class="leader-chat--header">
+        <h6>{{t "groups.dashboard.members.headers.invitees"}}</h6>
+      </div>
+
+      <div class="leader-table-wrapper">
+        <table class="leader-table">
+          <tbody>
+            <tr id="ember1859" class="ember-view">
+              <th scope="row">
+                <img data-test-selector="lazy-image" src="/images/default_avatar.png">
+              </th>
+              <td class="leader-name">
+                Josh
+              </td>
+              <td class="invite-time">
+                Invited 3 days ago
+              </td>
+              <td class="edit-leader">
+                <a href="#" data-ember-action="" data-ember-action-1862="1862">
+                  Cancel Invite
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="leader-chat--footer">
+        <input type="text-input" class="leader-input" placeholder="Search user by name">
+        <button class="btn btn-primary" disabled={{if postMessageTask.isRunning "disabled"}} onclick={{perform postMessageTask}}>
+          Invite
+        </button>
+      </div>
+    </div>
+    </div>
+
+    <div class="leader-table-card card banned-members">
+      <div class="leader-chat--header">
+        <h6>Banned Users</h6>
+      </div>
+      <div class="leader-table-wrapper">
+        <table class="leader-table">
+          <tbody>
+            <tr id="ember1859" class="ember-view">
+              <th scope="row">
+                <img data-test-selector="lazy-image" src="/images/default_avatar.png">
+              </th>
+              <td class="leader-name">
+                Josh
+              </td>
+              <td class="edit-leader">
+                <a href="#" data-ember-action="" data-ember-action-1862="1862">
+                  Unban
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="leader-chat--footer add-leader">
+        <input placeholder="Username" type="text" class="leader-input">
+        <button class="btn btn-primary">
+            Ban
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row audit-row member-list">
+    <div class="group-audit-log">
+      {{groups/dashboard/members-list group=group}}
+    </div>
+  </div>
+</div>
+
+<!-- <h4>
   {{t "groups.dashboard.members.headers.invitees"}}
   <span class="invite-member-button {{if showInviteComponent "is-opened"}}" {{action (toggle "showInviteComponent" this)}}>
     {{svg-jar "close"}}
@@ -8,8 +87,7 @@
 {{#if showInviteComponent}}
   {{groups/dashboard/invite-search group=group}}
 {{/if}}
-{{groups/dashboard/invitee-list group=group}}
+{{groups/dashboard/invitee-list group=group}} -->
 
-{{! Members List }}
-<h4>{{t "groups.dashboard.members.headers.members"}}</h4>
-{{groups/dashboard/members-list group=group}}
+<!-- {{! Members List }}
+<h4>{{t "groups.dashboard.members.headers.members"}}</h4> -->

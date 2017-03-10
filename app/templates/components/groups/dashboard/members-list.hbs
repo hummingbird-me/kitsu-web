@@ -1,52 +1,58 @@
-{{#if getMembersTask.isRunning}}
-  <div class="text-xs-center w-100 m-t-2">
-    {{loading-spinner size="large"}}
-  </div>
-{{else}}
-  <table class="table table-sm table-hover members-list">
-    <thead>
-      <tr>
-        <th>{{t "groups.dashboard.members.members-list.table.users"}}</th>
-        <th>{{t "groups.dashboard.members.members-list.table.permissions"}}</th>
-        <th>{{t "groups.dashboard.members.members-list.table.joined"}}</th>
-        <th>{{t "groups.dashboard.members.members-list.table.actions"}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#infinite-pagination onPagination=(action "onPagination")}}
-        {{#each members as |member|}}
-          <tr class="group-member-row">
-            <td>
-              <span>
-                {{lazy-image src=(image member.user.avatar "small")}}
-                {{member.user.name}}
-              </span>
-            </td>
-            <td>
-              <span>
-                {{capitalize member.rank}}
-              </span>
-            </td>
-            <td><span>{{format-date member.createdAt timeZone="UTC"}}</span></td>
-            <td>
-              <span>
-                {{#unless (is-self member.user)}}
-                  <button class="btn btn-sm btn-danger hint--rounded hint--bounce hint--top" aria-label="Remove"
-                    disabled={{if actionsTaskGroup.isRunning "disabled"}}
-                    onclick={{perform removeMemberTask member}}>
-                    {{svg-jar "trash"}}
-                  </button>
-                  <button class="btn btn-sm btn-danger hint--rounded hint--bounce hint--top" aria-label="Ban"
-                    disabled={{if actionsTaskGroup.isRunning "disabled"}}
-                    onclick={{perform banMemberTask member}}>
-                    {{svg-jar "ban"}}
-                  </button>
-                {{/unless}}
-              </span>
-            </td>
+<div class="card">
+  <div class="card-block">
+    <h5 class="card-title">{{t "groups.dashboard.members.headers.members"}}</h5>
+    <hr>
+    {{#if getMembersTask.isRunning}}
+      <div class="text-xs-center w-100 m-t-2">
+        {{loading-spinner size="large"}}
+      </div>
+    {{else}}
+      <table class="table table-sm table-hover members-list">
+        <thead>
+          <tr>
+            <th>{{t "groups.dashboard.members.members-list.table.users"}}</th>
+            <th>{{t "groups.dashboard.members.members-list.table.permissions"}}</th>
+            <th>{{t "groups.dashboard.members.members-list.table.joined"}}</th>
+            <th>{{t "groups.dashboard.members.members-list.table.actions"}}</th>
           </tr>
-        {{/each}}
-      {{/infinite-pagination}}
-    </tbody>
-  </table>
-{{/if}}
+        </thead>
+        <tbody>
+          {{#infinite-pagination onPagination=(action "onPagination")}}
+            {{#each members as |member|}}
+              <tr class="group-member-row">
+                <td>
+                  <span>
+                    {{lazy-image src=(image member.user.avatar "small")}}
+                    {{member.user.name}}
+                  </span>
+                </td>
+                <td>
+                  <span>
+                    {{capitalize member.rank}}
+                  </span>
+                </td>
+                <td><span>{{format-date member.createdAt timeZone="UTC"}}</span></td>
+                <td>
+                  <span>
+                    {{#unless (is-self member.user)}}
+                      <button class="btn btn-sm btn-danger hint--rounded hint--bounce hint--top" aria-label="Remove"
+                        disabled={{if actionsTaskGroup.isRunning "disabled"}}
+                        onclick={{perform removeMemberTask member}}>
+                        {{svg-jar "trash"}}
+                      </button>
+                      <button class="btn btn-sm btn-danger hint--rounded hint--bounce hint--top" aria-label="Ban"
+                        disabled={{if actionsTaskGroup.isRunning "disabled"}}
+                        onclick={{perform banMemberTask member}}>
+                        {{svg-jar "ban"}}
+                      </button>
+                    {{/unless}}
+                  </span>
+                </td>
+              </tr>
+            {{/each}}
+          {{/infinite-pagination}}
+        </tbody>
+      </table>
+    {{/if}}
+  </div>
+</div>
