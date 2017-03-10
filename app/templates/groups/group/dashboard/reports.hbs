@@ -25,7 +25,7 @@
         <div class="text-xs-center m-t-1 m-b-1">
           {{loading-spinner size="large"}}
         </div>
-      {{else if model.taskInstance.valued}}
+      {{else if model.taskInstance.value}}
         {{#infinite-pagination onPagination=(route-action "onPagination")}}
           {{#each reports as |report|}}
             {{groups/dashboard/reports/report-item
