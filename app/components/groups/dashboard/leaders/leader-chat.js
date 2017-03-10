@@ -61,6 +61,15 @@ export default Component.extend(Pagination, {
     });
   }).drop(),
 
+  actions: {
+    onEnter(component, event) {
+      const { metaKey, ctrlKey } = event;
+      if (metaKey === true || ctrlKey === true) {
+        get(this, 'postMessageTask').perform();
+      }
+    }
+  },
+
   _scrollToBottom() {
     const [element] = get(this, 'element').getElementsByClassName('leader-chat-wrapper');
     element.scrollTop = (element.scrollHeight - element.clientHeight);

@@ -24,6 +24,9 @@
   <div class="leader-chat--footer">
     {{expanding-textarea messageContent
       update=(action (mut messageContent))
+      keyEvents=(hash
+        13=(action "onEnter")
+      )
       placeholder=(t "groups.dashboard.leaders.chat.placeholder")
       class="leader-input"
       rows="1"
