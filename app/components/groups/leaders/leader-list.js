@@ -45,7 +45,7 @@ export default Component.extend(Pagination, {
       set(this, 'foundMember', member);
       set(this, 'permissionsModal', true);
     } else {
-      get(this, 'notify').error(get(this, 'intl').t('groups.dashboard.leaders.list.not-found'));
+      get(this, 'notify').error(get(this, 'intl').t('groups.leaders.list.not-found'));
     }
   }),
 
