@@ -7,15 +7,21 @@ import { task, timeout } from 'ember-concurrency';
 import RSVP from 'rsvp';
 
 export default Controller.extend({
-  records: [],
   hoveredField: 'tagline',
+  intl: service(),
+  notify: service(),
   store: service(),
   group: alias('model.group'),
   isDirty: filterBy('records', 'hasDirtyAttributes'),
 
-  _neighbors: [],
   addedNeighbors: computed('_neighbors.[]', function() {
     return get(this, '_neighbors');
+  }).readOnly(),
+
+  neighborsDisabled: computed('addedNeighbors', function() {
+    const addedNeighbors = get(this, 'addedNeighbors.length');
+    const savedNeighbors = get(this, 'savedNeighbors.length');
+    return (addedNeighbors + savedNeighbors) === 4;
   }).readOnly(),
 
   categories: computed('model.categories', function() {
@@ -66,8 +72,28 @@ export default Controller.extend({
         source: get(this, 'group'),
         destination: group
       });
-      get(this, '_neighbors').addObject(neighbor);
-      get(this, 'records').addObject(neighbor);
+
+      // is this our group?
+      const ours = get(this, 'group.id') === get(group, 'id');
+      if (ours) {
+        get(this, 'notify').error(get(this, 'intl').t('groups.create.form.errors.neighbors-same'));
+        return;
+      }
+
+      // does this group exist in our added neighbors?
+      const added = get(this, 'addedNeighbors').find(addedNeighbor => (
+        get(addedNeighbor, 'destination.id') === get(group, 'id')
+      ));
+
+      // does this group already exist in saved neighbors?
+      const saved = get(this, 'savedNeighbors').find(savedNeighbor => (
+        get(savedNeighbor, 'destination.id') === get(group, 'id')
+      ));
+
+      if (!saved && !added) {
+        get(this, '_neighbors').addObject(neighbor);
+        get(this, 'records').addObject(neighbor);
+      }
     },
 
     removeNeighbor(neighbor) {

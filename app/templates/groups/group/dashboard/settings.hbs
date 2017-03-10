@@ -48,6 +48,7 @@
             {{#power-select
               search=(perform searchGroupsTask)
               onchange=(action "addNeighbor")
+              disabled=neighborsDisabled
               placeholder=(t "groups.create.form.neighbors-placeholder")
               as |group|
             }}
@@ -58,7 +59,8 @@
               group=group
               addedNeighbors=addedNeighbors
               canRemove=true
-              onRemove=(action "removeNeighbor")}}
+              onRemove=(action "removeNeighbor")
+              onLoad=(action (mut savedNeighbors))}}
           </div>
           <hr class="ruler">
         {{/groups/group-form-field}}

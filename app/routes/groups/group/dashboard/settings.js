@@ -27,6 +27,9 @@ export default Route.extend(CanMixin, {
 
   setupController(controller, model) {
     this._super(...arguments);
+    set(controller, 'records', []);
+    set(controller, 'savedNeighbors', []);
+    set(controller, '_neighbors', []);
     get(controller, 'records').addObject(get(model, 'group'));
 
     const options = get(model, 'group.isClosed') ? ['closed'] : ['open', 'closed', 'restricted'];

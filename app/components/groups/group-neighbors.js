@@ -21,7 +21,9 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
     if (get(this, 'groupWas') !== get(this, 'group.id')) {
-      get(this, 'getNeighborsTask').perform();
+      get(this, 'getNeighborsTask').perform().then((records) => {
+        invokeAction(this, 'onLoad', records);
+      }).catch(() => {});
       set(this, 'groupWas', get(this, 'group.id'));
     }
   },
