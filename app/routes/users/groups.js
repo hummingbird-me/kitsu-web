@@ -1,5 +1,6 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
+import service from 'ember-service/inject';
 import { isPresent } from 'ember-utils';
 import { task } from 'ember-concurrency';
 import Pagination from 'client/mixins/pagination';
@@ -10,6 +11,7 @@ export default Route.extend(Pagination, {
     sort: { refreshModel: true, replace: true },
     query: { refreshModel: true, replace: true }
   },
+  intl: service(),
 
   model(params) {
     return {
@@ -18,15 +20,21 @@ export default Route.extend(Pagination, {
     };
   },
 
+  titleToken() {
+    const model = this.modelFor('users');
+    const name = get(model, 'name');
+    return get(this, 'intl').t('titles.users.groups', { user: name });
+  },
+
+  onPagination(records) {
+    const groupRecords = records.map(record => get(record, 'group'));
+    this._super(groupRecords);
+  },
+
   getGroupsTask: task(function* ({ category, sort, query }) {
     const user = this.modelFor('users');
     const options = {
-      filter: {
-        user: get(user, 'id'),
-        group: {
-          category: category !== 'all' ? category : undefined,
-        }
-      },
+      filter: { user: get(user, 'id') },
       sort: this._getRealSort(sort),
       include: 'group.category'
     };
