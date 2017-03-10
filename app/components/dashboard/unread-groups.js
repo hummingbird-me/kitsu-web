@@ -17,6 +17,6 @@ export default Component.extend({
       include: 'group',
       page: { limit: 8 },
       sort: '-group.last_activity_at'
-    }).then(records => records.map(record => get(record, 'group')));
+    });
   })
 });

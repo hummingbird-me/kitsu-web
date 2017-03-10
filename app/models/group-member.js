@@ -6,6 +6,7 @@ import get from 'ember-metal/get';
 export default Base.extend({
   createdAt: attr('utc'),
   rank: attr('string'),
+  unreadCount: attr('number'),
 
   group: belongsTo('group'),
   user: belongsTo('user'),
