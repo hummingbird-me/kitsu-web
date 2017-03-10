@@ -7,7 +7,9 @@
     {{else}}
       <p>
       {{#if (can "manage settings for group" membership=membership)}}
-        {{t-html "groups.rules.empty-leader" link=(href-to "groups.group.dashboard.settings")}}
+        <p class="m-b-2">
+          {{t-html "groups.rules.empty" link=(href-to "groups.group.dashboard.settings")}}
+        </p>
         {{markdown-to-html markdown=(fr-markdown-file "community-guidelines")}}
       {{else}}
         {{markdown-to-html markdown=(fr-markdown-file "community-guidelines")}}
