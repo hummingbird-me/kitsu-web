@@ -1,4 +1,6 @@
 import Controller from 'ember-controller';
+import get from 'ember-metal/get';
+import service from 'ember-service/inject';
 import { concat } from 'client/utils/computed-macros';
 
 export default Controller.extend({
@@ -8,5 +10,16 @@ export default Controller.extend({
   query: null,
 
   sortOptions: ['recent', 'newest', 'oldest'],
-  groups: concat('model.taskInstance.value', 'model.paginatedRecords')
+  router: service('-routing'),
+  groups: concat('model.taskInstance.value', 'model.paginatedRecords'),
+
+  actions: {
+    handleCreateClick() {
+      if (!get(this, 'session.hasUser')) {
+        get(this, 'session').signUpModal();
+      } else {
+        get(this, 'router').transitionTo('groups.new');
+      }
+    }
+  },
 });

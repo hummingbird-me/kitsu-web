@@ -58,11 +58,9 @@
 <div class="group-result-secondary">
   <div class="card">
     {{t "groups.index.call-to-action"}}
-    {{#if session.hasUser}}
-      {{#link-to "groups.new" tagName="button" class="button button--primary"}}
-        {{t "groups.index.create-btn"}}
-      {{/link-to}}
-    {{/if}}
+    <button class="button button--primary" {{action "handleCreateClick"}}>
+      {{t "groups.index.create-btn"}}
+    </button>
   </div>
   {{! Groups }}
   {{dashboard/unread-groups class="sidebar-item"}}
