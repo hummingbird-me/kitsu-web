@@ -45,11 +45,15 @@
         {{link-to (t "groups.navigation.rules") "groups.group.group-page.rules" class="nav-item nav-link"}}
         {{#link-to "groups.group.group-page.members" class="nav-item nav-link"}}
           {{t "groups.navigation.members"}}
-          <span class="tag tag-default">{{group.membersCount}}</span>
+          <span class="tag tag-default">
+            {{format-number group.membersCount fallback="0"}}
+          </span>
         {{/link-to}}
         {{#link-to "groups.group.group-page.leaders" class="nav-item nav-link"}}
           {{t "groups.navigation.leaders"}}
-          <span class="tag tag-default">{{group.leadersCount}}</span>
+          <span class="tag tag-default">
+            {{format-number group.leadersCount fallback="0"}}
+          </span>
         {{/link-to}}
       </div>
     </div>
