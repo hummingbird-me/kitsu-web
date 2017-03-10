@@ -40,8 +40,9 @@ export default Component.extend(Pagination, {
   searchUsersTask: task(function* (query) {
     yield timeout(250);
     return yield get(this, 'store').query('group-member', {
-      filter: { query, query_group: get(this, 'group.id') }
-    });
+      filter: { query, query_group: get(this, 'group.id') },
+      include: 'user'
+    }).then(records => records.map(record => get(record, 'user')));
   }).restartable(),
 
   findGroupMemberTask: task(function* () {
