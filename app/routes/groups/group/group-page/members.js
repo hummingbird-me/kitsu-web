@@ -20,6 +20,9 @@ export default Route.extend(Pagination, {
       include: 'user',
       filter: { group: get(model, 'group.id') },
       page: { limit: 20 }
+    }).then((records) => {
+      this.updatePageState(records);
+      return records;
     });
   }).restartable(),
 
