@@ -39,6 +39,7 @@ export default Component.extend({
     // open sign up modal if unauthenticated
     if (!get(this, 'session.hasUser')) {
       get(this, 'session').signUpModal();
+      return false;
     }
 
     // join or leave the group
