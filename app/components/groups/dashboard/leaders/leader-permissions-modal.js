@@ -12,7 +12,7 @@ export default Component.extend(CanMixin, {
   savePermissionsTask: task(function* () {
     const promises = [];
     get(this, 'leader.permissions').forEach((permission) => {
-      if (get(permission, 'hasDirtyAttributes')) {
+      if (permission && get(permission, 'hasDirtyAttributes')) {
         promises.push(permission.save());
       }
     });
@@ -26,7 +26,7 @@ export default Component.extend(CanMixin, {
     closeModal() {
       const records = get(this, 'leader.permissions');
       records.forEach((record) => {
-        if (get(record, 'hasDirtyAttributes')) {
+        if (record && get(record, 'hasDirtyAttributes')) {
           record.rollbackAttributes();
         }
       });

@@ -56,6 +56,10 @@ export default Component.extend(Pagination, {
     },
 
     openTicketModal() {
+      if (!get(this, 'session.hasUser')) {
+        get(this, 'session').signUpModal();
+        return;
+      }
       const ticket = get(this, 'store').createRecord('group-ticket', {
         group: get(this, 'group'),
         user: get(this, 'session.account')

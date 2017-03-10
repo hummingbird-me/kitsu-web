@@ -7,6 +7,7 @@ export default Controller.extend({
   filter: 'open',
   query: null,
   group: alias('model.group'),
+  membership: alias('model.membership'),
 
   actions: {
     updateQueryParam(property, value) {
