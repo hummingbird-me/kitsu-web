@@ -65,14 +65,6 @@ module.exports = function(environment) {
       development: environment !== 'production',
       whitelistUrls: [/kitsu\.io/, /staging\.kitsu\.io/],
       ravenOptions: {
-        ignoreErrors: [
-          // Random plugins/extensions
-          'top.GLOBALS',
-          // Facebook borked
-          'fb_xd_fragment',
-          // Ember
-          'TransitionAborted'
-        ],
         ignoreUrls: [
           // Facebook flakiness
           /graph\.facebook\.com/i,
