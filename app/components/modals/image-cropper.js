@@ -25,7 +25,8 @@ export default Component.extend({
       autoCropArea: 0.5,
       scalable: false,
       minContainerWidth: 500,
-      minContainerHeight: 300
+      minContainerHeight: 300,
+      aspectRatio: get(this, 'aspectRatio') || NaN
     });
     set(this, 'cropper', cropper);
   },

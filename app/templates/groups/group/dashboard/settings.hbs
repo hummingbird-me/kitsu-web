@@ -119,6 +119,7 @@
           <div class="field-input-wrapper avatar-upload">
             {{image-form
               image=group.avatar
+              aspectRatio=1
               update=(action (mut group.avatar))}}
           </div>
         {{/groups/group-form-field}}

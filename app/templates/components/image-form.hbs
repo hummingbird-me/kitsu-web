@@ -16,6 +16,7 @@
 {{#if showCropperModal}}
   {{to-elsewhere named="modal" send=(component "modals/image-cropper"
     image=dataURI
+    aspectRatio=aspectRatio
     update=(action "updateImage")
     onClose=(action "closeModal")
   )}}
