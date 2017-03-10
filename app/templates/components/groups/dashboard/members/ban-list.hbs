@@ -10,7 +10,7 @@
         </div>
       {{else if bans}}
         {{#infinite-pagination onPagination=(action "onPagination")}}
-          {{#each bans as |ban|}}
+          {{#each (reject-by "isDeleted" true bans) as |ban|}}
             {{groups/dashboard/members/ban-list-user ban=ban tagName="tr"}}
           {{/each}}
         {{/infinite-pagination}}
