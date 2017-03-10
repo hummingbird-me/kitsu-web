@@ -10,17 +10,20 @@ import { concat } from 'client/utils/computed-macros';
 export default Component.extend({
   store: service(),
   classNames: ['group-neighbors-widget'],
-  neighbors: concat('getNeighborsTask.last.value', 'addedNeighbors'),
+  neighbors: concat('getNeighborsTask.last.value', '_addedNeighbors'),
   filteredNeighbors: filterBy('neighbors', 'isDeleted', false),
 
   init() {
     this._super(...arguments);
-    set(this, 'addedNeighbors', []);
+    set(this, '_addedNeighbors', get(this, 'addedNeighbors') || []);
   },
 
   didReceiveAttrs() {
     this._super(...arguments);
-    get(this, 'getNeighborsTask').perform();
+    if (get(this, 'groupWas') !== get(this, 'group.id')) {
+      get(this, 'getNeighborsTask').perform();
+      set(this, 'groupWas', get(this, 'group.id'));
+    }
   },
 
   getNeighborsTask: task(function* () {

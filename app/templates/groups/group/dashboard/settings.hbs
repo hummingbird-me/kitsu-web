@@ -48,12 +48,12 @@
             {{#power-select
               search=(perform searchGroupsTask)
               onchange=(action "addNeighbor")
-              placeholder="Search for Groups"
-              renderInPlace=true
+              placeholder=(t "groups.create.form.neighbors-placeholder")
               as |group|
             }}
-              {{group.name}}
+              <strong>{{group.name}}</strong>
             {{/power-select}}
+
             {{groups/group-neighbors
               group=group
               addedNeighbors=addedNeighbors

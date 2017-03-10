@@ -7,12 +7,16 @@ import { task, timeout } from 'ember-concurrency';
 import RSVP from 'rsvp';
 
 export default Controller.extend({
-  addedNeighbors: [],
   records: [],
   hoveredField: 'tagline',
   store: service(),
   group: alias('model.group'),
   isDirty: filterBy('records', 'hasDirtyAttributes'),
+
+  _neighbors: [],
+  addedNeighbors: computed('_neighbors.[]', function() {
+    return get(this, '_neighbors');
+  }).readOnly(),
 
   categories: computed('model.categories', function() {
     return get(this, 'model.categories').map(category => (
@@ -31,7 +35,7 @@ export default Controller.extend({
   searchGroupsTask: task(function* (query) {
     yield timeout(250);
     return yield get(this, 'store').query('group', {
-      filter: { query }
+      filter: { query, privacy: 'open,restricted' }
     });
   }).restartable(),
 
@@ -62,14 +66,14 @@ export default Controller.extend({
         source: get(this, 'group'),
         destination: group
       });
-      get(this, 'addedNeighbors').addObject(neighbor);
+      get(this, '_neighbors').addObject(neighbor);
       get(this, 'records').addObject(neighbor);
     },
 
     removeNeighbor(neighbor) {
       neighbor.deleteRecord();
       get(this, 'records').addObject(neighbor);
-      get(this, 'addedNeighbors').removeObject(neighbor);
+      get(this, '_neighbors').removeObject(neighbor);
     }
   }
 });
