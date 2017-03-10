@@ -474,11 +474,16 @@
   .join-button {
     margin-right: 10px;
     background: $caribbean;
-    border-color: $caribbean;
+    border: none;
     color: $white;
+    text-transform: initial;
+
     &:hover {
       color: $white;
       background: darken($caribbean, 5);
+    }
+    &.inactive {
+      background: #929292;
     }
   }
   .member-button {
