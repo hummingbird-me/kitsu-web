@@ -28,7 +28,9 @@
       class="leader-input"
       rows="1"
     }}
-    <button class="btn btn-primary" disabled={{if postMessageTask.isRunning "disabled"}} onclick={{perform postMessageTask}}>
+    <button class="btn btn-primary"
+      disabled={{unless canPost "disabled"}}
+      onclick={{perform postMessageTask}}>
       {{t "groups.dashboard.leaders.chat.post-btn"}}
     </button>
   </div>

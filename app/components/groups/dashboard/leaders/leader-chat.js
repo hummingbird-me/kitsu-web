@@ -2,6 +2,7 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
+import computed from 'ember-computed';
 import { isEmpty } from 'ember-utils';
 import { scheduleOnce } from 'ember-runloop';
 import { task } from 'ember-concurrency';
@@ -12,6 +13,10 @@ import Pagination from 'client/mixins/pagination';
 export default Component.extend(Pagination, {
   store: service(),
   messages: concat('paginatedRecords', 'getChatMessagesTask.last.value', 'newMessages'),
+
+  canPost: computed('messageContent', 'postMessageTask.isIdle', function() {
+    return get(this, 'messageContent') && get(this, 'postMessageTask.isIdle');
+  }).readOnly(),
 
   init() {
     this._super(...arguments);
