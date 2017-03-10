@@ -141,7 +141,8 @@ module.exports = function(environment) {
 
   // Staging app @ Heroku
   if (process.env.HEROKU_EMBER_APP === 'staging') {
-    ENV.APP.APIHost = 'https://staging.kitsu.io';
+    // @TODO: Switch back
+    ENV.APP.APIHost = 'https://groups-staging.kitsu.io/';
     ENV.sentry.dsn = 'https://cd7634b1400644688ff55bda89171367@sentry.io/125035';
   }
 
