@@ -28,6 +28,19 @@
           <hr class="ruler">
         {{/groups/group-form-field}}
 
+        {{! Rules }}
+        {{#groups/group-form-field id="form-rules" onHover=(action (mut hoveredField) "rules")}}
+          <span class="field-title">{{t "groups.create.form.rules"}}</span>
+          <div class="field-input-wrapper">
+            {{expanding-textarea group.rules
+              update=(action (mut group.rules))
+              class="form-control"
+            }}
+          </div>
+          <hr class="ruler">
+        {{/groups/group-form-field}}
+
+
         {{! Neighbors }}
         {{#groups/group-form-field id="form-neighbors" onHover=(action (mut hoveredField) "neighbors")}}
           <span class="field-title">{{t "groups.create.form.neighbors"}}</span>
