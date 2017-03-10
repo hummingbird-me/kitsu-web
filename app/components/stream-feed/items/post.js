@@ -116,18 +116,20 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     }
 
     // groups
-    const group = post.belongsTo('targetGroup').value();
-    if (group) {
-      if (get(this, 'kitsuGroupMembership')) {
-        set(this, 'groupMembership', get(this, 'kitsuGroupMembership'));
-      } else {
-        get(this, 'store').query('group-member', {
-          filter: { group, user: get(this, 'session.account') },
-          include: 'permissions'
-        }).then((records) => {
-          const record = get(records, 'firstObject');
-          set(this, 'groupMembership', record);
-        }).catch(() => {});
+    if (post) {
+      const group = post.belongsTo('targetGroup').value();
+      if (group) {
+        if (get(this, 'kitsuGroupMembership')) {
+          set(this, 'groupMembership', get(this, 'kitsuGroupMembership'));
+        } else {
+          get(this, 'store').query('group-member', {
+            filter: { group, user: get(this, 'session.account') },
+            include: 'permissions'
+          }).then((records) => {
+            const record = get(records, 'firstObject');
+            set(this, 'groupMembership', record);
+          }).catch(() => {});
+        }
       }
     }
 
