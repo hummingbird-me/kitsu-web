@@ -3,36 +3,8 @@
     {{! Invites }}
     {{groups/dashboard/members/invite-list group=group class="leader-chat pending-invites"}}
 
-    <div class="leader-table-card card banned-members">
-      <div class="leader-chat--header">
-        <h6>Banned Users</h6>
-      </div>
-      <div class="leader-table-wrapper">
-        <table class="leader-table">
-          <tbody>
-            <tr id="ember1859" class="ember-view">
-              <th scope="row">
-                <img data-test-selector="lazy-image" src="/images/default_avatar.png">
-              </th>
-              <td class="leader-name">
-                Josh
-              </td>
-              <td class="edit-leader">
-                <a href="#" data-ember-action="" data-ember-action-1862="1862">
-                  Unban
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="leader-chat--footer add-leader">
-        <input placeholder="Username" type="text" class="leader-input">
-        <button class="btn btn-primary">
-            Ban
-        </button>
-      </div>
-    </div>
+    {{! Bans }}
+    {{groups/dashboard/members/ban-list group=group class="leader-table-card card banned-members"}}
   </div>
 
   <div class="row audit-row member-list">

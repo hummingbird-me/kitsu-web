@@ -11,20 +11,20 @@ export default Component.extend(Pagination, {
   intl: service(),
   notify: service(),
   store: service(),
-  invites: concat('getInvitesTask.last.value', 'paginatedRecords'),
+  bans: concat('getBansTask.last.value', 'paginatedRecords'),
 
   init() {
     this._super(...arguments);
-    get(this, 'getInvitesTask').perform();
+    get(this, 'getBansTask').perform();
   },
 
-  canInvite: computed('inviteUser', 'inviteUserTask.isIdle', function() {
-    return get(this, 'inviteUser') && get(this, 'inviteUserTask.isIdle');
+  canBan: computed('banUser', 'banUserTask.isIdle', function() {
+    return get(this, 'banUser') && get(this, 'banUserTask.isIdle');
   }).readOnly(),
 
-  getInvitesTask: task(function* () {
-    return yield get(this, 'store').query('group-invite', {
-      filter: { group: get(this, 'group.id'), status: 'pending' },
+  getBansTask: task(function* () {
+    return yield get(this, 'store').query('group-ban', {
+      filter: { group: get(this, 'group.id') },
       include: 'user'
     }).then((records) => {
       this.updatePageState(records);
@@ -39,16 +39,16 @@ export default Component.extend(Pagination, {
     });
   }).restartable(),
 
-  inviteUserTask: task(function* () {
-    const user = get(this, 'inviteUser');
-    const invite = get(this, 'store').createRecord('group-invite', {
+  banUserTask: task(function* () {
+    const user = get(this, 'banUser');
+    const ban = get(this, 'store').createRecord('group-ban', {
       group: get(this, 'group'),
-      sender: get(this, 'session.account'),
+      moderator: get(this, 'session.account'),
       user
     });
-    yield invite.save().then(() => {
-      set(this, 'inviteUser', null);
-      get(this, 'paginatedRecords').addObject(invite);
+    yield ban.save().then(() => {
+      set(this, 'banUser', null);
+      get(this, 'paginatedRecords').addObject(ban);
     }).catch(() => {
       get(this, 'notify').error(get(this, 'intl').t('errors.request'));
     });
