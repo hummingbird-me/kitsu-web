@@ -1,5 +1,9 @@
 <th scope="row">{{lazy-image src=(image invite.user.avatar "small")}}</th>
-<td class="leader-name">{{invite.user.name}}</td>
+<td class="leader-name">
+  <a href={{href-to "users.index" invite.user.name}}>
+    {{invite.user.name}}
+  </a>
+</td>
 <td class="invite-time">
   {{t "groups.dashboard.members.invites.invited"}}
   {{format-relative invite.createdAt interval=1000}}
