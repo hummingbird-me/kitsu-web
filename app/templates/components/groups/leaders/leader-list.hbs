@@ -47,9 +47,13 @@
     </button>
   {{else}}
     {{#unless (and session.hasUser (can "view dashboard for group" membership=membership))}}
-      <button class="btn btn-primary message-leaders" {{action "openTicketModal"}}>
-        {{t "groups.leaders.list.message-btn"}}
-      </button>
+      {{#if membership}}
+        <button class="btn btn-primary message-leaders" {{action "openTicketModal"}}>
+          {{t "groups.leaders.list.message-btn"}}
+        </button>
+      {{else}}
+        {{groups/member-button class="w-100" group=group membership=membership}}
+      {{/if}}
     {{else}}
       <div class="text-xs-center font-italic w-100">
         {{t "groups.leaders.list.message-leader"}}
