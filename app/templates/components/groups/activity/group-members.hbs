@@ -13,5 +13,7 @@
       </a>
     {{/each}}
   </div>
-  <a href={{href-to "groups.group.group-page.members"}}>{{t "groups.activity.view-members"}}</a>
+  {{#if (gt getMembersTask.last.value.meta.count 14)}}
+    <a href={{href-to "groups.group.group-page.members"}}>{{t "groups.activity.view-members"}}</a>
+  {{/if}}
 {{/if}}
