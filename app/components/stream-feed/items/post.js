@@ -116,7 +116,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     }
 
     // groups
-    if (post) {
+    if (get(post, 'id')) {
       const group = post.belongsTo('targetGroup').value();
       if (group) {
         if (get(this, 'kitsuGroupMembership')) {
