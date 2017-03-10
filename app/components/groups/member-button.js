@@ -6,13 +6,16 @@ import { bool } from 'ember-computed';
 import { task, taskGroup } from 'ember-concurrency';
 
 export default Component.extend({
-  store: service(),
-  router: service('-routing'),
   tagName: 'button',
   classNames: ['button', 'button--primary'],
   classNameBindings: ['isMemberOfGroup:inactive'],
   attributeBindings: ['groupTasks.isRunning:disabled', 'href'],
   memberRecord: null,
+
+  intl: service(),
+  notify: service(),
+  store: service(),
+  router: service('-routing'),
   isMemberOfGroup: bool('memberRecord'),
   groupTasks: taskGroup(),
 
@@ -45,15 +48,18 @@ export default Component.extend({
         // If this is a closed group, it is not meant to be visible to users not in the group
         // so redirect the user who just left to the dashboard.
         if (get(this, 'group.isClosed')) {
-          get(this, 'router').transitionTo('dashboard');
+          get(this, 'router').transitionTo('groups.index');
         }
       }).catch(() => {
+        get(this, 'notify').error(get(this, 'intl').t('errors.request'));
         get(this, 'memberRecord').rollbackAttributes();
       });
     } else {
       get(this, 'joinGroupTask').perform().then((record) => {
         this._updateMemberState(record);
-      }).catch(() => {});
+      }).catch(() => {
+        get(this, 'notify').error(get(this, 'intl').t('errors.request'));
+      });
     }
 
     return false;
