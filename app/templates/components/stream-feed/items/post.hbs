@@ -23,6 +23,13 @@
             </a>
           {{/unless}}
         {{/if}}
+        {{#if post.targetGroup}}
+          {{#unless kitsuGroup}}
+            <a href={{href-to "groups.group.group-page.index" post.targetGroup.slug}} class="author-avatar recipient-avatar" onclick={{action "trackEngagement" "click"}}>
+              {{lazy-image src=(image post.targetGroup.avatar "medium")}}
+            </a>
+          {{/unless}}
+        {{/if}}
       </span>
 
       {{! Author(s) }}
@@ -40,6 +47,18 @@
                 {{post.targetUser.name}}
               </a>
               {{user-badge post.targetUser}}
+            </span>
+          {{/unless}}
+        {{/if}}
+
+        {{#if post.targetGroup}}
+          {{#unless kitsuGroup}}
+            <span class="recipient-info">
+              <small>to</small>
+              <a href={{href-to "groups.group.group-page.index" post.targetGroup.slug}} class="author-name" onclick={{action "trackEngagement" "click"}}>
+                {{post.targetGroup.name}}
+              </a>
+              <span class="tag tag-default role-tag">Group</span>
             </span>
           {{/unless}}
         {{/if}}
