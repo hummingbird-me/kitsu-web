@@ -60,6 +60,13 @@ export default Component.extend({
     markClosed() {
       if (get(this, 'updateStatusTask.isRunning')) { return; }
       get(this, 'updateStatusTask').perform('closed');
+    },
+
+    onEnter(component, event) {
+      const { metaKey, ctrlKey } = event;
+      if (metaKey === true || ctrlKey === true) {
+        get(this, 'postMessageTask').perform();
+      }
     }
   },
 

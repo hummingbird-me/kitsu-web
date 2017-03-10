@@ -58,6 +58,9 @@
         {{/unless}}
         {{expanding-textarea replyContent
           update=(action (mut replyContent))
+          keyEvents=(hash
+            13=(action "onEnter")
+          )
           placeholder=(t "groups.tickets.conversation.reply-placeholder")
           class="ticket-input"}}
         <button disabled={{if postMessageTask.isRunning "disabled"}} onclick={{perform postMessageTask}}>
