@@ -5,7 +5,13 @@
     {{#if group.rules}}
       {{html-safe group.rulesFormatted}}
     {{else}}
-      {{t "errors.contentEmpty"}}
+      <p>
+      {{#if (can "manage settings for group" membership=membership)}}
+        {{t-html "groups.rules.empty-leader" link=(href-to "groups.group.dashboard.settings")}}
+      {{else}}
+        {{t-html "groups.rules.empty" link=(href-to "groups.group.group-page.leaders")}}
+      {{/if}}
+      </p>
     {{/if}}
   </div>
 </div>
