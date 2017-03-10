@@ -9,7 +9,7 @@ import Pagination from 'client/mixins/pagination';
 export default Component.extend(Pagination, {
   filterOptions: ['open', 'resolved', 'all'],
   store: service(),
-  tickets: concat('getTicketsTask.last.value', 'paginatedRecords'),
+  tickets: concat('getTicketsTask.last.value', 'paginatedRecords', 'addedTickets'),
 
   didReceiveAttrs() {
     this._super(...arguments);

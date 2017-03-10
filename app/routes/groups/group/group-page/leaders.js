@@ -1,5 +1,6 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
+import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 
 export default Route.extend({
@@ -11,6 +12,11 @@ export default Route.extend({
 
   model() {
     return this.modelFor('groups.group.group-page');
+  },
+
+  setupController(controller) {
+    this._super(...arguments);
+    set(controller, '_addedTickets', []);
   },
 
   titleToken() {
