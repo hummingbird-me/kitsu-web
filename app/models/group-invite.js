@@ -8,6 +8,7 @@ export default Base.extend({
   acceptedAt: attr('utc'),
   createdAt: attr('utc'),
   declinedAt: attr('utc'),
+  rejectedAt: attr('utc'),
 
   group: belongsTo('group'),
   sender: belongsTo('user'),

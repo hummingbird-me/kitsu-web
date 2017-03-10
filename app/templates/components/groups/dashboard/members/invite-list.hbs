@@ -12,7 +12,7 @@
           </div>
         {{else if invites}}
           {{#infinite-pagination onPagination=(action "onPagination")}}
-            {{#each invites as |invite|}}
+            {{#each (reject-by "rejectedAt" invites) as |invite|}}
               {{groups/dashboard/members/invite-list-user invite=invite tagName="tr"}}
             {{/each}}
           {{/infinite-pagination}}

@@ -8,8 +8,6 @@
   <a href="#" {{action (perform revokeInviteTask)}}>
     {{#if revokeInviteTask.isRunning}}
       {{loading-spinner size="small"}}
-    {{else if isRevoked}}
-      {{t "groups.dashboard.members.invites.revoked"}}
     {{else}}
       {{t "groups.dashboard.members.invites.revoke"}}
     {{/if}}

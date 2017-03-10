@@ -4,6 +4,7 @@ export default ApplicationSerializer.extend({
   attrs: {
     acceptedAt: { serialize: false },
     createdAt: { serialize: false },
-    declinedAt: { serialize: false }
+    declinedAt: { serialize: false },
+    rejectedAt: { serialize: false }
   }
 });
