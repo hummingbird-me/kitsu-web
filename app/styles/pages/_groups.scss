@@ -1054,3 +1054,52 @@ $primary: #00cc99;
     }
   }
 }
+
+
+
+// Groups widget
+
+.my-groups-widget {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  margin-bottom: 30px;
+  position: relative;
+  .joined-group a {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    color: $charcoal;
+    padding: 5px;
+    &:hover {
+      background: #f5f5f5;
+    }
+  }
+  .view-more a {
+    text-align: center;
+    display: block;
+    color: initial;
+    font-size: 12px;
+  }
+  .group-name {
+    flex: 1;
+    font-weight: 700;
+  }
+  .unread-counter {
+    position: absolute;
+    right: 5px;
+    color: #909090;
+  }
+  .group-avatar {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+  }
+  .lazy-image {
+    display: inline-block;
+  }
+  img {
+    width: 25px;
+    height: 25px;
+    border-radius: 3px;
+  }
+}

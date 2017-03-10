@@ -6,17 +6,26 @@
 {{else if getGroupsTask.last.error}}
   <p>{{t "errors.load"}}</p>
 {{else if getGroupsTask.last.value}}
-  {{#each getGroupsTask.last.value as |group|}}
-    <div class="card group-neighbor-item">
-      <div class="media">
-        {{lazy-image src=(image group.avatar "small") imgClass="avatar-image--small"}}
-        <div class="media-body">
-          <h5>{{group.name}}</h5>
-          {{group.tagline}}
-        </div>
-      </div>
-    </div>
-  {{/each}}
+  <ul class="my-groups-widget">
+    {{#each getGroupsTask.last.value as |group|}}
+      {{! Show 8 most recently updated groups, along with count of updates they've missed }}
+      <li class="joined-group">
+        <a href="#">
+          <span class="group-avatar">
+            {{lazy-image src=(image group.avatar "small") imgClass="avatar-image--small"}}
+          </span>
+          <span class="group-name">{{group.name}}</span>
+          {{! Max value should display as 99+ }}
+          <span class="unread-counter">12</span>
+        </a>
+      </li>
+
+    {{/each}}
+    {{! @vevix - Only show view all link if user is in more than 8 groups }}
+    <li class="joined-group view-more">
+      <a href="#">view all</a>
+    </li>
+  </ul>
 {{else}}
   <p>{{t "errors.contentEmpty"}}</p>
 {{/if}}
