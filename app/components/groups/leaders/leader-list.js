@@ -2,8 +2,8 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import { isEmpty } from 'ember-utils';
-import { task } from 'ember-concurrency';
+import computed from 'ember-computed';
+import { task, timeout } from 'ember-concurrency';
 import { concat } from 'client/utils/computed-macros';
 import Pagination from 'client/mixins/pagination';
 
@@ -13,6 +13,10 @@ export default Component.extend(Pagination, {
   notify: service(),
   store: service(),
   leaders: concat('getLeadersTask.last.value', 'paginatedRecords'),
+
+  canAdd: computed('userToAdd', 'findGroupMemberTask.isIdle', function() {
+    return get(this, 'userToAdd') && get(this, 'findGroupMemberTask.isIdle');
+  }).readOnly(),
 
   init() {
     this._super(...arguments);
@@ -33,9 +37,15 @@ export default Component.extend(Pagination, {
     });
   }),
 
+  searchUsersTask: task(function* (query) {
+    yield timeout(250);
+    return yield get(this, 'store').query('user', {
+      filter: { query }
+    });
+  }).restartable(),
+
   findGroupMemberTask: task(function* () {
-    const username = get(this, 'userToAdd');
-    if (isEmpty(username)) { return; }
+    const username = get(this, 'userToAdd.name');
     const member = yield get(this, 'store').query('group-member', {
       filter: { query: username },
       include: 'user,permissions',

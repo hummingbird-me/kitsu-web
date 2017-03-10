@@ -24,12 +24,21 @@
 
 <div class="leader-chat--footer add-leader">
   {{#if isManaging}}
-    {{one-way-input
-      update=(action (mut userToAdd))
-      class="leader-input"
+    {{#power-select
+      selected=userToAdd
+      allowClear=true
+      search=(perform searchUsersTask)
+      onchange=(action (mut userToAdd))
       placeholder=(t "groups.leaders.list.add-placeholder")
+      triggerClass="leader-input"
+      as |user|
     }}
-    <button class="btn btn-primary" onclick={{perform findGroupMemberTask}}>
+      <strong>{{user.name}}</strong>
+    {{/power-select}}
+
+    <button class="btn btn-primary"
+      disabled={{unless canAdd "disabled"}}
+      onclick={{perform findGroupMemberTask}}>
       {{#if findGroupMemberTask.isRunning}}
         {{loading-spinner size="small"}}
       {{else}}
