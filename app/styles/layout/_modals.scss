@@ -1,8 +1,4 @@
 // Yikes! This file needs a lot of cleaning! - Josh
-.modal {
-  z-index: 10000;
-}
-
 #edit-profile-modal {
   .modal-header, .modal.body {
     padding: 0;
@@ -267,6 +263,9 @@
     text-align: right;
   }
 
+  .float-right {
+    float: right;
+  }
   .ticket {
     border-radius: 3px;
     font-size: 14px;
@@ -280,11 +279,14 @@
       border-top-left-radius: 3px;
       border-top-right-radius: 3px;
       border-bottom: 1px solid #ddd;
+      position: absolute;
       background: #fff;
       width: 100%;
       z-index: 1;
+      top: 0;
 
       img {
+        float: left;
         width: 55px;
         border-radius: 999em;
       }
@@ -311,7 +313,7 @@
             background: #fafafa;
           }
         }
-        .resolve-ticket {
+        .close-ticket {
           background: $caribbean;
           border: 1px solid $caribbean;
           color: $white;
@@ -322,11 +324,17 @@
           }
         }
       }
+
+      .fa-star {
+        float: right;
+        color: #D8DADF;
+        font-size: 20px;
+        margin-top: 12px;
+      }
     }
 
     .ticket-history {
-      padding: 20px;
-      padding-bottom: 280px;
+      padding: 120px 30px 500px;
       background: #f5f5f5;
       border-bottom: 1px solid #ddd;
       overflow-y: scroll;
@@ -361,19 +369,17 @@
 
       .leader-message {
         background: #86BB71;
-        float: right;
       }
 
       .other-message {
         background: #7fafdc;
       }
-
       .mod-note {
         background: #f9eab0;
         border: 1px dashed #e2bb7e;
         color: #886c40;
-        float: right;
       }
+
     }
 
     .ticket-message {
@@ -396,6 +402,15 @@
         margin-bottom: 10px;
         border-radius: 5px;
         resize: none;
+        max-height: 150px;
+        overflow: auto !important;
+      }
+
+      .fa-file-o, .fa-file-image-o {
+        font-size: 16px;
+        color: gray;
+        cursor: pointer;
+
       }
 
       .nav {
@@ -438,6 +453,7 @@
   height: 100%;
   position: relative;
   overflow: hidden;
+
   .leader-permission--header {
     text-align: center;
     border-bottom: 1px solid #ddd;
