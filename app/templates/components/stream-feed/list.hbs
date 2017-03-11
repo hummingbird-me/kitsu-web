@@ -6,6 +6,12 @@
     user=user
     onCreate=(perform createPost)
   }}
+{{else if kitsuGroup}}
+  <div class="card m-b-2">
+    <div class="card-block text-xs-center">
+      {{t "groups.activity.feed-restricted"}}
+    </div>
+  </div>
 {{/unless}}
 
 <div class="feed-actions clearfix {{if hidePostEditor "is-hidden"}}">
