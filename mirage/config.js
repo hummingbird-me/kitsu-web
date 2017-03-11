@@ -32,6 +32,8 @@ function _defineRoutes(server) {
   server.get('/trending/:namespace', { data: [] });
   server.get('/castings', { data: [] });
   server.get('/favorites', { data: [] });
+
+  server.get('/group-members', { data: [] });
 }
 
 // test

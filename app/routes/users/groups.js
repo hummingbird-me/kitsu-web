@@ -30,7 +30,7 @@ export default Route.extend(Pagination, {
     this._super(groupRecords);
   },
 
-  getGroupsTask: task(function* ({ category, sort, query }) {
+  getGroupsTask: task(function* ({ sort }) {
     const user = this.modelFor('users');
     const options = {
       filter: { user: get(user, 'id') },
