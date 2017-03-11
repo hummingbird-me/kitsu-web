@@ -25,7 +25,7 @@
         {{/if}}
         {{#if post.targetGroup}}
           {{#unless kitsuGroup}}
-            <a href={{href-to "groups.group.group-page.index" post.targetGroup.slug}} class="author-avatar recipient-avatar" onclick={{action "trackEngagement" "click"}}>
+            <a href={{href-to "groups.group.group-page.index" post.targetGroup.slug}} class="author-group-avatar recipient-avatar" onclick={{action "trackEngagement" "click"}}>
               {{lazy-image src=(image post.targetGroup.avatar "medium")}}
             </a>
           {{/unless}}

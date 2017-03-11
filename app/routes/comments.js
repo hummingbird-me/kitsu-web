@@ -9,7 +9,7 @@ export default Route.extend(DataErrorMixin, {
 
   model({ id }) {
     return get(this, 'store').findRecord('comment', id, {
-      include: 'user,parent,post,post.user,post.targetUser,post.media',
+      include: 'user,parent,post,post.user,post.targetUser,post.targetGroup,post.media',
       reload: true
     });
   },
