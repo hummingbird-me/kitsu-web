@@ -20,7 +20,7 @@ export default Component.extend(Pagination, {
     const query = get(this, 'query');
     return yield get(this, 'store').query('group-ticket', {
       filter: {
-        query_group: get(this, 'group.id'),
+        group: get(this, 'group.id'),
         query: isPresent(query) ? query : undefined,
         user: get(this, 'peronsalTickets') ? get(this, 'session.account.id') : undefined,
         status: this._getRealStatus()
