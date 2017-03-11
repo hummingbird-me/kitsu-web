@@ -11,7 +11,7 @@
 <td>
   <span>
     {{#unless (is-self member.user)}}
-      <button class="btn btn-sm btn-danger hint--rounded hint--bounce hint--top" aria-label={{t "groups.dashboard.members.members.remove"}}
+      <button class="btn btn-sm btn-danger"
         disabled={{if actionsTaskGroup.isRunning "disabled"}}
         onclick={{perform removeMemberTask}}>
         {{#if removeMemberTask.isRunning}}
@@ -21,5 +21,18 @@
         {{/if}}
       </button>
     {{/unless}}
+
+    <button class="btn btn-sm btn-primary"
+      disabled={{if actionsTaskGroup.isRunning "disabled"}}
+      onclick={{action (toggle "permissionsModal" this)}}>
+      Leader
+    </button>
   </span>
 </td>
+
+{{#if permissionsModal}}
+  {{to-elsewhere named="modal" send=(component "groups/dashboard/leaders/leader-permissions-modal"
+    leader=member
+    onClose=(toggle-action "permissionsModal" this)
+  )}}
+{{/if}}
