@@ -36,7 +36,7 @@
     {{else if groups}}
       {{#infinite-pagination onPagination=(action "onPagination")}}
         {{#each groups as |group|}}
-          {{groups/group-result group=group tagName="li"}}
+          {{groups/group-result group=group categoryRoute=categoryRoute tagName="li"}}
         {{/each}}
       {{/infinite-pagination}}
     {{else}}

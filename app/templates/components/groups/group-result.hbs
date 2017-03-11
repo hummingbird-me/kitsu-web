@@ -8,7 +8,7 @@
     <div class="group-result-meta">
       <div class="group-result-category">
         {{groups/member-button group=group class="join-button" tagName="a" href="#"}}
-        <a class="category-button" href={{href-to "groups.index" (query-params category=group.category.slug)}}>
+        <a class="category-button" href={{href-to categoryRoute (query-params category=group.category.slug)}}>
           <div class="button-wrapper">{{group.category.name}}</div>
         </a>
       </div>

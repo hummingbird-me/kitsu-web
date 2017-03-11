@@ -1,6 +1,7 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
+import { isPresent } from 'ember-utils';
 import { task } from 'ember-concurrency';
 import Pagination from 'client/mixins/pagination';
 
@@ -30,11 +31,15 @@ export default Route.extend(Pagination, {
     this._super(groupRecords);
   },
 
-  getGroupsTask: task(function* ({ sort }) {
+  getGroupsTask: task(function* ({ category, sort, query }) {
     const user = this.modelFor('users');
     const options = {
-      filter: { user: get(user, 'id') },
-      sort: this._getRealSort(sort),
+      filter: {
+        user: get(user, 'id'),
+        group_name: isPresent(query) ? query : undefined,
+        group_category: category !== 'all' ? category : undefined,
+      },
+      sort: isPresent(query) ? undefined : this._getRealSort(sort),
       include: 'group.category'
     };
     return yield get(this, 'store').query('group-member', options).then((records) => {
