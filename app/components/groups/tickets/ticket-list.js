@@ -25,8 +25,8 @@ export default Component.extend(Pagination, {
         user: get(this, 'peronsalTickets') ? get(this, 'session.account.id') : undefined,
         status: this._getRealStatus()
       },
-      include: 'user,messages.user',
-      sort: '-created_at'
+      include: 'user',
+      sort: isPresent(query) ? undefined : '-created_at'
     }).then((records) => {
       this.updatePageState(records);
       return records;

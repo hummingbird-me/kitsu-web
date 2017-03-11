@@ -1,13 +1,12 @@
 <div class="card">
   <div class="group-result-header">
-    {{!--
     <span class="result-filter-wrapper">
       {{search-input
         update=(action updateQueryParam "query")
         placeholder=(t "groups.tickets.search")
         icon=true}}
     </span>
-    --}}
+
     <span class="result-sort-wrapper">
       {{#bootstrap/bs-dropdown as |dropdown|}}
         {{#dropdown.button type="button--dark-outline" class="button--small"}}

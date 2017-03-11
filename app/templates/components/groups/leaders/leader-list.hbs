@@ -24,7 +24,6 @@
 
 <div class="leader-chat--footer add-leader">
   {{#if isManaging}}
-    {{!--
     {{#power-select
       selected=userToAdd
       allowClear=true
@@ -46,7 +45,6 @@
         {{t "groups.leaders.list.add-btn"}}
       {{/if}}
     </button>
-    --}}
   {{else}}
     {{#unless (and session.hasUser (can "view dashboard for group" membership=membership))}}
       {{#if membership}}
