@@ -5,8 +5,10 @@ import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import { CanMixin } from 'ember-can';
 import RSVP from 'rsvp';
+import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend(CanMixin, {
+  notify: service(),
   store: service(),
 
   savePermissionsTask: task(function* () {
@@ -19,6 +21,8 @@ export default Component.extend(CanMixin, {
     yield RSVP.all(promises).then(() => {
       invokeAction(this, 'onSave');
       this._closeModal();
+    }).catch((error) => {
+      get(this, 'notify').error(errorMessages(error));
     });
   }),
 

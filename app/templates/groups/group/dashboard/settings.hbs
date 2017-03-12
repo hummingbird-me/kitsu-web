@@ -136,9 +136,9 @@
 
 
         <div class="form-group clearfix">
-          {{#if showError}}
+          {{#if errorMessage}}
             <div class="alert alert-danger">
-              <p>{{t "errors.request"}}</p>
+              <p>{{errorMessage}}</p>
             </div>
           {{/if}}
           <button class="button button--primary group-create-cta" disabled={{unless isValid "disabled"}} onclick={{perform saveRecordsTask}}>

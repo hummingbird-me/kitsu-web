@@ -4,6 +4,7 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import computed, { alias, filterBy } from 'ember-computed';
 import { task, timeout } from 'ember-concurrency';
+import errorMessages from 'client/utils/error-messages';
 import RSVP from 'rsvp';
 
 export default Controller.extend({
@@ -46,7 +47,7 @@ export default Controller.extend({
   }).restartable(),
 
   saveRecordsTask: task(function* () {
-    set(this, 'showError', false);
+    set(this, 'errorMessage', null);
     const records = get(this, 'records');
     const saving = records.filterBy('hasDirtyAttributes').map(record => record.save());
     return yield new RSVP.Promise((resolve, reject) => {
@@ -54,8 +55,8 @@ export default Controller.extend({
         const failed = data.filterBy('state', 'rejected');
         return failed.length > 0 ? reject(failed) : resolve();
       });
-    }).catch(() => {
-      set(this, 'showError', true);
+    }).catch((error) => {
+      set(this, 'errorMessage', errorMessages(error));
     });
   }),
 
