@@ -12,6 +12,7 @@ const {
 } = Ember;
 
 export default Mixin.create({
+  paginationKey: 'next',
   store: service(),
 
   hasNextPage: computed('internalPageState.hasNextPage', function() {
@@ -28,10 +29,11 @@ export default Mixin.create({
   },
 
   updatePageState(records) {
-    const hasNextPage = 'next' in (get(records, 'links') || {});
+    const key = get(this, 'paginationKey');
+    const hasNextPage = key in (get(records, 'links') || {});
     set(this, 'internalPageState.hasNextPage', hasNextPage);
     set(this, 'internalPageState.nextPageLink', hasNextPage ?
-      get(records, 'links.next') : null);
+      get(records, `links.${key}`) : null);
   },
 
   onPagination(records) {

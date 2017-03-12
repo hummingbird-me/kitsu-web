@@ -5,8 +5,9 @@ import { invokeAction } from 'ember-invoke-action';
 import { task, timeout } from 'ember-concurrency';
 
 export default Component.extend({
-  delay: 1000,
+  delay: 250,
   dirtyText: undefined,
+  showIcon: true,
 
   didReceiveAttrs() {
     this._super(...arguments);

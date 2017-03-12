@@ -55,6 +55,12 @@ export default Component.extend({
         }
         break;
       }
+      case 'GroupInvite': {
+        if (isPresent(modelId)) {
+          return hrefTo(this, 'group-invite', modelId, queryParams);
+        }
+        return '#';
+      }
       default: {
         return '#';
       }

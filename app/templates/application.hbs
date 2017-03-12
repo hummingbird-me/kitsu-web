@@ -7,6 +7,13 @@
 {{/if}}
 
 {{! content }}
+<div class="container global-container">
+  <div class="row global-row">
+    {{outlet}}
+  </div>
+</div>
+
+{{!--
 {{#if (or session.hasUser (not isStaging))}}
   <div class="container global-container">
     <div class="row global-row">
@@ -34,6 +41,7 @@
       onClose=(toggle-action "authOpened" this))}}
   {{/if}}
 {{/if}}
+--}}
 
 {{from-elsewhere name="modal"}}
 {{ember-notify messageStyle="bootstrap" closeAfter=3000}}

@@ -1,0 +1,20 @@
+{{! Rules Page }}
+<div class="container group-community-rules">
+  <div class="row">
+    <h2>{{t "groups.rules.header" group=group.name}}</h2>
+    {{#if group.rules}}
+      {{html-safe group.rulesFormatted}}
+    {{else}}
+      <p>
+      {{#if (can "manage settings for group" membership=membership)}}
+        <p class="m-b-2">
+          {{t-html "groups.rules.empty" link=(href-to "groups.group.dashboard.settings")}}
+        </p>
+        {{markdown-to-html markdown=(fr-markdown-file "community-guidelines")}}
+      {{else}}
+        {{markdown-to-html markdown=(fr-markdown-file "community-guidelines")}}
+      {{/if}}
+      </p>
+    {{/if}}
+  </div>
+</div>

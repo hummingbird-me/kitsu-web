@@ -1,10 +1,12 @@
-{{#if icon}}
-  {{svg-jar "search"}}
+{{#if showIcon}}
+  <label class="filter-icon">
+    <span>{{svg-jar "search" fill="#bbb"}}</span>
+  </label>
 {{/if}}
 
 {{one-way-search dirtyText
   update=(perform updateTask)
   disabled=disabled
   placeholder=placeholder
-  class="form-control"
+  class=inputClass
 }}

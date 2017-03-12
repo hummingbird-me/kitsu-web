@@ -1,12 +1,14 @@
 {{search-input
   text=value
+  showIcon=showIcon
+  inputClass="form-control"
   update=(action "update")
   disabled=disabled
   placeholder=placeholder}}
 
 {{#if request.isRunning}}
   <div class="text-xs-center">
-    {{loading-spinner}}
+    {{loading-spinner size="small"}}
   </div>
 {{else}}
   {{#if (and items isOpened)}}
