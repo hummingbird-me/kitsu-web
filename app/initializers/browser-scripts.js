@@ -18,6 +18,19 @@ export function initialize() {
     window.Canny = canny;
     injectScript('https://canny.io/sdk.js').catch(() => {});
   }
+
+  // Kill service workers
+  if (canUseDOM) {
+    if (window.navigator && window.navigator.serviceWorker) {
+      window.navigator.serviceWorker.getRegistrations().then((workers) => {
+        workers.forEach((worker) => {
+          if (worker.scope === 'https://kitsu.io/') {
+            worker.unregister();
+          }
+        });
+      });
+    }
+  }
 }
 
 export default {
