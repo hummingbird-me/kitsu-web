@@ -7,6 +7,7 @@ export default Base.extend({
   status: attr('string'),
 
   assignee: belongsTo('user'),
+  firstMessage: belongsTo('group-ticket-message'),
   group: belongsTo('group'),
   user: belongsTo('user'),
 

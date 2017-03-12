@@ -36,7 +36,7 @@
     {{else if tickets}}
       {{#infinite-pagination onPagination=(action "onPagination")}}
         {{#each tickets as |ticket|}}
-          {{groups/tickets/ticket-item
+          {{groups/tickets/ticket-list-item
             isPersonalTicket=isPersonalTicket
             ticket=ticket
             tagName="li"}}

@@ -14,8 +14,8 @@ export default Component.extend({
 
   getLatestTicketsTask: task(function* () {
     return yield get(this, 'store').query('group-ticket', {
-      filter: { query_group: get(this, 'group.id') },
-      include: 'user,messages',
+      filter: { group: get(this, 'group.id') },
+      include: 'user,firstMessage',
       sort: '-created_at',
       page: { limit: 3 }
     });

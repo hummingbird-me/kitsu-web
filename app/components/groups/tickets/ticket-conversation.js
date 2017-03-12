@@ -6,19 +6,39 @@ import { isEmpty } from 'ember-utils';
 import { scheduleOnce } from 'ember-runloop';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
+import { concat } from 'client/utils/computed-macros';
+import Pagination from 'client/mixins/pagination';
 /* global autosize */
 
-export default Component.extend({
+export default Component.extend(Pagination, {
   activeTab: 'message',
   store: service(),
+  messages: concat('paginatedRecords', 'getMessagesTask.last.value', 'newMessages'),
 
-  didInsertElement() {
+  init() {
     this._super(...arguments);
-    this.$('.modal').on('shown.bs.modal', () => {
-      this._scrollToBottom();
-      this.$('.modal').off('shown.bs.modal');
-    });
+    set(this, 'newMessages', []);
+    get(this, 'getMessagesTask').perform().then(() => {
+      scheduleOnce('afterRender', () => {
+        this._scrollToBottom();
+      });
+    }).catch(() => {});
   },
+
+  onPagination(records) {
+    this._super(records.toArray().reverse());
+  },
+
+  getMessagesTask: task(function* () {
+    return yield get(this, 'store').query('group-ticket-message', {
+      filter: { ticket: get(this, 'ticket.id') },
+      include: 'user',
+      sort: '-created_at'
+    }).then((records) => {
+      this.updatePageState(records);
+      return records.toArray().reverse();
+    });
+  }),
 
   postMessageTask: task(function* () {
     const content = get(this, 'replyContent');
@@ -36,9 +56,7 @@ export default Component.extend({
       kind
     });
     yield message.save().then(() => {
-      if (get(this, 'isNewTicket')) {
-        this.$('.modal').modal('hide');
-      }
+      get(this, 'newMessages').addObject(message);
       set(this, 'replyContent', '');
       scheduleOnce('afterRender', () => {
         this._scrollToBottom();

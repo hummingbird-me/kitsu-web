@@ -3,7 +3,7 @@
     {{lazy-image src=(image ticket.user.avatar "small")}}
   </div>
   <p class="inbox-item-author">{{ticket.user.name}}</p>
-  <p class="inbox-item-text">{{ticket.messages.firstObject.content}}</p>
+  <p class="inbox-item-text">{{ticket.firstMessage.content.content}}</p>
   <p class="inbox-item-date">
     {{format-relative ticket.createdAt interval=1000}},
     {{format-date ticket.createdAt hour="numeric" minute="numeric" timeZone="UTC"}}

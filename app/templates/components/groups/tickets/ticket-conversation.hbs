@@ -3,9 +3,9 @@
     <div class="ticket">
       {{! header }}
       {{#unless isPersonalTicket}}
-      <div class="ticket-header clearfix">
-        {{lazy-image src=(image ticket.user.avatar "small") class="pull-sm-left"}}
-        <div class="ticket-about">
+        <div class="ticket-header clearfix">
+          {{lazy-image src=(image ticket.user.avatar "small") class="pull-sm-left"}}
+          <div class="ticket-about">
             <div class="ticket-with">
               {{t-html "groups.tickets.conversation.title"
                 name=ticket.user.name
@@ -26,13 +26,22 @@
       {{! conversation list }}
       <div class="ticket-history">
         <ul class="ticket-history-list">
-          {{#each (reject-by "isNew" true ticket.messages) as |message|}}
-            {{groups/tickets/ticket-conversation-message
-              ticket=ticket
-              message=message
-              class="clearfix"
-              tagName="li"}}
-          {{/each}}
+          {{#if getMessagesTask.isRunning}}
+            <div class="text-xs-center">
+              {{loading-spinner size="large"}}
+            </div>
+          {{else}}
+            {{#infinite-pagination onPagination=(action "onPagination") isTop=true rootMargin=(hash bottom=0 top=200)}}
+              {{#each (reject-by "isNew" true messages) as |message|}}
+                {{groups/tickets/ticket-conversation-message
+                  ticket=ticket
+                  message=message
+                  class="clearfix"
+                  tagName="li"}}
+              {{/each}}
+            {{/infinite-pagination}}
+          {{/if}}
+
           {{#if (and isNewTicket ticket.isNew)}}
             <li class="card">
               <div class="card-block">

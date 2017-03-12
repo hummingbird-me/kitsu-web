@@ -12,7 +12,7 @@
           {{lazy-image src=(image ticket.user.avatar "small")}}
           <div class="report-meta">
             <a href={{href-to "groups.group.dashboard.tickets"}}>
-              {{truncate ticket.messages.firstObject.content 50}}
+              {{truncate ticket.firstMessage.content 50}}
             </a>
             <span class="report-timestamp">
               {{format-relative ticket.createdAt interval=1000}}
