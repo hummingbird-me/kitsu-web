@@ -17,6 +17,7 @@ export default Base.extend({
 
   media: belongsTo('media'),
   spoiledUnit: belongsTo('-base'),
+  targetGroup: belongsTo('group'),
   targetUser: belongsTo('user'),
   user: belongsTo('user'),
 

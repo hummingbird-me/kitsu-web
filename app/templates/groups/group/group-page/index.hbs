@@ -1,0 +1,39 @@
+{{! Activity Page }}
+<div class="container no-padding">
+  <div class="feed-container row">
+    {{! Group Feed }}
+    <div class="feed-stream col-sm-12 col-md-8">
+      {{#stream-feed/list
+        streamType="group_aggr"
+        streamId=group.id
+        kitsuGroup=group
+        kitsuGroupMembership=membership
+        hidePostEditor=(cannot "write post in group" group membership=membership)
+        readOnly=(cannot "write post")}}
+        <span>{{t "groups.activity.feed-header"}}</span>
+      {{/stream-feed/list}}
+    </div>
+
+    {{! Sidebar }}
+    <div class="feed-sidebar col-sm-4">
+      <div class="sidebar-item">
+        <h6 class="panel-heading">{{t "groups.activity.about" group=group.name}}</h6>
+        <p>
+          {{#if group.about}}
+            {{group.about}}
+          {{else}}
+            {{t "errors.contentEmpty"}}
+          {{/if}}
+        </p>
+      </div>
+
+      {{! Group Members }}
+      {{groups/activity/group-members group=group class="sidebar-item"}}
+
+      {{! Group Neighbors }}
+      {{#if (gt group.neighborsCount 0)}}
+        {{groups/group-neighbors group=group class="sidebar-item"}}
+      {{/if}}
+    </div>
+  </div>
+</div>

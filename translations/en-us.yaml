@@ -17,6 +17,7 @@ titles:
     reviews: "{user}'s Reviews"
     followers: "{user}'s Followers"
     following: "Followed by {user}"
+    groups: "{user}'s Groups"
   posts: "Post by {user}"
   comments: "Comment by {user}"
   reviews: "Review by {user}"
@@ -28,12 +29,29 @@ titles:
   admin:
     index: "Admin"
     reports: "Reports"
+  groups:
+    index: "Groups"
+    new: "Create a Group"
+    group:
+      group-page:
+        rules: "{group} Rules"
+        members: "{group} Members"
+        leaders: "{group} Leaders"
+      dashboard:
+        index: "{group} Overview"
+        reports: "{group} Reports"
+        tickets: "{group} Tickets"
+        members: "{group} Members"
+        leaders: "{group} Leaders"
+        settings: "{group} Settings"
+  group-invite: "Group Invite"
 # header
 header:
   library: "Library"
   anime: "Anime"
   manga: "Manga"
   trending: "Trending"
+  groups: "Groups"
   auth:
     sign-in: "Sign In"
     sign-up: "Sign Up"
@@ -84,6 +102,8 @@ dashboard:
     action: "Why don't you try creating a feed post to introduce yourself using the form below?
       You can say something as simple as 'Hey everyone, I'm new to Kitsu', or you can show us how
       creative and witty you are!"
+  groups:
+    header: "My Groups"
 # media pages
 media:
   index:
@@ -202,6 +222,7 @@ users:
     reviews: "Reviews"
     followers: "Followers"
     following: "Following"
+    groups: "Groups"
   edit-modal:
     cover: "Change your cover photo"
     navigation:
@@ -334,6 +355,240 @@ users:
 feedback:
   bugs: "Bugs"
   features: "Feature Requests"
+# groups
+groups:
+  index:
+    call-to-action: "Anyone can create and discover groups. Each group centers around a topic or activity."
+    create-btn: "Create a Group"
+  create:
+    header: "Create a Group"
+    form:
+      required: "Required"
+      name: "Name"
+      tagline: "Tagline"
+      about: "Description"
+      rules: "Rules"
+      neighbors: "Neighbors"
+      neighbors-placeholder: "Search for group"
+      privacy: "Privacy"
+      privacy-options:
+        open: "Public"
+        closed: "Private"
+        restricted: "Restricted"
+      privacy-features:
+        open: "<li>Anyone can view</li>
+          <li>Anyone can join</li>
+          <li>Anyone can post or comment</li>"
+        closed: "<li>Hidden from public</li>
+          <li>Users may only join via invitation</li>
+          <li>Can't be made public</li>"
+        restricted: "<li>Anyone can view</li>
+          <li>Anyone can join</li>
+          <li>Only leaders can create new posts.</li>"
+      category: "Category"
+      category-placeholder: "Select a Category"
+      avatar: "Avatar"
+      cover: "Cover Image"
+      create-btn: "Create your Group!"
+      save-btn: "Save"
+      helper:
+        name:
+          header: "Name"
+          desc: "Group names should clearly communicate what your group is about, but you can still be creative and have fun with it!"
+        tagline:
+          header: "Tagline"
+          desc: "Summarize the purpose of your group in 60 characters or less.
+            You'll have room to add more information later."
+        about:
+          header: "Description"
+          desc: "Explain your group's purpose in depth, share important information, or anything else."
+        rules:
+          header: "Rules"
+          desc: "Set out some guidelines for your group members to follow. These rules are Markdown supported!"
+        neighbors:
+          header: "Neighbors"
+          desc: "Add related groups to your Neighborhood so your members can discover new communities!"
+        privacy:
+          header: "Privacy"
+          desc: "Your privacy settings determine how open or closed your group is to the public. If you choose to make your group private, you will NOT be able to make it public in the future."
+        category:
+          header: "Category"
+          desc: "Kitsu uses categories to organize groups to help users find more of what they love."
+        avatar:
+          header: "Avatar"
+          desc: "This image will be used throughout Kitsu to identify your group."
+        cover:
+          header: "Cover Image"
+          desc: "This image will appear at the top of your group's page on desktops. Sides may be cropped slightly based on the viewer's screen size."
+      errors:
+        neighbors-same: "You can't add your group as a neighbor."
+  dashboard-btn: "Dashboard"
+  join-group: "Join Group"
+  leave-group: "Leave Group"
+  nsfw: "NSFW"
+  neighbors: "Neighbors"
+  navigation:
+    activity: "Activity"
+    rules: "Rules"
+    members: "Members"
+    leaders: "Leaders"
+    neighbors: "Neighbors"
+  activity:
+    feed-header: "Group Activity"
+    about: "About {group}"
+    members: "Members"
+    view-members: "view all"
+    feed-restricted: "This is a restricted group. Anyone can comment, only leaders can create posts."
+  rules:
+    header: "Community Rules"
+    empty: "Hey there! Looks like you're using the Kitsu community guidelines. If you'd like to
+      specify your own rules you can do that on your <a href={link}>settings page.</a>"
+  tickets:
+    search: "Search Tickets"
+    empty: "Hooray! You don't have any tickets to handle."
+    helper: "Tickets allow you to communicate with the leaders of this group to solve any issues
+      you might have. Message the leaders here to create a ticket."
+    filter:
+      open: "Open Tickets"
+      resolved: "Resolved Tickets"
+      all: "All Tickets"
+    conversation:
+      title: "Ticket from <a href={link}>{name}</a>"
+      mark-resolved: "Mark Resolved"
+      mark-closed: "Mark Closed"
+      nav:
+        reply: "Reply to User"
+        leader: "Leader Note"
+      create-btn: "Create Ticket"
+      reply-btn: "Send Reply"
+      reply-placeholder: "Type your message"
+      helper: "Write your message below to create a ticket! Leaders for this group will reply to
+        your ticket as soon as they can."
+  reports:
+    no-explanation: "No Explanation Provided"
+    empty: "Hooray! You don't have any reports to handle."
+    filter:
+      open: "Open Reports"
+      resolved: "Resolved Reports"
+      all: "All Reports"
+    show-more: "Show {num} reports"
+    hide-more: "Hide {num} reports"
+    status:
+      resolved: "This report was resolved by {user}."
+      declined: "This report was declined by {user}."
+      escalated: "This report was escalated by {user}."
+    actions:
+      close: "Close Report"
+      remove: "Remove Content"
+      escalate: "Notify Kitsu"
+      view: "View Content"
+  leaders:
+    list:
+      header: "Leaders"
+      edit-btn: "Edit"
+      add-btn: "Add"
+      add-placeholder: "Group member"
+      not-found: "Couldn't find a group member with that username."
+      message-btn: "Message the leaders"
+      message-leader: "You're a leader of this group!"
+      modal:
+        header: "Leader Permissions:"
+        owner: "Group Owner"
+        tickets: "Manage Tickets"
+        members: "Manage Members"
+        leaders: "Manage Leaders"
+        community: "Manage Settings"
+        content: "Manage Content & Reports"
+        owner-help: "Owners have all permissions."
+        cancel-btn: "Cancel"
+        save-btn: "Save Permissions"
+  dashboard:
+    back: "Back to {group}"
+    navigation:
+      overview: "Overview"
+      reports: "Reports"
+      tickets: "Tickets"
+      members: "Members"
+      leaders: "Leaders"
+      settings: "Settings"
+    overview:
+      members:
+        header: "Members"
+        today: "Joined Today"
+        total: "Total Members"
+      activity:
+        header: "User Activity"
+        posts: "Posts Today"
+        comments: "Comments Today"
+      help-desk:
+        header: "Open Cases"
+        tickets: "Tickets"
+        reports: "Reports"
+      tickets: "Latest Tickets"
+      reports: "Latest Reports"
+      log: "Leader Log"
+    members:
+      invites:
+        header: "Pending Invites"
+        invited: "Invited"
+        revoke: "Cancel Invite"
+        invite: "Invite"
+        placeholder: "Search for a user to invite"
+        empty: "Looks like you don't currently have any pending invites!"
+      bans:
+        header: "Banned Users"
+        unban: "Unban"
+        ban: "Ban"
+        placeholder: "Username"
+        empty: "Hooray! You don't have any banned users."
+      members:
+        header: "Members"
+        table:
+          users: "User"
+          permissions: "Rank"
+          joined: "Joined"
+          actions: "Actions"
+        remove: "Remove"
+        ban: "Ban"
+    leaders:
+      chat:
+        header: "Leader Chat"
+        post-btn: "Post"
+        placeholder: "Send message to leaders"
+    audit:
+      user:
+        banned: "banned <a href={link}>{user}</a>."
+        unbanned: "unbanned <a href={link}>{user}</a>."
+        invited: "invited <a href={link}>{user}</a> to join the community."
+        granted: "granted permissions to <a href={link}>{user}</a>."
+        revoked: "removed permissions from <a href={link}>{user}</a>."
+      group:
+        added_neighbor: "added <a href={link}>{group}</a> as a neighbor."
+        removed_neighbor: "removed <a href={link}>{group}</a> as a neighbor."
+        avatar_changed: "updated the {group} avatar."
+        cover_changed: "updated the {group} cover image."
+        locale_changed: "updated the {group} locale."
+        rules_changed: "updated the {group} rules."
+        nsfw_changed: "updated the {group} NSFW status."
+        about_changed: "updated the {group} about."
+        tagline_changed: "updated the {group} tagline."
+        category_changed: "updated the {group} category."
+      group-report:
+        resolved: "resolved a report."
+        declined: "declined a report."
+        escalated: "esclated a report."
+      group-ticket:
+        assigned: "assigned a ticket to <a href={link}>{user}</a>."
+        resolved: "marked a ticket as resolved."
+group-invite:
+  header: "Group Invite"
+  subtitle: "You have been invited to {group} by {sender}"
+  text: "You'll be able to access {group}'s page after accepting this invite. We'll redirect you
+    after accepting."
+  accept: "Accept"
+  decline: "Decline"
+  accepted: "You've already accepted this invite."
+  declined: "You declined this group invite."
 # shared: media
 media-shared:
   types:
@@ -400,6 +655,15 @@ feeds:
     progress: "{type, select,
       anime {This is a review up to Episode {num}.}
       manga {This is a review up to Chapter {num}.}}"
+# component: image-form
+image-form:
+  help-text: "Click here to select an image."
+group-list:
+  filter: "Filter Groups"
+  sort:
+    recent: "Recent Activity"
+    newest: "Newest Groups"
+    oldest: "Oldest Groups"
 # ember-power-select
 selects:
   loading: "Loading..."
@@ -447,4 +711,4 @@ errors:
       starts: "This field must start with a letter or number"
   load: "There was an issue loading the content."
   contentEmpty: "Hmm, there doesn't seem to be anything here yet."
-  request: "There was an issue with the request. Please try again."
+  request: "Oops! Something went wrong with the request."

@@ -1,0 +1,40 @@
+{{! members page }}
+<div class="container">
+  <div class="row">
+    {{#if model.taskInstance.isRunning}}
+      <div class="text-xs-center w-100 m-t-1 m-b-1">
+        {{loading-spinner size="large"}}
+      </div>
+    {{else if model.taskInstance.error}}
+      <div class="text-xs-center w-100 m-t-1 m-b-1">
+        {{t "errors.load"}}
+      </div>
+    {{else if taskValue}}
+      {{#infinite-pagination onPagination=(route-action "onPagination")}}
+        {{#each taskValue as |member|}}
+          <div class="card user-card col-sm-3">
+            <a href={{href-to "users.index" member.user.name}}>
+              <img class="card-img-top" src={{image member.user.coverImage}}>
+            </a>
+            <div class="card-block">
+              <a href={{href-to "users.index" member.user.name}}>
+                <img class="card-img-avatar" src={{image member.user.avatar "medium"}}>
+              </a>
+              <a href={{href-to "users.index" member.user.name}}>
+                <h4 class="card-title">{{member.user.name}}</h4>
+              </a>
+
+              {{#if (not (is-self member.user))}}
+                {{follow-button user=member.user}}
+              {{else}}
+                <button class="button button--primary" disabled="disabled">
+                  Hey, that's you!
+                </button>
+              {{/if}}
+            </div>
+          </div>
+        {{/each}}
+      {{/infinite-pagination}}
+    {{/if}}
+  </div>
+</div>

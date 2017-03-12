@@ -22,9 +22,9 @@ export default Component.extend({
   }).readOnly(),
 
   canSubmit: computed('isExplanationRequired', 'reason', 'explanation', function() {
-    let canSubmit = isEmpty(get(this, 'reason')) === false && get(this, 'hasReported') === false;
-    if (get(this, 'isExplanationRequired') === true) {
-      canSubmit = canSubmit && isEmpty(get(this, 'explanation')) === false;
+    let canSubmit = !isEmpty(get(this, 'reason')) && !get(this, 'hasReported');
+    if (get(this, 'isExplanationRequired')) {
+      canSubmit = canSubmit && !isEmpty(get(this, 'explanation'));
     }
     return canSubmit;
   }).readOnly(),
@@ -34,23 +34,26 @@ export default Component.extend({
       return;
     }
 
-    const report = get(this, 'store').createRecord('report', {
+    const type = get(this, 'group') ? 'group-report' : 'report';
+    const report = get(this, 'store').createRecord(type, {
       explanation: get(this, 'explanation'),
       reason: get(this, 'reason').toLowerCase(),
       status: 'reported',
       user: get(this, 'session.account'),
       naughty: get(this, 'content')
     });
-    return yield report.save()
-      .then(() => {
-        get(this, 'notify').success('Your report has been sent. Thank you!');
-        this.$('.modal').modal('hide');
-      })
-      .catch(err => get(this, 'notify').error(errorMessages(err)));
+    if (get(this, 'group')) {
+      set(report, 'group', get(this, 'group'));
+    }
+    return yield report.save().then(() => {
+      get(this, 'notify').success('Your report has been sent. Thank you!');
+      this.$('.modal').modal('hide');
+    }).catch(err => get(this, 'notify').error(errorMessages(err)));
   }).drop(),
 
   checkReport: task(function* () {
-    return yield get(this, 'store').query('report', {
+    const type = get(this, 'group') ? 'group-report' : 'report';
+    return yield get(this, 'store').query(type, {
       filter: {
         user_id: get(this, 'session.account.id'),
         naughty_id: get(this, 'content.id'),

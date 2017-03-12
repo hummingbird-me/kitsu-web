@@ -52,12 +52,12 @@ module.exports = function(defaults) {
     // service worker
     'esw-index': {
       location: 'index.html',
-      version: '1'
+      version: '2'
     },
     'asset-cache': {
       include: ['assets/**/*', 'images/**/*', '**/*.png'],
       manual: ['assets/app.js'],
-      version: '2'
+      version: '3'
     },
     'esw-cache-first': {
       patterns: ['https://media.kitsu.io/(.+)'],
@@ -75,6 +75,10 @@ module.exports = function(defaults) {
       clipboard: {
         srcDir: 'dist',
         import: ['clipboard.js']
+      },
+      cropperjs: {
+        srcDir: 'dist',
+        import: ['cropper.css', 'cropper.js']
       },
       flickity: {
         srcDir: 'dist',

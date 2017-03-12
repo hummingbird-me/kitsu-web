@@ -1,0 +1,21 @@
+{{#bootstrap/bs-modal largeModal=true backdrop="static" keyboard="false" onClose=onClose as |modal|}}
+  {{#modal.header}}
+    <h4>Image Crop</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+      <img id="{{elementId}}-image" src={{image image}}>
+      <span class="text-muted m-t-1">Width: {{width}}, Height: {{height}}</span>
+    </div>
+  {{/modal.body}}
+  {{#modal.footer}}
+    <div class="pull-sm-right">
+      <button class="button" {{action "closeModal"}}>
+        Close
+      </button>
+      <button class="button btn-primary" {{action "updateImage"}}>
+        Select
+      </button>
+    </div>
+  {{/modal.footer}}
+{{/bootstrap/bs-modal}}

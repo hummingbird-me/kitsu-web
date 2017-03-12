@@ -12,8 +12,9 @@ import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
 import { unshiftObjects } from 'client/utils/array-utils';
 import Pagination from 'client/mixins/pagination';
+import { CanMixin } from 'ember-can';
 
-export default Component.extend(ClipboardMixin, Pagination, {
+export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
   classNameBindings: ['comment.isNew:new-comment'],
   isEditing: false,
   isReplying: false,
@@ -34,6 +35,17 @@ export default Component.extend(ClipboardMixin, Pagination, {
   commentEdited: computed('comment.createdAt', 'comment.editedAt', function() {
     if (!get(this, 'comment.editedAt')) { return false; }
     return !get(this, 'comment.createdAt').isSame(get(this, 'comment.editedAt'));
+  }).readOnly(),
+
+  canEditComment: computed(function() {
+    const group = get(this, 'post').belongsTo('targetGroup').value();
+    if (group) {
+      return this.can('edit comment in group', group, {
+        membership: get(this, 'groupMembership'),
+        comment: get(this, 'comment')
+      });
+    }
+    return this.can('edit comment', get(this, 'comment'));
   }).readOnly(),
 
   getReplies: task(function* () {
@@ -83,6 +95,22 @@ export default Component.extend(ClipboardMixin, Pagination, {
         set(this, 'replies', content);
         this.updatePageState(replies);
       }).catch(() => {});
+    }
+
+    // groups
+    const group = get(this, 'post').belongsTo('targetGroup').value();
+    if (group) {
+      if (get(this, 'kitsuGroupMembership')) {
+        set(this, 'groupMembership', get(this, 'kitsuGroupMembership'));
+      } else {
+        get(this, 'store').query('group-member', {
+          filter: { group, user: get(this, 'session.account') },
+          include: 'permissions'
+        }).then((records) => {
+          const record = get(records, 'firstObject');
+          set(this, 'groupMembership', record);
+        }).catch(() => {});
+      }
     }
   },
 
