@@ -1,0 +1,26 @@
+<style>
+  .global-container {
+    max-width: 100%;
+  }
+</style>
+
+<div class="settings--header feedback">
+  <div class="container">
+    <div class="row">
+      <h2>Feedback</h2>
+      <ul class="settings--navigation">
+        {{#link-to "feedback.bugs" tagName="li" class="list-item"}}
+          <a href={{href-to "feedback.bugs"}}>
+            {{t "feedback.bugs"}}
+          </a>
+        {{/link-to}}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    {{outlet}}
+  </div>
+</div>

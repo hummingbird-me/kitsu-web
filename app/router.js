@@ -95,6 +95,12 @@ RouterInstance.map(function() {
     // this.route('apps');
   });
 
+  this.route('feedback', function() {
+    this.route('bugs', function() {
+      this.route('anything', { path: '/*path' });
+    });
+  });
+
   this.route('admin', function() {
     this.route('reports', function() {
       this.route('index', { path: '/open' });
