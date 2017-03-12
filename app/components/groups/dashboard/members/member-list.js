@@ -17,7 +17,7 @@ export default Component.extend(Pagination, {
   getMembersTask: task(function* () {
     const group = get(this, 'group.id');
     return yield get(this, 'store').query('group-member', {
-      filter: { group },
+      filter: { query_group: group },
       include: 'user,permissions',
       page: { limit: 20 }
     }).then((records) => {

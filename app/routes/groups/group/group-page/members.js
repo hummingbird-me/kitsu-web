@@ -18,7 +18,7 @@ export default Route.extend(Pagination, {
     const model = this.modelFor('groups.group.group-page');
     return yield get(this, 'store').query('group-member', {
       include: 'user',
-      filter: { group: get(model, 'group.id') },
+      filter: { query_group: get(model, 'group.id') },
       page: { limit: 20 }
     }).then((records) => {
       this.updatePageState(records);

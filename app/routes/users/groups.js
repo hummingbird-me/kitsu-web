@@ -35,7 +35,7 @@ export default Route.extend(Pagination, {
     const user = this.modelFor('users');
     const options = {
       filter: {
-        user: get(user, 'id'),
+        query_user: get(user, 'id'),
         group_name: isPresent(query) ? query : undefined,
         group_category: category !== 'all' ? category : undefined,
       },
