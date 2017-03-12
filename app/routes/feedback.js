@@ -9,5 +9,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   model() {
     return get(this, 'ajax').request('/sso/canny');
+  },
+
+  afterModel() {
+    return this.transitionTo('feedback.bugs');
   }
 });
