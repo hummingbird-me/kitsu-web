@@ -26,8 +26,8 @@ export default Component.extend(Pagination, {
   getLeadersTask: task(function* () {
     return yield get(this, 'store').query('group-member', {
       filter: {
-        group: get(this, 'group.id'),
-        rank: 'admin,mod'
+        query_group: get(this, 'group.id'),
+        query_rank: 'admin,mod'
       },
       include: 'user,permissions',
       sort: '-rank'
