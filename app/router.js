@@ -76,8 +76,8 @@ RouterInstance.map(function() {
   });
 
   this.route('feedback', function() {
+    this.route('bugs', { path: '/' });
     this.route('feature-requests');
-    this.route('bugs');
   });
 
   this.route('admin', function() {
