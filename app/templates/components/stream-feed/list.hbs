@@ -6,7 +6,7 @@
     user=user
     onCreate=(perform createPost)
   }}
-{{else if kitsuGroup}}
+{{else if (and kitsuGroup kitsuGroup.isRestricted)}}
   <div class="card m-b-2">
     <div class="card-block text-xs-center">
       {{t "groups.activity.feed-restricted"}}
