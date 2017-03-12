@@ -52,12 +52,12 @@ module.exports = function(defaults) {
     // service worker
     'esw-index': {
       location: 'index.html',
-      version: '1'
+      version: '2'
     },
     'asset-cache': {
       include: ['assets/**/*', 'images/**/*', '**/*.png'],
       manual: ['assets/app.js'],
-      version: '2'
+      version: '3'
     },
     'esw-cache-first': {
       patterns: ['https://media.kitsu.io/(.+)'],
