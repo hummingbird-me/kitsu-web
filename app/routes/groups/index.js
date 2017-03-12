@@ -24,7 +24,7 @@ export default Route.extend(Pagination, {
         category: category !== 'all' ? category : undefined,
         query: isPresent(query) ? query : undefined
       },
-      sort: this._getRealSort(sort),
+      sort: isPresent(query) ? undefined : this._getRealSort(sort),
       include: 'category'
     };
     return yield get(this, 'store').query('group', options).then((records) => {
