@@ -50,12 +50,10 @@ export default Route.extend(Pagination, {
 
   _getRealSort(sort) {
     switch (sort) {
-      case 'newest':
-        return '-created_at';
       case 'oldest':
         return 'created_at';
       default:
-        return '-group.last_activity_at';
+        return '-created_at';
     }
   }
 });

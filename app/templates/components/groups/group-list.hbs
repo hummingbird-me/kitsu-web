@@ -10,13 +10,13 @@
     <span class="result-sort-wrapper">
       {{#bootstrap/bs-dropdown as |dropdown|}}
         {{#dropdown.button type="button--dark-outline" class="button--small"}}
-          {{t (concat "group-list.sort." sort)}}
+          {{t activeSort.value}}
         {{/dropdown.button}}
         {{#dropdown.menu}}
           {{#each sortOptions as |filter|}}
-            {{#dropdown.menu-item onClick=(action "updateQueryParam" "sort" filter)}}
-              {{t (concat "group-list.sort." filter)}}
-              {{#if (eq sort filter)}}
+            {{#dropdown.menu-item onClick=(action "updateQueryParam" "sort" filter.key)}}
+              {{t filter.value}}
+              {{#if (eq sort filter.key)}}
                 <span class="dropdown-checkmark">
                   {{svg-jar "checkmark"}}
                 </span>

@@ -7,6 +7,13 @@ export default Controller.extend({
   category: 'all',
   sort: 'newest',
   query: null,
+  sortOptions: [{
+    key: 'newest',
+    value: 'users.groups.sort.newest'
+  }, {
+    key: 'oldest',
+    value: 'users.groups.sort.oldest'
+  }],
   groups: concat('model.taskInstance.value', 'model.paginatedRecords'),
 
   actions: {
