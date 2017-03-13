@@ -23,7 +23,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
       const group = get(controller, 'group');
       set(controller, 'isSaving', true);
       return group.save().then(() => {
-        this.transitionTo('groups.group.group-page', group);
+        this.transitionTo('groups.group.group-page', get(group, 'slug'));
       }).catch(() => {
         get(this, 'notify').error(get(this, 'intl').t('errors.request'));
       }).finally(() => {
