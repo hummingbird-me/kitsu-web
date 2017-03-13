@@ -142,7 +142,7 @@
       {{/if}}
 
       {{! Tagged Media  }}
-      {{#if post.media}}
+      {{#if (and post.media (or (and post.spoiler (not post.nsfw)) (not isHidden)))}}
         <div class="tagged-media--wrapper">
           <div class="tagged-media row">
             <div class="stream-item--media col-xs-1">
