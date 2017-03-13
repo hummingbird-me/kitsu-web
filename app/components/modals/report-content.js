@@ -34,7 +34,7 @@ export default Component.extend({
       return;
     }
 
-    const type = get(this, 'group') ? 'group-report' : 'report';
+    const type = get(this, 'group.content') ? 'group-report' : 'report';
     const report = get(this, 'store').createRecord(type, {
       explanation: get(this, 'explanation'),
       reason: get(this, 'reason').toLowerCase(),
@@ -42,7 +42,7 @@ export default Component.extend({
       user: get(this, 'session.account'),
       naughty: get(this, 'content')
     });
-    if (get(this, 'group')) {
+    if (get(this, 'group.content')) {
       set(report, 'group', get(this, 'group'));
     }
     return yield report.save().then(() => {
@@ -52,7 +52,7 @@ export default Component.extend({
   }).drop(),
 
   checkReport: task(function* () {
-    const type = get(this, 'group') ? 'group-report' : 'report';
+    const type = get(this, 'group.content') ? 'group-report' : 'report';
     return yield get(this, 'store').query(type, {
       filter: {
         user_id: get(this, 'session.account.id'),
