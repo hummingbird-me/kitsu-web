@@ -1,11 +1,17 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
+import computed from 'ember-computed';
 
 export default Component.extend({
   authOpened: false,
   authComponent: 'social-auth',
   router: service('-routing'),
+
+  isFeedbackRoute: computed('router.currentRouteName', function() {
+    const route = get(this, 'router.currentRouteName');
+    return (route || '').split('.')[0] === 'feedback';
+  }).readOnly(),
 
   actions: {
     invalidateSession() {

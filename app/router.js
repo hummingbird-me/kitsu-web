@@ -96,9 +96,10 @@ RouterInstance.map(function() {
   });
 
   this.route('feedback', function() {
-    this.route('bugs', function() {
-      this.route('anything', { path: '/*path' });
-    });
+    this.route('bugs', { path: '/bugs/*path' });
+    this.route('bugs', { path: '/bugs' });
+    this.route('feature-requests', { path: '/feature-requests/*path' });
+    this.route('feature-requests', { path: '/feature-requests' });
   });
 
   this.route('admin', function() {
@@ -125,7 +126,7 @@ RouterInstance.map(function() {
 
   // These must remain at the bottom of the RouterInstance map
   this.route('server-error', { path: '/500' });
-  this.route('not-found', { path: '/*path' });
+  // this.route('not-found', { path: '/*path' });
 });
 
 export default RouterInstance;

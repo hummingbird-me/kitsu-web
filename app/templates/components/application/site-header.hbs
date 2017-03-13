@@ -34,9 +34,6 @@
               <a href={{href-to "settings"}} class="dropdown-item">
                 {{t "header.user.settings"}}
               </a>
-              <a href={{href-to "feedback.bugs"}} class="dropdown-item">
-                {{t "header.user.feedback"}}
-              </a>
               {{#if (can "view admin")}}
                 <a href={{href-to "admin.index"}} class="dropdown-item">
                   {{t "header.user.admin"}}
@@ -86,6 +83,15 @@
           </li>
           <li class="nav-item">
             {{link-to (t "header.trending") "trending" class="nav-link"}}
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle {{if isFeedbackRoute "active"}}" href={{href-to "feedback"}} data-toggle="dropdown" data-href-to-ignore=true>
+              {{t "header.feedback"}}
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href={{href-to "feedback.bugs"}}>{{t "feedback.bugs"}}</a>
+              <a class="dropdown-item" href={{href-to "feedback.feature-requests"}}>{{t "feedback.features"}}</a>
+            </div>
           </li>
         </ul>
       </div>
