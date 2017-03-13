@@ -11,7 +11,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
     return get(this, 'ajax').request('/sso/canny');
   },
 
-  afterModel() {
-    return this.transitionTo('feedback.bugs');
+  afterModel(_model, transition) {
+    if (get(transition, 'targetName') === 'feedback.index') {
+      return this.transitionTo('feedback.bugs');
+    }
   }
 });
