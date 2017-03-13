@@ -23,5 +23,7 @@
   </div>
 
   {{! Groups }}
-  {{dashboard/unread-groups class="sidebar-item"}}
+  {{#if session.hasUser}}
+    {{dashboard/unread-groups class="sidebar-item"}}
+  {{/if}}
 </div>
