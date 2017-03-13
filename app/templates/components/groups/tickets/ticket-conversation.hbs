@@ -12,12 +12,15 @@
                 link=(href-to "users.index" ticket.user.name)}}
             </div>
             <div class="ticket-actions">
-              <a href="#" class="resolve-ticket" {{action "markResolved"}}>
-                {{t "groups.tickets.conversation.mark-resolved"}}
-              </a>
-              <a href="#" class="close-ticket" {{action "markClosed"}}>
-                {{t "groups.tickets.conversation.mark-closed"}}
-              </a>
+              {{#if ticket.isOpen}}
+                <a href="#" class="resolve-ticket" {{action "markResolved"}}>
+                  {{t "groups.tickets.conversation.mark-resolved"}}
+                </a>
+              {{else}}
+                <a href="#" class="resolve-ticket" {{action "markOpen"}}>
+                  {{t "groups.tickets.conversation.mark-open"}}
+                </a>
+              {{/if}}
             </div>
           </div>
         </div>

@@ -77,9 +77,9 @@ export default Component.extend(Pagination, {
       get(this, 'updateStatusTask').perform('resolved');
     },
 
-    markClosed() {
+    markOpen() {
       if (get(this, 'updateStatusTask.isRunning')) { return; }
-      get(this, 'updateStatusTask').perform('closed');
+      get(this, 'updateStatusTask').perform('opened');
     },
 
     onEnter(component, event) {

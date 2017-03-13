@@ -1,6 +1,7 @@
 import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
+import { equal } from 'ember-computed';
 
 export default Base.extend({
   createdAt: attr('utc'),
@@ -11,5 +12,8 @@ export default Base.extend({
   group: belongsTo('group'),
   user: belongsTo('user'),
 
-  messages: hasMany('group-ticket-message', { inverse: 'ticket' })
+  messages: hasMany('group-ticket-message', { inverse: 'ticket' }),
+
+  isOpen: equal('status', 'opened'),
+  isResolved: equal('status', 'resolved')
 });
