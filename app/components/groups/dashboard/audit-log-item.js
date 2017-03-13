@@ -34,7 +34,7 @@ export default Component.extend({
         const group = get(this, 'item.target.name');
         return get(this, 'intl').t(`groups.dashboard.audit.${targetType}.${verb}`, {
           group,
-          link: hrefTo(this, 'groups.group.group-page.index', group)
+          link: hrefTo(this, 'groups.group.group-page.index', get(this, 'item.target.slug'))
         });
       }
 
