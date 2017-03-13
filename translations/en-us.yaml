@@ -68,7 +68,8 @@ auth-modal:
       0 {Let's get some basic info first}
       1 {Very witty - email is next!}
       2 {Looks legit, how about a password?}
-      3 {Cool- Let's create that account}}"
+      3 {Cool- Let's create that account}
+      other {}}"
 # dashboard
 dashboard:
   quick-update:
@@ -84,12 +85,14 @@ dashboard:
       complete: "Complete"
       episode: "{type, select,
         anime {Ep. {num}}
-        manga {Ch. {num}}}"
+        manga {Ch. {num}}
+        other {}}"
     overlay:
       button:
         html: "Mark {type, select,
           anime {<span class={class}>Ep. {num}</span> Complete}
-          manga {<span class={class}>Ch. {num}</span> Complete}}"
+          manga {<span class={class}>Ch. {num}</span> Complete}
+          other {}}"
         complete: "Complete"
       review:
         write: "Write Review"
@@ -135,10 +138,12 @@ media:
       ranking:
         popularity: "{type, select,
           anime {Rank #{rank} (Most Popular Anime)}
-          manga {Rank #{rank} (Most Popular Manga)}}"
+          manga {Rank #{rank} (Most Popular Manga)}
+          other {}}"
         rating: "{type, select,
           anime {Rank #{rank} (Highest Rated Anime)}
-          manga {Rank #{rank} (Highest Rated Manga)}}"
+          manga {Rank #{rank} (Highest Rated Manga)}
+          other {}}"
       tags: "Tags"
       relationships:
         header: "Franchise"
@@ -180,10 +185,12 @@ media:
         volumes: "Volumes"
         unit: "{type, select,
           anime {Episodes}
-          manga {Chapters}}"
+          manga {Chapters}
+          other {}}"
         start: "{type, select,
           anime {Aired}
-          manga {Published}}"
+          manga {Published}
+          other {}}"
         status: "Status"
         statuses:
           anime:
@@ -213,7 +220,8 @@ media:
       sub-header: "{type, select,
         anime {The following is a full list of characters and their {language} voice actors for
           the anime {title}}
-        manga {The following is a full list of characters for the manga {title}}}"
+        manga {The following is a full list of characters for the manga {title}}
+        other {}}"
 # users page
 users:
   navigation:
@@ -615,22 +623,28 @@ media-shared:
 library-shared:
   all: "{type, select,
     anime {All Anime}
-    manga {All Manga}}"
+    manga {All Manga}
+    other {}}"
   current: "{type, select,
     anime {Currently Watching}
-    manga {Currently Reading}}"
+    manga {Currently Reading}
+    other {}}"
   planned: "{type, select,
     anime {Plan to Watch}
-    manga {Plan to Read}}"
+    manga {Plan to Read}
+    other {}}"
   completed: "{type, select,
     anime {Completed}
-    manga {Completed}}"
+    manga {Completed}
+    other {}}"
   on_hold: "{type, select,
     anime {On Hold}
-    manga {On Hold}}"
+    manga {On Hold}
+    other {}}"
   dropped: "{type, select,
     anime {Dropped}
-    manga {Dropped}}"
+    manga {Dropped}
+    other {}}"
 # component: library-dropdown
 library-dropdown:
   add: "Add to Library"
@@ -650,17 +664,20 @@ feeds:
     rated: "rated it"
     progressed: "{type, select,
       anime {watched episode {num}}
-      manga {read chapter {num}}}"
+      manga {read chapter {num}}
+      other {}}"
   post:
     spoilers: "{type, select,
       anime {Ep. {num}}
-      manga {Ch. {num}}}"
+      manga {Ch. {num}}
+      other {}}"
   review:
     review: "Review"
     author: "Review by {user}"
     progress: "{type, select,
       anime {This is a review up to Episode {num}.}
-      manga {This is a review up to Chapter {num}.}}"
+      manga {This is a review up to Chapter {num}.}
+      other {}}"
 # component: image-form
 image-form:
   help-text: "Click here to select an image."
