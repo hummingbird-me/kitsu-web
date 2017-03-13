@@ -70,22 +70,25 @@
       {{/if}}
     {{/if}}
 
+    {{! Actions }}
     <ul>
-      <li>
-        <a href="#" class="action-button" {{action "closeReport"}}>
-          {{t "groups.reports.actions.close"}}
-        </a>
-      </li>
-      <li>
-        <a href="#" class="action-button" {{action "removeContent"}}>
-          {{t "groups.reports.actions.remove"}}
-        </a>
-      </li>
-      <li>
-        <a href="#" class="action-button" {{action "escalateReport"}}>
-          {{t "groups.reports.actions.escalate"}}
-        </a>
-      </li>
+      {{#unless subject.moderator.id}}
+        <li>
+          <a href="#" class="action-button" {{action "closeReport"}}>
+            {{t "groups.reports.actions.close"}}
+          </a>
+        </li>
+        <li>
+          <a href="#" class="action-button" {{action "removeContent"}}>
+            {{t "groups.reports.actions.remove"}}
+          </a>
+        </li>
+        <li>
+          <a href="#" class="action-button" {{action "escalateReport"}}>
+            {{t "groups.reports.actions.escalate"}}
+          </a>
+        </li>
+      {{/unless}}
       <li>
         <a href={{href-to subject.naughtyLink subject.naughtyId}} class="action-button" target="_blank">
           {{t "groups.reports.actions.view"}}
