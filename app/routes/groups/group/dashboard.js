@@ -14,7 +14,7 @@ export default Route.extend(AuthenticatedRouteMixin, CanMixin, {
     const group = this.modelFor('groups.group');
     return RSVP.hash({
       group,
-      membership: this._getMembershipStatus(),
+      membership: get(group, 'userMembership'),
       stats: get(this, 'ajax').request(`/groups/${get(group, 'id')}/_stats`)
     });
   },
@@ -34,17 +34,5 @@ export default Route.extend(AuthenticatedRouteMixin, CanMixin, {
   deactivate() {
     this._super(...arguments);
     jQuery('body').removeClass('settings-page');
-  },
-
-  _getMembershipStatus() {
-    if (!get(this, 'session.hasUser')) { return RSVP.resolve(); }
-    const group = this.modelFor('groups.group');
-    return get(this, 'store').query('group-member', {
-      include: 'user,permissions',
-      filter: {
-        group: get(group, 'id'),
-        user: get(this, 'session.account.id')
-      }
-    }).then(records => get(records, 'firstObject'));
   }
 });

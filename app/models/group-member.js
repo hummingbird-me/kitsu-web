@@ -8,7 +8,7 @@ export default Base.extend({
   rank: attr('string'),
   unreadCount: attr('number'),
 
-  group: belongsTo('group'),
+  group: belongsTo('group', { inverse: 'members' }),
   user: belongsTo('user'),
 
   permissions: hasMany('group-permission', { inverse: 'groupMember' }),

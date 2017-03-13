@@ -8,9 +8,10 @@ export default Route.extend(CoverPageMixin, {
   ajax: service(),
 
   model() {
+    const model = this.modelFor('groups.group');
     return RSVP.hash({
-      group: this.modelFor('groups.group'),
-      membership: this._getMembershipStatus()
+      group: model,
+      membership: get(model, 'userMembership')
     });
   },
 
@@ -20,17 +21,5 @@ export default Route.extend(CoverPageMixin, {
       const id = get(model, 'group.id');
       get(this, 'ajax').post(`/groups/${id}/_read`).catch(() => {});
     }
-  },
-
-  _getMembershipStatus() {
-    if (!get(this, 'session.hasUser')) { return RSVP.resolve(); }
-    const group = this.modelFor('groups.group');
-    return get(this, 'store').query('group-member', {
-      include: 'user,permissions',
-      filter: {
-        group: get(group, 'id'),
-        user: get(this, 'session.account.id')
-      }
-    }).then(records => get(records, 'firstObject') || null);
   }
 });
