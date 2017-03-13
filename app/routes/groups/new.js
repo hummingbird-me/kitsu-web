@@ -13,8 +13,13 @@ export default Route.extend(AuthenticatedRouteMixin, {
   model() {
     return RSVP.hash({
       group: get(this, 'store').createRecord('group'),
-      categories: get(this, 'store').findAll('group-category')
+      categories: get(this, 'store').query('group-category', {})
     });
+  },
+
+  setupController(controller) {
+    this._super(...arguments);
+    set(controller, 'selectedCategory', null);
   },
 
   actions: {
