@@ -5,10 +5,10 @@ import service from 'ember-service/inject';
 import computed from 'ember-computed';
 import { task, timeout } from 'ember-concurrency';
 import { concat } from 'client/utils/computed-macros';
+import errorMessages from 'client/utils/error-messages';
 import Pagination from 'client/mixins/pagination';
 
 export default Component.extend(Pagination, {
-  intl: service(),
   notify: service(),
   store: service(),
   invites: concat('getInvitesTask.last.value', 'paginatedRecords'),
@@ -49,8 +49,8 @@ export default Component.extend(Pagination, {
     yield invite.save().then(() => {
       set(this, 'inviteUser', null);
       get(this, 'paginatedRecords').addObject(invite);
-    }).catch(() => {
-      get(this, 'notify').error(get(this, 'intl').t('errors.request'));
+    }).catch((error) => {
+      get(this, 'notify').error(errorMessages(error));
     });
   })
 });
