@@ -9,12 +9,12 @@
     <div class="row">
       <h2>Feedback</h2>
       <ul class="settings--navigation">
-        {{#link-to "feedback.bugs" tagName="li" class="list-item"}}
+        {{#link-to "feedback.bugs" tagName="li" class="list-item" current-when="feedback.bugs feedback.bugs-anything"}}
           <a href={{href-to "feedback.bugs"}}>
             {{t "feedback.bugs"}}
           </a>
         {{/link-to}}
-        {{#link-to "feedback.feature-requests" tagName="li" class="list-item"}}
+        {{#link-to "feedback.feature-requests" tagName="li" class="list-item" current-when="feedback.feature-requests feedback.feature-requests-anything"}}
           <a href={{href-to "feedback.feature-requests"}}>
             {{t "feedback.features"}}
           </a>
