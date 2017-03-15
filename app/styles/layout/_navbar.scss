@@ -53,7 +53,14 @@
       left: 15px;
       border-radius: 3px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
       overflow: hidden;
+      height: 0;
+      &.in {
+        height: initial;
+        overflow: visible;
+      }
       .nav-link {
         font-size: 12px;
         color: #939393;
