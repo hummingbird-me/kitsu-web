@@ -24,8 +24,12 @@ export default Route.extend(Pagination, {
         category: category !== 'all' ? category : undefined,
         query: isPresent(query) ? query : undefined
       },
+      fields: {
+        groups: ['slug', 'name', 'avatar', 'tagline', 'membersCount'].join(',')
+      },
       sort: isPresent(query) ? undefined : this._getRealSort(sort),
-      include: 'category'
+      include: 'category',
+      page: { limit: 20 }
     };
     return yield get(this, 'store').query('group', options).then((records) => {
       this.updatePageState(records);

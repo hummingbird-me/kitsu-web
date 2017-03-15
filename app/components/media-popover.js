@@ -82,6 +82,7 @@ export default Component.extend({
         [`${type}_id`]: get(media, 'id'),
         user_id: get(this, 'session.account.id')
       },
+      fields: { libraryEntries: 'status' }
     }).then((results) => {
       if (get(this, 'isDestroying') || get(this, 'isDestroyed')) { return; }
       const entry = get(results, 'firstObject');

@@ -14,6 +14,10 @@ export default Component.extend({
   getGroupsTask: task(function* () {
     return yield get(this, 'store').query('group-member', {
       filter: { user: get(this, 'session.account.id') },
+      fields: {
+        groupMembers: ['unreadCount', 'group'].join(','),
+        groups: ['name', 'slug', 'avatar'].join(',')
+      },
       include: 'group',
       page: { limit: 8 },
       sort: '-group.last_activity_at'

@@ -144,8 +144,14 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
     return result;
   },
 
+  actions: {
+    refresh() {
+      this.refresh();
+    }
+  },
+
   _buildFilters(params) {
-    const filters = { filter: {} };
+    const options = { filter: {}, fields: this._getFieldsets() };
     Object.keys(params).forEach((key) => {
       const value = params[key];
       if (isEmpty(value) === true) {
@@ -157,18 +163,26 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
         }
       }
       const type = typeOf(value);
-      filters.filter[key] = this.serializeQueryParam(value, key, type);
+      options.filter[key] = this.serializeQueryParam(value, key, type);
     });
 
-    if (filters.filter.text === undefined) {
-      filters.sort = '-user_count';
+    if (options.filter.text === undefined) {
+      options.sort = '-user_count';
     }
-    return filters;
+    return options;
   },
 
-  actions: {
-    refresh() {
-      this.refresh();
-    }
+  _getFieldsets() {
+    const [mediaType] = get(this, 'routeName').split('.');
+    return {
+      [mediaType]: [
+        'slug',
+        'canonicalTitle',
+        'titles',
+        'posterImage',
+        'synopsis',
+        'averageRating'
+      ].join(',')
+    };
   }
 });

@@ -39,6 +39,7 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
         user_id: get(this, 'session.account.id'),
         status: 'current,planned'
       },
+      fields: this._getFieldsets(type),
       sort: 'status,-updated_at',
       page: { limit: get(this, 'pageLimit') }
     });
@@ -98,5 +99,18 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
       const index = this.$('.carousel').data('flickity').cells.length - 1;
       this.$('.carousel').flickity('insert', this.$('.new-entries').children(), index);
     });
+  },
+
+  _getFieldsets(type) {
+    const unitKey = type === 'anime' ? 'episodes' : undefined;
+    const unitType = type === 'anime' ? 'episodeCount' : 'chapterCount';
+    const fields = {
+      libraryEntries: ['progress', 'status', 'rating', type, 'nextUnit'].join(','),
+      [type]: ['posterImage', 'canonicalTitle', 'titles', unitType, 'slug'].join(',')
+    };
+    if (unitKey) {
+      fields[unitKey] = 'canonicalTitle';
+    }
+    return fields;
   }
 });

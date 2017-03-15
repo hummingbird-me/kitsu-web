@@ -30,8 +30,10 @@ export default Route.extend(Pagination, {
     const user = this.modelFor('users');
     const options = {
       filter: { followed: get(user, 'id') },
+      fields: { users: ['avatar', 'coverImage', 'name'].join(',') },
       include: 'follower',
-      sort: '-created_at'
+      sort: '-created_at',
+      page: { limit: 20 }
     };
     return yield get(this, 'store').query('follow', options).then((records) => {
       this.updatePageState(records);

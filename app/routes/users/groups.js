@@ -39,8 +39,12 @@ export default Route.extend(Pagination, {
         group_name: isPresent(query) ? query : undefined,
         group_category: category !== 'all' ? category : undefined,
       },
+      fields: {
+        groups: ['slug', 'name', 'avatar', 'tagline', 'membersCount'].join(',')
+      },
       sort: isPresent(query) ? undefined : this._getRealSort(sort),
-      include: 'group.category'
+      include: 'group.category',
+      page: { limit: 20 }
     };
     return yield get(this, 'store').query('group-member', options).then((records) => {
       this.updatePageState(records);

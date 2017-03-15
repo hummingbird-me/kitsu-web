@@ -85,7 +85,7 @@
   {{/if}}
 
   {{! feed items }}
-  {{#infinite-pagination infiniteScrollPoint=2000 onPagination=(action "onPagination")}}
+  {{#infinite-pagination onPagination=(action "onPagination")}}
     {{#each allFeedItems as |group index|}}
       {{#if group.activities.length}}
         {{component (concat "stream-feed/items/" (feed-type group.activities))
