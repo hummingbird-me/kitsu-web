@@ -7,11 +7,13 @@ import { scheduleOnce } from 'ember-runloop';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import { concat } from 'client/utils/computed-macros';
+import errorMessages from 'client/utils/error-messages';
 import Pagination from 'client/mixins/pagination';
 /* global autosize */
 
 export default Component.extend(Pagination, {
   activeTab: 'message',
+  notify: service(),
   store: service(),
   messages: concat('paginatedRecords', 'getMessagesTask.last.value', 'newMessages'),
 
@@ -46,7 +48,10 @@ export default Component.extend(Pagination, {
 
     // if the ticket is new then save that first
     if (get(this, 'isNewTicket')) {
-      yield get(this, 'ticket').save();
+      yield get(this, 'ticket').save().catch((error) => {
+        get(this, 'notify').error(errorMessages(error));
+        throw error;
+      });
     }
     const kind = get(this, 'activeTab') === 'message' ? 'message' : 'mod_note';
     const message = get(this, 'store').createRecord('group-ticket-message', {
@@ -63,12 +68,16 @@ export default Component.extend(Pagination, {
         autosize.update(get(this, 'element').getElementsByClassName('ticket-input'));
       });
       invokeAction(this, 'onCreate', get(this, 'ticket'));
-    }).catch(() => {});
+    }).catch((error) => {
+      get(this, 'notify').error(errorMessages(error));
+    });
   }),
 
   updateStatusTask: task(function* (status) {
     set(this, 'ticket.status', status);
-    yield get(this, 'ticket').save();
+    yield get(this, 'ticket').save().catch((error) => {
+      get(this, 'notify').error(errorMessages(error));
+    });
   }),
 
   actions: {
@@ -79,7 +88,7 @@ export default Component.extend(Pagination, {
 
     markOpen() {
       if (get(this, 'updateStatusTask.isRunning')) { return; }
-      get(this, 'updateStatusTask').perform('opened');
+      get(this, 'updateStatusTask').perform('created');
     },
 
     onEnter(component, event) {

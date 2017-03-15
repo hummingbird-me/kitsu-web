@@ -14,6 +14,6 @@ export default Base.extend({
 
   messages: hasMany('group-ticket-message', { inverse: 'ticket' }),
 
-  isOpen: equal('status', 'opened'),
+  isOpen: equal('status', 'created'),
   isResolved: equal('status', 'resolved')
 });

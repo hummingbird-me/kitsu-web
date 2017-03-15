@@ -14,11 +14,19 @@
             <div class="ticket-actions">
               {{#if ticket.isOpen}}
                 <a href="#" class="resolve-ticket" {{action "markResolved"}}>
-                  {{t "groups.tickets.conversation.mark-resolved"}}
+                  {{#if updateStatusTask.isRunning}}
+                    {{loading-spinner size="small"}}
+                  {{else}}
+                    {{t "groups.tickets.conversation.mark-resolved"}}
+                  {{/if}}
                 </a>
               {{else}}
                 <a href="#" class="resolve-ticket" {{action "markOpen"}}>
-                  {{t "groups.tickets.conversation.mark-open"}}
+                  {{#if updateStatusTask.isRunning}}
+                    {{loading-spinner size="small"}}
+                  {{else}}
+                    {{t "groups.tickets.conversation.mark-open"}}
+                  {{/if}}
                 </a>
               {{/if}}
             </div>
