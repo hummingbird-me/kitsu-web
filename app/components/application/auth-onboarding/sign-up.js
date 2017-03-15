@@ -7,7 +7,7 @@ import computed, { and } from 'ember-computed';
 import { isPresent } from 'ember-utils';
 import errorMessages from 'client/utils/error-messages';
 import { invokeAction } from 'ember-invoke-action';
-/* global zxcvbn */
+import strength from 'password-strength';
 
 export default Component.extend({
   metrics: service(),
@@ -24,7 +24,7 @@ export default Component.extend({
   hasInvalidPassword: and('user.password', 'user.validations.attrs.password.isInvalid'),
 
   passwordStrength: computed('user.password', function() {
-    return zxcvbn(get(this, 'user.password') || '');
+    return strength(get(this, 'user.password') || '');
   }),
 
   step: computed('hasValidName', 'hasValidEmail', 'hasValidPassword', function() {

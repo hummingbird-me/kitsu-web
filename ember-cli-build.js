@@ -81,13 +81,6 @@ module.exports = function(defaults) {
       nouislider: {
         srcDir: 'distribute',
         import: ['nouislider.css', 'nouislider.js']
-      },
-      zxcvbn: {
-        srcDir: 'dist',
-        import: [{
-          path: 'zxcvbn.js',
-          sourceMap: 'zxcvbn.js.map'
-        }]
       }
     }
   });
