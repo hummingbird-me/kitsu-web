@@ -42,12 +42,12 @@ export default Base.extend(Validations, {
   category: belongsTo('group-category'),
   categoryHack: attr('boolean'),
 
-  actionLogs: hasMany('group-action-log'),
-  invites: hasMany('group-invite'),
+  actionLogs: hasMany('group-action-log', { inverse: 'group' }),
+  invites: hasMany('group-invite', { inverse: 'group' }),
   members: hasMany('group-member', { inverse: 'group' }),
   neighbors: hasMany('group-neighbor', { inverse: 'source' }),
-  reports: hasMany('group-report'),
-  tickets: hasMany('group-ticket'),
+  reports: hasMany('group-report', { inverse: 'group' }),
+  tickets: hasMany('group-ticket', { inverse: 'group' }),
 
   isOpen: equal('privacy', 'isOpen'),
   isClosed: equal('privacy', 'closed'),

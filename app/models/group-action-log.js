@@ -5,7 +5,7 @@ import { belongsTo } from 'ember-data/relationships';
 export default Base.extend({
   verb: attr('string'),
 
-  group: belongsTo('group'),
+  group: belongsTo('group', { inverse: 'actionLogs' }),
   user: belongsTo('user'),
   target: belongsTo('-base')
 });

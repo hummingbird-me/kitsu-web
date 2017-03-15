@@ -16,6 +16,6 @@ export default Base.extend({
   post: belongsTo('post', { inverse: 'comments' }),
   user: belongsTo('user'),
 
-  likes: hasMany('comment-like', { inverse: 'comment' }),
+  likes: hasMany('comment-like'),
   replies: hasMany('comment', { inverse: 'parent' })
 });

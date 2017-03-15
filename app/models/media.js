@@ -28,7 +28,7 @@ export default Base.extend({
 
   castings: hasMany('casting'),
   genres: hasMany('genre'),
-  mediaRelationships: hasMany('media-relationship'),
+  mediaRelationships: hasMany('media-relationship', { inverse: 'source' }),
   reviews: hasMany('review'),
 
   unitCount: or('episodeCount', 'chapterCount'),

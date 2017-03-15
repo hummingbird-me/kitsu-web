@@ -7,5 +7,5 @@ export default Base.extend({
   isRead: attr('boolean', { defaultValue: true }),
   isSeen: attr('boolean', { defaultValue: true }),
 
-  activities: hasMany('activity')
+  activities: hasMany('activity', { inverse: null })
 });

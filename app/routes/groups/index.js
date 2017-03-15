@@ -25,7 +25,7 @@ export default Route.extend(Pagination, {
         query: isPresent(query) ? query : undefined
       },
       fields: {
-        groups: ['slug', 'name', 'avatar', 'tagline', 'membersCount'].join(',')
+        groups: ['slug', 'name', 'avatar', 'tagline', 'membersCount', 'category'].join(',')
       },
       sort: isPresent(query) ? undefined : this._getRealSort(sort),
       include: 'category',

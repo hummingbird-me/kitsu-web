@@ -40,7 +40,7 @@ export default Route.extend(Pagination, {
         group_category: category !== 'all' ? category : undefined,
       },
       fields: {
-        groups: ['slug', 'name', 'avatar', 'tagline', 'membersCount'].join(',')
+        groups: ['slug', 'name', 'avatar', 'tagline', 'membersCount', 'category'].join(',')
       },
       sort: isPresent(query) ? undefined : this._getRealSort(sort),
       include: 'group.category',
