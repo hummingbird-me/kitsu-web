@@ -231,14 +231,15 @@
     &:hover {
       background: #faf9fa;
     }
-    &.is-user {
-      img {
-        height: 45px;
-      }
-    }
     img {
       width: 45px;
       height: 64px;
+      &.is-avatar-users, &.is-avatar-groups {
+        height: 45px;
+      }
+      &.is-avatar-users {
+        border-radius: 999em;
+      }
     }
   }
 }

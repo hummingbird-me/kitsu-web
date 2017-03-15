@@ -1,62 +1,66 @@
+import Ember from 'ember';
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import observer from 'ember-metal/observer';
 import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 
-const typeTask = () => (
-  task(function* (type, key, query, limit = 2) {
-    return yield get(this, 'getData').perform(type, key, query, limit);
+const {
+  Inflector: { inflector }
+} = Ember;
+
+const dataTask = (type, key, fields) => (
+  task(function* (query) {
+    return yield get(this, 'store').query(type, {
+      filter: { [key]: query },
+      fields: { [inflector.pluralize(type)]: fields.join(',') },
+      page: { limit: 2 }
+    });
   }).restartable()
 );
 
 export default Component.extend({
   isOpened: false,
-  query: undefined,
   metrics: service(),
   store: service(),
-  animeTask: typeTask(),
-  mangaTask: typeTask(),
-  usersTask: typeTask(),
-
-  getData: task(function* (type, key, query, limit) {
-    return yield get(this, 'store').query(type, {
-      filter: { [key]: query },
-      page: { limit }
-    });
-  }).keepLatest().maxConcurrency(3),
-
-  search: task(function* (query) {
-    yield timeout(250);
-    // TODO: Report to sentry
-    get(this, 'animeTask').perform('anime', 'text', query).then((data) => {
-      set(this, 'groups.anime', data);
-    }).catch(() => {});
-    get(this, 'mangaTask').perform('manga', 'text', query).then((data) => {
-      set(this, 'groups.manga', data);
-    }).catch(() => {});
-    get(this, 'usersTask').perform('user', 'query', query).then((data) => {
-      set(this, 'groups.users', data);
-    }).catch(() => {});
-  }).restartable(),
 
   init() {
     this._super(...arguments);
-    set(this, 'groups', { anime: [], manga: [], users: [] });
+    set(this, 'groups', { anime: [], manga: [], groups: [], users: [] });
   },
 
-  _watchQuery: observer('query', function() {
+  didReceiveAttrs() {
+    this._super(...arguments);
     const query = get(this, 'query');
-    if (isEmpty(query)) {
+    if (isEmpty(query) || get(this, 'queryWas') === query) {
       return;
     }
-    get(this, 'search').perform(query).then(() => {
+    set(this, 'queryWas', query);
+    get(this, 'searchTask').perform(query).then(() => {
       get(this, 'metrics').trackEvent({ category: 'search', action: 'query', label: query });
-    }).catch(() => {});
-  }),
+    }).catch((error) => {
+      get(this, 'raven').captureException(error);
+    });
+  },
+
+  searchTask: task(function* (query) {
+    yield timeout(250);
+    const groupTypes = Object.keys(get(this, 'groups'));
+    groupTypes.forEach((type) => {
+      get(this, `${type}Task`).perform(query).then((records) => {
+        set(this, `groups.${type}`, records);
+      }).catch((error) => {
+        get(this, 'raven').captureException(error);
+      });
+    });
+  }).restartable(),
+
+  animeTask: dataTask('anime', 'text', ['slug', 'canonicalTitle', 'titles', 'posterImage']),
+  mangaTask: dataTask('manga', 'text', ['slug', 'canonicalTitle', 'titles', 'posterImage']),
+  groupsTask: dataTask('group', 'query', ['slug', 'name', 'avatar']),
+  usersTask: dataTask('user', 'query', ['name', 'avatar']),
 
   actions: {
     close() {
@@ -65,9 +69,10 @@ export default Component.extend({
     },
 
     updatePage(records) {
-      const dup = get(this, 'groups.users').toArray().addObjects(records);
-      set(this, 'groups.users', dup);
-      set(this, 'groups.users.links', get(records, 'links'));
+      const copy = get(this, 'groups.users').toArray();
+      copy.addObjects(records);
+      set(copy, 'links', get(records, 'links'));
+      set(this, 'groups.users', copy);
     }
   }
 });
