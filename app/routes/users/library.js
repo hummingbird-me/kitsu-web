@@ -134,6 +134,9 @@ export default Route.extend(Pagination, {
       }
     }
 
+    // sparse fieldsets
+    Object.assign(options, this._getFieldsets(media));
+
     return Object.assign(options, {
       include: `${media},user`,
       filter: {
@@ -143,5 +146,35 @@ export default Route.extend(Pagination, {
       },
       page: { offset: 0, limit: 200 }
     });
+  },
+
+  /**
+   * Request only the fields that we need for this resource
+   */
+  _getFieldsets(media) {
+    const unitCount = media === 'anime' ? 'episodeCount' : 'chapterCount';
+    return {
+      fields: {
+        libraryEntries: [
+          'notes',
+          'progress',
+          'rating',
+          'status',
+          'private',
+          'reconsumeCount',
+          media,
+          'user'
+        ].join(','),
+        [media]: [
+          'posterImage',
+          'canonicalTitle',
+          'titles',
+          'synopsis',
+          'subtype',
+          unitCount
+        ].join(','),
+        users: 'id'
+      }
+    };
   }
 });
