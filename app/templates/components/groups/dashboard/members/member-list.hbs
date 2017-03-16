@@ -7,25 +7,25 @@
         {{loading-spinner size="large"}}
       </div>
     {{else}}
-      <table class="table table-sm table-hover members-list">
-        <thead>
-          <tr>
-            <th>{{t "groups.dashboard.members.members.table.users"}}</th>
-            <th>{{t "groups.dashboard.members.members.table.permissions"}}</th>
-            <th>{{t "groups.dashboard.members.members.table.joined"}}</th>
-            <th>{{t "groups.dashboard.members.members.table.actions"}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#infinite-pagination onPagination=(action "onPagination")}}
+      {{#infinite-pagination onPagination=(action "onPagination")}}
+        <table class="table table-sm table-hover members-list">
+          <thead>
+            <tr>
+              <th>{{t "groups.dashboard.members.members.table.users"}}</th>
+              <th>{{t "groups.dashboard.members.members.table.permissions"}}</th>
+              <th>{{t "groups.dashboard.members.members.table.joined"}}</th>
+              <th>{{t "groups.dashboard.members.members.table.actions"}}</th>
+            </tr>
+          </thead>
+          <tbody>
             {{#each members as |member|}}
               {{groups/dashboard/members/member-list-user
                 member=member group=group
                 tagName="tr" class="group-member-row"}}
             {{/each}}
-          {{/infinite-pagination}}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      {{/infinite-pagination}}
     {{/if}}
   </div>
 </div>
