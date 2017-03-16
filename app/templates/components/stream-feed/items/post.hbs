@@ -171,15 +171,13 @@
 
     {{! Post Likes -- Don't load until we have entered viewport }}
     <div class="stream-item-activity">
-      {{#if viewportEntered}}
-        {{likeable-resource
-          resource=post
-          likesCount=post.postLikesCount
-          likesCountUpdate=(action (mut post.postLikesCount))
-          onCreate=(action "likeCreated")
-          showUsers=true
-        }}
-      {{/if}}
+      {{likeable-resource
+        resource=post
+        likesCount=post.postLikesCount
+        likesCountUpdate=(action (mut post.postLikesCount))
+        onCreate=(action "likeCreated")
+        showUsers=true
+      }}
     </div>
 
     {{! Post Actions }}
@@ -291,17 +289,15 @@
 
   {{! Post Comments }}
   {{#unless isHidden}}
-    {{#if viewportEntered}}
-      {{stream-feed/items/post/comments
-        post=post
-        comment=comment
-        isReply=isReply
-        readOnly=readOnly
-        kitsuGroupMembership=kitsuGroupMembership
-        countUpdate=(action (mut post.topLevelCommentsCount))
-        trackEngagement=(action "trackEngagement")
-      }}
-    {{/if}}
+    {{stream-feed/items/post/comments
+      post=post
+      comment=comment
+      isReply=isReply
+      readOnly=readOnly
+      kitsuGroupMembership=kitsuGroupMembership
+      countUpdate=(action (mut post.topLevelCommentsCount))
+      trackEngagement=(action "trackEngagement")
+    }}
   {{/unless}}
 {{else}}
   <div class="stream-error-wrapper col-sm-12">

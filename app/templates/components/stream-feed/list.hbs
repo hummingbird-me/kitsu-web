@@ -85,19 +85,21 @@
   {{/if}}
 
   {{! feed items }}
-  {{#infinite-pagination onPagination=(action "onPagination")}}
+  {{#infinite-pagination rootMargin=(hash bottom=400) onPagination=(action "onPagination")}}
     {{#each allFeedItems as |group index|}}
       {{#if group.activities.length}}
-        {{component (concat "stream-feed/items/" (feed-type group.activities))
-          group=group
-          feedId=feedId
-          positionInFeed=index
-          readOnly=readOnly
-          kitsuGroup=kitsuGroup
-          kitsuGroupMembership=kitsuGroupMembership
-          removeGroup=(action "removeGroup")
-          deleteActivity=(action "deleteActivity")
-        }}
+        {{#occlusion-culling rootMargin=(hash bottom=400) bufferClass="feed-occlusion-buffer"}}
+          {{component (concat "stream-feed/items/" (feed-type group.activities))
+            group=group
+            feedId=feedId
+            positionInFeed=index
+            readOnly=readOnly
+            kitsuGroup=kitsuGroup
+            kitsuGroupMembership=kitsuGroupMembership
+            removeGroup=(action "removeGroup")
+            deleteActivity=(action "deleteActivity")
+          }}
+        {{/occlusion-culling}}
       {{/if}}
 
       {{! ads inserted }}

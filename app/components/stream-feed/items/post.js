@@ -24,7 +24,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
   router: service('-routing'),
   store: service(),
   metrics: service(),
-  viewport: service(),
   host: getter(() => `${location.protocol}//${location.host}`),
 
   activity: getter(function() {
@@ -87,14 +86,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     get(this, 'metrics').invoke('trackEngagement', 'Stream', data);
   },
 
-  didInsertElement() {
-    this._super(...arguments);
-    const el = get(this, 'element');
-    this.clearViewportCallback = get(this, 'viewport').onInViewportOnce(el, () => {
-      set(this, 'viewportEntered', true);
-    }, { rootMargin: { top: 0, left: 0, right: 0, bottom: -600 } });
-  },
-
   didReceiveAttrs() {
     this._super(...arguments);
     if (get(this, 'group') !== undefined) {
@@ -135,13 +126,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
 
     if (!get(this, 'isHidden')) {
       this._overflow();
-    }
-  },
-
-  willDestroyElement() {
-    this._super(...arguments);
-    if (this.clearViewportCallback) {
-      this.clearViewportCallback();
     }
   },
 
