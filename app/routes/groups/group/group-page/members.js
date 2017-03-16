@@ -19,6 +19,7 @@ export default Route.extend(Pagination, {
     return yield get(this, 'store').query('group-member', {
       include: 'user',
       filter: { query_group: get(model, 'group.id') },
+      fields: { users: ['avatar', 'coverImage', 'name'].join(',') },
       page: { limit: 20 }
     }).then((records) => {
       this.updatePageState(records);
