@@ -24,16 +24,13 @@ export default Component.extend(Pagination, {
   },
 
   getLeadersTask: task(function* () {
-    return yield get(this, 'store').query('group-member', {
+    return yield this.queryPaginated('group-member', {
       filter: {
         query_group: get(this, 'group.id'),
         query_rank: 'admin,mod'
       },
       include: 'user,permissions',
       sort: '-rank'
-    }).then((records) => {
-      this.updatePageState(records);
-      return records;
     });
   }),
 

@@ -23,12 +23,9 @@ export default Component.extend(Pagination, {
   }).readOnly(),
 
   getInvitesTask: task(function* () {
-    return yield get(this, 'store').query('group-invite', {
+    return yield this.queryPaginated('group-invite', {
       filter: { group: get(this, 'group.id'), status: 'pending' },
       include: 'user'
-    }).then((records) => {
-      this.updatePageState(records);
-      return records;
     });
   }),
 

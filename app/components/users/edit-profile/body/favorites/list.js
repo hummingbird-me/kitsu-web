@@ -34,8 +34,7 @@ export default Component.extend(Pagination, {
       sort: 'fav_rank',
       page: { limit: 20 }
     };
-    return yield get(this, 'store').query('favorite', options).then((records) => {
-      this.updatePageState(records);
+    return yield this.queryPaginated('favorite', options).then((records) => {
       records.forEach((record) => {
         strictInvokeAction(this, 'addRecord', record);
       });

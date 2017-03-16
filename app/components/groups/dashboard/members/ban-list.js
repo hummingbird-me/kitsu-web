@@ -23,12 +23,9 @@ export default Component.extend(Pagination, {
   }).readOnly(),
 
   getBansTask: task(function* () {
-    return yield get(this, 'store').query('group-ban', {
+    return yield this.queryPaginated('group-ban', {
       filter: { group: get(this, 'group.id') },
       include: 'user'
-    }).then((records) => {
-      this.updatePageState(records);
-      return records;
     });
   }),
 

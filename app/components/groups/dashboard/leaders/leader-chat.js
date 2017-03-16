@@ -33,14 +33,11 @@ export default Component.extend(Pagination, {
   },
 
   getChatMessagesTask: task(function* () {
-    return yield get(this, 'store').query('leader-chat-message', {
+    return yield this.queryPaginated('leader-chat-message', {
       filter: { group_id: get(this, 'group.id') },
       include: 'user',
       sort: '-created_at'
-    }).then((records) => {
-      this.updatePageState(records);
-      return records.toArray().reverse();
-    });
+    }).then(records => records.toArray().reverse());
   }),
 
   postMessageTask: task(function* () {

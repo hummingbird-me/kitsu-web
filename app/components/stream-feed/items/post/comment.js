@@ -49,7 +49,7 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
   }).readOnly(),
 
   getReplies: task(function* () {
-    return yield get(this, 'store').query('comment', {
+    return yield this.queryPaginated('comment', {
       include: 'user',
       filter: { post_id: get(this, 'post.id'), parent_id: get(this, 'comment.id') },
       fields: { users: ['avatar', 'name'].join(',') },
@@ -94,7 +94,6 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
         const content = replies.toArray().reverse();
         set(content, 'links', get(replies, 'links'));
         set(this, 'replies', content);
-        this.updatePageState(replies);
       }).catch(() => {});
     }
 

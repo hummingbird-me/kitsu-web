@@ -13,8 +13,7 @@ export default Route.extend(Pagination, {
   },
 
   findBlockedUsersTask: task(function* () {
-    return yield get(this, 'store').query('block', { include: 'blocked' }).then((records) => {
-      this.updatePageState(records);
+    return yield this.queryPaginated('block', { include: 'blocked' }).then((records) => {
       const controller = this.controllerFor(get(this, 'routeName'));
       set(controller, 'hasNextPage', this._hasNextPage());
       return records;

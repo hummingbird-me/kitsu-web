@@ -28,6 +28,13 @@ export default Mixin.create({
     });
   },
 
+  queryPaginated(...args) {
+    return get(this, 'store').query(...args).then((records) => {
+      this.updatePageState(records);
+      return records;
+    });
+  },
+
   updatePageState(records) {
     const key = get(this, 'paginationKey');
     const hasNextPage = key in (get(records, 'links') || {});

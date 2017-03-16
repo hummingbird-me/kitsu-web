@@ -32,14 +32,11 @@ export default Component.extend(Pagination, {
   },
 
   getMessagesTask: task(function* () {
-    return yield get(this, 'store').query('group-ticket-message', {
+    return yield this.queryPaginated('group-ticket-message', {
       filter: { ticket: get(this, 'ticket.id') },
       include: 'user',
       sort: '-created_at'
-    }).then((records) => {
-      this.updatePageState(records);
-      return records.toArray().reverse();
-    });
+    }).then(records => records.toArray().reverse());
   }),
 
   postMessageTask: task(function* () {

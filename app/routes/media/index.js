@@ -25,10 +25,7 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
   }).restartable(),
 
   modelTask: task(function* (mediaType, options) {
-    return yield get(this, 'store').query(mediaType, options).then((records) => {
-      this.updatePageState(records);
-      return records;
-    });
+    return yield this.queryPaginated(mediaType, options);
   }).restartable(),
 
   init() {

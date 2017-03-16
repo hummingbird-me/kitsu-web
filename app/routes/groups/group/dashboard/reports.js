@@ -34,13 +34,10 @@ export default Route.extend(CanMixin, Pagination, {
 
   getReportsTask: task(function* () {
     const model = this.modelFor('groups.group.dashboard');
-    return yield get(this, 'store').query('feed', {
+    return yield this.queryPaginated('feed', {
       type: 'reports_aggr',
       id: get(model, 'group.id'),
       include: 'subject.user,subject.naughty,subject.moderator'
-    }).then((records) => {
-      this.updatePageState(records);
-      return records;
     });
   }),
 

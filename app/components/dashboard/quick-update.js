@@ -15,7 +15,6 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
   filterOptions: ['all', 'anime', 'manga'],
   pageLimit: 12,
   notify: service(),
-  store: service(),
   lastUsed: storageFor('last-used'),
 
   remaining: computed('initialEntries.length', function() {
@@ -32,7 +31,7 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
   getEntriesTask: task(function* () {
     const type = get(this, 'filter') !== 'all' ? get(this, 'filter') : undefined;
     const includes = type || 'anime,manga';
-    return yield get(this, 'store').query('library-entry', {
+    return yield this.queryPaginated('library-entry', {
       include: `${includes},nextUnit`,
       filter: {
         kind: type,
@@ -87,7 +86,6 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
     set(this, 'paginatedRecords', []);
     get(this, 'getEntriesTask').perform().then((entries) => {
       set(this, 'initialEntries', entries);
-      this.updatePageState(entries);
     }).catch((error) => {
       get(this, 'raven').captureException(error);
     });

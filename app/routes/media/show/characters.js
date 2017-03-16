@@ -39,10 +39,7 @@ export default Route.extend(Pagination, {
       include: 'character,person',
       sort: '-featured'
     };
-    return yield get(this, 'store').query('casting', options).then((records) => {
-      this.updatePageState(records);
-      return records;
-    });
+    return yield this.queryPaginated('casting', options);
   }).restartable(),
 
   _getFilters() {

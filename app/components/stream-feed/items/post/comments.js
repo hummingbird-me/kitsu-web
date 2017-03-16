@@ -17,7 +17,7 @@ export default Component.extend(Pagination, {
   router: service('-routing'),
 
   getComments: task(function* () {
-    return yield get(this, 'store').query('comment', {
+    return yield this.queryPaginated('comment', {
       filter: { post_id: get(this, 'post.id'), parent_id: '_none' },
       fields: { users: ['avatar', 'name'].join(',') },
       page: { limit: 2 },
@@ -76,7 +76,6 @@ export default Component.extend(Pagination, {
           const content = comments.toArray().reverse();
           set(content, 'links', get(comments, 'links'));
           set(this, 'comments', content);
-          this.updatePageState(comments);
         }).catch(() => {});
       }
     }

@@ -52,10 +52,8 @@ export default Component.extend(Pagination, {
     if (!isEmpty(kind) && kind !== 'all') {
       options.filter = { kind: kind === 'user' ? 'posts' : kind };
     }
-    return yield get(this, 'store').query('feed', options).then((records) => {
+    return yield this.queryPaginated('feed', options).then(() => {
       set(this, 'paginatedRecords', []);
-      this.updatePageState(records);
-      return records;
     });
   }).restartable(),
 

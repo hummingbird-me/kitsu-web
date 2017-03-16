@@ -16,14 +16,11 @@ export default Component.extend(Pagination, {
 
   getMembersTask: task(function* () {
     const group = get(this, 'group.id');
-    return yield get(this, 'store').query('group-member', {
+    return yield this.queryPaginated('group-member', {
       filter: { query_group: group },
       include: 'user,permissions',
       sort: 'rank,created_at',
       page: { limit: 20 }
-    }).then((records) => {
-      this.updatePageState(records);
-      return records;
     });
   })
 });

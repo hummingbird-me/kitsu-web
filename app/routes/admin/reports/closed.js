@@ -12,13 +12,10 @@ export default Route.extend(Pagination, {
   },
 
   queryClosedReportsTask: task(function* () {
-    return yield get(this, 'store').query('report', {
+    return yield this.queryPaginated('report', {
       include: 'user,naughty,moderator',
       filter: { status: '1,2' },
       page: { offset: 0, limit: 20 }
-    }).then((records) => {
-      this.updatePageState(records);
-      return records;
     });
   })
 });

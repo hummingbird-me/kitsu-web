@@ -16,14 +16,11 @@ export default Route.extend(Pagination, {
 
   getGroupMembersTask: task(function* () {
     const model = this.modelFor('groups.group.group-page');
-    return yield get(this, 'store').query('group-member', {
+    return yield this.queryPaginated('group-member', {
       include: 'user',
       filter: { query_group: get(model, 'group.id') },
       fields: { users: ['avatar', 'coverImage', 'name'].join(',') },
       page: { limit: 20 }
-    }).then((records) => {
-      this.updatePageState(records);
-      return records;
     });
   }).restartable(),
 

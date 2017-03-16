@@ -35,9 +35,6 @@ export default Route.extend(Pagination, {
       sort: '-created_at',
       page: { limit: 20 }
     };
-    return yield get(this, 'store').query('follow', options).then((records) => {
-      this.updatePageState(records);
-      return records;
-    });
+    return yield this.queryPaginated('follow', options);
   })
 });

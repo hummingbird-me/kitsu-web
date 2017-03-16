@@ -31,10 +31,7 @@ export default Route.extend(Pagination, {
       include: 'category',
       page: { limit: 20 }
     };
-    return yield get(this, 'store').query('group', options).then((records) => {
-      this.updatePageState(records);
-      return records;
-    });
+    return yield this.queryPaginated('group', options);
   }).restartable(),
 
   _getRealSort(sort) {

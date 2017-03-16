@@ -1,6 +1,5 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
-import service from 'ember-service/inject';
 import { isPresent } from 'ember-utils';
 import { task } from 'ember-concurrency';
 import { concat } from 'client/utils/computed-macros';
@@ -8,7 +7,6 @@ import Pagination from 'client/mixins/pagination';
 
 export default Component.extend(Pagination, {
   filterOptions: ['open', 'resolved', 'all'],
-  store: service(),
   tickets: concat('getTicketsTask.last.value', 'paginatedRecords', 'addedTickets'),
 
   didReceiveAttrs() {
@@ -18,7 +16,7 @@ export default Component.extend(Pagination, {
 
   getTicketsTask: task(function* () {
     const query = get(this, 'query');
-    return yield get(this, 'store').query('group-ticket', {
+    return yield this.queryPaginated('group-ticket', {
       filter: {
         group: get(this, 'group.id'),
         query: isPresent(query) ? query : undefined,
@@ -27,9 +25,6 @@ export default Component.extend(Pagination, {
       },
       include: 'user,firstMessage',
       sort: isPresent(query) ? undefined : '-created_at'
-    }).then((records) => {
-      this.updatePageState(records);
-      return records;
     });
   }),
 

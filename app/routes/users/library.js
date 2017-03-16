@@ -56,10 +56,7 @@ export default Route.extend(Pagination, {
    */
   queryLibraryEntriesTask: task(function* (params) {
     const options = this._getRequestOptions(params);
-    return yield get(this, 'store').query('library-entry', options).then((records) => {
-      this.updatePageState(records);
-      return records;
-    });
+    return yield this.queryPaginated('library-entry', options);
   }).restartable(),
 
   _getUsableSort(sort) {
