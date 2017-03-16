@@ -38,8 +38,9 @@ export default Component.extend(Pagination, {
     } else {
       filters.filter = { text: query };
     }
-    return yield this.queryPaginated(mediaType, filters).then(() => {
+    return yield this.queryPaginated(mediaType, filters).then((records) => {
       set(this, 'paginatedRecords', []);
+      return records;
     });
   }).restartable(),
 
