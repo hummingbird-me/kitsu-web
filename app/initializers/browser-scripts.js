@@ -29,6 +29,14 @@ export function initialize() {
           }
         });
       });
+      // remove caches
+      [
+        'esw-index-1', 'esw-index-2',
+        'asset-cache-1', 'asset-cache-2', 'asset-cache-3',
+        'esw-cache-first-1'
+      ].forEach((cache) => {
+        caches.delete(cache).then(() => {}).catch(() => {});
+      });
     }
   }
 }
