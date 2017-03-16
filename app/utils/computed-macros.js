@@ -10,7 +10,7 @@ export function concat(...deps) {
   const depKeys = deps.map(dep => `${dep}.[]`);
   return computed(...depKeys, function() {
     const array = deps.map(dep => (get(this, dep) || []).slice());
-    return [].concat(...array);
+    return [].addObjects(...array);
   }).readOnly();
 }
 
