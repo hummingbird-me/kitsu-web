@@ -100,15 +100,26 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
   },
 
   _getFieldsets(type) {
-    const unitKey = type === 'anime' ? 'episodes' : undefined;
-    const unitType = type === 'anime' ? 'episodeCount' : 'chapterCount';
     const fields = {
-      libraryEntries: ['progress', 'status', 'rating', type, 'nextUnit'].join(','),
-      [type]: ['posterImage', 'canonicalTitle', 'titles', unitType, 'slug'].join(',')
+      libraryEntries: ['progress', 'status', 'rating', 'nextUnit']
     };
+
+    if (type === undefined) {
+      fields.libraryEntries.push('anime', 'manga');
+      fields.anime = ['posterImage', 'canonicalTitle', 'titles', 'episodeCount', 'slug'].join(',');
+      fields.manga = ['posterImage', 'canonicalTitle', 'titles', 'chapterCount', 'slug'].join(',');
+    } else {
+      fields.libraryEntries.push(type);
+      const unitType = type === 'anime' ? 'episodeCount' : 'chapterCount';
+      fields[type] = ['posterImage', 'canonicalTitle', 'titles', unitType, 'slug'].join(',');
+    }
+    fields.libraryEntries = fields.libraryEntries.join(',');
+
+    const unitKey = type === 'anime' ? 'episodes' : undefined;
     if (unitKey) {
       fields[unitKey] = 'canonicalTitle';
     }
+
     return fields;
   }
 });
