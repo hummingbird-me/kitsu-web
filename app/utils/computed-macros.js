@@ -6,11 +6,12 @@ import get from 'ember-metal/get';
  *
  * @param {*} deps
  */
-export function concat(...deps) {
-  const depKeys = deps.map(dep => `${dep}.[]`);
-  return computed(...depKeys, function() {
-    const array = deps.map(dep => (get(this, dep) || []).slice());
-    return [].addObjects(...array);
+export function concat(...dependents) {
+  const dependentKeys = dependents.map(dep => `${dep}.[]`);
+  return computed(...dependentKeys, function() {
+    const array = dependents.map(dep => (get(this, dep) || []).slice());
+    const flattened = array.reduce((prev, curr) => prev.concat(curr));
+    return [].addObjects(flattened);
   }).readOnly();
 }
 
