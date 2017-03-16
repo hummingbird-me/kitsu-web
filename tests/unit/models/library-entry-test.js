@@ -4,6 +4,9 @@ import testValidations from 'client/tests/helpers/test-validations';
 moduleForModel('library-entry', 'Unit | Model | library-entry', {
   // Specify the other units that are required for this test.
   needs: [
+    'service:intl',
+    'cldr:en',
+    'ember-intl@adapter:default',
     'config:environment',
     'validator:presence',
     'validator:number',
@@ -13,7 +16,12 @@ moduleForModel('library-entry', 'Unit | Model | library-entry', {
     'model:user',
     'model:review',
     'model:-base'
-  ]
+  ],
+
+  beforeEach() {
+    const service = this.container.lookup('service:intl');
+    service.setLocale('en-us');
+  }
 });
 
 test('model validations', function(assert) {

@@ -11,10 +11,6 @@ module.exports = function(defaults) {
     'ember-cli-babel': {
       includePolyfill: true
     },
-    sourcemaps: {
-      enabled: true,
-      extensions: ['js']
-    },
     sassOptions: {
       includePaths: ['node_modules/bootstrap/scss']
     },
