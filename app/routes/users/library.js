@@ -163,6 +163,7 @@ export default Route.extend(Pagination, {
           'user'
         ].join(','),
         [media]: [
+          'slug',
           'posterImage',
           'canonicalTitle',
           'titles',
