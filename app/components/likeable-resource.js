@@ -5,7 +5,6 @@ import set from 'ember-metal/set';
 import observer from 'ember-metal/observer';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
-import { isEmpty } from 'ember-utils';
 import getter from 'client/utils/getter';
 
 export default Component.extend({
@@ -94,11 +93,12 @@ export default Component.extend({
     });
   }).drop(),
 
-  didReceiveAttrs({ newAttrs, oldAttrs }) {
+  didReceiveAttrs() {
     this._super(...arguments);
-    if (isEmpty(oldAttrs) || get(newAttrs.resource.value, 'id') !== get(oldAttrs.resource.value, 'id')) {
+    if (get(this, 'idWas') !== get(this, 'resource.id')) {
       this._getLikes();
     }
+    set(this, 'idWas', get(this, 'resource.id'));
   },
 
   _getLikes() {
