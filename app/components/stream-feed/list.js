@@ -280,10 +280,13 @@ export default Component.extend(Pagination, {
         get(this, 'headTags').collectHeadTags();
 
         // remove dups from the feed and replace with updated activity
-        const dups = get(this, 'feed').filter(group => (
+        const dups = get(this, 'allFeedItems').filter(group => (
           data.findBy('group', get(group, 'group')) !== undefined
         ));
+        get(this, 'allFeedItems').beginPropertyChanges();
         get(this, 'feed').removeObjects(dups);
+        get(this, 'paginatedRecords').removeObjects(dups);
+        get(this, 'allFeedItems').endPropertyChanges();
 
         // prepend the new activities
         unshiftObjects(get(this, 'feed'), data.toArray());
