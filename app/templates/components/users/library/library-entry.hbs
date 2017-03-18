@@ -41,6 +41,15 @@
         {{/if}}
       </div>
 
+      {{! Entry Airing Status}}
+      <div class="entry-airing-status">
+        {{#if (not (eq airingStatus "finished"))}}
+          <span class="tag tag-default">
+            {{t (concat "media.show.summary.information.statuses." media.modelType "." airingStatus)}}
+          </span>
+        {{/if}}
+      </div>
+
       {{! Entry Progress }}
       <div class="entry-progress">
         {{#if (can "edit library-entry" entry user=user)}}

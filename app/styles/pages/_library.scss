@@ -133,7 +133,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .entry-indicators, .entry-progress, .entry-rating, .entry-type {
+  .entry-indicators, .entry-airing-status, .entry-progress, .entry-rating, .entry-type {
     display: inline-block;
     @media (max-width: 992px) {
       margin: 0;
@@ -194,6 +194,18 @@
   .loading {
     width: 24px;
     height: 24px;
+  }
+}
+
+.entry-airing-status {
+  margin-right: 20px;
+  padding-right: 20px;
+  .tag {
+    color: #858585;
+    background: #e5e5e5;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 4px 8px;
   }
 }
 

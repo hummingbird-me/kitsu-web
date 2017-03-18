@@ -169,6 +169,8 @@ export default Route.extend(Pagination, {
           'titles',
           'synopsis',
           'subtype',
+          'startDate',
+          'endDate',
           unitCount
         ].join(','),
         users: 'id'
