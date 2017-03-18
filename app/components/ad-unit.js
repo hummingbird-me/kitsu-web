@@ -6,7 +6,6 @@ import service from 'ember-service/inject';
 import config from 'client/config/environment';
 import injectScript from 'client/utils/inject-script';
 import RSVP from 'rsvp';
-/* global blockAdBlock */
 
 /**
  * Borrowed from Discourse's method of loading scripts by Components.
@@ -81,17 +80,7 @@ export default Component.extend({
     }
 
     if (get(this, 'isEnabled')) {
-      // Check to see if an ad blocker is disabled so we can show the PRO CTA
-      if (!blockAdBlock) {
-        set(this, 'isEnabled', false);
-      } else {
-        blockAdBlock.onDetected(() => {
-          if (get(this, 'isDestroyed')) { return; }
-          set(this, 'isEnabled', false);
-          this._destroyAd();
-        });
-        this._initAd();
-      }
+      this._initAd();
     }
   },
 

@@ -51,9 +51,6 @@ module.exports = function(defaults) {
         srcDir: 'dist',
         import: ['autosize.js']
       },
-      blockadblock: {
-        import: ['blockadblock.js']
-      },
       clipboard: {
         srcDir: 'dist',
         import: ['clipboard.js']
