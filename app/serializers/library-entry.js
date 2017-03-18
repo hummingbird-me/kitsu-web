@@ -1,6 +1,10 @@
 import ApplicationSerializer from 'client/serializers/application';
+import get from 'ember-metal/get';
+import service from 'ember-service/inject';
 
 export default ApplicationSerializer.extend({
+  metrics: service(),
+
   attrs: {
     review: { serialize: false },
     unit: { serialize: false },
@@ -15,6 +19,14 @@ export default ApplicationSerializer.extend({
       if ('progress' in snapshot.changedAttributes()) {
         json.attributes[key] = 'current'; // eslint-disable-line no-param-reassign
       }
+    }
+
+    // If rating is changed we want to send that data to Stream
+    if (key === 'rating' && key in snapshot.changedAttributes()) {
+      get(this, 'metrics').invoke('trackEngagement', 'Stream', {
+        label: 'rating',
+        content: `LibraryEntry:${get(snapshot, 'id')}:rated`
+      });
     }
   }
 });
