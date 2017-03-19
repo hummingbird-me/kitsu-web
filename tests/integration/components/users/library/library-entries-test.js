@@ -1,6 +1,5 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import moment from 'moment';
 
 moduleForComponent('users/library/library-entries', 'Integration | Component | users/library/library entries', {
   integration: true,
@@ -14,12 +13,12 @@ test('it renders', function(assert) {
   assert.expect(2);
   this.set('entries', [{
     media: {
+      modelType: 'anime',
       episodeCount: 13,
       episodeLength: 24,
       posterImage: 'pi',
       subtype: 'TV',
-      startDate: moment.utc('2008-01-08T00:00:00.000Z'),
-      endDate: moment.utc('2008-03-25T00:00:00.000Z')
+      airingStatus: 'finished'
     }
   }]);
 
