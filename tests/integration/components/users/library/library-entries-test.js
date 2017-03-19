@@ -12,7 +12,7 @@ moduleForComponent('users/library/library-entries', 'Integration | Component | u
 test('it renders', function(assert) {
   assert.expect(2);
   this.set('entries', [{
-    media: { episodeCount: 13, episodeLength: 24, posterImage: 'pi', subtype: 'TV' },
+    media: { episodeCount: 13, episodeLength: 24, posterImage: 'pi', subtype: 'TV', airingStatus: 'current' },
   }]);
 
   this.render(hbs`{{users/library/library-entries
