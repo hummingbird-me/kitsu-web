@@ -17,20 +17,6 @@ export default Component.extend({
     return get(this, 'media.unitCount') || '-';
   }).readOnly(),
 
-  /**
-   * Returns keys used in our translation file.
-   */
-  airingStatus: computed('media.{startDate,endDate,unitCount}', function() {
-    const start = get(this, 'media.startDate');
-    const end = get(this, 'media.endDate');
-    if (start && (start.isBefore() || start.isSame())) {
-      const isOneDay = get(this, 'media.unitCount') === 1;
-      const isPastDate = end && (end.isBefore() || end.isSame());
-      return (isOneDay || isPastDate) ? 'finished' : 'current';
-    }
-    return 'nya';
-  }),
-
   typeText: computed('media.subtype', function() {
     const media = get(this, 'media.modelType');
     const type = get(this, 'media.subtype').toLowerCase();

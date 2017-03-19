@@ -49,5 +49,21 @@ export default Base.extend({
       const decimal = curr.toFixed(1).toString();
       return prev + (parseInt(freqs[decimal], 10) || 0);
     }, 0);
+  }).readOnly(),
+
+  /**
+   * Returns the translation key for the current airing status of this media.
+   *
+   * @returns {string} Translation Key
+   */
+  airingStatus: computed('startDate', 'endDate', 'unitCount', function() {
+    const start = get(this, 'startDate');
+    const end = get(this, 'endDate');
+    if (start && (start.isBefore() || start.isSame())) {
+      const isOneDay = get(this, 'unitCount') === 1;
+      const isPastDay = end && (end.isBefore() || end.isSame());
+      return (isOneDay || isPastDay) ? 'finished' : 'current';
+    }
+    return 'nya';
   }).readOnly()
 });
