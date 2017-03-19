@@ -61,20 +61,9 @@ module.exports = function(environment) {
 
     sentry: {
       dsn: 'https://9c9c723278a1456299a9da5842251bdf@sentry.io/119044',
-      cdn: 'https://cdn.ravenjs.com/3.10.0/raven.min.js',
+      cdn: 'https://cdn.ravenjs.com/3.12.1/raven.min.js',
       development: environment !== 'production',
-      whitelistUrls: [/kitsu\.io/, /staging\.kitsu\.io/],
-      ravenOptions: {
-        ignoreUrls: [
-          // Facebook flakiness
-          /graph\.facebook\.com/i,
-          // Facebook blocked
-          /connect\.facebook\.net\/en_US\/all\.js/i,
-          // Chrome extensions
-          /extensions\//i,
-          /^chrome:\/\//i,
-        ]
-      }
+      debug: false
     },
 
     stream: {

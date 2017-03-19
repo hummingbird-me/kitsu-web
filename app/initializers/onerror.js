@@ -9,13 +9,14 @@ export function initialize() {
      * that hit this limit.
     */
     if (error.name === 'SecurityError' && error.code === 18) {
-      return later(() => window.location.reload());
+      return later(() => window.location.reload(), 1);
     }
-    console.error(error);
+    Ember.Logger.error(error);
   };
 }
 
 export default {
   name: 'onerror',
-  initialize
+  initialize,
+  before: 'raven'
 };
