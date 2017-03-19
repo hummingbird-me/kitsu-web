@@ -102,6 +102,10 @@ export default Base.extend(Validations, {
     return !date.isBefore();
   }).readOnly(),
 
+  isSimpleRating: computed('ratingSystem', function() {
+    return get(this, 'ratingSystem') === 'simple';
+  }).readOnly(),
+
   hasRole(roleName, resource) {
     const roles = get(this, 'userRoles').map(ur => get(ur, 'role'));
     const validRoles = roles.filter((r) => {
