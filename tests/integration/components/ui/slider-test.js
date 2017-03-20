@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('media/filter-widgets/slider', 'Integration | Component | media/filter widgets/slider', {
+moduleForComponent('ui/slider-input', 'Integration | Component | ui/slider-input', {
   integration: true
 });
 
