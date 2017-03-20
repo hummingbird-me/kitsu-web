@@ -63,7 +63,11 @@ module.exports = function(environment) {
       dsn: 'https://9c9c723278a1456299a9da5842251bdf@sentry.io/119044',
       cdn: 'https://cdn.ravenjs.com/3.12.1/raven.min.js',
       development: environment !== 'production',
-      debug: false
+      debug: false,
+      ravenOptions: {
+        whitelistUrls: [/kitsu\.io/, /staging\.kitsu\.io/],
+        ignoreErrors: ['TaskCancelation']
+      }
     },
 
     stream: {
