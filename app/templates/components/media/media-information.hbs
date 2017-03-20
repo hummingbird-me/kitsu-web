@@ -43,10 +43,10 @@
       <li>
         <strong>{{t "media.show.summary.information.season"}}:</strong>
         <a href={{href-to (concat media.modelType ".index") (query-params
-          season=season
-          year=(concat seasonYear ".." seasonYear)
+          season=media.season
+          year=(concat media.seasonYear ".." media.seasonYear)
         )}}>
-          {{capitalize season}} {{seasonYear}}
+          {{capitalize media.season}} {{media.seasonYear}}
         </a>
       </li>
     {{/if}}
