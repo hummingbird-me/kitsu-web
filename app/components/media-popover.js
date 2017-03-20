@@ -2,52 +2,15 @@ import Component from 'ember-component';
 import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import { addObserver, removeObserver } from 'ember-metal/observer';
-/* global hoverintent */
+import HoverIntentMixin from 'client/mixins/hover-intent';
 
-export default Component.extend({
+export default Component.extend(HoverIntentMixin, {
   cache: service('local-cache'),
   store: service(),
 
-  didInsertElement() {
-    this._super(...arguments);
-    const element = get(this, 'element');
-    hoverintent(element, () => {
-      this._onMouseEnter();
-    }, () => {
-      this._onMouseLeave();
-    }).options({ timeout: 250 });
-  },
-
-  willDestroyElement() {
-    this._super(...arguments);
-    this.$().off('mouseenter.hoverIntent');
-  },
-
-  /**
-   * Called by hoverIntent when the user hovers this component
-   */
   _onMouseEnter() {
-    if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
+    this._super(...arguments);
     this._getLibraryEntry();
-    set(this, 'showTooltip', true);
-    set(this, 'isTooltipHovered', false);
-  },
-
-  /**
-   * Called by hoverIntent when the user's mouse leaves this component
-   */
-  _onMouseLeave() {
-    if (get(this, 'isDestroying') || get(this, 'isDestroyed')) { return; }
-    // We don't want to close the tooltip if the tooltip itself is hovered.
-    // The tooltip communicates that to us via the onHover/onLeave actions
-    if (get(this, 'isTooltipHovered')) {
-      // tooltip is currently hovered, so observe the variable and exit after
-      addObserver(this, 'isTooltipHovered', this._onMouseLeave);
-    } else {
-      removeObserver(this, 'isTooltipHovered', this._onMouseLeave);
-      set(this, 'showTooltip', false);
-    }
   },
 
   _getLibraryEntry() {
