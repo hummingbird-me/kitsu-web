@@ -52,33 +52,6 @@ export default Base.extend({
     }, 0);
   }).readOnly(),
 
-  season: computed('startDate', function() {
-    const start = get(this, 'startDate');
-    if (!start) { return null; }
-    const month = start.month() + 1;
-    if ([12, 1, 2].includes(month)) {
-      return 'winter';
-    } else if ([3, 4, 5].includes(month)) {
-      return 'spring';
-    } else if ([6, 7, 8].includes(month)) {
-      return 'summer';
-    } else if ([9, 10, 11].includes(month)) {
-      return 'fall';
-    }
-  }).readOnly(),
-
-  seasonYear: computed('season', function() {
-    const season = get(this, 'season');
-    if (!season) { return null; }
-    const start = get(this, 'startDate');
-    const year = start.year();
-    const month = start.month();
-    if (season === 'winter' && month === 12) {
-      return year + 1;
-    }
-    return year;
-  }).readOnly(),
-
   airingStatus: computed('startDate', 'endDate', 'unitCount', function() {
     const start = get(this, 'startDate');
     const end = get(this, 'endDate');
