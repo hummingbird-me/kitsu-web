@@ -1,0 +1,26 @@
+{{yield}}
+
+{{! Rating Popup }}
+{{#if (and showTooltip session.hasUser)}}
+<div>
+  {{#ember-tether
+    target=(concat "#" elementId)
+    attachment=(or attachment "bottom middle")
+    targetAttachment=(or targetAttachment "top middle")
+    constraints=(array (hash
+      to="scrollParent"
+      attachment="together"
+    ))
+    onHover=(action (mut isTooltipHovered) true)
+    onLeave=(action (mut isTooltipHovered) false)
+  }}
+    <div class="rating-hover-wrapper">
+      {{#if (or (not session.hasUser) session.account.isSimpleRating)}}
+        {{library-entry/simple-rating onClick=(action "ratingSelected")}}
+      {{else}}
+        {{library-entry/advanced-rating onClick=(action "ratingSelected")}}
+      {{/if}}
+    </div>
+  {{/ember-tether}}
+</div>
+{{/if}}

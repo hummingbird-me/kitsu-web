@@ -1,0 +1,16 @@
+{{! Seen This }}
+{{#library-entry/state/rating-button
+  onClick=(action "createLibraryEntry" "completed")
+}}
+  {{t "library-entry.state.seen-this" type=media.modelType}}
+{{/library-entry/state/rating-button}}
+
+{{! Want to Watch }}
+<button {{action "createLibraryEntry" "planned"}}>
+  {{t "library-entry.state.want-to-watch" type=media.modelType}}
+</button>
+
+{{! Started Watching }}
+<button {{action "createLibraryEntry" "current"}}>
+  {{t "library-entry.state.started-watching" type=media.modelType}}
+</button>

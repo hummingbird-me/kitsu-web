@@ -20,7 +20,7 @@
               </span>
             </div>
             <div class="filter-slider--wrapper">
-              {{media/filter-widgets/slider
+              {{ui/slider-input
                 options=(hash range=(array 1907 maxYear) initial=year)
                 onSlide=(action (mut dirtyYear))
                 onSet=(action (mut year) dirtyYear)}}
@@ -42,7 +42,7 @@
               </span>
             </div>
             <div class="filter-slider--wrapper">
-              {{media/filter-widgets/slider
+              {{ui/slider-input
                 options=(hash range=(array 0.5 5.0) initial=averageRating step=0.1 decimal=1)
                 onSlide=(action (mut dirtyRating))
                 onSet=(action (mut averageRating) dirtyRating)}}
@@ -79,7 +79,7 @@
                 </span>
               </div>
               <div class="filter-slider--wrapper">
-                {{media/filter-widgets/slider
+                {{ui/slider-input
                   options=(hash range=(array 1 100) initial=episodeCount)
                   onSlide=(action (mut dirtyEpisodes))
                   onSet=(action (mut episodeCount) dirtyEpisodes)}}

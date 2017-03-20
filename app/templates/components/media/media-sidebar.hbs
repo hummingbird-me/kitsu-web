@@ -3,23 +3,10 @@
   {{lazy-image src=(image media.posterImage "large")}}
 </span>
 
-{{! library entry }}
-{{#if session.hasUser}}
-  {{library-dropdown
-    entry=entry
-    type=media.modelType
-    methods=(hash
-      create=(route-action "createEntry")
-      update=(route-action "updateEntry" entry "status")
-      delete=(route-action "deleteEntry" entry)
-  )}}
-  {{#if (and entry (not (is-promise entry)))}}
-    {{media/user-library entry=entry media=media
-      update=(route-action "updateEntry")
-      debouncedUpdate=(route-action "saveEntryDebounced" entry)}}
-  {{/if}}
-{{/if}}
+{{! Library State }}
+{{library-entry/state media=media}}
 
+{{! Streamers }}
 {{#if media.streamingLinks}}
   <div class="where-to-watch-widget">
     <h6>{{t "media.show.sidebar.watch"}}</h6>

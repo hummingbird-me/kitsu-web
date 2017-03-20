@@ -1,0 +1,16 @@
+{{#if getLibraryEntryTask.isRunning}}
+  {{loading-spinner size="large"}}
+{{else}}
+  {{! Header }}
+  <span class="entry-state-header">
+    {{t "library-entry.state.header" state=hasLibraryEntry}}
+  </span>
+
+  {{#unless hasLibraryEntry}}
+    {{library-entry/state/new-entry
+      media=media
+      onCreate=(action "libraryEntryCreated")}}
+  {{else}}
+    {{! Status State }}
+  {{/unless}}
+{{/if}}

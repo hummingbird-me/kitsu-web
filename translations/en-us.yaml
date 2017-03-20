@@ -722,6 +722,30 @@ group-list:
     recent: "Recent Activity"
     newest: "Newest Groups"
     oldest: "Oldest Groups"
+# component: library-entry/*
+library-entry:
+  state:
+    header: "{state, select,
+      false {Add to Library}
+      true {Update Library}
+      other {}}"
+    seen-this: "{type, select,
+      anime {Seen This}
+      manga {Read This}
+      other {}}"
+    want-to-watch: "{type, select,
+      anime {Want to Watch}
+      manga {Want to Read}
+      other {}}"
+    started-watching: "{type, select,
+      anime {Started Watching}
+      manga {Started Reading}
+      other {}}"
+  rating:
+    awful: "Awful"
+    meh: "Meh"
+    good: "Good"
+    amazing: "Amazing"
 # ember-power-select
 selects:
   loading: "Loading..."
