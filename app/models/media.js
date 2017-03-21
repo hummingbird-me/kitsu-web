@@ -55,7 +55,7 @@ export default Base.extend({
   airingStatus: computed('startDate', 'endDate', 'unitCount', function() {
     const start = get(this, 'startDate');
     const end = get(this, 'endDate');
-    if (!start) { return null; }
+    if (!start) { return 'nya'; }
     if (start.isBefore() || start.isSame()) {
       const isOneDay = get(this, 'unitCount') === 1;
       const isPastDay = end && (end.isBefore() || end.isSame());
