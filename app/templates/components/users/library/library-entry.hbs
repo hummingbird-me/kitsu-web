@@ -53,7 +53,7 @@
       {{! Entry Progress }}
       <div class="entry-progress">
         {{#if (can "edit library-entry" entry user=user)}}
-          {{one-way-number entry.progress
+          {{ui/selectable-input entry.progress
             min=0
             max=media.unitCount
             update=(queue
@@ -207,7 +207,7 @@
             <label>
               <span>{{t (concat "users.library.reconsumed." media.modelType)}}</span>
               {{#if (can "edit library-entry" entry user=user)}}
-                {{one-way-number entry.reconsumeCount
+                {{ui/selectable-input entry.reconsumeCount
                   update=(queue
                     (pipe-action (action "sanitizeNumber") (action (mut entry.reconsumeCount)))
                     (perform saveEntryDebounced)
