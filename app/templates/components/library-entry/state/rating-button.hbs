@@ -14,7 +14,7 @@
     onHover=(action (mut isTooltipHovered) true)
     onLeave=(action (mut isTooltipHovered) false)
   }}
-    <div class="rating-hover-wrapper">
+    <div class="rating-hover-wrapper {{if session.account.isSimpleRating "simple-rating"}}">
       {{#if (or (not session.hasUser) session.account.isSimpleRating)}}
         {{library-entry/simple-rating onClick=(action "ratingSelected")}}
       {{else}}

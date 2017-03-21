@@ -1,8 +1,8 @@
 {{#each ratings as |rating|}}
-  <div class="hint--rounded hint--bounce hint--top" aria-label={{t (concat "library-entry.rating." rating.tag)}} {{action "onClick" rating}}>
+  <div class="simple-rating-wrapper hint--rounded hint--bounce hint--top" aria-label={{t (concat "library-entry.rating." rating.tag)}} {{action "onClick" rating}}>
     {{svg-jar rating.tag
-      width=50
-      height=50
+      width="50px"
+      height="50px"
     }}
   </div>
 {{/each}}

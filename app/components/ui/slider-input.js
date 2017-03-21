@@ -36,9 +36,10 @@ export default Component.extend({
     const decimal = get(options, 'decimal');
     noUiSlider.create(elem, {
       start: get(options, 'initial'),
-      connect: get(options, 'doubleSided'),
+      connect: get(options, 'doubleSided') || get(options, 'connect'),
       step: get(options, 'step'),
       range: { min, max },
+      tooltips: get(options, 'showTooltips'),
       format: {
         to(value) {
           return parseFloat(parseFloat(value).toFixed(decimal));

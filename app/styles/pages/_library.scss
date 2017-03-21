@@ -484,6 +484,7 @@
   position: relative;
   margin: 0 auto;
   height: auto;
+  min-width: 225px;
   border: 1px solid #ada4a4;
   box-shadow: 0 1px 2px -1px #a29797;
   border-radius: 80px;
@@ -491,9 +492,12 @@
   border-right: none;
   border-left: none;
   background: #fff;
-  padding: 6px;
+  padding: 16px;
+  &.simple-rating {
+    padding: 6px;
+  }
 
-  > div {
+  .simple-rating-wrapper {
     position: relative;
     vertical-align: middle;
     width: 50px;
@@ -503,6 +507,73 @@
 
     &:hover {
       top: -10px;
+    }
+  }
+
+  .slider {
+    height: 14px;
+    width: 100%;
+    border-radius: 999em;
+  }
+
+  .noUi-connect {
+    background-color: #ccc;
+    border-radius: 999em;
+  }
+
+  .noUi-handle {
+    border-radius: 999em;
+    background-color: transparent;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+    height: 28px;
+    width: 28px;
+    left: -14px;
+    top: -7px;
+    &:active {
+      box-shadow: 0 3px 20px rgba(0,0,0,0.5);
+    }
+    &:before {
+      display: block;
+      border: 4px solid #fff;
+      border-radius: 999em;
+      height: 28px;
+      width: 28px;
+      top: 0;
+      left: 0;
+      background-color: #E74C3C;
+      background-image: linear-gradient(to right, #E74C3C 0%, #F1C40F 50%, #1ABC9C 100%);
+    }
+  }
+  .noUi-handle,
+  .noUi-target {
+    cursor: pointer;
+  }
+  .noUi-base,
+  .noUi-background {
+    left: 0px;
+    background-color: #E74C3C;
+    background-image: linear-gradient(to right, #E74C3C 0%, #F1C40F 50%, #1ABC9C 100%);
+    box-shadow: none;
+  }
+  .noUi-tooltip {
+    background: #383838;
+    color: #fff;
+    padding: 8px 10px;
+    font-size: 12px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 12px;
+    border: none;
+    border-radius: 4px;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      transform: translateX(-50%);
+      background: transparent;
+      border: 6px solid transparent;
+      border-top-color: #383838;
+      z-index: 1000001;
     }
   }
 }
