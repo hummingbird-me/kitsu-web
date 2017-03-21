@@ -237,11 +237,13 @@
 }
 
 .entry-progress--mini-wrapper {
-  border-top: 1px solid darken($eggshell, 5);
   border-bottom: 1px solid darken($eggshell, 5);
   padding: 10px;
   font-size: 12px;
-  margin-top: 10px;
+  &.border-top {
+    border-top: 1px solid darken($eggshell, 5);
+    margin-top: 10px;
+  }
 }
 
 .entry-progress--mini {

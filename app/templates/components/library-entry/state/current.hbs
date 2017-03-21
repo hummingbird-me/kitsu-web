@@ -1,0 +1,17 @@
+{{library-entry/progress
+  libraryEntry=libraryEntry
+  onProgressChange=onProgressChange
+}}
+
+{{! I've Finished This }}
+{{#library-entry/state/rating-button
+  class="button button--secondary"
+  onClick=onComplete
+}}
+  {{t "library-entry.state.finished-this"}}
+{{/library-entry/state/rating-button}}
+
+{{! Remove }}
+<button class="button button--secondary button--muted" {{action onRemove}}>
+  {{t "library-entry.state.remove-from-library"}}
+</button>

@@ -18,6 +18,15 @@
         {{! completed state }}
       {{else if (eq libraryEntry.status "current")}}
         {{! current status }}
+        {{library-entry/state/current
+          libraryEntry=libraryEntry
+          onProgressChange=(action "updateAttribute" "progress")
+          onComplete=(queue
+            (action (mut libraryEntry.status) "completed")
+            (action "updateAttribute" "rating")
+          )
+          onRemove=(action "removeLibraryEntry")
+        }}
       {{else}}
         {{! fallback for planned/on_hold/dropped }}
         {{library-entry/state/planned
