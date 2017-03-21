@@ -70,12 +70,10 @@
 
 .stream-item {
   @extend .clearfix;
+  @extend .card;
   border-radius: 3px;
   margin-right: auto;
   margin-left: auto;
-  background: $white;
-  box-shadow: 0 1px 4px rgba(0,0,0,.04);
-  border: 1px solid rgba(0,0,0,.09);
   margin-bottom: 10px;
   &.pinned-post {
     box-shadow: none;
@@ -99,6 +97,7 @@
 }
 
 .stream-item-wrapper {
+  @extend .clearfix;
   padding: 20px;
   padding-bottom: 0;
 }
@@ -107,7 +106,7 @@
   @extend .clearfix;
   margin-bottom: 0;
   padding-bottom: 15px;
-  background: $white;
+  background: $card-background;
   position: relative;
   z-index: $zIndex--stream-item-block;
 
@@ -120,9 +119,6 @@
     z-index: $zIndex--author-avatar;
     &:hover {
       opacity: .6;
-    }
-    .lazy-image {
-      border: 1px solid #fff;
     }
     .lazy-image, img {
       border-radius: 999em;
@@ -153,7 +149,7 @@
     position: relative;
     top: 7px;
   }
-  .author-secondary {
+  .secondary {
     display: block;
   }
   .author-name {
@@ -161,11 +157,10 @@
     font-size: 20px;
     font-family: $heading-font-family;
   }
-  .author-secondary {
-    color: $charcoal;
-    opacity: .6;
+  .secondary-text {
     font-size: 12px;
     margin-top: 2px;
+    display: block;
     .media-tag-synopsis {
       @media (max-width: 768px) {
         display: none;
@@ -250,7 +245,7 @@
       width: 20px;
       height: 20px;
       border-radius: 999em;
-      border: 1px solid #fff;
+      border: 1px solid $card-background;
       box-sizing: content-box;
     }
     img {
@@ -360,15 +355,15 @@
 }
 
 .stream-item-comments {
-  background: #FBFBFB;
-  border-top: 1px solid #F0F0F0;
+  background: darken($card-background,1);
+  border-top: 1px solid darken($card-background,5);
   width: 100%;
   ul {
     margin-bottom: 6px;
   }
   li {
-    border-bottom: 1px solid #eee;
-    padding: 10px 10px 0px 10px;
+    border-bottom: 1px solid darken($card-background,5);
+    padding: 10px 20px 0px 20px;
     z-index: $zIndex--stream-comments;
   }
   .media-object, .media-object > img {
@@ -416,10 +411,12 @@
 .add-comment-wrapper {
   padding: 20px;
   .add-comment {
-    border-color: #eee;
+    border-color: darken($card-background,5);
   }
   textarea {
     height: 40px;
+    color: $input-text-color;
+    background: lighten($card-background, 5);
   }
 }
 
