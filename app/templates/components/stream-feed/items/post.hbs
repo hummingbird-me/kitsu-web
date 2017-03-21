@@ -65,7 +65,7 @@
 
         {{! Timestamp }}
         <a href={{href-to "posts" post.id}} onclick={{action "trackEngagement" "click"}}>
-          <small class="author-secondary">
+          <small class="secondary-text">
             {{moment-from-now post.createdAt interval=60000}}
             {{#if postEdited}}
               &middot; edited {{moment-from-now post.editedAt interval=60000}}
@@ -156,7 +156,7 @@
                   <a class="author-name" href={{href-to (concat post.media.modelType ".show") post.media}}>
                     {{post.media.computedTitle}}
                   </a>
-                  <small class="author-secondary">
+                  <small class="secondary-text">
                     <div class="media-tag-synopsis">
                       {{truncate post.media.synopsis 150}}
                     </div>
