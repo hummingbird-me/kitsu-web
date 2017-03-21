@@ -25,7 +25,7 @@ export default Base.extend(Validations, {
   progress: attr('number'),
   notes: attr('string'),
   private: attr('boolean'),
-  rating: attr('number'),
+  rating: attr('rating'),
   reconsumeCount: attr('number'),
   status: attr('string'),
   updatedAt: attr('utc'),
