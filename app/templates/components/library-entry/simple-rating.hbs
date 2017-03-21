@@ -1,5 +1,8 @@
 {{#each ratings as |rating|}}
   <div class="hint--rounded hint--bounce hint--top" aria-label={{t (concat "library-entry.rating." rating.tag)}} {{action "onClick" rating}}>
-    {{! @TODO(Ratings): Simple Icons }}
+    {{svg-jar rating.tag
+      width=50
+      height=50
+    }}
   </div>
 {{/each}}

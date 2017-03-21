@@ -10,7 +10,7 @@ test('decimal setting is respected', function(assert) {
   this.set('initial', [50, 90]);
   this.set('range', [1, 100]);
   this.render(hbs`
-    {{media/filter-widgets/slider
+    {{ui/slider-input
         options=(hash
           initial=initial range=range
           decimal=2 step=0.01
@@ -29,7 +29,7 @@ test('actions are called', function(assert) {
   this.set('onSet', () => assert.ok(true));
   this.set('initial', [1, 100]);
   this.set('range', [1, 100]);
-  this.render(hbs`{{media/filter-widgets/slider
+  this.render(hbs`{{ui/slider-input
     options=(hash initial=initial range=range)
     onSlide=(action onSlide)
     onSet=(action onSet)
