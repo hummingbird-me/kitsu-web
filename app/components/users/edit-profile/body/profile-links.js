@@ -11,7 +11,7 @@ export default Component.extend({
   store: service(),
 
   getSites: task(function* () {
-    return yield get(this, 'store').query('profile-link-site', { page: { limit: 20 } });
+    return yield get(this, 'store').query('profile-link-site', { page: { limit: 50 } });
   }).drop(),
 
   init() {
