@@ -241,6 +241,7 @@
   border-bottom: 1px solid darken($eggshell, 5);
   padding: 10px;
   font-size: 12px;
+  margin-top: 10px;
 }
 
 .entry-progress--mini {
@@ -470,13 +471,50 @@
 }
 
 .library-state {
+  position: relative;
+  margin-top: 20px;
   border: 1px solid darken($eggshell, 5);
   border-radius: 3px;
   padding: 15px;
 
-  button {
+  .entry-state-header {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -24px;
+    > span {
+      background-color: #fafafa;
+      @extend .text-muted;
+      font-size: 12px;
+    }
+  }
+
+  .entry-state-status {
+    display: block;
+    margin-top: -18px;
+  }
+
+  .state-helper {
+    display: block;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .button--secondary {
+    padding: 8px;
     width: 100%;
-    margin-top: 5px;
+    font-size: 12px;
+    margin-top: 10px;
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  .button--muted {
+    background-color: lighten($nobel, 10);
+    &:hover {
+      background-color: $nobel;
+    }
   }
 }
 

@@ -1,0 +1,22 @@
+<span class="state-helper">
+  {{t-html "library-entry.state.saved-in"
+    link=(href-to "users.library" session.account.name (query-params status=libraryEntry.status))
+    status=(t (concat "library-shared." libraryEntry.status) type=libraryEntry.media.modelType)
+  }}
+</span>
+
+{{! Progress - If the user has progress }}
+{{#if (gt libraryEntry.progress 0)}}
+  {{library-entry/progress
+    libraryEntry=libraryEntry
+    onProgressChange=onProgressChange
+  }}
+{{/if}}
+
+<button class="button button--secondary" {{action onStatusChange "current"}}>
+  {{t "library-entry.state.watching-this" type=libraryEntry.media.modelType}}
+</button>
+
+<button class="button button--secondary button--muted" {{action onRemove}}>
+  {{t "library-entry.state.remove-from-library"}}
+</button>

@@ -1,0 +1,15 @@
+<div class="entry-progress--mini-wrapper">
+  <span>{{t "library-entry.state.progress"}}</span>
+  <div class="entry-progress entry-progress--mini">
+    {{one-way-number libraryEntry.progress
+      min=0
+      max=media.unitCount
+      update=(action "updateProgress")
+      placeholder="0"
+    }}
+    <span>
+      <span class="sep">/</span>
+      {{totalProgressText}}
+    </span>
+  </div>
+</div>

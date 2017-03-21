@@ -6,7 +6,7 @@ export default Component.extend({
   rating: 1,
 
   actions: {
-    onClick(rating) {
+    onClick([rating]) {
       invokeAction(this, 'onClick', rating);
     }
   }

@@ -130,7 +130,6 @@ media:
       characters: "Characters"
       reviews: "Reviews"
     sidebar:
-      progress: "Progress"
       review:
         write: "Write Review"
         edit: "Edit Review"
@@ -665,8 +664,8 @@ library-shared:
     manga {Currently Reading}
     other {}}"
   planned: "{type, select,
-    anime {Plan to Watch}
-    manga {Plan to Read}
+    anime {Want to Watch}
+    manga {Want to Read}
     other {}}"
   completed: "{type, select,
     anime {Completed}
@@ -741,6 +740,13 @@ library-entry:
       anime {Started Watching}
       manga {Started Reading}
       other {}}"
+    watching-this: "{type, select,
+      anime {I'm Watching This}
+      manga {I'm Reading This}
+      other {}}"
+    remove-from-library: "Remove from Library"
+    saved-in: "Saved in <a href={link}>{status}</a>"
+    progress: "Progress"
   rating:
     awful: "Awful"
     meh: "Meh"

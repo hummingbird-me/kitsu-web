@@ -23,6 +23,7 @@ export default ApplicationSerializer.extend({
 
     // If rating is changed we want to send that data to Stream
     if (key === 'rating' && key in snapshot.changedAttributes()) {
+      json.attributes[key] = snapshot.attr(key) * 2; // eslint-disable-line no-param-reassign
       get(this, 'metrics').invoke('trackEngagement', 'Stream', {
         label: 'rating',
         content: `LibraryEntry:${get(snapshot, 'id')}:rated`

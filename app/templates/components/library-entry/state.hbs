@@ -1,16 +1,32 @@
 {{#if getLibraryEntryTask.isRunning}}
-  {{loading-spinner size="large"}}
+  <div class="text-xs-center">
+    {{loading-spinner size="large"}}
+  </div>
 {{else}}
   {{! Header }}
   <span class="entry-state-header">
-    {{t "library-entry.state.header" state=hasLibraryEntry}}
+    <span>{{t "library-entry.state.header" state=hasLibraryEntry}}</span>
   </span>
 
-  {{#unless hasLibraryEntry}}
-    {{library-entry/state/new-entry
-      media=media
-      onCreate=(action "libraryEntryCreated")}}
-  {{else}}
-    {{! Status State }}
-  {{/unless}}
+  <span class="entry-state-status">
+    {{#unless hasLibraryEntry}} {{! Doesn't have a library entry }}
+      {{library-entry/state/new-entry
+        media=media
+        onCreate=(action "createLibraryEntry")}}
+    {{else}} {{! Has a library entry }}
+      {{#if (eq libraryEntry.status "completed")}}
+        {{! completed state }}
+      {{else if (eq libraryEntry.status "current")}}
+        {{! current status }}
+      {{else}}
+        {{! fallback for planned/on_hold/dropped }}
+        {{library-entry/state/planned
+          libraryEntry=libraryEntry
+          onProgressChange=(action "updateAttribute" "progress")
+          onStatusChange=(action "updateAttribute" "status")
+          onRemove=(action "removeLibraryEntry")
+        }}
+      {{/if}}
+    {{/unless}}
+  </span>
 {{/if}}

@@ -51,6 +51,6 @@ export default Component.extend({
       }
     });
     elem.noUiSlider.on('slide', values => invokeAction(this, 'onSlide', values));
-    elem.noUiSlider.on('set', () => invokeAction(this, 'onSet'));
+    elem.noUiSlider.on('set', values => invokeAction(this, 'onSet', values));
   }
 });

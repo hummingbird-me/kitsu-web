@@ -11,10 +11,6 @@ export default Component.extend({
   isFavorite: false,
   store: service(),
 
-  totalProgressText: computed('media.unitCount', function() {
-    return get(this, 'media.unitCount') || '-';
-  }).readOnly(),
-
   getFavorite: task(function* () {
     const mediaType = get(this, 'media.modelType');
     const mediaId = get(this, 'media.id');
@@ -61,11 +57,6 @@ export default Component.extend({
   },
 
   actions: {
-    sanitizeNumber(value) {
-      const parsed = parseInt(value, 10);
-      return isNaN(parsed) ? value : parsed;
-    },
-
     openReview() {
       const value = get(this, 'entry').belongsTo('review').value();
       if (!value) {
