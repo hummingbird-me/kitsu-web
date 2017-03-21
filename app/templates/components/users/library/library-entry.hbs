@@ -1,7 +1,7 @@
 <div class="library-entry container" data-test-selector="library-entry">
   <div class="entry-wrapper row">
     {{! Entry Title }}
-    <div class="col-md-12 col-lg-7 entry-left">
+    <div class="col-md-12 col-lg-6 entry-left">
       <div class="entry-poster">
         {{lazy-image src=(image media.posterImage "tiny") class="drop-thumb"}}
       </div>
@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <div class="col-md-12 col-lg-5 entry-right">
+    <div class="col-md-12 col-lg-6 entry-right">
       {{! Entry Indicators }}
       <div class="entry-indicators">
         {{! Saving Activity }}
@@ -18,6 +18,15 @@
           <div class="entry-indicator-saving d-inline-block">
             <span class="hint--top hint--bounce hint--rounded" aria-label="Saving...">
               {{loading-spinner size="small"}}
+            </span>
+          </div>
+        {{/if}}
+
+        {{! Entry Airing Status}}
+        {{#if (not (eq media.airingStatus "finished"))}}
+          <div class="entry-indicator-airing-status d-inline-block">
+            <span class="tag">
+              {{t (concat "media.show.summary.information.statuses." media.modelType "." media.airingStatus)}}
             </span>
           </div>
         {{/if}}

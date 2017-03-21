@@ -61,19 +61,5 @@ export default Component.extend({
     const length = get(this, 'media.episodeLength');
     const time = moment.duration(count * length, 'minutes');
     return humanizeDuration(time);
-  }).readOnly(),
-
-  /**
-   * Returns keys used in our translation file.
-   */
-  airingStatus: computed('media.{startDate,endDate,unitCount}', function() {
-    const start = get(this, 'media.startDate');
-    const end = get(this, 'media.endDate');
-    if (start && (start.isBefore() || start.isSame())) {
-      const isOneDay = get(this, 'media.unitCount') === 1;
-      const isPastDate = end && (end.isBefore() || end.isSame());
-      return (isOneDay || isPastDate) ? 'finished' : 'current';
-    }
-    return 'nya';
-  })
+  }).readOnly()
 });

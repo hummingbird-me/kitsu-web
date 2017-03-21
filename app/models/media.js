@@ -4,6 +4,7 @@ import { hasMany } from 'ember-data/relationships';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import computed, { or } from 'ember-computed';
+import moment from 'moment';
 import getTitleField from 'client/utils/get-title-field';
 
 export default Base.extend({
@@ -49,5 +50,20 @@ export default Base.extend({
       const decimal = curr.toFixed(1).toString();
       return prev + (parseInt(freqs[decimal], 10) || 0);
     }, 0);
+  }).readOnly(),
+
+  airingStatus: computed('startDate', 'endDate', 'unitCount', function() {
+    const start = get(this, 'startDate');
+    const end = get(this, 'endDate');
+    if (!start) { return null; }
+    if (start.isBefore() || start.isSame()) {
+      const isOneDay = get(this, 'unitCount') === 1;
+      const isPastDay = end && (end.isBefore() || end.isSame());
+      return (isOneDay || isPastDay) ? 'finished' : 'current';
+    }
+    const currentDate = moment();
+    const futureDate = moment().add(3, 'months');
+    const isSoon = start.isBetween(currentDate, futureDate);
+    return isSoon ? 'upcoming' : 'nya';
   }).readOnly()
 });
