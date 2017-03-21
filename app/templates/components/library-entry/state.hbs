@@ -16,6 +16,16 @@
     {{else}} {{! Has a library entry }}
       {{#if (eq libraryEntry.status "completed")}}
         {{! completed state }}
+        {{library-entry/state/completed
+          libraryEntry=libraryEntry
+          onRatingChange=(action "updateAttribute" "rating")
+          onRewatch=(queue
+            (action (mut libraryEntry.reconsumeCount) (inc libraryEntry.reconsumeCount))
+            (action (mut libraryEntry.progress) 0)
+            (action "updateAttribute" "status" "current")
+          )
+          onRemove=(action "removeLibraryEntry")
+        }}
       {{else if (eq libraryEntry.status "current")}}
         {{! current status }}
         {{library-entry/state/current

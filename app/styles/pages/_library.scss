@@ -518,6 +518,59 @@
       background-color: $nobel;
     }
   }
+
+  .btn-group {
+    .btn, .dropdown-item {
+      font-size: 14px;
+    }
+    .dropdown-toggle {
+      font-size: 15px;
+    }
+  }
+
+  .rating-advanced {
+    position: relative;
+    svg {
+      position: relative;
+      top: -2px;
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+      fill: $nobel;
+      margin-right: 5px;
+    }
+  }
+
+  .rating-simple {
+    svg {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+    .current-rating {
+      text-transform: uppercase;
+    }
+  }
+
+  .current-rating, .rating-sep, .max-rating {
+    font-weight: bold;
+  }
+  .current-rating {
+    &.awful {
+      color: #DA5E51;
+    }
+    &.meh {
+      color: #EBC83C;
+    }
+    &.good {
+      color: $caribbean;
+    }
+    &.amazing {
+      color: #3E99D7;
+    }
+  }
 }
 
 .rating-hover-wrapper {

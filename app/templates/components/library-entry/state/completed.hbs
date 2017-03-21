@@ -1,0 +1,66 @@
+{{! Rating }}
+{{#if isChangingRating}}
+<div>
+  {{#ember-tether
+    target=(concat "#" elementId)
+    attachment=(or attachment "bottom middle")
+    targetAttachment=(or targetAttachment "top middle")
+    targetOffset="-10% 0"
+    constraints=(array (hash
+      to="scrollParent"
+      attachment="together"
+    ))
+  }}
+    <div class="rating-hover-wrapper {{if session.account.isSimpleRating "simple-rating"}}">
+      {{#if (or (not session.hasUser) session.account.isSimpleRating)}}
+        {{library-entry/simple-rating onClick=(action "ratingSelected")}}
+      {{else}}
+        {{library-entry/advanced-rating onClick=(action "ratingSelected")}}
+      {{/if}}
+    </div>
+  {{/ember-tether}}
+</div>
+{{/if}}
+
+{{! Dropdown }}
+{{#bootstrap/bs-dropdown class="btn-group" as |dropdown|}}
+  <button class="btn btn-secondary">
+    {{#if session.account.isSimpleRating}}
+      <span class="rating-simple">
+        {{#if (gt libraryEntry.rating 0)}}
+          {{svg-jar simpleTag}}
+          <span class="current-rating {{simpleTag}}">{{simpleTag}}</span>
+        {{else}}
+          <span class="not-rated">{{t "library-entry.state.not-rated"}}</span>
+        {{/if}}
+      </span>
+    {{else}}
+      <span class="rating-advanced">
+        {{#if (gt libraryEntry.rating 0)}}
+          {{svg-jar "star"}}
+          <span class="current-rating {{simpleTag}}">{{libraryEntry.rating}}</span>
+          <span class="rating-sep">/</span>
+          <span class="max-rating">{{format-number 10}}</span>
+        {{else}}
+          <span class="not-rated">{{t "library-entry.state.not-rated"}}</span>
+        {{/if}}
+      </span>
+    {{/if}}
+  </button>
+  <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{! ... }}
+  </button>
+  {{#dropdown.menu}}
+    {{#dropdown.menu-item onClick=(toggle-action "isChangingRating" this)}}
+      {{t "library-entry.state.change-rating"}}
+    {{/dropdown.menu-item}}
+    <div class="dropdown-divider"></div>
+    {{#dropdown.menu-item onClick=(action onRewatch)}}
+      {{t "library-entry.state.rewatch" type=libraryEntry.media.modelType}}
+    {{/dropdown.menu-item}}
+    <div class="dropdown-divider"></div>
+    {{#dropdown.menu-item onClick=(action onRemove)}}
+      {{t "library-entry.state.remove-from-library"}}
+    {{/dropdown.menu-item}}
+  {{/dropdown.menu}}
+{{/bootstrap/bs-dropdown}}
