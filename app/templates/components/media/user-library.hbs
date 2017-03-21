@@ -12,7 +12,7 @@
 <div class="entry-progress--mini-wrapper">
   <span>{{t "media.show.sidebar.progress"}}</span>
   <div class="entry-progress entry-progress--mini">
-    {{one-way-number entry.progress
+    {{selectable-input entry.progress
       min=0
       max=media.unitCount
       update=(queue
