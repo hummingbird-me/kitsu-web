@@ -1,0 +1,23 @@
+<h1>Linked Accounts</h1>
+
+<div class="settings--section-head">
+  Connect third-party accounts with Kitsu
+</div>
+<div class="container">
+  <div class="form-group row">
+    <label class="col-xs-4 col-form-label">Facebook</label>
+    <div class="col-xs-8">
+      <label class="form-check-label">
+        {{#if session.account.facebookId}}
+          {{facebook-button text="Disconnect Facebook"
+            disabled=facebookTasks.isRunning
+            onclick=(perform disconnectFacebook)}}
+        {{else}}
+          {{facebook-button text="Connect Facebook"
+            disabled=facebookTasks.isRunning
+            onclick=(perform connectFacebook)}}
+        {{/if}}
+      </label>
+    </div>
+  </div>
+</div>

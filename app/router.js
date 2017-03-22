@@ -89,10 +89,9 @@ RouterInstance.map(function() {
     this.route('index', { path: '/profile' });
     this.route('password');
     this.route('privacy');
+    this.route('linked-accounts');
     this.route('imports');
-    // this.route('notifications');
     this.route('blocking');
-    // this.route('apps');
   });
 
   this.route('feedback', function() {
