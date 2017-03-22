@@ -520,55 +520,68 @@
   }
 
   .btn-group {
+    display: flex;
+
+    .btn:first-child {
+      width: 100%;
+      padding-left: 10px;
+    }
+
     .btn, .dropdown-item {
       font-size: 14px;
     }
+
     .dropdown-toggle {
       font-size: 15px;
     }
-  }
 
-  .rating-advanced {
-    position: relative;
     svg {
       position: relative;
-      top: -2px;
-      width: 16px;
-      height: 16px;
       vertical-align: middle;
-      fill: $nobel;
-      margin-right: 5px;
+      margin-right: 10px;
     }
-  }
 
-  .rating-simple {
-    svg {
+    %vertical-align {
       position: relative;
-      width: 20px;
-      height: 20px;
-      vertical-align: middle;
-      margin-right: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
     }
+
+    .rating-advanced {
+      @extend %vertical-align;
+      svg {
+        fill: $nobel;
+      }
+    }
+
+    .rating-simple {
+      @extend %vertical-align;
+      .current-rating {
+        text-transform: uppercase;
+      }
+    }
+
+    .rating-sep {
+      margin: {
+        left: 5px;
+        right: 5px;
+      };
+    }
+
     .current-rating {
-      text-transform: uppercase;
-    }
-  }
-
-  .current-rating, .rating-sep, .max-rating {
-    font-weight: bold;
-  }
-  .current-rating {
-    &.awful {
-      color: #DA5E51;
-    }
-    &.meh {
-      color: #EBC83C;
-    }
-    &.good {
-      color: $caribbean;
-    }
-    &.amazing {
-      color: #3E99D7;
+      &.awful {
+        color: #DA5E51;
+      }
+      &.meh {
+        color: rgba(230, 126, 34, 1.0);
+      }
+      &.good {
+        color: $caribbean;
+      }
+      &.amazing {
+        color: #3E99D7;
+      }
     }
   }
 }

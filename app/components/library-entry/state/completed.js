@@ -5,6 +5,8 @@ import computed from 'ember-computed';
 import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
+  isChangingRating: false,
+
   simpleTag: computed('libraryEntry.rating', function() {
     const rating = get(this, 'libraryEntry.rating');
     return this._getRatingGroup(rating);
