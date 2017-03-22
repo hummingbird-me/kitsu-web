@@ -2,6 +2,7 @@
 {{#if isChangingRating}}
 <div>
   {{#ember-tether
+    id="library-state-completed-rating"
     target=(concat "#" elementId)
     attachment=(or attachment "bottom middle")
     targetAttachment=(or targetAttachment "top middle")
@@ -57,7 +58,7 @@
     {{! ... }}
   </button>
   {{#dropdown.menu}}
-    {{#dropdown.menu-item onClick=(toggle-action "isChangingRating" this)}}
+    {{#dropdown.menu-item onClick=(action "showRating")}}
       {{t "library-entry.state.change-rating"}}
     {{/dropdown.menu-item}}
     <div class="dropdown-divider"></div>
