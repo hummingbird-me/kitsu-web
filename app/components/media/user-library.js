@@ -2,7 +2,6 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import computed from 'ember-computed';
 import { task } from 'ember-concurrency';
 import { capitalize } from 'ember-string';
 import { strictInvokeAction } from 'ember-invoke-action';
