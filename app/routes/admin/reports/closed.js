@@ -16,7 +16,7 @@ export default Route.extend(Pagination, {
       include: 'user,naughty,moderator',
       filter: { status: '1,2' },
       page: { offset: 0, limit: 20 },
-      sort: '-id'
+      sort: '-updatedAt'
     });
   })
 });
