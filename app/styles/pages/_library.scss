@@ -238,7 +238,10 @@
 
 .entry-progress--mini-wrapper {
   border-bottom: 1px solid darken($eggshell, 5);
-  padding: 10px;
+  padding: {
+    top: 10px;
+    bottom: 10px;
+  }
   font-size: 12px;
   &.border-top {
     border-top: 1px solid darken($eggshell, 5);
@@ -550,6 +553,7 @@
 
     .rating-advanced {
       @extend %vertical-align;
+      height: 20px;
       svg {
         fill: $nobel;
       }
@@ -557,6 +561,7 @@
 
     .rating-simple {
       @extend %vertical-align;
+      height: 24px;
       .current-rating {
         text-transform: uppercase;
       }

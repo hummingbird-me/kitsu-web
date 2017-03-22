@@ -14,9 +14,14 @@
   }}
     <div class="rating-hover-wrapper {{if session.account.isSimpleRating "simple-rating"}}">
       {{#if (or (not session.hasUser) session.account.isSimpleRating)}}
-        {{library-entry/simple-rating onClick=(action "ratingSelected")}}
+        {{library-entry/simple-rating
+          onClick=(action "ratingSelected")
+        }}
       {{else}}
-        {{library-entry/advanced-rating onClick=(action "ratingSelected")}}
+        {{library-entry/advanced-rating
+          rating=libraryEntry.rating
+          onClick=(action "ratingSelected")
+        }}
       {{/if}}
     </div>
   {{/ember-tether}}
