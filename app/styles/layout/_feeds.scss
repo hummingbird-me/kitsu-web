@@ -1,3 +1,13 @@
+.feed-aside {
+  width: 200px;
+  padding-left: 15px;
+  .panel-heading {
+    font-weight: normal;
+    text-transform: uppercase;
+    border-bottom: none;
+  }
+}
+
 .feed-container {
   width: 100%;
   position: relative;
@@ -16,9 +26,7 @@
 }
 
 .feed-stream {
-  @media (max-width: 768px) {
-    padding: 10px;
-  }
+  padding: 0 20px;
 }
 
 .feed-filter {
@@ -57,13 +65,13 @@
     float: right;
   }
   button {
-    padding: 5px 15px;
-    color: $charcoal;
+    color: $text-color;
+    padding: 0;
     background: transparent;
-    border: 1px solid #E8E8E8;
     font-size: 14px;
     &:hover, &:focus {
-      background: $white;
+      color: $white;
+      background: transparent;
     }
   }
 }
@@ -75,6 +83,7 @@
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 10px;
+  display: flex;
   &.pinned-post {
     box-shadow: none;
     border: 1px dashed #c8c8c8;
@@ -355,11 +364,11 @@
 }
 
 .stream-item-comments {
-  background: darken($card-background,1);
+  background: darken($card-background,2);
   border-top: 1px solid darken($card-background,5);
   width: 100%;
   ul {
-    margin-bottom: 6px;
+    margin-bottom: 0;
   }
   li {
     border-bottom: 1px solid darken($card-background,5);
@@ -409,14 +418,14 @@
 }
 
 .add-comment-wrapper {
-  padding: 20px;
+  padding: 10px 20px;
   .add-comment {
     border-color: darken($card-background,5);
   }
   textarea {
     height: 40px;
     color: $input-text-color;
-    background: lighten($card-background, 5);
+    background: lighten($card-background, 3);
   }
 }
 
@@ -516,7 +525,7 @@
 }
 .aggregate-date {
   width: 60px;
-  background: $white;
+  background: $card-background;
   position: relative;
   padding: 5px 0;
   span {

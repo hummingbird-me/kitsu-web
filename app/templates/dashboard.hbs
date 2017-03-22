@@ -3,16 +3,35 @@
 
   <div class="feed-container row {{if session.hasUser "quick-update-enabled" "guest-banner-enabled"}}">
     {{! Kitsu Dashboard Top }}
-    {{ad-unit unit="kitsu.dashboard.top"
+    <!-- {{ad-unit unit="kitsu.dashboard.top"
       targeting=(hash section="dashboard")
       sizes=(hash
         mobile=(array (array 320 100) (array 320 50))
         tablet=(array 728 90)
         desktop=(array (array 970 90) (array 728 90))
-      )}}
+      )}} -->
+
+    {{! Feed Aside }}
+    <div class="feed-aside">
+      <div class="is-sticky">
+        {{#if session.hasUser}}
+          <ul>
+            <li>
+              <a href="#" class="{{if (eq streamType "timeline") "active"}}" {{action "switchFeed" "timeline"}}>Following</a>
+            </li>
+            <li>
+              <a href="#" class="{{if (eq streamType "global") "active"}}" {{action "switchFeed" "global"}}>Global</a>
+            </li>
+          </ul>
+        {{/if}}
+
+        {{! Groups }}
+        {{dashboard/unread-groups class="sidebar-item"}}
+      </div>
+    </div>
 
     {{! Feed }}
-    <div class="feed-stream col-sm-12 col-md-8">
+    <div class="feed-stream col-sm">
       {{#if (and session.hasUser (and (eq streamType "global") (eq session.account.postsCount 0)))}}
         {{dashboard/onboarding/feed-notice}}
       {{/if}}
@@ -22,37 +41,38 @@
         streamId=streamId
         streamFilter=(if (eq streamType "global") "user" "all")
         readOnly=(cannot "write post")}}
-          {{#if session.hasUser}}
+          <!-- {{#if session.hasUser}}
             <div class="d-inline">
               <a href="#" class="{{if (eq streamType "timeline") "active"}}" {{action "switchFeed" "timeline"}}>Following</a>
               <a href="#" class="{{if (eq streamType "global") "active"}}" {{action "switchFeed" "global"}}>Global</a>
             </div>
-          {{/if}}
+          {{/if}} -->
         {{/stream-feed/list}}
       </div>
 
-    <div class="feed-sidebar col-sm-4">
-      {{! Onboarding }}
-      {{#if (and session.hasUser (not session.account.feedCompleted))}}
-        {{dashboard/onboarding/checklist-progress user=session.account class="sidebar-item"}}
-      {{/if}}
+    <div class="feed-sidebar">
+      <div class="is-sticky">
+        {{! Onboarding }}
+        {{#if (and session.hasUser (not session.account.feedCompleted))}}
+          {{dashboard/onboarding/checklist-progress user=session.account class="sidebar-item"}}
+        {{/if}}
 
-      {{! Groups }}
-      {{dashboard/unread-groups class="sidebar-item"}}
 
-      {{! Kitsu Dashboard Sidebar Ad }}
-      {{! Hidden on mobile currently }}
-      {{ad-unit unit="kitsu.dashboard.sidebar"
-        targeting=(hash section="dashboard")
-        sizes=(hash
-          tablet=(array (array 336 280) (array 300 250))
-        )}}
 
-      {{! News }}
-      {{dashboard/kitsu-forums class="sidebar-item"}}
+        {{! Kitsu Dashboard Sidebar Ad }}
+        {{! Hidden on mobile currently }}
+        {{ad-unit unit="kitsu.dashboard.sidebar"
+          targeting=(hash section="dashboard")
+          sizes=(hash
+            tablet=(array (array 336 280) (array 300 250))
+          )}}
 
-      {{! Footer }}
-      {{sidebar-footer class="sidebar-item"}}
+        {{! News }}
+        <!-- {{dashboard/kitsu-forums class="sidebar-item"}} -->
+
+        {{! Footer }}
+        {{sidebar-footer class="sidebar-item"}}
+      </div>
     </div>
   </div>
 {{else}}
