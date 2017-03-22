@@ -634,7 +634,7 @@
 
   .noUi-handle {
     border-radius: 999em;
-    background-color: transparent;
+    background-color: #fff;
     box-shadow: 0 3px 8px rgba(0,0,0,0.4);
     height: 28px;
     width: 28px;
@@ -643,16 +643,23 @@
     &:active {
       box-shadow: 0 3px 20px rgba(0,0,0,0.5);
     }
-    &:before {
-      display: block;
-      border: 4px solid #fff;
+    .noUi-handle-dot {
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      height: 18px;
+      width: 18px;
       border-radius: 999em;
-      height: 28px;
-      width: 28px;
-      top: 0;
-      left: 0;
-      background-color: #E74C3C;
-      background-image: linear-gradient(to right, #E74C3C 0%, #F1C40F 50%, #1ABC9C 100%);
+      background-color: transparent;
+      overflow: hidden;
+      .noUi-handle-background {
+        display: block;
+        height: 18px;
+        background-color: #E74C3C;
+        background-image: linear-gradient(to right, #E74C3C 0%, #F1C40F 50%, #1ABC9C 100%);
+        padding-right: 18px;
+        position: absolute;
+      }
     }
   }
   .noUi-handle,

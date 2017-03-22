@@ -1,4 +1,5 @@
 {{ui/slider-input
+  class="advanced-rating-slider"
   options=(hash
     range=(array 1 10)
     step=0.5
@@ -8,5 +9,6 @@
     connect=(array false true)
     showTooltips=true
   )
+  onSlide=(action "onSlide")
   onSet=(action "onClick")
 }}
