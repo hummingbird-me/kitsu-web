@@ -18,7 +18,10 @@ export default Mixin.create({
     // 250ms later so that we don't instantly remove the attribute and then have href-to proc.
     later(() => {
       set(this, 'isFlickityDragging', false);
-      this.$('a[href^="/"]').removeAttr('data-href-to-ignore');
+      const elements = this.$('a[href^="/"]');
+      if (elements) {
+        elements.removeAttr('data-href-to-ignore');
+      }
     }, 250);
   },
 
