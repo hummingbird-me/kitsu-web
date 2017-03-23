@@ -26,7 +26,12 @@ export default Route.extend(Pagination, {
         const lastUsed = get(this, 'lastUsed');
         const { libraryType, librarySort } = getProperties(lastUsed, 'libraryType', 'librarySort');
         if (libraryType || librarySort) {
-          this.replaceWith({ queryParams: { media: libraryType, sort: librarySort } });
+          this.replaceWith({
+            queryParams: {
+              media: queryParams.media || libraryType,
+              sort: queryParams.sort || librarySort
+            }
+          });
         }
       }
     }
@@ -152,16 +157,6 @@ export default Route.extend(Pagination, {
     const unitCount = media === 'anime' ? 'episodeCount' : 'chapterCount';
     return {
       fields: {
-        libraryEntries: [
-          'notes',
-          'progress',
-          'rating',
-          'status',
-          'private',
-          'reconsumeCount',
-          media,
-          'user'
-        ].join(','),
         [media]: [
           'slug',
           'posterImage',
