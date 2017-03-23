@@ -97,7 +97,6 @@ module.exports = function(environment) {
 
     'polyfill-io': {
       features: ['Intl.~locale.en-US'],
-      flags: ['gated'],
       unknown: 'polyfill',
       rum: 0
     },
