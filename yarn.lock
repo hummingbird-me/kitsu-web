@@ -1848,7 +1848,7 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
-concat-stream@^1.4.6, concat-stream@^1.4.7:
+concat-stream@^1.4.7, concat-stream@^1.5.2:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/concat-stream/-/concat-stream-1.6.0.tgz#0aac662fd52be78964d5532f694784e70110acf7"
   dependencies:
@@ -2160,9 +2160,16 @@ diff@^1.3.1:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-1.4.0.tgz#7f28d2eb9ee7b15a97efd89ce63dcfdaa3ccbabf"
 
-doctrine@1.5.0, doctrine@^1.2.2:
+doctrine@1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-1.5.0.tgz#379dce730f6166f76cefa4e6707a159b02c5a6fa"
+  dependencies:
+    esutils "^2.0.2"
+    isarray "^1.0.0"
+
+doctrine@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-2.0.0.tgz#c73d8d2909d22291e1a007a395804da8b665fe63"
   dependencies:
     esutils "^2.0.2"
     isarray "^1.0.0"
@@ -2227,6 +2234,13 @@ ember-ajax@2.5.6:
   resolved "https://registry.yarnpkg.com/ember-ajax/-/ember-ajax-2.5.6.tgz#a75f743ccf1b95e979a5cf96013b3dba8fa625e4"
   dependencies:
     ember-cli-babel "^5.1.5"
+
+ember-assign-polyfill@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/ember-assign-polyfill/-/ember-assign-polyfill-2.0.1.tgz#cbd040e9d2105baf90893c2f2a6b85074a12acb0"
+  dependencies:
+    ember-cli-babel "^5.1.7"
+    ember-cli-version-checker "^1.2.0"
 
 ember-basic-dropdown@^0.31.0:
   version "0.31.0"
@@ -2363,9 +2377,9 @@ ember-cli-htmlbars-inline-precompile@^0.3.2, ember-cli-htmlbars-inline-precompil
     ember-cli-htmlbars "^1.0.0"
     hash-for-dep "^1.0.2"
 
-ember-cli-htmlbars@^1.0.0, ember-cli-htmlbars@^1.0.1, ember-cli-htmlbars@^1.0.10, ember-cli-htmlbars@^1.0.11, ember-cli-htmlbars@^1.0.3, ember-cli-htmlbars@^1.0.8, ember-cli-htmlbars@^1.1.0, ember-cli-htmlbars@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-1.1.1.tgz#8776cf59796dac8f32e8625fc6d1ea45ffa55de1"
+ember-cli-htmlbars@^1.0.0, ember-cli-htmlbars@^1.0.1, ember-cli-htmlbars@^1.0.10, ember-cli-htmlbars@^1.0.11, ember-cli-htmlbars@^1.0.3, ember-cli-htmlbars@^1.0.8, ember-cli-htmlbars@^1.1.0, ember-cli-htmlbars@^1.1.1, ember-cli-htmlbars@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-1.2.0.tgz#327e1a5dda1c85c6fcf8be888f7894b32c3f393b"
   dependencies:
     broccoli-persistent-filter "^1.0.3"
     ember-cli-version-checker "^1.0.2"
@@ -2463,9 +2477,9 @@ ember-cli-node-assets@^0.1.4, ember-cli-node-assets@^0.1.5, ember-cli-node-asset
     lodash "^4.5.1"
     resolve "^1.1.7"
 
-ember-cli-node-assets@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-node-assets/-/ember-cli-node-assets-0.2.0.tgz#5ac52af972f3140adc7f25374d14a067a88937cf"
+ember-cli-node-assets@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-node-assets/-/ember-cli-node-assets-0.2.2.tgz#d2d55626e7cc6619f882d7fe55751f9266022708"
   dependencies:
     broccoli-funnel "^1.0.1"
     broccoli-merge-trees "^1.1.1"
@@ -2624,9 +2638,9 @@ ember-cli-version-checker@^1.0.2, ember-cli-version-checker@^1.1.3, ember-cli-ve
   dependencies:
     semver "^5.3.0"
 
-ember-cli@~2.12.0:
-  version "2.12.0"
-  resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-2.12.0.tgz#1dd081ef736570d76600ae6f7dfd043b55ac41f5"
+ember-cli@~2.12.1:
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-2.12.1.tgz#33dd9341677f67f29bc0e286b129877ee15e5bcb"
   dependencies:
     amd-name-resolver "0.0.6"
     bower-config "^1.3.0"
@@ -2746,9 +2760,9 @@ ember-cp-validations@3.2.4:
     exists-sync "0.0.4"
     walk-sync "^0.3.1"
 
-ember-data@^2.12.0:
-  version "2.12.0"
-  resolved "https://registry.yarnpkg.com/ember-data/-/ember-data-2.12.0.tgz#64ba2ed9eb9c71fb093d577c5318321b2ffe90fd"
+ember-data@^2.12.1:
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/ember-data/-/ember-data-2.12.1.tgz#c06d47b14ff4956e6579b04960f62060b8ce7a70"
   dependencies:
     amd-name-resolver "0.0.5"
     babel-plugin-feature-flags "^0.2.1"
@@ -2790,7 +2804,7 @@ ember-factory-for-polyfill@^1.1.0:
 
 ember-flickity@vevix/ember-flickity#npm-vendor:
   version "0.1.2"
-  resolved "https://codeload.github.com/vevix/ember-flickity/tar.gz/9a766431d1ce5a1596189f08699ed7c17047c26f"
+  resolved "https://codeload.github.com/vevix/ember-flickity/tar.gz/ed98b720af201f03e7add8d27941f7314f8cb9ab"
   dependencies:
     broccoli-funnel "^1.1.0"
     ember-cli-babel "^5.1.6"
@@ -2886,9 +2900,9 @@ ember-intl-relativeformat@^2.4.0:
     ember-intl-messageformat "^2.4.0"
     intl-relativeformat "^1.2.0"
 
-ember-intl@^2.21.1:
-  version "2.24.0"
-  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-2.24.0.tgz#cbae05f9d187699574b01b6c463870172356c221"
+ember-intl@^2.24.1:
+  version "2.24.1"
+  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-2.24.1.tgz#86d2461532d6b81f67c625295a647473a1f09181"
   dependencies:
     broccoli-caching-writer "^3.0.3"
     broccoli-cldr-data "^0.4.2"
@@ -2898,7 +2912,9 @@ ember-intl@^2.21.1:
     broccoli-stew "^1.2.0"
     chalk "^1.0.0"
     cldr-core "28.0.0"
+    ember-assign-polyfill "^2.0.1"
     ember-cli-babel "^5.1.7"
+    ember-cli-import-polyfill "^0.2.0"
     ember-getowner-polyfill "1.2.2"
     ember-intl-format-cache "^2.4.0"
     ember-intl-messageformat "^2.4.0"
@@ -3053,9 +3069,9 @@ ember-require-module@0.1.1, ember-require-module@^0.1.1:
   dependencies:
     ember-cli-babel "^5.1.7"
 
-ember-resolver@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/ember-resolver/-/ember-resolver-2.1.1.tgz#5e4c1fffe9f5f48fc2194ad7592274ed0cd74f72"
+ember-resolver@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ember-resolver/-/ember-resolver-3.0.0.tgz#d5e5d4547a2981d0756523b52076d41778390add"
   dependencies:
     ember-cli-babel "^5.1.6"
     ember-cli-version-checker "^1.1.6"
@@ -3483,17 +3499,18 @@ eslint-plugin-import@^2.2.0:
     minimatch "^3.0.3"
     pkg-up "^1.0.0"
 
-eslint@^3.0.0, eslint@^3.14.1:
-  version "3.17.1"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.17.1.tgz#b80ae12d9c406d858406fccda627afce33ea10ea"
+eslint@^3.0.0, eslint@^3.18.0:
+  version "3.18.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.18.0.tgz#647e985c4ae71502d20ac62c109f66d5104c8a4b"
   dependencies:
     babel-code-frame "^6.16.0"
     chalk "^1.1.3"
-    concat-stream "^1.4.6"
+    concat-stream "^1.5.2"
     debug "^2.1.1"
-    doctrine "^1.2.2"
+    doctrine "^2.0.0"
     escope "^3.6.0"
     espree "^3.4.0"
+    esquery "^1.0.0"
     estraverse "^4.2.0"
     esutils "^2.0.2"
     file-entry-cache "^2.0.0"
@@ -3545,6 +3562,12 @@ esprima@^3.1.1, esprima@~3.1.0:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-3.1.3.tgz#fdca51cee6133895e3c88d535ce49dbff62a4633"
 
+esquery@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/esquery/-/esquery-1.0.0.tgz#cfba8b57d7fba93f17298a8a006a04cda13d80fa"
+  dependencies:
+    estraverse "^4.0.0"
+
 esrecurse@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/esrecurse/-/esrecurse-4.1.0.tgz#4713b6536adf7f2ac4f327d559e7756bff648220"
@@ -3556,7 +3579,7 @@ estraverse@^1.9.1:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-1.9.3.tgz#af67f2dc922582415950926091a4005d29c9bb44"
 
-estraverse@^4.1.1, estraverse@^4.2.0:
+estraverse@^4.0.0, estraverse@^4.1.1, estraverse@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-4.2.0.tgz#0dee3fed31fcd469618ce7342099fc1afa0bdb13"
 
@@ -4085,11 +4108,7 @@ getstream@^3.5.0:
     request ">=2.67.0"
     xmlhttp-request ">=0.4.0"
 
-git-repo-info@^1.0.4, git-repo-info@^1.1.2:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/git-repo-info/-/git-repo-info-1.4.1.tgz#2a072823254aaf62fcf0766007d7b6651bd41943"
-
-git-repo-info@~1.2.0:
+git-repo-info@^1.0.4, git-repo-info@^1.1.2, git-repo-info@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/git-repo-info/-/git-repo-info-1.2.0.tgz#43d8513e04a24dd441330a2f7c6655a709fdbaf2"
 
@@ -5412,9 +5431,9 @@ moment-timezone@^0.5.0, moment-timezone@^0.5.11:
   dependencies:
     moment ">= 2.6.0"
 
-moment@2.x, "moment@>= 2.6.0", moment@^2.13.0, moment@^2.17.1:
-  version "2.17.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.1.tgz#fed9506063f36b10f066c8b59a144d7faebe1d82"
+moment@2.x, "moment@>= 2.6.0", moment@^2.13.0, moment@^2.18.1:
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
 morgan@^1.5.2:
   version "1.8.1"
