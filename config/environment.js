@@ -66,8 +66,16 @@ module.exports = function(environment) {
       development: environment !== 'production',
       debug: false,
       ravenOptions: {
-        whitelistUrls: [/kitsu\.io/, /staging\.kitsu\.io/],
-        ignoreErrors: ['TaskCancelation'],
+        whitelistUrls: [
+          /kitsu\.io/
+        ],
+        ignoreErrors: [
+          'TaskCancelation',
+          /(KasperskyLab)/
+        ],
+        includePaths: [
+          /https?:\/\/(staging\.)?kitsu\.io/
+        ],
         environment: IS_STAGING_ENV ? 'staging' : 'production'
       }
     },
