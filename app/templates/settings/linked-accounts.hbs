@@ -4,20 +4,74 @@
   Connect third-party accounts with Kitsu
 </div>
 <div class="container">
+  {{! Facebook }}
   <div class="form-group row">
     <label class="col-xs-4 col-form-label">Facebook</label>
     <div class="col-xs-8">
       <label class="form-check-label">
         {{#if session.account.facebookId}}
-          {{facebook-button text="Disconnect Facebook"
-            disabled=facebookTasks.isRunning
-            onclick=(perform disconnectFacebook)}}
+          <button class="button button--facebook w-100"
+            disabled={{if disconnectFacebook.isRunning "disabled"}}
+            onclick={{perform disconnectFacebook}}>
+            {{svg-jar "l-facebook"}}
+            Disconnect Facebook
+          </button>
         {{else}}
-          {{facebook-button text="Connect Facebook"
-            disabled=facebookTasks.isRunning
-            onclick=(perform connectFacebook)}}
+          <button class="button button--facebook w-100"
+            disabled={{if connectFacebook.isRunning "disabled"}}
+            onclick={{perform connectFacebook}}>
+            {{svg-jar "l-facebook"}}
+            Connect Facebook
+          </button>
         {{/if}}
       </label>
     </div>
   </div>
+
+  {{! YouTube }}
+  <div class="form-group row">
+    <label class="col-xs-4 col-form-label">YouTube</label>
+    <div class="col-xs-8">
+      <label class="form-check-label">
+        {{#if youtubeAccount}}
+          <button class="button button--youtube w-100"
+            disabled={{if destroyLink.isRunning "disabled"}}
+            onclick={{perform destroyLink "LinkedAccount::YoutubeChannel"}}>
+            {{svg-jar "play"}}
+            Disconnect YouTube
+          </button>
+        {{else}}
+          <button class="button button--youtube w-100"
+            disabled={{if createLink.isRunning "disabled"}}
+            onclick={{perform createLink "LinkedAccount::YoutubeChannel"}}>
+            {{svg-jar "play"}}
+            Connect YouTube
+          </button>
+        {{/if}}
+      </label>
+
+      {{#if youtubeAccount}}
+        <label class="form-check-label m-t-1">
+          {{one-way-checkbox youtubeAccount.shareFrom
+            update=(action (mut youtubeAccount.shareFrom))
+          }}
+          Post to Kitsu
+          <small>If enabled, We'll post to Kitsu on your behalf when you upload a video to your YouTube.</small>
+        </label>
+      {{/if}}
+    </div>
+  </div>
+
+  {{! Save }}
+  {{#if hasAccounts}}
+    <div class="form-group row">
+      <button class="button button--primary btn-lg btn-block" disabled={{unless hasDirtyAccounts "disabled"}} onclick={{perform saveChangesTask}}>
+        {{#if saveChangesTask.isRunning}}
+          {{loading-spinner size="small"}}
+        {{else}}
+          Save Changes
+        {{/if}}
+      </button>
+    </div>
+  {{/if}}
 </div>
