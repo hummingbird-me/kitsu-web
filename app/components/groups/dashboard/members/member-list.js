@@ -19,7 +19,7 @@ export default Component.extend(Pagination, {
     return yield this.queryPaginated('group-member', {
       filter: { query_group: group },
       include: 'user,permissions',
-      sort: 'rank,created_at',
+      sort: 'rank,-created_at',
       page: { limit: 20 }
     });
   })
