@@ -1,5 +1,6 @@
 /* eslint-env node */
-const isStaging = process.env.HEROKU_EMBER_APP === 'staging';
+const IS_STAGING_ENV = process.env.HEROKU_EMBER_APP === 'staging';
+
 module.exports = function(environment) {
   const ENV = {
     modulePrefix: 'client',
@@ -12,7 +13,7 @@ module.exports = function(environment) {
     },
     APP: {
       APIHost: undefined,
-      isStaging,
+      isStaging: IS_STAGING_ENV,
     },
     EXTEND_PROTOTYPES: {
       Date: false
@@ -60,13 +61,14 @@ module.exports = function(environment) {
     ],
 
     sentry: {
-      dsn: 'https://9c9c723278a1456299a9da5842251bdf@sentry.io/119044',
-      cdn: 'https://cdn.ravenjs.com/3.12.1/raven.min.js',
+      dsn: 'https://1c436e52d5a54f4a94339278c8bdbe77@sentry.io/151419',
+      cdn: 'https://cdn.ravenjs.com/3.13.1/raven.min.js',
       development: environment !== 'production',
       debug: false,
       ravenOptions: {
         whitelistUrls: [/kitsu\.io/, /staging\.kitsu\.io/],
-        ignoreErrors: ['TaskCancelation']
+        ignoreErrors: ['TaskCancelation'],
+        environment: IS_STAGING_ENV ? 'staging' : 'production'
       }
     },
 
@@ -136,9 +138,7 @@ module.exports = function(environment) {
 
   // Staging app @ Heroku
   if (process.env.HEROKU_EMBER_APP === 'staging') {
-    // @TODO: Switch back
     ENV.APP.APIHost = 'https://staging.kitsu.io';
-    ENV.sentry.dsn = 'https://cd7634b1400644688ff55bda89171367@sentry.io/125035';
   }
 
   // Production app @ Heroku
@@ -150,7 +150,7 @@ module.exports = function(environment) {
   if (process.env.HEROKU_EMBER_APP) {
     ENV.APP.heroku = true;
     if (process.env.HEROKU_SLUG_COMMIT) {
-      ENV.APP.herokuCommit = process.env.HEROKU_SLUG_COMMIT.slice(0, 7);
+      ENV.APP.gitCommit = process.env.HEROKU_SLUG_COMMIT.slice(0, 7);
     }
   }
 
