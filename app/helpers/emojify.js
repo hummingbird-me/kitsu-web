@@ -3,7 +3,7 @@ import { htmlSafe } from 'ember-string';
 /* global emojione */
 
 export function emojify([str]) {
-  const emojified = emojione ? emojione.toImage(str) : str;
+  const emojified = typeof emojione !== 'undefined' ? emojione.toImage(str) : str;
   return htmlSafe(emojified);
 }
 
