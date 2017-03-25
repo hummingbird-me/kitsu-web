@@ -125,7 +125,7 @@
         {{/if}}
       {{else}}
         <span class="stream-content-post {{if isExpanded "full-post"}}">
-          {{emojify post.contentFormatted}}
+          {{format-content post.contentFormatted}}
         </span>
 
         {{#if isOverflowed}}
