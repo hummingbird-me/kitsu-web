@@ -2,7 +2,7 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import { classify } from 'ember-string';
+import { dasherize } from 'ember-string';
 import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
@@ -17,7 +17,7 @@ export default Component.extend({
     const list = get(this, 'store').createRecord('list-import', {
       strategy: 'obliterate',
       inputText: get(this, 'username'),
-      kind: `ListImport::${classify(get(this, 'siteName'))}`,
+      kind: `${dasherize(get(this, 'siteName'))}`,
       user: get(this, 'session.account')
     });
     return yield list.save();
