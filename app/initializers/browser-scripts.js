@@ -19,6 +19,7 @@ function embedly() {
     integrations: ['google'],
     cards: {
       key: config.embedly.apiKey,
+      recommend: '0',
       controls: '0'
     }
   });
