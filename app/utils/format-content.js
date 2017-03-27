@@ -3,10 +3,10 @@ import jQuery from 'jquery';
 
 function embedLinkElements(content) {
   const elements = jQuery(content);
-  elements.find('a').each((index, element) => {
+  elements.find('a.autolink').each((index, element) => {
     jQuery(element).addClass('embedly-card');
   });
-  return elements.html();
+  return elements.map((index, element) => jQuery(element).html()).get().join('');
 }
 
 export default function formatContent(content, embed = true) {
