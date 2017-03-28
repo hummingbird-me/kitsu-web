@@ -96,6 +96,28 @@
     </div>
   </div>
 
+  {{! rating type }}
+  <div class="form-group row rating-type">
+    <label class="col-xs-4 col-form-label">Rating Type</label>
+    <div class="col-xs-8">
+      {{#power-select
+        renderInPlace=true
+        options=ratings
+        selected=selectedRating
+        searchEnabled=false
+        onchange=(action "changeRating") as |rating|
+      }}
+        {{#if (eq rating.id "simple")}}
+          {{svg-jar "amazing" width="24px" height="24px"}}
+        {{else}}
+          {{svg-jar "star" width="24px" height="24px" fill="#B4B4B4"}}
+        {{/if}}
+        {{rating.text}}
+      {{/power-select}}
+      <small>Choose how you'll like to rate media that you've watched or read.</small>
+    </div>
+  </div>
+
   {{! adult filter }}
   <div class="form-group row">
     <label class="col-xs-4 col-form-label">Adult Content</label>

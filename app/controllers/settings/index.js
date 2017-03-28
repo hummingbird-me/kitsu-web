@@ -24,6 +24,10 @@ export default Controller.extend({
     ['Canonical', 'Romanized', 'English'].map(key => ({ id: key.toLowerCase(), text: key }))
   )),
 
+  ratings: getter(() => (
+    ['Simple', 'Advanced'].map(key => ({ id: key.toLowerCase(), text: key }))
+  )),
+
   filters: getter(() => (
     [{ value: true, text: 'Hide Adult Content' },
     { value: false, text: 'Show Adult Content (¬‿¬ )' }]
@@ -60,6 +64,9 @@ export default Controller.extend({
     const title = get(this, 'titles')
       .find(item => get(item, 'id') === get(this, 'user.titleLanguagePreference'));
     set(this, 'selectedTitle', title);
+    const rating = get(this, 'ratings')
+      .find(item => get(item, 'id') === get(this, 'user.ratingSystem'));
+    set(this, 'selectedRating', rating);
     const filter = get(this, 'filters')
       .find(item => get(item, 'value') === get(this, 'user.sfwFilter'));
     set(this, 'selectedFilter', filter);
@@ -79,6 +86,11 @@ export default Controller.extend({
     changeTitle(title) {
       set(this, 'selectedTitle', title);
       set(this, 'user.titleLanguagePreference', get(title, 'id'));
+    },
+
+    changeRating(rating) {
+      set(this, 'selectedRating', rating);
+      set(this, 'user.ratingSystem', get(rating, 'id'));
     },
 
     changeFilter(filter) {
