@@ -20,7 +20,8 @@ function embedly() {
     cards: {
       key: config.embedly.apiKey,
       recommend: '0',
-      controls: '0'
+      controls: '0',
+      align: 'left'
     }
   });
   injectScript('//cdn.embedly.com/widgets/platform.js').catch(() => {});
