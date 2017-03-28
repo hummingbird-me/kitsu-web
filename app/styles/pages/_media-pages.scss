@@ -82,8 +82,8 @@
 }
 
 .rating-bar {
-  background: $white;
-  border: 1px solid #eee;
+  background: $card-background;
+  border: 1px solid darken($alabaster, 5);
   margin-bottom: 15px;
   border-radius: 3px;
 }
@@ -92,7 +92,7 @@
   display: inline-block;
   padding: 5px 10px;
   background: #fafafa;
-  border-right: 1px solid #eee;
+  border-right: 1px solid darken($alabaster, 5);
   border-bottom-left-radius: 3px;
   border-top-left-radius: 3px;
   font-weight: 700;
@@ -306,7 +306,7 @@
 
 .media--sidebar {
   padding-right: 0;
-  border-left: 1px solid #ddd;
+  border-left: 1px solid darken($alabaster, 5);
   max-width: 310px;
   @media (max-width: 767px) {
     width: 100%;
@@ -321,7 +321,7 @@
     font-size: 12px;
   }
   h5 {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid darken($alabaster, 5);
     padding-bottom: 5px;
   }
   section {
@@ -342,9 +342,9 @@
 }
 
 .media-rankings {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid darken($alabaster,5);
   padding: 15px 0;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid darken($alabaster,5);
   font-size: 12px;
   font-weight: 500;
   margin-bottom: 20px;
@@ -410,11 +410,15 @@
 }
 
 .media--category-tag a {
-  color: #858585;
-  background: #e5e5e5;
-  border: 1px solid #ddd;
+  color: $text-color;
+  background: $card-background;
+  border: 1px solid darken($alabaster, 5);
   border-radius: 3px;
   padding: 4px 8px;
+  &:hover {
+    background: darken($card-background, 3);
+    color: $text-color;
+  }
 }
 
 .media--related {

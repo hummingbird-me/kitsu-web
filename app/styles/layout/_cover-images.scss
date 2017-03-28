@@ -211,9 +211,7 @@
 }
 
 .media-sidebar--sticky {
-  // disable sticky due to chrome issue
-  position: relative;
-  //top: 274px;
+  top: 274px;
   width: 195px;
   float: left;
   @media (max-width: 767px) {
@@ -302,9 +300,9 @@
 
 .navbar-nav {
   .tag {
-    background-color: #EFEFEF;
-    padding: 5px;
-    color: #999999;
+    background-color: darken($header-color,5);
+    padding: 4px;
+    color: $text-color;
     margin-left: 5px;
   }
 }

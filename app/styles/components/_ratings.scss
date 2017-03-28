@@ -2,7 +2,7 @@
 .library-state {
   position: relative;
   &.with-header {
-    border: 1px solid darken($eggshell, 5);
+    border: 1px solid darken($alabaster, 5);
     border-radius: 3px;
     padding: 15px;
     .entry-state-header {
@@ -11,15 +11,34 @@
       position: relative;
       top: -24px;
       > span {
-        background-color: #fafafa;
-        @extend .text-muted;
+        background-color: $alabaster;
+        color: $text-color;
         font-size: 12px;
+        padding: 0 10px;
       }
     }
   }
 
   .entry-state-status {
     margin-top: -18px;
+    .seen-this {
+      background: #16a085;
+      &:hover {
+        background: darken(#16a085, 5);
+      }
+    }
+    .want-to-watch {
+      background: #2980b9;
+      &:hover {
+        background: darken(#2980b9, 5);
+      }
+    }
+    .started-watching {
+      background: #8e44ad;
+      &:hover {
+        background: darken(#8e44ad, 5);
+      }
+    }
   }
 
   .state-helper {
@@ -247,6 +266,18 @@
       border-top-color: #383838;
       z-index: 1000001;
     }
+  }
+}
+
+.simple-rating {
+  @extend .animated;
+  @extend .fadeInUp;
+  animation-duration: .3s;
+  border: none;
+  .simple-rating-wrapper {
+    @extend .animated;
+    @extend .zoomIn;
+    animation-duration: .5s;
   }
 }
 
