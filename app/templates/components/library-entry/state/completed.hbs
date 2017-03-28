@@ -14,12 +14,11 @@
   }}
     <div class="rating-hover-wrapper {{if session.account.isSimpleRating "simple-rating"}}">
       {{#if (or (not session.hasUser) session.account.isSimpleRating)}}
-        {{library-entry/simple-rating
-          onClick=(action "ratingSelected")
-        }}
+        {{library-entry/simple-rating onClick=(action "ratingSelected")}}
       {{else}}
         {{library-entry/advanced-rating
           rating=libraryEntry.rating
+          onClick=(action "ratingSelected")
         }}
       {{/if}}
     </div>
@@ -30,6 +29,7 @@
 {{! Dropdown }}
 {{#bootstrap/bs-dropdown class="btn-group" as |dropdown|}}
   <button class="btn btn-secondary">
+    {{! Simple State }}
     {{#if session.account.isSimpleRating}}
       <span class="rating-simple">
         {{#if (gt libraryEntry.rating 0)}}
@@ -42,6 +42,7 @@
           <span class="not-rated">{{t "library-entry.state.not-rated"}}</span>
         {{/if}}
       </span>
+    {{! Advanced State }}
     {{else}}
       <span class="rating-advanced">
         {{#if (gt libraryEntry.rating 0)}}
@@ -61,6 +62,7 @@
   <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     {{! ... }}
   </button>
+
   {{#dropdown.menu}}
     {{#dropdown.menu-item onClick=(action "showRating")}}
       {{t "library-entry.state.change-rating"}}
