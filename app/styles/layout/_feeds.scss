@@ -6,6 +6,40 @@
     text-transform: uppercase;
     border-bottom: none;
   }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  li {
+    @extend .clearfix;
+  }
+  svg {
+    width: 25px;
+    height: 25px;
+    float: left;
+    margin-right: 10px;
+    fill: $card-background;
+  }
+  .timeline-link {
+    display: block;
+    background: rgba(0,0,0,.1);
+    border-radius: 3px;
+    margin-bottom: 5px;
+    padding: 10px;
+    color: $text-color;
+    &.active {
+      background: rgba(0,0,0,.3);
+      color: lighten($text-color, 5);
+      &:hover {
+        background: rgba(0,0,0,.3);
+      }
+    }
+    &:hover {
+      background: rgba(0,0,0,.2);
+      color: lighten($text-color, 4);
+    }
+  }
 }
 
 .feed-container {
@@ -165,11 +199,13 @@
     display: inline-block;
     font-size: 20px;
     font-family: $heading-font-family;
+    color: lighten($text-color,10);
   }
   .secondary-text {
     font-size: 12px;
     margin-top: 2px;
     display: block;
+    color: darken($text-color,5);
     .media-tag-synopsis {
       @media (max-width: 768px) {
         display: none;
@@ -386,8 +422,14 @@
     display: inline;
     float: left;
     position: relative;
-    top: 4px;
+    top: 3px;
     margin-right: 5px;
+    a {
+      color: $text-color;
+      &:hover {
+        color: darken($text-color,10);
+      }
+    }
   }
   .media-body {
     font-size: 14px;
@@ -430,9 +472,10 @@
 }
 
 .reply-list {
-  background: #f5f5f5;
+  background: darken($card-background, 5);
   border-radius: 3px;
   margin-top: 30px;
+  margin-bottom: 10px !important;
   li {
     &:last-child {
       border-bottom: none;
@@ -465,13 +508,14 @@
 
 .stream-item--media {
   padding: 15px;
+  padding-right: 0;
   img {
     border-radius: 3px;
   }
 }
 
 .stream-item--media-timeline {
-  padding: 15px 20px 0 10px;
+  padding: 15px 20px 0 15px;
   padding-top: 0;
   margin-top: 15px;
 }
@@ -491,7 +535,7 @@
 // aggregate feed items
 .aggregate-wrapper {
   overflow: hidden;
-  height: 200px;
+  height: 168px;
   position: relative;
   &.view-all {
     height: auto;
@@ -500,19 +544,22 @@
     position: absolute;
     content: '';
     width: 1px;
-    background: #ddd;
+    background: darken($card-background, 5);
     top: 0;
     bottom: 0;
     left: 30px;
   }
   .button {
-    background: #fff;
+    background: $card-background;
     position: relative;
-    border: 1px solid #ddd;
+    border: 1px solid darken($card-background, 5);
     font-size: 12px;
     padding: 5px 10px;
     z-index: 1;
-    color: #868686;
+    color: $text-color;
+    &:hover {
+      background: darken($card-background, 3);
+    }
   }
 }
 
@@ -572,6 +619,13 @@
 }
 
 .agg-action {
+  a {
+    color: $text-color;
+    font-weight: 700;
+    &:hover {
+      color: darken($text-color, 10);
+    }
+  }
   .rating-container {
     display: inline-block;
     position: relative;

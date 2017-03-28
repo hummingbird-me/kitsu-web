@@ -1,7 +1,7 @@
 // User Library
 .library-list {
-  background: #fff;
-  border: 1px solid $eggshell;
+  background: $card-background;
+  border: 1px solid darken($alabaster,4);
   border-radius: 3px;
   padding: 0;
   margin-bottom: 30px;
@@ -28,10 +28,18 @@
       }
     }
   }
+  .ember-occlusion-culling:last-child {
+    .entry-wrapper {
+      border-bottom: none;
+    }
+  }
 }
 
 .library-type {
   float: left;
+  button {
+    background: $white;
+  }
 }
 .library-status {
   float: right;
@@ -62,7 +70,7 @@
 
 .library-sorting {
   @extend .clearfix;
-  border-top: 1px solid $eggshell;
+  border-top: 1px solid darken($alabaster, 4);
   .sorting-icon {
     .sorting-asc {
       svg { transform: rotateX(180deg); }
@@ -107,15 +115,15 @@
 }
 
 .section-head {
-  background: lighten($eggshell, 5);
-  border-bottom: 1px solid $eggshell;
-  color: $charcoal;
+  background: lighten($card-background, 5);
+  border-bottom: 1px solid darken($alabaster,4);
+  color: $text-color;
   width: 100%;
   font-size: 12px;
   font-weight: 600;
   padding: 10px 15px;
   &:first-child {
-    border-top: 1px solid $eggshell;
+    border-top: 1px solid darken($alabaster,4);
   }
   .section-stats {
     float: right;
@@ -124,7 +132,7 @@
 
 .library-entry {
   @extend .clearfix;
-  border-bottom: 1px solid $eggshell;
+  border-bottom: 1px solid darken($alabaster,4);
   &:last-child {
     border-bottom: none;
   }
@@ -223,6 +231,9 @@
   text-align: left;
   font-size: 12px;
   input {
+    color: $input-text-color;
+    background: lighten($card-background, 3);
+    border: 1px solid darken($alabaster, 5);
     padding: 1px 0;
     width: 45px;
     height: 25px;
@@ -231,7 +242,6 @@
     top: 8px;
     text-align: center;
     border-radius: 3px;
-    border: 1px solid #ddd;
     line-height: 15px;
   }
   .sep {
@@ -243,7 +253,7 @@
   @extend .clearfix;
   padding: 10px 0;
   cursor: pointer;
-  border-bottom: 1px solid $eggshell;
+  border-bottom: 1px solid darken($alabaster,4);
   line-height: 40px;
   transition: .1s ease-in-out;
   @media (max-width: 992px) {
@@ -262,9 +272,9 @@
 }
 .library-dropdown {
   @extend .clearfix;
-  background: lighten($eggshell, 5);
+  background: darken($card-background, 5);
   padding-bottom: 15px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid darken($alabaster,4);
   .arrow-wrapper {
     padding: 0;
   }
@@ -272,37 +282,9 @@
     position: relative;
     height: 5px;
     margin-bottom: 15px;
-    &:before, &:after {
-      top: 100%;
-      border: solid transparent;
-      content: " ";
-      height: 0;
-      width: 0;
-      position: absolute;
-      pointer-events: none;
-    }
-    &:before {
-      border-color: rgba(221,221,221,0);
-      border-top-color: $eggshell;
-      border-width: 11px;
-      left: 50%;
-      top: -1px;
-      z-index: 1;
-      margin-left: -16px;
-    }
-    &:after {
-      border-color: rgba(255,255,255,0);
-      border-top-color: #fff;
-      border-width: 10px;
-      left: 50%;
-      top: -1px;
-      z-index: 2;
-      margin-left: -15px;
-    }
   }
   .personal-notes {
     border-radius: 3px;
-    border: 1px solid #ddd;
     line-height: 33px;
     box-shadow: none;
     width: 100%;
@@ -311,6 +293,9 @@
     height: 50px;
     line-height: 16px;
     font-size: 12px;
+    color: $input-text-color;
+    background: lighten($card-background, 3);
+    border: 1px solid darken($alabaster,4);
   }
   .drop-thumb {
     max-width: 100%;
@@ -350,11 +335,11 @@
 }
 
 .drop-options {
-  background: #fff;
+  background: $card-background;
   border-radius: 3px;
-  border: 1px solid #ddd;
+  border: 1px solid darken($alabaster,4);
   .status-select, .dropdown-rating, .rewatch {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid darken($alabaster,4);
     padding: 10px;
   }
   .status-select {
@@ -373,6 +358,11 @@
       font-size: 12px;
       line-height: 36px;
       margin-bottom: 0;
+    }
+    input {
+      color: $input-text-color;
+      background: lighten($card-background, 3);
+      border: 1px solid darken($alabaster, 5);
     }
   }
   .rating-label {
@@ -423,7 +413,7 @@
 
 .empty-wrapper {
   text-align: center;
-  background: lighten($eggshell, 5);
+  background: lighten($alabaster, 5);
 }
 .library-section-empty {
   border: 1px dotted #ddd;

@@ -1,16 +1,16 @@
 {{! Seen This }}
-{{#library-entry/rating-button class="button button--secondary" onClick=(action "createLibraryEntry" "completed")}}
+{{#library-entry/rating-button class="button button--secondary seen-this" onClick=(action "createLibraryEntry" "completed")}}
   {{t "library-entry.state.seen-this" type=media.modelType}}
 {{/library-entry/rating-button}}
 
 {{#unless createOnly}}
   {{! Want to Watch }}
-  <button class="button button--secondary" {{action "createLibraryEntry" "planned"}}>
+  <button class="button button--secondary want-to-watch" {{action "createLibraryEntry" "planned"}}>
     {{t "library-entry.state.want-to-watch" type=media.modelType}}
   </button>
 
   {{! Started Watching }}
-  <button class="button button--secondary" {{action "createLibraryEntry" "current"}}>
+  <button class="button button--secondary started-watching" {{action "createLibraryEntry" "current"}}>
     {{t "library-entry.state.started-watching" type=media.modelType}}
   </button>
 {{/unless}}
