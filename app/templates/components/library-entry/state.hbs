@@ -14,6 +14,7 @@
     {{#unless hasLibraryEntry}} {{! Doesn't have a library entry }}
       {{library-entry/state/new-entry
         media=media
+        createOnly=createOnly
         onCreate=(action "createLibraryEntry")}}
     {{else}} {{! Has a library entry }}
       {{#if (eq libraryEntry.status "completed")}}

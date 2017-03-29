@@ -9,6 +9,7 @@ export default Component.extend({
   classNames: ['library-state'],
   classNameBindings: ['showHeader:with-header'],
   showHeader: true,
+  createOnly: false,
 
   cache: service('local-cache'),
   store: service(),
@@ -30,6 +31,8 @@ export default Component.extend({
   },
 
   getLibraryEntryTask: task(function* () {
+    if (get(this, 'createOnly')) { return null; }
+
     const media = get(this, 'media');
     const type = get(this, 'mediaType');
     const cacheKey = `${type}-${get(media, 'id')}`;

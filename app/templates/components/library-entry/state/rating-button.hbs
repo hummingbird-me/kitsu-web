@@ -4,6 +4,7 @@
 {{#if (and showTooltip session.hasUser)}}
   <div>
     {{#ember-tether
+      class="rating-tether"
       target=(concat "#" elementId)
       attachment=(or attachment "bottom middle")
       targetAttachment=(or targetAttachment "top middle")
