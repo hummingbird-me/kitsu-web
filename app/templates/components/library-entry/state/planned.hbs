@@ -1,12 +1,14 @@
-<span class="state-helper">
-  {{t-html "library-entry.state.saved-in"
-    link=(href-to "users.library" session.account.name (query-params status=libraryEntry.status))
-    status=(t (concat "library-shared." libraryEntry.status) type=libraryEntry.media.modelType)
-  }}
-</span>
+{{#unless hideProgress}}
+  <span class="state-helper">
+    {{t-html "library-entry.state.saved-in"
+      link=(href-to "users.library" session.account.name (query-params status=libraryEntry.status))
+      status=(t (concat "library-shared." libraryEntry.status) type=libraryEntry.media.modelType)
+    }}
+  </span>
+{{/unless}}
 
 {{! Progress - If the user has progress }}
-{{#if (gt libraryEntry.progress 0)}}
+{{#if (and (gt libraryEntry.progress 0) (not hideProgress))}}
   {{library-entry/progress
     libraryEntry=libraryEntry
     onProgressChange=onProgressChange

@@ -32,6 +32,7 @@
       {{else if (eq libraryEntry.status "current")}}
         {{! current status }}
         {{library-entry/state/current
+          hideProgress=hideProgress
           libraryEntry=libraryEntry
           onProgressChange=(action "updateAttribute" "progress")
           onComplete=(queue
@@ -43,6 +44,7 @@
       {{else}}
         {{! fallback for planned/on_hold/dropped }}
         {{library-entry/state/planned
+          hideProgress=hideProgress
           libraryEntry=libraryEntry
           onProgressChange=(action "updateAttribute" "progress")
           onStatusChange=(action "updateAttribute" "status")

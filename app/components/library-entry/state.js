@@ -19,33 +19,32 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
     const media = get(this, 'media');
-    if (get(media, 'id') !== get(this, '_mediaIdWas') && get(this, 'session.hasUser')) {
-      get(this, 'getLibraryEntryTask').perform().then((libraryEntry) => {
-        if (libraryEntry) {
-          set(libraryEntry, get(this, 'mediaType'), get(this, 'media'));
-        }
-        set(this, 'libraryEntry', libraryEntry);
-      });
+    if (!('libraryEntry' in this.attrs)) {
+      if (get(media, 'id') !== get(this, '_mediaIdWas') && get(this, 'session.hasUser')) {
+        get(this, 'getLibraryEntryTask').perform().then((libraryEntry) => {
+          if (libraryEntry) {
+            set(libraryEntry, get(this, 'mediaType'), get(this, 'media'));
+          }
+          set(this, 'libraryEntry', libraryEntry);
+        });
+      }
     }
     set(this, '_mediaIdWas', get(media, 'id'));
   },
 
   getLibraryEntryTask: task(function* () {
-    if (get(this, 'createOnly')) { return null; }
-
-    const media = get(this, 'media');
-    const type = get(this, 'mediaType');
-    const cacheKey = `${type}-${get(media, 'id')}`;
+    const cacheKey = this._getCacheKey();
     const cachedEntry = this._getCacheLibraryEntry(cacheKey);
     if (cachedEntry) {
       return cachedEntry;
     }
 
+    const type = get(this, 'mediaType');
     return yield get(this, 'store').query('library-entry', {
       filter: {
         user_id: get(this, 'session.account.id'),
         kind: type,
-        [`${type}_id`]: get(media, 'id')
+        [`${type}_id`]: get(get(this, 'media'), 'id')
       }
     }).then(records => get(records, 'firstObject'));
   }).restartable(),
@@ -76,6 +75,7 @@ export default Component.extend({
       get(this, 'createLibraryEntryTask').perform(status, rating).then((libraryEntry) => {
         set(libraryEntry, get(this, 'mediaType'), get(this, 'media'));
         set(this, 'libraryEntry', libraryEntry);
+        get(this, 'cache').addToCache('library-entry', this._getCacheKey(), get(libraryEntry, 'id'));
       });
     },
 
@@ -93,6 +93,12 @@ export default Component.extend({
         get(this, 'libraryEntry').rollbackAttributes();
       });
     }
+  },
+
+  _getCacheKey() {
+    const media = get(this, 'media');
+    const type = get(this, 'mediaType');
+    return `${type}-${get(media, 'id')}`;
   },
 
   _getCacheLibraryEntry(key) {

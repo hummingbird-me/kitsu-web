@@ -160,13 +160,16 @@
     @media (max-width: 992px) {
       padding-right: 5px;
     }
-    .entry-rating-star {
-      position: relative;
-      top: 4px;
-      svg {
-        width: 18px;
-        height: 18px;
+    svg {
+      vertical-align: middle;
+      fill: $nobel;
+      &.star-svg {
+        width: 20px;
+        height: 20px;
       }
+    }
+    span {
+      vertical-align: middle;
     }
   }
   .entry-type {
@@ -355,15 +358,11 @@
     padding: 10px;
   }
   .status-select {
-    .button {
-      background: #939393;
-      color: #fff;
-      width: 100%;
-      border: none;
-      font-weight: 600;
-      font-size: 13px;
-      padding: 15px 0;
-      text-align: center;
+    .entry-state-status {
+      margin-top: 0;
+    }
+    .button:first-child {
+      margin-top: 0;
     }
   }
   .rewatch {

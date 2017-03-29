@@ -63,7 +63,7 @@ export default Base.extend(Validations, {
   proExpiresAt: attr('utc'),
   profileCompleted: attr('boolean'),
   ratingsCount: attr('number'),
-  ratingSystem: attr('string'),
+  ratingSystem: attr('string', { defaultValue: 'simple' }),
   reviewsCount: attr('number'),
   roles: attr('array'),
   sfwFilter: attr('boolean'),

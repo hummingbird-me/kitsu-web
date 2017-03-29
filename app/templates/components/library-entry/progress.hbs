@@ -1,5 +1,7 @@
 <div class="library-state-progress-wrapper {{if showBorderTop "border-top"}}">
-  <span>{{t "library-entry.state.progress"}}</span>
+  {{#unless hideText}}
+    <span>{{t "library-entry.state.progress"}}</span>
+  {{/unless}}
   <div class="entry-progress library-state-progress">
     {{one-way-number libraryEntry.progress
       min=0

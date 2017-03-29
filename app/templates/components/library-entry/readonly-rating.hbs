@@ -1,9 +1,13 @@
 {{#if (or (not session.hasUser) session.account.isSimpleRating)}}
   {{svg-jar simpleTag width=width height=height}}
-  <span class="current-rating {{simpleTag}} text-uppercase font-weight-bold">{{simpleTag}}</span>
+  {{#unless hideText}}
+    <span class="current-rating {{simpleTag}} text-uppercase font-weight-bold">{{simpleTag}}</span>
+  {{/unless}}
 {{else}}
-  {{svg-jar "star" width=width height=height}}
+  {{svg-jar "star" width=width height=height class="star-svg"}}
   <span class="current-rating {{simpleTag}} font-weight-bold">{{rating}}</span>
-  <span class="font-weight-bold">/</span>
-  <span class="font-weight-bold">10</span>
+  {{#unless hideText}}
+    <span class="font-weight-bold">/</span>
+    <span class="font-weight-bold">10</span>
+  {{/unless}}
 {{/if}}

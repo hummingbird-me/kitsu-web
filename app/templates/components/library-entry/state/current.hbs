@@ -1,7 +1,9 @@
-{{library-entry/progress
-  libraryEntry=libraryEntry
-  onProgressChange=onProgressChange
-}}
+{{#unless hideProgress}}
+  {{library-entry/progress
+    libraryEntry=libraryEntry
+    onProgressChange=onProgressChange
+  }}
+{{/unless}}
 
 {{! I've Finished This }}
 {{#library-entry/state/rating-button
