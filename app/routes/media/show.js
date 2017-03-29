@@ -86,7 +86,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
         tagId: 'meta-twitter-data1',
         attrs: {
           property: 'twitter:data1',
-          content: `${get(model, 'averageRating')} out of 10`
+          content: `${get(model, 'averageRating')}%`
         }
       }, {
         type: 'meta',
@@ -125,8 +125,8 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
     if (get(model, 'averageRating')) {
       data.aggregateRating = {
         '@type': 'AggregateRating',
-        bestRating: 10,
-        worstRating: 1,
+        bestRating: 100,
+        worstRating: 5,
         ratingValue: get(model, 'averageRating'),
         ratingCount: get(model, 'totalRatings')
       };

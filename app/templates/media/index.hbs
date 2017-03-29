@@ -43,19 +43,16 @@
             </div>
             <div class="filter-slider--wrapper">
               {{ui/slider-input
-                options=(hash range=(array 0.5 5.0) initial=averageRating step=0.1 decimal=1)
+                options=(hash range=(array 1 100) initial=averageRating)
                 onSlide=(action (mut dirtyRating))
                 onSet=(action (mut averageRating) dirtyRating)}}
             </div>
             <div class="filter-legend">
               <div class="low-value">
-                {{! @TODO - @Josh - half star svg }}
-                {{svg-jar "star"}}
+                1%
               </div>
               <div class="high-value">
-                {{#each (repeat 5) as |empty|}}
-                  {{svg-jar "star"}}
-                {{/each}}
+                100%
               </div>
             </div>
           </div>
