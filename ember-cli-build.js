@@ -82,6 +82,15 @@ module.exports = function(defaults) {
         srcDir: 'distribute',
         import: ['nouislider.css', 'nouislider.js']
       }
+    },
+    // output
+    outputPaths: {
+      app: {
+        css: {
+          'light-theme': '/assets/light.css',
+          'dark-theme': '/assets/dark.css'
+        }
+      }
     }
   });
 
