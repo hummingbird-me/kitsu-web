@@ -43,7 +43,7 @@ export default Component.extend({
     if (!season) { return null; }
     const start = get(this, 'media.startDate');
     const year = start.year();
-    const month = start.month();
+    const month = start.month() + 1;
     if (season === 'winter' && month === 12) {
       return year + 1;
     }
