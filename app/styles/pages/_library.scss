@@ -536,57 +536,59 @@
     .dropdown-toggle {
       font-size: 15px;
     }
+  }
 
+  %vertical-align {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     svg {
       position: relative;
       vertical-align: middle;
       margin-right: 10px;
     }
+  }
 
-    %vertical-align {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-    }
-
-    .rating-advanced {
-      @extend %vertical-align;
-      height: 20px;
-      svg {
-        fill: $nobel;
+  .rating-advanced {
+    @extend %vertical-align;
+    height: 20px;
+    span {
+      margin-right: 5px;
+      &:last-child {
+        margin-right: 0;
       }
     }
-
-    .rating-simple {
-      @extend %vertical-align;
-      height: 24px;
-      .current-rating {
-        text-transform: uppercase;
-      }
+    svg {
+      fill: $nobel;
     }
+  }
 
-    .rating-sep {
-      margin: {
-        left: 5px;
-        right: 5px;
-      };
-    }
+  .rating-simple {
+    @extend %vertical-align;
+    height: 24px;
+  }
 
-    .current-rating {
-      &.awful {
-        color: #DA5E51;
-      }
-      &.meh {
-        color: rgba(230, 126, 34, 1.0);
-      }
-      &.good {
-        color: $caribbean;
-      }
-      &.amazing {
-        color: #3E99D7;
-      }
-    }
+  .rating-sep {
+    margin: {
+      left: 5px;
+      right: 5px;
+    };
+  }
+}
+
+.current-rating {
+  &.awful {
+    color: #DA5E51;
+  }
+  &.meh {
+    color: rgba(230, 126, 34, 1.0);
+  }
+  &.good {
+    color: $caribbean;
+  }
+  &.amazing {
+    color: #3E99D7;
   }
 }
 

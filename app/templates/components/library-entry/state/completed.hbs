@@ -33,11 +33,7 @@
     {{#if session.account.isSimpleRating}}
       <span class="rating-simple">
         {{#if (gt libraryEntry.rating 0)}}
-          {{svg-jar libraryEntry.ratingGroup
-            width="24px"
-            height="24px"
-          }}
-          <span class="current-rating {{libraryEntry.ratingGroup}}">{{libraryEntry.ratingGroup}}</span>
+          {{library-entry/readonly-rating rating=libraryEntry.rating width="24" height="24" tagName=""}}
         {{else}}
           <span class="not-rated">{{t "library-entry.state.not-rated"}}</span>
         {{/if}}
@@ -46,13 +42,7 @@
     {{else}}
       <span class="rating-advanced">
         {{#if (gt libraryEntry.rating 0)}}
-          {{svg-jar "star"
-            width="20px"
-            height="20px"
-          }}
-          <span class="current-rating font-weight-bold {{libraryEntry.ratingGroup}}">{{libraryEntry.rating}}</span>
-          <span class="rating-sep font-weight-bold">/</span>
-          <span class="font-weight-bold">{{format-number 10}}</span>
+          {{library-entry/readonly-rating rating=libraryEntry.rating tagName=""}}
         {{else}}
           <span class="not-rated">{{t "library-entry.state.not-rated"}}</span>
         {{/if}}
