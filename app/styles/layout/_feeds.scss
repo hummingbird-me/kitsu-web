@@ -19,25 +19,50 @@
     height: 25px;
     float: left;
     margin-right: 10px;
-    fill: $card-background;
+    @if $theme == 'kitsu-light' {
+      fill: $body-secondary-text-color;
+    }
+    @if $theme == 'kitsu-dark' {
+      fill: $foreground-background-color;
+    }
   }
   .timeline-link {
     display: block;
-    background: rgba(0,0,0,.1);
     border-radius: 3px;
     margin-bottom: 5px;
     padding: 10px;
-    color: $text-color;
+    color: $body-text-color;
+    @if $theme == 'kitsu-dark' {
+      background: rgba(0,0,0,.1);
+    }
     &.active {
-      background: rgba(0,0,0,.3);
-      color: lighten($text-color, 5);
-      &:hover {
+      @if $theme == 'kitsu-light' {
+        background: $white;
+        color: $body-text-color;
+        border: 1px solid $divider-color;
+        &:hover {
+          background: $white;
+          color: $body-text-color;
+          border: 1px solid $divider-color;
+        }
+      }
+      @if $theme == 'kitsu-dark' {
         background: rgba(0,0,0,.3);
+        color: lighten($body-text-color, 5);
+        &:hover {
+          background: rgba(0,0,0,.3);
+        }
       }
     }
     &:hover {
-      background: rgba(0,0,0,.2);
-      color: lighten($text-color, 4);
+      @if $theme == 'kitsu-light' {
+        background: rgba(0,0,0,.1);
+        border: rgba(0,0,0,.1);
+      }
+      @if $theme == 'kitsu-dark' {
+        background: rgba(0,0,0,.2);
+        color: lighten($body-text-color, 4);
+      }
     }
   }
 }
@@ -61,6 +86,12 @@
 
 .feed-stream {
   padding: 0 20px;
+  .author-name {
+    display: inline-block;
+    font-size: 20px;
+    font-family: $heading-font-family;
+    font-weight: 700;
+  }
 }
 
 .feed-filter {
@@ -82,14 +113,14 @@
     margin-right: 10px;
     text-decoration: none;
     &:hover {
-      color: $cinnabar;
+      color: $body-link-color;
     }
     &:focus {
       text-decoration: none;
     }
     &.active {
       padding: 5px 15px;
-      color: $charcoal;
+      color: $body-text-color;
       background: transparent;
       border: 1px solid #E8E8E8;
       border-radius: 3px;
@@ -99,12 +130,12 @@
     float: right;
   }
   button {
-    color: $text-color;
+    color: $body-text-color;
     padding: 0;
     background: transparent;
     font-size: 14px;
     &:hover, &:focus {
-      color: $white;
+      color: $body-link-color;
       background: transparent;
     }
   }
@@ -149,7 +180,7 @@
   @extend .clearfix;
   margin-bottom: 0;
   padding-bottom: 15px;
-  background: $card-background;
+  background: $foreground-background-color;
   position: relative;
   z-index: $zIndex--stream-item-block;
 
@@ -195,17 +226,11 @@
   .secondary {
     display: block;
   }
-  .author-name {
-    display: inline-block;
-    font-size: 20px;
-    font-family: $heading-font-family;
-    color: lighten($text-color,10);
-  }
   .secondary-text {
     font-size: 12px;
     margin-top: 2px;
     display: block;
-    color: darken($text-color,5);
+    color: $body-secondary-text-color;
     .media-tag-synopsis {
       @media (max-width: 768px) {
         display: none;
@@ -234,7 +259,7 @@
     svg {
       width: 23px;
       height: auto;
-      fill: $nobel;
+      fill: $secondary-cta-color;
       float: left;
     }
     .like-label {
@@ -243,7 +268,7 @@
       position: absolute;
       top: 4px;
       right: -30px;
-      color: $nobel;
+      color: $secondary-cta-color;
     }
     &:hover {
       text-decoration: none;
@@ -290,7 +315,7 @@
       width: 20px;
       height: 20px;
       border-radius: 999em;
-      border: 1px solid $card-background;
+      border: 1px solid $foreground-background-color;
       box-sizing: content-box;
     }
     img {
@@ -313,13 +338,13 @@
     a {
       width: 25px;
       height: 25px;
-      background: $eggshell;
+      background: $divider-color;
       display: inline-block;
       font-size: 12px;
       border-radius: 999em;
       line-height: 25px;
       text-align: center;
-      color: $charcoal;
+      color: $body-text-color;
     }
   }
 }
@@ -347,7 +372,7 @@
     display: inline-block;
   }
   .comment-time {
-    color: $nobel;
+    color: $body-secondary-text-color;
     font-family: $base-font-family;
     margin-left: 5px;
     margin-right: 5px;
@@ -375,19 +400,27 @@
   position: relative;
   top: 0;
   svg {
-    fill: #CACACA;
     float: left;
+    path {
+      fill: $body-secondary-text-color;
+      &:hover {
+        fill: $body-link-color;
+      }
+    }
   }
 }
 
 .stream-item-options, .stream-comment-options {
   a {
-    color: #979797;
+    color: $body-secondary-text-color;
     font-size: 12px;
     display: inline-block;
     font-size: 12px;
     line-height: 22px;
     margin-right: 10px;
+    &:hover {
+      color: $body-link-color;
+    }
   }
 }
 
@@ -397,17 +430,31 @@
     margin-right: 0;
     margin-left: 5px;
   }
+  svg {
+    path {
+      fill: $body-secondary-text-color;
+      &:hover {
+        fill: $body-link-color;
+      }
+    }
+  }
+}
+
+.seperator {
+  position: relative;
+  top: 1px;
+  padding: 0 2px;
 }
 
 .stream-item-comments {
-  background: darken($card-background,2);
-  border-top: 1px solid darken($card-background,5);
+  background: darken($foreground-background-color,2);
+  border-top: 1px solid darken($foreground-background-color,5);
   width: 100%;
   ul {
     margin-bottom: 0;
   }
   li {
-    border-bottom: 1px solid darken($card-background,5);
+    border-bottom: 1px solid darken($foreground-background-color,5);
     padding: 10px 20px 0px 20px;
     z-index: $zIndex--stream-comments;
   }
@@ -424,12 +471,6 @@
     position: relative;
     top: 3px;
     margin-right: 5px;
-    a {
-      color: $text-color;
-      &:hover {
-        color: darken($text-color,10);
-      }
-    }
   }
   .media-body {
     font-size: 14px;
@@ -437,6 +478,9 @@
       @include word-break(all);
       margin-bottom: 0;
       display: inline;
+      @if $theme == 'kitsu-dark' {
+        color: $white;
+      }
       p:last-child {
         margin-bottom: 0;
       }
@@ -462,17 +506,17 @@
 .add-comment-wrapper {
   padding: 10px 20px;
   .add-comment {
-    border-color: darken($card-background,5);
+    border-color: $divider-color;
   }
   textarea {
     height: 40px;
     color: $input-text-color;
-    background: lighten($card-background, 3);
+    background: lighten($foreground-background-color, 3);
   }
 }
 
 .reply-list {
-  background: darken($card-background, 5);
+  background: darken($foreground-background-color, 5);
   border-radius: 3px;
   margin-top: 30px;
   margin-bottom: 10px !important;
@@ -496,14 +540,14 @@
 }
 
 .stream-error-wrapper {
-  background: $alabaster;
+  background: $background-color;
   border: 1px dashed #ddd;
   border-radius: 3px;
   font-size: 12px;
   text-align: center;
   padding: 10px;
   color: #8e8e8e;
-  box-shadow: 0px 1px 0px 5px $alabaster;
+  box-shadow: 0px 1px 0px 5px $background-color;
 }
 
 .stream-item--media {
@@ -527,7 +571,7 @@
   font-size: 12px;
   margin-bottom: 25px;
   span {
-    color: $cinnabar;
+    color: $body-link-color;
   }
 }
 
@@ -544,21 +588,21 @@
     position: absolute;
     content: '';
     width: 1px;
-    background: darken($card-background, 5);
+    background: darken($foreground-background-color, 5);
     top: 0;
     bottom: 0;
     left: 30px;
   }
   .button {
-    background: $card-background;
+    background: $foreground-background-color;
     position: relative;
-    border: 1px solid darken($card-background, 5);
+    border: 1px solid darken($foreground-background-color, 5);
     font-size: 12px;
     padding: 5px 10px;
     z-index: 1;
-    color: $text-color;
+    color: $body-text-color;
     &:hover {
-      background: darken($card-background, 3);
+      background: darken($foreground-background-color, 3);
     }
   }
 }
@@ -572,7 +616,7 @@
 }
 .aggregate-date {
   width: 60px;
-  background: $card-background;
+  background: $foreground-background-color;
   position: relative;
   padding: 5px 0;
   span {
@@ -620,10 +664,10 @@
 
 .agg-action {
   a {
-    color: $text-color;
+    color: $body-text-color;
     font-weight: 700;
     &:hover {
-      color: darken($text-color, 10);
+      color: darken($body-text-color, 10);
     }
   }
   .rating-container {
@@ -654,12 +698,13 @@
   }
 }
 .tag-media {
-  border-top: 1px solid $eggshell;
-  border-bottom: 1px solid $eggshell;
+  border-top: 1px solid $divider-color;
+  border-bottom: 1px solid $divider-color;
   input {
     border-radius: 0;
     border: none;
     padding: 10px 20px;
+    background: $foreground-background-color;
   }
 }
 
@@ -670,11 +715,16 @@
   overflow: hidden;
   width: 100%;
   border: none;
+  background: $foreground-background-color;
+  color: $input-text-color;
 }
 
 .stream-content {
   @include word-break();
   overflow: hidden;
+  @if $theme == 'kitsu-dark' {
+    color: $white;
+  }
   .stream-content-post {
     display: block;
     overflow: hidden;
@@ -710,7 +760,7 @@
     text-align: center;
     padding: 20px;
     display: block;
-    color: darken($nobel, 10);
+    color: darken($secondary-cta-color, 10);
     transition: 0.3s background ease-in-out;
     position: relative;
     font-weight: 700;

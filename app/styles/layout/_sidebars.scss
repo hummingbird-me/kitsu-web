@@ -24,7 +24,7 @@
   }
   .kitsu-social {
     svg {
-      fill: $text-color;
+      fill: $body-text-color;
       width: 20px;
     }
     &:first-child {
@@ -38,7 +38,7 @@
     font-size: 12px;
     .site-link {
       margin-right: 5px;
-      color: $text-color;
+      color: $body-text-color;
     }
   }
 }
@@ -46,7 +46,7 @@
 .panel-heading {
   font-size: 14px;
   padding-bottom: 10px;
-  border-bottom: 1px solid darken($alabaster,5);
+  border-bottom: 1px solid darken($background-color,5);
   margin-top: 30px;
 }
 
@@ -89,7 +89,7 @@
     width: 10px;
     position: relative;
     path {
-      fill: $text-color;
+      fill: $body-text-color;
     }
   }
 }
@@ -110,7 +110,7 @@
   width: 100%;
   text-align: center;
   font-size: 0.9em;
-  color: $text-color;
+  color: $body-text-color;
 }
 
 .panel-btn {
@@ -130,18 +130,18 @@
   .nav {
     text-align: center;
     .active {
-      color: $text-color;
-      background: darken($alabaster,4);
-      border-color: darken($alabaster,4);
+      color: $body-text-color;
+      background: $divider-color;
+      border-color: $divider-color;
       &:hover {
-        background: darken($alabaster,4);
-        border-color: darken($alabaster,4);
+        background: $divider-color;
+        border-color: $divider-color;
       }
     }
   }
   .nav-tabs {
-    background-color: $alabaster;
-    border-bottom: 1px solid darken($alabaster,4);
+    background-color: $background-color;
+    border-bottom: 1px solid $divider-color;
   }
   a {
     font-size: 12px;

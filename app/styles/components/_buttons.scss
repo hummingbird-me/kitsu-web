@@ -12,38 +12,38 @@
 }
 
 .button--primary {
-  background-color: $caribbean;
+  background-color: $primary-cta-color;
   color: $white;
   padding: 10px 60px;
   box-shadow: 0 0 0px rgba(0, 0, 0, 0.0);
   &:hover {
-    background: lighten($caribbean, 5);
+    background: lighten($primary-cta-color, 5);
   }
   &:disabled {
-    background: $nobel;
+    background: $secondary-cta-color;
     opacity: 1;
   }
   &.inactive {
-    background: $gray!important;
-    color: $charcoal;
+    background: $secondary-cta-color!important;
+    color: $body-text-color;
     &:hover {
-      background: lighten($gray, 5);
+      background: lighten($secondary-cta-color, 5);
     }
   }
 }
 
 .button--secondary {
-  background-color: $nobel;
+  background-color: $secondary-cta-color;
   color: $white;
   padding: 10px 60px;
   box-shadow: 0 0 0px rgba(0, 0, 0, 0.0);
   &:hover {
-    background: lighten($nobel, 5);
+    background: lighten($secondary-cta-color, 5);
   }
 }
 
 .btn-secondary {
-  border: darken($alabaster,5);
+  border: darken($background-color,5);
 }
 
 .button--light-outline {
@@ -53,20 +53,20 @@
   padding: 10px 60px;
   box-shadow: 0 0 0px rgba(0, 0, 0, 0.0);
   &:hover {
-    color: $charcoal;
+    color: $body-text-color;
     background: darken($white, 5);
   }
 }
 
 .button--dark-outline {
   background-color: transparent;
-  border: 1px solid $eggshell;
-  color: $charcoal;
+  border: 1px solid $divider-color;
+  color: $body-text-color;
   padding: 10px 60px;
   box-shadow: 0 0 0px rgba(0, 0, 0, 0.0);
   &:hover {
-    color: $charcoal;
-    border: 1px solid $eggshell;
+    color: $body-text-color;
+    border: 1px solid $divider-color;
     background: darken($white, 2);
   }
 }
@@ -103,6 +103,6 @@
   font-size: 12px;
   padding: 12px 10px;
   .progress-count {
-    color: $cinnabar;
+    color: $body-link-color;
   }
 }

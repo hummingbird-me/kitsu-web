@@ -3,18 +3,11 @@ $base-font-family: "Open Sans", sans-serif;
 $heading-font-family: "Asap", sans-serif;
 $heading-font-weight: 700;
 
-$text-color: $mountain;
-$soft-color: lighten($charcoal, 30);
-$link-color: $cinnabar;
-$link-hover-color: darken($cinnabar, 15);
 
-.light-kitsu {
-  $text-color: $charcoal;
-}
 // Base Typography Styles
 
 body {
-  color: $text-color;
+  color: $body-text-color;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -26,16 +19,16 @@ p {
   font-family: $base-font-family;
 }
 
-.link {
-  color: $link-color;
+%link {
+  color: $body-link-color;
   text-decoration: none;
   font-family: $heading-font-family;
 
   &:hover, &:visited:hover {
-    color: $link-hover-color;
+    color: darken($body-link-color, 10);
   }
 }
 
 a {
-  @extend .link;
+  @extend %link;
 }
