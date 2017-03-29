@@ -20,9 +20,9 @@
     overflow: visible;
   }
   &:nth-child(even) {
-    background: lighten($alabaster,4);
-    border-top: 1px solid darken($alabaster,4);
-    border-bottom: 1px solid darken($alabaster,4);
+    background: lighten($background-color,4);
+    border-top: 1px solid $divider-color;
+    border-bottom: 1px solid $divider-color;
   }
   &:first-child {
     padding-top: 0;
@@ -129,7 +129,7 @@
     max-height: 300px;
     overflow: auto;
     p {
-      color: $charcoal;
+      color: $body-text-color;
       font-size: 15px;
     }
   }
@@ -137,7 +137,7 @@
     h4 {
       margin-bottom: 5px;
       a {
-        color: $charcoal;
+        color: $body-text-color;
       }
     }
   }
@@ -174,7 +174,7 @@
 
 // trending banner
 .trending-banner {
-  background: $voodoo;
+  background: $secondary-background-color;
   color: #fff;
   margin-top: -26px;
   min-height: 658px;
@@ -232,9 +232,9 @@
 }
 
 .trending-banner--activity {
-  background: darken($voodoo, 2);
-  border-left: 1px solid darken($voodoo, 4);
-  border-right: 1px solid darken($voodoo, 4);
+  background: darken($secondary-background-color, 2);
+  border-left: 1px solid darken($secondary-background-color, 4);
+  border-right: 1px solid darken($secondary-background-color, 4);
   padding: 0;
   height: 658px;
   @media (max-width: 767px) {
@@ -313,7 +313,7 @@
 }
 
 .trending-activity--header {
-  border-bottom: 1px solid darken($voodoo, 6);
+  border-bottom: 1px solid darken($secondary-background-color, 6);
   padding: 30px 0 20px 0;
   text-align: center;
   color: #cebdcc;
@@ -343,7 +343,7 @@
   .activity-item {
     margin-bottom: 15px;
     padding: 0 15px 15px 15px;
-    border-bottom: 1px solid darken($voodoo, 6);
+    border-bottom: 1px solid darken($secondary-background-color, 6);
     .media-poster {
       width: 100px;
       height: 100px;

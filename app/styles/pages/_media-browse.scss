@@ -4,9 +4,9 @@
     max-width: 100%;
     min-height: 100vh;
     padding-top: 54px;
-    background: linear-gradient(90deg, $voodoo 50%, $alabaster 50%);
+    background: linear-gradient(90deg, $secondary-background-color 50%, $background-color 50%);
     @media (max-width: 768px) {
-      background: $alabaster;
+      background: $background-color;
       padding-left: 5px;
       padding-right: 15px;
     }
@@ -23,9 +23,9 @@
     position: relative;
   }
   .filter-options {
-    background-color: $voodoo;
-    border-right: 1px solid darken($voodoo, 10);
-    border-left: 1px solid darken($voodoo, 10);
+    background-color: $secondary-background-color;
+    border-right: 1px solid darken($secondary-background-color, 10);
+    border-left: 1px solid darken($secondary-background-color, 10);
     width: 240px;
     padding: 0;
     bottom: 0;
@@ -50,7 +50,7 @@
 
   .media-grid {
     position: relative;
-    background: $alabaster;
+    background: $background-color;
     @media (max-width: 768px) {
       padding-left: 30px;
     }
@@ -96,7 +96,7 @@
         width: 50%;
       }
       .media-title {
-        color: $text-color;
+        color: $body-text-color;
         font-size: 12px;
         font-weight: 600;
       }
@@ -141,7 +141,7 @@
     // TODO: @wopian search width spans remainder of page
     z-index: 11;
     color: $input-text-color;
-    background: $card-background;
+    background: $foreground-background-color;
     position: fixed;
     top: 54px;
     width: 100%;
@@ -189,13 +189,13 @@
       word-wrap: break-word;
       padding: 15px 0;
       padding-left: 20px;
-      border-bottom: 1px solid darken($alabaster,4);
+      border-bottom: 1px solid $divider-color;
     }
 
     .active-filter {
       position: relative;
       margin-right: 10px;
-      color: $charcoal;
+      color: $body-text-color;
       padding: 5px 10px;
       padding-right: 35px;
       border-radius: 3px;
@@ -219,7 +219,7 @@
 
   // Filter widgets
   .filter-widget {
-    border-bottom: 1px solid darken($voodoo, 10);
+    border-bottom: 1px solid darken($secondary-background-color, 10);
     margin-bottom: 15px;
     padding: 10px;
     padding-bottom: 15px;
@@ -249,7 +249,7 @@
     .filter-values {
       float: right;
       color: #a3a9b7;
-      background: lighten($voodoo,4);
+      background: lighten($secondary-background-color,4);
       font-size: 12px;
       padding: 2px 10px;
       border-radius: 999em;
@@ -284,7 +284,7 @@
     }
   }
 
-  .box-select {
+.box-select {
     @extend .clearfix;
     margin-top: 20px;
     ul {
@@ -301,12 +301,12 @@
       margin-bottom: 5px;
       margin-right: 4px;
       text-align: center;
-      background: lighten($voodoo,4);
+      background: lighten($secondary-background-color,4);
       &:nth-child(4), &:nth-child(8) {
         margin-right: 0;
       }
       &:hover {
-        background: darken($voodoo,4);
+        background: darken($secondary-background-color,4);
       }
       &.active {
         background: $white;
@@ -339,7 +339,7 @@
   .language-select {
     label {
       font-size: 12px;
-      color: $alabaster;
+      color: $background-color;
     }
     input {
       margin-bottom: 0;
@@ -355,7 +355,7 @@
     }
     li {
       float: left;
-      background: lighten($voodoo,4);
+      background: lighten($secondary-background-color,4);
       font-size: 12px;
       font-weight: 900;
       text-transform: uppercase;
@@ -365,13 +365,13 @@
       border-radius: 2px;
       &.active {
         background: #EDEEEF;
-        color: $voodoo;
+        color: $secondary-background-color;
         &:hover {
           background: #EDEEEF;
         }
       }
       &:hover {
-        background: darken($voodoo, 5);
+        background: darken($secondary-background-color, 5);
       }
     }
   }
@@ -427,9 +427,9 @@
           visibility: hidden;
         }
         a {
-          background: darken($voodoo,4);
+          background: darken($secondary-background-color,4);
           &:hover {
-            background: darken($voodoo,3);
+            background: darken($secondary-background-color,3);
           }
         }
         &:hover {
@@ -442,14 +442,14 @@
           visibility: visible;
         }
         a {
-          background: lighten($voodoo,4);
+          background: lighten($secondary-background-color,4);
           text-decoration: none;
         }
       }
     }
   }
   .slider {
-    background: lighten($voodoo,4);
+    background: lighten($secondary-background-color,4);
     height: 5px;
     border-radius: 999em;
     margin-bottom: 15px;
@@ -468,7 +468,7 @@
     &:after {
       display: block;
       content: '';
-      background: lighten($voodoo,4);
+      background: lighten($secondary-background-color,4);
       position: absolute;
       top: 50%;
       left: 50%;
@@ -488,7 +488,7 @@
   }
   .noUi-base,
   .noUi-background {
-    background: lighten($voodoo,4);
+    background: lighten($secondary-background-color,4);
     box-shadow: none;
   }
 }

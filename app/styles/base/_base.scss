@@ -1,5 +1,5 @@
 body {
-  background-color: $alabaster;
+  background-color: $background-color;
 }
 
 a {
@@ -77,14 +77,20 @@ img {
 }
 
 .card {
-  background: $card-background;
-  box-shadow: none;
-  border: none;
-  color: $magnesium;
+  background: $foreground-background-color;
+  color: $body-text-color;
+  @if $theme == 'kitsu-light' {
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    border: 1px solid rgba(0,0,0,.09);
+  }
+  @if $theme == 'kitsu-dark' {
+    box-shadow: none;
+    border: none;
+  }
 }
 
 .secondary-text {
-  color: $porcelain;
+  color: $foreground-background-color;
 }
 
 .role-tag {
