@@ -4,11 +4,13 @@
   </div>
 {{else}}
   {{! Header }}
-  <span class="entry-state-header">
-    <span>{{t "library-entry.state.header" state=hasLibraryEntry}}</span>
-  </span>
+  {{#if showHeader}}
+    <span class="entry-state-header">
+      <span>{{t "library-entry.state.header" state=hasLibraryEntry}}</span>
+    </span>
+  {{/if}}
 
-  <span class="entry-state-status">
+  <div class="entry-state-status">
     {{#unless hasLibraryEntry}} {{! Doesn't have a library entry }}
       {{library-entry/state/new-entry
         media=media
@@ -47,5 +49,5 @@
         }}
       {{/if}}
     {{/unless}}
-  </span>
+  </div>
 {{/if}}

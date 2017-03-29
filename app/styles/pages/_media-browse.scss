@@ -117,45 +117,13 @@
           width: 100%;
           height: 100%;
         }
-        .shared-friends {
+        .library-state {
           position: absolute;
-          left: 10px;
-          bottom: 10px;
-        }
-        .friend-avatar img {
-          border-radius: 999em;
-          width: 30px;
-        }
-        .friend-count {
-          background: rgba(255,255,255,.2);
-          color: #fff;
-          font-weight: 600;
-          width: 30px;
-          font-size: 13px;
-          height: 30px;
-          display: inline-block;
-          text-align: center;
-          border-radius: 999em;
-          line-height: 30px;
-          position: relative;
-          margin-left: 5px;
-          top: 1px;
-        }
-        .trailer svg {
-          border: 2px solid #fff;
-          width: 30px;
-          height: 30px;
-          line-height: 27px;
-          text-align: center;
-          font-size: 13px;
-          color: #fff;
-          border-radius: 50%;
-          position: absolute;
-          bottom: 10px;
-          right: 10px;
-          opacity: .7;
-          path {
-            fill: #fff;
+          bottom: 0px;
+          padding: 10px;
+          width: 100%;
+          .state-helper, .library-state-progress-wrapper {
+            color: #fff;
           }
         }
       }
@@ -247,8 +215,6 @@
     }
   }
 
-
-
   // Filter widgets
   .filter-widget {
     border-bottom: 1px solid darken($voodoo, 10);
@@ -314,20 +280,6 @@
     .high-value {
       float: right;
     }
-  }
-
-  .button {
-    margin-bottom: 0;
-    background: #3B414B;
-    border-radius: 5px;
-    margin-top: 20px;
-    color: $alabaster;
-    font-weight: 600;
-    text-align: left;
-  }
-
-  .button.dropdown::after {
-    border-color: $alabaster transparent transparent;
   }
 
   .box-select {

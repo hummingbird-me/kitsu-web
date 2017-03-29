@@ -236,30 +236,6 @@
   }
 }
 
-.entry-progress--mini-wrapper {
-  border-bottom: 1px solid darken($eggshell, 5);
-  padding: {
-    top: 10px;
-    bottom: 10px;
-  }
-  font-size: 12px;
-  &.border-top {
-    border-top: 1px solid darken($eggshell, 5);
-    margin-top: 10px;
-  }
-}
-
-.entry-progress--mini {
-  margin: 0;
-  padding: 0;
-  float: right;
-  border: none;
-  width: auto;
-  input {
-    top: -4px;
-  }
-}
-
 .entry-wrapper {
   @extend .clearfix;
   padding: 10px 0;
@@ -477,25 +453,24 @@
 
 .library-state {
   position: relative;
-  margin-top: 20px;
-  border: 1px solid darken($eggshell, 5);
-  border-radius: 3px;
-  padding: 15px;
-
-  .entry-state-header {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    top: -24px;
-    > span {
-      background-color: #fafafa;
-      @extend .text-muted;
-      font-size: 12px;
+  &.with-header {
+    border: 1px solid darken($eggshell, 5);
+    border-radius: 3px;
+    padding: 15px;
+    .entry-state-header {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      top: -24px;
+      > span {
+        background-color: #fafafa;
+        @extend .text-muted;
+        font-size: 12px;
+      }
     }
   }
 
   .entry-state-status {
-    display: block;
     margin-top: -18px;
   }
 
@@ -503,6 +478,30 @@
     display: block;
     font-size: 12px;
     text-align: center;
+  }
+
+  .library-state-progress-wrapper {
+    border-bottom: 1px solid darken($eggshell, 5);
+    padding: {
+      top: 10px;
+      bottom: 10px;
+    }
+    font-size: 12px;
+    &.border-top {
+      border-top: 1px solid darken($eggshell, 5);
+      margin-top: 10px;
+    }
+  }
+
+  .library-state-progress {
+    margin: 0;
+    padding: 0;
+    float: right;
+    border: none;
+    width: auto;
+    input {
+      top: -4px;
+    }
   }
 
   .button--secondary {

@@ -7,6 +7,8 @@ import { task } from 'ember-concurrency';
 
 export default Component.extend({
   classNames: ['library-state'],
+  classNameBindings: ['showHeader:with-header'],
+  showHeader: true,
 
   cache: service('local-cache'),
   store: service(),
