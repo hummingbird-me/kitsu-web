@@ -4,22 +4,27 @@
     <div class="quick-update-actions">
       <div class="action-wrapper">
         {{#unless isCompleted}}
-          <button class="button button--quick-update" onclick={{perform updateEntryTask}}>
-            {{#if updateEntryTask.isRunning}}
-              {{loading-spinner}}
-            {{else unless canComplete}}
-              {{t-html "dashboard.quick-update.overlay.button.html"
-                type=entry.media.modelType
-                num=nextProgress
-                class="progress-count"}}
-            {{else}}
+          {{#if canComplete}}
+            {{#library-entry/state/rating-button class="button button--quick-update" onClick=(perform updateEntryTask)}}
               {{t "dashboard.quick-update.overlay.button.complete"}}
-            {{/if}}
-          </button>
+            {{/library-entry/state/rating-button}}
+          {{else}}
+            <button class="button button--quick-update" onclick={{perform updateEntryTask}}>
+              {{#if updateEntryTask.isRunning}}
+                {{loading-spinner}}
+              {{else unless canComplete}}
+                {{t-html "dashboard.quick-update.overlay.button.html"
+                  type=entry.media.modelType
+                  num=nextProgress
+                  class="progress-count"
+                }}
+              {{/if}}
+            </button>
+          {{/if}}
         {{else}}
           {{! Rating }}
           <div class="quick-update--rate">
-            {{star-rating entry.rating onClick=(action "rateEntry")}}
+            {{library-entry/state libraryEntry=entry media=entry.media showHeader=false}}
           </div>
 
           {{! Review }}

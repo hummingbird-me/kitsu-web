@@ -54,8 +54,8 @@ export default Component.extend({
     return htmlSafe(`width: ${result}%;`);
   }).readOnly(),
 
-  updateEntryTask: task(function* () {
-    const hash = { progress: get(this, 'nextProgress') };
+  updateEntryTask: task(function* (rating) {
+    const hash = { progress: get(this, 'nextProgress'), rating };
     // will the next update complete this media?
     if (get(this, 'canComplete')) {
       hash.status = 'completed';
@@ -81,11 +81,5 @@ export default Component.extend({
       media: get(this, 'entry.media'),
       user: get(this, 'session.account')
     });
-  },
-
-  actions: {
-    rateEntry(rating) {
-      strictInvokeAction(this, 'updateEntry', 'rating', rating);
-    }
   }
 });
