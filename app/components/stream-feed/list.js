@@ -239,6 +239,14 @@ export default Component.extend(Pagination, {
     }
   },
 
+  onPagination(records) {
+    const duplicates = records.filter(record => (
+      get(this, 'allFeedItems').findBy('group', get(record, 'group')) !== undefined
+    ));
+    records.removeObjects(duplicates);
+    this._super(records);
+  },
+
   actions: {
     onPagination() {
       return this._super('feed', {
