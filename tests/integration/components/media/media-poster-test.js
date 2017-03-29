@@ -2,7 +2,12 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('media/media-poster', 'Integration | Component | media/media poster', {
-  integration: true
+  integration: true,
+
+  beforeEach() {
+    const service = this.container.lookup('service:intl');
+    service.setLocale('en-us');
+  }
 });
 
 test('media-poster it renders', function(assert) {
