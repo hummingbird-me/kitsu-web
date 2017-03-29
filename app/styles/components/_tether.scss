@@ -40,9 +40,6 @@
       height: 313px;
       width: 220px;
       top: 0;
-      .button--primary {
-        padding: 10px;
-      }
     }
     &:before,
     &:after {
@@ -61,22 +58,22 @@
     .media-ratings {
       margin: 1px 0 5px;
       height: 24px;
-      svg {
-        width: 14px;
+      &.percent-quarter-1 {
+        color: rgba(231, 76, 60,1.0);
+      }
+      &.percent-quarter-2 {
+        color: rgba(230, 126, 34,1.0);
+      }
+      &.percent-quarter-3 {
+        color: rgba(243, 156, 18,1.0);
+      }
+      &.percent-quarter-4 {
+        color: rgba(26, 188, 156,1.0);
       }
     }
     .media-synopsis {
       font-size: 12px;
-      height: 93px;
       overflow: hidden;
-    }
-    > div:last-child:not(.media-synopsis) {
-      position: absolute;
-      bottom: 16px;
-      width: calc(100% - 32px);
-      button {
-        width: 100%;
-      }
     }
   }
 }
