@@ -12,11 +12,13 @@ export default Controller.extend({
     'averageRating',
     'genres',
     'text',
+    'subtype',
     'year'
   ],
   averageRating: [0.5, 5.0],
   genres: [],
   text: undefined,
+  subtype: [],
   year: [1907, moment().year() + 1],
   sort: 'popularity',
   sortOptions: ['popularity', 'rating', 'date'],

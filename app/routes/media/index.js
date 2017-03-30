@@ -14,9 +14,10 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
   mediaQueryParams: {
     averageRating: { refreshModel: true, replace: true },
     genres: { refreshModel: true, replace: true },
+    sort: { refreshModel: true, replace: true },
     text: { refreshModel: true, replace: true },
-    year: { refreshModel: true, replace: true },
-    sort: { refreshModel: true, replace: true }
+    subtype: { refreshModel: true, replace: true },
+    year: { refreshModel: true, replace: true }
   },
   templateName: 'media/index',
 
