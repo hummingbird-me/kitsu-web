@@ -2,6 +2,7 @@ import Route from 'ember-route';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
+import { storageFor } from 'ember-local-storage';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import moment from 'moment';
 
@@ -11,6 +12,7 @@ export default Route.extend(ApplicationRouteMixin, {
   intl: service(),
   metrics: service(),
   moment: service(),
+  lastUsed: storageFor('last-used'),
 
   // If the user is authenticated on first load, grab the users data
   beforeModel() {
@@ -103,7 +105,11 @@ export default Route.extend(ApplicationRouteMixin, {
 
   _getCurrentUser() {
     return get(this, 'session').getCurrentUser().then((user) => {
+      // user setup
+      this._loadTheme(user);
       get(this, 'moment').changeTimeZone(get(user, 'timeZone') || moment.tz.guess());
+
+      // metrics
       get(this, 'metrics').identify({
         distinctId: get(user, 'id'),
         alias: get(user, 'name'), // google uses alias > name
@@ -143,6 +149,21 @@ export default Route.extend(ApplicationRouteMixin, {
         });
       }
       return this._super(...arguments);
+    }
+  },
+
+  _loadTheme(user) {
+    if (get(this, 'lastUsed.theme')) { return; }
+
+    const theme = get(user, 'theme');
+    const element = [].slice.call(document.head.getElementsByTagName('link'), 0).find(link => (
+      'theme' in link.dataset
+    ));
+    if (!element) { return; }
+
+    set(this, 'lastUsed.theme', theme);
+    if (element.dataset.theme !== theme) {
+      window.location.reload();
     }
   },
 
