@@ -4,6 +4,7 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import computed, { alias } from 'ember-computed';
 import { task } from 'ember-concurrency';
+import { storageFor } from 'ember-local-storage';
 import getter from 'client/utils/getter';
 import errorMessages from 'client/utils/error-messages';
 import COUNTRIES from 'client/utils/countries';
@@ -11,6 +12,7 @@ import moment from 'moment';
 
 export default Controller.extend({
   notify: service(),
+  lastUsed: storageFor('last-used'),
   user: alias('session.account'),
   languages: getter(() => [{ id: 'en', text: 'English' }]),
   timezoneGuess: getter(() => moment.tz.guess()),
@@ -45,7 +47,10 @@ export default Controller.extend({
   updateProfile: task(function* () {
     set(this, 'user.name', get(this, 'username'));
     yield get(this, 'user').save()
-      .then(() => get(this, 'notify').success('Your profile was updated.'))
+      .then(() => {
+        set(this, 'lastUsed.theme', get(this, 'user.theme'));
+        get(this, 'notify').success('Your profile was updated.');
+      })
       .catch((err) => {
         get(this, 'notify').error(errorMessages(err));
         get(this, 'user').rollbackAttributes();

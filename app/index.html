@@ -23,8 +23,20 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/emojione/2.2.7/assets/css/emojione.min.css"/>
 
     <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
-    <link rel="stylesheet" href="{{rootURL}}assets/dark.css">
-    <!-- <link rel="stylesheet" href="{{rootURL}}assets/light.css"> -->
+    <script>
+      let theme = 'light';
+      if (window.localStorage) {
+        const cacheStorage = window.localStorage.getItem('storage:last-used');
+        if (cacheStorage) {
+          theme = JSON.parse(cacheStorage).theme || theme;
+        }
+      }
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = `{{rootURL}}assets/${theme}.css`;
+      link.dataset.theme = theme;
+      document.head.appendChild(link);
+    </script>
 
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
