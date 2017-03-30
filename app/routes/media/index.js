@@ -15,7 +15,8 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
     averageRating: { refreshModel: true, replace: true },
     genres: { refreshModel: true, replace: true },
     text: { refreshModel: true, replace: true },
-    year: { refreshModel: true, replace: true }
+    year: { refreshModel: true, replace: true },
+    sort: { refreshModel: true, replace: true }
   },
   templateName: 'media/index',
 
@@ -55,9 +56,7 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
       return { taskInstance: lastTask, paginatedRecords: [] };
     }
     set(this, 'lastParams', params);
-    const hash = { page: { offset: 0, limit: 20 } };
-    const filters = this._buildFilters(params);
-    const options = Object.assign(filters, hash);
+    const options = this._buildOptions(params);
     const [mediaType] = get(this, 'routeName').split('.');
     return {
       taskInstance: get(this, 'modelTask').perform(mediaType, options),
@@ -147,8 +146,12 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
     }
   },
 
-  _buildFilters(params) {
-    const options = { filter: {}, fields: this._getFieldsets() };
+  _buildOptions(params) {
+    const options = {
+      filter: {},
+      page: { offset: 0, limit: 20 },
+      fields: this._getFieldsets()
+    };
     Object.keys(params).forEach((key) => {
       const value = params[key];
       if (isEmpty(value) === true) {
@@ -159,12 +162,14 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
           return;
         }
       }
-      const type = typeOf(value);
-      options.filter[key] = this.serializeQueryParam(value, key, type);
+      if (key !== 'sort') {
+        const type = typeOf(value);
+        options.filter[key] = this.serializeQueryParam(value, key, type);
+      }
     });
 
     if (options.filter.text === undefined) {
-      options.sort = '-user_count';
+      options.sort = this._getRealSort(params.sort);
     }
     return options;
   },
@@ -181,5 +186,16 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
         'averageRating'
       ].join(',')
     };
+  },
+
+  _getRealSort(sort) {
+    switch (sort) {
+      case 'rating':
+        return '-average_rating';
+      case 'date':
+        return '-start_date';
+      default:
+        return '-user_count';
+    }
   }
 });
