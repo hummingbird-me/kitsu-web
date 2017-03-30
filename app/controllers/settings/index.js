@@ -24,6 +24,10 @@ export default Controller.extend({
     ['Canonical', 'Romanized', 'English'].map(key => ({ id: key.toLowerCase(), text: key }))
   )),
 
+  themes: getter(() => (
+    ['Light Theme', 'Dark Theme'].map(key => ({ id: key.split(' ')[0].toLowerCase(), text: key }))
+  )),
+
   ratings: getter(() => (
     ['Simple', 'Advanced'].map(key => ({ id: key.toLowerCase(), text: key }))
   )),
@@ -64,6 +68,9 @@ export default Controller.extend({
     const title = get(this, 'titles')
       .find(item => get(item, 'id') === get(this, 'user.titleLanguagePreference'));
     set(this, 'selectedTitle', title);
+    const theme = get(this, 'themes')
+      .find(item => get(item, 'id') === get(this, 'user.theme'));
+    set(this, 'selectedTheme', theme);
     const rating = get(this, 'ratings')
       .find(item => get(item, 'id') === get(this, 'user.ratingSystem'));
     set(this, 'selectedRating', rating);
@@ -86,6 +93,11 @@ export default Controller.extend({
     changeTitle(title) {
       set(this, 'selectedTitle', title);
       set(this, 'user.titleLanguagePreference', get(title, 'id'));
+    },
+
+    changeTheme(theme) {
+      set(this, 'selectedTheme', theme);
+      set(this, 'user.theme', get(theme, 'id'));
     },
 
     changeRating(rating) {

@@ -71,6 +71,7 @@ export default Base.extend(Validations, {
   timeZone: attr('string'),
   title: attr('string'),
   titleLanguagePreference: attr('string', { defaultValue: 'canonical' }),
+  theme: attr('string', { defaultValue: 'light' }),
   waifuOrHusbando: attr('string'),
   website: attr('string'),
   updatedAt: attr('utc'),
