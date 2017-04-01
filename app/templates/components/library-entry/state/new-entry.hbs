@@ -1,7 +1,7 @@
 {{! Seen This }}
-{{#library-entry/state/rating-button class="button button--secondary" onClick=(action "createLibraryEntry" "completed")}}
+{{#library-entry/rating-button class="button button--secondary" onClick=(action "createLibraryEntry" "completed")}}
   {{t "library-entry.state.seen-this" type=media.modelType}}
-{{/library-entry/state/rating-button}}
+{{/library-entry/rating-button}}
 
 {{#unless createOnly}}
   {{! Want to Watch }}

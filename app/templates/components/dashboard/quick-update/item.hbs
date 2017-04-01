@@ -5,9 +5,9 @@
       <div class="action-wrapper">
         {{#unless isCompleted}}
           {{#if canComplete}}
-            {{#library-entry/state/rating-button class="button button--quick-update" onClick=(perform updateEntryTask)}}
+            {{#library-entry/rating-button class="button button--quick-update" onClick=(perform updateEntryTask)}}
               {{t "dashboard.quick-update.overlay.button.complete"}}
-            {{/library-entry/state/rating-button}}
+            {{/library-entry/rating-button}}
           {{else}}
             <button class="button button--quick-update" onclick={{perform updateEntryTask}}>
               {{#if updateEntryTask.isRunning}}

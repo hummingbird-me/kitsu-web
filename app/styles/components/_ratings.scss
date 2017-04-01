@@ -1,0 +1,258 @@
+// Library State Widget
+.library-state {
+  position: relative;
+  &.with-header {
+    border: 1px solid darken($eggshell, 5);
+    border-radius: 3px;
+    padding: 15px;
+    .entry-state-header {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      top: -24px;
+      > span {
+        background-color: #fafafa;
+        @extend .text-muted;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .entry-state-status {
+    margin-top: -18px;
+  }
+
+  .state-helper {
+    display: block;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .library-state-progress-wrapper {
+    border-bottom: 1px solid darken($eggshell, 5);
+    padding: {
+      top: 10px;
+      bottom: 10px;
+    }
+    font-size: 12px;
+    &.border-top {
+      border-top: 1px solid darken($eggshell, 5);
+      margin-top: 10px;
+    }
+  }
+
+  .library-state-progress {
+    margin: 0;
+    padding: 0;
+    float: right;
+    border: none;
+    width: auto;
+    input {
+      top: -4px;
+    }
+  }
+
+  .button--secondary {
+    padding: 8px;
+    width: 100%;
+    font-size: 12px;
+    margin-top: 10px;
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  .button--muted {
+    background-color: lighten($nobel, 10);
+    &:hover {
+      background-color: $nobel;
+    }
+  }
+
+  .btn-group {
+    display: flex;
+
+    .btn:first-child {
+      width: 100%;
+      padding-left: 10px;
+    }
+
+    .btn, .dropdown-item {
+      font-size: 14px;
+    }
+
+    .dropdown-toggle {
+      font-size: 15px;
+    }
+  }
+
+  %vertical-align {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    svg {
+      position: relative;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+  }
+
+  .rating-advanced {
+    @extend %vertical-align;
+    height: 20px;
+    span {
+      margin-right: 5px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    svg {
+      fill: $nobel;
+    }
+  }
+
+  .rating-simple {
+    @extend %vertical-align;
+    height: 24px;
+  }
+
+  .rating-sep {
+    margin: {
+      left: 5px;
+      right: 5px;
+    };
+  }
+}
+
+// Rating Colors
+.current-rating {
+  &.awful {
+    color: #DA5E51;
+  }
+  &.meh {
+    color: rgba(230, 126, 34, 1.0);
+  }
+  &.good {
+    color: $caribbean;
+  }
+  &.amazing {
+    color: #3E99D7;
+  }
+}
+
+// Hover element (rating-button)
+.rating-hover-wrapper {
+  position: relative;
+  margin: 0 auto;
+  height: auto;
+  min-width: 225px;
+  border: 1px solid #ada4a4;
+  box-shadow: 0 1px 2px -1px #a29797;
+  border-radius: 80px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  background: #fff;
+  padding: 16px;
+  &.simple-rating {
+    padding: 6px;
+  }
+
+  .simple-rating-wrapper {
+    position: relative;
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    top: 0px;
+    transition: top .2s;
+
+    &:hover {
+      top: -10px;
+    }
+  }
+}
+
+// Colorful slider for ratings
+.advanced-rating-slider {
+  .slider {
+    height: 14px;
+    width: 100%;
+    border-radius: 999em;
+  }
+
+  .noUi-connect {
+    background-color: #ccc;
+    border-radius: 999em;
+  }
+
+  .noUi-handle {
+    border-radius: 999em;
+    background-color: #fff;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+    height: 28px;
+    width: 28px;
+    left: -14px;
+    top: -7px;
+    &:active {
+      box-shadow: 0 3px 20px rgba(0,0,0,0.5);
+    }
+    .noUi-handle-dot {
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      height: 18px;
+      width: 18px;
+      border-radius: 999em;
+      background-color: transparent;
+      overflow: hidden;
+      .noUi-handle-background {
+        display: block;
+        height: 18px;
+        background-color: #E74C3C;
+        background-image: linear-gradient(to right, #E74C3C 0%, #F1C40F 50%, #1ABC9C 100%);
+        padding-right: 18px;
+        position: absolute;
+      }
+    }
+  }
+  .noUi-handle,
+  .noUi-target {
+    cursor: pointer;
+  }
+  .noUi-base,
+  .noUi-background {
+    left: 0px;
+    background-color: #E74C3C;
+    background-image: linear-gradient(to right, #E74C3C 0%, #F1C40F 50%, #1ABC9C 100%);
+    box-shadow: none;
+  }
+  .noUi-tooltip {
+    background: #383838;
+    color: #fff;
+    padding: 8px 10px;
+    font-size: 12px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 12px;
+    border: none;
+    border-radius: 4px;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      transform: translateX(-50%);
+      background: transparent;
+      border: 6px solid transparent;
+      border-top-color: #383838;
+      z-index: 1000001;
+    }
+  }
+}
+
+// Readonly ratings (Displays)
+.readonly-rating {
+  svg.star-svg {
+    fill: $nobel;
+  }
+}

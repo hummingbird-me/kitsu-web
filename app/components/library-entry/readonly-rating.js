@@ -3,6 +3,7 @@ import get from 'ember-metal/get';
 import computed from 'ember-computed';
 
 export default Component.extend({
+  classNames: ['readonly-rating'],
   width: '20',
   height: '20',
 

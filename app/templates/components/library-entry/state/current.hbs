@@ -6,12 +6,12 @@
 {{/unless}}
 
 {{! I've Finished This }}
-{{#library-entry/state/rating-button
+{{#library-entry/rating-button
   class="button button--secondary"
   onClick=onComplete
 }}
   {{t "library-entry.state.finished-this"}}
-{{/library-entry/state/rating-button}}
+{{/library-entry/rating-button}}
 
 {{! Remove }}
 <button class="button button--secondary button--muted" {{action onRemove}}>
