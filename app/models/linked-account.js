@@ -8,7 +8,7 @@ export default Base.extend({
   shareFrom: attr('boolean', { defaultValue: false }),
   shareTo: attr('boolean', { defaultValue: false }),
   syncTo: attr('boolean', { defaultValue: false }),
-  token: attr('string'),
+  token: attr('object'),
 
   user: belongsTo('user')
 });
