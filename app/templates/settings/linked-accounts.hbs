@@ -36,14 +36,14 @@
         {{#if youtubeAccount}}
           <button class="button button--youtube w-100"
             disabled={{if destroyLink.isRunning "disabled"}}
-            onclick={{perform destroyLink "LinkedAccount::YoutubeChannel"}}>
+            onclick={{perform destroyLink "youtube-channel"}}>
             {{svg-jar "play"}}
             Disconnect YouTube
           </button>
         {{else}}
           <button class="button button--youtube w-100"
             disabled={{if createLink.isRunning "disabled"}}
-            onclick={{perform createLink "LinkedAccount::YoutubeChannel"}}>
+            onclick={{perform createLink "youtube-channel"}}>
             {{svg-jar "play"}}
             Connect YouTube
           </button>

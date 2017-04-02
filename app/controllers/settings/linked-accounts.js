@@ -18,7 +18,7 @@ export default Controller.extend({
   notify: service(),
   torii: service(),
 
-  youtubeAccount: findLinkedAccount('LinkedAccount::YoutubeChannel'),
+  youtubeAccount: findLinkedAccount('youtube-channel'),
   allAccounts: collect('youtubeAccount'),
 
   hasAccounts: computed('allAccounts.[]', function() {
@@ -47,7 +47,7 @@ export default Controller.extend({
     // get token
     const provider = this._getProviderType(kind);
     if (!provider) { return; }
-    const token = yield get(this, 'torii').open('google-oauth2-bearer').then(response => (
+    const token = yield get(this, 'torii').open(provider).then(response => (
       response.authorizationToken.access_token
     )).catch(() => {});
     if (!token) { return; }
@@ -86,7 +86,7 @@ export default Controller.extend({
 
   _getProviderType(kind) {
     switch (kind) {
-      case 'LinkedAccount::YoutubeChannel':
+      case 'youtube-channel':
         return 'google-oauth2-bearer';
       default:
         return null;
