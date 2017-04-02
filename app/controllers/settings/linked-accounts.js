@@ -1,25 +1,34 @@
 import Controller from 'ember-controller';
 import get from 'ember-metal/get';
+import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import computed, { alias } from 'ember-computed';
+import computed, { collect } from 'ember-computed';
 import { task } from 'ember-concurrency';
 import RSVP from 'rsvp';
+import errorMessages from 'client/utils/error-messages';
 
 const findLinkedAccount = kind => (
-  computed('model.@each.isDeleted', function() {
+  computed('model.[]', function() {
     return get(this, 'model').findBy('kind', kind);
   }).readOnly()
 );
 
 export default Controller.extend({
   facebook: service(),
+  notify: service(),
   torii: service(),
-  youtubeAccount: findLinkedAccount('LinkedAccount::YoutubeChannel'),
-  hasAccounts: alias('youtubeAccount'),
 
-  // eslint-disable-next-line
-  hasDirtyAccounts: computed('youtubeAccount.hasDirtyAttributes', function() {
-    return ['youtubeAccount'].any(account => get(account, 'hasDirtyAttributes'));
+  youtubeAccount: findLinkedAccount('LinkedAccount::YoutubeChannel'),
+  allAccounts: collect('youtubeAccount'),
+
+  hasAccounts: computed('allAccounts.[]', function() {
+    return get(this, 'allAccounts').any(account => account !== null);
+  }).readOnly(),
+
+  hasDirtyAccounts: computed('allAccounts.@each.hasDirtyAttributes', function() {
+    return get(this, 'allAccounts').any(account => (
+      account ? get(account, 'hasDirtyAttributes') : false
+     ));
   }).readOnly(),
 
   connectFacebook: task(function* () {
@@ -50,24 +59,30 @@ export default Controller.extend({
       user: get(this, 'session.account')
     });
     yield account.save().then(() => {
-      get(this, 'model').addObject(account);
+      const content = get(this, 'model').toArray();
+      content.addObject(account);
+      set(this, 'model', content);
     }).catch(() => {});
   }),
 
   destroyLink: task(function* (kind) {
     const account = get(this, 'model').findBy('kind', kind);
-    yield account.destroyRecord().catch(() => {
+    yield account.destroyRecord().then(() => {
+      get(this, 'model').removeObject(account);
+    }).catch(() => {
       account.rollbackAttributes();
     });
   }),
 
   saveChangesTask: task(function* () {
-    const accounts = [];
-    ['youtubeAccount'].filterBy('hasDirtyAttributes').forEach((account) => {
-      accounts.push(account);
+    if (get(this, 'destroyLink.isRunning') || get(this, 'createLink.isRunning')) { return; }
+
+    const accounts = get(this, 'allAccounts').filterBy('hasDirtyAttributes')
+      .map(account => account.save());
+    yield RSVP.all(accounts).catch((error) => {
+      get(this, 'notify').error(errorMessages(error));
     });
-    yield RSVP.all(accounts);
-  }),
+  }).drop(),
 
   _getProviderType(kind) {
     switch (kind) {
