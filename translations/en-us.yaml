@@ -84,8 +84,12 @@ dashboard:
     media:
       complete: "Complete"
       episode: "{type, select,
-        anime {Ep. {num}}
-        manga {Ch. {num}}
+        anime {Ep. {num} {total, select,
+          undefined {}
+          other {of {total}}}}
+        manga {Ch. {num} {total, select,
+          undefined {}
+          other {of {total}}}}
         other {}}"
     overlay:
       button:
@@ -564,8 +568,8 @@ groups:
         invited: "Invited"
         revoke: "Cancel Invite"
         invite: "Invite"
-        placeholder: "Search for a user to invite"
-        empty: "Looks like you don't currently have any pending invites!"
+        placeholder: "Search for a user to invite. They must be following you!"
+        empty: "Looks like you don't have any pending invites to the group."
       bans:
         header: "Banned Users"
         unban: "Unban"
