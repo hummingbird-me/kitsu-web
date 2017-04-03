@@ -56,6 +56,6 @@ export default Base.extend(Validations, {
     } else if (rating >= 7 && rating < 10) {
       return 'good';
     }
-    return 'amazing';
+    return 'great';
   }
 });

@@ -14,7 +14,7 @@ export default Component.extend({
     tag: 'good',
     value: 7
   }, {
-    tag: 'amazing',
+    tag: 'great',
     value: 10
   }],
 

@@ -20,6 +20,6 @@ export default Component.extend({
     } else if (rating >= 7 && rating < 10) {
       return 'good';
     }
-    return 'amazing';
+    return 'great';
   }
 });
