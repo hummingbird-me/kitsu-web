@@ -29,11 +29,7 @@
 
           {{! Review }}
           <button class="button button--quick-update review-button" onclick={{action (toggle "showModal" this)}}>
-            {{#if entry.review.isNew}}
-              {{t "dashboard.quick-update.overlay.review.write"}}
-            {{else}}
-              {{t "dashboard.quick-update.overlay.review.edit"}}
-            {{/if}}
+            {{t "dashboard.quick-update.overlay.review"}}
           </button>
           {{#if showModal}}
             {{to-elsewhere named="modal" send=(component "modals/media-review"

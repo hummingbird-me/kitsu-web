@@ -50,13 +50,17 @@
     {{/if}}
   </button>
   <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{! ... }}
+    {{! Dropdown Caret }}
   </button>
 
 
   {{#dropdown.menu}}
     {{#dropdown.menu-item onClick=(action "showRating")}}
       {{t "library-entry.state.change-rating"}}
+    {{/dropdown.menu-item}}
+    <div class="dropdown-divider"></div>
+    {{#dropdown.menu-item onClick=(action onReview)}}
+      {{t "library-entry.state.review"}}
     {{/dropdown.menu-item}}
     <div class="dropdown-divider"></div>
     {{#dropdown.menu-item onClick=(action onRewatch)}}

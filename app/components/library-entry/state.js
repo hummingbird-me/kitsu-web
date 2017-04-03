@@ -10,6 +10,7 @@ export default Component.extend({
   classNameBindings: ['showHeader:with-header'],
   showHeader: true,
   createOnly: false,
+  reviewOpen: false,
 
   cache: service('local-cache'),
   store: service(),
@@ -41,12 +42,18 @@ export default Component.extend({
 
     const type = get(this, 'mediaType');
     return yield get(this, 'store').query('library-entry', {
+      include: 'review',
       filter: {
         user_id: get(this, 'session.account.id'),
         kind: type,
         [`${type}_id`]: get(get(this, 'media'), 'id')
       }
-    }).then(records => get(records, 'firstObject'));
+    }).then(records => get(records, 'firstObject')).then((record) => {
+      if (record) {
+        get(this, 'cache').addToCache('library-entry', this._getCacheKey(), get(record, 'id'));
+      }
+      return record;
+    });
   }).restartable(),
 
   createLibraryEntryTask: task(function* (status, rating) {
@@ -92,6 +99,19 @@ export default Component.extend({
       get(this, 'updateLibraryEntryTask').perform().catch(() => {
         get(this, 'libraryEntry').rollbackAttributes();
       });
+    },
+
+    updateOrCreateReview() {
+      let review = get(this, 'libraryEntry').belongsTo('review').value();
+      if (!review) {
+        review = get(this, 'store').createRecord('review', {
+          libraryEntry: get(this, 'libraryEntry'),
+          media: get(this, 'libraryEntry.media'),
+          user: get(this, 'session.account')
+        });
+        set(this, 'libraryEntry.review', review);
+      }
+      this.toggleProperty('reviewOpen');
     }
   },
 

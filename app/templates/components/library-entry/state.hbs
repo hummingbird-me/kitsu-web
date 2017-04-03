@@ -22,6 +22,7 @@
         {{library-entry/state/completed
           libraryEntry=libraryEntry
           onRatingChange=(action "updateAttribute" "rating")
+          onReview=(action "updateOrCreateReview")
           onRewatch=(queue
             (action (mut libraryEntry.reconsumeCount) (inc libraryEntry.reconsumeCount))
             (action (mut libraryEntry.progress) 0)
@@ -29,6 +30,13 @@
           )
           onRemove=(action "removeLibraryEntry")
         }}
+        {{! Review Modal }}
+        {{#if reviewOpen}}
+          {{to-elsewhere named="modal" send=(component "modals/media-review"
+            onClose=(toggle-action "reviewOpen" this)
+            review=libraryEntry.review.content
+          )}}
+        {{/if}}
       {{else if (eq libraryEntry.status "current")}}
         {{! current status }}
         {{library-entry/state/current
