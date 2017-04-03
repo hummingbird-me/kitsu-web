@@ -31,9 +31,11 @@ export default Component.extend({
     if (get(this, 'isCompleted')) {
       return get(this, 'intl').t('dashboard.quick-update.media.complete');
     }
-    const type = get(this, 'entry.media.modelType');
-    const num = get(this, 'nextProgress');
-    const text = get(this, 'intl').t('dashboard.quick-update.media.episode', { type, num });
+    const text = get(this, 'intl').t('dashboard.quick-update.media.episode', {
+      type: get(this, 'entry.media.modelType'),
+      num: get(this, 'nextProgress'),
+      total: get(this, 'entry.media.unitCount')
+    });
     // do we have the next unit information for this entry?
     const nextUnit = get(this, 'entry').belongsTo('nextUnit').value();
     if (nextUnit) {
