@@ -25,6 +25,10 @@ module.exports = function(environment) {
           appId: '325314560922421',
           version: 'v2.8',
           scope: 'public_profile,email,user_friends'
+        },
+        'google-oauth2-bearer': {
+          apiKey: '411649055059-gff0hi34kivvut786sv8odho0vedmvl3.apps.googleusercontent.com',
+          scope: 'https://www.googleapis.com/auth/youtube.readonly'
         }
       }
     },
