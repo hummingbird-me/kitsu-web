@@ -19,8 +19,9 @@ export default Component.extend({
 
   typeText: computed('media.subtype', function() {
     const media = get(this, 'media.modelType');
-    const type = get(this, 'media.subtype').toLowerCase();
-    return get(this, 'intl').t(`media-shared.types.${media}.${type}`);
+    const type = get(this, 'media.subtype');
+    if (!type) { return '-'; }
+    return get(this, 'intl').t(`media-shared.types.${media}.${type.toLowerCase()}`);
   }).readOnly(),
 
   saveEntry: task(function* () {
