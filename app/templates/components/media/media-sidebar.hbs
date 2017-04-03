@@ -1,5 +1,8 @@
 {{! poster }}
 <span class="media-poster">
+  <a href="#" class="media-favorite {{if isFavorite "is-favorite"}}" {{action "toggleFavorite"}}>
+    <span class="heart-wrapper"></span>
+  </a>
   {{lazy-image src=(image media.posterImage "large")}}
 </span>
 
