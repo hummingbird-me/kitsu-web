@@ -11,7 +11,7 @@ import FlickityActionsMixin from 'client/mixins/flickity-actions';
  */
 export default BaseComponent.extend(FlickityActionsMixin, {
   classNames: ['seasonal-series'],
-  currentTab: 'winter',
+  currentTab: 'spring',
 
   getDataTask: task(function* (type) {
     return yield get(this, 'store').query('anime', {
@@ -26,7 +26,7 @@ export default BaseComponent.extend(FlickityActionsMixin, {
 
   _getYear() {
     const type = get(this, 'currentTab');
-    return type === 'winter' ? 2017 : 2016;
+    return ['winter', 'spring'].includes(type) ? 2017 : 2016;
   },
 
   actions: {
