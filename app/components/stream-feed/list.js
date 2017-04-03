@@ -139,7 +139,9 @@ export default Component.extend(Pagination, {
         const { streamType, streamId } = getProperties(this, 'streamType', 'streamId');
         const { readonlyToken } = get(data, 'meta');
         const subscription = get(this, 'streamRealtime')
-          .subscribe(streamType, streamId, readonlyToken, object => this._handleRealtime(object));
+          .subscribe(this._getSplitFeedType(streamType), streamId, readonlyToken, object => (
+            this._handleRealtime(object)
+          ));
         set(this, 'subscription', subscription);
       });
     }
@@ -148,6 +150,24 @@ export default Component.extend(Pagination, {
   willDestroyElement() {
     this._super(...arguments);
     this._cancelSubscription();
+  },
+
+  _getSplitFeedType(type) {
+    const filter = get(this, 'filter');
+    const split = type.split('_');
+    switch (filter) {
+      case 'user':
+      case 'media': {
+        const kind = filter === 'user' ? 'posts' : 'media';
+        let result = `${split[0]}_${kind}`;
+        if (split.length > 1) {
+          result = `${result}_${split.slice(1).join('_')}`;
+        }
+        return result;
+      }
+      default:
+        return type;
+    }
   },
 
   _getFeedData(limit = 10) {
@@ -205,22 +225,10 @@ export default Component.extend(Pagination, {
 
   _handleRealtime(object) {
     const groupCache = get(this, 'newItems.cache');
-    const filter = get(this, 'filter');
 
     get(this, 'newItems').beginPropertyChanges();
     get(object, 'new').forEach((activity) => {
       const type = get(activity, 'foreign_id').split(':')[0];
-
-      // filter out content not apart of the current filter
-      if (filter === 'media') {
-        if (type === 'Post' || type === 'Comment') {
-          return;
-        }
-      } else if (filter === 'user') {
-        if (type !== 'Post' && type !== 'Comment') {
-          return;
-        }
-      }
 
       // don't show a new activity action if the actor is the sessioned user
       if (type === 'Post' || type === 'Comment') {
