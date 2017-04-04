@@ -6,7 +6,7 @@ export default Base.extend({
   foreignId: attr('string'),
   postId: attr('number'),
   progress: attr('number'),
-  rating: attr('number'),
+  rating: attr('rating'),
   replyToType: attr('string'),
   replyToUser: attr('string'),
   status: attr('string'),
