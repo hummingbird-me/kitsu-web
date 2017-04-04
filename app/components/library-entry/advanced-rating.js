@@ -1,5 +1,6 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
+import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import canUseDOM from 'client/utils/can-use-dom';
 
@@ -14,13 +15,18 @@ export default Component.extend({
     this._updateHandle(get(this, 'rating'));
   },
 
+  debounceClick: task(function* (rating) {
+    yield timeout(500);
+    invokeAction(this, 'onClick', rating);
+  }).restartable(),
+
   actions: {
     onSlide([rating]) {
       this._updateHandle(rating);
     },
 
     onClick([rating]) {
-      invokeAction(this, 'onClick', rating);
+      get(this, 'debounceClick').perform(rating);
     }
   },
 
@@ -39,6 +45,7 @@ export default Component.extend({
   _updateHandle(rating) {
     const value = ((rating - 1) * 10);
     const [element] = document.getElementsByClassName('advanced-rating-slider');
+    if (!element) { return; }
     const offset = -((value / 100) * element.clientWidth);
     const [handle] = element.getElementsByClassName('noUi-handle-background');
     handle.style.left = `${offset}px`;
