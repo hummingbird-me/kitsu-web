@@ -49,6 +49,7 @@ export default Controller.extend({
     yield get(this, 'user').save()
       .then(() => {
         set(this, 'lastUsed.theme', get(this, 'user.theme'));
+        this._loadTheme();
         get(this, 'notify').success('Your profile was updated.');
       })
       .catch((err) => {
@@ -113,6 +114,18 @@ export default Controller.extend({
     changeFilter(filter) {
       set(this, 'selectedFilter', filter);
       set(this, 'user.sfwFilter', get(filter, 'value'));
+    }
+  },
+
+  _loadTheme() {
+    const element = [].slice.call(document.head.getElementsByTagName('link'), 0).find(link => (
+      'theme' in link.dataset
+    ));
+    if (!element) { return; }
+
+    if (element.dataset.theme !== get(this, 'user.theme')) {
+      element.href = window.Kitsu.themes[get(this, 'user.theme')];
+      element.dataset.theme = get(this, 'user.theme');
     }
   }
 });

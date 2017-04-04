@@ -163,7 +163,8 @@ export default Route.extend(ApplicationRouteMixin, {
 
     set(this, 'lastUsed.theme', theme);
     if (element.dataset.theme !== theme) {
-      window.location.reload();
+      element.href = window.Kitsu.themes[theme];
+      element.dataset.theme = theme;
     }
   },
 
