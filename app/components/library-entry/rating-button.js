@@ -6,6 +6,7 @@ import HoverIntentMixin from 'client/mixins/hover-intent';
 export default Component.extend(HoverIntentMixin, {
   classNames: ['rating-button'],
   tagName: 'button',
+  rating: 1,
   hoverTimeout: 500,
   hoverOnly: false,
 
