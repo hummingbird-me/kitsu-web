@@ -1,6 +1,7 @@
 import ApplicationSerializer from 'client/serializers/application';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
+import { capitalize } from 'ember-string';
 
 export default ApplicationSerializer.extend({
   metrics: service(),
@@ -28,9 +29,12 @@ export default ApplicationSerializer.extend({
       }
 
       // If rating is changed we want to send that data to Stream
+      const media = get(snapshot, 'record.media');
+      const mediaType = capitalize(get(media, 'modelType'));
       get(this, 'metrics').invoke('trackEngagement', 'Stream', {
         label: 'rating',
-        content: `LibraryEntry:${get(snapshot, 'id')}:rated`
+        content: `${mediaType}:${get(media, 'id')}`,
+        boost: json.attributes[key]
       });
     }
   }
