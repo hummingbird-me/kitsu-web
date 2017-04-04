@@ -164,7 +164,7 @@
 
               {{! Rating }}
               <div class="rating-options">
-                {{#library-entry/rating-button class="button" onClick=(action "updateRating")}}
+                {{#library-entry/rating-button class="button" hoverOnly=true onClick=(action "updateRating")}}
                   {{library-entry/readonly-rating rating=entry.rating}}
                 {{/library-entry/rating-button}}
               </div>
