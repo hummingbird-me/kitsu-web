@@ -38,9 +38,7 @@
                   <a href={{href-to "users.index" item.user.name}} class="review-author">
                     {{item.user.name}}
                   </a>
-                  <span class="stream-review-rating">
-                    {{star-rating item.rating readOnly=true}}
-                  </span>
+                  {{library-entry/readonly-rating rating=item.rating tagName="span" class="stream-review-rating"}}
                 </div>
               </div>
               <blockquote class="body-text">

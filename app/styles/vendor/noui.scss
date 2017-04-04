@@ -23,32 +23,9 @@
   box-shadow: none;
   background-color: #1ABC9C;
   position: relative;
-  &:after {
-    content: '';
-    background: #2C3946;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -3px;
-    margin-top: -3px;
-    width: 6px;
-    height: 6px;
-    border-radius: 999em;
-  }
 }
-.noUi-horizontal .noUi-handle:after {
-  content: '';
-  background: #2C3946;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -3px;
-  margin-top: -3px;
-  width: 6px;
-  height: 6px;
-  border-radius: 999em;
-}
-.noUi-horizontal .noUi-handle:before {
+
+.noUi-handle:before, .noUi-handle:after {
   display: none;
 }
 

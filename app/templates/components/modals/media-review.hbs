@@ -29,7 +29,9 @@
           {{! media rating -- required to be set for review }}
           <div class="rating-wrapper">
             <h6>Your Rating:</h6>
-            {{star-rating rating class="review-stars" onClick=(action (mut rating))}}
+            {{#library-entry/rating-button tagName="span" onClick=(action (mut rating))}}
+              {{library-entry/readonly-rating rating=rating}}
+            {{/library-entry/rating-button}}
           </div>
 
           {{! review spoiler }}

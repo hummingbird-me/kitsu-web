@@ -2,6 +2,7 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const PostCSSFlex = require('postcss-flexbugs-fixes');
 const Autoprefixer = require('autoprefixer');
+const svgoUniqueIds = require('svgo-plugin-unify-ids');
 
 module.exports = function(defaults) {
   const app = new EmberApp(defaults, {
@@ -41,11 +42,13 @@ module.exports = function(defaults) {
       ]
     },
     svgJar: {
+      persist: false,
       optimizer: {
         plugins: [
           { removeTitle: true },
           { removeDesc: true },
-          { removeXMLNS: true }
+          { removeXMLNS: true },
+          { uniqueIds: svgoUniqueIds }
         ]
       }
     },
@@ -78,6 +81,15 @@ module.exports = function(defaults) {
       nouislider: {
         srcDir: 'distribute',
         import: ['nouislider.css', 'nouislider.js']
+      }
+    },
+    // output
+    outputPaths: {
+      app: {
+        css: {
+          'light-theme': '/assets/light.css',
+          'dark-theme': '/assets/dark.css'
+        }
       }
     }
   });

@@ -53,6 +53,7 @@ header:
   trending: "Trending"
   groups: "Groups"
   feedback: "Feedback"
+  browse: "Browse"
   auth:
     sign-in: "Sign In"
     sign-up: "Sign Up"
@@ -98,9 +99,7 @@ dashboard:
           manga {<span class={class}>Ch. {num}</span> Complete}
           other {}}"
         complete: "Complete"
-      review:
-        write: "Write Review"
-        edit: "Edit Review"
+      review: "Review"
   onboarding:
     welcome: "Hey {user}, welcome to Kitsu!"
     about: "This is the global activity feed. It's populated by recent activity from all of Kitsu's
@@ -117,7 +116,7 @@ media:
     search: "Search by title, character, or cast..."
     filters:
       year: "Year"
-      score: "Score"
+      score: "Average Rating"
       seasons: "Seasons"
       streamers: "Streamers (U.S.)"
       episodes: "Episodes"
@@ -130,10 +129,6 @@ media:
       characters: "Characters"
       reviews: "Reviews"
     sidebar:
-      progress: "Progress"
-      review:
-        write: "Write Review"
-        edit: "Edit Review"
       watch: "Where to Watch"
     summary:
       ratings:
@@ -665,8 +660,8 @@ library-shared:
     manga {Currently Reading}
     other {}}"
   planned: "{type, select,
-    anime {Plan to Watch}
-    manga {Plan to Read}
+    anime {Want to Watch}
+    manga {Want to Read}
     other {}}"
   completed: "{type, select,
     anime {Completed}
@@ -680,10 +675,6 @@ library-shared:
     anime {Dropped}
     manga {Dropped}
     other {}}"
-# component: library-dropdown
-library-dropdown:
-  add: "Add to Library"
-  remove: "Remove from Library"
 # component: follow-button
 follow-button:
   follow: "Follow"
@@ -722,6 +713,45 @@ group-list:
     recent: "Recent Activity"
     newest: "Newest Groups"
     oldest: "Oldest Groups"
+# component: library-entry/*
+library-entry:
+  state:
+    header: "{state, select,
+      false {Add to Library}
+      true {Update Library}
+      other {}}"
+    seen-this: "{type, select,
+      anime {Seen This}
+      manga {Read This}
+      other {}}"
+    want-to-watch: "{type, select,
+      anime {Want to Watch}
+      manga {Want to Read}
+      other {}}"
+    started-watching: "{type, select,
+      anime {Started Watching}
+      manga {Started Reading}
+      other {}}"
+    watching-this: "{type, select,
+      anime {I'm Watching This}
+      manga {I'm Reading This}
+      other {}}"
+    finished-this: "I've Finished This"
+    change-rating: "Change Rating"
+    review: "Review"
+    rewatch: "{type, select,
+      anime {Rewatch}
+      manga {Reread}
+      other {}}"
+    remove-from-library: "Remove from Library"
+    saved-in: "Saved in <a href={link}>{status}</a>"
+    progress: "Progress"
+    not-rated: "Not Rated"
+  rating:
+    awful: "Awful"
+    meh: "Meh"
+    good: "Good"
+    great: "Great"
 # ember-power-select
 selects:
   loading: "Loading..."

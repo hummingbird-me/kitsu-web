@@ -56,10 +56,10 @@
       }
 
       &--members-today {
-        background-color: $caribbean;
+        background-color: $primary-cta-color;
       }
       &--members-total {
-        background-color: $nobel;
+        background-color: $secondary-cta-color;
       }
       &--posts {
         background-color: #2980b9;
@@ -148,13 +148,13 @@
     .user-search-list {
       background-color: white;
       min-height: 40px;
-      border: 1px solid $gray;
+      border: 1px solid $secondary-cta-color;
 
       .user-search-item {
         display: flex;
         align-items: center;
         padding: { left: 10px; top: 5px; bottom: 5px; right: 10px; };
-        border-bottom: 1px solid $gray;
+        border-bottom: 1px solid $secondary-cta-color;
 
         img {
           width: 32px;
@@ -199,11 +199,11 @@
         flex-direction: column;
       }
       .report-timestamp {
-        color: $nobel;
+        color: $secondary-cta-color;
       }
       .report-reason {
         text-transform: uppercase;
-        color: $nobel;
+        color: $secondary-cta-color;
       }
     }
   }
@@ -246,7 +246,7 @@
 
   .card-link {
     &.accepted {
-      color: $caribbean;
+      color: $primary-cta-color;
     }
     &.declined {
       color: #ee2e24;
@@ -273,26 +273,47 @@
   padding: 5px;
   border-radius: 5px;
   margin-bottom: 4px;
-  border: 1px solid $alabaster;
   &.active {
-    border: 1px solid #e5e5e5;
-    background-color: $white;
+    @if $theme == 'kitsu-dark' {
+      background: rgba(0,0,0,.3);
+      color: lighten($body-text-color, 5);
+    }
+    @if $theme == 'kitsu-light' {
+      background: $white;
+      color: $body-text-color;
+      border: 1px solid $divider-color;
+    }
     a {
       font-weight: bold;
     }
     .group-category-icon {
       background: none;
     }
+    &:hover {
+      @if $theme == 'kitsu-light' {
+        background: $white;
+        color: $body-text-color;
+        border: 1px solid $divider-color;
+      }
+      @if $theme == 'kitsu-dark' {
+        background: rgba(0,0,0,.3);
+      }
+    }
   }
   &:hover {
-    border: 1px solid #e5e5e5;
-    background-color: darken($white, 1.5);
+    @if $theme == 'kitsu-light' {
+      background: rgba(0,0,0,.1);
+      border: rgba(0,0,0,.1);
+    }
+    @if $theme == 'kitsu-dark' {
+      background: rgba(0,0,0,.2);
+    }
   }
   a {
     display: block;
     width: 100%;
     height: 24px;
-    color: $charcoal;
+    color: $body-text-color;
   }
   img {
     width: 24px;
@@ -313,7 +334,6 @@
 .group-category-icon {
   width: 24px;
   height: 24px;
-  background: #ececec;
   display: inline-block;
   float: left;
   border-radius: 5px;
@@ -363,7 +383,7 @@
   @extend .clearfix;
   margin: 0 20px;
   padding: 15px 0;
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid $divider-color;
   .result-filter-wrapper {
     position: relative;
     width: 200px;
@@ -373,10 +393,7 @@
     }
   }
   input {
-    background: #fff;
     border-radius: 3px;
-    border: 0;
-    border: 1px solid #e8e8e8;
     box-sizing: border-box;
     height: 37px;
     padding-left: 32px;
@@ -384,21 +401,33 @@
     width: 100%;
     font-size: 14px;
     line-height: 18px;
+    border: 1px solid $divider-color;
+    color: $input-text-color;
+    background: lighten($foreground-background-color, 3);
   }
   .result-sort-wrapper {
     float: right;
+    button {
+      color: $body-text-color;
+      padding: 0;
+      background: transparent;
+      font-size: 14px;
+      border: none;
+      position: relative;
+      top: 5px;
+    }
   }
 }
 
 .group-link-wrapper {
   padding: 25px;
   display: flex;
-  color: $charcoal;
-  border-bottom: 1px solid #e8e8e8;
+  color: $body-text-color;
+  border-bottom: 1px solid darken($background-color, 4);
   position: relative;
   &:hover {
-    background: #f9f9f9;
-    color: $charcoal;
+    background: darken($foreground-background-color,2);
+    color: $body-text-color;
   }
 }
 
@@ -424,6 +453,7 @@
   letter-spacing: .2px;
   line-height: 24px;
   margin-bottom: 0;
+  color: $body-text-color;
 }
 
 .group-result-description {
@@ -474,28 +504,31 @@
   .category-button {
     border-radius: 999em;
     padding: 0 15px;
+    background: darken($foreground-background-color,2);
+    border: none;
     &:hover {
       color: #999;
-      background: darken(#f5f5f5, 5);
+      background: darken(white, 5);
     }
   }
   .join-button {
     margin-right: 10px;
-    background: $caribbean;
+    background: $primary-cta-color;
     border: none;
     color: $white;
     text-transform: initial;
 
     &:hover {
       color: $white;
-      background: darken($caribbean, 5);
+      background: darken($primary-cta-color, 5);
     }
     &.inactive {
-      background: #929292;
+      background: darken($secondary-cta-color,10) !important;
     }
   }
   .member-button {
-    background: $white;
+    background: darken($foreground-background-color,2);
+    border: none;
     &:hover {
       color: #999;
       background: darken(white, 5);
@@ -503,8 +536,8 @@
     svg {
       width: 14px;
       position: relative;
-      top: 2px;
-      fill: #757575;
+      top: 1px;
+      fill: $body-text-color;
     }
   }
 }
@@ -665,8 +698,8 @@ $primary: #00cc99;
     }
     input[type="radio"]:checked ~ label {
       background: $white;
-      background: lighten($caribbean, 60);
-      border: 1px solid $caribbean;
+      background: lighten($primary-cta-color, 60);
+      border: 1px solid $primary-cta-color;
     }
   }
 
@@ -779,7 +812,7 @@ $primary: #00cc99;
       border-radius: 999em;
     }
     .inbox-item-author {
-      color: $charcoal;
+      color: $body-text-color;
       display: block;
       margin: 0;
     }
@@ -805,8 +838,8 @@ $primary: #00cc99;
 
   .tag {
     background-color: transparent;
-    border: 1px solid $gray;
-    color: $charcoal;
+    border: 1px solid $secondary-cta-color;
+    color: $body-text-color;
     text-transform: uppercase;
     position: relative;
     top: -2px;
@@ -980,10 +1013,10 @@ $primary: #00cc99;
   .btn {
     width: 100px;
     max-height: 38px;
-    background: $caribbean;
+    background: $primary-cta-color;
     border: none;
     &:hover {
-      background-color: darken($caribbean,5);
+      background-color: darken($primary-cta-color,5);
     }
   }
 }
@@ -1031,7 +1064,7 @@ $primary: #00cc99;
     font-size: 14px;
     font-weight: 700;
     a {
-      color: $charcoal;
+      color: $body-text-color;
     }
   }
   .edit-leader {
@@ -1122,11 +1155,11 @@ $primary: #00cc99;
   position: relative;
   .joined-group a {
     display: flex;
-    border-bottom: 1px solid #eee;
-    color: $charcoal;
+    color: $body-text-color;
     padding: 5px;
     &:hover {
-      background: #f5f5f5;
+      background: darken($background-color,2);
+      color: $body-text-color;;
     }
   }
   .view-more a {
@@ -1134,6 +1167,7 @@ $primary: #00cc99;
     display: block;
     color: initial;
     font-size: 12px;
+    color: $body-text-color;
   }
   .group-name {
     flex: 1;

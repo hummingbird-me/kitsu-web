@@ -44,12 +44,12 @@ export default Base.extend({
   }).readOnly(),
 
   totalRatings: computed('ratingFrequencies', function() {
-    const keys = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0];
+    // eslint-disable-next-line
+    const keys = Array.apply(null, { length: 19 }).map(Number.call, Number).map(num => num + 2);
     const freqs = get(this, 'ratingFrequencies');
-    return keys.reduce((prev, curr) => {
-      const decimal = curr.toFixed(1).toString();
-      return prev + (parseInt(freqs[decimal], 10) || 0);
-    }, 0);
+    return keys.reduce((prev, curr) => (
+      prev + (parseInt(freqs[curr], 10) || 0)
+    ), 0);
   }).readOnly(),
 
   airingStatus: computed('startDate', 'endDate', 'unitCount', function() {
