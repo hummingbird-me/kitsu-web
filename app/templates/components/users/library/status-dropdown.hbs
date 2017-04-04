@@ -1,0 +1,20 @@
+{{#bootstrap/bs-dropdown as |dropdown|}}
+  {{#dropdown.button class="w-100" disabled=(if updateTask.isRunning "disabled")}}
+    {{#if updateTask.isRunning}}
+      {{loading-spinner}}
+    {{else}}
+      {{status}}
+    {{/if}}
+  {{/dropdown.button}}
+
+  {{#dropdown.menu}}
+    {{#each statuses as |status|}}
+      {{#dropdown.menu-item onClick=(perform updateTask status)}}
+        {{status.string}}
+        {{#if (eq entry.status status.key)}}
+          <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+        {{/if}}
+      {{/dropdown.menu-item}}
+    {{/each}}
+  {{/dropdown.menu}}
+{{/bootstrap/bs-dropdown}}
