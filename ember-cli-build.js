@@ -16,6 +16,14 @@ module.exports = function(defaults) {
       enabled: true,
       extensions: ['js']
     },
+    outputPaths: {
+      app: {
+        css: {
+          'light-theme': '/assets/light.css',
+          'dark-theme': '/assets/dark.css'
+        }
+      }
+    },
     sassOptions: {
       includePaths: ['node_modules/bootstrap/scss']
     },
@@ -81,15 +89,6 @@ module.exports = function(defaults) {
       nouislider: {
         srcDir: 'distribute',
         import: ['nouislider.css', 'nouislider.js']
-      }
-    },
-    // output
-    outputPaths: {
-      app: {
-        css: {
-          'light-theme': '/assets/light.css',
-          'dark-theme': '/assets/dark.css'
-        }
       }
     }
   });
