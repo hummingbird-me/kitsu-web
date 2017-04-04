@@ -1,27 +1,18 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import jQuery from 'jquery';
-import run from 'ember-runloop';
 
 moduleForComponent('media/media-poster', 'Integration | Component | media/media poster', {
-  integration: true
+  integration: true,
+
+  beforeEach() {
+    const service = this.container.lookup('service:intl');
+    service.setLocale('en-us');
+  }
 });
 
 test('media-poster it renders', function(assert) {
-  this.set('media', { constructor: { modelName: 'anime' }, youtubeVideoId: 'yt', posterImage: 'pi' });
-  this.render(hbs`
-    {{media/media-poster media=media}}
-    {{from-elsewhere name="modal"}}
-  `);
+  this.set('media', { constructor: { modelName: 'anime' }, posterImage: 'pi' });
+  this.render(hbs`{{media/media-poster media=media}}`);
   const $el = this.$('[data-test-selector="media-poster"]');
   assert.equal($el.length, 1);
-
-  // trailer modal can be opened
-  assert.equal(jQuery('.modal').length, 0);
-  const $trailer = this.$('[data-test-selector="media-poster-trailer"]');
-  $trailer.find('a').click();
-  run(() => {
-    assert.equal(jQuery('.modal').length, 1);
-    jQuery('.modal').modal('hide');
-  });
 });

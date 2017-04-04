@@ -20,7 +20,7 @@
     {{t "feeds.library.updated" status=(t (concat "library-shared." activity.status) type=media.modelType)}}
   {{else if (eq activity.verb "rated")}}
     {{t "feeds.library.rated"}}
-    {{star-rating activity.rating readOnly=true class="rating-container"}}
+    {{library-entry/readonly-rating rating=activity.rating class="rating-container"}}
   {{else if (eq activity.verb "progressed")}}
     {{t "feeds.library.progressed" type=media.modelType num=activity.progress}}
   {{/if}}

@@ -3,6 +3,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import computed from 'ember-computed';
+import Component from 'ember-component';
 import Route from 'ember-route';
 import RSVP from 'rsvp';
 import Ember from 'ember';
@@ -36,6 +37,9 @@ export default Mixin.create({
   },
 
   updatePageState(records) {
+    if (this instanceof Component && get(this, 'isDestroyed')) {
+      return;
+    }
     const key = get(this, 'paginationKey');
     const hasNextPage = key in (get(records, 'links') || {});
     set(this, 'internalPageState.hasNextPage', hasNextPage);

@@ -1,6 +1,6 @@
 <div class="row">
+  {{! Kitsu Media Summary Top }}
   <div class="col-sm-12 no-padding-right">
-    {{! Kitsu Media Summary Top }}
     {{ad-unit unit="kitsu.media.summary.top"
       targeting=(hash
         section="media"
@@ -12,14 +12,7 @@
 
   <div class="col-sm-8">
     {{! Ratings }}
-    <section class="clearfix">
-      {{media/media-rating
-        entry=entry
-        media=media
-        update=(route-action "updateEntry" entry "rating")
-      }}
-    </section>
-
+    {{media/media-rating media=media tagName="section" class="clearfix"}}
 
     {{! Synopsis }}
     <section class="media-synopsis m-b-1">

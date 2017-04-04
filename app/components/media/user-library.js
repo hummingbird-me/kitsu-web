@@ -2,7 +2,6 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import computed from 'ember-computed';
 import { task } from 'ember-concurrency';
 import { capitalize } from 'ember-string';
 import { strictInvokeAction } from 'ember-invoke-action';
@@ -10,10 +9,6 @@ import { strictInvokeAction } from 'ember-invoke-action';
 export default Component.extend({
   isFavorite: false,
   store: service(),
-
-  totalProgressText: computed('media.unitCount', function() {
-    return get(this, 'media.unitCount') || '-';
-  }).readOnly(),
 
   getFavorite: task(function* () {
     const mediaType = get(this, 'media.modelType');
@@ -61,11 +56,6 @@ export default Component.extend({
   },
 
   actions: {
-    sanitizeNumber(value) {
-      const parsed = parseInt(value, 10);
-      return isNaN(parsed) ? value : parsed;
-    },
-
     openReview() {
       const value = get(this, 'entry').belongsTo('review').value();
       if (!value) {

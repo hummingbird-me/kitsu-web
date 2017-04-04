@@ -1,39 +1,26 @@
 {{yield}}
 
+{{! Tethered Tooltip }}
 {{#if showTooltip}}
   <div>
-  {{#ember-tether
-    class=(concat class " media-tooltip")
-    target=(concat "#" elementId)
-    attachment=(or attachment "middle left")
-    targetAttachment=(or targetAttachment "middle right")
-    offset="0px 0px"
-    constraints=(array (hash
-      to="scrollParent"
-      attachment="together"
-    ))
-    onHover=(action (mut isTooltipHovered) true)
-    onLeave=(action (mut isTooltipHovered) false)
-  }}
-    <div>
-    <span class="media-title">{{media.computedTitle}}</span>
-    <div class="media-ratings">
-      {{star-rating media.averageRating anyPercent=true readOnly=true}}
-    </div>
-    <div class="media-synopsis">
-      {{text-clipper media.synopsis length=200 canExpand=false options=(hash maxLines=2)}}
-    </div>
-    {{#if session.hasUser}}
-      {{library-dropdown
-        entry=entry
-        type=media.modelType
-        methods=(hash
-          create=(action "createEntry")
-          update=(action "updateEntry")
-          delete=(action "deleteEntry")
-        )}}
-    {{/if}}
-    </div>
-  {{/ember-tether}}
+    {{#ember-tether
+      class=(concat class " media-tooltip")
+      target=(concat "#" elementId)
+      attachment=(or attachment "middle left")
+      targetAttachment=(or targetAttachment "middle right")
+      offset="0px 0px"
+      constraints=(array (hash
+        to="scrollParent"
+        attachment="together"
+      ))
+      onHover=(action (mut isTooltipHovered) true)
+      onLeave=(action (mut isTooltipHovered) false)
+    }}
+      <div>
+        <span class="media-title">{{media.computedTitle}}</span>
+        <div class="media-ratings {{percentageClass}}">{{media.averageRating}}%</div>
+        <div class="media-synopsis">{{truncate media.synopsis 350}}</div>
+      </div>
+    {{/ember-tether}}
   </div>
 {{/if}}

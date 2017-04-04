@@ -10,7 +10,7 @@
         <ul class="leader-permission--list">
           <li>
             {{t "groups.leaders.list.modal.owner"}}
-            {{toggle-input
+            {{ui/toggle-input
               value=(can "manage everything for group" membership=leader)
               update=(action "updatePermission" "owner")
             }}
@@ -24,35 +24,35 @@
           {{else}}
             <li>
               {{t "groups.leaders.list.modal.tickets"}}
-              {{toggle-input
+              {{ui/toggle-input
                 value=(can "manage tickets for group" membership=leader)
                 update=(action "updatePermission" "tickets")
               }}
             </li>
             <li>
               {{t "groups.leaders.list.modal.members"}}
-              {{toggle-input
+              {{ui/toggle-input
                 value=(can "manage members for group" membership=leader)
                 update=(action "updatePermission" "members")
               }}
             </li>
             <li>
               {{t "groups.leaders.list.modal.leaders"}}
-              {{toggle-input
+              {{ui/toggle-input
                 value=(can "manage leaders for group" membership=leader)
                 update=(action "updatePermission" "leaders")
               }}
             </li>
             <li>
               {{t "groups.leaders.list.modal.community"}}
-              {{toggle-input
+              {{ui/toggle-input
                 value=(can "manage settings for group" membership=leader)
                 update=(action "updatePermission" "community")
               }}
             </li>
             <li>
               {{t "groups.leaders.list.modal.content"}}
-              {{toggle-input
+              {{ui/toggle-input
                 value=(can "manage reports for group" membership=leader)
                 update=(action "updatePermission" "content")
               }}

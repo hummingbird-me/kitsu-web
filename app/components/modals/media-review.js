@@ -9,6 +9,7 @@ import { translationMacro as t } from 'ember-intl';
 
 export default Component.extend({
   classNames: ['review-modal'],
+  intl: service(),
   metrics: service(),
   rating: alias('review.libraryEntry.rating'),
   errorMessage: t('errors.request'),

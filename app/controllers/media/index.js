@@ -15,7 +15,7 @@ export default Controller.extend({
     'subtype',
     'year'
   ],
-  averageRating: [0.5, 5.0],
+  averageRating: [1, 100],
   genres: [],
   text: undefined,
   subtype: [],

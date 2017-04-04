@@ -1,7 +1,5 @@
 {{lazy-image src=(image item.posterImage "small")}}
 <small>{{item.canonicalTitle}}</small>
-{{star-rating
-  class="rating-container"
-  rating=rating
-  readOnly=rating
-  onClick=(action "onClick")}}
+<span class="rating-container">
+  {{library-entry/state media=item showHeader=false createOnly=true}}
+</span>

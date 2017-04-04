@@ -24,9 +24,7 @@
               <a href={{href-to (concat media.modelType ".show") media.slug}}>
                 {{media.computedTitle}}
               </a>
-              <span class="stream-review-rating">
-                {{star-rating review.rating readOnly=true}}
-              </span>
+              {{library-entry/readonly-rating rating=review.rating tagName="span" class="stream-review-rating"}}
             </h6>
 
             {{! review media progress -- progress > 0 && !(progress === unitCount) }}
