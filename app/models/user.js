@@ -63,6 +63,7 @@ export default Base.extend(Validations, {
   proExpiresAt: attr('utc'),
   profileCompleted: attr('boolean'),
   ratingsCount: attr('number'),
+  ratingSystem: attr('string', { defaultValue: 'simple' }),
   reviewsCount: attr('number'),
   roles: attr('array'),
   sfwFilter: attr('boolean'),
@@ -99,6 +100,10 @@ export default Base.extend(Validations, {
       return false;
     }
     return !date.isBefore();
+  }).readOnly(),
+
+  isSimpleRating: computed('ratingSystem', function() {
+    return get(this, 'ratingSystem') === 'simple';
   }).readOnly(),
 
   hasRole(roleName, resource) {

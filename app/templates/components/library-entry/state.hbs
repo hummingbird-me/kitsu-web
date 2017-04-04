@@ -1,0 +1,64 @@
+{{#if getLibraryEntryTask.isRunning}}
+  <div class="text-xs-center">
+    {{loading-spinner size="small"}}
+  </div>
+{{else}}
+  {{! Header }}
+  {{#if showHeader}}
+    <span class="entry-state-header">
+      <span>{{t "library-entry.state.header" state=hasLibraryEntry}}</span>
+    </span>
+  {{/if}}
+
+  <div class="entry-state-status">
+    {{#unless hasLibraryEntry}} {{! Doesn't have a library entry }}
+      {{library-entry/state/new-entry
+        media=media
+        createOnly=createOnly
+        onCreate=(action "createLibraryEntry")}}
+    {{else}} {{! Has a library entry }}
+      {{#if (eq libraryEntry.status "completed")}}
+        {{! completed state }}
+        {{library-entry/state/completed
+          libraryEntry=libraryEntry
+          onRatingChange=(action "updateAttribute" "rating")
+          onReview=(action "updateOrCreateReview")
+          onRewatch=(queue
+            (action (mut libraryEntry.reconsumeCount) (inc libraryEntry.reconsumeCount))
+            (action (mut libraryEntry.progress) 0)
+            (action "updateAttribute" "status" "current")
+          )
+          onRemove=(action "removeLibraryEntry")
+        }}
+        {{! Review Modal }}
+        {{#if reviewOpen}}
+          {{to-elsewhere named="modal" send=(component "modals/media-review"
+            onClose=(toggle-action "reviewOpen" this)
+            review=libraryEntry.review.content
+          )}}
+        {{/if}}
+      {{else if (eq libraryEntry.status "current")}}
+        {{! current status }}
+        {{library-entry/state/current
+          hideProgress=hideProgress
+          libraryEntry=libraryEntry
+          onProgressChange=(action "updateAttribute" "progress")
+          onComplete=(queue
+            (action (mut libraryEntry.status) "completed")
+            (action "updateAttribute" "rating")
+          )
+          onRemove=(action "removeLibraryEntry")
+        }}
+      {{else}}
+        {{! fallback for planned/on_hold/dropped }}
+        {{library-entry/state/planned
+          hideProgress=hideProgress
+          libraryEntry=libraryEntry
+          onProgressChange=(action "updateAttribute" "progress")
+          onStatusChange=(action "updateAttribute" "status")
+          onRemove=(action "removeLibraryEntry")
+        }}
+      {{/if}}
+    {{/unless}}
+  </div>
+{{/if}}

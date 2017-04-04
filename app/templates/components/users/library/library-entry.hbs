@@ -53,19 +53,10 @@
       {{! Entry Progress }}
       <div class="entry-progress">
         {{#if (can "edit library-entry" entry user=user)}}
-          {{ui/selectable-input entry.progress
-            min=0
-            max=media.unitCount
-            update=(queue
-              (pipe-action (action "sanitizeNumber") (action (mut entry.progress)))
-              (perform saveEntryDebounced)
-            )
-            placeholder="0"
-          }}
-          <span>
-            <span class="sep">/</span>
-            {{totalProgressText}}
-          </span>
+          {{library-entry/progress
+            libraryEntry=entry
+            hideText=true
+            onProgressChange=(action "onProgressChanged")}}
         {{else}}
           <span>
             {{entry.progress}} / {{totalProgressText}}
@@ -76,14 +67,13 @@
       {{! Entry Rating }}
       <div class="entry-rating">
         {{#if entry.rating}}
-          <span class="entry-rating-star">{{svg-jar "star"}}</span>
+          {{library-entry/readonly-rating rating=entry.rating
+            hideText=true
+            width="26" height="26"
+            tagName=""}}
+        {{else}}
+          -
         {{/if}}
-        <span>
-          {{format-number entry.rating
-            minimumFractionDigits=1
-            maximumFractionDigits=1
-            fallback="-"}}
-        </span>
       </div>
 
       {{! Entry Type }}
@@ -138,59 +128,40 @@
       {{! Options }}
       <div class="col-md-12 col-lg-4 columns">
         <div class="drop-options">
-         {{#if (can "edit library-entry" entry user=user)}}
-            {{! Library Status }}
-            <div class="status-select">
-              {{library-dropdown
-                entry=entry
-                methods=(hash
-                  update=(queue
-                    (action (mut entry.status))
-                    (perform saveEntry)
-                  )
-                  delete=(action "delete")
-                )
-              }}
-            </div>
+          {{! Library Status }}
+          {{#if (can "edit library-entry" entry user=user)}}
+            {{library-entry/state
+              libraryEntry=entry
+              media=media
+              showHeader=false
+              hideProgress=true
+              class="status-select"}}
           {{/if}}
 
-          <div class="dropdown-rating">
-            {{! Privacy }}
-            {{#if (can "edit library-entry" entry user=user)}}
-              {{#bootstrap/bs-dropdown as |dropdown|}}
-                {{#dropdown.button}}
-                  {{if entry.private (t "users.library.private") (t "users.library.public")}}
-                {{/dropdown.button}}
-                {{#dropdown.menu}}
-                  {{#each (w "public" "private") as |key|}}
-                    {{#dropdown.menu-item onClick=(queue
-                      (action (mut entry.private) (not entry.private))
-                      (perform saveEntry))}}
-                        {{t (concat "users.library." key)}}
-                        {{#if (and entry.private (eq key "private"))}}
-                          <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
-                        {{else if (and (not entry.private) (eq key "public"))}}
-                          <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
-                        {{/if}}
-                    {{/dropdown.menu-item}}
-                  {{/each}}
-                {{/dropdown.menu}}
-              {{/bootstrap/bs-dropdown}}
-            {{else}}
-              <h6 class="rating-label">Rating</h6>
-            {{/if}}
-
-            {{! Rating }}
-            <div class="rating-options">
-              {{star-rating entry.rating
-                readOnly=(cannot "edit library-entry" entry user=user)
-                onClick=(queue
-                  (action (mut entry.rating))
-                  (perform saveEntry)
-                )
-              }}
+          {{#if (can "edit library-entry" entry user=user)}}
+            <div class="dropdown-rating">
+              {{! Privacy }}
+                {{#bootstrap/bs-dropdown as |dropdown|}}
+                  {{#dropdown.button}}
+                    {{if entry.private (t "users.library.private") (t "users.library.public")}}
+                  {{/dropdown.button}}
+                  {{#dropdown.menu}}
+                    {{#each (w "public" "private") as |key|}}
+                      {{#dropdown.menu-item onClick=(queue
+                        (action (mut entry.private) (not entry.private))
+                        (perform saveEntry))}}
+                          {{t (concat "users.library." key)}}
+                          {{#if (and entry.private (eq key "private"))}}
+                            <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+                          {{else if (and (not entry.private) (eq key "public"))}}
+                            <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+                          {{/if}}
+                      {{/dropdown.menu-item}}
+                    {{/each}}
+                  {{/dropdown.menu}}
+                {{/bootstrap/bs-dropdown}}
             </div>
-          </div>
+          {{/if}}
 
           {{! Rewatch }}
           <div class="rewatch">

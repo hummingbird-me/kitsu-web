@@ -160,13 +160,16 @@
     @media (max-width: 992px) {
       padding-right: 5px;
     }
-    .entry-rating-star {
-      position: relative;
-      top: 4px;
-      svg {
-        width: 18px;
-        height: 18px;
+    svg {
+      vertical-align: middle;
+      fill: $nobel;
+      &.star-svg {
+        width: 20px;
+        height: 20px;
       }
+    }
+    span {
+      vertical-align: middle;
     }
   }
   .entry-type {
@@ -233,25 +236,6 @@
   }
   .sep {
     padding: 0 0 0 10px;
-  }
-}
-
-.entry-progress--mini-wrapper {
-  border: 1px solid darken($eggshell, 5);
-  padding: 10px;
-  border-radius: 3px;
-  margin-top: 10px;
-  font-size: 12px;
-}
-
-.entry-progress--mini {
-  margin: 0;
-  padding: 0;
-  float: right;
-  border: none;
-  width: auto;
-  input {
-    top: -4px;
   }
 }
 
@@ -374,15 +358,11 @@
     padding: 10px;
   }
   .status-select {
-    .button {
-      background: #939393;
-      color: #fff;
-      width: 100%;
-      border: none;
-      font-weight: 600;
-      font-size: 13px;
-      padding: 15px 0;
-      text-align: center;
+    .entry-state-status {
+      margin-top: 0;
+    }
+    .button:first-child {
+      margin-top: 0;
     }
   }
   .rewatch {
@@ -457,12 +437,6 @@
   }
   a {
     margin-left: 15px;
-  }
-}
-
-.star-full, .star-half, .star-variable {
-  .star-rating-filled {
-    stop-color: $buttercup;
   }
 }
 
