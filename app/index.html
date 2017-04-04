@@ -24,6 +24,12 @@
 
     <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
     <script>
+      window.Kitsu = window.Kitsu || {};
+      window.Kitsu.themes = {
+        light: '{{rootURL}}assets/light.css',
+        dark: '{{rootURL}}assets/dark.css'
+      };
+
       let theme = 'light';
       if (window.localStorage) {
         const cacheStorage = window.localStorage.getItem('storage:last-used');
@@ -33,7 +39,7 @@
       }
       const link = document.createElement('link');
       link.rel = 'stylesheet';
-      link.href = theme === 'light' ? '{{rootURL}}assets/light.css' : '{{rootURL}}assets/dark.css';
+      link.href = window.Kitsu.themes[theme];
       link.dataset.theme = theme;
       document.head.appendChild(link);
     </script>
