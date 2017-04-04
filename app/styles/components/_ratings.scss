@@ -126,9 +126,6 @@
         margin-right: 0;
       }
     }
-    svg {
-      fill: $secondary-cta-color;
-    }
   }
 
   .rating-simple {
@@ -148,15 +145,19 @@
 .current-rating {
   &.awful {
     color: #DA5E51;
+    fill: #DA5E51;
   }
   &.meh {
     color: rgba(230, 126, 34, 1.0);
+    fill: rgba(230, 126, 34, 1.0);
   }
   &.good {
     color: $primary-cta-color;
+    fill: $primary-cta-color;
   }
   &.great {
     color: #3E99D7;
+    fill: #3E99D7;
   }
 }
 
@@ -278,12 +279,5 @@
     @extend .animated;
     @extend .zoomIn;
     animation-duration: .5s;
-  }
-}
-
-// Readonly ratings (Displays)
-.readonly-rating {
-  svg.star-svg {
-    fill: $secondary-cta-color;
   }
 }
