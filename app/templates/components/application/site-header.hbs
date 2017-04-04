@@ -72,17 +72,18 @@
               {{link-to (t "header.library") "users.library" session.account.name class="nav-link"}}
             </li>
           {{/if}}
-          <li class="nav-item">
-            {{link-to (t "header.anime") "anime.index" class="nav-link"}}
-          </li>
-          <li class="nav-item">
-            {{link-to (t "header.manga") "manga.index" class="nav-link"}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle {{if isFeedbackRoute "active"}}" href={{href-to "feedback"}} data-toggle="dropdown" data-href-to-ignore=true>
+              {{t "header.browse"}}
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href={{href-to "trending"}}>{{t "header.trending"}}</a>
+              <a class="dropdown-item" href={{href-to "anime.index"}}>{{t "header.anime"}}</a>
+              <a class="dropdown-item" href={{href-to "manga.index"}}>{{t "header.manga"}}</a>
+            </div>
           </li>
           <li class="nav-item">
             {{link-to (t "header.groups") "groups.index" class="nav-link"}}
-          </li>
-          <li class="nav-item">
-            {{link-to (t "header.trending") "trending" class="nav-link"}}
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle {{if isFeedbackRoute "active"}}" href={{href-to "feedback"}} data-toggle="dropdown" data-href-to-ignore=true>

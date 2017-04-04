@@ -4,8 +4,14 @@
   right: 0;
   top: 50px;
   height: 370px;
-  background-color: #332532;
-  background-image: url(/images/guest-cta.jpg);
+  @if $theme == 'kitsu-light' {
+    background-color: #332532;
+    background-image: url(/images/guest-cta.jpg);
+  }
+  @if $theme == 'kitsu-dark' {
+    background-color: #28202d;
+    background-image: url(/images/guest-cta-dark.jpg);
+  }
   background-size: contain;
   background-position: right;
   background-repeat: no-repeat;
@@ -73,7 +79,7 @@
   background: $white;
   border-radius: 5px;
   padding: 15px 50px;
-  color: $voodoo;
+  color: $secondary-background-color;
   font-weight: 700;
   font-size: 18px;
   margin-top: 15px;
@@ -99,30 +105,27 @@
     height: 40px;
     fill: #ACACAC;
   }
-  &:hover {
-    svg {
-      fill: #333;
-    }
-  }
 }
 
 .guest-search {
   width: 100%;
-  background-color: $white;
   height: 65px;
-  border-bottom: 1px solid #dedede;
+  color: $input-text-color;
+  background: $foreground-background-color;
   input {
     width: 100%;
     line-height: 64px;
     height: 64px;
     border: none;
     outline: none;
+    background: $foreground-background-color;
     font-family: $base-font-family;
     font-size: 1.3em;
     box-shadow: none;
     text-indent: 0;
     padding-left: 40px;
     padding-right: 40px;
+    color: $input-text-color;
   }
 
 }

@@ -4,6 +4,7 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import computed, { alias } from 'ember-computed';
 import { task } from 'ember-concurrency';
+import { storageFor } from 'ember-local-storage';
 import getter from 'client/utils/getter';
 import errorMessages from 'client/utils/error-messages';
 import COUNTRIES from 'client/utils/countries';
@@ -11,6 +12,7 @@ import moment from 'moment';
 
 export default Controller.extend({
   notify: service(),
+  lastUsed: storageFor('last-used'),
   user: alias('session.account'),
   languages: getter(() => [{ id: 'en', text: 'English' }]),
   timezoneGuess: getter(() => moment.tz.guess()),
@@ -22,6 +24,10 @@ export default Controller.extend({
 
   titles: getter(() => (
     ['Canonical', 'Romanized', 'English'].map(key => ({ id: key.toLowerCase(), text: key }))
+  )),
+
+  themes: getter(() => (
+    ['Light Theme', 'Dark Theme'].map(key => ({ id: key.split(' ')[0].toLowerCase(), text: key }))
   )),
 
   ratings: getter(() => (
@@ -41,7 +47,10 @@ export default Controller.extend({
   updateProfile: task(function* () {
     set(this, 'user.name', get(this, 'username'));
     yield get(this, 'user').save()
-      .then(() => get(this, 'notify').success('Your profile was updated.'))
+      .then(() => {
+        set(this, 'lastUsed.theme', get(this, 'user.theme'));
+        get(this, 'notify').success('Your profile was updated.');
+      })
       .catch((err) => {
         get(this, 'notify').error(errorMessages(err));
         get(this, 'user').rollbackAttributes();
@@ -64,6 +73,9 @@ export default Controller.extend({
     const title = get(this, 'titles')
       .find(item => get(item, 'id') === get(this, 'user.titleLanguagePreference'));
     set(this, 'selectedTitle', title);
+    const theme = get(this, 'themes')
+      .find(item => get(item, 'id') === get(this, 'user.theme'));
+    set(this, 'selectedTheme', theme);
     const rating = get(this, 'ratings')
       .find(item => get(item, 'id') === get(this, 'user.ratingSystem'));
     set(this, 'selectedRating', rating);
@@ -86,6 +98,11 @@ export default Controller.extend({
     changeTitle(title) {
       set(this, 'selectedTitle', title);
       set(this, 'user.titleLanguagePreference', get(title, 'id'));
+    },
+
+    changeTheme(theme) {
+      set(this, 'selectedTheme', theme);
+      set(this, 'user.theme', get(theme, 'id'));
     },
 
     changeRating(rating) {
