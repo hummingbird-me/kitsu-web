@@ -41,17 +41,16 @@ export default Component.extend({
    * Load the required relationships as our JSON:API may not have included the data.
    * `.load()` will just return the local data if it has it.
    */
-  loadRelationships: task(function* (entry, media) {
-    yield entry.load();
-    yield media.load();
+  loadRelationships: task(function* () {
+    yield get(this, 'review').belongsTo('libraryEntry').load();
+    yield get(this, 'review').belongsTo('media').load();
+    set(this, 'review.libraryEntry.media', get(this, 'review.media'));
   }).drop(),
 
   init() {
     this._super(...arguments);
-    // make sure the required data is loaded into the model
-    const entry = get(this, 'review').belongsTo('libraryEntry');
-    const media = get(this, 'review').belongsTo('media');
-    get(this, 'loadRelationships').perform(entry, media);
+    // make sure the required data is loaded into the mode
+    get(this, 'loadRelationships').perform();
   },
 
   willDestroyElement() {
