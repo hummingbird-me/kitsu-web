@@ -130,36 +130,44 @@
         <div class="drop-options">
           {{! Library Status }}
           {{#if (can "edit library-entry" entry user=user)}}
-            {{library-entry/state
-              libraryEntry=entry
-              media=media
-              showHeader=false
-              hideProgress=true
-              class="status-select"}}
-          {{/if}}
+            <div class="status-select">
+              {{users/library/status-dropdown
+                entry=entry
+                methods=(hash
+                  update=(action "updateStatus")
+                  delete=(action "deleteEntry")
+                )
+              }}
+            </div>
 
-          {{#if (can "edit library-entry" entry user=user)}}
             <div class="dropdown-rating">
               {{! Privacy }}
-                {{#bootstrap/bs-dropdown as |dropdown|}}
-                  {{#dropdown.button}}
-                    {{if entry.private (t "users.library.private") (t "users.library.public")}}
-                  {{/dropdown.button}}
-                  {{#dropdown.menu}}
-                    {{#each (w "public" "private") as |key|}}
-                      {{#dropdown.menu-item onClick=(queue
-                        (action (mut entry.private) (not entry.private))
-                        (perform saveEntry))}}
-                          {{t (concat "users.library." key)}}
-                          {{#if (and entry.private (eq key "private"))}}
-                            <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
-                          {{else if (and (not entry.private) (eq key "public"))}}
-                            <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
-                          {{/if}}
-                      {{/dropdown.menu-item}}
-                    {{/each}}
-                  {{/dropdown.menu}}
-                {{/bootstrap/bs-dropdown}}
+              {{#bootstrap/bs-dropdown as |dropdown|}}
+                {{#dropdown.button}}
+                  {{if entry.private (t "users.library.private") (t "users.library.public")}}
+                {{/dropdown.button}}
+                {{#dropdown.menu}}
+                  {{#each (w "public" "private") as |key|}}
+                    {{#dropdown.menu-item onClick=(queue
+                      (action (mut entry.private) (not entry.private))
+                      (perform saveEntry))}}
+                        {{t (concat "users.library." key)}}
+                        {{#if (and entry.private (eq key "private"))}}
+                          <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+                        {{else if (and (not entry.private) (eq key "public"))}}
+                          <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+                        {{/if}}
+                    {{/dropdown.menu-item}}
+                  {{/each}}
+                {{/dropdown.menu}}
+              {{/bootstrap/bs-dropdown}}
+
+              {{! Rating }}
+              <div class="rating-options">
+                {{#library-entry/rating-button class="button" onClick=(action "updateRating")}}
+                  {{library-entry/readonly-rating rating=entry.rating}}
+                {{/library-entry/rating-button}}
+              </div>
             </div>
           {{/if}}
 
