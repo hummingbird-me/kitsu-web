@@ -4,6 +4,8 @@ import computed from 'ember-computed';
 import HoverIntentMixin from 'client/mixins/hover-intent';
 
 export default Component.extend(HoverIntentMixin, {
+  hoverTimeout: 0,
+
   /** Determines what class to use based on the percentage value. */
   percentageClass: computed('media.averageRating', function() {
     if (!get(this, 'media.averageRating')) {
