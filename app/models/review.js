@@ -8,7 +8,7 @@ export default Base.extend({
   contentFormatted: attr('string'),
   likesCount: attr('number'),
   progress: attr('number'),
-  rating: attr('number'),
+  rating: attr('rating'),
   spoiler: attr('boolean'),
 
   libraryEntry: belongsTo('library-entry', { inverse: 'review' }),
