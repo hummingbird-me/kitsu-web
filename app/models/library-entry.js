@@ -3,7 +3,7 @@ import attr from 'ember-data/attr';
 import get from 'ember-metal/get';
 import { belongsTo } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
-import computed from 'ember-computed';
+import computed, { alias } from 'ember-computed';
 
 const Validations = buildValidations({
   progress: [
@@ -26,7 +26,7 @@ export default Base.extend(Validations, {
   progress: attr('number'),
   notes: attr('string'),
   private: attr('boolean'),
-  rating: attr('rating'),
+  ratingTwenty: attr('rating'),
   reconsumeCount: attr('number'),
   status: attr('string'),
   updatedAt: attr('utc'),
@@ -42,6 +42,8 @@ export default Base.extend(Validations, {
   media: computed('anime', 'manga', function() {
     return this.belongsTo('anime').value() || this.belongsTo('manga').value();
   }).readOnly(),
+
+  rating: alias('ratingTwenty'),
 
   ratingGroup: computed('rating', function() {
     const rating = get(this, 'rating');
