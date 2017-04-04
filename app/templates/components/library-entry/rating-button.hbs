@@ -20,7 +20,9 @@
         {{#if (or (not session.hasUser) session.account.isSimpleRating)}}
           {{library-entry/simple-rating onClick=(action "ratingSelected")}}
         {{else}}
-          {{library-entry/advanced-rating onClick=(action "ratingSelected")}}
+          {{library-entry/advanced-rating
+            rating=rating
+            onClick=(action "ratingSelected")}}
         {{/if}}
       </div>
     {{/ember-tether}}
