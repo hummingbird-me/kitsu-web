@@ -22,7 +22,7 @@ export default ApplicationSerializer.extend({
       }
     }
 
-    if (key === 'rating' && key in snapshot.changedAttributes()) {
+    if (key === 'ratingTwenty' && key in snapshot.changedAttributes()) {
       if (get(this, 'session.hasUser')) {
         get(this, 'session.account').incrementProperty('ratingsCount');
       }
