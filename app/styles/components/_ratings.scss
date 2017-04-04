@@ -107,9 +107,6 @@
         margin-right: 0;
       }
     }
-    svg {
-      fill: $nobel;
-    }
   }
 
   .rating-simple {
@@ -129,15 +126,19 @@
 .current-rating {
   &.awful {
     color: #DA5E51;
+    fill: #DA5E51;
   }
   &.meh {
     color: rgba(230, 126, 34, 1.0);
+    fill: rgba(230, 126, 34, 1.0);
   }
   &.good {
     color: $caribbean;
+    fill: $caribbean;
   }
   &.great {
     color: #3E99D7;
+    fill: #3E99D7;
   }
 }
 
@@ -247,12 +248,5 @@
       border-top-color: #383838;
       z-index: 1000001;
     }
-  }
-}
-
-// Readonly ratings (Displays)
-.readonly-rating {
-  svg.star-svg {
-    fill: $nobel;
   }
 }

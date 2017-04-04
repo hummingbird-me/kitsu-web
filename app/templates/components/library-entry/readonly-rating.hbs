@@ -9,7 +9,7 @@
   {{/if}}
 {{else}}
   {{#if (gt rating 0)}}
-    {{svg-jar "star" width=width height=height class="star-svg"}}
+    {{svg-jar "star" width=width height=height class=(concat "current-rating " simpleTag)}}
     <span class="current-rating {{simpleTag}} font-weight-bold">{{rating}}</span>
     {{#unless hideText}}
       <span class="font-weight-bold">/</span>
