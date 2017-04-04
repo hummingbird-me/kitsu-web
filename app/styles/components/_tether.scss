@@ -8,12 +8,12 @@
   }
   &.light {
     > div {
-      background-color: lighten($voodoo, 4);
+      background-color: lighten($secondary-background-color, 4);
     }
   }
   > div {
-    background-color: $voodoo;
-    color: lighten($voodoo, 60);
+    background-color: $secondary-background-color;
+    color: lighten($secondary-background-color, 60);
     border-radius: 3px;
     padding: .75rem 1rem 1rem;
     position: relative;
@@ -81,7 +81,7 @@
   &.light {
     > div {
       &:before {
-        border-right: 10px solid lighten($voodoo, 4);
+        border-right: 10px solid lighten($secondary-background-color, 4);
       }
     }
   }
@@ -89,7 +89,7 @@
     left: 15px;
     &:before {
       left: -10px;
-      border-right: 10px solid $voodoo;
+      border-right: 10px solid $secondary-background-color;
     }
   }
 }
@@ -97,7 +97,7 @@
   &.light {
     > div {
       &:after {
-        border-left: 10px solid lighten($voodoo, 4);
+        border-left: 10px solid lighten($secondary-background-color, 4);
       }
     }
   }
@@ -105,7 +105,7 @@
     right: 15px;
     &:after {
       right: -10px;
-      border-left: 10px solid $voodoo;
+      border-left: 10px solid $secondary-background-color;
     }
     @media (max-width: 990px) {
       left: -15px;
@@ -121,7 +121,7 @@
       top: initial;
       bottom: -15px;
       left: 49%;
-      border-right: 10px solid $voodoo;
+      border-right: 10px solid $secondary-background-color;
       transform: rotateZ(270deg);
     }
   }
