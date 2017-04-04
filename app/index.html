@@ -33,7 +33,7 @@
       }
       const link = document.createElement('link');
       link.rel = 'stylesheet';
-      link.href = `{{rootURL}}assets/${theme}.css`;
+      link.href = theme === 'light' ? '{{rootURL}}assets/light.css' : '{{rootURL}}assets/dark.css';
       link.dataset.theme = theme;
       document.head.appendChild(link);
     </script>
