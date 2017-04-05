@@ -44,7 +44,8 @@ export default Component.extend({
   loadRelationships: task(function* () {
     yield get(this, 'review').belongsTo('libraryEntry').load();
     yield get(this, 'review').belongsTo('media').load();
-    set(this, 'review.libraryEntry.media', get(this, 'review.media'));
+    const mediaType = get(this, 'review.media.modelType');
+    set(this, `review.libraryEntry.${mediaType}`, get(this, 'review.media'));
   }).drop(),
 
   init() {
