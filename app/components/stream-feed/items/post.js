@@ -178,6 +178,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     },
 
     deletePost() {
+      if (get(this, 'post.isDeleted')) { return; }
       get(this, 'post').destroyRecord()
         .then(() => {
           // this post is being deleted from its permalink page
