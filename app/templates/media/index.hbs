@@ -43,13 +43,13 @@
             </div>
             <div class="filter-slider--wrapper">
               {{ui/slider-input
-                options=(hash range=(array 1 100) initial=averageRating)
+                options=(hash range=(array 0 100) initial=averageRating)
                 onSlide=(action (mut dirtyRating))
                 onSet=(action (mut averageRating) dirtyRating)}}
             </div>
             <div class="filter-legend">
               <div class="low-value">
-                1%
+                0%
               </div>
               <div class="high-value">
                 100%
