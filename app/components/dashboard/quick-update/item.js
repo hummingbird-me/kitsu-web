@@ -55,7 +55,10 @@ export default Component.extend({
   }).readOnly(),
 
   updateEntryTask: task(function* (rating) {
-    const hash = { progress: get(this, 'nextProgress'), rating };
+    const hash = { progress: get(this, 'nextProgress') };
+    if (typeof rating === 'number') {
+      set(hash, 'rating', rating);
+    }
     // will the next update complete this media?
     if (get(this, 'canComplete')) {
       hash.status = 'completed';
