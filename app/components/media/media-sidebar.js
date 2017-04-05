@@ -58,7 +58,7 @@ export default Component.extend({
   actions: {
     toggleFavorite() {
       if (!get(this, 'session.hasUser')) {
-        get(this, 'session').signUpModal();
+        return get(this, 'session').signUpModal();
       }
 
       if (get(this, 'getFavorite.isRunning')) { return; }
