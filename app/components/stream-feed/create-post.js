@@ -35,6 +35,9 @@ export default Component.extend({
     if (this._usableMedia !== null) {
       options.media = this._usableMedia;
     }
+    if (this.spoiledUnit !== null) {
+      options.spoiledUnit = this.spoiledUnit;
+    }
     yield invokeAction(this, 'onCreate', get(this, 'content'), options);
     this._resetProperties();
   }).drop(),
@@ -45,6 +48,22 @@ export default Component.extend({
       page: { limit: 4 }
     });
   }).restartable().maxConcurrency(2),
+
+  setSpoiledUnit: task(function* () {
+    const media = get(this, '_usableMedia');
+    const type = get(media, 'modelType');
+    const entry = yield get(this, 'store').query('library-entry', {
+      filter: {
+        user_id: get(this, 'session.account.id'),
+        kind: type,
+        [`${type}_id`]: media.id
+      },
+      include: 'unit'
+    }).then(results => get(results, 'firstObject'));
+    if (entry) {
+      set(this, 'spoiledUnit', get(entry, 'unit'));
+    }
+  }),
 
   search: task(function* (query) {
     yield timeout(150);

@@ -68,7 +68,7 @@
           disabled=mediaReadOnly
           placeholder="Type to tag a show or manga" as |media|
         }}
-          <div {{action (queue (action (mut _usableMedia) media) (action (mut spoiler) true))}}>
+          <div {{action (queue (action (mut _usableMedia) media) (action (perform setSpoiledUnit)) (action (mut spoiler) true))}}>
             <span class="tag-poster">{{lazy-image src=(image media.posterImage "tiny")}}</span>
             <span class="tag tag-primary">{{capitalize media.modelType}}</span>
             <span>{{media.computedTitle}}</span>
