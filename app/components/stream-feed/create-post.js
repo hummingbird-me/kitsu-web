@@ -4,6 +4,7 @@ import get from 'ember-metal/get';
 import set, { setProperties } from 'ember-metal/set';
 import { isEmpty, isPresent } from 'ember-utils';
 import computed from 'ember-computed';
+import { capitalize } from 'ember-string';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import jQuery from 'jquery';
@@ -62,6 +63,18 @@ export default Component.extend({
     }).then(results => get(results, 'firstObject'));
     if (entry) {
       set(this, 'spoiledUnit', get(entry, 'unit'));
+    }
+  }),
+
+  setUnits: task(function* () {
+    const media = get(this, '_usableMedia');
+    const type = capitalize(get(media, 'modelType'));
+    const id = get(media, 'id');
+    const units = yield get(this, 'store').query('episode', {
+      filter: { media_type: type, media_id: id }
+    });
+    if (units) {
+      set(this, 'units', units);
     }
   }),
 
