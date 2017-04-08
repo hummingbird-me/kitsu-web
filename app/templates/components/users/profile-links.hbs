@@ -1,9 +1,3 @@
-{{#if user.website}}
-  <a href={{user.website}} target="_blank" class="profile-icon hint--top hint--bounce hint--rounded" aria-label="Website">
-    {{svg-jar "website"}}
-  </a>
-{{/if}}
-{{! TODO: Refactor when API changes to prefix URL }}
 {{#each (reject-by "isNew" true user.profileLinks) as |profile|}}
   {{#if profile.isURL}}
     <a href="javascript:void();" class="profile-icon hint--top hint--bounce hint--rounded" aria-label={{concat profile.site.name ": " profile.url}} data-clipboard-text={{profile.url}} onclick={{action "copyNotification" profile.url}}>

@@ -12,8 +12,7 @@
       placeholder=(t
         (concat "users.edit-modal.profile-links.sites." (profile-link-to-svg link.site.name) ".placeholder")
       )}}
-    {{! @TODO: Move to CP }}
-    {{#if (or (and (not link.isNew) (not link.isDeleted)) (and (eq link.site.name "Website") link.url))}}
+    {{#if isSaved}}
       <div class="profile-link-remove">
         <a href="#" onclick={{action "remove"}}>Remove from profile</a>
       </div>
