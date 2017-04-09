@@ -123,7 +123,11 @@ export default Component.extend(Pagination, {
   didReceiveAttrs() {
     this._super(...arguments);
     get(this, 'headTags').collectHeadTags();
-    set(this, 'filter', get(this, 'lastUsed.feedFilter') || get(this, 'streamFilter') || 'all');
+    if (get(this, 'kitsuGroup')) {
+      set(this, 'filter', 'all');
+    } else {
+      set(this, 'filter', get(this, 'lastUsed.feedFilter') || get(this, 'streamFilter') || 'all');
+    }
 
     // cancel any previous subscriptions
     this._cancelSubscription();
