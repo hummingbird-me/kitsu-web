@@ -57,7 +57,7 @@ export default Component.extend({
       filter: {
         user_id: get(this, 'session.account.id'),
         kind: type,
-        [`${type}_id`]: media.id
+        [`${type}_id`]: get(media, 'id')
       },
       include: 'unit'
     }).then(results => get(results, 'firstObject'));
