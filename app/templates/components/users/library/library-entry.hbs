@@ -103,7 +103,7 @@
           </a>
         </h4>
         <p class="drop-description">
-          {{text-clipper media.synopsis length=350 options=(hash maxLines=3)}}
+          {{truncate media.synopsis 350}}
         </p>
         <div class="entry-notes">
           {{#if (can "edit library-entry" entry user=user)}}
