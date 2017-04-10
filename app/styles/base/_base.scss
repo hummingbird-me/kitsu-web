@@ -7,6 +7,14 @@ a {
     text-decoration: none;
   }
 }
+
+.form-control, input, textarea, .ember-power-select-trigger {
+  @if $theme == 'kitsu-dark' {
+    color: $input-text-color;
+    background: lighten($foreground-background-color, 3);
+    border: darken($background-color, 3);
+  }
+}
 .staging-pro-gate {
   position: fixed;
   top: 0;

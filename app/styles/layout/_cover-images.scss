@@ -222,7 +222,7 @@
     margin-top: -15px;
     margin-bottom: 15px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid $divider-color;
   }
 
   &:after {
@@ -305,5 +305,8 @@
     padding: 4px;
     color: $body-text-color;
     margin-left: 5px;
+    @if $theme == 'kitsu-light' {
+      color: lighten($body-text-color,30);
+    }
   }
 }

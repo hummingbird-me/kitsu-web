@@ -15,8 +15,8 @@
     @extend .clearfix;
   }
   svg {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     float: left;
     margin-right: 10px;
     @if $theme == 'kitsu-light' {
@@ -31,6 +31,9 @@
     border-radius: 3px;
     margin-bottom: 5px;
     padding: 10px;
+    line-height: 20px;
+    padding: 10px;
+    font-size: 14px;
     color: $body-text-color;
     @if $theme == 'kitsu-dark' {
       background: rgba(0,0,0,.1);
@@ -88,7 +91,7 @@
   padding: 0 20px;
   .author-name {
     display: inline-block;
-    font-size: 20px;
+    font-size: 16px;
     font-family: $heading-font-family;
     font-weight: 700;
   }
@@ -386,7 +389,7 @@
   }
   .comment-actions {
     @extend .clearfix;
-    background: darken($foreground-background-color,5);
+    background: darken($foreground-background-color,4);
     margin-bottom: -30px;
     display: block;
     padding: 5px 15px 5px;
@@ -448,13 +451,13 @@
 
 .stream-item-comments {
   background: darken($foreground-background-color,2);
-  border-top: 1px solid darken($foreground-background-color,5);
+  border-top: 1px solid darken($foreground-background-color,7);
   width: 100%;
   ul {
     margin-bottom: 0;
   }
   li {
-    border-bottom: 1px solid darken($foreground-background-color,5);
+    border-bottom: 1px solid darken($foreground-background-color,7);
     padding: 10px 20px 0px 20px;
     z-index: $zIndex--stream-comments;
   }
@@ -516,7 +519,7 @@
 }
 
 .reply-list {
-  background: darken($foreground-background-color, 5);
+  background: darken($foreground-background-color, 4);
   border-radius: 3px;
   margin-top: 30px;
   margin-bottom: 10px !important;
@@ -541,7 +544,7 @@
 
 .stream-error-wrapper {
   background: $background-color;
-  border: 1px dashed #ddd;
+  border: 1px dashed $divider-color;
   border-radius: 3px;
   font-size: 12px;
   text-align: center;
@@ -854,7 +857,7 @@
 .tag-media {
   li {
     @extend .clearfix;
-    border-top: 1px dotted #ddd;
+    border-top: 1px dotted $divider-color;
     padding: 15px;
     background: #fafafa;
     line-height: 35px;
@@ -866,7 +869,7 @@
     float: right;
     background: none;
     color: #787878;
-    border: 1px solid #ddd;
+    border: 1px solid $divider-color;
     padding: 5px 10px;
   }
   .tag-poster {
@@ -987,7 +990,7 @@
 .review-media-progress {
   color: rgba(0,0,0,.4);
   padding: 5px 15px;
-  border: 1px dashed #ddd;
+  border: 1px dashed $divider-color;
   display: inline-block;
   background: #fafafa;
   margin-bottom: 10px;

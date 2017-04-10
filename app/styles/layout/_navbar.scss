@@ -64,7 +64,7 @@
         font-size: 12px;
         color: $body-text-color;
         padding: 10px 20px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid $divider-color;
         &:hover {
           text-decoration: none;
           background-color: lighten($divider-color, 4);
@@ -117,6 +117,9 @@
     padding: 10px 20px;
     font-size: 14px;
     color: $body-text-color;
+    @if $theme == 'kitsu-light' {
+      color: lighten($body-text-color,35);
+    }
     &:first-child {
       border-left: 1px solid $divider-color;
     }
@@ -133,7 +136,7 @@
     &.active {
       color: $white;
       @if $theme == 'kitsu-light' {
-        background: darken($white, 5);
+        background: darken($white, 3);
         color: $body-text-color;
         &:hover {
           color: $body-text-color;
@@ -324,7 +327,7 @@
 .user-menu-drop {
   width: 150px;
   .dropdown-item {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid $divider-color;
     padding: 10px 20px;
     font-size: 12px;
     &:last-child {
