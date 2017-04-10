@@ -4,6 +4,7 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
+import { dasherize } from 'ember-string';
 import errorMessages from 'client/utils/error-messages';
 import computed from 'ember-computed';
 
@@ -27,7 +28,7 @@ export default Component.extend({
     const exporter = get(this, 'store').createRecord('linked-account', {
       externalUserId: get(this, 'username'),
       token: get(this, 'password'),
-      kind: `LinkedAccount::${get(this, 'siteName')}`,
+      kind: dasherize(get(this, 'siteName')),
       shareFrom: false,
       shareTo: false,
       syncTo: true,

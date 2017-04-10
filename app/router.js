@@ -92,7 +92,6 @@ RouterInstance.map(function() {
     this.route('linked-accounts');
     this.route('imports');
     this.route('exports');
-    // this.route('notifications');
     this.route('blocking');
   });
 
