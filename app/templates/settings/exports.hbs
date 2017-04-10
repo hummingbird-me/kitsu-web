@@ -40,7 +40,7 @@
             <div class="card-header" role="tab">
               <h6 class="m-b-0">
                 <a data-toggle="collapse" data-parent="#accordian" href="#export-tab-{{index}}">
-                  {{strip-namespace export.kind}}
+                  {{export.kind}}
                 </a>
               </h6>
             </div>
@@ -55,6 +55,16 @@
                   </span>
                   <span class="font-weight-bold">Status:</span> active<br>
                 </p>
+                <div class="library-entry-logs">
+                  {{#each export.libraryEntryLogs as |log|}}
+                    <div class="library-entry-log">
+                      {{log.media.canonicalTitle}} <br>
+                      Status: {{log.status}}, Progress: {{log.progress}} <br>
+                      Rating: {{log.rating}}, Reconsumes: {{log.reconsumeCount}} <br>
+                      Action: {{log.actionPerformed}}, Status: {{log.syncStatus}}
+                    </div> <br>
+                  {{/each}}
+                </div>
               </div>
             </div>
           </div>
