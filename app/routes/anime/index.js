@@ -64,5 +64,11 @@ export default MediaIndexRoute.extend({
       filters.filter.season_year = lower;
     }
     return filters;
+  },
+
+  _getFieldsets() {
+    const fields = this._super(...arguments);
+    fields.anime = `${fields.anime},youtubeVideoId`;
+    return fields;
   }
 });

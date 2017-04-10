@@ -13,8 +13,9 @@ export default Route.extend(Pagination, {
   },
 
   getImportsTask: task(function* () {
-    return yield get(this, 'store').query('list-import', {}).then((records) => {
-      this.updatePageState(records);
+    return yield this.queryPaginated('list-import', {
+      filter: { user_id: get(this, 'session.account.id') }
+    }).then((records) => {
       const controller = this.controllerFor(get(this, 'routeName'));
       set(controller, 'hasNextPage', this._hasNextPage());
       return records;

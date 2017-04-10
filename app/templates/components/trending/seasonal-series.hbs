@@ -3,10 +3,10 @@
         <div class="trending-row--header">
           <h3 class="trending-row--title">{{capitalize currentTab}} Anime of {{compute (action "getYear") currentTab}}</h3>
           <nav class="nav nav-simple">
+            <a class="nav-link {{if (eq currentTab "spring") "active"}}" href="#" {{action "changeTab" "spring"}}>Spring 2017</a>
             <a class="nav-link {{if (eq currentTab "winter") "active"}}" href="#" {{action "changeTab" "winter"}}>Winter 2017</a>
             <a class="nav-link {{if (eq currentTab "fall") "active"}}" href="#" {{action "changeTab" "fall"}}>Fall 2016</a>
             <a class="nav-link {{if (eq currentTab "summer") "active"}}" href="#" {{action "changeTab" "summer"}}>Summer 2016</a>
-            <a class="nav-link {{if (eq currentTab "spring") "active"}}" href="#" {{action "changeTab" "spring"}}>Spring 2016</a>
           </nav>
         </div>
         {{#if getDataTask.isRunning}}

@@ -28,9 +28,11 @@ export default Component.extend({
             [`${type}_id`]: get(post, 'media.id')
           },
           include: 'unit'
-        });
+        }).then(records => get(records, 'firstObject'));
         set(post, 'spoiledUnit', get(entry, 'unit'));
       }
+    } else if (!get(post, 'spoiler')) {
+      set(post, 'spoiledUnit', null);
     }
 
     return yield post.save()

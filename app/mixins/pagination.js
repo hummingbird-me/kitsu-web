@@ -3,6 +3,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import computed from 'ember-computed';
+import Component from 'ember-component';
 import Route from 'ember-route';
 import RSVP from 'rsvp';
 import Ember from 'ember';
@@ -12,6 +13,7 @@ const {
 } = Ember;
 
 export default Mixin.create({
+  paginationKey: 'next',
   store: service(),
 
   hasNextPage: computed('internalPageState.hasNextPage', function() {
@@ -27,11 +29,22 @@ export default Mixin.create({
     });
   },
 
+  queryPaginated(...args) {
+    return get(this, 'store').query(...args).then((records) => {
+      this.updatePageState(records);
+      return records;
+    });
+  },
+
   updatePageState(records) {
-    const hasNextPage = 'next' in (get(records, 'links') || {});
+    if (this instanceof Component && get(this, 'isDestroyed')) {
+      return;
+    }
+    const key = get(this, 'paginationKey');
+    const hasNextPage = key in (get(records, 'links') || {});
     set(this, 'internalPageState.hasNextPage', hasNextPage);
     set(this, 'internalPageState.nextPageLink', hasNextPage ?
-      get(records, 'links.next') : null);
+      get(records, `links.${key}`) : null);
   },
 
   onPagination(records) {

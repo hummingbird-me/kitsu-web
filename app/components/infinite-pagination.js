@@ -18,6 +18,7 @@ import spaniel from 'spaniel';
 export default Component.extend({
   tagName: '',
   loaderSize: 'large',
+  isTop: false,
   isLoading: false,
   showLoader: true,
 
@@ -40,6 +41,7 @@ export default Component.extend({
       Watcher.watch(element, () => {
         set(this, 'isLoading', true);
         strictInvokeAction(this, 'onPagination').finally(() => {
+          if (get(this, 'isDestroyed')) { return; }
           set(this, 'isLoading', false);
         });
       });

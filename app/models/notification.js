@@ -8,5 +8,5 @@ export default Base.extend({
   isSeen: attr('boolean', { defaultValue: true }),
   streamId: attr('string'),
 
-  activities: hasMany('activity')
+  activities: hasMany('activity', { inverse: null })
 });

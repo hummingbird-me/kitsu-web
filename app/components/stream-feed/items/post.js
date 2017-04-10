@@ -11,8 +11,9 @@ import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
 import errorMessages from 'client/utils/error-messages';
 import { invoke, invokeAction } from 'ember-invoke-action';
+import { CanMixin } from 'ember-can';
 
-export default Component.extend(ClipboardMixin, {
+export default Component.extend(ClipboardMixin, CanMixin, {
   classNameBindings: ['post.isNew:new-post', 'isPinnedPost:pinned-post'],
   classNames: ['stream-item', 'row'],
   isHidden: false,
@@ -23,7 +24,6 @@ export default Component.extend(ClipboardMixin, {
   router: service('-routing'),
   store: service(),
   metrics: service(),
-  viewport: service(),
   host: getter(() => `${location.protocol}//${location.host}`),
 
   activity: getter(function() {
@@ -63,6 +63,17 @@ export default Component.extend(ClipboardMixin, {
     return !get(this, 'post.createdAt').isSame(get(this, 'post.editedAt'));
   }).readOnly(),
 
+  canEditPost: computed(function() {
+    const group = get(this, 'post').belongsTo('targetGroup').value();
+    if (group) {
+      return this.can('edit post in group', group, {
+        membership: get(this, 'groupMembership'),
+        post: get(this, 'post')
+      });
+    }
+    return this.can('edit post', get(this, 'post'));
+  }).readOnly(),
+
   _streamAnalytics(label, foreignId) {
     const data = {
       label,
@@ -73,14 +84,6 @@ export default Component.extend(ClipboardMixin, {
       data.feed_id = get(this, 'feedId');
     }
     get(this, 'metrics').invoke('trackEngagement', 'Stream', data);
-  },
-
-  didInsertElement() {
-    this._super(...arguments);
-    const el = get(this, 'element');
-    this.clearViewportCallback = get(this, 'viewport').onInViewportOnce(el, () => {
-      set(this, 'viewportEntered', true);
-    }, { rootMargin: { top: 0, left: 0, right: 0, bottom: -600 } });
   },
 
   didReceiveAttrs() {
@@ -95,6 +98,7 @@ export default Component.extend(ClipboardMixin, {
     if (get(this, 'feedId') !== undefined) {
       set(this, 'userId', get(this, 'feedId').split(':')[1]);
     }
+
     const post = get(this, 'post');
     if (get(post, 'user') && get(this, 'session').isCurrentUser(get(post, 'user'))) {
       set(this, 'isHidden', get(post, 'nsfw'));
@@ -102,15 +106,26 @@ export default Component.extend(ClipboardMixin, {
       set(this, 'isHidden', get(post, 'nsfw') || get(post, 'spoiler'));
     }
 
+    // groups
+    if (get(post, 'id')) {
+      const group = post.belongsTo('targetGroup').value();
+      if (group) {
+        if (get(this, 'kitsuGroupMembership')) {
+          set(this, 'groupMembership', get(this, 'kitsuGroupMembership'));
+        } else {
+          get(this, 'store').query('group-member', {
+            filter: { group, user: get(this, 'session.account') },
+            include: 'permissions'
+          }).then((records) => {
+            const record = get(records, 'firstObject');
+            set(this, 'groupMembership', record);
+          }).catch(() => {});
+        }
+      }
+    }
+
     if (!get(this, 'isHidden')) {
       this._overflow();
-    }
-  },
-
-  willDestroyElement() {
-    this._super(...arguments);
-    if (this.clearViewportCallback) {
-      this.clearViewportCallback();
     }
   },
 

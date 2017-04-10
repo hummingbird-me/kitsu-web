@@ -5,7 +5,6 @@ import set from 'ember-metal/set';
 import observer from 'ember-metal/observer';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
-import { isEmpty } from 'ember-utils';
 import getter from 'client/utils/getter';
 
 export default Component.extend({
@@ -27,6 +26,7 @@ export default Component.extend({
     const key = get(this, 'resourceFilterKey');
     return yield get(this, 'store').query(get(this, 'resourceLikeType'), {
       filter: { [key]: get(this, 'resource.id') },
+      fields: { users: ['avatar', 'name'].join(',') },
       page: { limit: 4 },
       include: 'user'
     }).then((likes) => {
@@ -93,11 +93,12 @@ export default Component.extend({
     });
   }).drop(),
 
-  didReceiveAttrs({ newAttrs, oldAttrs }) {
+  didReceiveAttrs() {
     this._super(...arguments);
-    if (isEmpty(oldAttrs) || get(newAttrs.resource.value, 'id') !== get(oldAttrs.resource.value, 'id')) {
+    if (get(this, 'idWas') !== get(this, 'resource.id')) {
       this._getLikes();
     }
+    set(this, 'idWas', get(this, 'resource.id'));
   },
 
   _getLikes() {

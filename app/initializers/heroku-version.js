@@ -11,7 +11,7 @@ import config from 'client/config/environment';
 export function initialize() {
   if (config.APP.heroku) {
     const version = config.APP.version;
-    config.APP.version = `${version}-${config.APP.herokuCommit}`;
+    config.APP.version = `${version}-${config.APP.gitCommit}`;
   }
 }
 

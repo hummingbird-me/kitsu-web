@@ -28,9 +28,6 @@ export default Route.extend(Pagination, {
         user_id: get(user, 'id')
       }
     };
-    return yield get(this, 'store').query('review', options).then((records) => {
-      this.updatePageState(records);
-      return records;
-    });
+    return yield this.queryPaginated('review', options);
   })
 });

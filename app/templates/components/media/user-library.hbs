@@ -1,33 +1,3 @@
-{{! rating }}
-<div class="rating-box row">
-  <span class="user-star-rating clearfix col-sm">
-    {{star-rating entry.rating onClick=(action "update" "rating")}}
-  </span>
-  <a href="#" class="media-favorite {{if isFavorite "is-favorite"}}" {{action "toggleFavorite"}}>
-    <span class="heart-wrapper"></span>
-  </a>
-</div>
-
-{{! progress }}
-<div class="entry-progress--mini-wrapper">
-  <span>{{t "media.show.sidebar.progress"}}</span>
-  <div class="entry-progress entry-progress--mini">
-    {{one-way-number entry.progress
-      min=0
-      max=media.unitCount
-      update=(queue
-        (pipe-action (action "sanitizeNumber") (action (mut entry.progress)))
-        debouncedUpdate
-      )
-      placeholder="0"
-    }}
-    <span>
-      <span class="sep">/</span>
-      {{totalProgressText}}
-    </span>
-  </div>
-</div>
-
 {{! review }}
 {{#if (not-eq entry.progress 0)}}
   <button class="button button--primary" onclick={{action "openReview"}}>

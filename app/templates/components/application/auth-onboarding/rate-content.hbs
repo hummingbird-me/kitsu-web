@@ -34,7 +34,7 @@
           {{#infinite-pagination onPagination=(action "onPagination")}}
             {{#each media as |anime|}}
               {{application/auth-onboarding/rate-content/item
-                class="onboarding-media col-sm-3"
+                class="onboarding-media col-sm-4"
                 item=anime
                 onClick=(action "createLibraryEntry" anime)
               }}

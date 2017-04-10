@@ -24,6 +24,13 @@
           isLoading=mangaTask.isRunning
           moreLink=(href-to "manga.index" (query-params text=query))
           close=(action "close")}}
+        {{! groups group }}
+        {{search-results/group
+          group="groups"
+          items=groups.groups
+          isLoading=groupsTask.isRunning
+          moreLink=(href-to "groups.index" (query-params query=query))
+          close=(action "close")}}
         {{! users group }}
         {{search-results/group
           group="users"

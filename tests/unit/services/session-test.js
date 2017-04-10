@@ -8,6 +8,8 @@ import setupStore from 'client/tests/helpers/setup-store';
 import wait from 'ember-test-helpers/wait';
 
 moduleFor('service:session', 'Unit | Service | session', {
+  needs: ['service:ajax'],
+
   beforeEach() {
     this.store = setupStore({
       user: Model.extend({

@@ -6,6 +6,9 @@ moduleForModel('user', 'Unit | Model | user', {
   needs: [
     'config:environment',
     'service:session',
+    'service:intl',
+    'cldr:en',
+    'ember-intl@adapter:default',
     'validator:presence',
     'validator:length',
     'validator:format',
@@ -17,7 +20,12 @@ moduleForModel('user', 'Unit | Model | user', {
     'model:user-role',
     'model:post',
     'model:profile-link'
-  ]
+  ],
+
+  beforeEach() {
+    const service = this.container.lookup('service:intl');
+    service.setLocale('en-us');
+  }
 });
 
 test('model validations', function(assert) {
@@ -27,6 +35,7 @@ test('model validations', function(assert) {
     email: ['a@b.com', 'email+ignore@host.tld'],
     password: ['password']
   };
+
   const invalid = {
     name: ['ab', '12345', '_okabe', 'asdadasdasdasdasdadadasd', '', null, undefined],
     email: ['abc', 'abc@a', 'abc@abc.', '', null, undefined],

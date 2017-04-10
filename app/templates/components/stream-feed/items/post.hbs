@@ -23,6 +23,13 @@
             </a>
           {{/unless}}
         {{/if}}
+        {{#if post.targetGroup}}
+          {{#unless kitsuGroup}}
+            <a href={{href-to "groups.group.group-page.index" post.targetGroup.slug}} class="author-group-avatar recipient-avatar" onclick={{action "trackEngagement" "click"}}>
+              {{lazy-image src=(image post.targetGroup.avatar "medium")}}
+            </a>
+          {{/unless}}
+        {{/if}}
       </span>
 
       {{! Author(s) }}
@@ -44,9 +51,21 @@
           {{/unless}}
         {{/if}}
 
+        {{#if post.targetGroup}}
+          {{#unless kitsuGroup}}
+            <span class="recipient-info">
+              <small>to</small>
+              <a href={{href-to "groups.group.group-page.index" post.targetGroup.slug}} class="author-name" onclick={{action "trackEngagement" "click"}}>
+                {{post.targetGroup.name}}
+              </a>
+              <span class="tag tag-default role-tag">Group</span>
+            </span>
+          {{/unless}}
+        {{/if}}
+
         {{! Timestamp }}
         <a href={{href-to "posts" post.id}} onclick={{action "trackEngagement" "click"}}>
-          <small class="author-secondary">
+          <small class="secondary-text">
             {{moment-from-now post.createdAt interval=60000}}
             {{#if postEdited}}
               &middot; edited {{moment-from-now post.editedAt interval=60000}}
@@ -123,7 +142,7 @@
       {{/if}}
 
       {{! Tagged Media  }}
-      {{#if post.media}}
+      {{#if (and post.media (or (not post.media.nsfw) (not isHidden)))}}
         <div class="tagged-media--wrapper">
           <div class="tagged-media row">
             <div class="stream-item--media col-xs-1">
@@ -137,7 +156,7 @@
                   <a class="author-name" href={{href-to (concat post.media.modelType ".show") post.media}}>
                     {{post.media.computedTitle}}
                   </a>
-                  <small class="author-secondary">
+                  <small class="secondary-text">
                     <div class="media-tag-synopsis">
                       {{truncate post.media.synopsis 150}}
                     </div>
@@ -152,28 +171,26 @@
 
     {{! Post Likes -- Don't load until we have entered viewport }}
     <div class="stream-item-activity">
-      {{#if viewportEntered}}
-        {{likeable-resource
-          resource=post
-          likesCount=post.postLikesCount
-          likesCountUpdate=(action (mut post.postLikesCount))
-          onCreate=(action "likeCreated")
-          showUsers=true
-        }}
-      {{/if}}
+      {{likeable-resource
+        resource=post
+        likesCount=post.postLikesCount
+        likesCountUpdate=(action (mut post.postLikesCount))
+        onCreate=(action "likeCreated")
+        showUsers=true
+      }}
     </div>
 
     {{! Post Actions }}
     <div class="stream-item-options">
       {{! Share Links }}
-      <a href={{tweetLink}} target="_blank" {{action "trackEngagement" "click" preventDefault=false}}>
+      <!-- <a href={{tweetLink}} target="_blank" {{action "trackEngagement" "click" preventDefault=false}}>
         {{svg-jar "l-twitter"}}
         Tweet
       </a>
       <a href={{facebookLink}} target="_blank" {{action "trackEngagement" "click" preventDefault=false}}>
         {{svg-jar "l-facebook"}}
         Share
-      </a>
+      </a> -->
 
       {{! Dropdown }}
       <span class="more-wrapper">
@@ -196,7 +213,7 @@
           {{/if}}
 
           {{! Editing/Deleting Options }}
-          {{#if (can "edit post" post)}}
+          {{#if canEditPost}}
             {{#if isEditable}}
               <a class="dropdown-item" href="#" {{action (toggle "editModalOpened" this)}}>Edit Post</a>
               {{#if editModalOpened}}
@@ -252,6 +269,7 @@
             {{#if reportingPost}}
               {{to-elsewhere named="modal" send=(component "modals/report-content"
                 content=post
+                group=post.targetGroup
                 onClose=(toggle-action "reportingPost" this)
               )}}
             {{/if}}
@@ -271,16 +289,15 @@
 
   {{! Post Comments }}
   {{#unless isHidden}}
-    {{#if viewportEntered}}
-      {{stream-feed/items/post/comments
-        post=post
-        comment=comment
-        isReply=isReply
-        readOnly=readOnly
-        countUpdate=(action (mut post.topLevelCommentsCount))
-        trackEngagement=(action "trackEngagement")
-      }}
-    {{/if}}
+    {{stream-feed/items/post/comments
+      post=post
+      comment=comment
+      isReply=isReply
+      readOnly=readOnly
+      kitsuGroupMembership=kitsuGroupMembership
+      countUpdate=(action (mut post.topLevelCommentsCount))
+      trackEngagement=(action "trackEngagement")
+    }}
   {{/unless}}
 {{else}}
   <div class="stream-error-wrapper col-sm-12">

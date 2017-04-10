@@ -26,7 +26,12 @@ export default Route.extend(Pagination, {
         const lastUsed = get(this, 'lastUsed');
         const { libraryType, librarySort } = getProperties(lastUsed, 'libraryType', 'librarySort');
         if (libraryType || librarySort) {
-          this.replaceWith({ queryParams: { media: libraryType, sort: librarySort } });
+          this.replaceWith({
+            queryParams: {
+              media: queryParams.media || libraryType,
+              sort: queryParams.sort || librarySort
+            }
+          });
         }
       }
     }
@@ -56,10 +61,7 @@ export default Route.extend(Pagination, {
    */
   queryLibraryEntriesTask: task(function* (params) {
     const options = this._getRequestOptions(params);
-    return yield get(this, 'store').query('library-entry', options).then((records) => {
-      this.updatePageState(records);
-      return records;
-    });
+    return yield this.queryPaginated('library-entry', options);
   }).restartable(),
 
   _getUsableSort(sort) {
@@ -134,6 +136,9 @@ export default Route.extend(Pagination, {
       }
     }
 
+    // sparse fieldsets
+    Object.assign(options, this._getFieldsets(media));
+
     return Object.assign(options, {
       include: `${media},user`,
       filter: {
@@ -143,5 +148,28 @@ export default Route.extend(Pagination, {
       },
       page: { offset: 0, limit: 200 }
     });
+  },
+
+  /**
+   * Request only the fields that we need for this resource
+   */
+  _getFieldsets(media) {
+    const unitCount = media === 'anime' ? 'episodeCount' : 'chapterCount';
+    return {
+      fields: {
+        [media]: [
+          'slug',
+          'posterImage',
+          'canonicalTitle',
+          'titles',
+          'synopsis',
+          'subtype',
+          'startDate',
+          'endDate',
+          unitCount
+        ].join(','),
+        users: 'id'
+      }
+    };
   }
 });

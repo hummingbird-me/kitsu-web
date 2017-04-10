@@ -40,8 +40,8 @@ export default Component.extend(Pagination, {
         // activity
         'media,actor,unit,subject,target',
         // posts (and comment system)
-        'target.user,target.target_user,target.spoiled_unit,target.media',
-        'subject.user,subject.target_user,subject.spoiled_unit,subject.media',
+        'target.user,target.target_user,target.spoiled_unit,target.media,target.target_group',
+        'subject.user,subject.target_user,subject.spoiled_unit,subject.media,subject.target_group',
         // follow
         'subject.followed',
         // review
@@ -52,11 +52,7 @@ export default Component.extend(Pagination, {
     if (!isEmpty(kind) && kind !== 'all') {
       options.filter = { kind: kind === 'user' ? 'posts' : kind };
     }
-    return yield get(this, 'store').query('feed', options).then((records) => {
-      set(this, 'paginatedRecords', []);
-      this.updatePageState(records);
-      return records;
-    });
+    return yield this.queryPaginated('feed', options);
   }).restartable(),
 
   createPost: task(function* (content, options) {
@@ -64,6 +60,23 @@ export default Component.extend(Pagination, {
     // posting on another user's profile
     if (get(this, 'user') !== undefined && get(this, 'user.id') !== get(this, 'session.account.id')) {
       set(data, 'targetUser', get(this, 'user'));
+    }
+    // posting on a group
+    if (get(this, 'kitsuGroup') !== undefined) {
+      // is the sessioned user a member?
+      const groupId = get(this, 'kitsuGroup.id');
+      const groupMember = yield get(this, 'store').query('group-member', {
+        filter: {
+          group: groupId,
+          user: get(this, 'session.account.id')
+        }
+      }).then(records => get(records, 'firstObject'));
+      if (groupMember) {
+        set(data, 'targetGroup', get(this, 'kitsuGroup'));
+      } else {
+        get(this, 'notify').error('You must be a member of this group to post.');
+        return;
+      }
     }
     // spoiler + media set
     if (get(data, 'spoiler') === true && get(data, 'media') !== undefined) {
@@ -76,7 +89,9 @@ export default Component.extend(Pagination, {
         },
         include: 'unit'
       }).then(results => get(results, 'firstObject'));
-      set(data, 'spoiledUnit', get(entry, 'unit'));
+      if (entry) {
+        set(data, 'spoiledUnit', get(entry, 'unit'));
+      }
     }
     const post = get(this, 'store').createRecord('post', data);
     const [group, activity] = this._createTempActivity(post);
@@ -224,6 +239,14 @@ export default Component.extend(Pagination, {
     }
   },
 
+  onPagination(records) {
+    const duplicates = records.filter(record => (
+      get(this, 'allFeedItems').findBy('group', get(record, 'group')) !== undefined
+    ));
+    records.removeObjects(duplicates);
+    this._super(records);
+  },
+
   actions: {
     onPagination() {
       return this._super('feed', {
@@ -257,19 +280,21 @@ export default Component.extend(Pagination, {
      * so we reduce the logic and handling of all the relationships needed for display.
      */
     newActivities() {
-      const { streamType, streamId, filter } = getProperties(this, 'streamType', 'streamId', 'filter');
       const limit = get(this, 'newItems.length');
       set(this, 'realtimeLoading', true);
-      get(this, 'getFeedData').perform(streamType, streamId, limit, filter).then((data) => {
+      get(this, 'getFeedData').perform(limit).then((data) => {
         set(this, 'newItems.length', 0);
         set(this, 'newItems.cache', []);
         get(this, 'headTags').collectHeadTags();
 
         // remove dups from the feed and replace with updated activity
-        const dups = get(this, 'feed').filter(group => (
+        const dups = get(this, 'allFeedItems').filter(group => (
           data.findBy('group', get(group, 'group')) !== undefined
         ));
+        get(this, 'allFeedItems').beginPropertyChanges();
         get(this, 'feed').removeObjects(dups);
+        get(this, 'paginatedRecords').removeObjects(dups);
+        get(this, 'allFeedItems').endPropertyChanges();
 
         // prepend the new activities
         unshiftObjects(get(this, 'feed'), data.toArray());

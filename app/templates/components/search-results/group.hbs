@@ -25,16 +25,16 @@
   {{else if items}}
     <ul class="media-list search--results">
       {{#each items as |item|}}
-        <li class="media col-sm-12 {{if (eq group "users") "is-user"}}" {{action "transitionTo" item}}>
+        <li class="media col-sm-12" {{action "transitionTo" item}}>
           <div class="media-left col-sm-2 no-padding-left">
-            {{#if (eq group "users")}}
-              {{lazy-image src=(image item.avatar "small")}}
+            {{#if (or (eq group "users") (eq group "groups"))}}
+              {{lazy-image src=(image item.avatar "small") imgClass=(concat "is-avatar-" group)}}
             {{else}}
               {{lazy-image src=(image item.posterImage "small")}}
             {{/if}}
           </div>
           <div class="media-body col-sm no-padding-left">
-            {{#if (eq group "users")}}
+            {{#if (or (eq group "users") (eq group "groups"))}}
               <p>{{item.name}}</p>
             {{else}}
               <p>{{item.computedTitle}}</p>

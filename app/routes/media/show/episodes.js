@@ -30,10 +30,7 @@ export default Route.extend(Pagination, {
         media_id: get(media, 'id')
       }
     };
-    return yield get(this, 'store').query('episode', options).then((records) => {
-      this.updatePageState(records);
-      return records;
-    });
+    return yield this.queryPaginated('episode', options);
   }),
 
   _getParentModel() {

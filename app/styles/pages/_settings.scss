@@ -5,7 +5,7 @@
 }
 
 .settings--header {
-  background: $voodoo;
+  background: $secondary-background-color;
   width: 100%;
   margin-top: -25px;
   margin-bottom: 30px;
@@ -20,6 +20,11 @@
     margin-left: 15px;
     margin-bottom: 0;
     line-height: 40px;
+  }
+  &.feedback {
+    h2 {
+      margin-left: 0;
+    }
   }
 }
 
@@ -75,6 +80,13 @@
   }
 }
 
+.nav-counter {
+  background: rgba(255,255,255,.1);
+  padding: 0 5px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
 .settings-container {
   width: 100%;
   max-width: 500px;
@@ -92,6 +104,16 @@
   .col-form-label {
     font-size: 12px;
     font-weight: 700;
+  }
+  .rating-type {
+    .ember-power-select-option, .ember-power-select-selected-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      svg {
+        margin-right: 10px;
+      }
+    }
   }
 }
 

@@ -15,7 +15,7 @@ export default OneWayTextAreaComponent.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    autosize(this.$());
+    autosize(get(this, 'element'));
     later(() => {
       this.resize();
       if (get(this, 'autofocus') && !get(this, 'isDestroyed')) {
@@ -25,10 +25,8 @@ export default OneWayTextAreaComponent.extend({
   },
 
   willDestroyElement() {
+    autosize.destroy(get(this, 'element'));
     this._super(...arguments);
-    const evt = document.createEvent('Event');
-    evt.initEvent('autosize:destroy', true, false);
-    this.$()[0].dispatchEvent(evt);
   },
 
   clear() {
@@ -37,11 +35,7 @@ export default OneWayTextAreaComponent.extend({
   },
 
   resize() {
-    if (get(this, 'isDestroyed')) {
-      return;
-    }
-    const evt = document.createEvent('Event');
-    evt.initEvent('autosize:update', true, false);
-    this.$()[0].dispatchEvent(evt);
+    if (get(this, 'isDestroyed')) { return; }
+    autosize.update(get(this, 'element'));
   }
 });

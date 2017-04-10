@@ -5,6 +5,6 @@ import { belongsTo } from 'ember-data/relationships';
 export default Base.extend({
   role: attr('string'),
 
-  source: belongsTo('media'),
+  source: belongsTo('media', { inverse: 'mediaRelationships' }),
   destination: belongsTo('media')
 });

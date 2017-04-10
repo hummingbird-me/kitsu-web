@@ -4,6 +4,7 @@ import { hasMany } from 'ember-data/relationships';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import computed, { or } from 'ember-computed';
+import moment from 'moment';
 import getTitleField from 'client/utils/get-title-field';
 
 export default Base.extend({
@@ -16,6 +17,7 @@ export default Base.extend({
   coverImageTopOffset: attr('number'),
   endDate: attr('utc'),
   favoritesCount: attr('number'),
+  nsfw: attr('boolean'),
   popularityRank: attr('number'),
   posterImage: attr('object', { defaultValue: '/images/default_poster.jpg' }),
   ratingFrequencies: attr('object'),
@@ -28,7 +30,7 @@ export default Base.extend({
 
   castings: hasMany('casting'),
   genres: hasMany('genre'),
-  mediaRelationships: hasMany('media-relationship'),
+  mediaRelationships: hasMany('media-relationship', { inverse: 'source' }),
   reviews: hasMany('review'),
 
   unitCount: or('episodeCount', 'chapterCount'),
@@ -43,11 +45,26 @@ export default Base.extend({
   }).readOnly(),
 
   totalRatings: computed('ratingFrequencies', function() {
-    const keys = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0];
+    // eslint-disable-next-line
+    const keys = Array.apply(null, { length: 19 }).map(Number.call, Number).map(num => num + 2);
     const freqs = get(this, 'ratingFrequencies');
-    return keys.reduce((prev, curr) => {
-      const decimal = curr.toFixed(1).toString();
-      return prev + (parseInt(freqs[decimal], 10) || 0);
-    }, 0);
+    return keys.reduce((prev, curr) => (
+      prev + (parseInt(freqs[curr], 10) || 0)
+    ), 0);
+  }).readOnly(),
+
+  airingStatus: computed('startDate', 'endDate', 'unitCount', function() {
+    const start = get(this, 'startDate');
+    const end = get(this, 'endDate');
+    if (!start) { return 'nya'; }
+    if (start.isBefore() || start.isSame()) {
+      const isOneDay = get(this, 'unitCount') === 1;
+      const isPastDay = end && (end.isBefore() || end.isSame());
+      return (isOneDay || isPastDay) ? 'finished' : 'current';
+    }
+    const currentDate = moment();
+    const futureDate = moment().add(3, 'months');
+    const isSoon = start.isBetween(currentDate, futureDate);
+    return isSoon ? 'upcoming' : 'nya';
   }).readOnly()
 });

@@ -11,8 +11,8 @@ export default Component.extend({
     return this.hasExporterFor('MyAnimeList');
   }),
 
-  hasExporterFor(platform) {
-    const exporter = get(this, 'store').peekAll('linked-account').filterBy('kind', `LinkedAccount::${platform}`);
+  hasExporterFor() {
+    const exporter = get(this, 'store').peekAll('linked-account').filterBy('kind', 'my-anime-list');
     return get(exporter, 'length') !== 0;
   },
 

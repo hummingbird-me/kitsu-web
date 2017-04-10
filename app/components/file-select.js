@@ -3,7 +3,8 @@ import { invokeAction } from 'ember-invoke-action';
 
 export default OneWayFileComponent.extend({
   // form is hidden by default
-  classNames: ['hidden-xs-up'],
+  classNameBindings: ['isHidden:hidden-xs-up'],
+  isHidden: true,
 
   change(event) {
     invokeAction(this, 'update', event.target);

@@ -15,7 +15,6 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
   filterOptions: ['all', 'anime', 'manga'],
   pageLimit: 12,
   notify: service(),
-  store: service(),
   lastUsed: storageFor('last-used'),
 
   remaining: computed('initialEntries.length', function() {
@@ -32,13 +31,14 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
   getEntriesTask: task(function* () {
     const type = get(this, 'filter') !== 'all' ? get(this, 'filter') : undefined;
     const includes = type || 'anime,manga';
-    return yield get(this, 'store').query('library-entry', {
+    return yield this.queryPaginated('library-entry', {
       include: `${includes},nextUnit`,
       filter: {
         kind: type,
         user_id: get(this, 'session.account.id'),
         status: 'current,planned'
       },
+      fields: this._getFieldsets(type),
       sort: 'status,-updated_at',
       page: { limit: get(this, 'pageLimit') }
     });
@@ -86,7 +86,6 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
     set(this, 'paginatedRecords', []);
     get(this, 'getEntriesTask').perform().then((entries) => {
       set(this, 'initialEntries', entries);
-      this.updatePageState(entries);
     }).catch((error) => {
       get(this, 'raven').captureException(error);
     });
@@ -98,5 +97,29 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
       const index = this.$('.carousel').data('flickity').cells.length - 1;
       this.$('.carousel').flickity('insert', this.$('.new-entries').children(), index);
     });
+  },
+
+  _getFieldsets(type) {
+    const fields = {
+      libraryEntries: ['progress', 'status', 'rating', 'nextUnit']
+    };
+
+    if (type === undefined) {
+      fields.libraryEntries.push('anime', 'manga');
+      fields.anime = ['posterImage', 'canonicalTitle', 'titles', 'episodeCount', 'slug'].join(',');
+      fields.manga = ['posterImage', 'canonicalTitle', 'titles', 'chapterCount', 'slug'].join(',');
+    } else {
+      fields.libraryEntries.push(type);
+      const unitType = type === 'anime' ? 'episodeCount' : 'chapterCount';
+      fields[type] = ['posterImage', 'canonicalTitle', 'titles', unitType, 'slug'].join(',');
+    }
+    fields.libraryEntries = fields.libraryEntries.join(',');
+
+    const unitKey = type === 'anime' ? 'episodes' : undefined;
+    if (unitKey) {
+      fields[unitKey] = 'canonicalTitle';
+    }
+
+    return fields;
   }
 });

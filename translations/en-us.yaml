@@ -17,20 +17,43 @@ titles:
     reviews: "{user}'s Reviews"
     followers: "{user}'s Followers"
     following: "Followed by {user}"
+    groups: "{user}'s Groups"
   posts: "Post by {user}"
   comments: "Comment by {user}"
   reviews: "Review by {user}"
   notifications: "Notifications"
   trending: "Trending"
+  feedback:
+    bugs: "Bugs"
+    feature-requests: "Feature Requests"
   admin:
     index: "Admin"
     reports: "Reports"
+  groups:
+    index: "Groups"
+    new: "Create a Group"
+    group:
+      group-page:
+        rules: "{group} Rules"
+        members: "{group} Members"
+        leaders: "{group} Leaders"
+      dashboard:
+        index: "{group} Overview"
+        reports: "{group} Reports"
+        tickets: "{group} Tickets"
+        members: "{group} Members"
+        leaders: "{group} Leaders"
+        settings: "{group} Settings"
+  group-invite: "Group Invite"
 # header
 header:
   library: "Library"
   anime: "Anime"
   manga: "Manga"
   trending: "Trending"
+  groups: "Groups"
+  feedback: "Feedback"
+  browse: "Browse"
   auth:
     sign-in: "Sign In"
     sign-up: "Sign Up"
@@ -46,7 +69,8 @@ auth-modal:
       0 {Let's get some basic info first}
       1 {Very witty - email is next!}
       2 {Looks legit, how about a password?}
-      3 {Cool- Let's create that account}}"
+      3 {Cool- Let's create that account}
+      other {}}"
 # dashboard
 dashboard:
   quick-update:
@@ -61,17 +85,21 @@ dashboard:
     media:
       complete: "Complete"
       episode: "{type, select,
-        anime {Ep. {num}}
-        manga {Ch. {num}}}"
+        anime {Ep. {num} {total, select,
+          undefined {}
+          other {of {total}}}}
+        manga {Ch. {num} {total, select,
+          undefined {}
+          other {of {total}}}}
+        other {}}"
     overlay:
       button:
         html: "Mark {type, select,
           anime {<span class={class}>Ep. {num}</span> Complete}
-          manga {<span class={class}>Ch. {num}</span> Complete}}"
+          manga {<span class={class}>Ch. {num}</span> Complete}
+          other {}}"
         complete: "Complete"
-      review:
-        write: "Write Review"
-        edit: "Edit Review"
+      review: "Review"
   onboarding:
     welcome: "Hey {user}, welcome to Kitsu!"
     about: "This is the global activity feed. It's populated by recent activity from all of Kitsu's
@@ -80,13 +108,15 @@ dashboard:
     action: "Why don't you try creating a feed post to introduce yourself using the form below?
       You can say something as simple as 'Hey everyone, I'm new to Kitsu', or you can show us how
       creative and witty you are!"
+  groups:
+    header: "My Groups"
 # media pages
 media:
   index:
     search: "Search by title, character, or cast..."
     filters:
       year: "Year"
-      score: "Score"
+      score: "Average Rating"
       seasons: "Seasons"
       streamers: "Streamers (U.S.)"
       episodes: "Episodes"
@@ -99,10 +129,6 @@ media:
       characters: "Characters"
       reviews: "Reviews"
     sidebar:
-      progress: "Progress"
-      review:
-        write: "Write Review"
-        edit: "Edit Review"
       watch: "Where to Watch"
     summary:
       ratings:
@@ -111,10 +137,12 @@ media:
       ranking:
         popularity: "{type, select,
           anime {Rank #{rank} (Most Popular Anime)}
-          manga {Rank #{rank} (Most Popular Manga)}}"
+          manga {Rank #{rank} (Most Popular Manga)}
+          other {}}"
         rating: "{type, select,
           anime {Rank #{rank} (Highest Rated Anime)}
-          manga {Rank #{rank} (Highest Rated Manga)}}"
+          manga {Rank #{rank} (Highest Rated Manga)}
+          other {}}"
       tags: "Tags"
       relationships:
         header: "Franchise"
@@ -156,20 +184,13 @@ media:
         volumes: "Volumes"
         unit: "{type, select,
           anime {Episodes}
-          manga {Chapters}}"
+          manga {Chapters}
+          other {}}"
         start: "{type, select,
           anime {Aired}
-          manga {Published}}"
+          manga {Published}
+          other {}}"
         status: "Status"
-        statuses:
-          anime:
-            current: "Currently Airing"
-            finished: "Finished Airing"
-            nya: "Not Yet Aired"
-          manga:
-            current: "Publishing"
-            finished: "Finished"
-            nya: "Not Yet Published"
         season: "Season"
         producers: "Producers"
         licensors: "Licensors"
@@ -189,7 +210,8 @@ media:
       sub-header: "{type, select,
         anime {The following is a full list of characters and their {language} voice actors for
           the anime {title}}
-        manga {The following is a full list of characters for the manga {title}}}"
+        manga {The following is a full list of characters for the manga {title}}
+        other {}}"
 # users page
 users:
   navigation:
@@ -198,6 +220,7 @@ users:
     reviews: "Reviews"
     followers: "Followers"
     following: "Following"
+    groups: "Groups"
   edit-modal:
     cover: "Change your cover photo"
     navigation:
@@ -287,6 +310,33 @@ users:
         patreon:
           about: "Enter your Patreon project name to add a link to your profile."
           placeholder: "Your Patreon project name"
+        deviantart:
+          about: "Enter your DeviantArt username below to add a link to your profile."
+          placeholder: "Your DeviantArt username"
+        dribbble:
+          about: "Enter your Dribbble username below to add a link to your profile."
+          placeholder: "Your Dribbble username"
+        imdb:
+          about: "Enter your IMDb profile URL below to add a link to your profile."
+          placeholder: "Your IMDb profile URL"
+        lastfm:
+          about: "Enter your Last.fm username below to add a link to your profile."
+          placeholder: "Your Last.fm username"
+        letterboxd:
+          about: "Enter your Letterboxd username below to add a link to your profile."
+          placeholder: "Your Letterboxd username"
+        medium:
+          about: "Enter your Medium username or publication name below to add a link to your profile."
+          placeholder: "Your Medium username (@user) or publication name"
+        playerme:
+          about: "Enter your Player.me username below to add a link to your profile."
+          placeholder: "Your Player.me username"
+        reddit:
+          about: "Enter your Reddit username below to add a link to your profile."
+          placeholder: "Your Reddit username"
+        trakt:
+          about: "Enter your Trakt username below to add a link to your profile."
+          placeholder: "Your Trakt username"
     favorites:
       header: "Favorites"
       anime: "Anime"
@@ -326,6 +376,269 @@ users:
     empty:
       owner: "You don't have any titles here! Ready to start something new? <a href={link}>Browse {type}</a>"
       guest: "Doesn't look like {user} has any titles here!"
+  groups:
+    sort:
+      newest: "Recently Joined"
+      oldest: "Oldest Joined"
+# settings page
+exports:
+  logs:
+    header:
+      media: "Media"
+      library-status: "Library Status"
+      progress: "Progress"
+      rating: "Rating"
+      reconsumes: "Reconsumes"
+      action: "Action"
+      status: "Status"
+    action:
+      create: "Add"
+      update: "Edit"
+      delete: "Remove"
+    status:
+      pending: "Pending"
+      success: "Success"
+      error: "Error"
+# page: feedback
+feedback:
+  bugs: "Bugs"
+  features: "Feature Requests"
+# groups
+groups:
+  index:
+    call-to-action: "Anyone can create and discover groups. Each group centers around a topic or activity."
+    create-btn: "Create a Group"
+  create:
+    header: "Create a Group"
+    form:
+      required: "Required"
+      name: "Name"
+      tagline: "Tagline"
+      about: "Description"
+      rules: "Rules"
+      neighbors: "Neighbors"
+      neighbors-placeholder: "Search for group"
+      privacy: "Privacy"
+      privacy-options:
+        open: "Public"
+        closed: "Private"
+        restricted: "Restricted"
+      privacy-features:
+        open: "<li>Anyone can view</li>
+          <li>Anyone can join</li>
+          <li>Anyone can post or comment</li>"
+        closed: "<li>Hidden from public</li>
+          <li>Users may only join via invitation</li>
+          <li>Can't be made public</li>"
+        restricted: "<li>Anyone can view</li>
+          <li>Anyone can join</li>
+          <li>Only leaders can create new posts.</li>"
+      category: "Category"
+      category-placeholder: "Select a Category"
+      avatar: "Avatar"
+      cover: "Cover Image"
+      create-btn: "Create your Group!"
+      save-btn: "Save"
+      helper:
+        name:
+          header: "Name"
+          desc: "Group names should clearly communicate what your group is about, but you can still be creative and have fun with it!"
+        tagline:
+          header: "Tagline"
+          desc: "Summarize the purpose of your group in 60 characters or less.
+            You'll have room to add more information later."
+        about:
+          header: "Description"
+          desc: "Explain your group's purpose in depth, share important information, or anything else."
+        rules:
+          header: "Rules"
+          desc: "Set out some guidelines for your group members to follow. These rules are Markdown supported!"
+        neighbors:
+          header: "Neighbors"
+          desc: "Add related groups to your Neighborhood so your members can discover new communities!"
+        privacy:
+          header: "Privacy"
+          desc: "Your privacy settings determine how open or closed your group is to the public. If you choose to make your group private, you will NOT be able to make it public in the future."
+        category:
+          header: "Category"
+          desc: "Kitsu uses categories to organize groups to help users find more of what they love."
+        avatar:
+          header: "Avatar"
+          desc: "This image will be used throughout Kitsu to identify your group."
+        cover:
+          header: "Cover Image"
+          desc: "This image will appear at the top of your group's page on desktops. Sides may be cropped slightly based on the viewer's screen size."
+      errors:
+        neighbors-same: "You can't add your group as a neighbor."
+  dashboard-btn: "Dashboard"
+  join-group: "Join Group"
+  leave-group: "Leave Group"
+  nsfw: "NSFW"
+  neighbors: "Neighbors"
+  navigation:
+    activity: "Activity"
+    rules: "Rules"
+    members: "Members"
+    leaders: "Leaders"
+    neighbors: "Neighbors"
+  activity:
+    feed-header: "Group Activity"
+    about: "About {group}"
+    members: "Members"
+    view-members: "view all"
+    feed-restricted: "This is a restricted group. Anyone can comment, only leaders can create posts."
+  rules:
+    header: "Community Rules"
+    empty: "Hey there! Looks like you're using the Kitsu community guidelines. If you'd like to
+      specify your own rules you can do that on your <a href={link}>settings page.</a>"
+  tickets:
+    search: "Search Tickets"
+    empty: "Hooray! You don't have any tickets to handle."
+    helper: "Tickets allow you to communicate with the leaders of this group to solve any issues
+      you might have. Message the leaders here to create a ticket."
+    filter:
+      open: "Open Tickets"
+      resolved: "Resolved Tickets"
+      all: "All Tickets"
+    conversation:
+      title: "Ticket from <a href={link}>{name}</a>"
+      mark-resolved: "Mark Resolved"
+      mark-closed: "Mark Closed"
+      mark-open: "Mark Open"
+      nav:
+        reply: "Reply to User"
+        leader: "Leader Note"
+      create-btn: "Create Ticket"
+      reply-btn: "Send Reply"
+      reply-placeholder: "Type your message"
+      helper: "Write your message below to create a ticket! Leaders for this group will reply to
+        your ticket as soon as they can."
+  reports:
+    no-explanation: "No Explanation Provided"
+    empty: "Hooray! You don't have any reports to handle."
+    filter:
+      open: "Open Reports"
+      resolved: "Resolved Reports"
+      all: "All Reports"
+    show-more: "Show {num} reports"
+    hide-more: "Hide {num} reports"
+    status:
+      resolved: "This report was resolved by {user}."
+      declined: "This report was declined by {user}."
+      escalated: "This report was escalated by {user}."
+    actions:
+      close: "Close Report"
+      remove: "Remove Content"
+      escalate: "Notify Kitsu"
+      view: "View Content"
+  leaders:
+    list:
+      header: "Leaders"
+      edit-btn: "Edit"
+      add-btn: "Add"
+      add-placeholder: "Group member"
+      not-found: "Couldn't find a group member with that username."
+      message-btn: "Message the leaders"
+      message-leader: "You're a leader of this group!"
+      modal:
+        header: "Leader Permissions:"
+        owner: "Group Owner"
+        tickets: "Manage Tickets"
+        members: "Manage Members"
+        leaders: "Manage Leaders"
+        community: "Manage Settings"
+        content: "Manage Content & Reports"
+        owner-help: "Owners have all permissions."
+        cancel-btn: "Cancel"
+        save-btn: "Save Permissions"
+  dashboard:
+    back: "Back to {group}"
+    navigation:
+      overview: "Overview"
+      reports: "Reports"
+      tickets: "Tickets"
+      members: "Members"
+      leaders: "Leaders"
+      settings: "Settings"
+    overview:
+      members:
+        header: "Members"
+        today: "Joined Today"
+        total: "Total Members"
+      activity:
+        header: "User Activity"
+        posts: "Posts Today"
+        comments: "Comments Today"
+      help-desk:
+        header: "Open Cases"
+        tickets: "Tickets"
+        reports: "Reports"
+      tickets: "Latest Tickets"
+      reports: "Latest Reports"
+      log: "Leader Log"
+    members:
+      invites:
+        header: "Pending Invites"
+        invited: "Invited"
+        revoke: "Cancel Invite"
+        invite: "Invite"
+        placeholder: "Search for a user to invite. They must be following you!"
+        empty: "Looks like you don't have any pending invites to the group."
+      bans:
+        header: "Banned Users"
+        unban: "Unban"
+        ban: "Ban"
+        placeholder: "Username"
+        empty: "Hooray! You don't have any banned users."
+      members:
+        header: "Members"
+        table:
+          users: "User"
+          permissions: "Rank"
+          joined: "Joined"
+          actions: "Actions"
+        remove: "Remove"
+        ban: "Ban"
+    leaders:
+      chat:
+        header: "Leader Chat"
+        post-btn: "Post"
+        placeholder: "Send message to leaders"
+    audit:
+      user:
+        banned: "banned <a href={link}>{user}</a>."
+        unbanned: "unbanned <a href={link}>{user}</a>."
+        invited: "invited <a href={link}>{user}</a> to join the community."
+        granted: "granted permissions to <a href={link}>{user}</a>."
+        revoked: "removed permissions from <a href={link}>{user}</a>."
+      group:
+        added_neighbor: "added <a href={link}>{group}</a> as a neighbor."
+        removed_neighbor: "removed <a href={link}>{group}</a> as a neighbor."
+        avatar_changed: "updated the {group} avatar."
+        cover_changed: "updated the {group} cover image."
+        locale_changed: "updated the {group} locale."
+        rules_changed: "updated the {group} rules."
+        nsfw_changed: "updated the {group} NSFW status."
+        about_changed: "updated the {group} about."
+        tagline_changed: "updated the {group} tagline."
+        category_changed: "updated the {group} category."
+      group-report:
+        resolved: "resolved a report."
+        declined: "declined a report."
+        escalated: "esclated a report."
+      group-ticket:
+        assigned: "assigned a ticket to <a href={link}>{user}</a>."
+        resolved: "marked a ticket as resolved."
+        created: "re-opened a ticket."
+group-invite:
+  header: "Group Invite"
+  subtitle: "You have been invited to {group} by {sender}"
+  text: "You'll be able to access {group}'s page after accepting this invite. We'll redirect you
+    after accepting."
+  accept: "Accept"
+  decline: "Decline"
+  accepted: "You've already accepted this invite."
+  declined: "You declined this group invite."
 # shared: media
 media-shared:
   types:
@@ -342,30 +655,45 @@ media-shared:
       manhua: "Manhua"
       oneshot: "One-shot"
       doujin: "Doujin"
+      manhwa: "Manhwa"
+      oel: "OEL"
+  statuses:
+    anime:
+      current: "Currently Airing"
+      finished: "Finished Airing"
+      upcoming: "Upcoming"
+      nya: "Not Yet Aired"
+    manga:
+      current: "Publishing"
+      finished: "Finished"
+      upcoming: "Upcoming"
+      nya: "Not Yet Published"
 # shared: library
 library-shared:
   all: "{type, select,
     anime {All Anime}
-    manga {All Manga}}"
+    manga {All Manga}
+    other {}}"
   current: "{type, select,
     anime {Currently Watching}
-    manga {Currently Reading}}"
+    manga {Currently Reading}
+    other {}}"
   planned: "{type, select,
-    anime {Plan to Watch}
-    manga {Plan to Read}}"
+    anime {Want to Watch}
+    manga {Want to Read}
+    other {}}"
   completed: "{type, select,
     anime {Completed}
-    manga {Completed}}"
+    manga {Completed}
+    other {}}"
   on_hold: "{type, select,
     anime {On Hold}
-    manga {On Hold}}"
+    manga {On Hold}
+    other {}}"
   dropped: "{type, select,
     anime {Dropped}
-    manga {Dropped}}"
-# component: library-dropdown
-library-dropdown:
-  add: "Add to Library"
-  remove: "Remove from Library"
+    manga {Dropped}
+    other {}}"
 # component: follow-button
 follow-button:
   follow: "Follow"
@@ -381,17 +709,68 @@ feeds:
     rated: "rated it"
     progressed: "{type, select,
       anime {watched episode {num}}
-      manga {read chapter {num}}}"
+      manga {read chapter {num}}
+      other {}}"
   post:
     spoilers: "{type, select,
       anime {Ep. {num}}
-      manga {Ch. {num}}}"
+      manga {Ch. {num}}
+      other {}}"
   review:
     review: "Review"
     author: "Review by {user}"
     progress: "{type, select,
       anime {This is a review up to Episode {num}.}
-      manga {This is a review up to Chapter {num}.}}"
+      manga {This is a review up to Chapter {num}.}
+      other {}}"
+# component: image-form
+image-form:
+  help-text: "Click here to select an image."
+group-list:
+  filter: "Filter Groups"
+  sort:
+    recent: "Recent Activity"
+    newest: "Newest Groups"
+    oldest: "Oldest Groups"
+# component: library-entry/*
+library-entry:
+  state:
+    header: "{state, select,
+      false {Add to Library}
+      true {Update Library}
+      other {}}"
+    seen-this: "{type, select,
+      anime {Seen This}
+      manga {Read This}
+      other {}}"
+    want-to-watch: "{type, select,
+      anime {Want to Watch}
+      manga {Want to Read}
+      other {}}"
+    started-watching: "{type, select,
+      anime {Started Watching}
+      manga {Started Reading}
+      other {}}"
+    watching-this: "{type, select,
+      anime {I'm Watching This}
+      manga {I'm Reading This}
+      other {}}"
+    finished-this: "I've Finished This"
+    change-rating: "Change Rating"
+    review: "Review"
+    rewatch: "{type, select,
+      anime {Rewatch}
+      manga {Reread}
+      other {}}"
+    remove-from-library: "Remove from Library"
+    saved-in: "Saved in <a href={link}>{status}</a>"
+    progress: "Progress"
+    not-rated: "Not Rated"
+  rating:
+    awful: "Awful"
+    meh: "Meh"
+    good: "Good"
+    great: "Great"
 # ember-power-select
 selects:
   loading: "Loading..."
@@ -439,4 +818,4 @@ errors:
       starts: "This field must start with a letter or number"
   load: "There was an issue loading the content."
   contentEmpty: "Hmm, there doesn't seem to be anything here yet."
-  request: "There was an issue with the request. Please try again."
+  request: "Oops! Something went wrong with the request."

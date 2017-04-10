@@ -1,7 +1,9 @@
 import { moduleFor, test } from 'ember-qunit';
 import get from 'ember-metal/get';
 
-moduleFor('service:ajax', 'Unit | Service | ajax');
+moduleFor('service:ajax', 'Unit | Service | ajax', {
+  needs: ['service:session']
+});
 
 test('authentication headers are added to ajax requests', function(assert) {
   assert.expect(1);

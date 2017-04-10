@@ -38,10 +38,7 @@ export default Route.extend(Pagination, {
       },
       sort: '-likes_count'
     };
-    return yield get(this, 'store').query('review', options).then((records) => {
-      this.updatePageState(records);
-      return records;
-    });
+    return yield this.queryPaginated('review', options);
   }),
 
   _getParentModel() {

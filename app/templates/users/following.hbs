@@ -15,11 +15,11 @@
           {{#if follow.followed}}
             <div class="card user-card col-sm-3">
               <a href={{href-to "users.index" follow.followed}}>
-                <img class="card-img-top" src={{image follow.followed.coverImage}}>
+                <img class="card-img-top" src={{image follow.followed.coverImage "tiny"}}>
               </a>
               <div class="card-block">
                 <a href={{href-to "users.index" follow.followed}}>
-                  <img class="card-img-avatar" src={{image follow.followed.avatar "medium"}}>
+                  <img class="card-img-avatar" src={{image follow.followed.avatar "small"}}>
                 </a>
                 <a href={{href-to "users.index" follow.followed}}>
                   <h4 class="card-title">{{follow.followed.name}}</h4>

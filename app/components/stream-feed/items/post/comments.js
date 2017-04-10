@@ -2,7 +2,7 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import { isEmpty, isPresent } from 'ember-utils';
+import { isEmpty } from 'ember-utils';
 import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
@@ -17,8 +17,9 @@ export default Component.extend(Pagination, {
   router: service('-routing'),
 
   getComments: task(function* () {
-    return yield get(this, 'store').query('comment', {
+    return yield this.queryPaginated('comment', {
       filter: { post_id: get(this, 'post.id'), parent_id: '_none' },
+      fields: { users: ['avatar', 'name'].join(',') },
       page: { limit: 2 },
       include: 'user',
       sort: '-created_at'
@@ -52,29 +53,29 @@ export default Component.extend(Pagination, {
     set(this, 'comments', []);
   },
 
-  didReceiveAttrs({ newAttrs, oldAttrs }) {
+  didReceiveAttrs() {
     this._super(...arguments);
 
     // display single comment and its thread or load the comments for the post
     if (get(this, 'comment') !== undefined) {
-      // don't reload if the we have received attrs but the post hasn't changed
-      if (isPresent(oldAttrs) && get(newAttrs.comment.value, 'id') === get(oldAttrs.comment.value, 'id')) {
+      if (get(this, 'comment.id') === get(this, 'commentIdWas')) {
         return;
       }
+      set(this, 'commentIdWas', get(this, 'comment.id'));
       set(this, 'comments', []);
       get(this, 'comments').addObject(get(this, 'comment'));
     } else {
       // don't reload if the we have received attrs but the post hasn't changed
-      if (isPresent(oldAttrs) && get(newAttrs.post.value, 'id') === get(oldAttrs.post.value, 'id')) {
+      if (get(this, 'post.id') === get(this, 'postIdWas')) {
         return;
       }
+      set(this, 'postIdWas', get(this, 'post.id'));
       set(this, 'comments', []);
       if (get(this, 'post.topLevelCommentsCount') > 0) {
         get(this, 'getComments').perform().then((comments) => {
           const content = comments.toArray().reverse();
           set(content, 'links', get(comments, 'links'));
           set(this, 'comments', content);
-          this.updatePageState(comments);
         }).catch(() => {});
       }
     }

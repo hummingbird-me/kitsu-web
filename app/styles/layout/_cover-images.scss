@@ -43,7 +43,7 @@
         &.active,
         &:hover,
         &:focus {
-          color: $porcelain !important;
+          color: $foreground-background-color !important;
         }
       }
     }
@@ -165,6 +165,7 @@
     .button {
       padding: 8px 40px;
       font-size: 12px;
+      color: $white;
     }
   }
   .cover-profiles {
@@ -211,9 +212,7 @@
 }
 
 .media-sidebar--sticky {
-  // disable sticky due to chrome issue
-  position: relative;
-  //top: 274px;
+  top: 274px;
   width: 195px;
   float: left;
   @media (max-width: 767px) {
@@ -302,9 +301,9 @@
 
 .navbar-nav {
   .tag {
-    background-color: #EFEFEF;
-    padding: 5px;
-    color: #999999;
+    background-color: $divider-color;
+    padding: 4px;
+    color: $body-text-color;
     margin-left: 5px;
   }
 }

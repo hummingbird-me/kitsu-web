@@ -2,16 +2,16 @@ import computed from 'ember-computed';
 import get from 'ember-metal/get';
 
 /**
- * Concatenates the target array's objects onto the source array.
+ * Concat an array target onto an array source
  *
- * @export
- * @param {any[]} source
- * @param {any[]} target
- * @returns {any[]}
+ * @param {*} deps
  */
-export function concat(source, target) {
-  return computed(`${source}.[]`, `${target}.[]`, function() {
-    return (get(this, source) || []).slice().addObjects((get(this, target) || []).slice());
+export function concat(...dependents) {
+  const dependentKeys = dependents.map(dep => `${dep}.[]`);
+  return computed(...dependentKeys, function() {
+    const array = dependents.map(dep => (get(this, dep) || []).slice());
+    const flattened = array.reduce((prev, curr) => prev.concat(curr));
+    return [].addObjects(flattened);
   }).readOnly();
 }
 

@@ -31,9 +31,11 @@ export default Component.extend({
     if (get(this, 'isCompleted')) {
       return get(this, 'intl').t('dashboard.quick-update.media.complete');
     }
-    const type = get(this, 'entry.media.modelType');
-    const num = get(this, 'nextProgress');
-    const text = get(this, 'intl').t('dashboard.quick-update.media.episode', { type, num });
+    const text = get(this, 'intl').t('dashboard.quick-update.media.episode', {
+      type: get(this, 'entry.media.modelType'),
+      num: get(this, 'nextProgress'),
+      total: get(this, 'entry.media.unitCount')
+    });
     // do we have the next unit information for this entry?
     const nextUnit = get(this, 'entry').belongsTo('nextUnit').value();
     if (nextUnit) {
@@ -52,8 +54,8 @@ export default Component.extend({
     return htmlSafe(`width: ${result}%;`);
   }).readOnly(),
 
-  updateEntryTask: task(function* () {
-    const hash = { progress: get(this, 'nextProgress') };
+  updateEntryTask: task(function* (rating) {
+    const hash = { progress: get(this, 'nextProgress'), rating };
     // will the next update complete this media?
     if (get(this, 'canComplete')) {
       hash.status = 'completed';
@@ -79,11 +81,5 @@ export default Component.extend({
       media: get(this, 'entry.media'),
       user: get(this, 'session.account')
     });
-  },
-
-  actions: {
-    rateEntry(rating) {
-      strictInvokeAction(this, 'updateEntry', 'rating', rating);
-    }
   }
 });

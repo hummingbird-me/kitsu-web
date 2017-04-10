@@ -2,6 +2,7 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const PostCSSFlex = require('postcss-flexbugs-fixes');
 const Autoprefixer = require('autoprefixer');
+const svgoUniqueIds = require('svgo-plugin-unify-ids');
 
 module.exports = function(defaults) {
   const app = new EmberApp(defaults, {
@@ -14,6 +15,14 @@ module.exports = function(defaults) {
     sourcemaps: {
       enabled: true,
       extensions: ['js']
+    },
+    outputPaths: {
+      app: {
+        css: {
+          'light-theme': '/assets/light.css',
+          'dark-theme': '/assets/dark.css'
+        }
+      }
     },
     sassOptions: {
       includePaths: ['node_modules/bootstrap/scss']
@@ -41,27 +50,15 @@ module.exports = function(defaults) {
       ]
     },
     svgJar: {
+      persist: false,
       optimizer: {
         plugins: [
           { removeTitle: true },
           { removeDesc: true },
-          { removeXMLNS: true }
+          { removeXMLNS: true },
+          { uniqueIds: svgoUniqueIds }
         ]
       }
-    },
-    // service worker
-    'esw-index': {
-      location: 'index.html',
-      version: '1'
-    },
-    'asset-cache': {
-      include: ['assets/**/*', 'images/**/*', '**/*.png'],
-      manual: ['assets/app.js'],
-      version: '2'
-    },
-    'esw-cache-first': {
-      patterns: ['https://media.kitsu.io/(.+)'],
-      version: '1'
     },
     // assets
     nodeAssets: {
@@ -69,12 +66,13 @@ module.exports = function(defaults) {
         srcDir: 'dist',
         import: ['autosize.js']
       },
-      blockadblock: {
-        import: ['blockadblock.js']
-      },
       clipboard: {
         srcDir: 'dist',
         import: ['clipboard.js']
+      },
+      cropperjs: {
+        srcDir: 'dist',
+        import: ['cropper.css', 'cropper.js']
       },
       flickity: {
         srcDir: 'dist',
@@ -91,13 +89,6 @@ module.exports = function(defaults) {
       nouislider: {
         srcDir: 'distribute',
         import: ['nouislider.css', 'nouislider.js']
-      },
-      zxcvbn: {
-        srcDir: 'dist',
-        import: [{
-          path: 'zxcvbn.js',
-          sourceMap: 'zxcvbn.js.map'
-        }]
       }
     }
   });

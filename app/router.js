@@ -58,22 +58,48 @@ RouterInstance.map(function() {
     });
   });
 
+  this.route('groups', function() {
+    this.route('new');
+    this.route('group', { path: '/:slug' }, function() {
+      this.route('group-page', { path: '/' }, function() {
+        this.route('rules');
+        this.route('members');
+        this.route('leaders');
+      });
+      this.route('dashboard', function() {
+        this.route('reports');
+        this.route('tickets');
+        this.route('members');
+        this.route('leaders');
+        this.route('settings');
+      });
+    });
+  });
+  this.route('group-invite', { path: '/group-invite/:id' });
+
   this.route('users', { path: '/users/:name' }, function() {
     this.route('library');
     this.route('reviews');
     this.route('followers');
     this.route('following');
+    this.route('groups');
   });
 
   this.route('settings', function() {
     this.route('index', { path: '/profile' });
     this.route('password');
     this.route('privacy');
+    this.route('linked-accounts');
     this.route('imports');
     this.route('exports');
-    // this.route('notifications');
     this.route('blocking');
-    // this.route('apps');
+  });
+
+  this.route('feedback', function() {
+    this.route('bugs');
+    this.route('bugs-anything', { path: '/bugs/*path' });
+    this.route('feature-requests');
+    this.route('feature-requests-anything', { path: '/feature-requests/*path' });
   });
 
   this.route('admin', function() {

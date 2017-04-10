@@ -29,12 +29,12 @@ export default Component.extend(Pagination, {
         user_id: get(this, 'session.account.id'),
         item_type: capitalize(type)
       },
+      fields: this._getFieldsets(type),
       include: 'item',
       sort: 'fav_rank',
       page: { limit: 20 }
     };
-    return yield get(this, 'store').query('favorite', options).then((records) => {
-      this.updatePageState(records);
+    return yield this.queryPaginated('favorite', options).then((records) => {
       records.forEach((record) => {
         strictInvokeAction(this, 'addRecord', record);
       });
@@ -45,8 +45,10 @@ export default Component.extend(Pagination, {
   searchTask: task(function* (query) {
     yield timeout(200);
     const field = get(this, 'isCharacter') ? 'name' : 'text';
-    return yield get(this, 'store').query(get(this, 'type'), {
+    const type = get(this, 'type');
+    return yield get(this, 'store').query(type, {
       filter: { [field]: query },
+      fields: this._getFieldsets(type),
       page: { limit: 6 }
     }).then(records => records.reject(record => (
       get(this, 'favorites').map(favorite => get(favorite, 'item.id')).includes(get(record, 'id'))
@@ -81,5 +83,12 @@ export default Component.extend(Pagination, {
       const favorites = get(this, 'filteredFavorites');
       favorites.forEach(item => set(item, 'favRank', favorites.indexOf(item) + 1));
     }
+  },
+
+  _getFieldsets(type) {
+    if (type === 'character') {
+      return { characters: ['name', 'image'].join(',') };
+    }
+    return { [type]: ['slug', 'posterImage', 'canonicalTitle', 'titles'].join(',') };
   }
 });

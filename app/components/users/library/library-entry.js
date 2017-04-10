@@ -1,6 +1,7 @@
 import Component from 'ember-component';
 import computed, { alias } from 'ember-computed';
 import get from 'ember-metal/get';
+import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { task, timeout } from 'ember-concurrency';
 import jQuery from 'jquery';
@@ -19,8 +20,9 @@ export default Component.extend({
 
   typeText: computed('media.subtype', function() {
     const media = get(this, 'media.modelType');
-    const type = get(this, 'media.subtype').toLowerCase();
-    return get(this, 'intl').t(`media-shared.types.${media}.${type}`);
+    const type = get(this, 'media.subtype');
+    if (!type) { return '-'; }
+    return get(this, 'intl').t(`media-shared.types.${media}.${type.toLowerCase()}`);
   }).readOnly(),
 
   saveEntry: task(function* () {
@@ -50,6 +52,11 @@ export default Component.extend({
     sanitizeNumber(value) {
       const parsed = parseInt(value, 10);
       return isNaN(parsed) ? value : parsed;
+    },
+
+    onProgressChanged(progress) {
+      set(this, 'entry.progress', progress);
+      get(this, 'saveEntryDebounced').perform();
     },
 
     delete() {

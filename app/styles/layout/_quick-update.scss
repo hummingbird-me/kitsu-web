@@ -4,7 +4,8 @@
   right: 0;
   top: 50px;
   height: 270px;
-  background: $voodoo;
+  background: $secondary-background-color;
+  border-bottom: 1px solid darken($secondary-background-color, 3);
   overflow: hidden;
   .flickity-viewport {
     @extend .container;
@@ -182,16 +183,6 @@
 
 .quick-update--rate {
   margin-bottom: 15px;
-
-  .star-empty path {
-    fill: rgba(255,255,255,.6);
-  }
-  .star-full .star-rating-filled, .star-half .star-rating-filled, .star-variable .star-rating-filled {
-    stop-color: $white;
-  }
-  .star-full .star-rating-base, .star-half .star-rating-base, .star-variable .star-rating-base {
-    stop-color: rgba(255,255,255,.6);
-  }
 }
 
 a.update--entry-title {
@@ -259,13 +250,13 @@ a.update--entry-title {
       display: block;
       position: relative;
       height: 2px;
-      background-color: rgba(255,255,255,.3);
+      background-color: rgba(0, 0, 0, 0.5);
       .progress-completed {
         position: absolute;
         top: 0;
         left: 0;
         height: 2px;
-        background-color: #E50914;
+        background-color: rgba(255,255,255,.6);
       }
     }
   }
