@@ -12,7 +12,7 @@ export default Component.extend({
   }),
 
   hasExporterFor(platform) {
-    const exporter = get(this, 'store').peekAll('linked-account').filterBy('kind', `LinkedAccount::${platform}`);
+    const exporter = get(this, 'store').peekAll('linked-account').filterBy('kind', 'my-anime-list');
     return get(exporter, 'length') !== 0;
   },
 
