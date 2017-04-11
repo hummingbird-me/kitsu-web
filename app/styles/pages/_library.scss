@@ -10,12 +10,12 @@
     padding: 15px;
   }
   .menu {
-    border: 1px solid #ddd;
+    border: 1px solid $divider-color;
     border-radius: 3px;
     padding: 0;
     float: right;
     li {
-      border-right: 1px solid #ddd;
+      border-right: 1px solid $divider-color;
       a {
         color: #333;
         font-size: 12px;
@@ -54,7 +54,9 @@
     &.active {
       background: lighten($divider-color, 3);
       border-color: $divider-color;
-      color: $body-text-color;
+      @if $theme == 'kitsu-dark' {
+        background: darken($white,5);
+      }
     }
   }
 }
@@ -63,7 +65,7 @@
   .search-input {
     width: 100%;
     border: none;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid $divider-color;
     padding: 10px 15px;
     font-size: 14px;
   }
@@ -165,7 +167,7 @@
     min-width: 64px;
     display: inline-block;
     height: 100%;
-    border-right: 1px solid #ddd;
+    border-right: 1px solid $divider-color;
     @media (max-width: 992px) {
       padding-right: 5px;
     }
@@ -213,9 +215,8 @@
   position: relative;
   top: -8px;
   .tag {
-    color: #858585;
-    background: #e5e5e5;
-    border: 1px solid #ddd;
+    color: $body-text-color;
+    background: $divider-color;
     border-radius: 3px;
     padding: 4px 8px;
   }
@@ -226,7 +227,7 @@
   padding-right: 20px;
   height: 100%;
   display: inline-block;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid $divider-color;
   font-weight: 600;
   width: 125px;
   text-align: left;
@@ -399,13 +400,13 @@
     width: 30px;
     height: 20px;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 1px solid $divider-color;
     border-radius: 3px;
     font-weight: 600;
     color: #16A085;width: 30px;
     height: 20px;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 1px solid $divider-color;
     border-radius: 3px;
     font-weight: 600;
     color: #16A085;
@@ -417,7 +418,7 @@
   background: lighten($background-color, 5);
 }
 .library-section-empty {
-  border: 1px dotted #ddd;
+  border: 1px dotted $divider-color;
   display: inline-block;
   margin: 20px auto;
   border-radius: 3px;
