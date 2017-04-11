@@ -24,18 +24,18 @@ export default ApplicationSerializer.extend({
     }
 
     if (key === 'ratingTwenty' && key in snapshot.changedAttributes()) {
-      if (get(this, 'session.hasUser')) {
-        get(this, 'session.account').incrementProperty('ratingsCount');
-      }
+      get(this, 'session.account').incrementProperty('ratingsCount');
 
       // If rating is changed we want to send that data to Stream
-      const media = get(snapshot, 'record.media');
-      const mediaType = capitalize(get(media, 'modelType'));
-      get(this, 'metrics').invoke('trackEngagement', 'Stream', {
-        label: 'rating',
-        content: `${mediaType}:${get(media, 'id')}`,
-        boost: json.attributes[key]
-      });
+      if (!isNaN(json.attributes[key])) {
+        const media = get(snapshot, 'record.media');
+        const mediaType = capitalize(get(media, 'modelType'));
+        get(this, 'metrics').invoke('trackEngagement', 'Stream', {
+          label: 'rating',
+          content: `${mediaType}:${get(media, 'id')}`,
+          boost: json.attributes[key]
+        });
+      }
     }
   }
 });

@@ -22,7 +22,7 @@
         {{library-entry/state/completed
           libraryEntry=libraryEntry
           onRatingChange=(action "updateAttribute" "rating")
-          onReview=(action "updateOrCreateReview")
+          onReview=(toggle-action "reviewOpen" this)
           onRewatch=(queue
             (action (mut libraryEntry.reconsumeCount) (inc libraryEntry.reconsumeCount))
             (action (mut libraryEntry.progress) 0)
@@ -34,7 +34,7 @@
         {{#if reviewOpen}}
           {{to-elsewhere named="modal" send=(component "modals/media-review"
             onClose=(toggle-action "reviewOpen" this)
-            review=libraryEntry.review.content
+            libraryEntry=libraryEntry
           )}}
         {{/if}}
       {{else if (eq libraryEntry.status "current")}}

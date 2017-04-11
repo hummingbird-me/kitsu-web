@@ -11,12 +11,26 @@ export default Component.extend({
   classNames: ['review-modal'],
   intl: service(),
   metrics: service(),
+  store: service(),
   rating: alias('review.libraryEntry.rating'),
   errorMessage: t('errors.request'),
 
   isValid: computed('rating', 'review.content', function() {
     return (get(this, 'rating') > 0) && isPresent(get(this, 'review.content'));
   }).readOnly(),
+
+  init() {
+    this._super(...arguments);
+    // make sure the required data is loaded into the mode
+    get(this, 'loadReview').perform().then(() => {
+      get(this, 'loadRelationships').perform();
+    }).catch(() => {});
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    get(this, 'review').rollbackAttributes();
+  },
 
   saveReview: task(function* () {
     set(this, 'showError', false);
@@ -37,6 +51,22 @@ export default Component.extend({
     });
   }).drop(),
 
+  loadReview: task(function* () {
+    if (get(this, 'review')) { return; }
+    const libraryEntry = get(this, 'libraryEntry');
+    yield libraryEntry.belongsTo('review').load().then((record) => {
+      let review = record;
+      if (!review) {
+        review = get(this, 'store').createRecord('review', {
+          user: get(this, 'session.account'),
+          media: get(libraryEntry, 'media'),
+          libraryEntry
+        });
+      }
+      set(this, 'review', review);
+    });
+  }).restartable(),
+
   /**
    * Load the required relationships as our JSON:API may not have included the data.
    * `.load()` will just return the local data if it has it.
@@ -46,18 +76,7 @@ export default Component.extend({
     yield get(this, 'review').belongsTo('media').load();
     const mediaType = get(this, 'review.media.modelType');
     set(this, `review.libraryEntry.${mediaType}`, get(this, 'review.media'));
-  }).drop(),
-
-  init() {
-    this._super(...arguments);
-    // make sure the required data is loaded into the mode
-    get(this, 'loadRelationships').perform();
-  },
-
-  willDestroyElement() {
-    this._super(...arguments);
-    get(this, 'review').rollbackAttributes();
-  },
+  }).restartable(),
 
   _trackCreation() {
     get(this, 'metrics').trackEvent({

@@ -99,19 +99,6 @@ export default Component.extend({
       get(this, 'updateLibraryEntryTask').perform().catch(() => {
         get(this, 'libraryEntry').rollbackAttributes();
       });
-    },
-
-    updateOrCreateReview() {
-      let review = get(this, 'libraryEntry').belongsTo('review').value();
-      if (!review) {
-        review = get(this, 'store').createRecord('review', {
-          libraryEntry: get(this, 'libraryEntry'),
-          media: get(this, 'libraryEntry.media'),
-          user: get(this, 'session.account')
-        });
-        set(this, 'libraryEntry.review', review);
-      }
-      this.toggleProperty('reviewOpen');
     }
   },
 

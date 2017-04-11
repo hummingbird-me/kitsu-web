@@ -62,27 +62,8 @@ export default Component.extend({
     // will the next update complete this media?
     if (get(this, 'canComplete')) {
       hash.status = 'completed';
-      // Load in the review relationship as there is an issue with the API and including
-      // the relationship initially
-      yield get(this, 'entry.review').then((review) => {
-        if (review) {
-          set(review, 'media', get(this, 'entry.media'));
-          set(review, 'libraryEntry', get(this, 'entry'));
-        } else {
-          const newReview = this._createReview();
-          set(this, 'entry.review', newReview);
-        }
-      });
     }
     yield strictInvokeAction(this, 'updateEntry', hash);
     yield strictInvokeAction(this, 'reloadUnit');
-  }).drop(),
-
-  _createReview() {
-    return get(this, 'store').createRecord('review', {
-      libraryEntry: get(this, 'entry'),
-      media: get(this, 'entry.media'),
-      user: get(this, 'session.account')
-    });
-  }
+  }).drop()
 });
