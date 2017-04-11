@@ -64,13 +64,13 @@
           </div>
         {{/each}}
 
-        <div class="text-xs-center w-100">
-          {{#if hasNextPage}}
+        {{#if hasNextPage}}
+          <div class="text-xs-center w-100">
             <button class="button button--primary btn-block" disabled={{if isLoading "disabled"}} {{action (route-action "onPagination")}}>
               Load More
             </button>
-          {{/if}}
-        </div>
+          </div>
+        {{/if}}
       </div>
     {{else}}
       <div class="text-xs-center w-100 m-t-1 m-b-1">

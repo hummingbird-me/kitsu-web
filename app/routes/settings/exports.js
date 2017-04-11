@@ -14,7 +14,8 @@ export default Route.extend(Pagination, {
 
   modelTask: task(function* () {
     return yield this.queryPaginated('linked-account', {
-      include: 'libraryEntryLogs.media'
+      include: 'libraryEntryLogs.media',
+      fields: { media: 'canonicalTitle' }
     }).then((records) => {
       const controller = this.controllerFor(get(this, 'routeName'));
       set(controller, 'hasNextPage', this._hasNextPage());
