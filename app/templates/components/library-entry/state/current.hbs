@@ -1,17 +1,31 @@
 {{#unless hideProgress}}
-  {{library-entry/progress
-    libraryEntry=libraryEntry
-    onProgressChange=onProgressChange
-  }}
+  {{library-entry/progress libraryEntry=libraryEntry onProgressChange=onProgressChange}}
 {{/unless}}
 
 {{! I've Finished This }}
-{{#library-entry/rating-button
-  class="button button--secondary"
-  onClick=onComplete
-}}
+<button class="button button--secondary" {{action onStatusChange "completed"}}>
   {{t "library-entry.state.finished-this"}}
+</button>
+
+{{! Rate This }}
+{{#library-entry/rating-button class="button button--secondary button--muted" onClick=onRatingChange}}
+  {{t "library-entry.state.rate-this"}}
 {{/library-entry/rating-button}}
+
+{{! Write Review }}
+<button class="button button--secondary button--muted" {{action onReview}}>
+  {{t "library-entry.state.review"}}
+</button>
+
+{{! Place On Hold }}
+<button class="button button--secondary button--muted" {{action onStatusChange "on_hold"}}>
+  {{t "library-entry.state.place-on-hold"}}
+</button>
+
+{{! Drop This }}
+<button class="button button--secondary button--muted" {{action onStatusChange "dropped"}}>
+  {{t "library-entry.state.drop-this"}}
+</button>
 
 {{! Remove }}
 <button class="button button--secondary button--muted" {{action onRemove}}>

@@ -674,7 +674,6 @@ library-shared:
     anime {Dropped}
     manga {Dropped}
     other {}}"
-  remove: 'Remove from Library'
 # component: follow-button
 follow-button:
   follow: "Follow"
@@ -720,6 +719,7 @@ library-entry:
       false {Add to Library}
       true {Update Library}
       other {}}"
+    add-to-library: "Add To Library"
     seen-this: "{type, select,
       anime {Seen This}
       manga {Read This}
@@ -732,13 +732,14 @@ library-entry:
       anime {Started Watching}
       manga {Started Reading}
       other {}}"
-    watching-this: "{type, select,
-      anime {I'm Watching This}
-      manga {I'm Reading This}
-      other {}}"
+    watching-this: "I've Started This"
     finished-this: "I've Finished This"
+    place-on-hold: "Place On Hold"
+    drop-this: "Drop This"
     change-rating: "Change Rating"
-    review: "Review"
+    remove-rating: "Remove Rating"
+    rate-this: "Rate This"
+    review: "Write Review"
     rewatch: "{type, select,
       anime {Rewatch}
       manga {Reread}

@@ -8,7 +8,7 @@ export default Component.extend(HoverIntentMixin, {
   tagName: 'button',
   rating: 1,
   hoverTimeout: 500,
-  hoverOnly: false,
+  hoverOnly: true,
 
   click() {
     if (!get(this, 'hoverOnly')) {

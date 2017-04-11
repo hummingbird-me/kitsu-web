@@ -16,13 +16,13 @@
       onHover=(action (mut isTooltipHovered) true)
       onLeave=(action (mut isTooltipHovered) false)
     }}
-      <div class="rating-hover-wrapper {{if session.account.isSimpleRating "simple-rating"}}">
+      <div class="rating-hover-wrapper {{session.account.ratingSystem}}">
         {{#if (or (not session.hasUser) session.account.isSimpleRating)}}
           {{library-entry/simple-rating onClick=(action "ratingSelected")}}
+        {{else if (eq session.account.ratingSystem "regular")}}
+          {{library-entry/regular-rating rating=rating onClick=(action "ratingSelected")}}
         {{else}}
-          {{library-entry/advanced-rating
-            rating=rating
-            onClick=(action "ratingSelected")}}
+          {{library-entry/advanced-rating rating=rating onClick=(action "ratingSelected")}}
         {{/if}}
       </div>
     {{/ember-tether}}

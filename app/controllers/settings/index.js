@@ -31,7 +31,7 @@ export default Controller.extend({
   )),
 
   ratings: getter(() => (
-    ['Simple', 'Advanced'].map(key => ({ id: key.toLowerCase(), text: key }))
+    ['Simple', 'Regular', 'Advanced'].map(key => ({ id: key.toLowerCase(), text: key }))
   )),
 
   filters: getter(() => (

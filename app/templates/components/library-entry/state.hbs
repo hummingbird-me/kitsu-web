@@ -17,6 +17,15 @@
         createOnly=createOnly
         onCreate=(action "createLibraryEntry")}}
     {{else}} {{! Has a library entry }}
+      {{#unless hideProgress}}
+        <span class="state-helper">
+          {{t-html "library-entry.state.saved-in"
+            link=(href-to "users.library" session.account.name (query-params status=libraryEntry.status))
+            status=(t (concat "library-shared." libraryEntry.status) type=mediaType)
+          }}
+        </span>
+      {{/unless}}
+
       {{#if (eq libraryEntry.status "completed")}}
         {{! completed state }}
         {{library-entry/state/completed
@@ -30,19 +39,15 @@
           )
           onRemove=(action "removeLibraryEntry")
         }}
-        {{! Review Modal }}
-        {{#if reviewOpen}}
-          {{to-elsewhere named="modal" send=(component "modals/media-review"
-            onClose=(toggle-action "reviewOpen" this)
-            libraryEntry=libraryEntry
-          )}}
-        {{/if}}
       {{else if (eq libraryEntry.status "current")}}
         {{! current status }}
         {{library-entry/state/current
           hideProgress=hideProgress
           libraryEntry=libraryEntry
+          onRatingChange=(action "updateAttribute" "rating")
           onProgressChange=(action "updateAttribute" "progress")
+          onStatusChange=(action "updateAttribute" "status")
+          onReview=(toggle-action "reviewOpen" this)
           onComplete=(queue
             (action (mut libraryEntry.status) "completed")
             (action "updateAttribute" "rating")
@@ -58,6 +63,14 @@
           onStatusChange=(action "updateAttribute" "status")
           onRemove=(action "removeLibraryEntry")
         }}
+      {{/if}}
+
+      {{! Review Modal }}
+      {{#if reviewOpen}}
+        {{to-elsewhere named="modal" send=(component "modals/media-review"
+          onClose=(toggle-action "reviewOpen" this)
+          libraryEntry=libraryEntry
+        )}}
       {{/if}}
     {{/unless}}
   </div>

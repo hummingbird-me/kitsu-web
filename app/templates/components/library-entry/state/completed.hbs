@@ -1,74 +1,82 @@
-{{! Rating }}
-{{#if isChangingRating}}
-<div>
-  {{#ember-tether
-    id="library-state-completed-rating"
-    target=(concat "#" elementId)
-    attachment=(or attachment "bottom middle")
-    targetAttachment=(or targetAttachment "top middle")
-    targetOffset="-10% 0"
-    constraints=(array (hash
-      to="scrollParent"
-      attachment="together"
-    ))
-  }}
-    <div class="rating-hover-wrapper {{if session.account.isSimpleRating "simple-rating"}}">
-      {{#if (or (not session.hasUser) session.account.isSimpleRating)}}
-        {{library-entry/simple-rating onClick=(action "ratingSelected")}}
+{{#if (gt libraryEntry.rating 0)}}
+  {{! Dropdown - Rated }}
+  {{#if isChangingRating}}
+  <div>
+    {{#ember-tether
+      id="library-state-completed-rating"
+      target=(concat "#" elementId)
+      attachment=(or attachment "bottom middle")
+      targetAttachment=(or targetAttachment "top middle")
+      targetOffset="-10% 0"
+      constraints=(array (hash
+        to="scrollParent"
+        attachment="together"
+      ))
+    }}
+      <div class="rating-hover-wrapper {{session.account.ratingSystem}}">
+        {{#if (or (not session.hasUser) session.account.isSimpleRating)}}
+          {{library-entry/simple-rating onClick=(action "ratingSelected")}}
+        {{else if (eq session.account.ratingSystem "regular")}}
+          {{library-entry/regular-rating rating=libraryEntry.rating onClick=(action "ratingSelected")}}
+        {{else}}
+          {{library-entry/advanced-rating rating=libraryEntry.rating onClick=(action "ratingSelected")}}
+        {{/if}}
+      </div>
+    {{/ember-tether}}
+  </div>
+  {{/if}}
+
+  {{! Dropdown }}
+  {{#bootstrap/bs-dropdown class="btn-group" as |dropdown|}}
+    <button class="btn btn-secondary" {{action "showRating"}}>
+      {{! Simple State }}
+      {{#if session.account.isSimpleRating}}
+        <span class="rating-simple">
+          {{#if (gt libraryEntry.rating 0)}}
+            {{library-entry/readonly-rating rating=libraryEntry.rating width="24" height="24" tagName=""}}
+          {{else}}
+            <span class="not-rated">{{t "library-entry.state.not-rated"}}</span>
+          {{/if}}
+        </span>
+      {{! Regular/Advanced State }}
       {{else}}
-        {{library-entry/advanced-rating
-          rating=libraryEntry.rating
-          onClick=(action "ratingSelected")
-        }}
+        <span class="rating-advanced">
+          {{#if (gt libraryEntry.rating 0)}}
+            {{library-entry/readonly-rating rating=libraryEntry.rating tagName=""}}
+          {{else}}
+            <span class="not-rated">{{t "library-entry.state.not-rated"}}</span>
+          {{/if}}
+        </span>
       {{/if}}
-    </div>
-  {{/ember-tether}}
-</div>
+    </button>
+    <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {{! Dropdown Caret }}
+    </button>
+
+
+    {{#dropdown.menu}}
+      {{#dropdown.menu-item onClick=(action "showRating")}}
+        {{t "library-entry.state.change-rating"}}
+      {{/dropdown.menu-item}}
+      <div class="dropdown-divider"></div>
+      {{#dropdown.menu-item onClick=(action onRatingChange null)}}
+        {{t "library-entry.state.remove-rating"}}
+      {{/dropdown.menu-item}}
+    {{/dropdown.menu}}
+  {{/bootstrap/bs-dropdown}}
+{{else}}
+  {{! Rate This - No Rating }}
+  {{#library-entry/rating-button class="button button--secondary" onClick=onRatingChange}}
+    {{t "library-entry.state.rate-this"}}
+  {{/library-entry/rating-button}}
 {{/if}}
 
-{{! Dropdown }}
-{{#bootstrap/bs-dropdown class="btn-group" as |dropdown|}}
-  <button class="btn btn-secondary">
-    {{! Simple State }}
-    {{#if session.account.isSimpleRating}}
-      <span class="rating-simple">
-        {{#if (gt libraryEntry.rating 0)}}
-          {{library-entry/readonly-rating rating=libraryEntry.rating width="24" height="24" tagName=""}}
-        {{else}}
-          <span class="not-rated">{{t "library-entry.state.not-rated"}}</span>
-        {{/if}}
-      </span>
-    {{! Advanced State }}
-    {{else}}
-      <span class="rating-advanced">
-        {{#if (gt libraryEntry.rating 0)}}
-          {{library-entry/readonly-rating rating=libraryEntry.rating tagName=""}}
-        {{else}}
-          <span class="not-rated">{{t "library-entry.state.not-rated"}}</span>
-        {{/if}}
-      </span>
-    {{/if}}
-  </button>
-  <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{! Dropdown Caret }}
-  </button>
+{{! Write Review }}
+<button class="button button--secondary button--muted" {{action onReview}}>
+  {{t "library-entry.state.review"}}
+</button>
 
-
-  {{#dropdown.menu}}
-    {{#dropdown.menu-item onClick=(action "showRating")}}
-      {{t "library-entry.state.change-rating"}}
-    {{/dropdown.menu-item}}
-    <div class="dropdown-divider"></div>
-    {{#dropdown.menu-item onClick=(action onReview)}}
-      {{t "library-entry.state.review"}}
-    {{/dropdown.menu-item}}
-    <div class="dropdown-divider"></div>
-    {{#dropdown.menu-item onClick=(action onRewatch)}}
-      {{t "library-entry.state.rewatch" type=libraryEntry.media.modelType}}
-    {{/dropdown.menu-item}}
-    <div class="dropdown-divider"></div>
-    {{#dropdown.menu-item onClick=(action onRemove)}}
-      {{t "library-entry.state.remove-from-library"}}
-    {{/dropdown.menu-item}}
-  {{/dropdown.menu}}
-{{/bootstrap/bs-dropdown}}
+{{! Remove }}
+<button class="button button--secondary button--muted" {{action onRemove}}>
+  {{t "library-entry.state.remove-from-library"}}
+</button>

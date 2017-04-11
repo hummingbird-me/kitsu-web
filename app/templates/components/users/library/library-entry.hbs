@@ -131,12 +131,9 @@
           {{! Library Status }}
           {{#if (can "edit library-entry" entry user=user)}}
             <div class="status-select">
-              {{users/library/status-dropdown
-                entry=entry
-                methods=(hash
-                  update=(action "updateStatus")
-                  delete=(action "deleteEntry")
-                )
+              {{library-entry/status-dropdown
+                libraryEntry=entry
+                media=entry.media
               }}
             </div>
 

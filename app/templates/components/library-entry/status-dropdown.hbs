@@ -1,0 +1,30 @@
+{{#bootstrap/bs-dropdown as |dropdown|}}
+  {{#dropdown.button class="w-100" disabled=(if updateTask.isRunning "disabled")}}
+    {{#if isLoading}}
+      {{loading-spinner}}
+    {{else if libraryEntry}}
+      {{t (concat "library-shared." libraryEntry.status) type=mediaType}}
+    {{else}}
+      {{t "library-entry.state.add-to-library"}}
+    {{/if}}
+  {{/dropdown.button}}
+
+  {{#dropdown.menu}}
+    {{! Statuses }}
+    {{#each statuses as |status|}}
+      {{#dropdown.menu-item onClick=(action "updateLibraryEntry" status)}}
+        {{t (concat "library-shared." status) type=mediaType}}
+        {{#if (eq libraryEntry.status status)}}
+          <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+        {{/if}}
+      {{/dropdown.menu-item}}
+    {{/each}}
+
+    {{! Remove }}
+    {{#if libraryEntry}}
+      {{#dropdown.menu-item onClick=(action "removeLibraryEntry")}}
+        {{t "library-entry.state.remove-from-library"}}
+      {{/dropdown.menu-item}}
+    {{/if}}
+  {{/dropdown.menu}}
+{{/bootstrap/bs-dropdown}}
