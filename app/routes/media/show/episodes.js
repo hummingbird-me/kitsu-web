@@ -28,7 +28,8 @@ export default Route.extend(Pagination, {
       filter: {
         media_type: capitalize(get(media, 'modelType')),
         media_id: get(media, 'id')
-      }
+      },
+      sort: 'seasonNumber,number'
     };
     return yield this.queryPaginated('episode', options);
   }),
