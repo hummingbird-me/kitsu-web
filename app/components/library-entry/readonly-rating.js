@@ -8,7 +8,7 @@ export default Component.extend({
   height: '20',
 
   regularRating: computed('rating', function() {
-    return get(this, 'rating') / 2;
+    return Math.floor((get(this, 'rating') / 2) * 2) / 2;
   }).readOnly(),
 
   simpleTag: computed('rating', function() {
