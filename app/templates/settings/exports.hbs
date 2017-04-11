@@ -55,7 +55,7 @@
                   </span>
                   <span class="font-weight-bold">Status:</span> active<br>
                 </p>
-                <table class="library-entry-logs table table-striped">
+                <table class="library-entry-logs table table-hover">
                   <thead>
                     <tr>
                       <th>{{t "exports.logs.header.media"}}</th>
@@ -67,19 +67,23 @@
                       <th>{{t "exports.logs.header.status"}}</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {{#each export.libraryEntryLogs as |log|}}
-                      <tr class="library-entry-log">
-                        <td>{{log.media.canonicalTitle}}</td>
-                        <td>{{t (concat "library-shared." log.status) type=log.media.modelType}}</td>
-                        <td>{{log.progress}}</td>
-                        <td>{{log.normalizedRating}}</td>
-                        <td>{{log.reconsumeCount}}</td>
-                        <td>{{t (concat "exports.logs.action." log.actionPerformed)}}</td>
-                        <td>{{t (concat "exports.logs.status." log.syncStatus)}}</td>
-                      </tr>
-                    {{/each}}
-                  </tbody>
+                  {{#each export.logsByDate as |date|}}
+                    <div>{{date.value}}</div>
+                    <tbody>
+                      {{!-- {{#each export.libraryEntryLogs as |log|}} --}}
+                      {{#each date.items as |log|}}
+                        <tr class="library-entry-log">
+                          <td>{{log.media.canonicalTitle}}</td>
+                          <td>{{t (concat "library-shared." log.status) type=log.media.modelType}}</td>
+                          <td>{{log.progress}}</td>
+                          <td>{{log.normalizedRating}}</td>
+                          <td>{{log.reconsumeCount}}</td>
+                          <td>{{t (concat "exports.logs.action." log.actionPerformed)}}</td>
+                          <td>{{t (concat "exports.logs.status." log.syncStatus)}}</td>
+                        </tr>
+                      {{/each}}
+                    </tbody>
+                  {{/each}}
                 </table>
               </div>
             </div>

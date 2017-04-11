@@ -9,14 +9,18 @@ export default Base.extend({
   rating: attr('number'),
   reconsumeCount: attr('number'),
   status: attr('string'),
+  normalizedRating: computed('rating', function() {
+    return get(this, 'rating') / 2;
+  }),
 
   actionPerformed: attr('string'),
   syncStatus: attr('string'),
+  createdAt: attr('utc'),
+  date: computed('createdAt', function() {
+    const created = get(this, 'createdAt');
+    return created.format('MMMM Do YYYY');
+  }),
 
   linkedAccount: belongsTo('linkedAccount'),
   media: belongsTo('media'),
-
-  normalizedRating: computed('rating', function() {
-    return get(this, 'rating') / 2;
-  })
 });
