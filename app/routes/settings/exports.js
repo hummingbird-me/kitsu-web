@@ -5,19 +5,37 @@ import { task } from 'ember-concurrency';
 import Pagination from 'client/mixins/pagination';
 
 export default Route.extend(Pagination, {
+  model() {
+    return {
+      taskInstance: get(this, 'modelTask').perform(),
+      paginatedRecords: []
+    };
+  },
+
   modelTask: task(function* () {
-    const results = yield get(this, 'store').findAll('linked-account', {
+    return yield this.queryPaginated('linked-account', {
       include: 'libraryEntryLogs.media'
+    }).then((records) => {
+      const controller = this.controllerFor(get(this, 'routeName'));
+      set(controller, 'hasNextPage', this._hasNextPage());
+      return records;
     });
-    const controller = this.controllerFor(get(this, 'routeName'));
-    set(controller, 'taskValue', results);
   }),
 
-  model() {
-    return { taskInstance: get(this, 'modelTask').perform() };
+  onPagination() {
+    const controller = this.controllerFor(get(this, 'routeName'));
+    set(controller, 'hasNextPage', this._hasNextPage());
+    set(controller, 'isLoading', false);
+    this._super(...arguments);
   },
 
   actions: {
+    onPagination() {
+      const controller = this.controllerFor(get(this, 'routeName'));
+      set(controller, 'isLoading', true);
+      this._super(...arguments);
+    },
+
     removeExport(exporter) {
       exporter.destroyRecord();
     }
