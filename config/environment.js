@@ -98,7 +98,7 @@ module.exports = function(environment) {
 
     moment: {
       allowEmpty: true,
-      includeTimezone: '2010-2020'
+      includeTimezone: 'subset'
     },
 
     'polyfill-io': {
