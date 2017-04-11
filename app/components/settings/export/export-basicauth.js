@@ -45,7 +45,7 @@ export default Component.extend({
   actions: {
     setupExport() {
       get(this, 'createExport').perform()
-        .then(() => { invokeAction(this, 'close') })
+        .then(() => { invokeAction(this, 'close'); })
         .catch((err) => {
           const errorCode = parseInt(get(err, 'errors.firstObject.status'), 10);
           if (errorCode === 422) {
