@@ -30,6 +30,7 @@
         {{! completed state }}
         {{library-entry/state/completed
           libraryEntry=libraryEntry
+          hideRemove=hideRemove
           onRatingChange=(action "updateAttribute" "rating")
           onReview=(toggle-action "reviewOpen" this)
           onRewatch=(queue
