@@ -22,15 +22,13 @@ export default Component.extend({
       const password = get(this, 'password');
       return btoa(`${username}:${password}`);
     }
-  }),
+  }).readOnly(),
 
   createExport: task(function* () {
     const exporter = get(this, 'store').createRecord('linked-account', {
       externalUserId: get(this, 'username'),
-      token: get(this, 'password'),
+      token: get(this, 'token'),
       kind: dasherize(get(this, 'siteName')),
-      shareFrom: false,
-      shareTo: false,
       syncTo: true,
       user: get(this, 'session.account')
     });
@@ -47,7 +45,7 @@ export default Component.extend({
   actions: {
     setupExport() {
       get(this, 'createExport').perform()
-        .then(() => invokeAction(this, 'close'))
+        .then(() => { invokeAction(this, 'close') })
         .catch((err) => {
           const errorCode = parseInt(get(err, 'errors.firstObject.status'), 10);
           if (errorCode === 422) {
