@@ -14,7 +14,7 @@ export default Component.extend({
       const created = get(log, 'createdAt');
       set(log, 'date', created.format(dateFormat));
     });
-    return logs
+    return logs;
   }).readOnly(),
   logsByDate: groupBy('datedLogs', 'date'),
   sortedLogs: computed('logsByDate', function() {
@@ -26,13 +26,17 @@ export default Component.extend({
     });
     sDates.forEach((date) => {
       const logs = get(date, 'items');
-      const sLogs = logs.sort((a, b) => {
-        return get(b, 'createdAt') - get(a, 'createdAt');
-      });
+      const sLogs = logs.sort((a, b) => get(b, 'createdAt').diff(get(a, 'createdAt')));
       set(date, 'items', sLogs);
       const d = moment(get(date, 'value'), dateFormat);
       set(date, 'value', d.format('MMMM Do YYYY'));
     });
     return sDates;
   }).readOnly(),
+
+  actions: {
+    removeExport(exp) {
+      exp.destroyRecord();
+    }
+  }
 });
