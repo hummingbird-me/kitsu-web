@@ -13,8 +13,6 @@
         to="scrollParent"
         attachment="together"
       ))
-      onHover=(action (mut isTooltipHovered) true)
-      onLeave=(action (mut isTooltipHovered) false)
     }}
       <div class="rating-hover-wrapper {{session.account.ratingSystem}}">
         {{#if (or (not session.hasUser) session.account.isSimpleRating)}}
