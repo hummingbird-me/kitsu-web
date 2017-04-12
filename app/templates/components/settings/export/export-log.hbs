@@ -29,12 +29,12 @@
             <th>{{t "exports.logs.header.status"}}</th>
           </tr>
         </thead>
-        {{#each logsByDate as |date|}}
+        {{#each sortedLogs as |date|}}
           <div>{{date.value}}</div>
           <tbody>
             {{#each date.items as |log|}}
               <tr class="library-entry-log">
-                <td>{{log.media.canonicalTitle}}</td>
+                <td>{{log.media.canonicalTitle}}{{log.createdAt}}</td>
                 <td>{{t (concat "library-shared." log.status) type=log.media.modelType}}</td>
                 <td>{{log.progress}}</td>
                 <td>{{log.rating}}</td>
