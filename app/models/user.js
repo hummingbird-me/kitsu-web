@@ -73,7 +73,6 @@ export default Base.extend(Validations, {
   titleLanguagePreference: attr('string', { defaultValue: 'canonical' }),
   theme: attr('string', { defaultValue: 'light' }),
   waifuOrHusbando: attr('string'),
-  website: attr('string'),
   updatedAt: attr('utc'),
 
   // NOTE: These properties are not used for mapping posts to user
