@@ -1,37 +1,51 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import { guidFor } from 'ember-metal/utils';
 import { invokeAction } from 'ember-invoke-action';
 import jQuery from 'jquery';
 
 export default Component.extend({
-  classNames: ['rating-button'],
-  tagName: 'button',
+  tagName: '',
+  swapToDropdown: false,
+  showDropdown: false,
   rating: 1,
 
-  click() {
-    this.toggleProperty('showTooltip');
+  init() {
+    this._super(...arguments);
+    set(this, 'guid', guidFor(this));
+
+    // Show dropdown by default if we have a rating
+    if (get(this, 'swapToDropdown') && 'rating' in this.attrs) {
+      set(this, 'showDropdown', !!get(this, 'rating'));
+    }
   },
 
   didInsertElement() {
     this._super(...arguments);
-    jQuery(document.body).on('click.rating-button', ({ target }) => {
-      const elementId = get(this, 'elementId');
-      const isChildElement = jQuery(target).is(`#${elementId} *, #${elementId}`);
+    this._onBodyClick = ({ target }) => {
+      const elementId = get(this, 'guid');
+      const isChildElement = jQuery(target).is(`.rating-button-${elementId} *, .rating-button-${elementId}`);
       const isTetherElement = jQuery(target).is('.rating-tether *, .rating-tether');
       if (!isChildElement && !isTetherElement) {
         set(this, 'showTooltip', false);
       }
-    });
+    };
+    document.body.addEventListener('click', this._onBodyClick);
   },
 
   willDestroyElement() {
     this._super(...arguments);
-    jQuery(document.body).off('click.rating-button');
+    if (this._onBodyClick) {
+      document.body.removeEventListener('click', this._onBodyClick);
+    }
   },
 
   actions: {
     ratingSelected(rating) {
+      if (get(this, 'swapToDropdown')) {
+        set(this, 'showDropdown', !!rating);
+      }
       invokeAction(this, 'onClick', rating);
     }
   }

@@ -8,6 +8,7 @@
   {{else}}
     <span class="not-rated">{{t "library-entry.state.not-rated"}}</span>
   {{/if}}
+{{! Advanced/Regular }}
 {{else}}
   {{#if (gt rating 0)}}
     {{svg-jar "star" width=width height=height class=(concat "current-rating " simpleTag)}}

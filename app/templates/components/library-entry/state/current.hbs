@@ -8,7 +8,11 @@
 </button>
 
 {{! Rate This }}
-{{#library-entry/rating-button class="button button--secondary button--muted" onClick=onRatingChange}}
+{{#library-entry/rating-button class="button button--secondary button--muted"
+  rating=libraryEntry.rating
+  swapToDropdown=true
+  onClick=onRatingChange
+}}
   {{t "library-entry.state.rate-this"}}
 {{/library-entry/rating-button}}
 
