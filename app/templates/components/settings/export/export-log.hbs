@@ -17,35 +17,37 @@
         </span>
         <span class="font-weight-bold">Status:</span> active<br>
       </p>
-      <table class="library-entry-logs table table-hover">
-        <thead>
-          <tr>
-            <th>{{t "exports.logs.header.media"}}</th>
-            <th>{{t "exports.logs.header.library-status"}}</th>
-            <th>{{t "exports.logs.header.progress"}}</th>
-            <th>{{t "exports.logs.header.rating"}}</th>
-            <th>{{t "exports.logs.header.reconsumes"}}</th>
-            <th>{{t "exports.logs.header.action"}}</th>
-            <th>{{t "exports.logs.header.status"}}</th>
-          </tr>
-        </thead>
-        {{#each sortedLogs as |date|}}
-          <div>{{date.value}}</div>
-          <tbody>
-            {{#each date.items as |log|}}
-              <tr class="library-entry-log">
-                <td>{{log.media.canonicalTitle}}{{log.createdAt}}</td>
-                <td>{{t (concat "library-shared." log.status) type=log.media.modelType}}</td>
-                <td>{{log.progress}}</td>
-                <td>{{log.rating}}</td>
-                <td>{{log.reconsumeCount}}</td>
-                <td>{{t (concat "exports.logs.action." log.actionPerformed)}}</td>
-                <td>{{t (concat "exports.logs.status." log.syncStatus)}}</td>
-              </tr>
-            {{/each}}
-          </tbody>
-        {{/each}}
-      </table>
+      {{#if sortedLogs}}
+        <table class="library-entry-logs table table-hover">
+          <thead>
+            <tr>
+              <th>{{t "exports.logs.header.media"}}</th>
+              <th>{{t "exports.logs.header.library-status"}}</th>
+              <th>{{t "exports.logs.header.progress"}}</th>
+              <th>{{t "exports.logs.header.rating"}}</th>
+              <th>{{t "exports.logs.header.reconsumes"}}</th>
+              <th>{{t "exports.logs.header.action"}}</th>
+              <th>{{t "exports.logs.header.status"}}</th>
+            </tr>
+          </thead>
+          {{#each sortedLogs as |date|}}
+            <div>{{date.value}}</div>
+            <tbody>
+              {{#each date.items as |log|}}
+                <tr class="library-entry-log">
+                  <td>{{log.media.canonicalTitle}}{{log.createdAt}}</td>
+                  <td>{{t (concat "library-shared." log.status) type=log.media.modelType}}</td>
+                  <td>{{log.progress}}</td>
+                  <td>{{log.rating}}</td>
+                  <td>{{log.reconsumeCount}}</td>
+                  <td>{{t (concat "exports.logs.action." log.actionPerformed)}}</td>
+                  <td>{{t (concat "exports.logs.status." log.syncStatus)}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          {{/each}}
+        </table>
+      {{/if}}
     </div>
   </div>
 </div>

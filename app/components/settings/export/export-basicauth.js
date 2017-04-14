@@ -27,7 +27,7 @@ export default Component.extend({
   createExport: task(function* () {
     const exporter = get(this, 'store').createRecord('linked-account', {
       externalUserId: get(this, 'username'),
-      token: get(this, 'token'),
+      token: get(this, 'password'),
       kind: dasherize(get(this, 'siteName')),
       syncTo: true,
       user: get(this, 'session.account')
