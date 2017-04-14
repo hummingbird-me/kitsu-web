@@ -47,6 +47,7 @@ export default Component.extend({
         set(this, 'showDropdown', !!rating);
       }
       invokeAction(this, 'onClick', rating);
+      set(this, 'showTooltip', false);
     }
   }
 });

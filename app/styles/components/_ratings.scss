@@ -200,44 +200,10 @@
 
   &.regular {
     svg {
-      &:first-child {
-        .star-rating-filled {
-          stop-color: #DA5E51;
-        }
-      }
-      &:nth-child(2) {
-        &.star-half {
-          .star-rating-filled {
-            stop-color: #DA5E51;
-          }
-        }
-        &.star-full {
-          .star-rating-filled {
-            stop-color: rgba(230, 126, 34, 1.0);
-          }
-        }
-      }
-      &:nth-child(3) {
-        .star-rating-filled {
-          stop-color: rgba(230, 126, 34, 1.0);
-        }
-      }
-      &:nth-child(4) {
-        .star-rating-filled {
-          stop-color: $caribbean;
-        }
-      }
-      &:last-child {
-        &.star-half {
-          .star-rating-filled {
-            stop-color: $caribbean;
-          }
-        }
-        &.star-full {
-          .star-rating-filled {
-            stop-color: #3E99D7;
-          }
-        }
+      stroke: #000;
+      stroke-width: 0.2px;
+      .star-rating-filled {
+        stop-color: $buttercup;
       }
     }
   }
