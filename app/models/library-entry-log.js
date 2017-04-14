@@ -9,6 +9,7 @@ export default Base.extend({
   status: attr('string'),
   actionPerformed: attr('string'),
   syncStatus: attr('string'),
+  errorMessage: attr('string'),
   createdAt: attr('utc'),
 
   linkedAccount: belongsTo('linked-account'),
