@@ -200,9 +200,9 @@
             }}
               <a href="#" data-test-selector="filter-subtype">
                 {{#if isAnime}}
-                  {{t (concat 'media-shared.types.anime.' option)}}
+                  {{t (concat "media-shared.types.anime." option)}}
                 {{else}}
-                  {{t (concat 'media-shared.types.manga.' option)}}
+                  {{t (concat "media-shared.types.manga." option)}}
                 {{/if}}
               </a>
               <span class="exclude-genre hint--left hint--bounce hint--rounded" aria-label="Exclude?">{{svg-jar "close"}}</span>
@@ -271,12 +271,12 @@
         <span class="sort-container">
           {{#bootstrap/bs-dropdown as |dropdown|}}
             {{#dropdown.button type="button--dark-outline" class="button--small" disabled=(not (is-empty text))}}
-              {{t (concat 'media.index.sort.' sort)}}
+              {{t (concat "media.index.sort." sort)}}
             {{/dropdown.button}}
             {{#dropdown.menu}}
               {{#each sortOptions as |sortOption|}}
                 {{#dropdown.menu-item onClick=(action (mut sort) sortOption)}}
-                  {{t (concat 'media.index.sort.' sortOption)}}
+                  {{t (concat "media.index.sort." sortOption)}}
                   {{#if (eq sort sortOption)}}
                     <span class="dropdown-checkmark">
                       {{svg-jar "checkmark"}}
