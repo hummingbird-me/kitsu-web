@@ -15,11 +15,11 @@ export default Component.extend({
   content: undefined,
   isExpanded: false,
   isEditing: false,
-  mediaReadOnly: false,
   nsfw: false,
   spoiler: false,
   maxLength: 9000,
   _usableMedia: null,
+  mediaDeleted: false,
   store: service(),
 
   canPost: computed('content', function() {
@@ -30,7 +30,8 @@ export default Component.extend({
   createPost: task(function* () {
     const options = {
       nsfw: get(this, 'nsfw'),
-      spoiler: get(this, 'spoiler')
+      spoiler: get(this, 'spoiler'),
+      mediaDeleted: get(this, 'mediaDeleted')
     };
     if (this._usableMedia !== null) {
       options.media = this._usableMedia;
@@ -78,7 +79,6 @@ export default Component.extend({
     if (get(this, 'isEditing') === true && get(this, 'post')) {
       setProperties(this, {
         _usableMedia: get(this, 'post.media'),
-        mediaReadOnly: true,
         content: get(this, 'post.content'),
         contentOriginal: get(this, 'post.content'),
         spoiler: get(this, 'post.spoiler'),
@@ -87,7 +87,6 @@ export default Component.extend({
       });
     } else if (get(this, 'media') !== undefined) {
       set(this, '_usableMedia', get(this, 'media'));
-      set(this, 'mediaReadOnly', true);
       set(this, 'spoiler', true);
     }
   },
@@ -112,12 +111,10 @@ export default Component.extend({
     setProperties(this, {
       content: '',
       isExpanded: false,
-      nsfw: false
+      nsfw: false,
+      spoiler: false,
+      _usableMedia: null
     });
-    if (get(this, 'mediaReadOnly') === false) {
-      set(this, '_usableMedia', null);
-      set(this, 'spoiler', false);
-    }
   },
 
   actions: {
