@@ -12,11 +12,13 @@ export default Controller.extend({
     'averageRating',
     'genres',
     'text',
+    'subtype',
     'year'
   ],
   averageRating: [1, 100],
   genres: [],
   text: undefined,
+  subtype: [],
   year: [1907, moment().year() + 1],
 
   router: service('-routing'),
