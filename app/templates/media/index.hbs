@@ -177,6 +177,39 @@
             </div>
           {{/if}}
 
+          {{! Type Filter }}
+          <div class="filter-widget category-filter">
+            <div class="filter-header">
+              <label class="filter-title">
+                {{t "media.index.filters.types"}}
+              </label>
+              <span class="filter-values">
+                {{#if (is-empty subtype)}}
+                  {{availableSubtypes.length}}
+                {{else}}
+                  {{subtype.length}}
+                {{/if}}
+              </span>
+            </div>
+            {{#media/filter-widgets/multi-select
+              class="category-select"
+              includeAll=true
+              selected=subtype
+              selection=availableSubtypes
+              onChange=(action (mut subtype)) as |option|
+            }}
+              <a href="#" data-test-selector="filter-subtype">
+                {{#if isAnime}}
+                  {{t (concat 'media-shared.types.anime.' option)}}
+                {{else}}
+                  {{t (concat 'media-shared.types.manga.' option)}}
+                {{/if}}
+              </a>
+              <span class="exclude-genre hint--left hint--bounce hint--rounded" aria-label="Exclude?">{{svg-jar "close"}}</span>
+              <span class="include-genre hint--left hint--bounce hint--rounded" aria-label="Include?">{{svg-jar "checkmark"}}</span>
+            {{/media/filter-widgets/multi-select}}
+          </div>
+
           {{! Genre Filter }}
           <div class="filter-widget category-filter">
             {{#if availableGenres}}
@@ -219,7 +252,7 @@
 
       <div class="media-poster-header">
         {{! Search }}
-        <div class="filter-container">
+        <span class="filter-container">
           {{!-- TODO/@vevix active filters
           <div class="active-filter">
             <span class="tag-name">Year</span>
@@ -232,7 +265,28 @@
             update=(action (mut text))
             placeholder=(t "media.index.search")
           }}
-        </div>
+        </span>
+
+        {{! Sort }}
+        <span class="sort-container">
+          {{#bootstrap/bs-dropdown as |dropdown|}}
+            {{#dropdown.button type="button--dark-outline" class="button--small" disabled=text}}
+              {{t (concat 'media.index.sort.' sort)}}
+            {{/dropdown.button}}
+            {{#dropdown.menu}}
+              {{#each sortOptions as |sortOption|}}
+                {{#dropdown.menu-item onClick=(action (mut sort) sortOption)}}
+                  {{t (concat 'media.index.sort.' sortOption)}}
+                  {{#if (eq sort sortOption)}}
+                    <span class="dropdown-checkmark">
+                      {{svg-jar "checkmark"}}
+                    </span>
+                  {{/if}}
+                {{/dropdown.menu-item}}
+              {{/each}}
+            {{/dropdown.menu}}
+          {{/bootstrap/bs-dropdown}}
+        </span>
       </div>
 
       {{! Media List }}
