@@ -252,7 +252,7 @@
 
       <div class="media-poster-header">
         {{! Search }}
-        <div class="filter-container">
+        <span class="filter-container">
           {{!-- TODO/@vevix active filters
           <div class="active-filter">
             <span class="tag-name">Year</span>
@@ -265,7 +265,28 @@
             update=(action (mut text))
             placeholder=(t "media.index.search")
           }}
-        </div>
+        </span>
+
+        {{! Sort }}
+        <span class="sort-container">
+          {{#bootstrap/bs-dropdown as |dropdown|}}
+            {{#dropdown.button type="button--dark-outline" class="button--small" disabled=text}}
+              {{t (concat 'media.index.sort.' sort)}}
+            {{/dropdown.button}}
+            {{#dropdown.menu}}
+              {{#each sortOptions as |sortOption|}}
+                {{#dropdown.menu-item onClick=(action (mut sort) sortOption)}}
+                  {{t (concat 'media.index.sort.' sortOption)}}
+                  {{#if (eq sort sortOption)}}
+                    <span class="dropdown-checkmark">
+                      {{svg-jar "checkmark"}}
+                    </span>
+                  {{/if}}
+                {{/dropdown.menu-item}}
+              {{/each}}
+            {{/dropdown.menu}}
+          {{/bootstrap/bs-dropdown}}
+        </span>
       </div>
 
       {{! Media List }}

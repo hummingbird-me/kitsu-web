@@ -20,6 +20,8 @@ export default Controller.extend({
   text: undefined,
   subtype: [],
   year: [1907, moment().year() + 1],
+  sort: 'popularity',
+  sortOptions: ['popularity', 'rating', 'date'],
 
   router: service('-routing'),
   taskValue: concat('model.taskInstance.value', 'model.paginatedRecords'),
