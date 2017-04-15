@@ -270,7 +270,7 @@
         {{! Sort }}
         <span class="sort-container">
           {{#bootstrap/bs-dropdown as |dropdown|}}
-            {{#dropdown.button type="button--dark-outline" class="button--small"}}
+            {{#dropdown.button type="button--dark-outline" class="button--small" disabled=text}}
               {{t (concat 'media.index.sort.' sort)}}
             {{/dropdown.button}}
             {{#dropdown.menu}}
