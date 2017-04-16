@@ -39,21 +39,13 @@ export default Component.extend({
     if (cachedEntry) {
       return cachedEntry;
     }
-
-    const type = get(this, 'mediaType');
-    return yield get(this, 'store').query('library-entry', {
-      include: 'review',
-      filter: {
-        user_id: get(this, 'session.account.id'),
-        kind: type,
-        [`${type}_id`]: get(get(this, 'media'), 'id')
-      }
-    }).then(records => get(records, 'firstObject')).then((record) => {
-      if (record) {
-        get(this, 'cache').addToCache('library-entry', this._getCacheKey(), get(record, 'id'));
-      }
-      return record;
-    });
+    return yield get(this, 'store').query('library-entry', this._getRequestOptions())
+      .then(records => get(records, 'firstObject')).then((record) => {
+        if (record) {
+          get(this, 'cache').addToCache('library-entry', this._getCacheKey(), get(record, 'id'));
+        }
+        return record;
+      });
   }).restartable(),
 
   createLibraryEntryTask: task(function* (status, rating) {
@@ -100,6 +92,18 @@ export default Component.extend({
         get(this, 'libraryEntry').rollbackAttributes();
       });
     }
+  },
+
+  _getRequestOptions() {
+    const type = get(this, 'mediaType');
+    return {
+      include: 'review',
+      filter: {
+        user_id: get(this, 'session.account.id'),
+        kind: type,
+        [`${type}_id`]: get(get(this, 'media'), 'id')
+      }
+    };
   },
 
   _getCacheKey() {

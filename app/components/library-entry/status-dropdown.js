@@ -34,5 +34,11 @@ export default Component.extend({
         invoke(this, 'createLibraryEntry', status);
       }
     }
+  },
+
+  _getRequestOptions() {
+    const options = this._super();
+    delete options.include;
+    return options;
   }
 });
