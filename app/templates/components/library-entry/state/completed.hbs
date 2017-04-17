@@ -7,18 +7,20 @@
   {{t "library-entry.state.rate-this"}}
 {{/library-entry/rating-button}}
 
-{{! Write Review }}
-<button class="button button--secondary button--muted" {{action onReview}}>
-  {{#if (and libraryEntry.review (not libraryEntry.review.isNew))}}
-    {{t "library-entry.state.edit-review"}}
-  {{else}}
-    {{t "library-entry.state.write-review"}}
-  {{/if}}
-</button>
-
-{{! Remove }}
-{{#unless hideRemove}}
-  <button class="button button--secondary button--muted" {{action onRemove}}>
-    {{t "library-entry.state.remove-from-library"}}
+{{#unless rateOnly}}
+  {{! Write Review }}
+  <button class="button button--secondary button--muted" {{action onReview}}>
+    {{#if (and libraryEntry.review (not libraryEntry.review.isNew))}}
+      {{t "library-entry.state.edit-review"}}
+    {{else}}
+      {{t "library-entry.state.write-review"}}
+    {{/if}}
   </button>
+
+  {{! Remove }}
+  {{#unless hideRemove}}
+    <button class="button button--secondary button--muted" {{action onRemove}}>
+      {{t "library-entry.state.remove-from-library"}}
+    </button>
+  {{/unless}}
 {{/unless}}

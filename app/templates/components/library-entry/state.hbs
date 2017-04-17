@@ -31,6 +31,7 @@
         {{library-entry/state/completed
           libraryEntry=libraryEntry
           hideRemove=hideRemove
+          rateOnly=rateOnly
           onRatingChange=(action "updateAttribute" "rating")
           onReview=(toggle-action "reviewOpen" this)
           onRewatch=(queue
