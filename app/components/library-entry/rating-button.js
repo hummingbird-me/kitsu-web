@@ -14,7 +14,10 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     set(this, 'guid', guidFor(this));
+  },
 
+  didReceiveAttrs() {
+    this._super(...arguments);
     // Show dropdown by default if we have a rating
     if (get(this, 'swapToDropdown') && 'rating' in this.attrs) {
       set(this, 'showDropdown', !!get(this, 'rating'));
