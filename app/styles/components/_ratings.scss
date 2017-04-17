@@ -21,24 +21,59 @@
 
   .entry-state-status {
     margin-top: -18px;
-    .seen-this {
+    .seen-this, .rating-button, .completed-button {
       background: #16a085;
       &:hover {
         background: darken(#16a085, 5);
       }
     }
-    .want-to-watch {
+    .rating-button {
+      background: #3d83af;
+      &:hover {
+        background: darken(#3d83af, 5);
+      }
+    }
+    .want-to-watch, .planned-button  {
       background: #2980b9;
       &:hover {
         background: darken(#2980b9, 5);
       }
     }
-    .started-watching {
+    .started-watching, .started-button {
       background: #8e44ad;
       &:hover {
         background: darken(#8e44ad, 5);
       }
     }
+    .hold-button {
+      background: #e67e22;
+      &:hover {
+        background: darken(#e67e22, 5);
+      }
+    }
+    .review-button {
+      background: #34495e;
+      &:hover {
+        background: darken(#34495e, 5);
+      }
+    }
+    .drop-button {
+      background: #989898;
+      &:hover {
+        background: darken(#989898, 5);
+      }
+    }
+
+    .remove-button {
+      background: none;
+      color: #c0392b;
+      padding: 0;
+      &:hover {
+        background: none;
+        color: darken(#c0392b,5);
+      }
+    }
+
   }
 
   .state-helper {
