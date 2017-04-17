@@ -18,7 +18,11 @@
 
 {{! Write Review }}
 <button class="button button--secondary button--muted" {{action onReview}}>
-  {{t "library-entry.state.review"}}
+  {{#if (and libraryEntry.review (not libraryEntry.review.isNew))}}
+    {{t "library-entry.state.edit-review"}}
+  {{else}}
+    {{t "library-entry.state.write-review"}}
+  {{/if}}
 </button>
 
 {{! Place On Hold }}
