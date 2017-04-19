@@ -8,6 +8,12 @@ export default Component.extend({
   authComponent: 'social-auth',
   router: service('-routing'),
 
+  isBrowseRoute: computed('router.currentRouteName', function() {
+    const route = get(this, 'router.currentRouteName');
+    const valids = ['anime', 'manga', 'trending'];
+    return valids.includes((route || '').split('.')[0]);
+  }).readOnly(),
+
   isFeedbackRoute: computed('router.currentRouteName', function() {
     const route = get(this, 'router.currentRouteName');
     return (route || '').split('.')[0] === 'feedback';
