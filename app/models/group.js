@@ -7,7 +7,7 @@ import { validator, buildValidations } from 'ember-cp-validations';
 export const Validations = buildValidations({
   name: [
     validator('presence', true),
-    validator('length', { min: 4, max: 50 })
+    validator('length', { min: 3, max: 50 })
   ],
   privacy: [
     validator('presence', true),
