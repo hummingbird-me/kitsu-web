@@ -5,9 +5,9 @@
       <div class="action-wrapper">
         {{#unless isCompleted}}
           {{#if canComplete}}
-            {{#library-entry/rating-button class="button button--quick-update" onClick=(perform updateEntryTask)}}
+            <button class="button button--quick-update" {{action (perform updateEntryTask)}}>
               {{t "dashboard.quick-update.overlay.button.complete"}}
-            {{/library-entry/rating-button}}
+            </button>
           {{else}}
             <button class="button button--quick-update" onclick={{perform updateEntryTask}}>
               {{#if updateEntryTask.isRunning}}
@@ -24,19 +24,14 @@
         {{else}}
           {{! Rating }}
           <div class="quick-update--rate">
-            {{library-entry/state libraryEntry=entry media=entry.media showHeader=false}}
+            {{library-entry/state
+              libraryEntry=entry
+              media=entry.media
+              showHeader=false
+              hideProgress=true
+              hideRemove=true
+            }}
           </div>
-
-          {{! Review }}
-          <button class="button button--quick-update review-button" onclick={{action (toggle "showModal" this)}}>
-            {{t "dashboard.quick-update.overlay.review"}}
-          </button>
-          {{#if showModal}}
-            {{to-elsewhere named="modal" send=(component "modals/media-review"
-              onClose=(toggle-action "showModal" this)
-              review=entry.review.content
-            )}}
-          {{/if}}
         {{/unless}}
       </div>
     </div>

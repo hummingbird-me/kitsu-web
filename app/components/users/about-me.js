@@ -9,10 +9,9 @@ export default Component.extend({
 
   gender: computed('user.gender', function() {
     const gender = get(this, 'user.gender') || 'secret';
-    const trans = get(this, 'intl').t(`users.activity.about.gender.${gender}`);
-    if (trans.toString().includes('Missing translation')) {
-      return gender;
+    if (['secret', 'male', 'female'].includes(gender)) {
+      return get(this, 'intl').t(`users.activity.about.gender.${gender}`);
     }
-    return trans;
+    return gender;
   })
 });

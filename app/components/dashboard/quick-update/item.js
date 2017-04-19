@@ -26,20 +26,25 @@ export default Component.extend({
   /**
    * Get the translated subtext for the quick update item
    */
-  episodeText: computed('isCompleted', 'nextProgress', 'entry.nextUnit', function() {
+  episodeText: computed('isCompleted', 'entry.{progress,unit}', function() {
     // Completed?
     if (get(this, 'isCompleted')) {
       return get(this, 'intl').t('dashboard.quick-update.media.complete');
     }
+    // No Progress?
+    if (!get(this, 'entry.progress')) {
+      return get(this, 'intl').t('dashboard.quick-update.media.unstarted');
+    }
+    // Current Episode
     const text = get(this, 'intl').t('dashboard.quick-update.media.episode', {
       type: get(this, 'entry.media.modelType'),
-      num: get(this, 'nextProgress'),
+      num: get(this, 'entry.progress'),
       total: get(this, 'entry.media.unitCount')
     });
-    // do we have the next unit information for this entry?
-    const nextUnit = get(this, 'entry').belongsTo('nextUnit').value();
-    if (nextUnit) {
-      const title = get(this, 'entry.nextUnit.canonicalTitle');
+    // do we have the current unit information for this media?
+    const unit = get(this, 'entry').belongsTo('unit').value();
+    if (unit) {
+      const title = get(this, 'entry.unit.canonicalTitle');
       if (title) {
         return `${text} - ${title}`;
       }
@@ -55,31 +60,15 @@ export default Component.extend({
   }).readOnly(),
 
   updateEntryTask: task(function* (rating) {
-    const hash = { progress: get(this, 'nextProgress'), rating };
+    const hash = { progress: get(this, 'nextProgress') };
+    if (typeof rating === 'number') {
+      set(hash, 'rating', rating);
+    }
     // will the next update complete this media?
     if (get(this, 'canComplete')) {
       hash.status = 'completed';
-      // Load in the review relationship as there is an issue with the API and including
-      // the relationship initially
-      yield get(this, 'entry.review').then((review) => {
-        if (review) {
-          set(review, 'media', get(this, 'entry.media'));
-          set(review, 'libraryEntry', get(this, 'entry'));
-        } else {
-          const newReview = this._createReview();
-          set(this, 'entry.review', newReview);
-        }
-      });
     }
     yield strictInvokeAction(this, 'updateEntry', hash);
     yield strictInvokeAction(this, 'reloadUnit');
-  }).drop(),
-
-  _createReview() {
-    return get(this, 'store').createRecord('review', {
-      libraryEntry: get(this, 'entry'),
-      media: get(this, 'entry.media'),
-      user: get(this, 'session.account')
-    });
-  }
+  }).drop()
 });

@@ -110,7 +110,7 @@ export default Component.extend({
 
   _destroyAd() {
     const slotRef = get(this, 'adSlotRef');
-    if (window.googletag && slotRef) {
+    if (window.googletag && window.googletag.defineSlots && slotRef) {
       window.googletag.destroySlots([slotRef]);
     }
   },

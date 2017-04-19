@@ -32,7 +32,7 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
     const type = get(this, 'filter') !== 'all' ? get(this, 'filter') : undefined;
     const includes = type || 'anime,manga';
     return yield this.queryPaginated('library-entry', {
-      include: `${includes},nextUnit`,
+      include: `${includes},unit`,
       filter: {
         kind: type,
         user_id: get(this, 'session.account.id'),
@@ -63,13 +63,13 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
     },
 
     reloadUnit(entry) {
-      const idWas = get(entry, 'nextUnit.id');
-      return entry.belongsTo('nextUnit').reload().then((unit) => {
+      const idWas = get(entry, 'unit.id');
+      return entry.belongsTo('unit').reload().then((unit) => {
         // if the id hasn't changed then that means the API returned a `null` value
         const value = get(unit, 'id') === idWas ? null : unit;
-        set(entry, 'nextUnit', value);
+        set(entry, 'unit', value);
       }).catch(() => {
-        set(entry, 'nextUnit', null);
+        set(entry, 'unit', null);
       });
     },
 
@@ -101,7 +101,7 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
 
   _getFieldsets(type) {
     const fields = {
-      libraryEntries: ['progress', 'status', 'rating', 'nextUnit']
+      libraryEntries: ['progress', 'status', 'rating', 'unit']
     };
 
     if (type === undefined) {

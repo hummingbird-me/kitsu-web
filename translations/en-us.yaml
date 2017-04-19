@@ -84,12 +84,13 @@ dashboard:
       discover: "Discover Media"
     media:
       complete: "Complete"
+      unstarted: "Unstarted"
       episode: "{type, select,
         anime {Ep. {num} {total, select,
           undefined {}
           other {of {total}}}}
         manga {Ch. {num} {total, select,
-          undefined {}
+          null {}
           other {of {total}}}}
         other {}}"
     overlay:
@@ -99,7 +100,6 @@ dashboard:
           manga {<span class={class}>Ch. {num}</span> Complete}
           other {}}"
         complete: "Complete"
-      review: "Review"
   onboarding:
     welcome: "Hey {user}, welcome to Kitsu!"
     about: "This is the global activity feed. It's populated by recent activity from all of Kitsu's
@@ -720,9 +720,10 @@ library-entry:
       false {Add to Library}
       true {Update Library}
       other {}}"
+    add-to-library: "Add To Library"
     seen-this: "{type, select,
-      anime {Seen This}
-      manga {Read This}
+      anime {Completed}
+      manga {Completed}
       other {}}"
     want-to-watch: "{type, select,
       anime {Want to Watch}
@@ -732,13 +733,15 @@ library-entry:
       anime {Started Watching}
       manga {Started Reading}
       other {}}"
-    watching-this: "{type, select,
-      anime {I'm Watching This}
-      manga {I'm Reading This}
-      other {}}"
-    finished-this: "I've Finished This"
+    watching-this: "Started"
+    finished-this: "Completed"
+    place-on-hold: "On Hold"
+    drop-this: "Dropped"
     change-rating: "Change Rating"
-    review: "Review"
+    remove-rating: "Remove Rating"
+    rate-this: "Add Rating"
+    write-review: "Write Review"
+    edit-review: "Edit Review"
     rewatch: "{type, select,
       anime {Rewatch}
       manga {Reread}

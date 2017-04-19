@@ -96,14 +96,6 @@ export default Route.extend(Pagination, {
       }
     },
 
-    deleteEntry(entry) {
-      return entry.destroyRecord()
-        .catch((err) => {
-          entry.rollbackAttributes();
-          get(this, 'notify').error(errorMessages(err));
-        });
-    },
-
     changeSort({ type, direction }) {
       const controller = this.controllerFor(get(this, 'routeName'));
       const sort = direction === 'desc' ? `-${type}` : type;

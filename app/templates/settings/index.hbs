@@ -123,14 +123,9 @@
         searchEnabled=false
         onchange=(action "changeRating") as |rating|
       }}
-        {{#if (eq rating.id "simple")}}
-          {{svg-jar "great" width="24px" height="24px"}}
-        {{else}}
-          {{svg-jar "star" width="24px" height="24px" fill="#B4B4B4"}}
-        {{/if}}
         {{rating.text}}
       {{/power-select}}
-      <small>Choose how you'll like to rate media that you've watched or read.</small>
+      <small>Choose how you would like to rate media that you've watched or read.</small>
     </div>
   </div>
 

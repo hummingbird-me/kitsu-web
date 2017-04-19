@@ -1,6 +1,6 @@
 {{#bootstrap/bs-modal id=modalId onClose=onClose as |modal|}}
   {{#modal.body}}
-    {{#if loadRelationships.isRunning}}
+    {{#if (or loadReview.isRunning loadRelationships.isRunning)}}
       <div class="text-xs-center w-100">
         {{loading-spinner size="large"}}
       </div>

@@ -14,7 +14,7 @@ export default Controller.extend({
     'text',
     'year'
   ],
-  averageRating: [1, 100],
+  averageRating: [0, 100],
   genres: [],
   text: undefined,
   year: [1907, moment().year() + 1],

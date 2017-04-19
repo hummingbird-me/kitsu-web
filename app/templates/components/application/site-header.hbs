@@ -67,13 +67,15 @@
       </ul>
       <div class="collapse navbar-toggleable-xs pull-sm-left primary-nav--drop" id="exCollapsingNavbar2">
         <ul class="nav navbar-nav">
+          {{! Library }}
           {{#if session.hasUser}}
             <li class="nav-item">
               {{link-to (t "header.library") "users.library" session.account.name class="nav-link"}}
             </li>
           {{/if}}
+          {{! Browse }}
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle {{if isFeedbackRoute "active"}}" href={{href-to "feedback"}} data-toggle="dropdown" data-href-to-ignore=true>
+            <a class="nav-link dropdown-toggle {{if isBrowseRoute "active"}}" href="#" data-toggle="dropdown" data-href-to-ignore=true>
               {{t "header.browse"}}
             </a>
             <div class="dropdown-menu">
@@ -82,11 +84,13 @@
               <a class="dropdown-item" href={{href-to "manga.index"}}>{{t "header.manga"}}</a>
             </div>
           </li>
+          {{! Groups }}
           <li class="nav-item">
             {{link-to (t "header.groups") "groups.index" class="nav-link"}}
           </li>
+          {{! Feedback}}
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle {{if isFeedbackRoute "active"}}" href={{href-to "feedback"}} data-toggle="dropdown" data-href-to-ignore=true>
+            <a class="nav-link dropdown-toggle {{if isFeedbackRoute "active"}}" href="#" data-toggle="dropdown" data-href-to-ignore=true>
               {{t "header.feedback"}}
             </a>
             <div class="dropdown-menu">

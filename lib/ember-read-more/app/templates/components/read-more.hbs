@@ -1,0 +1,15 @@
+{{#if isTruncated}}
+  {{truncate text length}}
+{{else}}
+  {{text}}
+{{/if}}
+
+{{#if hasBlock}}
+  {{yield isTruncated}}
+{{else}}
+  {{#if isTruncated}}
+    <a class="d-inline-block" href="#" {{action "toggleVisibility"}}>{{expandText}}</a>
+  {{else if wasTruncated}}
+    <a class="d-inline-block" href="#" {{action "toggleVisibility"}}>{{collapseText}}</a>
+  {{/if}}
+{{/if}}

@@ -59,8 +59,9 @@ export default Component.extend({
       get(this, 'saveEntryDebounced').perform();
     },
 
-    delete() {
-      invokeAction(this, 'delete', get(this, 'entry'));
+    updateRating(rating) {
+      set(this, 'entry.rating', rating);
+      get(this, 'saveEntry').perform();
     }
   }
 });

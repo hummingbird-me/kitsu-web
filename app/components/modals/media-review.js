@@ -11,12 +11,26 @@ export default Component.extend({
   classNames: ['review-modal'],
   intl: service(),
   metrics: service(),
+  store: service(),
   rating: alias('review.libraryEntry.rating'),
   errorMessage: t('errors.request'),
 
   isValid: computed('rating', 'review.content', function() {
     return (get(this, 'rating') > 0) && isPresent(get(this, 'review.content'));
   }).readOnly(),
+
+  init() {
+    this._super(...arguments);
+    // make sure the required data is loaded into the mode
+    get(this, 'loadReview').perform().then(() => {
+      get(this, 'loadRelationships').perform();
+    }).catch(() => {});
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    get(this, 'review').rollbackAttributes();
+  },
 
   saveReview: task(function* () {
     set(this, 'showError', false);
@@ -37,27 +51,32 @@ export default Component.extend({
     });
   }).drop(),
 
+  loadReview: task(function* () {
+    if (get(this, 'review')) { return; }
+    const libraryEntry = get(this, 'libraryEntry');
+    yield libraryEntry.belongsTo('review').load().then((record) => {
+      let review = record;
+      if (!review) {
+        review = get(this, 'store').createRecord('review', {
+          user: get(this, 'session.account'),
+          media: get(libraryEntry, 'media'),
+          libraryEntry
+        });
+      }
+      set(this, 'review', review);
+    });
+  }).restartable(),
+
   /**
    * Load the required relationships as our JSON:API may not have included the data.
    * `.load()` will just return the local data if it has it.
    */
-  loadRelationships: task(function* (entry, media) {
-    yield entry.load();
-    yield media.load();
-  }).drop(),
-
-  init() {
-    this._super(...arguments);
-    // make sure the required data is loaded into the model
-    const entry = get(this, 'review').belongsTo('libraryEntry');
-    const media = get(this, 'review').belongsTo('media');
-    get(this, 'loadRelationships').perform(entry, media);
-  },
-
-  willDestroyElement() {
-    this._super(...arguments);
-    get(this, 'review').rollbackAttributes();
-  },
+  loadRelationships: task(function* () {
+    yield get(this, 'review').belongsTo('libraryEntry').load();
+    yield get(this, 'review').belongsTo('media').load();
+    const mediaType = get(this, 'review.media.modelType');
+    set(this, `review.libraryEntry.${mediaType}`, get(this, 'review.media'));
+  }).restartable(),
 
   _trackCreation() {
     get(this, 'metrics').trackEvent({

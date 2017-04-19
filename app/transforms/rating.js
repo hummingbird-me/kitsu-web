@@ -6,6 +6,6 @@ export default Transform.extend({
   },
 
   serialize(value) {
-    return value * 2;
+    return value * 2 || null;
   }
 });

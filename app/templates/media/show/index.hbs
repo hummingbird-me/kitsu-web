@@ -16,11 +16,7 @@
 
     {{! Synopsis }}
     <section class="media-synopsis m-b-1">
-      {{text-clipper media.synopsis length=480
-        expandText="read more"
-        collapseText="read less"
-        options=(hash maxLines=5)
-        tagName="p"}}
+      {{read-more media.synopsis 480 tagName="p"}}
     </section>
 
     {{! Genres }}
