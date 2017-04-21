@@ -1,0 +1,60 @@
+<div class="card">
+  <div class="card-header" role="tab">
+    <h6 class="m-b-0">
+      <a data-toggle="collapse" data-parent="#accordian" href="#export-tab-{{index}}">
+        {{classify export.kind}}
+      </a>
+    </h6>
+  </div>
+
+  <div id="export-tab-{{index}}" class="collapse" role="tabpanel">
+    <div class="card-block">
+      <p class="card-text">
+        <span class="export-remove">
+          <a class="hint--left hint--bounce hint--rounded" aria-label="Remove exporter" {{action "removeExport" export}}>
+            {{svg-jar "cancel"}}
+          </a>
+        </span>
+        <span class="font-weight-bold">Status:</span> active<br>
+      </p>
+      {{#if sortedLogs}}
+        <table class="library-entry-logs table table-hover">
+          <thead>
+            <tr>
+              <th>{{t "exports.logs.header.media"}}</th>
+              <th>{{t "exports.logs.header.library-status"}}</th>
+              <th>{{t "exports.logs.header.progress"}}</th>
+              <th>{{t "exports.logs.header.rating"}}</th>
+              <th>{{t "exports.logs.header.reconsumes"}}</th>
+              <th>{{t "exports.logs.header.action"}}</th>
+              <th>{{t "exports.logs.header.status"}}</th>
+            </tr>
+          </thead>
+          {{#each sortedLogs as |date|}}
+            <div>{{date.value}}</div>
+            <tbody>
+              {{#each date.items as |log|}}
+                <tr class="library-entry-log">
+                  <td>{{log.media.canonicalTitle}}</td>
+                  <td>{{t (concat "library-shared." log.status) type=log.media.modelType}}</td>
+                  <td>{{log.progress}}</td>
+                  <td>{{log.rating}}</td>
+                  <td>{{log.reconsumeCount}}</td>
+                  <td>{{t (concat "exports.logs.action." log.actionPerformed)}}</td>
+                  <td>
+                    {{t (concat "exports.logs.status." log.syncStatus)}}
+                    {{#if (and (eq log.syncStatus "error") log.errorMessage)}}
+                      <span class="error-info hint--top-left hint--bounce hint--rounded" aria-label={{log.errorMessage}}>
+                        {{svg-jar "info"}}
+                      </span>
+                    {{/if}}
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          {{/each}}
+        </table>
+      {{/if}}
+    </div>
+  </div>
+</div>
