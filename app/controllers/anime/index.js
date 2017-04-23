@@ -11,6 +11,7 @@ export default MediaIndexController.extend({
 
   availableRatings: ['G', 'PG', 'R', 'R18'],
   availableSeasons: ['spring', 'summer', 'fall', 'winter'],
+  availableSubtypes: ['tv', 'special', 'ona', 'ova', 'movie', 'music'],
 
   _setDirtyValues() {
     this._super(...arguments);
