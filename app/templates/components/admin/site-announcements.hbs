@@ -1,0 +1,80 @@
+{{! Create New }}
+<div class="card w-100">
+  <div class="card-block">
+    <h4 class="card-title">Create Site Announcement</h4>
+    <div class="card-form">
+      {{one-way-text announcement.title
+        class="form-control m-b-1"
+        placeholder="Title"
+        update=(action (mut announcement.title))
+      }}
+      {{one-way-text announcement.description
+        class="form-control m-b-1"
+        placeholder="Description"
+        update=(action (mut announcement.description))
+      }}
+      {{one-way-url announcement.image
+        class="form-control m-b-1"
+        placeholder="Image URL (Optional)"
+        update=(action (mut announcement.image))
+      }}
+      {{one-way-url announcement.link
+        class="form-control m-b-1"
+        placeholder="Button Link (Optional)"
+        update=(action (mut announcement.link))
+      }}
+    </div>
+    <button class="button button--dark-outline btn-block" disabled={{not canCreateAnnouncement}} onclick={{perform createAnnouncementTask}}>
+      Create
+    </button>
+  </div>
+</div>
+
+{{! Previous Announcements }}
+<div class="card w-100">
+  <div class="card-block">
+    <h5 class="card-title">Active Site Announcements</h5>
+    <hr>
+    {{#if getAnnouncementsTask.isRunning}}
+      <div class="text-xs-center w-100 m-t-2">
+        {{loading-spinner size="large"}}
+      </div>
+    {{else}}
+      {{#infinite-pagination onPagination=(action "onPagination")}}
+        <table class="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each announcements as |announcement|}}
+              <tr>
+                <td>
+                  <span>{{announcement.title}}</span>
+                </td>
+                <td>
+                  <span>
+                    {{lazy-image src=(image announcement.user.avatar "small")}}
+                    <a href={{href-to "users.index" announcement.user.name}}>
+                      {{announcement.user.name}}
+                    </a>
+                  </span>
+                </td>
+                <td>
+                  <span>
+                    <button class="btn btn-sm btn-danger" disabled={{deleteAnnouncementTask.isRunning}} onclick={{perform deleteAnnouncementTask announcement}}>
+                      Delete
+                    </button>
+                  </span>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      {{/infinite-pagination}}
+    {{/if}}
+  </div>
+</div>
