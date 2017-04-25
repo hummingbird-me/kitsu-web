@@ -192,14 +192,6 @@
       border-bottom: 1px solid $divider-color;
     }
 
-    .sort-container {
-      .button {
-        margin-top: 0;
-        background: $background-color;
-        color: $body-text-color;
-      }
-    }
-
     .active-filter {
       position: relative;
       margin-right: 10px;
@@ -224,7 +216,20 @@
       }
     }
   }
-
+  .sort-container {
+    margin-bottom: 10px;
+    .button {
+      margin-top: 0;
+      border: none;
+      padding: 10px 0;
+      color: $body-text-color;
+      background: none;
+      &:hover {
+        color: $body-link-color;
+        background: none;
+      }
+    }
+  }
   // Filter widgets
   .filter-widget {
     border-bottom: 1px solid darken($secondary-background-color, 10);
