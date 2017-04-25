@@ -33,10 +33,4 @@ export default Component.extend({
     });
     return sDates;
   }).readOnly(),
-
-  actions: {
-    removeExport(exp) {
-      exp.destroyRecord();
-    }
-  }
 });

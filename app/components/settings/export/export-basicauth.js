@@ -9,7 +9,6 @@ import errorMessages from 'client/utils/error-messages';
 import computed from 'ember-computed';
 
 export default Component.extend({
-  editedExporter: undefined,
   username: undefined,
   password: undefined,
   notify: service(),
@@ -33,8 +32,20 @@ export default Component.extend({
       user: get(this, 'session.account')
     });
 
-    set(this, 'editedExporter', exporter);
-    return yield exporter.save();
+    try {
+      yield exporter.save();
+      this.sendAction('refresh');
+      invokeAction(this, 'close');
+    } catch (err) {
+      const errorCode = parseInt(get(err, 'errors.firstObject.status'), 10);
+      if (errorCode === 422) {
+        get(this, 'notify').error('Authorization failed! Please check your username and password.');
+      } else {
+        get(this, 'notify').error(errorMessages(err));
+        get(this, 'raven').captureException(err);
+      }
+      exporter.deleteRecord();
+    }
   }).drop(),
 
   init() {
@@ -44,22 +55,7 @@ export default Component.extend({
 
   actions: {
     setupExport() {
-      get(this, 'createExport').perform()
-        .then(() => { invokeAction(this, 'close'); })
-        .catch((err) => {
-          const errorCode = parseInt(get(err, 'errors.firstObject.status'), 10);
-          if (errorCode === 422) {
-            get(this, 'notify').error('Authorization failed! Please check your username and password.');
-          } else {
-            get(this, 'notify').error(errorMessages(err));
-            get(this, 'raven').logException(err);
-          }
-          get(this, 'editedExporter').deleteRecord();
-        });
-    },
-
-    changeComponent(component, siteName) {
-      invokeAction(this, 'changeComponent', component, { ...get(this, 'componentData'), siteName });
+      get(this, 'createExport').perform();
     }
   }
 });

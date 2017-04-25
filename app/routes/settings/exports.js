@@ -13,8 +13,14 @@ export default Route.extend({
   modelTask: task(function* () {
     return yield get(this, 'store').query('linked-account', {
       include: 'libraryEntryLogs.media',
-      fields: { media: 'canonicalTitle' }
-    });
+      fields: {
+        media: [
+          'canonicalTitle',
+          'posterImage',
+          'slug'
+        ].join(',')
+      }
+    }).then(records => get(records, 'firstObject'));
   }),
 
   hasExporterForMal: computed(function() {
@@ -23,7 +29,16 @@ export default Route.extend({
 
   actions: {
     removeExport(exporter) {
-      exporter.destroyRecord();
+      exporter.destroyRecord()
+        .then(() => this.refresh())
+        .catch((err) => {
+          get(this, 'notify').error(errorMessages(err));
+          get(this, 'raven').captureException(err);
+        });
+    },
+
+    refresh() {
+      this.refresh();
     }
   }
 });

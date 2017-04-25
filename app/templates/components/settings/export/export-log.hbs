@@ -33,15 +33,15 @@
                 <tr class="library-entry-log">
                   <td class="canon-title">
                     <span class="canon-poster">
-                      <a href="#">
+                      <a href={{href-to (concat log.media.modelType ".show") log.media}}>
                         {{lazy-image src=(image log.media.posterImage "medium")}}
                       </a>
                     </span>
-                    <a href="#">
+                    <a href={{href-to (concat log.media.modelType ".show") log.media}}>
                       {{log.media.canonicalTitle}}
                     </a>
                   </td>
-                  <td>{{t (concat "library-shared." log.status) type=log.media.modelType}}</td>
+                  <td>{{t (concat "exports.logs.library-status." log.status) type=log.media.modelType}}</td>
                   <td>{{log.progress}}</td>
                   <td>{{log.rating}}</td>
                   <td>{{log.reconsumeCount}}</td>

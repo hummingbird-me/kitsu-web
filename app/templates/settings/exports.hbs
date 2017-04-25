@@ -3,7 +3,7 @@
     <h1>Export</h1>
 
     <div class="settings--section-head">
-      Automatically sync your library updates from Kitsu to Myanimelist.
+      Automatically sync your library updates from Kitsu to MyAnimeList.
     </div>
     <div class="container">
       <div class="form-group row">
@@ -16,21 +16,20 @@
           <div class="text-xs-center w-100 m-t-1 m-b-1">
             {{t "errors.load"}}
           </div>
-        {{else if taskValue}}
-          <!-- Show if a user has connected their MAL -->
+        {{else if model.taskInstance.value}}
           <div class="mal-connected">
-            <a href="https://myanimelist.net/profile/SrslyNotJosh">
+            {{!-- Need to store avatar src on server --}}
+            {{!-- <a href={{concat "https://myanimelist.net/profile/" model.taskInstance.value.externalUserId}}>
               <img src="https://media.kitsu.io/users/avatars/2/large.jpeg?1444332940">
-            </a>
-              <a href="https://myanimelist.net/profile/SrslyNotJosh" class="connected-user">SrslyNotJosh</a>
+            </a> --}}
+            <a href={{concat "https://myanimelist.net/profile/" model.taskInstance.value.externalUserId}} class="connected-user">{{model.taskInstance.value.externalUserId}}</a>
             <span class="export-remove">
-                <a class="hint--left hint--bounce hint--rounded" aria-label="Remove exporter" {{action "removeExport" export}}>
+              <a class="hint--left hint--bounce hint--rounded" aria-label="Remove exporter" {{action "removeExport" model.taskInstance.value}}>
                 {{svg-jar "cancel"}}
               </a>
             </span>
           </div>
         {{else}}
-          <!-- Show if a user hasn't connected their MAL -->
           <button class="import-option" onclick={{action (toggle "exportModal" this)}}>
             <span class="import-logo">
               <img src="/images/mal.png">
@@ -47,20 +46,20 @@
             modalBase="settings/export"
             component="export-basicauth"
             componentData=(hash siteName="MyAnimeList")
-            onClose=(toggle-action "exportModal" this))}}
+            onClose=(queue (toggle-action "exportModal" this) (route-action "refresh")))}}
         {{/if}}
       </div>
     </div>
   </header>
 
-  {{#if taskValue}}
+  {{#if model.taskInstance.value}}
     <div class="settings--section-head">
       Recent Sync Activity
     </div>
-    {{#if taskValue.libraryEntryLogs}}
+    {{#if model.taskInstance.value.libraryEntryLogs}}
       <div class="container">
         <div class="form-group row">
-          {{settings/export/export-log export=taskValue}}
+          {{settings/export/export-log export=model.taskInstance.value}}
         </div>
       </div>
     {{else}}
