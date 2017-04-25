@@ -77,15 +77,13 @@
           {{dashboard/onboarding/checklist-progress user=session.account class="sidebar-item"}}
         {{/if}}
 
-
-
         {{! Kitsu Dashboard Sidebar Ad }}
-        {{! Hidden on mobile currently }}
         {{ad-unit unit="kitsu.dashboard.sidebar"
           targeting=(hash section="dashboard")
           sizes=(hash
             tablet=(array (array 336 280) (array 300 250))
-          )}}
+          )
+        }}
 
         {{! Footer }}
         {{sidebar-footer class="sidebar-item"}}
