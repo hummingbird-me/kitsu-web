@@ -1,56 +1,79 @@
-<h1>Exports</h1>
+<div class="export-container settings-container">
+  <header>
+    <h1>Export</h1>
 
-<div class="settings--section-head">
-  Automatically export changes to your library to other providers
-</div>
-<div class="container">
-  <div class="form-group row">
-    <button class="button button--primary btn-lg btn-block" onclick={{action (toggle "exportModal" this)}}>
-      Export Media
-    </button>
+    <div class="settings--section-head">
+      Automatically sync your library updates from Kitsu to Myanimelist.
+    </div>
+    <div class="container">
+      <div class="form-group row">
+        <!-- Show if a user hasn't connected their MAL -->
+        <!-- <a href="#" class="import-option" {{action "changeComponent" "export-basicauth" "MyAnimeList"}}>
+          <span class="import-logo">
+            <img src="/images/mal.png">
+          </span>
+          <span class="import-title">
+            Setup Export to MyAnimeList Account
+          </span>
+        </a> -->
 
-    {{#if exportModal}}
-      {{to-elsewhere named="modal" send=(component "application/progressing-modal"
-        modalId="export-modal"
-        modalBase="settings/export"
-        component="export-select"
-        onClose=(toggle-action "exportModal" this))}}
-    {{/if}}
-  </div>
-</div>
+        <!-- Show if a user has connected their MAL -->
+        <div class="mal-connected">
+          <a href="https://myanimelist.net/profile/SrslyNotJosh">
+            <img src="https://media.kitsu.io/users/avatars/2/large.jpeg?1444332940">
+          </a>
+          <a href="https://myanimelist.net/profile/SrslyNotJosh" class="connected-user">SrslyNotJosh</a>
+          <span class="export-remove">
+            <a class="hint--left hint--bounce hint--rounded" aria-label="Remove exporter" {{action "removeExport" export}}>
+              {{svg-jar "cancel"}}
+            </a>
+          </span>
+        </div>
 
-<div class="settings--section-head">
-  Your active exports
-</div>
-<div class="container">
-  <div class="form-group row">
-    {{#if model.taskInstance.isRunning}}
-      <div class="text-xs-center w-100 m-t-1 m-b-1">
-        {{loading-spinner size="large"}}
-        <p>Loading Exports...</p>
-      </div>
-    {{else if model.taskInstance.error}}
-      <div class="text-xs-center w-100 m-t-1 m-b-1">
-        {{t "errors.load"}}
-      </div>
-    {{else if taskValue}}
-      <div id="accordian" class="w-100">
-        {{#each taskValue as |export index|}}
-          {{settings/export/export-log export=export index=index}}
-        {{/each}}
-
-        {{#if hasNextPage}}
-          <div class="text-xs-center w-100">
-            <button class="button button--primary btn-block" disabled={{if isLoading "disabled"}} {{action (route-action "onPagination")}}>
-              Load More
-            </button>
-          </div>
+        {{#if exportModal}}
+          {{to-elsewhere named="modal" send=(component "application/progressing-modal"
+            modalId="export-modal"
+            modalBase="settings/export"
+            component="export-select"
+            onClose=(toggle-action "exportModal" this))}}
         {{/if}}
       </div>
-    {{else}}
-      <div class="text-xs-center w-100 m-t-1 m-b-1">
-        {{t "errors.contentEmpty"}}
-      </div>
-    {{/if}}
+    </div>
+  </header>
+
+  <div class="settings--section-head">
+    Recent Sync Activity
+  </div>
+  <div class="container">
+    <div class="form-group row">
+      {{#if model.taskInstance.isRunning}}
+        <div class="text-xs-center w-100 m-t-1 m-b-1">
+          {{loading-spinner size="large"}}
+          <p>Loading Exports...</p>
+        </div>
+      {{else if model.taskInstance.error}}
+        <div class="text-xs-center w-100 m-t-1 m-b-1">
+          {{t "errors.load"}}
+        </div>
+      {{else if taskValue}}
+        <div id="accordian" class="w-100">
+          {{#each taskValue as |export index|}}
+            {{settings/export/export-log export=export index=index}}
+          {{/each}}
+
+          {{#if hasNextPage}}
+            <div class="text-xs-center w-100">
+              <button class="button button--primary btn-block" disabled={{if isLoading "disabled"}} {{action (route-action "onPagination")}}>
+                Load More
+              </button>
+            </div>
+          {{/if}}
+        </div>
+      {{else}}
+        <div class="text-xs-center w-100 m-t-1 m-b-1">
+          {{t "errors.contentEmpty"}}
+        </div>
+      {{/if}}
+    </div>
   </div>
 </div>
