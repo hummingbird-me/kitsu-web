@@ -22,6 +22,12 @@
             </a>
           </li>
           <li>
+            <a href="#" class="timeline-link {{if (eq streamType "group_timeline") "active"}}" {{action "switchFeed" "group_timeline"}}>
+              {{svg-jar "all"}}
+              Groups
+            </a>
+          </li>
+          <li>
             <a href="#" class="timeline-link {{if (eq streamType "global") "active"}}" {{action "switchFeed" "global"}}>
               {{svg-jar "globe"}}
               Global
@@ -44,6 +50,7 @@
         streamType=streamType
         streamId=streamId
         streamFilter=(if (eq streamType "global") "user" "all")
+        hideFilter=(eq streamType "group_timeline")
         readOnly=(cannot "write post")}}
       </div>
 
