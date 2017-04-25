@@ -1,42 +1,27 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
-import set from 'ember-metal/set';
+import computed from 'ember-computed';
 import { task } from 'ember-concurrency';
-import Pagination from 'client/mixins/pagination';
 
-export default Route.extend(Pagination, {
+export default Route.extend({
   model() {
     return {
-      taskInstance: get(this, 'modelTask').perform(),
-      paginatedRecords: []
+      taskInstance: get(this, 'modelTask').perform()
     };
   },
 
   modelTask: task(function* () {
-    return yield this.queryPaginated('linked-account', {
+    return yield get(this, 'store').query('linked-account', {
       include: 'libraryEntryLogs.media',
       fields: { media: 'canonicalTitle' }
-    }).then((records) => {
-      const controller = this.controllerFor(get(this, 'routeName'));
-      set(controller, 'hasNextPage', this._hasNextPage());
-      return records;
     });
   }),
 
-  onPagination() {
-    const controller = this.controllerFor(get(this, 'routeName'));
-    set(controller, 'hasNextPage', this._hasNextPage());
-    set(controller, 'isLoading', false);
-    this._super(...arguments);
-  },
+  hasExporterForMal: computed(function() {
+    return !!get(this, 'store').peekAll('linked-account').findBy('kind', 'my-anime-list');
+  }).readOnly(),
 
   actions: {
-    onPagination() {
-      const controller = this.controllerFor(get(this, 'routeName'));
-      set(controller, 'isLoading', true);
-      this._super(...arguments);
-    },
-
     removeExport(exporter) {
       exporter.destroyRecord();
     }
