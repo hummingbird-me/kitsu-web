@@ -8,6 +8,9 @@
     max-width: 500px;
     margin: 0 auto;
   }
+  .table {
+    margin-bottom: 0;
+  }
   .table tbody + tbody {
     border-top: none;
   }
@@ -122,14 +125,6 @@
   }
 }
 
-.library-entry-log {
-  &:last-child {
-    td {
-      border-bottom: 1px solid $divider-color;
-      border-top: none;
-    }
-  }
-}
 .error-info, .success-info {
   font-size: 12px;
 }
@@ -166,6 +161,61 @@
     fill: rgba(255,255,255,.4);
     &:hover {
       fill: rgba(255,255,255,1);
+    }
+  }
+}
+
+.export-c {
+  padding: 0;
+}
+
+.avatar-placeholder {
+  float: left;
+  svg {
+    width: 50px;
+    height: 34px;
+    margin-right: 10px;
+    fill: $white;
+    position: relative;
+    top: 3px;
+  }
+}
+
+#export-modal {
+  .modal-content {
+    background: #5077d4;
+    color: #fff;
+    .form-group {
+      input {
+        &:first-child {
+          border-top-left-radius: 3px;
+          border-top-right-radius: 3px;
+        }
+        &:last-child {
+          border-bottom-left-radius: 3px;
+          border-bottom-right-radius: 3px;
+        }
+      }
+    }
+    .auth-section-title {
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,.2);
+      padding-bottom: 15px;
+      font-size: 24px;
+    }
+    button {
+      border-radius: 3px;
+      font-size: 13px;
+      background: $white;
+      color: #5077d4;
+      &:hover {
+        background: darken($white,5);
+      }
+      &:disabled {
+        border: 1px solid #4668bb;
+        background: #4668bb;
+        color: #32487d;
+      }
     }
   }
 }

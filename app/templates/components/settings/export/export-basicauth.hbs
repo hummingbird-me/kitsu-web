@@ -1,7 +1,7 @@
 <div class="modal-wrapper">
   <div class="auth-section active">
-    <h6 class="auth-section-title">Okay, let's setup your {{siteName}} exporter</h6>
-    <p class="auth-section-helper">Our {{siteName}} exporter will update your anime and manga lists on {{siteName}} every time you update them on Kitsu. Please note that we do <strong>not</strong> delete entries from your {{siteName}} library.</p>
+    <h6 class="auth-section-title">Sync with {{siteName}}</h6>
+    <p class="auth-section-helper">We'll update your anime and manga lists on {{siteName}} every time you update them on Kitsu. Note that we won't delete entries from your {{siteName}} library.</p>
     <form>
       <div class="form-group">
         {{one-way-text username
@@ -22,7 +22,7 @@
           {{#if createExport.isRunning}}
             {{loading-spinner size="small"}}
           {{else}}
-            Setup {{siteName}} Export
+            Sync to {{siteName}}
           {{/if}}
         </button>
       </div>
