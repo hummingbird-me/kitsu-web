@@ -1,6 +1,8 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import service from 'ember-service/inject';
+import { task, timeout } from 'ember-concurrency';
 import computed from 'ember-computed';
 import groupBy from 'ember-group-by';
 import moment from 'moment';
@@ -8,6 +10,38 @@ import moment from 'moment';
 const dateFormat = 'YYYY-MM-DD';
 
 export default Component.extend({
+  store: service(),
+
+  init() {
+    this._super(...arguments);
+    get(this, 'pollingTask').perform();
+  },
+
+  _cancelPollingTask() {
+    get(this, 'pollingTask').cancelAll();
+  },
+
+  pollingTask: task(function* () {
+    for (;;) {
+      const exp = get(this, 'export');
+      yield get(this, 'store').query('libraryEntryLog', {
+        filter: { linkedAccountId: get(exp, 'id') },
+        include: 'media'
+      })
+      .then((logs) => {
+        set(this, 'export.libraryEntryLogs', logs);
+        let pending = false;
+        logs.forEach((log) => {
+          pending = pending || get(log, 'syncStatus') === 'pending';
+        });
+        if (!pending) {
+          this._cancelPollingTask();
+        }
+      });
+      yield timeout(5000);
+    }
+  }).drop(),
+
   datedLogs: computed('export.libraryEntryLogs', function() {
     const logs = get(this, 'export.libraryEntryLogs');
     logs.forEach((log) => {
