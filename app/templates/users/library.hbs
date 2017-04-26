@@ -1,16 +1,201 @@
 <div class="container">
   <div class="row">
+    <div class="library-ad col-sm-12 no-padding-right">
+      {{! Kitsu Library Content Ad }}
+      {{#unless session.account.isPro}}
+        {{ad-unit slot="8096455061"}}
+      {{/unless}}
+    </div>
+
+    <div class="library-content col-sm-12 col-md-8">
+
+      {{! Search }}
+      <section id="library-search" class="library-search">
+        <div class="container">
+          <div class="row">
+            <div class="library-search--wrapper">
+              <span class="icon">
+                {{svg-jar "search"}}
+              </span>
+              {{one-way-search query
+                update=(action (mut query))
+                class="library-search-input"
+                placeholder="Search Josh's Library..."
+              }}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="library-result-header clearfix">
+        <span class="list-type">
+          {{! need to do svgs here}}
+          <a href="#" class="active">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M 4 4 L 4 8 L 8 8 L 8 4 L 4 4 z M 10 4 L 10 8 L 14 8 L 14 4 L 10 4 z M 16 4 L 16 8 L 20 8 L 20 4 L 16 4 z M 4 10 L 4 14 L 8 14 L 8 10 L 4 10 z M 10 10 L 10 14 L 14 14 L 14 10 L 10 10 z M 16 10 L 16 14 L 20 14 L 20 10 L 16 10 z M 4 16 L 4 20 L 8 20 L 8 16 L 4 16 z M 10 16 L 10 20 L 14 20 L 14 16 L 10 16 z M 16 16 L 16 20 L 20 20 L 20 16 L 16 16 z"></path>
+            </svg>
+          </a>
+          <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+              <path d="M 5 5 L 5 14 L 5 21 L 5 28 L 14 28 L 14 19 L 14 12 L 14 5 L 5 5 z M 7 7 L 12 7 L 12 12 L 7 12 L 7 7 z M 8 8 L 8 11 L 11 11 L 11 8 L 8 8 z M 16 8 L 16 10 L 21 10 L 21 8 L 16 8 z M 23 8 L 23 10 L 28 10 L 28 8 L 23 8 z M 7 14 L 12 14 L 12 19 L 7 19 L 7 14 z M 9.5 15 C 8.6715729 15 8 15.671573 8 16.5 C 8 17.328427 8.6715729 18 9.5 18 C 10.328427 18 11 17.328427 11 16.5 C 11 15.671573 10.328427 15 9.5 15 z M 16 15 L 16 17 L 21 17 L 21 15 L 16 15 z M 23 15 L 23 17 L 28 17 L 28 15 L 23 15 z M 7 21 L 12 21 L 12 26 L 7 26 L 7 21 z M 9.5 22 L 8 25 L 11 25 L 9.5 22 z M 16 22 L 16 24 L 21 24 L 21 22 L 16 22 z M 23 22 L 23 24 L 28 24 L 28 22 L 23 22 z"></path>
+            </svg>
+          </a>
+        </span>
+        <div class="library-filters">
+          <form class="form-inline">
+            <label class="mr-sm-2" for="inlineFormCustomSelect">Sort by:</label>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+              <option selected>Date Watched: Recent First</option>
+              <option value="1">Date Watched: Oldest First</option>
+              <option value="2">Rating: High to Low</option>
+              <option value="3">Rating: Low to High</option>
+              <option value="4">Length: Shortest First</option>
+              <option value="5">Length: Longest First</option>
+            </select>
+          </form>
+        </div>
+      </section>
+
+      <section class="media-browse col-sm-12">
+        <div class="media-grid container">
+          <div class="row">
+
+            <div class="poster-wrapper">
+              <div class="grid-poster">
+                <div class="ember-view">
+                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
+                  <div class="poster-overlay">
+                    <a href="/anime/attack-on-titan"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="poster-wrapper">
+              <div class="grid-poster">
+                <div class="ember-view">
+                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
+                  <div class="poster-overlay">
+                    <a href="/anime/attack-on-titan"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="poster-wrapper">
+              <div class="grid-poster">
+                <div class="ember-view">
+                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
+                  <div class="poster-overlay">
+                    <a href="/anime/attack-on-titan"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="poster-wrapper">
+              <div class="grid-poster">
+                <div class="ember-view">
+                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
+                  <div class="poster-overlay">
+                    <a href="/anime/attack-on-titan"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="poster-wrapper">
+              <div class="grid-poster">
+                <div class="ember-view">
+                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
+                  <div class="poster-overlay">
+                    <a href="/anime/attack-on-titan"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="library-sidebar card col-sm-12 col-md-4">
+      <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+        <option selected>Josh's Anime</option>
+        <option value="1">Josh's Manga</option>
+      </select>
+      <ul class="library-sections">
+        <li class="active">
+          <a href="#">
+            All Anime
+            <span class="library-section--count">325</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Currently Watching
+            <span class="library-section--count">325</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Plan to Watch
+            <span class="library-section--count">325</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Completed
+            <span class="library-section--count">325</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            On Hold
+            <span class="library-section--count">325</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Dropped
+            <span class="library-section--count">325</span>
+          </a>
+        </li>
+      </ul>
+      <h6>Tools</h6>
+      <ul class="library-tools">
+        <li>
+          <a href="#">Stats</a>
+        </li>
+        <li>
+          <a href="#">Import / Export</a>
+        </li>
+        <li>
+          <a href="#">Batch Edit</a>
+        </li>
+      </ul>
+      {{! Kitsu Library Sidebar Ad }}
+      {{#unless session.account.isPro}}
+        {{ad-unit slot="6628225068"}}
+      {{/unless}}
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container">
+  <div class="row">
     <div class="library-list col-sm-12">
       <div class="nav-wrapper">
         {{! Library type dropdown }}
         {{#bootstrap/bs-dropdown class="library-type" as |dropdown|}}
           {{#dropdown.button class="button--dark-outline button--small"}}
-            {{t "users.library.type" type=(capitalize media)}}
+            {{t "users.library.library" type=(t (concat "media." media ".name"))}}
           {{/dropdown.button}}
           {{#dropdown.menu}}
             {{#each mediaList as |_media|}}
               {{#dropdown.menu-item onClick=(action (mut media) _media)}}
-                {{t "users.library.type" type=(capitalize _media)}}
+                {{t "users.library.library" type=(t (concat "media." _media ".name"))}}
                 {{#if (eq media _media)}}
                   <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
                 {{/if}}
@@ -18,7 +203,6 @@
             {{/each}}
           {{/dropdown.menu}}
         {{/bootstrap/bs-dropdown}}
-
         {{! Library status selection }}
         <div class="library-status">
           <div class="btn-group" role="group" aria-label="Library Status">
@@ -33,9 +217,9 @@
           </div>
         </div>
       </div>
+
       {{! Library Sorting }}
       {{users/library/library-sorting sort=sort onSortChange=(route-action "changeSort")}}
-
       {{! Library Entries }}
       {{#if model.taskInstance.isRunning}}
         <div class="text-xs-center w-100 m-t-1 m-b-1">
@@ -47,29 +231,37 @@
           {{t "errors.load"}}
         </div>
       {{else}}
-        {{#infinite-pagination onPagination=(route-action "onPagination")}}
-          {{#if (eq status 'all')}} {{! all status is selected }}
-            {{#each-in sections as |status entries|}}
-              {{users/library/library-entries
-                status=status
-                entries=entries
-                mediaType=media
-                user=user
-                save=(route-action "saveEntry")
-              }}
-            {{/each-in}}
-          {{else}} {{! active tab entires }}
+        {{#if (eq status 'all')}} {{! all status is selected }}
+          {{#each-in sections as |status entries|}}
             {{users/library/library-entries
               status=status
               entries=entries
               mediaType=media
-              metaCount=(get model.taskInstance.value "meta.count")
               user=user
               save=(route-action "saveEntry")
+              delete=(route-action "deleteEntry")
             }}
-          {{/if}}
-        {{/infinite-pagination}}
+          {{/each-in}}
+        {{else}} {{! active tab entires }}
+          {{users/library/library-entries
+            status=status
+            entries=entries
+            mediaType=media
+            user=user
+            save=(route-action "saveEntry")
+            delete=(route-action "deleteEntry")
+          }}
+        {{/if}}
+        {{! pagination }}
+        <div class="text-xs-center m-t-1 m-b-1">
+          {{paginated-resource/infinite
+            model=entries
+            rootMargin=(hash bottom=-600)
+            update=(route-action "updateNextPage" "taskValue")
+            loadingSize="large"
+          }}
+        </div>
       {{/if}}
     </div>
   </div>
-</div>
+</div> -->
