@@ -29,7 +29,9 @@ export default Component.extend({
           },
           include: 'unit'
         }).then(records => get(records, 'firstObject'));
-        set(post, 'spoiledUnit', get(entry, 'unit'));
+        if (entry) {
+          set(post, 'spoiledUnit', get(entry, 'unit'));
+        }
       }
     } else if (!get(post, 'spoiler')) {
       set(post, 'spoiledUnit', null);
