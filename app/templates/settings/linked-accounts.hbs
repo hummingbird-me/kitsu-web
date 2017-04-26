@@ -10,7 +10,7 @@
     <div class="col-xs-8">
       <label class="form-check-label">
         {{#if session.account.facebookId}}
-          <button class="button button--facebook w-100"
+          <button class="button button--connected button--facebook w-100"
             disabled={{if disconnectFacebook.isRunning "disabled"}}
             onclick={{perform disconnectFacebook}}>
             {{svg-jar "l-facebook"}}
@@ -34,17 +34,21 @@
     <div class="col-xs-8">
       <label class="form-check-label">
         {{#if youtubeAccount}}
-          <button class="button button--youtube w-100"
+          <button class="button button--connected button--youtube w-100"
             disabled={{if destroyLink.isRunning "disabled"}}
             onclick={{perform destroyLink "youtube-channel"}}>
-            {{svg-jar "play"}}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+              <path d="M44.9,14.5c-0.4-2.2-2.3-3.8-4.5-4.3C37.1,9.5,31,9,24.4,9c-6.6,0-12.8,0.5-16.1,1.2c-2.2,0.5-4.1,2-4.5,4.3 C3.4,17,3,20.5,3,25s0.4,8,0.9,10.5c0.4,2.2,2.3,3.8,4.5,4.3c3.5,0.7,9.5,1.2,16.1,1.2s12.6-0.5,16.1-1.2c2.2-0.5,4.1-2,4.5-4.3 c0.4-2.5,0.9-6.1,1-10.5C45.9,20.5,45.4,17,44.9,14.5z M19,32V18l12.2,7L19,32z"></path>
+            </svg>
             Disconnect YouTube
           </button>
         {{else}}
           <button class="button button--youtube w-100"
             disabled={{if createLink.isRunning "disabled"}}
             onclick={{perform createLink "youtube-channel"}}>
-            {{svg-jar "play"}}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+              <path d="M44.9,14.5c-0.4-2.2-2.3-3.8-4.5-4.3C37.1,9.5,31,9,24.4,9c-6.6,0-12.8,0.5-16.1,1.2c-2.2,0.5-4.1,2-4.5,4.3 C3.4,17,3,20.5,3,25s0.4,8,0.9,10.5c0.4,2.2,2.3,3.8,4.5,4.3c3.5,0.7,9.5,1.2,16.1,1.2s12.6-0.5,16.1-1.2c2.2-0.5,4.1-2,4.5-4.3 c0.4-2.5,0.9-6.1,1-10.5C45.9,20.5,45.4,17,44.9,14.5z M19,32V18l12.2,7L19,32z"></path>
+            </svg>
             Connect YouTube
           </button>
         {{/if}}
@@ -56,7 +60,7 @@
             update=(action (mut youtubeAccount.shareFrom))
           }}
           Post to Kitsu
-          <small>If enabled, We'll post to Kitsu on your behalf when you upload a video to your YouTube.</small>
+          <small>If enabled, videos uploaded to Youtube will automatically be shared to your Kitsu followers.</small>
         </label>
       {{/if}}
     </div>
