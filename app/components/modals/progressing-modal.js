@@ -2,22 +2,18 @@ import Component from 'ember-component';
 import set from 'ember-metal/set';
 import get from 'ember-metal/get';
 import computed from 'ember-computed';
-import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
-  modalBase: '',
-  component: '',
-  componentName: computed('component', {
-    get() {
-      return `${get(this, 'modalBase')}/${get(this, 'component')}`;
-    }
-  }),
+  modalBase: null,
+  component: null,
+
+  componentName: computed('modalBase', 'component', function() {
+    const modalBase = get(this, 'modalBase');
+    const component = get(this, 'component');
+    return `${modalBase}/${component}`;
+  }).readOnly(),
 
   actions: {
-    onClose() {
-      invokeAction(this, 'onClose');
-    },
-
     changeComponent(component, data) {
       set(this, 'component', component);
       set(this, 'componentData', data);
