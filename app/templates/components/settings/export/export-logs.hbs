@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-header" role="tab">
+    <h6 class="m-b-0">
+      <a data-toggle="collapse" data-parent="#accordian" href="#export-tab-{{elementId}}">
+        {{classify account.kind}} Sync
+      </a>
+    </h6>
+  </div>
+
+  <div id="export-tab-{{elementId}}">
+    <div class="card-block">
+      {{#if account.libraryEntryLogs}}
+        <table class="library-entry-logs table table-hover">
+          <thead>
+            <tr>
+              <th class="canon-header">{{t "exports.logs.header.media"}}</th>
+              <th>{{t "exports.logs.header.library-status"}}</th>
+              <th>{{t "exports.logs.header.progress"}}</th>
+              <th>{{t "exports.logs.header.rating"}}</th>
+              <th>{{t "exports.logs.header.reconsumes"}}</th>
+              <th>{{t "exports.logs.header.action"}}</th>
+              <th>{{t "exports.logs.header.status"}}</th>
+            </tr>
+          </thead>
+          {{#each sortedLogs as |date|}}
+            <tbody>
+              <tr class="date-value">
+                <td colspan="100%">
+                  {{date.value}}
+                </td>
+              </tr>
+              {{#each date.items as |log|}}
+                {{settings/export/export-logs-item item=log tagName="tr" class="library-entry-log"}}
+              {{/each}}
+            </tbody>
+          {{/each}}
+        </table>
+      {{else}}
+        <div class="text-xs-center w-100 m-t-1 m-b-1">
+          {{t "errors.contentEmpty"}}
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</div>

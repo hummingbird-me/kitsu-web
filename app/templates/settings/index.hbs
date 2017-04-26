@@ -1,158 +1,160 @@
-<h1>Profile</h1>
+<div class="settings-container">
+  <h1>Profile</h1>
 
-<div class="settings--section-head">
-  Account and region settings
-</div>
-<div class="container">
-  {{! username }}
-  <div class="form-group row">
-    <label class="col-xs-4 col-form-label">Username</label>
-    <div class="col-xs-8">
-      {{one-way-text username
-        update=(action (mut username))
-        class="form-control"
-      }}
-      <small>https://kitsu.io/users/{{username}}</small>
-    </div>
+  <div class="settings--section-head">
+    Account and region settings
   </div>
-  {{! email }}
-  <div class="form-group row">
-    <label class="col-xs-4 col-form-label">Email</label>
-    <div class="col-xs-8">
-      {{one-way-email user.email
-        update=(action (mut user.email))
-        class="form-control"
-      }}
-      <small>Email will not be publicly displayed.</small>
+  <div class="container">
+    {{! username }}
+    <div class="form-group row">
+      <label class="col-xs-4 col-form-label">Username</label>
+      <div class="col-xs-8">
+        {{one-way-text username
+          update=(action (mut username))
+          class="form-control"
+        }}
+        <small>https://kitsu.io/users/{{username}}</small>
+      </div>
     </div>
-  </div>
-  {{! language }}
-  <div class="form-group row">
-    <label class="col-xs-4 col-form-label">Language</label>
-    <div class="col-xs-8">
-      {{#power-select
-        renderInPlace=true
-        selected=(or selectedLanguage (get languages "firstObject"))
-        options=languages
-        searchEnabled=false
-        onchange=(action "changeLanguage") as |language|
-      }}
-        {{language.text}}
-      {{/power-select}}
-      <small>Interested in helping translate? <a href="mailto:josh@kitsu.io">Let's talk!</a></small>
+    {{! email }}
+    <div class="form-group row">
+      <label class="col-xs-4 col-form-label">Email</label>
+      <div class="col-xs-8">
+        {{one-way-email user.email
+          update=(action (mut user.email))
+          class="form-control"
+        }}
+        <small>Email will not be publicly displayed.</small>
+      </div>
     </div>
-  </div>
-  {{! timezone }}
-  <div class="form-group row">
-    <label class="col-xs-4 col-form-label">Time Zone</label>
-    <div class="col-xs-8">
-      {{#power-select
-        renderInPlace=true
-        selected=(or user.timeZone timezoneGuess)
-        options=timezones
-        onchange=(action (mut user.timeZone)) as |timezone|
-      }}
-        {{timezone}}
-      {{/power-select}}
+    {{! language }}
+    <div class="form-group row">
+      <label class="col-xs-4 col-form-label">Language</label>
+      <div class="col-xs-8">
+        {{#power-select
+          renderInPlace=true
+          selected=(or selectedLanguage (get languages "firstObject"))
+          options=languages
+          searchEnabled=false
+          onchange=(action "changeLanguage") as |language|
+        }}
+          {{language.text}}
+        {{/power-select}}
+        <small>Interested in helping translate? <a href="mailto:josh@kitsu.io">Let's talk!</a></small>
+      </div>
     </div>
-  </div>
-</div>
-
-<div class="settings--section-head">
-  Content on Kitsu
-</div>
-<div class="container">
-  {{! themes }}
-  <div class="form-group row">
-    <label class="col-xs-4 col-form-label">Site Theme</label>
-    <div class="col-xs-8">
-      {{#power-select
-        renderInPlace=true
-        options=themes
-        selected=selectedTheme
-        searchEnabled=false
-        onchange=(action "changeTheme") as |theme|
-      }}
-        {{theme.text}}
-      {{/power-select}}
+    {{! timezone }}
+    <div class="form-group row">
+      <label class="col-xs-4 col-form-label">Time Zone</label>
+      <div class="col-xs-8">
+        {{#power-select
+          renderInPlace=true
+          selected=(or user.timeZone timezoneGuess)
+          options=timezones
+          onchange=(action (mut user.timeZone)) as |timezone|
+        }}
+          {{timezone}}
+        {{/power-select}}
+      </div>
     </div>
   </div>
 
-  {{! country }}
-  <div class="form-group row">
-    <label class="col-xs-4 col-form-label">Country</label>
-    <div class="col-xs-8">
-      {{#power-select
-        renderInPlace=true
-        options=countries
-        selected=selectedCountry
-        searchField="text"
-        placeholder="Worldwide"
-        onchange=(action "changeCountry") as |country|
-      }}
-        {{country.text}}
-      {{/power-select}}
-    </div>
+  <div class="settings--section-head">
+    Content on Kitsu
   </div>
-
-  {{! titles }}
-  <div class="form-group row">
-    <label class="col-xs-4 col-form-label">Titles</label>
-    <div class="col-xs-8">
-      {{#power-select
-        renderInPlace=true
-        options=titles
-        selected=selectedTitle
-        searchEnabled=false
-        onchange=(action "changeTitle") as |title|
-      }}
-        {{title.text}}
-      {{/power-select}}
-      <small>How media titles will be displayed.</small>
+  <div class="container">
+    {{! themes }}
+    <div class="form-group row">
+      <label class="col-xs-4 col-form-label">Site Theme</label>
+      <div class="col-xs-8">
+        {{#power-select
+          renderInPlace=true
+          options=themes
+          selected=selectedTheme
+          searchEnabled=false
+          onchange=(action "changeTheme") as |theme|
+        }}
+          {{theme.text}}
+        {{/power-select}}
+      </div>
     </div>
-  </div>
 
-  {{! rating type }}
-  <div class="form-group row rating-type">
-    <label class="col-xs-4 col-form-label">Rating Type</label>
-    <div class="col-xs-8">
-      {{#power-select
-        renderInPlace=true
-        options=ratings
-        selected=selectedRating
-        searchEnabled=false
-        onchange=(action "changeRating") as |rating|
-      }}
-        {{rating.text}}
-      {{/power-select}}
-      <small>Choose how you would like to rate media that you've watched or read.</small>
+    {{! country }}
+    <div class="form-group row">
+      <label class="col-xs-4 col-form-label">Country</label>
+      <div class="col-xs-8">
+        {{#power-select
+          renderInPlace=true
+          options=countries
+          selected=selectedCountry
+          searchField="text"
+          placeholder="Worldwide"
+          onchange=(action "changeCountry") as |country|
+        }}
+          {{country.text}}
+        {{/power-select}}
+      </div>
     </div>
-  </div>
 
-  {{! adult filter }}
-  <div class="form-group row">
-    <label class="col-xs-4 col-form-label">Adult Content</label>
-    <div class="col-xs-8">
-      {{#power-select
-        renderInPlace=true
-        options=filters
-        selected=selectedFilter
-        searchEnabled=false
-        onchange=(action "changeFilter") as |filter|
-      }}
-        {{filter.text}}
-      {{/power-select}}
-      <small>With adult content hidden, you won't see R18+ media in the feed, libraries, or search.</small>
+    {{! titles }}
+    <div class="form-group row">
+      <label class="col-xs-4 col-form-label">Titles</label>
+      <div class="col-xs-8">
+        {{#power-select
+          renderInPlace=true
+          options=titles
+          selected=selectedTitle
+          searchEnabled=false
+          onchange=(action "changeTitle") as |title|
+        }}
+          {{title.text}}
+        {{/power-select}}
+        <small>How media titles will be displayed.</small>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group row">
-    <button class="button button--primary btn-lg btn-block" disabled={{unless isValid "disabled"}} onclick={{perform updateProfile}}>
-      {{#if updateProfile.isRunning}}
-        {{loading-spinner size="small"}}
-      {{else}}
-        Update Profile
-      {{/if}}
-    </button>
+    {{! rating type }}
+    <div class="form-group row rating-type">
+      <label class="col-xs-4 col-form-label">Rating Type</label>
+      <div class="col-xs-8">
+        {{#power-select
+          renderInPlace=true
+          options=ratings
+          selected=selectedRating
+          searchEnabled=false
+          onchange=(action "changeRating") as |rating|
+        }}
+          {{rating.text}}
+        {{/power-select}}
+        <small>Choose how you would like to rate media that you've watched or read.</small>
+      </div>
+    </div>
+
+    {{! adult filter }}
+    <div class="form-group row">
+      <label class="col-xs-4 col-form-label">Adult Content</label>
+      <div class="col-xs-8">
+        {{#power-select
+          renderInPlace=true
+          options=filters
+          selected=selectedFilter
+          searchEnabled=false
+          onchange=(action "changeFilter") as |filter|
+        }}
+          {{filter.text}}
+        {{/power-select}}
+        <small>With adult content hidden, you won't see R18+ media in the feed, libraries, or search.</small>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <button class="button button--primary btn-lg btn-block" disabled={{unless isValid "disabled"}} onclick={{perform updateProfile}}>
+        {{#if updateProfile.isRunning}}
+          {{loading-spinner size="small"}}
+        {{else}}
+          Update Profile
+        {{/if}}
+      </button>
+    </div>
   </div>
 </div>

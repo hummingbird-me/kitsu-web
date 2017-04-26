@@ -1,73 +1,75 @@
-<h1>Blocking</h1>
+<div class="settings-container">
+  <h1>Blocking</h1>
 
-<div class="settings--section-head">
-  Once you block someone, that person can no longer tag you, follow you, view your profile, or see your feed posts.
-</div>
-<div class="container">
-  <div class="notification-settings--headers row">
-    <label class="col-xs-3 col-form-label">Block Users</label>
-    <div class="form-inline col-xs-9">
-      <div class="col-xs-9">
-        {{#power-select
-          search=(perform searchUsers)
-          selected=currentSelection
-          onchange=(action (mut currentSelection))
-          renderInPlace=true
-          allowClear=true
-          placeholder="Search users to block..."
-          as |item|
-        }}
-          <span>{{item.name}}</span>
-        {{/power-select}}
-      </div>
-      <div class="col-xs-3">
-        <button class="button" disabled={{unless currentSelection "disabled"}} onclick={{action "blockUser"}}>Block</button>
-      </div>
-    </div>
+  <div class="settings--section-head">
+    Once you block someone, that person can no longer tag you, follow you, view your profile, or see your feed posts.
   </div>
+  <div class="container">
+    <div class="notification-settings--headers row">
+      <label class="col-xs-3 col-form-label">Block Users</label>
+      <div class="form-inline col-xs-9">
+        <div class="col-xs-9">
+          {{#power-select
+            search=(perform searchUsers)
+            selected=currentSelection
+            onchange=(action (mut currentSelection))
+            renderInPlace=true
+            allowClear=true
+            placeholder="Search users to block..."
+            as |item|
+          }}
+            <span>{{item.name}}</span>
+          {{/power-select}}
+        </div>
+        <div class="col-xs-3">
+          <button class="button" disabled={{unless currentSelection "disabled"}} onclick={{action "blockUser"}}>Block</button>
+        </div>
+      </div>
+    </div>
 
-  {{#if model.taskInstance.isRunning}}
-    <div class="text-xs-center w-100 m-t-1 m-b-1">
-      {{loading-spinner size="large"}}
-      <p>Loading Users...</p>
-    </div>
-  {{else if model.taskInstance.error}}
-    <div class="text-xs-center w-100 m-t-1 m-b-1">
-      {{t "errors.load"}}
-    </div>
-  {{else if taskValue}}
-    <div class="form-group row">
-      <ul class="blocked-user--list">
-        {{#each taskValue as |block|}}
-          <li>
-            <div class="stream-item--title-block">
-              <span class="avatar-block">
-                <a class="author-avatar">
-                  <img src={{image block.blocked.avatar "medium"}}>
+    {{#if model.taskInstance.isRunning}}
+      <div class="text-xs-center w-100 m-t-1 m-b-1">
+        {{loading-spinner size="large"}}
+        <p>Loading Users...</p>
+      </div>
+    {{else if model.taskInstance.error}}
+      <div class="text-xs-center w-100 m-t-1 m-b-1">
+        {{t "errors.load"}}
+      </div>
+    {{else if taskValue}}
+      <div class="form-group row">
+        <ul class="blocked-user--list">
+          {{#each taskValue as |block|}}
+            <li>
+              <div class="stream-item--title-block">
+                <span class="avatar-block">
+                  <a class="author-avatar">
+                    <img src={{image block.blocked.avatar "medium"}}>
+                  </a>
+                </span>
+                <div class="author-info">
+                  <a class="author-name">{{block.blocked.name}}</a>
+                </div>
+                <a href="#" class="unblock-cta" {{action "unblockUser" block}}>
+                  Unblock
                 </a>
-              </span>
-              <div class="author-info">
-                <a class="author-name">{{block.blocked.name}}</a>
               </div>
-              <a href="#" class="unblock-cta" {{action "unblockUser" block}}>
-                Unblock
-              </a>
-            </div>
-          </li>
-        {{/each}}
-      </ul>
-    </div>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
 
-    <div class="text-xs-center w-100">
-      {{#if hasNextPage}}
-        <button class="button button--primary btn-block" disabled={{if isLoading "disabled"}} {{action (route-action "onPagination")}}>
-          Load More
-        </button>
-      {{/if}}
-    </div>
-  {{else}}
-    <p class="text-xs-center w-100 m-t-1 m-b-1">
-      You aren't currently blocking anyone.
-    </p>
-  {{/if}}
+      <div class="text-xs-center w-100">
+        {{#if hasNextPage}}
+          <button class="button button--primary btn-block" disabled={{if isLoading "disabled"}} {{action (route-action "onPagination")}}>
+            Load More
+          </button>
+        {{/if}}
+      </div>
+    {{else}}
+      <p class="text-xs-center w-100 m-t-1 m-b-1">
+        You aren't currently blocking anyone.
+      </p>
+    {{/if}}
+  </div>
 </div>
