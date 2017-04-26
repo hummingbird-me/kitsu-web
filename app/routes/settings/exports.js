@@ -14,13 +14,7 @@ export default Route.extend({
   modelTask: task(function* () {
     return yield get(this, 'store').query('linked-account', {
       include: 'libraryEntryLogs.media',
-      fields: {
-        media: [
-          'canonicalTitle',
-          'posterImage',
-          'slug'
-        ].join(',')
-      }
+      fields: { media: ['canonicalTitle', 'posterImage', 'slug'].join(',') }
     }).then(records => get(records, 'firstObject'));
   }),
 

@@ -25,8 +25,9 @@ export default Component.extend({
     for (;;) {
       const exp = get(this, 'export');
       yield get(this, 'store').query('libraryEntryLog', {
+        include: 'media',
         filter: { linkedAccountId: get(exp, 'id') },
-        include: 'media'
+        fields: { media: ['canonicalTitle', 'posterImage', 'slug'].join(',') }
       })
       .then((logs) => {
         set(this, 'export.libraryEntryLogs', logs);
