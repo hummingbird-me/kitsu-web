@@ -2,60 +2,43 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
 import { dasherize } from 'ember-string';
+import { invokeAction } from 'ember-invoke-action';
 import errorMessages from 'client/utils/error-messages';
-import computed from 'ember-computed';
 
 export default Component.extend({
-  username: undefined,
-  password: undefined,
   notify: service(),
   session: service(),
   store: service(),
 
-  token: computed('username', 'password', {
-    get() {
-      const username = get(this, 'username');
-      const password = get(this, 'password');
-      return btoa(`${username}:${password}`);
-    }
-  }).readOnly(),
+  init() {
+    this._super(...arguments);
+    set(this, 'siteName', get(this, 'componentData.siteName'));
+    set(this, 'exporter', this._createExporter());
+  },
 
   createExport: task(function* () {
-    const exporter = get(this, 'store').createRecord('linked-account', {
-      externalUserId: get(this, 'username'),
-      token: get(this, 'password'),
+    yield get(this, 'exporter').save().then(() => {
+      invokeAction(this, 'close');
+      invokeAction(this, 'componentData.refresh');
+    }).catch((error) => {
+      let statusCode = get(error, 'errors.firstObject.status');
+      statusCode = parseInt(statusCode, 10);
+      if (statusCode === 422) {
+        get(this, 'notify').error('Authorization failed! Please check your username and password.');
+      } else {
+        get(this, 'notify').error(errorMessages(error));
+        get(this, 'raven').captureException(error);
+      }
+    });
+  }).drop(),
+
+  _createExporter() {
+    return get(this, 'store').createRecord('linked-account', {
       kind: dasherize(get(this, 'siteName')),
       syncTo: true,
       user: get(this, 'session.account')
     });
-
-    try {
-      yield exporter.save();
-      this.sendAction('refresh');
-      invokeAction(this, 'close');
-    } catch (err) {
-      const errorCode = parseInt(get(err, 'errors.firstObject.status'), 10);
-      if (errorCode === 422) {
-        get(this, 'notify').error('Authorization failed! Please check your username and password.');
-      } else {
-        get(this, 'notify').error(errorMessages(err));
-        get(this, 'raven').captureException(err);
-      }
-      exporter.deleteRecord();
-    }
-  }).drop(),
-
-  init() {
-    this._super(...arguments);
-    set(this, 'siteName', get(this, 'componentData.siteName'));
-  },
-
-  actions: {
-    setupExport() {
-      get(this, 'createExport').perform();
-    }
   }
 });

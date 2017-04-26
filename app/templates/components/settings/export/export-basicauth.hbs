@@ -4,21 +4,19 @@
     <p class="auth-section-helper">We'll update your anime and manga lists on {{siteName}} every time you update them on Kitsu. Note that we won't delete entries from your {{siteName}} library.</p>
     <form>
       <div class="form-group">
-        {{one-way-text username
-          update=(action (mut username))
+        {{one-way-text exporter.externalUserId
+          update=(action (mut exporter.externalUserId))
           class="form-control"
           placeholder="Username"
-          autofocus="autofocus"
-          data-test-selector="username"}}
+          autofocus="autofocus"}}
 
-        {{one-way-password password
-          update=(action (mut password))
+        {{one-way-password exporter.token
+          update=(action (mut exporter.token))
           class="form-control"
-          placeholder="Password"
-          data-test-selector="password"}}
+          placeholder="Password"}}
       </div>
       <div class="form-cta">
-        <button type="submit" class="button button--primary" disabled={{if (or (is-empty username) (is-empty password)) "disabled"}} {{action "setupExport"}}>
+        <button class="button button--primary" disabled={{unless exporter.validations.isValid "disabled"}} {{action (perform createExport)}}>
           {{#if createExport.isRunning}}
             {{loading-spinner size="small"}}
           {{else}}

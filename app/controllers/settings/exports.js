@@ -1,6 +1,6 @@
 import Controller from 'ember-controller';
-import { concat } from 'client/utils/computed-macros';
+import { alias } from 'ember-computed';
 
 export default Controller.extend({
-  taskValue: concat('model.taskInstance.value', 'model.paginatedRecords'),
+  account: alias('model.taskInstance.value'),
 });
