@@ -54,6 +54,12 @@
                         </svg>
                       </span>
                     </td>
+                  {{else if (eq log.syncStatus "pending")}}
+                    <td class="pending-state">
+                      <span class="pending-info hint--top-left hint--bounce hint--rounded" aria-label="Pending...">
+                        pending svg here
+                      </span>
+                    </td>
                   {{else}}
                     <td class="error-state">
                       <span class="error-info hint--top-left hint--bounce hint--rounded" aria-label={{log.errorMessage}}>
