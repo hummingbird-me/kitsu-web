@@ -23,6 +23,7 @@ module.exports = {
     'prefer-rest-params': 'off',
     'func-names': 'off',
     'no-useless-escape': 'off',
-    'newline-per-chained-call': 'off'
+    'newline-per-chained-call': 'off',
+    'no-constant-condition': ['error', { 'checkLoops': false }]
   }
 };
