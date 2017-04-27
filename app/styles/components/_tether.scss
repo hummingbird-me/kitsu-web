@@ -19,6 +19,8 @@
     position: relative;
     height: 189px;
     width: 282px;
+    display: flex;
+    flex-direction: column;
     @media (min-width: 1421px) {
       height: 232px;
       width: 341px;
@@ -81,7 +83,15 @@
     }
     .media-synopsis {
       font-size: 12px;
+      height: 100%;
       overflow: hidden;
+      background-image: linear-gradient(to bottom,
+        lighten($secondary-background-color, 60),
+        lighten($secondary-background-color, 60) 75%,
+        $secondary-background-color
+      );
+      color: transparent;
+      -webkit-background-clip: text;
     }
   }
 }
