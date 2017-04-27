@@ -27,18 +27,18 @@
                 <th>{{t "settings.exports.logs.header.status"}}</th>
               </tr>
             </thead>
-            {{#each sortedLogs as |date|}}
+            {{#each-in (group-by "formattedDate" exportLogs) as |date items|}}
               <tbody>
                 <tr class="date-value">
                   <td colspan="100%">
-                    {{date.value}}
+                    {{format-date date timeZone="UTC" weekday="long" day="numeric" month="long" year="numeric"}}
                   </td>
                 </tr>
-                {{#each date.items as |log|}}
-                  {{settings/export/export-logs-item item=log tagName="tr" class="library-entry-log"}}
+                {{#each (sort-by (action "sortLogs") items) as |item|}}
+                  {{settings/export/export-logs-item item=item tagName="tr" class="library-entry-log"}}
                 {{/each}}
               </tbody>
-            {{/each}}
+            {{/each-in}}
           </table>
         {{/infinite-pagination}}
       {{else}}
