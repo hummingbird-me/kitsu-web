@@ -71,7 +71,7 @@ auth-modal:
       2 {Looks legit, how about a password?}
       3 {Cool- Let's create that account}
       other {}}"
-# dashboard
+# page: dashboard
 dashboard:
   quick-update:
     filter:
@@ -110,7 +110,7 @@ dashboard:
       creative and witty you are!"
   groups:
     header: "My Groups"
-# media pages
+# page: anime/manga
 media:
   index:
     search: "Search by title, character, or cast..."
@@ -217,7 +217,7 @@ media:
           the anime {title}}
         manga {The following is a full list of characters for the manga {title}}
         other {}}"
-# users page
+# page: users
 users:
   navigation:
     activity: "Activity"
@@ -385,55 +385,64 @@ users:
     sort:
       newest: "Recently Joined"
       oldest: "Oldest Joined"
-# settings page
-exports:
-  logs:
-    header:
-      media: "Title"
-      library-status: "Status"
-      progress: "Progress"
-      rating: "Rating"
-      reconsumes: "Rewatches"
-      action: "Action"
-      status: "Status"
-    action:
-      create: "Create"
-      update: "Update"
-      delete: "Remove"
-    status:
-      pending: "Pending"
-      success: "Success"
-      error: "Error"
-    library-status:
-      all: "{type, select,
-        anime {All Anime}
-        manga {All Manga}
-        other {}}"
-      current: "{type, select,
-        anime {Watching}
-        manga {Reading}
-        other {}}"
-      planned: "{type, select,
-        anime {Want to Watch}
-        manga {Want to Read}
-        other {}}"
-      completed: "{type, select,
-        anime {Completed}
-        manga {Completed}
-        other {}}"
-      on_hold: "{type, select,
-        anime {On Hold}
-        manga {On Hold}
-        other {}}"
-      dropped: "{type, select,
-        anime {Dropped}
-        manga {Dropped}
-        other {}}"
+# page: settings
+settings:
+  exports:
+    header: "Export"
+    sub-header: "Automatically sync your library updates from Kitsu to MyAnimeList."
+    remove: "Remove Exporter"
+    create: "Setup Export to MyAnimeList Account"
+    recent: "Recent Sync Activity"
+    sync-header: "MyAnimeList Sync"
+    no-logs: "Doesn't look like you have any sync history yet, your process may be queued.
+      Check back in a few minutes."
+    logs:
+      header:
+        media: "Title"
+        library-status: "Status"
+        progress: "Progress"
+        rating: "Rating"
+        reconsumes: "Rewatches"
+        action: "Action"
+        status: "Status"
+      action:
+        create: "Create"
+        update: "Update"
+        delete: "Remove"
+      status:
+        pending: "Pending"
+        success: "Success"
+        error: "Error"
+      library-status:
+        all: "{type, select,
+          anime {All Anime}
+          manga {All Manga}
+          other {}}"
+        current: "{type, select,
+          anime {Watching}
+          manga {Reading}
+          other {}}"
+        planned: "{type, select,
+          anime {Want to Watch}
+          manga {Want to Read}
+          other {}}"
+        completed: "{type, select,
+          anime {Completed}
+          manga {Completed}
+          other {}}"
+        on_hold: "{type, select,
+          anime {On Hold}
+          manga {On Hold}
+          other {}}"
+        dropped: "{type, select,
+          anime {Dropped}
+          manga {Dropped}
+          other {}}"
 # page: feedback
 feedback:
   bugs: "Bugs"
   features: "Feature Requests"
-# groups
+# page: groups
 groups:
   index:
     call-to-action: "Anyone can create and discover groups. Each group centers around a topic or activity."
@@ -660,6 +669,7 @@ groups:
         assigned: "assigned a ticket to <a href={link}>{user}</a>."
         resolved: "marked a ticket as resolved."
         created: "re-opened a ticket."
+# page: group-invite
 group-invite:
   header: "Group Invite"
   subtitle: "You have been invited to {group} by {sender}"
@@ -758,6 +768,7 @@ feeds:
 # component: image-form
 image-form:
   help-text: "Click here to select an image."
+# component: groups/group-list
 group-list:
   filter: "Filter Groups"
   sort:

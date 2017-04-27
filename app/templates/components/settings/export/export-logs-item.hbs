@@ -8,11 +8,11 @@
     {{item.media.computedTitle}}
   </a>
 </td>
-<td>{{t (concat "exports.logs.library-status." item.status) type=item.media.modelType}}</td>
+<td>{{t (concat "library-shared." item.status) type=item.media.modelType}}</td>
 <td>{{item.progress}}</td>
 <td>{{item.rating}}</td>
 <td>{{item.reconsumeCount}}</td>
-<td>{{t (concat "exports.logs.action." item.actionPerformed)}}</td>
+<td>{{t (concat "settings.exports.logs.action." item.actionPerformed)}}</td>
 {{#if (eq item.syncStatus "success")}}
   <td class="success-state">
     <span class="success-info hint--top-left hint--bounce hint--rounded" aria-label="Synced Successfully!">

@@ -1,10 +1,10 @@
 <div class="export-container settings-container">
   <header>
-    <h1>Export</h1>
-
+    <h1>{{t "settings.exports.header"}}</h1>
     <div class="settings--section-head">
-      Automatically sync your library updates from Kitsu to MyAnimeList.
+      {{t "settings.exports.sub-header"}}
     </div>
+
     <div class="container">
       <div class="form-group row">
         {{#if model.taskInstance.isRunning}}
@@ -25,7 +25,7 @@
             </span>
             <a href="https://myanimelist.net/profile/{{account.externalUserId}}" class="connected-user">{{account.externalUserId}}</a>
             <span class="export-remove">
-              <a class="hint--left hint--bounce hint--rounded" aria-label="Remove exporter" {{action (route-action "deleteAccount" account)}}>
+              <a class="hint--left hint--bounce hint--rounded" aria-label={{t "settings.exports.remove"}} {{action (route-action "deleteAccount" account)}}>
                 {{svg-jar "cancel"}}
               </a>
             </span>
@@ -35,9 +35,7 @@
             <span class="import-logo">
               <img src="/images/mal.png">
             </span>
-            <span class="import-title">
-              Setup Export to MyAnimeList Account
-            </span>
+            <span class="import-title">{{t "settings.exports.create"}}</span>
           </button>
         {{/if}}
 
@@ -59,7 +57,7 @@
 
   {{#if account}}
     <div class="settings--section-head">
-      Recent Sync Activity
+      {{t "settings.exports.recent"}}
     </div>
     <div class="export-c container">
       <div class="form-group">

@@ -5,13 +5,16 @@ import errorMessages from 'client/utils/error-messages';
 
 export default Route.extend({
   model() {
-    return { taskInstance: get(this, 'getLinkedAccountTask').perform() };
+    return { taskInstance: get(this, 'getExporterAccount').perform() };
   },
 
-  getLinkedAccountTask: task(function* () {
+  /**
+   * Get the users linked accounts that we support as exporters.
+   * Currently, that is only MyAnimeList.
+   */
+  getExporterAccount: task(function* () {
     return yield get(this, 'store').query('linked-account', {
-      include: 'libraryEntryLogs.media',
-      fields: { media: ['canonicalTitle', 'posterImage', 'slug'].join(',') }
+      // filter: { kind: 'my-anime-list' }
     }).then(records => get(records, 'firstObject'));
   }).restartable(),
 

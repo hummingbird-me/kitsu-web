@@ -1,8 +1,8 @@
 <div class="card">
   <div class="card-header" role="tab">
     <h6 class="m-b-0">
-      <a data-toggle="collapse" data-parent="#accordian" href="#export-tab-{{elementId}}">
-        {{classify account.kind}} Sync
+      <a href="#export-tab-{{elementId}}" data-toggle="collapse">
+        {{t "settings.exports.sync-header"}}
       </a>
     </h6>
   </div>
@@ -13,13 +13,13 @@
         <table class="library-entry-logs table table-hover">
           <thead>
             <tr>
-              <th class="canon-header">{{t "exports.logs.header.media"}}</th>
-              <th>{{t "exports.logs.header.library-status"}}</th>
-              <th>{{t "exports.logs.header.progress"}}</th>
-              <th>{{t "exports.logs.header.rating"}}</th>
-              <th>{{t "exports.logs.header.reconsumes"}}</th>
-              <th>{{t "exports.logs.header.action"}}</th>
-              <th>{{t "exports.logs.header.status"}}</th>
+              <th class="canon-header">{{t "settings.exports.logs.header.media"}}</th>
+              <th>{{t "settings.exports.logs.header.library-status"}}</th>
+              <th>{{t "settings.exports.logs.header.progress"}}</th>
+              <th>{{t "settings.exports.logs.header.rating"}}</th>
+              <th>{{t "settings.exports.logs.header.reconsumes"}}</th>
+              <th>{{t "settings.exports.logs.header.action"}}</th>
+              <th>{{t "settings.exports.logs.header.status"}}</th>
             </tr>
           </thead>
           {{#each sortedLogs as |date|}}
@@ -37,7 +37,7 @@
         </table>
       {{else}}
         <div class="text-xs-center w-100 m-t-1 m-b-1">
-          {{t "errors.contentEmpty"}}
+          {{t "settings.exports.no-logs"}}
         </div>
       {{/if}}
     </div>
