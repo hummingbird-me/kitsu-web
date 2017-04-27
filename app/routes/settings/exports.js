@@ -14,7 +14,7 @@ export default Route.extend({
    */
   getExporterAccount: task(function* () {
     return yield get(this, 'store').query('linked-account', {
-      // filter: { kind: 'my-anime-list' }
+      filter: { kind: 'my-anime-list' }
     }).then(records => get(records, 'firstObject'));
   }).restartable(),
 
