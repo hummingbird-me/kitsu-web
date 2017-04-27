@@ -132,10 +132,65 @@
     padding: 0;
     margin-bottom: 15px;
     .media-grid {
-      padding-right: 0;
+      padding-right: 8px;
       .poster-wrapper {
         padding-right: 10px;
         margin-bottom: 10px;
+        img {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+      .progress {
+        position: absolute;
+        bottom: 0px;
+        height: 4px;
+        margin-bottom: 0px;
+        border-radius: 3px;
+        .progress-bar {
+          display: block;
+          position: relative;
+          height: 4px;
+          background-color: rgba(0, 0, 0, 0.5);
+          .progress-completed {
+            position: absolute;
+            top: 2px;
+            left: 0;
+            height: 2px;
+            background-color: #ab8ea9;
+          }
+        }
+      }
+      .entry-stats {
+        background: $secondary-background-color;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+        color: $white;
+        padding: 5px 10px;
+        font-size: 12px;
+        position: relative;
+      }
+      .entry-rating {
+        float: right;
+        display: inline-block;
+      }
+      .entry-rating-simple {
+        margin-top: -12px;
+        svg {
+          width: 28px;
+          height: 28px;
+        }
+      }
+      .entry-rating-star {
+        svg {
+          width: 12px;
+          height: 12px;
+          fill: #ebc83c;
+          float: left;
+          position: relative;
+          top: 2px;
+          margin-right: 5px;
+        }
       }
     }
   }
