@@ -15,11 +15,7 @@ export default Component.extend(HoverIntentMixin, {
 
   yearlessTitle: computed('media.computedTitle', function() {
     const title = get(this, 'media.computedTitle');
-    const match = title.match(/\(\d{4}\)/);
-    if (match) {
-      return title.slice(0, match.index) + title.slice(match.index + 6);
-    }
-    return title;
+    return title.replace(/\(\d{4}\)$/, '');
   }).readOnly(),
 
   /** Determines what class to use based on the percentage value. */
