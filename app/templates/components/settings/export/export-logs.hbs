@@ -9,32 +9,38 @@
 
   <div id="export-tab-{{elementId}}">
     <div class="card-block">
-      {{#if account.libraryEntryLogs}}
-        <table class="library-entry-logs table table-hover">
-          <thead>
-            <tr>
-              <th class="canon-header">{{t "settings.exports.logs.header.media"}}</th>
-              <th>{{t "settings.exports.logs.header.library-status"}}</th>
-              <th>{{t "settings.exports.logs.header.progress"}}</th>
-              <th>{{t "settings.exports.logs.header.rating"}}</th>
-              <th>{{t "settings.exports.logs.header.reconsumes"}}</th>
-              <th>{{t "settings.exports.logs.header.action"}}</th>
-              <th>{{t "settings.exports.logs.header.status"}}</th>
-            </tr>
-          </thead>
-          {{#each sortedLogs as |date|}}
-            <tbody>
-              <tr class="date-value">
-                <td colspan="100%">
-                  {{date.value}}
-                </td>
+      {{#if getExportLogsTask.isRunning}}
+        <div class="text-xs-center w-100 m-t-1 m-b-1">
+          {{loading-spinner size="small"}}
+        </div>
+      {{else if getExportLogsTask.last.value}}
+        {{#infinite-pagination loaderSize="small" onPagination=(action "onPagination")}}
+          <table class="library-entry-logs table table-hover">
+            <thead>
+              <tr>
+                <th class="canon-header">{{t "settings.exports.logs.header.media"}}</th>
+                <th>{{t "settings.exports.logs.header.library-status"}}</th>
+                <th>{{t "settings.exports.logs.header.progress"}}</th>
+                <th>{{t "settings.exports.logs.header.rating"}}</th>
+                <th>{{t "settings.exports.logs.header.reconsumes"}}</th>
+                <th>{{t "settings.exports.logs.header.action"}}</th>
+                <th>{{t "settings.exports.logs.header.status"}}</th>
               </tr>
-              {{#each date.items as |log|}}
-                {{settings/export/export-logs-item item=log tagName="tr" class="library-entry-log"}}
-              {{/each}}
-            </tbody>
-          {{/each}}
-        </table>
+            </thead>
+            {{#each sortedLogs as |date|}}
+              <tbody>
+                <tr class="date-value">
+                  <td colspan="100%">
+                    {{date.value}}
+                  </td>
+                </tr>
+                {{#each date.items as |log|}}
+                  {{settings/export/export-logs-item item=log tagName="tr" class="library-entry-log"}}
+                {{/each}}
+              </tbody>
+            {{/each}}
+          </table>
+        {{/infinite-pagination}}
       {{else}}
         <div class="text-xs-center w-100 m-t-1 m-b-1">
           {{t "settings.exports.no-logs"}}

@@ -1,6 +1,8 @@
 import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
+import get from 'ember-metal/get';
+import computed from 'ember-computed';
 
 export default Base.extend({
   actionPerformed: attr('string'),
@@ -14,4 +16,8 @@ export default Base.extend({
 
   linkedAccount: belongsTo('linked-account'),
   media: belongsTo('media'),
+
+  formattedDate: computed('createdAt', function() {
+    return get(this, 'createdAt').format('YYYY-MM-DD');
+  })
 });

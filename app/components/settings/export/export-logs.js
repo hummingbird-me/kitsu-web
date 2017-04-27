@@ -1,29 +1,27 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import service from 'ember-service/inject';
-import { task, timeout } from 'ember-concurrency';
 import computed from 'ember-computed';
 import groupBy from 'ember-group-by';
+import { task } from 'ember-concurrency';
+import { concat } from 'client/utils/computed-macros';
+import Pagination from 'client/mixins/pagination';
 import moment from 'moment';
 
 const DATE_FORMAT = 'YYYY-MM-DD';
 
-export default Component.extend({
-  store: service(),
-  logsByDate: groupBy('datedLogs', 'date'),
+export default Component.extend(Pagination, {
+  exportLogs: concat('getExportLogsTask.last.value', 'paginatedRecords'),
+  groupedExportLogs: groupBy('exportLogs', 'formattedDate'),
 
-  datedLogs: computed('account.libraryEntryLogs', function() {
-    const logs = get(this, 'account.libraryEntryLogs');
-    logs.forEach((log) => {
-      const created = get(log, 'createdAt');
-      set(log, 'date', created.format(DATE_FORMAT));
-    });
-    return logs;
-  }).readOnly(),
-
-  sortedLogs: computed('logsByDate', function() {
-    const dates = get(this, 'logsByDate');
+  /**
+   * Take the grouped logs which are in a format of:
+   *   [{ property: 'formattedDate', value: 'YYYY-MM-DD', items: [...] }, ...]
+   * Sort the list by the value property, then sort the items of each element
+   * by their createdAt property.
+   */
+  sortedLogs: computed('groupedExportLogs', function() {
+    const dates = get(this, 'groupedExportLogs');
     const sortedDates = dates.sort((a, b) => {
       const ad = moment(get(a, 'value'), DATE_FORMAT);
       const bd = moment(get(b, 'value'), DATE_FORMAT);
@@ -42,30 +40,23 @@ export default Component.extend({
     return sortedDates;
   }).readOnly(),
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
-    get(this, 'pollingTask').perform();
+    get(this, 'getExportLogsTask').perform();
   },
 
-  pollingTask: task(function* () {
-    while (true) {
-      const account = get(this, 'account');
-      yield get(this, 'store').query('library-entry-log', {
-        include: 'media',
-        filter: { linkedAccountId: get(account, 'id') },
-        fields: { media: ['canonicalTitle', 'titles', 'posterImage', 'slug'].join(',') }
-      }).then((logs) => {
-        set(this, 'account.libraryEntryLogs', logs);
-        const pending = logs.any(log => get(log, 'syncStatus') === 'pending');
-        if (!pending) {
-          this._cancelPollingTask();
-        }
-      });
-      yield timeout(5000);
+  getExportLogsTask: task(function* () {
+    const logs = yield this.queryPaginated('library-entry-log', {
+      include: 'media',
+      filter: { linked_account_id: get(this, 'account.id') },
+      fields: { media: ['canonicalTitle', 'titles', 'posterImage', 'slug'].join(',') },
+      page: { limit: 20 },
+      sort: '-created_at'
+    });
+    const hasPendingLog = logs.any(log => get(log, 'syncStatus') === 'pending');
+    if (hasPendingLog) {
+      get(this, 'pollForChangesTask').perform();
     }
-  }).drop(),
-
-  _cancelPollingTask() {
-    get(this, 'pollingTask').cancelAll();
-  }
+    return logs;
+  }).keepLatest()
 });
