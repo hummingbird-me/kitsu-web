@@ -6,6 +6,19 @@ import HoverIntentMixin from 'client/mixins/hover-intent';
 export default Component.extend(HoverIntentMixin, {
   hoverTimeout: 0,
 
+  mediaYear: computed('media.startDate', function() {
+    return get(this, 'media.startDate').year();
+  }).readOnly(),
+
+  yearlessTitle: computed('media.computedTitle', function() {
+    const title = get(this, 'media.computedTitle');
+    const match = title.match(/\(\d{4}\)/);
+    if (match) {
+      return title.slice(0, match.index) + title.slice(match.index + 6);
+    }
+    return title;
+  }).readOnly(),
+
   /** Determines what class to use based on the percentage value. */
   percentageClass: computed('media.averageRating', function() {
     if (!get(this, 'media.averageRating')) {
