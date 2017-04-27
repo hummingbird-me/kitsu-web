@@ -185,7 +185,9 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
         'posterImage',
         'synopsis',
         'averageRating',
-        'startDate'
+        'startDate',
+        'popularityRank',
+        'ratingRank'
       ].join(',')
     };
   },
