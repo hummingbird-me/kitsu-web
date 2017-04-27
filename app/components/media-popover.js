@@ -8,9 +8,7 @@ export default Component.extend(HoverIntentMixin, {
 
   mediaYear: computed('media.startDate', function() {
     const startDate = get(this, 'media.startDate');
-    if (startDate) {
-      return get(this, 'media.startDate').year();
-    }
+    return startDate ? get(this, 'media.startDate').year() : '';
   }).readOnly(),
 
   yearlessTitle: computed('media.computedTitle', function() {
