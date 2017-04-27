@@ -15,13 +15,13 @@
 <td>{{t (concat "settings.exports.logs.action." item.actionPerformed)}}</td>
 {{#if (eq item.syncStatus "success")}}
   <td class="success-state">
-    <span class="success-info hint--top-left hint--bounce hint--rounded" aria-label="Synced Successfully!">
+    <span class="success-info hint--top-left hint--bounce hint--rounded" aria-label={{t "settings.exports.logs.status.success"}}>
       {{svg-jar "success"}}
     </span>
   </td>
 {{else if (eq item.syncStatus "pending")}}
   <td class="pending-state">
-    <span class="pending-info hint--top-left hint--bounce hint--rounded" aria-label="Pending...">
+    <span class="pending-info hint--top-left hint--bounce hint--rounded" aria-label={{t "settings.exports.logs.status.pending"}}>
       {{svg-jar "more"}}
     </span>
   </td>
