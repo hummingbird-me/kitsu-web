@@ -1,14 +1,13 @@
 <div class="container">
   <div class="row">
+    {{! Kitsu Library Content Ad }}
     <div class="library-ad col-sm-12 no-padding-right">
-      {{! Kitsu Library Content Ad }}
       {{#unless session.account.isPro}}
         {{ad-unit slot="8096455061"}}
       {{/unless}}
     </div>
 
     <div class="library-content col-sm-12 col-md-8">
-
       {{! Search }}
       <section id="library-search" class="library-search">
         <div class="container">
@@ -17,8 +16,7 @@
               <span class="icon">
                 {{svg-jar "search"}}
               </span>
-              {{one-way-search query
-                update=(action (mut query))
+              {{one-way-search
                 class="library-search-input"
                 placeholder="Search Josh's Library..."
               }}
@@ -27,20 +25,19 @@
         </div>
       </section>
 
+      {{! Library Actions }}
       <section class="library-result-header clearfix">
+        {{! Library Layout }}
         <span class="list-type">
-          {{! need to do svgs here}}
-          <a href="#" class="active">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M 4 4 L 4 8 L 8 8 L 8 4 L 4 4 z M 10 4 L 10 8 L 14 8 L 14 4 L 10 4 z M 16 4 L 16 8 L 20 8 L 20 4 L 16 4 z M 4 10 L 4 14 L 8 14 L 8 10 L 4 10 z M 10 10 L 10 14 L 14 14 L 14 10 L 10 10 z M 16 10 L 16 14 L 20 14 L 20 10 L 16 10 z M 4 16 L 4 20 L 8 20 L 8 16 L 4 16 z M 10 16 L 10 20 L 14 20 L 14 16 L 10 16 z M 16 16 L 16 20 L 20 20 L 20 16 L 16 16 z"></path>
-            </svg>
+          <a href="#" class={{if (eq layoutStyle "grid") "active"}} {{action (mut layoutStyle) "grid"}}>
+            {{~svg-jar "grid"~}}
           </a>
-          <a href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-              <path d="M 5 5 L 5 14 L 5 21 L 5 28 L 14 28 L 14 19 L 14 12 L 14 5 L 5 5 z M 7 7 L 12 7 L 12 12 L 7 12 L 7 7 z M 8 8 L 8 11 L 11 11 L 11 8 L 8 8 z M 16 8 L 16 10 L 21 10 L 21 8 L 16 8 z M 23 8 L 23 10 L 28 10 L 28 8 L 23 8 z M 7 14 L 12 14 L 12 19 L 7 19 L 7 14 z M 9.5 15 C 8.6715729 15 8 15.671573 8 16.5 C 8 17.328427 8.6715729 18 9.5 18 C 10.328427 18 11 17.328427 11 16.5 C 11 15.671573 10.328427 15 9.5 15 z M 16 15 L 16 17 L 21 17 L 21 15 L 16 15 z M 23 15 L 23 17 L 28 17 L 28 15 L 23 15 z M 7 21 L 12 21 L 12 26 L 7 26 L 7 21 z M 9.5 22 L 8 25 L 11 25 L 9.5 22 z M 16 22 L 16 24 L 21 24 L 21 22 L 16 22 z M 23 22 L 23 24 L 28 24 L 28 22 L 23 22 z"></path>
-            </svg>
+          <a href="#" class={{if (eq layoutStyle "list") "active"}} {{action (mut layoutStyle) "list"}}>
+            {{~svg-jar "list"~}}
           </a>
         </span>
+
+        {{! Library Sort }}
         <div class="library-filters">
           <form class="form-inline">
             <label class="mr-sm-2" for="inlineFormCustomSelect">Sort by:</label>
@@ -56,115 +53,14 @@
         </div>
       </section>
 
-      <section class="media-browse col-sm-12">
-        <div class="media-grid container">
-          <div class="row">
-
-            <div class="poster-wrapper">
-              <div class="grid-poster">
-                <div class="ember-view">
-                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
-                  <div class="poster-overlay">
-                    <a href="/anime/attack-on-titan"></a>
-                  </div>
-                </div>
-                <div class="progress">
-                  <span class="progress-bar">
-                    <span role="presentation" style="width: 16.00%;" class="progress-completed"></span>
-                  </span>
-                </div>
-              </div>
-              <div class="entry-stats">
-                <span class="entry-episode">Ep. 5</span>
-                <span class="entry-rating entry-rating-simple">{{svg-jar "good"}}</span>
-              </div>
-            </div>
-
-            <div class="poster-wrapper">
-              <div class="grid-poster">
-                <div class="ember-view">
-                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
-                  <div class="poster-overlay">
-                    <a href="/anime/attack-on-titan"></a>
-                  </div>
-                </div>
-                <div class="progress">
-                  <span class="progress-bar">
-                    <span role="presentation" style="width: 45.00%;" class="progress-completed"></span>
-                  </span>
-                </div>
-              </div>
-              <div class="entry-stats">
-                <span class="entry-episode">Ep. 5</span>
-                <span class="entry-rating entry-rating-simple">{{svg-jar "great"}}</span>
-              </div>
-            </div>
-
-            <div class="poster-wrapper">
-              <div class="grid-poster">
-                <div class="ember-view">
-                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
-                  <div class="poster-overlay">
-                    <a href="/anime/attack-on-titan"></a>
-                  </div>
-                </div>
-                <div class="progress">
-                  <span class="progress-bar">
-                    <span role="presentation" style="width: 23.00%;" class="progress-completed"></span>
-                  </span>
-                </div>
-              </div>
-              <div class="entry-stats">
-                <span class="entry-episode">Ep. 5</span>
-                <span class="entry-rating entry-rating-simple">{{svg-jar "meh"}}</span>
-              </div>
-            </div>
-
-            <div class="poster-wrapper">
-              <div class="grid-poster">
-                <div class="ember-view">
-                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
-                  <div class="poster-overlay">
-                    <a href="/anime/attack-on-titan"></a>
-                  </div>
-                </div>
-                <div class="progress">
-                  <span class="progress-bar">
-                    <span role="presentation" style="width: 90.00%;" class="progress-completed"></span>
-                  </span>
-                </div>
-              </div>
-              <div class="entry-stats">
-                <span class="entry-episode">Ep. 5</span>
-                <span class="entry-rating entry-rating-star">{{svg-jar "star"}} 3.5</span>
-              </div>
-            </div>
-
-            <div class="poster-wrapper">
-              <div class="grid-poster">
-                <div class="ember-view">
-                  <img src="https://media.kitsu.io/anime/poster_images/7442/medium.jpg?1418580054">
-                  <div class="poster-overlay">
-                    <a href="/anime/attack-on-titan"></a>
-                  </div>
-                </div>
-                <div class="progress">
-                  <span class="progress-bar">
-                    <span role="presentation" style="width: 74.00%;" class="progress-completed"></span>
-                  </span>
-                </div>
-              </div>
-              <div class="entry-stats">
-                <span class="entry-episode">Ep. 5</span>
-                <span class="entry-rating entry-rating-star">{{svg-jar "star"}} 9.0</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
+      {{! Library Entries }}
+      {{component (concat "users/library/library-" layoutStyle)
+        libraryEntries=libraryEntries
+        class="col-sm-12"
+      }}
     </div>
 
+    {{! Sidebar }}
     <div class="library-sidebar card col-sm-12 col-md-4">
       <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
         <option selected>Josh's Anime</option>

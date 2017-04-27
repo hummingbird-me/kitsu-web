@@ -22,6 +22,7 @@ const Validations = buildValidations({
   ]
 });
 
+export const LIBRARY_STATUSES = ['current', 'planned', 'completed', 'on_hold', 'dropped'];
 export default Base.extend(Validations, {
   progress: attr('number'),
   notes: attr('string'),
