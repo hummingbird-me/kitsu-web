@@ -7,7 +7,10 @@ export default Component.extend(HoverIntentMixin, {
   hoverTimeout: 0,
 
   mediaYear: computed('media.startDate', function() {
-    return get(this, 'media.startDate').year();
+    const startDate = get(this, 'media.startDate');
+    if (startDate) {
+      return get(this, 'media.startDate').year();
+    }
   }).readOnly(),
 
   yearlessTitle: computed('media.computedTitle', function() {
