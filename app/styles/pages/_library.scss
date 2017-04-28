@@ -198,39 +198,115 @@
 
 // User Library
 .library-list {
-  background: #fff;
-  border: 1px solid $background-color;
+  @extend .card;
+  border: 1px solid $divider-color;
   border-radius: 3px;
   padding: 0;
   margin-bottom: 30px;
-  .nav-wrapper {
-    @extend .clearfix;
-    padding: 15px;
+  thead {
+    background: $background-color;
+    border-top: none;
+    border-bottom: 1px solid $divider-color;
+    th {
+      border: none;
+      font-size: 12px;
+      padding: 10px;
+      text-align: center;
+    }
   }
-  .menu {
-    border: 1px solid #ddd;
+  td {
+    vertical-align: middle;
+  }
+  .status {
+    padding: 2px;
+    &.status-watching {
+      background: #2DB039;
+    }
+  }
+  tbody {
+    td {
+      font-size: 13px;
+    }
+    .cell-title {
+      font-weight: 700;
+    }
+  }
+  .edit-entry {
+    width: 70px;
+  }
+  .edit-entry-button {
+    border: 1px solid $divider-color;
+    padding: 5px 15px;
     border-radius: 3px;
-    padding: 0;
-    float: right;
-    li {
-      border-right: 1px solid #ddd;
-      a {
-        color: #333;
-        font-size: 12px;
-        &.active {
-          background: #EFEFEF;
-        }
-      }
-      &:last-child {
-        border: none;
+    color: darken($divider-color, 20);
+  }
+  .media-cell {
+    text-align: left;
+    padding-left: 0;
+  }
+  .simple-rating-cell {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    position: relative;
+    top: 2px;
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  .increment-episode {
+    svg {
+      width: 15px;
+      height: 15px;
+      position: relative;
+      top: 2px;
+      fill: $primary-cta-color;
+      &:hover {
+        fill: darken($primary-cta-color,15);
       }
     }
+  }
+  .progress-cell {
+    text-align: center;
+    font-size: 14px;
+    a {
+      color: $primary-cta-color;
+      font-family: $base-font-family;
+      font-weight: 700;
+      &:hover {
+        color: darken($primary-cta-color,15);
+      }
+    }
+  }
+  .edit-entry-button {
+    &:hover {
+      color: $primary-cta-color;
+      border-color: $primary-cta-color;
+    }
+  }
+  .cell-poster {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    border-radius: 3px;
+    background: #ddd;
+    float: left;
+    margin-right: 15px;
+  }
+  .checkbox-cell {
+    padding: 0 8px;
+    text-align: center;
+  }
+  .cell-title {
+    line-height: 35px;
   }
 }
 
 .library-type {
   float: left;
 }
+
 .library-status {
   float: right;
   .btn {
