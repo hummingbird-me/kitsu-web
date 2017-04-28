@@ -203,6 +203,16 @@
   border-radius: 3px;
   padding: 0;
   margin-bottom: 30px;
+  table {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+  }
+  thead,tbody {
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+  }
   thead {
     background: $background-color;
     border-top: none;
@@ -212,15 +222,49 @@
       font-size: 12px;
       padding: 10px;
       text-align: center;
+      &.media-cell {
+        padding-left: 10px;
+      }
     }
   }
   td {
     vertical-align: middle;
   }
+  .td,.th {
+    flex: 1;
+    border: 1px solid #7c9497;
+    display: flex;
+    flex-flow: row nowrap;
+    flex: 1 1 content;
+    word-break: break-word;
+    white-space: wrap;
+    padding: 10px;
+    item-align: center;
+  }
+
+  tr {
+    display: flex;
+    flex-flow: row nowrap;
+    &:nth-child(even) {
+      background: lighten($background-color,1);
+    }
+  }
   .status {
     padding: 2px;
     &.status-watching {
       background: #2DB039;
+    }
+    &.status-completed {
+      background: #26448F;
+    }
+    &.status-hold {
+      background: #F1C83E;
+    }
+    &.status-dropped {
+      background: #A12F31;
+    }
+    &.status-planned {
+      background: #C3C3C3;
     }
   }
   tbody {
@@ -232,7 +276,9 @@
     }
   }
   .edit-entry {
-    width: 70px;
+    width: 80px;
+    text-align: center;
+    line-height: 35px;
   }
   .edit-entry-button {
     border: 1px solid $divider-color;
@@ -243,6 +289,8 @@
   .media-cell {
     text-align: left;
     padding-left: 0;
+    flex-grow: 1;
+    min-width: 340px;
   }
   .simple-rating-cell {
     display: inline-block;
@@ -253,6 +301,22 @@
     svg {
       width: 30px;
       height: 30px;
+    }
+  }
+  .star-rating-cell {
+    font-size: 14px;
+    line-height: 35px;
+    font-weight: 700;
+    .entry-rating-star {
+      svg {
+        width: 14px;
+        height: 14px;
+        fill: #f0ad4e;
+        float: left;
+        position: relative;
+        top: 10px;
+        margin-right: 5px;
+      }
     }
   }
   .increment-episode {
@@ -267,9 +331,16 @@
       }
     }
   }
+  .rating-cell {
+    min-width: 55px;
+  }
+  td.progress-cell {
+    font-size: 14px;
+    line-height: 35px;
+  }
   .progress-cell {
     text-align: center;
-    font-size: 14px;
+    min-width: 106px;
     a {
       color: $primary-cta-color;
       font-family: $base-font-family;
@@ -293,13 +364,21 @@
     background: #ddd;
     float: left;
     margin-right: 15px;
+    overflow: hidden;
   }
   .checkbox-cell {
     padding: 0 8px;
     text-align: center;
+    line-height: 60px;
   }
   .cell-title {
     line-height: 35px;
+    a {
+      color: $body-text-color;
+      &:hover {
+        color: $body-link-color;
+      }
+    }
   }
 }
 
@@ -320,6 +399,26 @@
     &.active {
       background: lighten($background-color, 3);
       border-color: $background-color;
+    }
+  }
+}
+
+.grid-edit-wrapper {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 20px;
+  text-align: center;
+  .grid-edit {
+    background: $white;
+    border-radius: 3px;
+    font-size: 14px;
+    padding: 2px;
+    display: inline-block;
+    width: 70%;
+    color: #333;
+    &:hover {
+      color: $body-link-color;
     }
   }
 }

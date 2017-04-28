@@ -109,10 +109,10 @@
           <a href="#">Stats</a>
         </li>
         <li>
-          <a href="#">Import / Export</a>
+          <a href="#">Import Library</a>
         </li>
         <li>
-          <a href="#">Batch Edit</a>
+          <a href="#">Export Library</a>
         </li>
       </ul>
       {{! Kitsu Library Sidebar Ad }}
@@ -122,86 +122,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="container">
-  <div class="row">
-    <div class="library-list col-sm-12">
-      <div class="nav-wrapper">
-        {{! Library type dropdown }}
-        {{#bootstrap/bs-dropdown class="library-type" as |dropdown|}}
-          {{#dropdown.button class="button--dark-outline button--small"}}
-            {{t "users.library.library" type=(t (concat "media." media ".name"))}}
-          {{/dropdown.button}}
-          {{#dropdown.menu}}
-            {{#each mediaList as |_media|}}
-              {{#dropdown.menu-item onClick=(action (mut media) _media)}}
-                {{t "users.library.library" type=(t (concat "media." _media ".name"))}}
-                {{#if (eq media _media)}}
-                  <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
-                {{/if}}
-              {{/dropdown.menu-item}}
-            {{/each}}
-          {{/dropdown.menu}}
-        {{/bootstrap/bs-dropdown}}
-        {{! Library status selection }}
-        <div class="library-status">
-          <div class="btn-group" role="group" aria-label="Library Status">
-            {{#each statuses as |_status|}}
-              {{users/library/library-status
-                status=_status
-                mediaType=media
-                isActive=(eq _status status)
-                onClick=(action (mut status))
-              }}
-            {{/each}}
-          </div>
-        </div>
-      </div>
-
-      {{! Library Sorting }}
-      {{users/library/library-sorting sort=sort onSortChange=(route-action "changeSort")}}
-      {{! Library Entries }}
-      {{#if model.taskInstance.isRunning}}
-        <div class="text-xs-center w-100 m-t-1 m-b-1">
-          {{loading-spinner size="large"}}
-          <p>Loading Library...</p>
-        </div>
-      {{else if model.taskInstance.error}}
-        <div class="text-xs-center w-100 m-t-1 m-b-1">
-          {{t "errors.load"}}
-        </div>
-      {{else}}
-        {{#if (eq status 'all')}} {{! all status is selected }}
-          {{#each-in sections as |status entries|}}
-            {{users/library/library-entries
-              status=status
-              entries=entries
-              mediaType=media
-              user=user
-              save=(route-action "saveEntry")
-              delete=(route-action "deleteEntry")
-            }}
-          {{/each-in}}
-        {{else}} {{! active tab entires }}
-          {{users/library/library-entries
-            status=status
-            entries=entries
-            mediaType=media
-            user=user
-            save=(route-action "saveEntry")
-            delete=(route-action "deleteEntry")
-          }}
-        {{/if}}
-        {{! pagination }}
-        <div class="text-xs-center m-t-1 m-b-1">
-          {{paginated-resource/infinite
-            model=entries
-            rootMargin=(hash bottom=-600)
-            update=(route-action "updateNextPage" "taskValue")
-            loadingSize="large"
-          }}
-        </div>
-      {{/if}}
-    </div>
-  </div>
-</div> -->
