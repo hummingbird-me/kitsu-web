@@ -1,26 +1,27 @@
 <div class="modal-wrapper">
   <div class="auth-section active">
-    <h6 class="auth-section-title">Sync with {{siteName}}</h6>
-    <p class="auth-section-helper">We'll update your anime and manga lists on {{siteName}} every time you update them on Kitsu. Note that we won't delete entries from your {{siteName}} library.</p>
+    <h6 class="auth-section-title">{{t "settings.exports.modal.header" site=siteName}}</h6>
+    <p class="auth-section-helper">{{t "settings.exports.modal.helper" site=siteName}}</p>
     <form>
       <div class="form-group">
         {{one-way-text exporter.externalUserId
           update=(action (mut exporter.externalUserId))
           class="form-control"
-          placeholder="Username"
+          placeholder=(t "form-shared.placeholders.username")
           autofocus="autofocus"}}
 
         {{one-way-password exporter.token
           update=(action (mut exporter.token))
           class="form-control"
-          placeholder="Password"}}
+          placeholder=(t "form-shared.placeholders.password")
+        }}
       </div>
       <div class="form-cta">
         <button class="button button--primary" disabled={{unless exporter.validations.isValid "disabled"}} {{action (perform createExport)}}>
           {{#if createExport.isRunning}}
             {{loading-spinner size="small"}}
           {{else}}
-            Sync to {{siteName}}
+            {{t "settings.exports.modal.create" site=siteName}}
           {{/if}}
         </button>
       </div>

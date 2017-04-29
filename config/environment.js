@@ -12,7 +12,7 @@ module.exports = function(environment) {
       FEATURES: {}
     },
     APP: {
-      APIHost: 'https://staging.kitsu.io',
+      APIHost: undefined,
       isStaging: IS_STAGING_ENV,
     },
     EXTEND_PROTOTYPES: {
