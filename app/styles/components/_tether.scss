@@ -19,6 +19,8 @@
     position: relative;
     height: 189px;
     width: 282px;
+    display: flex;
+    flex-direction: column;
     @media (min-width: 1421px) {
       height: 232px;
       width: 341px;
@@ -55,8 +57,11 @@
       font-size: 16px;
       font-weight: 500;
     }
+    .media-year {
+      opacity: 0.5;
+    }
     .media-ratings {
-      margin: 1px 0 5px;
+      margin-top: 1px;
       height: 24px;
       &.percent-quarter-1 {
         color: rgba(231, 76, 60,1.0);
@@ -71,9 +76,22 @@
         color: rgba(26, 188, 156,1.0);
       }
     }
+    .media-rankings.short {
+      font-size: 12px;
+      font-weight: 500;
+      margin: 5px 0;
+    }
     .media-synopsis {
       font-size: 12px;
+      height: 100%;
       overflow: hidden;
+      background-image: linear-gradient(to bottom,
+        lighten($secondary-background-color, 60),
+        lighten($secondary-background-color, 60) 75%,
+        $secondary-background-color
+      );
+      color: transparent;
+      -webkit-background-clip: text;
     }
   }
 }

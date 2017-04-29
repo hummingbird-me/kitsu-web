@@ -15,9 +15,13 @@
       ))
     }}
       <div>
-        <span class="media-title">{{media.computedTitle}}</span>
-        <div class="media-ratings {{percentageClass}}">{{media.averageRating}}%</div>
-        <div class="media-synopsis">{{truncate media.synopsis 350}}</div>
+        <div>
+          <span class="media-title">{{yearlessTitle}}</span>
+          <span class="media-year">{{mediaYear}}</span>
+        </div>
+        {{#if media.averageRating}}<div class="media-ratings {{percentageClass}}">{{media.averageRating}}%</div>{{/if}}
+        {{media/media-rankings media=media length="short"}}
+        <div class="media-synopsis">{{media.synopsis}}</div>
       </div>
     {{/ember-tether}}
   </div>

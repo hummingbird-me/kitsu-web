@@ -184,7 +184,10 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
         'titles',
         'posterImage',
         'synopsis',
-        'averageRating'
+        'averageRating',
+        'startDate',
+        'popularityRank',
+        'ratingRank'
       ].join(',')
     };
   },
