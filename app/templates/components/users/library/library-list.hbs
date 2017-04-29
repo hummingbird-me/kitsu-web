@@ -41,7 +41,7 @@
         </a>
       </td>
       <td class="edit-entry">
-        <a href="#" class="edit-entry-button">Edit</a>
+        <a href="#" class="edit-entry-button" {{action (toggle "isEditing" this)}}>Edit</a>
       </td>
     </tr>
 
@@ -186,3 +186,10 @@
     </tr>
   </tbody>
 </table>
+
+{{! Edit Modal }}
+{{#if isEditing}}
+  {{to-elsewhere named="modal" send=(component "users/library/library-edit"
+    onClose=(toggle-action "isEditing" this)
+  )}}
+{{/if}}
