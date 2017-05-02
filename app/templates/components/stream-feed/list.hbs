@@ -32,7 +32,7 @@
   {{/if}}
 
   {{! feed content type filter }}
-  {{#unless kitsuGroup}}
+  {{#unless (or kitsuGroup hideFilter)}}
   <div class="pull-sm-right feed-filter">
     {{#bootstrap/bs-dropdown as |dropdown|}}
       {{#dropdown.button}}
