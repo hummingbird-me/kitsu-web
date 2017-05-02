@@ -7,7 +7,7 @@ const Validations = buildValidations({
   description: [
     validator('presence', true)
   ],
-  image: [
+  imageUrl: [
     validator('format', { type: 'url', allowBlank: true })
   ],
   link: [
@@ -20,7 +20,7 @@ const Validations = buildValidations({
 
 export default Base.extend(Validations, {
   description: attr('string'),
-  image: attr('string'),
+  imageUrl: attr('string'),
   link: attr('string'),
   title: attr('string'),
 
