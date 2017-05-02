@@ -21,7 +21,8 @@ function embedly() {
       key: config.embedly.apiKey,
       recommend: '0',
       controls: '0',
-      align: 'left'
+      align: 'left',
+      width: '100%'
     }
   });
   injectScript('//cdn.embedly.com/widgets/platform.js').catch(() => {});
