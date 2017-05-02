@@ -117,6 +117,10 @@ module.exports = function(environment) {
         enabled: environment === 'production',
         networkId: '20370372407'
       }
+    },
+
+    embedly: {
+      apiKey: '90f3fb8ff40f4603991aa258127ccb5e'
     }
   };
 
