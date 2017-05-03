@@ -14,6 +14,7 @@ module.exports = function(environment) {
     APP: {
       APIHost: undefined,
       isStaging: IS_STAGING_ENV,
+      env: process.env.HEROKU_EMBER_APP || 'development'
     },
     EXTEND_PROTOTYPES: {
       Date: false

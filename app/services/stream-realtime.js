@@ -9,7 +9,8 @@ export default Service.extend({
   init() {
     this._super(...arguments);
     if (!window.stream) { return; }
-    const { enabled, config: { app, key } } = get(Config, 'stream.realtime');
+    const { enabled, config } = get(Config, 'stream.realtime');
+    const { app, key } = get(config, Config.APP.env);
     if (!enabled) { return; }
     this.client = window.stream.connect(key, null, app);
   },
