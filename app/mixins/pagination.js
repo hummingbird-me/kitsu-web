@@ -22,11 +22,7 @@ export default Mixin.create({
 
   init() {
     this._super(...arguments);
-    set(this, 'paginatedRecords', []);
-    set(this, 'internalPageState', {
-      hasNextPage: false,
-      nextPageLink: null
-    });
+    this.resetPageState();
   },
 
   queryPaginated(...args) {
@@ -45,6 +41,14 @@ export default Mixin.create({
     set(this, 'internalPageState.hasNextPage', hasNextPage);
     set(this, 'internalPageState.nextPageLink', hasNextPage ?
       get(records, `links.${key}`) : null);
+  },
+
+  resetPageState() {
+    set(this, 'paginatedRecords', []);
+    set(this, 'internalPageState', {
+      hasNextPage: false,
+      nextPageLink: null
+    });
   },
 
   onPagination(records) {

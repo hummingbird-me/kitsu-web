@@ -186,7 +186,10 @@ export default Component.extend(Pagination, {
       this._trackImpressions(data);
 
       return data;
-    }).catch(() => {});
+    }).catch((error) => {
+      this.resetPageState();
+      get(this, 'raven').captureException(error);
+    });
   },
 
   /**
