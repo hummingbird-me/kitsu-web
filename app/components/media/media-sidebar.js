@@ -19,6 +19,9 @@ export default Component.extend({
         if (record) {
           set(this, 'favoriteRecord', record);
           set(this, 'isFavorite', true);
+        } else {
+          set(this, 'favoriteRecord', null);
+          set(this, 'isFavorite', false);
         }
       }).catch((error) => {
         get(this, 'raven').captureException(error);
