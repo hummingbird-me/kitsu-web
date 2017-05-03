@@ -2,16 +2,38 @@ import config from 'client/config/environment';
 import canUseDOM from 'client/utils/can-use-dom';
 import injectScript from 'client/utils/inject-script';
 
+/**
+ * Inject Google AdWords conversion script into the `head` on initialization.
+ */
+function adwords() {
+  const { google } = config;
+  if (google.adwords) {
+    injectScript('https://www.googleadservices.com/pagead/conversion_async.js').catch(() => {});
+  }
+}
+
+/**
+ * Inject Canny's SDK script into the `head` on initialization.
+ */
 function canny() {
   const c = function() {
     c.q.push(arguments);
   };
   c.q = [];
   window.Canny = c;
-  injectScript('//canny.io/sdk.js').catch(() => {});
+  injectScript('https://canny.io/sdk.js').catch(() => {});
 }
 
+/**
+ * Inject Embedly's script into the `head` on initialzation.
+ */
 function embedly() {
+  // find current theme loaded
+  const element = [].slice.call(document.head.getElementsByTagName('link'), 0).find(link => (
+    'theme' in link.dataset
+  ));
+
+  // setup defaults for embedly
   window.embedly = window.embedly || function() {
     (window.embedly.q = window.embedly.q || []).push(arguments);
   };
@@ -22,45 +44,21 @@ function embedly() {
       recommend: '0',
       controls: '0',
       align: 'left',
-      width: '100%'
+      width: '100%',
+      theme: element ? element.dataset.theme : 'light'
     }
   });
-  injectScript('//cdn.embedly.com/widgets/platform.js').catch(() => {});
+  injectScript('https://cdn.embedly.com/widgets/platform.js').catch(() => {});
 }
 
 export function initialize() {
+  // Don't bother if we don't have DOM access, FastBoot?
   if (!canUseDOM) { return; }
 
-  // Adwords
-  const { google } = config;
-  if (google.adwords) {
-    injectScript('//www.googleadservices.com/pagead/conversion_async.js').catch(() => {});
-  }
-
-  // Canny
+  // Inject scripts
+  adwords();
   canny();
-
-  // Embedly
   embedly();
-
-  // Kill service workers
-  if (window.navigator && window.navigator.serviceWorker) {
-    window.navigator.serviceWorker.getRegistrations().then((workers) => {
-      workers.forEach((worker) => {
-        if (worker.scope === 'https://kitsu.io/') {
-          worker.unregister();
-        }
-      });
-    });
-    // remove caches
-    [
-      'esw-index-1', 'esw-index-2',
-      'asset-cache-1', 'asset-cache-2', 'asset-cache-3',
-      'esw-cache-first-1'
-    ].forEach((cache) => {
-      caches.delete(cache).then(() => {}).catch(() => {});
-    });
-  }
 }
 
 export default {
