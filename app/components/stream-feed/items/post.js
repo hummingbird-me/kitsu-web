@@ -18,6 +18,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
   classNameBindings: ['post.isNew:new-post', 'isPinnedPost:pinned-post'],
   classNames: ['stream-item', 'row'],
   isHidden: false,
+  isFollowingPost: false,
   isOverflowed: false,
   isExpanded: false,
 
@@ -137,6 +138,20 @@ export default Component.extend(ClipboardMixin, CanMixin, {
       }
     }
 
+    // follows
+    if (get(this, 'session.hasUser')) {
+      get(this, 'store').query('post-follow', {
+        filter: {
+          user_id: get(this, 'session.account.id'),
+          post_id: get(this, 'post.id')
+        }
+      }).then((records) => {
+        const record = get(records, 'firstObject');
+        set(this, 'isFollowingPost', !!record);
+        set(this, 'followRelationship', record);
+      });
+    }
+
     if (!get(this, 'isHidden')) {
       this._overflow();
     }
@@ -179,6 +194,24 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     trackEngagement(label, id) {
       const foreignId = typeOf(id) === 'string' ? id : undefined;
       this._streamAnalytics(label, foreignId || `Post:${get(this, 'post.id')}`);
+    },
+
+    followPost() {
+      if (get(this, 'isFollowingPost')) {
+        get(this, 'followRelationship').destroyRecord().then(() => {
+          set(this, 'isFollowingPost', false);
+          set(this, 'followRelationship', null);
+        });
+      } else {
+        const follow = get(this, 'store').createRecord('post-follow', {
+          user: get(this, 'session.account'),
+          post: get(this, 'post')
+        });
+        follow.save().then(() => {
+          set(this, 'followRelationship', follow);
+          set(this, 'isFollowingPost', true);
+        });
+      }
     },
 
     toggleHidden() {

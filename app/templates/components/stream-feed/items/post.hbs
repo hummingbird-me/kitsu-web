@@ -203,6 +203,17 @@
             Copy Link to Post
           </a>
 
+          {{! Follow/Unfollow }}
+          {{#if session.hasUser}}
+            <a class="dropdown-item" href="#" {{action "followPost"}}>
+              {{#if isFollowingPost}}
+                Unfollow Post
+              {{else}}
+                Follow Post
+              {{/if}}
+            </a>
+          {{/if}}
+
           {{! Re-hide the post }}
           {{#if (or post.spoiler post.nsfw)}}
             {{#if isHidden}}
