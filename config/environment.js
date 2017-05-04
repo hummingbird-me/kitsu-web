@@ -62,7 +62,7 @@ module.exports = function(environment) {
 
     sentry: {
       dsn: 'https://1c436e52d5a54f4a94339278c8bdbe77@sentry.io/151419',
-      cdn: 'https://cdn.ravenjs.com/3.13.1/raven.min.js',
+      cdn: 'https://cdn.ravenjs.com/3.14.2/raven.min.js',
       development: environment !== 'production',
       debug: false,
       ravenOptions: {
@@ -72,7 +72,7 @@ module.exports = function(environment) {
         ],
         ignoreErrors: ['TaskCancelation'],
         includePaths: [/https?:\/\/(staging\.)?kitsu\.io/],
-        environment: IS_STAGING_ENV ? 'staging' : 'production'
+        environment: process.env.HEROKU_EMBER_APP
       }
     },
 
@@ -144,22 +144,19 @@ module.exports = function(environment) {
     ENV.intl_cp_validations.suppressWarnings = true;
   }
 
+    // Heroku environment - So that we can append the git hash to the version
+  if (process.env.HEROKU_EMBER_APP) {
+    ENV.release = process.env.HEROKU_SLUG_COMMIT || '-';
+  }
+
   // Staging app @ Heroku
   if (process.env.HEROKU_EMBER_APP === 'staging') {
     ENV.APP.APIHost = 'https://staging.kitsu.io';
   }
 
   // Production app @ Heroku
-  if (environment === 'production' && process.env.HEROKU_EMBER_APP !== 'staging') {
+  if (process.env.HEROKU_EMBER_APP === 'production') {
     ENV.APP.APIHost = 'https://kitsu.io';
-  }
-
-  // Heroku environment - So that we can append the git hash to the version
-  if (process.env.HEROKU_EMBER_APP) {
-    ENV.APP.heroku = true;
-    if (process.env.HEROKU_SLUG_COMMIT) {
-      ENV.APP.gitCommit = process.env.HEROKU_SLUG_COMMIT.slice(0, 7);
-    }
   }
 
   return ENV;

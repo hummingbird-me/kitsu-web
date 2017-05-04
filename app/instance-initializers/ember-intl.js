@@ -1,5 +1,5 @@
-export function initialize(app) {
-  const intl = app.lookup('service:intl');
+export function initialize(appInstance) {
+  const intl = appInstance.lookup('service:intl');
   intl.setLocale('en-us');
 }
 
