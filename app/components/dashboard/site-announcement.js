@@ -12,21 +12,22 @@ export default Component.extend({
   store: service(),
   stream: service('stream-realtime'),
 
-  activityGroup: alias('getAnnouncementsTask.last.value'),
+  activityGroup: alias('getAnnouncementsTask.last.value.firstObject'),
   activity: alias('activityGroup.activities.firstObject'),
   announcement: alias('activity.subject'),
 
-  showAnnouncement: computed('activityGroup.{isRead,isDeleted}', function() {
+  showAnnouncement: computed('activity', 'activityGroup.{isRead,isDeleted}', function() {
     const activityGroup = get(this, 'activityGroup');
-    return activityGroup && !get(activityGroup, 'isRead') && !get(activityGroup, 'isDeleted');
+    return !!(get(this, 'activity') && !get(activityGroup, 'isRead') &&
+      !get(activityGroup, 'isDeleted'));
   }).readOnly(),
 
   init() {
     this._super(...arguments);
-    get(this, 'getAnnouncementsTask').perform().then((activityGroup) => {
+    get(this, 'getAnnouncementsTask').perform().then((records) => {
       // setup websocket connection to GetStream
       const userId = get(this, 'session.account.id');
-      const { readonlyToken: token } = get(activityGroup, 'meta');
+      const { readonlyToken: token } = get(records, 'meta');
       const callback = (data) => { this._handleSubscription(data); };
       this.realtime = get(this, 'stream').subscribe('site_announcements', userId, token, callback);
     });
@@ -53,11 +54,7 @@ export default Component.extend({
       include: 'subject',
       page: { limit: 1 }
     }, options);
-    const activityGroup = yield get(this, 'store').query('feed', requestOptions);
-    if (!activityGroup || get(activityGroup, 'isRead')) {
-      return null;
-    }
-    return activityGroup;
+    return yield get(this, 'store').query('feed', requestOptions);
   }).drop(),
 
   actions: {
@@ -95,9 +92,8 @@ export default Component.extend({
     // Since this is a direct connection to GetStream, the data is raw so we have to request the
     // API to enrich the data.
     if (created.length > 0) {
-      const activityId = get(created, 'firstObject.id');
       get(this, 'getAnnouncementsTask').perform({
-        filter: { id: { gte: activityId } }
+        page: { limit: 1 }
       });
     }
   }
