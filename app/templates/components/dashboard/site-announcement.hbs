@@ -8,7 +8,7 @@
       </div>
     {{/if}}
     {{#if announcement.link}}
-      <a href={{announcement.link}} class="button button--primary">
+      <a href={{announcement.link}} class="button button--primary" {{action "dismissAnnouncement" preventDefault=false}}>
         <span class="button-label">{{t "dashboard.announcements.button"}}</span>
       </a>
     {{/if}}
