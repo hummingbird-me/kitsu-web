@@ -37,8 +37,10 @@
             {{else}}
               post.
             {{/if}}
-          {{else}}
+          {{else if (contains session.account.id activity.mentionedUsers)}}
             mentioned you in a comment.
+          {{else}}
+            replied to a post you're following.
           {{/if}}
         {{else if (eq activity.verb "post_like")}}
           liked your post.

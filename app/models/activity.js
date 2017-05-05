@@ -4,6 +4,7 @@ import { belongsTo } from 'ember-data/relationships';
 
 export default Base.extend({
   foreignId: attr('string'),
+  mentionedUsers: attr('array'),
   nineteenScale: attr('boolean'),
   postId: attr('number'),
   progress: attr('number'),
