@@ -1,19 +1,26 @@
 <div class="checklist card">
-  <h4>Set-Up Your Profile</h4>
+  <h6>Set-Up Your Profile</h6>
+  <div class="steps-remaining">
+    {{dec stepsCompleted 6}} steps left! 🦊
+    <svg class="rc-progress-line progressBar_35bcd" viewBox="0 0 100 4" preserveAspectRatio="none" data-reactid="1130">
+      <path class="rc-progress-line-trail" d="M 2,2 L 98,2" stroke-linecap="round" stroke="#D9D9D9" stroke-width="1" fill-opacity="0" data-reactid="1131"></path>
+      <path class="rc-progress-line-path" d="M 2,2 L 98,2" stroke-linecap="round" stroke="#FD755C" stroke-width="4" fill-opacity="0" style="stroke-dasharray:100px, 100px; stroke-dashoffset:{{percentageComplete}}px; transition:stroke-dashoffset 0.3s ease 0s, stroke 0.3s linear;" data-reactid="1132"></path>
+    </svg>
+  </div>
+
   <ul>
     {{! default checked }}
     <li class="step step--complete">
-      <span class="step-status">{{svg-jar "success"}}
-      </span>
+      <span class="step-status">☑️</span>
       <span class="step-description">Visit your personal feed</span>
     </li>
 
     <li class="step {{if hasRatings "step--complete"}}">
       <span class="step-status">
         {{#if hasRatings}}
-          {{svg-jar "success"}}
+          ☑️
         {{else}}
-          {{svg-jar "empty"}}
+          ⭐
         {{/if}}
       </span>
       <span class="step-description">
@@ -28,9 +35,9 @@
     <li class="step {{if hasAvatar "step--complete"}}">
       <span class="step-status">
         {{#if hasAvatar}}
-          {{svg-jar "success"}}
+          ☑️
         {{else}}
-          {{svg-jar "empty"}}
+          😎
         {{/if}}
       </span>
       <span class="step-description">Set your user avatar</span>
@@ -39,9 +46,9 @@
     <li class="step {{if hasCover "step--complete"}}">
       <span class="step-status">
         {{#if hasCover}}
-          {{svg-jar "success"}}
+          ☑️
         {{else}}
-          {{svg-jar "empty"}}
+          🖼️
         {{/if}}
       </span>
       <span class="step-description">Set a profile cover image</span>
@@ -50,9 +57,9 @@
     <li class="step {{if hasAbout "step--complete"}}">
       <span class="step-status">
         {{#if hasAbout}}
-          {{svg-jar "success"}}
+          ☑️
         {{else}}
-          {{svg-jar "empty"}}
+          📖
         {{/if}}
       </span>
       <span class="step-description">Complete your <i>About Me</i></span>
@@ -61,9 +68,9 @@
     <li class="step {{if hasFavorites "step--complete"}}">
       <span class="step-status">
         {{#if hasFavorites}}
-          {{svg-jar "success"}}
+          ☑️
         {{else}}
-          {{svg-jar "empty"}}
+          💯
         {{/if}}
       </span>
       <span class="step-description">Pick your favorite anime / manga</span>

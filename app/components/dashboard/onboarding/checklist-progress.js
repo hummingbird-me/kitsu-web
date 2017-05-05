@@ -8,6 +8,20 @@ export default Component.extend({
   hasComments: gte('user.commentsCount', 1),
   hasLikes: gte('user.likesGivenCount', 3),
 
+  stepsCompleted: computed('hasRatings', 'hasFollows', 'hasComments', 'hasLikes', function() {
+    const steps = [
+      get(this, 'hasRatings'),
+      get(this, 'hasFollows'),
+      get(this, 'hasComments'),
+      get(this, 'hasLikes')
+    ];
+    return 4 - steps.sort().lastIndexOf(false);
+  }).readOnly(),
+
+  percentageComplete: computed('stepsCompleted', function() {
+    return 100 - (20 * get(this, 'stepsCompleted'));
+  }).readOnly(),
+
   ratingsLeft: computed('user.ratingsCount', function() {
     return 5 - get(this, 'user.ratingsCount');
   }).readOnly(),

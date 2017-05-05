@@ -1,6 +1,7 @@
 import Component from 'ember-component';
 import computed, { alias, gte } from 'ember-computed';
 import get from 'ember-metal/get';
+import { isPresent } from 'ember-utils';
 import { isObject } from 'client/helpers/is-object';
 
 const isObjectComputed = property => (
@@ -15,6 +16,21 @@ export default Component.extend({
   hasCover: isObjectComputed('user.coverImage'),
   hasAbout: alias('user.about'),
   hasFavorites: gte('user.favoritesCount', 1),
+
+  stepsCompleted: computed('hasRatings', 'hasAvatar', 'hasCover', 'hasAbout', 'hasFavorites', function() {
+    const steps = [
+      get(this, 'hasRatings'),
+      get(this, 'hasAvatar'),
+      get(this, 'hasCover'),
+      isPresent(get(this, 'hasAbout')),
+      get(this, 'hasFavorites')
+    ];
+    return 5 - steps.sort().lastIndexOf(false);
+  }).readOnly(),
+
+  percentageComplete: computed('stepsCompleted', function() {
+    return 100 - (16.66 * get(this, 'stepsCompleted'));
+  }).readOnly(),
 
   ratingsLeft: computed('user.ratingsCount', function() {
     return 5 - get(this, 'user.ratingsCount');
