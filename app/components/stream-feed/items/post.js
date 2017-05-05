@@ -3,6 +3,7 @@ import service from 'ember-service/inject';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import observer from 'ember-metal/observer';
+import { guidFor } from 'ember-metal/utils';
 import computed from 'ember-computed';
 import { typeOf, isEmpty } from 'ember-utils';
 import { scheduleOnce } from 'ember-runloop';
@@ -89,8 +90,13 @@ export default Component.extend(ClipboardMixin, CanMixin, {
 
   init() {
     this._super(...arguments);
-    get(this, 'embedly').setupListener();
-    get(this, 'embedly');
+    if (!get(this, 'isExpanded')) {
+      get(this, 'embedly').setupListener();
+      get(this, 'embedly').addSubscription(guidFor(this), () => {
+        console.log('uhhh');
+        this._overflow();
+      });
+    }
   },
 
   didReceiveAttrs() {
@@ -136,11 +142,9 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     }
   },
 
-  didUpdate() {
+  willDestroyElement() {
     this._super(...arguments);
-    if (!get(this, 'isHidden')) {
-      this._overflow();
-    }
+    get(this, 'embedly').removeSubscription(guidFor(this));
   },
 
   _hideLongBody() {

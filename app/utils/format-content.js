@@ -1,7 +1,13 @@
 /* global emojione */
 
 function embedLinkElements(content) {
-  return content.replace(/class="autolink"/g, 'class="autolink embedly-card"');
+  // find current theme loaded
+  const element = [].slice.call(document.head.getElementsByTagName('link'), 0).find(link => (
+    'theme' in link.dataset
+  ));
+  const theme = element ? element.dataset.theme : 'light';
+  const replace = `class="autolink embedly-card" data-card-theme=${theme}`;
+  return content.replace(/class="autolink"/g, replace);
 }
 
 export default function formatContent(content, embed = true) {

@@ -6,11 +6,23 @@ export default Service.extend({
 
   setupListener() {
     if (this.listenerSetup || !window.embedly) { return; }
-    window.embedly('on', 'card.resize', this.onRender);
+    const onResize = () => { this.onResize(); };
+    window.embedly('on', 'card.resize', onResize);
     this.listenerSetup = true;
   },
 
-  onRender(iframe) {
-    console.log(iframe);
+  addSubscription(guid, callback) {
+    if (this.subscribers[guid]) { return; }
+    this.subscribers[guid] = callback;
+  },
+
+  removeSubscription(guid) {
+    delete this.subscribers[guid];
+  },
+
+  onResize(iframe) {
+    Object.values(this.subscribers).forEach((subscriber) => {
+      subscriber(iframe);
+    });
   }
 });

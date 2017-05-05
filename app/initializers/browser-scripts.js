@@ -28,11 +28,6 @@ function canny() {
  * Inject Embedly's script into the `head` on initialzation.
  */
 function embedly() {
-  // find current theme loaded
-  const element = [].slice.call(document.head.getElementsByTagName('link'), 0).find(link => (
-    'theme' in link.dataset
-  ));
-
   // setup defaults for embedly
   window.embedly = window.embedly || function() {
     (window.embedly.q = window.embedly.q || []).push(arguments);
@@ -43,9 +38,9 @@ function embedly() {
       key: config.embedly.apiKey,
       recommend: '0',
       controls: '0',
+      chrome: '0',
       align: 'left',
-      width: '100%',
-      theme: element ? element.dataset.theme : 'light'
+      width: '100%'
     }
   });
   injectScript('https://cdn.embedly.com/widgets/platform.js').catch(() => {});
