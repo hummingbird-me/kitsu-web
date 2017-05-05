@@ -20,6 +20,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
   isOverflowed: false,
   isExpanded: false,
 
+  embedly: service(),
   notify: service(),
   router: service('-routing'),
   store: service(),
@@ -84,6 +85,12 @@ export default Component.extend(ClipboardMixin, CanMixin, {
       data.feed_id = get(this, 'feedId');
     }
     get(this, 'metrics').invoke('trackEngagement', 'Stream', data);
+  },
+
+  init() {
+    this._super(...arguments);
+    get(this, 'embedly').setupListener();
+    get(this, 'embedly');
   },
 
   didReceiveAttrs() {

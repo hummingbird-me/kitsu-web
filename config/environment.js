@@ -12,7 +12,7 @@ module.exports = function(environment) {
       FEATURES: {}
     },
     APP: {
-      APIHost: undefined,
+      APIHost: 'https://staging.kitsu.io',
       isStaging: IS_STAGING_ENV,
       env: process.env.HEROKU_EMBER_APP || 'development'
     },
