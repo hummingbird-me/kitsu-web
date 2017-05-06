@@ -14,7 +14,7 @@ export default Route.extend(Pagination, {
   },
 
   intl: service(),
-  lastUsed: storageFor('last-used'),
+  cache: storageFor('last-used'),
 
   /**
    * Use the cached query param values for the user if this is the user's *own* page.
@@ -24,8 +24,8 @@ export default Route.extend(Pagination, {
     if (!queryParams.media || !queryParams.sort) {
       const isCurrentUser = get(this, 'session').isCurrentUser(this.modelFor('users'));
       if (isCurrentUser) {
-        const lastUsed = get(this, 'lastUsed');
-        const { libraryType, librarySort } = getProperties(lastUsed, 'libraryType', 'librarySort');
+        const cache = get(this, 'cache');
+        const { libraryType, librarySort } = getProperties(cache, 'libraryType', 'librarySort');
         if (libraryType || librarySort) {
           this.replaceWith({
             queryParams: {
@@ -70,10 +70,9 @@ export default Route.extend(Pagination, {
 
     // get the correct sorting key
     switch (sort) {
-      case 'type':
-      case '-type': {
-        const field = `${mediaType}.subtype`;
-        return sort.charAt(0) === '-' ? `-${field}` : field;
+      case 'watched':
+      case '-watched': {
+        return sort.replace('watched', 'progressed_at');
       }
       case 'title':
       case '-title': {
@@ -87,6 +86,11 @@ export default Route.extend(Pagination, {
           field = `${field}.canonical`;
         }
         return sort.charAt(0) === '-' ? `-${field}` : field;
+      }
+      case 'length':
+      case '-length': {
+        const field = mediaType === 'anime' ? 'anime.episode_count' : 'manga.chapter_count';
+        return sort.replace('length', field);
       }
       default: {
         return sort;

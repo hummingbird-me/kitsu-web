@@ -377,23 +377,18 @@ users:
         male: "Male"
         female: "Female"
   library:
-    type: "{type} Library"
-    notes: "Personal notes about {title}"
-    public: "Public"
-    private: "Private"
-    reconsume:
-      anime: "Rewatch"
-      manga: "Reread"
-    reconsumed:
-      anime: "Rewatched"
-      manga: "Rereading"
-    reconsuming:
-      anime: "Rewatching"
-      manga: "Rereading"
-    times: "times"
-    empty:
-      owner: "You don't have any titles here! Ready to start something new? <a href={link}>Browse {type}</a>"
-      guest: "Doesn't look like {user} has any titles here!"
+    search: "Search {name}'s Library..."
+    sorting:
+      label: "Sort by:"
+      options:
+        -watched: "Date Watched: Recent First"
+        watched: "Date Watched: Oldest First"
+        -rating: "Rating: Highest First"
+        rating: "Rating: Lowest First"
+        title: "Title: A-Z"
+        -title: "Title: Z-A"
+        length: "Length: Shortest First"
+        -length: "Length: Longest First"
   groups:
     sort:
       newest: "Recently Joined"

@@ -1,33 +1,25 @@
 <div class="container">
   <div class="row">
     {{! Kitsu Library Content Ad }}
+    {{! @TODO(Vevix): Hookup top ad }}
     <div class="library-ad col-sm-12 no-padding-right">
       {{#unless session.account.isPro}}
-        {{ad-unit slot="8096455061"}}
+        {{ad-unit}}
       {{/unless}}
     </div>
 
     <div class="library-content col-sm-12 col-md-8">
       {{! Search }}
-      <section id="library-search" class="library-search">
-        <div class="container">
-          <div class="row">
-            <div class="library-search--wrapper">
-              <span class="icon">
-                {{svg-jar "search"}}
-              </span>
-              {{one-way-search
-                class="library-search-input"
-                placeholder="Search Josh's Library..."
-              }}
-            </div>
-          </div>
-        </div>
-      </section>
+      {{! @TODO(Vevix): Hookup `update` action }}
+      {{users/library/library-search
+        user=user
+        tagName="section"
+        class="library-search"
+      }}
 
       {{! Library Actions }}
       <section class="library-result-header clearfix">
-        {{! Library Layout }}
+        {{! Library Layout Buttons }}
         <span class="list-type">
           <a href="#" class={{if (eq layoutStyle "grid") "active"}} {{action (mut layoutStyle) "grid"}}>
             {{~svg-jar "grid"~}}
@@ -38,19 +30,12 @@
         </span>
 
         {{! Library Sort }}
-        <div class="library-filters">
-          <form class="form-inline">
-            <label class="mr-sm-2" for="inlineFormCustomSelect">Sort by:</label>
-            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-              <option selected>Date Watched: Recent First</option>
-              <option value="1">Date Watched: Oldest First</option>
-              <option value="2">Rating: High to Low</option>
-              <option value="3">Rating: Low to High</option>
-              <option value="4">Length: Shortest First</option>
-              <option value="5">Length: Longest First</option>
-            </select>
-          </form>
-        </div>
+        {{! @TODO(Vevix): Hookup `update` action }}
+        {{users/library/library-sorting
+          sort=sort
+          update=(action (mut sort))
+          class="library-filters"
+        }}
       </section>
 
       {{! Library Entries }}
@@ -117,7 +102,7 @@
       </ul>
       {{! Kitsu Library Sidebar Ad }}
       {{#unless session.account.isPro}}
-        {{ad-unit slot="6628225068"}}
+        {{ad-unit}}
       {{/unless}}
     </div>
   </div>

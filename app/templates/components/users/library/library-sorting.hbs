@@ -1,0 +1,7 @@
+<label class="mr-sm-2">{{t "users.library.sorting.label"}}</label>
+{{#one-way-select sort
+  options=sortingOptions
+  update=update
+  class="custom-select mb-2 mr-sm-2 mb-sm-0" as |option|}}
+  {{t (concat "users.library.sorting.options." option)}}
+{{/one-way-select}}

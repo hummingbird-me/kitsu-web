@@ -8,11 +8,11 @@ export default Controller.extend({
   queryParams: ['media', 'status', 'sort'],
   media: 'anime',
   status: 'current',
-  sort: null,
+  sort: 'title',
 
   layoutStyle: 'grid',
 
-  lastUsed: storageFor('last-used'),
+  cache: storageFor('last-used'),
   libraryEntries: concat('model.taskInstance.value', 'model.paginatedRecords'),
 
   init() {
