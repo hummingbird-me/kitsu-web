@@ -30,7 +30,6 @@
         </span>
 
         {{! Library Sort }}
-        {{! @TODO(Vevix): Hookup `update` action }}
         {{users/library/library-sorting
           sort=sort
           update=(action (mut sort))
@@ -45,65 +44,13 @@
     </div>
 
     {{! Sidebar }}
-    <div class="library-sidebar card col-sm-12 col-md-4">
-      <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-        <option selected>Josh's Anime</option>
-        <option value="1">Josh's Manga</option>
-      </select>
-      <ul class="library-sections">
-        <li class="active">
-          <a href="#">
-            All Anime
-            <span class="library-section--count">325</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Currently Watching
-            <span class="library-section--count">325</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Plan to Watch
-            <span class="library-section--count">325</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Completed
-            <span class="library-section--count">325</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            On Hold
-            <span class="library-section--count">325</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Dropped
-            <span class="library-section--count">325</span>
-          </a>
-        </li>
-      </ul>
-      <h6>Tools</h6>
-      <ul class="library-tools">
-        <li>
-          <a href="#">Stats</a>
-        </li>
-        <li>
-          <a href="#">Import Library</a>
-        </li>
-        <li>
-          <a href="#">Export Library</a>
-        </li>
-      </ul>
-      {{! Kitsu Library Sidebar Ad }}
-      {{#unless session.account.isPro}}
-        {{ad-unit}}
-      {{/unless}}
-    </div>
+    {{users/library/library-sidebar
+      user=user
+      media=media
+      status=status
+      updateMedia=(action (mut media))
+      updateStatus=(action (mut status))
+      class="library-sidebar card col-sm-12 col-md-4"
+    }}
   </div>
 </div>
