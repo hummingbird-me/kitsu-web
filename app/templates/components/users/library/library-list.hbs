@@ -11,11 +11,13 @@
   </thead>
   <tbody>
     {{#each libraryEntries as |libraryEntry|}}
-      {{users/library/library-list/library-entry
-        libraryEntry=libraryEntry
-        saveEntry=saveEntry
-        removeEntry=removeEntry
-      }}
+      {{#occlusion-culling rootMargin=(hash bottom=1000) bufferClass="library-occlusion-buffer-list"}}
+        {{users/library/library-list/library-entry
+          libraryEntry=libraryEntry
+          saveEntry=saveEntry
+          removeEntry=removeEntry
+        }}
+      {{/occlusion-culling}}
     {{/each}}
   </tbody>
 </table>

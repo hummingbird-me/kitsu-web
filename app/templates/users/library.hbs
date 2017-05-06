@@ -38,12 +38,14 @@
       </section>
 
       {{! Library Entries }}
-      {{component (concat "users/library/library-" layoutStyle)
-        media=media
-        libraryEntries=libraryEntries
-        saveEntry=(route-action "saveEntry")
-        removeEntry=(route-action "removeEntry")
-      }}
+      {{#infinite-pagination onPagination=(route-action "onPagination")}}
+        {{component (concat "users/library/library-" layoutStyle)
+          media=media
+          libraryEntries=libraryEntries
+          saveEntry=(route-action "saveEntry")
+          removeEntry=(route-action "removeEntry")
+        }}
+      {{/infinite-pagination}}
     </div>
 
     {{! Sidebar }}

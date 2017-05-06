@@ -147,7 +147,7 @@ export default Route.extend(Pagination, {
         kind: media,
         status
       },
-      page: { offset: 0, limit: 200 }
+      page: { offset: 0, limit: 50 }
     });
   },
 

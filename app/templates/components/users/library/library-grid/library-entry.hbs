@@ -1,40 +1,38 @@
-<div class="poster-wrapper">
-  <div class="grid-poster">
-    {{lazy-image src=(image libraryEntry.media.posterImage "medium")}}
-    <div class="poster-overlay">
-      <a href={{href-to (concat libraryEntry.media.modelType ".show") libraryEntry.media.slug}}></a>
-      <div class="grid-edit-wrapper">
-        <a href="#" class="grid-edit" {{action (toggle "showEditModal" this)}}>
-          {{t "users.library.list.edit"}}
-        </a>
-      </div>
-    </div>
-    <div class="progress">
-      <span class="progress-bar">
-        <span role="presentation" style={{progressPercent}} class="progress-completed"></span>
-      </span>
+<div class="grid-poster">
+  {{lazy-image src=(image libraryEntry.media.posterImage "medium")}}
+  <div class="poster-overlay">
+    <a href={{href-to (concat libraryEntry.media.modelType ".show") libraryEntry.media.slug}}></a>
+    <div class="grid-edit-wrapper">
+      <a href="#" class="grid-edit" {{action (toggle "showEditModal" this)}}>
+        {{t "users.library.list.edit"}}
+      </a>
     </div>
   </div>
-  <div class="entry-stats">
-    <span class="entry-episode">
-      {{#if (eq libraryEntry.progress 0)}}
-        {{t "users.library.list.unstarted"}}
-      {{else}}
-        {{t "users.library.list.progress"
-          type=libraryEntry.media.modelType
-          progress=libraryEntry.progress
-        }}
-      {{/if}}
+  <div class="progress">
+    <span class="progress-bar">
+      <span role="presentation" style={{progressPercent}} class="progress-completed"></span>
     </span>
-    {{#if (gt libraryEntry.rating 0)}}
-      <span class="entry-rating entry-rating-{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}">
-        {{library-entry/readonly-rating
-          rating=libraryEntry.rating
-          hideText=true
-        }}
-      </span>
-    {{/if}}
   </div>
+</div>
+<div class="entry-stats">
+  <span class="entry-episode">
+    {{#if (eq libraryEntry.progress 0)}}
+      {{t "users.library.list.unstarted"}}
+    {{else}}
+      {{t "users.library.list.progress"
+        type=libraryEntry.media.modelType
+        progress=libraryEntry.progress
+      }}
+    {{/if}}
+  </span>
+  {{#if (gt libraryEntry.rating 0)}}
+    <span class="entry-rating entry-rating-{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}">
+      {{library-entry/readonly-rating
+        rating=libraryEntry.rating
+        hideText=true
+      }}
+    </span>
+  {{/if}}
 </div>
 
 {{#if showEditModal}}
