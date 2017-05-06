@@ -2,7 +2,7 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import computed, { alias } from 'ember-computed';
+import { mapBy } from 'ember-computed';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
@@ -12,24 +12,23 @@ export default Component.extend({
   store: service(),
   stream: service('stream-realtime'),
 
-  activityGroup: alias('getAnnouncementsTask.last.value.firstObject'),
-  activity: alias('activityGroup.activities.firstObject'),
-  announcement: alias('activity.subject'),
-
-  showAnnouncement: computed('activity', 'activityGroup.{isRead,isDeleted}', function() {
-    const activityGroup = get(this, 'activityGroup');
-    return !!(get(this, 'activity') && !get(activityGroup, 'isRead') &&
-      !get(activityGroup, 'isDeleted'));
-  }).readOnly(),
+  activities: mapBy('activityGroups', 'activities.firstObject'),
+  announcements: mapBy('activities', 'subject'),
 
   init() {
     this._super(...arguments);
     get(this, 'getAnnouncementsTask').perform().then((records) => {
+      // filter out read activity groups
+      const groups = records.reject(record => get(record, 'isRead'));
+      set(this, 'activityGroups', groups || []);
+
       // setup websocket connection to GetStream
       const userId = get(this, 'session.account.id');
       const { readonlyToken: token } = get(records, 'meta');
       const callback = (data) => { this._handleSubscription(data); };
       this.realtime = get(this, 'stream').subscribe('site_announcements', userId, token, callback);
+    }).catch((error) => {
+      get(this, 'raven').captureException(error);
     });
   },
 
@@ -41,9 +40,7 @@ export default Component.extend({
   },
 
   /**
-   * Returns the latest SiteAnnouncement. Currently this is built to only support one
-   * announcement at a time (the most recent one). Eventually this will be switched out to
-   * support multiple and only querying for announcements the user hasn't read.
+   * Gets the latest Site Announcements from the Stream feed.
    *
    * @param {Object} options Request options
    */
@@ -51,27 +48,26 @@ export default Component.extend({
     const requestOptions = Object.assign({
       type: 'site_announcements',
       id: get(this, 'session.account.id'),
-      include: 'subject',
-      page: { limit: 1 }
+      include: 'subject'
     }, options);
     return yield get(this, 'store').query('feed', requestOptions);
   }).drop(),
 
   actions: {
     /**
-     * Mark an announcement activity as read for the users announcement feed.
+     * Mark an announcement activity as read for the user.
      */
     dismissAnnouncement() {
-      set(this, 'activityGroup.isRead', true);
+      const announcement = get(this, 'announcements').shiftObject();
       const userId = get(this, 'session.account.id');
-      const activityId = get(this, 'activityGroup.id');
+      const activity = get(this, 'activities').findBy('subject.id', get(announcement, 'id'));
       const readUrl = `/feeds/site_announcements/${userId}/_read`;
       get(this, 'ajax').request(readUrl, {
         method: 'POST',
-        data: JSON.stringify([activityId]),
+        data: JSON.stringify([get(activity, 'id')]),
         contentType: 'application/json'
       }).catch((error) => {
-        set(this, 'activityGroup.isRead', false);
+        get(this, 'announcements').unshiftObject(announcement);
         get(this, 'raven').captureException(error);
       });
     }
@@ -84,16 +80,21 @@ export default Component.extend({
    */
   _handleSubscription(data) {
     const { new: created, deleted } = data;
-    // Check if our announcement has been deleted
-    const isDeleted = deleted.any(id => id === get(this, 'activityGroup.id'));
-    if (isDeleted) {
-      get(this, 'activityGroup').deleteRecord();
+    // Handle deleted announcements by removing them from the stack
+    if (deleted.length > 0) {
+      deleted.forEach((activityId) => {
+        const activity = get(this, 'activities').findBy('id', activityId);
+        get(this, 'announcements').removeObject(get(activity, 'subject'));
+      });
     }
     // Since this is a direct connection to GetStream, the data is raw so we have to request the
     // API to enrich the data.
     if (created.length > 0) {
       get(this, 'getAnnouncementsTask').perform({
-        page: { limit: 1 }
+        page: { limit: created.length }
+      }).then((records) => {
+        const groups = records.reject(record => get(record, 'isRead'));
+        get(this, 'activityGroups').unshiftObjects(groups);
       });
     }
   }

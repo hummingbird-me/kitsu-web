@@ -1,4 +1,4 @@
-{{#if showAnnouncement}}
+{{#with announcements.firstObject as |announcement|}}
   <div class="user-blotter card">
     <h6>{{announcement.title}}</h6>
     <p>{{announcement.description}}</p>
@@ -8,12 +8,12 @@
       </div>
     {{/if}}
     {{#if announcement.link}}
-      <a href={{announcement.link}} class="button button--primary" {{action "dismissAnnouncement" preventDefault=false}}>
+      <a href={{announcement.link}} class="button button--primary" {{action "dismissAnnouncement" announcement preventDefault=false}}>
         <span class="button-label">{{t "dashboard.announcements.button"}}</span>
       </a>
     {{/if}}
-    <span class="dismiss-blotter" {{action "dismissAnnouncement"}}>
+    <span class="dismiss-blotter" {{action "dismissAnnouncement" announcement}}>
       {{svg-jar "close"}}
     </span>
   </div>
-{{/if}}
+{{/with}}
