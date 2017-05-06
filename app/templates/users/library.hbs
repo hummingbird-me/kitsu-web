@@ -41,6 +41,8 @@
       {{component (concat "users/library/library-" layoutStyle)
         media=media
         libraryEntries=libraryEntries
+        saveEntry=(route-action "saveEntry")
+        removeEntry=(route-action "removeEntry")
       }}
     </div>
 

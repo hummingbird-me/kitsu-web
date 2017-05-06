@@ -11,7 +11,7 @@
     </div>
     <div class="progress">
       <span class="progress-bar">
-        <span role="presentation" style="width: {{progressPercent}}%" class="progress-completed"></span>
+        <span role="presentation" style={{progressPercent}} class="progress-completed"></span>
       </span>
     </div>
   </div>
@@ -39,6 +39,9 @@
 
 {{#if showEditModal}}
   {{to-elsewhere named="modal" send=(component "users/library/library-edit"
+    libraryEntry=libraryEntry
+    saveEntry=saveEntry
+    removeEntry=removeEntry
     onClose=(toggle-action "showEditModal" this)
   )}}
 {{/if}}

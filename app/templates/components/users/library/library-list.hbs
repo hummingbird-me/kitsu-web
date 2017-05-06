@@ -11,7 +11,11 @@
   </thead>
   <tbody>
     {{#each libraryEntries as |libraryEntry|}}
-      {{users/library/library-list/library-entry libraryEntry=libraryEntry}}
+      {{users/library/library-list/library-entry
+        libraryEntry=libraryEntry
+        saveEntry=saveEntry
+        removeEntry=removeEntry
+      }}
     {{/each}}
   </tbody>
 </table>

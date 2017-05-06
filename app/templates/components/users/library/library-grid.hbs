@@ -2,7 +2,11 @@
   <div class="media-grid container">
     <div class="row">
       {{#each libraryEntries as |libraryEntry|}}
-        {{users/library/library-grid/library-entry libraryEntry=libraryEntry}}
+        {{users/library/library-grid/library-entry
+          libraryEntry=libraryEntry
+          saveEntry=saveEntry
+          removeEntry=removeEntry
+        }}
       {{/each}}
     </div>
   </div>

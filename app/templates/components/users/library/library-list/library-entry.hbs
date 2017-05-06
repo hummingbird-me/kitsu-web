@@ -51,6 +51,9 @@
 
 {{#if showEditModal}}
   {{to-elsewhere named="modal" send=(component "users/library/library-edit"
+    libraryEntry=libraryEntry
+    saveEntry=saveEntry
+    removeEntry=removeEntry
     onClose=(toggle-action "showEditModal" this)
   )}}
 {{/if}}

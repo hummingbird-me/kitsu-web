@@ -1,79 +1,173 @@
 {{#bootstrap/bs-modal class="library-edit-modal" onClose=onClose as |modal|}}
   {{#modal.body}}
     <div class="edit-modal--body">
-      <h6>Fullmetal Alchemist</h6>
+      <h6>{{libraryEntry.media.computedTitle}}</h6>
+      {{! Status }}
       <div class="form-group row">
-        <label for="example-text-input" class="col-sm col-form-label">Library Status</label>
+        <label class="col-sm col-form-label">
+          {{t "users.library.edit.status"}}
+        </label>
         <div class="col-sm-7">
-          <select class="form-control" id="exampleSelect1">
-            <option>Currently Watching</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="example-text-input" class="col-sm col-form-label">Progress</label>
-        <div class="col-sm-7">
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            <input type="number" class="form-control" id="inlineFormInputGroup" placeholder="0">
-            <div class="input-group-addon">of 24 episodes</div>
-          </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="example-text-input" class="col-sm col-form-label">Your Rating</label>
-        <div class="col-sm-7">
-          <select class="form-control" id="exampleSelect1">
-            <option>:( AWFUL</option>
-          </select>
+          {{#one-way-select changeset.status
+            options=statuses
+            update=(action (mut changeset.status))
+            class="form-control" as |option|}}
+            {{t (concat "library-shared." option) type=libraryEntry.media.modelType}}
+          {{/one-way-select}}
         </div>
       </div>
 
+      {{! Progress }}
       <div class="form-group row">
-        <label for="example-text-input" class="col-sm col-form-label">Rewatch Count</label>
+        <label class="col-sm col-form-label">
+          {{t "users.library.edit.progress"}}
+        </label>
+        <div class="col-sm-7">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            {{one-way-number changeset.progress
+              min="0"
+              max=libraryEntry.media.unitCount
+              update=(pipe
+                (action "sanitizeNumber")
+                (action (mut changeset.progress))
+              )
+              class="form-control"
+            }}
+            <div class="input-group-addon">
+              {{#if (gt libraryEntry.media.unitCount 0)}}
+                {{t "users.library.edit.units" type=libraryEntry.media.modelType num=libraryEntry.media.unitCount}}
+              {{else}}
+                -
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{! Rating }}
+      <div class="form-group row">
+        <label class="col-sm col-form-label">
+          {{t "users.library.edit.rating"}}
+        </label>
+        <div class="col-sm-7 library-state">
+          {{library-entry/rating-button
+            rating=changeset.rating
+            onClick=(action (mut changeset.rating))
+            showDropdown=true
+          }}
+        </div>
+      </div>
+
+      {{! Rewatch }}
+      <div class="form-group row">
+        <label class="col-sm col-form-label">
+          {{t "users.library.edit.rewatch" type=libraryEntry.media.modelType}}
+        </label>
         <div class="col-sm-7">
           <div class="input-group">
-            <input type="number" class="form-control" placeholder="0">
+            {{one-way-number changeset.reconsumeCount
+              min="0"
+              update=(pipe
+                (action "sanitizeNumber")
+                (action (mut changeset.reconsumeCount))
+              )
+              class="form-control"
+            }}
             <span class="input-group-btn">
-              <button class="btn btn-secondary" type="button">Start Rewatch</button>
+              <button class="btn btn-secondary" type="button" onclick={{action "rewatch"}}>
+                {{t "users.library.edit.start-rewatch" type=libraryEntry.media.modelType}}
+              </button>
             </span>
           </div>
         </div>
       </div>
 
+      {{! Privacy }}
       <div class="form-group row">
-        <label for="example-text-input" class="col-sm col-form-label">Privacy</label>
+        <label class="col-sm col-form-label">
+          {{t "users.library.edit.privacy"}}
+        </label>
         <div class="col-sm-7">
-          <select class="form-control" id="exampleSelect1">
-            <option>Public</option>
-          </select>
+          {{one-way-select changeset.private
+            options=privacies
+            optionTargetPath="id"
+            optionLabelPath="value"
+            update=(action (mut changeset.private))
+            class="form-control"
+          }}
         </div>
       </div>
 
+      {{! Started }}
+      {{! @TODO(Vevix): These require API Changes }}
       <div class="form-group row">
-        <label for="example-text-input" class="col-sm col-form-label">Started</label>
+        <label class="col-sm col-form-label">
+          {{t "users.library.edit.started"}}
+        </label>
         <div class="col-sm-7">
-            <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+         {{pikaday-input
+            useUTC=true
+            class="form-control"
+            format="DD/MM/YYYY"
+            yearRange="1900,currentYear"
+            placeholder="DD/MM/YYYY"
+            options=(hash maxDate=(now))
+          }}
         </div>
       </div>
 
+      {{! Finished }}
+      {{! @TODO(Vevix): These require API Changes }}
       <div class="form-group row">
-        <label for="example-text-input" class="col-sm col-form-label">Finished</label>
+        <label class="col-sm col-form-label">
+          {{t "users.library.edit.finished"}}
+        </label>
         <div class="col-sm-7">
-            <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+          {{pikaday-input
+            useUTC=true
+            class="form-control"
+            format="DD/MM/YYYY"
+            yearRange="1900,currentYear"
+            placeholder="DD/MM/YYYY"
+            options=(hash maxDate=(now))
+          }}
         </div>
       </div>
 
+      {{! Notes }}
       <div class="form-group row">
-        <label for="example-text-input" class="col-sm col-form-label">Personal Notes</label>
+        <label class="col-sm col-form-label">
+          {{t "users.library.edit.notes"}}
+        </label>
         <div class="col-sm-7">
-            <textarea class="form-control" rows="2"></textarea>
+          {{expanding-textarea changeset.notes
+            update=(action (mut changeset.notes))
+            class="form-control"
+          }}
         </div>
       </div>
-
     </div>
   {{/modal.body}}
+
   {{#modal.footer}}
-    <button class="btn button--secondary" type="button">{{svg-jar "trash"}}</button>
-    <button class="btn button--primary" type="button">Save Changes</button>
+    {{! Remove }}
+    <button class="btn button--secondary hint--rounded hint--bounce hint--right"
+        aria-label={{t "users.library.edit.remove"}}
+        onclick={{perform removeTask}}>
+      {{#if removeTask.isRunning}}
+        {{loading-spinner size="small"}}
+      {{else}}
+        {{svg-jar "trash"}}
+      {{/if}}
+    </button>
+
+    {{! Save }}
+    <button class="btn button--primary" disabled={{not isValid}} onclick={{perform saveTask}}>
+      {{#if saveTask.isRunning}}
+        {{t "users.library.edit.saving"}}
+      {{else}}
+        {{t "users.library.edit.save"}}
+      {{/if}}
+    </button>
   {{/modal.footer}}
 {{/bootstrap/bs-modal}}

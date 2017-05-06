@@ -57,8 +57,21 @@ export default Route.extend(Pagination, {
     return get(this, 'intl').t('titles.users.library', { user: name });
   },
 
+  actions: {
+    saveEntry(changeset) {
+      return changeset.save();
+    },
+
+    removeEntry(entry) {
+      return entry.destroyRecord().catch((error) => {
+        entry.rollbackAttributes();
+        get(this, 'raven').captureException(error);
+      });
+    }
+  },
+
   /**
-   * Converts the sorting query param into an API compliant key.
+   * Convert the query param `sort` key into a key that the API expects.
    *
    * @param {String} sort
    * @returns {String}
