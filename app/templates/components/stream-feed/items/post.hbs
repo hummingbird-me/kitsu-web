@@ -182,16 +182,6 @@
 
     {{! Post Actions }}
     <div class="stream-item-options">
-      {{! Share Links }}
-      <!-- <a href={{tweetLink}} target="_blank" {{action "trackEngagement" "click" preventDefault=false}}>
-        {{svg-jar "l-twitter"}}
-        Tweet
-      </a>
-      <a href={{facebookLink}} target="_blank" {{action "trackEngagement" "click" preventDefault=false}}>
-        {{svg-jar "l-facebook"}}
-        Share
-      </a> -->
-
       {{! Dropdown }}
       <span class="more-wrapper">
         <a href="#" class="more-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -204,7 +194,7 @@
           </a>
 
           {{! Follow/Unfollow }}
-          {{#if session.hasUser}}
+          {{#if (and session.hasUser (not (is-self post.user)))}}
             <a class="dropdown-item" href="#" {{action "followPost"}}>
               {{#if isFollowingPost}}
                 Unfollow Post
@@ -308,6 +298,7 @@
       kitsuGroupMembership=kitsuGroupMembership
       countUpdate=(action (mut post.topLevelCommentsCount))
       trackEngagement=(action "trackEngagement")
+      updateFollow=(action "updateFollow")
     }}
   {{/unless}}
 {{else}}
