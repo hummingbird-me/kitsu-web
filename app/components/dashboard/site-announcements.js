@@ -95,6 +95,8 @@ export default Component.extend({
       }).then((records) => {
         const groups = records.reject(record => get(record, 'isRead'));
         get(this, 'activityGroups').unshiftObjects(groups);
+      }).catch((error) => {
+        get(this, 'raven').captureException(error);
       });
     }
   }
