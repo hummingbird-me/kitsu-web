@@ -10,9 +10,9 @@
 
     <div class="library-content col-sm-12 col-md-8">
       {{! Search }}
-      {{! @TODO(Vevix): Hookup `update` action }}
-      {{users/library/library-search
+      {{users/library/library-search title
         user=user
+        update=(perform searchTask)
         tagName="section"
         class="library-search"
       }}

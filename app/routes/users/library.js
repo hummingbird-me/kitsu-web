@@ -2,6 +2,7 @@ import Route from 'ember-route';
 import get, { getProperties } from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
+import { isPresent } from 'ember-utils';
 import { storageFor } from 'ember-local-storage';
 import getTitleField from 'client/utils/get-title-field';
 import Pagination from 'kitsu-shared/mixins/pagination';
@@ -10,7 +11,8 @@ export default Route.extend(Pagination, {
   queryParams: {
     media: { refreshModel: true },
     status: { refreshModel: true },
-    sort: { refreshModel: true }
+    sort: { refreshModel: true },
+    title: { refreshModel: true }
   },
 
   intl: service(),
@@ -118,29 +120,9 @@ export default Route.extend(Pagination, {
    * @returns {Object}
    * @private
    */
-  _getRequestOptions({ media, status, sort }) {
+  _getRequestOptions({ media, status, sort, title }) {
     const user = this.modelFor('users');
-    const options = {};
-
-    // apply user sort selection
-    if (sort) {
-      const sortingKey = this._getSortingKey(sort);
-      Object.assign(options, { sort: sortingKey });
-    } else {
-      Object.assign(options, { sort: '-updated_at' });
-    }
-
-    if (status === 'all') {
-      status = '1,2,3,4,5'; // eslint-disable-line no-param-reassign
-      const sortingKey = `status,${options.sort}`;
-      Object.assign(options, { sort: sortingKey });
-    }
-
-    // request only the fields that we require for display
-    const fields = this._getFieldsets(media);
-    Object.assign(options, { fields });
-
-    return Object.assign(options, {
+    const options = {
       include: `${media},user`,
       filter: {
         user_id: get(user, 'id'),
@@ -148,7 +130,29 @@ export default Route.extend(Pagination, {
         status
       },
       page: { offset: 0, limit: 50 }
-    });
+    };
+
+    // apply user sort selection
+    if (sort) {
+      options.sort = this._getSortingKey(sort);
+    } else {
+      options.sort = '-updated_at';
+    }
+
+    if (status === 'all') {
+      options.filter.status = '1,2,3,4,5';
+      options.sort = `status,${options.sort}`;
+    }
+
+    // request only the fields that we require for display
+    options.fields = this._getFieldsets(media);
+
+    // searching?
+    if (isPresent(title)) {
+      options.filter.title = title;
+    }
+
+    return options;
   },
 
   /**
