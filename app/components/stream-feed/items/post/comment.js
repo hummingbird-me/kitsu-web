@@ -72,6 +72,7 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
 
     yield reply.save()
       .then(() => {
+        invokeAction(this, 'updateFollow');
         invokeAction(this, 'trackEngagement', 'comment');
         get(this, 'metrics').trackEvent({ category: 'comment', action: 'reply', value: get(this, 'comment.id') });
       })

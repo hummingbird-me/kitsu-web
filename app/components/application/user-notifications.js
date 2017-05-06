@@ -43,7 +43,7 @@ export default Component.extend({
     return yield get(this, 'store').query('feed', {
       type: 'notifications',
       id: get(this, 'session.account.id'),
-      include: 'actor,target.post',
+      include: 'actor,target.user,target.post',
       page: { limit }
     });
   }).enqueue(),

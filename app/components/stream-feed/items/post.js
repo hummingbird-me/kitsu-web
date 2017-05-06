@@ -7,7 +7,6 @@ import { guidFor } from 'ember-metal/utils';
 import computed from 'ember-computed';
 import { typeOf, isEmpty } from 'ember-utils';
 import { scheduleOnce } from 'ember-runloop';
-import { hrefTo } from 'ember-href-to/helpers/href-to';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
 import errorMessages from 'client/utils/error-messages';
@@ -18,6 +17,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
   classNameBindings: ['post.isNew:new-post', 'isPinnedPost:pinned-post'],
   classNames: ['stream-item', 'row'],
   isHidden: false,
+  isFollowingPost: false,
   isOverflowed: false,
   isExpanded: false,
 
@@ -30,21 +30,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
 
   activity: getter(function() {
     return get(this, 'group.activities.firstObject');
-  }),
-
-  tweetLink: getter(function() {
-    const host = get(this, 'host');
-    const link = hrefTo(this, 'posts', get(this, 'post.id'));
-    const url = `${host}${link}`;
-    const text = encodeURIComponent('Check out this post on #kitsu');
-    return `https://twitter.com/share?text=${text}&url=${url}`;
-  }),
-
-  facebookLink: getter(function() {
-    const host = get(this, 'host');
-    const link = hrefTo(this, 'posts', get(this, 'post.id'));
-    const url = `${host}${link}`;
-    return `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   }),
 
   postEpisodeText: getter(function() {
@@ -93,7 +78,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     if (!get(this, 'isExpanded')) {
       get(this, 'embedly').setupListener();
       get(this, 'embedly').addSubscription(guidFor(this), () => {
-        console.log('uhhh');
         this._overflow();
       });
     }
@@ -137,6 +121,11 @@ export default Component.extend(ClipboardMixin, CanMixin, {
       }
     }
 
+    // follows
+    if (get(this, 'session.hasUser') && !get(this, 'session').isCurrentUser(get(this, 'post.user'))) {
+      this._updateFollow();
+    }
+
     if (!get(this, 'isHidden')) {
       this._overflow();
     }
@@ -175,10 +164,45 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     this._overflow();
   }),
 
+  _updateFollow() {
+    get(this, 'store').query('post-follow', {
+      filter: {
+        user_id: get(this, 'session.account.id'),
+        post_id: get(this, 'post.id')
+      }
+    }).then((records) => {
+      const record = get(records, 'firstObject');
+      set(this, 'isFollowingPost', !!record);
+      set(this, 'followRelationship', record);
+    });
+  },
+
   actions: {
     trackEngagement(label, id) {
       const foreignId = typeOf(id) === 'string' ? id : undefined;
       this._streamAnalytics(label, foreignId || `Post:${get(this, 'post.id')}`);
+    },
+
+    followPost() {
+      if (get(this, 'isFollowingPost')) {
+        get(this, 'followRelationship').destroyRecord().then(() => {
+          set(this, 'isFollowingPost', false);
+          set(this, 'followRelationship', null);
+        });
+      } else {
+        const follow = get(this, 'store').createRecord('post-follow', {
+          user: get(this, 'session.account'),
+          post: get(this, 'post')
+        });
+        follow.save().then(() => {
+          set(this, 'followRelationship', follow);
+          set(this, 'isFollowingPost', true);
+        });
+      }
+    },
+
+    updateFollow() {
+      this._updateFollow();
     },
 
     toggleHidden() {
