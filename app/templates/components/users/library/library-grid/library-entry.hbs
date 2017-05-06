@@ -27,7 +27,7 @@
       {{/if}}
     </span>
     {{#if (gt libraryEntry.rating 0)}}
-      <span class="entry-rating entry-rating-{{if session.account.isSimpleRating "simple" "star"}}">
+      <span class="entry-rating entry-rating-{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}">
         {{library-entry/readonly-rating
           rating=libraryEntry.rating
           hideText=true

@@ -255,13 +255,13 @@
   }
   .status {
     padding: 2px;
-    &.status-watching {
+    &.status-current {
       background: #2DB039;
     }
     &.status-completed {
       background: #26448F;
     }
-    &.status-hold {
+    &.status-on_hold {
       background: #F1C83E;
     }
     &.status-dropped {
@@ -320,6 +320,10 @@
         position: relative;
         top: 10px;
         margin-right: 5px;
+      }
+      .current-rating {
+        color: $body-text-color;
+        font-weight: normal;
       }
     }
   }
