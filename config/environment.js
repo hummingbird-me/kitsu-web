@@ -11,13 +11,15 @@ module.exports = function(environment) {
     EmberENV: {
       FEATURES: {}
     },
-    APP: {
+    APP: {},
+    EXTEND_PROTOTYPES: {
+      Date: false
+    },
+
+    kitsu: {
       APIHost: undefined,
       isStaging: IS_STAGING_ENV,
       env: process.env.HEROKU_EMBER_APP || 'development'
-    },
-    EXTEND_PROTOTYPES: {
-      Date: false
     },
 
     torii: {
@@ -139,7 +141,8 @@ module.exports = function(environment) {
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
     ENV.APP.rootElement = '#ember-testing';
-    ENV.APP.APIHost = undefined;
+
+    ENV.kitsu.APIHost = undefined;
     ENV.stream.realtime.enabled = false;
     ENV.intl_cp_validations = ENV.intl_cp_validations || {};
     ENV.intl_cp_validations.suppressWarnings = true;
@@ -152,12 +155,12 @@ module.exports = function(environment) {
 
   // Staging app @ Heroku
   if (process.env.HEROKU_EMBER_APP === 'staging') {
-    ENV.APP.APIHost = 'https://staging.kitsu.io';
+    ENV.kitsu.APIHost = 'https://staging.kitsu.io';
   }
 
   // Production app @ Heroku
   if (process.env.HEROKU_EMBER_APP === 'production') {
-    ENV.APP.APIHost = 'https://kitsu.io';
+    ENV.kitsu.APIHost = 'https://kitsu.io';
   }
 
   return ENV;

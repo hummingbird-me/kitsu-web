@@ -4,5 +4,5 @@ import Config from 'client/config/environment';
 export default Controller.extend({
   queryParams: ['notification'],
   notification: null,
-  isStaging: Config.APP.isStaging
+  isStaging: Config.kitsu.isStaging
 });

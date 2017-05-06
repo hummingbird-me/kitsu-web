@@ -6,7 +6,7 @@ import config from 'client/config/environment';
 import getter from 'client/utils/getter';
 
 export default AjaxService.extend({
-  host: getter(() => config.APP.APIHost),
+  host: getter(() => config.kitsu.APIHost),
   namespace: '/api/edge',
   session: service(),
 

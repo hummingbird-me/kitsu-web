@@ -10,7 +10,7 @@ export default Service.extend({
     this._super(...arguments);
     if (!window.stream) { return; }
     const { enabled, config } = get(Config, 'stream.realtime');
-    const { app, key } = get(config, Config.APP.env);
+    const { app, key } = get(config, Config.kitsu.env);
     if (!enabled) { return; }
     this.client = window.stream.connect(key, null, app);
   },

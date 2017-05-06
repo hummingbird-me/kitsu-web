@@ -4,6 +4,6 @@ import config from 'client/config/environment';
 
 export default OAuth2PasswordGrant.extend({
   refreshAccessTokens: true,
-  serverTokenEndpoint: getter(() => `${config.APP.APIHost || ''}/api/oauth/token`),
-  serverTokenRevocationEndpoint: getter(() => `${config.APP.APIHost || ''}/api/oauth/revoke`)
+  serverTokenEndpoint: getter(() => `${config.kitsu.APIHost || ''}/api/oauth/token`),
+  serverTokenRevocationEndpoint: getter(() => `${config.kitsu.APIHost || ''}/api/oauth/revoke`)
 });

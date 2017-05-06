@@ -14,7 +14,7 @@ export default BaseAdapter.extend({
   },
 
   init() {
-    const environment = Config.APP.isStaging ? 'staging' : Config.environment;
+    const environment = Config.kitsu.isStaging ? 'staging' : Config.environment;
     const config = get(this, `config.${environment}`);
     if (canUseDOM) {
       // eslint-disable-next-line
