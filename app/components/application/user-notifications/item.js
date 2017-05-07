@@ -19,6 +19,11 @@ export default Component.extend({
     return get(this, 'others.length');
   }).readOnly(),
 
+  isMentioned: computed('activity.mentionedUsers', function() {
+    const userId = parseInt(get(this, 'session.account.id'), 10);
+    return get(this, 'activity.mentionedUsers').includes(userId);
+  }).readOnly(),
+
   link: computed('activity', function() {
     const activity = get(this, 'activity');
     const streamId = get(this, 'group.streamId');

@@ -37,7 +37,7 @@
             {{else}}
               post.
             {{/if}}
-          {{else if (and activity.mentionedUsers (contains session.account.id activity.mentionedUsers))}}
+          {{else if isMentioned}}
             mentioned you in a comment.
           {{else}}
             replied to
