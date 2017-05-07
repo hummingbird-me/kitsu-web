@@ -38,7 +38,6 @@ export default Component.extend(Pagination, {
     invokeAction(this, 'countUpdate', get(this, 'post.topLevelCommentsCount') + 1);
     get(this, 'session.account').incrementProperty('commentsCount');
     yield comment.save().then(() => {
-      //invokeAction(this, 'updateFollow');
       invokeAction(this, 'trackEngagement', 'comment');
       get(this, 'metrics').trackEvent({ category: 'comment', action: 'create', value: get(this, 'post.id') });
     }).catch((err) => {
