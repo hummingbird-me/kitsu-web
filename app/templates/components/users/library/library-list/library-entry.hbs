@@ -1,8 +1,11 @@
 <tr>
   <td class="status status-{{libraryEntry.status}}"></td>
-  <td class="checkbox-cell">
-    <input type="checkbox" class="checkbox">
-  </td>
+  {{! Checkbox }}
+  {{#if (can "edit library-entry" libraryEntry)}}
+    <td class="checkbox-cell">
+      <input type="checkbox" class="checkbox">
+    </td>
+  {{/if}}
   {{! Title }}
   <td class="media-cell">
     <span class="cell-poster">
@@ -32,21 +35,29 @@
   {{! Progress }}
   <td class="progress-cell">
     <span>
-      <a href="#" class="link">{{libraryEntry.progress}}</a>
+      <a href="#" class="link">{{changeset.progress}}</a>
       /
     </span>
     <span>{{or libraryEntry.media.unitCount "-"}}</span>
-    <a href="#" class="increment-episode">
-      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26">
-        <path d="M13.5,3.188C7.805,3.188,3.188,7.805,3.188,13.5S7.805,23.813,13.5,23.813S23.813,19.195,23.813,13.5 S19.195,3.188,13.5,3.188z M19,15h-4v4h-3v-4H8v-3h4V8h3v4h4V15z"></path>
-      </svg>
-    </a>
+    {{! Increment }}
+    {{#if (can "edit library-entry" libraryEntry)}}
+      {{#unless (eq libraryEntry.media.unitCount changeset.progress)}}
+        <a href="#" class="increment-episode" {{action "incrementProgress"}}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26">
+            <path d="M13.5,3.188C7.805,3.188,3.188,7.805,3.188,13.5S7.805,23.813,13.5,23.813S23.813,19.195,23.813,13.5 S19.195,3.188,13.5,3.188z M19,15h-4v4h-3v-4H8v-3h4V8h3v4h4V15z"></path>
+          </svg>
+        </a>
+      {{/unless}}
+    {{/if}}
   </td>
-  <td class="edit-entry">
-    <a href="#" class="edit-entry-button" {{action (toggle "showEditModal" this)}}>
-      {{t "users.library.list.edit"}}
-    </a>
-  </td>
+  {{! Edit }}
+  {{#if (can "edit library-entry" libraryEntry)}}
+    <td class="edit-entry">
+      <a href="#" class="edit-entry-button" {{action (toggle "showEditModal" this)}}>
+        {{t "users.library.list.edit"}}
+      </a>
+    </td>
+  {{/if}}
 </tr>
 
 {{#if showEditModal}}

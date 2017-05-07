@@ -2,11 +2,15 @@
   <thead>
     <tr>
       <th class="status"></th>
-      <th></th>
+      {{#if (can "edit library-entry" libraryEntries.firstObject)}}
+        <th></th>
+      {{/if}}
       <th class="media-cell">{{t "users.library.list.table-header.title" type=media}}</th>
       <th class="rating-cell">{{t "users.library.list.table-header.rating"}}</th>
       <th class="progress-cell">{{t "users.library.list.table-header.progress"}}</th>
-      <th class="edit-entry"></th>
+      {{#if (can "edit library-entry" libraryEntries.firstObject)}}
+        <th class="edit-entry"></th>
+      {{/if}}
     </tr>
   </thead>
   <tbody>

@@ -2,11 +2,14 @@
   {{lazy-image src=(image libraryEntry.media.posterImage "medium")}}
   <div class="poster-overlay">
     <a href={{href-to (concat libraryEntry.media.modelType ".show") libraryEntry.media.slug}}></a>
-    <div class="grid-edit-wrapper">
-      <a href="#" class="grid-edit" {{action (toggle "showEditModal" this)}}>
-        {{t "users.library.list.edit"}}
-      </a>
-    </div>
+    {{! Edit }}
+    {{#if (can "edit library-entry" libraryEntry)}}
+      <div class="grid-edit-wrapper">
+        <a href="#" class="grid-edit" {{action (toggle "showEditModal" this)}}>
+          {{t "users.library.list.edit"}}
+        </a>
+      </div>
+    {{/if}}
   </div>
   <div class="progress">
     <span class="progress-bar">
