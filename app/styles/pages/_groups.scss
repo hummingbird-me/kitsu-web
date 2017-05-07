@@ -1159,12 +1159,18 @@ $primary: #00cc99;
   position: relative;
   .joined-group a {
     display: flex;
+    align-items: center;
+    border-radius: 5px;
     color: $body-text-color;
     padding: 5px;
     position: relative;
     &:hover {
-      background: darken($background-color,2);
-      color: $body-text-color;;
+      @if $theme == 'kitsu-light' {
+        background: rgba(0,0,0,.1);
+      }
+      @if $theme == 'kitsu-dark' {
+        background: rgba(0,0,0,.3);
+      }
     }
   }
   .view-more a {
