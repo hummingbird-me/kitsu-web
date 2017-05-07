@@ -14,8 +14,8 @@ import { invoke, invokeAction } from 'ember-invoke-action';
 import { CanMixin } from 'ember-can';
 
 export default Component.extend(ClipboardMixin, CanMixin, {
-  classNameBindings: ['post.isNew:new-post', 'isPinnedPost:pinned-post'],
-  classNames: ['stream-item', 'row'],
+  classNameBindings: ['post.isNew:new-post', 'isPinnedPost:pinned-post', 'post.id:stream-item'],
+  classNames: ['row'],
   isHidden: false,
   isFollowingPost: false,
   isOverflowed: false,
@@ -122,8 +122,10 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     }
 
     // follows
-    if (get(this, 'session.hasUser') && !get(this, 'session').isCurrentUser(get(this, 'post.user'))) {
-      this._updateFollow();
+    if (get(post, 'id')) {
+      if (get(this, 'session.hasUser') && !get(this, 'session').isCurrentUser(get(this, 'post.user'))) {
+        this._updateFollow();
+      }
     }
 
     if (!get(this, 'isHidden')) {
