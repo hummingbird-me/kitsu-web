@@ -153,6 +153,10 @@ export default Component.extend(ClipboardMixin, CanMixin, {
       scheduleOnce('afterRender', () => {
         if (get(this, 'isDestroyed')) { return; }
         this._hideLongBody();
+        const image = this.$('img');
+        if (image && image.length > 0) {
+          this.$('img').one('load', () => { this._hideLongBody(); });
+        }
       });
     }
   },
