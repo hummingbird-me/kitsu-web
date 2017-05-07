@@ -40,7 +40,13 @@
           {{else if (and activity.mentionedUsers (contains session.account.id activity.mentionedUsers))}}
             mentioned you in a comment.
           {{else}}
-            replied to <a href={{href-to "users.index" activity.target.user.name}}>{{activity.target.user.name}}'s</a> post.
+            replied to
+            {{#if (eq activity.target.user.id activity.actor.id)}}
+              their
+            {{else}}
+              <a href={{href-to "users.index" activity.target.user.name}}>{{activity.target.user.name}}'s</a>
+            {{/if}}
+            post.
           {{/if}}
         {{else if (eq activity.verb "post_like")}}
           liked your post.
