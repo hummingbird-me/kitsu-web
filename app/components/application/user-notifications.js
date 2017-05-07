@@ -6,41 +6,44 @@ import service from 'ember-service/inject';
 import computed from 'ember-computed';
 import { task } from 'ember-concurrency';
 import { isPresent } from 'ember-utils';
+import Pagination from 'client/mixins/pagination';
 import errorMessages from 'client/utils/error-messages';
 import { unshiftObjects } from 'client/utils/array-utils';
+import { concat } from 'client/utils/computed-macros';
 
 /**
  * Refactor each notification item into its own individual component similar to
  * the stream setup.
  */
-export default Component.extend({
+export default Component.extend(Pagination, {
   router: service('-routing'),
   ajax: service(),
   notify: service(),
   store: service(),
   streamRealtime: service(),
+  notifications: concat('groups', 'paginatedRecords'),
 
   /**
    * Count notifications that are unseen.
    */
-  count: computed('groups.@each.isSeen', function() {
-    const groups = get(this, 'groups');
-    if (groups === undefined) {
+  count: computed('notifications.@each.isSeen', function() {
+    const notifications = get(this, 'notifications');
+    if (notifications === undefined) {
       return 0;
     }
-    return groups.reduce((prev, curr) => (prev + (get(curr, 'isSeen') ? 0 : 1)), 0);
+    return notifications.reduce((prev, curr) => (prev + (get(curr, 'isSeen') ? 0 : 1)), 0);
   }),
 
-  hasUnread: computed('groups.@each.isRead', function() {
-    const groups = get(this, 'groups');
-    if (groups === undefined || groups.length === 0) {
+  hasUnread: computed('notifications.@each.isRead', function() {
+    const notifications = get(this, 'notifications');
+    if (notifications === undefined || notifications.length === 0) {
       return false;
     }
-    return groups.some(curr => (!get(curr, 'isRead')));
+    return notifications.some(curr => (!get(curr, 'isRead')));
   }),
 
   getNotifications: task(function* (limit = 15) {
-    return yield get(this, 'store').query('feed', {
+    return yield this.queryPaginated('feed', {
       type: 'notifications',
       id: get(this, 'session.account.id'),
       include: 'actor,target.user,target.post',
@@ -67,11 +70,11 @@ export default Component.extend({
       if (get(this, 'groups.length') === 0) {
         return;
       }
-      const groups = get(this, 'groups').filter(group => get(group, 'isSeen') === false);
-      if (get(groups, 'length') > 0) {
-        groups.forEach(group => set(group, 'isSeen', true));
-        this._mark('seen', groups).catch((err) => {
-          groups.forEach(group => set(group, 'isSeen', false));
+      const notifications = get(this, 'notifications').filter(group => get(group, 'isSeen') === false);
+      if (get(notifications, 'length') > 0) {
+        notifications.forEach(group => set(group, 'isSeen', true));
+        this._mark('seen', notifications).catch((err) => {
+          notifications.forEach(group => set(group, 'isSeen', false));
           get(this, 'notify').error(errorMessages(err));
         });
       }
@@ -85,6 +88,11 @@ export default Component.extend({
     if (subscription !== undefined) {
       subscription.cancel();
     }
+  },
+
+  onPagination(records) {
+    const notifications = this._createTempNotifications(records);
+    this._super(notifications);
   },
 
   /**
@@ -131,9 +139,10 @@ export default Component.extend({
       get(this, 'getNotifications').perform(get(object, 'new.length')).then((groups) => {
         // remove duplicate records
         groups.forEach((group) => {
-          const record = get(this, 'groups').findBy('group', get(group, 'group'));
+          const record = get(this, 'notifications').findBy('group', get(group, 'group'));
           if (isPresent(record)) {
             get(this, 'groups').removeObject(record);
+            get(this, 'paginatedRecords').removeObject(record);
           }
         });
         const notifications = this._createTempNotifications(groups);
@@ -148,13 +157,14 @@ export default Component.extend({
 
     // deleted activities
     get(object, 'deleted').forEach((id) => {
-      const groups = get(this, 'groups');
+      const groups = get(this, 'notifications');
       const group = groups.find(g => get(g, 'activities').findBy('id', id) !== undefined);
       if (group !== undefined) {
         const activities = get(group, 'activities').reject(activity => get(activity, 'id') === id);
         set(group, 'activities', activities);
         if (get(group, 'activities.length') === 0) {
           get(this, 'groups').removeObject(group);
+          get(this, 'paginatedRecords').removeObject(group);
         }
       }
     });
@@ -177,15 +187,22 @@ export default Component.extend({
   },
 
   actions: {
+    onPagination() {
+      return this._super('feed', {
+        type: 'notifications',
+        id: get(this, 'session.account.id')
+      });
+    },
+
     markRead() {
       if (get(this, 'groups.length') === 0) {
         return;
       }
-      const groups = get(this, 'groups').filter(group => get(group, 'isRead') === false);
-      if (get(groups, 'length') > 0) {
-        groups.forEach(group => set(group, 'isRead', true));
-        this._mark('read', groups).catch((err) => {
-          groups.forEach(group => set(group, 'isRead', false));
+      const notifications = get(this, 'notifications').filter(group => get(group, 'isRead') === false);
+      if (get(notifications, 'length') > 0) {
+        notifications.forEach(group => set(group, 'isRead', true));
+        this._mark('read', notifications).catch((err) => {
+          notifications.forEach(group => set(group, 'isRead', false));
           get(this, 'notify').error(errorMessages(err));
         });
       }

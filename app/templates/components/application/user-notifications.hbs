@@ -22,18 +22,20 @@
       {{loading-spinner size="small"}}
     </p>
   {{else}}
-    {{#if (eq groups.length 0)}}
+    {{#if (eq notifications.length 0)}}
       <p class="notifications-empty">
         You don't have any notifications!
       </p>
     {{else}}
       <ul class="notification-list">
-        {{#each groups as |group|}}
-          {{application/user-notifications/item
-            tagName="li"
-            class="notification-item"
-            group=group}}
-        {{/each}}
+        {{#infinite-pagination rootMargin=(hash bottom=100) onPagination=(action "onPagination")}}
+          {{#each notifications as |group|}}
+            {{application/user-notifications/item
+              tagName="li"
+              class="notification-item"
+              group=group}}
+          {{/each}}
+        {{/infinite-pagination}}
       </ul>
     {{/if}}
   {{/if}}
