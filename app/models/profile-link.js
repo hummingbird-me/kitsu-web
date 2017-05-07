@@ -14,6 +14,6 @@ export default Base.extend({
   site: alias('profileLinkSite'),
   isURL: computed('url', function() {
     const url = get(this, 'url');
-    return !regularExpressions.url.test(url);
+    return regularExpressions.url.test(url);
   }).readOnly()
 });
