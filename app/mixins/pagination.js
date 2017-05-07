@@ -61,7 +61,7 @@ export default Mixin.create({
   },
 
   actions: {
-    /** Execute a pagination request. This must be overriden by the consumer. */
+    /** Execute a pagination request. */
     onPagination(recordType, customOptions = {}) {
       return this._doPaginationRequest(recordType, customOptions);
     }
