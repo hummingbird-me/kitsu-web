@@ -136,10 +136,9 @@ export default Component.extend(Pagination, {
       promise.then((data) => {
         if (isEmpty(data)) { return; }
         // realtime
-        const { streamType, streamId } = getProperties(this, 'streamType', 'streamId');
-        const { readonlyToken } = get(data, 'meta');
+        const { feed: { group, id, token } } = get(data, 'meta');
         const subscription = get(this, 'streamRealtime')
-          .subscribe(this._getSplitFeedType(streamType), streamId, readonlyToken, object => (
+          .subscribe(group, id, token, object => (
             this._handleRealtime(object)
           ));
         set(this, 'subscription', subscription);
@@ -150,24 +149,6 @@ export default Component.extend(Pagination, {
   willDestroyElement() {
     this._super(...arguments);
     this._cancelSubscription();
-  },
-
-  _getSplitFeedType(type) {
-    const filter = get(this, 'filter');
-    const split = type.split('_');
-    switch (filter) {
-      case 'user':
-      case 'media': {
-        const kind = filter === 'user' ? 'posts' : 'media';
-        let result = `${split[0]}_${kind}`;
-        if (split.length > 1) {
-          result = `${result}_${split.slice(1).join('_')}`;
-        }
-        return result;
-      }
-      default:
-        return type;
-    }
   },
 
   _getFeedData(limit = 10) {
