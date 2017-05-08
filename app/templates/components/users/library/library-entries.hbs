@@ -4,12 +4,12 @@
 </div>
 
 {{#each entries as |entry|}}
-  {{#occlusion-culling rootMargin=(hash bottom=1000) bufferClass="library-occlusion-buffer"}}
+  {{#occludable-area rootMargin=(hash bottom=1000) bufferClass="library-occlusion-buffer"}}
     {{users/library/library-entry
       entry=entry
       save=save
     }}
-  {{/occlusion-culling}}
+  {{/occludable-area}}
 {{else}}
   <div class="empty-wrapper">
     <div class="library-section-empty">
