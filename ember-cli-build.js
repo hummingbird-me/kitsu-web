@@ -6,6 +6,7 @@ const svgoUniqueIds = require('svgo-plugin-unify-ids');
 
 module.exports = function(defaults) {
   const app = new EmberApp(defaults, {
+    browserStats: EmberApp.env() === 'development',
     babel: {
       comments: false
     },
