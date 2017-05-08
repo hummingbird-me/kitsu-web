@@ -7,7 +7,7 @@ import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
 import { invokeAction } from 'ember-invoke-action';
 import { concat } from 'client/utils/computed-macros';
-import Pagination from 'client/mixins/pagination';
+import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Component.extend(Pagination, {
   activeTab: 'anime',

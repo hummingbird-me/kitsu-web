@@ -2,7 +2,7 @@ import Route from 'ember-route';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { task } from 'ember-concurrency';
-import Pagination from 'client/mixins/pagination';
+import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(Pagination, {
   model() {

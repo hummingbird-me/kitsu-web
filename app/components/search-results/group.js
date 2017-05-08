@@ -4,7 +4,7 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { typeOf } from 'ember-utils';
 import { invokeAction } from 'ember-invoke-action';
-import Pagination from 'client/mixins/pagination';
+import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Component.extend(Pagination, {
   router: service('-routing'),

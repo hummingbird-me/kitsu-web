@@ -5,7 +5,7 @@ import service from 'ember-service/inject';
 import computed from 'ember-computed';
 import { strictInvokeAction } from 'ember-invoke-action';
 import { concat } from 'client/utils/computed-macros';
-import Pagination from 'client/mixins/pagination';
+import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Component.extend(Pagination, {
   limit: 20,

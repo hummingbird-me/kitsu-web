@@ -11,7 +11,7 @@ import errorMessages from 'client/utils/error-messages';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
 import { unshiftObjects } from 'client/utils/array-utils';
-import Pagination from 'client/mixins/pagination';
+import Pagination from 'kitsu-shared/mixins/pagination';
 import { CanMixin } from 'ember-can';
 
 export default Component.extend(ClipboardMixin, Pagination, CanMixin, {

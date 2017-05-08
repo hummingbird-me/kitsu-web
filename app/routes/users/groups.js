@@ -3,7 +3,7 @@ import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { isPresent } from 'ember-utils';
 import { task } from 'ember-concurrency';
-import Pagination from 'client/mixins/pagination';
+import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(Pagination, {
   queryParams: {

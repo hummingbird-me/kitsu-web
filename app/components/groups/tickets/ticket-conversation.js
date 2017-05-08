@@ -8,7 +8,7 @@ import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import { concat } from 'client/utils/computed-macros';
 import errorMessages from 'client/utils/error-messages';
-import Pagination from 'client/mixins/pagination';
+import Pagination from 'kitsu-shared/mixins/pagination';
 /* global autosize */
 
 export default Component.extend(Pagination, {

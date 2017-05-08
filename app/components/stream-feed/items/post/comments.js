@@ -7,7 +7,7 @@ import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
 import { unshiftObjects } from 'client/utils/array-utils';
-import Pagination from 'client/mixins/pagination';
+import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Component.extend(Pagination, {
   classNames: ['stream-item-comments'],

@@ -7,7 +7,7 @@ import { task, timeout } from 'ember-concurrency';
 import jQuery from 'jquery';
 import QueryableMixin from 'client/mixins/routes/queryable';
 import SlideHeaderMixin from 'client/mixins/routes/slide-header';
-import Pagination from 'client/mixins/pagination';
+import Pagination from 'kitsu-shared/mixins/pagination';
 import { moment } from 'client/utils/moment';
 
 export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {

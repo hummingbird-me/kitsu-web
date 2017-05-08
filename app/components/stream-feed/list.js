@@ -11,7 +11,7 @@ import getter from 'client/utils/getter';
 import errorMessages from 'client/utils/error-messages';
 import { unshiftObjects } from 'client/utils/array-utils';
 import { concat } from 'client/utils/computed-macros';
-import Pagination from 'client/mixins/pagination';
+import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Component.extend(Pagination, {
   readOnly: false,

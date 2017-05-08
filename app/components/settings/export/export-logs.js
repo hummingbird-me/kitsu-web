@@ -2,7 +2,7 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import { task } from 'ember-concurrency';
 import { concat } from 'client/utils/computed-macros';
-import Pagination from 'client/mixins/pagination';
+import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Component.extend(Pagination, {
   exportLogs: concat('getExportLogsTask.last.value', 'paginatedRecords'),

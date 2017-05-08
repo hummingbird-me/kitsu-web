@@ -7,7 +7,7 @@ import { storageFor } from 'ember-local-storage';
 import libraryStatus from 'client/utils/library-status';
 import errorMessages from 'client/utils/error-messages';
 import getTitleField from 'client/utils/get-title-field';
-import Pagination from 'client/mixins/pagination';
+import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(Pagination, {
   queryParams: {

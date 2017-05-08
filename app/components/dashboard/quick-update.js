@@ -8,7 +8,7 @@ import { task } from 'ember-concurrency';
 import { scheduleOnce } from 'ember-runloop';
 import { storageFor } from 'ember-local-storage';
 import FlickityActionsMixin from 'client/mixins/flickity-actions';
-import Pagination from 'client/mixins/pagination';
+import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Component.extend(FlickityActionsMixin, Pagination, {
   classNames: ['quick-update'],

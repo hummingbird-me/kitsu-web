@@ -6,7 +6,7 @@ import service from 'ember-service/inject';
 import computed from 'ember-computed';
 import { task } from 'ember-concurrency';
 import { isPresent } from 'ember-utils';
-import Pagination from 'client/mixins/pagination';
+import Pagination from 'kitsu-shared/mixins/pagination';
 import errorMessages from 'client/utils/error-messages';
 import { unshiftObjects } from 'client/utils/array-utils';
 import { concat } from 'client/utils/computed-macros';
