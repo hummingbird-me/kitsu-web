@@ -1,4 +1,4 @@
-{{! Loader }}
+{{! Loader @ Top }}
 {{#if isTop}}
   {{#if (and isLoading showLoader)}}
     <div class="w-100 text-xs-center m-t-2 m-b-2">
@@ -12,11 +12,10 @@
   </div>
 {{/if}}
 
-{{#if hasBlock}}
-  {{yield}}
-{{/if}}
+{{! Content }}
+{{yield}}
 
-{{! Loader }}
+{{! Loader @ Bottom }}
 {{#unless isTop}}
   {{! Viewport Sentinel }}
   <div id={{viewportDivId}}
