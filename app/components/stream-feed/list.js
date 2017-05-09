@@ -202,7 +202,9 @@ export default Component.extend(Pagination, {
   _setupSubscription(data) {
     if (isEmpty(data)) { return; }
     // realtime
-    const { feed: { group, id, token } } = get(data, 'meta');
+    const group = get(this, 'streamType');
+    const id = get(this, 'streamId');
+    const token = get(data, 'meta.readonlyToken');
     this.subscription = get(this, 'streamRealtime').subscribe(group, id, token, object => (
       this._handleRealtime(object)
     ));
@@ -217,10 +219,21 @@ export default Component.extend(Pagination, {
 
   _handleRealtime(object) {
     const groupCache = get(this, 'newItems.cache');
-
+    const filter = get(this, 'filter');
     get(this, 'newItems').beginPropertyChanges();
     get(object, 'new').forEach((activity) => {
       const type = get(activity, 'foreign_id').split(':')[0];
+
+      // filter out content not apart of the current filter
+      if (filter === 'media') {
+        if (type === 'Post' || type === 'Comment') {
+          return;
+        }
+      } else if (filter === 'user') {
+        if (type !== 'Post' && type !== 'Comment') {
+          return;
+        }
+      }
 
       // don't show a new activity action if the actor is the sessioned user
       if (type === 'Post' || type === 'Comment') {
