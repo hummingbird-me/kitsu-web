@@ -73,7 +73,7 @@ module.exports = function(environment) {
           'kitsu.io/assets',
           'staging.kitsu.io/assets'
         ],
-        ignoreErrors: ['TaskCancelation'],
+        ignoreErrors: [/TaskCancelation(.+)?/],
         includePaths: [/https?:\/\/(staging\.)?kitsu\.io/],
         environment: process.env.HEROKU_EMBER_APP
       }
@@ -84,8 +84,8 @@ module.exports = function(environment) {
         enabled: true,
         config: {
           development: {
-            key: 'sjm3sx9mgcx2',
-            app: '17073'
+            key: 'eb6dvmba4ct3',
+            app: '18373'
           },
           staging: {
             key: 'ekx6xkn9v9xx',
@@ -102,12 +102,6 @@ module.exports = function(environment) {
     moment: {
       allowEmpty: true,
       includeTimezone: 'subset'
-    },
-
-    'polyfill-io': {
-      features: ['Intl.~locale.en-US'],
-      unknown: 'polyfill',
-      rum: 0
     },
 
     'ember-cli-mirage': {
