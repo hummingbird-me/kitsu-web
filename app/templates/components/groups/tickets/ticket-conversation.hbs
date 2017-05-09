@@ -7,9 +7,10 @@
           {{lazy-image src=(image ticket.user.avatar "small") class="pull-sm-left"}}
           <div class="ticket-about">
             <div class="ticket-with">
-              {{t-html "groups.tickets.conversation.title"
+              {{t "groups.tickets.conversation.title"
                 name=ticket.user.name
-                link=(href-to "users.index" ticket.user.name)}}
+                link=(href-to "users.index" ticket.user.name)
+                htmlSafe=true}}
             </div>
             <div class="ticket-actions">
               {{#if ticket.isOpen}}

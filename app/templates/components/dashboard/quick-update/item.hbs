@@ -13,10 +13,11 @@
               {{#if updateEntryTask.isRunning}}
                 {{loading-spinner}}
               {{else unless canComplete}}
-                {{t-html "dashboard.quick-update.overlay.button.html"
+                {{t "dashboard.quick-update.overlay.button.html"
                   type=entry.media.modelType
                   num=nextProgress
                   class="progress-count"
+                  htmlSafe=true
                 }}
               {{/if}}
             </button>

@@ -81,7 +81,7 @@
                     <label for="radio-{{option}}">
                       <span class="card-title">{{t (concat "groups.create.form.privacy-options." option)}}</span>
                       <ul class="card-desc">
-                        {{t-html (concat "groups.create.form.privacy-features." option)}}
+                        {{t (concat "groups.create.form.privacy-features." option) htmlSafe=true}}
                       </ul>
                     </label>
                   </div>

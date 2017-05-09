@@ -19,9 +19,10 @@
     {{else}} {{! Has a library entry }}
       {{#unless hideProgress}}
         <span class="state-helper">
-          {{t-html "library-entry.state.saved-in"
+          {{t "library-entry.state.saved-in"
             link=(href-to "users.library" session.account.name (query-params status=libraryEntry.status))
             status=(t (concat "library-shared." libraryEntry.status) type=mediaType)
+            htmlSafe=true
           }}
         </span>
       {{/unless}}
