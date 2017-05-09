@@ -177,6 +177,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
         post_id: get(this, 'post.id')
       }
     }).then((records) => {
+      if (get(this, 'isDestroyed')) { return; }
       const record = get(records, 'firstObject');
       set(this, 'isFollowingPost', !!record);
       set(this, 'followRelationship', record);
