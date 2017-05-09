@@ -16,7 +16,7 @@ moduleFor('metrics-adapter:stream', 'stream adapter', {
 
 test('#identify calls setUser with right arguments', function(assert) {
   const adapter = this.subject({ config: this.config });
-  const stub = this.sandbox.stub(adapter.client, 'setUser', () => true);
+  const stub = this.sandbox.stub(adapter.client, 'setUser').callsFake(() => true);
   adapter.identify({
     distinctId: 1234,
     alias: 'Bob'
@@ -30,7 +30,7 @@ test('#trackImpression calls trackImpression with right data', function(assert) 
     hasUser: true,
     router: { currentRouteName: 'hello' }
   });
-  const stub = this.sandbox.stub(adapter.client, 'trackImpression', () => true);
+  const stub = this.sandbox.stub(adapter.client, 'trackImpression').callsFake(() => true);
   adapter.trackImpression({
     content_list: ['feed:1234', 'feed:5678']
   });
@@ -43,7 +43,7 @@ test('#trackEngagement calls trackEngagement with right data', function(assert) 
     hasUser: true,
     router: { currentRouteName: 'hello' }
   });
-  const stub = this.sandbox.stub(adapter.client, 'trackEngagement', () => true);
+  const stub = this.sandbox.stub(adapter.client, 'trackEngagement').callsFake(() => true);
   adapter.trackEngagement({
     label: 'like',
     content: 'post:1234'

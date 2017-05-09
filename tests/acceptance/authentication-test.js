@@ -38,7 +38,7 @@ test('can create an account', function(assert) {
 });
 
 test('shows an error when using incorrect details on sign up', function(assert) {
-  this.sandbox.stub(this.notify, 'error', (message) => {
+  this.sandbox.stub(this.notify, 'error').callsFake((message) => {
     assert.equal(message, 'Email is already taken.');
   });
   server.post('/users', { errors: [{ detail: 'email is already taken.' }] }, 400);
@@ -108,7 +108,7 @@ test('can sign into an account', function(assert) {
 });
 
 test('shows an error when using incorrect details on sign in', function(assert) {
-  this.sandbox.stub(this.notify, 'error', (message) => {
+  this.sandbox.stub(this.notify, 'error').callsFake((message) => {
     assert.equal(message, 'The provided credentials are invalid.');
   });
   server.post('http://localhost:7357/api/oauth/token', { error: 'invalid_grant' }, 400);
