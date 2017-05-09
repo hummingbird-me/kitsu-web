@@ -9,7 +9,7 @@
     {{groups/group-list
       sort=sort
       query=query
-      groups=groups
+      groups=(map-by "group" groups)
       isLoading=model.taskInstance.isRunning
       categoryRoute="users.groups"
       sortOptions=sortOptions

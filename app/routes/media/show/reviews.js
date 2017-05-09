@@ -3,7 +3,6 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { capitalize } from 'ember-string';
-import { task } from 'ember-concurrency';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(Pagination, {
@@ -11,8 +10,16 @@ export default Route.extend(Pagination, {
   intl: service(),
 
   model() {
+    const media = this._getParentModel();
     return {
-      taskInstance: get(this, 'modelTask').perform(),
+      taskInstance: this.queryPaginated('review', {
+        include: 'user,media',
+        filter: {
+          media_type: capitalize(get(media, 'modelType')),
+          media_id: get(media, 'id')
+        },
+        sort: '-likes_count'
+      }),
       paginatedRecords: []
     };
   },
@@ -27,19 +34,6 @@ export default Route.extend(Pagination, {
     const title = get(model, 'computedTitle');
     return get(this, 'intl').t('titles.media.show.reviews', { title });
   },
-
-  modelTask: task(function* () {
-    const media = this._getParentModel();
-    const options = {
-      include: 'user,media',
-      filter: {
-        media_type: capitalize(get(media, 'modelType')),
-        media_id: get(media, 'id')
-      },
-      sort: '-likes_count'
-    };
-    return yield this.queryPaginated('review', options);
-  }),
 
   _getParentModel() {
     const [mediaType] = get(this, 'routeName').split('.');

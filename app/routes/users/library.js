@@ -2,7 +2,6 @@ import Route from 'ember-route';
 import get, { getProperties } from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import { task } from 'ember-concurrency';
 import { storageFor } from 'ember-local-storage';
 import libraryStatus from 'client/utils/library-status';
 import errorMessages from 'client/utils/error-messages';
@@ -38,8 +37,9 @@ export default Route.extend(Pagination, {
   },
 
   model(params) {
+    const options = this._getRequestOptions(params);
     return {
-      taskInstance: get(this, 'queryLibraryEntriesTask').perform(params),
+      taskInstance: this.queryPaginated('library-entry', options),
       paginatedRecords: []
     };
   },
@@ -54,15 +54,6 @@ export default Route.extend(Pagination, {
     const name = get(model, 'name');
     return get(this, 'intl').t('titles.users.library', { user: name });
   },
-
-  /**
-   * Restartable task that queries the library entries for the current status,
-   * and media type.
-   */
-  queryLibraryEntriesTask: task(function* (params) {
-    const options = this._getRequestOptions(params);
-    return yield this.queryPaginated('library-entry', options);
-  }).restartable(),
 
   _getUsableSort(sort) {
     const controller = this.controllerFor(get(this, 'routeName'));

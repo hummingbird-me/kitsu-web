@@ -1,28 +1,23 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
-import { task } from 'ember-concurrency';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(Pagination, {
   intl: service(),
 
   model() {
+    const model = this.modelFor('groups.group.group-page');
     return {
-      taskInstance: get(this, 'getGroupMembersTask').perform(),
+      taskInstance: this.queryPaginated('group-member', {
+        include: 'user',
+        filter: { query_group: get(model, 'group.id') },
+        fields: { users: ['avatar', 'coverImage', 'name'].join(',') },
+        page: { limit: 20 }
+      }),
       paginatedRecords: []
     };
   },
-
-  getGroupMembersTask: task(function* () {
-    const model = this.modelFor('groups.group.group-page');
-    return yield this.queryPaginated('group-member', {
-      include: 'user',
-      filter: { query_group: get(model, 'group.id') },
-      fields: { users: ['avatar', 'coverImage', 'name'].join(',') },
-      page: { limit: 20 }
-    });
-  }).restartable(),
 
   titleToken() {
     const model = this.modelFor('groups.group.group-page');

@@ -1,7 +1,6 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
-import { task } from 'ember-concurrency';
 import { CanMixin } from 'ember-can';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
@@ -19,9 +18,14 @@ export default Route.extend(CanMixin, Pagination, {
     }
   },
 
-  model(params) {
+  model() {
+    const model = this.modelFor('groups.group.dashboard');
     return {
-      taskInstance: get(this, 'getReportsTask').perform(params),
+      taskInstance: this.queryPaginated('feed', {
+        type: 'reports_aggr',
+        id: get(model, 'group.id'),
+        include: 'subject.user,subject.naughty,subject.moderator'
+      }),
       paginatedRecords: []
     };
   },
@@ -31,15 +35,6 @@ export default Route.extend(CanMixin, Pagination, {
     const group = get(model, 'group.name');
     return get(this, 'intl').t('titles.groups.group.dashboard.reports', { group });
   },
-
-  getReportsTask: task(function* () {
-    const model = this.modelFor('groups.group.dashboard');
-    return yield this.queryPaginated('feed', {
-      type: 'reports_aggr',
-      id: get(model, 'group.id'),
-      include: 'subject.user,subject.naughty,subject.moderator'
-    });
-  }),
 
   _getRealStatus(filter) {
     switch (filter) {

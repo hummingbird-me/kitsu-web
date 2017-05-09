@@ -26,10 +26,6 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
     this.refresh();
   }).restartable(),
 
-  modelTask: task(function* (mediaType, options) {
-    return yield this.queryPaginated(mediaType, options);
-  }).restartable(),
-
   init() {
     this._super(...arguments);
     const mediaQueryParams = get(this, 'mediaQueryParams');
@@ -60,7 +56,7 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
     const options = this._buildOptions(params);
     const [mediaType] = get(this, 'routeName').split('.');
     return {
-      taskInstance: get(this, 'modelTask').perform(mediaType, options),
+      taskInstance: this.queryPaginated(mediaType, options),
       paginatedRecords: []
     };
   },

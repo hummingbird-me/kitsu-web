@@ -1,7 +1,5 @@
 import Route from 'ember-route';
-import get from 'ember-metal/get';
 import { isPresent } from 'ember-utils';
-import { task } from 'ember-concurrency';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(Pagination, {
@@ -11,28 +9,23 @@ export default Route.extend(Pagination, {
     query: { refreshModel: true, replace: true }
   },
 
-  model(params) {
+  model({ category, sort, query }) {
     return {
-      taskInstance: get(this, 'getGroupsTask').perform(params),
+      taskInstance: this.queryPaginated('group', {
+        filter: {
+          category: category !== 'all' ? category : undefined,
+          query: isPresent(query) ? query : undefined
+        },
+        fields: {
+          groups: ['slug', 'name', 'avatar', 'tagline', 'membersCount', 'category'].join(',')
+        },
+        sort: isPresent(query) ? undefined : this._getRealSort(sort),
+        include: 'category',
+        page: { limit: 20 }
+      }),
       paginatedRecords: []
     };
   },
-
-  getGroupsTask: task(function* ({ category, sort, query }) {
-    const options = {
-      filter: {
-        category: category !== 'all' ? category : undefined,
-        query: isPresent(query) ? query : undefined
-      },
-      fields: {
-        groups: ['slug', 'name', 'avatar', 'tagline', 'membersCount', 'category'].join(',')
-      },
-      sort: isPresent(query) ? undefined : this._getRealSort(sort),
-      include: 'category',
-      page: { limit: 20 }
-    };
-    return yield this.queryPaginated('group', options);
-  }).restartable(),
 
   _getRealSort(sort) {
     switch (sort) {
