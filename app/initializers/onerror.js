@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import { later } from 'ember-runloop';
+import config from 'client/config/environment';
 
 export function initialize() {
   Ember.onerror = function(error) {
@@ -11,7 +12,10 @@ export function initialize() {
     if (error.name === 'SecurityError' && error.code === 18) {
       return later(() => window.location.reload(), 1);
     }
-    Ember.Logger.error(error);
+
+    if (config.environment === 'development') {
+      Ember.Logger.error(error);
+    }
   };
 }
 
