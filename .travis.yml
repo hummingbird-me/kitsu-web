@@ -2,8 +2,8 @@
 language: node_js
 node_js: 6
 
-dist: trusty
 sudo: false
+dist: trusty
 
 addons:
   apt:
@@ -11,6 +11,8 @@ addons:
     - google-chrome
     packages:
     - google-chrome-stable
+  code_climate:
+    repo_token: f15069c85832661086a0f758b25cf410e58ae1f80dbcbc762021dfc71feb8f71
 
 before_install:
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.23.2
@@ -18,6 +20,9 @@ before_install:
 
 install:
 - travis_retry yarn install --pure-lockfile
+
+script:
+- yarn test
 
 after_success:
 - bash yarn.sh
@@ -29,10 +34,6 @@ cache:
   yarn: true
   directories:
   - node_modules
-
-addons:
-  code_climate:
-    repo_token: f15069c85832661086a0f758b25cf410e58ae1f80dbcbc762021dfc71feb8f71
 
 notifications:
   slack:
