@@ -117,7 +117,13 @@ export default Component.extend(Pagination, {
   }).enqueue(),
 
   handleFilter: observer('filter', function() {
-    this._getFeedData(10);
+    this._cancelSubscription();
+    const promise = this._getFeedData(10);
+    if (promise) {
+      promise.then((data) => {
+        this._setupSubscription(data);
+      });
+    }
   }),
 
   didReceiveAttrs() {
@@ -134,14 +140,7 @@ export default Component.extend(Pagination, {
     const promise = this._getFeedData(10);
     if (promise !== undefined) {
       promise.then((data) => {
-        if (isEmpty(data)) { return; }
-        // realtime
-        const { feed: { group, id, token } } = get(data, 'meta');
-        const subscription = get(this, 'streamRealtime')
-          .subscribe(group, id, token, object => (
-            this._handleRealtime(object)
-          ));
-        set(this, 'subscription', subscription);
+        this._setupSubscription(data);
       });
     }
   },
@@ -198,6 +197,15 @@ export default Component.extend(Pagination, {
       content_list: list.reduce((a, b) => a.concat(b)).uniq(),
       feed_id: get(this, 'feedId')
     });
+  },
+
+  _setupSubscription(data) {
+    if (isEmpty(data)) { return; }
+    // realtime
+    const { feed: { group, id, token } } = get(data, 'meta');
+    this.subscription = get(this, 'streamRealtime').subscribe(group, id, token, object => (
+      this._handleRealtime(object)
+    ));
   },
 
   _cancelSubscription() {
