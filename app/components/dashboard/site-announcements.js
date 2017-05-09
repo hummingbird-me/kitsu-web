@@ -2,7 +2,7 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import { mapBy } from 'ember-computed';
+import computed, { mapBy } from 'ember-computed';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
@@ -11,9 +11,11 @@ export default Component.extend({
   ajax: service(),
   store: service(),
   stream: service('stream-realtime'),
-
-  activities: mapBy('activityGroups', 'activities.firstObject'),
   announcements: mapBy('activities', 'subject'),
+
+  activities: computed('activityGroups.[]', function() {
+    return (get(this, 'activityGroups') || []).mapBy('activities.firstObject');
+  }).readOnly(),
 
   init() {
     this._super(...arguments);
@@ -23,10 +25,13 @@ export default Component.extend({
       set(this, 'activityGroups', groups || []);
 
       // setup websocket connection to GetStream
-      const userId = get(this, 'session.account.id');
-      const { readonlyToken: token } = get(records, 'meta');
-      const callback = (data) => { this._handleSubscription(data); };
-      this.realtime = get(this, 'stream').subscribe('site_announcements', userId, token, callback);
+      const { feed } = get(records, 'meta');
+      if (feed) {
+        const { group, id, token } = feed;
+        this.realtime = get(this, 'stream').subscribe(group, id, token, (data) => {
+          this._handleSubscription(data);
+        });
+      }
     }).catch((error) => {
       get(this, 'raven').captureException(error);
     });
