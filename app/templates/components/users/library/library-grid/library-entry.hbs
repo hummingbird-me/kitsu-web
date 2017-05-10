@@ -29,12 +29,22 @@
     {{/if}}
   </span>
   {{#if (gt libraryEntry.rating 0)}}
-    <span class="entry-rating entry-rating-{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}">
-      {{library-entry/readonly-rating
-        rating=libraryEntry.rating
-        hideText=true
-      }}
-    </span>
+    <a id="dropdownGridRating" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="entry-rating entry-rating-{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}">
+        {{library-entry/readonly-rating
+          rating=libraryEntry.rating
+          hideText=true
+        }}
+      </span>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <a class="dropdown-item" href="#">Change Rating</a>
+      <a class="dropdown-item" href="#">Remove Rating</a>
+    </div>
+    {{else}}
+      <a class="entry-rating no-rating" href="#">
+        No Rating
+      </a>
   {{/if}}
 </div>
 

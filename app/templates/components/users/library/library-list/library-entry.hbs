@@ -29,6 +29,12 @@
           hideText=true
         }}
         </span>
+        {{else}}
+        <span class="entry-rating entry-rating-empty empty-rating-{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" enable-background="new 0 0 26 26">
+            <path d="M13,2c6.065,0,11,4.935,11,11s-4.935,11-11,11S2,19.065,2,13S6.935,2,13,2 M13,0C5.82,0,0,5.82,0,13 s5.82,13,13,13s13-5.82,13-13S20.18,0,13,0L13,0z"></path>
+          </svg>
+        </span>
       {{/if}}
     </span>
   </td>

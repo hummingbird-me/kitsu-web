@@ -8,7 +8,7 @@
       {{/unless}}
     </div>
 
-    <div class="library-content col-sm-12 col-md-8">
+    <div class="library-content col-sm">
       {{! Search }}
       {{users/library/library-search title
         user=user
@@ -37,6 +37,31 @@
         }}
       </section>
 
+      <section class="bulk-edit is-sticky clearfix">
+        <div class="media-selected">
+          <span class="descriptor">5 anime selected</span>
+          <a class="select-amount" href="#">Select All</a>
+          <span class="seperator"> · </span>
+          <a class="select-amount" href="#">Select None</a>
+        </div>
+
+        <div class="bulk-cta">
+          <a class="bulk-btn secondary" href="#">Remove <strong>5</strong></a>
+          <a class="bulk-btn dropdown-toggle" href="#" id="bulkMove" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Move <strong>15</strong> to...
+
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="bulkMove">
+            <a class="dropdown-item" href="#">Currently Watching</a>
+            <a class="dropdown-item" href="#">Want to Watch</a>
+            <a class="dropdown-item" href="#">Completed</a>
+            <a class="dropdown-item" href="#">On Hold</a>
+            <a class="dropdown-item" href="#">Dropped</a>
+          </div>
+        </div>
+      </section>
+
       {{! Library Entries }}
       {{#infinite-pagination onPagination=(route-action "onPagination")}}
         {{component (concat "users/library/library-" layoutStyle)
@@ -55,7 +80,7 @@
       status=status
       updateMedia=(action (mut media))
       updateStatus=(action (mut status))
-      class="library-sidebar card col-sm-12 col-md-4"
+      class="library-sidebar col-sm"
     }}
   </div>
 </div>
