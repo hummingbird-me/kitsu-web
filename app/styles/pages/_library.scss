@@ -181,7 +181,7 @@
       .entry-rating {
         float: right;
         display: inline-block;
-        &.no-rating {
+        .no-rating {
           color: lighten($secondary-background-color,35);
           &:hover {
             color: $body-link-color;
@@ -191,6 +191,10 @@
       }
       .entry-rating-simple {
         margin-top: -12px;
+        .no-rating {
+          margin-top: 12px;
+          display: block;
+        }
         svg {
           width: 28px;
           height: 28px;
@@ -203,9 +207,6 @@
         padding: 0 5px;
         border-radius: 3px;
         margin-right: -4px;
-        &:hover {
-          background: darken($secondary-background-color,10);
-        }
         svg {
           width: 12px;
           height: 12px;

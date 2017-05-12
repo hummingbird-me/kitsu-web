@@ -27,44 +27,50 @@
 
 {{! Dropdown/Button }}
 {{#if showDropdown}}
-  {{#bootstrap/bs-dropdown class=(concat "btn-group rating-button-dropdown rating-button-" guid) as |dropdown|}}
-    <button class="btn btn-secondary" {{action (toggle-action "showTooltip" this)}}>
-      {{! Simple State }}
-      {{#if session.account.isSimpleRating}}
-        <span class="rating-simple">
-          {{#if (gt rating 0)}}
-            {{library-entry/readonly-rating rating=rating width="24" height="24" tagName=""}}
-          {{else}}
-            <span class="not-rated">{{t "library-entry.state.not-rated"}}</span>
-          {{/if}}
+  {{#basic-dropdown as |dd|}}
+    <div class={{concat "btn-group dropdown rating-button-dropdown rating-button-" guid}} data-ebd-id="{{dd.uniqueId}}-trigger">
+      {{#if simpleDropdown}}
+        <span {{action dd.actions.toggle}}>
+          {{yield}}
         </span>
-      {{! Regular/Advanced State }}
       {{else}}
-        <span class="rating-advanced">
-          {{#if (gt rating 0)}}
-            {{library-entry/readonly-rating rating=rating tagName=""}}
+        <button class="btn btn-secondary" {{action (toggle "showTooltip" this)}}>
+          {{! Simple State }}
+          {{#if session.account.isSimpleRating}}
+            <span class="rating-simple">
+              {{library-entry/readonly-rating rating=rating width="24" height="24" tagName=""}}
+            </span>
+          {{! Regular/Advanced State }}
           {{else}}
-            <span class="not-rated">{{t "library-entry.state.not-rated"}}</span>
+            <span class="rating-advanced">
+              {{library-entry/readonly-rating rating=rating tagName=""}}
+            </span>
           {{/if}}
-        </span>
+        </button>
+        <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" onclick={{dd.actions.toggle}}>
+          {{! Dropdown Caret }}
+        </button>
       {{/if}}
-    </button>
-    <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      {{! Dropdown Caret }}
-    </button>
+    </div>
 
-    {{#dropdown.menu}}
-      {{#dropdown.menu-item onClick=(toggle-action "showTooltip" this)}}
+    {{#dd.content class="dropdown-menu rating-button-dropdown-menu"}}
+      <a href="#" class="dropdown-item" {{action (queue
+        (action dd.actions.toggle)
+        (toggle-action "showTooltip" this)
+      )}}>
         {{t "library-entry.state.change-rating"}}
-      {{/dropdown.menu-item}}
+      </a>
       <div class="dropdown-divider"></div>
-      {{#dropdown.menu-item onClick=(action "ratingSelected" null)}}
+      <a href="#" class="dropdown-item" {{action (queue
+        (action dd.actions.toggle)
+        (action "ratingSelected" null)
+      )}}>
         {{t "library-entry.state.remove-rating"}}
-      {{/dropdown.menu-item}}
-    {{/dropdown.menu}}
-  {{/bootstrap/bs-dropdown}}
+      </a>
+    {{/dd.content}}
+  {{/basic-dropdown}}
 {{else}}
-  <button class="{{class}} rating-button rating-button-{{guid}}" {{action (toggle-action "showTooltip" this)}}>
+  <span class="{{class}} rating-button rating-button-{{guid}}" {{action (toggle-action "showTooltip" this)}}>
     {{yield}}
-  </button>
+  </span>
 {{/if}}

@@ -1,5 +1,6 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
+import set from 'ember-metal/set';
 import createChangeset from 'ember-changeset-cp-validations';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
@@ -13,16 +14,27 @@ export default Component.extend({
     this.changeset = createChangeset(get(this, 'libraryEntry'));
   },
 
-  saveTask: task(function* () {
+  saveTask: task(function* (useTimeout = false) {
     // Yield a timeout giving the user a chance to click the increment button
     // more than once in a short period but only send one save event.
-    yield timeout(500);
-    yield invokeAction(this, 'saveEntry', get(this, 'changeset'));
+    if (useTimeout) {
+      yield timeout(500);
+    }
+    const changeset = get(this, 'changeset');
+    yield changeset.validate();
+    if (get(changeset, 'isValid')) {
+      yield invokeAction(this, 'saveEntry', changeset);
+    }
   }).restartable(),
 
   actions: {
     incrementProgress() {
       this.incrementProperty('changeset.progress', 1);
+      get(this, 'saveTask').perform(true);
+    },
+
+    changeRating(rating) {
+      set(this, 'changeset.rating', rating);
       get(this, 'saveTask').perform();
     },
 

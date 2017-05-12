@@ -12,7 +12,7 @@ export default Controller.extend({
   sort: 'title',
   title: '',
 
-  layoutStyle: 'list',
+  layoutStyle: 'grid',
 
   cache: storageFor('last-used'),
   libraryEntries: concat('model.taskInstance.value', 'model.paginatedRecords'),

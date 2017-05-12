@@ -18,6 +18,7 @@
   </div>
 </div>
 <div class="entry-stats">
+  {{! Progress }}
   <span class="entry-episode">
     {{#if (eq libraryEntry.progress 0)}}
       {{t "users.library.list.unstarted"}}
@@ -28,24 +29,31 @@
       }}
     {{/if}}
   </span>
-  {{#if (gt libraryEntry.rating 0)}}
-    <a id="dropdownGridRating" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <span class="entry-rating entry-rating-{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}">
+
+  {{! Rating }}
+  <span class="entry-rating entry-rating-{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}">
+    {{#if (gt changeset.rating 0)}}
+      {{#library-entry/rating-button
+        rating=changeset.rating
+        showDropdown=true
+        simpleDropdown=true
+        onClick=(action "changeRating")
+      }}
         {{library-entry/readonly-rating
-          rating=libraryEntry.rating
+          rating=changeset.rating
           hideText=true
         }}
-      </span>
-    </a>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <a class="dropdown-item" href="#">Change Rating</a>
-      <a class="dropdown-item" href="#">Remove Rating</a>
-    </div>
+      {{/library-entry/rating-button}}
     {{else}}
-      <a class="entry-rating no-rating" href="#">
-        No Rating
-      </a>
-  {{/if}}
+      {{#library-entry/rating-button
+        rating=changeset.rating
+        onClick=(action "changeRating")
+        class="no-rating"
+      }}
+        {{t "users.library.list.unrated"}}
+      {{/library-entry/rating-button}}
+    {{/if}}
+  </span>
 </div>
 
 {{#if showEditModal}}

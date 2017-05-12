@@ -30,7 +30,8 @@ export default Component.extend({
       const elementId = get(this, 'guid');
       const isChildElement = jQuery(target).is(`.rating-button-${elementId} *, .rating-button-${elementId}`);
       const isTetherElement = jQuery(target).is('.rating-tether *, .rating-tether');
-      if (!isChildElement && !isTetherElement) {
+      const isDropdownElement = jQuery(target).is('.rating-button-dropdown-menu *, .rating-button-dropdown-menu');
+      if (!isChildElement && !isTetherElement && !isDropdownElement) {
         set(this, 'showTooltip', false);
       }
     };
