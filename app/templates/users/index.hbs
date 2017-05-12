@@ -9,7 +9,7 @@
       {{stream-feed/list
         streamType="user_aggr"
         streamId=user.id
-        readOnly=(cannot "write post")
+        readOnly=(not (can "write post"))
         user=user
         pinned=user.pinnedPost}}
     </div>

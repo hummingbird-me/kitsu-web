@@ -8,8 +8,8 @@
         streamId=group.id
         kitsuGroup=group
         kitsuGroupMembership=membership
-        hidePostEditor=(cannot "write post in group" group membership=membership)
-        readOnly=(cannot "write post")}}
+        hidePostEditor=(not (can "write post in group" group membership=membership))
+        readOnly=(not (can "write post"))}}
         <span>{{t "groups.activity.feed-header"}}</span>
       {{/stream-feed/list}}
     </div>

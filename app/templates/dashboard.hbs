@@ -51,7 +51,7 @@
         streamId=streamId
         streamFilter=(if (eq streamType "global") "user" "all")
         hideFilter=(eq streamType "group_timeline")
-        readOnly=(cannot "write post")}}
+        readOnly=(not (can "write post"))}}
     </div>
 
     <div class="feed-sidebar">
