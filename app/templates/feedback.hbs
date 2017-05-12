@@ -19,6 +19,11 @@
             {{t "feedback.features"}}
           </a>
         {{/link-to}}
+        {{#link-to "feedback.database-requests" tagName="li" class="list-item" current-when="feedback.database-requests feedback.database-requests-anything"}}
+          <a href={{href-to "feedback.database-requests"}}>
+            {{t "feedback.database"}}
+          </a>
+        {{/link-to}}
       </ul>
     </div>
   </div>

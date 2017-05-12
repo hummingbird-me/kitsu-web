@@ -1,6 +1,6 @@
 .navbar {
   background: $header-background-color;
-  padding: 0.4rem .1rem;
+  padding: 0;
   width: 100%;
   border-bottom: 1px solid darken($secondary-background-color, 4);
   border-radius: 0;
@@ -26,7 +26,11 @@
     #exCollapsingNavbar2 {
       position: relative;
       top: 1px;
-      @media (max-width: 545px) {
+      .nav-item {
+        font-size: 14px;
+        line-height: 24px;
+      }
+      @media (max-width: 768px) {
         width: 100%;
         padding: 0;
         margin: 0;
@@ -44,7 +48,7 @@
     }
   }
   .primary-nav--drop {
-    @media (max-width: 545px) {
+    @media (max-width: 768px) {
       position: absolute;
       background: #fff;
       width: 160px;
@@ -84,7 +88,7 @@
     }
   }
   .logo {
-    width: 90px;
+    width: 85px;
     display: inline-block;
     position: relative;
     top: 3px;
@@ -167,24 +171,23 @@
   }
 }
 .notifications {
-  width: 32px;
-  height: 32px;
+  width: 25px;
+  height: 25px;
   text-align: center;
-  border-radius: 999em;
-  line-height: 18px;
+  border-radius: 50%;
+  line-height: 11px;
   font-size: 13px;
   position: relative;
-  top: 3px;
-  border: 1px solid #a8a3a9;
-  font-family: $heading-font-family;
+  top: 8px;
+  background: $secondary-background-color;
   &:hover, &:active {
-    border-color: #EDF0F1;
+    background: darken($secondary-background-color,5);
   }
   &.notifications--present {
-    background: linear-gradient(RGBA(237, 72, 95, 1), RGBA(242, 124, 54, 1));
+    background: #d65e43;
     border: none;
     span {
-      color: #fff;
+      color: $white;
     }
     &:hover {
       opacity: .9;
@@ -192,9 +195,12 @@
   }
   svg {
     position: relative;
-    top: -5px;
-    width: 20px;
-    fill: RGBA(237, 240, 241, 0.8);
+    top: -1px;
+    width: 13px;
+    height: 13px;
+    path {
+      fill: #7d677c;
+    }
   }
 }
 
@@ -220,31 +226,32 @@
   height: 20px;
   width: 20px;
   position: absolute;
-  left: -25px;
-  top: 12px;
-  fill: RGBA(237, 240, 241, 0.8);
+  left: 10px;
+  top: 14px;
+  z-index: 1;
+  fill: #a99fa8;
 }
 .site-search__input {
-  border-radius: 20px;
-  border: 1px solid #a8a3a9;
-  background: transparent;
-  cursor: pointer;
-  height: 32px;
-  width: 32px;
-  padding-left: 15px;
-  text-indent: -9999px;
+  border-radius: 3px;
+  border: none;
+  background: $secondary-background-color;
+  height: 25px;
+  padding-left: 30px;
   color: #EDF0F1;
   outline: none;
-  transition: width 0.2s cubic-bezier(0, 1.2, 0.4, 1.03);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  width: 200px;
+  font-size: 13px;
   &.active {
-    text-indent: 0;
-    width: 300px;
-    padding-left: 15px;
+    background: darken($secondary-background-color,5);
   }
   &:hover {
     border-color: #EDF0F1;
+  }
+  &::placeholder {
+    color: #a99fa8;
+  }
+  @media (max-width: 768px) {
+    width: 150px
   }
 }
 
@@ -396,4 +403,7 @@
 
 .navbar-toggler {
   color: RGBA(237, 240, 241, .6);
+  @media (min-width: 768px) {
+    display: none;
+  }
 }

@@ -1,15 +1,16 @@
-{{one-way-input query
-  update=(action (mut query))
-  id="search"
-  class=inputClass
-  placeholder="Search..."
-  autocomplete="off"
-}}
 <label for="search" class="site-search__icon" {{action (action (mut isOpened) true)}}>
   <span class="icon">
     {{svg-jar "search"}}
   </span>
 </label>
+
+{{one-way-input query
+  update=(action (mut query))
+  id="search"
+  class=inputClass
+  placeholder="Search Kitsu"
+  autocomplete="off"
+}}
 
 {{search-results
   tooltipClass="navbar-search-results"
