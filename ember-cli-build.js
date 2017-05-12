@@ -3,12 +3,14 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const PostCSSFlex = require('postcss-flexbugs-fixes');
 const Autoprefixer = require('autoprefixer');
 const svgoUniqueIds = require('svgo-plugin-unify-ids');
+const targets = require('./config/targets');
 
 module.exports = function(defaults) {
   const app = new EmberApp(defaults, {
     browseryStats: EmberApp.env() === 'development',
     babel: {
-      comments: false
+      comments: false,
+      plugins: ['transform-object-rest-spread']
     },
     'ember-cli-babel': {
       includePolyfill: true
@@ -36,7 +38,7 @@ module.exports = function(defaults) {
           { module: PostCSSFlex },
           {
             module: Autoprefixer,
-            options: { browsers: ['> 1%', 'last 2 versions'] }
+            options: { browsers: targets.browsers }
           }
         ]
       }
