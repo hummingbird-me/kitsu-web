@@ -28,7 +28,7 @@ export default Component.extend(Pagination, {
     transitionTo(item) {
       invokeAction(this, 'close');
       if (typeOf(item) === 'string') {
-        get(this, 'router.router').transitionTo(item);
+        get(this, 'router._routerMicrolib').transitionTo(item);
       } else {
         const type = get(item, 'modelType');
         if (type === 'user') {
