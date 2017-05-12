@@ -13,7 +13,7 @@ export default Component.extend({
     const id = get(this, 'invite.id');
     const URL = `group-invites/${id}/_revoke`;
     yield get(this, 'ajax').post(URL).then(() => {
-      get(this, 'invite').set('rejectedAt', moment.utc());
+      get(this, 'invite').set('revokedAt', moment.utc());
     }).catch(() => {
       get(this, 'notify').error(get(this, 'intl').t('errors.request'));
     });

@@ -11,6 +11,8 @@
           {{#if invite.hasResponded}}
             {{#if invite.acceptedAt}}
               <span class="card-link accepted">{{t "group-invite.accepted"}}</span>
+            {{else if invite.revokedAt}}
+              <span class="card-link declined">{{t "group-invite.revoked"}}</span>
             {{else}}
               <span class="card-link declined">{{t "group-invite.declined"}}</span>
             {{/if}}

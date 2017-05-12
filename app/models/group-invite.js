@@ -8,13 +8,13 @@ export default Base.extend({
   acceptedAt: attr('utc'),
   createdAt: attr('utc'),
   declinedAt: attr('utc'),
-  rejectedAt: attr('utc'),
+  revokedAt: attr('utc'),
 
   group: belongsTo('group'),
   sender: belongsTo('user'),
   user: belongsTo('user'),
 
-  hasResponded: computed('acceptedAt', 'declinedAt', function() {
-    return !!(get(this, 'acceptedAt') || get(this, 'declinedAt'));
+  hasResponded: computed('acceptedAt', 'revokedAt', 'declinedAt', function() {
+    return !!(get(this, 'acceptedAt') || get(this, 'declinedAt') || get(this, 'revokedAt'));
   }).readOnly()
 });
