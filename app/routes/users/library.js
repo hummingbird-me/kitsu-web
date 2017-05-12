@@ -61,9 +61,7 @@ export default Route.extend(Pagination, {
 
   actions: {
     saveEntry(changeset) {
-      console.log(changeset);
       return changeset.save().catch((error) => {
-        console.log(error);
         get(this, 'raven').captureException(error);
       });
     },

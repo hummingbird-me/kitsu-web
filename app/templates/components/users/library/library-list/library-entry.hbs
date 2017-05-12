@@ -1,9 +1,12 @@
-<tr>
+<tr class={{if isChecked "bulk-selected"}}>
   <td class="status status-{{libraryEntry.status}}"></td>
   {{! Checkbox }}
   {{#if (can "edit library-entry" libraryEntry)}}
     <td class="checkbox-cell">
-      <input type="checkbox" class="checkbox">
+      {{one-way-checkbox isChecked
+        update=(action "checkedEntry")
+        class="checkbox"
+      }}
     </td>
   {{/if}}
   {{! Title }}

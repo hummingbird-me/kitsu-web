@@ -6,6 +6,7 @@ import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
   tagName: '',
+  isChecked: false,
 
   init() {
     this._super(...arguments);
@@ -23,6 +24,11 @@ export default Component.extend({
     incrementProgress() {
       this.incrementProperty('changeset.progress', 1);
       get(this, 'saveTask').perform();
+    },
+
+    checkedEntry(value) {
+      const libraryEntry = get(this, 'libraryEntry');
+      invokeAction(this, 'checkedEntry', libraryEntry, value);
     }
   }
 });
