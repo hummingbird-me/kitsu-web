@@ -1,14 +1,11 @@
 import BaseAdapter from 'ember-metrics/metrics-adapters/base';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import service from 'ember-service/inject';
 import jQuery from 'jquery';
 import Config from 'client/config/environment';
 import canUseDOM from 'client/utils/can-use-dom';
 
 export default BaseAdapter.extend({
-  router: service('-routing'),
-
   toStringExtension() {
     return 'Stream';
   },
@@ -36,18 +33,20 @@ export default BaseAdapter.extend({
   trackPage() {},
 
   trackImpression(data) {
+    const router = get(this.this, 'router');
     if (canUseDOM && get(this, 'hasUser')) {
       const options = Object.assign({
-        location: get(this, 'router.currentRouteName')
+        location: get(router, 'currentRouteName')
       }, data);
       get(this, 'client').trackImpression(options);
     }
   },
 
   trackEngagement(data) {
+    const router = get(this.this, 'router');
     if (canUseDOM && get(this, 'hasUser')) {
       const options = Object.assign({
-        location: get(this, 'router.currentRouteName')
+        location: get(router, 'currentRouteName')
       }, data);
       get(this, 'client').trackEngagement(options);
     }
