@@ -99,9 +99,9 @@ RouterInstance.map(function() {
     this.route('bugs');
     this.route('bugs-anything', { path: '/bugs/*path' });
     this.route('feature-requests');
-    this.route('feature-requests-anything', { path: '/data-requests/*path' });
+    this.route('feature-requests-anything', { path: '/feature-requests/*path' });
     this.route('database-requests');
-    this.route('database-requests-anything', { path: '/data-requests/*path' });
+    this.route('database-requests-anything', { path: '/database-requests/*path' });
   });
 
   this.route('admin', function() {
