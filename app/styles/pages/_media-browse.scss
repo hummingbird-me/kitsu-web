@@ -3,7 +3,7 @@
   .global-container {
     max-width: 100%;
     min-height: 100vh;
-    padding-top: 54px;
+    padding-top: 42px;
     background: linear-gradient(90deg, $secondary-background-color 50%, $background-color 50%);
     @media (max-width: 768px) {
       background: $background-color;
@@ -15,7 +15,7 @@
 
 .media-browse {
   margin: 0 auto;
-  margin-bottom: -54px;
+  margin-bottom: -42px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -31,9 +31,9 @@
     bottom: 0;
     user-select: none;
     cursor: default;
-    height: calc(100vh - 54px);
+    height: calc(100vh - 42px);
     position: fixed;
-    top: 54px;
+    top: 42px;
 
     @media (max-width: 768px) {
       display: none;
@@ -56,12 +56,10 @@
     }
     .media-posters {
       min-width: 100%;
-      min-height: calc(100vh - 54px);
+      min-height: calc(100vh - 42px);
       padding: 75px 0 75px 280px;
       padding-right: 0;
-      overflow-y: auto;
-      overflow-x: hidden;
-      //height: 100vh;
+      overflow: hidden;
       @media (max-width: 768px) {
         padding: 75px 0 75px 0;
         margin-left: -5px;
@@ -145,7 +143,7 @@
     color: $input-text-color;
     background: $foreground-background-color;
     position: fixed;
-    top: 54px;
+    top: 42px;
     width: 100%;
     margin-left: 240px;
     @media (min-width: 1200px) {
