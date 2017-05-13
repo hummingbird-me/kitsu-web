@@ -108,6 +108,17 @@ module.exports = function(environment) {
       enabled: environment === 'test'
     },
 
+    'polyfill-io': {
+      min: true,
+      features: [
+        'default-3.6',
+        'Intl.~locale.en-US'
+      ],
+      flags: ['gated'],
+      unknown: 'polyfill',
+      rum: 0
+    },
+
     google: {
       adwords: environment === 'production',
       ads: {
