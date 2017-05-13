@@ -36,8 +36,7 @@ module.exports = function(defaults) {
         enabled: true,
         plugins: [
           { module: PostCSSFlex },
-          {
-            module: Autoprefixer,
+          { module: Autoprefixer,
             options: { browsers: targets.browsers }
           }
         ]
