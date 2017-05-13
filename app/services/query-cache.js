@@ -1,6 +1,7 @@
 import Service from 'ember-service';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
+import { typeOf } from 'ember-utils';
 
 const CACHE_TIME = 2;
 
@@ -17,10 +18,11 @@ export default Service.extend({
    *
    * @param {String} type Ember Data Model Type
    * @param {Object} query Request Options
+   * @param {Object} options Custom Options for cache
    */
-  queryRecord(type, query) {
-    const task = () => get(this, 'store').queryRecord(type, query);
-    return this._getCachedQuery(type, query, task);
+  query(type, query, options = { cache: true }) {
+    const task = () => get(this, 'store').query(type, query);
+    return this._getCachedQuery(type, query, options, task);
   },
 
   /**
@@ -29,10 +31,11 @@ export default Service.extend({
    *
    * @param {String} type Ember Data Model Type
    * @param {Object} query Request Options
+   * @param {Object} options Cache Options
    * @param {Function} task
    * @private
    */
-  _getCachedQuery(type, query, task) {
+  _getCachedQuery(type, query, options, task) {
     const cache = this.cache[type] || (this.cache[type] = {});
     const queryAsString = this._stringifyQuery(query);
 
@@ -49,7 +52,9 @@ export default Service.extend({
     // Execute the task (API Request), cache and return the results.
     const promise = task();
     return promise.then((records) => {
-      cache[queryAsString] = { promise, expiry: this._getExpiryDate() };
+      if (options.cache) {
+        cache[queryAsString] = { promise, expiry: this._getExpiryDate() };
+      }
       return records;
     }).catch(() => ({}));
   },
@@ -62,10 +67,26 @@ export default Service.extend({
    * @private
    */
   _stringifyQuery(query) {
-    const sortedObject = Object.keys(query).sort().reduce((previous, current) => (
-      previous[current] = query[current] // eslint-disable-line
-    ), {});
+    const sortedObject = this._sortObject(query);
     return JSON.stringify(sortedObject);
+  },
+
+  /**
+   * Sort an object alphabetically by its keys.
+   *
+   * @param {Object} object
+   * @private
+   */
+  _sortObject(object) {
+    return Object.keys(object).sort().reduce((previous, current) => {
+      if (typeOf(object[current]) === 'object') {
+        // eslint-disable-next-line
+        previous[current] = this._sortObject(object[current]);
+        return previous;
+      }
+      previous[current] = object[current]; // eslint-disable-line
+      return previous;
+    }, {});
   },
 
   /**
