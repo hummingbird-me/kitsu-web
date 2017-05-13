@@ -1,6 +1,7 @@
 import Component from 'ember-component';
-import computed, { notEmpty, gte } from 'ember-computed';
+import computed, { gte } from 'ember-computed';
 import get from 'ember-metal/get';
+import { isPresent } from 'ember-utils';
 import { isObject } from 'client/helpers/is-object';
 
 const isObjectComputed = property => (
@@ -13,8 +14,11 @@ export default Component.extend({
   hasRatings: gte('user.ratingsCount', 5),
   hasAvatar: isObjectComputed('user.avatar'),
   hasCover: isObjectComputed('user.coverImage'),
-  hasAbout: notEmpty('user.about'),
   hasFavorites: gte('user.favoritesCount', 1),
+  
+  hasAbout: computed('user.about.length', function() {
+    return isPresent(get(this, 'user.about'));
+  }).readOnly(),
 
   stepsCompleted: computed('hasRatings', 'hasAvatar', 'hasCover', 'hasAbout', 'hasFavorites', function() {
     const steps = [
