@@ -67,13 +67,13 @@ module.exports = function(environment) {
       dsn: 'https://1c436e52d5a54f4a94339278c8bdbe77@sentry.io/151419',
       cdn: 'https://cdn.ravenjs.com/3.14.2/raven.min.js',
       development: environment !== 'production',
-      debug: false,
+      debug: environment !== 'production',
       ravenOptions: {
         whitelistUrls: [
           'kitsu.io/assets',
           'staging.kitsu.io/assets'
         ],
-        ignoreErrors: [/TaskCancelation(.+)?/],
+        ignoreErrors: ['/^TaskCancelation.*/'],
         includePaths: [/https?:\/\/(staging\.)?kitsu\.io/],
         environment: process.env.HEROKU_EMBER_APP
       }
