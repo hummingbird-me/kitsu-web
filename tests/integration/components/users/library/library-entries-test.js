@@ -1,5 +1,6 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import testSelector from 'ember-test-selectors';
 
 moduleForComponent('users/library/library-entries', 'Integration | Component | users/library/library entries', {
   integration: true,
@@ -27,8 +28,8 @@ test('it renders', function(assert) {
       metaCount=2
       status="current"
       mediaType="anime"}}`);
-  assert.ok(this.$('[data-test-selector="library-entries"]').length);
-  const text = this.$('[data-test-selector="library-entries-stats"]').text().trim();
+  assert.ok(this.$(testSelector('library-entries')).length);
+  const text = this.$(testSelector('library-entries-stats')).text().trim();
   assert.equal(text, '2 titles');
 });
 

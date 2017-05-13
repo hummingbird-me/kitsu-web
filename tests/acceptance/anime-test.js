@@ -11,9 +11,9 @@ test('can browse anime', function(assert) {
 
   visit('/anime');
   andThen(() => {
-    const media = find(testSelector('selector', 'media-poster'));
-    const genres = find(testSelector('selector', 'filter-genre'));
-    const streamers = find(testSelector('selector', 'filter-streamer'));
+    const media = find(testSelector('media-poster'));
+    const genres = find(testSelector('filter-genre'));
+    const streamers = find(testSelector('filter-streamer'));
 
     assert.equal(media.length, 2);
     assert.equal(genres.length, 4 + 1); // + 1 due to "ALL" button
@@ -26,7 +26,7 @@ test('can look at a single anime', function(assert) {
   visit('/anime/trigun');
 
   andThen(() => {
-    const title = find(testSelector('selector', 'title'));
+    const title = find(testSelector('title'));
     assert.equal(title.text().trim(), 'Trigun');
   });
 });
