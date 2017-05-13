@@ -28,6 +28,7 @@ export default Controller.extend({
 
   actions: {
     switchFeed(type) {
+      window.scrollTo(0, 0);
       set(this, 'streamType', type);
       set(this, 'lastUsed.feedType', type);
     }
