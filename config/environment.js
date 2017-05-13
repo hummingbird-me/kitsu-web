@@ -65,7 +65,7 @@ module.exports = function(environment) {
 
     sentry: {
       dsn: 'https://1c436e52d5a54f4a94339278c8bdbe77@sentry.io/151419',
-      cdn: 'https://cdn.ravenjs.com/3.14.2/raven.min.js',
+      cdn: 'https://cdn.ravenjs.com/3.15.0/raven.min.js',
       development: environment !== 'production',
       debug: environment !== 'production',
       ravenOptions: {
