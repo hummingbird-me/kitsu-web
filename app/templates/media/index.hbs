@@ -135,7 +135,7 @@
                   selection=(map-by "siteName" availableStreamers)
                   onChange=(action (mut streamers)) as |option|
                 }}
-                  {{svg-jar (to-lower option) class=(to-lower option) width="32" height="32" data-test-selector="filter-streamer"}}
+                  {{svg-jar (to-lower option) class=(to-lower option) width="32" height="32" data-test-filter-streamer="true"}}
                 {{/media/filter-widgets/multi-select}}
               {{else}}
                 <div class="filter-header">
@@ -170,7 +170,7 @@
                 selection=availableSeasons
                 onChange=(action (mut season)) as |option|
               }}
-                <a href="#" data-test-selector="filter-season">{{capitalize option}}</a>
+                <a href="#" data-test-filter-season>{{capitalize option}}</a>
                 <span class="exclude-genre hint--left hint--bounce hint--rounded" aria-label="Exclude?">{{svg-jar "close"}}</span>
                 <span class="include-genre hint--left hint--bounce hint--rounded" aria-label="Include?">{{svg-jar "checkmark"}}</span>
               {{/media/filter-widgets/multi-select}}
@@ -198,7 +198,7 @@
               selection=availableSubtypes
               onChange=(action (mut subtype)) as |option|
             }}
-              <a href="#" data-test-selector="filter-subtype">
+              <a href="#" data-test-filter-subtype>
                 {{#if isAnime}}
                   {{t (concat "media-shared.types.anime." option)}}
                 {{else}}
@@ -232,7 +232,7 @@
                 selection=(map-by "name" availableGenres)
                 onChange=(action (mut genres)) as |option|
               }}
-                <a href="#" data-test-selector="filter-genre">{{option}}</a>
+                <a href="#" data-test-filter-genre>{{option}}</a>
                 <span class="exclude-genre hint--left hint--bounce hint--rounded" aria-label="Exclude?">{{svg-jar "close"}}</span>
                 <span class="include-genre hint--left hint--bounce hint--rounded" aria-label="Include?">{{svg-jar "checkmark"}}</span>
               {{/media/filter-widgets/multi-select}}

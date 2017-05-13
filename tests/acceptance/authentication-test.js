@@ -22,12 +22,12 @@ moduleForAcceptance('Acceptance | Authentication', {
  */
 test('can create an account', function(assert) {
   visit('/');
-  click(testSelector('selector', 'sign-up-header'));
-  click(testSelector('selector', 'sign-up-email'));
-  fillIn(testSelector('selector', 'username'), 'bob');
-  fillIn(testSelector('selector', 'email'), 'bob@acme.com');
-  fillIn(testSelector('selector', 'password'), 'password');
-  click(testSelector('selector', 'create-account'));
+  click(testSelector('sign-up-header'));
+  click(testSelector('sign-up-email'));
+  fillIn(testSelector('username'), 'bob');
+  fillIn(testSelector('email'), 'bob@acme.com');
+  fillIn(testSelector('password'), 'password');
+  click(testSelector('create-account'));
 
   andThen(() => {});
   andThen(() => {
@@ -44,46 +44,46 @@ test('shows an error when using incorrect details on sign up', function(assert) 
   server.post('/users', { errors: [{ detail: 'email is already taken.' }] }, 400);
 
   visit('/');
-  click(testSelector('selector', 'sign-up-header'));
-  click(testSelector('selector', 'sign-up-email'));
-  fillIn(testSelector('selector', 'username'), 'bob');
-  fillIn(testSelector('selector', 'email'), 'bob@acme.com');
-  fillIn(testSelector('selector', 'password'), 'password');
-  click(testSelector('selector', 'create-account'));
+  click(testSelector('sign-up-header'));
+  click(testSelector('sign-up-email'));
+  fillIn(testSelector('username'), 'bob');
+  fillIn(testSelector('email'), 'bob@acme.com');
+  fillIn(testSelector('password'), 'password');
+  click(testSelector('create-account'));
   andThen(() => {});
 });
 
 test('shows validation warnings on input fields', function(assert) {
   visit('/');
-  click(testSelector('selector', 'sign-up-header'));
-  click(testSelector('selector', 'sign-up-email'));
+  click(testSelector('sign-up-header'));
+  click(testSelector('sign-up-email'));
 
-  fillIn(testSelector('selector', 'username'), '1234');
+  fillIn(testSelector('username'), '1234');
   andThen(() => {
-    const error = find(testSelector('selector', 'validation-username'));
+    const error = find(testSelector('validation-username'));
     assert.equal(error.length, 1);
   });
 
-  fillIn(testSelector('selector', 'email'), 'bob@acme');
+  fillIn(testSelector('email'), 'bob@acme');
   andThen(() => {
-    const error = find(testSelector('selector', 'validation-email'));
+    const error = find(testSelector('validation-email'));
     assert.equal(error.length, 1);
   });
 
-  fillIn(testSelector('selector', 'password'), 'nope');
+  fillIn(testSelector('password'), 'nope');
   andThen(() => {
-    const error = find(testSelector('selector', 'validation-password'));
+    const error = find(testSelector('validation-password'));
     assert.equal(error.length, 1);
   });
 });
 
 test('shows strength of password', function(assert) {
   visit('/');
-  click(testSelector('selector', 'sign-up-header'));
-  click(testSelector('selector', 'sign-up-email'));
-  fillIn(testSelector('selector', 'password'), 'password');
+  click(testSelector('sign-up-header'));
+  click(testSelector('sign-up-email'));
+  fillIn(testSelector('password'), 'password');
   andThen(() => {
-    const element = find(testSelector('selector', 'password-strength'));
+    const element = find(testSelector('password-strength'));
     assert.equal(element.length, 1);
   });
 });
@@ -95,10 +95,10 @@ test('can sign into an account', function(assert) {
   server.create('user', { name: 'bob', password: 'password' });
 
   visit('/');
-  click(testSelector('selector', 'sign-in-header'));
-  fillIn(testSelector('selector', 'identification'), 'bob');
-  fillIn(testSelector('selector', 'password'), 'password');
-  click(testSelector('selector', 'sign-in'));
+  click(testSelector('sign-in-header'));
+  fillIn(testSelector('identification'), 'bob');
+  fillIn(testSelector('password'), 'password');
+  click(testSelector('sign-in'));
 
   andThen(() => {});
   andThen(() => {
@@ -114,9 +114,9 @@ test('shows an error when using incorrect details on sign in', function(assert) 
   server.post('http://localhost:7357/api/oauth/token', { error: 'invalid_grant' }, 400);
 
   visit('/');
-  click(testSelector('selector', 'sign-in-header'));
-  fillIn(testSelector('selector', 'identification'), 'bob');
-  fillIn(testSelector('selector', 'password'), 'not_password');
-  click(testSelector('selector', 'sign-in'));
+  click(testSelector('sign-in-header'));
+  fillIn(testSelector('identification'), 'bob');
+  fillIn(testSelector('password'), 'not_password');
+  click(testSelector('sign-in'));
   andThen(() => {});
 });

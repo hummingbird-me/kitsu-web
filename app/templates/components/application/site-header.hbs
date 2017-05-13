@@ -46,7 +46,7 @@
           </li>
         {{else}}
           <li class="nav-item">
-            <a href="#" id="sign-up-button" class="nav-link" data-test-selector="sign-up-header"
+            <a href="#" id="sign-up-button" class="nav-link" data-test-sign-up-header
               {{action (queue
                 (action (mut authComponent) "social-auth")
                 (toggle "authOpened" this)
@@ -55,7 +55,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" id="sign-in-button" class="nav-link" data-test-selector="sign-in-header"
+            <a href="#" id="sign-in-button" class="nav-link" data-test-sign-in-header
               {{action (queue
                 (action (mut authComponent) "sign-in")
                 (toggle "authOpened" this)

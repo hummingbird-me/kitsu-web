@@ -10,9 +10,9 @@
           focusIn=(action "focused")
           placeholder="Username"
           autofocus="autofocus"
-          data-test-selector="username"}}
+          data-test-username="true"}}
         {{#if hasInvalidName}}
-          <div class="form-control-feedback" data-test-selector="validation-username">
+          <div class="form-control-feedback" data-test-validation-username>
             {{v-get user "name" "message"}}
           </div>
         {{/if}}
@@ -28,9 +28,9 @@
           class=(form-input-class hasInvalidEmail hasValidEmail)
           focusIn=(action "focused")
           placeholder="Email"
-          data-test-selector="email"}}
+          data-test-email="true"}}
         {{#if hasInvalidEmail}}
-          <div class="form-control-feedback" data-test-selector="validation-email">
+          <div class="form-control-feedback" data-test-validation-email>
             {{v-get user "email" "message"}}
           </div>
         {{/if}}
@@ -46,19 +46,19 @@
           class=(form-input-class hasInvalidPassword hasValidPassword)
           focusIn=(action "focused")
           placeholder="Password"
-          data-test-selector="password"}}
+          data-test-password="true"}}
         {{#if hasInvalidPassword}}
-          <div class="form-control-feedback" data-test-selector="validation-password">
+          <div class="form-control-feedback" data-test-validation-password>
             {{v-get user "password" "message"}}
           </div>
         {{/if}}
-        <span class="password-step password-{{passwordStrength.score}}" data-test-selector="password-strength">
+        <span class="password-step password-{{passwordStrength.score}}" data-test-password-strength>
         </span>
       </div>
     </div>
 
     <div class="form-group form-cta">
-      <button type="submit" class="button button--primary" data-test-selector="create-account"
+      <button type="submit" class="button button--primary" data-test-create-account
               disabled={{if user.validations.isInvalid "disabled"}}
               {{action (perform createAccount)}}>
         {{#if createAccount.isRunning}}

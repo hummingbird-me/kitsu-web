@@ -27,8 +27,8 @@ test('#identify calls setUser with right arguments', function(assert) {
 test('#trackImpression calls trackImpression with right data', function(assert) {
   const adapter = this.subject({
     config: this.config,
-    hasUser: true,
-    router: { currentRouteName: 'hello' }
+    this: { router: { currentRouteName: 'hello' } },
+    hasUser: true
   });
   const stub = this.sandbox.stub(adapter.client, 'trackImpression').callsFake(() => true);
   adapter.trackImpression({
@@ -40,8 +40,8 @@ test('#trackImpression calls trackImpression with right data', function(assert) 
 test('#trackEngagement calls trackEngagement with right data', function(assert) {
   const adapter = this.subject({
     config: this.config,
+    this: { router: { currentRouteName: 'hello' } },
     hasUser: true,
-    router: { currentRouteName: 'hello' }
   });
   const stub = this.sandbox.stub(adapter.client, 'trackEngagement').callsFake(() => true);
   adapter.trackEngagement({
