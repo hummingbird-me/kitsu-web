@@ -2,6 +2,7 @@ import Service from 'ember-service';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { typeOf } from 'ember-utils';
+import RSVP from 'rsvp';
 
 const CACHE_TIME_HOUR = 1;
 
@@ -23,6 +24,24 @@ export default Service.extend({
   query(type, query, options = { cache: true }) {
     const task = () => get(this, 'store').query(type, query);
     return this._getCachedQuery(type, query, options, task);
+  },
+
+  /**
+   * Push a record collection into the cache store for the query type.
+   *
+   * @param {String} type
+   * @param {Object} query
+   * @param {*} records
+   */
+  push(type, query, records) {
+    const cache = this.cache[type] || (this.cache[type] = {});
+    const queryAsString = this._stringifyQuery(query);
+    if (get(records, 'length') > 0) {
+      cache[queryAsString] = {
+        promise: RSVP.resolve(records),
+        expiry: this._getExpiryDate()
+      };
+    }
   },
 
   /**
