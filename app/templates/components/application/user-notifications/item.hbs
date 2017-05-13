@@ -43,8 +43,10 @@
             replied to
             {{#if (eq activity.target.user.id activity.actor.id)}}
               their
+            {{else if (eq activity.target.user.id session.account.id)}}
+              your
             {{else}}
-              <a href={{href-to "users.index" activity.target.user.name}}>{{activity.target.user.name}}'s</a>
+              <a href={{href-to "users.index" activity.target.user}}>{{activity.target.user.name}}'s</a>
             {{/if}}
             post.
           {{/if}}
