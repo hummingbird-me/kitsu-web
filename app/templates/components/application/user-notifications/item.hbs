@@ -46,7 +46,11 @@
             {{else if (eq activity.target.user.id session.account.id)}}
               your
             {{else}}
-              <a href={{href-to "users.index" activity.target.user}}>{{activity.target.user.name}}'s</a>
+              {{#if activity.target.user}}
+                <a href={{href-to "users.index" activity.target.user}}>{{activity.target.user.name}}'s</a>
+              {{else}}
+                a
+              {{/if}}
             {{/if}}
             post.
           {{/if}}
@@ -61,6 +65,4 @@
       <small class="media-secondary">{{moment-from-now activity.time interval=60000}}</small>
     </div>
   </a>
-{{else}}
-  There was an issue loading the content.
 {{/if}}
