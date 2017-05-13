@@ -15,7 +15,7 @@ export default Component.extend({
   hasAvatar: isObjectComputed('user.avatar'),
   hasCover: isObjectComputed('user.coverImage'),
   hasFavorites: gte('user.favoritesCount', 1),
-  
+
   hasAbout: computed('user.about.length', function() {
     return isPresent(get(this, 'user.about'));
   }).readOnly(),
