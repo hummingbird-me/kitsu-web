@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import { later } from 'ember-runloop';
-import config from 'client/config/environment';
 
 export function initialize() {
   Ember.onerror = function(error) {
@@ -13,9 +12,7 @@ export function initialize() {
       return later(() => window.location.reload(), 1);
     }
 
-    if (config.environment === 'development') {
-      Ember.Logger.error(error);
-    }
+    Ember.Logger.error(error);
   };
 }
 
