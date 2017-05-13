@@ -12,7 +12,7 @@ export default Component.extend({
   createOnly: false,
   reviewOpen: false,
 
-  cache: service('local-cache'),
+  queryCache: service(),
   store: service(),
   hasLibraryEntry: bool('libraryEntry'),
   mediaType: readOnly('media.modelType'),
@@ -34,18 +34,8 @@ export default Component.extend({
   },
 
   getLibraryEntryTask: task(function* () {
-    const cacheKey = this._getCacheKey();
-    const cachedEntry = this._getCacheLibraryEntry(cacheKey);
-    if (cachedEntry) {
-      return cachedEntry;
-    }
-    return yield get(this, 'store').query('library-entry', this._getRequestOptions())
-      .then(records => get(records, 'firstObject')).then((record) => {
-        if (record) {
-          get(this, 'cache').addToCache('library-entry', this._getCacheKey(), get(record, 'id'));
-        }
-        return record;
-      });
+    return yield get(this, 'queryCache').query('library-entry', this._getRequestOptions())
+      .then(records => get(records, 'firstObject'));
   }).restartable(),
 
   createLibraryEntryTask: task(function* (status, rating) {
@@ -74,7 +64,6 @@ export default Component.extend({
       get(this, 'createLibraryEntryTask').perform(status, rating).then((libraryEntry) => {
         set(libraryEntry, get(this, 'mediaType'), get(this, 'media'));
         set(this, 'libraryEntry', libraryEntry);
-        get(this, 'cache').addToCache('library-entry', this._getCacheKey(), get(libraryEntry, 'id'));
       });
     },
 
@@ -88,7 +77,9 @@ export default Component.extend({
 
     updateAttribute(attribute, value) {
       set(this, `libraryEntry.${attribute}`, value);
-      get(this, 'updateLibraryEntryTask').perform().catch(() => {
+      get(this, 'updateLibraryEntryTask').perform().then(() => {
+        get(this, 'queryCache').invalidateType('library-entry');
+      }).catch(() => {
         get(this, 'libraryEntry').rollbackAttributes();
       });
     }
@@ -104,16 +95,5 @@ export default Component.extend({
         [`${type}_id`]: get(get(this, 'media'), 'id')
       }
     };
-  },
-
-  _getCacheKey() {
-    const media = get(this, 'media');
-    const type = get(this, 'mediaType');
-    return `${type}-${get(media, 'id')}`;
-  },
-
-  _getCacheLibraryEntry(key) {
-    const id = get(this, 'cache').getFromCache('library-entry', key);
-    return id ? get(this, 'store').peekRecord('library-entry', id) : null;
   }
 });

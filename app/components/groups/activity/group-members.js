@@ -4,8 +4,8 @@ import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
-  store: service(),
   classNames: ['group-members-widget'],
+  queryCache: service(),
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -21,7 +21,7 @@ export default Component.extend({
     if (get(this, 'session.hasUser')) {
       sort.unshiftObject('following');
     }
-    return yield get(this, 'store').query('group-member', {
+    return yield get(this, 'queryCache').query('group-member', {
       include: 'user',
       filter: { group: get(this, 'group.id') },
       page: { limit: 14 },

@@ -10,6 +10,7 @@ export default Component.extend({
   classNames: ['media-sidebar'],
   isFavorite: false,
   store: service(),
+  queryCache: service(),
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -34,15 +35,7 @@ export default Component.extend({
   },
 
   getFavorite: task(function* () {
-    const mediaType = get(this, 'media.modelType');
-    const mediaId = get(this, 'media.id');
-    return yield get(this, 'store').query('favorite', {
-      filter: {
-        item_type: capitalize(mediaType),
-        item_id: mediaId,
-        user_id: get(this, 'session.account.id')
-      }
-    });
+    return yield get(this, 'queryCache').query('favorite', this._getRequestOptions());
   }).restartable(),
 
   getStreamersTask: task(function* () {
@@ -88,8 +81,22 @@ export default Component.extend({
 
   _destroyFavorite() {
     set(this, 'isFavorite', false);
-    get(this, 'favoriteRecord').destroyRecord().catch(() => {
+    get(this, 'favoriteRecord').destroyRecord().then(() => {
+      get(this, 'queryCache').invalidateQuery('favorite', this._getRequestOptions());
+    }).catch(() => {
       set(this, 'isFavorite', true);
     });
   },
+
+  _getRequestOptions() {
+    const mediaType = get(this, 'media.modelType');
+    const mediaId = get(this, 'media.id');
+    return {
+      filter: {
+        item_type: capitalize(mediaType),
+        item_id: mediaId,
+        user_id: get(this, 'session.account.id')
+      }
+    };
+  }
 });

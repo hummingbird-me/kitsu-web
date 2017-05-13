@@ -5,7 +5,7 @@ import { task } from 'ember-concurrency';
 
 export default Component.extend({
   classNames: ['group-audit-log'],
-  store: service(),
+  queryCache: service(),
 
   init() {
     this._super(...arguments);
@@ -13,7 +13,7 @@ export default Component.extend({
   },
 
   getLogItemsTask: task(function* () {
-    return yield get(this, 'store').query('group-action-log', {
+    return yield get(this, 'queryCache').query('group-action-log', {
       filter: { group: get(this, 'group.id') },
       include: 'user,target',
       sort: '-created_at',

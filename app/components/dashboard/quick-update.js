@@ -78,6 +78,10 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
       set(this, 'filter', option);
       set(this, 'lastUsed.quickUpdateFilter', option);
       this._getEntries();
+    },
+
+    sortEntries(a, b) {
+      return get(a, 'updatedAt').isBefore(get(b, 'updatedAt'));
     }
   },
 
@@ -101,7 +105,7 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
 
   _getFieldsets(type) {
     const fields = {
-      libraryEntries: ['progress', 'status', 'rating', 'unit']
+      libraryEntries: ['progress', 'status', 'rating', 'unit', 'updatedAt']
     };
 
     if (type === undefined) {

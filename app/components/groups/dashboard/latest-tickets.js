@@ -5,7 +5,7 @@ import { task } from 'ember-concurrency';
 
 export default Component.extend({
   tagName: '',
-  store: service(),
+  queryCache: service(),
 
   init() {
     this._super(...arguments);
@@ -13,7 +13,7 @@ export default Component.extend({
   },
 
   getLatestTicketsTask: task(function* () {
-    return yield get(this, 'store').query('group-ticket', {
+    return yield get(this, 'queryCache').query('group-ticket', {
       filter: { group: get(this, 'group.id') },
       include: 'user,firstMessage',
       sort: '-created_at',

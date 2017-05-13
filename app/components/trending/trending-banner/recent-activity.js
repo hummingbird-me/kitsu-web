@@ -8,7 +8,7 @@ export default Component.extend({
   store: service(),
 
   getRecentActivity: task(function* () {
-    return yield get(this, 'store').query('feed', {
+    return yield get(this, 'queryCache').query('feed', {
       type: 'timeline',
       id: get(this, 'session.account.id'),
       filter: { kind: 'media' },

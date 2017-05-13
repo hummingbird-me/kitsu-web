@@ -84,8 +84,8 @@ module.exports = function(environment) {
         enabled: true,
         config: {
           development: {
-            key: 'eb6dvmba4ct3',
-            app: '18373'
+            key: 'sjm3sx9mgcx2',
+            app: '17073'
           },
           staging: {
             key: 'ekx6xkn9v9xx',

@@ -16,6 +16,7 @@ export default Component.extend({
   notify: service(),
   store: service(),
   router: service('-routing'),
+  queryCache: service(),
   isMemberOfGroup: bool('memberRecord'),
   groupTasks: taskGroup(),
 
@@ -75,20 +76,27 @@ export default Component.extend({
   }).group('groupTasks'),
 
   leaveGroupTask: task(function* () {
-    return yield get(this, 'memberRecord').destroyRecord();
+    return yield get(this, 'memberRecord').destroyRecord().then(() => {
+      get(this, 'queryCache').invalidateQuery('group-member', this._getRequestOptions());
+    });
   }).group('groupTasks'),
 
   getMemberStatusTask: task(function* () {
-    return yield get(this, 'store').query('group-member', {
-      filter: {
-        group: get(this, 'group.id'),
-        user: get(this, 'session.account.id')
-      }
-    }).then(records => get(records, 'firstObject'));
+    return yield get(this, 'queryCache').query('group-member', this._getRequestOptions())
+      .then(records => get(records, 'firstObject'));
   }).group('groupTasks'),
 
   _updateMemberState(value) {
     if (get(this, 'isDestroyed')) { return; }
     set(this, 'memberRecord', value);
+  },
+
+  _getRequestOptions() {
+    return {
+      filter: {
+        group: get(this, 'group.id'),
+        user: get(this, 'session.account.id')
+      }
+    };
   }
 });

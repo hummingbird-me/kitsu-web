@@ -22,6 +22,7 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
   metrics: service(),
   notify: service(),
   store: service(),
+  queryCache: service(),
   host: getter(() => `${location.protocol}//${location.host}`),
 
   isEditable: getter(function() {
@@ -103,7 +104,7 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
       if (get(this, 'kitsuGroupMembership')) {
         set(this, 'groupMembership', get(this, 'kitsuGroupMembership'));
       } else {
-        get(this, 'store').query('group-member', {
+        get(this, 'queryCache').query('group-member', {
           filter: { group, user: get(this, 'session.account') },
           include: 'permissions'
         }).then((records) => {

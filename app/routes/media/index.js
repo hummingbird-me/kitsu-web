@@ -1,6 +1,7 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import service from 'ember-service/inject';
 import { isEmpty, typeOf } from 'ember-utils';
 import { isEmberArray } from 'ember-array/utils';
 import { task, timeout } from 'ember-concurrency';
@@ -20,6 +21,7 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
     year: { refreshModel: true, replace: true }
   },
   templateName: 'media/index',
+  queryCache: service(),
 
   refreshDebounced: task(function* () {
     yield timeout(1000);
@@ -39,7 +41,7 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
     if (get(controller, 'availableGenres') !== undefined) {
       return;
     }
-    get(this, 'store').query('genre', {
+    get(this, 'queryCache').query('genre', {
       page: { limit: 10000, offset: 0 }
     }).then(genres => set(controller, 'availableGenres', genres.sortBy('name')));
   },

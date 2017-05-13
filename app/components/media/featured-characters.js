@@ -10,7 +10,7 @@ export default Component.extend({
   tagName: 'section',
   classNames: ['media--main-characters'],
   ajax: service(),
-  store: service(),
+  queryCache: service(),
 
   getCharacters: task(function* (mediaType, mediaId) {
     let language;
@@ -20,7 +20,7 @@ export default Component.extend({
         language = languages.find(item => item === 'Japanese') || get(languages, 'firstObject');
       }
     }
-    return yield get(this, 'store').query('casting', {
+    return yield get(this, 'queryCache').query('casting', {
       filter: Object.assign({
         media_id: mediaId,
         media_type: capitalize(mediaType),

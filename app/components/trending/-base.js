@@ -9,7 +9,7 @@ export default Component.extend({
   classNames: ['trending-row'],
   currentTab: null,
   currentItems: null,
-  store: service(),
+  queryCache: service(),
 
   getDataTask() {
     throw new Error('You must define your own `getDataTask`');

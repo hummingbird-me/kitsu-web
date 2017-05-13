@@ -9,6 +9,7 @@ import { isEmpty } from 'ember-utils';
 export default Component.extend({
   classNames: ['tab-pane'],
   store: service(),
+  queryCache: service(),
 
   init() {
     this._super(...arguments);
@@ -33,7 +34,7 @@ export default Component.extend({
   },
 
   getSites: task(function* () {
-    return yield get(this, 'store').query('profile-link-site', { page: { limit: 50 } });
+    return yield get(this, 'queryCache').query('profile-link-site', { page: { limit: 50 } });
   }).drop(),
 
   actions: {

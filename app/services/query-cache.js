@@ -3,7 +3,7 @@ import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { typeOf } from 'ember-utils';
 
-const CACHE_TIME = 2;
+const CACHE_TIME_HOUR = 1;
 
 export default Service.extend({
   store: service(),
@@ -23,6 +23,28 @@ export default Service.extend({
   query(type, query, options = { cache: true }) {
     const task = () => get(this, 'store').query(type, query);
     return this._getCachedQuery(type, query, options, task);
+  },
+
+  /**
+   * Invalidate an entire model types cache entries
+   *
+   * @param {String} type
+   */
+  invalidateType(type) {
+    delete this.cache[type];
+  },
+
+  /**
+   * Invalidate the cache for a specific query
+   *
+   * @param {String} type
+   * @param {Object} query
+   */
+  invalidateQuery(type, query) {
+    const cache = this.cache[type];
+    if (!cache) { return; }
+    const queryAsString = this._stringifyQuery(query);
+    delete cache[queryAsString];
   },
 
   /**
@@ -52,7 +74,8 @@ export default Service.extend({
     // Execute the task (API Request), cache and return the results.
     const promise = task();
     return promise.then((records) => {
-      if (options.cache) {
+      // Don't cache empty results
+      if (options.cache && get(records, 'length') > 0) {
         cache[queryAsString] = { promise, expiry: this._getExpiryDate() };
       }
       return records;
@@ -96,7 +119,7 @@ export default Service.extend({
    */
   _getExpiryDate() {
     const date = new Date();
-    date.setTime(date.getTime() + (CACHE_TIME * 60 * 60 * 1000));
+    date.setTime(date.getTime() + (CACHE_TIME_HOUR * 60 * 60 * 1000));
     return date;
   },
 
