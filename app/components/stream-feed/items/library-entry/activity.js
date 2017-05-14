@@ -18,7 +18,7 @@ export default Component.extend({
   actions: {
     deleteActivity(activity) {
       set(this, 'isDeleteing', true);
-      strictInvokeAction(this, 'deleteActivity', activity, () => {
+      strictInvokeAction(this, 'deleteActivity', 'user', activity, () => {
         activity.deleteRecord();
         strictInvokeAction(this, 'onDelete', activity);
         set(this, 'isDeleteing', false);

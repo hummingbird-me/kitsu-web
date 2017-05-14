@@ -30,7 +30,7 @@ export default Component.extend({
     },
 
     deleteActivity() {
-      strictInvokeAction(this, 'deleteActivity', get(this, 'activity'), () => {
+      strictInvokeAction(this, 'deleteActivity', 'user_aggr', get(this, 'activity'), () => {
         strictInvokeAction(this, 'removeGroup', get(this, 'group'));
       });
     }

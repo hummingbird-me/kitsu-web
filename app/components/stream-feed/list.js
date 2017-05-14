@@ -109,10 +109,10 @@ export default Component.extend(Pagination, {
     });
   }).drop(),
 
-  deleteActivity: task(function* (activity) {
+  deleteActivity: task(function* (type, activity) {
     const activityId = get(activity, 'id');
     const actorId = get(activity, 'actor.id');
-    const feedUrl = `/feeds/user/${actorId}/activities/${activityId}`;
+    const feedUrl = `/feeds/${type}/${actorId}/activities/${activityId}`;
     return yield get(this, 'ajax').delete(feedUrl);
   }).enqueue(),
 
@@ -272,8 +272,8 @@ export default Component.extend(Pagination, {
       });
     },
 
-    deleteActivity(activity, callback) {
-      get(this, 'deleteActivity').perform(activity).then(() => {
+    deleteActivity(type, activity, callback) {
+      get(this, 'deleteActivity').perform(type, activity).then(() => {
         if (callback !== undefined) {
           callback(...arguments);
         }
