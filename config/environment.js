@@ -156,7 +156,7 @@ module.exports = function(environment) {
 
     // Heroku environment - So that we can append the git hash to the version
   if (process.env.HEROKU_EMBER_APP) {
-    ENV.release = process.env.HEROKU_SLUG_COMMIT || '-';
+    ENV.release = process.env.SOURCE_VERSION || process.env.HEROKU_SLUG_COMMIT || '-';
   }
 
   // Staging app @ Heroku
