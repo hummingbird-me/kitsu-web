@@ -34,20 +34,20 @@ export default Component.extend({
         if (isPresent(modelId)) {
           return hrefTo(this, 'posts', modelId, queryParams);
         }
-        break;
+        return '#';
       }
       case 'Follow': {
         const actor = get(activity, 'actor');
         if (isPresent(actor)) {
           return hrefTo(this, 'users', actor, queryParams);
         }
-        break;
+        return '#';
       }
       case 'Comment': {
         if (isPresent(modelId)) {
           return hrefTo(this, 'comments', modelId, queryParams);
         }
-        break;
+        return '#';
       }
       case 'PostLike':
       case 'CommentLike': {
@@ -58,7 +58,7 @@ export default Component.extend({
           }
           return hrefTo(this, 'posts', id, queryParams);
         }
-        break;
+        return '#';
       }
       case 'GroupInvite': {
         if (isPresent(modelId)) {
