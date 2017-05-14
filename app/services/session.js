@@ -26,7 +26,7 @@ export default Session.extend({
    */
   isCurrentUser(user) {
     const hasUser = get(this, 'hasUser');
-    if (!hasUser) { return false; }
+    if (!hasUser || !user) { return false; }
     const sessionId = get(this, 'account.id');
     const userId = get(user, 'id') || user;
     return sessionId === userId;
