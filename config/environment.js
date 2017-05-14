@@ -73,7 +73,6 @@ module.exports = function(environment) {
           'kitsu.io/assets',
           'staging.kitsu.io/assets'
         ],
-        ignoreErrors: ['/^TaskCancelation.*/'],
         includePaths: [/https?:\/\/(staging\.)?kitsu\.io/],
         environment: process.env.HEROKU_EMBER_APP
       }
