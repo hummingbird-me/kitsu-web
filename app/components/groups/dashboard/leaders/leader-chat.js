@@ -68,7 +68,7 @@ export default Component.extend(Pagination, {
   },
 
   _scrollToBottom() {
-    const [element] = get(this, 'element').getElementsByClassName('leader-chat-wrapper');
+    const element = get(this, 'element').getElementsByClassName('leader-chat-wrapper')[0];
     element.scrollTop = (element.scrollHeight - element.clientHeight);
   }
 });

@@ -97,7 +97,7 @@ export default Component.extend(Pagination, {
   },
 
   _scrollToBottom() {
-    const [element] = get(this, 'element').getElementsByClassName('ticket-history');
+    const element = get(this, 'element').getElementsByClassName('ticket-history')[0];
     this.$(element).animate({
       scrollTop: (element.scrollHeight - element.clientHeight)
     }, 1000);

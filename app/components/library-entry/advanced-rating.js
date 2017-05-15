@@ -32,18 +32,18 @@ export default Component.extend({
       return parseFloat(parseFloat(value).toFixed(1));
     },
 
-    onSlide([rating]) {
+    onSlide(rating) {
       this._updateHandle(rating);
     },
 
-    onClick([rating]) {
+    onClick(rating) {
       get(this, 'debounceClick').perform(rating);
     }
   },
 
   _createHandleDOM() {
-    const [slider] = document.getElementsByClassName('advanced-rating-slider');
-    const [element] = slider.getElementsByClassName('noUi-handle');
+    const slider = document.getElementsByClassName('advanced-rating-slider')[0];
+    const element = slider.getElementsByClassName('noUi-handle')[0];
     const handleDot = document.createElement('div');
     handleDot.classList.add('noUi-handle-dot');
     const handleBackground = document.createElement('span');
@@ -60,12 +60,12 @@ export default Component.extend({
 
   _updateHandle(rating) {
     const value = ((rating - 1) * 10);
-    const [element] = document.getElementsByClassName('advanced-rating-slider');
+    const element = document.getElementsByClassName('advanced-rating-slider')[0];
     if (!element) { return; }
     this._scheduleRead(() => {
       const offset = -((value / 100) * element.clientWidth);
       this._scheduleWork(() => {
-        const [handle] = element.getElementsByClassName('noUi-handle-background');
+        const handle = element.getElementsByClassName('noUi-handle-background')[0];
         handle.style.left = `${offset}px`;
       });
     });

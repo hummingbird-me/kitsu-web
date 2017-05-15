@@ -35,8 +35,7 @@ function injectBrowser(src) {
       done();
       reject();
     };
-    const [head] = document.getElementsByTagName('head');
-    head.appendChild(element);
+    document.head.appendChild(element);
   });
 }
 
