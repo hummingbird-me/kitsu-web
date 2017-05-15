@@ -27,8 +27,9 @@
                 start=year
                 step=1
                 connect=true
+                formatTo=(action "formatValue")
                 on-slide=(action (mut dirtyYear))
-                on-set=(action (mut year) dirtyYear)
+                on-change=(action (mut year) dirtyYear)
               }}
             </div>
             <div class="filter-legend">
@@ -50,13 +51,12 @@
             <div class="filter-slider--wrapper">
               {{range-slider
                 class="slider"
-                min=0
-                max=100
                 start=averageRating
                 connect=true
                 step=1
+                formatTo=(action "formatValue")
                 on-slide=(action (mut dirtyRating))
-                on-set=(action (mut averageRating) dirtyRating)
+                on-change=(action (mut averageRating) dirtyRating)
               }}
             </div>
             <div class="filter-legend">
@@ -95,8 +95,9 @@
                   start=episodeCount
                   step=1
                   connect=true
+                  formatTo=(action "formatValue")
                   on-slide=(action (mut dirtyEpisodes))
-                  on-set=(action (mut episodeCount) dirtyEpisodes)
+                  on-change=(action (mut episodeCount) dirtyEpisodes)
                 }}
               </div>
               <div class="filter-legend">

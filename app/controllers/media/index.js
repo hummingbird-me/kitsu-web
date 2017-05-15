@@ -42,6 +42,12 @@ export default Controller.extend({
     set(this, 'queryParams', Object.assign(mediaQueryParams, queryParams));
   },
 
+  actions: {
+    formatValue(value) {
+      return parseFloat(parseFloat(value).toFixed(0));
+    }
+  },
+
   _handleScroll() {
     if (jQuery(document).scrollTop() >= 51) {
       jQuery('.filter-options').addClass('scrolled');
