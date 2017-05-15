@@ -8,17 +8,21 @@ const targets = require('./config/targets');
 module.exports = function(defaults) {
   const app = new EmberApp(defaults, {
     browseryStats: EmberApp.env() === 'development',
+
     babel: {
       comments: false,
       plugins: ['transform-object-rest-spread']
     },
+
     'ember-cli-babel': {
       includePolyfill: true
     },
+
     sourcemaps: {
       enabled: true,
       extensions: ['js']
     },
+
     outputPaths: {
       app: {
         css: {
@@ -27,9 +31,11 @@ module.exports = function(defaults) {
         }
       }
     },
+
     sassOptions: {
       includePaths: ['node_modules/bootstrap/scss']
     },
+
     postcssOptions: {
       compile: { enabled: false },
       filter: {
@@ -42,6 +48,7 @@ module.exports = function(defaults) {
         ]
       }
     },
+
     // can be removed when ember-web-app supports mstile
     fingerprint: {
       exclude: [
@@ -51,6 +58,7 @@ module.exports = function(defaults) {
         'mstile-310x310.png'
       ]
     },
+
     svgJar: {
       persist: false,
       optimizer: {
@@ -62,6 +70,26 @@ module.exports = function(defaults) {
         ]
       }
     },
+
+    // addons
+    'ember-composable-helpers': {
+      only: [
+        // Action
+        'pipe', 'toggle', 'queue',
+        // Array
+        'array', 'map-by', 'sort-by', 'filter-by', 'reject-by',
+        'take', 'repeat',
+        // Object
+        'group-by',
+        // Math
+        'inc'
+      ]
+    },
+
+    'ember-cli-string-helpers': {
+      only: ['capitalize', 'classify', 'html-safe', 'truncate', 'w']
+    },
+
     // assets
     nodeAssets: {
       autosize: {
@@ -87,10 +115,6 @@ module.exports = function(defaults) {
       hoverintent: {
         srcDir: 'dist',
         import: ['hoverintent.min.js']
-      },
-      nouislider: {
-        srcDir: 'distribute',
-        import: ['nouislider.css', 'nouislider.js']
       }
     }
   });
