@@ -20,10 +20,16 @@
               </span>
             </div>
             <div class="filter-slider--wrapper">
-              {{ui/slider-input
-                options=(hash range=(array 1907 maxYear) initial=year)
-                onSlide=(action (mut dirtyYear))
-                onSet=(action (mut year) dirtyYear)}}
+              {{range-slider
+                class="slider"
+                min=1907
+                max=maxYear
+                start=year
+                step=1
+                connect=true
+                on-slide=(action (mut dirtyYear))
+                on-set=(action (mut year) dirtyYear)
+              }}
             </div>
             <div class="filter-legend">
               <div class="low-value">1907</div>
@@ -38,14 +44,20 @@
                 {{t "media.index.filters.score"}}
               </label>
               <span class="filter-values">
-                {{dirtyRating.firstObject}} - {{dirtyRating.lastObject}}
+                {{dirtyRating.firstObject}}% - {{dirtyRating.lastObject}}%
               </span>
             </div>
             <div class="filter-slider--wrapper">
-              {{ui/slider-input
-                options=(hash range=(array 0 100) initial=averageRating)
-                onSlide=(action (mut dirtyRating))
-                onSet=(action (mut averageRating) dirtyRating)}}
+              {{range-slider
+                class="slider"
+                min=0
+                max=100
+                start=averageRating
+                connect=true
+                step=1
+                on-slide=(action (mut dirtyRating))
+                on-set=(action (mut averageRating) dirtyRating)
+              }}
             </div>
             <div class="filter-legend">
               <div class="low-value">
@@ -76,10 +88,16 @@
                 </span>
               </div>
               <div class="filter-slider--wrapper">
-                {{ui/slider-input
-                  options=(hash range=(array 1 100) initial=episodeCount)
-                  onSlide=(action (mut dirtyEpisodes))
-                  onSet=(action (mut episodeCount) dirtyEpisodes)}}
+                {{range-slider
+                  class="slider"
+                  min=1
+                  max=100
+                  start=episodeCount
+                  step=1
+                  connect=true
+                  on-slide=(action (mut dirtyEpisodes))
+                  on-set=(action (mut episodeCount) dirtyEpisodes)
+                }}
               </div>
               <div class="filter-legend">
                 <div class="low-value">1</div>

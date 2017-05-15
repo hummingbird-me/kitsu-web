@@ -1,14 +1,12 @@
-{{ui/slider-input
+{{range-slider
   class="advanced-rating-slider"
-  options=(hash
-    range=(array 1 10)
-    step=0.5
-    decimal=1
-    doubleSided=false
-    initial=rating
-    connect=(array false true)
-    showTooltips=true
-  )
-  onSlide=(action "onSlide")
-  onSet=(action "onClick")
+  min=1
+  max=10
+  start=rating
+  step=0.5
+  connect=(array false true)
+  tooltips=true
+  formatTo=(action "formatValue")
+  on-slide=(action "onSlide")
+  on-set=(action "onClick")
 }}

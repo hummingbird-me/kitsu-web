@@ -28,6 +28,10 @@ export default Component.extend({
   }).restartable(),
 
   actions: {
+    formatValue(value) {
+      return parseFloat(parseFloat(value).toFixed(1));
+    },
+
     onSlide([rating]) {
       this._updateHandle(rating);
     },
