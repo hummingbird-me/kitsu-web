@@ -30,6 +30,11 @@
               </a>
             </span>
           </div>
+          {{#if account.disabledReason}}
+            <div class="alert alert-danger m-t-1" role="alert">
+              <p>{{t "settings.exports.disabled" reason=account.disabledReason htmlSafe=true}}</p>
+            </div>
+          {{/if}}
         {{else}}
           <button class="import-option" onclick={{toggle-action "exportModal" this}}>
             <span class="import-logo">

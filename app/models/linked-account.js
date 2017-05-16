@@ -13,6 +13,7 @@ const Validations = buildValidations({
 });
 
 export default Base.extend(Validations, {
+  disabledReason: attr('string'),
   externalUserId: attr('string'),
   kind: attr('string'),
   shareFrom: attr('boolean'),
