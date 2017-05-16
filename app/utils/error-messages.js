@@ -21,7 +21,7 @@ export default function errorMessages(obj) {
     reason = isEmberArray(errors) ? capitalize(get(errors[0], 'detail') || get(errors[0], 'title')) :
       get(lookupTable, errors);
   }
-  if (reason === 'Internal Server Error' || reason.charAt(0) === '<') {
+  if (!reason || reason === 'Internal Server Error' || reason.charAt(0) === '<') {
     reason = defaultMessage;
   }
   return reason;
