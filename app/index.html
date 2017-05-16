@@ -33,14 +33,14 @@
         dark: '{{rootURL}}assets/dark.css'
       };
 
-      let theme = 'light';
+      var theme = 'light';
       if (window.localStorage) {
-        const cacheStorage = window.localStorage.getItem('storage:last-used');
+        var cacheStorage = window.localStorage.getItem('storage:last-used');
         if (cacheStorage) {
           theme = JSON.parse(cacheStorage).theme || theme;
         }
       }
-      const link = document.createElement('link');
+      var link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = window.Kitsu.themes[theme];
       link.dataset.theme = theme;
