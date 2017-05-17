@@ -1,0 +1,17 @@
+<div class="favorite-categories">
+  <h5>MY FAVORITE CATEGORIES</h5>
+  <div class="categories-list">
+    <div>Fantasy</div>
+    <div>Comedy</div>
+  </div>
+</div>
+<div class="categories">
+  <h5>CATEGORIES</h5>
+  <div class="categories-list">
+    {{#each getDataTask.last.value as |category|}}
+      <div>
+        {{category.name}}
+      </div>
+    {{/each}}
+  </div>
+</div>

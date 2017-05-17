@@ -1,0 +1,24 @@
+<div class="explore-search--wrapper">
+  <span class="icon">
+    {{svg-jar "search"}}
+  </span>
+  {{one-way-search query
+    update=(action (mut query))
+    class="explore-search-input"
+    placeholder="What are you searching for?"
+  }}
+</div>
+
+{{search-results
+  tooltipClass="explore-search-dropdown"
+  target=".explore-search-input"
+  attachment="top left"
+  targetAttachment="bottom left"
+  offset="0px 0px"
+  query=query
+  isOpened=(gt query.length 2)
+}}
+
+<div class="explore-search-info">
+  Or, browse with the <a href={{href-to "anime.index"}}>advanced search</a>
+</div>
