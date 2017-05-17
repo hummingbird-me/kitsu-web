@@ -16,7 +16,8 @@ export default Component.extend({
 
   getDataTask: task(function* () {
     return yield get(this, 'store').query('genre', {
-      page: { limit: 20 }
+      sort: 'name',
+      page: { limit: 40 }
     });
   }).restartable()
 });
