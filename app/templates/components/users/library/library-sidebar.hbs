@@ -1,10 +1,13 @@
 <div class="card is-sticky">
-  {{#one-way-select media
+  {{#power-select
+    searchEnabled=false
     options=mediaOptions
-    update=updateMedia
-    class="custom-select mb-2 mr-sm-2 mb-sm-0" as |option|}}
+    selected=media
+    onchange=(action updateMedia)
+    triggerClass="m-b-1"
+    as |option|}}
     {{t "users.library.sidebar.media-select" user=user.name type=option}}
-  {{/one-way-select}}
+  {{/power-select}}
 
   <ul class="library-sections">
     <li class={{if (eq status "all") "active"}}>

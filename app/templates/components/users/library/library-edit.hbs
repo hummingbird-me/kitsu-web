@@ -2,18 +2,20 @@
   {{#modal.body}}
     <div class="edit-modal--body">
       <h6>{{libraryEntry.media.computedTitle}}</h6>
+
       {{! Status }}
       <div class="form-group row">
         <label class="col-sm col-form-label">
           {{t "users.library.edit.status"}}
         </label>
         <div class="col-sm-7">
-          {{#one-way-select changeset.status
+          {{#power-select
+            searchEnabled=false
             options=statuses
-            update=(action (mut changeset.status))
-            class="form-control" as |option|}}
+            selected=changeset.status
+            onchange=(action (mut changeset.status)) as |option|}}
             {{t (concat "library-shared." option) type=libraryEntry.media.modelType}}
-          {{/one-way-select}}
+          {{/power-select}}
         </div>
       </div>
 
@@ -24,10 +26,10 @@
         </label>
         <div class="col-sm-7">
           <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            {{one-way-number changeset.progress
+            {{ui/selectable-input changeset.progress
               min="0"
               max=libraryEntry.media.unitCount
-              update=(pipe
+              update=(pipe-action
                 (action "sanitizeNumber")
                 (action (mut changeset.progress))
               )
@@ -65,9 +67,9 @@
         </label>
         <div class="col-sm-7">
           <div class="input-group">
-            {{one-way-number changeset.reconsumeCount
+            {{ui/selectable-input changeset.reconsumeCount
               min="0"
-              update=(pipe
+              update=(pipe-action
                 (action "sanitizeNumber")
                 (action (mut changeset.reconsumeCount))
               )
@@ -88,13 +90,13 @@
           {{t "users.library.edit.privacy"}}
         </label>
         <div class="col-sm-7">
-          {{one-way-select changeset.private
+          {{#power-select
+            searchEnabled=false
             options=privacies
-            optionTargetPath="id"
-            optionLabelPath="value"
-            update=(action (mut changeset.private))
-            class="form-control"
-          }}
+            selected=(find-by "id" changeset.private privacies)
+            onchange=(action "selectUpdate" "private") as |option|}}
+            {{option.value}}
+          {{/power-select}}
         </div>
       </div>
 
@@ -129,7 +131,6 @@
             format="DD/MM/YYYY"
             yearRange="1900,currentYear"
             placeholder="DD/MM/YYYY"
-            options=(hash maxDate=(now))
           }}
         </div>
       </div>

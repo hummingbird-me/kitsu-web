@@ -39,6 +39,10 @@ export default Component.extend({
       return isNaN(parsed) ? value : parsed;
     },
 
+    selectUpdate(attribute, object) {
+      set(this, `changeset.${attribute}`, get(object, 'id'));
+    },
+
     rewatch() {
       set(this, 'changeset.reconsumeCount', get(this, 'changeset.reconsumeCount') + 1);
       set(this, 'changeset.progress', 0);

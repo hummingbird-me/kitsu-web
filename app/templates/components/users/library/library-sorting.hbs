@@ -1,7 +1,11 @@
-<label class="mr-sm-2">{{t "users.library.sorting.label"}}</label>
-{{#one-way-select sort
+<span>{{t "users.library.sorting.label"}}</span>
+{{#power-select
+  searchEnabled=false
   options=sortingOptions
-  update=update
-  class="custom-select mb-2 mr-sm-2 mb-sm-0" as |option|}}
+  selected=sort
+  onchange=(action update)
+  triggerClass="d-inline-block"
+  matchTriggerWidth=false
+  as |option|}}
   {{t (concat "users.library.sorting.options." option)}}
-{{/one-way-select}}
+{{/power-select}}
