@@ -1,11 +1,11 @@
-import Component from 'ember-component';
+import BaseComponent from 'client/components/explore/-base';
+import layout from 'client/templates/components/explore/-base';
 import get from 'ember-metal/get';
-import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 
-export default Component.extend({
-  classNames: ['explore-section'],
-  store: service(),
+export default BaseComponent.extend({
+  layout,
+  title: 'Highest Rated',
 
   init() {
     this._super(...arguments);
@@ -16,7 +16,8 @@ export default Component.extend({
 
   getDataTask: task(function* () {
     return yield get(this, 'store').query('anime', {
-      page: { limit: 5 }
+      page: { limit: get(this, 'limit') },
+      sort: '-averageRating'
     });
   }).restartable()
 });
