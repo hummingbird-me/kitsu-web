@@ -1,151 +1,152 @@
 {{#bootstrap/bs-modal class="library-edit-modal" onClose=onClose as |modal|}}
-  {{#modal.body}}
-    <div class="edit-modal--body">
-      <h6>{{libraryEntry.media.computedTitle}}</h6>
-
-      {{! Status }}
-      <div class="form-group row">
-        <label class="col-sm col-form-label">
-          {{t "users.library.edit.status"}}
-        </label>
-        <div class="col-sm-7">
-          {{#power-select
-            searchEnabled=false
-            options=statuses
-            selected=changeset.status
-            onchange=(action (mut changeset.status)) as |option|}}
-            {{t (concat "library-shared." option) type=libraryEntry.media.modelType}}
-          {{/power-select}}
-        </div>
+  {{#modal.header}}
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h5>{{libraryEntry.media.computedTitle}}</h5>
+  {{/modal.header}}
+  {{#modal.body class="edit-modal--body"}}
+    {{! Status }}
+    <div class="form-group row">
+      <label class="col-sm col-form-label">
+        {{t "users.library.edit.status"}}
+      </label>
+      <div class="col-sm-7">
+        {{#power-select
+          searchEnabled=false
+          options=statuses
+          selected=changeset.status
+          onchange=(action (mut changeset.status)) as |option|}}
+          {{t (concat "library-shared." option) type=libraryEntry.media.modelType}}
+        {{/power-select}}
       </div>
+    </div>
 
-      {{! Progress }}
-      <div class="form-group row">
-        <label class="col-sm col-form-label">
-          {{t "users.library.edit.progress"}}
-        </label>
-        <div class="col-sm-7">
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            {{ui/selectable-input changeset.progress
-              min="0"
-              max=libraryEntry.media.unitCount
-              update=(pipe-action
-                (action "sanitizeNumber")
-                (action (mut changeset.progress))
-              )
-              class="form-control"
-            }}
-            <div class="input-group-addon">
-              {{#if (gt libraryEntry.media.unitCount 0)}}
-                {{t "users.library.edit.units" type=libraryEntry.media.modelType num=libraryEntry.media.unitCount}}
-              {{else}}
-                -
-              {{/if}}
-            </div>
+    {{! Progress }}
+    <div class="form-group row">
+      <label class="col-sm col-form-label">
+        {{t "users.library.edit.progress"}}
+      </label>
+      <div class="col-sm-7">
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          {{ui/selectable-input changeset.progress
+            min="0"
+            max=libraryEntry.media.unitCount
+            update=(pipe-action
+              (action "sanitizeNumber")
+              (action (mut changeset.progress))
+            )
+            class="form-control"
+          }}
+          <div class="input-group-addon">
+            {{#if (gt libraryEntry.media.unitCount 0)}}
+              {{t "users.library.edit.units" type=libraryEntry.media.modelType num=libraryEntry.media.unitCount}}
+            {{else}}
+              -
+            {{/if}}
           </div>
         </div>
       </div>
+    </div>
 
-      {{! Rating }}
-      <div class="form-group row">
-        <label class="col-sm col-form-label">
-          {{t "users.library.edit.rating"}}
-        </label>
-        <div class="col-sm-7 library-state">
-          {{library-entry/rating-button
-            rating=changeset.rating
-            onClick=(action (mut changeset.rating))
-            showDropdown=true
-          }}
-        </div>
+    {{! Rating }}
+    <div class="form-group row">
+      <label class="col-sm col-form-label">
+        {{t "users.library.edit.rating"}}
+      </label>
+      <div class="col-sm-7 library-state">
+        {{library-entry/rating-button
+          rating=changeset.rating
+          onClick=(action (mut changeset.rating))
+          showDropdown=true
+        }}
       </div>
+    </div>
 
-      {{! Rewatch }}
-      <div class="form-group row">
-        <label class="col-sm col-form-label">
-          {{t "users.library.edit.rewatch" type=libraryEntry.media.modelType}}
-        </label>
-        <div class="col-sm-7">
-          <div class="input-group">
-            {{ui/selectable-input changeset.reconsumeCount
-              min="0"
-              update=(pipe-action
-                (action "sanitizeNumber")
-                (action (mut changeset.reconsumeCount))
-              )
-              class="form-control"
-            }}
-            <span class="input-group-btn">
-              <button class="btn btn-secondary" type="button" onclick={{action "rewatch"}}>
-                {{t "users.library.edit.start-rewatch" type=libraryEntry.media.modelType}}
-              </button>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {{! Privacy }}
-      <div class="form-group row">
-        <label class="col-sm col-form-label">
-          {{t "users.library.edit.privacy"}}
-        </label>
-        <div class="col-sm-7">
-          {{#power-select
-            searchEnabled=false
-            options=privacies
-            selected=(find-by "id" changeset.private privacies)
-            onchange=(action "selectUpdate" "private") as |option|}}
-            {{option.value}}
-          {{/power-select}}
-        </div>
-      </div>
-
-      {{! Started }}
-      {{! @TODO(Vevix): These require API Changes }}
-      <div class="form-group row">
-        <label class="col-sm col-form-label">
-          {{t "users.library.edit.started"}}
-        </label>
-        <div class="col-sm-7">
-         {{pikaday-input
-            useUTC=true
-            class="form-control"
-            format="DD/MM/YYYY"
-            yearRange="1900,currentYear"
-            placeholder="DD/MM/YYYY"
-            options=(hash maxDate=(now))
-          }}
-        </div>
-      </div>
-
-      {{! Finished }}
-      {{! @TODO(Vevix): These require API Changes }}
-      <div class="form-group row">
-        <label class="col-sm col-form-label">
-          {{t "users.library.edit.finished"}}
-        </label>
-        <div class="col-sm-7">
-          {{pikaday-input
-            useUTC=true
-            class="form-control"
-            format="DD/MM/YYYY"
-            yearRange="1900,currentYear"
-            placeholder="DD/MM/YYYY"
-          }}
-        </div>
-      </div>
-
-      {{! Notes }}
-      <div class="form-group row">
-        <label class="col-sm col-form-label">
-          {{t "users.library.edit.notes"}}
-        </label>
-        <div class="col-sm-7">
-          {{expanding-textarea changeset.notes
-            update=(action (mut changeset.notes))
+    {{! Rewatch }}
+    <div class="form-group row">
+      <label class="col-sm col-form-label">
+        {{t "users.library.edit.rewatch" type=libraryEntry.media.modelType}}
+      </label>
+      <div class="col-sm-7">
+        <div class="input-group">
+          {{ui/selectable-input changeset.reconsumeCount
+            min="0"
+            update=(pipe-action
+              (action "sanitizeNumber")
+              (action (mut changeset.reconsumeCount))
+            )
             class="form-control"
           }}
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button" onclick={{action "rewatch"}}>
+              {{t "users.library.edit.start-rewatch" type=libraryEntry.media.modelType}}
+            </button>
+          </span>
         </div>
+      </div>
+    </div>
+
+    {{! Privacy }}
+    <div class="form-group row">
+      <label class="col-sm col-form-label">
+        {{t "users.library.edit.privacy"}}
+      </label>
+      <div class="col-sm-7">
+        {{#power-select
+          searchEnabled=false
+          options=privacies
+          selected=(find-by "id" changeset.private privacies)
+          onchange=(action "selectUpdate" "private") as |option|}}
+          {{option.value}}
+        {{/power-select}}
+      </div>
+    </div>
+
+    {{! Started }}
+    <div class="form-group row">
+      <label class="col-sm col-form-label">
+        {{t "users.library.edit.started"}}
+      </label>
+      <div class="col-sm-7">
+        {{pikaday-input
+          useUTC=true
+          class="form-control"
+          format="DD/MM/YYYY"
+          yearRange="1900,currentYear"
+          placeholder="DD/MM/YYYY"
+          onSelection=(action (mut changeset.startedAt))
+        }}
+      </div>
+    </div>
+
+    {{! Finished }}
+    <div class="form-group row">
+      <label class="col-sm col-form-label">
+        {{t "users.library.edit.finished"}}
+      </label>
+      <div class="col-sm-7">
+        {{pikaday-input
+          useUTC=true
+          class="form-control"
+          format="DD/MM/YYYY"
+          yearRange="1900,currentYear"
+          placeholder="DD/MM/YYYY"
+          onSelection=(action (mut changeset.finishedAt))
+        }}
+      </div>
+    </div>
+
+    {{! Notes }}
+    <div class="form-group row">
+      <label class="col-sm col-form-label">
+        {{t "users.library.edit.notes"}}
+      </label>
+      <div class="col-sm-7">
+        {{expanding-textarea changeset.notes
+          update=(action (mut changeset.notes))
+          class="form-control"
+        }}
       </div>
     </div>
   {{/modal.body}}
