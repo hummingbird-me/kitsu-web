@@ -122,7 +122,6 @@ RouterInstance.map(function() {
   this.route('password-reset');
   this.route('confirm-email');
 
-  this.route('privacy');
   this.route('terms');
   this.route('about');
 
