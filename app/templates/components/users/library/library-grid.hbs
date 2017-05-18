@@ -1,15 +1,19 @@
 <section class="media-browse">
   <div class="media-grid container">
     <div class="row">
-      {{#each libraryEntries as |libraryEntry|}}
-        {{#occludable-area rootMargin=(hash bottom=1000) class="poster-wrapper" bufferClass="library-occlusion-buffer-grid"}}
-          {{users/library/library-grid/library-entry
-            libraryEntry=libraryEntry
-            saveEntry=saveEntry
-            removeEntry=removeEntry
-          }}
-        {{/occludable-area}}
-      {{/each}}
+      {{#if isLoading}}
+        {{users/library/library-grid/loader tagName=""}}
+      {{else}}
+        {{#each libraryEntries as |libraryEntry|}}
+          {{#occludable-area rootMargin=(hash bottom=1000) class="poster-wrapper" bufferClass="library-occlusion-buffer-grid"}}
+            {{users/library/library-grid/library-entry
+              libraryEntry=libraryEntry
+              saveEntry=saveEntry
+              removeEntry=removeEntry
+            }}
+          {{/occludable-area}}
+        {{/each}}
+      {{/if}}
     </div>
   </div>
 </section>

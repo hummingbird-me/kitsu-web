@@ -38,13 +38,22 @@
       </section>
 
       {{! Library Entries }}
-      {{#infinite-pagination onPagination=(route-action "onPagination")}}
+      {{#infinite-pagination
+        showLoader=false
+        onPagination=(route-action "onPagination") as |isLoading|}}
         {{component (concat "users/library/library-" layoutStyle)
           media=media
           libraryEntries=libraryEntries
+          isLoading=model.taskInstance.isRunning
           saveEntry=(route-action "saveEntry")
           removeEntry=(route-action "removeEntry")
         }}
+
+        {{#if isLoading}}
+          <div class="m-b-2 library-list-pagination">
+            {{component (concat "users/library/library-" layoutStyle "/loader")}}
+          </div>
+        {{/if}}
       {{/infinite-pagination}}
     </div>
 

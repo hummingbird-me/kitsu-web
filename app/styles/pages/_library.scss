@@ -227,7 +227,7 @@
   border: 1px solid $divider-color;
   border-radius: 3px;
   padding: 0;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   table {
     display: flex;
     flex-flow: column nowrap;
@@ -952,16 +952,63 @@
         background: transparent;
       }
     }
-    .dropdown-menu {
+    .ember-power-select {
       padding: 0;
       left: 30px;
     }
-    .dropdown-item {
+    .ember-power-select-option {
       border-bottom: 1px solid $divider-color;
       font-size: 12px;
       padding: 8px 10px;
       &:last-child {
         border-bottom: none;
+      }
+    }
+  }
+}
+
+// Library List
+.library-list-skeleton {
+  min-height: 60px;
+  .library-list-top {
+    top: 0px;
+    height: 12.5px;
+    width: 100%;
+  }
+  .library-list-bottom {
+    @extend .library-list-top;
+    top: initial;
+    bottom: 0px;
+  }
+  .library-list-start {
+    width: 12px;
+    height: 60px;
+  }
+  .library-list-title {
+    width: 15px;
+    height: 60px;
+    left: 48px;
+  }
+  .library-list-end {
+    @extend .library-list-start;
+    right: 0;
+  }
+}
+
+.library-list-pagination {
+  margin-top: -20px;
+}
+
+.library-grid-skeleton {
+  min-height: 250px;
+  width: 100%;
+  margin-bottom: 15px;
+  .library-grid-first {
+    width: 10px;
+    height: 250px;
+    @for $i from 0 to 5 {
+      &:nth-child(#{$i}) {
+        left: #{(153 * $i) + (10 * ($i - 1))}px;
       }
     }
   }

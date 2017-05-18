@@ -30,16 +30,20 @@
     </tr>
   </thead>
   <tbody>
-    {{#each libraryEntries as |libraryEntry|}}
-      {{#occludable-area rootMargin=(hash bottom=1000) bufferClass="library-occlusion-buffer-list"}}
-        {{users/library/library-list/library-entry
-          libraryEntry=libraryEntry
-          isChecked=(contains libraryEntry selectedLibraryEntries)
-          saveEntry=saveEntry
-          removeEntry=removeEntry
-          checkedEntry=(action "checkedEntry")
-        }}
-      {{/occludable-area}}
-    {{/each}}
+    {{#if isLoading}}
+      {{users/library/library-list/loader}}
+    {{else}}
+      {{#each libraryEntries as |libraryEntry|}}
+        {{#occludable-area rootMargin=(hash bottom=1000) bufferClass="library-occlusion-buffer-list"}}
+          {{users/library/library-list/library-entry
+            libraryEntry=libraryEntry
+            isChecked=(contains libraryEntry selectedLibraryEntries)
+            saveEntry=saveEntry
+            removeEntry=removeEntry
+            checkedEntry=(action "checkedEntry")
+          }}
+        {{/occludable-area}}
+      {{/each}}
+    {{/if}}
   </tbody>
 </table>
