@@ -10,7 +10,11 @@
       class="form-control library-progress-input"
     }}
   {{else}}
-    <a href="#" class="link" {{action "showInput"}}>{{progress}}</a>
+    {{#if (can "edit library-entry" libraryEntry)}}
+      <a href="#" class="link" {{action "showInput"}}>{{progress}}</a>
+    {{else}}
+      {{progress}}
+    {{/if}}
   {{/if}}
   /
 </span>

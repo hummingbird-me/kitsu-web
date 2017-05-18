@@ -70,7 +70,7 @@
     {{/dd.content}}
   {{/basic-dropdown}}
 {{else}}
-  <span class="{{class}} rating-button rating-button-{{guid}}" {{action (toggle-action "showTooltip" this)}}>
+  <span class="{{class}} rating-button rating-button-{{guid}}" {{action (toggle "showTooltip" this)}}>
     {{yield}}
   </span>
 {{/if}}

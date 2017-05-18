@@ -30,28 +30,42 @@
     <span class="{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}-rating-cell">
       {{#if (gt changeset.rating 0)}}
         <span class="entry-rating entry-rating-{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}">
-          {{#library-entry/rating-button
-            rating=changeset.rating
-            showDropdown=true
-            simpleDropdown=true
-            onClick=(action "changeRating")
-          }}
+          {{#if (can "edit library-entry" libraryEntry)}}
+            {{#library-entry/rating-button
+              rating=changeset.rating
+              showDropdown=true
+              simpleDropdown=true
+              onClick=(action "changeRating")
+            }}
+              {{library-entry/readonly-rating
+                rating=changeset.rating
+                hideText=true
+              }}
+            {{/library-entry/rating-button}}
+          {{else}}
             {{library-entry/readonly-rating
               rating=changeset.rating
               hideText=true
             }}
-          {{/library-entry/rating-button}}
+          {{/if}}
         </span>
       {{else}}
-        <span class="entry-rating entry-rating-empty empty-rating-{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}">
-          {{#library-entry/rating-button
-            rating=changeset.rating
-            onClick=(action "changeRating")
-          }}
+        <span class="entry-rating entry-rating-empty empty-rating-{{if (or session.account.isSimpleRating (not session.hasUser)) "simple"}}">
+          {{#if (can "edit library-entry" libraryEntry)}}
+            {{#library-entry/rating-button
+              rating=changeset.rating
+              canMutate=(can "edit library-entry" libraryEntry)
+              onClick=(action "changeRating")
+            }}
+              <svg viewBox="0 0 26 26" enable-background="new 0 0 26 26">
+                <path d="M13,2c6.065,0,11,4.935,11,11s-4.935,11-11,11S2,19.065,2,13S6.935,2,13,2 M13,0C5.82,0,0,5.82,0,13 s5.82,13,13,13s13-5.82,13-13S20.18,0,13,0L13,0z"></path>
+              </svg>
+            {{/library-entry/rating-button}}
+          {{else}}
             <svg viewBox="0 0 26 26" enable-background="new 0 0 26 26">
               <path d="M13,2c6.065,0,11,4.935,11,11s-4.935,11-11,11S2,19.065,2,13S6.935,2,13,2 M13,0C5.82,0,0,5.82,0,13 s5.82,13,13,13s13-5.82,13-13S20.18,0,13,0L13,0z"></path>
             </svg>
-          {{/library-entry/rating-button}}
+          {{/if}}
         </span>
       {{/if}}
     </span>
