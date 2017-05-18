@@ -6,6 +6,8 @@ import { task } from 'ember-concurrency';
 export default BaseComponent.extend({
   layout,
   title: 'Highest Rated',
+  more: 'explore.more',
+  name: 'highest-rated',
 
   init() {
     this._super(...arguments);

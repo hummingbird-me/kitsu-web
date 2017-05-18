@@ -6,6 +6,8 @@ import { task } from 'ember-concurrency';
 export default BaseComponent.extend({
   layout,
   title: 'Most Popular',
+  more: 'explore.more',
+  name: 'most-popular',
 
   init() {
     this._super(...arguments);
