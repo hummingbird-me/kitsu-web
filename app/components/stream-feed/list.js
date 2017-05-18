@@ -78,21 +78,7 @@ export default Component.extend(Pagination, {
         return;
       }
     }
-    // spoiler + media set
-    if (get(data, 'spoiler') === true && get(data, 'media') !== undefined) {
-      const type = get(data, 'media.modelType');
-      const entry = yield get(this, 'store').query('library-entry', {
-        filter: {
-          user_id: get(this, 'session.account.id'),
-          kind: type,
-          [`${type}_id`]: get(data, 'media.id')
-        },
-        include: 'unit'
-      }).then(results => get(results, 'firstObject'));
-      if (entry) {
-        set(data, 'spoiledUnit', get(entry, 'unit'));
-      }
-    }
+
     const post = get(this, 'store').createRecord('post', data);
     const [group, activity] = this._createTempActivity(post);
     // update post counter
