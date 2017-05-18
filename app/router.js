@@ -48,7 +48,10 @@ RouterInstance.map(function() {
   this.route('dashboard', { path: '/' });
   this.route('dashboard/redirect', { path: '/dashboard' });
 
-  this.route('explore');
+  this.route('explore', { path: '/explore/:type' }, function() {
+    this.route('category', { path: '/:name' });
+    this.route('more', { path: '/:name' });
+  });
 
   ['anime', 'manga'].forEach((media) => {
     this.route(media, function() {

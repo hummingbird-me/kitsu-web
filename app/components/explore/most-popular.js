@@ -15,7 +15,7 @@ export default BaseComponent.extend({
   },
 
   getDataTask: task(function* () {
-    return yield get(this, 'store').query('anime', {
+    return yield get(this, 'store').query(get(this, 'mediaType'), {
       page: { limit: get(this, 'limit') },
       sort: '-userCount'
     });
