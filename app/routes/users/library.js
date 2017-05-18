@@ -8,13 +8,6 @@ import getTitleField from 'client/utils/get-title-field';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(Pagination, {
-  queryParams: {
-    media: { refreshModel: true },
-    status: { refreshModel: true },
-    sort: { refreshModel: true },
-    title: { refreshModel: true }
-  },
-
   intl: service(),
   cache: storageFor('last-used'),
 
@@ -60,6 +53,10 @@ export default Route.extend(Pagination, {
   },
 
   actions: {
+    refreshModel() {
+      this.refresh();
+    },
+
     saveEntry(changeset) {
       return changeset.save().catch((error) => {
         get(this, 'raven').captureException(error);

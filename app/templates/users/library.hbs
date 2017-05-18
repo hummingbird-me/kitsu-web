@@ -21,10 +21,10 @@
       <section class="library-result-header clearfix">
         {{! Library Layout Buttons }}
         <span class="list-type">
-          <a href="#" class={{if (eq layoutStyle "grid") "active"}} {{action (mut layoutStyle) "grid"}}>
+          <a href="#" class={{if (eq layoutStyle "grid") "active"}} {{action "updateLayout" "grid"}}>
             {{~svg-jar "grid"~}}
           </a>
-          <a href="#" class={{if (eq layoutStyle "list") "active"}} {{action (mut layoutStyle) "list"}}>
+          <a href="#" class={{if (eq layoutStyle "list") "active"}} {{action "updateLayout" "list"}}>
             {{~svg-jar "list"~}}
           </a>
         </span>
