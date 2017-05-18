@@ -23,6 +23,9 @@ const queryParams = new QueryParams({
   title: {
     defaultValue: '',
     refresh: true
+  },
+  preserveScrollPosition: {
+    defaultValue: true
   }
 });
 

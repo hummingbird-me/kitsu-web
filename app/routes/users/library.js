@@ -128,7 +128,7 @@ export default Route.extend(Pagination, {
         kind: media,
         status
       },
-      page: { offset: 0, limit: 50 }
+      page: { offset: 0, limit: 40 }
     };
 
     // apply user sort selection
