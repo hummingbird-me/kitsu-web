@@ -42,7 +42,7 @@
   </thead>
   <tbody>
     {{#each libraryEntries as |libraryEntry|}}
-      {{#occlusion-culling rootMargin=(hash bottom=1000) bufferClass="library-occlusion-buffer-list"}}
+      {{#occludable-area rootMargin=(hash bottom=1000) bufferClass="library-occlusion-buffer-list"}}
         {{users/library/library-list/library-entry
           libraryEntry=libraryEntry
           isChecked=(contains libraryEntry selectedLibraryEntries)
@@ -50,7 +50,7 @@
           removeEntry=removeEntry
           checkedEntry=(action "checkedEntry")
         }}
-      {{/occlusion-culling}}
+      {{/occludable-area}}
     {{/each}}
   </tbody>
 </table>

@@ -1,5 +1,6 @@
 <tr class={{if isChecked "bulk-selected"}}>
   <td class="status status-{{libraryEntry.status}}"></td>
+
   {{! Checkbox }}
   {{#if (can "edit library-entry" libraryEntry)}}
     <td class="checkbox-cell">
@@ -9,6 +10,7 @@
       }}
     </td>
   {{/if}}
+
   {{! Title }}
   <td class="media-cell">
     <span class="cell-poster">
@@ -22,6 +24,7 @@
       </a>
     </span>
   </td>
+
   {{! Rating }}
   <td class="rating-cell">
     <span class="{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}-rating-cell">
@@ -53,14 +56,30 @@
       {{/if}}
     </span>
   </td>
+
   {{! Progress }}
   <td class="progress-cell">
     <span>
-      <a href="#" class="link">{{changeset.progress}}</a>
+      {{#if showProgressEditor}}
+        {{ui/selectable-input changeset.progress
+          min=0
+          max=libraryEntry.media.unitCount
+          update=(pipe-action
+            (action "sanitizeNumber")
+            (action (mut changeset.progress))
+          )
+          class="form-control library-progress-input"
+        }}
+      {{else}}
+        <a href="#" class="link" {{action "showInput"}}>
+          {{changeset.progress}}
+        </a>
+      {{/if}}
       /
     </span>
-    <span>{{or libraryEntry.media.unitCount "-"}}</span>
-    {{! Increment }}
+    <span>{{or libraryEntry.media.unitCount (html-safe "&mdash;")}}</span>
+
+    {{! Increment Button }}
     {{#if (can "edit library-entry" libraryEntry)}}
       {{#unless (eq libraryEntry.media.unitCount changeset.progress)}}
         <a href="#" class="increment-episode" {{action "incrementProgress"}}>
@@ -71,6 +90,7 @@
       {{/unless}}
     {{/if}}
   </td>
+
   {{! Edit }}
   {{#if (can "edit library-entry" libraryEntry)}}
     <td class="edit-entry">
