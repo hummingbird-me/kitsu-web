@@ -1,5 +1,5 @@
-import BaseComponent from 'client/components/explore/-base';
-import layout from 'client/templates/components/explore/-base';
+import BaseComponent from 'client/components/explore/sections/-base';
+import layout from 'client/templates/components/explore/sections/-base';
 import get from 'ember-metal/get';
 import { task } from 'ember-concurrency';
 
