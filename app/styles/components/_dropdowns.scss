@@ -2,20 +2,20 @@
   display: block;
   opacity: 0;
   transform: scale(.8);
-  transition: all 250ms cubic-bezier(.24,.22,.015,1.56);
+  transition: all 200ms cubic-bezier(.24,.22,.015,1.56);
   backface-visibility: hidden;
   pointer-events: none;
   border: none;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-.open>.dropdown-menu, .ember-basic-dropdown--transitioned-in {
+.open > .dropdown-menu {
   opacity: 1;
   transform: scale(1);
   pointer-events: auto;
   display: block!important;
   overflow: hidden;
-  a {
+  a, a:hover {
     color: $body-text-color;
   }
 }
@@ -24,5 +24,41 @@
   svg {
     width: 14px;
     height: 14px;
+  }
+}
+
+// ember-basic-dropdown
+@keyframes fade-scale {
+  0% {
+    opacity: 0;
+    transform: scale(.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ember-basic-dropdown-content {
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 1rem;
+  font-weight: 400;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+  will-change: opacity, transform;
+
+  &.ember-basic-dropdown--transitioning-in {
+    animation: fade-scale 200ms;
+  }
+
+  &.ember-basic-dropdown--transitioning-out {
+    animation: fade-scale 200ms reverse;
+  }
+
+  &.ember-basic-dropdown--transitioned-in {
+    a, a:hover {
+      color: $body-text-color;
+    }
   }
 }

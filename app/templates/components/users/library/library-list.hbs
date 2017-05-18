@@ -12,15 +12,16 @@
 
     <div class="bulk-cta">
       <a class="bulk-btn secondary" href="#" {{action "removeEntries"}}>{{t "users.library.bulk.remove" num=selectedLibraryEntries.length htmlSafe=true}}</a>
-      <a class="bulk-btn dropdown-toggle" href="#" id="bulkMove" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {{t "users.library.bulk.move-to" num=selectedLibraryEntries.length htmlSafe=true}}
-      </a>
-
-      <div class="dropdown-menu" aria-labelledby="bulkMove">
-        {{#each libraryEntryStatuses as |status|}}
-          <a class="dropdown-item" href="#" {{action "updateStatus" status}}>{{t (concat "library-shared." status) type=media}}</a>
-        {{/each}}
-      </div>
+      {{#basic-dropdown as |dd|}}
+        {{#dd.trigger class="bulk-btn dropdown-toggle"}}
+          {{t "users.library.bulk.move-to" num=selectedLibraryEntries.length htmlSafe=true}}
+        {{/dd.trigger}}
+        {{#dd.content}}
+          {{#each libraryEntryStatuses as |status|}}
+            <a class="dropdown-item" href="#" {{action "updateStatus" status}}>{{t (concat "library-shared." status) type=media}}</a>
+          {{/each}}
+        {{/dd.content}}
+      {{/basic-dropdown}}
     </div>
   </section>
 {{/if}}
