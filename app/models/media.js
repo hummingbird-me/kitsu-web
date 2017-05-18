@@ -24,6 +24,7 @@ export default Base.extend({
   ratingRank: attr('number'),
   slug: attr('string'),
   startDate: attr('utc'),
+  status: attr('string'),
   subtype: attr('string'),
   synopsis: attr('string'),
   titles: attr('object'),
@@ -52,19 +53,4 @@ export default Base.extend({
       prev + (parseInt(freqs[curr], 10) || 0)
     ), 0);
   }).readOnly(),
-
-  airingStatus: computed('startDate', 'endDate', 'unitCount', function() {
-    const start = get(this, 'startDate');
-    const end = get(this, 'endDate');
-    if (!start) { return 'nya'; }
-    if (start.isBefore() || start.isSame()) {
-      const isOneDay = get(this, 'unitCount') === 1;
-      const isPastDay = end && (end.isBefore() || end.isSame());
-      return (isOneDay || isPastDay) ? 'finished' : 'current';
-    }
-    const currentDate = moment();
-    const futureDate = moment().add(3, 'months');
-    const isSoon = start.isBetween(currentDate, futureDate);
-    return isSoon ? 'upcoming' : 'nya';
-  }).readOnly()
 });
