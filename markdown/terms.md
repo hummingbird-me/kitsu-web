@@ -1,4 +1,4 @@
-**KITSU, INC.**
+**KITSU, INC.**  
 **TERMS AND CONDITIONS OF USE**
 
 *Version 1.0, December 1, 2016*
@@ -73,9 +73,10 @@ NOTICE REQUIREMENTS
 (e)  A statement by you that you have a good faith belief that the disputed use is not authorized by the owner, its agent, or permissible by law;
 (f)  A statement by you under the penalty of perjury that the information in your notice is accurate that you are the mark holder, copyright owner or authorized to act on such party's behalf.
 
-AGENT FOR CLAIMS
-225 Squibbs Rd Blairsville, PA 15717
-E-Mail: legal@kitsu.io
+AGENT FOR CLAIMS  
+225 Squibbs Rd  
+Blairsville, PA 15717  
+E-Mail: legal@kitsu.io  
 
 
 **3.  DISCLAIMER OF WARRANTY; LIMITATION OF LIABILITY**
@@ -135,9 +136,9 @@ If you violate the letter or spirit of these Terms of Use, or otherwise create r
 
 You may opt out of this agreement to arbitrate. If you do so, neither you nor Kitsu can require the other to participate in an arbitration proceeding. To opt out, you must notify Kitsu in writing within 30 days of the date that you first became subject to this arbitration provision. You must use this address to opt out:
 
-Josh Fabian
-225 Squibbs Rd
-Blairsville, PA 15717
+Josh Fabian  
+225 Squibbs Rd  
+Blairsville, PA 15717  
 
 You must include your name and residence address, the email address you use for your Kitsu account, and a clear and specific statement that you want to unconditionally opt out of this arbitration agreement.
 
