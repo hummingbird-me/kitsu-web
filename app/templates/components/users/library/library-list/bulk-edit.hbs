@@ -1,0 +1,24 @@
+<section class="bulk-edit is-sticky clearfix">
+  <div class="media-selected">
+    <span class="descriptor">
+      {{t "users.library.bulk.selected" num=selectedCount type=media}}
+    </span>
+    <a class="select-amount" href="#" {{action selectAll}}>{{t "users.library.bulk.select-all"}}</a>
+    <span class="seperator"> · </span>
+    <a class="select-amount" href="#" {{action resetSelection}}>{{t "users.library.bulk.select-none"}}</a>
+  </div>
+
+  <div class="bulk-cta">
+    <a class="bulk-btn secondary" href="#" {{action removeEntries}}>{{t "users.library.bulk.remove" num=selectedCount htmlSafe=true}}</a>
+    {{#basic-dropdown as |dd|}}
+      {{#dd.trigger class="bulk-btn dropdown-toggle"}}
+        {{t "users.library.bulk.move-to" num=selectedCount htmlSafe=true}}
+      {{/dd.trigger}}
+      {{#dd.content}}
+        {{#each libraryEntryStatuses as |status|}}
+          <a class="dropdown-item" href="#" {{action updateStatus status}}>{{t (concat "library-shared." status) type=media}}</a>
+        {{/each}}
+      {{/dd.content}}
+    {{/basic-dropdown}}
+  </div>
+</section>

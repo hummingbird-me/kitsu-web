@@ -2,7 +2,6 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { gt } from 'ember-computed';
-import libraryStatus from 'client/utils/library-status';
 
 export default Component.extend({
   tagName: '',
@@ -11,7 +10,6 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
     set(this, 'selectedLibraryEntries', []);
-    set(this, 'libraryEntryStatuses', libraryStatus.getEnumKeys());
   },
 
   actions: {
