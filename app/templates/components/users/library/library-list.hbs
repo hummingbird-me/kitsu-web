@@ -21,6 +21,9 @@
       <th class="media-cell">{{t "users.library.list.table-header.title" type=media}}</th>
       <th class="rating-cell">{{t "users.library.list.table-header.rating"}}</th>
       <th class="progress-cell">{{t "users.library.list.table-header.progress"}}</th>
+      {{#if (eq media "manga")}}
+        <th class="progress-cell">{{t "users.library.list.table-header.volumes"}}</th>
+      {{/if}}
       {{#if (can "edit library-entry" libraryEntries.firstObject)}}
         <th class="edit-entry"></th>
       {{/if}}

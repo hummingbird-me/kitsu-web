@@ -31,6 +31,7 @@ export default Base.extend(Validations, {
   reconsumeCount: attr('number'),
   status: attr('string'),
   updatedAt: attr('utc'),
+  volumesOwned: attr('number'),
 
   anime: belongsTo('anime'),
   manga: belongsTo('manga'),
