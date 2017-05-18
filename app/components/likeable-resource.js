@@ -12,6 +12,7 @@ export default Component.extend({
   isLiked: false,
   showUsers: false,
   store: service(),
+  queryCache: service(),
   metrics: service(),
 
   resourceFilterKey: getter(function() {
@@ -24,7 +25,7 @@ export default Component.extend({
 
   getLikes: task(function* () {
     const key = get(this, 'resourceFilterKey');
-    return yield get(this, 'store').query(get(this, 'resourceLikeType'), {
+    return yield get(this, 'queryCache').query(get(this, 'resourceLikeType'), {
       filter: { [key]: get(this, 'resource.id') },
       fields: { users: ['avatar', 'name'].join(',') },
       page: { limit: 4 },
@@ -48,10 +49,8 @@ export default Component.extend({
   }).drop(),
 
   getLocalLike: task(function* () {
-    const key = get(this, 'resourceFilterKey');
-    return yield get(this, 'store').query(get(this, 'resourceLikeType'), {
-      filter: { [key]: get(this, 'resource.id'), user_id: get(this, 'session.account.id') }
-    });
+    const type = get(this, 'resourceLikeType');
+    return yield get(this, 'queryCache').query(type, this._getRequestOptions());
   }).drop(),
 
   createLike: task(function* () {
@@ -87,6 +86,8 @@ export default Component.extend({
     // commit and handle error
     yield like.destroyRecord().then(() => {
       get(this, 'likes').removeObject(like);
+      const type = get(this, 'resouceLikeType');
+      get(this, 'queryCache').invalidateQuery(type, this._getRequestOptions());
     }).catch(() => {
       set(this, 'isLiked', true);
       invokeAction(this, 'likesCountUpdate', get(this, 'likesCount') + 1);
@@ -118,6 +119,13 @@ export default Component.extend({
         set(this, 'isLiked', true);
       }
     }).catch(() => {});
+  },
+
+  _getRequestOptions() {
+    const key = get(this, 'resourceFilterKey');
+    return {
+      filter: { [key]: get(this, 'resource.id'), user_id: get(this, 'session.account.id') }
+    };
   },
 
   _didAuthenticate: observer('session.hasUser', function() {

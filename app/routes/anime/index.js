@@ -1,6 +1,7 @@
 import MediaIndexRoute from 'client/routes/media/index';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
 
 export default MediaIndexRoute.extend({
@@ -10,6 +11,7 @@ export default MediaIndexRoute.extend({
     streamers: { refreshModel: true, replace: true },
     season: { refreshModel: true, replace: true }
   },
+  queryCache: service(),
 
   beforeModel() {
     this._super(...arguments);
@@ -17,7 +19,7 @@ export default MediaIndexRoute.extend({
     if (get(controller, 'availableStreamers') !== undefined) {
       return;
     }
-    get(this, 'store').query('streamer', {
+    get(this, 'queryCache').query('streamer', {
       page: { limit: 10000, offset: 0 }
     }).then(streamers => set(controller, 'availableStreamers', streamers));
   },

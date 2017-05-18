@@ -14,7 +14,7 @@ export default BaseComponent.extend(FlickityActionsMixin, {
   currentTab: 'spring',
 
   getDataTask: task(function* (type) {
-    return yield get(this, 'store').query('anime', {
+    return yield get(this, 'queryCache').query('anime', {
       filter: {
         season_year: this._getYear(),
         season: type

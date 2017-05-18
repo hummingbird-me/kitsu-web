@@ -1,14 +1,17 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import service from 'ember-service/inject';
 import DataErrorMixin from 'client/mixins/routes/data-error';
 import CanonicalRedirectMixin from 'client/mixins/routes/canonical-redirect';
 import CoverPageMixin from 'client/mixins/routes/cover-page';
 
 export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMixin, {
+  queryCache: service(),
+
   model({ name }) {
     if (name.match(/\D+/)) {
-      return get(this, 'store').query('user', {
+      return get(this, 'queryCache').query('user', {
         filter: { name },
         include: 'profileLinks.profileLinkSite,favorites.item'
       }).then(records => get(records, 'firstObject'));

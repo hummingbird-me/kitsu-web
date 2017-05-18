@@ -36,7 +36,7 @@
     dragStart=(action "flickityOnDragStart")
     dragEnd=(action "flickityOnDragEnd")
   }}
-    {{#each initialEntries as |entry|}}
+    {{#each (sort-by (action "sortEntries") initialEntries) as |entry|}}
       {{dashboard/quick-update/item
         entry=entry
         updateEntry=(action "updateEntry" entry)
@@ -74,7 +74,7 @@
 
   {{! Temporary storage for paginated entries }}
   <div class="new-entries" style="display: none">
-    {{#each paginatedRecords as |entry|}}
+    {{#each (sort-by (action "sortEntries") paginatedRecords) as |entry|}}
       {{dashboard/quick-update/item
         entry=entry
         updateEntry=(action "updateEntry" entry)

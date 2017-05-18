@@ -22,6 +22,7 @@ export default Component.extend(Pagination, {
   headTags: service(),
   notify: service(),
   store: service(),
+  queryCache: service(),
   metrics: service(),
   streamRealtime: service(),
   lastUsed: storageFor('last-used'),
@@ -52,7 +53,7 @@ export default Component.extend(Pagination, {
     if (!isEmpty(kind) && kind !== 'all') {
       options.filter = { kind: kind === 'user' ? 'posts' : kind };
     }
-    return yield this.queryPaginated('feed', options);
+    return yield this.queryPaginated('feed', options, { cache: false });
   }).restartable(),
 
   createPost: task(function* (content, options) {
@@ -65,7 +66,7 @@ export default Component.extend(Pagination, {
     if (get(this, 'kitsuGroup') !== undefined) {
       // is the sessioned user a member?
       const groupId = get(this, 'kitsuGroup.id');
-      const groupMember = yield get(this, 'store').query('group-member', {
+      const groupMember = yield get(this, 'queryCache').query('group-member', {
         filter: {
           group: groupId,
           user: get(this, 'session.account.id')
@@ -81,7 +82,7 @@ export default Component.extend(Pagination, {
     // spoiler + media set
     if (get(data, 'spoiler') === true && get(data, 'media') !== undefined) {
       const type = get(data, 'media.modelType');
-      const entry = yield get(this, 'store').query('library-entry', {
+      const entry = yield get(this, 'queryCache').query('library-entry', {
         filter: {
           user_id: get(this, 'session.account.id'),
           kind: type,

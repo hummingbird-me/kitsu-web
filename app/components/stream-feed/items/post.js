@@ -25,6 +25,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
   notify: service(),
   router: service('-routing'),
   store: service(),
+  queryCache: service(),
   metrics: service(),
   host: getter(() => `${location.protocol}//${location.host}`),
 
@@ -110,7 +111,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
         if (get(this, 'kitsuGroupMembership')) {
           set(this, 'groupMembership', get(this, 'kitsuGroupMembership'));
         } else {
-          get(this, 'store').query('group-member', {
+          get(this, 'queryCache').query('group-member', {
             filter: { group, user: get(this, 'session.account') },
             include: 'permissions'
           }).then((records) => {
@@ -171,7 +172,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
   }),
 
   _updateFollow() {
-    get(this, 'store').query('post-follow', {
+    get(this, 'queryCache').query('post-follow', {
       filter: {
         user_id: get(this, 'session.account.id'),
         post_id: get(this, 'post.id')

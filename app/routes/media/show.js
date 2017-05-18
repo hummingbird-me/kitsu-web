@@ -8,6 +8,7 @@ import CoverPageMixin from 'client/mixins/routes/cover-page';
 export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   templateName: 'media/show',
   headData: service(),
+  queryCache: service(),
 
   model({ slug }) {
     const [type] = get(this, 'routeName').split('.');
@@ -17,7 +18,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
     }
     include = include.join(',');
     if (slug.match(/\D+/)) {
-      return get(this, 'store').query(type, { filter: { slug }, include })
+      return get(this, 'queryCache').query(type, { filter: { slug }, include })
         .then(records => get(records, 'firstObject'));
     }
     return get(this, 'store').findRecord(type, slug, { include });

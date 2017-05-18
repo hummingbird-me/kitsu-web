@@ -8,8 +8,8 @@ import { invokeAction } from 'ember-invoke-action';
 import { concat } from 'client/utils/computed-macros';
 
 export default Component.extend({
-  store: service(),
   classNames: ['group-neighbors-widget'],
+  queryCache: service(),
   neighbors: concat('getNeighborsTask.last.value', '_addedNeighbors'),
   filteredNeighbors: filterBy('neighbors', 'isDeleted', false),
 
@@ -29,7 +29,7 @@ export default Component.extend({
   },
 
   getNeighborsTask: task(function* () {
-    return yield get(this, 'store').query('group-neighbor', {
+    return yield get(this, 'queryCache').query('group-neighbor', {
       include: 'destination',
       filter: { source: get(this, 'group.id') }
     });

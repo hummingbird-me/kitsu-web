@@ -9,7 +9,7 @@ export default Component.extend({
 
   getParticipants: task(function* () {
     const type = get(this, 'itemType');
-    return yield get(this, 'store').query('library-entry', {
+    return yield get(this, 'queryCache').query('library-entry', {
       filter: {
         [`${type}_id`]: get(this, 'item.id'),
         following: get(this, 'session.account.id')

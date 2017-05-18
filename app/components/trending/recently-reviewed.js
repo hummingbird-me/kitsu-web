@@ -9,7 +9,7 @@ export default BaseComponent.extend(FlickityActionsMixin, {
   currentTab: 'anime',
 
   getDataTask: task(function* (type) {
-    return yield get(this, 'store').query('review', {
+    return yield get(this, 'queryCache').query('review', {
       filter: {
         media_type: capitalize(type)
       },

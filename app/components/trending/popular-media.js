@@ -10,7 +10,7 @@ export default BaseComponent.extend(FlickityActionsMixin, {
   lastYear: moment().year() - 1,
 
   getDataTask: task(function* (type) {
-    return yield get(this, 'store').query(type, {
+    return yield get(this, 'queryCache').query(type, {
       filter: { year: get(this, 'lastYear') },
       sort: '-user_count',
       page: { limit: 10 }

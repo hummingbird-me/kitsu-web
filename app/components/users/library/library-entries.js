@@ -2,7 +2,6 @@ import Component from 'ember-component';
 import computed from 'ember-computed';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
-import getter from 'client/utils/getter';
 
 export default Component.extend({
   intl: service(),
@@ -15,7 +14,7 @@ export default Component.extend({
   }),
 
   // Displays the number of entries within this section
-  stats: getter(function() {
+  stats: computed('metaCount', function() {
     const count = get(this, 'metaCount') || 0;
     const text = count === 1 ? 'title' : 'titles';
     return count ? `${count} ${text}` : '';

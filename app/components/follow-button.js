@@ -16,6 +16,7 @@ export default Component.extend({
   metrics: service(),
   notify: service(),
   store: service(),
+  queryCache: service(),
   isFollowing: notEmpty('relationship'),
   isDisabled: or('getFollowStatus.isRunning', 'toggleFollow.isRunning'),
 
@@ -24,12 +25,8 @@ export default Component.extend({
   }),
 
   getFollowStatus: task(function* () {
-    return yield get(this, 'store').query('follow', {
-      filter: {
-        follower: get(this, 'session.account.id'),
-        followed: get(this, 'user.id')
-      }
-    }).then(follow => set(this, 'relationship', get(follow, 'firstObject')));
+    return yield get(this, 'queryCache').query('follow', this._getRequestOptions())
+      .then(follow => set(this, 'relationship', get(follow, 'firstObject')));
   }).drop(),
 
   toggleFollow: task(function* () {
@@ -39,6 +36,7 @@ export default Component.extend({
 
     if (get(this, 'isFollowing')) {
       yield get(this, 'relationship').destroyRecord().then(() => {
+        get(this, 'queryCache').invalidateQuery('follow', this._getRequestOptions());
         set(this, 'relationship', undefined);
         get(this, 'session.account').decrementProperty('followingCount');
       }).catch(err => get(this, 'notify').error(errorMessages(err)));
@@ -64,6 +62,15 @@ export default Component.extend({
     if (get(this, 'session.hasUser')) {
       get(this, 'getFollowStatus').perform();
     }
+  },
+
+  _getRequestOptions() {
+    return {
+      filter: {
+        follower: get(this, 'session.account.id'),
+        followed: get(this, 'user.id')
+      }
+    };
   },
 
   click() {

@@ -10,13 +10,8 @@ export default FollowComponent.extend({
   layout,
 
   getFollowStatus: task(function* () {
-    return yield get(this, 'store').query('media-follow', {
-      filter: {
-        user_id: get(this, 'session.account.id'),
-        media_type: capitalize(get(this, 'media.modelType')),
-        media_id: get(this, 'media.id')
-      }
-    }).then(follow => set(this, 'relationship', get(follow, 'firstObject')));
+    return yield get(this, 'queryCache').query('media-follow', this._getRequestOptions())
+      .then(follow => set(this, 'relationship', get(follow, 'firstObject')));
   }).drop(),
 
   toggleFollow: task(function* () {
@@ -27,6 +22,7 @@ export default FollowComponent.extend({
     if (get(this, 'isFollowing')) {
       yield get(this, 'relationship').destroyRecord().then(() => {
         set(this, 'relationship', undefined);
+        get(this, 'queryCache').invalidateQuery('media-follow', this._getRequestOptions());
       }).catch(err => get(this, 'notify').error(errorMessages(err)));
     } else {
       yield get(this, 'store').createRecord('media-follow', {
@@ -43,5 +39,15 @@ export default FollowComponent.extend({
       })
       .catch(err => get(this, 'notify').error(errorMessages(err)));
     }
-  }).drop()
+  }).drop(),
+
+  _getRequestOptions() {
+    return {
+      filter: {
+        user_id: get(this, 'session.account.id'),
+        media_type: capitalize(get(this, 'media.modelType')),
+        media_id: get(this, 'media.id')
+      }
+    };
+  }
 });
