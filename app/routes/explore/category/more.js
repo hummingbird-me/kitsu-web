@@ -5,8 +5,9 @@ import Pagination from 'kitsu-shared/mixins/pagination';
 export default Route.extend(Pagination, {
   setupController(controller) {
     this._super(...arguments);
-    const type = this.paramsFor('explore.more').type;
+    const type = this.paramsFor('explore.category.more').type;
     const mediaType = this.paramsFor('explore').media_type;
-    setProperties(controller, { type, mediaType });
+    const categoryName = this.paramsFor('explore.category').name;
+    setProperties(controller, { type, mediaType, categoryName });
   }
 });
