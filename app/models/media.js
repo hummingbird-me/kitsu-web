@@ -4,7 +4,6 @@ import { hasMany } from 'ember-data/relationships';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import computed, { or } from 'ember-computed';
-import moment from 'moment';
 import getTitleField from 'client/utils/get-title-field';
 
 export default Base.extend({

@@ -1,5 +1,5 @@
-{{component
-  (concat "explore/sections/" moreType)
-  mediaType=mediaType
-  limit=20
-}}
+{{#explore/explore-page
+  title=(t (concat "titles.explore." moreType) type=(capitalize mediaType))
+  mediaType=mediaType}}
+  {{moreType}}
+{{/explore/explore-page}}

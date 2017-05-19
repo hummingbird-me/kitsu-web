@@ -1,5 +1,5 @@
 <div>
-  <h6>{{title}}</h6>
+  <h6>{{t (concat "titles.explore." type) type=(capitalize mediaType)}}</h6>
 </div>
 <div class="explore-grid">
   {{#each getDataTask.last.value as |media|}}
@@ -13,5 +13,5 @@
   {{/each}}
 </div>
 <div class="explore-section-more">
-  <a href={{href-to more mediaType name}}>View more</a>
+  <a href={{href-to more mediaType type}}>View more</a>
 </div>
