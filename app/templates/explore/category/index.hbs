@@ -1,28 +1,31 @@
-{{#explore/explore-page
-  title=(titleize (concat categoryName " " mediaType))
-  mediaType=mediaType}}
-  {{explore/explore-section
-    type="newly-released"
-    mediaType=mediaType
-    categoryName=categoryName
-    sort="-startDate"
-    filters="current"
-    more="explore.category.more"
-    limit=15
-  }}
-  {{explore/explore-section
-    type="trending"
-    mediaType=mediaType
-    categoryName=categoryName
-    more="explore.category.more"
-    limit=15
-  }}
-  {{explore/explore-section
-    type="most-popular"
-    mediaType=mediaType
-    categoryName=categoryName
-    sort="-userCount"
-    more="explore.category.more"
-    limit=15
-  }}
-{{/explore/explore-page}}
+<div class='explore-page'>
+  <h3>{{titleize (concat categoryName " " mediaType)}}</h3>
+  {{explore/category-widget/related}}
+  {{explore/explore-search}}
+  <div class="explore-content">
+    {{explore/explore-section
+      type="newly-released"
+      mediaType=mediaType
+      categoryName=categoryName
+      sort="-startDate"
+      filters="current"
+      more="explore.category.more"
+      limit=15
+    }}
+    {{explore/explore-section
+      type="trending"
+      mediaType=mediaType
+      categoryName=categoryName
+      more="explore.category.more"
+      limit=15
+    }}
+    {{explore/explore-section
+      type="most-popular"
+      mediaType=mediaType
+      categoryName=categoryName
+      sort="-userCount"
+      more="explore.category.more"
+      limit=15
+    }}
+  </div>
+</div>
