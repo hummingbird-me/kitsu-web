@@ -18,8 +18,8 @@ export default BaseComponent.extend({
 
   getDataTask: task(function* () {
     return yield get(this, 'store').query(get(this, 'mediaType'), {
-      page: { limit: get(this, 'limit') },
-      sort: '-averageRating'
+      sort: '-averageRating',
+      page: { limit: get(this, 'limit') }
     });
   }).restartable()
 });

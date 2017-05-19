@@ -5,9 +5,9 @@ import { task } from 'ember-concurrency';
 
 export default BaseComponent.extend({
   layout,
-  title: 'Most Popular',
+  title: 'Top Airing',
   more: 'explore.more',
-  name: 'most-popular',
+  name: 'top-airing',
 
   init() {
     this._super(...arguments);
@@ -18,6 +18,7 @@ export default BaseComponent.extend({
 
   getDataTask: task(function* () {
     return yield get(this, 'store').query(get(this, 'mediaType'), {
+      filter: { status: 'current' },
       sort: '-userCount',
       page: { limit: get(this, 'limit') }
     });
