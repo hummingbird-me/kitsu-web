@@ -48,9 +48,11 @@ RouterInstance.map(function() {
   this.route('dashboard', { path: '/' });
   this.route('dashboard/redirect', { path: '/dashboard' });
 
-  this.route('explore', { path: '/explore/:type' }, function() {
-    this.route('category', { path: '/:name' });
-    this.route('more', { path: '/:name' });
+  this.route('explore', { path: '/explore/:media_type' }, function() {
+    this.route('more', { path: '/:type' });
+    this.route('category', { path: '/category/:name' }, function() {
+      this.route('more', { path: '/:type' });
+    });
   });
 
   ['anime', 'manga'].forEach((media) => {

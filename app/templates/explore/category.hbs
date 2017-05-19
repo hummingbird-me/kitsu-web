@@ -1,0 +1,25 @@
+{{#explore/explore-page
+  title=(titleize (concat categoryName " " mediaType))
+  mediaType=mediaType}}
+  {{explore/explore-section
+    type="newly-released"
+    mediaType=mediaType
+    categoryName=categoryName
+    more="explore.category"
+    limit=15
+  }}
+  {{explore/explore-section
+    type="most-watched"
+    mediaType=mediaType
+    categoryName=categoryName
+    more="explore.category"
+    limit=15
+  }}
+  {{explore/explore-section
+    type="most-popular"
+    mediaType=mediaType
+    categoryName=categoryName
+    more="explore.category"
+    limit=15
+  }}
+{{/explore/explore-page}}

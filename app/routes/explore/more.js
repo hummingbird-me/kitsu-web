@@ -4,19 +4,19 @@ import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(Pagination, {
   model(params) {
-    const mediaType = this.paramsFor('explore').type;
+    const mediaType = this.paramsFor('explore').media_type;
     return {
-      taskInstance: this.queryPaginated(mediaType, this.buildOptions(params.name)),
+      taskInstance: this.queryPaginated(mediaType, this.buildOptions(params.type)),
       paginatedRecords: []
     };
   },
 
-  buildOptions(moreType) {
+  buildOptions(type) {
     const options = {
       page: { limit: 20 },
       filter: {}
     };
-    switch (moreType) {
+    switch (type) {
       case 'top-current':
         options.sort = '-userCount';
         options.filter.status = 'current';
@@ -39,8 +39,8 @@ export default Route.extend(Pagination, {
 
   setupController(controller) {
     this._super(...arguments);
-    const moreType = this.paramsFor('explore.more').name;
-    const mediaType = this.paramsFor('explore').type;
-    setProperties(controller, { moreType, mediaType });
+    const type = this.paramsFor('explore.more').type;
+    const mediaType = this.paramsFor('explore').media_type;
+    setProperties(controller, { type, mediaType });
   }
 });

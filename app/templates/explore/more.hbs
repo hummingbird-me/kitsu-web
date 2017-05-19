@@ -1,5 +1,5 @@
 {{#explore/explore-page
-  title=(t (concat "titles.explore." moreType) mediaType=mediaType type=(capitalize mediaType))
+  title=(t (concat "titles.explore." type) mediaType=mediaType type=(capitalize mediaType))
   mediaType=mediaType}}
   <div class="explore-grid">
     {{#if model.taskInstance.isRunning}}
