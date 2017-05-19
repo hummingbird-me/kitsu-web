@@ -8,6 +8,7 @@ export default BaseComponent.extend(FlickityActionsMixin, {
   classNames: ['weekly-trending'],
   currentTab: 'anime',
   ajax: service(),
+  store: service(),
 
   getDataTask: task(function* (type) {
     return yield get(this, 'ajax').request(`/trending/${type}`).then((response) => {
