@@ -1,5 +1,27 @@
 {{#explore/explore-page
-  title=(t (concat "titles.explore." moreType) type=(capitalize mediaType))
+  title=(t (concat "titles.explore." moreType) mediaType=mediaType type=(capitalize mediaType))
   mediaType=mediaType}}
-  {{moreType}}
+  <div class="explore-grid">
+    {{#if model.taskInstance.isRunning}}
+      <div class="text-xs-center w-100 m-t-2 m-b-2">
+        {{loading-spinner size="large"}}
+      </div>
+    {{else if media}}
+      {{#infinite-pagination onPagination=(route-action "onPagination")}}
+        {{#each media as |media|}}
+          <div class="explore-poster">
+            {{#media-popover media=media}}
+              <a href={{href-to (concat media.modelType ".show") media.slug}} class="media-poster">
+                {{lazy-image src=(image media.posterImage "large")}}
+              </a>
+            {{/media-popover}}
+          </div>
+        {{/each}}
+      {{/infinite-pagination}}
+    {{else}}
+      <div class="text-xs-center m-t-1 m-b-1">
+        <p>{{t "errors.contentEmpty"}}</p>
+      </div>
+    {{/if}}
+  </div>
 {{/explore/explore-page}}

@@ -10,7 +10,9 @@ titles:
       characters: "Characters"
       reviews: "Reviews"
   explore:
-    top-airing: "Top Airing {type}"
+    top-current: "Top {mediaType, select,
+      anime {Airing}
+      manga {Publishing}} {type}"
     top-upcoming: "Top Upcoming {type}"
     trending: "Trending {category} {type}"
     highest-rated: "Highest Rated {type}"

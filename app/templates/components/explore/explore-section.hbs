@@ -1,5 +1,5 @@
 <div>
-  <h6>{{t (concat "titles.explore." type) type=(capitalize mediaType)}}</h6>
+  <h6>{{t (concat "titles.explore." type) mediaType=mediaType type=(capitalize mediaType)}}</h6>
 </div>
 <div class="explore-grid">
   {{#each getDataTask.last.value as |media|}}
