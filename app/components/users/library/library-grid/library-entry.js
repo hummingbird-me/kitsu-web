@@ -25,7 +25,7 @@ export default Component.extend({
   saveTask: task(function* () {
     const changeset = get(this, 'changeset');
     yield changeset.validate();
-    if (get(changeset, 'isValid')) {
+    if (get(changeset, 'isValid') && get(changeset, 'isDirty')) {
       yield invokeAction(this, 'saveEntry', changeset);
     }
   }).restartable(),

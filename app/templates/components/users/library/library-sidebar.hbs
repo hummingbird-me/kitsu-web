@@ -13,37 +13,37 @@
     <li class={{if (eq status "all") "active"}}>
       <a href="#" {{action updateStatus "all"}}>
         {{t "library-shared.all" type=media}}
-        <span class="library-section--count">325</span>
+        <span class="library-section--count">{{totalCount}}</span>
       </a>
     </li>
     <li class={{if (eq status "current") "active"}}>
       <a href="#" {{action updateStatus "current"}}>
         {{t "library-shared.current" type=media}}
-        <span class="library-section--count">325</span>
+        <span class="library-section--count">{{libraryCounts.current}}</span>
       </a>
     </li>
     <li class={{if (eq status "planned") "active"}}>
       <a href="#" {{action updateStatus "planned"}}>
         {{t "library-shared.planned" type=media}}
-        <span class="library-section--count">325</span>
+        <span class="library-section--count">{{libraryCounts.planned}}</span>
       </a>
     </li>
     <li class={{if (eq status "completed") "active"}}>
       <a href="#" {{action updateStatus "completed"}}>
         {{t "library-shared.completed" type=media}}
-        <span class="library-section--count">325</span>
+        <span class="library-section--count">{{libraryCounts.completed}}</span>
       </a>
     </li>
     <li class={{if (eq status "on_hold") "active"}}>
       <a href="#" {{action updateStatus "on_hold"}}>
         {{t "library-shared.on_hold" type=media}}
-        <span class="library-section--count">325</span>
+        <span class="library-section--count">{{libraryCounts.on_hold}}</span>
       </a>
     </li>
     <li class={{if (eq status "dropped") "active"}}>
       <a href="#" {{action updateStatus "dropped"}}>
         {{t "library-shared.dropped" type=media}}
-        <span class="library-section--count">325</span>
+        <span class="library-section--count">{{libraryCounts.dropped}}</span>
       </a>
     </li>
   </ul>

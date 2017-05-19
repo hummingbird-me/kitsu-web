@@ -27,7 +27,7 @@
 
 {{! Dropdown/Button }}
 {{#if showDropdown}}
-  {{#basic-dropdown as |dd|}}
+  {{#basic-dropdown horizontalPosition="right" as |dd|}}
     <div class={{concat "btn-group dropdown rating-button-dropdown rating-button-" guid}} data-ebd-id="{{dd.uniqueId}}-trigger">
       {{#if simpleDropdown}}
         <span {{action dd.actions.toggle}}>
