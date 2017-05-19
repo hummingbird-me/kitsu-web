@@ -22,8 +22,61 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, {
     return get(this, 'store').findRecord('group', slug);
   },
 
+  afterModel(model) {
+    this._super(...arguments);
+    set(this, 'breadcrumb', get(model, 'name'));
+    const tags = this.setHeadTags(model);
+    set(this, 'headTags', tags);
+  },
+
   serialize(model) {
     return { slug: get(model, 'slug') };
+  },
+
+  setHeadTags(model) {
+    return [{
+      type: 'meta',
+      tagId: 'meta-description',
+      attrs: {
+        property: 'description',
+        content: get(model, 'tagline')
+      }
+    }, {
+      type: 'meta',
+      tagId: 'meta-og-title',
+      attrs: {
+        property: 'og:title',
+        content: get(model, 'name')
+      }
+    }, {
+      type: 'meta',
+      tagId: 'meta-og-description',
+      attrs: {
+        property: 'og:description',
+        content: get(model, 'tagline')
+      }
+    }, {
+      type: 'meta',
+      tagId: 'meta-og-image',
+      attrs: {
+        property: 'og:image',
+        content: get(model, 'avatar.large') || get(model, 'avatar')
+      }
+    }, {
+      type: 'meta',
+      tagId: 'meta-twitter-label1',
+      attrs: {
+        property: 'twitter:label1',
+        content: 'Members'
+      }
+    }, {
+      type: 'meta',
+      tagId: 'meta-twitter-data1',
+      attrs: {
+        property: 'twitter:data1',
+        content: get(model, 'membersCount')
+      }
+    }];
   },
 
   _getMembership(group) {

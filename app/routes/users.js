@@ -22,7 +22,8 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
   },
 
   afterModel(model) {
-    set(this, 'headTags', this._headTags(model));
+    const tags = this.setHeadTags(model);
+    set(this, 'headTags', tags);
   },
 
   resetController(controller) {
@@ -34,9 +35,17 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
     return { name: get(model, 'name') };
   },
 
-  _headTags(model) {
-    const desc = `${get(model, 'name')} is using Kitsu to share their anime & manga experiences. ${get(model, 'about')}`;
+  setHeadTags(model) {
+    const description = `${get(model, 'name')} is using Kitsu to share their anime & manga
+      experiences. ${get(model, 'about')}`;
     return [{
+      type: 'meta',
+      tagId: 'meta-description',
+      attrs: {
+        name: 'description',
+        content: description
+      }
+    }, {
       type: 'meta',
       tagId: 'meta-og-type',
       attrs: {
@@ -48,14 +57,14 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
       tagId: 'meta-og-description',
       attrs: {
         property: 'og:description',
-        content: desc
+        content: description
       }
     }, {
       type: 'meta',
-      tagId: 'meta-description',
+      tagId: 'meta-og-image',
       attrs: {
-        name: 'description',
-        content: desc
+        property: 'og:image',
+        content: get(model, 'avatar.medium') || get(model, 'avatar')
       }
     }];
   }

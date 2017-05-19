@@ -9,21 +9,45 @@ export default Route.extend(Pagination, {
     query: { refreshModel: true, replace: true }
   },
 
-  model({ category, sort, query }) {
+  model(params) {
     return {
-      taskInstance: this.queryPaginated('group', {
-        filter: {
-          category: category !== 'all' ? category : undefined,
-          query: isPresent(query) ? query : undefined
-        },
-        fields: {
-          groups: ['slug', 'name', 'avatar', 'tagline', 'membersCount', 'category'].join(',')
-        },
-        sort: isPresent(query) ? undefined : this._getRealSort(sort),
-        include: 'category',
-        page: { limit: 20 }
-      }),
+      taskInstance: this.queryPaginated('group', this._getRequestOptions(params)),
       paginatedRecords: []
+    };
+  },
+
+  headTags() {
+    const description = `Looking for a place to discuss a topic or activity?
+      Check out Groups on Kitsu.`;
+    return [{
+      type: 'meta',
+      tagId: 'meta-description',
+      attrs: {
+        property: 'description',
+        content: description
+      }
+    }, {
+      type: 'meta',
+      tagId: 'meta-og-description',
+      attrs: {
+        property: 'og:description',
+        content: description
+      }
+    }];
+  },
+
+  _getRequestOptions({ category, sort, query }) {
+    return {
+      filter: {
+        category: category !== 'all' ? category : undefined,
+        query: isPresent(query) ? query : undefined
+      },
+      fields: {
+        groups: ['slug', 'name', 'avatar', 'tagline', 'membersCount', 'category'].join(',')
+      },
+      sort: isPresent(query) ? undefined : this._getRealSort(sort),
+      include: 'category',
+      page: { limit: 20 }
     };
   },
 

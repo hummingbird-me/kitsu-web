@@ -1,8 +1,8 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
+import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import DataErrorMixin from 'client/mixins/routes/data-error';
-import clip from 'clip';
 
 export default Route.extend(DataErrorMixin, {
   intl: service(),
@@ -16,6 +16,8 @@ export default Route.extend(DataErrorMixin, {
   },
 
   afterModel(model) {
+    const tags = this.setHeadTags(model);
+    set(this, 'headTags', tags);
     get(this, 'metrics').invoke('trackImpression', 'Stream', {
       content_list: [`Review:${get(model, 'id')}`],
       location: get(this, 'routeName')
@@ -28,15 +30,14 @@ export default Route.extend(DataErrorMixin, {
     return get(this, 'intl').t('titles.reviews', { user: name });
   },
 
-  headTags() {
-    const model = this.modelFor(get(this, 'routeName'));
-    const desc = clip(get(model, 'content'), 200);
+  setHeadTags(model) {
+    const description = get(model, 'content').substring(0, 140);
     return [{
       type: 'meta',
       tagId: 'meta-description',
       attrs: {
         name: 'description',
-        content: desc
+        content: description
       }
     }, {
       type: 'meta',
@@ -50,7 +51,7 @@ export default Route.extend(DataErrorMixin, {
       tagId: 'meta-og-description',
       attrs: {
         property: 'og:description',
-        content: desc
+        content: description
       }
     }, {
       type: 'meta',
@@ -85,7 +86,7 @@ export default Route.extend(DataErrorMixin, {
       tagId: 'meta-twitter-data2',
       attrs: {
         property: 'twitter:data2',
-        content: `${get(model, 'rating')} out of 5`
+        content: `${get(model, 'rating')} out of 10`
       }
     }];
   }

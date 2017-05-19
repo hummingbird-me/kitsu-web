@@ -5,7 +5,7 @@ export default Route.extend({
   redirect() {
     const notFoundURL = this.router.location.formatURL('/404');
     if (window.location.pathname !== notFoundURL) {
-      this.transitionTo('/404');
+      this.replaceWith('/404');
     }
   }
 });

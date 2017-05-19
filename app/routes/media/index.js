@@ -63,25 +63,25 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
     };
   },
 
-  afterModel() {
-    // meta tags
+  headTags() {
     const [mediaType] = get(this, 'routeName').split('.');
-    const desc = `Looking for that ${mediaType}? Find all the best anime and manga on Kitsu!`;
-    set(this, 'headTags', [{
+    const description = `Looking for that ${mediaType}? Find all the best anime and manga
+      on Kitsu!`;
+    return [{
       type: 'meta',
       tagId: 'meta-description',
       attrs: {
-        name: 'description',
-        content: desc
+        property: 'description',
+        content: description
       }
     }, {
       type: 'meta',
       tagId: 'meta-og-description',
       attrs: {
         property: 'og:description',
-        content: desc
+        content: description
       }
-    }]);
+    }];
   },
 
   setupController(controller) {

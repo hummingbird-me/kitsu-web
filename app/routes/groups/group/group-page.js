@@ -5,6 +5,7 @@ import CoverPageMixin from 'client/mixins/routes/cover-page';
 import RSVP from 'rsvp';
 
 export default Route.extend(CoverPageMixin, {
+  breadcrumb: null,
   ajax: service(),
 
   model() {

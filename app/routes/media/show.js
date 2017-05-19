@@ -7,7 +7,7 @@ import CoverPageMixin from 'client/mixins/routes/cover-page';
 
 export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
   templateName: 'media/show',
-  headData: service(),
+  head: service('head-data'),
   queryCache: service(),
 
   model({ slug }) {
@@ -30,9 +30,10 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
 
   setupController(controller, model) {
     this._super(...arguments);
+
     // add structured data for this route
-    const head = get(this, 'headData');
-    const data = this._schemaData(model);
+    const head = get(this, 'head');
+    const data = this.setStructuredData(model);
     set(head, 'structuredData.media-show', data);
   },
 
@@ -42,8 +43,11 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
 
   /**
    * Meta tags with ember-cli-meta-tags
+   *
+   * @param {Object} model
+   * @returns {Array}
    */
-  _headTags(model) {
+  setHeadTags(model) {
     const data = [{
       type: 'meta',
       tagId: 'meta-description',
@@ -110,13 +114,15 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
 
   /**
    * Structured data with ember-cli-head
+   *
+   * @param {Object} model
+   * @returns {Object}
    */
-  _schemaData(model) {
+  setStructuredData(model) {
     const data = {
       '@context': 'http://schema.org',
       '@type': 'CreativeWorkSeries',
-      name: get(model, 'canonicalTitle'),
-      alternateName: Object.values(get(model, 'titles'))
+      name: Object.values(get(model, 'titles'))
         .reject(title => title === get(model, 'canonicalTitle')),
       description: get(model, 'synopsis'),
       image: get(model, 'posterImage.large'),

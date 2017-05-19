@@ -2,6 +2,5 @@
 {{head-tags headTags=model.headTags}}
 
 {{! structured schema data }}
-{{#each-in model.structuredData as |key data|}}
-  {{structured-data data=data}}
-{{/each-in}}
+{{structured-data data=(get model.structuredData "media-show")}}
+{{structured-data data=(get model.structuredData "meta-breadcrumbs")}}

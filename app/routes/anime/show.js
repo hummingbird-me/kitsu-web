@@ -12,8 +12,8 @@ export default MediaShowRoute.extend({
     } else if (get(model, 'subtype') === 'movie') {
       type = 'video.movie';
     }
-    const headTags = this._headTags(model);
-    headTags.push({
+    const tags = this.setHeadTags(model);
+    tags.push({
       type: 'meta',
       tagId: 'meta-og-type',
       attrs: {
@@ -21,7 +21,7 @@ export default MediaShowRoute.extend({
         content: type
       }
     });
-    set(this, 'headTags', headTags);
+    set(this, 'headTags', tags);
   },
 
   _schemaData(model) {

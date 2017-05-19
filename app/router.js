@@ -5,11 +5,11 @@ import { scheduleOnce } from 'ember-runloop';
 import RouterScroll from 'ember-router-scroll';
 import Breadcrumbs from 'client/mixins/breadcrumbs';
 import config from 'client/config/environment';
-import canUseDOM from 'client/utils/can-use-dom';
 
 const RouterInstance = Router.extend(RouterScroll, Breadcrumbs, {
   location: config.locationType,
   rootURL: config.rootURL,
+
   metrics: service(),
   headData: service(),
 
@@ -20,9 +20,7 @@ const RouterInstance = Router.extend(RouterScroll, Breadcrumbs, {
 
   didTransition() {
     this._super(...arguments);
-    if (canUseDOM) {
-      this._trackPage();
-    }
+    this._trackPage();
   },
 
   setTitle(title) {
