@@ -50,6 +50,13 @@ export function initialize() {
   // Don't bother if we don't have DOM access, FastBoot?
   if (!canUseDOM) { return; }
 
+  if (config.kitsu.isStaging) {
+    const meta = document.createElement('meta');
+    meta.name = 'robots';
+    meta.content = 'noindex, nofollow';
+    document.head.appendChild(meta);
+  }
+
   // Inject scripts
   adwords();
   canny();
