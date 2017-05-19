@@ -93,6 +93,7 @@ RouterInstance.map(function() {
     this.route('imports');
     this.route('exports');
     this.route('blocking');
+    this.route('account');
   });
 
   this.route('feedback', function() {

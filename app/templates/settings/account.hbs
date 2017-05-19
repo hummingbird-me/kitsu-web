@@ -1,0 +1,26 @@
+<div class="settings-container">
+  <h1>Account</h1>
+
+  <div class="settings--section-head text-danger">
+    Danger Zone! Deleting your account is irreversible.
+  </div>
+  <div class="container">
+    <div class="form-group row">
+      <button class="button btn-danger btn-lg btn-block" onclick={{action (toggle "showConfirmModal" this)}}>
+        {{#if deleteAccount.isRunning}}
+          {{loading-spinner}}
+        {{else}}
+          Delete Account
+        {{/if}}
+      </button>
+
+      {{#if showConfirmModal}}
+        {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+          title="Delete Account"
+          text="We're sorry to see you go. Deleting your account is irreversible. Are you sure you want to continue?"
+          onConfirm=(perform deleteAccount)
+          onClose=(toggle-action "showConfirmModal" this))}}
+      {{/if}}
+    </div>
+  </div>
+</div>
