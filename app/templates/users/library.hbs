@@ -53,6 +53,8 @@
           isLoading=model.taskInstance.isRunning
           saveEntry=(route-action "saveEntry")
           removeEntry=(route-action "removeEntry")
+          removeEntriesBulk=(route-action "removeEntriesBulk")
+          updateStatusBulk=(route-action "updateStatusBulk")
         }}
 
         {{#if isLoading}}
@@ -71,6 +73,7 @@
       counts=model.taskInstance.value.meta.statusCounts
       updateMedia=(action (mut media))
       updateStatus=(action (mut status))
+      resetLibrary=(route-action "resetLibrary")
       class="library-sidebar col-sm"
     }}
   </div>

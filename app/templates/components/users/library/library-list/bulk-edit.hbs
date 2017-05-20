@@ -9,15 +9,23 @@
   </div>
 
   <div class="bulk-cta">
-    <a class="bulk-btn secondary" href="#" {{action removeEntries}}>{{t "users.library.bulk.remove" num=selectedCount htmlSafe=true}}</a>
+    <a class="bulk-btn secondary" href="#" {{action removeEntriesBulk}}>
+      {{t "users.library.bulk.remove" num=selectedCount htmlSafe=true}}
+    </a>
     {{#basic-dropdown as |dd|}}
       {{#dd.trigger class="bulk-btn dropdown-toggle"}}
         {{t "users.library.bulk.move-to" num=selectedCount htmlSafe=true}}
       {{/dd.trigger}}
       {{#dd.content}}
-        {{#each libraryEntryStatuses as |status|}}
-          <a class="dropdown-item" href="#" {{action updateStatus status}}>{{t (concat "library-shared." status) type=media}}</a>
-        {{/each}}
+        <ul class="list-unstyled">
+          {{#each libraryEntryStatuses as |status|}}
+            <li class="dropdown-item" {{action (queue
+              (action dd.actions.toggle)
+              (action updateStatusBulk status))}}>
+              {{t (concat "library-shared." status) type=media}}
+            </li>
+          {{/each}}
+        </ul>
       {{/dd.content}}
     {{/basic-dropdown}}
   </div>

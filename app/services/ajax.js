@@ -12,7 +12,8 @@ export default AjaxService.extend({
 
   headers: computed('session.isAuthenticated', function() {
     const headers = {
-      accept: 'application/vnd.api+json'
+      accept: 'application/vnd.api+json',
+      'content-type': 'application/vnd.api+json'
     };
     const isAuthenticated = get(this, 'session.isAuthenticated');
     if (isAuthenticated) {

@@ -4,11 +4,14 @@ import computed from 'ember-computed';
 
 export default Ability.extend({
   /**
-   * Can edit the library-entry if the user is the owner.
+   * Determines if the sessioned user is the owner of the library entry.
+   *    (can "edit library-entry" <library-entry|user>)
+   *
+   * @returns {Boolean}
    */
   canEdit: computed('session.hasUser', 'model', 'user', function() {
-    if (!get(this, 'session.hasUser') || !get(this, 'model')) { return false; }
-    const user = get(this, 'user') || get(this, 'model.user');
+    if (!get(this, 'session.hasUser')) { return false; }
+    const user = get(this, 'user') || get(this, 'model.user') || get(this, 'model');
     return get(this, 'session').isCurrentUser(user);
   }).readOnly()
 });

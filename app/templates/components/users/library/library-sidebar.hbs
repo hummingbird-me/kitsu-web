@@ -56,10 +56,19 @@
     <li>
       <a href={{href-to "settings.exports"}}>{{t "users.library.sidebar.export"}}</a>
     </li>
-    <li>
-      {{! @TODO(Vevix): Waiting on API Endpoint }}
-      <a href="#">{{t "users.library.sidebar.reset"}}</a>
-    </li>
+    {{#if (can "edit library-entry" user)}}
+      <li>
+        <a href="#" {{action (toggle "showResetModal" this)}}>{{t "users.library.sidebar.reset"}}</a>
+      </li>
+      {{#if showResetModal}}
+        {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+          title=(t "users.library.sidebar.reset")
+          text=(t "users.library.sidebar.reset-confirmation")
+          onConfirm=(action resetLibrary)
+          onClose=(toggle-action "showResetModal" this)
+        )}}
+      {{/if}}
+    {{/if}}
   </ul>
 
   {{! Kitsu Library Sidebar Ad }}

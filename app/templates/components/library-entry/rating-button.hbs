@@ -54,19 +54,19 @@
     </div>
 
     {{#dd.content class="rating-button-dropdown-menu"}}
-      <a href="#" class="dropdown-item" {{action (queue
-        (action dd.actions.toggle)
-        (toggle-action "showTooltip" this)
-      )}}>
-        {{t "library-entry.state.change-rating"}}
-      </a>
-      <div class="dropdown-divider"></div>
-      <a href="#" class="dropdown-item" {{action (queue
-        (action dd.actions.toggle)
-        (action "ratingSelected" null)
-      )}}>
-        {{t "library-entry.state.remove-rating"}}
-      </a>
+      <ul class="list-unstyled">
+        <li class="dropdown-item" {{action (queue
+          (action dd.actions.toggle)
+          (toggle-action "showTooltip" this))}}>
+          {{t "library-entry.state.change-rating"}}
+        </li>
+        <li class="dropdown-divider"></li>
+        <li class="dropdown-item" {{action (queue
+          (action dd.actions.toggle)
+          (action "ratingSelected" null))}}>
+          {{t "library-entry.state.remove-rating"}}
+        </li>
+      </ul>
     {{/dd.content}}
   {{/basic-dropdown}}
 {{else}}

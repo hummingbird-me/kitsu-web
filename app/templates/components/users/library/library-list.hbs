@@ -6,8 +6,8 @@
     selectedCount=selectedLibraryEntries.length
     selectAll=(action "selectAll")
     resetSelection=(action "resetSelection")
-    removeEntries=(action "removeEntries")
-    updateStatus=(action "updateStatus")
+    removeEntriesBulk=(action removeEntriesBulk selectedLibraryEntries)
+    updateStatusBulk=(action updateStatusBulk selectedLibraryEntries)
   }}
 {{/if}}
 

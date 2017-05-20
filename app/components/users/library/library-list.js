@@ -29,16 +29,6 @@ export default Component.extend({
 
     resetSelection() {
       set(this, 'selectedLibraryEntries', []);
-    },
-
-    removeEntries() {
-      const entries = get(this, 'selectedLibraryEntries');
-      // @TODO(Vevix): Requires API bulk endpoint
-    },
-
-    updateStatus(status) {
-      const entries = get(this, 'selectedLibraryEntries');
-      // @TODO(Vevix): Requires API bulk endpoint
     }
   }
 });

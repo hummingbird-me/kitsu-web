@@ -4,6 +4,7 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { isPresent } from 'ember-utils';
 import { storageFor } from 'ember-local-storage';
+import { task } from 'ember-concurrency';
 import getTitleField from 'client/utils/get-title-field';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
@@ -52,6 +53,46 @@ export default Route.extend(Pagination, {
     return get(this, 'intl').t('titles.users.library', { user: name });
   },
 
+  removeEntriesTask: task(function* (entries) {
+    const ids = entries.map(entry => get(entry, 'id'));
+    yield get(this, 'ajax').request('/library-entries/_bulk', {
+      method: 'DELETE',
+      data: JSON.stringify({ filter: { id: ids.join(',') } })
+    });
+    // delete the records locally, as we used ajax
+    entries.forEach((entry) => {
+      entry.deleteRecord();
+    });
+  }).drop(),
+
+  updateStatusTask: task(function* (entries, status) {
+    const ids = entries.map(entry => get(entry, 'id'));
+    const response = yield get(this, 'ajax').request('/library-entries/_bulk', {
+      method: 'PATCH',
+      data: JSON.stringify({
+        filter: { id: ids.join(',') },
+        data: { attributes: { status } }
+      })
+    });
+    // push serialized records into the store
+    const [data] = response.data;
+    const normalizedData = get(this, 'store').normalize('library-entry', data);
+    get(this, 'store').push(normalizedData);
+  }).drop(),
+
+  resetLibraryTask: task(function* () {
+    yield get(this, 'ajax').request('/library-entries/_bulk', {
+      method: 'DELETE',
+      data: JSON.stringify({ filter: { user_id: get(this, 'session.account.id') } })
+    });
+    // delete all local records belonging to the user
+    let entries = get(this, 'store').peekAll('library-entry');
+    entries = entries.filterBy('user', get(this, 'session.account'));
+    entries.forEach((entry) => {
+      entry.deleteRecord();
+    });
+  }).drop(),
+
   actions: {
     refreshModel() {
       this.refresh();
@@ -68,6 +109,18 @@ export default Route.extend(Pagination, {
         entry.rollbackAttributes();
         get(this, 'raven').captureException(error);
       });
+    },
+
+    removeEntriesBulk(entries) {
+      return get(this, 'removeEntriesTask').perform(entries);
+    },
+
+    updateStatusBulk(entries, status) {
+      return get(this, 'updateStatusTask').perform(entries, status);
+    },
+
+    resetLibrary() {
+      return get(this, 'resetLibraryTask').perform();
     }
   },
 
