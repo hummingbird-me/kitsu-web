@@ -17,7 +17,7 @@
       {{#if showConfirmModal}}
         {{to-elsewhere named="modal" send=(component "modals/confirm-action"
           title="Delete Account"
-          text="We're sorry to see you go. Deleting your account is irreversible. Are you sure you want to continue?"
+          text="We're sorry to see you go, are you sure you want to continue?"
           onConfirm=(perform deleteAccount)
           onClose=(toggle-action "showConfirmModal" this))}}
       {{/if}}
