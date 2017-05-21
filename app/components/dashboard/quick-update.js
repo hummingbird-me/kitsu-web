@@ -21,18 +21,6 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
     return 3 - (get(this, 'initialEntries.length') || 0);
   }).readOnly(),
 
-  sortedInitialEntries: computed('initialEntries.@each.{status,updatedAt}', function() {
-    return get(this, 'initialEntries').toArray().sort((a, b) => (
-      get(a, 'updatedAt').isBefore(get(b, 'updatedAt'))
-    )).sortBy('status');
-  }).readOnly(),
-
-  sortedPaginationEntries: computed('paginatedRecords.@each.{status,updatedAt}', function() {
-    return get(this, 'paginatedRecords').toArray().sort((a, b) => (
-      get(a, 'updatedAt').isBefore(get(b, 'updatedAt'))
-    )).sortBy('status');
-  }).readOnly(),
-
   init() {
     this._super(...arguments);
     const filter = get(this, 'lastUsed.quickUpdateFilter') || 'all';
@@ -53,7 +41,7 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
       fields: this._getFieldsets(type),
       sort: 'status,-updated_at',
       page: { limit: get(this, 'pageLimit') }
-    });
+    }, { cache: false });
   }).drop(),
 
   onPagination() {
