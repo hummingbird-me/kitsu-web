@@ -109,10 +109,10 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
     } else if (key === 'averageRating') {
       if (value !== undefined) {
         const [lower, upper] = value;
-        if (lower === 0 && upper === 100) {
+        if (lower === 5 && upper === 100) {
           result = undefined;
-        } else if (lower === 0) {
-          result = `..${upper}`;
+        } else if (lower === 5) {
+          result = `5..${upper}`;
         }
       }
     }
@@ -132,7 +132,7 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
       if (value !== undefined) {
         const [lower, upper] = result;
         if (isEmpty(lower)) {
-          result = [0, upper];
+          result = [5, upper];
         }
       }
     }
