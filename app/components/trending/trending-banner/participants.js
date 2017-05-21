@@ -5,7 +5,7 @@ import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
-  store: service(),
+  queryCache: service(),
 
   getParticipants: task(function* () {
     const type = get(this, 'itemType');
