@@ -153,7 +153,7 @@ module.exports = function(environment) {
     ENV.intl_cp_validations.suppressWarnings = true;
   }
 
-    // Heroku environment - So that we can append the git hash to the version
+  // Heroku environment - So that we can append the git hash to the version
   if (process.env.HEROKU_EMBER_APP) {
     ENV.release = process.env.SOURCE_VERSION || process.env.HEROKU_SLUG_COMMIT || '-';
   }
