@@ -7,5 +7,16 @@ export default Route.extend({
     if (window.location.pathname !== notFoundURL) {
       this.replaceWith('/404');
     }
+  },
+
+  headTags() {
+    return [{
+      type: 'meta',
+      tagId: 'meta-prerender-status',
+      attrs: {
+        name: 'prerender-status-code',
+        content: '404'
+      }
+    }];
   }
 });
