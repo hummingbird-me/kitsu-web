@@ -18,10 +18,10 @@ export default Component.extend(Pagination, {
       page: { limit: 20 },
       filter: {}
     };
-    // const category = get(this, 'category');
-    // if (category) {
-    //   options.filter.categories = get(category, 'slug');
-    // }
+    const category = get(this, 'category');
+    if (category) {
+      options.filter.categories = get(category, 'slug');
+    }
     switch (type) {
       case 'top-current':
         options.sort = '-userCount';
