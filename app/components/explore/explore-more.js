@@ -18,9 +18,9 @@ export default Component.extend(Pagination, {
       page: { limit: 20 },
       filter: {}
     };
-    // const category = get(this, 'categoryName');
+    // const category = get(this, 'category');
     // if (category) {
-    //   options.filter.category = category;
+    //   options.filter.categories = get(category, 'slug');
     // }
     switch (type) {
       case 'top-current':

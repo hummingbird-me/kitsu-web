@@ -5,7 +5,7 @@ export default Route.extend({
   setupController(controller) {
     this._super(...arguments);
     const mediaType = this.paramsFor('explore').media_type;
-    const categoryName = this.paramsFor('explore.category').name;
-    setProperties(controller, { mediaType, categoryName });
+    const category = this.modelFor('explore.category');
+    setProperties(controller, { mediaType, category });
   }
 });

@@ -1,10 +1,4 @@
 <div class="related-categories">
   <h5>RELATED CATEGORIES</h5>
-  <div class="categories-list">
-    {{#each getDataTask.last.value as |category|}}
-      <div>
-        <a href={{href-to "explore.category" category.slug}}>{{category.name}}</a>
-      </div>
-    {{/each}}
-  </div>
+  {{explore/category-widget/categories-list categories=categories}}
 </div>

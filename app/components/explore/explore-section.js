@@ -30,6 +30,10 @@ export default Component.extend({
         options.filter[f[0]] = f[1];
       });
     }
+    // const category = get(this, 'category');
+    // if (category) {
+    //   filter.categories = get(category, 'slug');
+    // }
     return options;
   },
 

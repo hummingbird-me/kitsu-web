@@ -3,11 +3,11 @@
     {{t (concat "titles." more "." type)
       mediaType=mediaType
       type=(capitalize mediaType)
-      category=(capitalize categoryName)
+      category=category.title
     }}
   </h3>
-  {{#if (not (is-empty categoryName))}}
-    {{explore/category-widget/related}}
+  {{#if (not (is-empty category))}}
+    {{explore/category-widget/related category=category}}
   {{else}}
     {{explore/category-widget/index}}
   {{/if}}

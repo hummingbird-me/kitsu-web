@@ -4,7 +4,6 @@ import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
-  classNames: ['category-widget', 'is-sticky'],
   store: service(),
 
   init() {
@@ -15,9 +14,6 @@ export default Component.extend({
   },
 
   getDataTask: task(function* () {
-    return yield get(this, 'store').query('category', {
-      sort: '-totalMediaCount',
-      page: { limit: 40 }
-    });
+    return yield get(this, 'store').findAll('category');
   }).restartable()
 });

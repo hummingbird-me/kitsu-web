@@ -1,0 +1,14 @@
+<div class="categories-list">
+  {{#each categories as |category|}}
+    <div>
+      <a href={{href-to "explore.category" category.slug}}>{{category.title}}</a>
+    </div>
+  {{/each}}
+</div>
+<div class="categories-more">
+  <a href="#" onclick={{action (toggle "isModalOpen" this)}}>More categories...</a>
+</div>
+{{#if isModalOpen}}
+  {{to-elsewhere named="modal" send=(component "explore/category-widget/categories-modal"
+    modalId="categories-modal")}}
+{{/if}}

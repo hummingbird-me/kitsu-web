@@ -1,5 +1,11 @@
 <div>
-  <h6>{{t (concat "titles." more "." type) mediaType=mediaType type=(capitalize mediaType) category=(capitalize categoryName)}}</h6>
+  <h6>
+    {{t (concat "titles." more "." type)
+      mediaType=mediaType
+      type=(capitalize mediaType)
+      category=category.title
+    }}
+  </h6>
 </div>
 <div class="explore-grid">
   {{#each getDataTask.last.value as |media|}}
@@ -13,8 +19,8 @@
   {{/each}}
 </div>
 <div class="explore-section-more">
-  {{#if (not (is-empty categoryName))}}
-    <a href={{href-to more mediaType categoryName type}}>View more</a>
+  {{#if (not (is-empty category))}}
+    <a href={{href-to more mediaType category type}}>View more</a>
   {{else}}
     <a href={{href-to more mediaType type}}>View more</a>
   {{/if}}

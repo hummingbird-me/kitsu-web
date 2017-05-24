@@ -1,0 +1,14 @@
+{{#bootstrap/bs-modal id=modalId as |modal|}}
+  {{#modal.body}}
+    {{#if getDataTask.last.value}}
+      {{#each-in (group-by "parent.id" getDataTask.last.value) as |parent categories|}}
+        <h3>{{parent.title}}</h3>
+        <ul>
+          {{#each categories as |category|}}
+            <li>{{category.title}}</li>
+          {{/each}}
+        </ul>
+      {{/each-in}}
+    {{/if}}
+  {{/modal.body}}
+{{/bootstrap/bs-modal}}

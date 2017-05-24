@@ -1,12 +1,12 @@
 <div class='explore-page'>
-  <h3>{{titleize (concat categoryName " " mediaType)}}</h3>
-  {{explore/category-widget/related}}
+  <h3>{{titleize (concat category.title " " mediaType)}}</h3>
+  {{explore/category-widget/related category=category}}
   {{explore/explore-search}}
   <div class="explore-content">
     {{explore/explore-section
       type="newly-released"
       mediaType=mediaType
-      categoryName=categoryName
+      category=category
       sort="-startDate"
       filters="current"
       more="explore.category.more"
@@ -15,14 +15,14 @@
     {{explore/explore-section
       type="trending"
       mediaType=mediaType
-      categoryName=categoryName
+      category=category
       more="explore.category.more"
       limit=15
     }}
     {{explore/explore-section
       type="most-popular"
       mediaType=mediaType
-      categoryName=categoryName
+      category=category
       sort="-userCount"
       more="explore.category.more"
       limit=15

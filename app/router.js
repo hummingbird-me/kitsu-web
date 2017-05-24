@@ -50,7 +50,7 @@ RouterInstance.map(function() {
 
   this.route('explore', { path: '/explore/:media_type' }, function() {
     this.route('more', { path: '/:type' });
-    this.route('category', { path: '/category/:name' }, function() {
+    this.route('category', { path: '/category/:slug' }, function() {
       this.route('more', { path: '/:type' });
     });
   });
