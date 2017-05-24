@@ -48,7 +48,7 @@ export default Component.extend(Pagination, {
       id: get(this, 'session.account.id'),
       include: 'actor,target.user,target.post',
       page: { limit }
-    });
+    }, { cache: false });
   }).enqueue(),
 
   init() {
