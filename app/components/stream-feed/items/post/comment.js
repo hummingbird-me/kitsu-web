@@ -56,7 +56,7 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
       fields: { users: ['avatar', 'name'].join(',') },
       page: { limit: 2 },
       sort: '-created_at'
-    });
+    }, { cache: false });
   }).drop(),
 
   createReply: task(function* (content) {

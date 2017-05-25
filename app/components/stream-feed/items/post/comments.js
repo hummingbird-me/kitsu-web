@@ -23,7 +23,7 @@ export default Component.extend(Pagination, {
       page: { limit: 2 },
       include: 'user',
       sort: '-created_at'
-    });
+    }, { cache: false });
   }).drop(),
 
   createComment: task(function* (content) {
