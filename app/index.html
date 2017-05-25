@@ -44,6 +44,8 @@
       link.href = window.Kitsu.themes[theme];
       link.dataset.theme = theme;
       document.head.appendChild(link);
+
+      window.prerenderReady = false;
     </script>
 
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">

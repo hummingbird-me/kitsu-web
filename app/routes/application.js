@@ -108,7 +108,10 @@ export default Route.extend(ApplicationRouteMixin, {
     loading(transition) {
       const controller = this.controllerFor(get(this, 'routeName'));
       set(controller, 'routeIsLoading', true);
-      transition.promise.finally(() => set(controller, 'routeIsLoading', false));
+      transition.promise.finally(() => {
+        window.prerenderReady = true;
+        set(controller, 'routeIsLoading', false);
+      });
     },
 
     /**
