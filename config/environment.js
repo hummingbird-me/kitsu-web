@@ -105,7 +105,8 @@ module.exports = function(environment) {
 
     'ember-cli-mirage': {
       enabled: environment === 'test',
-      excludeFilesFromBuild: environment !== 'test'
+      excludeFilesFromBuild: environment !== 'test',
+      discoverEmberDataModels: true
     },
 
     'polyfill-io': {
