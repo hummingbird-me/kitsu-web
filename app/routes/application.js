@@ -2,6 +2,7 @@ import Route from 'ember-route';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
+import { scheduleOnce } from 'ember-runloop';
 import { storageFor } from 'ember-local-storage';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import moment from 'moment';
@@ -109,7 +110,9 @@ export default Route.extend(ApplicationRouteMixin, {
       const controller = this.controllerFor(get(this, 'routeName'));
       set(controller, 'routeIsLoading', true);
       transition.promise.finally(() => {
-        window.prerenderReady = true;
+        scheduleOnce('afterRender', () => {
+          window.prerenderReady = true;
+        });
         set(controller, 'routeIsLoading', false);
       });
     },
