@@ -2,10 +2,10 @@
   <div class="row">
     <div class="library-search--wrapper">
       <span class="icon">{{svg-jar "search"}}</span>
-      {{one-way-text
+      {{one-way-text dupQuery
         class="library-search-input"
         placeholder=(t "users.library.search" name=user.name)
-        update=update
+        update=(action "updateQuery")
       }}
     </div>
   </div>

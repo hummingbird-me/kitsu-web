@@ -15,7 +15,8 @@
 
     <div class="library-content col-sm">
       {{! Search }}
-      {{users/library/library-search title
+      {{users/library/library-search
+        query=title
         user=user
         update=(perform searchTask)
         tagName="section"
