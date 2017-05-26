@@ -98,13 +98,19 @@
   {{/if}}
 
   {{! Edit }}
-  {{#if (can "edit library-entry" libraryEntry)}}
-    <td class="edit-entry">
+  <td class="edit-entry">
+    {{#if (can "edit library-entry" libraryEntry)}}
       <a href="#" class="edit-entry-button" {{action (toggle "showEditModal" this)}}>
         {{t "users.library.list.edit"}}
       </a>
-    </td>
-  {{/if}}
+    {{else}}
+      <a href="#" class="edit-entry-button" {{action (queue
+        (action (mut readOnlyModal) true)
+        (toggle-action "showEditModal" this))}}>
+        {{t "users.library.list.more"}}
+      </a>
+    {{/if}}
+  </td>
 </tr>
 
 {{#if showEditModal}}
@@ -112,6 +118,9 @@
     libraryEntry=libraryEntry
     saveEntry=saveEntry
     removeEntry=removeEntry
-    onClose=(toggle-action "showEditModal" this)
+    isReadOnly=readOnlyModal
+    onClose=(queue
+      (action (mut readOnlyModal) false)
+      (toggle-action "showEditModal" this))
   )}}
 {{/if}}

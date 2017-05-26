@@ -16,6 +16,7 @@
           searchEnabled=false
           options=statuses
           selected=changeset.status
+          disabled=isReadOnly
           onchange=(action (mut changeset.status)) as |option|}}
           {{t (concat "library-shared." option) type=libraryEntry.media.modelType}}
         {{/power-select}}
@@ -36,6 +37,7 @@
               (action "sanitizeNumber")
               (action (mut changeset.progress))
             )
+            disabled=isReadOnly
             class="form-control"
           }}
           <div class="input-group-addon">
@@ -64,6 +66,7 @@
                 (action "sanitizeNumber")
                 (action (mut changeset.volumesOwned))
               )
+              disabled=isReadOnly
               class="form-control"
             }}
             <div class="input-group-addon">
@@ -85,6 +88,7 @@
       </label>
       <div class="col-sm-7 library-state">
         {{library-entry/rating-button
+          disabled=isReadOnly
           rating=changeset.rating
           onClick=(action (mut changeset.rating))
           showDropdown=true
@@ -105,32 +109,37 @@
               (action "sanitizeNumber")
               (action (mut changeset.reconsumeCount))
             )
+            disabled=isReadOnly
             class="form-control"
           }}
-          <span class="input-group-btn">
-            <button class="btn btn-secondary" type="button" onclick={{action "rewatch"}}>
-              {{t "users.library.edit.start-rewatch" type=libraryEntry.media.modelType}}
-            </button>
-          </span>
+          {{#unless isReadOnly}}
+            <span class="input-group-btn">
+              <button class="btn btn-secondary" type="button" onclick={{action "rewatch"}}>
+                {{t "users.library.edit.start-rewatch" type=libraryEntry.media.modelType}}
+              </button>
+            </span>
+          {{/unless}}
         </div>
       </div>
     </div>
 
     {{! Privacy }}
-    <div class="form-group row">
-      <label class="col-sm col-form-label">
-        {{t "users.library.edit.privacy"}}
-      </label>
-      <div class="col-sm-7">
-        {{#power-select
-          searchEnabled=false
-          options=privacies
-          selected=(find-by "id" changeset.private privacies)
-          onchange=(action "selectUpdate" "private") as |option|}}
-          {{option.value}}
-        {{/power-select}}
+    {{#unless isReadOnly}}
+      <div class="form-group row">
+        <label class="col-sm col-form-label">
+          {{t "users.library.edit.privacy"}}
+        </label>
+        <div class="col-sm-7">
+          {{#power-select
+            searchEnabled=false
+            options=privacies
+            selected=(find-by "id" changeset.private privacies)
+            onchange=(action "selectUpdate" "private") as |option|}}
+            {{option.value}}
+          {{/power-select}}
+        </div>
       </div>
-    </div>
+    {{/unless}}
 
     {{! Started }}
     <div class="form-group row">
@@ -139,7 +148,9 @@
       </label>
       <div class="col-sm-7">
         {{pikaday-input
+          value=changeset.startedAt
           useUTC=true
+          disabled=isReadOnly
           class="form-control"
           format="DD/MM/YYYY"
           yearRange="1900,currentYear"
@@ -156,7 +167,9 @@
       </label>
       <div class="col-sm-7">
         {{pikaday-input
+          value=changeset.finishedAt
           useUTC=true
+          disabled=isReadOnly
           class="form-control"
           format="DD/MM/YYYY"
           yearRange="1900,currentYear"
@@ -173,32 +186,34 @@
       </label>
       <div class="col-sm-7">
         {{expanding-textarea changeset.notes
-          update=(action (mut changeset.notes))
+          update=(action "updateNotes")
           class="form-control"
         }}
       </div>
     </div>
   {{/modal.body}}
 
-  {{#modal.footer}}
-    {{! Remove }}
-    <button class="btn button--secondary hint--rounded hint--bounce hint--right"
-        aria-label={{t "users.library.edit.remove"}}
-        onclick={{perform removeTask}}>
-      {{#if removeTask.isRunning}}
-        {{loading-spinner size="small"}}
-      {{else}}
-        {{svg-jar "trash"}}
-      {{/if}}
-    </button>
+  {{#unless isReadOnly}}
+    {{#modal.footer}}
+      {{! Remove }}
+      <button class="btn button--secondary hint--rounded hint--bounce hint--right"
+          aria-label={{t "users.library.edit.remove"}}
+          onclick={{perform removeTask}}>
+        {{#if removeTask.isRunning}}
+          {{loading-spinner size="small"}}
+        {{else}}
+          {{svg-jar "trash"}}
+        {{/if}}
+      </button>
 
-    {{! Save }}
-    <button class="btn button--primary" disabled={{not isValid}} onclick={{perform saveTask}}>
-      {{#if saveTask.isRunning}}
-        {{t "users.library.edit.saving"}}
-      {{else}}
-        {{t "users.library.edit.save"}}
-      {{/if}}
-    </button>
-  {{/modal.footer}}
+      {{! Save }}
+      <button class="btn button--primary" disabled={{not isValid}} onclick={{perform saveTask}}>
+        {{#if saveTask.isRunning}}
+          {{t "users.library.edit.saving"}}
+        {{else}}
+          {{t "users.library.edit.save"}}
+        {{/if}}
+      </button>
+    {{/modal.footer}}
+  {{/unless}}
 {{/bootstrap/bs-modal}}

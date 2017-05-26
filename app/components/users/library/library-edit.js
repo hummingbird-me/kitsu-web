@@ -10,6 +10,7 @@ import jQuery from 'jquery';
 
 export default Component.extend({
   tagName: '',
+  isReadOnly: false,
 
   isValid: computed('changeset.{isDirty,isValid}', 'saveTask.isIdle', function() {
     return get(this, 'changeset.isDirty') && get(this, 'changeset.isValid') &&
@@ -50,6 +51,11 @@ export default Component.extend({
       set(this, 'changeset.reconsumeCount', get(this, 'changeset.reconsumeCount') + 1);
       set(this, 'changeset.progress', 0);
       set(this, 'changeset.status', 'current');
+    },
+
+    updateNotes(content) {
+      if (get(this, 'isReadOnly')) { return; }
+      set(this, 'changeset.notes', content);
     }
   }
 });

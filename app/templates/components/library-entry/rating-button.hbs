@@ -34,7 +34,7 @@
           {{yield}}
         </span>
       {{else}}
-        <button class="btn btn-secondary" {{action (toggle "showTooltip" this)}}>
+        <button class="btn btn-secondary" disabled={{disabled}} {{action (toggle "showTooltip" this)}}>
           {{! Simple State }}
           {{#if session.account.isSimpleRating}}
             <span class="rating-simple">
@@ -47,9 +47,11 @@
             </span>
           {{/if}}
         </button>
-        <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" onclick={{dd.actions.toggle}}>
-          {{! Dropdown Caret }}
-        </button>
+        {{#unless disabled}}
+          <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" onclick={{dd.actions.toggle}}>
+            {{! Dropdown Caret }}
+          </button>
+        {{/unless}}
       {{/if}}
     </div>
 

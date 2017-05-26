@@ -8,6 +8,8 @@ import { invokeAction } from 'ember-invoke-action';
 export default Component.extend({
   tagName: '',
   isChecked: false,
+  readOnlyModal: false,
+  showEditModal: false,
 
   init() {
     this._super(...arguments);
