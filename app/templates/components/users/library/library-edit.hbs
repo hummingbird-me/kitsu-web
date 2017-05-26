@@ -49,6 +49,35 @@
       </div>
     </div>
 
+    {{! Volumes (Manga) }}
+    {{#if (eq libraryEntry.media.modelType "manga")}}
+      <div class="form-group row">
+        <label class="col-sm col-form-label">
+          {{t "users.library.edit.volumes"}}
+        </label>
+        <div class="col-sm-7">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            {{ui/selectable-input changeset.volumesOwned
+              min="0"
+              max=libraryEntry.media.volumeCount
+              update=(pipe-action
+                (action "sanitizeNumber")
+                (action (mut changeset.volumesOwned))
+              )
+              class="form-control"
+            }}
+            <div class="input-group-addon">
+              {{#if (gt libraryEntry.media.volumeCount 0)}}
+                {{t "users.library.edit.volume-units" num=libraryEntry.media.volumeCount}}
+              {{else}}
+                &mdash;
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+
     {{! Rating }}
     <div class="form-group row">
       <label class="col-sm col-form-label">

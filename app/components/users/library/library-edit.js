@@ -6,6 +6,7 @@ import createChangeset from 'ember-changeset-cp-validations';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import { LIBRARY_STATUSES } from 'client/models/library-entry';
+import jQuery from 'jquery';
 
 export default Component.extend({
   tagName: '',
@@ -27,10 +28,12 @@ export default Component.extend({
 
   removeTask: task(function* () {
     yield invokeAction(this, 'removeEntry', get(this, 'libraryEntry'));
+    jQuery('.modal').modal('hide');
   }).drop(),
 
   saveTask: task(function* () {
     yield invokeAction(this, 'saveEntry', get(this, 'changeset'));
+    jQuery('.modal').modal('hide');
   }).drop(),
 
   actions: {
