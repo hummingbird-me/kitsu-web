@@ -58,13 +58,19 @@
     </li>
     {{#if (can "edit library-entry" user)}}
       <li>
-        <a href="#" {{action (toggle "showResetModal" this)}}>{{t "users.library.sidebar.reset"}}</a>
+        <a href="#" {{action (toggle "showResetModal" this)}}>
+          {{#if isResetLoading}}
+            {{t "users.library.sidebar.reset-loading"}}
+          {{else}}
+            {{t "users.library.sidebar.reset"}}
+          {{/if}}
+          </a>
       </li>
       {{#if showResetModal}}
         {{to-elsewhere named="modal" send=(component "modals/confirm-action"
           title=(t "users.library.sidebar.reset")
           text=(t "users.library.sidebar.reset-confirmation")
-          onConfirm=(action resetLibrary)
+          onConfirm=(action "resetLibrary")
           onClose=(toggle-action "showResetModal" this)
         )}}
       {{/if}}

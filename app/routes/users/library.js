@@ -104,7 +104,7 @@ export default Route.extend(Pagination, {
     get(this, 'queryCache').invalidateType('library-entry');
     // delete all local records belonging to the user
     let entries = get(this, 'store').peekAll('library-entry');
-    entries = entries.filterBy('user', get(this, 'session.account'));
+    entries = entries.filterBy('user.id', get(this, 'session.account.id'));
     entries.forEach((entry) => {
       entry.deleteRecord();
     });

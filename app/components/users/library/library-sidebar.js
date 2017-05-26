@@ -2,6 +2,7 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { camelize } from 'ember-string';
+import { invokeAction } from 'ember-invoke-action';
 import { LIBRARY_STATUSES } from 'client/models/library-entry';
 
 export default Component.extend({
@@ -25,5 +26,14 @@ export default Component.extend({
     // Sum all values for total count
     const total = Object.values(counts).reduce((previous, current) => previous + current, 0);
     set(this, 'totalCount', total);
+  },
+
+  actions: {
+    resetLibrary(...args) {
+      set(this, 'isResetLoading', true);
+      invokeAction(this, 'resetLibrary', ...args).finally(() => {
+        set(this, 'isResetLoading', false);
+      });
+    }
   }
 });
