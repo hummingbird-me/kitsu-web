@@ -37,8 +37,9 @@ export default Controller.extend(queryParams.Mixin, {
   filteredLibraryEntries: computed('libraryEntries.@each.{status,isDeleted}', function() {
     let entries = get(this, 'libraryEntries');
     entries = entries.filterBy('isDeleted', false);
-    const { status } = get(this, 'allQueryParams');
-    if (status !== 'all') {
+    const status = get(this, 'status');
+    const isDirty = entries.any(entry => get(entry, 'hasDirtyAttributes'));
+    if (status !== 'all' && !isDirty) {
       entries = entries.filterBy('status', status);
     }
     return entries;
@@ -65,7 +66,7 @@ export default Controller.extend(queryParams.Mixin, {
   },
 
   searchTask: task(function* (query) {
-    yield timeout(250);
+    yield timeout(1000);
     set(this, 'title', query);
   }).restartable(),
 
