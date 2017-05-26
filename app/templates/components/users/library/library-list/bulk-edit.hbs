@@ -9,19 +9,27 @@
   </div>
 
   <div class="bulk-cta">
-    <a class="bulk-btn secondary" href="#" {{action removeEntriesBulk}}>
-      {{t "users.library.bulk.remove" num=selectedCount htmlSafe=true}}
+    <a class="bulk-btn secondary" href="#" {{action "removeEntriesBulk"}}>
+      {{#if isRemoveLoading}}
+        {{t "users.library.bulk.remove-loading"}}
+      {{else}}
+        {{t "users.library.bulk.remove" num=selectedCount htmlSafe=true}}
+      {{/if}}
     </a>
     {{#basic-dropdown as |dd|}}
       {{#dd.trigger class="bulk-btn dropdown-toggle"}}
-        {{t "users.library.bulk.move-to" num=selectedCount htmlSafe=true}}
+        {{#if isUpdateLoading}}
+          {{t "users.library.bulk.update-loading"}}
+        {{else}}
+          {{t "users.library.bulk.move-to" num=selectedCount htmlSafe=true}}
+        {{/if}}
       {{/dd.trigger}}
       {{#dd.content}}
         <ul class="list-unstyled">
           {{#each libraryEntryStatuses as |status|}}
             <li class="dropdown-item" {{action (queue
               (action dd.actions.toggle)
-              (action updateStatusBulk status))}}>
+              (action "updateStatusBulk" status))}}>
               {{t (concat "library-shared." status) type=media}}
             </li>
           {{/each}}
