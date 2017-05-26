@@ -9,7 +9,9 @@ import getTitleField from 'client/utils/get-title-field';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(Pagination, {
+  ajax: service(),
   intl: service(),
+  queryCache: service(),
   cache: storageFor('last-used'),
 
   /**
@@ -53,6 +55,9 @@ export default Route.extend(Pagination, {
     return get(this, 'intl').t('titles.users.library', { user: name });
   },
 
+  /**
+   * Remove a group of library entries in a bulk update.
+   */
   removeEntriesTask: task(function* (entries) {
     const ids = entries.map(entry => get(entry, 'id'));
     yield get(this, 'ajax').request('/library-entries/_bulk', {
@@ -65,6 +70,9 @@ export default Route.extend(Pagination, {
     });
   }).drop(),
 
+  /**
+   * Update the status of a group of library entries in a bulk update.
+   */
   updateStatusTask: task(function* (entries, status) {
     const ids = entries.map(entry => get(entry, 'id'));
     const response = yield get(this, 'ajax').request('/library-entries/_bulk', {
@@ -74,17 +82,26 @@ export default Route.extend(Pagination, {
         data: { attributes: { status } }
       })
     });
+    // invalidate cache
+    get(this, 'queryCache').invalidateType('library-entry');
     // push serialized records into the store
-    const [data] = response.data;
-    const normalizedData = get(this, 'store').normalize('library-entry', data);
-    get(this, 'store').push(normalizedData);
+    const data = response.data;
+    data.forEach((entry) => {
+      const normalizedData = get(this, 'store').normalize('library-entry', entry);
+      get(this, 'store').push(normalizedData);
+    });
   }).drop(),
 
+  /**
+   * Delete the user's entire library.
+   */
   resetLibraryTask: task(function* () {
     yield get(this, 'ajax').request('/library-entries/_bulk', {
       method: 'DELETE',
       data: JSON.stringify({ filter: { user_id: get(this, 'session.account.id') } })
     });
+    // invalidate cache
+    get(this, 'queryCache').invalidateType('library-entry');
     // delete all local records belonging to the user
     let entries = get(this, 'store').peekAll('library-entry');
     entries = entries.filterBy('user', get(this, 'session.account'));

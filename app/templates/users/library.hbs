@@ -49,7 +49,7 @@
         {{component (concat "users/library/library-" layoutStyle)
           media=media
           user=user
-          libraryEntries=libraryEntries
+          libraryEntries=filteredLibraryEntries
           isLoading=model.taskInstance.isRunning
           saveEntry=(route-action "saveEntry")
           removeEntry=(route-action "removeEntry")
