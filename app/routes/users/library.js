@@ -211,8 +211,8 @@ export default Route.extend(Pagination, {
     }
 
     if (status === 'all') {
-      options.filter.status = '1,2,3,4,5';
       options.sort = `status,${options.sort}`;
+      delete options.filter.status;
     }
 
     // request only the fields that we require for display
