@@ -116,7 +116,9 @@ export default Route.extend(Pagination, {
     },
 
     saveEntry(changeset) {
-      return changeset.save().catch((error) => {
+      return changeset.save().then(() => {
+        get(this, 'queryCache').invalidateType('library-entry');
+      }).catch((error) => {
         get(this, 'raven').captureException(error);
       });
     },
