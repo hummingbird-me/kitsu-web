@@ -1,0 +1,66 @@
+<div class="grid-poster">
+  {{lazy-image src=(image libraryEntry.media.posterImage "medium")}}
+  <div class="poster-overlay">
+    <a href={{href-to (concat libraryEntry.media.modelType ".show") libraryEntry.media.slug}}></a>
+    {{! Edit }}
+    {{#if (can "edit library-entry" libraryEntry)}}
+      <div class="grid-edit-wrapper">
+        <a href="#" class="grid-edit" {{action (toggle "showEditModal" this)}}>
+          {{t "users.library.list.edit"}}
+        </a>
+      </div>
+    {{/if}}
+  </div>
+  <div class="progress">
+    <span class="progress-bar">
+      <span role="presentation" style={{progressPercent}} class="progress-completed"></span>
+    </span>
+  </div>
+</div>
+<div class="entry-stats">
+  {{! Progress }}
+  <span class="entry-episode">
+    {{#if (eq libraryEntry.progress 0)}}
+      {{t "users.library.list.unstarted"}}
+    {{else}}
+      {{t "users.library.list.progress"
+        type=libraryEntry.media.modelType
+        progress=libraryEntry.progress
+      }}
+    {{/if}}
+  </span>
+
+  {{! Rating }}
+  <span class="entry-rating entry-rating-{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}">
+    {{#if (gt changeset.rating 0)}}
+      {{#library-entry/rating-button
+        rating=changeset.rating
+        showDropdown=true
+        simpleDropdown=true
+        onClick=(action "changeRating")
+      }}
+        {{library-entry/readonly-rating
+          rating=changeset.rating
+          hideText=true
+        }}
+      {{/library-entry/rating-button}}
+    {{else}}
+      {{#library-entry/rating-button
+        rating=changeset.rating
+        onClick=(action "changeRating")
+        class="no-rating"
+      }}
+        {{t "users.library.list.unrated"}}
+      {{/library-entry/rating-button}}
+    {{/if}}
+  </span>
+</div>
+
+{{#if showEditModal}}
+  {{to-elsewhere named="modal" send=(component "users/library/library-edit"
+    libraryEntry=libraryEntry
+    saveEntry=saveEntry
+    removeEntry=removeEntry
+    onClose=(toggle-action "showEditModal" this)
+  )}}
+{{/if}}

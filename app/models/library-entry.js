@@ -22,14 +22,18 @@ const Validations = buildValidations({
   ]
 });
 
+export const LIBRARY_STATUSES = ['current', 'planned', 'completed', 'on_hold', 'dropped'];
 export default Base.extend(Validations, {
-  progress: attr('number'),
+  finishedAt: attr('utc'),
   notes: attr('string'),
+  progress: attr('number'),
   private: attr('boolean'),
   ratingTwenty: attr('rating'),
   reconsumeCount: attr('number'),
+  startedAt: attr('utc'),
   status: attr('string'),
   updatedAt: attr('utc'),
+  volumesOwned: attr('number'),
 
   anime: belongsTo('anime'),
   manga: belongsTo('manga'),

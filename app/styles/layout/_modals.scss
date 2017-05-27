@@ -530,3 +530,39 @@
     }
   }
 }
+
+.library-edit-modal {
+  .modal-dialog {
+    max-width: 450px;
+  }
+  .modal-content {
+    background: $white;
+  }
+  .form-group {
+    &:last-child {
+      margin-bottom: 1s0px;
+    }
+    .btn-secondary {
+      height: 100%;
+      border: 1px solid #ddd;
+    }
+  }
+  .button--primary {
+    float: right;
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+  .button--secondary {
+    padding: 8px 15px;
+    background: #cecece;
+    svg {
+      fill: #4e4e4e;
+    }
+    &:hover {
+      background: #ffbbb5;
+      svg {
+        fill: #6b1e16;
+      }
+    }
+  }
+}

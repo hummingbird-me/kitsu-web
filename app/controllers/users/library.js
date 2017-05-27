@@ -1,49 +1,80 @@
 import Controller from 'ember-controller';
-import computed from 'ember-computed';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import observer from 'ember-metal/observer';
+import computed from 'ember-computed';
+import QueryParams from 'ember-parachute';
+import { task, timeout } from 'ember-concurrency';
 import { storageFor } from 'ember-local-storage';
 import { concat } from 'client/utils/computed-macros';
-import libraryStatus from 'client/utils/library-status';
+import { LIBRARY_STATUSES } from 'client/models/library-entry';
 
-export default Controller.extend({
-  queryParams: ['media', 'status'],
-  media: 'anime',
-  status: 'current',
-  mediaList: ['anime', 'manga'],
-  entries: concat('model.taskInstance.value', 'model.paginatedRecords'),
-  lastUsed: storageFor('last-used'),
+const queryParams = new QueryParams({
+  media: {
+    defaultValue: 'anime',
+    refresh: true
+  },
+  status: {
+    defaultValue: 'current',
+    refresh: true
+  },
+  sort: {
+    defaultValue: 'title',
+    refresh: true
+  },
+  title: {
+    defaultValue: '',
+    refresh: true
+  },
+  preserveScrollPosition: {
+    defaultValue: true
+  }
+});
 
-  /**
-   * Filters the entries by their status and state into an object of
-   * `{ status: entries, ... }`
-   */
-  sections: computed('entries.@each.{status,isDeleted}', function() {
-    const sections = {};
-    get(this, 'statuses').slice(1).forEach((status) => {
-      const entries = get(this, 'entries')
-        .filterBy('status', status)
-        .filterBy('isDeleted', false);
-      sections[status] = entries;
-    });
-    return sections;
+export default Controller.extend(queryParams.Mixin, {
+  cache: storageFor('last-used'),
+  libraryEntries: concat('model.taskInstance.value', 'model.paginatedRecords'),
+
+  filteredLibraryEntries: computed('libraryEntries.@each.{status,isDeleted}', function() {
+    let entries = get(this, 'libraryEntries');
+    entries = entries.filterBy('isDeleted', false);
+    const status = get(this, 'status');
+    const isDirty = entries.any(entry => get(entry, 'hasDirtyAttributes'));
+    if (status !== 'all' && !isDirty) {
+      entries = entries.filterBy('status', status);
+    }
+    return entries;
   }).readOnly(),
 
   init() {
     this._super(...arguments);
-    set(this, 'statuses', ['all', ...libraryStatus.getEnumKeys()]);
+    set(this, 'mediaTypes', ['anime', 'manga']);
+    set(this, 'statuses', ['all', ...LIBRARY_STATUSES]);
+    set(this, 'layoutStyle', get(this, 'cache.libraryLayout') || 'grid');
   },
 
-  _saveFilter: observer('media', 'sort', function() {
-    // its possible for this to proc before setupController from the route has fired
-    // we don't actually want to update the cache when it's a direct route request anyway.
-    if (get(this, 'user')) {
-      if (get(this, 'session').isCurrentUser(get(this, 'user'))) {
-        const lastUsed = get(this, 'lastUsed');
-        set(lastUsed, 'libraryType', get(this, 'media'));
-        set(lastUsed, 'librarySort', get(this, 'sort'));
-      }
+  queryParamsDidChange({ shouldRefresh, queryParams }) {
+    // save to cache
+    if (get(this, 'session').isCurrentUser(get(this, 'user'))) {
+      const cache = get(this, 'cache');
+      set(cache, 'libraryType', get(queryParams, 'media'));
+      set(cache, 'librarySort', get(queryParams, 'sort'));
     }
-  })
+    // refresh data
+    if (shouldRefresh) {
+      this.send('refreshModel');
+    }
+  },
+
+  searchTask: task(function* (query) {
+    yield timeout(1000);
+    set(this, 'title', query);
+  }).restartable(),
+
+  actions: {
+    updateLayout(layout) {
+      set(this, 'layoutStyle', layout);
+      const cache = get(this, 'cache');
+      set(cache, 'libraryLayout', layout);
+    }
+  }
 });

@@ -78,7 +78,7 @@ module.exports = function(defaults) {
         'pipe', 'toggle', 'queue',
         // Array
         'array', 'map-by', 'sort-by', 'filter-by', 'reject-by',
-        'take', 'repeat',
+        'find-by', 'take', 'repeat',
         // Object
         'group-by',
         // Math

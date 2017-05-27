@@ -3,7 +3,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import computed from 'ember-computed';
 import { invoke } from 'ember-invoke-action';
-import libraryStatus from 'client/utils/library-status';
+import { LIBRARY_STATUSES } from 'client/models/library-entry';
 
 export default Component.extend({
   classNameBindings: ['libraryEntry:has-entry'],
@@ -23,7 +23,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    set(this, 'statuses', libraryStatus.getEnumKeys());
+    set(this, 'statuses', LIBRARY_STATUSES);
   },
 
   actions: {

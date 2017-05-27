@@ -1,75 +1,82 @@
 <div class="container">
   <div class="row">
-    <div class="library-list col-sm-12">
-      <div class="nav-wrapper">
-        {{! Library type dropdown }}
-        {{#bootstrap/bs-dropdown class="library-type" as |dropdown|}}
-          {{#dropdown.button class="button--dark-outline button--small"}}
-            {{t "users.library.type" type=(capitalize media)}}
-          {{/dropdown.button}}
-          {{#dropdown.menu}}
-            {{#each mediaList as |_media|}}
-              {{#dropdown.menu-item onClick=(action (mut media) _media)}}
-                {{t "users.library.type" type=(capitalize _media)}}
-                {{#if (eq media _media)}}
-                  <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
-                {{/if}}
-              {{/dropdown.menu-item}}
-            {{/each}}
-          {{/dropdown.menu}}
-        {{/bootstrap/bs-dropdown}}
+    {{! Kitsu Library Content Ad }}
+    <div class="library-ad col-sm-12 no-padding-right">
+      {{#unless session.account.isPro}}
+        {{ad-unit unit="kitsu.library.top"
+          targeting=(hash section="library")
+          sizes=(hash
+            mobile=(array (array 320 100) (array 320 50))
+            tablet=(array 728 90)
+            desktop=(array (array 970 90) (array 728 90))
+          )}}
+      {{/unless}}
+    </div>
 
-        {{! Library status selection }}
-        <div class="library-status">
-          <div class="btn-group" role="group" aria-label="Library Status">
-            {{#each statuses as |_status|}}
-              {{users/library/library-status
-                status=_status
-                mediaType=media
-                isActive=(eq _status status)
-                onClick=(action (mut status))
-              }}
-            {{/each}}
-          </div>
-        </div>
-      </div>
-      {{! Library Sorting }}
-      {{users/library/library-sorting sort=sort onSortChange=(route-action "changeSort")}}
+    <div class="library-content col-sm">
+      {{! Search }}
+      {{users/library/library-search
+        query=title
+        user=user
+        update=(perform searchTask)
+        tagName="section"
+        class="library-search"
+      }}
+
+      {{! Library Actions }}
+      <section class="library-result-header clearfix">
+        {{! Library Layout Buttons }}
+        <span class="list-type">
+          <a href="#" class={{if (eq layoutStyle "grid") "active"}} {{action "updateLayout" "grid"}}>
+            {{~svg-jar "grid"~}}
+          </a>
+          <a href="#" class={{if (eq layoutStyle "list") "active"}} {{action "updateLayout" "list"}}>
+            {{~svg-jar "list"~}}
+          </a>
+        </span>
+
+        {{! Library Sort }}
+        {{users/library/library-sorting
+          sort=sort
+          update=(action (mut sort))
+          class="library-filters"
+        }}
+      </section>
 
       {{! Library Entries }}
-      {{#if model.taskInstance.isRunning}}
-        <div class="text-xs-center w-100 m-t-1 m-b-1">
-          {{loading-spinner size="large"}}
-          <p>Loading Library...</p>
-        </div>
-      {{else if model.taskInstance.error}}
-        <div class="text-xs-center w-100 m-t-1 m-b-1">
-          {{t "errors.load"}}
-        </div>
-      {{else}}
-        {{#infinite-pagination onPagination=(route-action "onPagination")}}
-          {{#if (eq status 'all')}} {{! all status is selected }}
-            {{#each-in sections as |status entries|}}
-              {{users/library/library-entries
-                status=status
-                entries=entries
-                mediaType=media
-                user=user
-                save=(route-action "saveEntry")
-              }}
-            {{/each-in}}
-          {{else}} {{! active tab entires }}
-            {{users/library/library-entries
-              status=status
-              entries=entries
-              mediaType=media
-              metaCount=(get model.taskInstance.value "meta.count")
-              user=user
-              save=(route-action "saveEntry")
-            }}
-          {{/if}}
-        {{/infinite-pagination}}
-      {{/if}}
+      {{#infinite-pagination
+        showLoader=false
+        onPagination=(route-action "onPagination") as |isLoading|}}
+        {{component (concat "users/library/library-" layoutStyle)
+          isSearching=(not (is-empty title))
+          media=media
+          user=user
+          libraryEntries=filteredLibraryEntries
+          isLoading=model.taskInstance.isRunning
+          saveEntry=(route-action "saveEntry")
+          removeEntry=(route-action "removeEntry")
+          removeEntriesBulk=(route-action "removeEntriesBulk")
+          updateStatusBulk=(route-action "updateStatusBulk")
+        }}
+
+        {{#if isLoading}}
+          <div class="m-b-2 library-list-pagination">
+            {{component (concat "users/library/library-" layoutStyle "/loader")}}
+          </div>
+        {{/if}}
+      {{/infinite-pagination}}
     </div>
+
+    {{! Sidebar }}
+    {{users/library/library-sidebar
+      user=user
+      media=media
+      status=status
+      counts=model.taskInstance.value.meta.statusCounts
+      updateMedia=(action (mut media))
+      updateStatus=(action (mut status))
+      resetLibrary=(route-action "resetLibrary")
+      class="library-sidebar col-sm"
+    }}
   </div>
 </div>

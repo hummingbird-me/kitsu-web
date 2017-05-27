@@ -85,7 +85,7 @@ dashboard:
       discover: "Discover Media"
     media:
       complete: "Complete"
-      unstarted: "Unstarted"
+      unstarted: "Not Started"
       episode: "{type, select,
         anime {Ep. {num} {total, select,
           undefined {}
@@ -377,23 +377,87 @@ users:
         male: "Male"
         female: "Female"
   library:
-    type: "{type} Library"
-    notes: "Personal notes about {title}"
-    public: "Public"
-    private: "Private"
-    reconsume:
-      anime: "Rewatch"
-      manga: "Reread"
-    reconsumed:
-      anime: "Rewatched"
-      manga: "Rereading"
-    reconsuming:
-      anime: "Rewatching"
-      manga: "Rereading"
-    times: "times"
-    empty:
-      owner: "You don't have any titles here! Ready to start something new? <a href={link}>Browse {type}</a>"
-      guest: "Doesn't look like {user} has any titles here!"
+    search: "Search {name}'s Library..."
+    sorting:
+      label: "Sort by:"
+      options:
+        -watched: "Date Watched: Recent First"
+        watched: "Date Watched: Oldest First"
+        -rating: "Rating: Highest First"
+        rating: "Rating: Lowest First"
+        title: "Title: A-Z"
+        -title: "Title: Z-A"
+        length: "Length: Shortest First"
+        -length: "Length: Longest First"
+    sidebar:
+      media-select: "{type, select,
+        anime {{user}'s Anime}
+        manga {{user}'s Manga}
+        other {}}"
+      tools: "Tools"
+      import: "Import Library"
+      export: "Export Library"
+      reset: "Reset Library"
+      reset-loading: "Resetting..."
+      reset-confirmation: "This will delete your entire library. Are you sure you want to continue?"
+    list:
+      edit: "Edit"
+      more: "More"
+      unstarted: "Not Started"
+      unrated: "No Rating"
+      progress: "{type, select,
+        anime {Ep. {progress}}
+        manga {Ch. {progress}}
+        other {}}"
+      table-header:
+        title: "{type, select,
+          anime {Anime Title}
+          manga {Manga Title}
+          other {}}"
+        rating: "Rating"
+        progress: "Progress"
+        volumes: "Volumes"
+      empty:
+        search: "Couldn't find any library entries with your search query."
+        header: "Looks like your library here is empty! Ready to start something new?"
+        guest-header: "Looks like {user} doesn't have any library entries here."
+        button: "Browse {type}"
+    edit:
+      status: "Library Status"
+      progress: "Progress"
+      units: "{type, select,
+        anime {of {num} episodes}
+        manga {of {num} chapters}
+        other {}}"
+      volumes: "Volumes"
+      volume-units: "of {num} volumes"
+      rating: "Rating"
+      rewatch: "{type, select,
+        anime {Rewatch Count}
+        manga {Reread Count}
+        other {}}"
+      start-rewatch: "{type, select,
+        anime {Start Rewatch}
+        manga {Start Reread}
+        other {}}"
+      privacy: "Privacy"
+      started: "Started"
+      finished: "Finished"
+      notes: "Personal Notes"
+      remove: "Remove from Library"
+      save: "Save Changes"
+      saving: "Saving..."
+    bulk:
+      selected: "{type, select,
+        anime {{num} anime selected}
+        manga {{num} manga selected}
+        other {}}"
+      select-all: "Select All"
+      select-none: "Select None"
+      remove: "Remove <strong>{num}</strong>"
+      move-to: "Move <strong>{num}</strong> to..."
+      remove-loading: "Removing..."
+      update-loading: "Updating..."
   groups:
     sort:
       newest: "Recently Joined"
