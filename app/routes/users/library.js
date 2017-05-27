@@ -221,6 +221,7 @@ export default Route.extend(Pagination, {
     // searching?
     if (isPresent(title)) {
       options.filter.title = title;
+      delete options.filter.status;
       delete options.sort;
     }
 
