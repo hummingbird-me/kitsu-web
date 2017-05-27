@@ -15,10 +15,7 @@
   padding: 0;
   margin-bottom: 20px;
   li {
-    background: $background-color;
     margin-bottom: 3px;
-    font-size: 14px;
-    padding: 10px;
     &:first-child {
       border-top-left-radius: 3px;
       border-top-right-radius: 3px;
@@ -28,24 +25,89 @@
       border-bottom-right-radius: 3px;
     }
     a {
-      color: $secondary-background-color;
       font-family: $base-font-family;
       font-weight: 600;
-      &:hover {
-        color: $secondary-background-color;
-      }
+      font-size: 14px;
+      padding: 10px;
+      display: block;
       .library-section--count {
         float: right;
         opacity: .6;
       }
-    }
-    &:hover {
-      background: lighten($secondary-background-color, 70);
+      &:active, &:focus {
+        text-decoration: none;
+      }
+      &.library-all {
+        background: lighten(#402F3F,67);
+        color: #8e8b8e;
+        &:hover {
+          background: lighten(#402F3F,57);
+        }
+      }
+      &.status-current {
+        background: lighten(#2c3e50,67);
+        color: #8d9398;
+        &:hover {
+          background: lighten(#2c3e50,57);
+        }
+      }
+      &.status-completed {
+        background: lighten(#27ae60, 52);
+        color: #798e7b;
+        &:hover {
+          background: lighten(#27ae60, 42);
+        }
+      }
+      &.status-hold {
+        background: lighten(#f39c12,45);
+        color: #9e9989;
+        &:hover {
+          background: lighten(#f39c12,35);
+        }
+      }
+      &.status-dropped {
+        background: lighten(#A12F31,57);
+        color: #867677;
+        &:hover {
+          background: lighten(#A12F31,47);
+        }
+      }
+      &.status-planned {
+        background: lighten(#2980b9,52);
+        color: #8e959a;
+        &:hover {
+          background: lighten(#2980b9,42);
+        }
+      }
     }
     &.active {
-      background: $secondary-background-color;
       a {
-        color: $white;
+        box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+        position: relative;
+        &.library-all {
+          background: #402F3F;
+          color: $white;
+        }
+        &.status-current {
+          background: #2c3e50;
+          color: $white;
+        }
+        &.status-completed {
+          background: #27ae60;
+          color: $white;
+        }
+        &.status-hold {
+          background: #f39c12;
+          color: $white;
+        }
+        &.status-dropped {
+          background: #A12F31;
+          color: $white;
+        }
+        &.status-planned {
+          background: #2980b9;
+          color: $white;
+        }
       }
     }
   }
@@ -143,6 +205,12 @@
         img {
           border-bottom-left-radius: 0;
           border-bottom-right-radius: 0;
+        }
+        .grid-poster {
+          background: darken($background-color, 10);
+          min-height: 218px;
+          border-top-left-radius: 3px;
+          border-top-right-radius: 3px;
         }
       }
       .progress {
@@ -276,19 +344,19 @@
     padding: 2px;
     margin-right: 8px;
     &.status-current {
-      background: #2DB039;
+      background: #2c3e50;
     }
     &.status-completed {
-      background: #26448F;
+      background: #27ae60;
     }
     &.status-on_hold {
-      background: #F1C83E;
+      background: #f39c12;
     }
     &.status-dropped {
       background: #A12F31;
     }
     &.status-planned {
-      background: #C3C3C3;
+      background: #2980b9;
     }
   }
   tbody {
@@ -344,9 +412,6 @@
       .current-rating {
         color: $body-text-color;
         font-weight: normal;
-      }
-      .rating-button-dropdown {
-        margin-bottom: 0;
       }
     }
   }
