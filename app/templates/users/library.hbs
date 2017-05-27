@@ -48,6 +48,7 @@
         showLoader=false
         onPagination=(route-action "onPagination") as |isLoading|}}
         {{component (concat "users/library/library-" layoutStyle)
+          isSearching=(not (is-empty title))
           media=media
           user=user
           libraryEntries=filteredLibraryEntries
