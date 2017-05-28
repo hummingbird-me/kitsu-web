@@ -240,9 +240,11 @@
         display: inline-block;
         .no-rating {
           color: lighten($secondary-background-color,35);
-          &:hover {
-            color: $body-link-color;
-            opacity: 1;
+          &.is-owner {
+            &:hover {
+              color: $body-link-color;
+              opacity: 1;
+            }
           }
         }
       }
@@ -255,8 +257,12 @@
         svg {
           width: 28px;
           height: 28px;
-          &:hover {
-            opacity: .8;
+        }
+        .is-owner {
+          svg {
+            &:hover {
+              opacity: .8;
+            }
           }
         }
       }
@@ -529,8 +535,10 @@
   svg {
     fill: $divider-color;
     width: 24px;
-    &:hover {
-      fill: $primary-cta-color;
+    &.is-owner {
+      &:hover {
+        fill: $primary-cta-color;
+      }
     }
   }
 }

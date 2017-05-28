@@ -42,25 +42,37 @@
   {{! Rating }}
   <span class="entry-rating entry-rating-{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}">
     {{#if (gt changeset.rating 0)}}
-      {{#library-entry/rating-button
-        rating=changeset.rating
-        showDropdown=true
-        simpleDropdown=true
-        onClick=(action "changeRating")
-      }}
+      {{#if (can "edit library-entry" libraryEntry)}}
+        {{#library-entry/rating-button
+          rating=changeset.rating
+          showDropdown=true
+          simpleDropdown=true
+          onClick=(action "changeRating")
+          class="is-owner"
+        }}
+          {{library-entry/readonly-rating
+            rating=changeset.rating
+            hideText=true
+          }}
+        {{/library-entry/rating-button}}
+      {{else}}
         {{library-entry/readonly-rating
           rating=changeset.rating
           hideText=true
         }}
-      {{/library-entry/rating-button}}
+      {{/if}}
     {{else}}
-      {{#library-entry/rating-button
-        rating=changeset.rating
-        onClick=(action "changeRating")
-        class="no-rating"
-      }}
-        {{t "users.library.list.unrated"}}
-      {{/library-entry/rating-button}}
+      {{#if (can "edit library-entry" libraryEntry)}}
+        {{#library-entry/rating-button
+          rating=changeset.rating
+          onClick=(action "changeRating")
+          class="no-rating is-owner"
+        }}
+          {{t "users.library.list.unrated"}}
+        {{/library-entry/rating-button}}
+      {{else}}
+        <span class="no-rating">{{t "users.library.list.unrated"}}</span>
+      {{/if}}
     {{/if}}
   </span>
 </div>
