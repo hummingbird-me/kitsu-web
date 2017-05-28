@@ -8,7 +8,6 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 import moment from 'moment';
 
 export default Route.extend(ApplicationRouteMixin, {
-  ajax: service(),
   head: service('head-data'),
   intl: service(),
   metrics: service(),
@@ -115,24 +114,6 @@ export default Route.extend(ApplicationRouteMixin, {
         });
         set(controller, 'routeIsLoading', false);
       });
-    },
-
-    /**
-     * Private Ember API.
-     *
-     * We want to mark notifications read from any route when the query param changes.
-     * Unforunately we can't do that from the documented `queryParamsDidChange` method as that
-     * fires before `beforeModel` on initial transition and therefore our sessioned user hasn't
-     * been resolved.
-     */
-    finalizeQueryParamChange(params) {
-      if (params.notification && get(this, 'session.hasUser')) {
-        this._markNotificationRead(params.notification).finally(() => {
-          const controller = this.controllerFor(get(this, 'routeName'));
-          set(controller, 'notification', null);
-        });
-      }
-      return this._super(...arguments);
     }
   },
 
@@ -173,23 +154,5 @@ export default Route.extend(ApplicationRouteMixin, {
       element.href = window.Kitsu.themes[theme];
       element.dataset.theme = theme;
     }
-  },
-
-  _markNotificationRead(notification) {
-    // send off read event
-    const feedUrl = `/feeds/notifications/${get(this, 'session.account.id')}/_read`;
-    return get(this, 'ajax').request(feedUrl, {
-      method: 'POST',
-      data: JSON.stringify([notification]),
-      contentType: 'application/json'
-    }).then(() => {
-      // reset default value
-      const trackedItem = get(this, 'store').peekAll('notification').findBy('streamId', notification);
-      if (trackedItem) {
-        set(trackedItem, 'isRead', true);
-      }
-    }).catch((error) => {
-      get(this, 'raven').captureException(error);
-    });
   }
 });
