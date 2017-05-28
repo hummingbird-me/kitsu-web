@@ -11,7 +11,7 @@ const queryParams = new QueryParams({
     refresh: true
   },
   sort: {
-    defaultValue: 'recent',
+    defaultValue: 'featured',
     refresh: true
   },
   query: {

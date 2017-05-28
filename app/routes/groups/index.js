@@ -53,6 +53,8 @@ export default Route.extend(Pagination, {
 
   _getRealSort(sort) {
     switch (sort) {
+      case 'featured':
+        return '-featured';
       case 'newest':
         return '-created_at';
       case 'oldest':

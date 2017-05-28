@@ -6,6 +6,9 @@ import { invokeAction } from 'ember-invoke-action';
 export default Component.extend({
   categoryRoute: 'groups.index',
   sortOptions: [{
+    key: 'featured',
+    value: 'group-list.sort.featured'
+  }, {
     key: 'recent',
     value: 'group-list.sort.recent'
   }, {
