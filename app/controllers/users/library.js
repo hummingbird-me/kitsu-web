@@ -1,7 +1,7 @@
 import Controller from 'ember-controller';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import computed from 'ember-computed';
+import { filterBy } from 'ember-computed';
 import QueryParams from 'ember-parachute';
 import { task, timeout } from 'ember-concurrency';
 import { storageFor } from 'ember-local-storage';
@@ -33,17 +33,7 @@ const queryParams = new QueryParams({
 export default Controller.extend(queryParams.Mixin, {
   cache: storageFor('last-used'),
   libraryEntries: concat('model.taskInstance.value', 'model.paginatedRecords'),
-
-  filteredLibraryEntries: computed('libraryEntries.@each.{status,isDeleted}', function() {
-    let entries = get(this, 'libraryEntries');
-    entries = entries.filterBy('isDeleted', false);
-    const status = get(this, 'status');
-    const isDirty = entries.any(entry => get(entry, 'hasDirtyAttributes'));
-    if (status !== 'all' && !isDirty) {
-      entries = entries.filterBy('status', status);
-    }
-    return entries;
-  }).readOnly(),
+  filteredLibraryEntries: filterBy('libraryEntries', 'isDeleted', false),
 
   init() {
     this._super(...arguments);
