@@ -5,21 +5,11 @@ import service from 'ember-service/inject';
 import { isEmpty, typeOf } from 'ember-utils';
 import { isEmberArray } from 'ember-array/utils';
 import { task, timeout } from 'ember-concurrency';
-import jQuery from 'jquery';
-import QueryableMixin from 'client/mixins/routes/queryable';
 import SlideHeaderMixin from 'client/mixins/routes/slide-header';
+import Queryable from 'client/mixins/routes/queryable';
 import Pagination from 'kitsu-shared/mixins/pagination';
-import { moment } from 'client/utils/moment';
 
-export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
-  mediaQueryParams: {
-    averageRating: { refreshModel: true, replace: true },
-    genres: { refreshModel: true, replace: true },
-    sort: { refreshModel: true, replace: true },
-    text: { refreshModel: true, replace: true },
-    subtype: { refreshModel: true, replace: true },
-    year: { refreshModel: true, replace: true }
-  },
+export default Route.extend(SlideHeaderMixin, Queryable, Pagination, {
   templateName: 'media/index',
   queryCache: service(),
 
@@ -27,13 +17,6 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
     yield timeout(1000);
     this.refresh();
   }).restartable(),
-
-  init() {
-    this._super(...arguments);
-    const mediaQueryParams = get(this, 'mediaQueryParams');
-    const queryParams = get(this, 'queryParams') || {};
-    set(this, 'queryParams', Object.assign(mediaQueryParams, queryParams));
-  },
 
   beforeModel() {
     this._super(...arguments);
@@ -55,12 +38,26 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
       return { taskInstance: lastTask, paginatedRecords: [] };
     }
     set(this, 'lastParams', params);
-    const options = this._buildOptions(params);
+    const options = this._getRequestOptions(params);
     const [mediaType] = get(this, 'routeName').split('.');
     return {
       taskInstance: this.queryPaginated(mediaType, options),
       paginatedRecords: []
     };
+  },
+
+  setupController(controller) {
+    this._super(...arguments);
+    document.body.classList.add('browse-page');
+    this.handleScroll = () => { controller._handleScroll(); };
+    document.addEventListener('scroll.media', this.handleScroll);
+    controller._setDirtyValues();
+  },
+
+  resetController() {
+    this._super(...arguments);
+    document.body.classList.remove('browse-page');
+    document.removeEventListener('scroll.media', this.handleScroll);
   },
 
   headTags() {
@@ -84,68 +81,13 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
     }];
   },
 
-  setupController(controller) {
-    this._super(...arguments);
-    jQuery(document.body).addClass('browse-page');
-    jQuery(document).on('scroll.media', () => controller._handleScroll());
-    controller._setDirtyValues();
-  },
-
-  resetController() {
-    this._super(...arguments);
-    jQuery(document.body).removeClass('browse-page');
-    jQuery(document).off('scroll.media');
-  },
-
-  serializeQueryParam(value, key) {
-    let result = this._super(...arguments);
-    if (key === 'year') {
-      if (value !== undefined) {
-        const [lower, upper] = value;
-        if (upper === (moment().year() + 1)) {
-          result = `${lower}..`;
-        }
-      }
-    } else if (key === 'averageRating') {
-      if (value !== undefined) {
-        const [lower, upper] = value;
-        if (lower === 5 && upper === 100) {
-          result = undefined;
-        } else if (lower === 5) {
-          result = `5..${upper}`;
-        }
-      }
-    }
-    return result;
-  },
-
-  deserializeQueryParam(value, key) {
-    let result = this._super(...arguments);
-    if (key === 'year') {
-      if (value !== undefined) {
-        const [lower, upper] = result;
-        if (isEmpty(upper)) {
-          result = [lower, moment().year() + 1];
-        }
-      }
-    } else if (key === 'averageRating') {
-      if (value !== undefined) {
-        const [lower, upper] = result;
-        if (isEmpty(lower)) {
-          result = [5, upper];
-        }
-      }
-    }
-    return result;
-  },
-
   actions: {
     refresh() {
       this.refresh();
     }
   },
 
-  _buildOptions(params) {
+  _getRequestOptions(params) {
     const options = {
       filter: {},
       page: { offset: 0, limit: 20 },
@@ -168,7 +110,7 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
     });
 
     if (options.filter.text === undefined) {
-      options.sort = this._getRealSort(params.sort);
+      options.sort = this._getSortingKey(params.sort);
     }
     return options;
   },
@@ -190,7 +132,7 @@ export default Route.extend(SlideHeaderMixin, QueryableMixin, Pagination, {
     };
   },
 
-  _getRealSort(sort) {
+  _getSortingKey(sort) {
     switch (sort) {
       case 'rating':
         return '-average_rating';

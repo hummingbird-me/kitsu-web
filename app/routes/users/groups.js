@@ -5,11 +5,6 @@ import { isPresent } from 'ember-utils';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(Pagination, {
-  queryParams: {
-    category: { refreshModel: true, replace: true },
-    sort: { refreshModel: true, replace: true },
-    query: { refreshModel: true, replace: true }
-  },
   intl: service(),
 
   model({ category, sort, query }) {
@@ -24,7 +19,7 @@ export default Route.extend(Pagination, {
         fields: {
           groups: ['slug', 'name', 'avatar', 'tagline', 'membersCount', 'category'].join(',')
         },
-        sort: isPresent(query) ? undefined : this._getRealSort(sort),
+        sort: isPresent(query) ? undefined : this._getSortingKey(sort),
         include: 'group.category',
         page: { limit: 20 }
       }),
@@ -38,7 +33,13 @@ export default Route.extend(Pagination, {
     return get(this, 'intl').t('titles.users.groups', { user: name });
   },
 
-  _getRealSort(sort) {
+  actions: {
+    refreshModel() {
+      this.refresh();
+    }
+  },
+
+  _getSortingKey(sort) {
     switch (sort) {
       case 'oldest':
         return 'created_at';

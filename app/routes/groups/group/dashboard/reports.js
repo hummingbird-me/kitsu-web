@@ -5,9 +5,6 @@ import { CanMixin } from 'ember-can';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(CanMixin, Pagination, {
-  queryParams: {
-    filter: { refreshModel: true, replace: true }
-  },
   intl: service(),
 
   beforeModel() {
@@ -25,7 +22,7 @@ export default Route.extend(CanMixin, Pagination, {
         type: 'reports_aggr',
         id: get(model, 'group.id'),
         include: 'subject.user,subject.naughty,subject.moderator'
-      }),
+      }, { cache: false }),
       paginatedRecords: []
     };
   },
@@ -34,6 +31,12 @@ export default Route.extend(CanMixin, Pagination, {
     const model = this.modelFor('groups.group.dashboard');
     const group = get(model, 'group.name');
     return get(this, 'intl').t('titles.groups.group.dashboard.reports', { group });
+  },
+
+  actions: {
+    refreshModel() {
+      this.refresh();
+    }
   },
 
   _getRealStatus(filter) {

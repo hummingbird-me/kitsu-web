@@ -2,18 +2,20 @@ import Controller from 'ember-controller';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import computed from 'ember-computed';
-import { task } from 'ember-concurrency';
 import { isEmpty } from 'ember-utils';
+import { task } from 'ember-concurrency';
+import QueryParams from 'ember-parachute';
 import errorMessages from 'client/utils/error-messages';
 import { Validations } from 'client/models/user';
 
-export default Controller.extend(Validations, {
-  queryParams: ['token'],
-  token: null,
-  usableToken: null,
-  email: null,
-  password: null,
-  passwordConfirm: null,
+const queryParams = new QueryParams({
+  token: {
+    defaultValue: null,
+    refresh: true
+  }
+});
+
+export default Controller.extend(queryParams.Mixin, Validations, {
   ajax: service(),
   notify: service(),
 
@@ -29,15 +31,17 @@ export default Controller.extend(Validations, {
    * Tell the server to send off an email to the supplied email/username account.
    */
   sendEmail: task(function* () {
-    yield get(this, 'ajax').request('/users/_recover', {
-      method: 'POST',
-      data: JSON.stringify({ username: get(this, 'email') }),
-      contentType: 'application/vnd.api+json'
-    }).then(() => {
+    try {
+      yield get(this, 'ajax').request('/users/_recover', {
+        method: 'POST',
+        data: JSON.stringify({ username: get(this, 'email') })
+      });
       const message = 'Your password reset email has been sent! Please check your email.';
       get(this, 'notify').success(message, { closeAfter: 5000 });
       this.transitionToRoute('dashboard');
-    }).catch(err => get(this, 'notify').error(errorMessages(err)));
+    } catch (error) {
+      get(this, 'notify').error(errorMessages(error));
+    }
   }).drop(),
 
   /**
@@ -49,7 +53,7 @@ export default Controller.extend(Validations, {
       headers: {
         Authorization: `Bearer ${get(this, 'usableToken')}`
       }
-    }).catch(err => get(this, 'notify').error(errorMessages(err)));
+    });
 
     // if we didn't get a response than it is most likely that the token wasn't associated
     // with a user.
@@ -59,23 +63,25 @@ export default Controller.extend(Validations, {
 
     // send the request upstream to change the user's password
     user = get(user, 'data.firstObject');
-    yield get(this, 'ajax').request(`/users/${get(user, 'id')}`, {
-      method: 'PATCH',
-      headers: {
-        Authorization: `Bearer ${get(this, 'usableToken')}`
-      },
-      data: JSON.stringify({
-        data: {
-          type: 'users',
-          id: get(user, 'id'),
-          attributes: { password: get(this, 'password') }
-        }
-      }),
-      contentType: 'application/vnd.api+json'
-    }).then(() => {
+    try {
+      yield get(this, 'ajax').request(`/users/${get(user, 'id')}`, {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${get(this, 'usableToken')}`
+        },
+        data: JSON.stringify({
+          data: {
+            type: 'users',
+            id: get(user, 'id'),
+            attributes: { password: get(this, 'password') }
+          }
+        })
+      });
       const message = 'Your password was successfully reset. Login using your new password.';
       get(this, 'notify').success(message, { closeAfter: 5000 });
       this.transitionToRoute('dashboard');
-    }).catch(err => get(this, 'notify').error(errorMessages(err)));
+    } catch (error) {
+      get(this, 'notify').error(errorMessages(error));
+    }
   }).drop()
 });

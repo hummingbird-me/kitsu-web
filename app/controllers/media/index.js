@@ -1,45 +1,85 @@
 import Controller from 'ember-controller';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import service from 'ember-service/inject';
-import jQuery from 'jquery';
-import getter from 'client/utils/getter';
+import { isEmpty } from 'ember-utils';
 import { moment } from 'client/utils/moment';
 import { concat } from 'client/utils/computed-macros';
 
+export const MEDIA_QUERY_PARAMS = {
+  averageRating: {
+    defaultValue: [5, 100],
+    refresh: true,
+    serialize(value) {
+      if (value !== undefined) {
+        const [lower, upper] = value;
+        if (lower === 5 && upper === 100) {
+          return undefined;
+        } else if (lower === 5) {
+          return `5..${upper}`;
+        }
+        return value;
+      }
+    },
+    deserialize(value) {
+      if (value !== undefined) {
+        const [lower, upper] = value;
+        if (isEmpty(lower)) {
+          return [5, upper];
+        }
+        return value;
+      }
+    }
+  },
+  genres: {
+    defaultValue: [],
+    refresh: true
+  },
+  text: {
+    defaultValue: '',
+    refresh: true
+  },
+  sort: {
+    defaultValue: 'popularity',
+    refresh: true
+  },
+  subtype: {
+    defaultValue: [],
+    refresh: true
+  },
+  year: {
+    defaultValue: [1907, moment().year() + 1],
+    refresh: true,
+    serialize(value) {
+      if (value !== undefined) {
+        const [lower, upper] = value;
+        if (upper === (moment().year() + 1)) {
+          return `${lower}..`;
+        }
+        return value;
+      }
+    },
+    deserialize(value) {
+      if (value !== undefined) {
+        const [lower, upper] = value;
+        if (isEmpty(upper)) {
+          return [lower, moment().year() + 1];
+        }
+        return value;
+      }
+    }
+  }
+};
+
 export default Controller.extend({
-  mediaQueryParams: [
-    'averageRating',
-    'genres',
-    'text',
-    'subtype',
-    'year'
-  ],
-  averageRating: [5, 100],
-  genres: [],
-  text: undefined,
-  subtype: [],
-  year: [1907, moment().year() + 1],
-  sort: 'popularity',
   sortOptions: ['popularity', 'rating', 'date'],
-
-  router: service('-routing'),
   taskValue: concat('model.taskInstance.value', 'model.paginatedRecords'),
-  maxYear: getter(() => moment().year() + 1),
-
-  isAnime: getter(function() {
-    return get(this, 'router.currentRouteName').split('.')[0] === 'anime';
-  }),
-
-  isManga: getter(function() {
-    return get(this, 'router.currentRouteName').split('.')[0] === 'manga';
-  }),
 
   init() {
     this._super(...arguments);
-    const mediaQueryParams = get(this, 'mediaQueryParams');
-    const queryParams = get(this, 'queryParams');
-    set(this, 'queryParams', Object.assign(mediaQueryParams, queryParams));
+    set(this, 'maxYear', moment().year() + 1);
+    const mediaType = get(this, 'mediaType');
+    set(this, 'isAnime', mediaType === 'anime');
+    set(this, 'isManga', mediaType === 'manga');
   },
 
   actions: {
@@ -49,12 +89,20 @@ export default Controller.extend({
   },
 
   _handleScroll() {
-    if (jQuery(document).scrollTop() >= 51) {
-      jQuery('.filter-options').addClass('scrolled');
-      jQuery('.search-media').addClass('scrolled');
+    if (document.scrollTop >= 51) {
+      document.getElementsByClassName('filter-options').forEach((element) => {
+        element.classList.add('scrolled');
+      });
+      document.getElementsByClassName('search-media').forEach((element) => {
+        element.classList.add('scrolled');
+      });
     } else {
-      jQuery('.filter-options').removeClass('scrolled');
-      jQuery('.search-media').removeClass('scrolled');
+      document.getElementsByClassName('filter-options').forEach((element) => {
+        element.classList.remove('scrolled');
+      });
+      document.getElementsByClassName('search-media').forEach((element) => {
+        element.classList.remove('scrolled');
+      });
     }
   },
 

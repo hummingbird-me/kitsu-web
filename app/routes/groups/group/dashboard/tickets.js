@@ -4,10 +4,6 @@ import service from 'ember-service/inject';
 import { CanMixin } from 'ember-can';
 
 export default Route.extend(CanMixin, {
-  queryParams: {
-    filter: { replace: true },
-    query: { replace: true }
-  },
   intl: service(),
 
   beforeModel() {

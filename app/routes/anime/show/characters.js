@@ -6,9 +6,6 @@ import { isEmpty } from 'ember-utils';
 import { capitalize } from 'ember-string';
 
 export default MediaShowRoute.extend({
-  queryParams: {
-    language: { refreshModel: true }
-  },
   ajax: service(),
 
   /**
@@ -25,11 +22,15 @@ export default MediaShowRoute.extend({
         const languages = results.map(result => capitalize(result));
         set(controller, 'availableLanguages', languages);
         this._languageCheck(queryParams);
-      }).catch((error) => {
-        get(this, 'raven').captureException(error);
       });
     }
     this._languageCheck(queryParams);
+  },
+
+  actions: {
+    refreshModel() {
+      this.refresh();
+    }
   },
 
   _getFilters({ language }) {

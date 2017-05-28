@@ -1,18 +1,25 @@
 import Controller from 'ember-controller';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import computed, { alias } from 'ember-computed';
+import { alias } from 'ember-computed';
+import QueryParams from 'ember-parachute';
 
-export default Controller.extend({
-  queryParams: ['filter', 'query'],
-  filter: 'open',
-  query: null,
+const queryParams = new QueryParams({
+  filter: {
+    defaultValue: 'open',
+  },
+  query: {
+    defaultValue: ''
+  },
+  preserveScrollPosition: {
+    defaultValue: true
+  }
+});
+
+export default Controller.extend(queryParams.Mixin, {
   group: alias('model.group'),
   membership: alias('model.membership'),
-
-  addedTickets: computed('_addedTickets', function() {
-    return get(this, '_addedTickets');
-  }).readOnly(),
+  addedTickets: alias('_addedTickets'),
 
   actions: {
     updateQueryParam(property, value) {
@@ -20,7 +27,7 @@ export default Controller.extend({
     },
 
     onTicketCreated(ticket) {
-      get(this, '_addedTickets').addObject(ticket);
+      get(this, 'addedTickets').addObject(ticket);
     }
   }
 });

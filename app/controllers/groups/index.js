@@ -2,16 +2,33 @@ import Controller from 'ember-controller';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
+import QueryParams from 'ember-parachute';
 import { concat } from 'client/utils/computed-macros';
 
-export default Controller.extend({
-  queryParams: ['category', 'sort', 'query'],
-  category: 'all',
-  sort: 'recent',
-  query: null,
+const queryParams = new QueryParams({
+  category: {
+    defaultValue: 'all',
+    refresh: true
+  },
+  sort: {
+    defaultValue: 'recent',
+    refresh: true
+  },
+  query: {
+    defaultValue: '',
+    refresh: true
+  }
+});
 
+export default Controller.extend(queryParams.Mixin, {
   router: service('-routing'),
   groups: concat('model.taskInstance.value', 'model.paginatedRecords'),
+
+  queryParamsDidChange({ shouldRefresh }) {
+    if (shouldRefresh) {
+      this.send('refreshModel');
+    }
+  },
 
   actions: {
     updateQueryParam(property, value) {

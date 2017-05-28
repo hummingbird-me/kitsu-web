@@ -1,11 +1,18 @@
 import Controller from 'ember-controller';
 import set from 'ember-metal/set';
 import { alias } from 'ember-computed';
+import QueryParams from 'ember-parachute';
 
-export default Controller.extend({
-  queryParams: ['filter', 'query'],
-  filter: 'open',
-  query: null,
+const queryParams = new QueryParams({
+  filter: {
+    defaultValue: 'open'
+  },
+  query: {
+    defaultValue: ''
+  }
+});
+
+export default Controller.extend(queryParams.Mixin, {
   group: alias('model.group'),
 
   actions: {
