@@ -4,10 +4,6 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 
 export default Route.extend({
-  queryParams: {
-    filter: { replace: true },
-    query: { replace: true }
-  },
   intl: service(),
 
   model() {

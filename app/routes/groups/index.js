@@ -3,12 +3,6 @@ import { isPresent } from 'ember-utils';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(Pagination, {
-  queryParams: {
-    category: { refreshModel: true, replace: true },
-    sort: { refreshModel: true, replace: true },
-    query: { refreshModel: true, replace: true }
-  },
-
   model(params) {
     return {
       taskInstance: this.queryPaginated('group', this._getRequestOptions(params)),
@@ -34,6 +28,12 @@ export default Route.extend(Pagination, {
         content: description
       }
     }];
+  },
+
+  actions: {
+    refreshModel() {
+      this.refresh();
+    }
   },
 
   _getRequestOptions({ category, sort, query }) {
