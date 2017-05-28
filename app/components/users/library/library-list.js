@@ -7,9 +7,17 @@ export default Component.extend({
   tagName: '',
   hasSelectedMedia: gt('selectedLibraryEntries.length', 0),
 
-  didReceiveAttrs() {
+  init() {
     this._super(...arguments);
     set(this, 'selectedLibraryEntries', []);
+  },
+
+  didReceiveAttrs() {
+    this._super(...arguments);
+    if (get(this, 'media') !== get(this, 'mediaWas')) {
+      set(this, 'selectedLibraryEntries', []);
+    }
+    set(this, 'mediaWas', get(this, 'media'));
   },
 
   actions: {
