@@ -3,13 +3,19 @@
   <div class="poster-overlay">
     <a href={{href-to (concat libraryEntry.media.modelType ".show") libraryEntry.media.slug}}></a>
     {{! Edit }}
-    {{#if (can "edit library-entry" libraryEntry)}}
-      <div class="grid-edit-wrapper">
+    <div class="grid-edit-wrapper">
+      {{#if (can "edit library-entry" libraryEntry)}}
         <a href="#" class="grid-edit" {{action (toggle "showEditModal" this)}}>
           {{t "users.library.list.edit"}}
         </a>
-      </div>
-    {{/if}}
+      {{else}}
+        <a href="#" class="grid-edit" {{action (queue
+          (action (mut readOnlyModal) true)
+          (toggle-action "showEditModal" this))}}>
+          {{t "users.library.list.more"}}
+        </a>
+      {{/if}}
+    </div>
   </div>
   <div class="progress">
     <span class="progress-bar">
@@ -58,6 +64,7 @@
 
 {{#if showEditModal}}
   {{to-elsewhere named="modal" send=(component "users/library/library-edit"
+    isReadOnly=readOnlyModal
     libraryEntry=libraryEntry
     saveEntry=saveEntry
     removeEntry=removeEntry

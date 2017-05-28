@@ -9,6 +9,7 @@ import createChangeset from 'ember-changeset-cp-validations';
 
 export default Component.extend({
   tagName: '',
+  readOnlyModal: false,
 
   progressPercent: computed('libraryEntry.progress', function() {
     const progress = get(this, 'libraryEntry.progress');
