@@ -244,9 +244,10 @@ export default Route.extend(Pagination, {
         'canonicalTitle',
         'titles',
         'synopsis',
-        'subtype',
         'startDate',
-        'endDate',
+        'averageRating',
+        'popularityRank',
+        'ratingRank',
         unitCount
       ].join(','),
       users: 'id'
