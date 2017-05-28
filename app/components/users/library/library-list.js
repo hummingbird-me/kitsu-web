@@ -2,6 +2,7 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { gt } from 'ember-computed';
+import { invokeAction, invoke } from 'ember-invoke-action';
 
 export default Component.extend({
   tagName: '',
@@ -21,7 +22,7 @@ export default Component.extend({
   },
 
   actions: {
-    checkedEntry(libraryEntry, value) {
+    selectEntry(libraryEntry, value) {
       const list = get(this, 'selectedLibraryEntries');
       if (value) {
         list.addObject(libraryEntry);
@@ -37,6 +38,22 @@ export default Component.extend({
 
     resetSelection() {
       set(this, 'selectedLibraryEntries', []);
+    },
+
+    removeEntriesBulk(...args) {
+      invokeAction(this, 'removeEntriesBulk', ...args).then(() => {
+        if (!get(this, 'isDestroyed')) {
+          invoke(this, 'resetSelection');
+        }
+      });
+    },
+
+    updateStatusBulk(...args) {
+      invokeAction(this, 'updateStatusBulk', ...args).then(() => {
+        if (!get(this, 'isDestroyed')) {
+          invoke(this, 'resetSelection');
+        }
+      });
     }
   }
 });

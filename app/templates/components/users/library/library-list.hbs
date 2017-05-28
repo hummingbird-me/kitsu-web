@@ -6,8 +6,8 @@
     selectedCount=selectedLibraryEntries.length
     selectAll=(action "selectAll")
     resetSelection=(action "resetSelection")
-    removeEntriesBulk=(action removeEntriesBulk selectedLibraryEntries)
-    updateStatusBulk=(action updateStatusBulk selectedLibraryEntries)
+    removeEntriesBulk=(action "removeEntriesBulk" selectedLibraryEntries)
+    updateStatusBulk=(action "updateStatusBulk" selectedLibraryEntries)
   }}
 {{/if}}
 
@@ -38,7 +38,7 @@
             isChecked=(contains libraryEntry selectedLibraryEntries)
             saveEntry=saveEntry
             removeEntry=removeEntry
-            checkedEntry=(action "checkedEntry")
+            checkedEntry=(action "selectEntry")
           }}
         {{/occludable-area}}
       {{else}}
