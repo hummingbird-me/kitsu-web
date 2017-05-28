@@ -1,5 +1,15 @@
-import MediaIndexController from 'client/controllers/media/index';
+import MediaIndexController, { MEDIA_QUERY_PARAMS } from 'client/controllers/media/index';
+import QueryParams from 'ember-parachute';
 
-export default MediaIndexController.extend({
-  availableSubtypes: ['manga', 'novel', 'manhua', 'oneshot', 'doujin', 'manhwa', 'oel']
+const queryParams = new QueryParams(MEDIA_QUERY_PARAMS);
+
+export default MediaIndexController.extend(queryParams.Mixin, {
+  mediaType: 'manga',
+  availableSubtypes: ['manga', 'novel', 'manhua', 'oneshot', 'doujin', 'manhwa', 'oel'],
+
+  queryParamsDidChange({ shouldRefresh }) {
+    if (shouldRefresh) {
+      this.send('refresh');
+    }
+  }
 });
