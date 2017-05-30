@@ -21,9 +21,9 @@ export default BaseAdapter.extend({
   },
 
   identify(options = {}) {
-    const { distinctId: id, name: username, email } = options;
+    const { distinctId: id, name, email } = options;
     if (window._gs) {
-      window._gs('identify', { id, username, email });
+      window._gs('identify', { id, name, email });
     }
   },
 
