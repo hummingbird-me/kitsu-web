@@ -97,7 +97,7 @@ export default Route.extend(ApplicationRouteMixin, {
       tagId: 'meta-og-image',
       attrs: {
         property: 'og:image',
-        content: 'https://media.kitsu.io/kitsu-256.png'
+        content: 'https://kitsu.io/kitsu-256.png'
       }
     }, {
       type: 'meta',
