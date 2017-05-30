@@ -40,7 +40,8 @@ export default Route.extend(Pagination, {
     return {
       filter: {
         category: category !== 'all' ? category : undefined,
-        query: isPresent(query) ? query : undefined
+        query: isPresent(query) ? query : undefined,
+        featured: sort === 'featured' ? true : undefined
       },
       fields: {
         groups: ['slug', 'name', 'avatar', 'tagline', 'membersCount', 'category'].join(',')
@@ -53,8 +54,6 @@ export default Route.extend(Pagination, {
 
   _getRealSort(sort) {
     switch (sort) {
-      case 'featured':
-        return '-featured';
       case 'newest':
         return '-created_at';
       case 'oldest':
