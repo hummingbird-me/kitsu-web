@@ -8,7 +8,7 @@
   {{#modal.body class="edit-modal--body"}}
     {{! Status }}
     <div class="form-group row">
-      <label class="col-sm col-form-label">
+      <label class="col-sm-5 col-form-label">
         {{t "users.library.edit.status"}}
       </label>
       <div class="col-sm-7">
@@ -25,7 +25,7 @@
 
     {{! Progress }}
     <div class="form-group row">
-      <label class="col-sm col-form-label">
+      <label class="col-sm-5 col-form-label">
         {{t "users.library.edit.progress"}}
       </label>
       <div class="col-sm-7">
@@ -54,7 +54,7 @@
     {{! Volumes (Manga) }}
     {{#if (eq libraryEntry.media.modelType "manga")}}
       <div class="form-group row">
-        <label class="col-sm col-form-label">
+        <label class="col-sm-5 col-form-label">
           {{t "users.library.edit.volumes"}}
         </label>
         <div class="col-sm-7">
@@ -83,7 +83,7 @@
 
     {{! Rating }}
     <div class="form-group row">
-      <label class="col-sm col-form-label">
+      <label class="col-sm-5 col-form-label">
         {{t "users.library.edit.rating"}}
       </label>
       <div class="col-sm-7 library-state">
@@ -98,7 +98,7 @@
 
     {{! Rewatch }}
     <div class="form-group row">
-      <label class="col-sm col-form-label">
+      <label class="col-sm-5 col-form-label">
         {{t "users.library.edit.rewatch" type=libraryEntry.media.modelType}}
       </label>
       <div class="col-sm-7">
@@ -126,7 +126,7 @@
     {{! Privacy }}
     {{#unless isReadOnly}}
       <div class="form-group row">
-        <label class="col-sm col-form-label">
+        <label class="col-sm-5 col-form-label">
           {{t "users.library.edit.privacy"}}
         </label>
         <div class="col-sm-7">
@@ -143,7 +143,7 @@
 
     {{! Started }}
     <div class="form-group row">
-      <label class="col-sm col-form-label">
+      <label class="col-sm-5 col-form-label">
         {{t "users.library.edit.started"}}
       </label>
       <div class="col-sm-7">
@@ -162,7 +162,7 @@
 
     {{! Finished }}
     <div class="form-group row">
-      <label class="col-sm col-form-label">
+      <label class="col-sm-5 col-form-label">
         {{t "users.library.edit.finished"}}
       </label>
       <div class="col-sm-7">
@@ -181,7 +181,7 @@
 
     {{! Notes }}
     <div class="form-group row">
-      <label class="col-sm col-form-label">
+      <label class="col-sm-5 col-form-label">
         {{t "users.library.edit.notes"}}
       </label>
       <div class="col-sm-7">
