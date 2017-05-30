@@ -7,7 +7,6 @@ import { task } from 'ember-concurrency';
 
 export default Component.extend({
   tagName: '',
-
   ajax: service(),
   store: service(),
   stream: service('stream-realtime'),
@@ -32,8 +31,6 @@ export default Component.extend({
           this._handleSubscription(data);
         });
       }
-    }).catch((error) => {
-      get(this, 'raven').captureException(error);
     });
   },
 
@@ -100,8 +97,6 @@ export default Component.extend({
       }).then((records) => {
         const groups = records.reject(record => get(record, 'isRead'));
         get(this, 'activityGroups').unshiftObjects(groups);
-      }).catch((error) => {
-        get(this, 'raven').captureException(error);
       });
     }
   }
