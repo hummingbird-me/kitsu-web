@@ -72,6 +72,7 @@ export default Component.extend({
           })
           .catch(err => get(this, 'notify').error(errorMessages(err)));
         const metrics = {
+          eventName: 'Registration', // GoSquared
           category: 'account',
           action: 'create',
           value: get(this, 'user.id')

@@ -39,6 +39,11 @@ module.exports = function(environment) {
         config: { id: 'UA-37633900-4' }
       },
       {
+        name: 'GoSquared',
+        environments: ['production'],
+        config: { id: 'GSN-662857-Q' }
+      },
+      {
         name: 'Stream',
         environments: ['production', 'staging', 'development'],
         config: {

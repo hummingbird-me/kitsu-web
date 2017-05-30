@@ -44,6 +44,11 @@ export default Route.extend(ApplicationRouteMixin, {
     this._getCurrentUser();
   },
 
+  sessionInvalidated() {
+    get(this, 'metrics').invoke('unidentify', 'GoSquared');
+    this._super(...arguments);
+  },
+
   headTags() {
     const title = get(this, 'head.title');
     const description = `Share anime and manga experiences, get recommendations and see what
