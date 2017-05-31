@@ -4,19 +4,12 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { isEmpty, typeOf } from 'ember-utils';
 import { isEmberArray } from 'ember-array/utils';
-import { task, timeout } from 'ember-concurrency';
 import SlideHeaderMixin from 'client/mixins/routes/slide-header';
-import Queryable from 'client/mixins/routes/queryable';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
-export default Route.extend(SlideHeaderMixin, Queryable, Pagination, {
+export default Route.extend(SlideHeaderMixin, Pagination, {
   templateName: 'media/index',
   queryCache: service(),
-
-  refreshDebounced: task(function* () {
-    yield timeout(1000);
-    this.refresh();
-  }).restartable(),
 
   beforeModel() {
     this._super(...arguments);
@@ -30,14 +23,6 @@ export default Route.extend(SlideHeaderMixin, Queryable, Pagination, {
   },
 
   model(params) {
-    // If the request hasn't changed since the last successful request,
-    // then just return that value.
-    const lastTask = get(this, 'modelTask.lastSuccessful');
-    const paramsChanged = JSON.stringify(params) !== JSON.stringify(get(this, 'lastParams'));
-    if (lastTask && !paramsChanged) {
-      return { taskInstance: lastTask, paginatedRecords: [] };
-    }
-    set(this, 'lastParams', params);
     const options = this._getRequestOptions(params);
     const [mediaType] = get(this, 'routeName').split('.');
     return {
@@ -95,11 +80,11 @@ export default Route.extend(SlideHeaderMixin, Queryable, Pagination, {
     };
     Object.keys(params).forEach((key) => {
       const value = params[key];
-      if (isEmpty(value) === true) {
+      if (isEmpty(value)) {
         return;
-      } else if (isEmberArray(value) === true) {
+      } else if (isEmberArray(value)) {
         const filtered = value.reject(x => isEmpty(x));
-        if (isEmpty(filtered) === true) {
+        if (isEmpty(filtered)) {
           return;
         }
       }
@@ -109,7 +94,7 @@ export default Route.extend(SlideHeaderMixin, Queryable, Pagination, {
       }
     });
 
-    if (options.filter.text === undefined) {
+    if (isEmpty(options.filter.text)) {
       options.sort = this._getSortingKey(params.sort);
     }
     return options;

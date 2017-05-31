@@ -4,30 +4,27 @@ import set from 'ember-metal/set';
 import { isEmpty } from 'ember-utils';
 import { moment } from 'client/utils/moment';
 import { concat } from 'client/utils/computed-macros';
+import { serializeArray, deserializeArray } from 'client/utils/queryable';
 
 export const MEDIA_QUERY_PARAMS = {
   averageRating: {
     defaultValue: [5, 100],
     refresh: true,
     serialize(value) {
-      if (value !== undefined) {
-        const [lower, upper] = value;
-        if (lower === 5 && upper === 100) {
-          return undefined;
-        } else if (lower === 5) {
-          return `5..${upper}`;
-        }
-        return value;
+      const [lower, upper] = value;
+      if (lower === 5 && upper === 100) {
+        return undefined;
+      } else if (lower === 5) {
+        return serializeArray([5, upper]);
       }
+      return serializeArray(value);
     },
-    deserialize(value) {
-      if (value !== undefined) {
-        const [lower, upper] = value;
-        if (isEmpty(lower)) {
-          return [5, upper];
-        }
-        return value;
+    deserialize(value = []) {
+      const [lower, upper] = deserializeArray(value);
+      if (isEmpty(lower)) {
+        return [5, upper];
       }
+      return [lower, upper];
     }
   },
   genres: {
@@ -50,22 +47,18 @@ export const MEDIA_QUERY_PARAMS = {
     defaultValue: [1907, moment().year() + 1],
     refresh: true,
     serialize(value) {
-      if (value !== undefined) {
-        const [lower, upper] = value;
-        if (upper === (moment().year() + 1)) {
-          return `${lower}..`;
-        }
-        return value;
+      const [lower, upper] = value;
+      if (upper === (moment().year() + 1)) {
+        return serializeArray([lower, null]);
       }
+      return serializeArray(value);
     },
-    deserialize(value) {
-      if (value !== undefined) {
-        const [lower, upper] = value;
-        if (isEmpty(upper)) {
-          return [lower, moment().year() + 1];
-        }
-        return value;
+    deserialize(value = []) {
+      const [lower, upper] = deserializeArray(value);
+      if (isEmpty(upper)) {
+        return [lower, moment().year() + 1];
       }
+      return [lower, upper];
     }
   }
 };
