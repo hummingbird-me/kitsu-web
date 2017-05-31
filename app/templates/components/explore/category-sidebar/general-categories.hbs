@@ -1,0 +1,37 @@
+<div class="card is-sticky">
+  <div class="favorite-categories">
+    <h5 class="text-uppercase">{{t "explore.widget.favorite-categories"}}</h5>
+    <ul class="list-unstyled categories-list">
+      {{#if getUserFavoritesTask.isRunning}}
+        {{#skeleton-container class="category-skeleton"}}
+          {{#each (repeat 6) as |_|}}
+            {{skeleton-loader class="category-skeleton-horizontal"}}
+          {{/each}}
+          {{skeleton-loader class="category-skeleton-vertical"}}
+        {{/skeleton-container}}
+      {{else}}
+        {{#each userCategories as |favorite|}}
+          <li>
+            <a href={{href-to "explore.category" favorite.category.slug}}>{{favorite.category.title}}</a>
+          </li>
+        {{else}}
+          {{t "explore.widget.no-favorites"}}
+        {{/each}}
+      {{/if}}
+    </ul>
+  </div>
+
+  <div class="categories">
+    <h5 class="text-uppercase">{{t "explore.widget.categories"}}</h5>
+    {{#if getCategoriesTask.isRunning}}
+      {{#skeleton-container class="category-skeleton"}}
+        {{#each (repeat 6) as |_|}}
+          {{skeleton-loader class="category-skeleton-horizontal"}}
+        {{/each}}
+        {{skeleton-loader class="category-skeleton-vertical"}}
+      {{/skeleton-container}}
+    {{else}}
+      {{explore/category-sidebar/category-list categories=categories}}
+    {{/if}}
+  </div>
+</div>

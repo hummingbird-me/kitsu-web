@@ -1,44 +1,48 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
+import { reads } from 'ember-computed';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
   classNames: ['explore-section'],
   more: 'explore.more',
-  store: service(),
   limit: 5,
+  queryCache: service(),
+  results: reads('getDataTask.last.value'),
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
-    get(this, 'getDataTask').perform().catch((error) => {
-      get(this, 'raven').captureException(error);
-    });
+    get(this, 'getDataTask').perform();
   },
 
-  buildOptions() {
+  getDataTask: task(function* () {
+    const type = get(this, 'mediaType');
+    const options = this._getRequestOptions();
+    return yield get(this, 'queryCache').query(type, options);
+  }).drop(),
+
+  _getRequestOptions() {
     const options = {
-      page: { limit: get(this, 'limit') },
-      filter: {}
+      filter: {},
+      sort: get(this, 'sort'),
+      page: { limit: get(this, 'limit') }
     };
-    const sort = get(this, 'sort');
+
     const filters = get(this, 'filters');
-    if (sort) { options.sort = sort; }
     if (filters) {
-      filters.split(',').forEach((filter) => {
-        const f = filter.split(':');
-        options.filter[f[0]] = f[1];
-      });
+      options.filter = filters.split(',').reduce((prev, current) => {
+        const [key, value] = current.split(':');
+        prev[key] = value; // eslint-disable-line
+        return prev;
+      }, {});
     }
+
     const category = get(this, 'category');
     if (category) {
       options.filter.categories = get(category, 'slug');
     }
+
     return options;
   },
-
-  getDataTask: task(function* () {
-    return yield get(this, 'store')
-      .query(get(this, 'mediaType'), this.buildOptions());
-  }).restartable()
 });

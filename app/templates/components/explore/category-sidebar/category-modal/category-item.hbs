@@ -1,0 +1,33 @@
+{{#if isLinkable}}
+  <a class="category-modal-title" href={{href-to "explore.category" category.slug}}>{{category.title}}</a>
+{{else}}
+  <span class="category-modal-title">{{category.title}}</span>
+{{/if}}
+{{#if (gt category.childCount 0)}}
+  <span class="category-modal-expand-btn" {{action "toggleExpansion"}}>
+    {{#if isExpanded}}
+      &#45; {{! - }}
+    {{else}}
+      &#43; {{! + }}
+    {{/if}}
+  </span>
+
+  {{#if isExpanded}}
+    {{#if getChildCategoriesTask.isRunning}}
+      {{#skeleton-container class="category-modal-skeleton"}}
+        {{! @TODO(Explore): Replace with actual child counter }}
+        {{#each (repeat 8) as |_|}}
+          {{skeleton-loader class="category-modal-skeleton-item"}}
+        {{/each}}
+      {{/skeleton-container}}
+    {{else}}
+      {{#each sortedChildren as |child|}}
+        {{explore/category-sidebar/category-modal/category-item
+          category=child
+          isLinkable=true
+          class="category-modal-child"
+        }}
+      {{/each}}
+    {{/if}}
+  {{/if}}
+{{/if}}

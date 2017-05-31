@@ -3,10 +3,11 @@ import { belongsTo, hasMany } from 'ember-data/relationships';
 import Base from 'client/models/-base';
 
 export default Base.extend({
-  title: attr('string'),
-  slug: attr('string'),
+  childCount: attr('number'),
   description: attr('string'),
-  // image:
+  image: attr('object'),
+  slug: attr('string'),
+  title: attr('string'),
 
   parent: belongsTo('category', { inverse: null }),
 

@@ -1,0 +1,18 @@
+<ul class="list-unstyled categories-list">
+  {{#each categories as |category|}}
+    <li>
+      <a href={{href-to "explore.category" category.slug}}>{{category.title}}</a>
+    </li>
+  {{/each}}
+</ul>
+
+<div class="categories-more">
+  <a href="#" {{action (toggle "isModalOpen" this)}}>{{t "explore.widget.more-categories"}}</a>
+</div>
+
+{{#if isModalOpen}}
+  {{to-elsewhere named="modal" send=(component "explore/category-sidebar/category-modal"
+    modalId="category-modal"
+    onClose=(toggle-action "isModalOpen" this)
+  )}}
+{{/if}}

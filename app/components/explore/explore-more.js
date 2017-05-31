@@ -5,7 +5,7 @@ import { concat } from 'client/utils/computed-macros';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Component.extend(Pagination, {
-  classNames: ['explore-more'],
+  tagName: '',
   media: concat('getMediaTask.last.value', 'paginatedRecords'),
 
   init() {

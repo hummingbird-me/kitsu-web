@@ -1,4 +1,4 @@
-<div class='explore-page'>
+<div class="explore-page col-sm no-padding-left">
   <h3>
     {{t (concat "titles." more "." type)
       mediaType=mediaType
@@ -6,36 +6,57 @@
       category=category.title
     }}
   </h3>
-  {{#if (not (is-empty category))}}
-    {{explore/category-widget/related category=category}}
+
+  {{explore/explore-search mediaType=mediaType}}
+
+  {{#if getMediaTask.isRunning}}
+    {{#each (repeat 4) as |_|}}
+      {{#skeleton-container class="explore-grid-skeleton"}}
+        {{#each (repeat 5) as |_|}}
+          {{skeleton-loader class="explore-grid-skeleton-break"}}
+        {{/each}}
+      {{/skeleton-container}}
+    {{/each}}
   {{else}}
-    {{explore/category-widget/index}}
-  {{/if}}
-  {{explore/category-widget}}
-  {{explore/explore-search}}
-  <div class="explore-content">
-    <div class="explore-grid">
-      {{#if getMediaTask.isRunning}}
-        <div class="text-xs-center w-100 m-t-2 m-b-2">
-          {{loading-spinner size="large"}}
+    <div class="media-browse">
+      <div class="media-grid">
+        <div class="media-grid container">
+          <div class="row">
+              {{#infinite-pagination showLoader=false onPagination=(action "onPagination") as |isLoading|}}
+                {{#each media as |media|}}
+                  <div class="poster-wrapper">
+                    {{#media-popover media=media}}
+                      <div class="grid-poster">
+                        {{lazy-image src=(image media.posterImage "medium")}}
+                      </div>
+                      <div class="poster-overlay">
+                        <a href={{href-to (concat media.modelType ".show") media.slug}}></a>
+                      </div>
+                    {{/media-popover}}
+                  </div>
+                {{/each}}
+
+                {{#if isLoading}}
+                  {{#each (repeat 2) as |_|}}
+                    {{#skeleton-container class="explore-grid-skeleton"}}
+                      {{#each (repeat 5) as |_|}}
+                        {{skeleton-loader class="explore-grid-skeleton-break"}}
+                      {{/each}}
+                    {{/skeleton-container}}
+                  {{/each}}
+                {{/if}}
+              {{/infinite-pagination}}
+          </div>
         </div>
-      {{else if media}}
-        {{#infinite-pagination onPagination=(route-action "onPagination")}}
-          {{#each media as |media|}}
-            <div class="explore-poster">
-              {{#media-popover media=media}}
-                <a href={{href-to (concat media.modelType ".show") media.slug}} class="media-poster">
-                  {{lazy-image src=(image media.posterImage "large")}}
-                </a>
-              {{/media-popover}}
-            </div>
-          {{/each}}
-        {{/infinite-pagination}}
-      {{else}}
-        <div class="text-xs-center m-t-1 m-b-1">
-          <p>{{t "errors.contentEmpty"}}</p>
-        </div>
-      {{/if}}
+      </div>
     </div>
-  </div>
+  {{/if}}
+</div>
+
+<div class="explore-sidebar col-sm">
+  {{#if (not (is-empty category))}} {{! Category View }}
+    {{explore/category-sidebar/related-categories category=category}}
+  {{else}}
+    {{explore/category-sidebar/general-categories}} {{! Media View }}
+  {{/if}}
 </div>

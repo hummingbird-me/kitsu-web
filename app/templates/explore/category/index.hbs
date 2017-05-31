@@ -1,31 +1,47 @@
-<div class='explore-page'>
-  <h3>{{titleize (concat category.title " " mediaType)}}</h3>
-  {{explore/category-widget/related category=category}}
-  {{explore/explore-search}}
-  <div class="explore-content">
-    {{explore/explore-section
-      type="newly-released"
-      mediaType=mediaType
-      category=category
-      sort="-startDate"
-      filters="current"
-      more="explore.category.more"
-      limit=15
-    }}
-    {{explore/explore-section
-      type="trending"
-      mediaType=mediaType
-      category=category
-      more="explore.category.more"
-      limit=15
-    }}
-    {{explore/explore-section
-      type="most-popular"
-      mediaType=mediaType
-      category=category
-      sort="-userCount"
-      more="explore.category.more"
-      limit=15
-    }}
+<div class="explore-page col-sm no-padding-left">
+  <div class="media">
+    <div class="media-body">
+      {{explore/favorite-button category=category}}
+      <h3>{{concat category.title " " (titleize mediaType)}}</h3>
+      {{#if (not (is-empty category.description))}}
+        <p>{{category.description}}</p>
+      {{/if}}
+    </div>
   </div>
+
+  {{explore/explore-search mediaType=mediaType}}
+
+  {{! Newly Released }}
+  {{explore/explore-section
+    type="newly-released"
+    mediaType=mediaType
+    category=category
+    sort="-start_date"
+    filters="status:current"
+    more="explore.category.more"
+    limit=15
+  }}
+
+  {{! Most Watched/Read }}
+  {{explore/explore-section
+    type="trending"
+    mediaType=mediaType
+    category=category
+    more="explore.category.more"
+    limit=15
+  }}
+
+  {{! Most Popular }}
+  {{explore/explore-section
+    type="most-popular"
+    mediaType=mediaType
+    category=category
+    sort="-user_count"
+    more="explore.category.more"
+    limit=15
+  }}
+</div>
+
+<div class="explore-sidebar col-sm">
+  {{explore/category-sidebar/related-categories category=category}}
 </div>

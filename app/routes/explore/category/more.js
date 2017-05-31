@@ -1,12 +1,11 @@
 import Route from 'ember-route';
 import { setProperties } from 'ember-metal/set';
-import Pagination from 'kitsu-shared/mixins/pagination';
 
-export default Route.extend(Pagination, {
+export default Route.extend({
   setupController(controller) {
     this._super(...arguments);
-    const type = this.paramsFor('explore.category.more').type;
-    const mediaType = this.paramsFor('explore').media_type;
+    const { type } = this.paramsFor('explore.category.more');
+    const { media_type: mediaType } = this.paramsFor('explore');
     const category = this.modelFor('explore.category');
     setProperties(controller, { type, mediaType, category });
   }

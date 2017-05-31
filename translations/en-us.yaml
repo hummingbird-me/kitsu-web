@@ -10,10 +10,15 @@ titles:
       characters: "Characters"
       reviews: "Reviews"
   explore:
+    index: "Explore {mediaType, select,
+      anime {Anime}
+      manga {Manga}
+      other {}}"
     more:
       top-current: "Top {mediaType, select,
         anime {Airing}
-        manga {Publishing}} {type}"
+        manga {Publishing}
+        other {}} {type}"
       top-upcoming: "Top Upcoming {type}"
       trending: "Trending {category} {type}"
       highest-rated: "Highest Rated {type}"
@@ -752,6 +757,24 @@ group-invite:
   accepted: "You've already accepted this invite."
   revoked: "Your invitation has been revoked by a group moderator."
   declined: "You declined this group invite."
+# page: explore
+explore:
+  view-more: "View more"
+  search-placeholder: "What are you searching for?"
+  advanced-search: "Or, browse with the <a href=\"/{mediaType}\">advanced search</a>"
+  widget:
+    related: "Related Categories"
+    categories: "Categories"
+    favorite-categories: "My Favorite Categories"
+    no-favorites: "Favoriting categories will improve your recommendations."
+    more-categories: "More categories..."
+  modal:
+    header: "All Categories"
+  favorite-button:
+    remove: "Remove from Favorites"
+    removing: "Removing..."
+    create: "Add to Favorites"
+    creating: "Adding..."
 # shared: media
 media-shared:
   types:

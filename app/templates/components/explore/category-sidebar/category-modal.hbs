@@ -1,0 +1,20 @@
+{{#bootstrap/bs-modal id=modalId onClose=onClose as |modal|}}
+  {{#modal.header}}
+    <h6 class="text-xs-center text-uppercase m-b-0">{{t "explore.modal.header"}}</h6>
+  {{/modal.header}}
+  {{#modal.body}}
+    {{#if getCategoriesTask.isRunning}}
+      {{#skeleton-container class="category-modal-skeleton"}}
+        {{#each (repeat 8) as |_|}}
+          {{skeleton-loader class="category-modal-skeleton-item"}}
+        {{/each}}
+      {{/skeleton-container}}
+    {{else}}
+      {{#each sortedCategories as |category|}}
+        {{explore/category-sidebar/category-modal/category-item
+          category=category
+          class="category-modal-parent"}}
+      {{/each}}
+    {{/if}}
+  {{/modal.body}}
+{{/bootstrap/bs-modal}}

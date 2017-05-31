@@ -1,29 +1,38 @@
-<div class='explore-page'>
+<div class="explore-page col-sm no-padding-left">
   <h3>{{t (concat "titles." mediaType ".index")}}</h3>
-  {{explore/category-widget/index}}
-  {{explore/explore-search}}
-  <div class="explore-content">
-    {{explore/explore-section
-      type="top-current"
-      mediaType=mediaType
-      sort="-userCount"
-      filters="status:current"
-    }}
-    {{explore/explore-section
-      type="top-upcoming"
-      mediaType=mediaType
-      sort="-userCount"
-      filters="status:upcoming"
-    }}
-    {{explore/explore-section
-      type="highest-rated"
-      mediaType=mediaType
-      sort="-averageRating"
-    }}
-    {{explore/explore-section
-      type="most-popular"
-      mediaType=mediaType
-      sort="-userCount"
-    }}
-  </div>
+  {{explore/explore-search mediaType=mediaType}}
+
+  {{! Top Airing }}
+  {{explore/explore-section
+    type="top-current"
+    mediaType=mediaType
+    sort="-user_count"
+    filters="status:current"
+  }}
+
+  {{! Top Upcomming }}
+  {{explore/explore-section
+    type="top-upcoming"
+    mediaType=mediaType
+    sort="-user_count"
+    filters="status:upcoming"
+  }}
+
+  {{! Highest Rated }}
+  {{explore/explore-section
+    type="highest-rated"
+    mediaType=mediaType
+    sort="-average_rating"
+  }}
+
+  {{! Most Popular }}
+  {{explore/explore-section
+    type="most-popular"
+    mediaType=mediaType
+    sort="-user_count"
+  }}
+</div>
+
+<div class="explore-sidebar col-sm">
+  {{explore/category-sidebar/general-categories}}
 </div>
