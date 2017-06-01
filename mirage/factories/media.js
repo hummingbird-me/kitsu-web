@@ -16,6 +16,7 @@ export default Factory.extend({
     '5.0': 0
   },
   slug: 'kitsu-the-anime',
+  status: 'tba',
   startDate() { return faker.date.past(); },
   subtype() { return faker.list.random('TV', 'Movie')(); },
   synopsis() { return faker.lorem.paragraphs(); },
