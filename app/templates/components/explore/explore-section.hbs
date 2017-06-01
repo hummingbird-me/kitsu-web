@@ -23,9 +23,9 @@
               {{#media-popover media=media}}
                 <div class="grid-poster">
                   {{lazy-image src=(image media.posterImage "medium")}}
-                </div>
-                <div class="poster-overlay">
-                  <a href={{href-to (concat media.modelType ".show") media.slug}}></a>
+                  <div class="poster-overlay">
+                    <a href={{href-to (concat media.modelType ".show") media.slug}}></a>
+                  </div>
                 </div>
               {{/media-popover}}
             </div>
