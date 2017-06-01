@@ -14,7 +14,7 @@
       {{/each}}
     {{/skeleton-container}}
   {{/each}}
-{{else}}
+{{else if results}}
   <div class="media-browse">
     <div class="media-grid container">
       <div class="row">
@@ -33,12 +33,16 @@
       </div>
     </div>
   </div>
+{{else}}
+  <p>{{t "explore.no-data"}}</p>
 {{/if}}
 
-<div class="explore-section-more">
-  {{#if (not (is-empty category))}} {{! Category View }}
-    <a href={{href-to more mediaType category.slug type}}>{{t "explore.view-more"}}</a>
-  {{else}} {{! Media view }}
-    <a href={{href-to more mediaType type}}>{{t "explore.view-more"}}</a>
-  {{/if}}
-</div>
+{{#if results}}
+  <div class="explore-section-more">
+    {{#if (not (is-empty category))}} {{! Category View }}
+      <a href={{href-to more mediaType category.slug type}}>{{t "explore.view-more"}}</a>
+    {{else}} {{! Media view }}
+      <a href={{href-to more mediaType type}}>{{t "explore.view-more"}}</a>
+    {{/if}}
+  </div>
+{{/if}}
