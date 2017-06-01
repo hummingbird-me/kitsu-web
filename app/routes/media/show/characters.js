@@ -32,9 +32,7 @@ export default Route.extend(Pagination, {
   },
 
   titleToken() {
-    const model = this._getParentModel();
-    const title = get(model, 'computedTitle');
-    return get(this, 'intl').t('titles.media.show.characters', { title });
+    return get(this, 'intl').t('titles.media.show.characters');
   },
 
   _getFilters() {

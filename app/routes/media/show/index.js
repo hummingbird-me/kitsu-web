@@ -32,14 +32,5 @@ export default Route.extend({
     const parentRoute = get(this, 'routeName').split('.').slice(0, 2).join('.');
     const parentController = this.controllerFor(parentRoute);
     set(controller, 'parent', parentController);
-  },
-
-  titleToken() {
-    return get(this._getParentModel(), 'computedTitle');
-  },
-
-  _getParentModel() {
-    const [mediaType] = get(this, 'routeName').split('.');
-    return this.modelFor(`${mediaType}.show`);
   }
 });

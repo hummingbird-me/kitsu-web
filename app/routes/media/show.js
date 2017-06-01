@@ -41,6 +41,10 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
     return { slug: get(model, 'slug') };
   },
 
+  titleToken(model) {
+    return get(model, 'computedTitle');
+  },
+
   /**
    * Meta tags with ember-cli-meta-tags
    *
