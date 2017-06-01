@@ -16,7 +16,7 @@ export default BaseAdapter.extend({
     insertBefore(d,q)}(window,document,'script','_gs');
     /* eslint-enable */
     if (window._gs && id) {
-      window._gs(id);
+      window._gs(id, false);
     }
   },
 

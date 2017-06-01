@@ -1,6 +1,7 @@
 import Mixin from 'ember-metal/mixin';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import service from 'ember-service/inject';
 import getOwner from 'ember-owner/get';
 import { scheduleOnce } from 'ember-runloop';
 import { classify } from 'ember-string';
@@ -12,11 +13,13 @@ import { hrefTo } from 'ember-href-to/helpers/href-to';
  * Some code here was heavily borrowed from ember-crumbly by poteto.
  */
 export default Mixin.create({
+  head: service('head-data'),
+
   didTransition() {
     this._super(...arguments);
     scheduleOnce('afterRender', () => {
       const data = this._schemaData();
-      const head = get(this, 'headData');
+      const head = get(this, 'head');
       set(head, 'structuredData.meta-breadcrumbs', data);
     });
   },

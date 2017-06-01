@@ -1,5 +1,6 @@
 import Router from 'ember-router';
 import get from 'ember-metal/get';
+import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { scheduleOnce } from 'ember-runloop';
 import RouterScroll from 'ember-router-scroll';
@@ -11,7 +12,7 @@ const RouterInstance = Router.extend(RouterScroll, Breadcrumbs, {
   rootURL: config.rootURL,
 
   metrics: service(),
-  headData: service(),
+  head: service('head-data'),
 
   willTransition() {
     this._super(...arguments);
@@ -24,19 +25,21 @@ const RouterInstance = Router.extend(RouterScroll, Breadcrumbs, {
   },
 
   setTitle(title) {
-    get(this, 'headData').set('title', title);
+    const head = get(this, 'head');
+    set(head, 'title', title);
   },
 
   _trackPage() {
     scheduleOnce('afterRender', () => {
       const page = get(this, 'url');
-      const title = get(this, 'currentRouteName');
+      const title = get(this, 'head.title') || get(this, 'currentRouteName');
       get(this, 'metrics').trackPage({ page, title });
     });
   },
 
   _resetStructuredData() {
-    get(this, 'headData').set('structuredData', {});
+    const head = get(this, 'head');
+    set(head, 'structuredData', {});
   }
 });
 
