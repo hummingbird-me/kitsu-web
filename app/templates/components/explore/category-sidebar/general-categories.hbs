@@ -24,8 +24,8 @@
   <div class="categories">
     <h5 class="text-uppercase">{{t "explore.widget.categories"}}</h5>
     {{#if getCategoriesTask.isRunning}}
-      {{#skeleton-container class="category-skeleton"}}
-        {{#each (repeat 6) as |_|}}
+      {{#skeleton-container class="category-skeleton large"}}
+        {{#each (repeat 18) as |_|}}
           {{skeleton-loader class="category-skeleton-horizontal"}}
         {{/each}}
         {{skeleton-loader class="category-skeleton-vertical"}}

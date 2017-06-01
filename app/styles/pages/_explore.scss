@@ -100,6 +100,12 @@
 
 .category-skeleton {
   min-height: 100px;
+  &.large {
+    min-height: 360px;
+    .category-skeleton-vertical {
+      height: 360px;
+    }
+  }
   width: 100%;
   .category-skeleton-vertical {
     width: 10px;
@@ -109,7 +115,7 @@
   .category-skeleton-horizontal {
     width: 100%;
     height: 10px;
-    @for $i from 0 to 7 {
+    @for $i from 1 to 19 {
       &:nth-child(#{$i}) {
         top: #{20 * ($i - 1)}px;
       }
@@ -131,8 +137,10 @@
   }
   .category-modal-expand-btn {
     cursor: pointer;
-    color: #999;
+    fill: #999;
     float: right;
+    width: 26px;
+    height: 26px;
     &:hover {
       color: $body-link-color;
     }
@@ -144,16 +152,22 @@
     border-bottom: 1px solid $divider-color;
   }
   .category-modal-skeleton {
-    min-height: 315px;
+    min-height: 45px;
     width: 100%;
     .category-modal-skeleton-item {
       border: 10px solid $background-color;
+      border-left-width: 0;
+      border-right-width: 0;
+      &.padded {
+        border-left-width: 10px;
+        border-right-width: 10px;
+      }
       background-color: transparent;
       width: 100%;
-      height: 48px;
+      height: 45px;
       @for $i from 0 to 9 {
         &:nth-child(#{$i}) {
-          top: #{38 * ($i - 1)}px;
+          top: #{35 * ($i - 1)}px;
         }
       }
     }

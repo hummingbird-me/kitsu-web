@@ -4,11 +4,11 @@
   {{/modal.header}}
   {{#modal.body}}
     {{#if getCategoriesTask.isRunning}}
-      {{#skeleton-container class="category-modal-skeleton"}}
-        {{#each (repeat 8) as |_|}}
-          {{skeleton-loader class="category-modal-skeleton-item"}}
-        {{/each}}
-      {{/skeleton-container}}
+      {{#each (repeat 6) as |_|}}
+        {{#skeleton-container class="category-modal-skeleton"}}
+          {{skeleton-loader class="category-modal-skeleton-item padded"}}
+        {{/skeleton-container}}
+      {{/each}}
     {{else}}
       {{#each sortedCategories as |category|}}
         {{explore/category-sidebar/category-modal/category-item
