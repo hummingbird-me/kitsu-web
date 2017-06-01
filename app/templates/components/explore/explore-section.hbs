@@ -37,7 +37,7 @@
 
 <div class="explore-section-more">
   {{#if (not (is-empty category))}} {{! Category View }}
-    <a href={{href-to more mediaType category type}}>{{t "explore.view-more"}}</a>
+    <a href={{href-to more mediaType category.slug type}}>{{t "explore.view-more"}}</a>
   {{else}} {{! Media view }}
     <a href={{href-to more mediaType type}}>{{t "explore.view-more"}}</a>
   {{/if}}

@@ -20,7 +20,7 @@ export default Component.extend({
     const type = get(this, 'mediaType');
     const options = this._getRequestOptions();
     return yield get(this, 'queryCache').query(type, options);
-  }).drop(),
+  }).keepLatest(),
 
   _getRequestOptions() {
     const options = {
@@ -42,7 +42,6 @@ export default Component.extend({
     if (category) {
       options.filter.categories = get(category, 'slug');
     }
-
     return options;
   },
 });

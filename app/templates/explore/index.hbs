@@ -18,6 +18,18 @@
     filters="status:upcoming"
   }}
 
+  {{! Sampled 2 Favorite Categories }}
+  {{#if (and session.hasUser model.userFavoritesTask.value)}}
+    {{#each (take 2 (shuffle model.userFavoritesTask.value)) as |favorite|}}
+      {{explore/explore-section
+        type="trending"
+        mediaType=mediaType
+        category=favorite.category
+        more="explore.category.more"
+      }}
+    {{/each}}
+  {{/if}}
+
   {{! Highest Rated }}
   {{explore/explore-section
     type="highest-rated"
@@ -34,5 +46,7 @@
 </div>
 
 <div class="explore-sidebar col-sm">
-  {{explore/category-sidebar/general-categories}}
+  {{explore/category-sidebar/general-categories
+    getUserFavoritesTask=model.userFavoritesTask
+  }}
 </div>

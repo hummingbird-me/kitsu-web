@@ -57,6 +57,8 @@
   {{#if (not (is-empty category))}} {{! Category View }}
     {{explore/category-sidebar/related-categories category=category}}
   {{else}}
-    {{explore/category-sidebar/general-categories}} {{! Media View }}
+    {{explore/category-sidebar/general-categories
+      getUserFavoritesTask=getUserFavoritesTask
+    }} {{! Media View }}
   {{/if}}
 </div>

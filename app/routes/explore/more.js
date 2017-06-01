@@ -7,6 +7,10 @@ import { capitalize } from 'ember-string';
 export default Route.extend({
   intl: service(),
 
+  model() {
+    return this.modelFor('explore');
+  },
+
   setupController(controller) {
     this._super(...arguments);
     const { type } = this.paramsFor('explore.more');

@@ -10,7 +10,7 @@
           {{skeleton-loader class="category-skeleton-vertical"}}
         {{/skeleton-container}}
       {{else}}
-        {{#each userCategories as |favorite|}}
+        {{#each getUserFavoritesTask.value as |favorite|}}
           <li>
             <a href={{href-to "explore.category" favorite.category.slug}}>{{favorite.category.title}}</a>
           </li>
