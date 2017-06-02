@@ -29,7 +29,7 @@ export default Base.extend({
   titles: attr('object'),
 
   castings: hasMany('casting'),
-  genres: hasMany('genre'),
+  categories: hasMany('category'),
   mediaRelationships: hasMany('media-relationship', { inverse: 'source' }),
   reviews: hasMany('review'),
 
