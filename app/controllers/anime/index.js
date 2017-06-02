@@ -36,11 +36,23 @@ const queryParams = new QueryParams(MEDIA_QUERY_PARAMS, {
   },
   streamers: {
     defaultValue: [],
-    refresh: true
+    refresh: true,
+    serialize(value) {
+      return serializeArray(value);
+    },
+    deserialize(value = []) {
+      return deserializeArray(value);
+    }
   },
   season: {
     defaultValue: [],
-    refresh: true
+    refresh: true,
+    serialize(value) {
+      return serializeArray(value);
+    },
+    deserialize(value = []) {
+      return deserializeArray(value);
+    }
   }
 });
 

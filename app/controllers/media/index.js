@@ -29,7 +29,13 @@ export const MEDIA_QUERY_PARAMS = {
   },
   genres: {
     defaultValue: [],
-    refresh: true
+    refresh: true,
+    serialize(value) {
+      return serializeArray(value);
+    },
+    deserialize(value = []) {
+      return deserializeArray(value);
+    }
   },
   text: {
     defaultValue: '',
@@ -41,7 +47,13 @@ export const MEDIA_QUERY_PARAMS = {
   },
   subtype: {
     defaultValue: [],
-    refresh: true
+    refresh: true,
+    serialize(value) {
+      return serializeArray(value);
+    },
+    deserialize(value = []) {
+      return deserializeArray(value);
+    }
   },
   year: {
     defaultValue: [1907, moment().year() + 1],
