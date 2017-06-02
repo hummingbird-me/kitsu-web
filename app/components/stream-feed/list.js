@@ -57,7 +57,8 @@ export default Component.extend(Pagination, {
   }).restartable(),
 
   createPost: task(function* (content, options) {
-    const data = { content, user: get(this, 'session.account'), ...options };
+    const escapeableContent = content.replace('\\', '\\\\');
+    const data = { content: escapeableContent, user: get(this, 'session.account'), ...options };
     // posting on another user's profile
     if (get(this, 'user') !== undefined && get(this, 'user.id') !== get(this, 'session.account.id')) {
       set(data, 'targetUser', get(this, 'user'));
