@@ -45,7 +45,7 @@ export default Route.extend(ApplicationRouteMixin, {
   },
 
   sessionInvalidated() {
-    get(this, 'metrics').invoke('unidentify', 'GoSquared');
+    get(this, 'metrics').invoke('unidentify', 'GoSquared', {});
     this._super(...arguments);
   },
 
