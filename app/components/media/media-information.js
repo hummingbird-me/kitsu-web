@@ -14,6 +14,7 @@ const computedProduction = key => (
 export default Component.extend({
   tagName: 'section',
   classNames: ['media--information'],
+  isExpanded: false,
   producers: computedProduction('producer'),
   licensors: computedProduction('licensor'),
   studios: computedProduction('studio'),

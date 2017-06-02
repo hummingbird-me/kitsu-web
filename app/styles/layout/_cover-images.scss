@@ -259,10 +259,14 @@
 }
 
 .where-to-watch-widget {
-  margin-top: 15px;
+  ul {
+    display: flex;
+    justify-content: center;
+  }
   li {
     display: inline-block;
     max-width: 23.5%;
+    padding: 0 3px;
   }
   a {
     max-width: 100%;
@@ -276,6 +280,18 @@
   svg {
     width: auto;
     height: 20px;
+  }
+}
+
+.where-to-watch-header {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  > span {
+    background-color: $background-color;
+    color: $body-text-color;
+    font-size: 12px;
+    padding: 10px;
   }
 }
 

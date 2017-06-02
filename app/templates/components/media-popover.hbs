@@ -16,8 +16,8 @@
     }}
       <div>
         <div>
-          <span class="media-title">{{yearlessTitle}}</span>
-          <span class="media-year">{{mediaYear}}</span>
+          <span class="media-title">{{media.yearlessTitle}}</span>
+          <span class="media-year">{{media.mediaYear}}</span>
         </div>
         {{#if media.averageRating}}<div class="media-ratings {{percentageClass}}">{{media.averageRating}}%</div>{{/if}}
         {{media/media-rankings media=media length="short"}}

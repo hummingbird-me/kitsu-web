@@ -1,9 +1,24 @@
-<h5>{{t "media.show.summary.information.header"}}</h5>
+<h5>{{t "media.show.summary.information.header" type=media.modelType}}</h5>
 <ul>
+  {{! Titles }}
+  {{#each-in media.titles as |key value|}}
+    <li>
+      <strong>{{t (concat "media.show.summary.titles." key)}}</strong>
+      {{value}}
+    </li>
+  {{/each-in}}
+
+  {{#if media.abbreviatedTitles}}
+    <li>
+      <strong>{{t "media.show.summary.titles.synonyms"}}</strong>
+      {{join ", " media.abbreviatedTitles}}
+    </li>
+  {{/if}}
+
   {{! Type }}
   {{#if media.subtype}}
     <li>
-      <strong>{{t "media.show.summary.information.type"}}:</strong>
+      <strong>{{t "media.show.summary.information.type"}}</strong>
       {{t (concat "media-shared.types." media.modelType "." (to-lower media.subtype))}}
     </li>
   {{/if}}
@@ -11,7 +26,7 @@
   {{! Volumes }}
   {{#if (and isManga media.volumeCount)}}
     <li>
-      <strong>{{t "media.show.summary.information.volumes"}}:</strong>
+      <strong>{{t "media.show.summary.information.volumes"}}</strong>
       {{media.volumeCount}}
     </li>
   {{/if}}
@@ -19,7 +34,7 @@
   {{! Episodes / Chapters }}
   {{#if media.unitCount}}
     <li>
-      <strong>{{t "media.show.summary.information.unit" type=media.modelType}}:</strong>
+      <strong>{{t "media.show.summary.information.unit" type=media.modelType}}</strong>
       {{media.unitCount}}
     </li>
   {{/if}}
@@ -33,7 +48,7 @@
   {{! Airing / Status }}
   {{#if media.startDate}}
     <li>
-      <strong>{{t "media.show.summary.information.start" type=media.modelType}}:</strong>
+      <strong>{{t "media.show.summary.information.start" type=media.modelType}}</strong>
       {{moment-format media.startDate "MMM D, YYYY"}}
       {{#if (and media.endDate airedLongerThanOneDay)}}
         to {{moment-format media.endDate "MMM D, YYYY"}}
@@ -41,7 +56,7 @@
     </li>
     {{#if isAnime}}
       <li>
-        <strong>{{t "media.show.summary.information.season"}}:</strong>
+        <strong>{{t "media.show.summary.information.season"}}</strong>
         <a href={{href-to (concat media.modelType ".index") (query-params
           season=season
           year=(concat seasonYear ".." seasonYear)
@@ -52,51 +67,58 @@
     {{/if}}
   {{/if}}
 
-  {{#if (and isAnime media.animeProductions)}}
-    {{#if producers}}
-      <li>
-        <strong>{{t "media.show.summary.information.producers"}}:</strong>
-        {{producers}}
-      </li>
-    {{/if}}
-    {{#if licensors}}
-      <li>
-        <strong>{{t "media.show.summary.information.licensors"}}:</strong>
-        {{licensors}}
-      </li>
-    {{/if}}
-    {{#if studios}}
-      <li>
-        <strong>{{t "media.show.summary.information.studios"}}:</strong>
-        {{studios}}
-      </li>
-    {{/if}}
-  {{/if}}
-
-  {{! Serialization }}
-  {{#if (and isManga media.serialization)}}
-    <li>
-      <strong>{{t "media.show.summary.information.serialization"}}:</strong>
-      {{media.serialization}}
-    </li>
-  {{/if}}
-
-  {{! Duration }}
-  {{#if (and isAnime (and media.unitCount media.episodeLength))}}
-    <li>
-      <strong>{{t "media.show.summary.information.duration"}}:</strong>
-      {{t "media.show.summary.information.length" total=totalTime length=media.episodeLength count=media.unitCount}}
-    </li>
-  {{/if}}
-
   {{! Age Rating }}
   {{#if media.ageRating}}
     <li>
-      <strong>{{t "media.show.summary.information.rating"}}:</strong>
+      <strong>{{t "media.show.summary.information.rating"}}</strong>
       {{media.ageRating}}
       {{#if media.ageRatingGuide}}
         - {{media.ageRatingGuide}}
       {{/if}}
     </li>
   {{/if}}
+
+  {{#if isExpanded}}
+    {{! Productions}}
+    {{#if (and isAnime media.animeProductions)}}
+      {{#if producers}}
+        <li>
+          <strong>{{t "media.show.summary.information.producers"}}</strong>
+          {{producers}}
+        </li>
+      {{/if}}
+      {{#if licensors}}
+        <li>
+          <strong>{{t "media.show.summary.information.licensors"}}</strong>
+          {{licensors}}
+        </li>
+      {{/if}}
+      {{#if studios}}
+        <li>
+          <strong>{{t "media.show.summary.information.studios"}}</strong>
+          {{studios}}
+        </li>
+      {{/if}}
+    {{/if}}
+
+    {{! Serialization }}
+    {{#if (and isManga media.serialization)}}
+      <li>
+        <strong>{{t "media.show.summary.information.serialization"}}</strong>
+        {{media.serialization}}
+      </li>
+    {{/if}}
+
+    {{! Duration }}
+    {{#if (and isAnime (and media.unitCount media.episodeLength))}}
+      <li>
+        <strong>{{t "media.show.summary.information.duration"}}</strong>
+        {{t "media.show.summary.information.length" total=totalTime length=media.episodeLength count=media.unitCount}}
+      </li>
+    {{/if}}
+  {{/if}}
+
+  <a href="#" {{action (toggle "isExpanded" this)}}>
+    {{t (concat "media.show.summary.information.expand." isExpanded)}}
+  </a>
 </ul>

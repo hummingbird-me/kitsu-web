@@ -18,11 +18,9 @@
           </a>
         </div>
       {{/each}}
-      <div class="text-xs-center w-100">
-        <a href={{href-to (concat media.modelType ".show.characters")}} class="button button--primary">
-          {{t "media.show.summary.characters.more"}}
-        </a>
-      </div>
+      <a href={{href-to (concat media.modelType ".show.characters")}}>
+        {{t "media.show.summary.characters.more"}}
+      </a>
     {{else}}
       <div class="text-xs-center w-100 font-italic">
         {{t "errors.contentEmpty"}}

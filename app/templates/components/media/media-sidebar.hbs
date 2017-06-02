@@ -12,7 +12,9 @@
 {{! Streamers }}
 {{#if media.streamingLinks}}
   <div class="where-to-watch-widget">
-    <h6>{{t "media.show.sidebar.watch"}}</h6>
+    <span class="where-to-watch-header">
+      <span>{{t "media.show.sidebar.watch"}}</span>
+    </span>
     {{#if getStreamersTask.isRunning}}
       <div class="text-xs-center w-100 m-t-1">
         {{loading-spinner size="small"}}

@@ -1,0 +1,23 @@
+<section class="m-b-1">
+  <h5>{{t "media.show.summary.reactions.header"}}</h5>
+  {{#if getReactionsTask.isRunning}}
+    {{! @TODO: Replace with feed loader }}
+    <div class="text-xs-center w-100 m-t-1 m-b-1">
+      {{loading-spinner size="large"}}
+    </div>
+  {{else if getReactionsTask.error}}
+    <div class="text-xs-center w-100 m-t-1 m-b-1">
+      {{t "errors.load"}}
+    </div>
+  {{else if getReactionsTask.value}}
+    <ul class="media-list w-100">
+      {{#each getReactionsTask.value as |reaction|}}
+        {{media/media-reaction reaction=reaction}}
+      {{/each}}
+    </ul>
+  {{else}}
+    <div class="text-xs-center w-100 m-t-1 m-b-1">
+      {{t "errors.contentEmpty"}}
+    </div>
+  {{/if}}
+</section>
