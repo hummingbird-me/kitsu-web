@@ -1,0 +1,12 @@
+{{#bootstrap/bs-modal id=modalId onClose=onClose as |modal|}}
+  {{#modal.body}}
+    {{media.yearlessTitle}}
+    {{media.year}}
+    {{remaining}}
+    {{one-way-textarea reaction
+      update=(action (mut reaction))
+      placeholder="React to dis shit"
+    }}
+    <button onclick={{perform createReaction}}>Post</button>
+  {{/modal.body}}
+{{/bootstrap/bs-modal}}

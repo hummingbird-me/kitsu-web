@@ -6,7 +6,7 @@ export default Base.extend({
   reaction: attr('string'),
   upVotesCount: attr('number'),
 
-  libraryEntry: belongsTo('library-entry'),
+  libraryEntry: belongsTo('library-entry', { inverse: null }),
   media: belongsTo('media'),
   user: belongsTo('user'),
 

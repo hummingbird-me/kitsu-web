@@ -44,7 +44,7 @@ export default Base.extend({
       get(this, 'canonicalTitle');
   }).readOnly(),
 
-  mediaYear: computed('startDate', function() {
+  year: computed('startDate', function() {
     const startDate = get(this, 'startDate');
     return startDate ? get(this, 'startDate').year() : '';
   }).readOnly(),

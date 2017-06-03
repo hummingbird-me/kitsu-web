@@ -33,9 +33,9 @@
     <div class="text-xs-center w-100 m-t-1 m-b-1">
       {{t "errors.load"}}
     </div>
-  {{else if getReactionsTask.value}}
+  {{else if getReactionsTask.last.value}}
     <ul class="media-list w-100">
-      {{#each getReactionsTask.value as |reaction|}}
+      {{#each getReactionsTask.last.value as |reaction|}}
         {{media/media-reaction reaction=reaction}}
       {{/each}}
     </ul>
@@ -45,3 +45,11 @@
     </div>
   {{/if}}
 </section>
+
+{{#if isModalOpen}}
+  {{to-elsewhere named="modal" send=(component "media/reaction-modal"
+    media=media
+    modalId="reaction-modal"
+    onClose=(toggle-action "isModalOpen" this)
+  )}}
+{{/if}}

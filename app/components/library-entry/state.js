@@ -88,7 +88,8 @@ export default Component.extend({
   _getRequestOptions() {
     const type = get(this, 'mediaType');
     return {
-      include: 'review',
+      // include: 'review',
+      // TODO: include reaction
       filter: {
         user_id: get(this, 'session.account.id'),
         kind: type,
