@@ -6,9 +6,15 @@ import { task } from 'ember-concurrency';
 
 export default Component.extend({
   queryCache: service(),
+  sortOptions: [
+    '-upVotesCount',
+    '-createdAt'
+  ],
+  sort: '-upVotesCount',
 
   getReactionsTask: task(function* () {
     const media = get(this, 'media');
+    const sort = get(this, 'sort');
     return yield get(this, 'queryCache').query('media-reaction', {
       include: 'user',
       filter: {
@@ -16,7 +22,7 @@ export default Component.extend({
         mediaType: capitalize(get(media, 'modelType'))
       },
       page: { limit: 6 },
-      sort: '-upVotesCount'
+      sort
     });
   }),
 

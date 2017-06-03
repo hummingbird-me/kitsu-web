@@ -65,55 +65,6 @@
   }
 }
 
-.percentage-liked, .average-rating {
-  color: #fff;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-  text-align: center;
-  padding: 5px 15px;
-  width: 80px;
-  float: left;
-  &.lonely {
-    padding: 0;
-  }
-  .featured-number {
-    font-family: $heading-font-family;
-    font-weight: $heading-font-weight;
-    font-size: 24px;
-    margin-top: -5px;
-    margin-bottom: -5px;
-    label {
-      margin-bottom: 0;
-      margin-right: 5px;
-    }
-  }
-  span {
-    display: block;
-    font-size: 12px;
-  }
-}
-.average-rating {
-  width: auto;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-  text-align: left;
-  svg {
-    width: 14px;
-    height: 14px;
-    position: relative;
-    top: -1px;
-  }
-}
-
-.rating-bar {
-  background: $foreground-background-color;
-  border: 1px solid darken($background-color, 5);
-  margin-bottom: 15px;
-  border-radius: 3px;
-}
-
 .community-percentage {
   display: inline-block;
   padding: 5px 10px;
@@ -138,30 +89,6 @@
   &.percent-quarter-4 {
     color: rgba(26, 188, 156,1.0);
     background: rgba(26, 188, 156,.05);
-  }
-}
-
-.average-rating-stars {
-  display: inline-block;
-  padding: 5px 10px;
-  float: left;
-  position: relative;
-  top: 1px;
-  svg {
-    width: 15px;
-    height: 15px;
-  }
-}
-
-.ratings-count {
-  font-size: 12px;
-  color: #949494;
-  float: right;
-  padding: 8px 15px;
-  padding-right: 15px;
-  @media (max-width: 500px) {
-    width: 100%;
-    border-top: 1px solid #eee;
   }
 }
 
@@ -295,6 +222,29 @@
   .favorite-item {
     display: inline-block;
     width: 80px;
+  }
+}
+
+.media--reactions {
+  h5 {
+    display: inline;
+  }
+  .result-sort-wrapper {
+    .dropdown {
+      display: inline;
+    }
+    button {
+      color: $body-text-color;
+      padding: 0;
+      background: transparent;
+      font-size: 14px;
+      border: none;
+    }
+  }
+  .reaction-button {
+    float: right;
+    font-weight: 700;
+    font-size: 14px;
   }
 }
 

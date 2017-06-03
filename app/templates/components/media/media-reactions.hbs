@@ -1,5 +1,29 @@
-<section class="m-b-1">
+<section class="media--reactions m-b-1">
   <h5>{{t "media.show.summary.reactions.header"}}</h5>
+   · <span class="result-sort-wrapper">
+      {{#bootstrap/bs-dropdown as |dropdown|}}
+        {{#dropdown.button type="button--dark-outline" class="button--small"}}
+          {{t (concat "media.show.summary.reactions.sorts." sort)}}
+        {{/dropdown.button}}
+        {{#dropdown.menu}}
+          {{#each sortOptions as |sortKey|}}
+            {{#dropdown.menu-item onClick=(action (mut sort) sortKey)}}
+              {{t (concat "media.show.summary.reactions.sorts." sortKey)}}
+              {{#if (eq sort sortKey)}}
+                <span class="dropdown-checkmark">
+                  {{svg-jar "checkmark"}}
+                </span>
+              {{/if}}
+            {{/dropdown.menu-item}}
+          {{/each}}
+        {{/dropdown.menu}}
+      {{/bootstrap/bs-dropdown}}
+    </span>
+    <span class="reaction-button">
+      {{#if session.hasUser}}
+        <a href="#" {{action (toggle "isModalOpen" this)}}>New Reaction</a>
+      {{/if}}
+    </span>
   {{#if getReactionsTask.isRunning}}
     {{! @TODO: Replace with feed loader }}
     <div class="text-xs-center w-100 m-t-1 m-b-1">
