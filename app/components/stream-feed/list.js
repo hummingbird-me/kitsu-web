@@ -160,7 +160,6 @@ export default Component.extend(Pagination, {
     set(this, 'paginatedRecords', []);
     set(this, 'newItems', EmberObject.create({ length: 0, cache: [] }));
     return get(this, 'getFeedData').perform(limit).then((data) => {
-      if (!data) { return; }
       get(this, 'feed').addObjects(data);
       set(this, 'feed.links', get(data, 'links'));
 
@@ -270,7 +269,8 @@ export default Component.extend(Pagination, {
     onPagination() {
       return this._super('feed', {
         type: get(this, 'streamType'),
-        id: get(this, 'streamId')
+        id: get(this, 'streamId'),
+        page: { limit: 10 }
       });
     },
 
