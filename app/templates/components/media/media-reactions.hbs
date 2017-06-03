@@ -1,6 +1,7 @@
 <section class="media--reactions m-b-1">
-  <h5>{{t "media.show.summary.reactions.header"}}</h5>
-   · <span class="result-sort-wrapper">
+  <div class='reactions-header'>
+    <h5>{{t "media.show.summary.reactions.header"}}</h5>
+     · <span class="result-sort-wrapper">
       {{#bootstrap/bs-dropdown as |dropdown|}}
         {{#dropdown.button type="button--dark-outline" class="button--small"}}
           {{t (concat "media.show.summary.reactions.sorts." sort)}}
@@ -24,6 +25,7 @@
         <a href="#" {{action (toggle "isModalOpen" this)}}>New Reaction</a>
       {{/if}}
     </span>
+  </div>
   {{#if getReactionsTask.isRunning}}
     {{! @TODO: Replace with feed loader }}
     <div class="text-xs-center w-100 m-t-1 m-b-1">
@@ -34,11 +36,16 @@
       {{t "errors.load"}}
     </div>
   {{else if getReactionsTask.last.value}}
-    <ul class="media-list w-100">
+    <div class="reactions-list w-100">
       {{#each getReactionsTask.last.value as |reaction|}}
         {{media/media-reaction reaction=reaction}}
       {{/each}}
-    </ul>
+      <div class="reactions-more">
+        <a href={{href-to (concat media.modelType ".show.reactions") media}}>
+          {{t "media.show.summary.reactions.more"}}
+        </a>
+      </div>
+    </div>
   {{else}}
     <div class="text-xs-center w-100 m-t-1 m-b-1">
       {{t "errors.contentEmpty"}}
