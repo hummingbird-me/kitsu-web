@@ -1,6 +1,6 @@
 import { Factory } from 'ember-cli-mirage';
 
 export default Factory.extend({
-  name: 'Comedy',
+  title: 'Comedy',
   slug: 'comedy'
 });
