@@ -270,7 +270,10 @@ export default Component.extend(Pagination, {
       return this._super('feed', {
         type: get(this, 'streamType'),
         id: get(this, 'streamId'),
-        page: { limit: 10 }
+        page: {
+          limit: 10,
+          cursor: get(this, 'allFeedItems.lastObject.id')
+        }
       });
     },
 
