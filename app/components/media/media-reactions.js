@@ -1,5 +1,4 @@
 import Component from 'ember-component';
-import { capitalize } from 'ember-string';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
@@ -14,12 +13,12 @@ export default Component.extend({
 
   getReactionsTask: task(function* () {
     const media = get(this, 'media');
+    const type = get(media, 'modelType');
     const sort = get(this, 'sort');
     return yield get(this, 'queryCache').query('media-reaction', {
       include: 'user',
       filter: {
-        mediaId: get(media, 'id'),
-        mediaType: capitalize(get(media, 'modelType'))
+        [`${type}Id`]: get(media, 'id'),
       },
       page: { limit: 6 },
       sort

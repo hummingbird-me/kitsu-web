@@ -18,13 +18,13 @@ export default Component.extend({
     const type = get(media, 'modelType');
     const libraryEntry = yield get(this, 'queryCache').query('library-entry', {
       filter: {
-        user_id: get(user, 'id'),
+        userId: get(user, 'id'),
         kind: type,
-        media_id: get(media, 'id')
+        [`${type}Id`]: get(media, 'id')
       }
     }).then(records => get(records, 'firstObject'));
     const createdReaction = get(this, 'store').createRecord('media-reaction', {
-      media, user, reaction, libraryEntry
+      [type]: media, user, reaction, libraryEntry
     });
     yield createdReaction.save();
   }).drop()
