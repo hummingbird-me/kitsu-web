@@ -48,15 +48,15 @@
     </li>
   </ul>
 
-  <h6>{{t "users.library.sidebar.tools"}}</h6>
-  <ul class="library-tools">
-    <li>
-      <a href={{href-to "settings.imports"}}>{{t "users.library.sidebar.import"}}</a>
-    </li>
-    <li>
-      <a href={{href-to "settings.exports"}}>{{t "users.library.sidebar.export"}}</a>
-    </li>
-    {{#if (can "edit library-entry" user)}}
+  {{#if (can "edit library-entry" user)}}
+    <h6>{{t "users.library.sidebar.tools"}}</h6>
+    <ul class="library-tools">
+      <li>
+        <a href={{href-to "settings.imports"}}>{{t "users.library.sidebar.import"}}</a>
+      </li>
+      <li>
+        <a href={{href-to "settings.exports"}}>{{t "users.library.sidebar.export"}}</a>
+      </li>
       <li>
         <a href="#" {{action (toggle "showResetModal" this)}}>
           {{#if isResetLoading}}
@@ -74,8 +74,8 @@
           onClose=(toggle-action "showResetModal" this)
         )}}
       {{/if}}
-    {{/if}}
-  </ul>
+    </ul>
+  {{/if}}
 
   {{! Kitsu Library Sidebar Ad }}
   {{#unless session.account.isPro}}
