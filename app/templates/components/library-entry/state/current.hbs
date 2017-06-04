@@ -16,12 +16,12 @@
   {{t "library-entry.state.rate-this"}}
 {{/library-entry/rating-button}}
 
-{{! Write Review }}
-<button class="review-button button button--secondary button--muted" {{action onReview}}>
-  {{#if (and libraryEntry.review (not libraryEntry.review.isNew))}}
-    {{t "library-entry.state.edit-review"}}
+{{! Write Reaction }}
+<button class="reaction-button button button--secondary button--muted" {{action onReaction}}>
+  {{#if (and libraryEntry.reaction (not libraryEntry.reaction.isNew))}}
+    {{t "library-entry.state.edit-reaction"}}
   {{else}}
-    {{t "library-entry.state.write-review"}}
+    {{t "library-entry.state.post-reaction"}}
   {{/if}}
 </button>
 

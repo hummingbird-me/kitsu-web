@@ -34,7 +34,7 @@
           hideRemove=hideRemove
           rateOnly=rateOnly
           onRatingChange=(action "updateAttribute" "rating")
-          onReview=(toggle-action "reviewOpen" this)
+          onReaction=(toggle-action "reactionOpen" this)
           onRewatch=(queue
             (action (mut libraryEntry.reconsumeCount) (inc libraryEntry.reconsumeCount))
             (action (mut libraryEntry.progress) 0)
@@ -50,7 +50,7 @@
           onRatingChange=(action "updateAttribute" "rating")
           onProgressChange=(action "updateAttribute" "progress")
           onStatusChange=(action "updateAttribute" "status")
-          onReview=(toggle-action "reviewOpen" this)
+          onReaction=(toggle-action "reactionOpen" this)
           onComplete=(queue
             (action (mut libraryEntry.status) "completed")
             (action "updateAttribute" "rating")
@@ -68,11 +68,12 @@
         }}
       {{/if}}
 
-      {{! Review Modal }}
-      {{#if reviewOpen}}
-        {{to-elsewhere named="modal" send=(component "modals/media-review"
-          onClose=(toggle-action "reviewOpen" this)
-          libraryEntry=libraryEntry
+      {{! Reaction Modal }}
+      {{#if reactionOpen}}
+        {{to-elsewhere named="modal" send=(component "media/reaction-modal"
+          media=media
+          modalId="reaction-modal"
+          onClose=(toggle-action "reactionOpen" this)
         )}}
       {{/if}}
     {{/unless}}

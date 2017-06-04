@@ -10,7 +10,7 @@ export default Component.extend({
   classNameBindings: ['showHeader:with-header'],
   showHeader: true,
   createOnly: false,
-  reviewOpen: false,
+  reactionOpen: false,
 
   queryCache: service(),
   store: service(),
