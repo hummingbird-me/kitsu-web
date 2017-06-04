@@ -1,0 +1,44 @@
+<span class="category-item-span {{if isActive "active"}}">
+  {{#if (gte category.childCount 0)}}
+    <span class="category-expand-btn {{if isExpanded "is-active"}}" {{action "toggleExpansion"}}>
+      {{#if isExpanded}}
+        {{svg-jar "minus"}}
+      {{else}}
+        {{svg-jar "plus"}}
+      {{/if}}
+    </span>
+  {{/if}}
+
+  <span class="category-title">{{category.title}}</span>
+  {{#if isChild}}
+    <span class="include-category hint--left hint--rounded hint--bounce" aria-label={{t "media.index.filter"}}>
+      {{svg-jar "checkmark"}}
+    </span>
+    <span class="exclude-category hint--left hint--rounded hint--bounce" aria-label={{t "media.index.remove"}}>
+      {{svg-jar "close"}}
+    </span>
+  {{/if}}
+</span>
+
+{{#if isExpanded}}
+  {{#if getChildCategoriesTask.isRunning}}
+    {{#each (repeat category.childCount) as |_|}}
+      {{#skeleton-container class="category-item-skeleton"}}
+        {{skeleton-loader class="category-item-skeleton-item"}}
+      {{/skeleton-container}}
+    {{/each}}
+  {{else}}
+    <ul>
+      {{#each sortedChildren as |child|}}
+        {{media/filter-widgets/category-item
+          category=child
+          isChild=true
+          isActive=(contains child.slug selection)
+          updateCategories=updateCategories
+          class="category-item-child"
+          tagName="li"
+        }}
+      {{/each}}
+    </ul>
+  {{/if}}
+{{/if}}

@@ -27,7 +27,7 @@ export const MEDIA_QUERY_PARAMS = {
       return [lower, upper];
     }
   },
-  genres: {
+  categories: {
     defaultValue: [],
     refresh: true,
     serialize(value) {
