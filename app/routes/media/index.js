@@ -31,18 +31,19 @@ export default Route.extend(SlideHeaderMixin, Pagination, {
     };
   },
 
-  setupController(controller) {
+  activate() {
     this._super(...arguments);
     document.body.classList.add('browse-page');
-    this.handleScroll = () => { controller._handleScroll(); };
-    document.addEventListener('scroll.media', this.handleScroll);
-    controller._setDirtyValues();
   },
 
-  resetController() {
+  deactivate() {
     this._super(...arguments);
     document.body.classList.remove('browse-page');
-    document.removeEventListener('scroll.media', this.handleScroll);
+  },
+
+  setupController(controller) {
+    this._super(...arguments);
+    controller._setDirtyValues();
   },
 
   headTags() {

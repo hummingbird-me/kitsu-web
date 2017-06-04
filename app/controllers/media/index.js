@@ -93,24 +93,6 @@ export default Controller.extend({
     }
   },
 
-  _handleScroll() {
-    if (document.scrollTop >= 51) {
-      document.getElementsByClassName('filter-options').forEach((element) => {
-        element.classList.add('scrolled');
-      });
-      document.getElementsByClassName('search-media').forEach((element) => {
-        element.classList.add('scrolled');
-      });
-    } else {
-      document.getElementsByClassName('filter-options').forEach((element) => {
-        element.classList.remove('scrolled');
-      });
-      document.getElementsByClassName('search-media').forEach((element) => {
-        element.classList.remove('scrolled');
-      });
-    }
-  },
-
   _setDirtyValues() {
     set(this, 'dirtyYear', get(this, 'year'));
     set(this, 'dirtyRating', get(this, 'averageRating'));

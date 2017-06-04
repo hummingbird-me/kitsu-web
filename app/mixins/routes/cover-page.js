@@ -31,7 +31,8 @@ export default Mixin.create({
       this._handleMouseLeave = () => {
         scheduleRead(() => {
           const searchElement = document.getElementById('search');
-          if (document.body.scrollTop < DISTANCE && isEmpty(searchElement.value)) {
+          const scrollPoint = document.scrollingElement && document.scrollingElement.scrollTop;
+          if (scrollPoint < DISTANCE && isEmpty(searchElement.value)) {
             this.fadeTimer = later(() => {
               element.classList.add('transparent');
             }, HOVER_DELAY);
@@ -59,7 +60,7 @@ export default Mixin.create({
     scheduleRead(() => {
       const element = document.getElementById('kitsu-navbar');
       const searchElement = document.getElementById('search');
-      if (document.body.scrollTop >= DISTANCE) {
+      if (document.scrollingElement && document.scrollingElement.scrollTop >= DISTANCE) {
         element.classList.remove('transparent');
       } else if (!get(this, 'isHovered') && isEmpty(searchElement.value)) {
         element.classList.add('transparent');
