@@ -8,7 +8,13 @@ import { serializeArray, deserializeArray } from 'client/utils/queryable';
 const queryParams = new QueryParams(MEDIA_QUERY_PARAMS, {
   ageRating: {
     defaultValue: [],
-    refresh: true
+    refresh: true,
+    serialize(value) {
+      return serializeArray(value);
+    },
+    deserialize(value = []) {
+      return deserializeArray(value);
+    }
   },
   episodeCount: {
     defaultValue: [1, 100],
