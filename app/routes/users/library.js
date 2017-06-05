@@ -1,5 +1,5 @@
 import Route from 'ember-route';
-import get, { getProperties } from 'ember-metal/get';
+import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { isPresent } from 'ember-utils';
@@ -13,28 +13,6 @@ export default Route.extend(Pagination, {
   intl: service(),
   queryCache: service(),
   cache: storageFor('last-used'),
-
-  /**
-   * Use the cached query param values for the user if this is the user's *own* page.
-   * Only override the query param values if they aren't explicitly provided.
-   */
-  beforeModel({ queryParams }) {
-    if (!queryParams.media || !queryParams.sort) {
-      const isCurrentUser = get(this, 'session').isCurrentUser(this.modelFor('users'));
-      if (isCurrentUser) {
-        const cache = get(this, 'cache');
-        const { libraryType, librarySort } = getProperties(cache, 'libraryType', 'librarySort');
-        if (libraryType || librarySort) {
-          this.replaceWith({
-            queryParams: {
-              media: queryParams.media || libraryType,
-              sort: queryParams.sort || librarySort
-            }
-          });
-        }
-      }
-    }
-  },
 
   model(params) {
     const options = this._getRequestOptions(params);

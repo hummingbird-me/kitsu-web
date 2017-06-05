@@ -42,13 +42,18 @@ export default Controller.extend(queryParams.Mixin, {
     set(this, 'layoutStyle', get(this, 'cache.libraryLayout') || 'grid');
   },
 
-  queryParamsDidChange({ shouldRefresh, queryParams }) {
+  queryParamsDidChange({ shouldRefresh, changed }) {
     // save to cache
     if (get(this, 'session').isCurrentUser(get(this, 'user'))) {
       const cache = get(this, 'cache');
-      set(cache, 'libraryType', get(queryParams, 'media'));
-      set(cache, 'librarySort', get(queryParams, 'sort'));
+      if ('media' in changed) {
+        set(cache, 'libraryType', get(changed, 'media'));
+      }
+      if ('sort' in changed) {
+        set(cache, 'librarySort', get(changed, 'sort'));
+      }
     }
+
     // refresh data
     if (shouldRefresh) {
       this.send('refreshModel');
@@ -56,7 +61,7 @@ export default Controller.extend(queryParams.Mixin, {
   },
 
   searchTask: task(function* (query) {
-    yield timeout(1000);
+    yield timeout(500);
     set(this, 'title', query);
   }).restartable(),
 
