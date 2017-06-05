@@ -24,7 +24,12 @@ export default Controller.extend(queryParams.Mixin, {
   router: service('-routing'),
   groups: concat('model.taskInstance.value', 'model.paginatedRecords'),
 
-  queryParamsDidChange({ shouldRefresh }) {
+  queryParamsDidChange({ shouldRefresh, queryParams, changed }) {
+    if ('category' in changed) {
+      const category = get(queryParams, 'category');
+      const sort = category === 'all' ? 'featured' : 'recent';
+      set(this, 'sort', sort);
+    }
     if (shouldRefresh) {
       this.send('refreshModel');
     }
