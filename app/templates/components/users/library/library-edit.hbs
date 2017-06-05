@@ -186,6 +186,7 @@
       </label>
       <div class="col-sm-7">
         {{expanding-textarea changeset.notes
+          disabled=isReadOnly
           update=(action "updateNotes")
           class="form-control"
         }}

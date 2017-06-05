@@ -35,6 +35,12 @@ export default Component.extend({
     changeRating(rating) {
       set(this, 'changeset.rating', rating);
       get(this, 'saveTask').perform();
+    },
+
+    saveEntry(changeset) {
+      const newChangeset = this.changeset.merge(changeset);
+      set(this, 'changeset', newChangeset);
+      return get(this, 'saveTask').perform();
     }
   }
 });

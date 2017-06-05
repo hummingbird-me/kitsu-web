@@ -5,6 +5,8 @@ import createChangeset from 'ember-changeset-cp-validations';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 
+const SAVE_TIMEOUT = 1000;
+
 export default Component.extend({
   tagName: '',
   isChecked: false,
@@ -20,7 +22,7 @@ export default Component.extend({
     // Yield a timeout giving the user a chance to click the increment button
     // more than once in a short period but only send one save event.
     if (useTimeout) {
-      yield timeout(1000);
+      yield timeout(SAVE_TIMEOUT);
     }
     const changeset = get(this, 'changeset');
     yield changeset.validate();
@@ -43,6 +45,12 @@ export default Component.extend({
     checkedEntry(value) {
       const libraryEntry = get(this, 'libraryEntry');
       invokeAction(this, 'checkedEntry', libraryEntry, value);
+    },
+
+    saveEntry(changeset) {
+      const newChangeset = this.changeset.merge(changeset);
+      set(this, 'changeset', newChangeset);
+      return get(this, 'saveTask').perform();
     }
   }
 });

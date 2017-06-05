@@ -54,7 +54,6 @@ export default Component.extend({
     },
 
     updateNotes(content) {
-      if (get(this, 'isReadOnly')) { return; }
       set(this, 'changeset.notes', content);
     }
   }

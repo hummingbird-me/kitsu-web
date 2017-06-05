@@ -116,7 +116,7 @@
 {{#if showEditModal}}
   {{to-elsewhere named="modal" send=(component "users/library/library-edit"
     libraryEntry=libraryEntry
-    saveEntry=saveEntry
+    saveEntry=(action "saveEntry")
     removeEntry=removeEntry
     isReadOnly=readOnlyModal
     onClose=(queue

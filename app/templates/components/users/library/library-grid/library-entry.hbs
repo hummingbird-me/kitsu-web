@@ -29,12 +29,12 @@
 <div class="entry-stats">
   {{! Progress }}
   <span class="entry-episode">
-    {{#if (eq libraryEntry.progress 0)}}
+    {{#if (eq changeset.progress 0)}}
       {{t "users.library.list.unstarted"}}
     {{else}}
       {{t "users.library.list.progress"
         type=libraryEntry.media.modelType
-        progress=libraryEntry.progress
+        progress=changeset.progress
       }}
     {{/if}}
   </span>
@@ -81,7 +81,7 @@
   {{to-elsewhere named="modal" send=(component "users/library/library-edit"
     isReadOnly=readOnlyModal
     libraryEntry=libraryEntry
-    saveEntry=saveEntry
+    saveEntry=(action "saveEntry")
     removeEntry=removeEntry
     onClose=(toggle-action "showEditModal" this)
   )}}
