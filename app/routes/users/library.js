@@ -212,7 +212,7 @@ export default Route.extend(Pagination, {
    * @private
    */
   _getFieldsets(media) {
-    const unitCount = media === 'anime' ? 'episodeCount' : 'chapterCount';
+    const unitCount = media === 'anime' ? 'episodeCount' : 'chapterCount,volumeCount';
     return {
       [media]: [
         'slug',
