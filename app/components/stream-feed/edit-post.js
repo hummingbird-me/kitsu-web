@@ -17,6 +17,11 @@ export default Component.extend({
       set(post, option, get(options, option));
     });
 
+    if (get(options, 'mediaDeleted') === true) {
+      set(post, 'media', null);
+      set(post, 'spoiledUnit', null);
+    }
+
     // don't update spoiled unit if it already exists
     if (isEmpty(get(post, 'spoiledUnit.content')) === true) {
       if (get(post, 'spoiler') === true && isPresent(get(post, 'media.content')) === true) {

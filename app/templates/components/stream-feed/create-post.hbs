@@ -54,7 +54,7 @@
               </div>
             </div>
             {{#unless mediaReadOnly}}
-              <a href="#" class="tagged-media--remove hint--top hint--bounce hint--rounded" aria-label="Remove?" {{action (queue (action (mut _usableMedia) null) (action (mut spoiler) false))}}>
+              <a href="#" class="tagged-media--remove hint--top hint--bounce hint--rounded" aria-label="Remove?" {{action (queue (action (mut _usableMedia) null) (action (mut mediaDeleted) true) (action (mut spoiler) false))}}>
                 {{svg-jar "close"}}
               </a>
             {{/unless}}
@@ -68,7 +68,7 @@
           disabled=mediaReadOnly
           placeholder="Type to tag a show or manga" as |media|
         }}
-          <div {{action (queue (action (mut _usableMedia) media) (action (mut spoiler) true))}}>
+          <div {{action (queue (action (mut mediaDeleted) false) (action (mut _usableMedia) media) (action (mut spoiler) true))}}>
             <span class="tag-poster">{{lazy-image src=(image media.posterImage "tiny")}}</span>
             <span class="tag tag-primary">{{capitalize media.modelType}}</span>
             <span>{{media.computedTitle}}</span>
