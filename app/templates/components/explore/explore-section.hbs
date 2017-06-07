@@ -6,7 +6,7 @@
   }}
 </h6>
 
-{{#if getDataTask.isRunning}}
+{{#if tasks.isRunning}}
   {{#each (repeat (if (is-empty category) 1 3)) as |_|}}
     {{#skeleton-container class="explore-grid-skeleton"}}
       {{#each (repeat 5) as |_|}}

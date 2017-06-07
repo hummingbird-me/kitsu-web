@@ -2,6 +2,13 @@
   <h3>{{t (concat "titles." mediaType ".index")}}</h3>
   {{explore/explore-search mediaType=mediaType}}
 
+  {{! Trending Week }}
+  {{explore/explore-section
+    type="trending"
+    mediaType=mediaType
+    sort="explore.more.trending"
+  }}
+
   {{! Top Airing }}
   {{explore/explore-section
     type="top-current"

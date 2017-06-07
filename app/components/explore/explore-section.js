@@ -1,8 +1,9 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
-import { or } from 'ember-computed';
-import { task } from 'ember-concurrency';
+import { typeOf } from 'ember-utils';
+import { reads } from 'ember-computed';
+import { task, taskGroup } from 'ember-concurrency';
 
 export default Component.extend({
   classNames: ['explore-section'],
@@ -11,7 +12,8 @@ export default Component.extend({
   ajax: service(),
   store: service(),
   queryCache: service(),
-  results: or('getDataTask.last.value', 'getTrendingDataTask.last.value'),
+  tasks: taskGroup().drop(),
+  results: reads('tasks.last.value'),
 
 
   didReceiveAttrs() {
@@ -27,13 +29,18 @@ export default Component.extend({
     const type = get(this, 'mediaType');
     const options = this._getRequestOptions();
     return yield get(this, 'queryCache').query(type, options);
-  }).drop(),
+  }).group('tasks'),
 
   getTrendingDataTask: task(function* () {
     const type = get(this, 'mediaType');
-    const categoryId = get(this, 'category.id');
     const limit = get(this, 'limit');
-    const path = `/trending/${type}?in_category=true&category=${categoryId}&limit=${limit}`;
+    let path = `/trending/${type}?limit=${limit}`;
+
+    // Append category information if this is for a category request
+    if (get(this, 'category')) {
+      const categoryId = get(this, 'category.id');
+      path = `${path}&in_category=true&category=${categoryId}`;
+    }
 
     // does a cache entry exist?
     const cachedRecords = yield get(this, 'queryCache').get('trending', path);
@@ -43,6 +50,9 @@ export default Component.extend({
 
     // query the trending API
     const response = yield get(this, 'ajax').request(path);
+    if (typeOf(response.data) !== 'array') {
+      return [];
+    }
     const records = [];
     response.data.forEach((data) => {
       const normalize = get(this, 'store').normalize(type, data);
@@ -53,7 +63,7 @@ export default Component.extend({
     // push into cache
     get(this, 'queryCache').push('trending', path, records);
     return records;
-  }).drop(),
+  }).group('tasks'),
 
   _getRequestOptions() {
     const options = {

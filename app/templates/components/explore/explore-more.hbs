@@ -9,7 +9,7 @@
 
   {{explore/explore-search mediaType=mediaType}}
 
-  {{#if getMediaTask.isRunning}}
+  {{#if tasks.isRunning}}
     {{#each (repeat 4) as |_|}}
       {{#skeleton-container class="explore-grid-skeleton"}}
         {{#each (repeat 5) as |_|}}

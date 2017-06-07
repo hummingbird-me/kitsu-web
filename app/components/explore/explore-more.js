@@ -1,27 +1,71 @@
 import Component from 'ember-component';
 import get, { getProperties } from 'ember-metal/get';
-import { task } from 'ember-concurrency';
+import service from 'ember-service/inject';
+import { typeOf } from 'ember-utils';
+import { task, taskGroup } from 'ember-concurrency';
 import { concat } from 'client/utils/computed-macros';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Component.extend(Pagination, {
   tagName: '',
-  media: concat('getMediaTask.last.value', 'paginatedRecords'),
+  ajax: service(),
+  store: service(),
+  queryCache: service(),
+  tasks: taskGroup().drop(),
+  media: concat('tasks.last.value', 'paginatedRecords'),
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
-    get(this, 'getMediaTask').perform();
+    if (get(this, 'type') === 'trending') {
+      get(this, 'getTrendingTask').perform();
+    } else {
+      get(this, 'getMediaTask').perform();
+    }
   },
 
-  buildOptions(type) {
+  getMediaTask: task(function* () {
+    const { mediaType, type } = getProperties(this, 'mediaType', 'type');
+    return yield this.queryPaginated(mediaType, this._buildOptions(type));
+  }).group('tasks'),
+
+  getTrendingTask: task(function* () {
+    const type = get(this, 'mediaType');
+    const path = `/trending/${type}?limit=20`;
+
+    // try get from cache
+    const cachedRecords = yield get(this, 'queryCache').get('trending', path);
+    if (cachedRecords) {
+      return cachedRecords;
+    }
+
+    // yield the request
+    const response = yield get(this, 'ajax').request(path);
+    if (typeOf(response.data) !== 'array') {
+      return [];
+    }
+    const records = [];
+    response.data.forEach((data) => {
+      const normalize = get(this, 'store').normalize(type, data);
+      const record = get(this, 'store').push(normalize);
+      records.addObject(record);
+    });
+
+    // cache the records
+    get(this, 'queryCache').push('trending', path, records);
+    return records;
+  }).group('tasks'),
+
+  _buildOptions(type) {
     const options = {
       page: { limit: 20 },
       filter: {}
     };
+
     const category = get(this, 'category');
     if (category) {
       options.filter.categories = get(category, 'slug');
     }
+
     switch (type) {
       case 'top-current':
         options.sort = '-userCount';
@@ -45,10 +89,5 @@ export default Component.extend(Pagination, {
         options.sort = '-userCount';
     }
     return options;
-  },
-
-  getMediaTask: task(function* () {
-    const { mediaType, type } = getProperties(this, 'mediaType', 'type');
-    return yield this.queryPaginated(mediaType, this.buildOptions(type));
-  })
+  }
 });
