@@ -76,7 +76,7 @@ export const MEDIA_QUERY_PARAMS = {
 };
 
 export default Controller.extend({
-  sortOptions: ['popularity', 'rating', 'date'],
+  sortOptions: ['popularity', 'rating', 'date', 'recent'],
   taskValue: concat('model.taskInstance.value', 'model.paginatedRecords'),
 
   init() {
