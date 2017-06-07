@@ -29,6 +29,9 @@ const RouterInstance = Router.extend(RouterScroll, Breadcrumbs, {
     set(head, 'title', title);
   },
 
+  /**
+   * Send a page event to our metric services
+   */
   _trackPage() {
     scheduleOnce('afterRender', () => {
       const page = get(this, 'url');
@@ -37,6 +40,9 @@ const RouterInstance = Router.extend(RouterScroll, Breadcrumbs, {
     });
   },
 
+  /**
+   * Reset the structured data (ld+json) back to empty.
+   */
   _resetStructuredData() {
     const head = get(this, 'head');
     set(head, 'structuredData', {});
@@ -124,7 +130,6 @@ RouterInstance.map(function() {
   this.route('comments', { path: '/comments/:id' });
   this.route('reviews', { path: '/reviews/:id' });
   this.route('notifications');
-  this.route('trending');
   this.route('people');
   this.route('characters');
 

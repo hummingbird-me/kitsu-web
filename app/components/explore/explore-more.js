@@ -41,7 +41,6 @@ export default Component.extend(Pagination, {
         options.sort = '-startDate';
         options.filter.status = 'current';
         break;
-      case 'trending':
       default:
         options.sort = '-userCount';
     }
