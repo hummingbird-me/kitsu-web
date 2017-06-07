@@ -1,11 +1,14 @@
 import Component from 'client/components/explore/category-sidebar/category-modal/category-item';
 import get from 'ember-metal/get';
+import computed from 'ember-computed';
 import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
   classNameBindings: ['category.childCount:has-children:no-children'],
-  isActive: false,
-  depth: 0,
+
+  isActive: computed('selection.[]', function() {
+    return (get(this, 'selection') || []).includes(get(this, 'category.slug'));
+  }).readOnly(),
 
   click({ target }) {
     if (!get(this, 'isChild')) { return false; }
@@ -17,7 +20,6 @@ export default Component.extend({
     const isExpandBtn = element.matches('.category-expand-btn');
     if (!isExpandBtn) {
       invokeAction(this, 'updateCategories', get(this, 'category.slug'));
-      return true;
     }
     return false; // don't bubble up
   }

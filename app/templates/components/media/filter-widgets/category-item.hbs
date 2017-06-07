@@ -1,5 +1,5 @@
 <span class="category-item-span {{if isActive "active"}}">
-  {{#if (gte category.childCount 0)}}
+  {{#if (gt category.childCount 0)}}
     <span class="category-expand-btn {{if isExpanded "is-active"}}" {{action "toggleExpansion"}}>
       {{#if isExpanded}}
         {{svg-jar "minus"}}
@@ -32,8 +32,8 @@
       {{#each sortedChildren as |child|}}
         {{media/filter-widgets/category-item
           category=child
+          selection=selection
           isChild=true
-          isActive=(contains child.slug selection)
           updateCategories=updateCategories
           class="category-item-child"
           tagName="li"

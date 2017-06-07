@@ -18,7 +18,7 @@
     {{#each sortedCategories as |category|}}
       {{media/filter-widgets/category-item
         category=category
-        selection=mutatableCategories
+        selection=selection
         updateCategories=(action "updateCategories")
         class="media-category-filter"
         tagName="li"
