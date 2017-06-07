@@ -4,7 +4,7 @@
       {{explore/favorite-button category=category}}
       <h3>{{concat category.title " " (titleize mediaType)}}</h3>
       {{#if (not (is-empty category.description))}}
-        <p>{{category.description}}</p>
+        <p>{{read-more category.description 280}}</p>
       {{/if}}
     </div>
   </div>
