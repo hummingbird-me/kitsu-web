@@ -124,6 +124,8 @@ export default Route.extend(SlideHeaderMixin, Pagination, {
         return '-average_rating';
       case 'date':
         return '-start_date';
+      case 'recent':
+        return '-id';
       default:
         return '-user_count';
     }
