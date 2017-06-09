@@ -15,7 +15,7 @@ export default Route.extend({
   beforeModel() {
     const title = this.titleToken();
     if (title && title.toString().includes('Missing translation')) {
-      this.transitionTo('explore.index', 'anime');
+      this.transitionTo('explore.index');
     }
   },
 
