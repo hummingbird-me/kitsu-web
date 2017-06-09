@@ -16,7 +16,6 @@ export default Route.extend({
   },
 
   titleToken() {
-    console.log(this.paramsFor(get(this, 'routeName')), this.paramsFor('explore'));
     const { type } = this.paramsFor('explore.category.more');
     const { media_type: mediaType } = this.paramsFor('explore');
     const category = this.modelFor('explore.category');

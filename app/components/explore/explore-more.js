@@ -30,7 +30,13 @@ export default Component.extend(Pagination, {
 
   getTrendingTask: task(function* () {
     const type = get(this, 'mediaType');
-    const path = `/trending/${type}?limit=20`;
+    let path = `/trending/${type}?limit=20`;
+
+    // Append category information if this is for a category request
+    if (get(this, 'category')) {
+      const categoryId = get(this, 'category.id');
+      path = `${path}&in_category=true&category=${categoryId}`;
+    }
 
     // try get from cache
     const cachedRecords = yield get(this, 'queryCache').get('trending', path);
