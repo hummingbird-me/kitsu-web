@@ -129,8 +129,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
     const data = {
       '@context': 'http://schema.org',
       '@type': 'CreativeWorkSeries',
-      name: Object.values(get(model, 'titles'))
-        .reject(title => title === get(model, 'canonicalTitle')),
+      name: Object.values(get(model, 'titles')).uniq(),
       description: get(model, 'synopsis'),
       image: get(model, 'posterImage.large'),
       genre: get(model, 'categories').mapBy('title')
