@@ -9,6 +9,29 @@ titles:
       episodes: "Episodes"
       characters: "Characters"
       reviews: "Reviews"
+  explore:
+    index: "Explore {mediaType, select,
+      anime {Anime}
+      manga {Manga}
+      other {}}"
+    more:
+      trending: "Trending {type, select,
+        anime {Anime}
+        manga {Manga}
+        other {}} This Week"
+      top-current: "Top {type, select,
+        Anime {Airing}
+        Manga {Publishing}
+        other {}} {type}"
+      top-upcoming: "Top Upcoming {type}"
+      highest-rated: "Highest Rated {type}"
+      most-popular: "Most Popular {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Newly Released {category} {type}"
+        trending: "Trending {category} {type}"
+        most-popular: "Most Popular {category} {type}"
   not-found: "Not Found"
   server-error: "Server Error"
   users:
@@ -22,7 +45,6 @@ titles:
   comments: "Comment by {user}"
   reviews: "Review by {user}"
   notifications: "Notifications"
-  trending: "Trending"
   feedback:
     bugs: "Bugs"
     feature-requests: "Feature Requests"
@@ -117,6 +139,8 @@ dashboard:
 media:
   index:
     search: "Search by title, character, or cast..."
+    filter: "Filter"
+    remove: "Remove"
     filters:
       year: "Year"
       score: "Average Rating"
@@ -124,7 +148,7 @@ media:
       streamers: "Streamers (U.S.)"
       episodes: "Episodes"
       rating: "Rating"
-      genres: "Genres"
+      categories: "Categories"
       types: "Types"
     sort:
       popularity: "Popularity"
@@ -162,7 +186,7 @@ media:
             anime {#{rank} Highest Rated}
             manga {#{rank} Highest Rated}
             other {}}"
-      tags: "Tags"
+      categories: "Categories"
       relationships:
         header: "Franchise"
         sequel: "Sequel"
@@ -738,6 +762,25 @@ group-invite:
   accepted: "You've already accepted this invite."
   revoked: "Your invitation has been revoked by a group moderator."
   declined: "You declined this group invite."
+# page: explore
+explore:
+  view-more: "View more"
+  search-placeholder: "What are you searching for?"
+  advanced-search: "Or, browse with the <a href=\"/{mediaType}\">advanced search</a>"
+  no-data: "Hmm, doesn't seem like any media can be found for this section."
+  widget:
+    related: "Related Categories"
+    categories: "Categories"
+    favorite-categories: "My Favorite Categories"
+    no-favorites: "Favoriting categories will improve your recommendations."
+    more-categories: "More categories..."
+  modal:
+    header: "All Categories"
+  favorite-button:
+    remove: "Remove from Favorites"
+    removing: "Removing..."
+    create: "Add to Favorites"
+    creating: "Adding..."
 # shared: media
 media-shared:
   types:
@@ -761,14 +804,16 @@ media-shared:
   statuses:
     anime:
       current: "Currently Airing"
-      finished: "Finished Airing"
+      finished: "Finished"
       upcoming: "Upcoming"
-      nya: "Not Yet Aired"
+      unreleased: "Unreleased"
+      tba: "TBA"
     manga:
       current: "Publishing"
       finished: "Finished"
       upcoming: "Upcoming"
-      nya: "Not Yet Published"
+      unreleased: "Unreleased"
+      tba: "TBA"
 # shared: library
 library-shared:
   all: "{type, select,

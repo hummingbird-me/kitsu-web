@@ -10,7 +10,7 @@ export default Component.extend({
 
   isBrowseRoute: computed('router.currentRouteName', function() {
     const route = get(this, 'router.currentRouteName');
-    const valids = ['anime', 'manga', 'trending'];
+    const valids = ['anime', 'manga', 'explore'];
     return valids.includes((route || '').split('.')[0]);
   }).readOnly(),
 

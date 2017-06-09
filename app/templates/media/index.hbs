@@ -191,8 +191,8 @@
                 onChange=(action (mut season)) as |option|
               }}
                 <a href="#" data-test-filter-season>{{capitalize option}}</a>
-                <span class="exclude-genre hint--left hint--bounce hint--rounded" aria-label="Exclude?">{{svg-jar "close"}}</span>
-                <span class="include-genre hint--left hint--bounce hint--rounded" aria-label="Include?">{{svg-jar "checkmark"}}</span>
+                <span class="exclude-genre hint--left hint--bounce hint--rounded" aria-label="Remove">{{svg-jar "close"}}</span>
+                <span class="include-genre hint--left hint--bounce hint--rounded" aria-label="Filter">{{svg-jar "checkmark"}}</span>
               {{/media/filter-widgets/multi-select}}
             </div>
           {{/if}}
@@ -225,47 +225,17 @@
                   {{t (concat "media-shared.types.manga." option)}}
                 {{/if}}
               </a>
-              <span class="exclude-genre hint--left hint--bounce hint--rounded" aria-label="Exclude?">{{svg-jar "close"}}</span>
-              <span class="include-genre hint--left hint--bounce hint--rounded" aria-label="Include?">{{svg-jar "checkmark"}}</span>
+              <span class="exclude-genre hint--left hint--bounce hint--rounded" aria-label="Remove">{{svg-jar "close"}}</span>
+              <span class="include-genre hint--left hint--bounce hint--rounded" aria-label="Filter">{{svg-jar "checkmark"}}</span>
             {{/media/filter-widgets/multi-select}}
           </div>
 
-          {{! Genre Filter }}
+          {{! Category Filter }}
           <div class="filter-widget category-filter">
-            {{#if availableGenres}}
-              <div class="filter-header">
-                <label class="filter-title">
-                  {{t "media.index.filters.genres"}}
-                </label>
-                <span class="filter-values">
-                  {{#if (is-empty genres)}}
-                    {{availableGenres.length}}
-                  {{else}}
-                    {{genres.length}}
-                  {{/if}}
-                </span>
-              </div>
-              {{#media/filter-widgets/multi-select
-                class="category-select"
-                includeAll=true
-                selected=genres
-                selection=(map-by "name" availableGenres)
-                onChange=(action (mut genres)) as |option|
-              }}
-                <a href="#" data-test-filter-genre>{{option}}</a>
-                <span class="exclude-genre hint--left hint--bounce hint--rounded" aria-label="Exclude?">{{svg-jar "close"}}</span>
-                <span class="include-genre hint--left hint--bounce hint--rounded" aria-label="Include?">{{svg-jar "checkmark"}}</span>
-              {{/media/filter-widgets/multi-select}}
-            {{else}}
-              <div class="filter-header">
-                <label class="filter-title">
-                  {{t "media.index.filters.genres"}}
-                </label>
-              </div>
-              <div class="text-xs-center m-t-1">
-                {{loading-spinner size="large" class="white"}}
-              </div>
-            {{/if}}
+            {{media/filter-widgets/category-list
+              selection=categories
+              update=(action (mut categories))
+            }}
           </div>
         </div>
       </div>

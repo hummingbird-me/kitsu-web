@@ -45,6 +45,28 @@ export default Service.extend({
   },
 
   /**
+   * Get cached records of a specific type and query.
+   *
+   * @param {String} type
+   * @param {Object} query
+   */
+  get(type, query) {
+    const cache = this.cache[type];
+    if (!cache) { return; }
+    const queryAsString = this._stringifyQuery(query);
+
+    // Attempt to get the cached result
+    const cachedResult = cache[queryAsString];
+    if (cachedResult) {
+      if (this._isExpired(cachedResult)) {
+        delete cache[queryAsString];
+        return cachedResult.promise;
+      }
+      return cachedResult.promise;
+    }
+  },
+
+  /**
    * Invalidate an entire model types cache entries
    *
    * @param {String} type

@@ -19,15 +19,14 @@
       {{read-more media.synopsis 480 tagName="p"}}
     </section>
 
-    {{! Genres }}
-    {{! @TODO: Componentize }}
+    {{! Categories }}
     <section class="media--tags">
       <ul>
-        <li><strong>{{t "media.show.summary.tags"}}:</strong></li>
-        {{#each (sort-by "name" media.genres) as |genre|}}
+        <li><strong>{{t "media.show.summary.categories"}}:</strong></li>
+        {{#each (sort-by "title" media.categories) as |category|}}
           <li class="media--category-tag">
-            <a href={{href-to (concat media.modelType ".index") (query-params genres=genre.name)}}>
-              {{genre.name}}
+            <a href={{href-to (concat media.modelType ".index") (query-params category=category.slug)}}>
+              {{category.title}}
             </a>
           </li>
         {{/each}}

@@ -17,7 +17,7 @@ function _defineRoutes(server) {
   server.get('/anime/:id');
   server.get('/anime/:id/_languages', () => []);
 
-  server.get('/genres');
+  server.get('/categories');
   server.get('/streamers');
   server.get('/reviews', { data: [] });
   server.get('/streaming-links', { data: [] });

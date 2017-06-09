@@ -1,5 +1,5 @@
-{{#bootstrap/bs-dropdown as |dropdown|}}
-  {{#dropdown.button class="w-100" disabled=(if updateTask.isRunning "disabled")}}
+{{#basic-dropdown disabled=updateTask.isRunning as |dd|}}
+  {{#dd.trigger tagName="button" class="button button--primary w-100"}}
     {{#if isLoading}}
       {{loading-spinner}}
     {{else if libraryEntry}}
@@ -7,24 +7,30 @@
     {{else}}
       {{t "library-entry.state.add-to-library"}}
     {{/if}}
-  {{/dropdown.button}}
+  {{/dd.trigger}}
 
-  {{#dropdown.menu}}
-    {{! Statuses }}
-    {{#each statuses as |status|}}
-      {{#dropdown.menu-item onClick=(action "updateLibraryEntry" status)}}
-        {{t (concat "library-shared." status) type=mediaType}}
-        {{#if (eq libraryEntry.status status)}}
-          <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
-        {{/if}}
-      {{/dropdown.menu-item}}
-    {{/each}}
+  {{#dd.content}}
+    <ul class="list-unstyled">
+      {{! Statuses }}
+      {{#each statuses as |status|}}
+        <li class="dropdown-item" {{action (queue
+          (action dd.actions.toggle)
+          (action "updateLibraryEntry" status))}}>
+          {{t (concat "library-shared." status) type=mediaType}}
+          {{#if (eq libraryEntry.status status)}}
+            <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+          {{/if}}
+        </li>
+      {{/each}}
 
-    {{! Remove }}
-    {{#if libraryEntry}}
-      {{#dropdown.menu-item onClick=(action "removeLibraryEntry")}}
-        {{t "library-entry.state.remove-from-library"}}
-      {{/dropdown.menu-item}}
-    {{/if}}
-  {{/dropdown.menu}}
-{{/bootstrap/bs-dropdown}}
+      {{! Remove }}
+      {{#if libraryEntry}}
+        <li class="dropdown-item" {{action (queue
+          (action dd.actions.toggle)
+          (action "removeLibraryEntry"))}}>
+          {{t "library-entry.state.remove-from-library"}}
+        </li>
+      {{/if}}
+    </ul>
+  {{/dd.content}}
+{{/basic-dropdown}}
