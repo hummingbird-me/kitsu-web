@@ -3,8 +3,9 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { capitalize } from 'ember-string';
+import DataErrorMixin from 'client/mixins/routes/data-error';
 
-export default Route.extend({
+export default Route.extend(DataErrorMixin, {
   intl: service(),
   queryCache: service(),
 

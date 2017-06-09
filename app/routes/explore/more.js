@@ -7,6 +7,18 @@ import { capitalize } from 'ember-string';
 export default Route.extend({
   intl: service(),
 
+  /**
+   * Since the page is built using data-driven components, we don't know if this section exists
+   * or not. So we don't render a page that is half-broken we redirect if we don't have a
+   * translations setup.
+   */
+  beforeModel() {
+    const title = this.titleToken();
+    if (title && title.toString().includes('Missing translation')) {
+      this.transitionTo('explore.index', 'anime');
+    }
+  },
+
   model() {
     return this.modelFor('explore');
   },
