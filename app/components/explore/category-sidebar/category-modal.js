@@ -5,6 +5,7 @@ import { reads, sort } from 'ember-computed';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
+  router: service('-routing'),
   queryCache: service(),
   categories: reads('getCategoriesTask.last.value'),
 
@@ -22,5 +23,13 @@ export default Component.extend({
       fields: { category: 'title' },
       page: { limit: 500 } // Get all parents
     });
-  }).drop()
+  }).drop(),
+
+  actions: {
+    handleTransition(slug) {
+      this.$('.modal').on('hidden.bs.modal', () => {
+        get(this, 'router').transitionTo('explore.category', [slug]);
+      }).modal('hide');
+    }
+  }
 });

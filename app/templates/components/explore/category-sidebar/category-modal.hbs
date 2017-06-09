@@ -13,6 +13,7 @@
       {{#each sortedCategories as |category|}}
         {{explore/category-sidebar/category-modal/category-item
           category=category
+          handleTransition=(action "handleTransition")
           class="category-modal-parent"}}
       {{/each}}
     {{/if}}
