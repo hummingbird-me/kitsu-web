@@ -1,11 +1,21 @@
 <div class="explore-page col-sm no-padding-left">
-  <h3>
-    {{t (concat "titles." more "." type)
-      mediaType=mediaType
-      type=(capitalize mediaType)
-      category=category.title
-    }}
-  </h3>
+  <div class="media">
+    <div class="media-body">
+      {{#if (not (is-empty category))}}
+        {{explore/favorite-button category=category}}
+      {{/if}}
+      <h3>
+        {{t (concat "titles." more "." type)
+          mediaType=mediaType
+          type=(capitalize mediaType)
+          category=category.title
+        }}
+      </h3>
+      {{#if (not (is-empty category.description))}}
+        <p>{{read-more category.description 280}}</p>
+      {{/if}}
+    </div>
+  </div>
 
   {{explore/explore-search mediaType=mediaType}}
 
