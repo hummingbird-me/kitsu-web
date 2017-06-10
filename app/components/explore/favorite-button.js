@@ -29,6 +29,7 @@ export default Component.extend({
   }).drop(),
 
   createFavoriteTask: task(function* () {
+    if (!get(this, 'session.hasUser')) { return get(this, 'session').signUpModal(); }
     if (get(this, 'getFavoriteTask.isRunning')) { return; }
     const record = get(this, 'store').createRecord('category-favorite', {
       user: get(this, 'session.account'),
