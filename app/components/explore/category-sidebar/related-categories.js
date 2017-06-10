@@ -10,7 +10,7 @@ export default Component.extend({
   queryCache: service(),
   categories: concat('parent', 'siblings', 'children'),
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
     get(this, 'getRelatedCategoriesTask').perform();
   },
