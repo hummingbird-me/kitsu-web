@@ -22,7 +22,9 @@
     </span>
     <span class="reaction-button">
       {{#if session.hasUser}}
-        <a href="#" {{action (toggle "isModalOpen" this)}}>New Reaction</a>
+        <a href="#" {{action (toggle "isModalOpen" this)}}>
+          {{t "media.show.summary.reactions.new"}}
+        </a>
       {{/if}}
     </span>
   </div>

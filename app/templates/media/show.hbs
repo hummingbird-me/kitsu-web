@@ -7,10 +7,8 @@
           <div class="cover-user-info cover-media-info">
             <div class="primary-info">
               <div class="mini-bio">
-                {{! Media title }}
-                <h3 class="cover-username" data-test-title>
-                  {{media.computedTitle}}
-                </h3>
+                {{! media reaction ticker}}
+                {{media/reaction-ticker media=media}}
                 {{! media follow button}}
                 <div class="cover-cta media-follow">
                   {{media/media-follow media=media}}
