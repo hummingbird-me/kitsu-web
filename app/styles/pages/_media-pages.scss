@@ -267,9 +267,36 @@
 }
 
 .reaction {
+  display: flex;
+  align-items: center;
   margin-top: 15px;
   padding-bottom: 15px;
   border-bottom: 1px solid darken($background-color, 5);
+  .reaction-votes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 4px;
+    padding-left: 10px;
+    padding-right: 20px;
+    width: 50px;
+    color: $body-secondary-text-color;
+    font-weight: 600;
+    font-family: inherit;
+    svg {
+      width: 9px;
+      height: 6px;
+      margin-bottom: 2px;
+      fill: $body-secondary-text-color;
+    }
+    &.upvoted {
+      color: $body-text-color;
+      svg {
+        fill: $body-text-color;
+      }
+    }
+  }
   .reaction-user {
     color: $body-secondary-text-color;
     font-size: 12px;

@@ -1,4 +1,14 @@
 <div class="reaction">
-  <div class="reaction-user">{{reaction.user.name}}</div>
-  <div class="reaction-content">{{reaction.reaction}}</div>
+  {{#if getUserVoteTask.isrunning}}
+    {{loading-spinner size="small"}}
+  {{else}}
+    <a href="#" {{action "toggleVote"}} class="reaction-votes {{if upvoted "upvoted"}}">
+      {{svg-jar "upvote"}}
+      {{reaction.upVotesCount}}
+    </a>
+  {{/if}}
+  <div>
+    <div class="reaction-user">{{reaction.user.name}}</div>
+    <div class="reaction-content">{{reaction.reaction}}</div>
+  </div>
 </div>
