@@ -1,5 +1,6 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
+import observer from 'ember-metal/observer';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 
@@ -10,6 +11,10 @@ export default Component.extend({
     '-createdAt'
   ],
   sort: '-upVotesCount',
+
+  refreshOnSort: observer('sort', function() {
+    get(this, 'getReactionsTask').perform();
+  }),
 
   getReactionsTask: task(function* () {
     const media = get(this, 'media');
@@ -23,7 +28,7 @@ export default Component.extend({
       page: { limit: 6 },
       sort
     });
-  }),
+  }).restartable(),
 
   init() {
     this._super(...arguments);
