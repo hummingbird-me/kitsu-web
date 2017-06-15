@@ -14,7 +14,7 @@
             maxlength=145
           }}
         </div>
-        <button onclick={{action "createReaction"}} disabled={{not valid}}>Post</button>
+        <button onclick={{action "createReaction"}} disabled={{or (not valid) (is-empty content)}}>Post</button>
       </div>
     </div>
   {{/modal.body}}
