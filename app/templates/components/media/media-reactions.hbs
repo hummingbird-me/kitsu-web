@@ -21,11 +21,15 @@
       {{/bootstrap/bs-dropdown}}
     </span>
     <span class="reaction-button">
-      {{#if session.hasUser}}
-        <a href="#" {{action (toggle "isModalOpen" this)}}>
-          {{t "media.show.summary.reactions.new"}}
-        </a>
-      {{/if}}
+        {{#if getLibraryEntryTask.isrunning}}
+          {{loading-spinner size="small"}}
+        {{else}}
+          {{#if libraryEntry}}
+            <a href="#" {{action (toggle "isModalOpen" this)}}>
+              {{t (concat "media.show.summary.reactions." (if libraryEntry.mediaReaction "edit" "new"))}}
+            </a>
+          {{/if}}
+        {{/if}}
     </span>
   </div>
   {{#if getReactionsTask.isRunning}}
@@ -58,6 +62,7 @@
 {{#if isModalOpen}}
   {{to-elsewhere named="modal" send=(component "media/reaction-modal"
     media=media
+    libraryEntry=libraryEntry
     modalId="reaction-modal"
     onClose=(toggle-action "isModalOpen" this)
   )}}

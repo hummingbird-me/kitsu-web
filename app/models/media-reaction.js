@@ -7,7 +7,7 @@ export default Base.extend({
   reaction: attr('string'),
   upVotesCount: attr('number'),
 
-  libraryEntry: belongsTo('library-entry', { inverse: null }),
+  libraryEntry: belongsTo('library-entry'),
   anime: belongsTo('anime'),
   manga: belongsTo('manga'),
   user: belongsTo('user'),

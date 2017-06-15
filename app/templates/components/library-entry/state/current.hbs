@@ -18,7 +18,7 @@
 
 {{! Write Reaction }}
 <button class="reaction-button button button--secondary button--muted" {{action onReaction}}>
-  {{#if (and libraryEntry.reaction (not libraryEntry.reaction.isNew))}}
+  {{#if (and libraryEntry.mediaReaction (not libraryEntry.mediaReaction.isNew))}}
     {{t "library-entry.state.edit-reaction"}}
   {{else}}
     {{t "library-entry.state.post-reaction"}}

@@ -3,8 +3,8 @@
     {{media.yearlessTitle}}
     {{media.year}}
     {{remaining}}
-    {{one-way-textarea reaction
-      update=(action (mut reaction))
+    {{one-way-textarea content
+      update=(action (mut content))
       placeholder="React to dis shit"
     }}
     <button onclick={{perform createReaction}}>Post</button>

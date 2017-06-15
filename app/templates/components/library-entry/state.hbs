@@ -72,6 +72,7 @@
       {{#if reactionOpen}}
         {{to-elsewhere named="modal" send=(component "media/reaction-modal"
           media=media
+          libraryEntry=libraryEntry
           modalId="reaction-modal"
           onClose=(toggle-action "reactionOpen" this)
         )}}

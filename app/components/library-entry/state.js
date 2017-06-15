@@ -88,13 +88,12 @@ export default Component.extend({
   _getRequestOptions() {
     const type = get(this, 'mediaType');
     return {
-      // include: 'review',
-      // TODO: include reaction
+      include: 'mediaReaction',
       filter: {
         user_id: get(this, 'session.account.id'),
-        kind: type,
-        [`${type}_id`]: get(get(this, 'media'), 'id')
-      }
+        [`${type}_id`]: get(this, 'media.id')
+      },
+      page: { limit: 1 }
     };
   }
 });
