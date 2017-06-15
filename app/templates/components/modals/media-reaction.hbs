@@ -1,0 +1,21 @@
+{{#bootstrap/bs-modal id=modalId onClose=onClose as |modal|}}
+  {{#modal.body}}
+    <div style={{posterImageStyle}} class="reaction-poster">
+      <div class="reaction-overlay">
+        <div class="reaction-content">
+          <div class="reaction-header">
+            <span class="reaction-media-title">{{media.yearlessTitle}}</span>
+            <span class="reaction-media-year">{{media.year}}</span>
+            <span class="reaction-media-remaining {{unless valid "is-invalid"}}">{{remaining}}</span>
+          </div>
+          {{expanding-textarea content
+            update=(action (mut content))
+            placeholder="React to dis shit"
+            maxlength=145
+          }}
+        </div>
+        <button onclick={{action "createReaction"}}>Post</button>
+      </div>
+    </div>
+  {{/modal.body}}
+{{/bootstrap/bs-modal}}

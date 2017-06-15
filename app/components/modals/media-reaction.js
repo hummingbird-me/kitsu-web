@@ -5,21 +5,30 @@ import set, { setProperties } from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
+import { image } from 'client/helpers/image';
 
 export default Component.extend({
+  classNames: ['reaction-modal'],
   store: service(),
   content: '',
 
   remaining: computed('content', function() {
     return 140 - (get(this, 'content.length') || 0);
-  }),
+  }).readOnly(),
+
+  valid: computed('remaining', function() {
+    return get(this, 'remaining') >= 0;
+  }).readOnly(),
+
+  posterImageStyle: computed('media.posterImage', function() {
+    const posterImage = image(get(this, 'media.posterImage'));
+    return `background-image: url("${posterImage}")`.htmlSafe();
+  }).readOnly(),
 
   createReaction: task(function* () {
     const { reaction, content } = getProperties(this, 'reaction', 'content');
     set(reaction, 'reaction', content);
-    yield reaction.save().then(() => {
-      invokeAction(this, 'onClose');
-    });
+    return yield reaction.save();
   }).drop(),
 
   didReceiveAttrs() {
@@ -40,5 +49,15 @@ export default Component.extend({
         set(this, 'reaction', createdReaction);
       }
     });
+  },
+
+  actions: {
+    createReaction() {
+      if (get(this, 'valid') === true) {
+        get(this, 'createReaction').perform().then(() => {
+          invokeAction(this, 'onClose');
+        });
+      }
+    }
   }
 });
