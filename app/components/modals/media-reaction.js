@@ -52,4 +52,11 @@ export default Component.extend({
       invokeAction(this, 'onClose');
     }
   }).drop(),
+
+  deleteReactionTask: task(function* () {
+    const libraryEntry = get(this, 'libraryEntry');
+    const reaction = yield libraryEntry.belongsTo('mediaReaction').load();
+    yield reaction.destroyRecord();
+    invokeAction(this, 'onClose');
+  }).drop()
 });

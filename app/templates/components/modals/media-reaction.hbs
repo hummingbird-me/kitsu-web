@@ -7,6 +7,13 @@
             {{loading-spinner size="large" white=true}}
           </div>
         {{else}}
+          {{#if editing}}
+            <a href="#" {{action (perform deleteReactionTask)}}
+                class="reaction-delete-button hint--rounded hint--bounce hint--left"
+                aria-label={{t "reaction-modal.delete"}}>
+              {{svg-jar "trash"}}
+            </a>
+          {{/if}}
           <div class="reaction-content">
             {{#if editing}}
               <span class="reaction-edit-warning">
@@ -25,8 +32,8 @@
             }}
           </div>
           <button
-            onclick={{perform createReactionTask}}
-            disabled={{or changeset.isInvalid (is-empty changeset.reaction)}}>
+              onclick={{perform createReactionTask}}
+              disabled={{or changeset.isInvalid (is-empty changeset.reaction)}}>
             {{t (concat "reaction-modal." (if editing "edit" "post"))}}
           </button>
         {{/if}}
