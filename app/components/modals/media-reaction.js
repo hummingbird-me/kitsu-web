@@ -3,8 +3,8 @@ import computed from 'ember-computed';
 import get, { getProperties } from 'ember-metal/get';
 import set, { setProperties } from 'ember-metal/set';
 import service from 'ember-service/inject';
-import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
+import { task } from 'ember-concurrency';
 import { image } from 'client/helpers/image';
 
 export default Component.extend({
@@ -24,12 +24,6 @@ export default Component.extend({
     const posterImage = image(get(this, 'media.posterImage'));
     return `background-image: url("${posterImage}")`.htmlSafe();
   }).readOnly(),
-
-  createReaction: task(function* () {
-    const { reaction, content } = getProperties(this, 'reaction', 'content');
-    set(reaction, 'reaction', content);
-    return yield reaction.save();
-  }).drop(),
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -51,13 +45,12 @@ export default Component.extend({
     });
   },
 
-  actions: {
-    createReaction() {
-      if (get(this, 'valid') === true) {
-        get(this, 'createReaction').perform().then(() => {
-          invokeAction(this, 'onClose');
-        });
-      }
+  createReactionTask: task(function* () {
+    if (get(this, 'valid') === true) {
+      const { reaction, content } = getProperties(this, 'reaction', 'content');
+      set(reaction, 'reaction', content);
+      yield reaction.save();
+      invokeAction(this, 'onClose');
     }
-  }
+  }).drop(),
 });
