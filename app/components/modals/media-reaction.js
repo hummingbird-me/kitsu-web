@@ -9,6 +9,7 @@ import { image } from 'client/helpers/image';
 
 export default Component.extend({
   classNames: ['reaction-modal'],
+  editing: false,
 
   store: service(),
 
@@ -27,7 +28,7 @@ export default Component.extend({
     this._super(...arguments);
     get(this, 'libraryEntry.mediaReaction').then((reaction) => {
       if (reaction !== null) {
-        setProperties(this, { reaction, content: get(reaction, 'reaction') });
+        setProperties(this, { reaction, content: get(reaction, 'reaction'), editing: true });
       } else {
         const {
           media,
@@ -38,7 +39,7 @@ export default Component.extend({
         const createdReaction = get(this, 'store').createRecord('media-reaction', {
           [type]: media, user, libraryEntry
         });
-        set(this, 'reaction', createdReaction);
+        setProperties(this, { reaction: createdReaction, editing: false });
       }
     });
   },
