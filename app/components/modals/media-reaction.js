@@ -5,6 +5,7 @@ import set, { setProperties } from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
+import createChangeset from 'ember-changeset-cp-validations';
 import { image } from 'client/helpers/image';
 
 export default Component.extend({
@@ -13,10 +14,8 @@ export default Component.extend({
 
   store: service(),
 
-  hasInvalidReaction: and('reaction.reaction', 'reaction.validations.attrs.reaction.isInvalid'),
-
-  remaining: computed('reaction.reaction', function() {
-    return 140 - (get(this, 'reaction.reaction.length') || 0);
+  remaining: computed('changeset.reaction', function() {
+    return 140 - (get(this, 'changeset.reaction.length') || 0);
   }).readOnly(),
 
   posterImageStyle: computed('media.posterImage', function() {
@@ -26,27 +25,30 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    get(this, 'libraryEntry.mediaReaction').then((reaction) => {
-      if (reaction !== null) {
-        setProperties(this, { reaction, content: get(reaction, 'reaction'), editing: true });
-      } else {
-        const {
-          media,
-          libraryEntry,
-          session: { account: user },
-        } = getProperties(this, 'media', 'libraryEntry', 'session');
-        const type = get(media, 'modelType');
-        const createdReaction = get(this, 'store').createRecord('media-reaction', {
-          [type]: media, user, libraryEntry
-        });
-        setProperties(this, { reaction: createdReaction, editing: false });
-      }
-    });
+    get(this, 'loadReactionTask').perform();
   },
 
+  loadReactionTask: task(function* () {
+    const libraryEntry = get(this, 'libraryEntry');
+    let reaction = yield libraryEntry.belongsTo('mediaReaction').load();
+    if (!reaction) {
+      const { media, session: { account: user } } =
+        getProperties(this, 'media', 'session');
+      const type = get(media, 'modelType');
+      reaction = get(this, 'store').createRecord('media-reaction', {
+        [type]: media, user, libraryEntry
+      });
+    } else {
+      set(this, 'editing', true);
+    }
+    set(this, 'changeset', createChangeset(reaction));
+  }).keepLatest(),
+
   createReactionTask: task(function* () {
-    if (get(this, 'reaction.validations.attrs.reaction.isValid') === true) {
-      yield get(this, 'reaction').save();
+    const changeset = get(this, 'changeset');
+    yield changeset.validate();
+    if (get(changeset, 'isValid') && get(changeset, 'isDirty')) {
+      yield changeset.save();
       invokeAction(this, 'onClose');
     }
   }).drop(),

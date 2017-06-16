@@ -2,28 +2,34 @@
   {{#modal.body}}
     <div style={{posterImageStyle}} class="reaction-poster">
       <div class="reaction-overlay">
-        <div class="reaction-content">
-          {{#if editing}}
-            <span class="reaction-edit-warning">
-              {{t "reaction-modal.edit-warning"}}
-            </span>
-          {{/if}}
-          <div class="reaction-header">
-            <span class="reaction-media-title">{{media.yearlessTitle}}</span>
-            <span class="reaction-media-year">{{media.year}}</span>
-            <span class="reaction-media-remaining {{if hasInvalidReaction "is-invalid"}}">{{remaining}}</span>
+        {{#if loadReactionTask.isRunning}}
+          <div class="text-xs-center white">
+            {{loading-spinner size="large" white=true}}
           </div>
-          {{expanding-textarea reaction.reaction
-            update=(action (mut reaction.reaction))
-            placeholder="React to dis shit"
-            maxlength=145
-          }}
-        </div>
-        <button
-          onclick={{perform createReactionTask}}
-          disabled={{or hasInvalidReaction (is-empty reaction.reaction)}}>
-          {{t (concat "reaction-modal." (if editing "edit" "post"))}}
-        </button>
+        {{else}}
+          <div class="reaction-content">
+            {{#if editing}}
+              <span class="reaction-edit-warning">
+                {{t "reaction-modal.edit-warning"}}
+              </span>
+            {{/if}}
+            <div class="reaction-header">
+              <span class="reaction-media-title">{{media.yearlessTitle}}</span>
+              <span class="reaction-media-year">{{media.year}}</span>
+              <span class="reaction-media-remaining {{if changeset.isInvalid "is-invalid"}}">{{remaining}}</span>
+            </div>
+            {{expanding-textarea changeset.reaction
+              update=(action (mut changeset.reaction))
+              placeholder="React to dis shit"
+              maxlength=145
+            }}
+          </div>
+          <button
+            onclick={{perform createReactionTask}}
+            disabled={{or changeset.isInvalid (is-empty changeset.reaction)}}>
+            {{t (concat "reaction-modal." (if editing "edit" "post"))}}
+          </button>
+        {{/if}}
       </div>
     </div>
   {{/modal.body}}

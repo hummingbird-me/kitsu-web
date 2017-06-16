@@ -15,7 +15,7 @@ export default Base.extend(Validations, {
   reaction: attr('string'),
   upVotesCount: attr('number'),
 
-  libraryEntry: belongsTo('library-entry'),
+  libraryEntry: belongsTo('library-entry', { inverse: 'mediaReaction' }),
   anime: belongsTo('anime'),
   manga: belongsTo('manga'),
   user: belongsTo('user'),
