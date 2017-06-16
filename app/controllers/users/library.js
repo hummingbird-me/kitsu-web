@@ -14,7 +14,7 @@ const queryParams = new QueryParams({
     refresh: true
   },
   status: {
-    defaultValue: 'current',
+    defaultValue: 'all',
     refresh: true
   },
   sort: {
