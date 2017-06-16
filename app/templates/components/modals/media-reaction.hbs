@@ -6,15 +6,15 @@
           <div class="reaction-header">
             <span class="reaction-media-title">{{media.yearlessTitle}}</span>
             <span class="reaction-media-year">{{media.year}}</span>
-            <span class="reaction-media-remaining {{unless valid "is-invalid"}}">{{remaining}}</span>
+            <span class="reaction-media-remaining {{if hasInvalidReaction "is-invalid"}}">{{remaining}}</span>
           </div>
-          {{expanding-textarea content
-            update=(action (mut content))
+          {{expanding-textarea reaction.reaction
+            update=(action (mut reaction.reaction))
             placeholder="React to dis shit"
             maxlength=145
           }}
         </div>
-        <button onclick={{perform createReaction}} disabled={{or (not valid) (is-empty content)}}>Post</button>
+        <button onclick={{perform createReactionTask}} disabled={{or hasInvalidReaction (is-empty reaction.reaction)}}>Post</button>
       </div>
     </div>
   {{/modal.body}}

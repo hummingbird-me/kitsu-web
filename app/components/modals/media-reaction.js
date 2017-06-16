@@ -1,5 +1,5 @@
 import Component from 'ember-component';
-import computed from 'ember-computed';
+import computed, { and } from 'ember-computed';
 import get, { getProperties } from 'ember-metal/get';
 import set, { setProperties } from 'ember-metal/set';
 import service from 'ember-service/inject';
@@ -9,15 +9,13 @@ import { image } from 'client/helpers/image';
 
 export default Component.extend({
   classNames: ['reaction-modal'],
+
   store: service(),
-  content: '',
 
-  remaining: computed('content', function() {
-    return 140 - (get(this, 'content.length') || 0);
-  }).readOnly(),
+  hasInvalidReaction: and('reaction.reaction', 'reaction.validations.attrs.reaction.isInvalid'),
 
-  valid: computed('remaining', function() {
-    return get(this, 'remaining') >= 0;
+  remaining: computed('reaction.reaction', function() {
+    return 140 - (get(this, 'reaction.reaction.length') || 0);
   }).readOnly(),
 
   posterImageStyle: computed('media.posterImage', function() {
@@ -46,10 +44,8 @@ export default Component.extend({
   },
 
   createReactionTask: task(function* () {
-    if (get(this, 'valid') === true) {
-      const { reaction, content } = getProperties(this, 'reaction', 'content');
-      set(reaction, 'reaction', content);
-      yield reaction.save();
+    if (get(this, 'reaction.validations.attrs.reaction.isValid') === true) {
+      yield get(this, 'reaction').save();
       invokeAction(this, 'onClose');
     }
   }).drop(),
