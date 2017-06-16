@@ -8,7 +8,7 @@
         {{/dropdown.button}}
         {{#dropdown.menu}}
           {{#each sortOptions as |sortKey|}}
-            {{#dropdown.menu-item onClick=(action (mut sort) sortKey)}}
+            {{#dropdown.menu-item onClick=(action "changeSort" sortKey)}}
               {{t (concat "media.show.summary.reactions.sorts." sortKey)}}
               {{#if (eq sort sortKey)}}
                 <span class="dropdown-checkmark">

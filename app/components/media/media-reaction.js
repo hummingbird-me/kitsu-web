@@ -6,8 +6,33 @@ import { task } from 'ember-concurrency';
 
 export default Component.extend({
   upvoted: false,
+
   queryCache: service(),
   store: service(),
+
+  didReceiveAttrs() {
+    this._super(...arguments);
+    get(this, 'getUserVoteTask').perform();
+  },
+
+  actions: {
+    toggleVote() {
+      if (get(this, 'session.hasUser') === false) {
+        return get(this, 'session.signUpModal')();
+      }
+
+      if (get(this, 'createVoteTask.isRunning') || get(this, 'destroyVoteTask.isRunning')) {
+        return;
+      }
+
+      const upvoted = get(this, 'upvoted');
+      if (upvoted === true) {
+        get(this, 'destroyVoteTask').perform();
+      } else {
+        get(this, 'createVoteTask').perform();
+      }
+    }
+  },
 
   getUserVoteTask: task(function* () {
     const queryCache = get(this, 'queryCache');
@@ -19,9 +44,9 @@ export default Component.extend({
         set(this, 'upvoted', true);
       }
     });
-  }),
+  }).drop(),
 
-  createVote: task(function* () {
+  createVoteTask: task(function* () {
     const reaction = get(this, 'reaction');
     const vote = get(this, 'store').createRecord('media-reaction-vote', {
       mediaReaction: get(this, 'reaction'),
@@ -39,7 +64,7 @@ export default Component.extend({
     });
   }).drop(),
 
-  destroyVote: task(function* () {
+  destroyVoteTask: task(function* () {
     const reaction = get(this, 'reaction');
     const vote = get(this, 'userVote');
 
@@ -56,11 +81,6 @@ export default Component.extend({
     });
   }).drop(),
 
-  init() {
-    this._super(...arguments);
-    get(this, 'getUserVoteTask').perform();
-  },
-
   _getRequestOptions() {
     const mediaReactionId = get(this, 'reaction.id');
     const userId = get(this, 'session.account.id');
@@ -68,24 +88,5 @@ export default Component.extend({
       filter: { mediaReactionId, userId },
       page: { limit: 1 }
     };
-  },
-
-  actions: {
-    toggleVote() {
-      if (get(this, 'session.hasUser') === false) {
-        return get(this, 'session.signUpModal')();
-      }
-
-      if (get(this, 'createVote.isRunning') || get(this, 'destroyVote.isRunning')) {
-        return;
-      }
-
-      const upvoted = get(this, 'upvoted');
-      if (upvoted === true) {
-        get(this, 'destroyVote').perform();
-      } else {
-        get(this, 'createVote').perform();
-      }
-    }
   }
 });
