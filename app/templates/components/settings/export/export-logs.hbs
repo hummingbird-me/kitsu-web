@@ -41,6 +41,10 @@
             {{/each-in}}
           </table>
         {{/infinite-pagination}}
+      {{else if account.disabledReason}}
+        <div class="text-xs-center w-100 m-t-1 m-b-1">
+          {{t "settings.exports.disabled" reason=account.disabledReason htmlSafe=true}}
+        </div>
       {{else}}
         <div class="text-xs-center w-100 m-t-1 m-b-1">
           {{t "settings.exports.no-logs"}}
