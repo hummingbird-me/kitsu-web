@@ -221,6 +221,7 @@ export default Route.extend(Pagination, {
         'titles',
         'synopsis',
         'startDate',
+        'status',
         'averageRating',
         'popularityRank',
         'ratingRank',
