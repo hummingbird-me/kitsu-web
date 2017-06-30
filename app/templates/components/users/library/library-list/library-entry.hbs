@@ -25,6 +25,15 @@
     </span>
   </td>
 
+  {{! Release Status }}
+  <td class="release-status-cell">
+    {{#if (not (eq libraryEntry.media.status "finished"))}}
+      <span class="hint--top hint--bounce hint--rounded" aria-label={{t (concat "media-shared.statuses." libraryEntry.media.modelType "." libraryEntry.media.status)}}>
+        {{svg-jar libraryEntry.media.status}}
+      </span>
+    {{/if}}
+  </td>
+
   {{! Rating }}
   <td class="rating-cell">
     <span class="{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}-rating-cell">
