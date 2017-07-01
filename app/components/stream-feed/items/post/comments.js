@@ -76,7 +76,12 @@ export default Component.extend(Pagination, {
 
   onPagination(records) {
     set(this, 'isLoading', false);
-    unshiftObjects(get(this, 'comments'), records.toArray().reverse());
+    const content = records.toArray();
+    if (get(this, 'isModalView')) {
+      get(this, 'comments').addObjects(content);
+    } else {
+      unshiftObjects(get(this, 'comments'), content.reverse());
+    }
     invokeAction(this, 'trackEngagement', 'click');
   },
 
