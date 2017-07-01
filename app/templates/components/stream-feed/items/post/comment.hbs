@@ -24,7 +24,6 @@
     {{! comment content }}
     <span class="comment-body">
       {{#if isEditing}}
-        {{log comment}}
         {{expanding-textarea comment.content
           update=(action (mut comment.content))
           keyEvents=(hash 13=(action "updateComment"))

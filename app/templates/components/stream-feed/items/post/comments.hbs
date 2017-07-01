@@ -4,6 +4,21 @@
       {{loading-spinner size="small"}}
     </div>
   {{else}}
+    {{#if isModalView}}
+      {{#unless getComments.isRunning}}
+        {{#if (and (not comment) (not readOnly))}}
+          <div class="add-comment-wrapper">
+            {{expanding-textarea
+              keyEvents=(hash 13=(action "createComment"))
+              disabled=createComment.isRunning
+              rows="1"
+              placeholder="Leave a comment..."
+              class="form-control add-comment"
+            }}
+          </div>
+        {{/if}}
+      {{/unless}}
+    {{/if}}
     <div class="comments-header">
       {{! Viewing single comment }}
       {{#if comment}}
@@ -18,36 +33,39 @@
         </div>
       {{else if comments}}
         {{! Sort dropdown }}
-        <div class="comment-sort-dropdown">
-          {{log sort}}
-          {{log sortOptions}}
-          {{#bootstrap/bs-dropdown as |dropdown|}}
-            {{#dropdown.button}}
-              {{t (concat "feeds.post.sorts." sort)}}
-            {{/dropdown.button}}
-            {{#dropdown.menu}}
-              {{#each sortOptions as |option|}}
-                {{#dropdown.menu-item onClick=(action "updateSort" option)}}
-                  {{t (concat "feeds.post.sorts." option)}}
-                  {{#if (eq option sort)}}
-                    <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
-                  {{/if}}
-                {{/dropdown.menu-item}}
-              {{/each}}
-            {{/dropdown.menu}}
-          {{/bootstrap/bs-dropdown}}
-        </div>
+        {{#if isPermalinkPage}}
+          <div class="comment-sort-dropdown">
+            {{#bootstrap/bs-dropdown as |dropdown|}}
+              {{#dropdown.button}}
+                {{t (concat "feeds.post.sorts." sort)}}
+              {{/dropdown.button}}
+              {{#dropdown.menu}}
+                {{#each sortOptions as |option|}}
+                  {{#dropdown.menu-item onClick=(action "updateSort" option)}}
+                    {{t (concat "feeds.post.sorts." option)}}
+                    {{#if (eq option sort)}}
+                      <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+                    {{/if}}
+                  {{/dropdown.menu-item}}
+                {{/each}}
+              {{/dropdown.menu}}
+            {{/bootstrap/bs-dropdown}}
+          </div>
+        {{/if}}
+
         {{! Comment Pagination }}
         {{#if hasNextPage}}
           <div class="comment-actions clearfix">
             {{! action }}
-            <div class="pull-sm-left">
-              {{#if isLoading}}
-                {{loading-spinner size="small"}}
-              {{else}}
-                <a href="#" {{action "onPagination"}}>Show Previous Comments</a>
-              {{/if}}
-            </div>
+            {{#unless isModalView}}
+              <div class="pull-sm-left">
+                {{#if isLoading}}
+                  {{loading-spinner size="small"}}
+                {{else}}
+                  <a href="#" {{action "onPagination"}}>Show Previous Comments</a>
+                {{/if}}
+              </div>
+            {{/unless}}
             {{! Comment count }}
             <div class="pull-sm-right">
               {{comments.length}} of {{post.topLevelCommentsCount}}
@@ -59,37 +77,63 @@
 
     {{! List of comments }}
     <ul class="media-list">
-      {{#each comments as |comment|}}
-        {{stream-feed/items/post/comment
-          isTopLevel=true
-          isReply=isReply
-          comment=comment
-          post=post
-          readOnly=readOnly
-          kitsuGroupMembership=kitsuGroupMembership
-          onDelete=(action "deletedComment")
-          likesCountUpdate=(action (mut comment.likesCount))
-          replyCountUpdate=(action (mut comment.repliesCount))
-          trackEngagement=(action "trackEngagement")
-          updateFollow=updateFollow
-          tagName="li"
-          class="media new-comment"}} {{! HACK: Until we have transitions }}
-      {{/each}}
+      {{! barf }}
+      {{#if isModalView}}
+        {{#infinite-pagination loaderSize="small" onPagination=(action "onPagination")}}
+          {{#each comments as |comment|}}
+            {{stream-feed/items/post/comment
+              isTopLevel=true
+              isReply=isReply
+              comment=comment
+              post=post
+              readOnly=readOnly
+              kitsuGroupMembership=kitsuGroupMembership
+              isModalView=isModalView
+              onDelete=(action "deletedComment")
+              likesCountUpdate=(action (mut comment.likesCount))
+              replyCountUpdate=(action (mut comment.repliesCount))
+              trackEngagement=(action "trackEngagement")
+              updateFollow=updateFollow
+              tagName="li"
+              class="media new-comment"}} {{! HACK: Until we have transitions }}
+            {{/each}}
+        {{/infinite-pagination}}
+      {{else}}
+        {{#each comments as |comment|}}
+          {{stream-feed/items/post/comment
+            isTopLevel=true
+            isReply=isReply
+            comment=comment
+            post=post
+            readOnly=readOnly
+            kitsuGroupMembership=kitsuGroupMembership
+            isModalView=isModalView
+            onDelete=(action "deletedComment")
+            likesCountUpdate=(action (mut comment.likesCount))
+            replyCountUpdate=(action (mut comment.repliesCount))
+            trackEngagement=(action "trackEngagement")
+            updateFollow=updateFollow
+            tagName="li"
+            class="media new-comment"}} {{! HACK: Until we have transitions }}
+        {{/each}}
+      {{/if}}
     </ul>
   {{/if}}
 {{/if}}
 
-{{! Comment Box }}
-{{#unless getComments.isRunning}}
-  {{#if (and (not comment) (not readOnly))}}
-    <div class="add-comment-wrapper">
-      {{expanding-textarea
-        keyEvents=(hash 13=(action "createComment"))
-        disabled=createComment.isRunning
-        rows="1"
-        placeholder="Leave a comment..."
-        class="form-control add-comment"
-      }}
-    </div>
-  {{/if}}
+{{! Comment Box - Bottom }}
+{{#unless isModalView}}
+  {{#unless getComments.isRunning}}
+    {{#if (and (not comment) (not readOnly))}}
+      <div class="add-comment-wrapper">
+        {{expanding-textarea
+          keyEvents=(hash 13=(action "createComment"))
+          disabled=createComment.isRunning
+          rows="1"
+          placeholder="Leave a comment..."
+          class="form-control add-comment"
+        }}
+      </div>
+    {{/if}}
+  {{/unless}}
 {{/unless}}

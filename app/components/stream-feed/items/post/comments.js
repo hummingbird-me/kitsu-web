@@ -33,7 +33,11 @@ export default Component.extend(Pagination, {
       post: get(this, 'post'),
       user: get(this, 'session.account')
     });
-    get(this, 'comments').addObject(comment);
+    if (get(this, 'isModalView')) {
+      get(this, 'comments').unshiftObject(comment);
+    } else {
+      get(this, 'comments').addObject(comment);
+    }
 
     // update comments count
     invokeAction(this, 'countUpdate', get(this, 'post.topLevelCommentsCount') + 1);
@@ -76,14 +80,19 @@ export default Component.extend(Pagination, {
 
   onPagination(records) {
     set(this, 'isLoading', false);
-    unshiftObjects(get(this, 'comments'), records.toArray().reverse());
+    const content = records.toArray();
+    if (get(this, 'isModalView')) {
+      get(this, 'comments').addObjects(content);
+    } else {
+      unshiftObjects(get(this, 'comments'), content.reverse());
+    }
     invokeAction(this, 'trackEngagement', 'click');
   },
 
   actions: {
     onPagination() {
       set(this, 'isLoading', true);
-      this._super(null, { page: { limit: 10, offset: get(this, 'comments.length') } });
+      return this._super(null, { page: { limit: 10, offset: get(this, 'comments.length') } });
     },
 
     updateSort(sort) {
@@ -118,7 +127,10 @@ export default Component.extend(Pagination, {
 
   _getComments() {
     get(this, 'getComments').perform().then((comments) => {
-      const content = comments.toArray().reverse();
+      let content = comments.toArray();
+      if (!get(this, 'isModalView')) {
+        content = content.reverse();
+      }
       set(content, 'links', get(comments, 'links'));
       set(this, 'comments', content);
     }).catch(() => {});
