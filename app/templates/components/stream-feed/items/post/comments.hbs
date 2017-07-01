@@ -19,8 +19,6 @@
       {{else if comments}}
         {{! Sort dropdown }}
         <div class="comment-sort-dropdown">
-          {{log sort}}
-          {{log sortOptions}}
           {{#bootstrap/bs-dropdown as |dropdown|}}
             {{#dropdown.button}}
               {{t (concat "feeds.post.sorts." sort)}}
@@ -41,13 +39,19 @@
         {{#if hasNextPage}}
           <div class="comment-actions clearfix">
             {{! action }}
-            <div class="pull-sm-left">
-              {{#if isLoading}}
-                {{loading-spinner size="small"}}
-              {{else}}
-                <a href="#" {{action "onPagination"}}>Show Previous Comments</a>
-              {{/if}}
-            </div>
+            {{#unless isModalView}}
+              <div class="pull-sm-left">
+                {{#if (not isPermalinkPage)}}
+                  <a href="#" {{action showPostModal}}>View Comments</a>
+                {{else}}
+                  {{#if isLoading}}
+                    {{loading-spinner size="small"}}
+                  {{else}}
+                    <a href="#" {{action "onPagination"}}>Show Previous Comments</a>
+                  {{/if}}
+                {{/if}}
+              </div>
+            {{/unless}}
             {{! Comment count }}
             <div class="pull-sm-right">
               {{comments.length}} of {{post.topLevelCommentsCount}}
@@ -59,22 +63,46 @@
 
     {{! List of comments }}
     <ul class="media-list">
-      {{#each comments as |comment|}}
-        {{stream-feed/items/post/comment
-          isTopLevel=true
-          isReply=isReply
-          comment=comment
-          post=post
-          readOnly=readOnly
-          kitsuGroupMembership=kitsuGroupMembership
-          onDelete=(action "deletedComment")
-          likesCountUpdate=(action (mut comment.likesCount))
-          replyCountUpdate=(action (mut comment.repliesCount))
-          trackEngagement=(action "trackEngagement")
-          updateFollow=updateFollow
-          tagName="li"
-          class="media new-comment"}} {{! HACK: Until we have transitions }}
-      {{/each}}
+      {{! barf }}
+      {{#if isModalView}}
+        {{#infinite-pagination showLoader=false onPagination=(action "onPagination")}}
+          {{#each comments as |comment|}}
+            {{stream-feed/items/post/comment
+              isTopLevel=true
+              isReply=isReply
+              comment=comment
+              post=post
+              readOnly=readOnly
+              kitsuGroupMembership=kitsuGroupMembership
+              isModalView=isModalView
+              onDelete=(action "deletedComment")
+              likesCountUpdate=(action (mut comment.likesCount))
+              replyCountUpdate=(action (mut comment.repliesCount))
+              trackEngagement=(action "trackEngagement")
+              updateFollow=updateFollow
+              tagName="li"
+              class="media new-comment"}} {{! HACK: Until we have transitions }}
+            {{/each}}
+        {{/infinite-pagination}}
+      {{else}}
+        {{#each comments as |comment|}}
+          {{stream-feed/items/post/comment
+            isTopLevel=true
+            isReply=isReply
+            comment=comment
+            post=post
+            readOnly=readOnly
+            kitsuGroupMembership=kitsuGroupMembership
+            isModalView=isModalView
+            onDelete=(action "deletedComment")
+            likesCountUpdate=(action (mut comment.likesCount))
+            replyCountUpdate=(action (mut comment.repliesCount))
+            trackEngagement=(action "trackEngagement")
+            updateFollow=updateFollow
+            tagName="li"
+            class="media new-comment"}} {{! HACK: Until we have transitions }}
+        {{/each}}
+      {{/if}}
     </ul>
   {{/if}}
 {{/if}}

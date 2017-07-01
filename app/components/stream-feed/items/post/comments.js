@@ -118,7 +118,10 @@ export default Component.extend(Pagination, {
 
   _getComments() {
     get(this, 'getComments').perform().then((comments) => {
-      const content = comments.toArray().reverse();
+      let content = comments.toArray();
+      if (!get(this, 'isModalView')) {
+        content = content.reverse();
+      }
       set(content, 'links', get(comments, 'links'));
       set(this, 'comments', content);
     }).catch(() => {});

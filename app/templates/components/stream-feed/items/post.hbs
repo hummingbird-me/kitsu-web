@@ -296,10 +296,22 @@
       isReply=isReply
       readOnly=readOnly
       commentSort=commentSort
+      isPermalinkPage=isPermalinkPage
       kitsuGroupMembership=kitsuGroupMembership
+      isModalView=isModalView
+      showPostModal=(toggle-action "showPostModal" this)
       countUpdate=(action (mut post.topLevelCommentsCount))
       trackEngagement=(action "trackEngagement")
       updateFollow=(action "updateFollow")
     }}
   {{/unless}}
+{{/if}}
+
+{{! Post Modal }}
+{{#if showPostModal}}
+  {{to-elsewhere named="modal" send=(component "stream-feed/items/post/modal"
+    post=post
+    readOnly=readOnly
+    onClose=(toggle-action "showPostModal" this)
+  )}}
 {{/if}}
