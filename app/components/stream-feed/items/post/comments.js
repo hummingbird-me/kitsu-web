@@ -33,7 +33,11 @@ export default Component.extend(Pagination, {
       post: get(this, 'post'),
       user: get(this, 'session.account')
     });
-    get(this, 'comments').addObject(comment);
+    if (get(this, 'isModalView')) {
+      get(this, 'comments').unshiftObject(comment);
+    } else {
+      get(this, 'comments').addObject(comment);
+    }
 
     // update comments count
     invokeAction(this, 'countUpdate', get(this, 'post.topLevelCommentsCount') + 1);
