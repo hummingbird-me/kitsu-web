@@ -4,35 +4,56 @@
       {{loading-spinner size="small"}}
     </div>
   {{else}}
-    {{! Viewing single comment }}
-    {{#if comment}}
-      <div class="comment-actions clearfix">
-        <div class="pull-sm-left">
-          <a href={{href-to "posts" post}}>View All Comments</a>
-          {{#if isReply}}
-            &mdash;
-            <a href={{href-to "comments" comment.parent.id}}>View Parent Comment</a>
-          {{/if}}
-        </div>
-      </div>
-    {{else if comments}} {{! Comment Pagination }}
-      {{#if hasNextPage}}
+    <div class="comments-header">
+      {{! Viewing single comment }}
+      {{#if comment}}
         <div class="comment-actions clearfix">
-          {{! action }}
           <div class="pull-sm-left">
-            {{#if isLoading}}
-              {{loading-spinner size="small"}}
-            {{else}}
-              <a href="#" {{action "onPagination"}}>Show Previous Comments</a>
+            <a href={{href-to "posts" post}}>View All Comments</a>
+            {{#if isReply}}
+              &mdash;
+              <a href={{href-to "comments" comment.parent.id}}>View Parent Comment</a>
             {{/if}}
           </div>
-          {{! Comment count }}
-          <div class="pull-sm-right">
-            {{comments.length}} of {{post.topLevelCommentsCount}}
-          </div>
         </div>
+      {{else if comments}}
+        {{! Sort dropdown }}
+        <div class="comment-sort-dropdown">
+          {{#bootstrap/bs-dropdown as |dropdown|}}
+            {{#dropdown.button}}
+              {{t (concat "feeds.post.sorts." sort)}}
+            {{/dropdown.button}}
+            {{#dropdown.menu}}
+              {{#each sortOptions as |option|}}
+                {{#dropdown.menu-item onClick=(action (mut sort) option)}}
+                  {{t (concat "feeds.post.sorts." option)}}
+                  {{#if (eq option sort)}}
+                    <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+                  {{/if}}
+                {{/dropdown.menu-item}}
+              {{/each}}
+            {{/dropdown.menu}}
+          {{/bootstrap/bs-dropdown}}
+        </div>
+        {{! Comment Pagination }}
+        {{#if hasNextPage}}
+          <div class="comment-actions clearfix">
+            {{! action }}
+            <div class="pull-sm-left">
+              {{#if isLoading}}
+                {{loading-spinner size="small"}}
+              {{else}}
+                <a href="#" {{action "onPagination"}}>Show Previous Comments</a>
+              {{/if}}
+            </div>
+            {{! Comment count }}
+            <div class="pull-sm-right">
+              {{comments.length}} of {{post.topLevelCommentsCount}}
+            </div>
+          </div>
+        {{/if}}
       {{/if}}
-    {{/if}}
+    </div>
 
     {{! List of comments }}
     <ul class="media-list">

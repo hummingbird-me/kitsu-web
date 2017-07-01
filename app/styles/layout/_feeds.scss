@@ -513,6 +513,27 @@
   }
 }
 
+.comments-header {
+  padding: 10px 20px 0 20px;
+  display: flex;
+}
+
+.comment-sort-dropdown {
+  button {
+    position: relative;
+    top: -4px;
+    padding: 0;
+    padding-right: 10px;
+    font-size: 12px;
+    color: $secondary-cta-color;
+    background: none;
+    &:hover {
+      color: $body-link-color !important;
+      background: none;
+    }
+  }
+}
+
 .add-comment-wrapper {
   padding: 10px 20px;
   .add-comment {
@@ -764,8 +785,8 @@
 }
 
 .comment-actions {
+  width: 100%;
   font-size: 12px;
-  padding: 10px 20px 0 20px;
   color: #b4b4b4;
 }
 .nsfw-gate, .spoiler-gate, .combo-gate {

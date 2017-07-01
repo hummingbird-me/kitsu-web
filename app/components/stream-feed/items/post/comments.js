@@ -22,7 +22,7 @@ export default Component.extend(Pagination, {
       fields: { users: ['avatar', 'name'].join(',') },
       page: { limit: 2 },
       include: 'user',
-      sort: '-created_at'
+      sort: this._getSortOption()
     }, { cache: false });
   }).drop(),
 
@@ -66,10 +66,10 @@ export default Component.extend(Pagination, {
       get(this, 'comments').addObject(get(this, 'comment'));
     } else {
       // don't reload if the we have received attrs but the post hasn't changed
-      if (get(this, 'post.id') === get(this, 'postIdWas')) {
-        return;
-      }
-      set(this, 'postIdWas', get(this, 'post.id'));
+      // if (get(this, 'post.id') === get(this, 'postIdWas')) {
+      //   return;
+      // }
+      // set(this, 'postIdWas', get(this, 'post.id'));
       set(this, 'comments', []);
       if (get(this, 'post.topLevelCommentsCount') > 0) {
         get(this, 'getComments').perform().then((comments) => {
@@ -115,6 +115,15 @@ export default Component.extend(Pagination, {
 
     trackEngagement(...args) {
       invokeAction(this, 'trackEngagement', ...args);
+    }
+  },
+
+  _getSortOption() {
+    const sort = get(this, 'sort');
+    switch (sort) {
+      case 'likes': return 'likesCount,-createdAt';
+      case 'replies': return 'repliesCount,-createdAt';
+      default: return '-createdAt';
     }
   }
 });
