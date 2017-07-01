@@ -11,6 +11,7 @@ import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Component.extend(Pagination, {
   classNames: ['stream-item-comments'],
+  sortOptions: ['likes', 'replies', 'recent'],
   metrics: service(),
   notify: service(),
   store: service(),
@@ -22,7 +23,7 @@ export default Component.extend(Pagination, {
       fields: { users: ['avatar', 'name'].join(',') },
       page: { limit: 2 },
       include: 'user',
-      sort: '-created_at'
+      sort: this._getSortOption()
     }, { cache: false });
   }).drop(),
 
@@ -51,6 +52,7 @@ export default Component.extend(Pagination, {
   init() {
     this._super(...arguments);
     set(this, 'comments', []);
+    set(this, 'sort', get(this, 'commentSort') || 'recent');
   },
 
   didReceiveAttrs() {
@@ -65,18 +67,9 @@ export default Component.extend(Pagination, {
       set(this, 'comments', []);
       get(this, 'comments').addObject(get(this, 'comment'));
     } else {
-      // don't reload if the we have received attrs but the post hasn't changed
-      if (get(this, 'post.id') === get(this, 'postIdWas')) {
-        return;
-      }
-      set(this, 'postIdWas', get(this, 'post.id'));
       set(this, 'comments', []);
       if (get(this, 'post.topLevelCommentsCount') > 0) {
-        get(this, 'getComments').perform().then((comments) => {
-          const content = comments.toArray().reverse();
-          set(content, 'links', get(comments, 'links'));
-          set(this, 'comments', content);
-        }).catch(() => {});
+        this._getComments();
       }
     }
   },
@@ -91,6 +84,11 @@ export default Component.extend(Pagination, {
     onPagination() {
       set(this, 'isLoading', true);
       this._super(null, { page: { limit: 10, offset: get(this, 'comments.length') } });
+    },
+
+    updateSort(sort) {
+      set(this, 'sort', sort);
+      this._getComments();
     },
 
     createComment(component, event, content) {
@@ -115,6 +113,23 @@ export default Component.extend(Pagination, {
 
     trackEngagement(...args) {
       invokeAction(this, 'trackEngagement', ...args);
+    }
+  },
+
+  _getComments() {
+    get(this, 'getComments').perform().then((comments) => {
+      const content = comments.toArray().reverse();
+      set(content, 'links', get(comments, 'links'));
+      set(this, 'comments', content);
+    }).catch(() => {});
+  },
+
+  _getSortOption() {
+    const sort = get(this, 'sort');
+    switch (sort) {
+      case 'likes': return '-likesCount,-createdAt';
+      case 'replies': return '-repliesCount,-createdAt';
+      default: return '-createdAt';
     }
   }
 });
