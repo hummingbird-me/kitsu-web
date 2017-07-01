@@ -80,7 +80,7 @@
     <ul class="media-list">
       {{! barf }}
       {{#if isModalView}}
-        {{#infinite-pagination onPagination=(action "onPagination")}}
+        {{#infinite-pagination loaderSize="small" onPagination=(action "onPagination")}}
           {{#each comments as |comment|}}
             {{stream-feed/items/post/comment
               isTopLevel=true

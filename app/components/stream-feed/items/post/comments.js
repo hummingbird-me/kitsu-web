@@ -92,7 +92,7 @@ export default Component.extend(Pagination, {
   actions: {
     onPagination() {
       set(this, 'isLoading', true);
-      this._super(null, { page: { limit: 10, offset: get(this, 'comments.length') } });
+      return this._super(null, { page: { limit: 10, offset: get(this, 'comments.length') } });
     },
 
     updateSort(sort) {
