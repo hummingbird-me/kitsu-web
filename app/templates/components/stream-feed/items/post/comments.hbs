@@ -4,6 +4,21 @@
       {{loading-spinner size="small"}}
     </div>
   {{else}}
+    {{#if isModalView}}
+      {{#unless getComments.isRunning}}
+        {{#if (and (not comment) (not readOnly))}}
+          <div class="add-comment-wrapper">
+            {{expanding-textarea
+              keyEvents=(hash 13=(action "createComment"))
+              disabled=createComment.isRunning
+              rows="1"
+              placeholder="Leave a comment..."
+              class="form-control add-comment"
+            }}
+          </div>
+        {{/if}}
+      {{/unless}}
+    {{/if}}
     <div class="comments-header">
       {{! Viewing single comment }}
       {{#if comment}}
@@ -65,7 +80,7 @@
     <ul class="media-list">
       {{! barf }}
       {{#if isModalView}}
-        {{#infinite-pagination showLoader=false onPagination=(action "onPagination")}}
+        {{#infinite-pagination onPagination=(action "onPagination")}}
           {{#each comments as |comment|}}
             {{stream-feed/items/post/comment
               isTopLevel=true
@@ -107,17 +122,19 @@
   {{/if}}
 {{/if}}
 
-{{! Comment Box }}
-{{#unless getComments.isRunning}}
-  {{#if (and (not comment) (not readOnly))}}
-    <div class="add-comment-wrapper">
-      {{expanding-textarea
-        keyEvents=(hash 13=(action "createComment"))
-        disabled=createComment.isRunning
-        rows="1"
-        placeholder="Leave a comment..."
-        class="form-control add-comment"
-      }}
-    </div>
-  {{/if}}
+{{! Comment Box - Bottom }}
+{{#unless isModalView}}
+  {{#unless getComments.isRunning}}
+    {{#if (and (not comment) (not readOnly))}}
+      <div class="add-comment-wrapper">
+        {{expanding-textarea
+          keyEvents=(hash 13=(action "createComment"))
+          disabled=createComment.isRunning
+          rows="1"
+          placeholder="Leave a comment..."
+          class="form-control add-comment"
+        }}
+      </div>
+    {{/if}}
+  {{/unless}}
 {{/unless}}
