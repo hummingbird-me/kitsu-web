@@ -56,14 +56,10 @@
             {{! action }}
             {{#unless isModalView}}
               <div class="pull-sm-left">
-                {{#if (not isPermalinkPage)}}
-                  <a href="#" {{action showPostModal}}>View Comments</a>
+                {{#if isLoading}}
+                  {{loading-spinner size="small"}}
                 {{else}}
-                  {{#if isLoading}}
-                    {{loading-spinner size="small"}}
-                  {{else}}
-                    <a href="#" {{action "onPagination"}}>Show Previous Comments</a>
-                  {{/if}}
+                  <a href="#" {{action "onPagination"}}>Show Previous Comments</a>
                 {{/if}}
               </div>
             {{/unless}}
