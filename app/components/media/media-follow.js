@@ -36,8 +36,7 @@ export default FollowComponent.extend({
           label: 'media',
           value: get(this, 'media.id')
         });
-      })
-      .catch(err => get(this, 'notify').error(errorMessages(err)));
+      }).catch(err => get(this, 'notify').error(errorMessages(err)));
     }
   }).drop(),
 
