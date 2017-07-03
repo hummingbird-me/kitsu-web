@@ -92,10 +92,7 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
     set(this, 'replies', []);
     if (get(this, 'isTopLevel') === true && get(this, 'comment.repliesCount') > 0) {
       get(this, 'getReplies').perform().then((replies) => {
-        let content = replies.toArray();
-        if (!get(this, 'isModalView')) {
-          content = content.reverse();
-        }
+        const content = replies.toArray().reverse();
         set(content, 'links', get(replies, 'links'));
         set(this, 'replies', content);
       }).catch(() => {});
