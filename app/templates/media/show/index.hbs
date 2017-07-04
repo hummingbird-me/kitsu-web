@@ -20,13 +20,10 @@
     {{! Ratings }}
     {{!-- {{media/media-rating media=media tagName="section" class="clearfix"}} --}}
     <section class="media-rating">
-      <span class="media-match">
-        {{t "media.show.summary.ratings.match" rating=80}}
+      {{! @TODO: This is where relative ratings should go when they're available. }}
+      <span class="media-community-rating">
+        {{t "media.show.summary.ratings.community" rating=(truncate media.averageRating 2)}}
       </span>
-       · <span class="media-community-rating">
-           {{t "media.show.summary.ratings.community"
-             rating=(truncate media.averageRating 2)}}
-         </span>
     </section>
 
     {{! Synopsis }}
@@ -35,6 +32,7 @@
     </section>
 
     {{! Categories }}
+    {{! @TODO: Componentize and make it data-loading }}
     <section class="media--tags">
       <ul>
         <li><strong>{{t "media.show.summary.categories"}}:</strong></li>
