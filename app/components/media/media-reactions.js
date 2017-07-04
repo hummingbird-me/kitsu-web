@@ -5,25 +5,18 @@ import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
+  tagName: '',
   sortOptions: [
     '-upVotesCount',
     '-createdAt'
   ],
   sort: '-upVotesCount',
-
   queryCache: service(),
 
   didReceiveAttrs() {
     this._super(...arguments);
     get(this, 'getReactionsTask').perform();
     get(this, 'getLibraryEntryTask').perform();
-  },
-
-  actions: {
-    changeSort(sort) {
-      set(this, 'sort', sort);
-      get(this, 'getReactionsTask').perform();
-    }
   },
 
   getReactionsTask: task(function* () {
@@ -49,6 +42,13 @@ export default Component.extend({
     });
     set(this, 'libraryEntry', get(entries, 'firstObject'));
   }).drop(),
+
+  actions: {
+    changeSort(sort) {
+      set(this, 'sort', sort);
+      get(this, 'getReactionsTask').perform();
+    }
+  },
 
   _getMediaFilter() {
     const media = get(this, 'media');

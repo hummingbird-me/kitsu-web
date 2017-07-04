@@ -6,10 +6,6 @@
       <div class="text-xs-center w-100 m-t-1 m-b-1">
         {{loading-spinner size="large"}}
       </div>
-    {{else if taskInstance.error}}
-      <div class="text-xs-center w-100 font-italic">
-        {{t "errors.load"}}
-      </div>
     {{else if taskInstance.value}}
       {{#each taskInstance.value as |casting|}}
         <div aria-label={{casting.character.name}} class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded">
@@ -18,13 +14,9 @@
           </a>
         </div>
       {{/each}}
-      <a href={{href-to (concat media.modelType ".show.characters")}}>
+      <a class="more-link" href={{href-to (concat media.modelType ".show.characters")}}>
         {{t "media.show.summary.characters.more"}}
       </a>
-    {{else}}
-      <div class="text-xs-center w-100 font-italic">
-        {{t "errors.contentEmpty"}}
-      </div>
     {{/if}}
   </div>
 </div>

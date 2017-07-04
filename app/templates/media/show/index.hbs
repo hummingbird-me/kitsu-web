@@ -43,11 +43,6 @@
     {{! Rankings }}
     {{media/media-rankings media=media length="full"}}
 
-    {{! Installments }}
-    {{#if media.mediaRelationships}}
-      {{media/media-relationships media=media}}
-    {{/if}}
-
     {{! Reactions }}
     {{media/media-reactions media=media}}
 
@@ -62,7 +57,7 @@
     }}
 
     {{! Feed }}
-    <section>
+    <section class="media--feed">
       <h5>{{t "media.show.summary.feed.header"}}</h5>
       {{stream-feed/list
         streamType="media_aggr"

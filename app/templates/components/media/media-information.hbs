@@ -45,28 +45,6 @@
     {{t (concat "media-shared.statuses." media.modelType "." media.status)}}
   </li>
 
-  {{! Airing / Status }}
-  {{#if media.startDate}}
-    <li>
-      <strong>{{t "media.show.summary.information.start" type=media.modelType}}</strong>
-      {{moment-format media.startDate "MMM D, YYYY"}}
-      {{#if (and media.endDate airedLongerThanOneDay)}}
-        to {{moment-format media.endDate "MMM D, YYYY"}}
-      {{/if}}
-    </li>
-    {{#if isAnime}}
-      <li>
-        <strong>{{t "media.show.summary.information.season"}}</strong>
-        <a href={{href-to (concat media.modelType ".index") (query-params
-          season=season
-          year=(concat seasonYear ".." seasonYear)
-        )}}>
-          {{capitalize season}} {{seasonYear}}
-        </a>
-      </li>
-    {{/if}}
-  {{/if}}
-
   {{! Age Rating }}
   {{#if media.ageRating}}
     <li>
@@ -79,6 +57,28 @@
   {{/if}}
 
   {{#if isExpanded}}
+    {{! Airing / Status }}
+    {{#if media.startDate}}
+      <li>
+        <strong>{{t "media.show.summary.information.start" type=media.modelType}}</strong>
+        {{moment-format media.startDate "MMM D, YYYY"}}
+        {{#if (and media.endDate airedLongerThanOneDay)}}
+          to {{moment-format media.endDate "MMM D, YYYY"}}
+        {{/if}}
+      </li>
+      {{#if isAnime}}
+        <li>
+          <strong>{{t "media.show.summary.information.season"}}</strong>
+          <a href={{href-to (concat media.modelType ".index") (query-params
+            season=season
+            year=(concat seasonYear ".." seasonYear)
+          )}}>
+            {{capitalize season}} {{seasonYear}}
+          </a>
+        </li>
+      {{/if}}
+    {{/if}}
+
     {{! Productions}}
     {{#if (and isAnime media.animeProductions)}}
       {{#if producers}}
@@ -118,7 +118,7 @@
     {{/if}}
   {{/if}}
 
-  <a href="#" {{action (toggle "isExpanded" this)}}>
+  <a class="more-link" href="#" {{action (toggle "isExpanded" this)}}>
     {{t (concat "media.show.summary.information.expand." isExpanded)}}
   </a>
 </ul>

@@ -1,0 +1,18 @@
+<div class="related-media-panel">
+  <h5>{{t "media.show.summary.relationships.header"}}</h5>
+  <div class="favorite-media-grid row">
+    {{! @TODO: Should be data-loaded }}
+    {{#each featuredMedia as |media|}}
+      <div class="favorite-item col-sm-3">
+        {{#media-popover media=media attachment="bottom middle" targetAttachment="top middle"}}
+          <a href={{href-to (concat media.modelType ".show") media.slug}}>
+            {{lazy-image src=(image media.posterImage "small")}}
+          </a>
+        {{/media-popover}}
+      </div>
+    {{/each}}
+    <a class="more-link" href={{href-to (concat media.modelType ".show.characters")}}>
+      {{t "media.show.summary.relationships.more" title=media.computedTitle}}
+    </a>
+  </div>
+</div>
