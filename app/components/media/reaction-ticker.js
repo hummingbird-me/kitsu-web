@@ -5,6 +5,8 @@ import set from 'ember-metal/set';
 import computed from 'ember-computed';
 import { task, timeout } from 'ember-concurrency';
 
+const REACTION_TICKER_MS = 10000; // 10 Seconds
+
 export default Component.extend({
   classNames: ['reaction-ticker'],
   queryCache: service(),
@@ -17,28 +19,28 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    get(this, 'getReactionsTask').perform().then((reactions) => {
-      get(this, 'tickerTask').perform(reactions);
-    });
+    get(this, 'getReactionsTask').perform();
   },
 
   getReactionsTask: task(function* () {
     const media = get(this, 'media');
     const type = get(media, 'modelType');
-    return yield get(this, 'queryCache').query('media-reaction', {
+    const records = yield get(this, 'queryCache').query('media-reaction', {
       include: 'user',
       filter: { [`${type}Id`]: get(media, 'id') },
       page: { limit: 6 },
       sort: '-upVotesCount'
     });
-  }),
+    get(this, 'tickerTask').perform(records);
+    return records;
+  }).drop(),
 
   tickerTask: task(function* (reactions) {
-    while(true) {
-      yield timeout(10000);
+    while (true) {
+      yield timeout(REACTION_TICKER_MS);
       const index = get(this, 'index');
       const next = index === get(reactions, 'length') - 1 ? 0 : index + 1;
       set(this, 'index', next);
     }
-  }).drop(),
+  }).restartable(),
 });
