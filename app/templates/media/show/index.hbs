@@ -18,13 +18,7 @@
     </section>
 
     {{! Ratings }}
-    {{!-- {{media/media-rating media=media tagName="section" class="clearfix"}} --}}
-    <section class="media-rating">
-      {{! @TODO: This is where relative ratings should go when they're available. }}
-      <span class="media-community-rating">
-        {{t "media.show.summary.ratings.community" rating=(truncate media.averageRating 2)}}
-      </span>
-    </section>
+    {{media/media-rating media=media}}
 
     {{! Synopsis }}
     <section class="media-synopsis m-b-1">
