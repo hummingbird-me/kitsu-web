@@ -9,7 +9,7 @@
     {{else if taskInstance.value}}
       {{#each taskInstance.value as |casting|}}
         <div aria-label={{casting.character.name}} class="favorite-item col-sm-3 hint--top hint--bounce hint--rounded">
-          <a href="#">
+          <a href="javascript:void(0);">
             {{lazy-image src=(image casting.character.image)}}
           </a>
         </div>

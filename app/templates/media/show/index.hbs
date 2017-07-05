@@ -29,7 +29,6 @@
     {{! @TODO: Componentize and make it data-loading }}
     <section class="media--tags">
       <ul>
-        <li><strong>{{t "media.show.summary.categories"}}:</strong></li>
         {{#each (sort-by "title" media.categories) as |category|}}
           <li class="media--category-tag">
             <a href={{href-to (concat media.modelType ".index") (query-params categories=category.slug)}}>

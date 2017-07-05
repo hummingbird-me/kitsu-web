@@ -7,15 +7,9 @@
             {{loading-spinner size="large" white=true}}
           </div>
         {{else}}
-          {{#if editing}}
-            <a href="#" {{action (perform deleteReactionTask)}}
-                class="reaction-delete-button hint--rounded hint--bounce hint--left"
-                aria-label={{t "reaction-modal.delete"}}>
-              {{svg-jar "trash"}}
-            </a>
-          {{/if}}
+          {{! Reaction Content }}
           <div class="reaction-content">
-            {{#if editing}}
+            {{#if isEditing}}
               <span class="reaction-edit-warning">
                 {{t "reaction-modal.edit-warning"}}
               </span>
@@ -27,14 +21,19 @@
             </div>
             {{expanding-textarea changeset.reaction
               update=(action (mut changeset.reaction))
-              placeholder="React to dis shit"
+              placeholder="What's your reaction? [Placeholder]"
               maxlength=145
             }}
           </div>
-          <button
-              onclick={{perform createReactionTask}}
-              disabled={{or changeset.isInvalid (is-empty changeset.reaction)}}>
-            {{t (concat "reaction-modal." (if editing "edit" "post"))}}
+          {{! Delete Button }}
+          {{#if isEditing}}
+            <a href="#" {{action (perform deleteReactionTask)}} class="reaction-delete-button hint--rounded hint--bounce hint--left" aria-label={{t "reaction-modal.delete"}}>
+              {{svg-jar "trash"}}
+            </a>
+          {{/if}}
+          {{! Edit/Post Button }}
+          <button onclick={{perform createReactionTask}} disabled={{or changeset.isInvalid (is-empty changeset.reaction)}}>
+            {{t (concat "reaction-modal." (if isEditing "edit" "post"))}}
           </button>
         {{/if}}
       </div>

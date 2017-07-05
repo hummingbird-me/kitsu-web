@@ -1,8 +1,11 @@
 <div class="reaction">
-  {{#if getUserVoteTask.isrunning}}
-    {{loading-spinner size="small"}}
+  {{#if (is-self reaction.user)}}
+    <a href="javascript:void(0)" class="reaction-votes {{if isUpvoted "upvoted"}} hint--rounded hint--top hint--bounce" aria-label={{t "media-reaction.self-vote"}}>
+      {{svg-jar "upvote"}}
+      {{reaction.upVotesCount}}
+    </a>
   {{else}}
-    <a href="#" {{action "toggleVote"}} class="reaction-votes {{if upvoted "upvoted"}}">
+    <a href="#" {{action "toggleVote"}} class="reaction-votes {{if isUpvoted "upvoted"}}">
       {{svg-jar "upvote"}}
       {{reaction.upVotesCount}}
     </a>

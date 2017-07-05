@@ -1,7 +1,9 @@
 <section class="media--reactions m-b-1">
+  {{! Header }}
   <div class='reactions-header'>
     <h5>{{t "media.show.summary.reactions.header"}}</h5>
-     · <span class="result-sort-wrapper">
+    &middot;
+    <span class="result-sort-wrapper">
       {{#bootstrap/bs-dropdown as |dropdown|}}
         {{#dropdown.button type="button--dark-outline" class="button--small"}}
           {{t (concat "media.show.summary.reactions.sorts." sort)}}
@@ -21,25 +23,21 @@
       {{/bootstrap/bs-dropdown}}
     </span>
     <span class="reaction-button">
-        {{#if getLibraryEntryTask.isrunning}}
-          {{loading-spinner size="small"}}
-        {{else}}
-          {{#if libraryEntry}}
-            <a href="#" {{action (toggle "isModalOpen" this)}}>
-              {{t (concat "media.show.summary.reactions." (if libraryEntry.mediaReaction "edit" "new"))}}
-            </a>
-          {{/if}}
-        {{/if}}
+      {{#if getLibraryEntryTask.isrunning}}
+        {{! @TODO: Replace with loader }}
+        {{loading-spinner size="small"}}
+      {{else if libraryEntry}}
+        <a href="#" {{action (toggle "isModalOpen" this)}}>
+          {{t (concat "media.show.summary.reactions." (if (and libraryEntry.mediaReaction (not libraryEntry.mediaReaction.isNew)) "edit" "new"))}}
+        </a>
+      {{/if}}
     </span>
   </div>
+
+  {{! Content }}
   {{#if getReactionsTask.isRunning}}
-    {{! @TODO: Replace with feed loader }}
     <div class="text-xs-center w-100 m-t-1 m-b-1">
       {{loading-spinner size="large"}}
-    </div>
-  {{else if getReactionsTask.error}}
-    <div class="text-xs-center w-100 m-t-1 m-b-1">
-      {{t "errors.load"}}
     </div>
   {{else if getReactionsTask.last.value}}
     <div class="reactions-list w-100">
@@ -47,14 +45,10 @@
         {{media/media-reaction reaction=reaction}}
       {{/each}}
       <div class="reactions-more">
-        <a href={{href-to (concat media.modelType ".show.reactions") media}}>
+        <a href={{href-to (concat media.modelType ".show.reactions") media.slug}}>
           {{t "media.show.summary.reactions.more"}}
         </a>
       </div>
-    </div>
-  {{else}}
-    <div class="text-xs-center w-100 m-t-1 m-b-1">
-      {{t "errors.contentEmpty"}}
     </div>
   {{/if}}
 </section>
