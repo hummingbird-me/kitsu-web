@@ -9,3 +9,6 @@
   as |option|}}
   {{t (concat "users.library.sorting.options." option)}}
 {{/power-select}}
+<span onclick={{action "toggleSortDirection"}} class="sorting sorting-{{direction}} hint--top hint--bounce hint--rounded" aria-label={{t (concat "users.library.sorting.directions." sort "." direction)}}>
+  {{svg-jar "arrow-down"}}
+</span>
