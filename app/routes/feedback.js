@@ -1,7 +1,6 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
-import jQuery from 'jquery';
 
 export default Route.extend({
   ajax: service(),
@@ -20,10 +19,10 @@ export default Route.extend({
   },
 
   activate() {
-    jQuery('body').toggleClass('canny-body');
+    document.body.classList.add('canny-body');
   },
 
   deactivate() {
-    jQuery('body').toggleClass('canny-body');
+    document.body.classList.remove('canny-body');
   }
 });
