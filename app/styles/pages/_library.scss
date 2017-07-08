@@ -148,8 +148,10 @@
     text-indent: 0;
     padding-left: 50px;
     padding-right: 40px;
-    border: 1px solid #F0F0F0;
     border-radius: 5px;
+    @if $theme == 'kitsu-light' {
+      border: 1px solid #F0F0F0;
+    }
   }
   .library-search--wrapper {
     position: relative;
@@ -166,7 +168,12 @@
     }
     &:hover {
       svg {
-        fill: #333;
+        @if $theme == 'kitsu-light' {
+          fill: #333;
+        }
+        @if $theme == 'kitsu-dark' {
+          fill: $white;
+        }
       }
     }
   }
@@ -313,6 +320,7 @@
   }
   td {
     vertical-align: middle;
+    border-color: $divider-color;
   }
   .td,.th {
     flex: 1;
@@ -436,13 +444,10 @@
   .rating-cell {
     min-width: 68px;
     text-align: center;
-    border-left: 1px solid $divider-color;
-    border-right: 1px solid $divider-color;
   }
   td.progress-cell {
     font-size: 14px;
     line-height: 35px;
-    border-right: 1px solid $divider-color;
     text-align: right;
   }
   .progress-cell {

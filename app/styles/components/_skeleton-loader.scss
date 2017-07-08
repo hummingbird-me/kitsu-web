@@ -1,0 +1,13 @@
+.skeleton-loader-background {
+  background: $background-color;
+  @if $theme == 'kitsu-light' {
+    background: linear-gradient(to right, darken($background-color, 4) 8%, darken($background-color, 10) 18%, darken($background-color, 4) 33%);
+  }
+  @if $theme == 'kitsu-dark' {
+    background: linear-gradient(to right, lighten($background-color, 4) 8%, lighten($background-color, 7) 18%, lighten($background-color, 4) 33%);
+  }
+}
+
+.skeleton-loader-item {
+  background-color: $foreground-background-color;
+}

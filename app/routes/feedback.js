@@ -1,6 +1,7 @@
 import Route from 'ember-route';
 import get from 'ember-metal/get';
 import service from 'ember-service/inject';
+import jQuery from 'jquery';
 
 export default Route.extend({
   ajax: service(),
@@ -16,5 +17,13 @@ export default Route.extend({
     if (get(transition, 'targetName') === 'feedback.index') {
       return this.transitionTo('feedback.bugs');
     }
+  },
+
+  activate() {
+    jQuery('body').toggleClass('canny-body');
+  },
+
+  deactivate() {
+    jQuery('body').toggleClass('canny-body');
   }
 });
