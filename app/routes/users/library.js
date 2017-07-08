@@ -137,6 +137,15 @@ export default Route.extend(Pagination, {
         sortKey = 'progressed_at';
         break;
       }
+      case 'started':
+      case 'finished': {
+        sortKey = `${sort}_at`;
+        break;
+      }
+      case 'added': {
+        sortKey = 'created_at';
+        break;
+      }
       case 'title': {
         const field = `${mediaType}.titles`;
         // If the user is logged in, then we want to use their preferred title preference
@@ -151,15 +160,6 @@ export default Route.extend(Pagination, {
       }
       case 'length': {
         sortKey = mediaType === 'anime' ? 'anime.episode_count' : 'manga.chapter_count';
-        break;
-      }
-      case 'started':
-      case 'finished': {
-        sortKey = `${sort}_at`;
-        break;
-      }
-      case 'added': {
-        sortKey = 'created_at';
         break;
       }
       default: {

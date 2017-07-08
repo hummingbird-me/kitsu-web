@@ -7,12 +7,12 @@ export default Component.extend({
     this._super(...arguments);
     this.sortingOptions = [
       'watched', // Oldest
+      'started', // Oldest
+      'finished', // Oldest
+      'added', // Oldest
       'rating', // Lowest
       'title', // A - Z
-      'length', // Shortest
-      'started', // Latest
-      'finished', // Latest
-      'added' // Latest
+      'length' // Shortest
     ];
   },
 

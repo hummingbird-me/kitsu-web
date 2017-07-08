@@ -407,14 +407,23 @@ users:
       label: "Sort by:"
       options:
         watched: "Date Watched"
-        rating: "Rating"
-        title: "Title"
-        length: "Length"
         started: "Date Started"
         finished: "Date Finished"
         added: "Date Added"
+        rating: "Rating"
+        title: "Title"
+        length: "Length"
       directions:
         watched:
+          desc: "Recent First"
+          asc: "Oldest First"
+        started:
+          desc: "Recent First"
+          asc: "Oldest First"
+        finished:
+          desc: "Recent First"
+          asc: "Oldest First"
+        added:
           desc: "Recent First"
           asc: "Oldest First"
         rating:
@@ -426,15 +435,6 @@ users:
         length:
           desc: "Longest First"
           asc: "Shortest First"
-        started:
-          desc: "Recent First"
-          asc: "Oldest First"
-        finished:
-          desc: "Recent First"
-          asc: "Oldest First"
-        added:
-          desc: "Recent First"
-          asc: "Oldest First"
     sidebar:
       media-select: "{type, select,
         anime {{user}'s Anime}
