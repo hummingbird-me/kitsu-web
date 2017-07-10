@@ -10,6 +10,7 @@ export default Component.extend({
       'started', // Oldest
       'finished', // Oldest
       'added', // Oldest
+      'progress', // Least
       'rating', // Lowest
       'title', // A - Z
       'length' // Shortest
