@@ -1,5 +1,5 @@
-{{! Kitsu Media Reactions Top }}
-{{ad-unit unit="kitsu.media.reactions.top"
+{{! Kitsu Media Reviews Top }}
+{{ad-unit unit="kitsu.media.reviews.top"
   targeting=(hash
     section="media"
     media=media.slug)
@@ -8,33 +8,10 @@
     desktop=(array 728 90))
 }}
 
-{{#if model.taskInstance.isRunning}}
-  <div class="text-xs-center w-100 m-t-1 m-b-1">
-    {{loading-spinner size="large"}}
-    <p>{{t "media.show.reactions.loading"}}</p>
-  </div>
-{{else if model.taskInstance.error}}
-  <div class="text-xs-center w-100 m-t-1 m-b-1">
-    {{t "errors.load"}}
-  </div>
-{{else if taskValue}}
-  {{#infinite-pagination onPagination=(route-action "onPagination")}}
-    <ul class="media-list w-100">
-      {{#each taskValue as |reaction|}}
-        <div class="w-100">
-          {{media/media-reaction reaction=reaction}}
-        </div>
-      {{/each}}
-    </ul>
-  {{/infinite-pagination}}
-{{else}}
-  <div class="text-xs-center w-100 m-t-1 m-b-1">
-    {{t "errors.contentEmpty"}}
-  </div>
-{{/if}}
+{{media/media-reactions media=media noLimit=true}}
 
 {{! Kitsu Media Reactions Bottom }}
-{{ad-unit unit="kitsu.media.reactions.bottom"
+{{ad-unit unit="kitsu.media.reviews.bottom"
   targeting=(hash
     section="media"
     media=media.slug)

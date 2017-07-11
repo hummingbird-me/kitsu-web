@@ -25,14 +25,16 @@
               maxlength=145
             }}
           </div>
+
           {{! Delete Button }}
           {{#if isEditing}}
             <a href="#" {{action (perform deleteReactionTask)}} class="reaction-delete-button hint--rounded hint--bounce hint--left" aria-label={{t "reaction-modal.delete"}}>
               {{svg-jar "trash"}}
             </a>
           {{/if}}
+
           {{! Edit/Post Button }}
-          <button onclick={{perform createReactionTask}} disabled={{or changeset.isInvalid (is-empty changeset.reaction)}}>
+          <button onclick={{perform createReactionTask}} disabled={{not canPost}}>
             {{t (concat "reaction-modal." (if isEditing "edit" "post"))}}
           </button>
         {{/if}}

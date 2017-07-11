@@ -23,33 +23,43 @@
       {{/bootstrap/bs-dropdown}}
     </span>
     <span class="reaction-button">
-      {{#if getLibraryEntryTask.isrunning}}
-        {{! @TODO: Replace with loader }}
-        {{loading-spinner size="small"}}
-      {{else if libraryEntry}}
-        <a href="#" {{action (toggle "isModalOpen" this)}}>
-          {{t (concat "media.show.summary.reactions." (if (and libraryEntry.mediaReaction (not libraryEntry.mediaReaction.isNew)) "edit" "new"))}}
-        </a>
-      {{/if}}
+      <a href="#" {{action "openModal"}}>
+        {{t (concat "media.show.summary.reactions." (if (and libraryEntry.mediaReaction (not libraryEntry.mediaReaction.isNew)) "edit" "new"))}}
+      </a>
     </span>
   </div>
 
   {{! Content }}
-  {{#if getReactionsTask.isRunning}}
+  {{#if tasksRunning.isRunning}}
     <div class="text-xs-center w-100 m-t-1 m-b-1">
       {{loading-spinner size="large"}}
     </div>
   {{else if getReactionsTask.last.value}}
     <div class="reactions-list w-100">
-      {{#each getReactionsTask.last.value as |reaction|}}
-        {{media/media-reaction reaction=reaction}}
-      {{/each}}
-      <div class="reactions-more">
-        <a href={{href-to (concat media.modelType ".show.reactions") media.slug}}>
-          {{t "media.show.summary.reactions.more"}}
-        </a>
-      </div>
+      {{! Pagination }}
+      {{#if noLimit}}
+        {{#infinite-pagination onPagination=(action "onPagination")}}
+          {{#each reactions as |reaction|}}
+            {{media/media-reaction reaction=reaction}}
+          {{/each}}
+        {{/infinite-pagination}}
+      {{else}}
+        {{#each reactions as |reaction|}}
+          {{media/media-reaction reaction=reaction}}
+        {{/each}}
+        <div class="reactions-more">
+          <a href={{href-to (concat media.modelType ".show.reactions") media.slug}}>
+            {{t "media.show.summary.reactions.more"}}
+          </a>
+        </div>
+      {{/if}}
     </div>
+  {{else}} {{! Empty State }}
+    {{#if libraryEntry}}
+
+    {{else}}
+
+    {{/if}}
   {{/if}}
 </section>
 

@@ -93,7 +93,8 @@ RouterInstance.map(function() {
 
   this.route('users', { path: '/users/:name' }, function() {
     this.route('library');
-    this.route('reviews');
+    this.route('reviews'); // Legacy
+    this.route('reactions');
     this.route('followers');
     this.route('following');
     this.route('groups');

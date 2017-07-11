@@ -2,13 +2,15 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import { task, taskGroup } from 'ember-concurrency';
+import { or } from 'ember-computed';
+import { task } from 'ember-concurrency';
 
 export default Component.extend({
   isUpvoted: false,
+  isEditable: false,
   queryCache: service(),
   store: service(),
-  tasks: taskGroup().drop(),
+  tasksRunning: or('getUserVoteTask.isRunning', 'createVoteTask.isRunning', 'destroyVoteTask.isRunning'),
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -23,7 +25,7 @@ export default Component.extend({
       set(this, 'userVote', userVote);
       set(this, 'isUpvoted', true);
     }
-  }).group('tasks'),
+  }).drop(),
 
   createVoteTask: task(function* () {
     const reaction = get(this, 'reaction');
@@ -40,7 +42,7 @@ export default Component.extend({
       set(this, 'isUpvoted', false);
       reaction.decrementProperty('upVotesCount');
     }
-  }).group('tasks'),
+  }).drop(),
 
   destroyVoteTask: task(function* () {
     const reaction = get(this, 'reaction');
@@ -56,14 +58,14 @@ export default Component.extend({
       set(this, 'isUpvoted', false);
       reaction.incrementProperty('upVotesCount');
     }
-  }).group('tasks'),
+  }).drop(),
 
   actions: {
     toggleVote() {
       if (!get(this, 'session.hasUser')) {
         return get(this, 'session').signUpModal();
       }
-      if (get(this, 'tasks.isRunning')) {
+      if (get(this, 'tasksRunning.isRunning')) {
         return;
       }
       const task = get(this, 'isUpvoted') ? 'destroyVoteTask' : 'createVoteTask';
