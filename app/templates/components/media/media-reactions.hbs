@@ -22,11 +22,15 @@
         {{/dropdown.menu}}
       {{/bootstrap/bs-dropdown}}
     </span>
-    <span class="reaction-button">
-      <a href="#" {{action "openModal"}}>
-        {{t (concat "media.show.summary.reactions." (if (and libraryEntry.mediaReaction (not libraryEntry.mediaReaction.isNew)) "edit" "new"))}}
-      </a>
-    </span>
+
+    {{! Creation Button }}
+    {{#if libraryEntry}}
+      <span class="reaction-button">
+        <a href="#" {{action (toggle "isModalOpen" this)}}>
+          {{t (concat "media.show.summary.reactions." (if (and libraryEntry.mediaReaction (not libraryEntry.mediaReaction.isNew)) "edit" "new"))}}
+        </a>
+      </span>
+    {{/if}}
   </div>
 
   {{! Content }}

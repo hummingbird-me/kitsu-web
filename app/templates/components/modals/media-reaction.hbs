@@ -3,7 +3,7 @@
     <div style={{posterImageStyle}} class="reaction-poster">
       <div class="reaction-overlay">
         {{#if loadReactionTask.isRunning}}
-          <div class="text-xs-center white">
+          <div class="text-xs-center white reaction-loader">
             {{loading-spinner size="large" white=true}}
           </div>
         {{else}}
@@ -29,7 +29,11 @@
           {{! Delete Button }}
           {{#if isEditing}}
             <a href="#" {{action (perform deleteReactionTask)}} class="reaction-delete-button hint--rounded hint--bounce hint--left" aria-label={{t "reaction-modal.delete"}}>
-              {{svg-jar "trash"}}
+              {{#if deleteReactionTask.isRunning}}
+                {{loading-spinner size="small" white=true}}
+              {{else}}
+                {{svg-jar "trash"}}
+              {{/if}}
             </a>
           {{/if}}
 

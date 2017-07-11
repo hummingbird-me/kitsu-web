@@ -54,13 +54,6 @@ export default Component.extend(Pagination, {
     changeSort(sort) {
       set(this, 'sort', sort);
       get(this, 'getReactionsTask').perform();
-    },
-
-    openModal() {
-      if (!get(this, 'session.hasUser')) {
-        return get(this, 'session').signUpModal();
-      }
-      set(this, 'isModalOpen', true);
     }
   },
 
