@@ -11,7 +11,7 @@ import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Component.extend(Pagination, {
   classNames: ['stream-item-comments'],
-  sortOptions: ['likes', 'replies', 'recent'],
+  sortOptions: ['likes', 'replies', 'oldest'],
   metrics: service(),
   notify: service(),
   store: service(),
@@ -56,7 +56,7 @@ export default Component.extend(Pagination, {
   init() {
     this._super(...arguments);
     set(this, 'comments', []);
-    set(this, 'sort', get(this, 'commentSort') || 'recent');
+    set(this, 'sort', get(this, 'commentSort') || 'oldest');
   },
 
   didReceiveAttrs() {
@@ -139,9 +139,9 @@ export default Component.extend(Pagination, {
   _getSortOption() {
     const sort = get(this, 'sort');
     switch (sort) {
-      case 'likes': return '-likesCount,-createdAt';
-      case 'replies': return '-repliesCount,-createdAt';
-      default: return '-createdAt';
+      case 'likes': return '-likesCount,createdAt';
+      case 'replies': return '-repliesCount,createdAt';
+      default: return 'createdAt';
     }
   }
 });
