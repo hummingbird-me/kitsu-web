@@ -56,7 +56,7 @@ export default Component.extend(Pagination, {
   init() {
     this._super(...arguments);
     set(this, 'comments', []);
-    set(this, 'sort', get(this, 'commentSort') || 'oldest');
+    set(this, 'sort', get(this, 'commentSort') || 'recent');
   },
 
   didReceiveAttrs() {
@@ -141,7 +141,8 @@ export default Component.extend(Pagination, {
     switch (sort) {
       case 'likes': return '-likesCount,createdAt';
       case 'replies': return '-repliesCount,createdAt';
-      default: return 'createdAt';
+      case 'oldest': return 'createdAt';
+      default: return '-createdAt';
     }
   }
 });
