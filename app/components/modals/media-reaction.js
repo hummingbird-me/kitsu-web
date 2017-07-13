@@ -1,5 +1,5 @@
 import Component from 'ember-component';
-import computed, { not, or } from 'ember-computed';
+import computed, { alias, not, or } from 'ember-computed';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
@@ -13,6 +13,7 @@ import { image } from 'client/helpers/image';
 export default Component.extend({
   classNames: ['reaction-modal'],
   store: service(),
+  reaction: alias('loadReactionTask.last.value'),
   isEditing: not('loadReactionTask.last.value.isNew'),
   isWorking: or('createReactionTask.isRunning', 'deleteReactionTask.isRunning'),
 
@@ -58,6 +59,7 @@ export default Component.extend({
     yield changeset.validate();
     if (get(changeset, 'isValid') && get(changeset, 'isDirty')) {
       yield changeset.save();
+      invokeAction(this, 'onCreate', get(this, 'reaction'));
       invokeAction(this, 'onClose');
     }
   }).drop(),

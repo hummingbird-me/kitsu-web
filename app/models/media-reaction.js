@@ -12,7 +12,6 @@ export const Validations = buildValidations({
 });
 
 export default Base.extend(Validations, {
-  mediaType: attr('string'),
   reaction: attr('string'),
   upVotesCount: attr('number'),
 

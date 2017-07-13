@@ -67,7 +67,7 @@ RouterInstance.map(function() {
         this.route('episodes');
         this.route('characters');
         this.route('reactions');
-        this.route('quotes');
+        this.route('franchise');
       });
     });
   });

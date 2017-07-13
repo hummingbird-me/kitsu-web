@@ -54,6 +54,13 @@ export default Component.extend(Pagination, {
     changeSort(sort) {
       set(this, 'sort', sort);
       get(this, 'getReactionsTask').perform();
+    },
+
+    reactionCreated(reaction) {
+      const numberOfReactions = get(this, 'reactions.length');
+      if (numberOfReactions < 6) {
+        this.onPagination([reaction]);
+      }
     }
   },
 

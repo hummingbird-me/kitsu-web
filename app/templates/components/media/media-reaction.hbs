@@ -1,41 +1,43 @@
-<div class="reaction">
-  {{#if (is-self reaction.user)}}
-    <a href="javascript:void(0)" class="reaction-votes {{if isUpvoted "upvoted"}} hint--rounded hint--top hint--bounce" aria-label={{t "media-reaction.self-vote"}}>
-      {{svg-jar "upvote"}}
-      {{reaction.upVotesCount}}
-    </a>
-  {{else}}
-    <a href="#" {{action "toggleVote"}} class="reaction-votes {{if isUpvoted "upvoted"}}">
-      {{svg-jar "upvote"}}
-      {{reaction.upVotesCount}}
-    </a>
-  {{/if}}
-  <div>
-    <div class="reaction-user">
-      {{#if isEditable}}
-        <a href={{href-to (concat reaction.media.modelType ".show") reaction.media.slug}}>
-          {{reaction.media.computedTitle}}
-        </a>
+{{#if reaction}}
+  <div class="reaction">
+    {{#if (is-self reaction.user)}}
+      <a href="javascript:void(0)" class="reaction-votes {{if isUpvoted "upvoted"}} hint--rounded hint--top hint--bounce" aria-label={{t "media-reaction.self-vote"}}>
+        {{svg-jar "upvote"}}
+        {{reaction.upVotesCount}}
+      </a>
+    {{else}}
+      <a href="#" {{action "toggleVote"}} class="reaction-votes {{if isUpvoted "upvoted"}}">
+        {{svg-jar "upvote"}}
+        {{reaction.upVotesCount}}
+      </a>
+    {{/if}}
+    <div>
+      <div class="reaction-user">
+        {{#if isEditable}}
+          <a href={{href-to (concat reaction.media.modelType ".show") reaction.media.slug}}>
+            {{reaction.media.computedTitle}}
+          </a>
 
-        {{#if (is-self reaction.user)}}
-          &middot;
-          <span {{action (toggle "isModalOpen" this)}}>
-            {{t "media-reaction.edit"}}
-          </span>
+          {{#if (is-self reaction.user)}}
+            &middot;
+            <span {{action (toggle "isModalOpen" this)}}>
+              {{t "media-reaction.edit"}}
+            </span>
 
-          {{#if isModalOpen}}
-            {{to-elsewhere named="modal" send=(component "modals/media-reaction"
-              media=reaction.media
-              libraryEntry=reaction.libraryEntry.content
-              modalId="reaction-modal"
-              onClose=(toggle-action "isModalOpen" this)
-            )}}
+            {{#if isModalOpen}}
+              {{to-elsewhere named="modal" send=(component "modals/media-reaction"
+                media=reaction.media
+                libraryEntry=reaction.libraryEntry.content
+                modalId="reaction-modal"
+                onClose=(toggle-action "isModalOpen" this)
+              )}}
+            {{/if}}
           {{/if}}
+        {{else}}
+          {{reaction.user.name}}
         {{/if}}
-      {{else}}
-        {{reaction.user.name}}
-      {{/if}}
+      </div>
+      <div class="reaction-content">{{reaction.reaction}}</div>
     </div>
-    <div class="reaction-content">{{reaction.reaction}}</div>
   </div>
-</div>
+{{/if}}
