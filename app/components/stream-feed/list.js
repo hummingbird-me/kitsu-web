@@ -45,8 +45,8 @@ export default Component.extend(Pagination, {
         'subject.user,subject.target_user,subject.spoiled_unit,subject.media,subject.target_group',
         // follow
         'subject.followed',
-        // review
-        'subject.library_entry'
+        // review/reaction
+        'subject.library_entry,subject.anime,subject.manga'
       ].join(','),
       page: { limit }
     };

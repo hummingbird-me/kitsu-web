@@ -1036,3 +1036,34 @@
 .feed-occlusion-buffer {
   min-height: 300px;
 }
+
+.reaction-feed-item {
+  display: flex;
+  align-items: center;
+  .reaction-votes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 20px;
+    width: 50px;
+    color: $body-secondary-text-color;
+    font-weight: 600;
+    font-family: inherit;
+    margin-right: 25px;
+    margin-left: 25px;
+    svg {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 2px;
+      fill: $body-secondary-text-color;
+    }
+    &.upvoted {
+      color: $body-text-color;
+      svg {
+        fill: $body-text-color;
+      }
+    }
+  }
+}
