@@ -1,5 +1,5 @@
-{{! Kitsu Media Episodes Top }}
-{{ad-unit unit="kitsu.media.episodes.top"
+{{! Kitsu Media Units Top }}
+{{ad-unit unit="kitsu.media.units.top"
   targeting=(hash
     section="media"
     media=media.slug)
@@ -9,10 +9,10 @@
 }}
 
 {{#if model.taskInstance.isRunning}}
-  {{! @TODO: Episode loader }}
+  {{! @TODO: Unit loader }}
   <div class="text-xs-center w-100 m-t-1 m-b-1">
     {{loading-spinner size="large"}}
-    <p>Loading Episodes...</p>
+    <p>{{t "loading" subject=(if (eq media.modelType "anime") "Episodes" "Chapters")}}</p>
   </div>
 {{else if model.taskInstance.error}}
   <div class="text-xs-center w-100 m-t-1 m-b-1">
@@ -21,18 +21,20 @@
 {{else if taskValue}}
   {{#infinite-pagination onPagination=(route-action "onPagination")}}
     {{! @TODO: Componentsize }}
-    <ul class="media--episode-grid row">
-      {{#each taskValue as |episode|}}
-        <li class="media--episode-block col-lg-4 col-sm-6">
-          <div class="thumbnail-wrapper">
-            {{lazy-image src=(image episode.thumbnail)}}
-          </div>
-          <div class="thumbnail-description">
-            <h6>{{t "media.show.episodes.episode"}} {{episode.number}}</h6>
-            <div class="info-emphasis thumb-caption">
-              <span>{{episode.canonicalTitle}}</span>
+    <ul class="media--unit-grid row">
+      {{#each taskValue as |unit|}}
+        <li class="media--unit-block col-lg-4 col-sm-6">
+          <a href={{href-to (concat media.modelType ".show.units.show") unit}}>
+            <div class="thumbnail-wrapper">
+              {{lazy-image src=(image unit.thumbnail)}}
             </div>
-          </div>
+            <div class="thumbnail-description">
+              <h6>{{t "media.show.units.unit" type=media.modelType}} {{unit.number}}</h6>
+              <div class="info-emphasis thumb-caption">
+                <span>{{unit.canonicalTitle}}</span>
+              </div>
+            </div>
+          </a>
         </li>
       {{/each}}
     </ul>

@@ -6,7 +6,10 @@ titles:
     index: "Explore Manga"
   media:
     show:
-      episodes: "Episodes"
+      units: "{type, select,
+        anime {Episodes}
+        manga {Chapters}
+        other {}}"
       characters: "Characters"
       reactions: "Reactions"
       franchise: "Franchise"
@@ -110,7 +113,7 @@ dashboard:
     media:
       complete: "Complete"
       unstarted: "Not Started"
-      episode: "{type, select,
+      unit: "{type, select,
         anime {Ep. {num} {total, select,
           undefined {}
           other {of {total}}}}
@@ -148,7 +151,10 @@ media:
       score: "Average Rating"
       seasons: "Seasons"
       streamers: "Streamers (U.S.)"
-      episodes: "Episodes"
+      units: "{type, select,
+        anime {Episodes}
+        manga {Chapters}
+        other {}}"
       rating: "Rating"
       categories: "Categories"
       types: "Types"
@@ -160,7 +166,10 @@ media:
   show:
     navigation:
       summary: "Summary"
-      episodes: "Episodes"
+      units: "{type, select,
+        anime {Episodes}
+        manga {Chapters}
+        other {}}"
       characters: "Characters"
       reactions: "Reactions"
       franchise: "Franchise"
@@ -251,8 +260,11 @@ media:
       feed:
         header: "Community Feed"
       trailer: "Play Trailer"
-    episodes:
-      episode: "Episode"
+    units:
+      unit: "{type, select,
+        anime {Episode}
+        manga {Chapter}
+        other {}}"
     characters:
       header: "{title} Characters"
       sub-header: "{type, select,
@@ -1055,3 +1067,5 @@ errors:
   load: "There was an issue loading the content."
   contentEmpty: "Hmm, there doesn't seem to be anything here yet."
   request: "Oops! Something went wrong with the request."
+# Loading
+loading: "Loading {subject}..."
