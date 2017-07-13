@@ -55,6 +55,30 @@ export const MEDIA_QUERY_PARAMS = {
       return deserializeArray(value);
     }
   },
+  unitCount: {
+    defaultValue: [1, 100],
+    refresh: true,
+    serialize(value) {
+      const [lower, upper] = value;
+      if (lower === 1 && upper === 100) {
+        return undefined;
+      } else if (upper === 100) {
+        return serializeArray([lower, null]);
+      } else if (lower === 1) {
+        return serializeArray([null, upper]);
+      }
+      return serializeArray(value);
+    },
+    deserialize(value = []) {
+      const [lower, upper] = deserializeArray(value);
+      if (isEmpty(upper)) {
+        return [lower, 100];
+      } else if (isEmpty(lower) && !isEmpty(upper)) {
+        return [1, upper];
+      }
+      return [lower, upper];
+    }
+  },
   year: {
     defaultValue: [1907, moment().year() + 1],
     refresh: true,
@@ -98,5 +122,6 @@ export default Controller.extend({
   _setDirtyValues() {
     set(this, 'dirtyYear', get(this, 'year'));
     set(this, 'dirtyRating', get(this, 'averageRating'));
+    set(this, 'dirtyUnits', get(this, 'unitCount'));
   }
 });

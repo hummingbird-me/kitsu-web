@@ -89,6 +89,13 @@ export default Route.extend(SlideHeaderMixin, Pagination, {
       }
     });
 
+    if (!isEmpty(options.filter.unitCount)) {
+      const [mediaType] = get(this, 'routeName').split('.');
+      const unitKey = mediaType === 'anime' ? 'episodeCount' : 'chapterCount';
+      options.filter[unitKey] = options.filter.unitCount;
+      delete options.filter.unitCount;
+    }
+
     if (isEmpty(options.filter.text)) {
       options.sort = this._getSortingKey(params.sort);
     }

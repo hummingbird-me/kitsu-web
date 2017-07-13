@@ -26,7 +26,7 @@ export default Component.extend({
   /**
    * Get the translated subtext for the quick update item
    */
-  episodeText: computed('isCompleted', 'entry.{progress,unit}', function() {
+  unitText: computed('isCompleted', 'entry.{progress,unit}', function() {
     // Completed?
     if (get(this, 'isCompleted')) {
       return get(this, 'intl').t('dashboard.quick-update.media.complete');
@@ -35,8 +35,8 @@ export default Component.extend({
     if (!get(this, 'entry.progress')) {
       return get(this, 'intl').t('dashboard.quick-update.media.unstarted');
     }
-    // Current Episode
-    const text = get(this, 'intl').t('dashboard.quick-update.media.episode', {
+    // Current Unit
+    const text = get(this, 'intl').t('dashboard.quick-update.media.unit', {
       type: get(this, 'entry.media.modelType'),
       num: get(this, 'entry.progress'),
       total: get(this, 'entry.media.unitCount')
