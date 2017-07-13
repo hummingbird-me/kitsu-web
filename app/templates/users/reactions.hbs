@@ -1,18 +1,29 @@
 <div class="container">
-  {{#if model.reactionsTaskInstance.isRunning}}
-    {{! @TODO(Reactions): Loader }}
-    <div class="text-xs-center w-100 m-t-1">
-      {{loading-spinner size="large"}}
-    </div>
-  {{else if reactions}}
-    {{#infinite-pagination onPagination=(route-action "onPagination")}}
-      {{#each reactions as |reaction|}}
-        {{media/media-reaction reaction=reaction isEditable=true}}
-      {{/each}}
-    {{/infinite-pagination}}
-  {{else}}
-    <div class="text-xs-center w-100 m-t-1">
-      {{t "users.reactions.empty"}}
-    </div>
-  {{/if}}
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      {{#link-to "users.reactions" (query-params media="anime") class="nav-link"}}Anime{{/link-to}}
+    </li>
+    <li class="nav-item">
+      {{#link-to "users.reactions" (query-params media="manga") class="nav-link"}}Manga{{/link-to}}
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    {{#if model.reactionsTaskInstance.isRunning}}
+      {{! @TODO(Reactions): Loader }}
+      <div class="text-xs-center w-100 m-t-1">
+        {{loading-spinner size="large"}}
+      </div>
+    {{else if reactions}}
+      {{#infinite-pagination onPagination=(route-action "onPagination")}}
+        {{#each reactions as |reaction|}}
+          {{media/media-reaction reaction=reaction isEditable=true}}
+        {{/each}}
+      {{/infinite-pagination}}
+    {{else}}
+      <div class="text-xs-center w-100 m-t-1">
+        {{t "users.reactions.empty"}}
+      </div>
+    {{/if}}
+  </div>
 </div>
