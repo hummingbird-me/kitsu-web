@@ -27,3 +27,16 @@
     </div>
   {{/if}}
 </div>
+
+<section>
+  <h5>{{t "media.show.units.feed.header" type=model.modelType}}</h5>
+  {{stream-feed/list
+    streamType=(concat model.modelType "_aggr")
+    streamId=model.id
+    streamFilter="user"
+    readOnly=(not (can "write post"))
+    media=media
+    unitNumber=model.number
+    forceUnit=true
+  }}
+</section>

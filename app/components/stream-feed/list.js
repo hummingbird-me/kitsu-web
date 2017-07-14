@@ -7,6 +7,7 @@ import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
 import EmberObject from 'ember-object';
 import { storageFor } from 'ember-local-storage';
+import { capitalize } from 'ember-string';
 import getter from 'client/utils/getter';
 import errorMessages from 'client/utils/error-messages';
 import { unshiftObjects } from 'client/utils/array-utils';
@@ -80,18 +81,23 @@ export default Component.extend(Pagination, {
       }
     }
     // spoiler + media set
-    if (get(data, 'spoiler') === true && get(data, 'media') !== undefined) {
-      const type = get(data, 'media.modelType');
-      const entry = yield get(this, 'queryCache').query('library-entry', {
-        filter: {
-          user_id: get(this, 'session.account.id'),
-          kind: type,
-          [`${type}_id`]: get(data, 'media.id')
-        },
-        include: 'unit'
-      }).then(results => get(results, 'firstObject'));
-      if (entry) {
-        set(data, 'spoiledUnit', get(entry, 'unit'));
+    if (get(data, 'media') !== undefined && isEmpty(get(options, 'unitNumber')) === false) {
+      const media = get(data, 'media');
+      const mediaType = capitalize(get(media, 'modelType'));
+      const unitType = mediaType === 'Anime' ? 'episode' : 'chapter';
+      const number = get(options, 'unitNumber');
+      let filter;
+      if (mediaType === 'Anime') {
+        filter = {
+          mediaType,
+          number,
+          media_id: get(media, 'id')
+        };
+      } else filter = { manga_id: get(media, 'id'), number };
+      const units = yield get(this, 'queryCache').query(unitType, { filter });
+      const unit = get(units, 'firstObject');
+      if (unit) {
+        set(data, 'spoiledUnit', unit);
       }
     }
     const post = get(this, 'store').createRecord('post', data);

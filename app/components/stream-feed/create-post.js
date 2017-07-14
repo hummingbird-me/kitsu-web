@@ -18,9 +18,11 @@ export default Component.extend({
   mediaReadOnly: false,
   nsfw: false,
   spoiler: false,
+  shouldUnit: false,
   maxLength: 9000,
   _usableMedia: null,
   store: service(),
+  queryCache: service(),
 
   canPost: computed('content', function() {
     return isPresent(get(this, 'content')) &&
@@ -35,6 +37,9 @@ export default Component.extend({
     if (this._usableMedia !== null) {
       options.media = this._usableMedia;
     }
+    if (get(this, 'shouldUnit') === true && isEmpty(get(this, 'unitNumber')) === false) {
+      options.unitNumber = get(this, 'unitNumber');
+    }
     yield invokeAction(this, 'onCreate', get(this, 'content'), options);
     this._resetProperties();
   }).drop(),
@@ -45,6 +50,26 @@ export default Component.extend({
       page: { limit: 4 }
     });
   }).restartable().maxConcurrency(2),
+
+  setUnitNumberTask: task(function* () {
+    if (isEmpty(get(this, 'unitNumber')) === false) {
+      return;
+    }
+    const media = get(this, '_usableMedia');
+    const type = get(media, 'modelType');
+    const results = yield get(this, 'queryCache').query('library-entry', {
+      filter: {
+        user_id: get(this, 'session.account.id'),
+        kind: type,
+        [`${type}_id`]: get(media, 'id')
+      },
+      fields: { libraryEntry: 'progress' }
+    });
+    const progress = get(results, 'firstObject.progress');
+    if (progress > 0) {
+      set(this, 'unitNumber', progress);
+    }
+  }).restartable(),
 
   search: task(function* (query) {
     yield timeout(150);
@@ -72,6 +97,11 @@ export default Component.extend({
     }
   },
 
+  init() {
+    this._super(...arguments);
+    set(this, 'shouldUnit', get(this, 'forceUnit'));
+  },
+
   didReceiveAttrs() {
     this._super(...arguments);
     set(this, 'author', get(this, 'session.account'));
@@ -89,6 +119,7 @@ export default Component.extend({
       set(this, '_usableMedia', get(this, 'media'));
       set(this, 'mediaReadOnly', true);
       set(this, 'spoiler', true);
+      get(this, 'setUnitNumberTask').perform();
     }
   },
 

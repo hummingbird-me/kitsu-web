@@ -68,7 +68,7 @@
           disabled=mediaReadOnly
           placeholder="Type to tag a show or manga" as |media|
         }}
-          <div {{action (queue (action (mut _usableMedia) media) (action (mut spoiler) true))}}>
+          <div {{action (queue (action (mut _usableMedia) media) (perform setUnitNumberTask) (action (mut spoiler) true))}}>
             <span class="tag-poster">{{lazy-image src=(image media.posterImage "tiny")}}</span>
             <span class="tag tag-primary">{{capitalize media.modelType}}</span>
             <span>{{media.computedTitle}}</span>
@@ -102,6 +102,25 @@
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Spoiler</span>
       </label>
+
+      {{#if _usableMedia}}
+        <span class="tag-unit">
+          <label class="custom-control custom-checkbox">
+            {{one-way-checkbox shouldUnit update=(action (mut shouldUnit)) disabled=(or isEditing forceUnit) class="custom-control-input"}}
+            <span class="custom-control-indicator"></span>
+          </label>
+          <span>
+            {{t "media.show.units.unit" type=(if (eq _usableMedia.modelType "anime") "episode" "chapter")}}
+            {{one-way-number unitNumber
+              disabled=(or isEditing forceUnit)
+              min=1
+              max=_usableMedia.unitCount
+              update=(action (mut unitNumber))
+              placeholder="-"
+            }}
+          </span>
+        </span>
+      {{/if}}
     </div>
   </div>
 {{/if}}
