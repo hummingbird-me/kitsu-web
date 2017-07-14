@@ -742,6 +742,29 @@
     background: $foreground-background-color;
   }
 }
+.tag-unit {
+  position: relative;
+  top: 5px;
+  float: right;
+  input {
+    border: 1px solid $divider-color;
+    border-radius: 3px;
+  }
+}
+
+.modal-content {
+  .add-content-expanded {
+    textarea {
+      border: 0;
+    }
+  }
+  .tag-unit {
+    top: 0;
+    input {
+      width: inherit;
+    }
+  }
+}
 
 .stream-content-editor {
   min-height: 100px;
