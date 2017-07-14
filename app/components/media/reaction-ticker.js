@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Component from 'ember-component';
 import service from 'ember-service/inject';
 import get from 'ember-metal/get';
@@ -13,7 +14,7 @@ export default Component.extend({
   index: 0,
 
   reaction: computed('index', 'getReactionsTask.last.value', function() {
-    const reactions = get(this, 'getReactionsTask.last.value');
+    const reactions = get(this, 'getReactionsTask.last.value') || [];
     return reactions.objectAt(get(this, 'index'));
   }).readOnly(),
 
@@ -36,6 +37,7 @@ export default Component.extend({
   }).drop(),
 
   tickerTask: task(function* (reactions) {
+    if (Ember.testing) { return; }
     while (true) {
       yield timeout(REACTION_TICKER_MS);
       const index = get(this, 'index');

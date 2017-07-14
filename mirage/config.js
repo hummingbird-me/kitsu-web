@@ -22,6 +22,7 @@ function _defineRoutes(server) {
   server.get('/reviews', { data: [] });
   server.get('/streaming-links', { data: [] });
   server.get('/media-follows', { data: [] });
+  server.get('/media-reactions', { data: [] });
   server.get('/library-entries', { data: [] });
   server.post('/library-entries');
 
