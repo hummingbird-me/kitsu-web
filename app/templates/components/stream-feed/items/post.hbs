@@ -156,6 +156,12 @@
                   <a class="author-name" href={{href-to (concat post.media.modelType ".show") post.media}}>
                     {{post.media.computedTitle}}
                   </a>
+                  —
+                  {{#if post.spoiledUnit}}
+                    <a class="author-name" href={{href-to (concat post.media.modelType ".show." post.spoiledUnit.modelType ".show") post.media post.spoiledUnit}}>
+                      {{t "feeds.post.spoilers" type=post.media.modelType num=post.spoiledUnit.number}} {{postUnitText}}
+                    </a>
+                  {{/if}}
                   <small class="secondary-text">
                     <div class="media-tag-synopsis">
                       {{truncate post.media.synopsis 150}}
