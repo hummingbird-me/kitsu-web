@@ -1,17 +1,26 @@
 import Component from 'ember-component';
+import get from 'ember-metal/get';
+import set from 'ember-metal/set';
 
 export default Component.extend({
   init() {
     this._super(...arguments);
     this.sortingOptions = [
-      '-watched', // Recent
       'watched', // Oldest
-      '-rating', // Highest
+      'started', // Oldest
+      'finished', // Oldest
+      'added', // Oldest
+      'progress', // Least
       'rating', // Lowest
       'title', // A - Z
-      '-title', // Z - A
-      'length', // Shortest
-      '-length' // Longest
+      'length' // Shortest
     ];
+  },
+
+  actions: {
+    toggleSortDirection() {
+      const direction = get(this, 'direction');
+      set(this, 'direction', direction === 'desc' ? 'asc' : 'desc');
+    }
   }
 });

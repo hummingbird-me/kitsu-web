@@ -18,7 +18,11 @@ const queryParams = new QueryParams({
     refresh: true
   },
   sort: {
-    defaultValue: '-watched',
+    defaultValue: 'watched',
+    refresh: true
+  },
+  direction: {
+    defaultValue: 'desc',
     refresh: true
   },
   title: {

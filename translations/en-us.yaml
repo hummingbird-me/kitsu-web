@@ -406,14 +406,39 @@ users:
     sorting:
       label: "Sort by:"
       options:
-        -watched: "Date Watched: Recent First"
-        watched: "Date Watched: Oldest First"
-        -rating: "Rating: Highest First"
-        rating: "Rating: Lowest First"
-        title: "Title: A-Z"
-        -title: "Title: Z-A"
-        length: "Length: Shortest First"
-        -length: "Length: Longest First"
+        watched: "Date Watched"
+        started: "Date Started"
+        finished: "Date Finished"
+        added: "Date Added"
+        progress: "Progress"
+        rating: "Rating"
+        title: "Title"
+        length: "Length"
+      directions:
+        watched:
+          desc: "Recent First"
+          asc: "Oldest First"
+        started:
+          desc: "Recent First"
+          asc: "Oldest First"
+        finished:
+          desc: "Recent First"
+          asc: "Oldest First"
+        added:
+          desc: "Recent First"
+          asc: "Oldest First"
+        progress:
+          desc: "Most First"
+          asc: "Least First"
+        rating:
+          desc: "Highest First"
+          asc: "Lowest First"
+        title:
+          desc: "A-Z"
+          asc: "Z-A"
+        length:
+          desc: "Longest First"
+          asc: "Shortest First"
     sidebar:
       media-select: "{type, select,
         anime {{user}'s Anime}
