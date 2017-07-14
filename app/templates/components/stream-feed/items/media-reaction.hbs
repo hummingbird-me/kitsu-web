@@ -4,24 +4,25 @@
       {{lazy-image src=(image media.posterImage "medium")}}
     </a>
   </div>
-  <div class="col-xs no-padding-left">
-    <div class="stream-review-content">
-      <header class="author-header">
-        <a class="review-avatar" href={{href-to "users.index" reaction.user.name}}>
-          {{lazy-image src=(image reaction.user.avatar "small")}}
+  <div class="stream-item--media-timeline col-xs">
+    <div class="stream-item--title-block">
+      <div class="author-info">
+        <a class="author-name" href={{href-to (concat media.modelType ".show") media.slug}} onclick={{action "trackEngagement" "click"}}>
+          {{media.computedTitle}}
         </a>
-        <h5 class="name-heading person-heading left">
-          <a href={{href-to (concat media.modelType ".show") media.slug}}>
-            {{media.computedTitle}}
-          </a>
-          <small>Reaction by</small>
-          <a href={{href-to "users.index" reaction.user.name}}>{{reaction.user.name}}</a>
-        </h5>
-      </header>
+      </div>
+    </div>
 
-      {{! reaction content }}
-      <div class="comment-body reaction-feed-item">
-        <div class="reaction-vote">
+    {{! reaction content }}
+    <div class="comment-body reaction-feed-item">
+      <div class="reaction-content">
+        <span class="reaction-message">“{{reaction.reaction}}”</span>
+        <span class="reaction-meta">
+          {{lazy-image src=(image reaction.user.avatar "tiny")}}
+          <a href={{href-to "users.index" reaction.user.name}}>{{reaction.user.name}}</a>
+        </span>
+        <hr>
+        <div class="reaction-actions">
           {{#if (is-self reaction.user)}}
             <a href="javascript:void(0)" class="reaction-votes {{if isUpvoted "upvoted"}} hint--rounded hint--right hint--bounce" aria-label={{t "media-reaction.self-vote"}}>
               {{svg-jar "upvote"}}
@@ -33,9 +34,6 @@
               {{reaction.upVotesCount}}
             </a>
           {{/if}}
-        </div>
-        <div class="reaction-message">
-          {{reaction.reaction}}
         </div>
       </div>
     </div>
