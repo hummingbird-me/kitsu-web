@@ -1,0 +1,29 @@
+<div class="unit-summary">
+  <div class="unit-thumbnail col-lg-4 col-sm-6">
+    {{media/units/unit-thumbnail unit=model}}
+  </div>
+
+  <div class="unit-info">
+    {{#if humanizedLength}}
+      <div class="unit-length">
+        {{humanizedLength}}
+      </div>
+    {{/if}}
+
+    {{#if (or model.airdate model.published)}}
+      <div class="unit-date">
+        {{#if (eq model.modelType "episode")}}
+          {{t "media.show.units.date" type="episode" }}: {{moment-format model.airdate "MMM D, YYYY"}}
+        {{else}}
+          {{t "media.show.units.date" type="chapter" }}: {{moment-format model.published "MMM D, YYYY"}}
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+
+  {{#if model.synopsis}}
+    <div class="unit-synopsis">
+      {{model.synopsis}}
+    </div>
+  {{/if}}
+</div>

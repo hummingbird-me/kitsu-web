@@ -24,7 +24,8 @@
       <div class="row">
         <div class="nav navbar-nav">
           {{link-to (t "media.show.navigation.summary") (concat media.modelType ".show.index") class="nav-item nav-link"}}
-          {{link-to (t "media.show.navigation.units" type=media.modelType) (concat media.modelType ".show.units") class="nav-item nav-link"}}
+          {{link-to (t "media.show.navigation.units" type=media.modelType)
+            (concat media.modelType ".show." (if (eq media.modelType "anime") "episodes" "chapters")) class="nav-item nav-link"}}
           {{link-to (t "media.show.navigation.characters") (concat media.modelType ".show.characters") class="nav-item nav-link"}}
           {{link-to (t "media.show.navigation.reactions") (concat media.modelType ".show.reactions") class="nav-item nav-link"}}
           {{! Hide from Manga ATM }}

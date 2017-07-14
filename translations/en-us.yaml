@@ -262,8 +262,13 @@ media:
       trailer: "Play Trailer"
     units:
       unit: "{type, select,
-        anime {Episode}
-        manga {Chapter}
+        episode {Episode}
+        chapter {Chapter}
+        other {}}"
+      pages: "{length} Pages"
+      date: "{type, select,
+        episode {Aired}
+        chapter {Published}
         other {}}"
     characters:
       header: "{title} Characters"
@@ -1068,4 +1073,9 @@ errors:
   contentEmpty: "Hmm, there doesn't seem to be anything here yet."
   request: "Oops! Something went wrong with the request."
 # Loading
-loading: "Loading {subject}..."
+loading: "Loading {subject, select,
+  episode {Episode}
+  chapter {Chapter}
+  episodes {Episodes}
+  chapters {Chapters}
+  other {}}..."

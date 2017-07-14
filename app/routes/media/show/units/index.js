@@ -6,7 +6,7 @@ import { capitalize } from 'ember-string';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(Pagination, {
-  templateName: 'media/show/units',
+  templateName: 'media/show/units/index',
   intl: service(),
 
   model() {
