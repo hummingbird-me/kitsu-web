@@ -620,12 +620,19 @@
   }
 }
 
+.media--franchise-header {
+  width: 100%;
+}
+
 .media--franchise-grid {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   .media--franchise-item {
-    max-width: 200px;
+    width: 170px;
+    max-width: 170px;
     margin: 5px;
+    margin-bottom: 10px;
     .poster-wrapper {
       position: relative;
       .poster-overlay {
@@ -647,6 +654,9 @@
         font-size: 16px;
         font-weight: bold;
         display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .media-era {
         font-size: 12px;
