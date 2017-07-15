@@ -12,6 +12,7 @@ import { image } from 'client/helpers/image';
 
 export default Component.extend({
   classNames: ['reaction-modal'],
+  placeholderIndex: 0,
   store: service(),
   reaction: alias('loadReactionTask.last.value'),
   isEditing: not('loadReactionTask.last.value.isNew'),
@@ -36,6 +37,7 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
     get(this, 'loadReactionTask').perform();
+    set(this, 'placeholderIndex', this._getRandomInt(0, 4));
   },
 
   loadReactionTask: task(function* () {
@@ -69,5 +71,11 @@ export default Component.extend({
     const reaction = yield libraryEntry.belongsTo('mediaReaction').load();
     yield reaction.destroyRecord();
     invokeAction(this, 'onClose');
-  }).drop()
+  }).drop(),
+
+  _getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
 });

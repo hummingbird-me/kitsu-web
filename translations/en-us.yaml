@@ -201,6 +201,7 @@ media:
           -createdAt: "Recent"
         new: "New Reaction"
         edit: "My Reaction"
+        empty: "Doesn't look like anyone has reacted to this yet"
       characters:
         header: "Characters"
         more: "View all characters"
@@ -949,6 +950,11 @@ reaction-modal:
   edit: "Edit"
   edit-warning: "Careful! Editing will delete your upvotes."
   delete: "Delete Reaction"
+  placeholder: "{index, plural,
+    =0 {Got me rethinking some important life decisions.}
+    =1 {Unexpectedly good! Lots of memorable scenes.}
+    =2 {While it may not be everyone's cup of tea, it's certainly interesting.}
+    other {Overrated, don't waste your time on this one.}}"
 # component: library-entry/*
 library-entry:
   state:

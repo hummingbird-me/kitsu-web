@@ -21,7 +21,7 @@
             </div>
             {{expanding-textarea changeset.reaction
               update=(action (mut changeset.reaction))
-              placeholder="What's your reaction? [Placeholder]"
+              placeholder=(t "reaction-modal.placeholder" index=placeholderIndex)
               maxlength=145
             }}
           </div>
