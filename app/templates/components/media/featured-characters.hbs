@@ -16,11 +16,13 @@
               </a>
             </div>
           {{/each}}
-          <a class="more-link" href={{href-to (concat media.modelType ".show.characters")}}>
-            {{t "media.show.summary.characters.more"}}
-          </a>
         {{/if}}
       </div>
+      {{#if taskInstance.value}}
+        <a class="more-link" href={{href-to (concat media.modelType ".show.characters")}}>
+          {{t "media.show.summary.characters.more"}}
+        </a>
+      {{/if}}
     </div>
   </section>
 {{/if}}

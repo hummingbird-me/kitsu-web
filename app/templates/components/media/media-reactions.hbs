@@ -34,7 +34,7 @@
   </div>
 
   {{! Content }}
-  {{#if tasksRunning.isRunning}}
+  {{#if tasksRunning}}
     <div class="text-xs-center w-100 m-t-1 m-b-1">
       {{loading-spinner size="large"}}
     </div>
@@ -59,11 +59,9 @@
       {{/if}}
     </div>
   {{else}} {{! Empty State }}
-    {{#if libraryEntry}}
-      <div class="text-xs-center w-100">
-        <p>{{t "media.show.summary.reactions.empty"}}</p>
-      </div>
-    {{/if}}
+    <div class="text-xs-center w-100">
+      <p>{{t "media.show.summary.reactions.empty"}}</p>
+    </div>
   {{/if}}
 </section>
 

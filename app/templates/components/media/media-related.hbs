@@ -20,11 +20,13 @@
               </div>
             {{/with}}
           {{/each}}
-          <a class="more-link" href={{href-to (concat media.modelType ".show.franchise")}}>
-            {{t "media.show.summary.relationships.more" title=media.computedTitle}}
-          </a>
         {{/if}}
       </div>
+      {{#if getRelatedMediaTask.last.value}}
+        <a class="more-link" href={{href-to (concat media.modelType ".show.franchise")}}>
+          {{t "media.show.summary.relationships.more" title=media.computedTitle}}
+        </a>
+      {{/if}}
     </div>
   </section>
 {{/if}}
