@@ -1,18 +1,30 @@
-<div class="related-media-panel">
-  <h5>{{t "media.show.summary.relationships.header"}}</h5>
-  <div class="favorite-media-grid row">
-    {{! @TODO: Should be data-loaded }}
-    {{#each featuredMedia as |media|}}
-      <div class="favorite-item col-sm-3">
-        {{#media-popover media=media attachment="bottom middle" targetAttachment="top middle"}}
-          <a href={{href-to (concat media.modelType ".show") media.slug}}>
-            {{lazy-image src=(image media.posterImage "small")}}
+{{#if shouldRender}}
+  <section class="media--related">
+    <div class="related-media-panel">
+      <h5>{{t "media.show.summary.relationships.header"}}</h5>
+      <div class="favorite-media-grid row">
+        {{#if getRelatedMediaTask.isRunning}}
+          {{! @TODO: Custom Loader }}
+          <div class="text-xs-center w-100 m-t-1 m-b-1">
+            {{loading-spinner size="large"}}
+          </div>
+        {{else if getRelatedMediaTask.last.value}}
+          {{#each getRelatedMediaTask.last.value as |related|}}
+            {{#with related.destination as |media|}}
+              <div class="favorite-item col-sm-3">
+                {{#media-popover media=media attachment="bottom middle" targetAttachment="top middle"}}
+                  <a href={{href-to (concat media.modelType ".show") media.slug}}>
+                    {{lazy-image src=(image media.posterImage "small")}}
+                  </a>
+                {{/media-popover}}
+              </div>
+            {{/with}}
+          {{/each}}
+          <a class="more-link" href={{href-to (concat media.modelType ".show.franchise")}}>
+            {{t "media.show.summary.relationships.more" title=media.computedTitle}}
           </a>
-        {{/media-popover}}
+        {{/if}}
       </div>
-    {{/each}}
-    <a class="more-link" href={{href-to (concat media.modelType ".show.franchise")}}>
-      {{t "media.show.summary.relationships.more" title=media.computedTitle}}
-    </a>
-  </div>
-</div>
+    </div>
+  </section>
+{{/if}}

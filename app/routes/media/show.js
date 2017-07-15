@@ -12,7 +12,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
 
   model({ slug }) {
     const [type] = get(this, 'routeName').split('.');
-    let include = ['categories', 'mediaRelationships.destination'];
+    let include = ['categories'];
     if (type === 'anime') {
       include.push('animeProductions.producer');
     }

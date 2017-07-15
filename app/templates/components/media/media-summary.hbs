@@ -9,7 +9,9 @@
   {{media/featured-characters media=media}}
 
   {{! Related Media }}
-  {{media/media-related media=media}}
+  {{#if (eq media.modelType "anime")}}
+    {{media/media-related media=media}}
+  {{/if}}
 </div>
 
 {{! Kitsu Media Summary Sidebar }}

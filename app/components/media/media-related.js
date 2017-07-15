@@ -1,27 +1,28 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
-import computed from 'ember-computed';
+import set from 'ember-metal/set';
+import service from 'ember-service/inject';
+import { task } from 'ember-concurrency';
 
 export default Component.extend({
-  tagName: 'section',
-  classNames: ['media--related'],
+  tagName: '',
+  shouldRender: true,
+  queryCache: service(),
 
-  featuredMedia: computed('media.relationships', function() {
-    const relationships = get(this, 'media.mediaRelationships') || [];
-    const media = relationships.map(relation => get(relation, 'destination'));
-    return media.sort((a, b) => this._sortByDate(a, b)).slice(0, 4);
-  }).readOnly(),
+  didReceiveAttrs() {
+    this._super(...arguments);
+    get(this, 'getRelatedMediaTask').perform();
+  },
 
-  _sortByDate(a, b) {
-    const aStart = get(a, 'startDate');
-    const bStart = get(b, 'startDate');
-    if (aStart && bStart) {
-      if (aStart.isBefore(bStart)) {
-        return -1;
-      } else if (aStart.isAfter(bStart)) {
-        return 1;
-      }
+  getRelatedMediaTask: task(function* () {
+    const response = yield get(this, 'queryCache').query('media-relationship', {
+      filter: { source_id: get(this, 'media.id') },
+      include: 'destination',
+      page: { limit: 4 }
+    });
+    if (get(response, 'length') === 0) {
+      set(this, 'shouldRender', false);
     }
-    return 0;
-  }
+    return response;
+  }).drop()
 });
