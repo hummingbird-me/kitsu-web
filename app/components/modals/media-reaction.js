@@ -74,8 +74,8 @@ export default Component.extend({
   }).drop(),
 
   _getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
+    const _min = Math.ceil(min);
+    const _max = Math.floor(max);
+    return Math.floor(Math.random() * (_max - _min)) + _min;
   }
 });
