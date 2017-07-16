@@ -24,7 +24,7 @@
     </span>
 
     {{! Creation Button }}
-    {{#if libraryEntry}}
+    {{#if (and libraryEntry (eq libraryEntry.status "completed"))}}
       <span class="reaction-button">
         <a href="#" {{action (toggle "isModalOpen" this)}}>
           {{t (concat "media.show.summary.reactions." (if (and libraryEntry.mediaReaction (not libraryEntry.mediaReaction.isNew)) "edit" "new"))}}
