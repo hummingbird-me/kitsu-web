@@ -4,13 +4,22 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { or } from 'ember-computed';
 import { task } from 'ember-concurrency';
+import getter from 'client/utils/getter';
+import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   isUpvoted: false,
-  isEditable: false,
+  showUser: true,
   queryCache: service(),
   store: service(),
+  router: service('-routing'),
   tasksRunning: or('getUserVoteTask.isRunning', 'createVoteTask.isRunning', 'destroyVoteTask.isRunning'),
+
+  canModerate: getter(function() {
+    if (get(this, 'session.account').hasRole('admin', get(this, 'reaction'))) {
+      return true;
+    }
+  }),
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -70,7 +79,19 @@ export default Component.extend({
       }
       const task = get(this, 'isUpvoted') ? 'destroyVoteTask' : 'createVoteTask';
       get(this, task).perform();
-    }
+    },
+
+    deleteReaction() {
+      if (get(this, 'reaction.isDeleted')) { return; }
+      get(this, 'reaction').destroyRecord()
+        .then(() => {
+          get(this, 'router').transitionTo('dashboard');
+        })
+        .catch((err) => {
+          get(this, 'reaction').rollbackAttributes();
+          get(this, 'notify').error(errorMessages(err));
+        });
+    },
   },
 
   _getRequestOptions() {
