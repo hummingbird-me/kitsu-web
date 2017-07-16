@@ -1,6 +1,8 @@
 <section class="media-rating">
   {{! @TODO: This is where relative ratings should go when they're available. }}
-  <span class="media-community-rating {{percentageClass}}">
-    {{t "media.show.summary.ratings.community" rating=(truncate media.averageRating 2)}}
-  </span>
+  {{#if media.averageRating}}
+    <span class="media-community-rating {{percentageClass}}">
+      {{t "media.show.summary.ratings.community" rating=(truncate media.averageRating 2)}}
+    </span>
+  {{/if}}
 </section>
