@@ -17,12 +17,13 @@ export default Component.extend(Pagination, {
   queryCache: service(),
   tasksRunning: or('getReactionsTask.isRunning', 'getLibraryEntryTask.isRunning'),
   libraryEntry: alias('getLibraryEntryTask.last.value'),
-  reactions: concat('getReactionsTask.last.value', 'paginatedRecords'),
+  reactions: concat('userCreated', 'getReactionsTask.last.value', 'paginatedRecords'),
 
   didReceiveAttrs() {
     this._super(...arguments);
     get(this, 'getReactionsTask').perform();
     get(this, 'getLibraryEntryTask').perform();
+    set(this, 'userCreated', []);
   },
 
   getReactionsTask: task(function* () {
@@ -57,10 +58,7 @@ export default Component.extend(Pagination, {
     },
 
     reactionCreated(reaction) {
-      const numberOfReactions = get(this, 'reactions.length');
-      if (numberOfReactions < 6) {
-        this.onPagination([reaction]);
-      }
+      get(this, 'userCreated').addObject(reaction);
     }
   },
 
