@@ -1041,20 +1041,19 @@
   display: flex;
   align-items: center;
   .reaction-actions {
-    display: inline-block;
-    border: 1px solid $divider-color;
-    border-radius: 3px;
-    padding: 5px 10px;
-    background: $white;
+    display: flex;
   }
   .reaction-votes {
     display: flex;
     flex-direxction: row;
     align-items: center;
     position: relative;
+    padding: 5px;
     color: $body-text-color;
     font-weight: bold;
     font-size: 12px;
+    border: 1px solid $divider-color;
+    border-radius: 3px;
     svg {
       width: 12px;
       height: 12px;
@@ -1065,6 +1064,9 @@
         fill: $body-link-color;
       }
     }
+  }
+  .reaction-options {
+    margin-left: auto;
   }
   .reaction-content {
     border: 1px solid $divider-color;

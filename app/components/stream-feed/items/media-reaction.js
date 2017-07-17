@@ -4,17 +4,32 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { alias, reads } from 'ember-computed';
 import { invokeAction } from 'ember-invoke-action';
+import getter from 'client/utils/getter';
 import errorMessages from 'client/utils/error-messages';
+import ClipboardMixin from 'client/mixins/clipboard';
 
-export default Component.extend({
+export default Component.extend(ClipboardMixin, {
   classNames: ['stream-item', 'row'],
   metrics: service(),
   router: service('-routing'),
   activity: reads('group.activities.firstObject'),
   media: alias('reaction.media'),
+  host: getter(() => `${location.protocol}//${location.host}`),
+
+  canDelete: getter(function() {
+    const currentUser = get(this, 'session.account');
+    if (currentUser.hasRole('admin', get(this, 'reaction'))) {
+      return true;
+    }
+    if (get(currentUser, 'id') === get(this, 'reaction.user.id')) {
+      return true;
+    }
+  }),
 
   didReceiveAttrs() {
-    set(this, 'reaction', get(this, 'activity.subject.content') || get(this, 'activity.subject'));
+    if (get(this, 'group') !== undefined) {
+      set(this, 'reaction', get(this, 'activity.subject.content') || get(this, 'activity.subject'));
+    }
     this._super(...arguments);
   },
 
