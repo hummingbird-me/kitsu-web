@@ -71,25 +71,6 @@ module.exports = function(defaults) {
       }
     },
 
-    // addons
-    'ember-composable-helpers': {
-      only: [
-        // Action
-        'pipe', 'toggle', 'queue', 'toggle-action',
-        // Array
-        'array', 'map-by', 'sort-by', 'filter-by', 'reject-by',
-        'find-by', 'take', 'repeat', 'contains',
-        // Object
-        'group-by',
-        // Math
-        'inc'
-      ]
-    },
-
-    'ember-cli-string-helpers': {
-      only: ['capitalize', 'classify', 'html-safe', 'truncate', 'w']
-    },
-
     // assets
     nodeAssets: {
       autosize: {
