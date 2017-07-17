@@ -120,7 +120,10 @@ export default Service.extend({
         cache[queryAsString] = { promise, expiry: this._getExpiryDate() };
       }
       return records;
-    }).catch(() => ({}));
+    }).catch((error) => {
+      get(this, 'raven').captureException(error);
+      return {};
+    });
   },
 
   /**
