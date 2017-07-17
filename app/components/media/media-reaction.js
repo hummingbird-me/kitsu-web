@@ -6,14 +6,16 @@ import { or } from 'ember-computed';
 import { task } from 'ember-concurrency';
 import getter from 'client/utils/getter';
 import errorMessages from 'client/utils/error-messages';
+import ClipboardMixin from 'client/mixins/clipboard';
 
-export default Component.extend({
+export default Component.extend(ClipboardMixin, {
   isUpvoted: false,
   showUser: true,
   queryCache: service(),
   store: service(),
   router: service('-routing'),
   tasksRunning: or('getUserVoteTask.isRunning', 'createVoteTask.isRunning', 'destroyVoteTask.isRunning'),
+  host: getter(() => `${location.protocol}//${location.host}`),
 
   canModerate: getter(function() {
     if (get(this, 'session.account').hasRole('admin', get(this, 'reaction'))) {
