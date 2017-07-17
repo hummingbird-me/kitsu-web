@@ -17,8 +17,12 @@ export default Component.extend(ClipboardMixin, {
   tasksRunning: or('getUserVoteTask.isRunning', 'createVoteTask.isRunning', 'destroyVoteTask.isRunning'),
   host: getter(() => `${location.protocol}//${location.host}`),
 
-  canModerate: getter(function() {
-    if (get(this, 'session.account').hasRole('admin', get(this, 'reaction'))) {
+  canDelete: getter(function() {
+    const currentUser = get(this, 'session.account');
+    if (currentUser.hasRole('admin', get(this, 'reaction'))) {
+      return true;
+    }
+    if (get(currentUser, 'id') === get(this, 'reaction.user.id')) {
       return true;
     }
   }),
@@ -86,9 +90,6 @@ export default Component.extend(ClipboardMixin, {
     deleteReaction() {
       if (get(this, 'reaction.isDeleted')) { return; }
       get(this, 'reaction').destroyRecord()
-        .then(() => {
-          get(this, 'router').transitionTo('dashboard');
-        })
         .catch((err) => {
           get(this, 'reaction').rollbackAttributes();
           get(this, 'notify').error(errorMessages(err));

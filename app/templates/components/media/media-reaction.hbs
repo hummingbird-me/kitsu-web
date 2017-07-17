@@ -58,7 +58,7 @@
           </a>
 
           {{! Deleting Options }}
-          {{#if canModerate}}
+          {{#if canDelete}}
             <a class="dropdown-item" href="#" {{action (toggle "deleteModalOpened" this)}}>{{t "media.show.reactions.delete"}}</a>
             {{#if deleteModalOpened}}
               {{to-elsewhere named="modal" send=(component "modals/confirm-action"
