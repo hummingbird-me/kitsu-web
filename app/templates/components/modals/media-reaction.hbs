@@ -2,7 +2,7 @@
   {{#modal.body}}
     <div style={{posterImageStyle}} class="reaction-poster">
       <div class="reaction-overlay">
-        {{#if loadReactionTask.isRunning}}
+        {{#if (or isLoadingExternal loadReactionTask.isRunning)}}
           <div class="text-xs-center white reaction-loader">
             {{loading-spinner size="large" white=true}}
           </div>

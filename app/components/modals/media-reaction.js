@@ -62,7 +62,9 @@ export default Component.extend({
     if (get(changeset, 'isValid') && get(changeset, 'isDirty')) {
       yield changeset.save();
       invokeAction(this, 'onCreate', get(this, 'reaction'));
-      invokeAction(this, 'onClose');
+      if (!get(this, 'doNotClose')) {
+        invokeAction(this, 'onClose');
+      }
     }
   }).drop(),
 

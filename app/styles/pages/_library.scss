@@ -4,6 +4,41 @@
   .card {
     padding: 20px;
   }
+  hr {
+    margin-bottom: 5px;
+  }
+  .library-manage-text {
+    color: $body-secondary-text-color;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .library-issues {
+    border: 1px solid $divider-color;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    .library-issues--title {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      top: -21px;
+      > span {
+        background-color: $background-color;
+        font-weight: bold;
+        font-size: 14px;
+        color: $body-secondary-text-color;
+        padding: 0 10px;
+      }
+    }
+    .library-issues--action {
+      font-size: 12px;
+      button {
+        float: right;
+        padding: 2px 10px;
+      }
+    }
+  }
 }
 
 .library-sections {
