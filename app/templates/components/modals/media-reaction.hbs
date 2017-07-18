@@ -37,6 +37,13 @@
             </a>
           {{/if}}
 
+          {{! Skip Button }}
+          {{#if showSkipButton}}
+            <button class="skip-button" onclick={{action onSkip}}>
+              {{t "reaction-modal.skip"}}
+            </button>
+          {{/if}}
+
           {{! Edit/Post Button }}
           <button onclick={{perform createReactionTask}} disabled={{not canPost}}>
             {{t (concat "reaction-modal." (if isEditing "edit" "post"))}}

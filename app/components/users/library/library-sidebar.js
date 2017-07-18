@@ -60,9 +60,10 @@ export default Component.extend({
       });
     },
 
-    increaseReactionIndex() {
-      console.log('hello');
-      this.decrementProperty('reactionsCount');
+    increaseReactionIndex(isSkip = false) {
+      if (!isSkip) {
+        this.decrementProperty('reactionsCount');
+      }
       this.incrementProperty('reactionIndex');
       get(this, 'fixReactionsTask').perform();
     }
