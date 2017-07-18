@@ -35,7 +35,7 @@ export default Component.extend({
       if (get(this, 'libraryEntry')) {
         invoke(this, 'updateAttribute', 'status', status);
       } else {
-        invoke(this, 'createLibraryEntry', status);
+        get(this, 'createLibraryEntryTask').perform(status);
       }
     }
   },
