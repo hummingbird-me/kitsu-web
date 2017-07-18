@@ -64,20 +64,7 @@ export default Component.extend(Pagination, {
     }
     // posting on a group
     if (get(this, 'kitsuGroup') !== undefined) {
-      // is the sessioned user a member?
-      const groupId = get(this, 'kitsuGroup.id');
-      const groupMember = yield get(this, 'queryCache').query('group-member', {
-        filter: {
-          group: groupId,
-          user: get(this, 'session.account.id')
-        }
-      }).then(records => get(records, 'firstObject'));
-      if (groupMember) {
-        set(data, 'targetGroup', get(this, 'kitsuGroup'));
-      } else {
-        get(this, 'notify').error('You must be a member of this group to post.');
-        return;
-      }
+      set(data, 'targetGroup', get(this, 'kitsuGroup'));
     }
     // spoiler + media set
     if (get(data, 'spoiler') === true && get(data, 'media') !== undefined) {
