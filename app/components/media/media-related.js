@@ -18,7 +18,6 @@ export default Component.extend({
     const response = yield get(this, 'queryCache').query('media-relationship', {
       filter: { source_id: get(this, 'media.id') },
       include: 'destination',
-      sort: 'destination.start_date',
       page: { limit: 4 }
     });
     if (get(response, 'length') === 0) {
