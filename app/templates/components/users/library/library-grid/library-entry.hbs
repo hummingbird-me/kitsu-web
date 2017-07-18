@@ -78,7 +78,7 @@
 </div>
 
 {{#if showEditModal}}
-  {{to-elsewhere named="modal" send=(component "users/library/library-edit"
+  {{to-elsewhere named="modal" send=(component "modals/library-edit"
     isReadOnly=readOnlyModal
     libraryEntry=libraryEntry
     saveEntry=(action "saveEntry")

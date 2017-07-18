@@ -9,7 +9,7 @@
 
 {{#unless rateOnly}}
   {{! Write Reaction }}
-  <button class="reaction-button button button--secondary button--muted" {{action onReaction}}>
+  <button class="reaction-button button button--secondary seen-this" {{action onReaction}}>
     {{#if (and libraryEntry.mediaReaction (not libraryEntry.mediaReaction.isNew))}}
       {{t "library-entry.state.edit-reaction"}}
     {{else}}
@@ -17,10 +17,18 @@
     {{/if}}
   </button>
 
-  {{! Remove }}
+  {{! Edit Library }}
   {{#unless hideRemove}}
-    <button class="remove-button button button--secondary button--muted" {{action onRemove}}>
-      {{t "library-entry.state.remove-from-library"}}
+    <button class="button button--secondary button--muted" {{action (toggle "showEditModal" this)}}>
+      {{t "library-entry.state.edit-library"}}
     </button>
   {{/unless}}
 {{/unless}}
+
+{{#if showEditModal}}
+  {{to-elsewhere named="modal" send=(component "modals/library-edit"
+    libraryEntry=libraryEntry
+    saveEntry=onSave
+    removeEntry=onRemove
+    onClose=(toggle-action "showEditModal" this))}}
+{{/if}}

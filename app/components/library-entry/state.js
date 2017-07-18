@@ -4,6 +4,7 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { bool, readOnly } from 'ember-computed';
 import { task } from 'ember-concurrency';
+import isChangeset from 'ember-changeset/utils/is-changeset';
 
 export default Component.extend({
   classNames: ['library-state'],
@@ -46,42 +47,45 @@ export default Component.extend({
       user: get(this, 'session.account'),
       [type]: get(this, 'media')
     });
-    return yield libraryEntry.save();
+    try {
+      set(this, 'libraryEntry', libraryEntry);
+      const response = yield libraryEntry.save();
+      set(libraryEntry, get(this, 'mediaType'), get(this, 'media'));
+      return response;
+    } catch (error) {
+      set(this, 'libraryEntry', null);
+      libraryEntry.rollbackAttributes();
+    }
   }).drop(),
 
   removeLibraryEntryTask: task(function* () {
     const libraryEntry = get(this, 'libraryEntry');
-    return yield libraryEntry.destroyRecord();
+    try {
+      set(this, 'libraryEntry', null);
+      return yield libraryEntry.destroyRecord();
+    } catch (error) {
+      libraryEntry.rollbackAttributes();
+    }
   }).drop(),
 
-  updateLibraryEntryTask: task(function* () {
-    const libraryEntry = get(this, 'libraryEntry');
-    return yield libraryEntry.save();
+  updateLibraryEntryTask: task(function* (content) {
+    const libraryEntry = content || get(this, 'libraryEntry');
+    try {
+      yield libraryEntry.save();
+      get(this, 'queryCache').invalidateType('library-entry');
+    } catch (error) {
+      if (isChangeset(libraryEntry)) {
+        libraryEntry.rollback();
+      } else {
+        libraryEntry.rollbackAttributes();
+      }
+    }
   }).enqueue(),
 
   actions: {
-    createLibraryEntry(status, rating) {
-      get(this, 'createLibraryEntryTask').perform(status, rating).then((libraryEntry) => {
-        set(libraryEntry, get(this, 'mediaType'), get(this, 'media'));
-        set(this, 'libraryEntry', libraryEntry);
-      });
-    },
-
-    removeLibraryEntry() {
-      get(this, 'removeLibraryEntryTask').perform().then(() => {
-        set(this, 'libraryEntry', null);
-      }).catch(() => {
-        get(this, 'libraryEntry').rollbackAttributes();
-      });
-    },
-
     updateAttribute(attribute, value) {
       set(this, `libraryEntry.${attribute}`, value);
-      get(this, 'updateLibraryEntryTask').perform().then(() => {
-        get(this, 'queryCache').invalidateType('library-entry');
-      }).catch(() => {
-        get(this, 'libraryEntry').rollbackAttributes();
-      });
+      get(this, 'updateLibraryEntryTask').perform();
     }
   },
 

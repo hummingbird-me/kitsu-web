@@ -15,7 +15,7 @@
       {{library-entry/state/new-entry
         media=media
         createOnly=createOnly
-        onCreate=(action "createLibraryEntry")}}
+        onCreate=(perform createLibraryEntryTask)}}
     {{else}} {{! Has a library entry }}
       {{#unless hideProgress}}
         <span class="state-helper">
@@ -40,7 +40,8 @@
             (action (mut libraryEntry.progress) 0)
             (action "updateAttribute" "status" "current")
           )
-          onRemove=(action "removeLibraryEntry")
+          onSave=(perform updateLibraryEntryTask)
+          onRemove=(perform removeLibraryEntryTask)
         }}
       {{else if (eq libraryEntry.status "current")}}
         {{! current status }}
@@ -48,23 +49,18 @@
           hideProgress=hideProgress
           libraryEntry=libraryEntry
           onRatingChange=(action "updateAttribute" "rating")
-          onProgressChange=(action "updateAttribute" "progress")
           onStatusChange=(action "updateAttribute" "status")
-          onReaction=(toggle-action "reactionOpen" this)
-          onComplete=(queue
-            (action (mut libraryEntry.status) "completed")
-            (action "updateAttribute" "rating")
-          )
-          onRemove=(action "removeLibraryEntry")
+          onSave=(perform updateLibraryEntryTask)
+          onRemove=(perform removeLibraryEntryTask)
         }}
       {{else}}
         {{! fallback for planned/on_hold/dropped }}
         {{library-entry/state/planned
           hideProgress=hideProgress
           libraryEntry=libraryEntry
-          onProgressChange=(action "updateAttribute" "progress")
           onStatusChange=(action "updateAttribute" "status")
-          onRemove=(action "removeLibraryEntry")
+          onSave=(perform updateLibraryEntryTask)
+          onRemove=(perform removeLibraryEntryTask)
         }}
       {{/if}}
 
