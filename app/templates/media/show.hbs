@@ -7,14 +7,8 @@
           <div class="cover-user-info cover-media-info">
             <div class="primary-info">
               <div class="mini-bio">
-                {{! Media title }}
-                <h3 class="cover-username" data-test-title>
-                  {{media.computedTitle}}
-                </h3>
-                {{! media follow button}}
-                <div class="cover-cta media-follow">
-                  {{media/media-follow media=media}}
-                </div>
+                {{! media reaction ticker}}
+                {{media/reaction-ticker media=media}}
               </div>
             </div>
           </div>
@@ -34,7 +28,11 @@
             {{link-to (t "media.show.navigation.episodes") (concat media.modelType ".show.episodes") class="nav-item nav-link"}}
           {{/if}}
           {{link-to (t "media.show.navigation.characters") (concat media.modelType ".show.characters") class="nav-item nav-link"}}
-          {{link-to (t "media.show.navigation.reviews") (concat media.modelType ".show.reviews") class="nav-item nav-link"}}
+          {{link-to (t "media.show.navigation.reactions") (concat media.modelType ".show.reactions") class="nav-item nav-link"}}
+          {{! Hide from Manga ATM }}
+          {{#if (eq media.modelType "anime")}}
+            {{link-to (t "media.show.navigation.franchise") (concat media.modelType ".show.franchise") class="nav-item nav-link"}}
+          {{/if}}
         </div>
       </div>
     </div>
@@ -44,7 +42,7 @@
 <div class="container">
   {{! sidebar }}
   <div class="is-sticky media-sidebar--sticky">
-    {{media/media-sidebar media=media entry=entry}}
+    {{media/media-sidebar media=media}}
   </div>
 
   {{! media/* content }}

@@ -1,4 +1,8 @@
 // Yikes! This file needs a lot of cleaning! - Josh
+
+.modal-open .container {
+  filter: blur(3px);
+}
 #edit-profile-modal {
   .modal-header, .modal.body {
     padding: 0;
@@ -53,9 +57,10 @@
 }
 
 .modal-backdrop {
-  background-color: rgb(50, 58, 69);
+  background-color: #000;
   &.in {
-    opacity: .8;
+    opacity: 0.92;
+    transition: opacity .45s linear;
   }
 }
 
@@ -84,7 +89,7 @@
   position: absolute;
   top: 0px;
   left: 0px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
   display: block;
   width: 100%;
   height: 100%;
@@ -229,6 +234,134 @@
   }
   .review--cta {
     margin-top: 25px;
+  }
+}
+
+.reaction-modal {
+  .modal.fade .modal-dialog {
+    transform: translate(0, 0);
+  }
+  .modal-dialog {
+    width: 390px;
+    height: 390px;
+    @media (min-width: 544px) {
+      margin: 100px auto;
+    }
+  }
+  .modal-content {
+    @extend .animated;
+    @extend .zoomIn;
+    animation-duration: .3s;
+    height: 100%;
+    box-shadow: none;
+    border-radius: 3px;
+    overflow: visible !important;
+  }
+  .modal-body {
+    height: 100%;
+    padding: 0;
+  }
+  .reaction-poster {
+    height: 100%;
+    color: $body-secondary-text-color;
+    background-size: 100%;
+  }
+  .reaction-loader {
+    position: relative;
+    top: 150px;
+  }
+  .reaction-content {
+    width: 360px;
+    position: absolute;
+    bottom: 50px;
+    textarea {
+      font-size: 15px;
+    }
+  }
+  .reaction-overlay {
+    height: 100%;
+    padding: 20px;
+    background-image: linear-gradient(to bottom,transparent 0,rgba(0,0,0,.7) 50%,#000 100%);
+  }
+  .reaction-delete-button {
+    float: left;
+    bottom: 10px;
+    position: fixed;
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: $red;
+    }
+  }
+  .reaction-edit-warning {
+    font-style: italic;
+  }
+  .reaction-header {
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+    .reaction-media-title {
+      font-size: 14px;
+      font-weight: 300;
+      color: #ccc;
+    }
+    .reaction-media-year {
+      font-size: 14px;
+      display: none; // hide this for now
+    }
+    .reaction-media-remaining {
+      float: right;
+      font-size: 13px;
+      line-height: 28px;
+      &.is-invalid {
+        color: #e74c3c;
+      }
+    }
+  }
+  textarea {
+    min-height: 70px;
+    padding: 0;
+    padding-top: 15px;
+    resize: none;
+    background-color: transparent;
+    color: white;
+    border: 0;
+  }
+  button {
+    @extend .animated;
+    @extend .zoomIn;
+    animation-duration: .3s;
+    animation-delay: .3s;
+    width: 106px;
+    height: 106px;
+    position: fixed;
+    bottom: -50px;
+    right: 0;
+    border-radius: 999em;
+    border: 3px solid $white;
+    background-color: $primary-cta-color;
+    color: white;
+    transition: all .2s cubic-bezier(.175,.885,.32,2);
+    outline: none;
+
+    &:disabled {
+      background-color: $secondary-cta-color;
+    }
+    &:hover {
+      transform: scale(1.1);
+      z-index: 2;
+    }
+    &:active {
+      transform: scale(.9);
+    }
+    &.skip-button {
+      animation-delay: .5s;
+      right: 103px;
+      width: 84px;
+      height: 84px;
+      bottom: -40px;
+      font-size: 13px;
+      background-color: $body-text-color;
+    }
   }
 }
 

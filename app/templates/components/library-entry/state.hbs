@@ -15,7 +15,7 @@
       {{library-entry/state/new-entry
         media=media
         createOnly=createOnly
-        onCreate=(action "createLibraryEntry")}}
+        onCreate=(perform createLibraryEntryTask)}}
     {{else}} {{! Has a library entry }}
       {{#unless hideProgress}}
         <span class="state-helper">
@@ -34,13 +34,14 @@
           hideRemove=hideRemove
           rateOnly=rateOnly
           onRatingChange=(action "updateAttribute" "rating")
-          onReview=(toggle-action "reviewOpen" this)
+          onReaction=(toggle-action "reactionOpen" this)
           onRewatch=(queue
             (action (mut libraryEntry.reconsumeCount) (inc libraryEntry.reconsumeCount))
             (action (mut libraryEntry.progress) 0)
             (action "updateAttribute" "status" "current")
           )
-          onRemove=(action "removeLibraryEntry")
+          onSave=(perform updateLibraryEntryTask)
+          onRemove=(perform removeLibraryEntryTask)
         }}
       {{else if (eq libraryEntry.status "current")}}
         {{! current status }}
@@ -48,31 +49,28 @@
           hideProgress=hideProgress
           libraryEntry=libraryEntry
           onRatingChange=(action "updateAttribute" "rating")
-          onProgressChange=(action "updateAttribute" "progress")
           onStatusChange=(action "updateAttribute" "status")
-          onReview=(toggle-action "reviewOpen" this)
-          onComplete=(queue
-            (action (mut libraryEntry.status) "completed")
-            (action "updateAttribute" "rating")
-          )
-          onRemove=(action "removeLibraryEntry")
+          onSave=(perform updateLibraryEntryTask)
+          onRemove=(perform removeLibraryEntryTask)
         }}
       {{else}}
         {{! fallback for planned/on_hold/dropped }}
         {{library-entry/state/planned
           hideProgress=hideProgress
           libraryEntry=libraryEntry
-          onProgressChange=(action "updateAttribute" "progress")
           onStatusChange=(action "updateAttribute" "status")
-          onRemove=(action "removeLibraryEntry")
+          onSave=(perform updateLibraryEntryTask)
+          onRemove=(perform removeLibraryEntryTask)
         }}
       {{/if}}
 
-      {{! Review Modal }}
-      {{#if reviewOpen}}
-        {{to-elsewhere named="modal" send=(component "modals/media-review"
-          onClose=(toggle-action "reviewOpen" this)
+      {{! Reaction Modal }}
+      {{#if reactionOpen}}
+        {{to-elsewhere named="modal" send=(component "modals/media-reaction"
+          media=media
           libraryEntry=libraryEntry
+          modalId="reaction-modal"
+          onClose=(toggle-action "reactionOpen" this)
         )}}
       {{/if}}
     {{/unless}}

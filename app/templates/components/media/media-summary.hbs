@@ -1,0 +1,25 @@
+<div class="media-summary">
+  {{! Media Information }}
+  {{media/media-information media=media}}
+
+  {{! Media Attributes }}
+  {{! @TODO }}
+
+  {{! Featured Characters }}
+  {{media/featured-characters media=media}}
+
+  {{! Related Media }}
+  {{#if (eq media.modelType "anime")}}
+    {{media/media-related media=media}}
+  {{/if}}
+</div>
+
+{{! Kitsu Media Summary Sidebar }}
+{{ad-unit unit="kitsu.media.summary.sidebar"
+  targeting=(hash
+    section="media"
+    media=media.slug)
+  sizes=(hash
+    mobile=(array (array 300 250) (array 320 100) (array 320 50))
+    tablet=(array (array 336 280) (array 300 250)))
+}}

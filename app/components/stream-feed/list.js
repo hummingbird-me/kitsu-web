@@ -45,8 +45,8 @@ export default Component.extend(Pagination, {
         'subject.user,subject.target_user,subject.spoiled_unit,subject.media,subject.target_group',
         // follow
         'subject.followed',
-        // review
-        'subject.library_entry'
+        // review/reaction
+        'subject.library_entry,subject.anime,subject.manga'
       ].join(','),
       page: { limit }
     };
@@ -219,6 +219,17 @@ export default Component.extend(Pagination, {
   },
 
   _handleRealtime(object) {
+    // handle deletion
+    (get(object, 'deleted') || []).forEach((activityId) => {
+      let activity = get(this, 'feed').findBy('id', activityId);
+      if (activity) {
+        get(this, 'feed').removeObject(activity);
+      } else {
+        activity = get(this, 'paginatedRecords').findBy('id', activityId);
+        get(this, 'paginatedRecords').removeObject(activity);
+      }
+    });
+
     const groupCache = get(this, 'newItems.cache');
     const filter = get(this, 'filter');
     get(this, 'newItems').beginPropertyChanges();

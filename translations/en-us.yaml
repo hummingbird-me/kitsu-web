@@ -8,7 +8,8 @@ titles:
     show:
       episodes: "Episodes"
       characters: "Characters"
-      reviews: "Reviews"
+      reactions: "Reactions"
+      franchise: "Franchise"
   explore:
     index: "Explore {mediaType, select,
       anime {Anime}
@@ -38,6 +39,7 @@ titles:
     index: "{user}'s Profile"
     library: "{user}'s Library"
     reviews: "{user}'s Reviews"
+    reactions: "{user}'s Reactions"
     followers: "{user}'s Followers"
     following: "Followed by {user}"
     groups: "{user}'s Groups"
@@ -160,13 +162,14 @@ media:
       summary: "Summary"
       episodes: "Episodes"
       characters: "Characters"
-      reviews: "Reviews"
+      reactions: "Reactions"
+      franchise: "Franchise"
     sidebar:
-      watch: "Where to Watch"
+      watch: "Watch Online"
     summary:
       ratings:
-        total: "{total} ratings"
-        favorites: "{total} favorites"
+        community: "{rating}% Community Approval"
+        match: "{rating}% Match"
       ranking:
         full:
           popularity: "{type, select,
@@ -188,26 +191,20 @@ media:
             other {}}"
       categories: "Categories"
       relationships:
-        header: "Franchise"
-        sequel: "Sequel"
-        prequel: "Prequel"
-        alternative_setting: "Alt. setting"
-        alternative_version: "Alt. version"
-        side_story: "Side story"
-        parent_story: "Parent story"
-        summary: "Summary"
-        full_story: "Full story"
-        spinoff: "Spin-off"
-        adaptation: "Adaptation"
-        anime_adaptation: "Anime"
-        manga_adaptation: "Manga"
-        character: "Character"
-        other: "Other"
-      reviews:
-        header: "Popular Reviews"
+        header: "More from this Series"
+        more: "View all in {title}"
+      reactions:
+        header: "Reactions"
+        more: "View More Reactions"
+        sorts:
+          -upVotesCount: "Popular"
+          -createdAt: "Recent"
+        new: "New Reaction"
+        edit: "My Reaction"
+        empty: "Doesn't look like anyone has reacted to this yet"
       characters:
         header: "Characters"
-        more: "View All"
+        more: "View all characters"
       titles:
         header: "Alternative Titles"
         en: "English"
@@ -222,7 +219,10 @@ media:
         ko_kr: "Korean"
         synonyms: "Synonyms"
       information:
-        header: "Information"
+        header: "{type, select,
+          anime {Anime}
+          manga {Manga}
+          other {}} Details"
         type: "Type"
         volumes: "Volumes"
         unit: "{type, select,
@@ -245,8 +245,12 @@ media:
           =1 {{length} minutes}
           other {{total} total ({length} minutes each)}}"
         rating: "Rating"
+        expand:
+          false: "More info"
+          true: "Less Info"
       feed:
         header: "Community Feed"
+      trailer: "Play Trailer"
     episodes:
       episode: "Episode"
     characters:
@@ -256,12 +260,35 @@ media:
           the anime {title}}
         manga {The following is a full list of characters for the manga {title}}
         other {}}"
+    reactions:
+      loading: "Loading Reactions..."
+      delete: "Delete Reaction"
+      report: "Report Reaction"
+      copy: "Copy Link to Reaction"
+    franchise:
+      header: "{title} Franchise"
+      roles:
+        sequel: "Sequel"
+        prequel: "Prequel"
+        alternative_setting: "Alt. setting"
+        alternative_version: "Alt. version"
+        side_story: "Side story"
+        parent_story: "Parent story"
+        summary: "Summary"
+        full_story: "Full story"
+        spinoff: "Spin-off"
+        adaptation: "Adaptation"
+        anime_adaptation: "Anime"
+        manga_adaptation: "Manga"
+        character: "Character"
+        other: "Other"
 # page: users
 users:
   navigation:
     activity: "Activity"
     library: "Library"
     reviews: "Reviews"
+    reactions: "Reactions"
     followers: "Followers"
     following: "Following"
     groups: "Groups"
@@ -445,12 +472,16 @@ users:
         anime {{user}'s Anime}
         manga {{user}'s Manga}
         other {}}"
-      tools: "Tools"
+      manage: "Manage Library"
       import: "Import Library"
       export: "Export Library"
       reset: "Reset Library"
       reset-loading: "Resetting..."
-      reset-confirmation: "This will delete your entire library and associated reviews. Are you sure you want to continue?"
+      reset-confirmation: "This will delete your entire library, associated reviews, and reactions. Are you sure you want to continue?"
+      issues:
+        header: "Library Issues"
+        reactions: "{count} completed media missing <b>reactions</b>"
+        fix: "fix"
     list:
       edit: "Edit"
       more: "More"
@@ -513,6 +544,8 @@ users:
     sort:
       newest: "Recently Joined"
       oldest: "Oldest Joined"
+  reactions:
+    empty: "This user has no reactions"
 # page: settings
 settings:
   exports:
@@ -915,6 +948,22 @@ group-list:
     recent: "Recent Activity"
     newest: "Newest Groups"
     oldest: "Oldest Groups"
+# component: media/media-reaction
+media-reaction:
+  self-vote: "You can't vote on your own reaction."
+  edit: "Edit"
+# component: modals/media-reaction
+reaction-modal:
+  post: "Post"
+  edit: "Edit"
+  edit-warning: "Careful! Editing will delete your upvotes."
+  delete: "Delete Reaction"
+  placeholder: "{index, plural,
+    =0 {Got me rethinking some important life decisions.}
+    =1 {Unexpectedly good! Lots of memorable scenes.}
+    =2 {While it may not be everyone's cup of tea, it's certainly interesting.}
+    other {Overrated, don't waste your time on this one.}}"
+  skip: "Skip"
 # component: library-entry/*
 library-entry:
   state:
@@ -942,8 +991,9 @@ library-entry:
     change-rating: "Change Rating"
     remove-rating: "Remove Rating"
     rate-this: "Add Rating"
-    write-review: "Write Review"
-    edit-review: "Edit Review"
+    edit-library: "Edit Library Entry"
+    post-reaction: "Post Reaction"
+    edit-reaction: "Edit Reaction"
     rewatch: "{type, select,
       anime {Rewatch}
       manga {Reread}

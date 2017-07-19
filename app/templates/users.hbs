@@ -73,9 +73,13 @@
       <div class="nav navbar-nav">
         {{link-to (t "users.navigation.activity") "users.index" class="nav-item nav-link"}}
         {{link-to (t "users.navigation.library") "users.library" class="nav-item nav-link"}}
-        {{#link-to "users.reviews" class="nav-item nav-link"}}
-          {{t "users.navigation.reviews"}}
-          <span class="tag tag-default">{{user.reviewsCount}}</span>
+        {{#if (gt user.reviewsCount 0)}} {{! Legacy }}
+          {{#link-to "users.reviews" class="nav-item nav-link"}}
+            {{t "users.navigation.reviews"}}
+          {{/link-to}}
+        {{/if}}
+        {{#link-to "users.reactions" class="nav-item nav-link"}}
+          {{t "users.navigation.reactions"}}
         {{/link-to}}
         {{#link-to "users.followers" class="nav-item nav-link"}}
           {{t "users.navigation.followers"}}

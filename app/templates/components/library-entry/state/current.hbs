@@ -1,7 +1,3 @@
-{{#unless hideProgress}}
-  {{library-entry/progress libraryEntry=libraryEntry onProgressChange=onProgressChange}}
-{{/unless}}
-
 {{! I've Finished This }}
 <button class="completed-button button button--secondary" {{action onStatusChange "completed"}}>
   {{t "library-entry.state.finished-this"}}
@@ -16,26 +12,15 @@
   {{t "library-entry.state.rate-this"}}
 {{/library-entry/rating-button}}
 
-{{! Write Review }}
-<button class="review-button button button--secondary button--muted" {{action onReview}}>
-  {{#if (and libraryEntry.review (not libraryEntry.review.isNew))}}
-    {{t "library-entry.state.edit-review"}}
-  {{else}}
-    {{t "library-entry.state.write-review"}}
-  {{/if}}
+{{! Edit Library }}
+<button class="button button--secondary button--muted" {{action (toggle "showEditModal" this)}}>
+  {{t "library-entry.state.edit-library"}}
 </button>
 
-{{! Place On Hold }}
-<button class="hold-button button button--secondary button--muted" {{action onStatusChange "on_hold"}}>
-  {{t "library-entry.state.place-on-hold"}}
-</button>
-
-{{! Drop This }}
-<button class="drop-button button button--secondary button--muted" {{action onStatusChange "dropped"}}>
-  {{t "library-entry.state.drop-this"}}
-</button>
-
-{{! Remove }}
-<button class="remove-button button button--secondary button--muted" {{action onRemove}}>
-  {{t "library-entry.state.remove-from-library"}}
-</button>
+{{#if showEditModal}}
+  {{to-elsewhere named="modal" send=(component "modals/library-edit"
+    libraryEntry=libraryEntry
+    saveEntry=onSave
+    removeEntry=onRemove
+    onClose=(toggle-action "showEditModal" this))}}
+{{/if}}

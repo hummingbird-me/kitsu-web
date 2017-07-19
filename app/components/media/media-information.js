@@ -1,6 +1,6 @@
 import Component from 'ember-component';
 import get from 'ember-metal/get';
-import computed, { not } from 'ember-computed';
+import computed, { equal, not } from 'ember-computed';
 import humanizeDuration from 'client/utils/humanize-duration';
 import moment from 'moment';
 
@@ -12,16 +12,14 @@ const computedProduction = key => (
 );
 
 export default Component.extend({
-  tagName: 'section',
   classNames: ['media--information'],
+  isExpanded: false,
   producers: computedProduction('producer'),
   licensors: computedProduction('licensor'),
   studios: computedProduction('studio'),
 
-  isAnime: computed('media', function() {
-    return get(this, 'media.modelType') === 'anime';
-  }).readOnly(),
-  isManga: not('isAnime').readOnly(),
+  isAnime: equal('media.modelType', 'anime'),
+  isManga: not('isAnime'),
 
   season: computed('media.startDate', function() {
     const start = get(this, 'media.startDate');

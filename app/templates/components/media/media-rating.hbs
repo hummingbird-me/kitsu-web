@@ -1,11 +1,8 @@
-<div class="rating-bar clearfix">
-  <span class="community-percentage {{percentageClass}}">
-    {{media.averageRating}}%
-  </span>
-  <span class="ratings-count">
-    {{t "media.show.summary.ratings.total" total=(format-number media.totalRatings)}}
-    {{#if media.favoritesCount}}
-        - {{t "media.show.summary.ratings.favorites" total=(format-number media.favoritesCount)}}
-    {{/if}}
-  </span>
-</div>
+<section class="media-rating">
+  {{! @TODO: This is where relative ratings should go when they're available. }}
+  {{#if media.averageRating}}
+    <span class="media-community-rating {{percentageClass}}">
+      {{t "media.show.summary.ratings.community" rating=(truncate media.averageRating 2)}}
+    </span>
+  {{/if}}
+</section>

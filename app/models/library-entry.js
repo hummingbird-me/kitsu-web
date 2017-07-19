@@ -38,6 +38,7 @@ export default Base.extend(Validations, {
   anime: belongsTo('anime'),
   manga: belongsTo('manga'),
   review: belongsTo('review'),
+  mediaReaction: belongsTo('media-reaction'),
   unit: belongsTo('-base'),
   nextUnit: belongsTo('-base'),
   user: belongsTo('user'),

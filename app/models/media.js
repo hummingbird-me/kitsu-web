@@ -45,6 +45,16 @@ export default Base.extend({
       get(this, 'canonicalTitle');
   }).readOnly(),
 
+  year: computed('startDate', function() {
+    const startDate = get(this, 'startDate');
+    return startDate ? get(this, 'startDate').year() : '';
+  }).readOnly(),
+
+  yearlessTitle: computed('computedTitle', function() {
+    const title = get(this, 'computedTitle');
+    return title.replace(/\(\d{4}\)$/, '');
+  }).readOnly(),
+
   totalRatings: computed('ratingFrequencies', function() {
     // eslint-disable-next-line
     const keys = Array.apply(null, { length: 19 }).map(Number.call, Number).map(num => num + 2);

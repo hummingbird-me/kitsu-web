@@ -7,8 +7,8 @@ import { isPresent } from 'ember-utils';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
-  tagName: 'section',
-  classNames: ['media--main-characters'],
+  tagName: '',
+  shouldRender: true,
   ajax: service(),
   queryCache: service(),
 
@@ -20,7 +20,7 @@ export default Component.extend({
         language = languages.find(item => item === 'Japanese') || get(languages, 'firstObject');
       }
     }
-    return yield get(this, 'queryCache').query('casting', {
+    const response = yield get(this, 'queryCache').query('casting', {
       filter: Object.assign({
         media_id: mediaId,
         media_type: capitalize(mediaType),
@@ -30,6 +30,10 @@ export default Component.extend({
       sort: '-featured',
       page: { limit: 4 }
     });
+    if (get(response, 'length') === 0) {
+      set(this, 'shouldRender', false);
+    }
+    return response;
   }).restartable(),
 
   didReceiveAttrs() {
