@@ -40,9 +40,17 @@ export default Component.extend({
     set(this, 'placeholderIndex', this._getRandomInt(0, 4));
   },
 
+  didInsertElement() {
+    this._super(...arguments);
+    this.$().focus();
+  },
+
   loadReactionTask: task(function* () {
     const libraryEntry = get(this, 'libraryEntry');
-    let reaction = yield libraryEntry.belongsTo('mediaReaction').load();
+    let reaction = null;
+    if (!get(this, 'createOnly')) {
+      reaction = yield libraryEntry.belongsTo('mediaReaction').load();
+    }
     if (!reaction) {
       const media = get(this, 'media');
       const type = get(media, 'modelType');

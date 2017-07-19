@@ -22,7 +22,7 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    get(this, 'getIssuesTask').perform();
+    get(this, 'preloadReactionsTask').perform();
 
     if (!get(this, 'counts')) { return; }
     // Build object of `{ status: count }` as the API only ships down values > 0.
@@ -42,14 +42,21 @@ export default Component.extend({
     return yield get(this, 'ajax').request('/library-entries/_issues');
   }).drop(),
 
-  fixReactionsTask: task(function* () {
+  preloadReactionsTask: task(function* () {
+    yield get(this, 'getIssuesTask').perform();
+    yield get(this, 'nextLibraryEntryTask').perform();
+    set(this, 'reactionLibraryEntry', get(this, 'nextReactionLibraryEntry'));
+    this.incrementProperty('reactionIndex');
+    yield get(this, 'nextLibraryEntryTask').perform();
+  }).drop(),
+
+  nextLibraryEntryTask: task(function* () {
     const reactionIndex = get(this, 'reactionIndex');
     const libraryEntryId = get(this, 'reactions').objectAt(reactionIndex);
     const libraryEntry = yield get(this, 'store').findRecord('library-entry', libraryEntryId, {
       include: 'anime,manga'
     });
-    set(this, 'reactionLibraryEntry', libraryEntry);
-    set(this, 'showReactionModal', true);
+    set(this, 'nextReactionLibraryEntry', libraryEntry);
   }).drop(),
 
   actions: {
@@ -60,12 +67,13 @@ export default Component.extend({
       });
     },
 
-    increaseReactionIndex(isSkip = false) {
+    loadNextReaction(isSkip = false) {
       if (!isSkip) {
         this.decrementProperty('reactionsCount');
       }
       this.incrementProperty('reactionIndex');
-      get(this, 'fixReactionsTask').perform();
+      set(this, 'reactionLibraryEntry', get(this, 'nextReactionLibraryEntry'));
+      get(this, 'nextLibraryEntryTask').perform();
     }
   }
 });

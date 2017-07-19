@@ -107,12 +107,12 @@
     </div>
     {{#if getIssuesTask.isRunning}}
       <div class="text-xs-center">
-        {{loading-spinner size="large"}}
+        {{loading-spinner size="small"}}
       </div>
     {{else}}
       <div class="library-issues--action">
         <span>{{t "users.library.sidebar.issues.reactions" count=reactionsCount htmlSafe=true}}</span>
-        <button class="button button--primary button--small" onclick={{perform fixReactionsTask}}>
+        <button class="button button--primary button--small" disabled={{preloadReactionsTask.isRunning}} onclick={{action (toggle "showReactionModal" this)}}>
           {{t "users.library.sidebar.issues.fix"}}
         </button>
       </div>
@@ -126,10 +126,10 @@
     libraryEntry=reactionLibraryEntry
     modalId="reaction-modal"
     doNotClose=true
-    isLoadingExternal=fixReactionsTask.isRunning
     showSkipButton=true
-    onSkip=(action "increaseReactionIndex" true)
-    onCreate=(action "increaseReactionIndex" false)
+    createOnly=true
+    onSkip=(action "loadNextReaction" true)
+    onCreate=(action "loadNextReaction" false)
     onClose=(toggle-action "showReactionModal" this)
   )}}
 {{/if}}

@@ -2,7 +2,7 @@
   {{#modal.body}}
     <div style={{posterImageStyle}} class="reaction-poster">
       <div class="reaction-overlay">
-        {{#if (or isLoadingExternal loadReactionTask.isRunning)}}
+        {{#if loadReactionTask.isRunning}}
           <div class="text-xs-center white reaction-loader">
             {{loading-spinner size="large" white=true}}
           </div>
@@ -23,6 +23,7 @@
               update=(action (mut changeset.reaction))
               placeholder=(t "reaction-modal.placeholder" index=placeholderIndex)
               maxlength=145
+              autofocus="true"
             }}
           </div>
 
