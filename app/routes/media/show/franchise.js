@@ -13,7 +13,8 @@ export default Route.extend(Pagination, {
     return {
       taskInstance: this.queryPaginated('media-relationship', {
         filter: { source_id: get(media, 'id') },
-        include: 'destination'
+        include: 'destination',
+        sort: 'role'
       }),
       paginatedRecords: []
     };

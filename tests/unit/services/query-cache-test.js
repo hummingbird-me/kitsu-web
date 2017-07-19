@@ -3,7 +3,9 @@ import sinon from 'sinon';
 import wait from 'ember-test-helpers/wait';
 import moment from 'moment';
 
-moduleFor('service:query-cache', 'Unit | Service | query cache');
+moduleFor('service:query-cache', 'Unit | Service | query cache', {
+  needs: ['service:raven']
+});
 
 test('query proxies to store#query', function(assert) {
   const service = this.subject({ store: { query: () => {} } });
