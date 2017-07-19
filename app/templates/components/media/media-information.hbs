@@ -58,7 +58,12 @@
 
   {{#if isExpanded}}
     {{! Airing / Status }}
-    {{#if media.startDate}}
+    {{#if media.tba}}
+      <li>
+        <strong>{{t "media.show.summary.information.tba"}}:</strong>
+        {{media.tba}}
+      </li>
+    {{else if media.startDate}}
       <li>
         <strong>{{t "media.show.summary.information.start" type=media.modelType}}</strong>
         {{moment-format media.startDate "MMM D, YYYY"}}

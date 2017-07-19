@@ -1,13 +1,13 @@
 {{#if media.popularityRank}}
-  <span class="ranking ranking-popularity">
+  <a href={{href-to "explore.more" media.modelType "most-popular"}} class="ranking ranking-popularity">
     {{svg-jar "heart-filled"}}
     {{t (concat "media.show.summary.ranking." length ".popularity") type=media.modelType rank=media.popularityRank}}
-  </span>
+  </a>
 {{/if}}
 
 {{#if media.ratingRank}}
-  <span class="ranking ranking-rating">
+  <a href={{href-to "explore.more" media.modelType "highest-rated"}} class="ranking ranking-rating">
     {{svg-jar "star"}}
     {{t (concat "media.show.summary.ranking." length ".rating") type=media.modelType rank=media.ratingRank}}
-  </span>
+  </a>
 {{/if}}
