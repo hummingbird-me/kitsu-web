@@ -2,9 +2,8 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import { or } from 'ember-computed';
+import computed, { or } from 'ember-computed';
 import { task } from 'ember-concurrency';
-import getter from 'client/utils/getter';
 import errorMessages from 'client/utils/error-messages';
 import ClipboardMixin from 'client/mixins/clipboard';
 
@@ -15,9 +14,8 @@ export default Component.extend(ClipboardMixin, {
   store: service(),
   router: service('-routing'),
   tasksRunning: or('getUserVoteTask.isRunning', 'createVoteTask.isRunning', 'destroyVoteTask.isRunning'),
-  host: getter(() => `${location.protocol}//${location.host}`),
 
-  canDelete: getter(function() {
+  canDelete: computed('session.account', 'reaction', function() {
     const currentUser = get(this, 'session.account');
     if (currentUser.hasRole('admin', get(this, 'reaction'))) {
       return true;
@@ -26,6 +24,11 @@ export default Component.extend(ClipboardMixin, {
       return true;
     }
   }),
+
+  init() {
+    this._super(...arguments);
+    set(this, 'host', `${location.protocol}//${location.host}`);
+  },
 
   didReceiveAttrs() {
     this._super(...arguments);
