@@ -93,7 +93,9 @@ export default Component.extend(Pagination, {
           number,
           media_id: get(media, 'id')
         };
-      } else filter = { manga_id: get(media, 'id'), number };
+      } else {
+        filter = { manga_id: get(media, 'id'), number };
+      }
       const units = yield get(this, 'queryCache').query(unitType, { filter });
       const unit = get(units, 'firstObject');
       if (unit) {

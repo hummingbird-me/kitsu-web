@@ -20,7 +20,9 @@ export default Route.extend({
         number,
         media_id: get(media, 'id')
       };
-    } else filter = { manga_id: get(media, 'id'), number };
+    } else {
+      filter = { manga_id: get(media, 'id'), number };
+    }
     const units = yield get(this, 'queryCache').query(unitType, { filter });
     return get(units, 'firstObject');
   }).restartable(),
