@@ -66,7 +66,6 @@ RouterInstance.map(function() {
       this.route('show', { path: '/:slug' }, function() {
         const units = media === 'anime' ? 'episodes' : 'chapters';
         this.route(units, function() {
-          this.route('index', { path: '/' });
           this.route('show', { path: '/:number' });
         });
         this.route('characters');
