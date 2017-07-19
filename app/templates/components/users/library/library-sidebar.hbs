@@ -49,75 +49,72 @@
       </li>
     </ul>
 
-  {{! Kitsu Library Sidebar Ad }}
-  {{#unless session.account.isPro}}
-    {{ad-unit unit="kitsu.library.sidebar"
-      targeting=(hash section="library")
-      sizes=(hash
-        tablet=(array (array 234 60) (array 200 200))
-      )
-    }}
-  {{/unless}}
+    {{! Kitsu Library Sidebar Ad }}
+    {{#unless session.account.isPro}}
+      {{ad-unit unit="kitsu.library.sidebar"
+        targeting=(hash section="library")
+        sizes=(hash
+          tablet=(array (array 234 60) (array 200 200))
+        )
+      }}
+    {{/unless}}
+
+    {{#if (can "edit library-entry" user)}}
+      <hr>
+      {{#basic-dropdown horizontalPosition="center" as |dd|}}
+        {{#dd.trigger class="library-manage-text"}}
+          {{t "users.library.sidebar.manage"}}
+        {{/dd.trigger}}
+        {{#dd.content}}
+          <ul class="list-unstyled">
+            <li class="dropdown-item">
+              <a href={{href-to "settings.imports"}}>{{t "users.library.sidebar.import"}}</a>
+            </li>
+            <li class="dropdown-item">
+              <a href={{href-to "settings.exports"}}>{{t "users.library.sidebar.export"}}</a>
+            </li>
+            <li class="dropdown-item">
+              <a href="#" {{action (toggle "showResetModal" this)}}>
+                {{#if isResetLoading}}
+                  {{t "users.library.sidebar.reset-loading"}}
+                {{else}}
+                  {{t "users.library.sidebar.reset"}}
+                {{/if}}
+              </a>
+            </li>
+          </ul>
+        {{/dd.content}}
+      {{/basic-dropdown}}
+      {{#if showResetModal}}
+        {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+          title=(t "users.library.sidebar.reset")
+          text=(t "users.library.sidebar.reset-confirmation")
+          onConfirm=(action "resetLibrary")
+          onClose=(toggle-action "showResetModal" this)
+        )}}
+      {{/if}}
+    {{/if}}
+  </div>
 
   {{#if (can "edit library-entry" user)}}
-    <hr>
-    {{#basic-dropdown horizontalPosition="center" as |dd|}}
-      {{#dd.trigger class="library-manage-text"}}
-        {{t "users.library.sidebar.manage"}}
-      {{/dd.trigger}}
-      {{#dd.content}}
-        <ul class="list-unstyled">
-          <li class="dropdown-item">
-            <a href={{href-to "settings.imports"}}>{{t "users.library.sidebar.import"}}</a>
-          </li>
-          <li class="dropdown-item">
-            <a href={{href-to "settings.exports"}}>{{t "users.library.sidebar.export"}}</a>
-          </li>
-          <li class="dropdown-item">
-            <a href="#" {{action (toggle "showResetModal" this)}}>
-              {{#if isResetLoading}}
-                {{t "users.library.sidebar.reset-loading"}}
-              {{else}}
-                {{t "users.library.sidebar.reset"}}
-              {{/if}}
-            </a>
-          </li>
-        </ul>
-      {{/dd.content}}
-    {{/basic-dropdown}}
-    {{#if showResetModal}}
-      {{to-elsewhere named="modal" send=(component "modals/confirm-action"
-        title=(t "users.library.sidebar.reset")
-        text=(t "users.library.sidebar.reset-confirmation")
-        onConfirm=(action "resetLibrary")
-        onClose=(toggle-action "showResetModal" this)
-      )}}
-    {{/if}}
-  {{/if}}
-</div>
-
-<div class="library-issues">
-  <div class="library-issues--title">
-    <span>{{t "users.library.sidebar.issues.header"}}</span>
-  </div>
-
-  <div class="library-issues">
-    <div class="library-issues--title">
-      <span>{{t "users.library.sidebar.issues.header"}}</span>
+    <div class="library-issues">
+      <div class="library-issues--title">
+        <span>{{t "users.library.sidebar.issues.header"}}</span>
+      </div>
+      {{#if getIssuesTask.isRunning}}
+        <div class="text-xs-center">
+          {{loading-spinner size="small"}}
+        </div>
+      {{else}}
+        <div class="library-issues--action">
+          <span>{{t "users.library.sidebar.issues.reactions" count=reactionsCount htmlSafe=true}}</span>
+          <button class="button button--primary button--small" disabled={{preloadReactionsTask.isRunning}} onclick={{action (toggle "showReactionModal" this)}}>
+            {{t "users.library.sidebar.issues.fix"}}
+          </button>
+        </div>
+      {{/if}}
     </div>
-    {{#if getIssuesTask.isRunning}}
-      <div class="text-xs-center">
-        {{loading-spinner size="small"}}
-      </div>
-    {{else}}
-      <div class="library-issues--action">
-        <span>{{t "users.library.sidebar.issues.reactions" count=reactionsCount htmlSafe=true}}</span>
-        <button class="button button--primary button--small" disabled={{preloadReactionsTask.isRunning}} onclick={{action (toggle "showReactionModal" this)}}>
-          {{t "users.library.sidebar.issues.fix"}}
-        </button>
-      </div>
-    {{/if}}
-  </div>
+  {{/if}}
 </div>
 
 {{#if showReactionModal}}
