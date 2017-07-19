@@ -22,11 +22,13 @@
     padding: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
+    border-radius: 3px;
     .library-issues--title {
       position: relative;
       display: flex;
       justify-content: center;
       top: -21px;
+      margin-bottom: -15px;
       > span {
         background-color: $background-color;
         font-weight: bold;
@@ -37,9 +39,19 @@
     }
     .library-issues--action {
       font-size: 12px;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      &:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
       button {
         float: right;
         padding: 2px 10px;
+        position: relative;
+        top: -2px;
       }
     }
   }
