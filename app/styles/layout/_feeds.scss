@@ -1044,7 +1044,8 @@
     display: inline-block;
     border: 1px solid $divider-color;
     border-radius: 3px;
-    padding: 5px;
+    padding: 5px 10px;
+    background: $white;
   }
   .reaction-votes {
     display: flex;
@@ -1070,14 +1071,22 @@
     border-radius: 3px;
     padding: 10px;
     width: 100%;
+    background: $background-color;
     margin-bottom: 10px;
+    hr {
+      margin-bottom: 10px;
+    }
     .reaction-message {
       font-weight: bold;
+      display: block;
+      text-align: center;
+      padding: 5px 0;
     }
     .reaction-meta {
       display: flex;
-      flex-direction: row;
-      margin-top: 10px;
+      margin-top: 5px;
+      align-items: center;
+      justify-content: center;
       img {
         margin-right: 10px;
         width: 20px;
