@@ -2,15 +2,33 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import { or } from 'ember-computed';
+import computed, { or } from 'ember-computed';
 import { task } from 'ember-concurrency';
+import errorMessages from 'client/utils/error-messages';
+import ClipboardMixin from 'client/mixins/clipboard';
 
-export default Component.extend({
+export default Component.extend(ClipboardMixin, {
   isUpvoted: false,
-  isEditable: false,
+  showUser: true,
   queryCache: service(),
   store: service(),
+  router: service('-routing'),
   tasksRunning: or('getUserVoteTask.isRunning', 'createVoteTask.isRunning', 'destroyVoteTask.isRunning'),
+
+  canDelete: computed('session.account', 'reaction', function() {
+    const currentUser = get(this, 'session.account');
+    if (currentUser.hasRole('admin', get(this, 'reaction'))) {
+      return true;
+    }
+    if (get(currentUser, 'id') === get(this, 'reaction.user.id')) {
+      return true;
+    }
+  }),
+
+  init() {
+    this._super(...arguments);
+    set(this, 'host', `${location.protocol}//${location.host}`);
+  },
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -70,7 +88,16 @@ export default Component.extend({
       }
       const task = get(this, 'isUpvoted') ? 'destroyVoteTask' : 'createVoteTask';
       get(this, task).perform();
-    }
+    },
+
+    deleteReaction() {
+      if (get(this, 'reaction.isDeleted')) { return; }
+      get(this, 'reaction').destroyRecord()
+        .catch((err) => {
+          get(this, 'reaction').rollbackAttributes();
+          get(this, 'notify').error(errorMessages(err));
+        });
+    },
   },
 
   _getRequestOptions() {
