@@ -48,6 +48,16 @@
     </li>
   </ul>
 
+  {{! Kitsu Library Sidebar Ad }}
+  {{#unless session.account.isPro}}
+    {{ad-unit unit="kitsu.library.sidebar"
+      targeting=(hash section="library")
+      sizes=(hash
+        tablet=(array (array 234 60) (array 200 200))
+      )
+    }}
+  {{/unless}}
+  
   {{#if (can "edit library-entry" user)}}
     <hr>
     {{#basic-dropdown horizontalPosition="center" as |dd|}}
@@ -83,16 +93,6 @@
       )}}
     {{/if}}
   {{/if}}
-
-  {{! Kitsu Library Sidebar Ad }}
-  {{#unless session.account.isPro}}
-    {{ad-unit unit="kitsu.library.sidebar"
-      targeting=(hash section="library")
-      sizes=(hash
-        tablet=(array (array 234 60) (array 200 200))
-      )
-    }}
-  {{/unless}}
 </div>
 
 <div class="library-issues">
