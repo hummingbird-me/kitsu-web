@@ -26,6 +26,7 @@ export default Base.extend({
   status: attr('string'),
   subtype: attr('string'),
   synopsis: attr('string'),
+  tba: attr('string'),
   titles: attr('object'),
 
   castings: hasMany('casting'),
