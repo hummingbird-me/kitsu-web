@@ -1,6 +1,12 @@
 .library-sidebar {
   max-width: 300px;
   padding: 0;
+  .is-sticky {
+    @media screen and (max-height: 780px) {
+      position: relative;
+      top: 0;
+    }
+  }
   .card {
     padding: 20px;
     padding-bottom: 0;

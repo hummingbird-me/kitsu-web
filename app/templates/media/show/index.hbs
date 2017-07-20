@@ -70,24 +70,26 @@
 
   {{! Secondary Content }}
   <div class="col-sm media--sidebar">
-    {{! Trailer }}
-    {{#if media.youtubeVideoId}}
-      <div class="media-preview" {{action (toggle "trailerOpen" this)}}>
-        <img src="https://img.youtube.com/vi/{{media.youtubeVideoId}}/mqdefault.jpg">
-        <div class="media-preview--overlay">
-          {{svg-jar "trailer"}}
-          <h3>{{t "media.show.summary.trailer"}}</h3>
+    <div class="is-sticky">
+      {{! Trailer }}
+      {{#if media.youtubeVideoId}}
+        <div class="media-preview" {{action (toggle "trailerOpen" this)}}>
+          <img src="https://img.youtube.com/vi/{{media.youtubeVideoId}}/mqdefault.jpg">
+          <div class="media-preview--overlay">
+            {{svg-jar "trailer"}}
+            <h3>{{t "media.show.summary.trailer"}}</h3>
+          </div>
         </div>
-      </div>
-      {{#if trailerOpen}}
-        {{to-elsewhere named="modal" send=(component "modals/media-trailer"
-          onClose=(toggle-action "trailerOpen" this)
-          media=media
-        )}}
+        {{#if trailerOpen}}
+          {{to-elsewhere named="modal" send=(component "modals/media-trailer"
+            onClose=(toggle-action "trailerOpen" this)
+            media=media
+          )}}
+        {{/if}}
       {{/if}}
-    {{/if}}
 
-    {{! Summary }}
-    {{media/media-summary media=media}}
+      {{! Summary }}
+      {{media/media-summary media=media}}
+    </div>
   </div>
 </div>

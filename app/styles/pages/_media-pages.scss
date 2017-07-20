@@ -1,6 +1,9 @@
 .media-container {
   margin-left: 205px;
   max-width: 910px;
+  .row {
+    width: 100%;
+  }
   @media (max-width: 767px) {
     margin-left: 0;
     margin-right: 0;
@@ -335,6 +338,12 @@
     max-width: 100%;
     padding: 0 15px;
     border-left: 0px;
+  }
+  .is-sticky {
+    @media screen and (max-height: 1200px) {
+      position: relative;
+      top: 0;
+    }
   }
   ul {
     list-style-type: none;
