@@ -45,43 +45,43 @@
     {{t (concat "media-shared.statuses." media.modelType "." media.status)}}
   </li>
 
-  {{! Age Rating }}
-  {{#if media.ageRating}}
+  {{! Airing / Status }}
+  {{#if media.tba}}
     <li>
-      <strong>{{t "media.show.summary.information.rating"}}</strong>
-      {{media.ageRating}}
-      {{#if media.ageRatingGuide}}
-        - {{media.ageRatingGuide}}
+      <strong>{{t "media.show.summary.information.tba"}}:</strong>
+      {{media.tba}}
+    </li>
+  {{else if media.startDate}}
+    <li>
+      <strong>{{t "media.show.summary.information.start" type=media.modelType}}</strong>
+      {{moment-format media.startDate "MMM D, YYYY"}}
+      {{#if (and media.endDate airedLongerThanOneDay)}}
+        to {{moment-format media.endDate "MMM D, YYYY"}}
       {{/if}}
     </li>
+    {{#if isAnime}}
+      <li>
+        <strong>{{t "media.show.summary.information.season"}}</strong>
+        <a href={{href-to (concat media.modelType ".index") (query-params
+          season=season
+          year=(concat seasonYear ".." seasonYear)
+        )}}>
+          {{capitalize season}} {{seasonYear}}
+        </a>
+      </li>
+    {{/if}}
   {{/if}}
 
   {{#if isExpanded}}
-    {{! Airing / Status }}
-    {{#if media.tba}}
+    {{! Age Rating }}
+    {{#if media.ageRating}}
       <li>
-        <strong>{{t "media.show.summary.information.tba"}}:</strong>
-        {{media.tba}}
-      </li>
-    {{else if media.startDate}}
-      <li>
-        <strong>{{t "media.show.summary.information.start" type=media.modelType}}</strong>
-        {{moment-format media.startDate "MMM D, YYYY"}}
-        {{#if (and media.endDate airedLongerThanOneDay)}}
-          to {{moment-format media.endDate "MMM D, YYYY"}}
+        <strong>{{t "media.show.summary.information.rating"}}</strong>
+        {{media.ageRating}}
+        {{#if media.ageRatingGuide}}
+          - {{media.ageRatingGuide}}
         {{/if}}
       </li>
-      {{#if isAnime}}
-        <li>
-          <strong>{{t "media.show.summary.information.season"}}</strong>
-          <a href={{href-to (concat media.modelType ".index") (query-params
-            season=season
-            year=(concat seasonYear ".." seasonYear)
-          )}}>
-            {{capitalize season}} {{seasonYear}}
-          </a>
-        </li>
-      {{/if}}
     {{/if}}
 
     {{! Productions}}
