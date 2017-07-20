@@ -114,19 +114,19 @@
         </div>
       {{/if}}
     </div>
+
+    {{#if showReactionModal}}
+      {{to-elsewhere named="modal" send=(component "modals/media-reaction"
+        media=reactionLibraryEntry.media
+        libraryEntry=reactionLibraryEntry
+        modalId="reaction-modal"
+        doNotClose=true
+        showSkipButton=true
+        createOnly=true
+        onSkip=(action "loadNextReaction" true)
+        onCreate=(action "loadNextReaction" false)
+        onClose=(toggle-action "showReactionModal" this)
+      )}}
+    {{/if}}
   {{/if}}
 </div>
-
-{{#if showReactionModal}}
-  {{to-elsewhere named="modal" send=(component "modals/media-reaction"
-    media=reactionLibraryEntry.media
-    libraryEntry=reactionLibraryEntry
-    modalId="reaction-modal"
-    doNotClose=true
-    showSkipButton=true
-    createOnly=true
-    onSkip=(action "loadNextReaction" true)
-    onCreate=(action "loadNextReaction" false)
-    onClose=(toggle-action "showReactionModal" this)
-  )}}
-{{/if}}
