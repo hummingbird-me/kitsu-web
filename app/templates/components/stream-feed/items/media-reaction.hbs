@@ -43,13 +43,13 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right">
                 {{! Copy Permalink }}
-                <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "media-reactions" reaction.id)}}>
+                <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "media-reactions" reaction.id)}} {{action "trackEngagement" "click"}}>
                   {{t "media.show.reactions.copy"}}
                 </a>
 
                 {{! Deleting Options }}
                 {{#if canDelete}}
-                  <a class="dropdown-item" href="#" {{action (toggle "deleteModalOpened" this)}}>{{t "media.show.reactions.delete"}}</a>
+                  <a class="dropdown-item" href="#" {{action (toggle "deleteModalOpened" this)}} >{{t "media.show.reactions.delete"}}</a>
                   {{#if deleteModalOpened}}
                     {{to-elsewhere named="modal" send=(component "modals/confirm-action"
                       onConfirm=(action "deleteReaction")
