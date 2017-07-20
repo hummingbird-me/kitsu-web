@@ -21,15 +21,21 @@
           </a>
         </li>
         <li>
-          <a href="#" class="timeline-link {{if (eq streamType "group_timeline") "active"}}" {{action "switchFeed" "group_timeline"}}>
-            {{svg-jar "all"}}
-            Groups
-          </a>
-        </li>
-        <li>
           <a href="#" class="timeline-link {{if (eq streamType "global") "active"}}" {{action "switchFeed" "global"}}>
             {{svg-jar "globe"}}
             Global
+          </a>
+        </li>
+        <li>
+          <a href="#" class="timeline-link {{if (eq streamInterest "anime") "active"}}" {{action "switchFeed" "interest_timeline/anime"}}>
+            {{svg-jar "anime-manga"}}
+            Anime
+          </a>
+        </li>
+        <li>
+          <a href="#" class="timeline-link {{if (eq streamInterest "manga") "active"}}" {{action "switchFeed" "interest_timeline/manga"}}>
+            {{svg-jar "anime-manga"}}
+            Manga
           </a>
         </li>
       </ul>
