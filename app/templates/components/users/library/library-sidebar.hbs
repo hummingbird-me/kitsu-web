@@ -96,7 +96,7 @@
     {{/if}}
   </div>
 
-  {{#if (can "edit library-entry" user)}}
+  {{#if (and (gt reactionsCount 0) (can "edit library-entry" user))}}
     <div class="library-issues">
       <div class="library-issues--title">
         <span>{{t "users.library.sidebar.issues.header"}}</span>
