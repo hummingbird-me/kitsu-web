@@ -3,7 +3,11 @@
   <div class="unit-summary">
     <div class="unit-thumbnail row">
       <div class="thumbnail-wrapper col-sm-4 no-padding-right">
-        {{lazy-image src=(image model.thumbnail)}}
+        {{#if (is-object-empty model.thumbnail)}}
+          {{lazy-image src=(image media.posterImage "medium")}}
+        {{else}}
+          {{lazy-image src=(image model.thumbnail)}}
+        {{/if}}
       </div>
 
       <div class="unit-meta col-sm">

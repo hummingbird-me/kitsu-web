@@ -1,7 +1,11 @@
 <div class="media-unit--block {{if (gte libraryEntry.progress unit.number) "complete"}}">
   <div class="thumbnail-wrapper">
     <span class="completion-status">{{t "media.show.units.completed" type=unit.modelType}}</span>
-    {{lazy-image src=(image unit.thumbnail)}}
+    {{#if (is-object-empty unit.thumbnail)}}
+      {{lazy-image src=(image media.posterImage "medium")}}
+    {{else}}
+      {{lazy-image src=(image unit.thumbnail)}}
+    {{/if}}
   </div>
 
   <div class="thumbnail-description">
