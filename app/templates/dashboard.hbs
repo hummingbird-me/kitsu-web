@@ -16,26 +16,26 @@
       <ul>
         <li>
           <a href="#" class="timeline-link {{if (eq streamType "timeline") "active"}}" {{action "switchFeed" "timeline"}}>
-            {{svg-jar "user"}}
+            <span class="emoji">👀</span>
             Following
           </a>
         </li>
         <li>
-          <a href="#" class="timeline-link {{if (eq streamType "global") "active"}}" {{action "switchFeed" "global"}}>
-            {{svg-jar "globe"}}
-            Global
-          </a>
-        </li>
-        <li>
           <a href="#" class="timeline-link {{if (eq streamInterest "anime") "active"}}" {{action "switchFeed" "interest_timeline/anime"}}>
-            {{svg-jar "anime-manga"}}
+            <span class="emoji">📺</span>
             Anime
           </a>
         </li>
         <li>
           <a href="#" class="timeline-link {{if (eq streamInterest "manga") "active"}}" {{action "switchFeed" "interest_timeline/manga"}}>
-            {{svg-jar "anime-manga"}}
+            <span class="emoji">📙</span>
             Manga
+          </a>
+        </li>
+        <li>
+          <a href="#" class="timeline-link {{if (eq streamType "global") "active"}}" {{action "switchFeed" "global"}}>
+            <span class="emoji">🌎</span>
+            Global
           </a>
         </li>
       </ul>
