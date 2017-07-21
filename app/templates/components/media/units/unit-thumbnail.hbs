@@ -1,6 +1,6 @@
-<div class="media-unit--block">
+<div class="media-unit--block {{if (gte libraryEntry.progress unit.number) "complete"}}">
   <div class="thumbnail-wrapper">
-    <span class="completion-status">Watched</span>
+    <span class="completion-status">{{t "media.show.units.completed" type=unit.modelType}}</span>
     {{lazy-image src=(image unit.thumbnail)}}
   </div>
 
