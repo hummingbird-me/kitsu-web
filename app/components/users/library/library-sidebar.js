@@ -18,12 +18,11 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.mediaOptions = ['anime', 'manga'];
+    get(this, 'preloadReactionsTask').perform();
   },
 
   didReceiveAttrs() {
     this._super(...arguments);
-    get(this, 'preloadReactionsTask').perform();
-
     if (!get(this, 'counts')) { return; }
     // Build object of `{ status: count }` as the API only ships down values > 0.
     const counts = LIBRARY_STATUSES.reduce((previous, current) => {
