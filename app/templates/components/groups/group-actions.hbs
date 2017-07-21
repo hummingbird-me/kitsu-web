@@ -1,0 +1,18 @@
+<div class="stream-item-options">
+  {{! Dropdown }}
+  <span class="more-wrapper">
+    <a href="#" class="more-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {{svg-jar "more"}}
+    </a>
+    <div class="dropdown-menu dropdown-menu-right">
+      {{! Hide/Show Posts }}
+      <a class="dropdown-item" href="#" {{action (perform editHiddenTask (not membership.hidden))}}>
+        {{#if membership.hidden}}
+          {{t "groups.show-posts" group=group.name}}
+        {{else}}
+          {{t "groups.hide-posts" group=group.name}}
+        {{/if}}
+      </a>
+    </div>
+  </span>
+</div>

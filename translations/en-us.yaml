@@ -269,6 +269,10 @@ media:
         episode {episode}
         chapter {chapter}
         other {}} list"
+      completed: "{type, select,
+        episode {Watched}
+        chapter {Read}
+        other {}}"
       pages: "{length} Pages"
       date: "{type, select,
         episode {Aired}
@@ -683,6 +687,8 @@ groups:
   dashboard-btn: "Dashboard"
   join-group: "Join Group"
   leave-group: "Leave Group"
+  hide-posts: "Hide Posts from {group}"
+  show-posts: "Show Posts from {group}"
   nsfw: "NSFW"
   neighbors: "Neighbors"
   navigation:

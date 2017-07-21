@@ -7,6 +7,7 @@ export default Base.extend({
   createdAt: attr('utc'),
   rank: attr('string'),
   unreadCount: attr('number'),
+  hidden: attr('boolean'),
 
   group: belongsTo('group', { inverse: 'members' }),
   user: belongsTo('user'),

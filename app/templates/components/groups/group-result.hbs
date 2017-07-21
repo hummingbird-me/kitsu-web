@@ -3,8 +3,15 @@
     {{lazy-image src=(image group.avatar "medium")}}
   </div>
   <div class="group-result-content">
-    <h2 class="group-result-title">{{group.name}}</h2>
-    <div class="group-result-description">{{group.tagline}}</div>
+    <div class="group-result-top">
+      <div class="group-result-primary">
+        <h2 class="group-result-title">{{group.name}}</h2>
+        <div class="group-result-description">{{group.tagline}}</div>
+      </div>
+      {{#if membership}}
+        {{groups/group-actions group=group membership=membership}}
+      {{/if}}
+    </div>
     <div class="group-result-meta">
       <div class="group-result-category">
         {{groups/member-button group=group class="join-button" tagName="a" href="#"}}
