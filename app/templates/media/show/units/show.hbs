@@ -1,51 +1,58 @@
-<div class="unit-summary">
-  <div class="unit-thumbnail col-lg-4 col-sm-6">
-    <div class="thumbnail-wrapper">
-      <span class="completion-status">Watched</span>
-      {{lazy-image src=(image model.thumbnail)}}
+<div class="col-sm-8 no-padding">
+  <a href="#" class="episode-list">Back to episode list</a>
+  <div class="unit-summary">
+    <div class="unit-thumbnail row">
+      <div class="thumbnail-wrapper col-sm-4 no-padding-right">
+        {{lazy-image src=(image model.thumbnail)}}
+      </div>
+
+      <div class="unit-meta col-sm">
+        <div>
+          <h6 class="unit-number">
+            {{t "media.show.units.unit" type=model.modelType}}
+            {{model.number}}
+          </h6>
+          <div class="info-emphasis thumb-caption">{{model.canonicalTitle}}</div>
+          <div class="unit-info small">
+          {{#if humanizedLength}}
+            <div class="unit-length">
+              {{humanizedLength}}
+            </div>
+          {{/if}}
+
+          {{#if (or model.airdate model.published)}}
+            <div class="unit-date">
+              {{#if (eq model.modelType "episode")}}
+                {{t "media.show.units.date" type="episode" }}: {{moment-format model.airdate "MMM D, YYYY"}}
+              {{else}}
+                {{t "media.show.units.date" type="chapter" }}: {{moment-format model.published "MMM D, YYYY"}}
+              {{/if}}
+            </div>
+          {{/if}}
+        </div>
+        </div>
+      </div>
     </div>
 
-    <span class="unit-number">
-      {{t "media.show.units.unit" type=model.modelType}}
-      {{model.number}}
-    </span>
-    <span class="info-emphasis thumb-caption">{{model.canonicalTitle}}</span>
-  </div>
 
-  <div class="unit-info">
-    {{#if humanizedLength}}
-      <div class="unit-length">
-        {{humanizedLength}}
-      </div>
-    {{/if}}
 
-    {{#if (or model.airdate model.published)}}
-      <div class="unit-date">
-        {{#if (eq model.modelType "episode")}}
-          {{t "media.show.units.date" type="episode" }}: {{moment-format model.airdate "MMM D, YYYY"}}
-        {{else}}
-          {{t "media.show.units.date" type="chapter" }}: {{moment-format model.published "MMM D, YYYY"}}
-        {{/if}}
+    {{#if model.synopsis}}
+      <div class="unit-synopsis">
+        {{read-more model.synopsis 280}}
       </div>
     {{/if}}
   </div>
 
-  {{#if model.synopsis}}
-    <div class="unit-synopsis">
-      {{model.synopsis}}
-    </div>
-  {{/if}}
+  <section class="unit-discussion">
+    <h5>{{t "media.show.units.feed.header" type=model.modelType}}</h5>
+    {{stream-feed/list
+      streamType=(concat model.modelType "_aggr")
+      streamId=model.id
+      streamFilter="user"
+      readOnly=(not (can "write post"))
+      media=media
+      unitNumber=model.number
+      forceUnit=true
+    }}
+  </section>
 </div>
-
-<section>
-  <h5>{{t "media.show.units.feed.header" type=model.modelType}}</h5>
-  {{stream-feed/list
-    streamType=(concat model.modelType "_aggr")
-    streamId=model.id
-    streamFilter="user"
-    readOnly=(not (can "write post"))
-    media=media
-    unitNumber=model.number
-    forceUnit=true
-  }}
-</section>
