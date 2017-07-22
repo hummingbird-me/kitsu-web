@@ -7,11 +7,12 @@ import { guidFor } from 'ember-metal/utils';
 import computed from 'ember-computed';
 import { typeOf, isEmpty } from 'ember-utils';
 import { scheduleOnce } from 'ember-runloop';
+import { task } from 'ember-concurrency';
+import { invoke, invokeAction } from 'ember-invoke-action';
+import { CanMixin } from 'ember-can';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
 import errorMessages from 'client/utils/error-messages';
-import { invoke, invokeAction } from 'ember-invoke-action';
-import { CanMixin } from 'ember-can';
 
 export default Component.extend(ClipboardMixin, CanMixin, {
   classNameBindings: ['post.isNew:new-post', 'isPinnedPost:pinned-post', 'post.id:stream-item'],
@@ -188,6 +189,21 @@ export default Component.extend(ClipboardMixin, CanMixin, {
       set(this, 'followRelationship', record);
     });
   },
+
+  hideGroupTask: task(function* (group) {
+    const membership = yield get(this, 'store').query('group-member', {
+      filter: {
+        group: get(group, 'id'),
+        user: get(this, 'session.account.id')
+      }
+    }).then(records => get(records, 'firstObject'));
+    set(membership, 'hidden', true);
+    yield membership.save()
+      .catch((err) => {
+        get(this, 'notify').error(errorMessages(err));
+        membership.rollbackAttributes();
+      });
+  }).drop(),
 
   actions: {
     trackEngagement(label, id) {

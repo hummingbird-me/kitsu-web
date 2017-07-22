@@ -217,6 +217,20 @@
             </a>
           {{/if}}
 
+          {{! Group Post Hiding}}
+          {{#if (and post.targetGroup canHide)}}
+            <a class="dropdown-item" href="#" {{action (toggle "hideGroupModalOpened" this)}}>
+              <div>{{t "groups.hide-posts.text" group=post.targetGroup.name}}</div>
+              <div class="option-info">{{t "groups.hide-posts.info"}}</div>
+            </a>
+            {{#if hideGroupModalOpened}}
+              {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+                onConfirm=(perform hideGroupTask post.targetGroup)
+                onClose=(toggle-action "hideGroupModalOpened" this)
+              )}}
+            {{/if}}
+          {{/if}}
+
           {{! Re-hide the post }}
           {{#if (or post.spoiler post.nsfw)}}
             {{#if isHidden}}
