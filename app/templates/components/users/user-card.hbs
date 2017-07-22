@@ -1,0 +1,19 @@
+<a href={{href-to "users.index" user}}>
+  <img class="card-img-top" src={{image user.coverImage "tiny"}}>
+</a>
+<div class="card-block">
+  <a href={{href-to "users.index" user}}>
+    <img class="card-img-avatar" src={{image user.avatar "small"}}>
+  </a>
+  <a href={{href-to "users.index" user}}>
+    <h4 class="card-title">{{user.name}}</h4>
+  </a>
+
+  {{#if (not (is-self user))}}
+    {{follow-button user=user}}
+  {{else}}
+    <button class="button button--primary" disabled="disabled">
+      Hey, that's you!
+    </button>
+  {{/if}}
+</div>

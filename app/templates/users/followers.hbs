@@ -14,27 +14,7 @@
         {{! @TODO: Componentnize }}
         {{#each taskValue as |follow|}}
           {{#if follow.follower}}
-            <div class="card user-card col-sm-3">
-              <a href={{href-to "users.index" follow.follower}}>
-                <img class="card-img-top" src={{image follow.follower.coverImage "tiny"}}>
-              </a>
-              <div class="card-block">
-                <a href={{href-to "users.index" follow.follower}}>
-                  <img class="card-img-avatar" src={{image follow.follower.avatar "small"}}>
-                </a>
-                <a href={{href-to "users.index" follow.follower}}>
-                  <h4 class="card-title">{{follow.follower.name}}</h4>
-                </a>
-
-                {{#if (not (is-self follow.follower))}}
-                  {{follow-button user=follow.follower}}
-                {{else}}
-                  <button class="button button--primary" disabled="disabled">
-                    Hey, that's you!
-                  </button>
-                {{/if}}
-              </div>
-            </div>
+            {{users/user-card user=follow.follower}}
           {{/if}}
         {{/each}}
       {{/infinite-pagination}}
