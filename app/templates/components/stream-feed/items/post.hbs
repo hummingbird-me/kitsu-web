@@ -217,17 +217,34 @@
             </a>
           {{/if}}
 
-          {{! Group Post Hiding}}
-          {{#if (and post.targetGroup canHide)}}
-            <a class="dropdown-item" href="#" {{action (toggle "hideGroupModalOpened" this)}}>
-              <div>{{t "groups.hide-posts.text" group=post.targetGroup.name}}</div>
-              <div class="option-info">{{t "groups.hide-posts.info"}}</div>
-            </a>
-            {{#if hideGroupModalOpened}}
-              {{to-elsewhere named="modal" send=(component "modals/confirm-action"
-                onConfirm=(perform hideGroupTask post.targetGroup)
-                onClose=(toggle-action "hideGroupModalOpened" this)
-              )}}
+          {{! Hiding}}
+          {{#if canHide}}
+            {{! Group Post Hiding}}
+            {{#if post.targetGroup}}
+              <a class="dropdown-item" href="#" {{action (toggle "hideGroupModalOpened" this)}}>
+                <div>{{t "groups.hide-posts.text" group=post.targetGroup.name}}</div>
+                <div class="option-info">{{t "groups.hide-posts.info"}}</div>
+              </a>
+              {{#if hideGroupModalOpened}}
+                {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+                  onConfirm=(perform hideGroupTask post.targetGroup)
+                  onClose=(toggle-action "hideGroupModalOpened" this)
+                )}}
+              {{/if}}
+            {{/if}}
+
+            {{! User Post Hiding}}
+            {{#if (and (not post.targetGroup) (and session.hasUser (not (is-self post.user))))}}
+              <a class="dropdown-item" href="#" {{action (toggle "hideUserModalOpened" this)}}>
+                <div>{{t "users.hide-posts.text" user=post.user.name}}</div>
+                <div class="option-info">{{t "users.hide-posts.info"}}</div>
+              </a>
+              {{#if hideUserModalOpened}}
+                {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+                  onConfirm=(perform hideUserTask post.user)
+                  onClose=(toggle-action "hideUserModalOpened" this)
+                )}}
+              {{/if}}
             {{/if}}
           {{/if}}
 

@@ -12,7 +12,9 @@
   {{#if (not (is-self user))}}
     <div class="card-actions">
       {{follow-button user=user relationship=follow}}
-      {{users/user-actions user=user follow=follow}}
+      {{#if follow}}
+        {{users/user-actions user=user follow=follow}}
+      {{/if}}
     </div>
   {{else}}
     <button class="button button--primary" disabled="disabled">

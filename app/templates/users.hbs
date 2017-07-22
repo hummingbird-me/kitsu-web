@@ -31,7 +31,7 @@
                   {{/if}}
                 {{/if}}
 
-                {{#if follow}}
+                {{#if (or follow (and session.hasUser (not (is-self user))))}}
                   {{users/user-actions user=user follow=follow}}
                 {{/if}}
 

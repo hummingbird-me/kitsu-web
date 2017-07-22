@@ -205,6 +205,22 @@ export default Component.extend(ClipboardMixin, CanMixin, {
       });
   }).drop(),
 
+  hideUserTask: task(function* (user) {
+    const currentUser = get(this, 'session.account.id');
+    const follow = yield get(this, 'store').query('follow', {
+      filter: {
+        follower: currentUser,
+        followed: get(user, 'id')
+      }
+    }).then(records => get(records, 'firstObject'));
+    set(follow, 'hidden', true);
+    yield follow.save()
+      .catch((err) => {
+        get(this, 'notify').error(errorMessages(err));
+        follow.rollbackAttributes();
+      });
+  }).drop(),
+
   actions: {
     trackEngagement(label, id) {
       const foreignId = typeOf(id) === 'string' ? id : undefined;
