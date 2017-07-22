@@ -156,8 +156,8 @@
                   <a class="author-name" href={{href-to (concat post.media.modelType ".show") post.media}}>
                     {{post.media.computedTitle}}
                   </a>
-                  —
                   {{#if post.spoiledUnit}}
+                    —
                     <a class="author-name" href={{href-to (concat post.media.modelType ".show." post.spoiledUnit.modelType "s.show") post.media.slug post.spoiledUnit.id}}>
                       {{t "feeds.post.spoilers" type=post.media.modelType num=post.spoiledUnit.number}} {{postUnitText}}
                     </a>
@@ -227,6 +227,7 @@
                 {{to-elsewhere named="modal" send=(component "stream-feed/edit-post"
                   post=post
                   isEditable=isEditable
+                  unitNumber=post.spoiledUnit.number
                   onClose=(toggle-action "editModalOpened" this)
                 )}}
               {{/if}}
