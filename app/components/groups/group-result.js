@@ -5,6 +5,7 @@ import service from 'ember-service/inject';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
+  classNames: ['group-result'],
   categoryRoute: 'groups.index',
   queryCache: service(),
   router: service('-routing'),
