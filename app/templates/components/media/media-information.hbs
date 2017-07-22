@@ -2,10 +2,12 @@
 <ul>
   {{! Titles }}
   {{#each-in media.titles as |key value|}}
-    <li>
-      <strong>{{t (concat "media.show.summary.titles." key)}}</strong>
-      {{value}}
-    </li>
+    {{#if value}}
+      <li>
+        <strong>{{t (concat "media.show.summary.titles." key)}}</strong>
+        {{value}}
+      </li>
+    {{/if}}
   {{/each-in}}
 
   {{#if media.abbreviatedTitles}}
