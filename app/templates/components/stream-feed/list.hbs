@@ -99,6 +99,7 @@
             showNsfw=showNsfw
             showSpoilers=(eq streamType "interest_timeline")
             canHide=(and (eq streamType "timeline") (eq (feed-type group.activities) "post"))
+            canHideMedia=(and (eq streamType "interest_timeline") (eq (feed-type group.activities) "post"))
             positionInFeed=index
             readOnly=readOnly
             kitsuGroup=kitsuGroup

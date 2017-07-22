@@ -248,6 +248,20 @@
             {{/if}}
           {{/if}}
 
+          {{! Media Ignore }}
+          {{#if (and canHideMedia post.media)}}
+            <a class="dropdown-item" href="#" {{action (toggle "mediaIgnoreModalOpened" this)}}>
+              <div>{{t "media.hide-posts.text" media=post.media.computedTitle}}</div>
+              <div class="option-info">{{t "media.hide-posts.info"}}</div>
+            </a>
+            {{#if mediaIgnoreModalOpened}}
+              {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+                onConfirm=(perform mediaIgnoreTask post.media)
+                onClose=(toggle-action "mediaIgnoreModalOpened")
+              )}}
+            {{/if}}
+          {{/if}}
+
           {{! Re-hide the post }}
           {{#if (or post.spoiler post.nsfw)}}
             {{#if isHidden}}

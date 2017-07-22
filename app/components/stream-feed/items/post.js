@@ -221,6 +221,15 @@ export default Component.extend(ClipboardMixin, CanMixin, {
       });
   }).drop(),
 
+  mediaIgnoreTask: task(function* (media) {
+    const user = get(this, 'session.account');
+    yield get(this, 'store').createRecord('media-ignore', {
+      user, media
+    }).save().catch((err) => {
+      get(this, 'notify').error(errorMessages(err));
+    });
+  }).drop(),
+
   actions: {
     trackEngagement(label, id) {
       const foreignId = typeOf(id) === 'string' ? id : undefined;
