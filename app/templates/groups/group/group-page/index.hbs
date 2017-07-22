@@ -8,6 +8,7 @@
         streamId=group.id
         kitsuGroup=group
         kitsuGroupMembership=membership
+        showNsfw=(or group.nsfw (eq group.category.slug "nsfw"))
         hidePostEditor=(not (can "write post in group" group membership=membership))
         readOnly=(not (can "write post"))}}
         <span>{{t "groups.activity.feed-header"}}</span>

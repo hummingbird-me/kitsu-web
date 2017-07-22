@@ -17,6 +17,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
   classNameBindings: ['post.isNew:new-post', 'isPinnedPost:pinned-post', 'post.id:stream-item'],
   classNames: ['row'],
   isHidden: false,
+  showNsfw: false,
   isFollowingPost: false,
   isOverflowed: false,
   isExpanded: false,
@@ -98,10 +99,11 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     }
 
     const post = get(this, 'post');
+    const hideNsfw = get(post, 'nsfw') && !get(this, 'showNsfw');
     if (get(post, 'user') && get(this, 'session').isCurrentUser(get(post, 'user'))) {
-      set(this, 'isHidden', get(post, 'nsfw'));
+      set(this, 'isHidden', hideNsfw);
     } else {
-      set(this, 'isHidden', get(post, 'nsfw') || get(post, 'spoiler'));
+      set(this, 'isHidden', hideNsfw || get(post, 'spoiler'));
     }
 
     // groups
