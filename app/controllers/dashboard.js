@@ -13,7 +13,6 @@ export default Controller.extend({
   streamId: computed('streamType', 'streamInterest', function() {
     const streamType = get(this, 'streamType');
     const interest = get(this, 'streamInterest');
-    console.log(streamType);
     if (interest && streamType === 'interest_timeline') {
       return `${get(this, 'session.account.id')}-${capitalize(interest)}`;
     }
@@ -38,7 +37,6 @@ export default Controller.extend({
   actions: {
     switchFeed(type) {
       window.scrollTo(0, 0);
-      console.log(type);
       if (type.includes('/')) {
         set(this, 'streamInterest', type.split('/')[1]);
         set(this, 'streamType', type.split('/')[0]);
