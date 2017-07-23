@@ -101,7 +101,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
 
     const post = get(this, 'post');
     const hideNsfw = get(post, 'nsfw') && !get(this, 'showNsfw');
-    const hideSpoilers = get(post, 'spoiler') && !(get(this, 'showSpoilers') && get(this, 'spoiledUnit'));
+    const hideSpoilers = get(post, 'spoiler') && !(get(this, 'showSpoilers') && !get(this, 'spoiledUnit'));
     if (get(post, 'user') && get(this, 'session').isCurrentUser(get(post, 'user'))) {
       set(this, 'isHidden', hideNsfw);
     } else {
