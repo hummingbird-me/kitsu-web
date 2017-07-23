@@ -40,6 +40,9 @@
               <p>{{item.computedTitle}}</p>
             {{/if}}
           </div>
+          {{#if (and (eq group "groups") item.nsfw)}}
+            <span class="tag tag-default">{{t "groups.nsfw"}}</span>
+          {{/if}}
         </li>
       {{/each}}
 
