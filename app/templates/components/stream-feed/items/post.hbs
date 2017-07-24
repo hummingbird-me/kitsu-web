@@ -186,8 +186,15 @@
       }}
     </div>
 
-    {{! Post Actions }}
     <div class="stream-item-options">
+      {{! Comments Count }}
+      {{#if (and isHidden post.commentsCount)}}
+        <span class="stream-item-comments-count">
+          {{svg-jar "comment"}}
+          {{post.commentsCount}}
+        </span>
+      {{/if}}
+
       {{! Dropdown }}
       <span class="more-wrapper">
         <a href="#" class="more-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
