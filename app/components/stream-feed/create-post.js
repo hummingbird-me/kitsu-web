@@ -97,13 +97,9 @@ export default Component.extend({
     }
   },
 
-  init() {
-    this._super(...arguments);
-    set(this, 'shouldUnit', get(this, 'forceUnit'));
-  },
-
   didReceiveAttrs() {
     this._super(...arguments);
+    set(this, 'shouldUnit', get(this, 'forceUnit'));
     set(this, 'author', get(this, 'session.account'));
     if (get(this, 'isEditing') === true && get(this, 'post')) {
       setProperties(this, {
