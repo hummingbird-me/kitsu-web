@@ -103,6 +103,7 @@
         <span class="custom-control-description">Spoiler</span>
       </label>
 
+      {{! Unit Tagging }}
       {{#if _usableMedia}}
         <span class="tag-unit">
           <label class="custom-control custom-checkbox">
@@ -115,7 +116,7 @@
               disabled=(or isEditing forceUnit)
               min=1
               max=_usableMedia.unitCount
-              update=(action (mut unitNumber))
+              update=(queue (action (mut unitNumber)) (action (mut shouldUnit) true))
               placeholder="-"
             }}
           </span>
