@@ -12,6 +12,7 @@ export default Base.extend({
   nsfw: attr('boolean'),
   postLikesCount: attr('number'),
   spoiler: attr('boolean'),
+  targetInterest: attr('string'),
   topLevelCommentsCount: attr('number'),
   updatedAt: attr('utc', { defaultValue() { return new Date(); } }),
 

@@ -7,7 +7,7 @@ import service from 'ember-service/inject';
 import { isEmpty } from 'ember-utils';
 import EmberObject from 'ember-object';
 import { storageFor } from 'ember-local-storage';
-import { capitalize } from 'ember-string';
+import { capitalize, classify } from 'ember-string';
 import getter from 'client/utils/getter';
 import errorMessages from 'client/utils/error-messages';
 import { unshiftObjects } from 'client/utils/array-utils';
@@ -62,6 +62,10 @@ export default Component.extend(Pagination, {
     // posting on another user's profile
     if (get(this, 'user') !== undefined && get(this, 'user.id') !== get(this, 'session.account.id')) {
       set(data, 'targetUser', get(this, 'user'));
+    }
+    // posting on an interest feed
+    if (get(this, 'streamInterest') !== undefined) {
+      set(data, 'targetInterest', classify(get(this, 'streamInterest')));
     }
     // posting on a group
     if (get(this, 'kitsuGroup') !== undefined) {
