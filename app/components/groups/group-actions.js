@@ -9,7 +9,6 @@ export default Component.extend({
   tagName: 'span',
   classNames: ['group-actions'],
 
-  intl: service(),
   notify: service(),
 
   editHiddenTask: task(function* (hidden) {
