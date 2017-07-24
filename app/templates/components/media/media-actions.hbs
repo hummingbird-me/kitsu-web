@@ -9,10 +9,10 @@
       <a class="dropdown-item" href="#" {{action (perform toggleIgnoreTask)}}>
         {{#if isIgnoring}}
           <div>{{t "media.show-posts.text" media=media.computedTitle}}</div>
-          <div class="option-info">{{t "media.show-posts.info"}}</div>
+          <div class="option-info">{{t "media.show-posts.info" type=(capitalize media.modelType)}}</div>
         {{else}}
           <div>{{t "media.hide-posts.text" media=media.computedTitle}}</div>
-          <div class="option-info">{{t "media.hide-posts.info"}}</div>
+          <div class="option-info">{{t "media.hide-posts.info" type=(capitalize media.modelType)}}</div>
         {{/if}}
       </a>
     </div>
