@@ -27,8 +27,8 @@
         </span>
       {{/unless}}
 
-      {{#if (eq libraryEntry.status "completed")}}
-        {{! completed state }}
+      {{#if (or (eq libraryEntry.status "completed") (eq libraryEntry.status "dropped"))}}
+        {{! completed/dropped state }}
         {{library-entry/state/completed
           libraryEntry=libraryEntry
           hideRemove=hideRemove
