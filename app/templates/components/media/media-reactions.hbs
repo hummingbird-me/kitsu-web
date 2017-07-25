@@ -51,11 +51,13 @@
         {{#each reactions as |reaction|}}
           {{media/media-reaction reaction=reaction}}
         {{/each}}
-        <div class="reactions-more">
-          <a href={{href-to (concat media.modelType ".show.reactions") media.slug}}>
-            {{t "media.show.summary.reactions.more"}}
-          </a>
-        </div>
+        {{#if (gt getReactionsTask.last.value.meta.count 6)}}
+          <div class="reactions-more">
+            <a href={{href-to (concat media.modelType ".show.reactions") media.slug}}>
+              {{t "media.show.summary.reactions.more"}}
+            </a>
+          </div>
+        {{/if}}
       {{/if}}
     </div>
   {{else}} {{! Empty State }}
