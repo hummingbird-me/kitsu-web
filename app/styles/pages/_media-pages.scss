@@ -258,6 +258,18 @@
   margin-top: 15px;
   padding-bottom: 15px;
   border-bottom: 1px solid darken($background-color, 5);
+  position: relative;
+  .more-wrapper {
+    position: absolute;
+    top: -7px;
+    right: 0;
+    opacity: 0;
+  }
+  &:hover {
+    .more-wrapper {
+      opacity: 1;
+    }
+  }
   .reaction-votes {
     display: flex;
     flex-direction: column;
