@@ -7,7 +7,6 @@ import { guidFor } from 'ember-metal/utils';
 import computed from 'ember-computed';
 import { typeOf, isEmpty } from 'ember-utils';
 import { scheduleOnce } from 'ember-runloop';
-import { task } from 'ember-concurrency';
 import { invoke, invokeAction } from 'ember-invoke-action';
 import { CanMixin } from 'ember-can';
 import getter from 'client/utils/getter';
@@ -190,46 +189,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     });
   },
 
-  hideGroupTask: task(function* (group) {
-    const membership = yield get(this, 'store').query('group-member', {
-      filter: {
-        group: get(group, 'id'),
-        user: get(this, 'session.account.id')
-      }
-    }).then(records => get(records, 'firstObject'));
-    set(membership, 'hidden', true);
-    yield membership.save()
-      .catch((err) => {
-        get(this, 'notify').error(errorMessages(err));
-        membership.rollbackAttributes();
-      });
-  }).drop(),
-
-  hideUserTask: task(function* (user) {
-    const currentUser = get(this, 'session.account.id');
-    const follow = yield get(this, 'store').query('follow', {
-      filter: {
-        follower: currentUser,
-        followed: get(user, 'id')
-      }
-    }).then(records => get(records, 'firstObject'));
-    set(follow, 'hidden', true);
-    yield follow.save()
-      .catch((err) => {
-        get(this, 'notify').error(errorMessages(err));
-        follow.rollbackAttributes();
-      });
-  }).drop(),
-
-  mediaIgnoreTask: task(function* (media) {
-    const user = get(this, 'session.account');
-    yield get(this, 'store').createRecord('media-ignore', {
-      user, media
-    }).save().catch((err) => {
-      get(this, 'notify').error(errorMessages(err));
-    });
-  }).drop(),
-
   actions: {
     trackEngagement(label, id) {
       const foreignId = typeOf(id) === 'string' ? id : undefined;
@@ -256,6 +215,50 @@ export default Component.extend(ClipboardMixin, CanMixin, {
 
     updateFollow() {
       this._updateFollow();
+    },
+
+    hideGroup(group) {
+      get(this, 'store').query('group-member', {
+        filter: {
+          group: get(group, 'id'),
+          user: get(this, 'session.account.id')
+        }
+      }).then((records) => {
+        const membership = get(records, 'firstObject');
+        set(membership, 'hidden', true);
+        membership.save()
+          .catch((err) => {
+            get(this, 'notify').error(errorMessages(err));
+            membership.rollbackAttributes();
+          });
+      });
+    },
+
+    hideUser(user) {
+      const currentUser = get(this, 'session.account.id');
+      get(this, 'store').query('follow', {
+        filter: {
+          follower: currentUser,
+          followed: get(user, 'id')
+        }
+      }).then((records) => {
+        const follow = get(records, 'firstObject');
+        set(follow, 'hidden', true);
+        follow.save()
+          .catch((err) => {
+            get(this, 'notify').error(errorMessages(err));
+            follow.rollbackAttributes();
+          });
+      });
+    },
+
+    ignoreMedia(media) {
+      const user = get(this, 'session.account');
+      get(this, 'store').createRecord('media-ignore', {
+        user, media
+      }).save().catch((err) => {
+        get(this, 'notify').error(errorMessages(err));
+      });
     },
 
     toggleHidden() {

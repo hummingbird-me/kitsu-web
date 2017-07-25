@@ -217,9 +217,9 @@
             </a>
           {{/if}}
 
-          {{! Hiding}}
+          {{! Hiding }}
           {{#if canHide}}
-            {{! Group Post Hiding}}
+            {{! Group Post Hiding }}
             {{#if post.targetGroup}}
               <a class="dropdown-item" href="#" {{action (toggle "hideGroupModalOpened" this)}}>
                 <div>{{t "groups.hide-posts.text" group=post.targetGroup.name}}</div>
@@ -227,13 +227,13 @@
               </a>
               {{#if hideGroupModalOpened}}
                 {{to-elsewhere named="modal" send=(component "modals/confirm-action"
-                  onConfirm=(perform hideGroupTask post.targetGroup)
+                  onConfirm=(action "hideGroup" post.targetGroup)
                   onClose=(toggle-action "hideGroupModalOpened" this)
                 )}}
               {{/if}}
             {{/if}}
 
-            {{! User Post Hiding}}
+            {{! User Post Hiding }}
             {{#if (and (not post.targetGroup) (and session.hasUser (not (is-self post.user))))}}
               <a class="dropdown-item" href="#" {{action (toggle "hideUserModalOpened" this)}}>
                 <div>{{t "users.hide-posts.text" user=post.user.name}}</div>
@@ -241,7 +241,7 @@
               </a>
               {{#if hideUserModalOpened}}
                 {{to-elsewhere named="modal" send=(component "modals/confirm-action"
-                  onConfirm=(perform hideUserTask post.user)
+                  onConfirm=(action "hideUser" post.user)
                   onClose=(toggle-action "hideUserModalOpened" this)
                 )}}
               {{/if}}
@@ -256,7 +256,7 @@
             </a>
             {{#if mediaIgnoreModalOpened}}
               {{to-elsewhere named="modal" send=(component "modals/confirm-action"
-                onConfirm=(perform mediaIgnoreTask post.media)
+                onConfirm=(action "ignoreMedia" post.media)
                 onClose=(toggle-action "mediaIgnoreModalOpened")
               )}}
             {{/if}}

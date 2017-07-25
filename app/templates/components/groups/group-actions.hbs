@@ -6,7 +6,7 @@
     </a>
     <div class="dropdown-menu dropdown-menu-right">
       {{! Hide/Show Posts }}
-      <a class="dropdown-item" href="#" {{action (perform editHiddenTask (not membership.hidden))}}>
+      <a class="dropdown-item" href="#" {{action "editHidden" (not membership.hidden)}}>
         {{#if membership.hidden}}
           <div>{{t "groups.show-posts.text" group=group.name}}</div>
           <div class="option-info">{{t "groups.show-posts.info"}}</div>

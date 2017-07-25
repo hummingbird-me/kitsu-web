@@ -7,7 +7,7 @@
     <div class="dropdown-menu dropdown-menu-right">
       {{! Hide/Show Posts }}
       {{#if follow}}
-        <a class="dropdown-item" href="#" {{action (perform editHiddenTask (not follow.hidden))}}>
+        <a class="dropdown-item" href="#" {{action "editHidden" (not follow.hidden)}}>
           {{#if follow.hidden}}
             <div>{{t "users.show-posts.text" user=user.name}}</div>
             <div class="option-info">{{t "users.show-posts.info"}}</div>

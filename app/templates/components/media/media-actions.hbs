@@ -6,7 +6,7 @@
     </a>
     <div class="dropdown-menu dropdown-menu-right">
       {{! Hide/Show Posts }}
-      <a class="dropdown-item" href="#" {{action (perform toggleIgnoreTask)}}>
+      <a class="dropdown-item" href="#" {{action "toggleIgnore"}}>
         {{#if isIgnoring}}
           <div>{{t "media.show-posts.text" media=media.computedTitle}}</div>
           <div class="option-info">{{t "media.show-posts.info" type=(capitalize media.modelType)}}</div>
