@@ -57,11 +57,24 @@
 
 {{! Interest Notice }}
 {{#if (and showInterestNotice (eq streamType "interest_timeline"))}}
-  <div class="card">
+  <div class="interest-notice card">
+    <aside>
+      {{svg-jar "anime"}}
+    </aside>
+    <!-- <aside>
+      {{svg-jar "manga"}}
+    </aside> -->
+    <article>
+      <h5>{{t (concat "feeds.interest." streamInterest)}}</h5>
+      <p>As you update your <a href="#">anime library</a>, you'll see what others are saying about the shows you're watching.</p>
+      <!-- <p>{{t (concat "feeds.interest." streamInterest)}}</p> -->
+    </article>
+    <button type="button" class="button button--primary" onclick={{action "dismissNotice"}}>
+      Okay, got it
+    </button>
     <button type="button" class="close" onclick={{action "dismissNotice"}}>
       <span aria-hidden="true">&times;</span>
     </button>
-    <p>{{t (concat "feeds.interest." streamInterest)}}</p>
   </div>
 {{/if}}
 
