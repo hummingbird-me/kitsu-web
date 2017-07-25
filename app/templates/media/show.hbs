@@ -31,10 +31,7 @@
             (concat media.modelType ".show." (if (eq media.modelType "anime") "episodes" "chapters")) class="nav-item nav-link"}}
           {{link-to (t "media.show.navigation.characters") (concat media.modelType ".show.characters") class="nav-item nav-link"}}
           {{link-to (t "media.show.navigation.reactions") (concat media.modelType ".show.reactions") class="nav-item nav-link"}}
-          {{! Hide from Manga ATM }}
-          {{#if (eq media.modelType "anime")}}
-            {{link-to (t "media.show.navigation.franchise") (concat media.modelType ".show.franchise") class="nav-item nav-link"}}
-          {{/if}}
+          {{link-to (t "media.show.navigation.franchise") (concat media.modelType ".show.franchise") class="nav-item nav-link"}}
         </div>
       </div>
     </div>

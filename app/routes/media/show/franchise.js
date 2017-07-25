@@ -2,6 +2,7 @@ import Route from 'ember-route';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
+import { classify } from 'ember-string';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(Pagination, {
@@ -12,7 +13,10 @@ export default Route.extend(Pagination, {
     const media = this._getParentModel();
     return {
       taskInstance: this.queryPaginated('media-relationship', {
-        filter: { source_id: get(media, 'id') },
+        filter: {
+          source_id: get(media, 'id'),
+          source_type: classify(get(media, 'modelType'))
+        },
         include: 'destination',
         sort: 'role'
       }),

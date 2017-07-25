@@ -2,6 +2,7 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
+import { classify } from 'ember-string';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
@@ -16,7 +17,10 @@ export default Component.extend({
 
   getRelatedMediaTask: task(function* () {
     const response = yield get(this, 'queryCache').query('media-relationship', {
-      filter: { source_id: get(this, 'media.id') },
+      filter: {
+        source_id: get(this, 'media.id'),
+        source_type: classify(get(this, 'media.modelType'))
+      },
       include: 'destination',
       sort: 'role',
       page: { limit: 4 }
