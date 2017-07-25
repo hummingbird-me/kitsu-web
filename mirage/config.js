@@ -21,6 +21,7 @@ function _defineRoutes(server) {
   server.get('/streamers');
   server.get('/reviews', { data: [] });
   server.get('/streaming-links', { data: [] });
+  server.get('/media-relationships', { data: [] });
   server.get('/media-ignores', { data: [] });
   server.get('/media-reactions', { data: [] });
   server.get('/library-entries', { data: [] });
