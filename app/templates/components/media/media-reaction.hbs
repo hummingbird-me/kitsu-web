@@ -14,7 +14,7 @@
     <div>
       <div class="reaction-user">
         {{#if showUser}}
-          {{reaction.user.name}}
+          <a href={{href-to "users" reaction.user}} class="reaction-user-name">{{reaction.user.name}}</a>
         {{else}}
           <a href={{href-to (concat reaction.media.modelType ".show") reaction.media.slug}}>
             {{reaction.media.computedTitle}}
