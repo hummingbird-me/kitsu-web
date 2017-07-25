@@ -15,7 +15,7 @@
               </span>
             {{/if}}
             <div class="reaction-header">
-              <span class="reaction-media-title">{{media.yearlessTitle}}</span>
+              <a href={{href-to (concat media.modelType ".show") media}} class="reaction-media-title">{{media.yearlessTitle}}</a>
               <span class="reaction-media-year">{{media.year}}</span>
               <span class="reaction-media-remaining {{if changeset.isInvalid "is-invalid"}}">{{remaining}}</span>
             </div>
