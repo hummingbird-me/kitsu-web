@@ -55,6 +55,16 @@
   {{/unless}}
 </div>
 
+{{! Interest Notice }}
+{{#if (and showInterestNotice (eq streamType "interest_timeline"))}}
+  <div class="card">
+    <button type="button" class="close" onclick={{action "dismissNotice"}}>
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <p>{{t (concat "feeds.interest." streamInterest)}}</p>
+  </div>
+{{/if}}
+
 {{#if (and getFeedData.isRunning (not realtimeLoading))}}
   {{#each (repeat 2) as |empty|}}
     <div class="stream-item stream-item--loading row">
