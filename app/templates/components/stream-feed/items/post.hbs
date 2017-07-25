@@ -217,6 +217,51 @@
             </a>
           {{/if}}
 
+          {{! Hiding }}
+          {{#if canHide}}
+            {{! Group Post Hiding }}
+            {{#if post.targetGroup}}
+              <a class="dropdown-item" href="#" {{action (toggle "hideGroupModalOpened" this)}}>
+                <div>{{t "groups.hide-posts.text" group=post.targetGroup.name}}</div>
+                <div class="option-info">{{t "groups.hide-posts.info"}}</div>
+              </a>
+              {{#if hideGroupModalOpened}}
+                {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+                  onConfirm=(action "hideGroup" post.targetGroup)
+                  onClose=(toggle-action "hideGroupModalOpened" this)
+                )}}
+              {{/if}}
+            {{/if}}
+
+            {{! User Post Hiding }}
+            {{#if (and (not post.targetGroup) (and session.hasUser (not (is-self post.user))))}}
+              <a class="dropdown-item" href="#" {{action (toggle "hideUserModalOpened" this)}}>
+                <div>{{t "users.hide-posts.text" user=post.user.name}}</div>
+                <div class="option-info">{{t "users.hide-posts.info"}}</div>
+              </a>
+              {{#if hideUserModalOpened}}
+                {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+                  onConfirm=(action "hideUser" post.user)
+                  onClose=(toggle-action "hideUserModalOpened" this)
+                )}}
+              {{/if}}
+            {{/if}}
+          {{/if}}
+
+          {{! Media Ignore }}
+          {{#if (and canHideMedia post.media)}}
+            <a class="dropdown-item" href="#" {{action (toggle "mediaIgnoreModalOpened" this)}}>
+              <div>{{t "media.hide-posts.text" media=post.media.computedTitle}}</div>
+              <div class="option-info">{{t "media.hide-posts.info" type=(capitalize post.media.modelType)}}</div>
+            </a>
+            {{#if mediaIgnoreModalOpened}}
+              {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+                onConfirm=(action "ignoreMedia" post.media)
+                onClose=(toggle-action "mediaIgnoreModalOpened")
+              )}}
+            {{/if}}
+          {{/if}}
+
           {{! Re-hide the post }}
           {{#if (or post.spoiler post.nsfw)}}
             {{#if isHidden}}

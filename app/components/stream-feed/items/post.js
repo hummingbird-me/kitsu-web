@@ -7,11 +7,11 @@ import { guidFor } from 'ember-metal/utils';
 import computed from 'ember-computed';
 import { typeOf, isEmpty } from 'ember-utils';
 import { scheduleOnce } from 'ember-runloop';
+import { invoke, invokeAction } from 'ember-invoke-action';
+import { CanMixin } from 'ember-can';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
 import errorMessages from 'client/utils/error-messages';
-import { invoke, invokeAction } from 'ember-invoke-action';
-import { CanMixin } from 'ember-can';
 
 export default Component.extend(ClipboardMixin, CanMixin, {
   classNameBindings: ['post.isNew:new-post', 'isPinnedPost:pinned-post', 'post.id:stream-item'],
@@ -215,6 +215,50 @@ export default Component.extend(ClipboardMixin, CanMixin, {
 
     updateFollow() {
       this._updateFollow();
+    },
+
+    hideGroup(group) {
+      get(this, 'store').query('group-member', {
+        filter: {
+          group: get(group, 'id'),
+          user: get(this, 'session.account.id')
+        }
+      }).then((records) => {
+        const membership = get(records, 'firstObject');
+        set(membership, 'hidden', true);
+        membership.save()
+          .catch((err) => {
+            get(this, 'notify').error(errorMessages(err));
+            membership.rollbackAttributes();
+          });
+      });
+    },
+
+    hideUser(user) {
+      const currentUser = get(this, 'session.account.id');
+      get(this, 'store').query('follow', {
+        filter: {
+          follower: currentUser,
+          followed: get(user, 'id')
+        }
+      }).then((records) => {
+        const follow = get(records, 'firstObject');
+        set(follow, 'hidden', true);
+        follow.save()
+          .catch((err) => {
+            get(this, 'notify').error(errorMessages(err));
+            follow.rollbackAttributes();
+          });
+      });
+    },
+
+    ignoreMedia(media) {
+      const user = get(this, 'session.account');
+      get(this, 'store').createRecord('media-ignore', {
+        user, media
+      }).save().catch((err) => {
+        get(this, 'notify').error(errorMessages(err));
+      });
     },
 
     toggleHidden() {

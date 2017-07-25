@@ -31,6 +31,10 @@
                   {{/if}}
                 {{/if}}
 
+                {{#if (or follow (and session.hasUser (not (is-self user))))}}
+                  {{users/user-actions user=user follow=follow}}
+                {{/if}}
+
                 {{! admin actions }}
                 {{#if (can "view admin" user)}}
                   {{! Previous names }}

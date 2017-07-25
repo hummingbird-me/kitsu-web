@@ -20,10 +20,16 @@
                 {{! Join/Leave Button }}
                 {{groups/member-button group=group membership=membership}}
 
+                {{! Dashboard Button }}
                 {{#if (can "view dashboard for group" membership=membership)}}
                   {{#link-to "groups.group.dashboard.index" tagName="button" class="button button--primary"}}
                     <span class="button-label">{{t "groups.dashboard-btn"}}</span>
                   {{/link-to}}
+                {{/if}}
+
+                {{! Group Actions }}
+                {{#if membership}}
+                  {{groups/group-actions group=group membership=membership}}
                 {{/if}}
               </div>
             </div>

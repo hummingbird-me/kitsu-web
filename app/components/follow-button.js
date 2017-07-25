@@ -78,6 +78,8 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    this._getData();
+    if (get(this, 'relationship') === undefined) {
+      this._getData();
+    }
   },
 });
