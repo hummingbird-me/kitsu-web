@@ -1,5 +1,5 @@
 <a href={{href-to "users.index" user}}>
-  <img class="card-img-top" src={{image user.coverImage "tiny"}}>
+  <img class="card-img-top" src={{image user.coverImage (if short "original" "tiny")}}>
 </a>
 <div class="card-block">
   <a href={{href-to "users.index" user}}>
