@@ -56,6 +56,9 @@ export default Component.extend({
       include: 'anime,manga'
     });
     set(this, 'nextReactionLibraryEntry', libraryEntry);
+    // preload the image
+    this.preloadImage = new Image();
+    this.preloadImage.src = get(libraryEntry, 'media.posterImage.medium');
   }).drop(),
 
   actions: {
