@@ -3,7 +3,7 @@
 </a>
 <div class="card-block">
   <a href={{href-to "users.index" user}}>
-    <img class="card-img-avatar" src={{image user.avatar "small"}}>
+    <img class="card-img-avatar" src={{image user.avatar (if short "large" "small")}}>
   </a>
   <a href={{href-to "users.index" user}}>
     <h4 class="card-title">{{user.name}}</h4>
