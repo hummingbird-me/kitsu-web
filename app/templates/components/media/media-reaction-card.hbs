@@ -52,14 +52,14 @@
 
 <div class="reaction-content">
   <span class="reaction-media-info">
-    <a href={{href-to (concat media.modelType ".show") media}} class="reaction-media-title">{{media.yearlessTitle}}</a>
+    <a href={{href-to (concat media.modelType ".show") media.slug}} class="reaction-media-title">{{media.yearlessTitle}}</a>
     <span class="reaction-media-subtype">{{t (concat "media-shared.types." media.modelType "." (to-lower media.subtype))}}</span>
     {{#if media.year}}
       &middot;
       <span class="reaction-media-year">{{media.year}}</span>
     {{/if}}
   </span>
-  <a href={{href-to "media-reactions" reaction}} class="reaction-copy">{{reaction.reaction}}</a>
+  <a href={{href-to "media-reactions" reaction.id}} class="reaction-copy">{{reaction.reaction}}</a>
 </div>
 <div class="poster-image" style={{posterImageStyle}}></div>
 <div class="overlay"></div>
