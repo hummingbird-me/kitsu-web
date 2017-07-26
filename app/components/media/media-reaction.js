@@ -16,7 +16,10 @@ export default Component.extend(ClipboardMixin, {
   tasksRunning: or('getUserVoteTask.isRunning', 'createVoteTask.isRunning', 'destroyVoteTask.isRunning'),
 
   canDelete: computed('session.account', 'reaction', function() {
-    const currentUser = get(this, 'session.account');
+    const currentUser = get(this, 'session.hasUser') && get(this, 'session.account');
+    if (!currentUser) {
+      return false;
+    }
     if (currentUser.hasRole('admin', get(this, 'reaction'))) {
       return true;
     }
