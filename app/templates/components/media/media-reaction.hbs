@@ -13,28 +13,7 @@
     {{/if}}
     <div>
       <div class="reaction-user">
-        {{#if showUser}}
-          <a href={{href-to "users" reaction.user}} class="reaction-user-name">{{reaction.user.name}}</a>
-        {{else}}
-          <a href={{href-to (concat reaction.media.modelType ".show") reaction.media.slug}}>
-            {{reaction.media.computedTitle}}
-          </a>
-          {{#if (is-self reaction.user)}}
-            &middot;
-            <span {{action (toggle "isModalOpen" this)}}>
-              {{t "media-reaction.edit"}}
-            </span>
-
-            {{#if isModalOpen}}
-              {{to-elsewhere named="modal" send=(component "modals/media-reaction"
-                media=reaction.media
-                libraryEntry=reaction.libraryEntry.content
-                modalId="reaction-modal"
-                onClose=(toggle-action "isModalOpen" this)
-              )}}
-            {{/if}}
-          {{/if}}
-        {{/if}}
+        <a href={{href-to "users" reaction.user}} class="reaction-user-name">{{reaction.user.name}}</a>
       </div>
       <div class="reaction-content">{{reaction.reaction}}</div>
     </div>
