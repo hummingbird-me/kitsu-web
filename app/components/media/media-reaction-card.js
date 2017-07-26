@@ -9,7 +9,7 @@ import errorMessages from 'client/utils/error-messages';
 import { image } from 'client/helpers/image';
 
 export default Component.extend({
-  classNames: ['col-sm-4', 'reaction-thumb', 'card'],
+  classNames: ['reaction-thumb', 'card'],
   isUpvoted: false,
   queryCache: service(),
   store: service(),
