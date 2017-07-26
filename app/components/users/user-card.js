@@ -4,8 +4,9 @@ import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 
 export default Component.extend({
-  classNames: ['card', 'user-card', 'col-sm-3'],
-
+  classNames: ['card', 'user-card'],
+  classNameBindings: ['short:short:col-sm-3'],
+  short: false,
   queryCache: service(),
 
   didReceiveAttrs() {
