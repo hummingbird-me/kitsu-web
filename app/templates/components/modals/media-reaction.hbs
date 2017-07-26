@@ -16,7 +16,7 @@
             {{/if}}
             <div class="reaction-header">
               <span class="reaction-media-info">
-                <a href={{href-to (concat media.modelType ".show") media}} class="reaction-media-title">{{media.yearlessTitle}}</a>
+                <a href={{href-to (concat media.modelType ".show") media.slug}} class="reaction-media-title">{{media.yearlessTitle}}</a>
                 <span class="reaction-media-subtype">{{t (concat "media-shared.types." media.modelType "." (to-lower media.subtype))}}</span>
                 {{#if media.year}}
                   &middot;
