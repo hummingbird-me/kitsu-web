@@ -1,0 +1,67 @@
+<div class="reaction-thumb card">
+  {{#if (is-self reaction.user)}}
+    <a href="javascript:void(0)" class="reaction-votes {{if isUpvoted "upvoted"}} hint--rounded hint--right hint--bounce" aria-label={{t "media-reaction.self-vote"}}>
+      {{svg-jar "upvote"}}
+      {{reaction.upVotesCount}}
+    </a>
+  {{else}}
+    <a href="#" {{action "toggleVote"}} class="reaction-votes {{if isUpvoted "upvoted"}}">
+      {{svg-jar "upvote"}}
+      {{reaction.upVotesCount}}
+    </a>
+  {{/if}}
+
+  <div class="reaction-card-actions">
+    {{! Edit }}
+    {{#if (is-self reaction.user)}}
+      <span {{action (toggle "isModalOpen" this)}}>
+        {{t "media-reaction.edit"}}
+      </span>
+
+      {{#if isModalOpen}}
+        {{to-elsewhere named="modal" send=(component "modals/media-reaction"
+          media=reaction.media
+          libraryEntry=reaction.libraryEntry.content
+          modalId="reaction-modal"
+          onClose=(toggle-action "isModalOpen" this)
+        )}}
+      {{/if}}
+    {{/if}}
+
+    {{! Delete }}
+    {{#if canDelete}}
+      <a href="#" {{action (toggle "deleteModalOpened" this)}}>{{t "media.show.reactions.delete"}}</a>
+      {{#if deleteModalOpened}}
+        {{to-elsewhere named="modal" send=(component "modals/confirm-action"
+          onConfirm=(action "deleteReaction")
+          onClose=(toggle-action "deleteModalOpened" this)
+        )}}
+      {{/if}}
+    {{/if}}
+
+    {{! Report }}
+    {{#if (and session.hasUser (not (is-self reaction.user)))}}
+      <a href="#" {{action (toggle "reportingReaction" this)}}>{{t "media.show.reactions.report"}}</a>
+      {{#if reportingReaction}}
+        {{to-elsewhere named="modal" send=(component "modals/report-content"
+          content=reaction
+          onClose=(toggle-action "reportingReaction" this)
+        )}}
+      {{/if}}
+    {{/if}}
+  </div>
+
+  <div class="reaction-content">
+    <span class="reaction-media-info">
+      <a href={{href-to (concat media.modelType ".show") media}} class="reaction-media-title">{{media.yearlessTitle}}</a>
+      <span class="reaction-media-subtype">{{t (concat "media-shared.types." media.modelType "." (to-lower media.subtype))}}</span>
+      {{#if media.year}}
+        &middot;
+        <span class="reaction-media-year">{{media.year}}</span>
+      {{/if}}
+    </span>
+    <a href={{href-to "media-reactions" reaction}} class="reaction-copy">“{{reaction.reaction}}”</a>
+  </div>
+  <div class="poster-image" style="background-image: url('https://media.kitsu.io/anime/poster_images/1376/large.jpg?1457383324')"></div>
+  <div class="overlay"></div>
+</div>

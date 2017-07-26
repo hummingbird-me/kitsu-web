@@ -1,14 +1,43 @@
 <div class="container">
-  <!-- <ul class="nav nav-tabs">
-    <li class="nav-item">
-      {{#link-to "users.reactions" (query-params media="anime") class="nav-link"}}Anime{{/link-to}}
-    </li>
-    <li class="nav-item">
-      {{#link-to "users.reactions" (query-params media="manga") class="nav-link"}}Manga{{/link-to}}
-    </li>
-  </ul>
+  <div class="feed-actions reaction-sorting">
+    <span class="reaction-filter">
+      {{#bootstrap/bs-dropdown as |dropdown|}}
+        {{#dropdown.button}}
+          {{t (concat "users.reactions.filters." filter)}}
+        {{/dropdown.button}}
+        {{#dropdown.menu}}
+          {{#each filterOptions as |option|}}
+            {{#dropdown.menu-item onClick=(action (mut filter) option)}}
+              {{t (concat "users.reactions.filters." option)}}
+              {{#if (eq option filter)}}
+                <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+              {{/if}}
+            {{/dropdown.menu-item}}
+          {{/each}}
+        {{/dropdown.menu}}
+      {{/bootstrap/bs-dropdown}}
+    </span>
 
-  <div class="tab-content">
+    <span class="reaction-filter">
+      {{#bootstrap/bs-dropdown as |dropdown|}}
+        {{#dropdown.button}}
+          {{t (concat "users.reactions.sorts." sort)}}
+        {{/dropdown.button}}
+        {{#dropdown.menu}}
+          {{#each sortOptions as |option|}}
+            {{#dropdown.menu-item onClick=(action (mut sort) option)}}
+              {{t (concat "users.reactions.sorts." option)}}
+              {{#if (eq option sort)}}
+                <span class="dropdown-checkmark">{{svg-jar "checkmark"}}</span>
+              {{/if}}
+            {{/dropdown.menu-item}}
+          {{/each}}
+        {{/dropdown.menu}}
+      {{/bootstrap/bs-dropdown}}
+    </span>
+  </div>
+
+  <div class="reaction-thumbs row">
     {{#if model.reactionsTaskInstance.isRunning}}
       {{! @TODO(Reactions): Loader }}
       <div class="text-xs-center w-100 m-t-1">
@@ -17,7 +46,7 @@
     {{else if reactions}}
       {{#infinite-pagination onPagination=(route-action "onPagination")}}
         {{#each reactions as |reaction|}}
-          {{media/media-reaction reaction=reaction showUser=false}}
+          {{media/media-reaction-card reaction=reaction media=reaction.media}}
         {{/each}}
       {{/infinite-pagination}}
     {{else}}
@@ -25,66 +54,5 @@
         {{t "users.reactions.empty"}}
       </div>
     {{/if}}
-  </div> -->
-
-  <div class="feed-actions reaction-sorting">
-    <span class="dropdown">
-      <button data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" role="button" class="button dropdown-toggle button--primary">
-        All Activity
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item">
-          All Reactions
-          <span class="dropdown-checkmark">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 24 24">
-              <path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M19.281 5.281L9 15.563 4.719 11.28 3.28 12.72l5 5 .719.687.719-.687 11-11L19.28 5.28z" color="#000" overflow="visible" font-family="Bitstream Vera Sans"></path>
-            </svg>
-          </span>
-        </a>
-        <a class="dropdown-item ember-view">Anime Reactions</a>
-        <a class="dropdown-item ember-view">Media Reactions</a>
-      </div>
-    </span>
-    <span class="dropdown">
-      <button data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" role="button" class="button dropdown-toggle button--primary">
-        Best
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item">
-          All Reactions
-          <span class="dropdown-checkmark">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 24 24">
-              <path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M19.281 5.281L9 15.563 4.719 11.28 3.28 12.72l5 5 .719.687.719-.687 11-11L19.28 5.28z" color="#000" overflow="visible" font-family="Bitstream Vera Sans"></path>
-            </svg>
-          </span>
-        </a>
-        <a class="dropdown-item ember-view">Best</a>
-        <a class="dropdown-item ember-view">New</a>
-      </div>
-    </span>
-  </div>
-  <div class="reaction-thumbs row">
-
-    <div class="reaction-wrapper col-sm-4">
-      <div class="reaction-thumb card">
-      <div class="upvotes">
-        <a href="#" class="reaction-votes " data-ember-action="" data-ember-action-1835="1835">
-          {{svg-jar "upvote"}}
-          1
-        </a>
-      </div>
-      <div class="reaction-content">
-        <div class="reaction-media-info">
-          <a href="#" class="reaction-media-title">Death Note</a>
-          <span class="reaction-media-subtype">TV</span> ·
-          <span class="reaction-media-year">2006</span>
-        </div>
-        <p class="reaction-copy">One of the shows that brought me into anime. Entertaining thriller with one of the best battle of the minds of anime.</p>
-      </div>
-      <div class="poster-image" style="background-image: url('https://media.kitsu.io/anime/poster_images/1376/large.jpg?1457383324')"></div>
-      <div class="overlay"></div>
-    </div>
-    </div>
-
   </div>
 </div>

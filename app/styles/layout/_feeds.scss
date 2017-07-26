@@ -1,4 +1,4 @@
-﻿.feed-aside {
+.feed-aside {
   width: 220px;
   padding-left: 15px;
   @media (max-width: 555px) {
@@ -1167,6 +1167,13 @@
   }
 }
 
+.reaction-sorting {
+  display: flex;
+  .reaction-filter {
+    margin-right: 10px;
+  }
+}
+
 .reaction-wrapper {
   padding: 5px;
 }
@@ -1187,8 +1194,10 @@
     color: $white;
   }
   .reaction-copy {
+    display: block;
     font-size: 15px;
     margin-bottom: 0;
+    color: inherit;
   }
   .reaction-media-info {
     font-size: 12px;
@@ -1217,9 +1226,7 @@
     z-index: 1
   }
   .reaction-votes {
-    display: flex;
-    flex-direxction: row;
-    align-items: center;
+    z-index: 2;
     position: relative;
     padding: 5px 10px;
     color: $body-text-color;
@@ -1229,6 +1236,8 @@
     border-radius: 3px;
     color: rgba(255,255,255,.8);
     svg {
+      position: relative;
+      top: 2px;
       width: 12px;
       height: 12px;
       margin-right: 5px;
@@ -1249,6 +1258,9 @@
         fill: rgba(255,255,255, 1);
       }
     }
+  }
+  .reaction-card-actions {
+    z-index: 2;
   }
 }
 
