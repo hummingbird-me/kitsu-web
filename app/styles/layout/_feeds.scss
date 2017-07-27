@@ -1118,14 +1118,14 @@
     }
     &:hover {
       color: $body-link-color;
-      border: 1px solid $body-link-color;
+      border-color: $body-link-color;
       svg {
         fill: $body-link-color;
       }
     }
     &.upvoted {
       background-color: $body-link-color;
-      border: $body-link-color;
+      border-color: $body-link-color;
       color: $white;
       svg {
         fill: rgba(255,255,255, 1);
@@ -1312,8 +1312,11 @@
 }
 
 .permalink--author-card {
-  @extend .card;
-  padding-bottom: 15px;
+  button {
+    display: inline-block;
+    width: auto;
+    justify-content: initial;
+  }
 }
 
 .mini-cover {
