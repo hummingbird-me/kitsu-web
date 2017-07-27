@@ -66,6 +66,12 @@ export default Component.extend({
         }
         return '#';
       }
+      case 'MediaReaction': {
+        if (isPresent(modelId)) {
+          return hrefTo(this, 'media-reactions', modelId, queryParams);
+        }
+        return '#';
+      }
       default: {
         return '#';
       }
