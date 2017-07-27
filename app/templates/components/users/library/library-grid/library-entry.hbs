@@ -6,11 +6,28 @@
 
       {{! Reaction }}
       <div class="grid-reaction">
-        <p>
-          I really felt this show was pretty boring. Too many silly scenes not enough about the world and interactions with the supernatural.
-        </p>
+        {{#if hasReaction}}
+          <p>
+            <a href="#" {{action (toggle "isReactionModalOpen" this)}}>
+              {{libraryEntry.mediaReaction.reaction}}
+            </a>
+          </p>
+        {{else}}
+          <a href="#" class="grid-reaction--add" {{action (toggle "isReactionModalOpen" this)}}>
+            Add Reaction
+          </a>
+        {{/if}}
       </div>
-      
+
+      {{#if isReactionModalOpen}}
+        {{to-elsewhere named="modal" send=(component "modals/media-reaction"
+          media=libraryEntry.media
+          libraryEntry=libraryEntry
+          modalId="reaction-modal"
+          onClose=(toggle-action "isReactionModalOpen" this)
+        )}}
+      {{/if}}
+
       {{! Edit }}
       <div class="grid-edit-wrapper">
         {{#if (can "edit library-entry" libraryEntry)}}
@@ -18,7 +35,7 @@
             {{t "users.library.list.edit"}}
           </a>
         {{else}}
-          <a href="#" class="grid-edit" {{action (queue
+          <a href="#" class="grid-reaction--add" {{action (queue
             (action (mut readOnlyModal) true)
             (toggle-action "showEditModal" this))}}>
             {{t "users.library.list.more"}}

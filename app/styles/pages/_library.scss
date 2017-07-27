@@ -780,46 +780,61 @@
   text-align: center;
   padding: 0 10px;
   display: flex;
-  .grid-edit, .grid-poster-link {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,.5);
-    border-radius: 3px;
-    font-size: 12px;
-    padding: 2px;
-    display: inline-block;
-    width: 70%;
-    color: rgba(255,255,255,.8);
+}
+
+.grid-edit, .grid-poster-link, .grid-reaction--add {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.5);
+  border-radius: 3px;
+  font-size: 12px;
+  padding: 2px;
+  display: inline-block;
+  width: 70%;
+  color: rgba(255,255,255,.8);
+  svg {
+    fill: rgba(255,255,255,.8);
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: -1px;
+  }
+  &:hover {
+    color: $body-link-color;
+    border-color: $body-link-color;
     svg {
-      fill: rgba(255,255,255,.8);
-      width: 20px;
-      height: 20px;
-      position: relative;
-      top: -1px;
-    }
-    &:hover {
-      color: $body-link-color;
-      border-color: $body-link-color;
-      svg {
-        fill: $body-link-color;
-      }
+      fill: $body-link-color;
     }
   }
-  .grid-edit {
-    margin-right: 5px;
-    width: 300px;
-  }
-  .grid-poster-link {
-    height: 24px;
-  }
+}
+
+.grid-reaction--add {
+  width: 100%;
+  text-align: center;
+}
+
+.grid-edit {
+  margin-right: 5px;
+  width: 300px;
+}
+
+.grid-poster-link {
+  height: 24px;
 }
 
 .grid-reaction {
   position: absolute;
   bottom: 40px;
   padding: 10px;
+  width: 100%;
   p {
     color: white;
     font-size: 12px;
     margin-bottom: 0;
+  }
+  a {
+    color: $white;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }

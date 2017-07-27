@@ -11,6 +11,11 @@ export default Component.extend({
   tagName: '',
   readOnlyModal: false,
 
+  hasReaction: computed('libraryEntry.mediaReaction', function() {
+    const reaction = get(this, 'libraryEntry.mediaReaction');
+    return reaction && get(reaction, 'isNew') === false;
+  }),
+  
   progressPercent: computed('libraryEntry.progress', function() {
     const progress = get(this, 'libraryEntry.progress');
     const unitCount = get(this, 'libraryEntry.media.unitCount');
