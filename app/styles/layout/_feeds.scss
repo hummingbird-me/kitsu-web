@@ -1219,7 +1219,6 @@
     width: 100%;
     border-radius: 3px;
     background-size: cover;
-    background-position: 50%;
   }
   .overlay {
     background: linear-gradient(to bottom,rgba(0,0,0,.4) 0,rgba(0,0,0,.9) 100%);
@@ -1261,6 +1260,27 @@
   }
   .reaction-card-actions {
     z-index: 2;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    .more-wrapper {
+      .dropdown-menu {
+        min-width: 110px;
+        a {
+          font-size: 12px;
+          padding: 5px 10px;
+          border-bottom: 1px solid #ddd;
+          display: block;
+          margin: 0;
+          &:last-child {
+            border-bottom: none;
+          }
+          &:hover {
+            color: $body-link-color;
+          }
+        }
+      }
+    }
   }
 }
 
