@@ -355,6 +355,7 @@
   border-radius: 3px;
   padding: 0;
   margin-bottom: 20px;
+  overflow-y: hidden;
   table {
     display: flex;
     flex-flow: column nowrap;
@@ -442,16 +443,25 @@
     padding-left: 0;
     flex-grow: 1;
     min-width: 340px;
+    .title-wrapper {
+      display: block;
+      max-width: 470px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: initial;
+      a {
+        white-space: nowrap;
+      }
+    }
   }
   .release-status-cell {
-    min-width: 56px;
-    text-align: center;
+    float: right;
     svg {
       position: relative;
-      top: 8px;
+      top: 7px;
       width: 20px;
       height: 20px;
-      fill: $body-text-color;
+      fill: $body-secondary-text-color;
     }
   }
   .simple-rating-cell {
@@ -549,7 +559,6 @@
     line-height: 40px;
   }
   .cell-title {
-    line-height: 35px;
     a {
       color: $body-text-color;
       &:hover {
@@ -758,5 +767,26 @@
   img {
     width: 200px;
     height: 200px;
+  }
+}
+
+.entry-icons {
+  margin-top: -2px;
+  .reaction-status, .reaction-status--add {
+    height: 20px;
+    position: relative;
+    top: 5px;
+    svg {
+      width: 20px;
+      fill: $body-secondary-text-color;
+      &:hover {
+        fill: $body-link-color;
+      }
+    }
+  }
+  .reaction-status--add {
+    svg {
+      fill: $body-secondary-text-color;
+    }
   }
 }
