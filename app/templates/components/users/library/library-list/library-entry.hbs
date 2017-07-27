@@ -25,21 +25,20 @@
         </a>
       </div>
       <div class="entry-icons">
-        <a href="#">
-          <span class="reaction-status hint--bottom hint--bounce hint--medium hint--rounded" aria-label="I really felt this show was pretty boring. Too many silly scenes not enough about the world and interactions with the supernatural.">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-              <path style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;block-progression:tb;isolation:auto;mix-blend-mode:normal" d="M 2.5 2 C 1.6774686 2 1 2.6774686 1 3.5 L 1 11.5 C 1 12.322531 1.6774686 13 2.5 13 L 4 13 L 4 15.433594 L 7.6523438 13 L 12.5 13 C 13.322531 13 14 12.322531 14 11.5 L 14 3.5 C 14 2.6774686 13.322531 2 12.5 2 L 2.5 2 z M 2.5 3 L 12.5 3 C 12.781469 3 13 3.2185314 13 3.5 L 13 11.5 C 13 11.781469 12.781469 12 12.5 12 L 7.3476562 12 L 5 13.566406 L 5 12 L 2.5 12 C 2.2185314 12 2 11.781469 2 11.5 L 2 3.5 C 2 3.2185314 2.2185314 3 2.5 3 z M 7.5 5 L 6.7363281 6.7128906 L 4.8710938 6.9101562 L 6.2636719 8.1640625 L 5.8769531 10 L 7.5 9.0625 L 9.1230469 10 L 8.734375 8.1640625 L 10.128906 6.9101562 L 8.2636719 6.7128906 L 7.5 5 z" font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible"></path>
-            </svg>
+        <a href="#" {{action (toggle "isReactionModalOpen" this)}}>
+          <span class="reaction-status hint--bottom hint--bounce hint--medium hint--rounded" aria-label={{if hasReaction libraryEntry.mediaReaction.reaction (t "users.library.list.add-reaction")}}>
+            {{svg-jar (if hasReaction "reaction" "add-reaction")}}
           </span>
         </a>
 
-        <a href="#">
-          <span class="reaction-status--add hint--bottom hint--bounce hint--rounded" aria-label="Add Reaction">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-              <path style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;block-progression:tb;isolation:auto;mix-blend-mode:normal" d="M 16 3 C 8.8321429 3 3 8.8321429 3 16 C 3 23.167857 8.8321429 29 16 29 C 23.167857 29 29 23.167857 29 16 C 29 8.8321429 23.167857 3 16 3 z M 16 5 C 22.086977 5 27 9.9130231 27 16 C 27 22.086977 22.086977 27 16 27 C 9.9130231 27 5 22.086977 5 16 C 5 9.9130231 9.9130231 5 16 5 z M 15 11 L 15 15 L 11 15 L 11 17 L 15 17 L 15 21 L 17 21 L 17 17 L 21 17 L 21 15 L 17 15 L 17 11 L 15 11 z" font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible"></path>
-            </svg>
-          </span>
-        </a>
+        {{#if isReactionModalOpen}}
+          {{to-elsewhere named="modal" send=(component "modals/media-reaction"
+            media=libraryEntry.media
+            libraryEntry=libraryEntry
+            modalId="reaction-modal"
+            onClose=(toggle-action "isReactionModalOpen" this)
+          )}}
+        {{/if}}
 
         {{#if (not (eq libraryEntry.media.status "finished"))}}
           <span class="release-status-cell hint--bottom hint--bounce hint--rounded" aria-label={{t (concat "media-shared.statuses." libraryEntry.media.modelType "." libraryEntry.media.status)}}>
@@ -49,15 +48,6 @@
       </div>
     </span>
   </td>
-
-  {{! Release Status }}
-  <!-- <td class="release-status-cell">
-    {{#if (not (eq libraryEntry.media.status "finished"))}}
-      <span class="hint--top hint--bounce hint--rounded" aria-label={{t (concat "media-shared.statuses." libraryEntry.media.modelType "." libraryEntry.media.status)}}>
-        {{svg-jar libraryEntry.media.status}}
-      </span>
-    {{/if}}
-  </td> -->
 
   {{! Rating }}
   <td class="rating-cell">

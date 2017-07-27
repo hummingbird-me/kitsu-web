@@ -772,7 +772,7 @@
 
 .entry-icons {
   margin-top: -2px;
-  .reaction-status, .reaction-status--add {
+  .reaction-status {
     height: 20px;
     position: relative;
     top: 5px;
@@ -782,11 +782,9 @@
       &:hover {
         fill: $body-link-color;
       }
-    }
-  }
-  .reaction-status--add {
-    svg {
-      fill: $body-secondary-text-color;
+      &::after {
+        text-align: center;
+      }
     }
   }
 }

@@ -185,7 +185,7 @@ export default Route.extend(Pagination, {
   _getRequestOptions({ media, status, sort, title }) {
     const user = this.modelFor('users');
     const options = {
-      include: `${media},user`,
+      include: `${media},user,mediaReaction`,
       filter: {
         user_id: get(user, 'id'),
         kind: media,
