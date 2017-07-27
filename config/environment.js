@@ -145,6 +145,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_TRANSITIONS_INTERNAL = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
     ENV.torii.providers['facebook-connect'].appId = '1189964281083789';
+    ENV.kitsu.APIHost = 'https://staging.kitsu.io';
   }
 
   if (environment === 'test') {
