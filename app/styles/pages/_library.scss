@@ -264,6 +264,9 @@
           min-height: 222px;
           border-top-left-radius: 3px;
           border-top-right-radius: 3px;
+          .poster-overlay {
+            background: rgba(0,0,0,.8);
+          }
         }
       }
       .progress {
@@ -589,26 +592,6 @@
   }
 }
 
-.grid-edit-wrapper {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  bottom: 20px;
-  text-align: center;
-  .grid-edit {
-    background: $white;
-    border-radius: 3px;
-    font-size: 14px;
-    padding: 2px;
-    display: inline-block;
-    width: 70%;
-    color: #333;
-    &:hover {
-      color: $body-link-color;
-    }
-  }
-}
-
 .entry-rating-empty {
   display: inline-block;
   position: relative;
@@ -786,5 +769,57 @@
         text-align: center;
       }
     }
+  }
+}
+
+.grid-edit-wrapper {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 15px;
+  text-align: center;
+  padding: 0 10px;
+  display: flex;
+  .grid-edit, .grid-poster-link {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.5);
+    border-radius: 3px;
+    font-size: 12px;
+    padding: 2px;
+    display: inline-block;
+    width: 70%;
+    color: rgba(255,255,255,.8);
+    svg {
+      fill: rgba(255,255,255,.8);
+      width: 20px;
+      height: 20px;
+      position: relative;
+      top: -1px;
+    }
+    &:hover {
+      color: $body-link-color;
+      border-color: $body-link-color;
+      svg {
+        fill: $body-link-color;
+      }
+    }
+  }
+  .grid-edit {
+    margin-right: 5px;
+    width: 300px;
+  }
+  .grid-poster-link {
+    height: 24px;
+  }
+}
+
+.grid-reaction {
+  position: absolute;
+  bottom: 40px;
+  padding: 10px;
+  p {
+    color: white;
+    font-size: 12px;
+    margin-bottom: 0;
   }
 }
