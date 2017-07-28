@@ -771,8 +771,17 @@
     }
   }
   .reaction-status--add {
+    display: none;
     svg {
       fill: $body-secondary-text-color;
+    }
+  }
+}
+
+.media-cell {
+  &:hover {
+    .reaction-status--add {
+      display: inline-block;
     }
   }
 }
