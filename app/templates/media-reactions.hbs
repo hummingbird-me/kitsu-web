@@ -2,7 +2,7 @@
   <!-- {{stream-feed/items/media-reaction reaction=model}} -->
   <div class="row">
     <div class="col-xs-12 col-md">
-      {{media/media-reaction-card reaction=model media=model.media}}
+      {{media/media-reaction-card reaction=model media=model.media large=true}}
 
       <div class="more-reactions">
         <a href={{href-to "users.reactions" model.user.name}}>View all <strong>{{model.user.mediaReactionsCount}}</strong> of {{model.user.name}}'s reactions</a>

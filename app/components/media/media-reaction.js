@@ -10,6 +10,7 @@ import { image } from 'client/helpers/image';
 import ClipboardMixin from 'client/mixins/clipboard';
 
 export default Component.extend(ClipboardMixin, {
+  large: false,
   isUpvoted: false,
   queryCache: service(),
   store: service(),
@@ -29,7 +30,7 @@ export default Component.extend(ClipboardMixin, {
   }),
 
   posterImageStyle: computed('media.posterImage', function() {
-    const posterImage = image(get(this, 'media.posterImage'), 'medium');
+    const posterImage = image(get(this, 'media.posterImage'), get(this, 'large') ? 'large' : 'medium');
     return htmlSafe(`background-image: url("${posterImage}")`);
   }).readOnly(),
 
