@@ -44,7 +44,8 @@ export default Component.extend({
     const libraryEntry = get(this, 'libraryEntry');
     let reaction = null;
     if (!get(this, 'createOnly')) {
-      reaction = yield libraryEntry.belongsTo('mediaReaction').load();
+      reaction = yield get(this, 'libraryEntry.mediaReaction') ||
+        libraryEntry.belongsTo('mediaReaction').load();
     }
     if (!reaction) {
       const media = get(this, 'media');

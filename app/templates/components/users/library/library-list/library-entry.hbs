@@ -25,19 +25,32 @@
         </a>
       </div>
       <div class="entry-icons">
-        <a href="#" {{action (toggle "isReactionModalOpen" this)}}>
-          <span class="reaction-status hint--bottom hint--bounce hint--medium hint--rounded" aria-label={{if hasReaction libraryEntry.mediaReaction.reaction (t "users.library.list.add-reaction")}}>
-            {{svg-jar (if hasReaction "reaction" "add-reaction")}}
-          </span>
-        </a>
-
-        {{#if isReactionModalOpen}}
-          {{to-elsewhere named="modal" send=(component "modals/media-reaction"
-            media=libraryEntry.media
-            libraryEntry=libraryEntry
-            modalId="reaction-modal"
-            onClose=(toggle-action "isReactionModalOpen" this)
-          )}}
+        {{#if (is-self libraryEntry.user)}}
+          <a href="#" {{action (toggle "isReactionModalOpen" this)}}>
+            {{#if hasReaction}}
+              <span class="reaction-status hint--bottom hint--bounce hint--medium hint--rounded" aria-label={{libraryEntry.mediaReaction.reaction}}>
+                {{svg-jar "reaction"}}
+              </span>
+            {{else}}
+              <span class="reaction-status--add hint--bottom hint--bounce hint--rounded" aria-label={{t "users.library.list.add-reaction"}}>
+                {{svg-jar "add-reaction"}}
+              </span>
+            {{/if}}
+          </a>
+          {{#if isReactionModalOpen}}
+            {{to-elsewhere named="modal" send=(component "modals/media-reaction"
+              media=libraryEntry.media
+              libraryEntry=libraryEntry
+              modalId="reaction-modal"
+              onClose=(toggle-action "isReactionModalOpen" this)
+            )}}
+          {{/if}}
+        {{else if hasReaction}}
+          <a href={{href-to "media-reactions" libraryEntry.mediaReaction.id}}>
+            <span class="reaction-status hint--bottom hint--bounce hint--medium hint--rounded" aria-label={{libraryEntry.mediaReaction.reaction}}>
+              {{svg-jar "reaction"}}
+            </span>
+          </a>
         {{/if}}
 
         {{#if (not (eq libraryEntry.media.status "finished"))}}

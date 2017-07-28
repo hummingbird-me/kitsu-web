@@ -16,7 +16,7 @@
     {{! reaction content }}
     <div class="comment-body reaction-feed-item">
       <div class="reaction-content">
-        <span class="reaction-message">{{reaction.reaction}}</span>
+        <span class="reaction-message">“{{reaction.reaction}}”</span>
         <span class="reaction-meta">
           {{lazy-image src=(image reaction.user.avatar "tiny")}}
           <a href={{href-to "users.index" reaction.user.name}}>{{reaction.user.name}}</a>
