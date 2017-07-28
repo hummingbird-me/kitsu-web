@@ -16,7 +16,7 @@
     {{! reaction content }}
     <div class="comment-body reaction-feed-item">
       <div class="reaction-content">
-        <span class="reaction-message">“{{reaction.reaction}}”</span>
+        <a class="reaction-message" href={{href-to "media-reactions" reaction.id}}>“{{reaction.reaction}}”</a>
         <span class="reaction-meta">
           {{lazy-image src=(image reaction.user.avatar "tiny")}}
           <a href={{href-to "users.index" reaction.user.name}}>{{reaction.user.name}}</a>
@@ -46,6 +46,19 @@
                 <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "media-reactions" reaction.id)}} {{action "trackEngagement" "click"}}>
                   {{t "media.show.reactions.copy"}}
                 </a>
+
+                {{! Edit }}
+                {{#if (is-self reaction.user)}}
+                  <a class="dropdown-item" href="#" {{action (toggle "editModalOpened" this)}}>{{t "media-reaction.edit"}}</a>
+                  {{#if editModalOpened}}
+                    {{to-elsewhere named="modal" send=(component "modals/media-reaction"
+                      media=reaction.media
+                      libraryEntry=reaction.libraryEntry.content
+                      modalId="reaction-modal"
+                      onClose=(toggle-action "editModalOpened" this)
+                    )}}
+                  {{/if}}
+                {{/if}}
 
                 {{! Deleting Options }}
                 {{#if canDelete}}

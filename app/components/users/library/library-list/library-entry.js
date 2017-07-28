@@ -15,7 +15,7 @@ export default Component.extend({
   showEditModal: false,
 
   hasReaction: computed('libraryEntry.mediaReaction', function() {
-    const reaction = get(this, 'libraryEntry.mediaReaction');
+    const reaction = get(this, 'libraryEntry').belongsTo('mediaReaction').value();
     return reaction && get(reaction, 'isNew') === false;
   }),
 
