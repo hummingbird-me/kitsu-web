@@ -523,7 +523,8 @@ users:
         reactions: "{count} completed media missing <b>reactions</b>"
         fix: "fix"
     list:
-      edit: "Edit"
+      edit: "Edit Entry"
+      list-edit: "Edit"
       more: "More"
       unstarted: "Not Started"
       unrated: "No Rating"
@@ -539,11 +540,17 @@ users:
         rating: "Rating"
         progress: "Progress"
         volumes: "Volumes"
+      add-reaction: "Add Reaction"
       empty:
         search: "Couldn't find any library entries with your search query."
         header: "Looks like your library here is empty! Ready to start something new?"
         guest-header: "Looks like {user} doesn't have any library entries here."
         button: "Browse {type}"
+    grid:
+      view-media: "View {type, select,
+        anime {Anime}
+        manga {Manga}
+        other {}}"
     edit:
       status: "Library Status"
       progress: "Progress"
@@ -1031,7 +1038,7 @@ group-list:
 # component: media/media-reaction
 media-reaction:
   self-vote: "You can't vote on your own reaction."
-  edit: "Edit"
+  edit: "Edit Reaction"
 # component: modals/media-reaction
 reaction-modal:
   post: "Post"

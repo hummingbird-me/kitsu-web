@@ -16,7 +16,13 @@
       <a href="#" class="more-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {{svg-jar "more"}}
       </a>
+
       <div class="dropdown-menu dropdown-menu-right">
+        {{! Copy Permalink }}
+        <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "media-reactions" reaction.id)}} {{action "trackEngagement" "click"}}>
+          {{t "media.show.reactions.copy"}}
+        </a>
+
         {{! Edit }}
         {{#if (is-self reaction.user)}}
           <a href="#" {{action (toggle "editModalOpened" this)}}>{{t "media-reaction.edit"}}</a>
@@ -65,7 +71,7 @@
       <span class="reaction-media-year">{{media.year}}</span>
     {{/if}}
   </span>
-  <a href={{href-to "media-reactions" reaction.id}} class="reaction-copy">{{reaction.reaction}}</a>
+  <a href={{href-to "media-reactions" reaction.id}} class="reaction-copy">“{{reaction.reaction}}”</a>
 </div>
 <div class="poster-image" style={{posterImageStyle}}></div>
 <div class="overlay"></div>

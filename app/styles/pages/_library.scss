@@ -264,6 +264,9 @@
           min-height: 222px;
           border-top-left-radius: 3px;
           border-top-right-radius: 3px;
+          .poster-overlay {
+            background: rgba(0,0,0,.8);
+          }
         }
       }
       .progress {
@@ -355,6 +358,7 @@
   border-radius: 3px;
   padding: 0;
   margin-bottom: 20px;
+  overflow-y: hidden;
   table {
     display: flex;
     flex-flow: column nowrap;
@@ -442,16 +446,25 @@
     padding-left: 0;
     flex-grow: 1;
     min-width: 340px;
+    .title-wrapper {
+      display: block;
+      max-width: 470px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: initial;
+      a {
+        white-space: nowrap;
+      }
+    }
   }
   .release-status-cell {
-    min-width: 56px;
-    text-align: center;
+    float: right;
     svg {
       position: relative;
-      top: 8px;
+      top: 7px;
       width: 20px;
       height: 20px;
-      fill: $body-text-color;
+      fill: $body-secondary-text-color;
     }
   }
   .simple-rating-cell {
@@ -549,7 +562,6 @@
     line-height: 40px;
   }
   .cell-title {
-    line-height: 35px;
     a {
       color: $body-text-color;
       &:hover {
@@ -576,26 +588,6 @@
     &.active {
       background: lighten($background-color, 3);
       border-color: $background-color;
-    }
-  }
-}
-
-.grid-edit-wrapper {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  bottom: 20px;
-  text-align: center;
-  .grid-edit {
-    background: $white;
-    border-radius: 3px;
-    font-size: 14px;
-    padding: 2px;
-    display: inline-block;
-    width: 70%;
-    color: #333;
-    &:hover {
-      color: $body-link-color;
     }
   }
 }
@@ -758,5 +750,101 @@
   img {
     width: 200px;
     height: 200px;
+  }
+}
+
+.entry-icons {
+  margin-top: -2px;
+  .reaction-status, .reaction-status--add {
+    height: 20px;
+    position: relative;
+    top: 5px;
+    svg {
+      width: 20px;
+      fill: $body-secondary-text-color;
+      &:hover {
+        fill: $body-link-color;
+      }
+      &::after {
+        text-align: center;
+      }
+    }
+  }
+  .reaction-status--add {
+    svg {
+      fill: $body-secondary-text-color;
+    }
+  }
+}
+
+.grid-edit-wrapper {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 15px;
+  text-align: center;
+  padding: 0 10px;
+  display: flex;
+}
+
+.grid-edit, .grid-poster-link, .grid-reaction--add, .grid-reaction--more {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.5);
+  border-radius: 3px;
+  font-size: 12px;
+  padding: 2px;
+  display: inline-block;
+  width: 70%;
+  color: rgba(255,255,255,.8);
+  svg {
+    fill: rgba(255,255,255,.8);
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: -1px;
+  }
+  &:hover {
+    color: $body-link-color;
+    border-color: $body-link-color;
+    svg {
+      fill: $body-link-color;
+    }
+  }
+}
+
+.grid-reaction--add, .grid-reaction--more {
+  width: 100%;
+  text-align: center;
+}
+
+.grid-reaction--more {
+  margin-right: 5px;
+}
+
+.grid-edit {
+  margin-right: 5px;
+  width: 300px;
+}
+
+.grid-poster-link {
+  height: 24px;
+}
+
+.grid-reaction {
+  position: absolute;
+  bottom: 40px;
+  padding: 10px;
+  width: 100%;
+  p {
+    color: white;
+    font-size: 12px;
+    margin-bottom: 0;
+  }
+  a {
+    color: $white;
+    &:hover {
+      color: $white;
+      text-decoration: underline;
+    }
   }
 }

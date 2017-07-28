@@ -1,14 +1,14 @@
 <div class="col-md-10 col-xs-12 centered">
-  <!-- {{stream-feed/items/media-reaction reaction=model}} -->
+
   <div class="row">
     <div class="col-xs-12 col-md">
-      {{media/media-reaction-card reaction=model media=model.media}}
+      {{media/media-reaction-card reaction=model media=model.media large=true}}
 
       <div class="more-reactions">
         <a href={{href-to "users.reactions" model.user.name}}>View all <strong>{{model.user.mediaReactionsCount}}</strong> of {{model.user.name}}'s reactions</a>
       </div>
     </div>
-    <div class="col-xs-12 col-md-5">
+    <div class="col-xs-12 col-md-5 permalink--author-card">
       {{users/user-card user=model.user short=true}}
       {{#unless session.hasUser}}
         <div class="guest-card">

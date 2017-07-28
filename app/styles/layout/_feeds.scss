@@ -1118,14 +1118,14 @@
     }
     &:hover {
       color: $body-link-color;
-      border: 1px solid $body-link-color;
+      border-color: $body-link-color;
       svg {
         fill: $body-link-color;
       }
     }
     &.upvoted {
       background-color: $body-link-color;
-      border: $body-link-color;
+      border-color: $body-link-color;
       color: $white;
       svg {
         fill: rgba(255,255,255, 1);
@@ -1151,6 +1151,11 @@
       text-align: center;
       padding: 5px 0;
       font-size: 13px;
+      color: inherit;
+      &:hover {
+        color: $body-link-color;
+        text-decoration: none;
+      }
     }
     .reaction-meta {
       display: flex;
@@ -1198,12 +1203,16 @@
     font-size: 15px;
     margin-bottom: 0;
     color: inherit;
+    &:hover {
+      color: $white;
+      text-decoration: underline;
+    }
   }
   .reaction-media-info {
     font-size: 12px;
-    color: #999;
+    color: $body-secondary-text-color;
     a {
-      color: #ccc;
+      color: $white;
     }
   }
   .upvotes {
@@ -1303,8 +1312,11 @@
 }
 
 .permalink--author-card {
-  @extend .card;
-  padding-bottom: 15px;
+  button {
+    display: inline-block;
+    width: auto;
+    justify-content: initial;
+  }
 }
 
 .mini-cover {
