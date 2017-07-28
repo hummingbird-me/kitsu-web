@@ -59,7 +59,7 @@
     <section class="media--feed">
       <h5>{{t "media.show.summary.feed.header"}}</h5>
       {{stream-feed/list
-        subject=media.computedTitle
+        subject=media.canonicalTitle
         streamType="media_aggr"
         streamId=(concat (capitalize media.modelType) "-" media.id)
         streamFilter="user"

@@ -55,7 +55,7 @@ export default Component.extend(Pagination, {
       options.filter = { kind: kind === 'user' ? 'posts' : kind };
     }
     return yield this.queryPaginated('feed', options, { cache: false });
-  }).restartable(),
+  }).keepLatest(),
 
   createPost: task(function* (content, options) {
     const data = { content, user: get(this, 'session.account'), ...options };
