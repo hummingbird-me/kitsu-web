@@ -46,7 +46,7 @@ export default Component.extend({
       const title = get(this, 'entry.unit.canonicalTitle');
       const placeHolderTitle = `${capitalize(get(unit, 'modelType'))} ${get(unit, 'number')}`;
       if (title && title !== placeHolderTitle) {
-        return `${text} - ${title}`;
+        return `${text} · ${title}`;
       }
     }
     return text;
