@@ -976,6 +976,14 @@ feeds:
     all: "All Activity"
     media: "Media Activity"
     user: "User Activity"
+  placeholder: "{type, select,
+    user_aggr {Post to {subject}}
+    group_aggr {Post to {subject}}
+    media_aggr {Post about {subject}}
+    episode_aggr {Post about Episode {subject}}
+    chapter_aggr {Post about Chapter {subject}}
+    interest_timeline {Post about {subject}}
+    other {Create a post}}..."
   library:
     updated: "moved this to {status}"
     rated: "rated it"

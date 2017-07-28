@@ -38,8 +38,6 @@
       </div>
     </div>
 
-
-
     {{#if model.synopsis}}
       <div class="unit-synopsis">
         {{read-more model.synopsis 280}}
@@ -50,6 +48,7 @@
   <section class="unit-discussion">
     <h5>{{t "media.show.units.feed.header" type=model.modelType}}</h5>
     {{stream-feed/list
+      subject=model.number
       streamType=(concat model.modelType "_aggr")
       streamId=model.id
       streamFilter="user"

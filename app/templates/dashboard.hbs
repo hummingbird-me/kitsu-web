@@ -52,6 +52,7 @@
     {{/if}}
 
     {{stream-feed/list
+      subject=(if (eq streamType "interest_timeline") (capitalize streamInterest) "")
       streamType=streamType
       streamInterest=streamInterest
       streamId=streamId

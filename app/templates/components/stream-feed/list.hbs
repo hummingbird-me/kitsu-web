@@ -1,7 +1,7 @@
 {{#unless hidePostEditor}}
   {{stream-feed/create-post
     readOnly=readOnly
-    placeholder="Create a post..."
+    placeholder=(t "feeds.placeholder" subject=subject type=(if (and (eq streamType "user_aggr") (is-self user)) "" streamType))
     media=media
     unitNumber=unitNumber
     forceUnit=forceUnit

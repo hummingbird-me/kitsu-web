@@ -4,6 +4,7 @@
     {{! Group Feed }}
     <div class="feed-stream col-sm-12 col-md-8">
       {{#stream-feed/list
+        subject=group.name
         streamType="group_aggr"
         streamId=group.id
         kitsuGroup=group
