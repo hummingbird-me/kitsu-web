@@ -10,7 +10,7 @@
           {{#if hasReaction}}
             <p>
               <a href="#" {{action (toggle "isReactionModalOpen" this)}}>
-                “{{libraryEntry.mediaReaction.reaction}}”
+                {{libraryEntry.mediaReaction.reaction}}”
               </a>
             </p>
           {{else}}
@@ -29,7 +29,7 @@
         {{else if hasReaction}}
           <p>
             <a href={{href-to "media-reactions" libraryEntry.mediaReaction.id}}>
-              ”{{libraryEntry.mediaReaction.reaction}}“
+              {{libraryEntry.mediaReaction.reaction}}
             </a>
           </p>
         {{/if}}
