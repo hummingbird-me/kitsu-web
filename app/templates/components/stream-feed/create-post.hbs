@@ -107,7 +107,7 @@
       {{#if _usableMedia}}
         <span class="tag-unit">
           <label class="custom-control custom-checkbox">
-            {{one-way-checkbox shouldUnit update=(action (mut shouldUnit)) disabled=(or isEditing forceUnit) class="custom-control-input"}}
+            {{one-way-checkbox (or shouldUnit unitNumber) update=(action (mut shouldUnit)) disabled=(or isEditing forceUnit) class="custom-control-input"}}
             <span class="custom-control-indicator"></span>
           </label>
           <span>
