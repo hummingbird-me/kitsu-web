@@ -106,8 +106,8 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
 
     if (type === undefined) {
       fields.libraryEntries.push('anime', 'manga');
-      fields.anime = ['posterImage', 'canonicalTitle', 'titles', 'episodeCount', 'slug'].join(',');
-      fields.manga = ['posterImage', 'canonicalTitle', 'titles', 'chapterCount', 'slug'].join(',');
+      fields.anime = ['posterImage', 'canonicalTitle', 'titles', 'episodeCount', 'slug', 'subtype'].join(',');
+      fields.manga = ['posterImage', 'canonicalTitle', 'titles', 'chapterCount', 'slug', 'subtype'].join(',');
     } else {
       fields.libraryEntries.push(type);
       const unitType = type === 'anime' ? 'episodeCount' : 'chapterCount';
