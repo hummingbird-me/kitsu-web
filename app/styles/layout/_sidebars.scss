@@ -3,7 +3,7 @@
   position: relative;
   top: 0;
   bottom: 0;
-  padding: 0 0 60px 0;
+  padding: 0 0 60px 15px;
   width: 300px;
   margin-right: -10px;
   > .sidebar-item:first-child {
@@ -11,10 +11,11 @@
       margin-top: 0;
     }
   }
-  @media (max-width: 767px) {
+  @media (max-width: 1200px) {
     display: none;
   }
   .is-sticky {
+    max-width: 300px;
     @media screen and (max-height: 800px) {
       position: relative;
       top: 0;

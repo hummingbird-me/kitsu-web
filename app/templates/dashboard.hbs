@@ -11,7 +11,7 @@
     )}}
 
   {{! Feed Aside }}
-  <div class="feed-aside">
+  <div class="feed-aside col-sm">
     <div class="is-sticky">
       <ul>
         <li>
@@ -46,7 +46,7 @@
   </div>
 
   {{! Feed }}
-  <div class="feed-stream col-sm">
+  <div class="feed-stream">
     {{#if (and session.hasUser (and (eq streamType "global") (eq session.account.postsCount 0)))}}
       {{dashboard/onboarding/feed-notice}}
     {{/if}}
@@ -61,7 +61,7 @@
       readOnly=(not (can "write post"))}}
   </div>
 
-  <div class="feed-sidebar">
+  <div class="feed-sidebar col-sm">
     <div class="is-sticky">
       {{! Site Announcements }}
       {{dashboard/site-announcements}}

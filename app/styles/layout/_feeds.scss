@@ -1,7 +1,7 @@
 .feed-aside {
-  width: 220px;
+  max-width: 250px;
   padding-left: 15px;
-  @media (max-width: 555px) {
+  @media (max-width: 992px) {
     display: none;
   }
   .is-sticky {
@@ -106,7 +106,8 @@
 }
 
 .feed-stream {
-  padding: 0 20px;
+  padding: 0;
+  width: 540px;
   @media (min-width: 650px) and (max-width: 991px) {
     padding-right: 0;
     margin-right: -10px;
@@ -197,14 +198,15 @@
 
 .stream-item-wrapper {
   @extend .clearfix;
-  padding: 20px;
+  padding: 0;
   padding-bottom: 0;
 }
 
 .stream-item--title-block {
   @extend .clearfix;
   margin-bottom: 0;
-  padding-bottom: 8px;
+  padding: 20px;
+  padding-bottom: 10px;
   background: $foreground-background-color;
   position: relative;
   z-index: $zIndex--stream-item-block;
@@ -221,8 +223,8 @@
     }
     .lazy-image, img {
       border-radius: 999em;
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
     }
   }
   .author-group-avatar {
@@ -266,12 +268,16 @@
 .stream-item-activity {
   @extend .clearfix;
   margin-bottom: 5px;
+  margin-left: 20px;
   float: left;
+  position: relative;
+  top: -3px;
   .like-stream-item {
     display: inline-block;
     float: left;
     padding: 2px 0 4px 0;
     margin-right: 5px;
+    top: 4px;
     position: relative;
     .heart-wrapper {
       width: 15px;
@@ -323,7 +329,7 @@
     padding-left: 5px;
     display: inline-block;
     position: relative;
-    top: -1px;
+    top: 3px;
   }
   .stream-like {
     float: left;
@@ -437,6 +443,7 @@
   float: right;
   position: relative;
   top: 0;
+  margin-right: 20px;
   svg {
     float: left;
     path {
@@ -834,6 +841,7 @@
 
   p {
     overflow: hidden;
+    padding: 0 20px;
   }
 
   .onebox + .onebox {
@@ -847,6 +855,7 @@
   color: #b4b4b4;
 }
 .nsfw-gate, .spoiler-gate, .combo-gate {
+  padding: 0 20px;
   a {
     background: #fafafa;
     border: 1px solid #eee;
@@ -977,7 +986,9 @@
 
 .tagged-media--wrapper {
   @extend .clearfix;
-  padding: 0 0 10px 0;
+  padding: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   .author-info {
     margin-left: 10px;
   }
