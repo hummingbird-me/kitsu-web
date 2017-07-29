@@ -158,7 +158,7 @@
                   </a>
                   {{#if post.spoiledUnit}}
                     —
-                    <a class="author-name" href={{href-to (concat post.media.modelType ".show." post.spoiledUnit.modelType "s.show") post.media.slug post.spoiledUnit.id}}>
+                    <a class="author-name" href={{href-to (concat post.media.modelType ".show." post.spoiledUnit.modelType "s.show") post.media.slug post.spoiledUnit.number}}>
                       {{t "feeds.post.spoilers" type=post.media.modelType num=post.spoiledUnit.number}} {{postUnitText}}
                     </a>
                   {{/if}}
