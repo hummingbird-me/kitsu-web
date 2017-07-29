@@ -31,6 +31,14 @@ export default Route.extend({
     return get(this, 'modelTask').perform(number);
   },
 
+  afterModel(model) {
+    if (model === undefined) {
+      const mediaType = get(this, 'routeName').split('.')[0];
+      const unitType = mediaType === 'anime' ? 'episodes' : 'chapters';
+      this.transitionTo(`${mediaType}.show.${unitType}.index`);
+    }
+  },
+
   setupController(controller) {
     this._super(...arguments);
     const [mediaType] = get(this, 'routeName').split('.');
