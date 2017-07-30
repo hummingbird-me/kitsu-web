@@ -14,7 +14,9 @@
         {{t "media.show.units.unit" type=unit.modelType}}
         {{unit.number}}
       </span>
-      <span class="info-emphasis thumb-caption">{{unit.canonicalTitle}}</span>
+      {{#if (not (eq unit.canonicalTitle (concat (capitalize unit.modelType) " " unit.number)))}}
+        <span class="info-emphasis thumb-caption">{{unit.canonicalTitle}}</span>
+      {{/if}}
     </h6>
   </div>
 </div>

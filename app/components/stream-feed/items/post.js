@@ -6,6 +6,7 @@ import observer from 'ember-metal/observer';
 import { guidFor } from 'ember-metal/utils';
 import computed from 'ember-computed';
 import { typeOf, isEmpty } from 'ember-utils';
+import { capitalize } from 'ember-string';
 import { scheduleOnce } from 'ember-runloop';
 import { invoke, invokeAction } from 'ember-invoke-action';
 import { CanMixin } from 'ember-can';
@@ -37,7 +38,9 @@ export default Component.extend(ClipboardMixin, CanMixin, {
 
   postUnitText: getter(function() {
     const unit = get(this, 'post.spoiledUnit');
-    return isEmpty(get(unit, 'canonicalTitle')) ? '' : `- ${get(unit, 'canonicalTitle')}`;
+    const title = get(unit, 'canonicalTitle');
+    const placeHolderTitle = `${capitalize(get(unit, 'modelType'))} ${get(unit, 'number')}`;
+    return isEmpty(title) || title === placeHolderTitle ? '' : `- ${title}`;
   }),
 
   isEditable: getter(function() {
