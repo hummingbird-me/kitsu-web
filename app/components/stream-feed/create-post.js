@@ -67,7 +67,10 @@ export default Component.extend({
     });
     const progress = get(results, 'firstObject.progress');
     if (progress > 0) {
-      set(this, 'unitNumber', progress);
+      setProperties(this, {
+        unitNumber: progress,
+        shouldUnit: true
+      });
     }
   }).restartable(),
 
@@ -99,7 +102,9 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    set(this, 'shouldUnit', get(this, 'forceUnit'));
+    if (get(this, 'forceUnit') === true) {
+      set(this, 'shouldUnit', get(this, 'forceUnit'));
+    }
     set(this, 'author', get(this, 'session.account'));
     if (get(this, 'isEditing') === true && get(this, 'post')) {
       setProperties(this, {
