@@ -67,7 +67,7 @@
     {{#if (gte initialEntries.length pageLimit)}}
       {{infinite-pagination
         showLoader=false
-        rootMargin=(hash bottom=0 left=400)
+        rootMargin=(hash bottom=0 left=-400)
         onPagination=(action "onPagination")}}
     {{/if}}
   {{/em-flickity}}
