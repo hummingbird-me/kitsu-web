@@ -46,6 +46,22 @@ function embedly() {
   injectScript('https://cdn.embedly.com/widgets/platform.js').catch(() => {});
 }
 
+/**
+ * Inject OneSignal's script into the `head` on initialzation.
+ */
+function onesignal() {
+  window.OneSignal = window.OneSignal || [];
+  window.OneSignal.push(['init', {
+    appId: config.onesignal.appId,
+    allowLocalhostAsSecureOrigin: true,
+    autoRegister: false,
+    notifyButton: { enable: false },
+    persistNotification: false,
+    welcomeNotification: { title: 'Kitsu' }
+  }]);
+  injectScript('https://cdn.onesignal.com/sdks/OneSignalSDK.js').catch(() => {});
+}
+
 export function initialize() {
   // Don't bother if we don't have DOM access, FastBoot?
   if (!canUseDOM) { return; }
@@ -61,6 +77,7 @@ export function initialize() {
   adwords();
   canny();
   embedly();
+  onesignal();
 }
 
 export default {

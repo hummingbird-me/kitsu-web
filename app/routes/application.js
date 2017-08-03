@@ -128,6 +128,12 @@ export default Route.extend(ApplicationRouteMixin, {
       this._loadTheme(user);
       get(this, 'moment').changeTimeZone(get(user, 'timeZone') || moment.tz.guess());
 
+      // notifications
+      window.OneSignal.push(() => {
+        // TODO: register with slidedown on authed page load, with new step in onboarding
+        window.OneSignal.registerForPushNotifications();
+      });
+
       // metrics
       get(this, 'metrics').identify({
         distinctId: get(user, 'id'),

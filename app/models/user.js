@@ -89,6 +89,7 @@ export default Base.extend(Validations, {
   followers: hasMany('follow', { inverse: 'followed' }),
   following: hasMany('follow', { inverse: 'follower' }),
   notificationSettings: hasMany('notification-setting', { inverse: 'user' }),
+  oneSignalPlayers: hasMany('one-signal-player', { inverse: 'user' }),
   profileLinks: hasMany('profile-link', { inverse: 'user' }),
   userRoles: hasMany('user-role'),
 

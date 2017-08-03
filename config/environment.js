@@ -135,6 +135,11 @@ module.exports = function(environment) {
 
     embedly: {
       apiKey: '90f3fb8ff40f4603991aa258127ccb5e'
+    },
+
+    onesignal: {
+      // TODO: Change this to a real app id
+      appId: '4bd004d1-31c1-4f36-8c21-de2e4415ce76'
     }
   };
 
