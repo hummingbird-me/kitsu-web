@@ -7,6 +7,7 @@ moduleFor('route:application', 'Unit | Route | application', {
     'service:headData',
     'service:ajax',
     'service:router-scroll',
+    'service:scheduler',
     'service:intl',
     'service:moment'
   ]
