@@ -135,8 +135,6 @@ RouterInstance.map(function() {
   this.route('reviews', { path: '/reviews/:id' });
   this.route('media-reactions', { path: '/media-reactions/:id' });
   this.route('notifications');
-  this.route('people');
-  this.route('characters');
 
   this.route('password-reset');
   this.route('confirm-email');
