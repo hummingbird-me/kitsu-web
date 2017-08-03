@@ -126,6 +126,10 @@
 
 }
 
+.notification-settings-container {
+  max-width: 800px;
+}
+
 .notification-settings--table {
   list-style-type: none;
   margin: 0;
@@ -133,7 +137,15 @@
   width: 100%;
 }
 
+.notification-settings--right {
+  width: 25%;
+  display: flex;
+  justify-content: space-around;
+}
+
 .notification-settings--headers {
+  display: flex;
+  justify-content: flex-end;
   margin-top: -20px;
   background: #eee;
   font-size: 12px;
@@ -156,6 +168,8 @@
   }
 }
 .notification-settings--item {
+  display: flex;
+  justify-content: space-between;
   border-bottom: 1px solid $divider-color;
   margin-bottom: 15px;
   padding-bottom: 10px;
@@ -166,8 +180,14 @@
 
 .settings-column {
   display: inline-block;
-  &.checkbox-wrapper {
-    text-align: center;
+}
+
+.notification-settings-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  button {
+    min-width: 300px;
   }
 }
 

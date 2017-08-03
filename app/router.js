@@ -105,6 +105,7 @@ RouterInstance.map(function() {
 
   this.route('settings', function() {
     this.route('index', { path: '/profile' });
+    this.route('notifications');
     this.route('password');
     this.route('privacy');
     this.route('linked-accounts');

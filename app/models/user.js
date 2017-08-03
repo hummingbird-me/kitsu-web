@@ -88,6 +88,7 @@ export default Base.extend(Validations, {
   favorites: hasMany('favorite', { inverse: 'user' }),
   followers: hasMany('follow', { inverse: 'followed' }),
   following: hasMany('follow', { inverse: 'follower' }),
+  notificationSettings: hasMany('notification-setting', { inverse: 'user' }),
   profileLinks: hasMany('profile-link', { inverse: 'user' }),
   userRoles: hasMany('user-role'),
 
