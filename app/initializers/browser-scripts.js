@@ -52,7 +52,7 @@ function embedly() {
 function onesignal() {
   window.OneSignal = window.OneSignal || [];
   window.OneSignal.push(['init', {
-    appId: config.onesignal.appId,
+    appId: config.onesignal[config.kitsu.env].appId,
     allowLocalhostAsSecureOrigin: true,
     autoRegister: false,
     notifyButton: { enable: false },

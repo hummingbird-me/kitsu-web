@@ -138,8 +138,15 @@ module.exports = function(environment) {
     },
 
     onesignal: {
-      // TODO: Change this to a real app id
-      appId: '4bd004d1-31c1-4f36-8c21-de2e4415ce76'
+      production: {
+        appId: '01f6e47a-6809-4118-a796-949952e9c209'
+      },
+      staging: {
+        appId: '9933b0ac-ca94-4990-931b-7efa6bafdfd6'
+      },
+      development: {
+        appId: '9933b0ac-ca94-4990-931b-7efa6bafdfd6'
+      }
     }
   };
 
