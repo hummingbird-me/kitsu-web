@@ -13,6 +13,7 @@ export default Route.extend(ApplicationRouteMixin, {
   metrics: service(),
   moment: service(),
   cache: storageFor('last-used'),
+  local: storageFor('local-cache'),
 
   // If the user is authenticated on first load, grab the users data
   beforeModel() {
@@ -149,22 +150,40 @@ export default Route.extend(ApplicationRouteMixin, {
   },
 
   _registerNotifications() {
-    window.OneSignal.push(() => {
-      if (get(this, 'session.isAuthenticated') && get(this, 'session.account.feedCompleted')) {
-        window.OneSignal.showHttpPrompt();
-      }
+    if (get(this, 'session.account.feedCompleted')) {
+      window.OneSignal.push(() => {
+        window.OneSignal.isPushNotificationsEnabled((isEnabled) => {
+          if (isEnabled) {
+            // retry hookup if it failed last time
+            const userId = get(this, 'local.oneSignalPlayerId');
+            if (userId) {
+              this._setupNotifications(userId);
+            }
+          } else {
+            window.OneSignal.showHttpPrompt();
+            window.OneSignal.on('subscriptionChange', (isSubscribed) => {
+              if (isSubscribed) {
+                window.OneSignal.getUserId().then((userId) => {
+                  // store the id so we can retry on next refresh if hookup fails
+                  set(this, 'local.oneSignalPlayerId', userId);
+                  this._setupNotifications(userId);
+                });
+              }
+            });
+          }
+        });
+      });
+    }
+  },
 
-      // create the one-signal-player when user subscribes
-      window.OneSignal.on('subscriptionChange', (isSubscribed) => {
-        if (isSubscribed && get(this, 'session.isAuthenticated')) {
-          window.OneSignal.getUserId().then((userId) => {
-            get(this, 'store').createRecord('one-signal-player', {
-              playerId: userId,
-              platform: 'web',
-              user: get(this, 'session.account')
-            }).save();
-          });
-        }
+  _setupNotifications(userId) {
+    window.OneSignal.push(() => {
+      get(this, 'store').createRecord('one-signal-player', {
+        playerId: userId,
+        platform: 'web',
+        user: get(this, 'session.account')
+      }).save().then(() => {
+        get(this, 'local').clear();
       });
     });
   },

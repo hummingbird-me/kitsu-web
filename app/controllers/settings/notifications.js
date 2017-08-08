@@ -24,7 +24,7 @@ export default Controller.extend({
     });
   }).drop(),
 
-  updateSettingTask: task(function* updateNotificationSetting(setting) {
+  updateSettingTask: task(function* (setting) {
     return yield setting.save().catch((err) => {
       get(this, 'notify').error(errorMessages(err));
       setting.rollbackAttributes();
