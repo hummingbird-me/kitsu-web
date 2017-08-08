@@ -39,7 +39,7 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
         status: 'current,planned'
       },
       fields: this._getFieldsets(type),
-      sort: 'status,-updated_at',
+      sort: 'status,-progressed_at,-updated_at',
       page: { limit: get(this, 'pageLimit') }
     }, { cache: false });
   }).drop(),
