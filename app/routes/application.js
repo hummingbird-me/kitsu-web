@@ -129,10 +129,7 @@ export default Route.extend(ApplicationRouteMixin, {
       get(this, 'moment').changeTimeZone(get(user, 'timeZone') || moment.tz.guess());
 
       // notifications
-      window.OneSignal.push(() => {
-        // TODO: register with slidedown on authed page load, with new step in onboarding
-        window.OneSignal.registerForPushNotifications();
-      });
+      this._registerNotifications();
 
       // metrics
       get(this, 'metrics').identify({
@@ -148,6 +145,25 @@ export default Route.extend(ApplicationRouteMixin, {
       });
     }).catch(() => {
       get(this, 'session').invalidate();
+    });
+  },
+
+  _registerNotifications() {
+    window.OneSignal.push(() => {
+      window.OneSignal.registerForPushNotifications();
+
+      // create the one-signal-player when user subscribes
+      window.OneSignal.on('subscriptionChange', (isSubscribed) => {
+        if (isSubscribed && get(this, 'session.isAuthenticated')) {
+          window.OneSignal.getUserId().then((userId) => {
+            get(this, 'store').createRecord('one-signal-player', {
+              playerId: userId,
+              platform: 'web',
+              user: get(this, 'session.account')
+            }).save();
+          });
+        }
+      });
     });
   },
 

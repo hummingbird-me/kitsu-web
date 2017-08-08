@@ -16,24 +16,6 @@ export default Controller.extend(queryParams.Mixin, {
   ajax: service(),
   store: service(),
 
-  init() {
-    this._super(...arguments);
-    // create the one-signal-player when user subscribes
-    window.OneSignal.push(() => {
-      window.OneSignal.on('subscriptionChange', (isSubscribed) => {
-        if (isSubscribed && get(this, 'session.isAuthenticated')) {
-          window.OneSignal.getUserId().then((userId) => {
-            get(this, 'store').createRecord('one-signal-player', {
-              playerId: userId,
-              platform: 'web',
-              user: get(this, 'session.account')
-            }).save();
-          });
-        }
-      });
-    });
-  },
-
   queryParamsDidChange({ changed: { notification } }) {
     if (notification && get(this, 'session.hasUser')) {
       this._markNotificationRead(notification).finally(() => {
