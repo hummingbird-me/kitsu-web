@@ -57,7 +57,15 @@ function onesignal() {
     autoRegister: false,
     notifyButton: { enable: false },
     persistNotification: false,
-    welcomeNotification: { title: 'Kitsu' }
+    welcomeNotification: { title: 'Kitsu' },
+    promptOptions: {
+      // actionMessage limited to 90 characters
+      actionMessage: 'Enable notifications to stay updated on all the new activity.',
+      // acceptButtonText limited to 15 characters
+      acceptButtonText: 'SURE!',
+      // cancelButtonText limited to 15 characters
+      cancelButtonText: 'NO THANKS'
+    }
   }]);
   injectScript('https://cdn.onesignal.com/sdks/OneSignalSDK.js').catch(() => {});
 }

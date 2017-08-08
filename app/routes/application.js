@@ -150,7 +150,9 @@ export default Route.extend(ApplicationRouteMixin, {
 
   _registerNotifications() {
     window.OneSignal.push(() => {
-      window.OneSignal.registerForPushNotifications();
+      if (get(this, 'session.isAuthenticated') && get(this, 'session.account.feedCompleted')) {
+        window.OneSignal.showHttpPrompt();
+      }
 
       // create the one-signal-player when user subscribes
       window.OneSignal.on('subscriptionChange', (isSubscribed) => {
