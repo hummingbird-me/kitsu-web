@@ -49,9 +49,12 @@ module.exports = function(defaults) {
       }
     },
 
-    // can be removed when ember-web-app supports mstile
     fingerprint: {
       exclude: [
+        'OneSignalSDKWorker.js',
+        'OneSignalSDKUpdaterWorker.js',
+
+        // can be removed when ember-web-app supports mstile
         'mstile-70x70.png',
         'mstile-150x150.png',
         'mstile-310x150.png',
