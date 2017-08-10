@@ -13,6 +13,7 @@ export default Route.extend(ApplicationRouteMixin, {
   metrics: service(),
   moment: service(),
   cache: storageFor('last-used'),
+  local: storageFor('local-cache'),
 
   // If the user is authenticated on first load, grab the users data
   beforeModel() {
@@ -128,6 +129,9 @@ export default Route.extend(ApplicationRouteMixin, {
       this._loadTheme(user);
       get(this, 'moment').changeTimeZone(get(user, 'timeZone') || moment.tz.guess());
 
+      // notifications
+      this._registerNotifications();
+
       // metrics
       get(this, 'metrics').identify({
         distinctId: get(user, 'id'),
@@ -142,6 +146,45 @@ export default Route.extend(ApplicationRouteMixin, {
       });
     }).catch(() => {
       get(this, 'session').invalidate();
+    });
+  },
+
+  _registerNotifications() {
+    if (get(this, 'session.account.feedCompleted')) {
+      window.OneSignal.push(() => {
+        window.OneSignal.isPushNotificationsEnabled((isEnabled) => {
+          if (isEnabled) {
+            // retry hookup if it failed last time
+            const userId = get(this, 'local.oneSignalPlayerId');
+            if (userId) {
+              this._setupNotifications(userId);
+            }
+          } else {
+            window.OneSignal.showHttpPrompt();
+            window.OneSignal.on('subscriptionChange', (isSubscribed) => {
+              if (isSubscribed) {
+                window.OneSignal.getUserId().then((userId) => {
+                  // store the id so we can retry on next refresh if hookup fails
+                  set(this, 'local.oneSignalPlayerId', userId);
+                  this._setupNotifications(userId);
+                });
+              }
+            });
+          }
+        });
+      });
+    }
+  },
+
+  _setupNotifications(userId) {
+    window.OneSignal.push(() => {
+      get(this, 'store').createRecord('one-signal-player', {
+        playerId: userId,
+        platform: 'web',
+        user: get(this, 'session.account')
+      }).save().then(() => {
+        get(this, 'local').clear();
+      });
     });
   },
 

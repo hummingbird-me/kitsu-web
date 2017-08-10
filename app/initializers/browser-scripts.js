@@ -46,6 +46,30 @@ function embedly() {
   injectScript('https://cdn.embedly.com/widgets/platform.js').catch(() => {});
 }
 
+/**
+ * Inject OneSignal's script into the `head` on initialzation.
+ */
+function onesignal() {
+  window.OneSignal = window.OneSignal || [];
+  window.OneSignal.push(['init', {
+    appId: config.onesignal[config.kitsu.env].appId,
+    allowLocalhostAsSecureOrigin: true,
+    autoRegister: false,
+    notifyButton: { enable: false },
+    persistNotification: false,
+    welcomeNotification: { title: 'Kitsu' },
+    promptOptions: {
+      // actionMessage limited to 90 characters
+      actionMessage: 'Enable notifications to stay updated on all the new activity.',
+      // acceptButtonText limited to 15 characters
+      acceptButtonText: 'SURE!',
+      // cancelButtonText limited to 15 characters
+      cancelButtonText: 'NO THANKS'
+    }
+  }]);
+  injectScript('https://cdn.onesignal.com/sdks/OneSignalSDK.js').catch(() => {});
+}
+
 export function initialize() {
   // Don't bother if we don't have DOM access, FastBoot?
   if (!canUseDOM) { return; }
@@ -61,6 +85,7 @@ export function initialize() {
   adwords();
   canny();
   embedly();
+  onesignal();
 }
 
 export default {
