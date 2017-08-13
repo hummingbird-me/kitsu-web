@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { get, set, setProperties, computed } from '@ember/object';
-import { typeOf } from '@ember/utils';
+import { get, set, computed } from '@ember/object';
 import { task } from 'ember-concurrency';
 import { scheduleOnce } from '@ember/runloop';
 import { storageFor } from 'ember-local-storage';
@@ -13,6 +12,7 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
   filterOptions: ['all', 'anime', 'manga'],
   pageLimit: 12,
   notify: service(),
+  queryCache: service(),
   lastUsed: storageFor('last-used'),
 
   remaining: computed('initialEntries.length', function() {
@@ -26,10 +26,15 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
     this._getEntries();
   },
 
+  onPagination() {
+    this._super(...arguments);
+    this._appendToFlickity();
+  },
+
   getEntriesTask: task(function* () {
     const type = get(this, 'filter') !== 'all' ? get(this, 'filter') : undefined;
     const includes = type || 'anime,manga';
-    return yield this.queryPaginated('library-entry', {
+    const entries = yield this.queryPaginated('library-entry', {
       include: `${includes},unit`,
       filter: {
         kind: type,
@@ -40,23 +45,24 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
       sort: 'status,-progressed_at,-updated_at',
       page: { limit: get(this, 'pageLimit') }
     }, { cache: false });
+    set(this, 'initialEntries', entries);
   }).drop(),
 
-  onPagination() {
-    this._super(...arguments);
-    this._appendToFlickity();
-  },
-
   actions: {
-    updateEntry(entry, property, value) {
-      if (get(this, 'isFlickityDraging')) { return; }
-      if (typeOf(property) === 'object') {
-        setProperties(entry, property);
-      } else {
-        set(entry, property, value);
-      }
-      return entry.save().catch(() => {
+    saveEntry(entry) {
+      return entry.save().then(() => {
+        get(this, 'queryCache').invalidateType('library-entry');
+      });
+    },
+
+    removeEntry(entry) {
+      return entry.destroyRecord().then(() => {
+        // remove element from flickity
+        const elements = this.$(`[data-entry-id="${get(entry, 'id')}"]`).eq(0).parent();
+        this.$('.carousel').flickity('remove', elements);
+      }).catch((error) => {
         entry.rollbackAttributes();
+        get(this, 'raven').captureException(error);
       });
     },
 
@@ -82,11 +88,7 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
   _getEntries() {
     set(this, 'initialEntries', []);
     set(this, 'paginatedRecords', []);
-    get(this, 'getEntriesTask').perform().then((entries) => {
-      set(this, 'initialEntries', entries);
-    }).catch((error) => {
-      get(this, 'raven').captureException(error);
-    });
+    get(this, 'getEntriesTask').perform();
   },
 
   _appendToFlickity() {
@@ -102,14 +104,15 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
       libraryEntries: ['progress', 'status', 'rating', 'unit', 'updatedAt']
     };
 
+    const media = ['posterImage', 'canonicalTitle', 'titles', 'slug', 'subtype', 'startDate'];
     if (type === undefined) {
       fields.libraryEntries.push('anime', 'manga');
-      fields.anime = ['posterImage', 'canonicalTitle', 'titles', 'episodeCount', 'slug', 'subtype'].join(',');
-      fields.manga = ['posterImage', 'canonicalTitle', 'titles', 'chapterCount', 'slug', 'subtype'].join(',');
+      fields.anime = ['episodeCount', ...media].join(',');
+      fields.manga = ['chapterCount', ...media].join(',');
     } else {
       fields.libraryEntries.push(type);
       const unitType = type === 'anime' ? 'episodeCount' : 'chapterCount';
-      fields[type] = ['posterImage', 'canonicalTitle', 'titles', unitType, 'slug'].join(',');
+      fields[type] = [unitType, ...media].join(',');
     }
     fields.libraryEntries = fields.libraryEntries.join(',');
 

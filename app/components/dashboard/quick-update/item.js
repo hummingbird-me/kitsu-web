@@ -3,6 +3,7 @@ import { get, set, computed } from '@ember/object';
 import { equal } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { capitalize, htmlSafe } from '@ember/string';
+import { isEmpty } from '@ember/utils';
 import { task } from 'ember-concurrency';
 import { strictInvokeAction } from 'ember-invoke-action';
 
@@ -11,6 +12,12 @@ export default Component.extend({
   intl: service(),
   store: service(),
   isCompleted: equal('entry.status', 'completed').readOnly(),
+
+  buttonTooltipText: computed('updatePostText', function() {
+    const text = get(this, 'updatePostText');
+    const key = 'dashboard.quick-update.overlay.button.tooltip';
+    return isEmpty(text) ? `${key}.empty` : `${key}.content`;
+  }).readOnly(),
 
   nextProgress: computed('entry.progress', function() {
     const progress = get(this, 'entry.progress');
@@ -59,16 +66,18 @@ export default Component.extend({
     return htmlSafe(`width: ${result}%;`);
   }).readOnly(),
 
-  updateEntryTask: task(function* (rating) {
-    const hash = { progress: get(this, 'nextProgress') };
-    if (typeof rating === 'number') {
-      set(hash, 'rating', rating);
-    }
+  updateEntryTask: task(function* () {
+    const model = get(this, 'entry');
+    set(model, 'progress', get(this, 'nextProgress'));
     // will the next update complete this media?
     if (get(this, 'canComplete')) {
-      hash.status = 'completed';
+      set(model, 'status', 'completed');
     }
-    yield strictInvokeAction(this, 'updateEntry', hash);
-    yield strictInvokeAction(this, 'reloadUnit');
+    try {
+      yield strictInvokeAction(this, 'updateEntry', model);
+      yield strictInvokeAction(this, 'reloadUnit');
+    } catch (error) {
+      model.rollbackAttributes();
+    }
   }).drop()
 });
