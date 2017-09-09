@@ -66,7 +66,7 @@ export default Component.extend({
         }
         return '#';
       }
-      case 'MediaReaction': {
+      case 'MediaReactionVote': {
         if (isPresent(modelId)) {
           return hrefTo(this, 'media-reactions', modelId, queryParams);
         }
