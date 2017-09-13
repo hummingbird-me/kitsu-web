@@ -1,0 +1,30 @@
+{{#file-dropzone name=(concat "comment-uploads-" elementId) disabled=dropzoneDisabled as |dropzone queue|}}
+  <div class="comment-box-row">
+    {{expanding-textarea
+      keyEvents=(hash 13=(action "submit"))
+      disabled=onSubmit.isRunning
+      rows="1"
+      placeholder=(if dropzone.active
+        (if dropzone.valid (t "feeds.uploads.drop") (t "feeds.uploads.invalid"))
+        (if queue.files.length (t "feeds.uploads.uploading" number=queue.files.length progress=queue.progress) placeholder))
+      class=className
+    }}
+
+    {{#unless upload}}
+      {{#file-upload name=(concat "comment-uploads-" elementId)
+        accept="image/jpg, image/jpeg, image/png, image/gif"
+        multiple=false
+        onfileadd=(action (perform uploadImage))
+      }}
+        {{svg-jar "picture"}}
+      {{/file-upload}}
+    {{/unless}}
+  </div>
+
+  {{#if upload}}
+    <div class="comment-box-upload">
+      {{lazy-image src=(image upload.content "original")}}
+      <a href="#" {{action "removeUpload" upload}}>{{svg-jar "cancel"}}</a>
+    </div>
+  {{/if}}
+{{/file-dropzone}}

@@ -110,12 +110,11 @@
 {{#unless getComments.isRunning}}
   {{#if (and (not comment) (not readOnly))}}
     <div class="add-comment-wrapper">
-      {{expanding-textarea
-        keyEvents=(hash 13=(action "createComment"))
-        disabled=createComment.isRunning
-        rows="1"
+      {{stream-feed/items/post/comment-box
+        onSubmit=createComment
         placeholder="Leave a comment..."
-        class="form-control add-comment"
+        className="form-control add-comment"
+        upload=upload
       }}
     </div>
   {{/if}}

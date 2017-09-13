@@ -2,7 +2,6 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
-import { isEmpty } from 'ember-utils';
 import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
@@ -12,6 +11,7 @@ import Pagination from 'kitsu-shared/mixins/pagination';
 export default Component.extend(Pagination, {
   classNames: ['stream-item-comments'],
   sortOptions: ['likes', 'replies', 'oldest'],
+  upload: undefined,
   metrics: service(),
   notify: service(),
   store: service(),
@@ -22,17 +22,22 @@ export default Component.extend(Pagination, {
       filter: { post_id: get(this, 'post.id'), parent_id: '_none' },
       fields: { users: ['avatar', 'name'].join(',') },
       page: { limit: 2 },
-      include: 'user',
+      include: 'user,uploads',
       sort: this._getSortOption()
     }, { cache: false });
   }).drop(),
 
   createComment: task(function* (content) {
-    const comment = get(this, 'store').createRecord('comment', {
+    const data = {
       content,
       post: get(this, 'post'),
-      user: get(this, 'session.account')
-    });
+      user: get(this, 'session.account'),
+    };
+    const upload = get(this, 'upload');
+    if (upload) {
+      data.uploads = [upload];
+    }
+    const comment = get(this, 'store').createRecord('comment', data);
     get(this, 'comments').addObject(comment);
 
     // update comments count
@@ -94,16 +99,6 @@ export default Component.extend(Pagination, {
     updateSort(sort) {
       set(this, 'sort', sort);
       this._getComments();
-    },
-
-    createComment(component, event, content) {
-      if (isEmpty(content) === true) { return; }
-      const { shiftKey } = event;
-      if (shiftKey === false) {
-        event.preventDefault();
-        get(this, 'createComment').perform(content);
-        component.clear();
-      }
     },
 
     deletedComment(comment) {

@@ -1,0 +1,11 @@
+{{#photo-swipe bgOpacity=0.92 showAnimationDuration=0 hideAnimationDuration=0 history=false items=galleryItems
+  class=(concat "stream-content-post-uploads " gridStyle) as |photoswipe|}}
+  {{#each (take 5 galleryItems) as |img index|}}
+    <a href="#" {{action photoswipe.actions.open (hash index=index shareEl=false)}}>
+      {{lazy-image src=img.thumbSrc}}
+      {{#if (and (gt galleryItems.length 5) (eq index 4))}}
+        <div class="more-uploads-overlay">+{{subtract galleryItems.length 4}}</div>
+      {{/if}}
+    </a>
+  {{/each}}
+{{/photo-swipe}}

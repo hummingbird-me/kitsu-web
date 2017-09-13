@@ -1,13 +1,15 @@
 import Component from 'ember-component';
 import service from 'ember-service/inject';
-import get from 'ember-metal/get';
+import get, { getProperties } from 'ember-metal/get';
 import set, { setProperties } from 'ember-metal/set';
 import { isEmpty, isPresent } from 'ember-utils';
-import computed from 'ember-computed';
-import { task, timeout } from 'ember-concurrency';
+import computed, { empty, notEmpty, and, or } from 'ember-computed';
+import { all, task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import jQuery from 'jquery';
 import RSVP from 'rsvp';
+import config from 'client/config/environment';
+import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   classNameBindings: ['isExpanded:is-expanded'],
@@ -20,20 +22,24 @@ export default Component.extend({
   spoiler: false,
   shouldUnit: false,
   maxLength: 9000,
+  uploads: [],
   _usableMedia: null,
   store: service(),
   queryCache: service(),
+  fileQueue: service(),
 
-  canPost: computed('content', function() {
+  canPost: or('contentPresent', 'uploadsReady'),
+  uploadsReady: and('uploadsPresent', 'queueFinished'),
+  uploadsPresent: notEmpty('uploads'),
+  queueFinished: empty('fileQueue.files'),
+
+  contentPresent: computed('content', function() {
     return isPresent(get(this, 'content')) &&
       get(this, 'content.length') <= get(this, 'maxLength');
   }).readOnly(),
 
   createPost: task(function* () {
-    const options = {
-      nsfw: get(this, 'nsfw'),
-      spoiler: get(this, 'spoiler')
-    };
+    const options = getProperties(this, 'nsfw', 'spoiler', 'uploads');
     if (this._usableMedia !== null) {
       options.media = this._usableMedia;
     }
@@ -41,6 +47,7 @@ export default Component.extend({
       options.unitNumber = get(this, 'unitNumber');
     }
     yield invokeAction(this, 'onCreate', get(this, 'content'), options);
+    yield all(options.uploads.filterBy('hasDirtyAttributes').map(upload => upload.save()));
     this._resetProperties();
   }).drop(),
 
@@ -83,6 +90,26 @@ export default Component.extend({
       return fulfilled.map(i => get(i, 'value').toArray()).reduce((a, b) => a.concat(b));
     });
   }).restartable(),
+
+  uploadImages: task(function* (file) {
+    const headers = { accept: 'application/vnd.api+json' };
+    get(this, 'session').authorize('authorizer:application', (headerName, headerValue) => {
+      headers[headerName] = headerValue;
+    });
+    try {
+      const { body } = yield file.upload(`${config.kitsu.APIHost}/api/edge/uploads/_bulk`, {
+        fileKey: 'files[]',
+        headers
+      });
+      const store = get(this, 'store');
+      store.pushPayload(body);
+      const uploads = get(this, 'uploads');
+      uploads.addObjects(body.data.map(upload => store.peekRecord('upload', upload.id)));
+      this._orderUploads(uploads);
+    } catch (error) {
+      get(this, 'notify').error(errorMessages(error));
+    }
+  }).maxConcurrency(3).enqueue(),
 
   /**
    * If the user clicks outside the bounds of this component
@@ -144,12 +171,18 @@ export default Component.extend({
     setProperties(this, {
       content: '',
       isExpanded: false,
-      nsfw: false
+      nsfw: false,
+      uploads: []
     });
     if (get(this, 'mediaReadOnly') === false) {
       set(this, '_usableMedia', null);
       set(this, 'spoiler', false);
     }
+  },
+
+  _orderUploads(uploads) {
+    uploads.forEach(item => set(item, 'uploadOrder', uploads.indexOf(item)));
+    set(this, 'uploads', uploads);
   },
 
   actions: {
@@ -166,6 +199,14 @@ export default Component.extend({
       } else if (!get(this, 'isEditing')) {
         this.toggleProperty('isExpanded');
       }
-    }
+    },
+
+    reorderUploads(orderedUploads) {
+      this._orderUploads(orderedUploads);
+    },
+
+    removeUpload(upload) {
+      get(this, 'uploads').removeObject(upload);
+    },
   }
 });

@@ -18,16 +18,55 @@
 
 {{#if isExpanded}}
   <div class="add-content-expanded">
-    {{! editor }}
-    {{expanding-textarea content
-      update=(action (mut content))
-      keyEvents=(hash
-        13=(action "createPost")
-      )
-      autofocus=true
-      maxlength=maxLength
-      class="stream-content-editor"
-    }}
+    {{#file-dropzone name="uploads" as |dropzone queue|}}
+      {{! editor }}
+      {{expanding-textarea content
+        update=(action (mut content))
+        keyEvents=(hash
+          13=(action "createPost")
+        )
+        autofocus=true
+        maxlength=maxLength
+        class="stream-content-editor"
+      }}
+
+      <div class="post-uploads">
+        {{#if uploads}}
+          {{#sortable-group direction="x" tagName="ul" class="uploads-list" onChange=(action "reorderUploads") as |group|}}
+            {{#each uploads as |upload|}}
+              {{#sortable-item model=upload group=group tagName="li" class="uploads-item"}}
+                {{lazy-image src=(image upload.content "original")}}
+                <div class="uploads-number">{{add upload.uploadOrder 1}}</div>
+                <a href="#" {{action "removeUpload" upload}}>{{svg-jar "cancel"}}</a>
+              {{/sortable-item}}
+            {{/each}}
+          {{/sortable-group}}
+        {{/if}}
+
+        {{#if (or dropzone.active queue.files.length)}}
+          <div class="add-uploads">
+            {{#if dropzone.active}}
+              {{#if dropzone.valid}}
+                {{t "feeds.uploads.drop"}}
+              {{else}}
+                {{t "feeds.uploads.invalid"}}
+              {{/if}}
+            {{else if queue.files.length}}
+              {{t "feeds.uploads.uploading" number=queue.files.length progress=queue.progress}}
+            {{/if}}
+          </div>
+        {{else}}
+          {{#file-upload name="uploads"
+            accept="image/jpg, image/jpeg, image/png, image/gif"
+            multiple=true
+            onfileadd=(action (perform uploadImages))
+          }}
+            {{svg-jar "picture"}}
+            {{t "feeds.uploads.select"}}
+          {{/file-upload}}
+        {{/if}}
+      </div>
+    {{/file-dropzone}}
 
     {{! media tagging }}
     <div class="tag-media">
@@ -79,7 +118,7 @@
 
     {{! post actions }}
     <div class="add-content-footer">
-      <button type="button" class="button button--primary" disabled={{if (not canPost) "disabled"}} {{action (perform createPost)}}>
+      <button type="button" class="button button--primary" disabled={{unless canPost "disabled"}} {{action (perform createPost)}}>
         {{#if createPost.isRunning}}
           {{loading-spinner size="small"}}
         {{else}}
