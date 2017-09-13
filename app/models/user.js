@@ -99,6 +99,7 @@ export default Base.extend(Validations, {
   // without them, ember-data will override its null inverse!
   posts: hasMany('post', { inverse: 'user' }),
   receivedPosts: hasMany('post', { inverse: 'targetUser' }),
+  uploads: hasMany('upload', { inverse: 'user' }),
 
   waifu: belongsTo('character'),
   pinnedPost: belongsTo('post', { inverse: null }),
