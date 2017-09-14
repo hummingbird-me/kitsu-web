@@ -36,7 +36,7 @@ export default Component.extend({
 
   actions: {
     submit(component, event, content) {
-      if (isEmpty(content) === true) { return; }
+      if (isEmpty(content) === true && isEmpty(get(this, 'upload')) === true) { return; }
       const { shiftKey } = event;
       if (shiftKey === false) {
         event.preventDefault();
