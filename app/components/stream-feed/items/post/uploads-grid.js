@@ -113,11 +113,11 @@ export default Component.extend({
       galleryItems.forEach((item, index) => {
         const { width: w, height: h } = thumbSize(gridLength, gridOrientation, index);
         let thumbSrc;
-        if (length === 1) {
-          thumbSrc = imgixUrl([item.src, { h }]);
-        } else {
-          thumbSrc = imgixUrl([item.src, { w, h, fit: 'crop' }]);
-        }
+//         if (length === 1) {
+//           thumbSrc = imgixUrl([item.src, { h }]);
+//         } else {
+        thumbSrc = imgixUrl([item.src, { w, h, fit: 'crop', crop: 'edges' }]);
+//         }
         set(item, 'thumbSrc', thumbSrc);
       });
       setProperties(this, { galleryItems, gridLength, gridOrientation });
