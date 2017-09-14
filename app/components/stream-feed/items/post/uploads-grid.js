@@ -52,7 +52,7 @@ const thumbSize = (length, orientation, index) => {
   let short;
   switch (length) {
     case 1:
-      long = max;
+      long = max * 1.25;
       short = max;
       break;
     case 2:
@@ -112,13 +112,14 @@ export default Component.extend({
       const gridOrientation = avgOrientation(galleryItems, gridLength);
       galleryItems.forEach((item, index) => {
         const { width: w, height: h } = thumbSize(gridLength, gridOrientation, index);
-        let thumbSrc;
-//         if (length === 1) {
-//           thumbSrc = imgixUrl([item.src, { h }]);
-//         } else {
-        thumbSrc = imgixUrl([item.src, { w, h, fit: 'crop', crop: 'edges' }]);
-//         }
-        set(item, 'thumbSrc', thumbSrc);
+        const thumbParams = { w, h };
+        if (length > 1) {
+          thumbParams.fit = 'crop';
+        } else if (orientation(item) === 2) {
+          thumbParams.fit = 'crop';
+          thumbParams.crop = 'edges';
+        }
+        set(item, 'thumbSrc', imgixUrl([item.src, thumbParams]));
       });
       setProperties(this, { galleryItems, gridLength, gridOrientation });
     });
