@@ -124,9 +124,11 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     }
 
     // uploads
-    get(this, 'getUploadsTask').perform().then((uploads) => {
-      set(this, 'uploads', uploads.toArray());
-    });
+    if (isEmpty(get(this, 'uploads'))) {
+      get(this, 'getUploadsTask').perform().then((uploads) => {
+        set(this, 'uploads', uploads.toArray());
+      });
+    }
 
     // groups
     if (get(post, 'id') && get(this, 'session.hasUser')) {

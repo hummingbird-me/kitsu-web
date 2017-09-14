@@ -4,7 +4,7 @@ import get, { getProperties } from 'ember-metal/get';
 import set, { setProperties } from 'ember-metal/set';
 import { isEmpty, isPresent } from 'ember-utils';
 import computed, { empty, notEmpty, and, or } from 'ember-computed';
-import { all, task, timeout } from 'ember-concurrency';
+import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import jQuery from 'jquery';
 import RSVP from 'rsvp';
@@ -47,7 +47,6 @@ export default Component.extend({
       options.unitNumber = get(this, 'unitNumber');
     }
     yield invokeAction(this, 'onCreate', get(this, 'content'), options);
-    yield all(options.uploads.filterBy('hasDirtyAttributes').map(upload => upload.save()));
     this._resetProperties();
   }).drop(),
 
