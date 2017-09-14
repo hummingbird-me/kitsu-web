@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { get, set, setProperties, computed } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
-import { all, task, timeout } from 'ember-concurrency';
+import { task, timeout } from 'ember-concurrency';
 import { empty, notEmpty, and, or } from '@ember/object/computed';
 import { invokeAction } from 'ember-invoke-action';
 import jQuery from 'jquery';
@@ -46,7 +46,6 @@ export default Component.extend({
       options.unitNumber = get(this, 'unitNumber');
     }
     yield invokeAction(this, 'onCreate', get(this, 'content'), options);
-    yield all(options.uploads.filterBy('hasDirtyAttributes').map(upload => upload.save()));
     this._resetProperties();
   }).drop(),
 
