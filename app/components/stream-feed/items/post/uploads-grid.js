@@ -129,7 +129,6 @@ export default Component.extend({
     return yield all(uploads.map((upload) => {
       const src = get(upload, 'content.original');
       const jsonUrl = imgixUrl([src, { fm: 'json' }]);
-      console.log(jsonUrl);
       return request(jsonUrl).then(data => ({
         src, w: data.PixelWidth, h: data.PixelHeight
       }));
