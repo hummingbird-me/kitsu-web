@@ -112,7 +112,7 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
     if (upload) {
       const src = get(upload, 'content.original');
       const jsonUrl = imgixUrl([src, { fm: 'json' }]);
-      const thumbSrc = imgixUrl([src, { h: 200 }]);
+      const thumbSrc = imgixUrl([src, { 'max-h': 200 }]);
       request(jsonUrl).then(data => set(this, 'galleryItems', [{
         src, thumbSrc, w: data.PixelWidth, h: data.PixelHeight
       }]));
