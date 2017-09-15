@@ -25,6 +25,7 @@
         keyEvents=(hash
           13=(action "createPost")
         )
+        onpaste=(action "paste")
         autofocus=true
         maxlength=maxLength
         class="stream-content-editor"
@@ -57,9 +58,9 @@
           </div>
         {{else}}
           {{#file-upload name="uploads"
-            accept="image/jpg, image/jpeg, image/png, image/gif"
+            accept=accept
             multiple=true
-            onfileadd=(action (perform uploadImages))
+            onfileadd=(action (perform uploadImagesTask))
           }}
             {{svg-jar "picture"}}
             {{t "feeds.uploads.select"}}

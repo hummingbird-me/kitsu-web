@@ -6,17 +6,19 @@ import service from 'ember-service/inject';
 import { notEmpty } from 'ember-computed';
 import { task } from 'ember-concurrency';
 import { invoke } from 'ember-invoke-action';
+import File from 'ember-file-upload/file';
 import config from 'client/config/environment';
 import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   classNames: ['comment-box'],
   upload: undefined,
+  accept: 'image/jpg, image/jpeg, image/png, image/gif',
   dropzoneDisabled: notEmpty('upload'),
   notify: service(),
   store: service(),
 
-  uploadImage: task(function* (file) {
+  uploadImageTask: task(function* (file) {
     const headers = { accept: 'application/vnd.api+json' };
     get(this, 'session').authorize('authorizer:application', (headerName, headerValue) => {
       headers[headerName] = headerValue;
@@ -43,6 +45,27 @@ export default Component.extend({
         get(this, 'onSubmit').perform(content);
         component.clear();
         invoke(this, 'removeUpload');
+      }
+    },
+
+    paste(event) {
+      const { items } = event.clipboardData;
+      const accept = get(this, 'accept');
+      let image;
+      let i = 0;
+      while (!image && i < items.length) {
+        if (accept.includes(items[i].type)) {
+          event.preventDefault();
+          image = items[i].getAsFile();
+        }
+        i += 1;
+      }
+      if (image) {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => {
+          get(this, 'uploadImageTask').perform(File.fromDataURL(reader.result));
+        });
+        reader.readAsDataURL(image);
       }
     },
 

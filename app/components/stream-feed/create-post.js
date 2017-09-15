@@ -5,6 +5,7 @@ import { isEmpty, isPresent } from '@ember/utils';
 import { task, timeout } from 'ember-concurrency';
 import { empty, notEmpty, and, or } from '@ember/object/computed';
 import { invokeAction } from 'ember-invoke-action';
+import File from 'ember-file-upload/file';
 import jQuery from 'jquery';
 import RSVP from 'rsvp';
 import config from 'client/config/environment';
@@ -13,6 +14,7 @@ import errorMessages from 'client/utils/error-messages';
 export default Component.extend({
   classNameBindings: ['isExpanded:is-expanded'],
   classNames: ['stream-add-content'],
+  accept: 'image/jpg, image/jpeg, image/png, image/gif',
   content: undefined,
   isExpanded: false,
   isEditing: false,
@@ -26,6 +28,7 @@ export default Component.extend({
   store: service(),
   queryCache: service(),
   fileQueue: service(),
+  notify: service(),
 
   canPost: or('contentPresent', 'uploadsReady'),
   uploadsReady: and('uploadsPresent', 'queueFinished'),
@@ -89,7 +92,7 @@ export default Component.extend({
     });
   }).restartable(),
 
-  uploadImages: task(function* (file) {
+  uploadImagesTask: task(function* (file) {
     const headers = { accept: 'application/vnd.api+json' };
     get(this, 'session').authorize('authorizer:application', (headerName, headerValue) => {
       headers[headerName] = headerValue;
@@ -196,6 +199,25 @@ export default Component.extend({
         get(this, 'session').signUpModal();
       } else if (!get(this, 'isEditing')) {
         this.toggleProperty('isExpanded');
+      }
+    },
+
+    paste(event) {
+      const { items } = event.clipboardData;
+      const accept = get(this, 'accept');
+      const images = [];
+      for (let i = 0; i < items.length; i += 1) {
+        if (accept.includes(items[i].type)) {
+          event.preventDefault();
+          images.push(items[i].getAsFile());
+        }
+      }
+      if (images) {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => {
+          get(this, 'uploadImagesTask').perform(File.fromDataURL(reader.result));
+        });
+        images.forEach(image => reader.readAsDataURL(image));
       }
     },
 
