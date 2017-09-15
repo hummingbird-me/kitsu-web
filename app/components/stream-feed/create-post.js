@@ -4,6 +4,7 @@ import get, { getProperties } from 'ember-metal/get';
 import set, { setProperties } from 'ember-metal/set';
 import { isEmpty, isPresent } from 'ember-utils';
 import computed, { empty, notEmpty, and, or } from 'ember-computed';
+import { A } from 'ember-array/utils';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import File from 'ember-file-upload/file';
@@ -110,6 +111,9 @@ export default Component.extend({
       this._orderUploads(uploads);
     } catch (error) {
       get(this, 'notify').error(errorMessages(error));
+      const queue = get(this, 'fileQueue').find('uploads');
+      get(queue, 'files').forEach(file => set(file, 'queue', null));
+      set(queue, 'files', A());
     }
   }).maxConcurrency(3).enqueue(),
 

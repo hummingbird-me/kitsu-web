@@ -4,6 +4,7 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
 import { notEmpty } from 'ember-computed';
+import { A } from 'ember-array/utils';
 import { task } from 'ember-concurrency';
 import { invoke } from 'ember-invoke-action';
 import File from 'ember-file-upload/file';
@@ -17,6 +18,7 @@ export default Component.extend({
   dropzoneDisabled: notEmpty('upload'),
   notify: service(),
   store: service(),
+  fileQueue: service(),
 
   uploadImageTask: task(function* (file) {
     const headers = { accept: 'application/vnd.api+json' };
@@ -33,6 +35,9 @@ export default Component.extend({
       set(this, 'upload', store.peekRecord('upload', body.data[0].id));
     } catch (error) {
       get(this, 'notify').error(errorMessages(error));
+      const queue = get(this, 'fileQueue').find(`comment-uploads-${get(this, 'elementId')}`);
+      get(queue, 'files').forEach(file => set(file, 'queue', null));
+      set(queue, 'files', A());
     }
   }).drop(),
 
