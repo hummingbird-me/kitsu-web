@@ -131,7 +131,7 @@ export default Component.extend({
       const src = get(upload, 'content.original');
       const jsonUrl = imgixUrl([src, { fm: 'json' }]);
       return request(jsonUrl).then(data => ({
-        src, w: data.PixelWidth, h: data.PixelHeight
+        src, w: data.PixelWidth, h: data.PixelHeight, type: data['Content-Type']
       }));
     }));
   }).drop(),
