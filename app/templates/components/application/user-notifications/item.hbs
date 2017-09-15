@@ -61,7 +61,7 @@
         {{else if (eq activity.verb "invited")}}
           invited you to a group.
         {{else if (eq activity.verb "vote")}}
-          liked your reaction.
+          liked your {{activity.target.media.computedTitle}} reaction.
         {{/if}}
       </p>
       <small class="media-secondary">{{moment-from-now activity.time interval=60000}}</small>

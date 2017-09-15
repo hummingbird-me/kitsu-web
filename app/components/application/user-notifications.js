@@ -46,7 +46,7 @@ export default Component.extend(Pagination, {
     return yield this.queryPaginated('feed', {
       type: 'notifications',
       id: get(this, 'session.account.id'),
-      include: 'actor,target.user,target.post',
+      include: 'actor,target.user,target.post,target.anime,target.manga',
       page: { limit }
     }, { cache: false });
   }).enqueue(),
