@@ -2,6 +2,8 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { get, set, setProperties, computed } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
+import { empty, notEmpty, and, or } from '@ember/object/computed';
+import { A } from '@ember/array';
 import { task, timeout } from 'ember-concurrency';
 import { empty, notEmpty, and, or } from '@ember/object/computed';
 import { invokeAction } from 'ember-invoke-action';
@@ -109,6 +111,9 @@ export default Component.extend({
       this._orderUploads(uploads);
     } catch (error) {
       get(this, 'notify').error(errorMessages(error));
+      const queue = get(this, 'fileQueue').find('uploads');
+      get(queue, 'files').forEach(file => set(file, 'queue', null));
+      set(queue, 'files', A());
     }
   }).maxConcurrency(3).enqueue(),
 
