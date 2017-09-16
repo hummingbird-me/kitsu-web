@@ -5,6 +5,8 @@ import set, { setProperties } from 'ember-metal/set';
 import { isEmpty, isPresent } from 'ember-utils';
 import computed, { empty, notEmpty, and, or } from 'ember-computed';
 import { A } from 'ember-array/utils';
+import observer from 'ember-metal/observer';
+import { once } from 'ember-runloop';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import File from 'ember-file-upload/file';
@@ -12,6 +14,8 @@ import jQuery from 'jquery';
 import RSVP from 'rsvp';
 import config from 'client/config/environment';
 import errorMessages from 'client/utils/error-messages';
+
+const linkRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
 
 export default Component.extend({
   classNameBindings: ['isExpanded:is-expanded'],
@@ -31,6 +35,7 @@ export default Component.extend({
   queryCache: service(),
   fileQueue: service(),
   notify: service(),
+  ajax: service(),
 
   canPost: or('contentPresent', 'uploadsReady'),
   uploadsReady: and('uploadsPresent', 'queueFinished'),
@@ -42,8 +47,38 @@ export default Component.extend({
       get(this, 'content.length') <= get(this, 'maxLength');
   }).readOnly(),
 
+  links: computed('content', function() {
+    const content = get(this, 'content');
+    if (content) {
+      const links = content.match(linkRegex);
+      if (links) {
+        return links.map(link => ({ link, cancelled: false }));
+      }
+    }
+  }).readOnly(),
+
+  embedUrl: computed('links', function() {
+    const links = get(this, 'links');
+    if (links) {
+      return get(links.rejectBy('cancelled'), 'firstObject.link');
+    }
+  }).readOnly(),
+
+  // embedUrlChanged: observer('embedUrl', function() {
+    // once(this, function() {
+      // const url = get(this, 'embedUrl');
+        // if (url) {
+      // get(this, 'previewEmbedTask').perform(url).then(embed => set(this, 'embed', embed));
+      // }
+    // });
+  // }),
+
   createPost: task(function* () {
     const options = getProperties(this, 'nsfw', 'spoiler', 'uploads');
+    const embedUrl = get(this, 'embedUrl');
+    if (embedUrl) {
+      options.embedUrl = embedUrl;
+    }
     if (this._usableMedia !== null) {
       options.media = this._usableMedia;
     }
@@ -116,6 +151,12 @@ export default Component.extend({
       set(queue, 'files', A());
     }
   }).maxConcurrency(3).enqueue(),
+
+  previewEmbedTask: task(function* (url) {
+    return yield get(this, 'ajax').request('/embeds', {
+      method: 'POST', data: { url }
+    });
+  }).keepLatest(),
 
   /**
    * If the user clicks outside the bounds of this component
