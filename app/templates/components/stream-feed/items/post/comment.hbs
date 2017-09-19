@@ -30,7 +30,7 @@
           class="form-control add-comment"}}
       {{else}}
         {{#if comment.contentFormatted}}
-          {{format-content comment.contentFormatted}}
+          {{format-content comment.contentFormatted embed=false}}
         {{/if}}
       {{/if}}
     </span>

@@ -114,7 +114,7 @@
       {{else}}
         {{#if post.contentFormatted}}
           <span class="stream-content-post {{if isExpanded "full-post"}}">
-            {{format-content post.contentFormatted}}
+            {{format-content post.contentFormatted embed=false}}
           </span>
 
           {{#if isOverflowed}}
@@ -132,6 +132,8 @@
 
         {{#if uploads}}
           {{stream-feed/items/post/uploads-grid uploads=uploads}}
+        {{else if post.embed.kind}}
+          {{stream-feed/embed embed=post.embed url=post.embedUrl}}
         {{/if}}
       {{/if}}
 
