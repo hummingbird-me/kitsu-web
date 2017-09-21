@@ -188,7 +188,10 @@ export default Component.extend({
       content: '',
       isExpanded: false,
       nsfw: false,
-      uploads: []
+      uploads: [],
+      canceled: [],
+      embedUrl: null,
+      embed: null
     });
     if (get(this, 'mediaReadOnly') === false) {
       set(this, '_usableMedia', null);
