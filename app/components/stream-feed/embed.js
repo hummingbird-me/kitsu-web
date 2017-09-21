@@ -18,9 +18,13 @@ export default Component.extend({
 
   orientation: computed('embed.image.height', 'embed.image.width', function() {
     const image = get(this, 'embed.image');
-    const { width, height } = getProperties(image, 'width', 'height');
-    const ratio = width / height;
-    if (ratio > 1.25) { return 'landscape'; }
+    if (image) {
+      const { width, height } = getProperties(image, 'width', 'height');
+      const ratio = width / height;
+      if (ratio > 1.25) {
+        return 'landscape';
+      }
+    }
     return 'portrait';
   }).readOnly(),
 
