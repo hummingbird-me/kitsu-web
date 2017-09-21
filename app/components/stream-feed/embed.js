@@ -42,7 +42,7 @@ export default Component.extend({
       } else {
         embed = `<iframe ${attrs}></iframe>`;
       }
-      this.$('.embed-preview').replaceWith(embed);
+      this.$('.embed-video').replaceWith(embed);
     }
   }
 });
