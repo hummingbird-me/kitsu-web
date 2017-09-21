@@ -1,6 +1,7 @@
 import Component from 'ember-component';
 import get, { getProperties } from 'ember-metal/get';
 import computed from 'ember-computed';
+import { htmlSafe } from 'ember-string';
 
 export default Component.extend({
   classNames: ['stream-content-embed'],
@@ -11,9 +12,9 @@ export default Component.extend({
     if (kind === 'video' || kind === 'video.other') {
       const video = get(this, 'embed.video');
       const { width, height } = getProperties(video, 'width', 'height');
-      return `padding-bottom: calc(100% * (${height} / ${width}))`;
+      return htmlSafe(`padding-bottom: calc(100% * (${height} / ${width}))`);
     }
-    return '';
+    return null;
   }).readOnly(),
 
   orientation: computed('embed.image.height', 'embed.image.width', function() {
