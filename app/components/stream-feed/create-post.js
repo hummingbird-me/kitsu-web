@@ -5,8 +5,6 @@ import set, { setProperties } from 'ember-metal/set';
 import { isEmpty, isPresent } from 'ember-utils';
 import computed, { empty, notEmpty, and, or } from 'ember-computed';
 import { A } from 'ember-array/utils';
-import observer from 'ember-metal/observer';
-import { once } from 'ember-runloop';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import File from 'ember-file-upload/file';
@@ -30,6 +28,7 @@ export default Component.extend({
   shouldUnit: false,
   maxLength: 9000,
   uploads: [],
+  canceled: [],
   _usableMedia: null,
   store: service(),
   queryCache: service(),
@@ -47,38 +46,8 @@ export default Component.extend({
       get(this, 'content.length') <= get(this, 'maxLength');
   }).readOnly(),
 
-  links: computed('content', function() {
-    const content = get(this, 'content');
-    if (content) {
-      const links = content.match(linkRegex);
-      if (links) {
-        return links.map(link => ({ link, cancelled: false }));
-      }
-    }
-  }).readOnly(),
-
-  embedUrl: computed('links', function() {
-    const links = get(this, 'links');
-    if (links) {
-      return get(links.rejectBy('cancelled'), 'firstObject.link');
-    }
-  }).readOnly(),
-
-  // embedUrlChanged: observer('embedUrl', function() {
-    // once(this, function() {
-      // const url = get(this, 'embedUrl');
-        // if (url) {
-      // get(this, 'previewEmbedTask').perform(url).then(embed => set(this, 'embed', embed));
-      // }
-    // });
-  // }),
-
   createPost: task(function* () {
-    const options = getProperties(this, 'nsfw', 'spoiler', 'uploads');
-    const embedUrl = get(this, 'embedUrl');
-    if (embedUrl) {
-      options.embedUrl = embedUrl;
-    }
+    const options = getProperties(this, 'nsfw', 'spoiler', 'uploads', 'embedUrl');
     if (this._usableMedia !== null) {
       options.media = this._usableMedia;
     }
@@ -274,5 +243,28 @@ export default Component.extend({
     removeUpload(upload) {
       get(this, 'uploads').removeObject(upload);
     },
+
+    processLinks() {
+      const content = get(this, 'content');
+      if (content && isEmpty(get(this, 'embedUrl'))) {
+        const canceled = get(this, 'canceled');
+        const links = content.match(linkRegex);
+        if (links) {
+          const url = links.find(link => !canceled.includes(link));
+          if (url) {
+            set(this, 'embedUrl', url);
+            console.log('run preview task');
+            // get(this, 'previewEmbedTask').perform(url).then(embed => set(this, 'embed', embed));
+          }
+        }
+      }
+    },
+
+    cancelEmbed() {
+      const embedUrl = get(this, 'embedUrl');
+      get(this, 'canceled').addObject(embedUrl);
+      set(this, 'embedUrl', null);
+      set(this, 'embed', null);
+    }
   }
 });

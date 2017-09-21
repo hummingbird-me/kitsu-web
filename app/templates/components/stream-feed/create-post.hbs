@@ -21,7 +21,7 @@
     {{#file-dropzone name="uploads" as |dropzone queue|}}
       {{! editor }}
       {{expanding-textarea content
-        update=(action (mut content))
+        update=(action (queue (action (mut content)) (action "processLinks")))
         keyEvents=(hash
           13=(action "createPost")
         )
@@ -70,7 +70,10 @@
     {{/file-dropzone}}
 
     {{! embed }}
-    {{embedUrl}}
+    {{#if embedUrl}}
+      {{embedUrl}}
+      <span {{action "cancelEmbed"}}>{{svg-jar "close"}}</span>
+    {{/if}}
 
     {{! media tagging }}
     <div class="tag-media">
