@@ -1157,6 +1157,11 @@
     }
   }
   .embed-article {
+    &.landscape {
+      img {
+        width: 100%;
+      }
+    }
     &.portrait {
       display: flex;
       .lazy-image {
@@ -1173,6 +1178,7 @@
       }
       .embed-title {
         font-weight: 700;
+        color: $body-text-color;
       }
     }
   }
