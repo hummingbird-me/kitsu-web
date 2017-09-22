@@ -2,6 +2,7 @@ import Component from 'ember-component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import service from 'ember-service/inject';
+import computed from 'ember-computed';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import { concat } from 'client/utils/computed-macros';
@@ -11,6 +12,13 @@ export default Component.extend({
   store: service(),
   currentCategory: 'all',
   categories: concat('allCategories', 'getCategoriesTask.last.value'),
+
+  filteredCategories: computed('categories', function() {
+    const hideNsfw = get(this, 'session.account.sfwFilter');
+    const categories = get(this, 'categories');
+    const nsfwCategory = categories.findBy('slug', 'nsfw');
+    return hideNsfw ? categories.without(nsfwCategory) : categories;
+  }).readOnly(),
 
   init() {
     this._super(...arguments);

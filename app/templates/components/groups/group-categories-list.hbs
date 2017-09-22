@@ -4,7 +4,7 @@
       {{loading-spinner size="large"}}
     </div>
   {{else}}
-    {{#each (sort-by "slug" categories) as |category|}}
+    {{#each (sort-by "slug" filteredCategories) as |category|}}
       <li class="group-category-wrapper {{if (eq currentCategory category.slug) "active"}}">
         <a href="#" {{action "switchCategory" category}}>
           <span class="group-category-icon">{{svg-jar category.slug}}</span>
