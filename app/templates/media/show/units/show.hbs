@@ -29,9 +29,9 @@
           {{#if (or model.airdate model.published)}}
             <div class="unit-date">
               {{#if (eq model.modelType "episode")}}
-                {{t "media.show.units.date" type="episode" }}: {{moment-format model.airdate "MMM D, YYYY"}}
+                {{t "media.show.units.date" type="episode" }}: {{moment-format model.airdate "MMM D, YYYY" timeZone="UTC"}}
               {{else}}
-                {{t "media.show.units.date" type="chapter" }}: {{moment-format model.published "MMM D, YYYY"}}
+                {{t "media.show.units.date" type="chapter" }}: {{moment-format model.published "MMM D, YYYY" timeZone="UTC"}}
               {{/if}}
             </div>
           {{/if}}

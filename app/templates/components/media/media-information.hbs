@@ -56,9 +56,9 @@
   {{else if media.startDate}}
     <li>
       <strong>{{t "media.show.summary.information.start" type=media.modelType}}</strong>
-      {{moment-format media.startDate "MMM D, YYYY"}}
+      {{moment-format media.startDate "MMM D, YYYY" timeZone="UTC"}}
       {{#if (and media.endDate airedLongerThanOneDay)}}
-        to {{moment-format media.endDate "MMM D, YYYY"}}
+        to {{moment-format media.endDate "MMM D, YYYY" timeZone="UTC"}}
       {{/if}}
     </li>
     {{#if isAnime}}
