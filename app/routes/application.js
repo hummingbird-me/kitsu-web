@@ -141,7 +141,7 @@ export default Route.extend(ApplicationRouteMixin, {
       });
       get(this, 'raven').callRaven('setUserContext', {
         id: get(user, 'id'),
-        username: get(user, 'name')
+        user: get(user, 'slug')
       });
     }).catch(() => {
       get(this, 'session').invalidate();

@@ -40,13 +40,13 @@ export default Controller.extend({
     ]
   )),
 
-  isValid: computed('username', 'user.hasDirtyAttributes', 'user.name', function() {
+  isValid: computed('name', 'user.hasDirtyAttributes', 'user.name', function() {
     if (get(this, 'user.hasDirtyAttributes')) { return true; }
-    return get(this, 'user.name') !== get(this, 'username');
+    return get(this, 'user.name') !== get(this, 'name');
   }).readOnly(),
 
   updateProfile: task(function* () {
-    set(this, 'user.name', get(this, 'username'));
+    set(this, 'user.name', get(this, 'name'));
     yield get(this, 'user').save()
       .then(() => {
         set(this, 'lastUsed.theme', get(this, 'user.theme'));
@@ -56,14 +56,14 @@ export default Controller.extend({
       .catch((err) => {
         get(this, 'notify').error(errorMessages(err));
         get(this, 'user').rollbackAttributes();
-        set(this, 'username', get(this, 'user.name'));
+        set(this, 'name', get(this, 'user.name'));
       });
   }).drop(),
 
   init() {
     this._super(...arguments);
     // copy so we aren't manipulating the user's name directly
-    set(this, 'username', get(this, 'user.name'));
+    set(this, 'name', get(this, 'user.name'));
 
     // find our object associated with our user properties
     const language = get(this, 'languages')
