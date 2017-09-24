@@ -9,7 +9,7 @@
   <div class="group-member-avatars">
     {{#each getMembersTask.last.value as |member|}}
       {{#if member.user}}
-        <a href={{href-to "users.index" member.user.name}} class="hint--top hint--bounce hint--rounded" aria-label={{member.user.name}}>
+        <a href={{href-to "users.index" member.user.slug}} class="hint--top hint--bounce hint--rounded" aria-label={{member.user.name}}>
           {{lazy-image src=(image member.user.avatar "small")}}
         </a>
       {{/if}}
