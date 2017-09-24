@@ -13,12 +13,12 @@
 
       {{! Avatar(s) }}
       <span class="avatar-block">
-        <a href={{href-to "users.index" post.user}} class="author-avatar" onclick={{action "trackEngagement" "click"}}>
+        <a href={{href-to "users.index" post.user.slug}} class="author-avatar" onclick={{action "trackEngagement" "click"}}>
           {{lazy-image src=(image post.user.avatar "medium")}}
         </a>
         {{#if post.targetUser}}
           {{#unless (eq post.targetUser.id userId)}}
-            <a href={{href-to "users.index" post.targetUser}} class="author-avatar recipient-avatar" onclick={{action "trackEngagement" "click"}}>
+            <a href={{href-to "users.index" post.targetUser.slug}} class="author-avatar recipient-avatar" onclick={{action "trackEngagement" "click"}}>
               {{lazy-image src=(image post.targetUser.avatar "medium")}}
             </a>
           {{/unless}}
@@ -34,7 +34,7 @@
 
       {{! Author(s) }}
       <div class="author-info">
-        <a class="author-name" href={{href-to "users.index" post.user}} onclick={{action "trackEngagement" "click"}}>
+        <a class="author-name" href={{href-to "users.index" post.user.slug}} onclick={{action "trackEngagement" "click"}}>
           {{post.user.name}}
         </a>
         {{user-badge post.user}}
@@ -43,7 +43,7 @@
           {{#unless (eq post.targetUser.id userId)}}
             <span class="recipient-info">
               <small>to</small>
-              <a href={{href-to "users.index" post.targetUser}} class="author-name" onclick={{action "trackEngagement" "click"}}>
+              <a href={{href-to "users.index" post.targetUser.slug}} class="author-name" onclick={{action "trackEngagement" "click"}}>
                 {{post.targetUser.name}}
               </a>
               {{user-badge post.targetUser}}

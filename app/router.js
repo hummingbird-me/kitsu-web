@@ -93,7 +93,7 @@ RouterInstance.map(function() {
   });
   this.route('group-invite', { path: '/group-invite/:id' });
 
-  this.route('users', { path: '/users/:name' }, function() {
+  this.route('users', { path: '/users/:slug' }, function() {
     this.route('library');
     this.route('reviews'); // Legacy
     this.route('reactions');

@@ -9,7 +9,7 @@
             <div class="ticket-with">
               {{t "groups.tickets.conversation.title"
                 name=ticket.user.name
-                link=(href-to "users.index" ticket.user.name)
+                link=(href-to "users.index" ticket.user.slug)
                 htmlSafe=true}}
             </div>
             <div class="ticket-actions">

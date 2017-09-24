@@ -11,7 +11,7 @@ export default Route.extend(Pagination, {
     return {
       taskInstance: this.queryPaginated('follow', {
         filter: { followed: get(user, 'id') },
-        fields: { users: ['avatar', 'coverImage', 'name'].join(',') },
+        fields: { users: ['avatar', 'coverImage', 'name', 'slug'].join(',') },
         include: 'follower',
         sort: '-created_at',
         page: { limit: 20 }

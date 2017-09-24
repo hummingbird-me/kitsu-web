@@ -25,7 +25,7 @@ export default Component.extend({
     const key = get(this, 'resourceFilterKey');
     return yield get(this, 'queryCache').query(get(this, 'resourceLikeType'), {
       filter: { [key]: get(this, 'resource.id') },
-      fields: { users: ['avatar', 'name'].join(',') },
+      fields: { users: ['avatar', 'name', 'slug'].join(',') },
       page: { limit: 4 },
       include: 'user'
     }).then((likes) => {

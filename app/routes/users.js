@@ -9,16 +9,11 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
   queryCache: service(),
   intl: service(),
 
-  model({ name }) {
-    if (name.match(/\D+/)) {
-      return get(this, 'queryCache').query('user', {
-        filter: { name },
-        include: 'profileLinks.profileLinkSite,favorites.item'
-      }).then(records => get(records, 'firstObject'));
-    }
-    return get(this, 'store').findRecord('user', name, {
+  model({ slug }) {
+    return get(this, 'queryCache').query('user', {
+      filter: { slug },
       include: 'profileLinks.profileLinkSite,favorites.item'
-    });
+    }).then(records => get(records, 'firstObject'));
   },
 
   afterModel(model) {

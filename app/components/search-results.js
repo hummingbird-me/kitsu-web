@@ -59,7 +59,7 @@ export default Component.extend({
   animeTask: dataTask('anime', 'text', ['slug', 'canonicalTitle', 'titles', 'posterImage']),
   mangaTask: dataTask('manga', 'text', ['slug', 'canonicalTitle', 'titles', 'posterImage']),
   groupsTask: dataTask('group', 'query', ['slug', 'name', 'avatar']),
-  usersTask: dataTask('user', 'query', ['name', 'avatar']),
+  usersTask: dataTask('user', 'query', ['name', 'slug', 'avatar']),
 
   actions: {
     close() {
