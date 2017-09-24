@@ -40,13 +40,15 @@ export default Controller.extend({
     ]
   )),
 
-  isValid: computed('name', 'user.hasDirtyAttributes', 'user.name', function() {
+  isValid: computed('user.hasDirtyAttributes', 'name', 'user.name', 'slug', 'user.slug', function() {
     if (get(this, 'user.hasDirtyAttributes')) { return true; }
-    return get(this, 'user.name') !== get(this, 'name');
+    return get(this, 'user.name') !== get(this, 'name') ||
+           get(this, 'user.slug') !== get(this, 'slug');
   }).readOnly(),
 
   updateProfile: task(function* () {
     set(this, 'user.name', get(this, 'name'));
+    set(this, 'user.slug', get(this, 'slug'));
     yield get(this, 'user').save()
       .then(() => {
         set(this, 'lastUsed.theme', get(this, 'user.theme'));
@@ -57,6 +59,7 @@ export default Controller.extend({
         get(this, 'notify').error(errorMessages(err));
         get(this, 'user').rollbackAttributes();
         set(this, 'name', get(this, 'user.name'));
+        set(this, 'slug', get(this, 'user.slug'));
       });
   }).drop(),
 
@@ -64,6 +67,7 @@ export default Controller.extend({
     this._super(...arguments);
     // copy so we aren't manipulating the user's name directly
     set(this, 'name', get(this, 'user.name'));
+    set(this, 'slug', get(this, 'user.slug'));
 
     // find our object associated with our user properties
     const language = get(this, 'languages')

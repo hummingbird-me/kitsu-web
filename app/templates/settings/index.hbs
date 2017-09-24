@@ -13,7 +13,17 @@
           update=(action (mut name))
           class="form-control"
         }}
-        {{!-- <small>https://kitsu.io/users/{{name}}</small> --}}
+      </div>
+    </div>
+    {{! slug }}
+    <div class="form-group row">
+      <label class="col-xs-4 col-form-label">Profile URL</label>
+      <div class="col-xs-8">
+        {{one-way-text slug
+          update=(action (mut slug))
+          class="form-control"
+        }}
+        <small>https://kitsu.io/users/{{slug}}</small>
       </div>
     </div>
     {{! email }}
