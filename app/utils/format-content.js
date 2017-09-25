@@ -15,9 +15,9 @@ export default function formatContent(content, embed = true) {
   let parsedContent = typeof emojione !== 'undefined' ? emojione.toImage(content) : content;
 
   // Convert <a/> links into embedly cards
-  if (embed) {
-    parsedContent = embedLinkElements(parsedContent);
-  }
+  // if (embed) {
+  //   parsedContent = embedLinkElements(parsedContent);
+  // }
 
   return parsedContent;
 }

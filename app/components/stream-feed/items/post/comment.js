@@ -7,6 +7,8 @@ import { isEmpty } from 'ember-utils';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import { scheduleOnce } from 'ember-runloop';
+import request from 'ember-ajax/request';
+import { imgixUrl } from 'client/helpers/imgix-url';
 import errorMessages from 'client/utils/error-messages';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
@@ -16,6 +18,8 @@ import { CanMixin } from 'ember-can';
 
 export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
   classNameBindings: ['comment.isNew:new-comment'],
+  upload: undefined,
+  galleryItems: [],
   isEditing: false,
   isReplying: false,
   isTopLevel: false,
@@ -51,7 +55,7 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
 
   getReplies: task(function* () {
     return yield this.queryPaginated('comment', {
-      include: 'user',
+      include: 'user,uploads',
       filter: { post_id: get(this, 'post.id'), parent_id: get(this, 'comment.id') },
       fields: { users: ['avatar', 'name'].join(',') },
       page: { limit: 2 },
@@ -60,12 +64,17 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
   }).drop(),
 
   createReply: task(function* (content) {
-    const reply = get(this, 'store').createRecord('comment', {
+    const data = {
       content,
       post: get(this, 'post'),
       parent: get(this, 'comment'),
-      user: get(this, 'session.account')
-    });
+      user: get(this, 'session.account'),
+    };
+    const upload = get(this, 'upload');
+    if (upload) {
+      data.uploads = [upload];
+    }
+    const reply = get(this, 'store').createRecord('comment', data);
 
     invokeAction(this, 'replyCountUpdate', get(this, 'comment.repliesCount') + 1);
     get(this, 'replies').addObject(reply);
@@ -96,6 +105,17 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
         set(content, 'links', get(replies, 'links'));
         set(this, 'replies', content);
       }).catch(() => {});
+    }
+
+    // uploads
+    const upload = get(this, 'comment.uploads.firstObject');
+    if (upload) {
+      const src = get(upload, 'content.original');
+      const jsonUrl = imgixUrl([src, { fm: 'json' }]);
+      const thumbSrc = imgixUrl([src, { 'max-h': 200 }]);
+      request(jsonUrl).then(data => set(this, 'galleryItems', [{
+        src, thumbSrc, w: data.PixelWidth, h: data.PixelHeight, type: data['Content-Type']
+      }]));
     }
 
     // groups
@@ -150,16 +170,6 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
     deletedReply(reply) {
       get(this, 'replies').removeObject(reply);
       invokeAction(this, 'replyCountUpdate', get(this, 'comment.repliesCount') - 1);
-    },
-
-    createReply(component, event, content) {
-      if (isEmpty(content) === true) { return; }
-      const { shiftKey } = event;
-      if (shiftKey === false) {
-        event.preventDefault();
-        get(this, 'createReply').perform(content);
-        component.clear();
-      }
     },
 
     showReply() {

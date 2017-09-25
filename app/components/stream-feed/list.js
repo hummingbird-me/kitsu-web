@@ -1,5 +1,5 @@
 import Component from 'ember-component';
-import { task } from 'ember-concurrency';
+import { all, task } from 'ember-concurrency';
 import get, { getProperties } from 'ember-metal/get';
 import set from 'ember-metal/set';
 import observer from 'ember-metal/observer';
@@ -97,16 +97,18 @@ export default Component.extend(Pagination, {
     const [group, activity] = this._createTempActivity(post);
     // update post counter
     get(this, 'session.account').incrementProperty('postsCount');
-    return yield post.save().then((record) => {
+    try {
+      const record = yield post.save();
+      yield all(data.uploads.filterBy('hasDirtyAttributes').map(upload => upload.save()));
       get(this, 'feed').insertAt(0, group);
       set(group, 'group', get(record, 'id'));
       set(activity, 'foreignId', `Post:${get(record, 'id')}`);
       get(this, 'metrics').trackEvent({ category: 'post', action: 'create' });
-    }).catch((err) => {
+    } catch (err) {
       get(this, 'feed').removeObject(group);
       get(this, 'session.account').decrementProperty('postsCount');
       get(this, 'notify').error(errorMessages(err));
-    });
+    }
   }).drop(),
 
   deleteActivity: task(function* (type, activity) {

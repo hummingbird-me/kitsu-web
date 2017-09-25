@@ -9,6 +9,7 @@ import { typeOf, isEmpty } from 'ember-utils';
 import { capitalize } from 'ember-string';
 import { scheduleOnce } from 'ember-runloop';
 import { invoke, invokeAction } from 'ember-invoke-action';
+import { task } from 'ember-concurrency';
 import { CanMixin } from 'ember-can';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
@@ -23,6 +24,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
   isFollowingPost: false,
   isOverflowed: false,
   isExpanded: false,
+  uploads: [],
 
   embedly: service(),
   notify: service(),
@@ -67,6 +69,16 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     return this.can('edit post', get(this, 'post'));
   }).readOnly(),
 
+  getUploadsTask: task(function* () {
+    return yield get(this, 'store').query('upload', {
+      filter: {
+        ownerId: get(this, 'post.id'),
+        ownerType: 'Post'
+      },
+      sort: 'uploadOrder'
+    });
+  }).drop(),
+
   _streamAnalytics(label, foreignId) {
     const data = {
       label,
@@ -109,6 +121,13 @@ export default Component.extend(ClipboardMixin, CanMixin, {
       set(this, 'isHidden', hideNsfw);
     } else {
       set(this, 'isHidden', hideNsfw || hideSpoilers);
+    }
+
+    // uploads
+    if (isEmpty(get(this, 'uploads'))) {
+      get(this, 'getUploadsTask').perform().then((uploads) => {
+        set(this, 'uploads', uploads.toArray());
+      });
     }
 
     // groups

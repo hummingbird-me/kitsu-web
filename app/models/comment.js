@@ -1,13 +1,15 @@
-import Base from 'client/models/-base';
+import UploadOwner from 'client/models/upload-owner';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
 
-export default Base.extend({
+export default UploadOwner.extend({
   blocked: attr('boolean'),
   content: attr('string'),
   contentFormatted: attr('string'),
   createdAt: attr('utc', { defaultValue() { return new Date(); } }),
   editedAt: attr('utc'),
+  embed: attr('object'),
+  embedUrl: attr('string'),
   likesCount: attr('number'),
   repliesCount: attr('number'),
   updatedAt: attr('utc'),
