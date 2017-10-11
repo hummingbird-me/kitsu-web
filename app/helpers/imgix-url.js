@@ -6,7 +6,7 @@ export function imgixUrl([src, params = {}]) {
     [key, filledParams[key]].map(encodeURIComponent).join('='))
   ).join('&');
   const imgixHost = 'https://kitsu.imgix.net/';
-  const url = src.replace('https://kitsu-media.s3.amazonaws.com/', imgixHost);
+  const url = src.replace(/https:\/\/[^\/]+\//, imgixHost);
   return options ? `${url}&${options}` : url;
 }
 
