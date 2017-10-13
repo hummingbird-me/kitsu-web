@@ -1,5 +1,5 @@
 import { moduleFor, test } from 'ember-qunit';
-import run from 'ember-runloop';
+import { run } from '@ember/runloop';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import setupStore from 'client/tests/helpers/setup-store';

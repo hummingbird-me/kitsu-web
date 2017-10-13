@@ -1,6 +1,5 @@
 import MediaShowRoute from 'client/routes/media/show';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
+import { get, set } from '@ember/object';
 
 export default MediaShowRoute.extend({
   afterModel(model) {

@@ -1,7 +1,7 @@
-import Route from 'ember-route';
-import get from 'ember-metal/get';
-import service from 'ember-service/inject';
-import { isPresent } from 'ember-utils';
+import Route from '@ember/routing/route';
+import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { isPresent } from '@ember/utils';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(Pagination, {

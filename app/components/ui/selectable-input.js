@@ -1,5 +1,5 @@
 import OneWayNumber from 'ember-one-way-controls/components/one-way-number';
-import get from 'ember-metal/get';
+import { get } from '@ember/object';
 
 export default OneWayNumber.extend({
   click() {

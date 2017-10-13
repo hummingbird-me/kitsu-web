@@ -1,7 +1,6 @@
-import Controller from 'ember-controller';
-import computed from 'ember-computed';
-import get from 'ember-metal/get';
-import service from 'ember-service/inject';
+import Controller from '@ember/controller';
+import { get, computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 import humanizeDuration from 'client/utils/humanize-duration';
 import moment from 'moment';
 

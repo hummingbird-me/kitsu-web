@@ -1,6 +1,6 @@
-import Controller from 'ember-controller';
-import computed, { alias } from 'ember-computed';
-import get from 'ember-metal/get';
+import Controller from '@ember/controller';
+import { get, computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 import { image } from 'client/helpers/image';
 
 export default Controller.extend({

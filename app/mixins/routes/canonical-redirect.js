@@ -1,5 +1,5 @@
-import Mixin from 'ember-metal/mixin';
-import get from 'ember-metal/get';
+import Mixin from '@ember/object/mixin';
+import { get } from '@ember/object';
 
 /**
  * This mixin checks if the dynamic segment of a route does not match the

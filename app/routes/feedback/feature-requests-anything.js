@@ -1,6 +1,6 @@
 import FeatureRoute from 'client/routes/feedback/feature-requests';
-import get from 'ember-metal/get';
-import service from 'ember-service/inject';
+import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default FeatureRoute.extend({
   templateName: 'feedback/feature-requests',

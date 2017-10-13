@@ -1,7 +1,5 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import computed from 'ember-computed';
+import Component from '@ember/component';
+import { get, set, computed } from '@ember/object';
 
 export default Component.extend({
   isLeader: computed('messageClass', function() {

@@ -1,4 +1,4 @@
-import Controller from 'ember-controller';
+import Controller from '@ember/controller';
 import QueryParams from 'ember-parachute';
 import { concat } from 'client/utils/computed-macros';
 

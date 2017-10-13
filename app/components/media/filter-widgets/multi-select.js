@@ -1,7 +1,7 @@
-import Component from 'ember-component';
+import Component from '@ember/component';
 import { invokeAction } from 'ember-invoke-action';
-import get from 'ember-metal/get';
-import { copy } from 'ember-metal/utils';
+import { get } from '@ember/object';
+import { copy } from '@ember/object/internals';
 
 export default Component.extend({
   tagName: 'ul',

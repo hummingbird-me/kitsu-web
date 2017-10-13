@@ -1,8 +1,7 @@
-import Controller from 'ember-controller';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
-import computed, { alias, filterBy } from 'ember-computed';
+import Controller from '@ember/controller';
+import { get, set, computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { alias, filterBy } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
 import RSVP from 'rsvp';

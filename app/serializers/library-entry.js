@@ -1,7 +1,7 @@
 import ApplicationSerializer from 'client/serializers/application';
-import get from 'ember-metal/get';
-import service from 'ember-service/inject';
-import { capitalize } from 'ember-string';
+import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { capitalize } from '@ember/string';
 
 export default ApplicationSerializer.extend({
   metrics: service(),

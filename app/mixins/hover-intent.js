@@ -1,7 +1,6 @@
-import Mixin from 'ember-metal/mixin';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import { addObserver, removeObserver } from 'ember-metal/observer';
+import Mixin from '@ember/object/mixin';
+import { get, set } from '@ember/object';
+import { addObserver, removeObserver } from '@ember/object/observers';
 /* global hoverintent */
 
 export default Mixin.create({

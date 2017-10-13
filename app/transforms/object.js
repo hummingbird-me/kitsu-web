@@ -1,6 +1,6 @@
 import jQuery from 'jquery';
 import Transform from 'ember-data/transform';
-import { isEmpty } from 'ember-utils';
+import { isEmpty } from '@ember/utils';
 
 export default Transform.extend({
   deserialize(value, options) {

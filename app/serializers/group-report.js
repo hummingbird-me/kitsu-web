@@ -1,5 +1,5 @@
 import ApplicationSerializer from 'client/serializers/application';
-import { isPresent } from 'ember-utils';
+import { isPresent } from '@ember/utils';
 
 export default ApplicationSerializer.extend({
   attrs: {

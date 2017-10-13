@@ -1,7 +1,6 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import computed from 'ember-computed';
-import { isPresent } from 'ember-utils';
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
+import { isPresent } from '@ember/utils';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
 
 export default Component.extend({

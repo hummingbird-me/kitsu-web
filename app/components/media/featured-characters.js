@@ -1,9 +1,8 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
-import { capitalize } from 'ember-string';
-import { isPresent } from 'ember-utils';
+import Component from '@ember/component';
+import { get, set } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { capitalize } from '@ember/string';
+import { isPresent } from '@ember/utils';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({

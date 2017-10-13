@@ -1,6 +1,6 @@
-import Controller from 'ember-controller';
-import set from 'ember-metal/set';
-import { alias } from 'ember-computed';
+import Controller from '@ember/controller';
+import { set } from '@ember/object';
+import { alias } from '@ember/object/computed';
 import QueryParams from 'ember-parachute';
 
 const queryParams = new QueryParams({

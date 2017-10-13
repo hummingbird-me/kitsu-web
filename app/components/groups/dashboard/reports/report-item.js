@@ -1,8 +1,7 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
-import computed, { alias, gt } from 'ember-computed';
+import Component from '@ember/component';
+import { get, set, computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { alias, gt } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 import { invoke } from 'ember-invoke-action';
 

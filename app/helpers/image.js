@@ -1,7 +1,5 @@
-import Helper from 'ember-helper';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import observer from 'ember-metal/observer';
+import Helper from '@ember/component/helper';
+import { get, set, observer } from '@ember/object';
 import jQuery from 'jquery';
 
 export function image(object, size = 'original') {

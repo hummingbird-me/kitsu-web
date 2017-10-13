@@ -1,8 +1,7 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
-import { filterBy } from 'ember-computed';
+import Component from '@ember/component';
+import { get, set } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { filterBy } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import { concat } from 'client/utils/computed-macros';

@@ -1,9 +1,7 @@
 import Ember from 'ember';
-import Component from 'ember-component';
-import service from 'ember-service/inject';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import computed from 'ember-computed';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { get, set, computed } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 
 const REACTION_TICKER_MS = 10000; // 10 Seconds

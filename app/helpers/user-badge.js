@@ -1,7 +1,7 @@
-import { helper } from 'ember-helper';
-import get from 'ember-metal/get';
-import { isPresent } from 'ember-utils';
-import { htmlSafe } from 'ember-string';
+import { helper } from '@ember/component/helper';
+import { get } from '@ember/object';
+import { isPresent } from '@ember/utils';
+import { htmlSafe } from '@ember/string';
 
 export function userBadge([user]) {
   if (isPresent(get(user, 'title'))) {

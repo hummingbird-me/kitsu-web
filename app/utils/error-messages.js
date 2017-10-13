@@ -1,7 +1,7 @@
-import get from 'ember-metal/get';
-import { isPresent } from 'ember-utils';
-import { isEmberArray } from 'ember-array/utils';
-import { capitalize } from 'ember-string';
+import { get } from '@ember/object';
+import { isPresent } from '@ember/utils';
+import { isArray } from '@ember/array';
+import { capitalize } from '@ember/string';
 
 // http://tools.ietf.org/html/rfc6749#section-5.2
 const lookupTable = {
@@ -18,7 +18,7 @@ export default function errorMessages(obj) {
   let errors = get(obj, 'payload') || get(obj, 'errors') || get(obj, 'error');
   errors = errors === undefined ? get(obj, 'jqXHR.responseJSON.errors') : errors;
   if (isPresent(errors)) {
-    reason = isEmberArray(errors) ? capitalize(get(errors[0], 'detail') || get(errors[0], 'title')) :
+    reason = isArray(errors) ? capitalize(get(errors[0], 'detail') || get(errors[0], 'title')) :
       get(lookupTable, errors);
   }
   if (!reason || reason === 'Internal Server Error' || reason.charAt(0) === '<') {

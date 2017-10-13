@@ -1,9 +1,8 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
-import computed, { or } from 'ember-computed';
-import { htmlSafe } from 'ember-string';
+import Component from '@ember/component';
+import { get, set, computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { or } from '@ember/object/computed';
+import { htmlSafe } from '@ember/string';
 import { task } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
 import { image } from 'client/helpers/image';

@@ -1,5 +1,5 @@
-import Controller from 'ember-controller';
-import set from 'ember-metal/set';
+import Controller from '@ember/controller';
+import { set } from '@ember/object';
 import QueryParams from 'ember-parachute';
 import { concat } from 'client/utils/computed-macros';
 

@@ -1,8 +1,7 @@
-import Mixin from 'ember-metal/mixin';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import { isEmpty } from 'ember-utils';
-import { later, cancel, scheduleOnce } from 'ember-runloop';
+import Mixin from '@ember/object/mixin';
+import { get, set } from '@ember/object';
+import { isEmpty } from '@ember/utils';
+import { later, cancel, scheduleOnce } from '@ember/runloop';
 import { scheduleRead } from 'spaniel';
 
 const DISTANCE = 210;

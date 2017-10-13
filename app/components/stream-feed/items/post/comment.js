@@ -1,12 +1,10 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
-import computed from 'ember-computed';
-import { isEmpty } from 'ember-utils';
+import Component from '@ember/component';
+import { get, set, computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
-import { scheduleOnce } from 'ember-runloop';
+import { scheduleOnce } from '@ember/runloop';
 import errorMessages from 'client/utils/error-messages';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';

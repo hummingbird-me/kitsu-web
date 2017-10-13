@@ -1,9 +1,7 @@
 import Session from 'ember-simple-auth/services/session';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import { isPresent } from 'ember-utils';
-import service from 'ember-service/inject';
-import computed from 'ember-computed';
+import { get, set, computed } from '@ember/object';
+import { isPresent } from '@ember/utils';
+import { inject as service } from '@ember/service';
 import jQuery from 'jquery';
 
 export default Session.extend({

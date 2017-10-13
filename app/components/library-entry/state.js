@@ -1,8 +1,7 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
-import { bool, readOnly } from 'ember-computed';
+import Component from '@ember/component';
+import { get, set } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { bool, readOnly } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 import isChangeset from 'ember-changeset/utils/is-changeset';
 

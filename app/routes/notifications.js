@@ -1,6 +1,6 @@
-import Route from 'ember-route';
-import get from 'ember-metal/get';
-import service from 'ember-service/inject';
+import Route from '@ember/routing/route';
+import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import Pagination from 'kitsu-shared/mixins/pagination';
 

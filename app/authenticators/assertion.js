@@ -1,8 +1,8 @@
 import Base from 'client/authenticators/oauth2';
-import service from 'ember-service/inject';
-import get from 'ember-metal/get';
-import { isEmpty } from 'ember-utils';
-import run from 'ember-runloop';
+import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
+import { run } from '@ember/runloop';
 import RSVP from 'rsvp';
 
 export default Base.extend({

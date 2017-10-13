@@ -1,6 +1,6 @@
-import Mixin from 'ember-metal/mixin';
-import set from 'ember-metal/set';
-import { later } from 'ember-runloop';
+import Mixin from '@ember/object/mixin';
+import { set } from '@ember/object';
+import { later } from '@ember/runloop';
 
 /**
  * Enables the `ember-href-to` `data-href-to-ignore` property if Flickity is in

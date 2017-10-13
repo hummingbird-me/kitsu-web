@@ -1,8 +1,8 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import { assert } from 'ember-metal/utils';
-import service from 'ember-service/inject';
-import { isPresent } from 'ember-utils';
+import Component from '@ember/component';
+import { get } from '@ember/object';
+import { assert } from '@ember/debug';
+import { inject as service } from '@ember/service';
+import { isPresent } from '@ember/utils';
 import { task } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
 

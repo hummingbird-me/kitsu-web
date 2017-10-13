@@ -1,7 +1,7 @@
-import Component from 'ember-component';
-import get, { getProperties } from 'ember-metal/get';
-import service from 'ember-service/inject';
-import { typeOf } from 'ember-utils';
+import Component from '@ember/component';
+import { get, getProperties } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { typeOf } from '@ember/utils';
 import { task, taskGroup } from 'ember-concurrency';
 import { concat } from 'client/utils/computed-macros';
 import Pagination from 'kitsu-shared/mixins/pagination';

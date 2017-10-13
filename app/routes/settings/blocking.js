@@ -1,6 +1,5 @@
-import Route from 'ember-route';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
+import Route from '@ember/routing/route';
+import { get, set } from '@ember/object';
 import { task } from 'ember-concurrency';
 import Pagination from 'kitsu-shared/mixins/pagination';
 

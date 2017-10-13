@@ -1,5 +1,5 @@
 import { moduleFor, test } from 'ember-qunit';
-import get from 'ember-metal/get';
+import { get } from '@ember/object';
 
 moduleFor('service:ajax', 'Unit | Service | ajax', {
   needs: ['service:session']

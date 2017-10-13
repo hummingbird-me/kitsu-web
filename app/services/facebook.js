@@ -1,7 +1,5 @@
-import Service from 'ember-service';
-import service from 'ember-service/inject';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
+import Service, { inject as service } from '@ember/service';
+import { get, set } from '@ember/object';
 import RSVP from 'rsvp';
 
 // TODO: Refactor into generic oauth2 service

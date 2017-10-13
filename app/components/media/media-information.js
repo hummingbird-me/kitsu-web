@@ -1,6 +1,6 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import computed, { equal, not } from 'ember-computed';
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
+import { equal, not } from '@ember/object/computed';
 import humanizeDuration from 'client/utils/humanize-duration';
 import moment from 'moment';
 

@@ -1,7 +1,6 @@
 import MediaIndexRoute from 'client/routes/media/index';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
+import { get, set } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default MediaIndexRoute.extend({
   queryCache: service(),

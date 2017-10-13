@@ -1,8 +1,8 @@
 import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
-import computed, { alias } from 'ember-computed';
-import get from 'ember-metal/get';
+import { get, computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 import { regularExpressions } from 'ember-validators/format';
 
 export default Base.extend({

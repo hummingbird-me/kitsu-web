@@ -1,6 +1,6 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import computed, { alias } from 'ember-computed';
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 import { invoke, invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({

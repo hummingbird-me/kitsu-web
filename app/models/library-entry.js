@@ -1,9 +1,9 @@
 import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
-import get from 'ember-metal/get';
 import { belongsTo } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
-import computed, { alias } from 'ember-computed';
+import { get, computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 
 const Validations = buildValidations({
   progress: [

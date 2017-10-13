@@ -1,6 +1,6 @@
 import BugsRoute from 'client/routes/feedback/bugs';
-import get from 'ember-metal/get';
-import service from 'ember-service/inject';
+import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default BugsRoute.extend({
   templateName: 'feedback/bugs',

@@ -1,5 +1,5 @@
-import Component from 'ember-component';
-import set from 'ember-metal/set';
+import Component from '@ember/component';
+import { set } from '@ember/object';
 import { invokeAction } from 'ember-invoke-action';
 import { LIBRARY_STATUSES } from 'client/models/library-entry';
 

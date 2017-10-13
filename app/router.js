@@ -1,8 +1,7 @@
-import Router from 'ember-router';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
-import { scheduleOnce } from 'ember-runloop';
+import Router from '@ember/routing/router';
+import { get, set } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { scheduleOnce } from '@ember/runloop';
 import RouterScroll from 'ember-router-scroll';
 import Breadcrumbs from 'client/mixins/breadcrumbs';
 import config from 'client/config/environment';

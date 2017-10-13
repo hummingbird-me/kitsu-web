@@ -1,5 +1,5 @@
 import Base from 'client/models/-base';
-import computed from 'ember-computed';
+import { computed } from '@ember/object';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';

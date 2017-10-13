@@ -1,7 +1,7 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import service from 'ember-service/inject';
-import { isPresent } from 'ember-utils';
+import Component from '@ember/component';
+import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { isPresent } from '@ember/utils';
 import { invokeAction } from 'ember-invoke-action';
 import { task, taskGroup } from 'ember-concurrency';
 

@@ -1,7 +1,6 @@
 import OAuth2PasswordGrant from 'ember-simple-auth/authenticators/oauth2-password-grant';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
+import { get, set } from '@ember/object';
+import { inject as service } from '@ember/service';
 import config from 'client/config/environment';
 
 export default OAuth2PasswordGrant.extend({

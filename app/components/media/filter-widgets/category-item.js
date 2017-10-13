@@ -1,6 +1,5 @@
 import Component from 'client/components/explore/category-sidebar/category-modal/category-item';
-import get from 'ember-metal/get';
-import computed from 'ember-computed';
+import { get, computed } from '@ember/object';
 import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({

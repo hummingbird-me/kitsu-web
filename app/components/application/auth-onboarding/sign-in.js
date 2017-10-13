@@ -1,10 +1,10 @@
-import Component from 'ember-component';
-import get, { getProperties } from 'ember-metal/get';
-import service from 'ember-service/inject';
+import Component from '@ember/component';
+import { get, getProperties } from '@ember/object';
+import { inject as service } from '@ember/service';
 import { task, taskGroup } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
 import { invokeAction } from 'ember-invoke-action';
-import { underscore } from 'ember-string';
+import { underscore } from '@ember/string';
 
 export default Component.extend({
   identification: undefined,

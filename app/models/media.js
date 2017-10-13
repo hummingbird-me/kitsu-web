@@ -1,9 +1,9 @@
 import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { hasMany } from 'ember-data/relationships';
-import get from 'ember-metal/get';
-import service from 'ember-service/inject';
-import computed, { or } from 'ember-computed';
+import { get, computed } from '@ember/object';
+import { or } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 import getTitleField from 'client/utils/get-title-field';
 
 export default Base.extend({

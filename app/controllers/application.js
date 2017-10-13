@@ -1,7 +1,6 @@
-import Controller from 'ember-controller';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
+import Controller from '@ember/controller';
+import { get, set } from '@ember/object';
+import { inject as service } from '@ember/service';
 import QueryParams from 'ember-parachute';
 import Config from 'client/config/environment';
 

@@ -1,5 +1,5 @@
 import BaseAdapter from 'ember-metrics/metrics-adapters/base';
-import get from 'ember-metal/get';
+import { get } from '@ember/object';
 import { compact, without } from 'ember-metrics/utils/object-transforms';
 
 export default BaseAdapter.extend({

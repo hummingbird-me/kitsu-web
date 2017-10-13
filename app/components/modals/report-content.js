@@ -1,10 +1,9 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import computed, { equal } from 'ember-computed';
-import service from 'ember-service/inject';
-import { isEmpty } from 'ember-utils';
-import { capitalize } from 'ember-string';
+import Component from '@ember/component';
+import { get, set, computed } from '@ember/object';
+import { equal } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
+import { capitalize } from '@ember/string';
 import { task } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
 

@@ -1,4 +1,4 @@
-import { typeOf, isEmpty } from 'ember-utils';
+import { typeOf, isEmpty } from '@ember/utils';
 
 export function serializeArray(value) {
   const isRange = typeOf(value[0]) !== 'string';

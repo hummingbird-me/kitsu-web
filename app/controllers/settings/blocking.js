@@ -1,8 +1,7 @@
-import Controller from 'ember-controller';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
-import { isEmpty } from 'ember-utils';
+import Controller from '@ember/controller';
+import { get, set } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
 import { task, timeout } from 'ember-concurrency';
 import { concat } from 'client/utils/computed-macros';
 import errorMessages from 'client/utils/error-messages';

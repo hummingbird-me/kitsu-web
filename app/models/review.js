@@ -1,7 +1,7 @@
 import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
-import { alias } from 'ember-computed';
+import { alias } from '@ember/object/computed';
 
 export default Base.extend({
   content: attr('string'),

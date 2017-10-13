@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
-import run from 'ember-runloop';
-import get from 'ember-metal/get';
+import { run } from '@ember/runloop';
+import { get } from '@ember/object';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import RSVP from 'rsvp';

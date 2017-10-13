@@ -1,8 +1,8 @@
-import Route from 'ember-route';
-import get from 'ember-metal/get';
-import service from 'ember-service/inject';
-import { isEmpty, typeOf } from 'ember-utils';
-import { isEmberArray } from 'ember-array/utils';
+import Route from '@ember/routing/route';
+import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { isEmpty, typeOf } from '@ember/utils';
+import { isArray } from '@ember/array';
 import SlideHeaderMixin from 'client/mixins/routes/slide-header';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
@@ -77,7 +77,7 @@ export default Route.extend(SlideHeaderMixin, Pagination, {
       const value = params[key];
       if (isEmpty(value)) {
         return;
-      } else if (isEmberArray(value)) {
+      } else if (isArray(value)) {
         const filtered = value.reject(x => isEmpty(x));
         if (isEmpty(filtered)) {
           return;

@@ -1,6 +1,6 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import { isPresent } from 'ember-utils';
+import Component from '@ember/component';
+import { get } from '@ember/object';
+import { isPresent } from '@ember/utils';
 import { task } from 'ember-concurrency';
 import { concat } from 'client/utils/computed-macros';
 import Pagination from 'kitsu-shared/mixins/pagination';

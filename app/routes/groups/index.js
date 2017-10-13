@@ -1,5 +1,5 @@
-import Route from 'ember-route';
-import { isPresent } from 'ember-utils';
+import Route from '@ember/routing/route';
+import { isPresent } from '@ember/utils';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(Pagination, {

@@ -1,4 +1,4 @@
-import run from 'ember-runloop';
+import { run } from '@ember/runloop';
 
 export default function testValidations(context, valid, invalid, assert) {
   Object.keys(valid).forEach((property) => {

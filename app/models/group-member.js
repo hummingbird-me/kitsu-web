@@ -1,7 +1,7 @@
 import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
-import get from 'ember-metal/get';
+import { get } from '@ember/object';
 
 export default Base.extend({
   createdAt: attr('utc'),

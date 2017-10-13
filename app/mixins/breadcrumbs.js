@@ -1,10 +1,9 @@
-import Mixin from 'ember-metal/mixin';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
-import getOwner from 'ember-owner/get';
-import { scheduleOnce } from 'ember-runloop';
-import { classify } from 'ember-string';
+import Mixin from '@ember/object/mixin';
+import { get, set } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { getOwner } from '@ember/application';
+import { scheduleOnce } from '@ember/runloop';
+import { classify } from '@ember/string';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
 
 /**

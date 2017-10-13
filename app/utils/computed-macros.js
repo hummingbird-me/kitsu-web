@@ -1,6 +1,5 @@
-import computed from 'ember-computed';
-import get from 'ember-metal/get';
-import { typeOf } from 'ember-utils';
+import { get, computed } from '@ember/object';
+import { typeOf } from '@ember/utils';
 
 /**
  * Concat an array target onto an array source

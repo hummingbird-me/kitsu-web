@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { later } from 'ember-runloop';
+import { later } from '@ember/runloop';
 
 export function initialize() {
   Ember.onerror = function(error) {

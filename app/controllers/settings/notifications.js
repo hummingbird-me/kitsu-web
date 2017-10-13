@@ -1,8 +1,8 @@
-import Controller from 'ember-controller';
-import service from 'ember-service/inject';
-import get from 'ember-metal/get';
-import { alias, filterBy, notEmpty } from 'ember-computed';
-import { isEmpty } from 'ember-utils';
+import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
+import { get } from '@ember/object';
+import { alias, filterBy, notEmpty } from '@ember/object/computed';
+import { isEmpty } from '@ember/utils';
 import { all, task } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
 

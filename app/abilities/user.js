@@ -1,6 +1,5 @@
 import { Ability } from 'ember-can';
-import get from 'ember-metal/get';
-import computed from 'ember-computed';
+import { get, computed } from '@ember/object';
 
 export default Ability.extend({
   canEdit: computed('session.hasUser', 'model', function() {

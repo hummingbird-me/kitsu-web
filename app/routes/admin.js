@@ -1,5 +1,5 @@
-import Route from 'ember-route';
-import get from 'ember-metal/get';
+import Route from '@ember/routing/route';
+import { get } from '@ember/object';
 import DataErrorMixin from 'client/mixins/routes/data-error';
 
 export default Route.extend(DataErrorMixin, {

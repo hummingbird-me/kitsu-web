@@ -1,4 +1,4 @@
-import Route from 'ember-route';
+import Route from '@ember/routing/route';
 
 export default Route.extend({
   // This results in redirecting to `/404` if that isn't the current URL.

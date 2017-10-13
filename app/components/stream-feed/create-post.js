@@ -1,9 +1,7 @@
-import Component from 'ember-component';
-import service from 'ember-service/inject';
-import get from 'ember-metal/get';
-import set, { setProperties } from 'ember-metal/set';
-import { isEmpty, isPresent } from 'ember-utils';
-import computed from 'ember-computed';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { get, set, setProperties, computed } from '@ember/object';
+import { isEmpty, isPresent } from '@ember/utils';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import jQuery from 'jquery';

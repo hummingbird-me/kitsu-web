@@ -1,13 +1,10 @@
-import Component from 'ember-component';
+import Component from '@ember/component';
 import { task } from 'ember-concurrency';
-import get, { getProperties } from 'ember-metal/get';
-import set from 'ember-metal/set';
-import observer from 'ember-metal/observer';
-import service from 'ember-service/inject';
-import { isEmpty } from 'ember-utils';
-import EmberObject from 'ember-object';
+import EmberObject, { get, getProperties, set, observer } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
 import { storageFor } from 'ember-local-storage';
-import { capitalize, classify } from 'ember-string';
+import { capitalize, classify } from '@ember/string';
 import getter from 'client/utils/getter';
 import errorMessages from 'client/utils/error-messages';
 import { unshiftObjects } from 'client/utils/array-utils';

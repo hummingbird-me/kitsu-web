@@ -1,4 +1,4 @@
-import Mixin from 'ember-metal/mixin';
+import Mixin from '@ember/object/mixin';
 import attr from 'ember-data/attr';
 import { hasMany } from 'ember-data/relationships';
 

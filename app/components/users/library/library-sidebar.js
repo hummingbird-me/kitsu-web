@@ -1,9 +1,8 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
-import { reads } from 'ember-computed';
-import { camelize } from 'ember-string';
+import Component from '@ember/component';
+import { get, set } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { reads } from '@ember/object/computed';
+import { camelize } from '@ember/string';
 import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
 import { LIBRARY_STATUSES } from 'client/models/library-entry';

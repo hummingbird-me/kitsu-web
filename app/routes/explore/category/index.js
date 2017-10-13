@@ -1,8 +1,7 @@
-import Route from 'ember-route';
-import get from 'ember-metal/get';
-import { setProperties } from 'ember-metal/set';
-import service from 'ember-service/inject';
-import { capitalize } from 'ember-string';
+import Route from '@ember/routing/route';
+import { get, setProperties } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { capitalize } from '@ember/string';
 
 export default Route.extend({
   intl: service(),

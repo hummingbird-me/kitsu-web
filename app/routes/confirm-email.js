@@ -1,7 +1,7 @@
-import Route from 'ember-route';
-import get from 'ember-metal/get';
-import service from 'ember-service/inject';
-import { isEmpty } from 'ember-utils';
+import Route from '@ember/routing/route';
+import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
 import RSVP from 'rsvp';
 import errorMessages from 'client/utils/error-messages';
 

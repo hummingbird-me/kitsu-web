@@ -1,7 +1,6 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import { guidFor } from 'ember-metal/utils';
+import Component from '@ember/component';
+import { get, set } from '@ember/object';
+import { guidFor } from '@ember/object/internals';
 import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({

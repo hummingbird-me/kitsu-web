@@ -1,8 +1,6 @@
 import Ember from 'ember';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import computed from 'ember-computed';
-import { isPresent } from 'ember-utils';
+import { get, set, computed } from '@ember/object';
+import { isPresent } from '@ember/utils';
 import jQuery from 'jquery';
 
 export default Ember.Component.extend({

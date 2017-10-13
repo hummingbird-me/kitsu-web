@@ -1,7 +1,7 @@
 import OneWayTextAreaComponent from 'ember-one-way-controls/components/one-way-textarea';
-import get from 'ember-metal/get';
+import { get } from '@ember/object';
 import { invokeAction } from 'ember-invoke-action';
-import { later } from 'ember-runloop';
+import { later } from '@ember/runloop';
 /* global autosize */
 
 export default OneWayTextAreaComponent.extend({

@@ -1,6 +1,5 @@
-import Mixin from 'ember-metal/mixin';
-import set from 'ember-metal/set';
-import get from 'ember-metal/get';
+import Mixin from '@ember/object/mixin';
+import { get, set } from '@ember/object';
 /* global Clipboard */
 
 export default Mixin.create({

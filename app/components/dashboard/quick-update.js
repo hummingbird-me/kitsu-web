@@ -1,11 +1,9 @@
-import Component from 'ember-component';
-import service from 'ember-service/inject';
-import get from 'ember-metal/get';
-import set, { setProperties } from 'ember-metal/set';
-import computed from 'ember-computed';
-import { typeOf } from 'ember-utils';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { get, set, setProperties, computed } from '@ember/object';
+import { typeOf } from '@ember/utils';
 import { task } from 'ember-concurrency';
-import { scheduleOnce } from 'ember-runloop';
+import { scheduleOnce } from '@ember/runloop';
 import { storageFor } from 'ember-local-storage';
 import FlickityActionsMixin from 'client/mixins/flickity-actions';
 import Pagination from 'kitsu-shared/mixins/pagination';

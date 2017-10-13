@@ -1,7 +1,6 @@
-import Controller from 'ember-controller';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import { isEmpty } from 'ember-utils';
+import Controller from '@ember/controller';
+import { get, set } from '@ember/object';
+import { isEmpty } from '@ember/utils';
 import { moment } from 'client/utils/moment';
 import { concat } from 'client/utils/computed-macros';
 import { serializeArray, deserializeArray } from 'client/utils/queryable';

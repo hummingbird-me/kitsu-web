@@ -1,6 +1,5 @@
-import Controller from 'ember-controller';
-import computed from 'ember-computed';
-import get from 'ember-metal/get';
+import Controller from '@ember/controller';
+import { get, computed } from '@ember/object';
 
 export default Controller.extend({
   shouldShowOnboarding: computed('user.updatedAt', function() {

@@ -1,8 +1,6 @@
-import Controller from 'ember-controller';
-import computed from 'ember-computed';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import { capitalize } from 'ember-string';
+import Controller from '@ember/controller';
+import { get, set, computed } from '@ember/object';
+import { capitalize } from '@ember/string';
 import { storageFor } from 'ember-local-storage';
 
 const MAGIC_NUMBER = 7;

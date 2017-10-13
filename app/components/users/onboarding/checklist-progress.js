@@ -1,6 +1,6 @@
-import Component from 'ember-component';
-import computed, { gte } from 'ember-computed';
-import get from 'ember-metal/get';
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
+import { gte } from '@ember/object/computed';
 import { isPresent } from 'ember-utils';
 import { isObject } from 'client/helpers/is-object';
 

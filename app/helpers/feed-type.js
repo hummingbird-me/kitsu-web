@@ -1,6 +1,6 @@
-import { helper } from 'ember-helper';
-import get from 'ember-metal/get';
-import { dasherize } from 'ember-string';
+import { helper } from '@ember/component/helper';
+import { get } from '@ember/object';
+import { dasherize } from '@ember/string';
 
 /**
  * We check for comment as we currently push new comments into the same activity group as the

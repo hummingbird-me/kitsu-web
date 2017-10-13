@@ -1,6 +1,6 @@
-import Component from 'ember-component';
-import set from 'ember-metal/set';
-import run from 'ember-runloop';
+import Component from '@ember/component';
+import { set } from '@ember/object';
+import { run } from '@ember/runloop';
 import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({

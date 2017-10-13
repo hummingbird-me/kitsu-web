@@ -1,10 +1,9 @@
-import Component from 'ember-component';
-import service from 'ember-service/inject';
-import get, { getProperties } from 'ember-metal/get';
-import set, { setProperties } from 'ember-metal/set';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { get, set, getProperties, setProperties, computed } from '@ember/object';
 import { task } from 'ember-concurrency';
-import computed, { and } from 'ember-computed';
-import { isPresent } from 'ember-utils';
+import { and } from '@ember/object/computed';
+import { isPresent } from '@ember/utils';
 import errorMessages from 'client/utils/error-messages';
 import { invokeAction } from 'ember-invoke-action';
 import strength from 'password-strength';

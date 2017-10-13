@@ -1,7 +1,6 @@
-import Component from 'ember-component';
-import computed from 'ember-computed';
-import get from 'ember-metal/get';
-import service from 'ember-service/inject';
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
   intl: service(),

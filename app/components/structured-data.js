@@ -1,6 +1,5 @@
-import Component from 'ember-component';
-import computed from 'ember-computed';
-import get from 'ember-metal/get';
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
 
 export default Component.extend({
   tagName: 'script',

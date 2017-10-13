@@ -1,7 +1,7 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import service from 'ember-service/inject';
-import { reads, sort } from 'ember-computed';
+import Component from '@ember/component';
+import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { reads, sort } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({

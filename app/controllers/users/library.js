@@ -1,7 +1,6 @@
-import Controller from 'ember-controller';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import { filterBy } from 'ember-computed';
+import Controller from '@ember/controller';
+import { get, set } from '@ember/object';
+import { filterBy } from '@ember/object/computed';
 import QueryParams from 'ember-parachute';
 import { task, timeout } from 'ember-concurrency';
 import { storageFor } from 'ember-local-storage';

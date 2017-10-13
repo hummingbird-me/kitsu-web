@@ -1,8 +1,6 @@
-import Component from 'ember-component';
-import service from 'ember-service/inject';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import observer from 'ember-metal/observer';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { get, set, observer } from '@ember/object';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import getter from 'client/utils/getter';

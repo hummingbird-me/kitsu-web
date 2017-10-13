@@ -1,8 +1,6 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import computed from 'ember-computed';
-import service from 'ember-service/inject';
+import Component from '@ember/component';
+import { get, set, computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 import config from 'client/config/environment';
 import injectScript from 'client/utils/inject-script';
 import RSVP from 'rsvp';

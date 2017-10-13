@@ -1,4 +1,4 @@
-import { camelize } from 'ember-string';
+import { camelize } from '@ember/string';
 import JSONAPISerializer from 'ember-data/serializers/json-api';
 
 export default JSONAPISerializer.extend({

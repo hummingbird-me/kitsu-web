@@ -1,7 +1,6 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
+import Component from '@ember/component';
+import { get, set } from '@ember/object';
+import { inject as service } from '@ember/service';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
 import { invokeAction } from 'ember-invoke-action';
 import getter from 'client/utils/getter';

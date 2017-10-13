@@ -1,9 +1,7 @@
-import Component from 'ember-component';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import computed from 'ember-computed';
-import run from 'ember-runloop';
-import { htmlSafe } from 'ember-string';
+import Component from '@ember/component';
+import { get, set, computed } from '@ember/object';
+import { run } from '@ember/runloop';
+import { htmlSafe } from '@ember/string';
 import { invokeAction } from 'ember-invoke-action';
 import { image } from 'client/helpers/image';
 import errorMessage from 'client/utils/error-messages';
