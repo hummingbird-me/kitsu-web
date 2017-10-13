@@ -8,9 +8,11 @@
 {{else if getMembersTask.last.value}}
   <div class="group-member-avatars">
     {{#each getMembersTask.last.value as |member|}}
-      <a href={{href-to "users.index" member.user.name}} class="hint--top hint--bounce hint--rounded" aria-label={{member.user.name}}>
-        {{lazy-image src=(image member.user.avatar "small")}}
-      </a>
+      {{#if member.user}}
+        <a href={{href-to "users.index" member.user.name}} class="hint--top hint--bounce hint--rounded" aria-label={{member.user.name}}>
+          {{lazy-image src=(image member.user.avatar "small")}}
+        </a>
+      {{/if}}
     {{/each}}
   </div>
   {{#if (gt getMembersTask.last.value.meta.count 14)}}

@@ -27,5 +27,5 @@ export default Component.extend({
       page: { limit: 14 },
       sort: sort.join(',')
     });
-  }).restartable()
+  }).drop()
 });
