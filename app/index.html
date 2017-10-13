@@ -24,7 +24,7 @@
     <script async src="//cdn.jsdelivr.net/emojione/2.2.7/lib/js/emojione.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/emojione/2.2.7/assets/css/emojione.min.css"/>
 
-    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
     <script>
       window.Kitsu = window.Kitsu || {};
       window.Kitsu.themes = {
@@ -40,6 +40,7 @@
         }
       }
       var link = document.createElement('link');
+      link.integrity = '';
       link.rel = 'stylesheet';
       link.href = window.Kitsu.themes[theme];
       link.dataset.theme = theme;

@@ -14,6 +14,10 @@ addons:
   code_climate:
     repo_token: f15069c85832661086a0f758b25cf410e58ae1f80dbcbc762021dfc71feb8f71
 
+env:
+  global:
+  - JOBS=1
+
 before_install:
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.23.2
 - export PATH=$HOME/.yarn/bin:$PATH
