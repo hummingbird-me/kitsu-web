@@ -21,6 +21,22 @@ moduleForAcceptance('Acceptance | Authentication', {
  * Sign Up Tests
  */
 test('can create an account', function(assert) {
+  const done = assert.async();
+  server.post('/users', (db, request) => {
+    const data = JSON.parse(request.requestBody);
+    assert.deepEqual(data, {
+      data: {
+        attributes: {
+          name: 'bob',
+          email: 'bob@acme.com',
+          password: 'password'
+        },
+        type: 'users'
+      }
+    });
+    done();
+  }, 400);
+
   visit('/');
   click(testSelector('sign-up-header'));
   click(testSelector('sign-up-email'));
@@ -28,13 +44,6 @@ test('can create an account', function(assert) {
   fillIn(testSelector('email'), 'bob@acme.com');
   fillIn(testSelector('password'), 'password');
   click(testSelector('create-account'));
-
-  andThen(() => {});
-  andThen(() => {
-    const session = currentSession(this.application);
-    assert.ok(session.get('isAuthenticated'));
-    assert.equal(server.db.users[0].email, 'bob@acme.com');
-  });
 });
 
 test('shows an error when using incorrect details on sign up', function(assert) {

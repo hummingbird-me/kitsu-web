@@ -27,7 +27,7 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
   },
 
   serialize(model) {
-    return { name: get(model, 'name') };
+    return { slug: get(model, 'slug') };
   },
 
   setHeadTags(model) {
