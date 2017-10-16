@@ -105,5 +105,8 @@ module.exports = function(defaults) {
     }
   });
 
+  // Work around for Ember 2.16.2 and Sourcemaps in production
+  app.import('node_modules/showdown/dist/showdown.js.map', { destDir: 'assets' });
+
   return app.toTree();
 };
