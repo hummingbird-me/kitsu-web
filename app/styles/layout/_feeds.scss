@@ -177,7 +177,7 @@
   display: flex;
   &.pinned-post {
     box-shadow: none;
-    border: 1px dashed #c8c8c8;
+    border: 1px dashed darken($divider-color, 10);
   }
 }
 
@@ -551,7 +551,9 @@
     }
   }
   .reply-comment {
-    border-color: #eee;
+    @if $theme == 'kitsu-light' {
+      border-color: $divider-color;
+    }
     margin-bottom: 5px;
   }
 }
@@ -609,8 +611,15 @@
   height: 40px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  border: 1px solid #eee;
-  border-top: none;
+  @if $theme == 'kitsu-light' {
+    border: 1px solid $divider-color;
+    border-top: none;
+  }
+  @if $theme == 'kitsu-dark' {
+    color: $input-text-color !important;
+    background: lighten($foreground-background-color, 3) !important;
+    border: darken($background-color, 3) !important;
+  }
 }
 
 .stream-error-wrapper {
@@ -779,7 +788,8 @@
     border-radius: 0;
     border: none;
     padding: 10px 20px;
-    background: $foreground-background-color;
+    background: $foreground-background-color !important;
+    color: $input-text-color !important;
   }
 }
 .tag-unit {
@@ -857,14 +867,14 @@
 .nsfw-gate, .spoiler-gate, .combo-gate {
   padding: 0 20px;
   a {
-    background: #fafafa;
-    border: 1px solid #eee;
+    background: darken($background-color, 1);
+    border: 1px solid $divider-color;
     border-radius: 3px;
     margin-bottom: 15px;
     text-align: center;
     padding: 20px;
     display: block;
-    color: darken($secondary-cta-color, 10);
+    color: $body-secondary-text-color;
     transition: 0.3s background ease-in-out;
     position: relative;
     font-weight: 700;
@@ -906,9 +916,14 @@
       }
     }
     &:hover {
-      background: #ffdcd8;
-      border: 1px dotted #e74c3c;
-      color: #e74c3c;
+      @if $theme == 'kitsu-light' {
+        background: #ffdcd8;
+      }
+      @if $theme == 'kitsu-dark' {
+        background: #463943;
+      }
+      border: 1px dotted $body-link-color;
+      color: $body-link-color;
       &::after {
         content: "(¬‿¬ )";
       }
@@ -960,16 +975,16 @@
     @extend .clearfix;
     border-top: 1px dotted $divider-color;
     padding: 15px;
-    background: #fafafa;
+    background: darken($background-color, 1);
     line-height: 35px;
     &:hover {
-      background: darken(#fafafa, 1);
+      background: $background-color;
     }
   }
   .tag {
     float: right;
     background: none;
-    color: #787878;
+    color: $body-secondary-text-color;
     border: 1px solid $divider-color;
     padding: 5px 10px;
   }
@@ -1013,9 +1028,9 @@
 
 .tagged-media {
   position: relative;
-  border: 1px solid #eee;
+  border: 1px solid $divider-color;
   border-radius: 3px;
-  background: #fafafa;
+  background: $background-color;
   margin-left: 0;
   margin-right: 0;
   padding: 10px;
@@ -1032,7 +1047,7 @@
 // Stream review item
 .author-header {
   @extend .clearfix;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid $divider-color;
   margin-bottom: 10px;
   padding-bottom: 5px;
   small {
@@ -1091,11 +1106,11 @@
 }
 
 .review-media-progress {
-  color: rgba(0,0,0,.4);
+  color: $body-secondary-text-color;
   padding: 5px 15px;
   border: 1px dashed $divider-color;
   display: inline-block;
-  background: #fafafa;
+  background: $background-color;
   margin-bottom: 10px;
   margin-top: 3px;
   font-size: 12px;

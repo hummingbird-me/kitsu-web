@@ -16,5 +16,13 @@ export default Route.extend({
     if (get(transition, 'targetName') === 'feedback.index') {
       return this.transitionTo('feedback.bugs');
     }
+  },
+
+  activate() {
+    document.body.classList.add('canny-body');
+  },
+
+  deactivate() {
+    document.body.classList.remove('canny-body');
   }
 });

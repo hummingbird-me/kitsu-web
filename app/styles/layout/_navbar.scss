@@ -153,6 +153,9 @@
           color: $body-text-color;
           background: lighten($header-background-color, 5);
         }
+        &:focus {
+          color: $white !important;
+        }
       }
     }
   }
@@ -267,7 +270,7 @@
 .search--drop {
   width: 350px;
   max-height: 90vh;
-  background-color: #fff;
+  background-color: $background-color;
   overflow: auto;
   border-radius: 3px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -278,7 +281,7 @@
   .media {
     padding: 5px 10px;
     &:hover {
-      background: #faf9fa;
+      background: darken($background-color, 2);
     }
     img {
       width: 45px;
@@ -297,7 +300,7 @@
 }
 
 .search--header {
-  background-color: #efeef1;
+  background-color: darken($background-color, 4);
   padding: 10px;
   margin-bottom: 0px;
 }
@@ -305,11 +308,11 @@
 .search--group-header {
   font-size: 12px;
   padding: 10px;
-  background-color: #faf9fa;
+  background-color: darken($background-color, 2);
   margin-bottom: 0px;
   text-transform: uppercase;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  border-top: 1px solid $divider-color;
+  border-bottom: 1px solid $divider-color;
 }
 
 .notification-drop, .user-menu-drop {
@@ -325,6 +328,7 @@
 }
 
 .notification-drop {
+  background-color: $background-color;
   @media (max-width: 460px) {
     right: -30px;
   }
@@ -341,6 +345,7 @@
 .notifications-empty {
   text-align: center;
   padding-top: 10px;
+  color: $body-text-color;
 }
 
 .user-menu-drop {
@@ -382,7 +387,7 @@
     transition: all .2s ease-in-out;
     background: $background-color;
     &.new {
-      background: $white;
+      background: $foreground-background-color;
       .media-left:before {
         content: '';
         position: absolute;
