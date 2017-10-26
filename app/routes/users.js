@@ -10,10 +10,15 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
   intl: service(),
 
   model({ slug }) {
-    return get(this, 'queryCache').query('user', {
-      filter: { slug },
+    if (slug.match(/\D+/)) {
+      return get(this, 'queryCache').query('user', {
+        filter: { slug },
+        include: 'profileLinks.profileLinkSite,favorites.item'
+      }).then(records => get(records, 'firstObject'));
+    }
+    return get(this, 'store').findRecord('user', slug, {
       include: 'profileLinks.profileLinkSite,favorites.item'
-    }).then(records => get(records, 'firstObject'));
+    });
   },
 
   afterModel(model) {
