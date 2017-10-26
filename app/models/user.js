@@ -69,6 +69,7 @@ export default Base.extend(Validations, {
   sfwFilter: attr('boolean'),
   slug: attr('string'),
   shareToGlobal: attr('boolean'),
+  status: attr('string', { defaultValue: 'registered' }),
   timeZone: attr('string'),
   title: attr('string'),
   titleLanguagePreference: attr('string', { defaultValue: 'canonical' }),
@@ -103,6 +104,10 @@ export default Base.extend(Validations, {
       return false;
     }
     return !date.isBefore();
+  }).readOnly(),
+
+  isAozoraImported: computed('status', function() {
+    return get(this, 'status') === 'aozora';
   }).readOnly(),
 
   isSimpleRating: computed('ratingSystem', function() {
