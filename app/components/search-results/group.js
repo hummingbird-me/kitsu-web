@@ -31,7 +31,7 @@ export default Component.extend(Pagination, {
       } else {
         const type = get(item, 'modelType');
         if (type === 'user') {
-          get(this, 'router').transitionTo('users.index', [get(item, 'name')]);
+          get(this, 'router').transitionTo('users.index', [get(item, 'slug')]);
         } else if (type === 'group') {
           get(this, 'router').transitionTo('groups.group.group-page.index', [get(item, 'slug')]);
         } else {

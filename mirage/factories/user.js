@@ -10,5 +10,6 @@ export default Factory.extend({
   password() { return faker.internet.password(); },
   pastNames: [],
   name() { return faker.internet.userName(); },
+  slug() { return faker.internet.userName(); },
   waifuOrHusbando() { return faker.list.random('Waifu', 'Husbando')(); }
 });

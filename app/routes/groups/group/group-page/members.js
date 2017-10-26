@@ -49,7 +49,7 @@ export default Route.extend(Pagination, {
     return {
       include: 'user',
       filter: { query_group: get(model, 'group.id') },
-      fields: { users: ['avatar', 'coverImage', 'name'].join(',') },
+      fields: { users: ['avatar', 'coverImage', 'name', 'slug'].join(',') },
       page: { limit: 20 }
     };
   }

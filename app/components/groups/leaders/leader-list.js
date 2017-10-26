@@ -41,9 +41,9 @@ export default Component.extend(Pagination, {
   }).restartable(),
 
   findGroupMemberTask: task(function* () {
-    const username = get(this, 'userToAdd.name');
+    const name = get(this, 'userToAdd.name');
     const member = yield get(this, 'store').query('group-member', {
-      filter: { query: username },
+      filter: { query: name },
       include: 'user,permissions',
       page: { limit: 1 }
     }).then(records => get(records, 'firstObject'));

@@ -19,7 +19,7 @@ export default Component.extend(Pagination, {
   getComments: task(function* () {
     return yield this.queryPaginated('comment', {
       filter: { post_id: get(this, 'post.id'), parent_id: '_none' },
-      fields: { users: ['avatar', 'name'].join(',') },
+      fields: { users: ['avatar', 'name', 'slug'].join(',') },
       page: { limit: 2 },
       include: 'user',
       sort: this._getSortOption()

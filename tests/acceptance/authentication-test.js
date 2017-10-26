@@ -1,7 +1,6 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'client/tests/helpers/module-for-acceptance';
 import { currentSession } from 'client/tests/helpers/ember-simple-auth';
-import testSelector from 'ember-test-selectors';
 import jQuery from 'jquery';
 import sinon from 'sinon';
 
@@ -21,20 +20,29 @@ moduleForAcceptance('Acceptance | Authentication', {
  * Sign Up Tests
  */
 test('can create an account', function(assert) {
-  visit('/');
-  click(testSelector('sign-up-header'));
-  click(testSelector('sign-up-email'));
-  fillIn(testSelector('username'), 'bob');
-  fillIn(testSelector('email'), 'bob@acme.com');
-  fillIn(testSelector('password'), 'password');
-  click(testSelector('create-account'));
+  const done = assert.async();
+  server.post('/users', (db, request) => {
+    const data = JSON.parse(request.requestBody);
+    assert.deepEqual(data, {
+      data: {
+        attributes: {
+          name: 'bob',
+          email: 'bob@acme.com',
+          password: 'password'
+        },
+        type: 'users'
+      }
+    });
+    done();
+  }, 400);
 
-  andThen(() => {});
-  andThen(() => {
-    const session = currentSession(this.application);
-    assert.ok(session.get('isAuthenticated'));
-    assert.equal(server.db.users[0].email, 'bob@acme.com');
-  });
+  visit('/');
+  click('[data-test-sign-up-header]');
+  click('[data-test-sign-up-email]');
+  fillIn('[data-test-username]', 'bob');
+  fillIn('[data-test-email]', 'bob@acme.com');
+  fillIn('[data-test-password]', 'password');
+  click('[data-test-create-account]');
 });
 
 test('shows an error when using incorrect details on sign up', function(assert) {
@@ -44,46 +52,46 @@ test('shows an error when using incorrect details on sign up', function(assert) 
   server.post('/users', { errors: [{ detail: 'email is already taken.' }] }, 400);
 
   visit('/');
-  click(testSelector('sign-up-header'));
-  click(testSelector('sign-up-email'));
-  fillIn(testSelector('username'), 'bob');
-  fillIn(testSelector('email'), 'bob@acme.com');
-  fillIn(testSelector('password'), 'password');
-  click(testSelector('create-account'));
+  click('[data-test-sign-up-header]');
+  click('[data-test-sign-up-email]');
+  fillIn('[data-test-username]', 'bob');
+  fillIn('[data-test-email]', 'bob@acme.com');
+  fillIn('[data-test-password]', 'password');
+  click('[data-test-create-account]');
   andThen(() => {});
 });
 
 test('shows validation warnings on input fields', function(assert) {
   visit('/');
-  click(testSelector('sign-up-header'));
-  click(testSelector('sign-up-email'));
+  click('[data-test-sign-up-header]');
+  click('[data-test-sign-up-email]');
 
-  fillIn(testSelector('username'), '1234');
+  fillIn('[data-test-username]', '1234');
   andThen(() => {
-    const error = find(testSelector('validation-username'));
+    const error = find('[data-test-validation-username]');
     assert.equal(error.length, 1);
   });
 
-  fillIn(testSelector('email'), 'bob@acme');
+  fillIn('[data-test-email]', 'bob@acme');
   andThen(() => {
-    const error = find(testSelector('validation-email'));
+    const error = find('[data-test-validation-email]');
     assert.equal(error.length, 1);
   });
 
-  fillIn(testSelector('password'), 'nope');
+  fillIn('[data-test-password]', 'nope');
   andThen(() => {
-    const error = find(testSelector('validation-password'));
+    const error = find('[data-test-validation-password]');
     assert.equal(error.length, 1);
   });
 });
 
 test('shows strength of password', function(assert) {
   visit('/');
-  click(testSelector('sign-up-header'));
-  click(testSelector('sign-up-email'));
-  fillIn(testSelector('password'), 'password');
+  click('[data-test-sign-up-header]');
+  click('[data-test-sign-up-email]');
+  fillIn('[data-test-password]', 'password');
   andThen(() => {
-    const element = find(testSelector('password-strength'));
+    const element = find('[data-test-password-strength]');
     assert.equal(element.length, 1);
   });
 });
@@ -95,10 +103,10 @@ test('can sign into an account', function(assert) {
   server.create('user', { name: 'bob', password: 'password' });
 
   visit('/');
-  click(testSelector('sign-in-header'));
-  fillIn(testSelector('identification'), 'bob');
-  fillIn(testSelector('password'), 'password');
-  click(testSelector('sign-in'));
+  click('[data-test-sign-in-header]');
+  fillIn('[data-test-identification]', 'bob');
+  fillIn('[data-test-password]', 'password');
+  click('[data-test-sign-in]');
 
   andThen(() => {});
   andThen(() => {
@@ -114,9 +122,9 @@ test('shows an error when using incorrect details on sign in', function(assert) 
   server.post('http://localhost:7357/api/oauth/token', { error: 'invalid_grant' }, 400);
 
   visit('/');
-  click(testSelector('sign-in-header'));
-  fillIn(testSelector('identification'), 'bob');
-  fillIn(testSelector('password'), 'not_password');
-  click(testSelector('sign-in'));
+  click('[data-test-sign-in-header]');
+  fillIn('[data-test-identification]', 'bob');
+  fillIn('[data-test-password]', 'not_password');
+  click('[data-test-sign-in]');
   andThen(() => {});
 });

@@ -24,7 +24,7 @@ export default Component.extend({
         const user = get(this, 'item.target.name');
         return get(this, 'intl').t(`groups.dashboard.audit.${targetType}.${verb}`, {
           user,
-          link: hrefTo(this, 'users.index', user)
+          link: hrefTo(this, 'users.index', get(user, 'slug'))
         });
       }
 
@@ -49,7 +49,7 @@ export default Component.extend({
           const user = get(this, 'item.target.assignee.name');
           return get(this, 'intl').t(`groups.dashboard.audit.${targetType}.${verb}`, {
             user,
-            link: hrefTo(this, 'users.index', user)
+            link: hrefTo(this, 'users.index', get(user, 'slug'))
           });
         }
         return get(this, 'intl').t(`groups.dashboard.audit.${targetType}.${verb}`);

@@ -13,7 +13,7 @@
     {{/if}}
     <div>
       <div class="reaction-user">
-        <a href={{href-to "users" reaction.user.name}} class="reaction-user-name">{{reaction.user.name}}</a>
+        <a href={{href-to "users" reaction.user.slug}} class="reaction-user-name">{{reaction.user.name}}</a>
       </div>
       <div class="reaction-content">
         <a href={{href-to "media-reactions" reaction.id}}>{{reaction.reaction}}</a>

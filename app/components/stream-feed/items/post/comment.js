@@ -51,7 +51,7 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
     return yield this.queryPaginated('comment', {
       include: 'user',
       filter: { post_id: get(this, 'post.id'), parent_id: get(this, 'comment.id') },
-      fields: { users: ['avatar', 'name'].join(',') },
+      fields: { users: ['avatar', 'name', 'slug'].join(',') },
       page: { limit: 2 },
       sort: '-created_at'
     }, { cache: false });

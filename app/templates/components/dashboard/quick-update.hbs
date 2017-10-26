@@ -47,7 +47,7 @@
     {{#if (lt initialEntries.length 4)}}
       <div class="quick-update-item hint-panel">
         {{t "dashboard.quick-update.empty.html"
-          link=(href-to "users.library" session.account.name)
+          link=(href-to "users.library" session.account.slug)
           htmlSafe=true}}
         <a href={{href-to "explore" "anime"}} class="button button--primary">
           {{t "dashboard.quick-update.empty.discover"}}

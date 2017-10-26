@@ -9,14 +9,14 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
   queryCache: service(),
   intl: service(),
 
-  model({ name }) {
-    if (name.match(/\D+/)) {
+  model({ slug }) {
+    if (slug.match(/\D+/)) {
       return get(this, 'queryCache').query('user', {
-        filter: { name },
+        filter: { slug },
         include: 'profileLinks.profileLinkSite,favorites.item'
       }).then(records => get(records, 'firstObject'));
     }
-    return get(this, 'store').findRecord('user', name, {
+    return get(this, 'store').findRecord('user', slug, {
       include: 'profileLinks.profileLinkSite,favorites.item'
     });
   },
@@ -32,7 +32,7 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
   },
 
   serialize(model) {
-    return { name: get(model, 'name') };
+    return { slug: get(model, 'slug') };
   },
 
   setHeadTags(model) {

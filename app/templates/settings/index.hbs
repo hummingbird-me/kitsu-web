@@ -5,15 +5,25 @@
     Account and region settings
   </div>
   <div class="container">
-    {{! username }}
+    {{! name }}
     <div class="form-group row">
-      <label class="col-xs-4 col-form-label">Username</label>
+      <label class="col-xs-4 col-form-label">Display Name</label>
       <div class="col-xs-8">
-        {{one-way-text username
-          update=(action (mut username))
+        {{one-way-text name
+          update=(action (mut name))
           class="form-control"
         }}
-        <small>https://kitsu.io/users/{{username}}</small>
+      </div>
+    </div>
+    {{! slug }}
+    <div class="form-group row">
+      <label class="col-xs-4 col-form-label">Profile URL</label>
+      <div class="col-xs-8">
+        {{one-way-text slug
+          update=(action (mut slug))
+          class="form-control"
+        }}
+        <small>https://kitsu.io/users/{{slug}}</small>
       </div>
     </div>
     {{! email }}
