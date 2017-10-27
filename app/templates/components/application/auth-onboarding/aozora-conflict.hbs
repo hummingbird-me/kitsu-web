@@ -1,0 +1,20 @@
+<div class="modal-wrapper">
+  <div class="auth-section active">
+    <h6 class="auth-section-title">{{t "onboarding.aozora.conflict.title"}}</h6>
+    <p class="auth-section-helper">{{t "onboarding.aozora.conflict.info"}}</p>
+    {{#if getConflicts.isRunning}}
+      {{loading-spinner}}
+    {{else}}
+      {{#each-in conflicts as |site account|}}
+        <a href="#" class="import-option" onclick={{perform choose site}}>
+          <span class="import-logo">
+            <img src="/images/{{site}}.png">
+          </span>
+          <span class="import-title">
+            {{account.name}} ({{account.library_entries}} in library)
+          </span>
+        </a>
+      {{/each-in}}
+    {{/if}}
+  </div>
+</div>
