@@ -2,6 +2,7 @@ import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
+import { alias } from '@ember/object/computed';
 import { isEmpty } from '@ember/utils';
 import { classify } from '@ember/string';
 import { get, computed } from '@ember/object';
@@ -30,10 +31,13 @@ export const Validations = buildValidations({
       messageKey: 'errors.user.name.starts'
     })
   ],
-  password: [
-    validator('presence', true),
-    validator('length', { min: 8 })
-  ]
+  password: {
+    disabled: alias('model.hasPassword'),
+    validators: [
+      validator('presence', true),
+      validator('length', { min: 8 })
+    ]
+  }
 });
 
 export default Base.extend(Validations, {
@@ -52,6 +56,7 @@ export default Base.extend(Validations, {
   followersCount: attr('number'),
   followingCount: attr('number'),
   gender: attr('string'),
+  hasPassword: attr('boolean'),
   language: attr('string'),
   likesGivenCount: attr('number'),
   location: attr('string'),
