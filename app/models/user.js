@@ -6,6 +6,7 @@ import { alias, empty, or } from '@ember/object/computed';
 import { isEmpty } from '@ember/utils';
 import { classify } from '@ember/string';
 import { get, computed } from '@ember/object';
+import { empty } from '@ember/object/computed';
 
 export const Validations = buildValidations({
   email: [
@@ -17,20 +18,26 @@ export const Validations = buildValidations({
   ],
   name: [
     validator('presence', true),
-    validator('length', { min: 3, max: 20 }),
-    validator('format', {
-      regex: /^[_a-zA-Z0-9]+$/,
-      messageKey: 'errors.user.name.invalid'
-    }),
-    validator('format', {
-      regex: /(?!^\d+$)^.+$/,
-      messageKey: 'errors.user.name.numbers'
-    }),
-    validator('format', {
-      regex: /^[a-zA-Z0-9]/,
-      messageKey: 'errors.user.name.starts'
-    })
+    validator('length', { min: 3, max: 20 })
   ],
+  slug: {
+    disabled: empty('model.slug'),
+    validators: [
+      validator('length', { min: 3, max: 20 }),
+      validator('format', {
+        regex: /^[_a-zA-Z0-9]+$/,
+        messageKey: 'errors.user.name.invalid'
+      }),
+      validator('format', {
+        regex: /(?!^\d+$)^.+$/,
+        messageKey: 'errors.user.name.numbers'
+      }),
+      validator('format', {
+        regex: /^[a-zA-Z0-9]/,
+        messageKey: 'errors.user.name.starts'
+      })
+    ]
+  },
   password: {
     validators: [
       validator('presence', {
