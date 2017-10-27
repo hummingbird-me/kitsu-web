@@ -28,7 +28,7 @@ export default Component.extend({
 
   loginWithFacebook: task(function* () {
     try {
-      yield get(this, 'session').authenticateWithFacebook()
+      yield get(this, 'session').authenticateWithFacebook();
       yield get(this, 'gotoNext').perform();
     } catch (error) {
       // Facebook succeeded but Kitsu failed (no-account)
