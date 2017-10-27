@@ -43,6 +43,10 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
+    this._setupUser();
+  },
+
+  _setupUser() {
     const user = get(this, 'store').createRecord('user');
     set(this, 'user', user);
 
