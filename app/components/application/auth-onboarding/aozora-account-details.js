@@ -1,9 +1,8 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { get, set, getProperties, setProperties, computed } from '@ember/object';
+import { get, set, computed } from '@ember/object';
 import { task } from 'ember-concurrency';
 import { and, alias } from '@ember/object/computed';
-import { isPresent } from '@ember/utils';
 import errorMessages from 'client/utils/error-messages';
 import { invokeAction } from 'ember-invoke-action';
 import strength from 'password-strength';

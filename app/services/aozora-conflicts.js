@@ -1,10 +1,10 @@
 import Service, { inject as service } from '@ember/service';
-import { get, set } from '@ember/object';
+import { get } from '@ember/object';
 
 export default Service.extend({
   ajax: service(),
 
-  list(user) {
+  list() {
     return get(this, 'ajax').request('/users/_conflicts', {
       method: 'GET'
     });
