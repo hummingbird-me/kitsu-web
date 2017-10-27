@@ -2,7 +2,7 @@ import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
-import { alias } from '@ember/object/computed';
+import { alias, empty } from '@ember/object/computed';
 import { isEmpty } from '@ember/utils';
 import { classify } from '@ember/string';
 import { get, computed } from '@ember/object';
@@ -32,10 +32,17 @@ export const Validations = buildValidations({
     })
   ],
   password: {
-    disabled: alias('model.hasPassword'),
     validators: [
-      validator('presence', true),
-      validator('length', { min: 8 })
+      validator('presence', {
+        // Disable if this user already has a password
+        disabled: alias('model.hasPassword'),
+        presence: true
+      }),
+      validator('length', {
+        // Disable if the password is empty
+        disabled: empty('model.password'),
+        min: 8
+      })
     ]
   }
 });
