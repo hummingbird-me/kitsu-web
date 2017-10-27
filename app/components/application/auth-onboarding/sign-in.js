@@ -46,7 +46,7 @@ export default Component.extend({
 
   gotoNext: task(function* () {
     const user = yield get(this, 'session').getCurrentUser();
-    if (user) {
+    if (get(user, 'isAozoraImported')) {
       const conflicts = yield get(this, 'aozoraConflicts').list();
       if (conflicts.length > 1) {
         invokeAction(this, 'changeComponent', 'aozora-conflict');
