@@ -19,10 +19,32 @@ export default Component.extend({
   login: task(function* () {
     const { identification, password } = getProperties(this, 'identification', 'password');
     try {
-      yield get(this, 'session').authenticateWithOAuth2(identification, password)
+      yield get(this, 'session').authenticateWithOAuth2(identification, password);
+      yield gotoNext.perform();
     } catch (err) {
       get(this, 'notify').error(errorMessages(err));
     }
+  }).group('authentication'),
+
+  loginWithFacebook: task(function* () {
+    try {
+      yield get(this, 'session').authenticateWithFacebook()
+      yield gotoNext.perform();
+    } catch (error) {
+      // Facebook succeeded but Kitsu failed (no-account)
+      if (error.error === 'invalid_grant') {
+        try {
+          const response = get(this, 'facebook').getUserData();
+          const data = { ...response, name: underscore(get(response, 'name')) };
+          invokeAction(this, 'changeComponent', 'sign-up', data);
+        } catch (err) {
+          get(this, 'notify').error(errorMessages(err));
+        }
+      }
+    }
+  }).group('authentication'),
+
+  gotoNext: task(function* () {
     const user = yield get(this, 'session').getCurrentUser();
     if (user) {
       const conflicts = yield get(this, 'aozoraConflicts').list();
@@ -34,21 +56,7 @@ export default Component.extend({
     } else {
       invokeAction(this, 'close');
     }
-  }).group('authentication'),
-
-  loginWithFacebook: task(function* () {
-    yield get(this, 'session').authenticateWithFacebook()
-      .then(() => invokeAction(this, 'close'))
-      .catch((error) => {
-        // Facebook succeeded but Kitsu failed (no-account)
-        if (error.error === 'invalid_grant') {
-          get(this, 'facebook').getUserData().then((response) => {
-            const data = { ...response, name: underscore(get(response, 'name')) };
-            invokeAction(this, 'changeComponent', 'sign-up', data);
-          }).catch(err => get(this, 'notify').error(errorMessages(err)));
-        }
-      });
-  }).group('authentication'),
+  }),
 
   actions: {
     changeComponent(component) {
