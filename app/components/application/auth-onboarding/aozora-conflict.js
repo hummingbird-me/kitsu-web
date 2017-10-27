@@ -10,7 +10,7 @@ export default Component.extend({
   chosen: '',
 
   getConflicts: task(function* () {
-    let conflicts = yield get(this, 'aozoraConflicts').list();
+    const conflicts = yield get(this, 'aozoraConflicts').list();
     set(this, 'conflicts', conflicts);
   }).on('init'),
 
