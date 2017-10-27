@@ -9,10 +9,15 @@ export default Component.extend({
   conflicts: {},
   chosen: '',
 
+  init() {
+    this._super(...arguments);
+    get(this, 'getConflicts').perform();
+  },
+
   getConflicts: task(function* () {
     const conflicts = yield get(this, 'aozoraConflicts').list();
     set(this, 'conflicts', conflicts);
-  }).on('init'),
+  }),
 
   choose: task(function* (chosen) {
     set(this, 'chosen', chosen);
