@@ -66,7 +66,7 @@ test('shows validation warnings on input fields', function(assert) {
   click('[data-test-sign-up-header]');
   click('[data-test-sign-up-email]');
 
-  fillIn('[data-test-username]', '1234');
+  fillIn('[data-test-username]', 'ab');
   andThen(() => {
     const error = find('[data-test-validation-username]');
     assert.equal(error.length, 1);
