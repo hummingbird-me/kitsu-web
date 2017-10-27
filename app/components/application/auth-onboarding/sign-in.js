@@ -12,15 +12,28 @@ export default Component.extend({
 
   facebook: service(),
   notify: service(),
+  aozoraConflicts: service(),
   router: service('-routing'),
   authentication: taskGroup().drop(),
 
   login: task(function* () {
     const { identification, password } = getProperties(this, 'identification', 'password');
-    yield get(this, 'session')
-      .authenticateWithOAuth2(identification, password)
-      .then(() => invokeAction(this, 'close'))
-      .catch(err => get(this, 'notify').error(errorMessages(err)));
+    try {
+      yield get(this, 'session').authenticateWithOAuth2(identification, password)
+    } catch (err) {
+      get(this, 'notify').error(errorMessages(err));
+    }
+    const user = yield get(this, 'session').getCurrentUser();
+    if (user) {
+      const conflicts = yield get(this, 'aozoraConflicts').list();
+      if (conflicts.length > 1) {
+        invokeAction(this, 'changeComponent', 'aozora-conflict');
+      } else {
+        invokeAction(this, 'changeComponent', 'aozora-account-details');
+      }
+    } else {
+      invokeAction(this, 'close');
+    }
   }).group('authentication'),
 
   loginWithFacebook: task(function* () {
