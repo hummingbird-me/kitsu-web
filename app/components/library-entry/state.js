@@ -12,6 +12,10 @@ export default Component.extend({
   createOnly: false,
   reactionOpen: false,
 
+  onCreate(entry, task) {},
+  onRemove(entry, task) {},
+  onUpdate(entry, task) {},
+
   queryCache: service(),
   store: service(),
   hasLibraryEntry: bool('libraryEntry'),
@@ -38,45 +42,65 @@ export default Component.extend({
       .then(records => get(records, 'firstObject'));
   }).restartable(),
 
-  createLibraryEntryTask: task(function* (status, rating) {
-    const type = get(this, 'mediaType');
-    const libraryEntry = get(this, 'store').createRecord('library-entry', {
-      status,
-      rating,
-      user: get(this, 'session.account'),
-      [type]: get(this, 'media')
-    });
-    try {
-      set(this, 'libraryEntry', libraryEntry);
-      const response = yield libraryEntry.save();
-      set(libraryEntry, get(this, 'mediaType'), get(this, 'media'));
-      return response;
-    } catch (error) {
-      set(this, 'libraryEntry', null);
-      libraryEntry.rollbackAttributes();
-    }
-  }).drop(),
-
-  removeLibraryEntryTask: task(function* () {
-    const libraryEntry = get(this, 'libraryEntry');
-    try {
-      set(this, 'libraryEntry', null);
-      return yield libraryEntry.destroyRecord();
-    } catch (error) {
-      libraryEntry.rollbackAttributes();
-    }
-  }).drop(),
-
-  updateLibraryEntryTask: task(function* (content) {
-    const libraryEntry = content || get(this, 'libraryEntry');
-    try {
-      yield libraryEntry.save();
-      get(this, 'queryCache').invalidateType('library-entry');
-    } catch (error) {
-      if (isChangeset(libraryEntry)) {
-        libraryEntry.rollback();
-      } else {
+  createLibraryEntryTask: task({
+    *perform(status, rating) {
+      // Warning: semi-private e-c API
+      const owner = get(this, 'owner');
+      const type = get(owner, 'mediaType');
+      const libraryEntry = get(owner, 'store').createRecord('library-entry', {
+        status,
+        rating,
+        user: get(owner, 'session.account'),
+        [type]: get(owner, 'media')
+      });
+      get(owner, 'onCreate')(libraryEntry, this);
+      try {
+        set(owner, 'libraryEntry', libraryEntry);
+        const response = yield libraryEntry.save();
+        set(libraryEntry, get(owner, 'mediaType'), get(owner, 'media'));
+        return response;
+      } catch (error) {
+        set(owner, 'libraryEntry', null);
         libraryEntry.rollbackAttributes();
+        throw error;
+      }
+    }
+  }).drop(),
+
+  removeLibraryEntryTask: task({
+    *perform() {
+      // Warning: semi-private e-c API
+      const owner = get(this, 'owner');
+      const libraryEntry = get(owner, 'libraryEntry');
+      get(owner, 'onRemove')(libraryEntry, this);
+      try {
+        set(owner, 'libraryEntry', null);
+        const response = yield libraryEntry.destroyRecord();
+        return response;
+      } catch (error) {
+        libraryEntry.rollbackAttributes();
+        throw error;
+      }
+    }
+  }).drop(),
+
+  updateLibraryEntryTask: task({
+    *perform(content) {
+      // Warning: semi-private e-c API
+      const owner = get(this, 'owner');
+      const libraryEntry = content || get(owner, 'libraryEntry');
+      // Send the task to the onUpdate function
+      get(owner, 'onUpdate')(libraryEntry, this);
+      try {
+        yield libraryEntry.save();
+        get(owner, 'queryCache').invalidateType('library-entry');
+      } catch (error) {
+        if (isChangeset(libraryEntry)) {
+          libraryEntry.rollback();
+        } else {
+          libraryEntry.rollbackAttributes();
+        }
+        throw error;
       }
     }
   }).enqueue(),
