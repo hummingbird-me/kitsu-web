@@ -52,7 +52,7 @@
             {{v-get user "password" "message"}}
           </div>
         {{/if}}
-        <span class="password-step password-{{passwordStrength.score}}" data-test-password-strength>
+        <span class="password-step password-{{or passwordStrength.score 0}}" data-test-password-strength>
         </span>
       </div>
     </div>

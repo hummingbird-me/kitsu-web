@@ -6,13 +6,13 @@ import { and } from '@ember/object/computed';
 import { isPresent } from '@ember/utils';
 import errorMessages from 'client/utils/error-messages';
 import { invokeAction } from 'ember-invoke-action';
-import strength from 'password-strength';
 
 export default Component.extend({
   metrics: service(),
   notify: service(),
   store: service(),
   tracking: service(),
+  zxcvbn: service('password-strength'),
 
   hasValidName: and('user.name', 'user.validations.attrs.name.isValid'),
   hasValidEmail: and('user.email', 'user.validations.attrs.email.isValid'),
@@ -23,7 +23,8 @@ export default Component.extend({
   hasInvalidPassword: and('user.password', 'user.validations.attrs.password.isInvalid'),
 
   passwordStrength: computed('user.password', function() {
-    return strength(get(this, 'user.password') || '');
+    const zxcvbn = get(this, 'zxcvbn');
+    return zxcvbn.strengthProxy(get(this, 'user.password') || '');
   }),
 
   step: computed('hasValidName', 'hasValidEmail', 'hasValidPassword', function() {
