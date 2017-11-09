@@ -1,0 +1,34 @@
+{{#if loading}}
+  {{loading-spinner size="large"}}
+{{/if}}
+{{video-embed/hulu-player
+  onProgress=(action onProgress)
+  videoId=videoId
+  onLoad=(action onPlayerLoad)
+}}
+
+{{#if didUpdate}}
+  Episode {{episode.number}} marked done.
+  <button {{action (perform undoLibraryEntryUpdate)}}>Undo</button>
+{{/if}}
+
+{{#if showUpdatePrompt}}
+  <button {{action (perform updateLibraryEntry true)}}>
+    Mark Watched
+  </button>
+{{/if}}
+
+{{#if showJoinPrompt}}
+  <a {{action (toggle "authOpened" this)}}>
+    Join Kitsu to track this show
+  </a>
+  to track this show
+{{/if}}
+
+{{! Authentication Modal }}
+{{#if authOpened}}
+  {{to-elsewhere named="modal" send=(component "application/auth-onboarding"
+    modalId="auth-modal"
+    component="social-auth"
+    onClose=(toggle-action "authOpened" this))}}
+{{/if}}
