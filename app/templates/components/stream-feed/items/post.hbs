@@ -13,19 +13,19 @@
 
       {{! Avatar(s) }}
       <span class="avatar-block">
-        <a href={{href-to "users.index" post.user.slug}} class="author-avatar" onclick={{action "trackEngagement" "click"}}>
+        <a href={{href-to "users.index" post.user.url}} class="author-avatar" onclick={{action "trackEngagement" "click"}}>
           {{lazy-image src=(image post.user.avatar "medium")}}
         </a>
         {{#if post.targetUser}}
           {{#unless (eq post.targetUser.id userId)}}
-            <a href={{href-to "users.index" post.targetUser.slug}} class="author-avatar recipient-avatar" onclick={{action "trackEngagement" "click"}}>
+            <a href={{href-to "users.index" post.targetUser.url}} class="author-avatar recipient-avatar" onclick={{action "trackEngagement" "click"}}>
               {{lazy-image src=(image post.targetUser.avatar "medium")}}
             </a>
           {{/unless}}
         {{/if}}
         {{#if post.targetGroup}}
           {{#unless kitsuGroup}}
-            <a href={{href-to "groups.group.group-page.index" post.targetGroup.slug}} class="author-group-avatar recipient-avatar" onclick={{action "trackEngagement" "click"}}>
+            <a href={{href-to "groups.group.group-page.index" post.targetGroup.url}} class="author-group-avatar recipient-avatar" onclick={{action "trackEngagement" "click"}}>
               {{lazy-image src=(image post.targetGroup.avatar "medium")}}
             </a>
           {{/unless}}
@@ -34,7 +34,7 @@
 
       {{! Author(s) }}
       <div class="author-info">
-        <a class="author-name" href={{href-to "users.index" post.user.slug}} onclick={{action "trackEngagement" "click"}}>
+        <a class="author-name" href={{href-to "users.index" post.user.url}} onclick={{action "trackEngagement" "click"}}>
           {{post.user.name}}
         </a>
         {{user-badge post.user}}
@@ -43,7 +43,7 @@
           {{#unless (eq post.targetUser.id userId)}}
             <span class="recipient-info">
               <small>to</small>
-              <a href={{href-to "users.index" post.targetUser.slug}} class="author-name" onclick={{action "trackEngagement" "click"}}>
+              <a href={{href-to "users.index" post.targetUser.url}} class="author-name" onclick={{action "trackEngagement" "click"}}>
                 {{post.targetUser.name}}
               </a>
               {{user-badge post.targetUser}}
@@ -55,7 +55,7 @@
           {{#unless kitsuGroup}}
             <span class="recipient-info">
               <small>to</small>
-              <a href={{href-to "groups.group.group-page.index" post.targetGroup.slug}} class="author-name" onclick={{action "trackEngagement" "click"}}>
+              <a href={{href-to "groups.group.group-page.index" post.targetGroup.url}} class="author-name" onclick={{action "trackEngagement" "click"}}>
                 {{post.targetGroup.name}}
               </a>
               <span class="tag tag-default role-tag">Group</span>

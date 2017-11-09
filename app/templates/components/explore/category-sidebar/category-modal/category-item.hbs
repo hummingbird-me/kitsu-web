@@ -1,5 +1,5 @@
 {{#if isLinkable}}
-  <a class="category-modal-title" href={{href-to "explore.category" category.slug}} {{action handleTransition category.slug}}>{{category.title}}</a>
+  <a class="category-modal-title" href={{href-to "explore.category" category.url}} {{action handleTransition category.slug}}>{{category.title}}</a>
 {{else}}
   <span class="category-modal-title">{{category.title}}</span>
 {{/if}}

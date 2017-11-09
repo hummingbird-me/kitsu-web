@@ -1,6 +1,6 @@
 <div class="message-data {{if isLeader "align-right"}}">
   <span class="message-data-name">
-    <a href={{href-to "users.index" message.user.slug}}>{{message.user.name}}</a>
+    <a href={{href-to "users.index" message.user.url}}>{{message.user.name}}</a>
   </span>
   <span class="message-data-time">
     {{format-relative message.createdAt interval=1000}},

@@ -28,7 +28,7 @@
               <img src={{image session.account.avatar "small"}} class="avatar-image avatar-image--small">
             </a>
             <div class="dropdown-menu user-menu-drop">
-              <a href={{href-to "users.index" session.account.slug}} class="dropdown-item">
+              <a href={{href-to "users.index" session.account.url}} class="dropdown-item">
                 {{t "header.user.profile"}}
               </a>
               <a href={{href-to "settings"}} class="dropdown-item">
@@ -70,7 +70,7 @@
           {{! Library }}
           {{#if session.hasUser}}
             <li class="nav-item">
-              {{link-to (t "header.library") "users.library" session.account.slug class="nav-link"}}
+              {{link-to (t "header.library") "users.library" session.account.url class="nav-link"}}
             </li>
           {{/if}}
           {{! Browse }}

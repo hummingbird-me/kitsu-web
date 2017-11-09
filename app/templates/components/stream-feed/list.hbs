@@ -66,7 +66,7 @@
     <article>
       <h5>{{t (concat "feeds.interest." streamInterest ".header")}}</h5>
       <p>
-        {{t (concat "feeds.interest." streamInterest ".body") link=(href-to "users.library" session.account.slug (query-params media=streamInterest)) htmlSafe=true}}
+        {{t (concat "feeds.interest." streamInterest ".body") link=(href-to "users.library" session.account.url (query-params media=streamInterest)) htmlSafe=true}}
       </p>
     </article>
     <button type="button" class="button button--primary" onclick={{action "dismissNotice"}}>

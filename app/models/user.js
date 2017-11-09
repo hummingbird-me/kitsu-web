@@ -2,7 +2,7 @@ import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
-import { alias, empty } from '@ember/object/computed';
+import { alias, empty, or } from '@ember/object/computed';
 import { isEmpty } from '@ember/utils';
 import { classify } from '@ember/string';
 import { get, computed } from '@ember/object';
@@ -109,6 +109,8 @@ export default Base.extend(Validations, {
   // HACK: We use this to flag the model as dirty when waifu changes, as ember-data
   // doesn't currently track the dirtiness of a relationship.
   waifuDirtyHack: attr('boolean', { defaultValue: false }),
+
+  url: or('slug', 'id'),
 
   isPro: computed('proExpiresAt', function() {
     const date = get(this, 'proExpiresAt');

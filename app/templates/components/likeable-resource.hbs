@@ -11,7 +11,7 @@
       <ul class="stream-item-participants">
         {{#each (take 4 likes) as |liker|}}
           <li class="hint--top hint--bounce hint--rounded stream-like {{if liker.isNew "new-like"}} {{if liker.isDeleted "removed-like"}}" aria-label={{liker.user.name}}>
-            <a class="like-avatar" href={{href-to "users.index" liker.user.slug}}>
+            <a class="like-avatar" href={{href-to "users.index" liker.user.url}}>
               {{lazy-image src=(image liker.user.avatar "tiny")}}
             </a>
           </li>

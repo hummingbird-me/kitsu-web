@@ -3,7 +3,7 @@
 {{else}}
   {{lazy-image src=(image item.user.avatar "tiny")}}
   <span class="audit-log-item-message">
-    <a href={{href-to "users.index" item.user.slug}}>
+    <a href={{href-to "users.index" item.user.url}}>
       {{item.user.name}}
     </a>
     {{html-safe message}}

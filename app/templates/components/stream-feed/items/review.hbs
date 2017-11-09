@@ -13,12 +13,12 @@
       <div class="col-xs no-padding-left">
         <div class="stream-review-content">
           <header class="author-header">
-            <a class="review-avatar" href={{href-to "users.index" review.user.slug}}>
+            <a class="review-avatar" href={{href-to "users.index" review.user.url}}>
               {{lazy-image src=(image review.user.avatar "small")}}
             </a>
             <h5 class="name-heading person-heading left">
               <small>Review by</small>
-              <a href={{href-to "users.index" review.user.slug}}>{{review.user.name}}</a>
+              <a href={{href-to "users.index" review.user.url}}>{{review.user.name}}</a>
             </h5>
           </header>
           <small class="media-heading">

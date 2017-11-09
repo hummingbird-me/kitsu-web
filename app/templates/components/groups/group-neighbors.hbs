@@ -9,12 +9,12 @@
   {{#each filteredNeighbors as |neighbor|}}
     <div class="card group-neighbor-item">
       <div class="media">
-        <a href={{href-to "groups.group.group-page.index" neighbor.destination.slug}}>
+        <a href={{href-to "groups.group.group-page.index" neighbor.destination.url}}>
           {{lazy-image src=(image neighbor.destination.avatar "small") imgClass="avatar-image--small"}}
         </a>
         <div class="media-body">
           <h5>
-            <a href={{href-to "groups.group.group-page.index" neighbor.destination.slug}}>
+            <a href={{href-to "groups.group.group-page.index" neighbor.destination.url}}>
               {{neighbor.destination.name}}
             </a>
           </h5>

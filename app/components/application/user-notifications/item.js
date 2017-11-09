@@ -38,7 +38,7 @@ export default Component.extend({
       case 'Follow': {
         const actor = get(activity, 'actor');
         if (isPresent(actor)) {
-          return hrefTo(this, 'users.index', get(actor, 'slug'), queryParams);
+          return hrefTo(this, 'users.index', get(actor, 'url'), queryParams);
         }
         return '#';
       }

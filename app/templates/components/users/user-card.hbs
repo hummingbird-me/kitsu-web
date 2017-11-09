@@ -1,11 +1,11 @@
-<a href={{href-to "users.index" user.slug}}>
+<a href={{href-to "users.index" user.url}}>
   <img class="card-img-top" src={{image user.coverImage (if short "original" "tiny")}}>
 </a>
 <div class="card-block">
-  <a href={{href-to "users.index" user.slug}}>
+  <a href={{href-to "users.index" user.url}}>
     <img class="card-img-avatar" src={{image user.avatar (if short "large" "small")}}>
   </a>
-  <a href={{href-to "users.index" user.slug}}>
+  <a href={{href-to "users.index" user.url}}>
     <h4 class="card-title">{{user.name}}</h4>
   </a>
 

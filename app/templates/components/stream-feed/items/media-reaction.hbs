@@ -19,7 +19,7 @@
         <a class="reaction-message" href={{href-to "media-reactions" reaction.id}}>{{reaction.reaction}}</a>
         <span class="reaction-meta">
           {{lazy-image src=(image reaction.user.avatar "tiny")}}
-          <a href={{href-to "users.index" reaction.user.slug}}>{{reaction.user.name}}</a>
+          <a href={{href-to "users.index" reaction.user.url}}>{{reaction.user.name}}</a>
         </span>
         <hr>
         <div class="reaction-actions">

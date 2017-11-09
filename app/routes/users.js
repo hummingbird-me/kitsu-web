@@ -2,10 +2,9 @@ import Route from '@ember/routing/route';
 import { get, set } from '@ember/object';
 import { inject as service } from '@ember/service';
 import DataErrorMixin from 'client/mixins/routes/data-error';
-import CanonicalRedirectMixin from 'client/mixins/routes/canonical-redirect';
 import CoverPageMixin from 'client/mixins/routes/cover-page';
 
-export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMixin, {
+export default Route.extend(DataErrorMixin, CoverPageMixin, {
   queryCache: service(),
   intl: service(),
 
@@ -66,5 +65,15 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, CoverPageMix
         content: get(model, 'avatar.medium') || get(model, 'avatar')
       }
     }];
+  },
+
+  redirect(model) {
+    const routeName = get(this, 'routeName');
+    const params = this.paramsFor(routeName);
+    const current = get(params, 'slug');
+    const correct = get(model, 'url');
+    if (current !== correct) {
+      this.replaceWith(routeName, correct);
+    }
   }
 });

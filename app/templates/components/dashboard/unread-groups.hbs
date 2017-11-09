@@ -11,7 +11,7 @@
     {{#each getGroupsTask.last.value as |group-member|}}
       {{#with group-member.group as |group|}}
         <li class="joined-group">
-          <a href={{href-to "groups.group.group-page.index" group.slug}}>
+          <a href={{href-to "groups.group.group-page.index" group.url}}>
             <span class="group-avatar">
               {{lazy-image src=(image group.avatar "small") imgClass="avatar-image--small"}}
             </span>
@@ -30,7 +30,7 @@
     {{/each}}
     {{#if (gt getGroupsTask.last.value.meta.count 8)}}
       <li class="joined-group view-more">
-        <a href={{href-to "users.groups" session.account.slug}}>view all</a>
+        <a href={{href-to "users.groups" session.account.url}}>view all</a>
       </li>
     {{/if}}
   </ul>
