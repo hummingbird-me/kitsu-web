@@ -31,7 +31,7 @@ export default Route.extend(DataErrorMixin, CoverPageMixin, {
   },
 
   serialize(model) {
-    return { slug: get(model, 'slug') };
+    return { slug: get(model, 'url') };
   },
 
   setHeadTags(model) {

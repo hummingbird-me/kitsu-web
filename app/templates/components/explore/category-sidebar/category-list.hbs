@@ -1,7 +1,7 @@
 <ul class="list-unstyled categories-list">
   {{#each categories as |category|}}
     <li>
-      <a href={{href-to "explore.category" category.url}}>{{category.title}}</a>
+      <a href={{href-to "explore.category" category.slug}}>{{category.title}}</a>
     </li>
   {{/each}}
 </ul>

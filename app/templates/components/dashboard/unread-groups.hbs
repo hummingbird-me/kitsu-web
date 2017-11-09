@@ -11,7 +11,7 @@
     {{#each getGroupsTask.last.value as |group-member|}}
       {{#with group-member.group as |group|}}
         <li class="joined-group">
-          <a href={{href-to "groups.group.group-page.index" group.url}}>
+          <a href={{href-to "groups.group.group-page.index" group.slug}}>
             <span class="group-avatar">
               {{lazy-image src=(image group.avatar "small") imgClass="avatar-image--small"}}
             </span>

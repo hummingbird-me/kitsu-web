@@ -1,4 +1,4 @@
-<a class="group-link-wrapper" href={{href-to "groups.group.group-page.index" group.url}} {{action "handleGroupClick"}}>
+<a class="group-link-wrapper" href={{href-to "groups.group.group-page.index" group.slug}} {{action "handleGroupClick"}}>
   <div class="group-result-thumb">
     {{lazy-image src=(image group.avatar "medium")}}
   </div>
@@ -14,7 +14,7 @@
       </a>
     </div>
     <div class="group-result-stats">
-      <a class="member-button" href={{href-to "groups.group.group-page.members" group.url}}>
+      <a class="member-button" href={{href-to "groups.group.group-page.members" group.slug}}>
         <div class="button-wrapper">
           {{svg-jar "gender"}}
           {{format-number group.membersCount fallback="0"}}
