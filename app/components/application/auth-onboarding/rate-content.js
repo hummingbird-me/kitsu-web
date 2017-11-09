@@ -61,7 +61,7 @@ export default Component.extend(Pagination, {
     libraryEntryDoingUpdate(entry, task) {
       if (get(entry, 'rating')) {
         this.incrementProperty('numRated');
-        task.catch((err) => this.decrementProperty('numRated'))
+        task.catch(() => this.decrementProperty('numRated'));
       }
     }
   }

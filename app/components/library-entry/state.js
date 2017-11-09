@@ -12,9 +12,9 @@ export default Component.extend({
   createOnly: false,
   reactionOpen: false,
 
-  onCreate(entry, task) {},
-  onRemove(entry, task) {},
-  onUpdate(entry, task) {},
+  onCreate() {},
+  onRemove() {},
+  onUpdate() {},
 
   queryCache: service(),
   store: service(),
@@ -43,7 +43,7 @@ export default Component.extend({
   }).restartable(),
 
   createLibraryEntryTask: task({
-    *perform(status, rating) {
+    * perform(status, rating) {
       // Warning: semi-private e-c API
       const owner = get(this, 'owner');
       const type = get(owner, 'mediaType');
@@ -68,7 +68,7 @@ export default Component.extend({
   }).drop(),
 
   removeLibraryEntryTask: task({
-    *perform() {
+    * perform() {
       // Warning: semi-private e-c API
       const owner = get(this, 'owner');
       const libraryEntry = get(owner, 'libraryEntry');
@@ -85,7 +85,7 @@ export default Component.extend({
   }).drop(),
 
   updateLibraryEntryTask: task({
-    *perform(content) {
+    * perform(content) {
       // Warning: semi-private e-c API
       const owner = get(this, 'owner');
       const libraryEntry = content || get(owner, 'libraryEntry');
