@@ -24,6 +24,7 @@ export default Component.extend({
   loading: not('loaded'),
   // Prompts for Updates
   didUpdate: false,
+  didUndo: false,
   showUpdatePrompt: false,
   showJoinPrompt: false,
   // Auth Dialog
@@ -79,6 +80,7 @@ export default Component.extend({
 
     const userId = get(this, 'session.account.id');
     const cache = get(this, 'queryCache');
+    const mediaType = get(this, 'media.constructor.modelName');
     const mediaColumn = get(this, 'mediaColumn');
 
     const filter = { userId, ...mediaColumn };
@@ -90,13 +92,14 @@ export default Component.extend({
       return get(this, 'store').createRecord('library-entry', {
         status: 'current',
         user: get(this, 'session.account'),
-        ...mediaColumn
+        [mediaType]: get(this, 'media')
       });
     }
     return loadedEntry;
   }).drop(),
 
   updateLibraryEntry: task(function* (force = false) {
+    set(this, 'didUndo', false);
     if (get(this, 'session.hasUser')) {
       const entry = yield get(this, 'getLibraryEntry').perform();
 
@@ -119,6 +122,8 @@ export default Component.extend({
     const entry = yield get(this, 'getLibraryEntry').perform();
 
     setProperties(entry, get(this, 'originalLibraryData'));
-    return yield entry.save();
+    yield entry.save();
+    set(this, 'didUpdate', false);
+    set(this, 'didUndo', true);
   })
 });
