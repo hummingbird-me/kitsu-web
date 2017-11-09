@@ -6,7 +6,6 @@ import { alias, empty, or } from '@ember/object/computed';
 import { isEmpty } from '@ember/utils';
 import { classify } from '@ember/string';
 import { get, computed } from '@ember/object';
-import { empty } from '@ember/object/computed';
 
 export const Validations = buildValidations({
   email: [
