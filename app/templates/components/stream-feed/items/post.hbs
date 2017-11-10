@@ -55,7 +55,7 @@
           {{#unless kitsuGroup}}
             <span class="recipient-info">
               <small>to</small>
-              <a href={{href-to "groups.group.group-page.index" post.targetGroup.url}} class="author-name" onclick={{action "trackEngagement" "click"}}>
+              <a href={{href-to "groups.group.group-page.index" post.targetGroup.slug}} class="author-name" onclick={{action "trackEngagement" "click"}}>
                 {{post.targetGroup.name}}
               </a>
               <span class="tag tag-default role-tag">Group</span>
