@@ -20,7 +20,7 @@
       {{#unless hideProgress}}
         <span class="state-helper">
           {{t "library-entry.state.saved-in"
-            link=(href-to "users.library" session.account.url (query-params status=libraryEntry.status media=mediaType))
+            link=(href-to "users.library" session.account (query-params status=libraryEntry.status media=mediaType))
             status=(t (concat "library-shared." libraryEntry.status) type=mediaType)
             htmlSafe=true
           }}

@@ -2,13 +2,13 @@
   {{lazy-image src=(image activity.actor.avatar "tiny")}}
 </span>
 <span class="agg-action">
-  <a href={{href-to "users.index" activity.actor.url}}>{{activity.actor.name}}</a>
+  <a href={{href-to "users.index" activity.actor}}>{{activity.actor.name}}</a>
 
   {{! others doing this activity }}
   {{#if (gt group.others.length 0)}}
     {{#if (eq group.others.length 1)}}
       {{#with (get group.others "firstObject") as |other|}}
-        and <a href={{href-to "users.index" other.actor.url}}>{{other.actor.name}}</a>
+        and <a href={{href-to "users.index" other.actor}}>{{other.actor.name}}</a>
       {{/with}}
     {{else}}
       and <strong>{{group.others.length}} others</strong>

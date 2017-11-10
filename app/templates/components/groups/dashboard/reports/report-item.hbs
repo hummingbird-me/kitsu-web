@@ -1,13 +1,13 @@
 <div class="stream-item-wrapper col-sm-12">
   <div class="stream-item--title-block">
     <span class="avatar-block">
-      <a href={{href-to "users.index" subject.user.url}} class="author-avatar">
+      <a href={{href-to "users.index" subject.user}} class="author-avatar">
         {{lazy-image src=(image subject.user.avatar "small")}}
       </a>
     </span>
 
     <div class="author-info">
-        <a href={{href-to "users.index" subject.user.url}} class="author-name">
+        <a href={{href-to "users.index" subject.user}} class="author-name">
           {{subject.user.name}}
         </a>
         <span class="tag tag-default">

@@ -6,14 +6,14 @@
     </span>
     <div class="media-body">
       <p class="media-heading">
-        <a href={{href-to "users.index" activity.actor.url}}>{{activity.actor.name}}</a>
+        <a href={{href-to "users.index" activity.actor}}>{{activity.actor.name}}</a>
 
         {{! more than one? }}
         {{#if (gt others.length 0)}}
           {{#if (eq others.length 1)}}
             {{#with (get others "firstObject") as |other|}}
               {{#if other.actor}}
-                and <a href={{href-to "users.index" other.actor.url}}>{{other.actor.name}}</a>
+                and <a href={{href-to "users.index" other.actor}}>{{other.actor.name}}</a>
               {{else}}
                 and Unknown.
               {{/if}}
@@ -47,7 +47,7 @@
               {{else if (eq activity.target.user.id session.account.id)}}
                 your
               {{else}}
-                <a href={{href-to "users.index" activity.target.user.url}}>{{activity.target.user.name}}'s</a>
+                <a href={{href-to "users.index" activity.target.user}}>{{activity.target.user.name}}'s</a>
               {{/if}}
             {{else}}
               a
