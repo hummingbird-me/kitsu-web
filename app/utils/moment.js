@@ -1,4 +1,4 @@
-import getOwner from '@ember/application';
+import { getOwner } from '@ember/application';
 import originalMoment from 'moment';
 
 export function moment(...args) {
