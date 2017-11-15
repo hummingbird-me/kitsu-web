@@ -42,8 +42,8 @@ export default Component.extend({
       set(this, 'isLoaded', true);
     } else {
       const fn = () => {
-        if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
         next(() => {
+          if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
           set(this, 'isLoaded', true);
         });
       };

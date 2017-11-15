@@ -18,6 +18,10 @@ module.exports = function(defaults) {
       includePolyfill: true
     },
 
+    'ember-cli-password-strength': {
+      bundleZxcvbn: false
+    },
+
     sourcemaps: {
       enabled: true,
       extensions: ['js']
