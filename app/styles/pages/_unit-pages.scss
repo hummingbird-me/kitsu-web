@@ -69,12 +69,12 @@
 
 .unit-thumbnail {
   padding: 0;
+  margin: 0;
 }
 .unit-synopsis {
   margin-bottom: 20px;
-  border-top: 1px solid $divider-color;
   padding-top: 10px;
-  margin-top: 12px;
+  font-size: 12px;
 }
 
 .unit-discussion {
@@ -83,22 +83,149 @@
 
 .episode-list {
   margin-bottom: 13px;
-  display: inline-block;
+  display: block;
+  width: 100%;
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      width: 10%;
+      display: block;
+      padding: 4px;
+      flex: none;
+      a {
+        background: #ddd;
+        width: 100%;
+        display: block;
+        text-align: center;
+        border-radius: 3px;
+        color: #333;
+        padding: 8px 0;
+        font-size: 14px;
+        &:hover {
+          background: darken(#ddd, 5);
+          color: #333;
+        }
+      }
+      &.active {
+        a {
+          background: #ececec;
+        }
+      }
+    }
+  }
+  .more {
+    svg {
+      width: 17px;
+      height: 12px;
+    }
+  }
+}
+
+.language-selector {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 5px;
+  position: relative;
+  .dropdown {
+    display: inline-block;
+    background: #f7f7f7;
+    z-index: 1;
+    padding: 0 25px;
+    .dropdown-item {
+      background: #fff;
+      font-weight: 300;
+      &:hover {
+        background: #fafafa;
+      }
+    }
+  }
+  a {
+    background: #f7f7f7;
+    z-index: 1;
+    color: #636363;
+    font-weight: 700;
+  }
+  .divider {
+    height: 1px;
+    background: #ddd;
+    width: 100%;
+    position: absolute;
+    display: block;
+    top: 10px;
+    left: 0;
+    right: 0;
+  }
 }
 
 .unit-summary {
-  .thumbnail-wrapper img {
+  .video-embed {
+    max-height: 480px;
     border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 10px;
   }
-  h6, .thumb-caption {
+  .thumbnail-wrapper {
     margin-bottom: 5px;
+    img {
+      border-radius: 3px;
+      height: 65px;
+    }
+    .thumb-caption {
+      margin-bottom: 5px;
+    }
   }
   .unit-date {
     color: $body-secondary-text-color;
+  }
+  iframe {
+    width: 100%;
+    height: 480px;
+  }
+  .summary-wrapper {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 15px;
+    padding-bottom: 0;
+    border-radius: 3px;
+  }
+  .col-sm.row {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.streamer-plug {
+  width: 270px;
+  margin-left: 10px;
+  border-radius: 3px;
+  text-align: center;
+  padding: 20px;
+  color: #fff;
+  &.hulu-plug {
+    background: #4CAC51;
+    padding: 15px;
+    .plug-logo svg {
+      width: 100px;
+      height: 40px;
+    }
+    .plug-cta {
+      display: block;
+      background: #fff;
+      color: #333;
+      border-radius: 3px;
+      padding: 15px;
+    }
   }
 }
 
 .unit-meta {
   align-items: center;
   display: flex;
+  .unit-number {
+    margin: 0;
+  }
 }
