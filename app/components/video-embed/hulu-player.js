@@ -27,7 +27,7 @@ export default Component.extend({
     // Hulu's script injects another (versioned) script which is what we want.  Thankfully they
     // set an ID on it that we can use to monitor loading
     injectScript(HULU_API).then(() => {
-      if (HuluPlayer) return this.initPlayer();
+      if (HuluPlayer && HuluPlayer.DP) return this.initPlayer();
       const huluPlayerApi = document.getElementById('hulu-playerapi-script');
       huluPlayerApi.onload = () => this.initPlayer();
     });
