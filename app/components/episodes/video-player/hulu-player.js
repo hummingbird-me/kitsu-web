@@ -1,5 +1,6 @@
 import Component from '@ember/component';
-import { get, set, getProperties } from '@ember/object';
+import { get, set, getProperties, observer } from '@ember/object';
+import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { injectScript } from 'client/utils/inject-script';
 
@@ -10,11 +11,13 @@ export default Component.extend({
   classNames: ['hulu-embed'],
   session: service(),
 
-  videoId: '',
+  video: null,
+  videoId: alias('video.embedData.eid'),
   width: 800,
   height: 600,
   onLoad() {},
   onProgress() {},
+  isPlaying: false,
 
   init() {
     // Start loading the script ASAP
@@ -33,11 +36,18 @@ export default Component.extend({
     });
   },
 
-  didReceiveAttrs() {
-    this._super(...arguments);
+  videoDidChange: observer('video', function () {
     const videoId = get(this, 'videoId');
     this.changeVideo(videoId);
-  },
+  }),
+
+  playingDidUpdate: observer('isPlaying', function () {
+    if (get(this, 'isPlaying')) {
+      this.resume();
+    } else {
+      this.pause();
+    }
+  }),
 
   initPlayer() {
     const containerId = get(this, 'elementId');
@@ -54,8 +64,16 @@ export default Component.extend({
     // Hook onto the events
     player.addEventListener('player_ready', () => get(this, 'onLoad')());
     player.addEventListener('videoMetadata', ({ data: { length } }) => {
+      if (!get(this, 'isPlaying')) this.pause();
       set(this, 'duration', length);
       get(this, 'onProgress')({ position: 0, duration: length });
+    });
+    player.addEventListener('videoStateChange', ({ data: state }) => {
+      if (state === 'playing') {
+        set(this, 'isPlaying', true);
+      } else if (state === 'pause') {
+        set(this, 'isPlaying', false);
+      }
     });
     player.addEventListener('videoPlayheadUpdate', ({ data: { position, duration, state } }) => {
       if (state === 'ad') return;
@@ -69,5 +87,15 @@ export default Component.extend({
     const player = get(this, 'player');
     if (!player) return;
     player.playVideo(videoId);
+  },
+
+  resume() {
+    const player = get(this, 'player');
+    if (player) player.resumeVideo();
+  },
+
+  pause() {
+    const player = get(this, 'player');
+    if (player) player.pauseVideo();
   }
 });
