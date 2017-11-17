@@ -1,12 +1,3 @@
-{{#if loading}}
-  {{loading-spinner size="large"}}
-{{/if}}
-{{video-embed/hulu-player
-  onProgress=(action onProgress)
-  videoId=videoId
-  onLoad=(action onPlayerLoad)
-}}
-
 {{#if didUndo}}
   Undone!
 {{/if}}

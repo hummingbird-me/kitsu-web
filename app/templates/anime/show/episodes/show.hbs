@@ -1,42 +1,8 @@
 <div class="col-sm-12 no-padding">
   <!-- <a href={{href-to (concat media.modelType ".show." model.modelType "s")}} class="episode-list">{{t "media.show.units.back" type=model.modelType}}</a> -->
   <div class="unit-summary">
+    {{episodes/episode-video episode=model media=media}}
 
-    {{video-embed episode=model}} <!-- Hide if no Hulu -->
-    <div class="col-sm row"> <!-- Hide if no Hulu -->
-      <div class="episode-list">
-        <div class="language-selector">
-          <div class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English Sub</a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">English Sub</a>
-              <a class="dropdown-item" href="#">English Dub</a>
-            </div>
-          </div>
-          <span class="divider"></span>
-        </div>
-        <ul class="row">
-          <li class="col-sm active"><a href="#">EP 1</a></li>
-          <li class="col-sm"><a href="#">EP 2</a></li>
-          <li class="col-sm"><a href="#">EP 3</a></li>
-          <li class="col-sm"><a href="#">EP 4</a></li>
-          <li class="col-sm"><a href="#">EP 5</a></li>
-          <li class="col-sm"><a href="#">EP 6</a></li>
-          <li class="col-sm"><a href="#">EP 7</a></li>
-          <li class="col-sm"><a href="#">EP 8</a></li>
-          <li class="col-sm"><a href="#">EP 9</a></li>
-          <li class="col-sm more">
-            <a href="#">
-              <svg class="icon">
-                <circle r="2" cy="8" cx="2"></circle>
-                <circle r="2" cy="8" cx="8"></circle>
-                <circle r="2" cy="8" cx="14"></circle>
-              </svg>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
     <div class="col-sm row">
       <div class="summary-wrapper col-sm">
         <div class="unit-thumbnail col-sm-12 row">
@@ -58,22 +24,22 @@
                 <div class="info-emphasis thumb-caption">{{model.canonicalTitle}}</div>
               {{/if}}
               <div class="unit-info small">
-              {{#if humanizedLength}}
-                <div class="unit-length">
-                  {{humanizedLength}}
-                </div>
-              {{/if}}
+                {{#if humanizedLength}}
+                  <div class="unit-length">
+                    {{humanizedLength}}
+                  </div>
+                {{/if}}
 
-              {{#if (or model.airdate model.published)}}
-                <div class="unit-date">
-                  {{#if (eq model.modelType "episode")}}
-                    {{t "media.show.units.date" type="episode" }}: {{moment-format model.airdate "MMM D, YYYY" timeZone="UTC"}}
-                  {{else}}
-                    {{t "media.show.units.date" type="chapter" }}: {{moment-format model.published "MMM D, YYYY" timeZone="UTC"}}
-                  {{/if}}
-                </div>
-              {{/if}}
-            </div>
+                {{#if (or model.airdate model.published)}}
+                  <div class="unit-date">
+                    {{#if (eq model.modelType "episode")}}
+                      {{t "media.show.units.date" type="episode" }}: {{moment-format model.airdate "MMM D, YYYY" timeZone="UTC"}}
+                    {{else}}
+                      {{t "media.show.units.date" type="chapter" }}: {{moment-format model.published "MMM D, YYYY" timeZone="UTC"}}
+                    {{/if}}
+                  </div>
+                {{/if}}
+              </div>
             </div>
           </div>
         </div>
@@ -84,13 +50,8 @@
           </div>
         {{/if}}
       </div>
-      <div class="streamer-plug hulu-plug"> <!-- Hide if no Hulu -->
-        <span class="plug-logo">
-          {{svg-jar "hulu-lg"}}
-        </span>
-        <p class="plug-description">More anime awaits, on Hulu.</p>
-        <a href="#" class="plug-cta">Start your free trial</a>
-      </div>
+
+      {{from-elsewhere name="streamer-plug"}}
     </div>
   </div>
 </div>
