@@ -105,6 +105,7 @@
         color: #333;
         padding: 8px 0;
         font-size: 14px;
+        border: 1px solid #ddd;
         &:hover {
           background: darken(#ddd, 5);
           color: #333;
@@ -112,7 +113,8 @@
       }
       &.active {
         a {
-          background: #ececec;
+          background: none;
+          border: 1px dashed #c7c7c7;
         }
       }
     }
@@ -227,5 +229,55 @@
   display: flex;
   .unit-number {
     margin: 0;
+  }
+}
+
+.video-player {
+  position: relative;
+  height: 480px;
+  margin-bottom: 10px;
+  .loading {
+    position: absolute;
+    width: 100%;
+    border: 0;
+    background: #000s;
+    animation: none;
+    border-radius: 0;
+    height: 480px;
+  }
+}
+
+.join-prompt {
+  background: #000;
+  color: #fff;
+  margin-top: -10px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  padding: 15px;
+  text-align: center;
+  margin-bottom: 10px;
+  a {
+    background: $primary-cta-color;
+    padding: 5px 15px;
+    border-radius: 3px;
+    margin-left: 15px;
+    &:hover {
+      background: darken($primary-cta-color, 5);
+    }
+  }
+}
+
+.mark-watched-prompt {
+  background: #000;
+  color: #fff;
+  margin-top: -10px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  padding: 5px;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 10px;
+  .prompt-cta {
+    color: $body-link-color;
   }
 }
