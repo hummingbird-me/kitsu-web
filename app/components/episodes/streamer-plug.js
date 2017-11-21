@@ -5,7 +5,7 @@ import { get, computed } from '@ember/object';
 const STREAMING_LINKS = {
   hulu: {
     name: 'Hulu',
-    link: '#',
+    link: 'https://www.hulu.com/start',
     description: 'More anime awaits, on Hulu.',
     cta: 'Start your free trial',
     logo: 'hulu-lg'
