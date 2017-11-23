@@ -164,13 +164,13 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
       if (get(this, 'isTopLevel') === true) {
         this.toggleProperty('isReplying');
       } else {
-        invokeAction(this, 'onReply', get(this, 'comment.user.name'));
+        invokeAction(this, 'onReply', get(this, 'comment.user.slug'));
       }
     },
 
-    onReply(name) {
+    onReply(slug) {
       this.toggleProperty('isReplying');
-      scheduleOnce('afterRender', () => this.$('.reply-comment').val(`@${name} `));
+      scheduleOnce('afterRender', () => this.$('.reply-comment').val(`@${slug} `));
     },
 
     onPagination() {
