@@ -67,7 +67,7 @@ export default Component.extend({
     const user = get(this, 'user');
     yield user.save()
       .then(() => {
-        const { name: identification, password } = getProperties(user, 'name', 'password');
+        const { email: identification, password } = getProperties(user, 'email', 'password');
         get(this, 'session')
           .authenticateWithOAuth2(identification, password)
           .then(() => {
