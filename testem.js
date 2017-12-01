@@ -7,7 +7,7 @@ let browserArgs;
 if (isMacOS || isWindows) {
   browserArgs = [];
 } else {
-  browserArgs = ['--headless', '--disable-gpu', '--remote-debugging-port=9222'];
+  browserArgs = ['--headless', '--disable-gpu', '--remote-debugging-port=0'];
 }
 
 module.exports = {
