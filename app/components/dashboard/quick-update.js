@@ -1,8 +1,9 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { get, set, computed } from '@ember/object';
-import { task } from 'ember-concurrency';
 import { scheduleOnce } from '@ember/runloop';
+import { isEmpty } from '@ember/utils';
+import { task } from 'ember-concurrency';
 import { storageFor } from 'ember-local-storage';
 import FlickityActionsMixin from 'client/mixins/flickity-actions';
 import Pagination from 'kitsu-shared/mixins/pagination';
@@ -13,6 +14,7 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
   pageLimit: 12,
   notify: service(),
   queryCache: service(),
+  store: service(),
   lastUsed: storageFor('last-used'),
 
   remaining: computed('initialEntries.length', function() {
@@ -75,6 +77,17 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
       }).catch(() => {
         set(entry, 'unit', null);
       });
+    },
+
+    createPost(entry, content) {
+      if (isEmpty(content)) { return; }
+      const post = get(this, 'store').createRecord('post', {
+        content,
+        media: get(entry, 'media'),
+        spoiledUnit: get(entry, 'unit'),
+        user: get(this, 'session.account')
+      });
+      return post.save();
     },
 
     changeFilter(option) {

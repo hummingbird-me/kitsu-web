@@ -9,6 +9,7 @@ import { strictInvokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
   classNames: ['quick-update-item'],
+  updatePostText: '',
   intl: service(),
   store: service(),
   isCompleted: equal('entry.status', 'completed').readOnly(),
@@ -68,16 +69,20 @@ export default Component.extend({
 
   updateEntryTask: task(function* () {
     const model = get(this, 'entry');
-    set(model, 'progress', get(this, 'nextProgress'));
-    // will the next update complete this media?
-    if (get(this, 'canComplete')) {
+    const progress = get(this, 'nextProgress');
+    set(model, 'progress', progress);
+    // Update status if this update will complete the media
+    if (progress === get(this, 'entry.media.unitCount')) {
       set(model, 'status', 'completed');
     }
     try {
       yield strictInvokeAction(this, 'updateEntry', model);
       yield strictInvokeAction(this, 'reloadUnit');
+      yield strictInvokeAction(this, 'createPost', get(this, 'updatePostText'));
     } catch (error) {
       model.rollbackAttributes();
+    } finally {
+      set(this, 'updatePostText', '');
     }
   }).drop()
 });
