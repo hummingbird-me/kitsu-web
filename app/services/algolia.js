@@ -9,15 +9,20 @@ export default Service.extend({
   keys: {},
   indices: {},
 
-  loadKeys: task(function* () {
+  loadKeys() {
+    if (get(this, 'loadKeysTask.performCount') > 0) return Promise.resolve();
+    return get(this, 'loadKeysTask').perform();
+  },
+
+  loadKeysTask: task(function* () {
     const ajax = get(this, 'ajax');
     const keys = yield ajax.request('/algolia-keys', { method: 'GET' });
     set(this, 'keys', keys);
   }).drop(),
 
   async indexFor(name) {
-    if (!get(this, `keys.${name}`)) await get(this, 'loadKeys').perform();
     if (get(this, `indices.${name}`)) return get(this, `indices.${name}`);
+    await this.loadKeys();
     const info = get(this, `keys.${name}`);
     const client = algoliasearch(config.algolia.appId, info.key);
     const index = client.initIndex(info.index);
