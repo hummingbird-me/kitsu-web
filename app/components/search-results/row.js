@@ -6,6 +6,7 @@ export default Component.extend({
   kind: alias('item.kind'),
   imageUrl: or('item.avatar', 'item.posterImage'),
   title: or('item.name', 'item.canonicalTitle'),
+  slug: or('item.slug', 'item.id'),
 
   imageClass: computed('item.kind', function () {
     const kind = get(this, 'item.kind');

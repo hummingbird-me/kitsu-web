@@ -5,10 +5,11 @@ import { isEmpty } from '@ember/utils';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 
+const DEFAULT_INCLUDED = ['id', 'slug', 'kind'];
 const INDICES = {
-  media: ['slug', 'canonicalTitle', 'titles', 'posterImage', 'kind', 'subtype', 'posterImage'],
-  users: ['slug', 'name', 'avatar'],
-  groups: ['slug', 'name', 'avatar'],
+  media: [...DEFAULT_INCLUDED, 'canonicalTitle', 'titles', 'posterImage', 'subtype', 'posterImage'],
+  users: [...DEFAULT_INCLUDED, 'name', 'avatar'],
+  groups: [...DEFAULT_INCLUDED, 'name', 'avatar'],
 };
 
 const search = (indexName, attributesToRetrieve) => (
