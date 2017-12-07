@@ -29,7 +29,7 @@ export default Component.extend(Pagination, {
       if (typeOf(item) === 'string') {
         get(this, 'router.router').transitionTo(item);
       } else {
-        const type = get(item, 'modelType');
+        const type = get(item, 'kind');
         if (type === 'user') {
           get(this, 'router').transitionTo('users.index', [get(item, 'slug')]);
         } else if (type === 'group') {

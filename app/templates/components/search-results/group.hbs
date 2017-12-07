@@ -27,20 +27,23 @@
       {{#each items as |item|}}
         <li class="media col-sm-12" {{action "transitionTo" item}}>
           <div class="media-left col-sm-2 no-padding-left">
-            {{#if (or (eq group "users") (eq group "groups"))}}
+            {{#if (or (eq item.kind "user") (eq item.kind "group"))}}
               {{lazy-image src=(image item.avatar "small") imgClass=(concat "is-avatar-" group)}}
             {{else}}
               {{lazy-image src=(image item.posterImage "small")}}
             {{/if}}
           </div>
           <div class="media-body col-sm no-padding-left">
-            {{#if (or (eq group "users") (eq group "groups"))}}
+            {{#if (or (eq item.kind "user") (eq item.kind "group"))}}
               <p>{{item.name}}</p>
             {{else}}
-              <p>{{item.computedTitle}}</p>
+              <p>{{item.canonicalTitle}}</p>
             {{/if}}
           </div>
-          {{#if (and (eq group "groups") item.nsfw)}}
+          {{#if (eq group "media")}}
+            <span class="tag tag-default">{{item.subtype}}</span>
+          {{/if}}
+          {{#if (and (eq item.kind "group") item.nsfw)}}
             <span class="tag tag-default">{{t "groups.nsfw"}}</span>
           {{/if}}
         </li>

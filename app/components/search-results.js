@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import Component from '@ember/component';
 import { get, set } from '@ember/object';
 import { inject as service } from '@ember/service';
@@ -6,28 +5,28 @@ import { isEmpty } from '@ember/utils';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 
-const {
-  Inflector: { inflector }
-} = Ember;
+const INDICES = {
+  media: ['slug', 'canonicalTitle', 'titles', 'posterImage', 'kind', 'subtype', 'posterImage'],
+  users: ['slug', 'name', 'avatar'],
+  groups: ['slug', 'name', 'avatar'],
+};
 
-const dataTask = (type, key, fields) => (
+const search = (indexName, attributesToRetrieve) => (
   task(function* (query) {
-    return yield get(this, 'store').query(type, {
-      filter: { [key]: query },
-      fields: { [inflector.pluralize(type)]: fields.join(',') },
-      page: { limit: 2 }
-    });
+    const index = yield get(this, 'algolia').indexFor(indexName);
+    const response = yield index.search(query, { attributesToRetrieve, hitsPerPage: 2 });
+    return get(response, 'hits');
   }).restartable()
 );
 
 export default Component.extend({
   isOpened: false,
   metrics: service(),
-  store: service(),
+  algolia: service(),
 
   init() {
     this._super(...arguments);
-    set(this, 'groups', { anime: [], manga: [], groups: [], users: [] });
+    set(this, 'groups', { media: [], users: [], groups: [] });
   },
 
   didReceiveAttrs() {
@@ -45,21 +44,19 @@ export default Component.extend({
   },
 
   searchTask: task(function* (query) {
-    yield timeout(250);
-    const groupTypes = Object.keys(get(this, 'groups'));
-    groupTypes.forEach((type) => {
+    Object.keys(INDICES).forEach((type) => {
       get(this, `${type}Task`).perform(query).then((records) => {
         set(this, `groups.${type}`, records);
       }).catch((error) => {
         get(this, 'raven').captureException(error);
       });
     });
-  }).restartable(),
+    yield timeout(250);
+  }).keepLatest(),
 
-  animeTask: dataTask('anime', 'text', ['slug', 'canonicalTitle', 'titles', 'posterImage']),
-  mangaTask: dataTask('manga', 'text', ['slug', 'canonicalTitle', 'titles', 'posterImage']),
-  groupsTask: dataTask('group', 'query', ['slug', 'name', 'avatar']),
-  usersTask: dataTask('user', 'query', ['name', 'slug', 'avatar']),
+  mediaTask: search('media', INDICES.media),
+  usersTask: search('users', INDICES.users),
+  groupsTask: search('groups', INDICES.groups),
 
   actions: {
     close() {
