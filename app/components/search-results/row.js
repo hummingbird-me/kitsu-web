@@ -20,6 +20,7 @@ export default Component.extend({
 
   route: computed('item.kind', function () {
     const kind = get(this, 'item.kind');
+    if (!kind) return 'not-found';
     switch (kind) {
       case 'user':
         return 'users.index';
