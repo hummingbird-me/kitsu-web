@@ -20,13 +20,13 @@ export default Service.extend({
     set(this, 'keys', keys);
   }).drop(),
 
-  async indexFor(name) {
+  getIndex: task(function* (name) {
     if (get(this, `indices.${name}`)) return get(this, `indices.${name}`);
-    await this.loadKeys();
+    yield this.loadKeys();
     const info = get(this, `keys.${name}`);
     const client = algoliasearch(config.algolia.appId, info.key);
     const index = client.initIndex(info.index);
     set(this, `indices.${name}`, index);
     return index;
-  }
+  })
 });

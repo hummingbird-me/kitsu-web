@@ -14,7 +14,7 @@ const INDICES = {
 
 const search = (indexName, attributesToRetrieve, hitsPerPage = 2) => (
   task(function* (query, options = {}) {
-    const index = yield get(this, 'algolia').indexFor(indexName);
+    const index = yield get(this, 'algolia.getIndex').perform(indexName);
     return yield index.search(query, {
       attributesToRetrieve,
       hitsPerPage,
