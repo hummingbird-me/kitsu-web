@@ -13,10 +13,13 @@ const INDICES = {
 };
 
 const search = (indexName, attributesToRetrieve) => (
-  task(function* (query) {
+  task(function* (query, options = {}) {
     const index = yield get(this, 'algolia').indexFor(indexName);
-    const response = yield index.search(query, { attributesToRetrieve, hitsPerPage: 2 });
-    return get(response, 'hits');
+    return yield index.search(query, {
+      attributesToRetrieve,
+      hitsPerPage: 2,
+      ...options
+    });
   }).restartable()
 );
 
@@ -46,8 +49,10 @@ export default Component.extend({
 
   searchTask: task(function* (query) {
     Object.keys(INDICES).forEach((type) => {
-      get(this, `${type}Task`).perform(query).then((records) => {
+      get(this, `${type}Task`).perform(query).then((response) => {
+        const records = get(response, 'hits');
         set(this, `groups.${type}`, records);
+        set(this, `groups.${type}.nbPages`, get(response, 'nbPages'));
       }).catch((error) => {
         get(this, 'raven').captureException(error);
       });
@@ -59,17 +64,16 @@ export default Component.extend({
   usersTask: search('users', INDICES.users),
   groupsTask: search('groups', INDICES.groups),
 
+  nextUsersPageTask: task(function* (page) {
+    const query = get(this, 'query');
+    const response = yield get(this, 'usersTask').perform(query, { page });
+    get(this, 'groups.users').addObjects(get(response, 'hits'));
+  }).drop(),
+
   actions: {
     close() {
       set(this, 'isOpened', false);
       invokeAction(this, 'onClose');
-    },
-
-    updatePage(records) {
-      const copy = get(this, 'groups.users').toArray();
-      copy.addObjects(records);
-      set(copy, 'links', get(records, 'links'));
-      set(this, 'groups.users', copy);
     }
   }
 });

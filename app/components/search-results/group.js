@@ -3,25 +3,27 @@ import { get, set } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { typeOf } from '@ember/utils';
 import { invokeAction } from 'ember-invoke-action';
-import Pagination from 'kitsu-shared/mixins/pagination';
 
-export default Component.extend(Pagination, {
+export default Component.extend({
+  page: 0,
   router: service('-routing'),
 
   didReceiveAttrs() {
     this._super(...arguments);
-    this.updatePageState(get(this, 'items'));
-  },
-
-  onPagination(records) {
-    invokeAction(this, 'update', records);
-    set(this, 'isLoadingMore', false);
+    const items = get(this, 'items');
+    const pages = get(items, 'nbPages');
+    const hasNextPage = (pages > 1) && (get(this, 'page') !== (pages - 1));
+    set(this, 'hasNextPage', hasNextPage);
   },
 
   actions: {
     onPagination() {
-      set(this, 'isLoadingMore', true);
-      this._super();
+      const page = get(this, 'page') + 1;
+      invokeAction(this, 'onPagination', page).then(() => {
+        set(this, 'page', page);
+        const hasNextPage = page !== (get(this, 'items.nbPages') - 1);
+        set(this, 'hasNextPage', hasNextPage);
+      });
     },
 
     transitionTo(item) {

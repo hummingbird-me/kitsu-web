@@ -28,7 +28,8 @@
           group="users"
           items=groups.users
           isLoading=usersTask.isRunning
-          update=(action "updatePage")
+          isLoadingMore=nextUsersPageTask.isRunning
+          onPagination=(perform nextUsersPageTask)
           close=(action "close")}}
       </div>
     </div>

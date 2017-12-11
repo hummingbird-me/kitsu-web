@@ -18,7 +18,7 @@
 </div>
 
 <ul class="nav">
-  {{#if isLoading}}
+  {{#if (and isLoading (not isLoadingMore))}}
     <div class="text-xs-center w-100 m-t-1 m-b-1">
       {{loading-spinner size="small"}}
     </div>
