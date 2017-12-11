@@ -64,10 +64,10 @@ export default Component.extend({
   usersTask: search('users', INDICES.users),
   groupsTask: search('groups', INDICES.groups),
 
-  nextUsersPageTask: task(function* (page) {
+  nextPageTask: task(function* (kind, page) {
     const query = get(this, 'query');
-    const response = yield get(this, 'usersTask').perform(query, { page });
-    get(this, 'groups.users').addObjects(get(response, 'hits'));
+    const response = yield get(this, `${kind}Task`).perform(query, { page });
+    get(this, `groups.${kind}`).addObjects(get(response, 'hits'));
   }).drop(),
 
   actions: {

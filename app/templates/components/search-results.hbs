@@ -15,6 +15,7 @@
           group="media"
           items=groups.media
           isLoading=mediaTask.isRunning
+          onPagination=(perform nextPageTask "media")
           close=(action "close")}}
         {{! groups group }}
         {{search-results/group
@@ -28,8 +29,7 @@
           group="users"
           items=groups.users
           isLoading=usersTask.isRunning
-          isLoadingMore=nextUsersPageTask.isRunning
-          onPagination=(perform nextUsersPageTask)
+          onPagination=(perform nextPageTask "users")
           close=(action "close")}}
       </div>
     </div>

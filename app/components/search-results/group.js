@@ -6,7 +6,7 @@ import { invokeAction } from 'ember-invoke-action';
 
 export default Component.extend({
   page: 0,
-  router: service('-routing'),
+  router: service(),
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -18,26 +18,29 @@ export default Component.extend({
 
   actions: {
     onPagination() {
+      set(this, 'isLoadingMore', true);
       const page = get(this, 'page') + 1;
       invokeAction(this, 'onPagination', page).then(() => {
         set(this, 'page', page);
         const hasNextPage = page !== (get(this, 'items.nbPages') - 1);
         set(this, 'hasNextPage', hasNextPage);
+      }).finally(() => {
+        set(this, 'isLoadingMore', false);
       });
     },
 
     transitionTo(item) {
       invokeAction(this, 'close');
       if (typeOf(item) === 'string') {
-        get(this, 'router.router').transitionTo(item);
+        get(this, 'router').transitionTo(item);
       } else {
         const type = get(item, 'kind');
         if (type === 'user') {
-          get(this, 'router').transitionTo('users.index', [get(item, 'slug')]);
+          get(this, 'router').transitionTo('users.index', get(item, 'slug'));
         } else if (type === 'group') {
-          get(this, 'router').transitionTo('groups.group.group-page.index', [get(item, 'slug')]);
+          get(this, 'router').transitionTo('groups.group.group-page.index', get(item, 'slug'));
         } else {
-          get(this, 'router').transitionTo(`${type}.show`, [get(item, 'slug')]);
+          get(this, 'router').transitionTo(`${type}.show`, get(item, 'slug'));
         }
       }
     }

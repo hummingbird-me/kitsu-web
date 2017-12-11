@@ -3,10 +3,10 @@
   <div class="pull-sm-right">
     {{#if items}}
       {{#if moreLink}}
-        <a href="#" {{action "transitionTo" moreLink}}>more</a>
+        <a href="#" {{action "transitionTo" moreLink}}>view more</a>
       {{else}}
         {{#if hasNextPage}}
-          <a href="#" {{action "onPagination"}}>more</a>
+          <a href="#" {{action "onPagination"}}>load more</a>
         {{/if}}
       {{/if}}
     {{else}}
