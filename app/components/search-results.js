@@ -12,12 +12,12 @@ const INDICES = {
   groups: [...DEFAULT_INCLUDED, 'name', 'avatar'],
 };
 
-const search = (indexName, attributesToRetrieve) => (
+const search = (indexName, attributesToRetrieve, hitsPerPage = 2) => (
   task(function* (query, options = {}) {
     const index = yield get(this, 'algolia').indexFor(indexName);
     return yield index.search(query, {
       attributesToRetrieve,
-      hitsPerPage: 2,
+      hitsPerPage,
       ...options
     });
   }).restartable()
@@ -60,9 +60,9 @@ export default Component.extend({
     yield timeout(250);
   }).keepLatest(),
 
-  mediaTask: search('media', INDICES.media),
-  usersTask: search('users', INDICES.users),
+  mediaTask: search('media', INDICES.media, 4),
   groupsTask: search('groups', INDICES.groups),
+  usersTask: search('users', INDICES.users),
 
   nextPageTask: task(function* (kind, page) {
     const query = get(this, 'query');
