@@ -4,7 +4,7 @@ import { hasMany } from 'ember-data/relationships';
 import { get, computed } from '@ember/object';
 import { or } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import getTitleField from 'client/utils/get-title-field';
+import { getComputedTitle } from 'client/utils/get-title-field';
 
 export default Base.extend({
   session: service(),
@@ -36,13 +36,7 @@ export default Base.extend({
 
   unitCount: or('episodeCount', 'chapterCount'),
   computedTitle: computed('session.account.titleLanguagePreference', 'titles', function() {
-    if (!get(this, 'session.hasUser')) {
-      return get(this, 'canonicalTitle');
-    }
-    const preference = get(this, 'session.account.titleLanguagePreference').toLowerCase();
-    const key = getTitleField(preference);
-    return key !== undefined ? get(this, `titles.${key}`) || get(this, 'canonicalTitle') :
-      get(this, 'canonicalTitle');
+    return getComputedTitle(get(this, 'session'), this);
   }).readOnly(),
 
   year: computed('startDate', function() {

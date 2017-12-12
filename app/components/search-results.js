@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import Component from '@ember/component';
 import { get, set } from '@ember/object';
 import { inject as service } from '@ember/service';
@@ -6,16 +5,20 @@ import { isEmpty } from '@ember/utils';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 
-const {
-  Inflector: { inflector }
-} = Ember;
+const DEFAULT_INCLUDED = ['id', 'slug', 'kind'];
+const INDICES = {
+  media: [...DEFAULT_INCLUDED, 'canonicalTitle', 'titles', 'posterImage', 'subtype', 'posterImage'],
+  users: [...DEFAULT_INCLUDED, 'name', 'avatar'],
+  groups: [...DEFAULT_INCLUDED, 'name', 'avatar'],
+};
 
-const dataTask = (type, key, fields) => (
-  task(function* (query) {
-    return yield get(this, 'store').query(type, {
-      filter: { [key]: query },
-      fields: { [inflector.pluralize(type)]: fields.join(',') },
-      page: { limit: 2 }
+const search = (indexName, attributesToRetrieve, hitsPerPage = 2) => (
+  task(function* (query, options = {}) {
+    const index = yield get(this, 'algolia.getIndex').perform(indexName);
+    return yield index.search(query, {
+      attributesToRetrieve,
+      hitsPerPage,
+      ...options
     });
   }).restartable()
 );
@@ -23,11 +26,11 @@ const dataTask = (type, key, fields) => (
 export default Component.extend({
   isOpened: false,
   metrics: service(),
-  store: service(),
+  algolia: service(),
 
   init() {
     this._super(...arguments);
-    set(this, 'groups', { anime: [], manga: [], groups: [], users: [] });
+    set(this, 'groups', { media: [], users: [], groups: [] });
   },
 
   didReceiveAttrs() {
@@ -45,33 +48,32 @@ export default Component.extend({
   },
 
   searchTask: task(function* (query) {
-    yield timeout(250);
-    const groupTypes = Object.keys(get(this, 'groups'));
-    groupTypes.forEach((type) => {
-      get(this, `${type}Task`).perform(query).then((records) => {
+    Object.keys(INDICES).forEach((type) => {
+      get(this, `${type}Task`).perform(query).then((response) => {
+        const records = get(response, 'hits');
         set(this, `groups.${type}`, records);
+        set(this, `groups.${type}.nbPages`, get(response, 'nbPages'));
       }).catch((error) => {
         get(this, 'raven').captureException(error);
       });
     });
-  }).restartable(),
+    yield timeout(250);
+  }).keepLatest(),
 
-  animeTask: dataTask('anime', 'text', ['slug', 'canonicalTitle', 'titles', 'posterImage']),
-  mangaTask: dataTask('manga', 'text', ['slug', 'canonicalTitle', 'titles', 'posterImage']),
-  groupsTask: dataTask('group', 'query', ['slug', 'name', 'avatar']),
-  usersTask: dataTask('user', 'query', ['name', 'slug', 'avatar']),
+  mediaTask: search('media', INDICES.media, 4),
+  groupsTask: search('groups', INDICES.groups),
+  usersTask: search('users', INDICES.users),
+
+  nextPageTask: task(function* (kind, page) {
+    const query = get(this, 'query');
+    const response = yield get(this, `${kind}Task`).perform(query, { page });
+    get(this, `groups.${kind}`).addObjects(get(response, 'hits'));
+  }).drop(),
 
   actions: {
     close() {
       set(this, 'isOpened', false);
       invokeAction(this, 'onClose');
-    },
-
-    updatePage(records) {
-      const copy = get(this, 'groups.users').toArray();
-      copy.addObjects(records);
-      set(copy, 'links', get(records, 'links'));
-      set(this, 'groups.users', copy);
     }
   }
 });

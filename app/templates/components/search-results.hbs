@@ -10,19 +10,12 @@
     <div class="search--drop">
       <p class="search--header">Search Results</p>
       <div style="overflow: auto">
-        {{! anime group }}
+        {{! media group }}
         {{search-results/group
-          group="anime"
-          items=groups.anime
-          isLoading=animeTask.isRunning
-          moreLink=(href-to "anime.index" (query-params text=query))
-          close=(action "close")}}
-        {{! manga group }}
-        {{search-results/group
-          group="manga"
-          items=groups.manga
-          isLoading=mangaTask.isRunning
-          moreLink=(href-to "manga.index" (query-params text=query))
+          group="media"
+          items=groups.media
+          isLoading=mediaTask.isRunning
+          onPagination=(perform nextPageTask "media")
           close=(action "close")}}
         {{! groups group }}
         {{search-results/group
@@ -36,7 +29,7 @@
           group="users"
           items=groups.users
           isLoading=usersTask.isRunning
-          update=(action "updatePage")
+          onPagination=(perform nextPageTask "users")
           close=(action "close")}}
       </div>
     </div>

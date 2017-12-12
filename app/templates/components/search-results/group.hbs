@@ -3,10 +3,10 @@
   <div class="pull-sm-right">
     {{#if items}}
       {{#if moreLink}}
-        <a href="#" {{action "transitionTo" moreLink}}>more</a>
+        <a href="#" {{action "transitionTo" moreLink}}>view more</a>
       {{else}}
         {{#if hasNextPage}}
-          <a href="#" {{action "onPagination"}}>more</a>
+          <a href="#" {{action "onPagination"}}>load more</a>
         {{/if}}
       {{/if}}
     {{else}}
@@ -18,32 +18,14 @@
 </div>
 
 <ul class="nav">
-  {{#if isLoading}}
+  {{#if (and isLoading (not isLoadingMore))}}
     <div class="text-xs-center w-100 m-t-1 m-b-1">
       {{loading-spinner size="small"}}
     </div>
   {{else if items}}
-    <ul class="media-list search--results">
+    <div class="media-list search--results">
       {{#each items as |item|}}
-        <li class="media col-sm-12" {{action "transitionTo" item}}>
-          <div class="media-left col-sm-2 no-padding-left">
-            {{#if (or (eq group "users") (eq group "groups"))}}
-              {{lazy-image src=(image item.avatar "small") imgClass=(concat "is-avatar-" group)}}
-            {{else}}
-              {{lazy-image src=(image item.posterImage "small")}}
-            {{/if}}
-          </div>
-          <div class="media-body col-sm no-padding-left">
-            {{#if (or (eq group "users") (eq group "groups"))}}
-              <p>{{item.name}}</p>
-            {{else}}
-              <p>{{item.computedTitle}}</p>
-            {{/if}}
-          </div>
-          {{#if (and (eq group "groups") item.nsfw)}}
-            <span class="tag tag-default">{{t "groups.nsfw"}}</span>
-          {{/if}}
-        </li>
+        {{search-results/row item=item}}
       {{/each}}
 
       {{#if isLoadingMore}}
@@ -51,6 +33,6 @@
           {{loading-spinner size="small"}}
         </div>
       {{/if}}
-    </ul>
+    </div>
   {{/if}}
 </ul>
