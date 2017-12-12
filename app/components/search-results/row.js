@@ -1,22 +1,16 @@
 import Component from '@ember/component';
 import { get, computed } from '@ember/object';
 import { alias, or } from '@ember/object/computed';
-import getTitleField from 'client/utils/get-title-field';
+import { getComputedTitle } from 'client/utils/get-title-field';
 
 export default Component.extend({
   kind: alias('item.kind'),
   imageUrl: or('item.avatar', 'item.posterImage'),
-  title: or('item.name', 'item.computedTitle'),
+  title: or('item.name', 'computedTitle'),
   slug: or('item.slug', 'item.id'),
 
   computedTitle: computed('session.account.titleLanguagePreference', 'item.titles', function() {
-    if (!get(this, 'session.hasUser')) {
-      return get(this, 'item.canonicalTitle');
-    }
-    const preference = get(this, 'session.account.titleLanguagePreference').toLowerCase();
-    const key = getTitleField(preference);
-    return key !== undefined ? get(this, `item.titles.${key}`) || get(this, 'item.canonicalTitle') :
-      get(this, 'item.canonicalTitle');
+    return getComputedTitle(get(this, 'session'), get(this, 'item'));
   }).readOnly(),
 
   imageClass: computed('item.kind', function () {
