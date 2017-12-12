@@ -39,8 +39,10 @@
     {{#each initialEntries as |entry|}}
       {{dashboard/quick-update/item
         entry=entry
-        updateEntry=(action "updateEntry" entry)
-        reloadUnit=(action "reloadUnit" entry)}}
+        updateEntry=(action "saveEntry")
+        reloadUnit=(action "reloadUnit" entry)
+        removeEntry=(action "removeEntry" entry)
+        createPost=(action "createPost" entry)}}
     {{/each}}
 
     {{! Hint/Empty panels }}
@@ -77,8 +79,9 @@
     {{#each paginatedRecords as |entry|}}
       {{dashboard/quick-update/item
         entry=entry
-        updateEntry=(action "updateEntry" entry)
-        reloadUnit=(action "reloadUnit" entry)}}
+        updateEntry=(action "saveEntry")
+        reloadUnit=(action "reloadUnit" entry)
+        removeEntry=(action "removeEntry" entry)}}
     {{/each}}
   </div>
 {{/if}}

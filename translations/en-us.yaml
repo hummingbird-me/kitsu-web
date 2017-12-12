@@ -127,11 +127,22 @@ dashboard:
         other {}}"
     overlay:
       button:
-        html: "Mark {type, select,
-          anime {<span class={class}>Ep. {num}</span> Complete}
-          manga {<span class={class}>Ch. {num}</span> Complete}
-          other {}}"
+        update: "{type, select,
+          anime {Ep.}
+          manga {Ch.}
+          other {}} {number}"
         complete: "Complete"
+        tooltip:
+          empty: "Update Library"
+          content: "Create post and update library"
+      discussion: "View Discussion"
+      edit: "Edit Library Entry"
+      popout: "Pop-out editor"
+      editor:
+        placeholder: "(Optional) Share your thoughts on {type, select,
+          anime {Episode}
+          manga {Chapter}
+          other {}} {number}"
   onboarding:
     welcome: "Hey {user}, welcome to Kitsu!"
     about: "This is the global activity feed. It's populated by recent activity from all of Kitsu's
