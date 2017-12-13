@@ -4,7 +4,7 @@ import jQuery from 'jquery';
 
 export function image(object, size = 'original') {
   if (jQuery.isPlainObject(object) === true) {
-    return get(object, size);
+    return get(object, size) || get(object, 'original');
   }
   return object;
 }
