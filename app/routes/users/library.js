@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 import { isPresent } from '@ember/utils';
 import { storageFor } from 'ember-local-storage';
 import { task } from 'ember-concurrency';
-import getTitleField from 'client/utils/get-title-field';
+import { getTitleField } from 'client/utils/get-title-field';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Route.extend(Pagination, {
