@@ -1,13 +1,13 @@
 import Session from 'ember-simple-auth/services/session';
-import { get, set, computed, getProperties } from '@ember/object';
+import { get, set, computed } from '@ember/object';
 import { isPresent } from '@ember/utils';
 import { inject as service } from '@ember/service';
 import { UnauthorizedError } from 'ember-data';
+import Raven from 'client/services/raven';
 import jQuery from 'jquery';
 
 export default Session.extend({
   store: service(),
-  raven: service(),
 
   hasUser: computed('isAuthenticated', 'account', function() {
     return get(this, 'isAuthenticated') && isPresent(get(this, 'account'));
@@ -36,7 +36,7 @@ export default Session.extend({
    * Get the account information for the sessioned user
    */
   async getCurrentUser() {
-    const { store, raven } = getProperties(this, 'store', 'raven');
+    const store = get(this, 'store');
     try {
       // Load the current user
       const user = get(await store.query('user', {
@@ -52,9 +52,9 @@ export default Session.extend({
       const status = get(error, 'errors.firstObject.status');
       // Capture 5xx errors but don't invalidate the session
       if (status.charAt(0) === '5') {
-        raven.captureException(error);
+        Raven.captureException(error);
       } else {
-        raven.captureException(error);
+        Raven.captureException(error);
         this.invalidate();
         throw error;
       }
