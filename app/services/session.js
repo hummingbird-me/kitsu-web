@@ -1,12 +1,13 @@
 import Session from 'ember-simple-auth/services/session';
-import { get, set, computed } from '@ember/object';
+import { get, set, computed, getProperties } from '@ember/object';
 import { isPresent } from '@ember/utils';
 import { inject as service } from '@ember/service';
+import { UnauthorizedError } from 'ember-data';
 import jQuery from 'jquery';
 
 export default Session.extend({
-  ajax: service(),
   store: service(),
+  raven: service(),
 
   hasUser: computed('isAuthenticated', 'account', function() {
     return get(this, 'isAuthenticated') && isPresent(get(this, 'account'));
@@ -34,26 +35,30 @@ export default Session.extend({
   /**
    * Get the account information for the sessioned user
    */
-  getCurrentUser() {
-    const requestUrl = '/users?filter[self]=true&include=userRoles.role,userRoles.user';
-    return get(this, 'ajax').request(requestUrl).then((response) => {
-      // push the user data into the store
-      const [data] = response.data;
-      const normalizedData = get(this, 'store').normalize('user', data);
-      const user = get(this, 'store').push(normalizedData);
-      // push any included data into the store
-      const included = response.included || [];
-      included.forEach((record) => {
-        let type = get(record, 'type');
-        type = type === 'userRoles' ? 'user-role' : 'role';
-        get(this, 'store').push(get(this, 'store').normalize(type, record));
-      });
-      // set reference of the user
+  async getCurrentUser() {
+    const { store, raven } = getProperties(this, 'store', 'raven');
+    try {
+      // Load the current user
+      const user = get(await store.query('user', {
+        filter: { self: true },
+        include: 'userRoles.role,userRoles.user'
+      }), 'firstObject');
+      // If no user was found, throw an unauthorized error
+      if (!user) throw new UnauthorizedError();
+
       set(this, 'account', user);
       return user;
-    }).catch(() => {
-      this.invalidate();
-    });
+    } catch (error) {
+      const status = get(error, 'errors.firstObject.status');
+      // Capture 5xx errors but don't invalidate the session
+      if (status.charAt(0) === '5') {
+        raven.captureException(error);
+      } else {
+        raven.captureException(error);
+        this.invalidate();
+        throw error;
+      }
+    }
   },
 
   signUpModal() {
