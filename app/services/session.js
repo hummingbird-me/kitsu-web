@@ -1,14 +1,14 @@
 import Session from 'ember-simple-auth/services/session';
-import { get, set, computed } from '@ember/object';
+import { get, set, computed, getProperties } from '@ember/object';
 import { isPresent } from '@ember/utils';
 import { inject as service } from '@ember/service';
 import { run } from '@ember/runloop';
-import { UnauthorizedError } from 'ember-data';
-import Raven from 'client/services/raven';
+import DS from 'ember-data';
 import jQuery from 'jquery';
 
 export default Session.extend({
   store: service(),
+  raven: service(),
 
   hasUser: computed('isAuthenticated', 'account', function() {
     return get(this, 'isAuthenticated') && isPresent(get(this, 'account'));
@@ -37,7 +37,7 @@ export default Session.extend({
    * Get the account information for the sessioned user
    */
   async getCurrentUser() {
-    const store = get(this, 'store');
+    const { store, raven } = getProperties(this, 'store', 'raven');
     try {
       // Load the current user
       const user = get(await store.query('user', {
@@ -45,17 +45,17 @@ export default Session.extend({
         include: 'userRoles.role,userRoles.user'
       }), 'firstObject');
       // If no user was found, throw an unauthorized error
-      if (!user) throw new UnauthorizedError();
+      if (!user) throw new DS.UnauthorizedError();
 
       run(() => set(this, 'account', user));
       return user;
     } catch (error) {
       const status = get(error, 'errors.firstObject.status');
       // Capture 5xx errors but don't invalidate the session
-      if (status.charAt(0) === '5') {
-        Raven.captureException(error);
+      if (status && status.charAt(0) === '5') {
+        raven.captureException(error);
       } else {
-        Raven.captureException(error);
+        raven.captureException(error);
         run(() => this.invalidate());
         throw error;
       }

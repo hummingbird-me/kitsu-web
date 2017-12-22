@@ -9,7 +9,7 @@ import wait from 'ember-test-helpers/wait';
 import sinon from 'sinon';
 
 moduleFor('service:session', 'Unit | Service | session', {
-  needs: ['service:ajax'],
+  needs: ['service:ajax', 'service:raven'],
 
   beforeEach() {
     this.store = setupStore({
@@ -39,9 +39,7 @@ test('#getCurrentUser retrieves the user and sets account', function(assert) {
   assert.expect(1);
   const user = run(() => this.store.createRecord('user', { name: 'Holo' }));
   sinon.stub(this.store, 'query').returns([user]);
-  const service = this.subject({
-    store: this.store
-  });
+  const service = this.subject({ store: this.store });
   service.getCurrentUser();
   return wait().then(() => assert.equal(get(service, 'account.name'), 'Holo'));
 });
@@ -50,9 +48,24 @@ test('#getCurrentUser captures 5xx errors and returns nothing', function(assert)
   assert.expect(1);
   const error = new DS.ServerError([{ status: '503' }]);
   sinon.stub(this.store, 'query').throws(error);
-  const service = this.subject({
-    store: this.store
-  });
+  const service = this.subject({ store: this.store });
   service.getCurrentUser();
   return wait().then(() => assert.notOk());
+});
+
+test('#getCurrentUser captures 4xx errors and invalidates session', function(assert) {
+  assert.expect(1);
+  const error = new DS.UnauthorizedError([{ status: '401' }]);
+  sinon.stub(this.store, 'query').throws(error);
+  const service = this.subject({ store: this.store });
+  sinon.stub(service, 'invalidate');
+  return service.getCurrentUser().catch(() => assert.ok(service.invalidate.called));
+});
+
+test('#getCurrentUser detects an empty array and invalidates session', function(assert) {
+  assert.expect(1);
+  sinon.stub(this.store, 'query').returns([]);
+  const service = this.subject({ store: this.store });
+  sinon.stub(service, 'invalidate');
+  return service.getCurrentUser().catch(() => assert.ok(service.invalidate.called));
 });
