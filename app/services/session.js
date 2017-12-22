@@ -2,6 +2,7 @@ import Session from 'ember-simple-auth/services/session';
 import { get, set, computed } from '@ember/object';
 import { isPresent } from '@ember/utils';
 import { inject as service } from '@ember/service';
+import { run } from '@ember/runloop';
 import { UnauthorizedError } from 'ember-data';
 import Raven from 'client/services/raven';
 import jQuery from 'jquery';
@@ -46,7 +47,7 @@ export default Session.extend({
       // If no user was found, throw an unauthorized error
       if (!user) throw new UnauthorizedError();
 
-      set(this, 'account', user);
+      run(() => set(this, 'account', user));
       return user;
     } catch (error) {
       const status = get(error, 'errors.firstObject.status');
@@ -55,7 +56,7 @@ export default Session.extend({
         Raven.captureException(error);
       } else {
         Raven.captureException(error);
-        this.invalidate();
+        run(() => this.invalidate());
         throw error;
       }
     }

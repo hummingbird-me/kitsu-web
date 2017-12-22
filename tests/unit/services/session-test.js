@@ -3,9 +3,10 @@ import { run } from '@ember/runloop';
 import { get } from '@ember/object';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
-import RSVP from 'rsvp';
+import DS from 'ember-data';
 import setupStore from 'client/tests/helpers/setup-store';
 import wait from 'ember-test-helpers/wait';
+import sinon from 'sinon';
 
 moduleFor('service:session', 'Unit | Service | session', {
   needs: ['service:ajax'],
@@ -36,24 +37,22 @@ test('#isCurrentUser tests if the passed user is the current user', function(ass
 
 test('#getCurrentUser retrieves the user and sets account', function(assert) {
   assert.expect(1);
+  const user = run(() => this.store.createRecord('user', { name: 'Holo' }));
+  sinon.stub(this.store, 'query').returns([user]);
   const service = this.subject({
-    store: this.store,
-    ajax: {
-      request() {
-        return new RSVP.Promise((resolve) => {
-          resolve({
-            data: [{
-              id: '1',
-              type: 'users',
-              attributes: {
-                name: 'Holo'
-              }
-            }]
-          });
-        });
-      }
-    }
+    store: this.store
   });
   service.getCurrentUser();
   return wait().then(() => assert.equal(get(service, 'account.name'), 'Holo'));
+});
+
+test('#getCurrentUser captures 5xx errors and returns nothing', function(assert) {
+  assert.expect(1);
+  const error = new DS.ServerError([{ status: '503' }]);
+  sinon.stub(this.store, 'query').throws(error);
+  const service = this.subject({
+    store: this.store
+  });
+  service.getCurrentUser();
+  return wait().then(() => assert.notOk());
 });
