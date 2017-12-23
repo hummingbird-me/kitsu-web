@@ -3,12 +3,12 @@ import { run } from '@ember/runloop';
 import { get } from '@ember/object';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
-import RSVP from 'rsvp';
+import DS from 'ember-data';
 import setupStore from 'client/tests/helpers/setup-store';
-import wait from 'ember-test-helpers/wait';
+import sinon from 'sinon';
 
 moduleFor('service:session', 'Unit | Service | session', {
-  needs: ['service:ajax'],
+  needs: ['service:ajax', 'service:raven'],
 
   beforeEach() {
     this.store = setupStore({
@@ -34,26 +34,37 @@ test('#isCurrentUser tests if the passed user is the current user', function(ass
   assert.notOk(result);
 });
 
-test('#getCurrentUser retrieves the user and sets account', function(assert) {
+test('#getCurrentUser retrieves the user and sets account', async function(assert) {
   assert.expect(1);
-  const service = this.subject({
-    store: this.store,
-    ajax: {
-      request() {
-        return new RSVP.Promise((resolve) => {
-          resolve({
-            data: [{
-              id: '1',
-              type: 'users',
-              attributes: {
-                name: 'Holo'
-              }
-            }]
-          });
-        });
-      }
-    }
-  });
-  service.getCurrentUser();
-  return wait().then(() => assert.equal(get(service, 'account.name'), 'Holo'));
+  const user = run(() => this.store.createRecord('user', { name: 'Holo' }));
+  sinon.stub(this.store, 'query').returns([user]);
+  const service = this.subject({ store: this.store });
+  await service.getCurrentUser();
+  assert.equal(get(service, 'account.name'), 'Holo');
+});
+
+test('#getCurrentUser captures 5xx errors and returns nothing', async function(assert) {
+  assert.expect(1);
+  const error = new DS.ServerError([{ status: '503' }]);
+  sinon.stub(this.store, 'query').throws(error);
+  const service = this.subject({ store: this.store });
+  await service.getCurrentUser();
+  assert.notOk();
+});
+
+test('#getCurrentUser captures 4xx errors and invalidates session', function(assert) {
+  assert.expect(1);
+  const error = new DS.UnauthorizedError([{ status: '401' }]);
+  sinon.stub(this.store, 'query').throws(error);
+  const service = this.subject({ store: this.store });
+  sinon.stub(service, 'invalidate');
+  return service.getCurrentUser().catch(() => assert.ok(service.invalidate.called));
+});
+
+test('#getCurrentUser detects an empty array and invalidates session', function(assert) {
+  assert.expect(1);
+  sinon.stub(this.store, 'query').returns([]);
+  const service = this.subject({ store: this.store });
+  sinon.stub(service, 'invalidate');
+  return service.getCurrentUser().catch(() => assert.ok(service.invalidate.called));
 });
