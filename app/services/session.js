@@ -10,6 +10,8 @@ export default Session.extend({
   store: service(),
   raven: service(),
 
+  error: null,
+
   hasUser: computed('isAuthenticated', 'account', function() {
     return get(this, 'isAuthenticated') && isPresent(get(this, 'account'));
   }).readOnly(),
@@ -53,6 +55,7 @@ export default Session.extend({
       const status = get(error, 'errors.firstObject.status');
       // Capture 5xx errors but don't invalidate the session
       if (status && status.charAt(0) === '5') {
+        set(this, 'error', 'serverError');
         raven.captureException(error);
       } else {
         raven.captureException(error);
