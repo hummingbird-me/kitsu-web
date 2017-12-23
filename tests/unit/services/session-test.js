@@ -5,7 +5,6 @@ import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import DS from 'ember-data';
 import setupStore from 'client/tests/helpers/setup-store';
-import wait from 'ember-test-helpers/wait';
 import sinon from 'sinon';
 
 moduleFor('service:session', 'Unit | Service | session', {
@@ -41,16 +40,16 @@ test('#getCurrentUser retrieves the user and sets account', async function(asser
   sinon.stub(this.store, 'query').returns([user]);
   const service = this.subject({ store: this.store });
   await service.getCurrentUser();
-  return assert.equal(get(service, 'account.name'), 'Holo');
+  assert.equal(get(service, 'account.name'), 'Holo');
 });
 
-test('#getCurrentUser captures 5xx errors and returns nothing', function(assert) {
+test('#getCurrentUser captures 5xx errors and returns nothing', async function(assert) {
   assert.expect(1);
   const error = new DS.ServerError([{ status: '503' }]);
   sinon.stub(this.store, 'query').throws(error);
   const service = this.subject({ store: this.store });
-  service.getCurrentUser();
-  return wait().then(() => assert.notOk());
+  await service.getCurrentUser();
+  assert.notOk();
 });
 
 test('#getCurrentUser captures 4xx errors and invalidates session', function(assert) {
