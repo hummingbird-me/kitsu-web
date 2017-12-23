@@ -35,13 +35,13 @@ test('#isCurrentUser tests if the passed user is the current user', function(ass
   assert.notOk(result);
 });
 
-test('#getCurrentUser retrieves the user and sets account', function(assert) {
+test('#getCurrentUser retrieves the user and sets account', async function(assert) {
   assert.expect(1);
   const user = run(() => this.store.createRecord('user', { name: 'Holo' }));
   sinon.stub(this.store, 'query').returns([user]);
   const service = this.subject({ store: this.store });
-  service.getCurrentUser();
-  return wait().then(() => assert.equal(get(service, 'account.name'), 'Holo'));
+  await service.getCurrentUser();
+  return assert.equal(get(service, 'account.name'), 'Holo');
 });
 
 test('#getCurrentUser captures 5xx errors and returns nothing', function(assert) {
