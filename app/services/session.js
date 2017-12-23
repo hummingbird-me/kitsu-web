@@ -42,10 +42,11 @@ export default Session.extend({
     const { store, raven } = getProperties(this, 'store', 'raven');
     try {
       // Load the current user
-      const user = get(await store.query('user', {
+      const users = await store.query('user', {
         filter: { self: true },
         include: 'userRoles.role,userRoles.user'
-      }), 'firstObject');
+      });
+      const user = get(users, 'firstObject');
       // If no user was found, throw an unauthorized error
       if (!user) throw new DS.UnauthorizedError();
 
