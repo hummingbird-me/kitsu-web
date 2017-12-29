@@ -79,13 +79,13 @@ export const MEDIA_QUERY_PARAMS = {
     }
   },
   year: {
-    defaultValue: [1907, moment().year() + 1],
+    defaultValue: [1907, moment().year() + 2],
     refresh: true,
     serialize(value) {
       const [lower, upper] = value;
-      if (lower === 1907 && upper === (moment().year() + 1)) {
+      if (lower === 1907 && upper === (moment().year() + 2)) {
         return undefined;
-      } else if (upper === (moment().year() + 1)) {
+      } else if (upper === (moment().year() + 2)) {
         return serializeArray([lower, null]);
       }
       return serializeArray(value);
@@ -93,7 +93,7 @@ export const MEDIA_QUERY_PARAMS = {
     deserialize(value = []) {
       const [lower, upper] = deserializeArray(value);
       if (isEmpty(upper)) {
-        return [lower, moment().year() + 1];
+        return [lower, moment().year() + 2];
       }
       return [lower, upper];
     }
@@ -106,7 +106,7 @@ export default Controller.extend({
 
   init() {
     this._super(...arguments);
-    set(this, 'maxYear', moment().year() + 1);
+    set(this, 'maxYear', moment().year() + 2);
     const mediaType = get(this, 'mediaType');
     set(this, 'isAnime', mediaType === 'anime');
     set(this, 'isManga', mediaType === 'manga');
