@@ -19,6 +19,7 @@
                   {{lazy-image src=(image destination.posterImage "medium")}}
                   <div class="poster-overlay">
                     <a href={{href-to (concat destination.modelType ".show") destination.slug}}></a>
+                    {{library-entry/status-dropdown media=destination}}
                   </div>
                 </div>
               {{/media-popover}}
