@@ -100,6 +100,7 @@ RouterInstance.map(function() {
     this.route('followers');
     this.route('following');
     this.route('groups');
+    this.route('stats');
   });
 
   this.route('settings', function() {
