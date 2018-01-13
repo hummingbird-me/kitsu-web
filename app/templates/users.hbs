@@ -122,9 +122,8 @@
           {{t "users.navigation.following"}}
           <span class="tag tag-default">{{user.followingCount}}</span>
         {{/link-to}}
-        {{#link-to "users.groups" class="nav-item nav-link"}}
-          {{t "users.navigation.groups"}}
-        {{/link-to}}
+        {{link-to (t "users.navigation.groups") "users.groups" class="nav-item nav-link"}}
+        {{link-to (t "users.navigation.stats") "users.stats" class="nav-item nav-link"}}
       </div>
     </div>
   </div>
