@@ -1,15 +1,20 @@
 import Route from '@ember/routing/route';
 import { get, set } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { camelize } from '@ember/string';
 
 export default Route.extend({
   intl: service(),
 
-  model() {
+  async model() {
     const user = this.modelFor('users');
-    return this.get('store').query('stat', {
+    const stats = await this.get('store').query('stat', {
       filter: { userId: get(user, 'id') }
     });
+    return stats.reduce((acc, stat) => {
+      const camelKind = camelize(get(stat, 'kind'));
+      return { ...acc, [camelKind]: stat };
+    }, {});
   },
 
   setupController(controller) {
