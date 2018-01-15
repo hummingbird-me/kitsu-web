@@ -1,0 +1,28 @@
+<div class="graph">
+  <svg class="graph-canvas"></svg>
+  <div class="graph-overlay">
+    <span class="graph-overlay-number">{{mediaCount}}</span>
+    <span class="graph-overlay-kind">{{kind}}</span>
+  </div>
+</div>
+<table class="graph-legend">
+  <thead>
+    <tr>
+      <th>Genre</th>
+      <th># shows</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each displayGenres as |genre|}}
+      <tr>
+        <td>
+          <span class="genre-badge" style="background-color: {{genre.color}};"></span>
+          {{genre.name}}
+        </td>
+        <td>
+          {{genre.number}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
