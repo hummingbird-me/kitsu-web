@@ -1,3 +1,3 @@
 {{#each breakdown as |unit|}}
-  {{unit.count}} {{unit.name}}
+  {{format-number unit.count}} {{t (concat "timeUnits." unit.name) count=unit.count}}
 {{/each}}
