@@ -164,7 +164,8 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
       if (get(this, 'isTopLevel') === true) {
         this.toggleProperty('isReplying');
       } else {
-        invokeAction(this, 'onReply', get(this, 'comment.user.slug'));
+        const mention = get(this, 'comment.user.slug') || get(this, 'comment.user.id');
+        invokeAction(this, 'onReply', mention);
       }
     },
 
