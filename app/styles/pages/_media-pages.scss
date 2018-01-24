@@ -661,17 +661,39 @@
     margin-bottom: 10px;
     .poster-wrapper {
       position: relative;
+      img {
+        border-radius: 3px;
+      }
       .poster-overlay {
-        background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.8) 100%);
-        background-size: auto 300%;
-        top: 0;
+        opacity: 0;
         position: absolute;
-        width: 100%;
-        height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 3px;
         > a {
           display: block;
           width: 100%;
           height: 100%;
+        }
+        .library-state {
+          position: absolute;
+          bottom: 0px;
+          padding: 10px;
+          width: 100%;
+          button {
+            padding: 8px;
+            font-size: 12px;
+            width: 100%;
+          }
+        }
+      }
+      &:hover {
+        .poster-overlay {
+          opacity: 1;
+          background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.8) 100%);
+          background-size: auto 200%;
         }
       }
     }
