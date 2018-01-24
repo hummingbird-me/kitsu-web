@@ -13,7 +13,7 @@ export default Component.extend({
   facebook: service(),
   notify: service(),
   aozoraConflicts: service(),
-  router: service('-routing'),
+  router: service(),
   authentication: taskGroup().drop(),
 
   login: task(function* () {
