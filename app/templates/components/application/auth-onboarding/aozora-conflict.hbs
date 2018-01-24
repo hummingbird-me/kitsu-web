@@ -6,14 +6,15 @@
       {{loading-spinner}}
     {{else}}
       {{#each-in conflicts as |site account|}}
-        <a href="#" class="import-option" onclick={{perform choose site}}>
-          <span class="import-logo">
-            <img src="/images/{{site}}.png">
+        <a href="#" class="aozora-conflict-option" onclick={{perform choose site}}>
+          <img src={{account.avatar}} class="avatar-image avatar-image--small">
+          <span class="aozora-conflict-title">
+            <span class="aozora-conflict-name">{{account.name}}</span>
+            <span class="aozora-conflict-count">
+              {{format-number account.library_entries}} Library Entries
+            </span>
           </span>
-          <span class="import-title">
-            <img src={{account.avatar}} class="avatar-image avatar-image--small">
-            {{account.name}} ({{account.library_entries}} in library)
-          </span>
+          <img src="/images/{{site}}.png" class="aozora-conflict-logo">
         </a>
       {{/each-in}}
     {{/if}}

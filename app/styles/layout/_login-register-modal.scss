@@ -201,6 +201,34 @@
   display: inline-block;
 }
 
+.aozora-conflict-option {
+  @extend .import-option;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &> .avatar-image--small {
+    height: 35px;
+    width: 35px;
+  }
+}
+
+.aozora-conflict-title {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  width: 100%;
+}
+
+.aozora-conflict-count {
+  font-weight: normal;
+  font-size: 0.8em;
+}
+
+.aozora-conflict-logo {
+  height: 30px;
+}
+
 .onboarding-search {
   margin-top: 20px;
 }
