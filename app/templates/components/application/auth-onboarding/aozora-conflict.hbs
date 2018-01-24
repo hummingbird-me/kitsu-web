@@ -14,7 +14,12 @@
               {{format-number account.library_entries}} Library Entries
             </span>
           </span>
-          <img src="/images/{{site}}.png" class="aozora-conflict-logo">
+          {{!-- We have to do this because the assets get fingerprinted --}}
+          {{#if (eq site "aozora")}}
+            <img src="/images/aozora.png" class="aozora-conflict-logo">
+          {{else}}
+            <img src="/images/kitsu.png" class="aozora-conflict-logo">
+          {{/if}}
         </a>
       {{/each-in}}
     {{/if}}
