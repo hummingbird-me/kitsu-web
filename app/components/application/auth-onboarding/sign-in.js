@@ -4,7 +4,6 @@ import { inject as service } from '@ember/service';
 import { task, taskGroup } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
 import { invokeAction } from 'ember-invoke-action';
-import { underscore } from '@ember/string';
 
 export default Component.extend({
   identification: undefined,
@@ -34,8 +33,8 @@ export default Component.extend({
       // Facebook succeeded but Kitsu failed (no-account)
       if (error.error === 'invalid_grant') {
         try {
-          const response = get(this, 'facebook').getUserData();
-          const data = { ...response, name: underscore(get(response, 'name')) };
+          const response = yield get(this, 'facebook').getUserData();
+          const data = { ...response, name: get(response, 'name') };
           invokeAction(this, 'changeComponent', 'sign-up', data);
         } catch (err) {
           get(this, 'notify').error(errorMessages(err));
