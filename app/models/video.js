@@ -5,9 +5,9 @@ import { computed, getProperties } from '@ember/object';
 
 // TODO: move to a global location so we can reuse these
 const LANGUAGES = {
-  EN: 'English',
-  JP: 'Japanese',
-  ES: 'Spanish'
+  en: 'English',
+  ja: 'Japanese',
+  es: 'Spanish'
 };
 
 export default Base.extend({
@@ -23,7 +23,7 @@ export default Base.extend({
 
   languageTitle: computed('dubLang', 'subLang', function () {
     const { subLang, dubLang } = getProperties(this, 'subLang', 'dubLang');
-    if (dubLang !== 'JP') return `${LANGUAGES[dubLang]} Dub`;
+    if (dubLang !== 'ja') return `${LANGUAGES[dubLang]} Dub`;
     return `${LANGUAGES[subLang]} Sub`;
   })
 });
