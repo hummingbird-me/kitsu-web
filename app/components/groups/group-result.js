@@ -6,7 +6,7 @@ export default Component.extend({
   classNames: ['group-result'],
   categoryRoute: 'groups.index',
   queryCache: service(),
-  router: service('-routing'),
+  router: service(),
 
   didReceiveAttrs() {
     this._super(...arguments);

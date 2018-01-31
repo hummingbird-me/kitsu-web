@@ -7,7 +7,7 @@ import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Component.extend(Pagination, {
   limit: 20,
-  router: service('-routing'),
+  router: service(),
   model: concat('likes', 'paginatedRecords'),
 
   isDisabled: computed('isLoading', function() {

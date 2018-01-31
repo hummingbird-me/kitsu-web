@@ -14,7 +14,7 @@ export default Component.extend(Pagination, {
   metrics: service(),
   notify: service(),
   store: service(),
-  router: service('-routing'),
+  router: service(),
 
   getComments: task(function* () {
     return yield this.queryPaginated('comment', {

@@ -9,7 +9,7 @@ import ClipboardMixin from 'client/mixins/clipboard';
 export default Component.extend(ClipboardMixin, {
   classNames: ['stream-item', 'row'],
   metrics: service(),
-  router: service('-routing'),
+  router: service(),
   activity: reads('group.activities.firstObject'),
   media: alias('reaction.media'),
 

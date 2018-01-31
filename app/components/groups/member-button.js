@@ -14,7 +14,7 @@ export default Component.extend({
   intl: service(),
   notify: service(),
   store: service(),
-  router: service('-routing'),
+  router: service(),
   queryCache: service(),
   isMemberOfGroup: bool('memberRecord'),
   groupTasks: taskGroup(),
