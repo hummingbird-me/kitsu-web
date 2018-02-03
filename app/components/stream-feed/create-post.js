@@ -5,7 +5,6 @@ import { isEmpty, isPresent } from '@ember/utils';
 import { empty, notEmpty, and, or } from '@ember/object/computed';
 import { A } from '@ember/array';
 import { task, timeout } from 'ember-concurrency';
-import { empty, notEmpty, and, or } from '@ember/object/computed';
 import { invokeAction } from 'ember-invoke-action';
 import File from 'ember-file-upload/file';
 import jQuery from 'jquery';
