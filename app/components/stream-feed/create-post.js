@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { get, set, setProperties, computed } from '@ember/object';
+import { get, set, setProperties, getProperties, computed } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
 import { empty, notEmpty, and, or } from '@ember/object/computed';
 import { A } from '@ember/array';
