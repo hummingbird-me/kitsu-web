@@ -18,7 +18,7 @@ export default Component.extend({
 
     const isExpandBtn = element.matches('.category-expand-btn');
     if (!isExpandBtn) {
-      invokeAction(this, 'updateCategories', get(this, 'category.slug'));
+      invokeAction(this, 'updateCategories', get(this, 'category'));
     }
     return false; // don't bubble up
   }

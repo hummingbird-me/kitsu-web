@@ -108,7 +108,7 @@ export default Component.extend(Pagination, {
     deletedComment(comment) {
       // if we're on the permalink page then redirect after deletion
       if (get(this, 'comment')) {
-        get(this, 'router').transitionTo('posts', [get(this, 'post.id')]);
+        get(this, 'router').transitionTo('posts', get(this, 'post'));
       } else {
         get(this, 'comments').removeObject(comment);
         invokeAction(this, 'countUpdate', get(this, 'post.topLevelCommentsCount') - 1);

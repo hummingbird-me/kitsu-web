@@ -47,7 +47,7 @@ export default Component.extend(Pagination, {
 
     transitionToUser(user) {
       this.$('.modal').on('hidden.bs.modal', () => {
-        get(this, 'router').transitionTo('users.index', [user]);
+        get(this, 'router').transitionTo('users.index', user);
       }).modal('hide');
     }
   }
