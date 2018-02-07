@@ -61,7 +61,7 @@ test('#getCurrentUser captures 4xx errors and invalidates session', function(ass
   return service.getCurrentUser().catch(() => assert.ok(service.invalidate.called));
 });
 
-test('#getCurrentUser detects an empty array and invalidates session', function(assert) {
+test('#getCurrentUser detects an empty array and invalidates session', async function(assert) {
   assert.expect(1);
   sinon.stub(this.store, 'query').returns([]);
   const service = this.subject({ store: this.store });

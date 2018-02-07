@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import RavenLogger from 'ember-cli-sentry/services/raven';
 
 // Reference Travis: https://github.com/travis-ci/travis-web/blob/master/app/services/raven.js
@@ -30,6 +31,7 @@ export default RavenLogger.extend({
   },
 
   shouldReportError() {
+    if (Ember.testing) { return false; }
     const sampleRate = 10;
     return (Math.random() * 100 <= sampleRate);
   }
