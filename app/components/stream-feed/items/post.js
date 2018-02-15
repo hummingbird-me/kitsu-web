@@ -27,7 +27,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
   store: service(),
   queryCache: service(),
   metrics: service(),
-  host: getter(() => `${location.protocol}//${location.host}`),
+  host: getter(() => `${window.location.protocol}//${window.location.host}`),
 
   activity: getter(function() {
     return get(this, 'group.activities.firstObject');

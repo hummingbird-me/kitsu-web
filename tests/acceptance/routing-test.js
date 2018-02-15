@@ -1,49 +1,59 @@
-import { test } from 'qunit';
-import moduleForAcceptance from 'client/tests/helpers/module-for-acceptance';
-import { authenticateSession, invalidateSession } from 'client/tests/helpers/ember-simple-auth';
+import { module, test } from 'qunit';
+import { visit, currentURL, currentRouteName } from '@ember/test-helpers';
+import { setupApplicationTest } from 'ember-qunit';
+import { authenticateSession, invalidateSession } from 'ember-simple-auth/test-support';
 
-moduleForAcceptance('Acceptance | Routing');
+module('Acceptance | Routing', function(hooks) {
+  setupApplicationTest(hooks);
 
-test('visiting `/dashboard` redirects to `/`', async function(assert) {
-  server.create('user');
-  authenticateSession(this.application);
-  await visit('/dashboard');
-  assert.equal(currentURL(), '/');
-});
+  test('visiting `/dashboard` redirects to `/`', async function(assert) {
+    assert.expect(1);
+    server.create('user');
+    await authenticateSession();
+    await visit('/dashboard');
+    assert.equal(currentURL(), '/');
+  });
 
-test('visiting `/` as a guest redirects to explore', async function(assert) {
-  invalidateSession(this.application);
-  await visit('/');
-  assert.equal(currentURL(), '/explore/anime');
-});
+  test('visiting `/` as a guest redirects to explore', async function(assert) {
+    assert.expect(1);
+    await invalidateSession();
+    await visit('/');
+    assert.equal(currentURL(), '/explore/anime');
+  });
 
-test('visiting `/admin` redirects when unauthenticated', async function(assert) {
-  invalidateSession(this.application);
-  await visit('/admin');
-  assert.equal(currentURL(), '/explore/anime');
-});
+  test('visiting `/admin` redirects when unauthenticated', async function(assert) {
+    assert.expect(1);
+    await invalidateSession();
+    await visit('/admin');
+    assert.equal(currentURL(), '/explore/anime');
+  });
 
-test('visiting `/settings/*` when unauthenticated redirects', async function(assert) {
-  invalidateSession(this.application);
-  await visit('/settings/profile');
-  assert.equal(currentURL(), '/explore/anime');
-});
+  test('visiting `/settings/*` when unauthenticated redirects', async function(assert) {
+    assert.expect(1);
+    await invalidateSession();
+    await visit('/settings/profile');
+    assert.equal(currentURL(), '/explore/anime');
+  });
 
-test('visiting `/notifications` when unauthenticated redirects', async function(assert) {
-  invalidateSession(this.application);
-  await visit('/notifications');
-  assert.equal(currentURL(), '/explore/anime');
-});
+  test('visiting `/notifications` when unauthenticated redirects', async function(assert) {
+    assert.expect(1);
+    await invalidateSession();
+    await visit('/notifications');
+    assert.equal(currentURL(), '/explore/anime');
+  });
 
-test('visiting /password-reset redirects when authenticated', async function(assert) {
-  server.create('user');
-  authenticateSession(this.application);
-  await visit('/password-reset');
-  assert.equal(currentURL(), '/');
-});
+  test('visiting /password-reset redirects when authenticated', async function(assert) {
+    assert.expect(1);
+    server.create('user');
+    await authenticateSession();
+    await visit('/password-reset');
+    assert.equal(currentURL(), '/');
+  });
 
-test('visiting an unknown route redirects to `/404`', async function(assert) {
-  await visit('/doesnt-exist');
-  assert.equal(currentRouteName(), 'not-found');
-  assert.equal(currentURL(), '/404');
+  test('visiting an unknown route redirects to `/404`', async function(assert) {
+    assert.expect(2);
+    await visit('/doesnt-exist');
+    assert.equal(currentRouteName(), 'not-found');
+    assert.equal(currentURL(), '/404');
+  });
 });
