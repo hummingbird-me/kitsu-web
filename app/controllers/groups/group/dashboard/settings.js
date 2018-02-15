@@ -26,7 +26,8 @@ export default Controller.extend({
 
   categories: computed('model.categories', function() {
     return get(this, 'model.categories').map(category => (
-      { id: get(category, 'id'),
+      {
+        id: get(category, 'id'),
         name: get(category, 'name'),
         slug: get(category, 'slug')
       }

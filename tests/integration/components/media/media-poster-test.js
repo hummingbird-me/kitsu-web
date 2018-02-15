@@ -1,18 +1,22 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('media/media-poster', 'Integration | Component | media/media poster', {
-  integration: true,
-
-  beforeEach() {
-    const service = this.container.lookup('service:intl');
+module('media/media-poster', function(hooks) {
+  setupRenderingTest(hooks);
+  hooks.beforeEach(function() {
+    const service = this.owner.lookup('service:intl');
     service.setLocale('en-us');
-  }
-});
+    // @Note: This can most likely be removed once ember-href-to solves issue #94
+    this.owner.lookup('router:main').setupRouter();
+  });
 
-test('media-poster it renders', function(assert) {
-  this.set('media', { constructor: { modelName: 'anime' }, posterImage: 'pi' });
-  this.render(hbs`{{media/media-poster media=media}}`);
-  const $el = this.$('[data-test-media-poster]');
-  assert.equal($el.length, 1);
+  test('media-poster it renders', async function(assert) {
+    assert.expect(1);
+    this.set('media', { modelType: 'anime', posterImage: 'pi' });
+    await render(hbs`{{media/media-poster media=media}}`);
+    const element = this.element.querySelector('[data-test-media-poster]');
+    assert.ok(element);
+  });
 });

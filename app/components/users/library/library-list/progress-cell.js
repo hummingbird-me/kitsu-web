@@ -14,7 +14,7 @@ export default Component.extend({
   actions: {
     sanitizeNumber(value) {
       const parsed = parseInt(value, 10);
-      return isNaN(parsed) ? value : parsed;
+      return Number.isNaN(parsed) ? value : parsed;
     },
 
     showInput() {

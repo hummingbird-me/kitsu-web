@@ -25,7 +25,8 @@ module.exports = {
     'no-useless-escape': 'off',
     'newline-per-chained-call': 'off',
     'no-constant-condition': ['error', { 'checkLoops': false }],
-    'no-shadow': 'off'
+    'no-shadow': 'off',
+    'object-curly-newline': 'off' // No way to disable just for function params
   },
   overrides: [
     {
@@ -45,9 +46,6 @@ module.exports = {
     },
     {
       files: ['tests/**/*.js'],
-      env: {
-        embertest: true
-      },
       globals: {
         'server': true
       },

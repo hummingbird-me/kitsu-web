@@ -21,7 +21,7 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
   notify: service(),
   store: service(),
   queryCache: service(),
-  host: getter(() => `${location.protocol}//${location.host}`),
+  host: getter(() => `${window.location.protocol}//${window.location.host}`),
 
   isEditable: getter(function() {
     if (get(this, 'session.account').hasRole('admin', get(this, 'comment'))) {
