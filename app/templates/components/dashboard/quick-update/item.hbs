@@ -1,4 +1,5 @@
 <div class="quick-update-media-wrapper" data-entry-id={{entry.id}}>
+  {{#unless entry.isDeleted}}
   <div class="overlay-panel">
     {{! Update actions }}
     <div class="quick-update-actions">
@@ -97,6 +98,7 @@
     <div class="poster-overlay"></div>
     {{lazy-image src=(image mediaPosterURL "medium")}}
   </div>
+  {{/unless}}
 </div>
 
 
