@@ -15,6 +15,9 @@ const INDICES = {
 const search = (indexName, attributesToRetrieve, hitsPerPage = 2) => (
   task(function* (query, options = {}) {
     const index = yield get(this, 'algolia.getIndex').perform(indexName);
+    if (isEmpty(index)) {
+      return {};
+    }
     return yield index.search(query, {
       attributesToRetrieve,
       hitsPerPage,
@@ -50,7 +53,7 @@ export default Component.extend({
   searchTask: task(function* (query) {
     Object.keys(INDICES).forEach((type) => {
       get(this, `${type}Task`).perform(query).then((response) => {
-        const records = get(response, 'hits');
+        const records = get(response, 'hits') || [];
         set(this, `groups.${type}`, records);
         set(this, `groups.${type}.nbPages`, get(response, 'nbPages'));
       }).catch((error) => {
