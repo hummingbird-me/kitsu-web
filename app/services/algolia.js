@@ -2,7 +2,6 @@ import { get, set } from '@ember/object';
 import Service, { inject as service } from '@ember/service';
 import { isEmpty } from '@ember/utils';
 import { task } from 'ember-concurrency';
-import RSVP from 'rsvp';
 import algoliasearch from 'algoliasearch';
 import config from 'client/config/environment';
 
