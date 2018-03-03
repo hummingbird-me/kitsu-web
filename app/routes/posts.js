@@ -51,7 +51,7 @@ export default Route.extend(DataErrorMixin, {
       tagId: 'meta-og-image',
       attrs: {
         name: 'og:image',
-        content: get(model, 'user.avatar.medium') || get(model, 'user.avatar')
+        content: get(model, 'user.avatar.medium')
       }
     }];
 
