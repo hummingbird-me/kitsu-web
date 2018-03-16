@@ -62,6 +62,8 @@
           invited you to a group.
         {{else if (eq activity.verb "vote")}}
           liked your {{activity.target.media.computedTitle}} reaction.
+        {{else if (eq activity.verb "aired")}}
+          {{t "user-notifications.aired" type=activity.subject.modelType number=activity.subject.number media=activity.actor.computedTitle}}
         {{/if}}
       </p>
       <small class="media-secondary">{{moment-from-now activity.time interval=60000}}</small>

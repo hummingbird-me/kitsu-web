@@ -72,6 +72,15 @@ export default Component.extend({
         }
         return '#';
       }
+      case 'Episode':
+      case 'Chapter': {
+        const actor = get(activity, 'actor');
+        if (isPresent(actor)) {
+          const type = get(actor, 'modelType');
+          return hrefTo(this, `${type}.show`, get(actor, 'slug'), queryParams);
+        }
+        return '#';
+      }
       default: {
         return '#';
       }
