@@ -142,6 +142,7 @@ RouterInstance.map(function() {
 
   this.route('password-reset');
   this.route('confirm-email');
+  this.route('unsubscribe');
 
   this.route('terms');
 
