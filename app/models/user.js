@@ -88,6 +88,7 @@ export default Base.extend(Validations, {
   slug: attr('string'),
   shareToGlobal: attr('boolean'),
   status: attr('string', { defaultValue: 'registered' }),
+  subscribedToNewsletter: attr('boolean'),
   timeZone: attr('string'),
   title: attr('string'),
   titleLanguagePreference: attr('string', { defaultValue: 'canonical' }),
