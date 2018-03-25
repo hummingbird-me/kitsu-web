@@ -136,9 +136,8 @@ export default Base.extend(Validations, {
 
   hasRole(/* roleName, resource */) {
     // Blanket access for staff & mods for the time being.
-    const title = get(this, 'title').toLowerCase();
+    const title = (get(this, 'title') || '').toLowerCase();
     return title === 'staff' || title === 'mod';
-
     // Resource-dependent roles
     /*
     const roles = get(this, 'userRoles').map(ur => get(ur, 'role'));
