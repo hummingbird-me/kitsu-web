@@ -4,7 +4,6 @@ import { belongsTo, hasMany } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
 import { alias, empty, or } from '@ember/object/computed';
 import { isEmpty } from '@ember/utils';
-import { classify } from '@ember/string';
 import { get, computed } from '@ember/object';
 
 export const Validations = buildValidations({
@@ -135,7 +134,13 @@ export default Base.extend(Validations, {
     return get(this, 'ratingSystem') === 'simple';
   }).readOnly(),
 
-  hasRole(roleName, resource) {
+  hasRole(/* roleName, resource */) {
+    // Blanket access for staff & mods for the time being.
+    const title = get(this, 'title').toLowerCase();
+    return title === 'staff' || title === 'mod';
+
+    // Resource-dependent roles
+    /*
     const roles = get(this, 'userRoles').map(ur => get(ur, 'role'));
     const validRoles = roles.filter((r) => {
       let hasRole = get(r, 'name') === roleName && !get(r, 'hasDirtyAttributes');
@@ -154,5 +159,6 @@ export default Base.extend(Validations, {
     });
 
     return valid;
+    */
   }
 });
