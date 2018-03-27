@@ -23,14 +23,6 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
   queryCache: service(),
   host: getter(() => `${window.location.protocol}//${window.location.host}`),
 
-  isEditable: getter(function() {
-    if (get(this, 'session.account').hasRole('admin', get(this, 'comment'))) {
-      return true;
-    }
-    const time = get(this, 'comment.createdAt').add(30, 'minutes');
-    return !time.isBefore();
-  }),
-
   commentEdited: computed('comment.createdAt', 'comment.editedAt', function() {
     if (!get(this, 'comment.editedAt')) { return false; }
     return !get(this, 'comment.createdAt').isSame(get(this, 'comment.editedAt'));
