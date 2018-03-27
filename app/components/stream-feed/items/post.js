@@ -40,14 +40,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     return isEmpty(title) || title === placeHolderTitle ? '' : `- ${title}`;
   }),
 
-  isEditable: getter(function() {
-    if (get(this, 'session.account').hasRole('admin', get(this, 'post'))) {
-      return true;
-    }
-    const time = get(this, 'post.createdAt').add(30, 'minutes');
-    return !time.isBefore();
-  }),
-
   postEdited: computed('post.createdAt', 'post.editedAt', function() {
     if (!get(this, 'post.editedAt')) { return false; }
     return !get(this, 'post.createdAt').isSame(get(this, 'post.editedAt'));

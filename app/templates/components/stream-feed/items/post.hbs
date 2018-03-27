@@ -261,16 +261,14 @@
 
           {{! Editing/Deleting Options }}
           {{#if canEditPost}}
-            {{#if isEditable}}
-              <a class="dropdown-item" href="#" {{action (toggle "editModalOpened" this)}}>Edit Post</a>
-              {{#if editModalOpened}}
-                {{to-elsewhere named="modal" send=(component "stream-feed/edit-post"
-                  post=post
-                  isEditable=isEditable
-                  unitNumber=post.spoiledUnit.number
-                  onClose=(toggle-action "editModalOpened" this)
-                )}}
-              {{/if}}
+            <a class="dropdown-item" href="#" {{action (toggle "editModalOpened" this)}}>Edit Post</a>
+            {{#if editModalOpened}}
+              {{to-elsewhere named="modal" send=(component "stream-feed/edit-post"
+                post=post
+                isEditable=isEditable
+                unitNumber=post.spoiledUnit.number
+                onClose=(toggle-action "editModalOpened" this)
+              )}}
             {{/if}}
 
             <a class="dropdown-item" href="#" {{action (toggle "deleteModalOpened" this)}}>Delete Post</a>
