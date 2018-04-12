@@ -28,8 +28,9 @@ const search = (indexName, attributesToRetrieve, hitsPerPage = 2) => (
 
 export default Component.extend({
   isOpened: false,
-  metrics: service(),
   algolia: service(),
+  metrics: service(),
+  raven: service(),
 
   init() {
     this._super(...arguments);

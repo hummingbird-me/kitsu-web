@@ -14,6 +14,7 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
   pageLimit: 12,
   notify: service(),
   queryCache: service(),
+  raven: service(),
   store: service(),
   lastUsed: storageFor('last-used'),
 

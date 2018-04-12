@@ -22,6 +22,7 @@ export default Component.extend(Pagination, {
   store: service(),
   queryCache: service(),
   metrics: service(),
+  raven: service(),
   streamRealtime: service(),
   lastUsed: storageFor('last-used'),
 

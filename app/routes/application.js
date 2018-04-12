@@ -11,6 +11,7 @@ export default Route.extend(ApplicationRouteMixin, {
   intl: service(),
   metrics: service(),
   moment: service(),
+  raven: service(),
   cache: storageFor('last-used'),
   local: storageFor('local-cache'),
 

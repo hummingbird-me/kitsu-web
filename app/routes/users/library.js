@@ -11,6 +11,7 @@ export default Route.extend(Pagination, {
   ajax: service(),
   intl: service(),
   queryCache: service(),
+  raven: service(),
   cache: storageFor('last-used'),
 
   model(params) {

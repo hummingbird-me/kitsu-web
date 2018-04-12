@@ -26,6 +26,5 @@ export function initialize() {
 
 export default {
   name: 'onerror',
-  initialize,
-  before: 'raven'
+  initialize
 };

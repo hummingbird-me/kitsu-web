@@ -2,9 +2,11 @@ import { module, test } from 'qunit';
 import { visit, currentURL, currentRouteName } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { authenticateSession, invalidateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 
 module('Acceptance | Routing', function(hooks) {
   setupApplicationTest(hooks);
+  setupMirage(hooks);
 
   test('visiting `/dashboard` redirects to `/`', async function(assert) {
     assert.expect(1);
