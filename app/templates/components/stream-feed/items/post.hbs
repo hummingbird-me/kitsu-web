@@ -1,6 +1,13 @@
 {{! We have to check `post` here due to Stream & development environments }}
 {{#if post.id}}
   <div class="stream-item-wrapper col-sm-12">
+    {{! Post Meta }}
+    {{#if (and post.media (eq activity.reason "media"))}}
+      <div class="stream-item--meta-block">
+        {{t "feeds.post.meta.media" media=post.media.computedTitle}}
+      </div>
+    {{/if}}
+
     {{! Post Header }}
     <div class="stream-item--title-block">
       {{! Pinned Post Indicator }}
@@ -237,7 +244,7 @@
           {{/if}}
 
           {{! Media Ignore }}
-          {{#if (and canHideMedia post.media)}}
+          {{#if (and (or canHideMedia (eq activity.reason "media")) post.media)}}
             <a class="dropdown-item" href="#" {{action (toggle "mediaIgnoreModalOpened" this)}}>
               <div>{{t "media.hide-posts.text" media=post.media.computedTitle}}</div>
               <div class="option-info">{{t "media.hide-posts.info" type=(capitalize post.media.modelType)}}</div>
@@ -245,7 +252,7 @@
             {{#if mediaIgnoreModalOpened}}
               {{to-elsewhere named="modal" send=(component "modals/confirm-action"
                 onConfirm=(action "ignoreMedia" post.media)
-                onClose=(toggle-action "mediaIgnoreModalOpened")
+                onClose=(toggle-action "mediaIgnoreModalOpened" this)
               )}}
             {{/if}}
           {{/if}}

@@ -13,7 +13,7 @@ import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Component.extend(Pagination, {
   readOnly: false,
-  filterOptions: ['all', 'media', 'user'],
+  filterOptions: ['all', 'media', 'user', 'following'],
   allFeedItems: concat('feed', 'paginatedRecords'),
   ajax: service(),
   headData: service(),

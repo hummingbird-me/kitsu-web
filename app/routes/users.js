@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import { get, set } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { task, waitForProperty } from 'ember-concurrency';
 import DataErrorMixin from 'client/mixins/routes/data-error';
 import CoverPageMixin from 'client/mixins/routes/cover-page';
 
@@ -23,6 +24,11 @@ export default Route.extend(DataErrorMixin, CoverPageMixin, {
   afterModel(model) {
     const tags = this.setHeadTags(model);
     set(this, 'headTags', tags);
+  },
+
+  setupController(controller) {
+    this._super(...arguments);
+    get(controller, 'fetchFollowTask').perform();
   },
 
   resetController(controller) {

@@ -1,5 +1,5 @@
 <span class="button-label" data-test-follow-button>
-  {{#if (or getFollowStatus.isRunning toggleFollow.isRunning)}}
+  {{#if (or (or getFollowStatus.isRunning loading) toggleFollow.isRunning)}}
     {{loading-spinner}}
   {{else}}
     {{#if isFollowing}}

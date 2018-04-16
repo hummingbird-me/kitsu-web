@@ -332,10 +332,10 @@ media:
         other: "Other"
   hide-posts:
     text: "Hide Posts about {media}"
-    info: "Posts won't appear in your {type} Feed"
+    info: "Posts won't appear in your Following or {type} Feed"
   show-posts:
     text: "Show Posts about {media}"
-    info: "Posts will appear in your {type} Feed"
+    info: "Posts will appear in your Following or {type} Feed"
 # page: users
 users:
   navigation:
@@ -1023,6 +1023,7 @@ feeds:
     all: "All Activity"
     media: "Media Activity"
     user: "User Activity"
+    following: "Followed Activity"
   placeholder: "{type, select,
     user_aggr {Post to {subject}}
     group_aggr {Post to {subject}}
@@ -1039,6 +1040,8 @@ feeds:
       manga {read chapter {num}}
       other {}}"
   post:
+    meta:
+      media: "Because you recently watched {media}"
     spoilers: "{type, select,
       anime {Ep. {num}}
       manga {Ch. {num}}
