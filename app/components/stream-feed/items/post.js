@@ -222,6 +222,9 @@ export default Component.extend(ClipboardMixin, CanMixin, {
         const membership = get(records, 'firstObject');
         set(membership, 'hidden', true);
         membership.save()
+          .then(() => {
+            invokeAction(this, 'removeGroup', get(this, 'group'));
+          })
           .catch((err) => {
             get(this, 'notify').error(errorMessages(err));
             membership.rollbackAttributes();
@@ -240,6 +243,9 @@ export default Component.extend(ClipboardMixin, CanMixin, {
         const follow = get(records, 'firstObject');
         set(follow, 'hidden', true);
         follow.save()
+          .then(() => {
+            invokeAction(this, 'removeGroup', get(this, 'group'));
+          })
           .catch((err) => {
             get(this, 'notify').error(errorMessages(err));
             follow.rollbackAttributes();
@@ -251,7 +257,9 @@ export default Component.extend(ClipboardMixin, CanMixin, {
       const user = get(this, 'session.account');
       get(this, 'store').createRecord('media-ignore', {
         user, media
-      }).save().catch((err) => {
+      }).save().then(() => {
+        invokeAction(this, 'removeGroup', get(this, 'group'));
+      }).catch((err) => {
         get(this, 'notify').error(errorMessages(err));
       });
     },
