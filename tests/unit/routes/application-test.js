@@ -10,7 +10,8 @@ moduleFor('route:application', 'Unit | Route | application', {
     'service:scheduler',
     'service:intl',
     'service:moment',
-    'service:raven'
+    'service:raven',
+    'service:features',
   ]
 });
 

@@ -37,6 +37,7 @@ function _defineRoutes(server) {
 
   server.get('/follows', { data: [] });
   server.get('/group-members', { data: [] });
+  server.get('_flags', {});
 }
 
 // test
