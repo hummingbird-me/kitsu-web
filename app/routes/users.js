@@ -1,7 +1,6 @@
 import Route from '@ember/routing/route';
 import { get, set } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { task, waitForProperty } from 'ember-concurrency';
 import DataErrorMixin from 'client/mixins/routes/data-error';
 import CoverPageMixin from 'client/mixins/routes/cover-page';
 
