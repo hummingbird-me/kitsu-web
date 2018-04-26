@@ -13,9 +13,10 @@ import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Component.extend(Pagination, {
   readOnly: false,
-  filterOptions: ['all', 'media', 'user', 'following'],
+  showFollowingFilter: false,
   allFeedItems: concat('feed', 'paginatedRecords'),
   ajax: service(),
+  features: service(),
   headData: service(),
   headTags: service(),
   notify: service(),
@@ -127,10 +128,18 @@ export default Component.extend(Pagination, {
   didReceiveAttrs() {
     this._super(...arguments);
     get(this, 'headTags').collectHeadTags();
+    set(this, 'filterOptions', ['all', 'media', 'user']);
+    if (get(this, 'features').hasFeature('feed_following_filter') && get(this, 'showFollowingFilter')) {
+      this.filterOptions.push('following');
+    }
+
     if (get(this, 'kitsuGroup')) {
       set(this, 'filter', 'all');
     } else {
       set(this, 'filter', get(this, 'lastUsed.feedFilter') || get(this, 'streamFilter') || 'all');
+      if (get(this, 'filter') === 'following' && !get(this, 'showFollowingFilter')) {
+        set(this, 'filter', 'all');
+      }
     }
 
     // cancel any previous subscriptions
