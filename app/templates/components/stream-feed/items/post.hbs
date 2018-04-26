@@ -2,10 +2,12 @@
 {{#if post.id}}
   <div class="stream-item-wrapper col-sm-12">
     {{! Post Meta }}
-    {{#if (and post.media (eq activity.reason "media"))}}
-      <div class="stream-item--meta-block">
-        {{t "feeds.post.meta.media" media=post.media.computedTitle}}
-      </div>
+    {{#if (has-feature "feed_reasons")}}
+      {{#if (and post.media (eq activity.reason "media"))}}
+        <div class="stream-item--meta-block">
+          {{t "feeds.post.meta.media" media=post.media.computedTitle}}
+        </div>
+      {{/if}}
     {{/if}}
 
     {{! Post Header }}
