@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import RavenLogger from 'ember-cli-sentry/services/raven';
+import config from 'client/config/environment';
 
 // Reference Travis: https://github.com/travis-ci/travis-web/blob/master/app/services/raven.js
 export default RavenLogger.extend({
@@ -15,6 +16,7 @@ export default RavenLogger.extend({
     'operation was aborted'
   ],
   unhandledPromiseErrorMessage: '',
+  release: config.release,
 
   captureException(error) {
     if (!this.ignoreError(error)) {
