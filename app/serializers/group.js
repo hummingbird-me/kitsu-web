@@ -7,7 +7,6 @@ export default ApplicationSerializer.extend({
     leadersCount: { serialize: false },
     membersCount: { serialize: false },
     neighborsCount: { serialize: false },
-    slug: { serialize: false },
-    userMembership: { serialize: false }
+    slug: { serialize: false }
   }
 });

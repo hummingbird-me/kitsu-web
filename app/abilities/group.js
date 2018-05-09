@@ -1,4 +1,5 @@
-import { Ability, computed as ability } from 'ember-can';
+import { Ability } from 'ember-can';
+import { ability } from 'ember-can/computed';
 import { get, computed } from '@ember/object';
 
 const hasPermission = permission => (
@@ -8,8 +9,9 @@ const hasPermission = permission => (
 );
 
 export default Ability.extend({
-  postAbility: ability.ability('post', 'post'),
-  commentAbility: ability.ability('comment', 'comment'),
+  membership: null,
+  postAbility: ability('post', 'post'),
+  commentAbility: ability('comment', 'comment'),
 
   canViewDashboard: computed('membership', function() {
     const isMember = this._isGroupMember();
@@ -26,7 +28,7 @@ export default Ability.extend({
   canWritePost: computed('model', 'membership', function() {
     // If this is a restricted group, then posting is limited to leaders
     const group = get(this, 'model');
-    if (get(group, 'isRestricted')) {
+    if (group && get(group, 'isRestricted')) {
       const membership = this._isGroupMember();
       return membership && membership.hasPermission('content');
     }
@@ -61,6 +63,6 @@ export default Ability.extend({
   _isGroupMember() {
     const membership = get(this, 'membership');
     const user = get(this, 'session.hasUser') && get(this, 'session.account');
-    return user && membership;
+    return user && membership ? membership : false;
   }
 });
