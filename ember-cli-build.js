@@ -63,7 +63,9 @@ module.exports = function(defaults) {
         'mstile-70x70.png',
         'mstile-150x150.png',
         'mstile-310x150.png',
-        'mstile-310x310.png'
+        'mstile-310x310.png',
+
+        'hulu-embed-frame.html'
       ]
     },
 
