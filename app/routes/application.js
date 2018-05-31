@@ -9,6 +9,7 @@ import moment from 'moment';
 export default Route.extend(ApplicationRouteMixin, {
   features: service(),
   head: service('head-data'),
+  headTagsService: service('head-tags'),
   intl: service(),
   metrics: service(),
   moment: service(),
@@ -122,6 +123,13 @@ export default Route.extend(ApplicationRouteMixin, {
         });
         set(controller, 'routeIsLoading', false);
       });
+    },
+
+    didTransition() {
+      scheduleOnce('afterRender', () => {
+        get(this, 'headTagsService').collectHeadTags();
+      });
+      return true;
     }
   },
 
