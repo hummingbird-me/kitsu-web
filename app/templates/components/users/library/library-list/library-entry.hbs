@@ -65,23 +65,23 @@
   {{! Rating }}
   <td class="rating-cell">
     <span class="{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}-rating-cell">
-      {{#if (gt changeset.rating 0)}}
+      {{#if (gt libraryEntry.rating 0)}}
         <span class="entry-rating entry-rating-{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}">
           {{#if (can "edit library-entry" libraryEntry)}}
             {{#library-entry/rating-button
-              rating=changeset.rating
+              rating=libraryEntry.rating
               showDropdown=true
               simpleDropdown=true
               onClick=(action "changeRating")
             }}
               {{library-entry/readonly-rating
-                rating=changeset.rating
+                rating=libraryEntry.rating
                 hideText=true
               }}
             {{/library-entry/rating-button}}
           {{else}}
             {{library-entry/readonly-rating
-              rating=changeset.rating
+              rating=libraryEntry.rating
               hideText=true
             }}
           {{/if}}
@@ -90,7 +90,7 @@
         <span class="entry-rating entry-rating-empty empty-rating-{{if (or session.account.isSimpleRating (not session.hasUser)) "simple"}}">
           {{#if (can "edit library-entry" libraryEntry)}}
             {{#library-entry/rating-button
-              rating=changeset.rating
+              rating=libraryEntry.rating
               canMutate=(can "edit library-entry" libraryEntry)
               onClick=(action "changeRating")
             }}
@@ -111,10 +111,10 @@
   {{! Progress }}
   <td class="progress-cell">
     {{users/library/library-list/progress-cell
-      progress=changeset.progress
+      progress=libraryEntry.progress
       max=libraryEntry.media.unitCount
       libraryEntry=libraryEntry
-      update=(action (mut changeset.progress))
+      update=(action (mut libraryEntry.progress))
       increment=(action "incrementProgress")
       save=(perform saveTask)
     }}
@@ -124,10 +124,10 @@
   {{#if (eq libraryEntry.media.modelType "manga")}}
     <td class="progress-cell">
       {{users/library/library-list/progress-cell
-        progress=changeset.volumesOwned
+        progress=libraryEntry.volumesOwned
         max=libraryEntry.media.volumeCount
         libraryEntry=libraryEntry
-        update=(action (mut changeset.volumesOwned))
+        update=(action (mut libraryEntry.volumesOwned))
         increment=(action "incrementProgress" "volumesOwned")
         save=(perform saveTask)
       }}

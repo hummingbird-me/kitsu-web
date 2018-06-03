@@ -3,7 +3,6 @@ import { get, set, computed } from '@ember/object';
 import { htmlSafe } from '@ember/string';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
-import createChangeset from 'ember-changeset-cp-validations';
 
 export default Component.extend({
   tagName: '',
@@ -21,33 +20,24 @@ export default Component.extend({
     return htmlSafe(`width: ${(progress * 100) / unitCount}%;`);
   }).readOnly(),
 
-  init() {
-    this._super(...arguments);
-    this.changeset = createChangeset(get(this, 'libraryEntry'));
-  },
-
   saveTask: task(function* () {
-    const changeset = get(this, 'changeset');
-    yield changeset.validate();
-    if (get(changeset, 'isValid') && get(changeset, 'isDirty')) {
+    const entry = get(this, 'libraryEntry');
+    if (get(entry, 'validations.isValid') && get(entry, 'hasDirtyAttributes')) {
       try {
-        yield invokeAction(this, 'saveEntry', changeset);
+        yield invokeAction(this, 'saveEntry', entry);
       } catch (error) {
-        changeset.rollback();
-        get(this, 'libraryEntry').rollbackAttributes();
+        entry.rollbackAttributes();
       }
     }
   }).restartable(),
 
   actions: {
     changeRating(rating) {
-      set(this, 'changeset.rating', rating);
+      set(this, 'libraryEntry.rating', rating);
       get(this, 'saveTask').perform();
     },
 
-    saveEntry(changeset) {
-      const newChangeset = this.changeset.merge(changeset);
-      set(this, 'changeset', newChangeset);
+    saveEntry() {
       return get(this, 'saveTask').perform();
     }
   }
