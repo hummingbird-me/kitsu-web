@@ -16,19 +16,4 @@
       {{t "library-entry.state.post-reaction"}}
     {{/if}}
   </button>
-
-  {{! Edit Library }}
-  {{#unless hideRemove}}
-    <button class="edit-button button button--secondary button--muted" {{action (toggle "showEditModal" this)}}>
-      {{t "library-entry.state.edit-library"}}
-    </button>
-  {{/unless}}
 {{/unless}}
-
-{{#if showEditModal}}
-  {{to-elsewhere named="modal" send=(component "modals/library-edit"
-    libraryEntry=libraryEntry
-    saveEntry=onSave
-    removeEntry=onRemove
-    onClose=(toggle-action "showEditModal" this))}}
-{{/if}}

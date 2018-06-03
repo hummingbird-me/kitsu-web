@@ -10,6 +10,7 @@ export default Component.extend({
   showHeader: true,
   createOnly: false,
   reactionOpen: false,
+  showEditModal: false,
 
   onCreate() {},
   onRemove() {},
