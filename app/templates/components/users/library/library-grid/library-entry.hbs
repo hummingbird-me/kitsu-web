@@ -68,42 +68,42 @@
 <div class="entry-stats">
   {{! Progress }}
   <span class="entry-unit">
-    {{#if (eq changeset.progress 0)}}
+    {{#if (eq libraryEntry.progress 0)}}
       {{t "users.library.list.unstarted"}}
     {{else}}
       {{t "users.library.list.progress"
         type=libraryEntry.media.modelType
-        progress=changeset.progress
+        progress=libraryEntry.progress
       }}
     {{/if}}
   </span>
 
   {{! Rating }}
   <span class="entry-rating entry-rating-{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}">
-    {{#if (gt changeset.rating 0)}}
+    {{#if (gt libraryEntry.rating 0)}}
       {{#if (can "edit library-entry" libraryEntry)}}
         {{#library-entry/rating-button
-          rating=changeset.rating
+          rating=libraryEntry.rating
           showDropdown=true
           simpleDropdown=true
           onClick=(action "changeRating")
           class="is-owner"
         }}
           {{library-entry/readonly-rating
-            rating=changeset.rating
+            rating=libraryEntry.rating
             hideText=true
           }}
         {{/library-entry/rating-button}}
       {{else}}
         {{library-entry/readonly-rating
-          rating=changeset.rating
+          rating=libraryEntry.rating
           hideText=true
         }}
       {{/if}}
     {{else}}
       {{#if (can "edit library-entry" libraryEntry)}}
         {{#library-entry/rating-button
-          rating=changeset.rating
+          rating=libraryEntry.rating
           onClick=(action "changeRating")
           class="no-rating is-owner"
         }}

@@ -93,8 +93,8 @@ export default Route.extend(Pagination, {
       this.refresh();
     },
 
-    saveEntry(changeset) {
-      return changeset.save().then(() => {
+    saveEntry(entry) {
+      return entry.save().then(() => {
         get(this, 'queryCache').invalidateType('library-entry');
       });
     },

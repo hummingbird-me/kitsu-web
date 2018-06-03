@@ -64,6 +64,13 @@
         }}
       {{/if}}
 
+      {{! Edit Library }}
+      {{#unless hideRemove}}
+        <button class="edit-button button button--secondary button--muted" {{action (toggle "showEditModal" this)}}>
+          {{t "library-entry.state.edit-library"}}
+        </button>
+      {{/unless}}
+
       {{! Reaction Modal }}
       {{#if reactionOpen}}
         {{to-elsewhere named="modal" send=(component "modals/media-reaction"
@@ -72,6 +79,15 @@
           modalId="reaction-modal"
           onClose=(toggle-action "reactionOpen" this)
         )}}
+      {{/if}}
+
+      {{! Edit Modal }}
+      {{#if showEditModal}}
+        {{to-elsewhere named="modal" send=(component "modals/library-edit"
+          libraryEntry=libraryEntry
+          saveEntry=(perform updateLibraryEntryTask)
+          removeEntry=(perform removeLibraryEntryTask)
+          onClose=(toggle-action "showEditModal" this))}}
       {{/if}}
     {{/unless}}
   </div>

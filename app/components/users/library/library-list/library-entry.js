@@ -1,6 +1,5 @@
 import Component from '@ember/component';
 import { get, set, computed } from '@ember/object';
-import createChangeset from 'ember-changeset-cp-validations';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 
@@ -17,37 +16,31 @@ export default Component.extend({
     return reaction && get(reaction, 'isNew') === false;
   }),
 
-  init() {
-    this._super(...arguments);
-    this.changeset = createChangeset(get(this, 'libraryEntry'));
-  },
-
   saveTask: task(function* (useTimeout = false) {
     // Yield a timeout giving the user a chance to click the increment button
     // more than once in a short period but only send one save event.
     if (useTimeout) {
       yield timeout(SAVE_TIMEOUT);
     }
-    const changeset = get(this, 'changeset');
-    yield changeset.validate();
-    if (get(changeset, 'isValid') && get(changeset, 'isDirty')) {
+
+    const entry = get(this, 'libraryEntry');
+    if (get(entry, 'validations.isValid') && get(entry, 'hasDirtyAttributes')) {
       try {
-        yield invokeAction(this, 'saveEntry', changeset);
+        yield invokeAction(this, 'saveEntry', entry);
       } catch (error) {
-        changeset.rollback();
-        get(this, 'libraryEntry').rollbackAttributes();
+        entry.rollbackAttributes();
       }
     }
   }).restartable(),
 
   actions: {
     incrementProgress(attribute = 'progress') {
-      this.incrementProperty(`changeset.${attribute}`, 1);
+      this.incrementProperty(`libraryEntry.${attribute}`, 1);
       get(this, 'saveTask').perform(true);
     },
 
     changeRating(rating) {
-      set(this, 'changeset.rating', rating);
+      set(this, 'libraryEntry.rating', rating);
       get(this, 'saveTask').perform();
     },
 
@@ -56,9 +49,7 @@ export default Component.extend({
       invokeAction(this, 'checkedEntry', libraryEntry, value);
     },
 
-    saveEntry(changeset) {
-      const newChangeset = this.changeset.merge(changeset);
-      set(this, 'changeset', newChangeset);
+    saveEntry() {
       return get(this, 'saveTask').perform();
     }
   }

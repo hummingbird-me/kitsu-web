@@ -7,7 +7,7 @@ import getter from 'client/utils/getter';
 export default JSONAPIAdapter.extend(DataAdapaterMixin, {
   host: getter(() => config.kitsu.APIHost),
   namespace: 'api/edge',
-  coalesceFindRequests: true,
+  coalesceFindRequests: false,
 
   authorize(xhr) {
     // Session is injected via `DataAdapaterMixin`

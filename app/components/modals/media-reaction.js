@@ -1,31 +1,30 @@
 import Component from '@ember/component';
 import { get, set, computed } from '@ember/object';
-import { alias, not, or } from '@ember/object/computed';
+import { reads, not, or } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { htmlSafe } from '@ember/string';
 import { isEmpty } from '@ember/utils';
 import { invokeAction } from 'ember-invoke-action';
 import { task } from 'ember-concurrency';
-import createChangeset from 'ember-changeset-cp-validations';
 import { image } from 'client/helpers/image';
 
 export default Component.extend({
   classNames: ['reaction-modal'],
   placeholderIndex: 0,
   store: service(),
-  reaction: alias('loadReactionTask.last.value'),
+  reaction: reads('loadReactionTask.last.value'),
   isEditing: not('loadReactionTask.last.value.isNew'),
   isWorking: or('createReactionTask.isRunning', 'deleteReactionTask.isRunning'),
 
-  canPost: computed('isWorking', 'changeset.isInvalid', 'changeset.reaction', function() {
+  canPost: computed('isWorking', 'reaction.validations.isValid', 'reaction.reaction', function() {
     const isWorking = get(this, 'isWorking');
-    const isInvalid = get(this, 'changeset.isInvalid');
-    const hasReaction = !isEmpty(get(this, 'changeset.reaction'));
+    const isInvalid = !get(this, 'reaction.validations.isValid');
+    const hasReaction = !isEmpty(get(this, 'reaction.reaction'));
     return !isWorking && !isInvalid && hasReaction;
   }).readOnly(),
 
-  remaining: computed('changeset.reaction', function() {
-    return 140 - (get(this, 'changeset.reaction.length') || 0);
+  remaining: computed('reaction.reaction', function() {
+    return 140 - (get(this, 'reaction.reaction.length') || 0);
   }).readOnly(),
 
   posterImageStyle: computed('media.posterImage', function() {
@@ -58,15 +57,13 @@ export default Component.extend({
         libraryEntry
       });
     }
-    set(this, 'changeset', createChangeset(reaction));
     return reaction;
   }).drop(),
 
   createReactionTask: task(function* () {
-    const changeset = get(this, 'changeset');
-    yield changeset.validate();
-    if (get(changeset, 'isValid') && get(changeset, 'isDirty')) {
-      yield changeset.save();
+    const reaction = get(this, 'reaction');
+    if (get(reaction, 'validations.isValid') && get(reaction, 'hasDirtyAttributes')) {
+      yield reaction.save();
       invokeAction(this, 'onCreate', get(this, 'reaction'));
       if (!get(this, 'doNotClose')) {
         invokeAction(this, 'onClose');

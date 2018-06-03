@@ -27,7 +27,7 @@ export default Component.extend({
 
   /**
    * Setup a click event handler on the body to remove the progress input and save the
-   * changeset.
+   * record.
    *
    * @private
    */

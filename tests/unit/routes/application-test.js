@@ -4,7 +4,7 @@ moduleFor('route:application', 'Unit | Route | application', {
   needs: [
     'service:session',
     'service:metrics',
-    'service:headData',
+    'service:head-data',
     'service:ajax',
     'service:router-scroll',
     'service:scheduler',
@@ -12,6 +12,7 @@ moduleFor('route:application', 'Unit | Route | application', {
     'service:moment',
     'service:raven',
     'service:features',
+    'service:head-tags'
   ]
 });
 

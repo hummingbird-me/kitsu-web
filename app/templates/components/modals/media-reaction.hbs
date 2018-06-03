@@ -23,10 +23,10 @@
                   <span class="reaction-media-year">{{media.year}}</span>
                 {{/if}}
               </span>
-              <span class="reaction-media-remaining {{if changeset.isInvalid "is-invalid"}}">{{remaining}}</span>
+              <span class="reaction-media-remaining {{if (not reaction.validations.isValid) "is-invalid"}}">{{remaining}}</span>
             </div>
-            {{expanding-textarea changeset.reaction
-              update=(action (mut changeset.reaction))
+            {{expanding-textarea reaction.reaction
+              update=(action (mut reaction.reaction))
               placeholder=(t "reaction-modal.placeholder" index=placeholderIndex)
               maxlength=240
               autofocus="true"
