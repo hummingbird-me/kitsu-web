@@ -111,7 +111,6 @@ module.exports = function(defaults) {
   });
 
   // Work around for Ember 2.16.2 and Sourcemaps in production
-  app.import('node_modules/showdown/dist/showdown.js.map', { destDir: 'assets' });
   app.import('node_modules/zxcvbn/dist/zxcvbn.js.map', { destDir: '.' });
   app.import('node_modules/algoliasearch/dist/algoliasearchLite.min.js', {
     using: [
