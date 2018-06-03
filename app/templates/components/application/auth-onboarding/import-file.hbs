@@ -6,6 +6,9 @@
       {{file-select id="import-file" update=(action "updateFile")}}
       <button type="button" class="button button--primary m-b-1" disabled={{if createImport.isRunning "disabled"}} {{action "triggerClick" "import-file"}}>
         Select File
+        {{#if file}}
+          ({{truncate fileName 20}})
+        {{/if}}
       </button>
     </div>
   </div>

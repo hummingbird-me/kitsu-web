@@ -8,7 +8,8 @@ import { task } from 'ember-concurrency';
 import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
-  file: undefined,
+  file: null,
+  fileName: null,
   metrics: service(),
   notify: service(),
   store: service(),
@@ -39,6 +40,7 @@ export default Component.extend({
 
     updateFile(event) {
       if (event.files && event.files[0]) {
+        set(this, 'fileName', event.files[0].name);
         const reader = new FileReader();
         reader.onload = evt => run(() => {
           set(this, 'file', evt.target.result);
