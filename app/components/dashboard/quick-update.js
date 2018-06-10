@@ -116,7 +116,8 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
 
   _getFieldsets(type) {
     const fields = {
-      libraryEntries: ['progress', 'status', 'rating', 'unit', 'updatedAt']
+      libraryEntries: ['progress', 'status', 'rating', 'unit', 'reconsumeCount', 'private',
+                       'startedAt', 'finishedAt', 'notes', 'updatedAt'];
     };
 
     const media = ['posterImage', 'canonicalTitle', 'titles', 'slug', 'subtype', 'startDate'];
