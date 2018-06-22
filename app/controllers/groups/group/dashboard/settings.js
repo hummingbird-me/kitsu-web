@@ -35,8 +35,8 @@ export default Controller.extend({
   }).readOnly(),
 
   isValid: computed('group.validations.isValid', 'isDirty', 'saveRecordsTask.isRunning', function() {
-    return get(this, 'group.validations.isValid') &&
-      get(this, 'isDirty.length') && !get(this, 'saveRecordsTask.isRunning');
+    return get(this, 'group.validations.isValid')
+      && get(this, 'isDirty.length') && !get(this, 'saveRecordsTask.isRunning');
   }).readOnly(),
 
   searchGroupsTask: task(function* (query) {

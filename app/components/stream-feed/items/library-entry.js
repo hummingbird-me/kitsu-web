@@ -36,7 +36,8 @@ export default Component.extend({
     const activities = get(this, 'group.activities').toArray().sort((a, b) => {
       if (get(a, 'time').isBefore(get(b, 'time'))) {
         return 1;
-      } else if (get(a, 'time').isAfter(get(b, 'time'))) {
+      }
+      if (get(a, 'time').isAfter(get(b, 'time'))) {
         return -1;
       }
       return 0;

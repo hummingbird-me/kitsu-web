@@ -25,13 +25,20 @@ export default Component.extend({
     const start = get(this, 'media.startDate');
     if (!start) { return null; }
     const month = start.month() + 1;
+
     if ([12, 1, 2].includes(month)) {
       return 'winter';
-    } else if ([3, 4, 5].includes(month)) {
+    }
+
+    if ([3, 4, 5].includes(month)) {
       return 'spring';
-    } else if ([6, 7, 8].includes(month)) {
+    }
+
+    if ([6, 7, 8].includes(month)) {
       return 'summer';
-    } else if ([9, 10, 11].includes(month)) {
+    }
+
+    if ([9, 10, 11].includes(month)) {
       return 'fall';
     }
   }).readOnly(),

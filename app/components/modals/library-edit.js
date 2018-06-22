@@ -10,8 +10,8 @@ export default Component.extend({
   isReadOnly: false,
 
   isValid: computed('libraryEntry.hasDirtyAttributes', 'libraryEntry.validations.isValid', 'saveTask.isIdle', function() {
-    return get(this, 'libraryEntry.hasDirtyAttributes') && get(this, 'libraryEntry.validations.isValid') &&
-      get(this, 'saveTask.isIdle');
+    return get(this, 'libraryEntry.hasDirtyAttributes') && get(this, 'libraryEntry.validations.isValid')
+      && get(this, 'saveTask.isIdle');
   }).readOnly(),
 
   init() {

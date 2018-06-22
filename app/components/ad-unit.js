@@ -14,7 +14,9 @@ let _promise = null;
 const loadGPTScript = () => {
   if (_scriptIsLoaded) {
     return RSVP.resolve();
-  } else if (_promise) {
+  }
+
+  if (_promise) {
     return _promise;
   }
 

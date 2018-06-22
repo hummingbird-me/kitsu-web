@@ -12,6 +12,7 @@ module.exports = {
     // enable
     'curly': 'error',
     // disable
+    'strict': 'off',
     'no-console': 'off',
     'comma-dangle': 'off',
     'import/no-extraneous-dependencies': 'off',

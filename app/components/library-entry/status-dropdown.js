@@ -12,10 +12,10 @@ export default Component.extend({
     'createLibraryEntryTask.isRunning',
     'removeLibraryEntryTask.isRunning',
     'updateLibraryEntryTask.isRunning', function() {
-      return get(this, 'getLibraryEntryTask.isRunning') ||
-        get(this, 'createLibraryEntryTask.isRunning') ||
-        get(this, 'removeLibraryEntryTask.isRunning') ||
-        get(this, 'updateLibraryEntryTask.isRunning');
+      return get(this, 'getLibraryEntryTask.isRunning')
+        || get(this, 'createLibraryEntryTask.isRunning')
+        || get(this, 'removeLibraryEntryTask.isRunning')
+        || get(this, 'updateLibraryEntryTask.isRunning');
     }
   ).readOnly(),
 

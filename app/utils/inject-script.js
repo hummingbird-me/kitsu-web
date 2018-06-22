@@ -9,7 +9,7 @@ function injectBrowser(src) {
     // script has been loaded in the past or is currently loading
     if (_scriptsLoaded[src]) {
       return resolve();
-    } else if (_scriptsLoading[src]) {
+    } if (_scriptsLoading[src]) {
       return _scriptsLoading[src].then(() => { resolve(); });
     }
 

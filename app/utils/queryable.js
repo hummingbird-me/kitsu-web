@@ -4,7 +4,7 @@ export function serializeArray(value) {
   const isRange = typeOf(value[0]) !== 'string';
   if (isRange && value.length === 2) {
     return value.join('..');
-  } else if (!isRange && value.length > 1) {
+  } if (!isRange && value.length > 1) {
     return value.reject(x => isEmpty(x)).join();
   }
   return value.join();

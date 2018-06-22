@@ -28,8 +28,7 @@ export default Component.extend({
   }),
 
   step: computed('hasValidName', 'hasValidEmail', 'hasValidPassword', function() {
-    const { hasValidName, hasValidEmail, hasValidPassword }
-      = getProperties(this, 'hasValidName', 'hasValidEmail', 'hasValidPassword');
+    const { hasValidName, hasValidEmail, hasValidPassword } = getProperties(this, 'hasValidName', 'hasValidEmail', 'hasValidPassword');
     const allValid = hasValidName && hasValidEmail && hasValidPassword;
     let step = 0;
     if (hasValidName && (!hasValidEmail && !hasValidPassword)) {

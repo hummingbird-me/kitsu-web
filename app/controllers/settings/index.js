@@ -42,8 +42,8 @@ export default Controller.extend({
 
   isValid: computed('user.hasDirtyAttributes', 'name', 'user.name', 'slug', 'user.slug', function() {
     if (get(this, 'user.hasDirtyAttributes')) { return true; }
-    return get(this, 'user.name') !== get(this, 'name') ||
-           get(this, 'user.slug') !== get(this, 'slug');
+    return get(this, 'user.name') !== get(this, 'name')
+           || get(this, 'user.slug') !== get(this, 'slug');
   }).readOnly(),
 
   updateProfile: task(function* () {
