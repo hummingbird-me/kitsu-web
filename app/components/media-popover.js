@@ -13,11 +13,17 @@ export default Component.extend(HoverIntentMixin, {
     const rating = get(this, 'media.averageRating');
     if (rating <= 25) {
       return 'percent-quarter-1';
-    } else if (rating <= 50) {
+    }
+
+    if (rating <= 50) {
       return 'percent-quarter-2';
-    } else if (rating <= 75) {
+    }
+
+    if (rating <= 75) {
       return 'percent-quarter-3';
-    } else if (rating <= 100) {
+    }
+
+    if (rating <= 100) {
       return 'percent-quarter-4';
     }
   }).readOnly()

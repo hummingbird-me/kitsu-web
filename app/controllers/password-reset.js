@@ -22,8 +22,8 @@ export default Controller.extend(queryParams.Mixin, Validations, {
    * Password passes validation and matches the password confirmation.
    */
   passwordValid: computed('password', 'passwordConfirm', function() {
-    return get(this, 'validations.attrs.password.isValid') &&
-      get(this, 'password') === get(this, 'passwordConfirm');
+    return get(this, 'validations.attrs.password.isValid')
+      && get(this, 'password') === get(this, 'passwordConfirm');
   }).readOnly(),
 
   /**

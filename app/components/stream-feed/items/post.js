@@ -28,7 +28,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
   store: service(),
   queryCache: service(),
   metrics: service(),
-  host: getter(() => `${location.protocol}//${location.host}`),
+  host: getter(() => `${window.location.protocol}//${window.location.host}`),
 
   activity: getter(function() {
     return get(this, 'group.activities.firstObject');
@@ -39,14 +39,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     const title = get(unit, 'canonicalTitle');
     const placeHolderTitle = `${capitalize(get(unit, 'modelType'))} ${get(unit, 'number')}`;
     return isEmpty(title) || title === placeHolderTitle ? '' : `- ${title}`;
-  }),
-
-  isEditable: getter(function() {
-    if (get(this, 'session.account').hasRole('admin', get(this, 'post'))) {
-      return true;
-    }
-    const time = get(this, 'post.createdAt').add(30, 'minutes');
-    return !time.isBefore();
   }),
 
   postEdited: computed('post.createdAt', 'post.editedAt', function() {
@@ -249,6 +241,9 @@ export default Component.extend(ClipboardMixin, CanMixin, {
         const membership = get(records, 'firstObject');
         set(membership, 'hidden', true);
         membership.save()
+          .then(() => {
+            invokeAction(this, 'removeGroup', get(this, 'group'));
+          })
           .catch((err) => {
             get(this, 'notify').error(errorMessages(err));
             membership.rollbackAttributes();
@@ -267,6 +262,9 @@ export default Component.extend(ClipboardMixin, CanMixin, {
         const follow = get(records, 'firstObject');
         set(follow, 'hidden', true);
         follow.save()
+          .then(() => {
+            invokeAction(this, 'removeGroup', get(this, 'group'));
+          })
           .catch((err) => {
             get(this, 'notify').error(errorMessages(err));
             follow.rollbackAttributes();
@@ -278,7 +276,9 @@ export default Component.extend(ClipboardMixin, CanMixin, {
       const user = get(this, 'session.account');
       get(this, 'store').createRecord('media-ignore', {
         user, media
-      }).save().catch((err) => {
+      }).save().then(() => {
+        invokeAction(this, 'removeGroup', get(this, 'group'));
+      }).catch((err) => {
         get(this, 'notify').error(errorMessages(err));
       });
     },

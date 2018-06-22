@@ -1,4 +1,4 @@
-{{#bootstrap/bs-modal class="library-edit-modal" onClose=onClose as |modal|}}
+{{#bootstrap/bs-modal class="library-edit-modal" onClose=(action "onClose") as |modal|}}
   {{#modal.header}}
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
@@ -15,9 +15,9 @@
         {{#power-select
           searchEnabled=false
           options=statuses
-          selected=changeset.status
+          selected=libraryEntry.status
           disabled=isReadOnly
-          onchange=(action (mut changeset.status)) as |option|}}
+          onchange=(action (mut libraryEntry.status)) as |option|}}
           {{t (concat "library-shared." option) type=libraryEntry.media.modelType}}
         {{/power-select}}
       </div>
@@ -30,12 +30,12 @@
       </label>
       <div class="col-sm-7">
         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-          {{ui/selectable-input changeset.progress
+          {{ui/selectable-input libraryEntry.progress
             min="0"
             max=libraryEntry.media.unitCount
             update=(pipe-action
               (action "sanitizeNumber")
-              (action (mut changeset.progress))
+              (action (mut libraryEntry.progress))
             )
             disabled=isReadOnly
             class="form-control"
@@ -59,12 +59,12 @@
         </label>
         <div class="col-sm-7">
           <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            {{ui/selectable-input changeset.volumesOwned
+            {{ui/selectable-input libraryEntry.volumesOwned
               min="0"
               max=libraryEntry.media.volumeCount
               update=(pipe-action
                 (action "sanitizeNumber")
-                (action (mut changeset.volumesOwned))
+                (action (mut libraryEntry.volumesOwned))
               )
               disabled=isReadOnly
               class="form-control"
@@ -89,8 +89,8 @@
       <div class="col-sm-7 library-state">
         {{library-entry/rating-button
           disabled=isReadOnly
-          rating=changeset.rating
-          onClick=(action (mut changeset.rating))
+          rating=libraryEntry.rating
+          onClick=(action (mut libraryEntry.rating))
           showDropdown=true
         }}
       </div>
@@ -103,11 +103,11 @@
       </label>
       <div class="col-sm-7">
         <div class="input-group">
-          {{ui/selectable-input changeset.reconsumeCount
+          {{ui/selectable-input libraryEntry.reconsumeCount
             min="0"
             update=(pipe-action
               (action "sanitizeNumber")
-              (action (mut changeset.reconsumeCount))
+              (action (mut libraryEntry.reconsumeCount))
             )
             disabled=isReadOnly
             class="form-control"
@@ -133,7 +133,7 @@
           {{#power-select
             searchEnabled=false
             options=privacies
-            selected=(find-by "id" changeset.private privacies)
+            selected=(find-by "id" libraryEntry.private privacies)
             onchange=(action "selectUpdate" "private") as |option|}}
             {{option.value}}
           {{/power-select}}
@@ -148,14 +148,14 @@
       </label>
       <div class="col-sm-7">
         {{pikaday-input
-          value=changeset.startedAt
+          value=libraryEntry.startedAt
           useUTC=true
           disabled=isReadOnly
           class="form-control"
           format="DD/MM/YYYY"
           yearRange="1900,currentYear"
           placeholder="DD/MM/YYYY"
-          onSelection=(action (mut changeset.startedAt))
+          onSelection=(action (mut libraryEntry.startedAt))
         }}
       </div>
     </div>
@@ -167,14 +167,14 @@
       </label>
       <div class="col-sm-7">
         {{pikaday-input
-          value=changeset.finishedAt
+          value=libraryEntry.finishedAt
           useUTC=true
           disabled=isReadOnly
           class="form-control"
           format="DD/MM/YYYY"
           yearRange="1900,currentYear"
           placeholder="DD/MM/YYYY"
-          onSelection=(action (mut changeset.finishedAt))
+          onSelection=(action (mut libraryEntry.finishedAt))
         }}
       </div>
     </div>
@@ -185,9 +185,9 @@
         {{t "users.library.edit.notes"}}
       </label>
       <div class="col-sm-7">
-        {{expanding-textarea changeset.notes
+        {{expanding-textarea libraryEntry.notes
           disabled=isReadOnly
-          update=(action "updateNotes")
+          update=(action (mut libraryEntry.notes))
           class="form-control"
         }}
       </div>

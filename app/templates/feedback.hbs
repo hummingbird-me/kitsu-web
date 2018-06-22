@@ -24,6 +24,16 @@
             {{t "feedback.database"}}
           </a>
         {{/link-to}}
+        {{#link-to "feedback.mobile-bugs" tagName="li" class="list-item" current-when="feedback.mobile-bugs feedback.mobile-bugs-anything"}}
+          <a href={{href-to "feedback.mobile-bugs"}}>
+            {{t "feedback.mobile-bugs"}}
+          </a>
+        {{/link-to}}
+        {{#link-to "feedback.mobile-features" tagName="li" class="list-item" current-when="feedback.mobile-features feedback.mobile-features-anything"}}
+          <a href={{href-to "feedback.mobile-features"}}>
+            {{t "feedback.mobile-features"}}
+          </a>
+        {{/link-to}}
       </ul>
     </div>
   </div>

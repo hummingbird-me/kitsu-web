@@ -38,7 +38,6 @@ export default Base.extend(Validations, {
   slug: attr('string'),
   tagline: attr('string'),
 
-  userMembership: belongsTo('group-member'),
   category: belongsTo('group-category'),
   categoryHack: attr('boolean'),
 

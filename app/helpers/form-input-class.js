@@ -11,4 +11,3 @@ export function formInputClass([invalid, valid]) {
 }
 
 export default helper(formInputClass);
-

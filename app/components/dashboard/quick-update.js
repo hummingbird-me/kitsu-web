@@ -14,6 +14,7 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
   pageLimit: 12,
   notify: service(),
   queryCache: service(),
+  raven: service(),
   store: service(),
   lastUsed: storageFor('last-used'),
 
@@ -83,6 +84,7 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
       if (isEmpty(content)) { return; }
       const post = get(this, 'store').createRecord('post', {
         content,
+        spoiler: true,
         media: get(entry, 'media'),
         spoiledUnit: get(entry, 'unit'),
         user: get(this, 'session.account')
@@ -114,7 +116,8 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
 
   _getFieldsets(type) {
     const fields = {
-      libraryEntries: ['progress', 'status', 'rating', 'unit', 'updatedAt']
+      libraryEntries: ['progress', 'status', 'rating', 'unit', 'reconsumeCount', 'private',
+        'startedAt', 'finishedAt', 'notes', 'updatedAt']
     };
 
     const media = ['posterImage', 'canonicalTitle', 'titles', 'slug', 'subtype', 'startDate'];

@@ -11,6 +11,7 @@ export default Route.extend(Pagination, {
   ajax: service(),
   intl: service(),
   queryCache: service(),
+  raven: service(),
   cache: storageFor('last-used'),
 
   model(params) {
@@ -62,7 +63,7 @@ export default Route.extend(Pagination, {
     // invalidate cache
     get(this, 'queryCache').invalidateType('library-entry');
     // push serialized records into the store
-    const data = response.data;
+    const { data } = response;
     data.forEach((entry) => {
       const normalizedData = get(this, 'store').normalize('library-entry', entry);
       get(this, 'store').push(normalizedData);
@@ -92,8 +93,8 @@ export default Route.extend(Pagination, {
       this.refresh();
     },
 
-    saveEntry(changeset) {
-      return changeset.save().then(() => {
+    saveEntry(entry) {
+      return entry.save().then(() => {
         get(this, 'queryCache').invalidateType('library-entry');
       });
     },
@@ -190,7 +191,10 @@ export default Route.extend(Pagination, {
         kind: media,
         status
       },
-      page: { offset: 0, limit: 40 }
+      page: {
+        offset: 0,
+        limit: 40
+      }
     };
 
     // apply user sort selection

@@ -13,7 +13,7 @@ export const MEDIA_QUERY_PARAMS = {
       const [lower, upper] = value;
       if (lower === 5 && upper === 100) {
         return undefined;
-      } else if (lower === 5) {
+      } if (lower === 5) {
         return serializeArray([5, upper]);
       }
       return serializeArray(value);
@@ -61,9 +61,9 @@ export const MEDIA_QUERY_PARAMS = {
       const [lower, upper] = value;
       if (lower === 1 && upper === 100) {
         return undefined;
-      } else if (upper === 100) {
+      } if (upper === 100) {
         return serializeArray([lower, null]);
-      } else if (lower === 1) {
+      } if (lower === 1) {
         return serializeArray([null, upper]);
       }
       return serializeArray(value);
@@ -72,7 +72,7 @@ export const MEDIA_QUERY_PARAMS = {
       const [lower, upper] = deserializeArray(value);
       if (isEmpty(upper)) {
         return [lower, 100];
-      } else if (isEmpty(lower) && !isEmpty(upper)) {
+      } if (isEmpty(lower) && !isEmpty(upper)) {
         return [1, upper];
       }
       return [lower, upper];
@@ -85,7 +85,7 @@ export const MEDIA_QUERY_PARAMS = {
       const [lower, upper] = value;
       if (lower === 1907 && upper === (moment().year() + 2)) {
         return undefined;
-      } else if (upper === (moment().year() + 2)) {
+      } if (upper === (moment().year() + 2)) {
         return serializeArray([lower, null]);
       }
       return serializeArray(value);

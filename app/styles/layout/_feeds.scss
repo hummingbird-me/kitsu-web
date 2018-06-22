@@ -207,6 +207,14 @@
   padding-bottom: 0;
 }
 
+.stream-item--meta-block {
+  padding: 10px;
+  font-size: 12px;
+  color: $body-secondary-text-color;
+  text-align: center;
+  border-bottom: 1px solid $divider-color;
+}
+
 .stream-item--title-block {
   @extend .clearfix;
   margin-bottom: 0;
@@ -530,7 +538,7 @@
   .media-body {
     font-size: 14px;
     .comment-body {
-      @include word-break(all);
+      @include word-break();
       margin-bottom: 0;
       display: inline-block;
       @if $theme == 'kitsu-dark' {
@@ -892,6 +900,7 @@
     max-width: 80px;
     border: 1px solid $divider-color;
     border-radius: 3px;
+    padding-left: 5px;
   }
 }
 

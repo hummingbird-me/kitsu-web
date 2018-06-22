@@ -7,20 +7,14 @@
   {{/modal.header}}
 
   {{#modal.body}}
-    {{#if isEditable}}
-      {{stream-feed/create-post
-        post=post
-        uploads=uploads
-        isExpanded=true
-        isEditing=true
-        unitNumber=unitNumber
-        shouldUnit=(not (is-empty unitNumber))
-        onCreate=(perform updatePost)
-      }}
-    {{else}}
-      <div class="alert alert-danger">
-        <p>Sorry, but you are unable to edit a post that is older than 30 minutes.</p>
-      </div>
-    {{/if}}
+    {{stream-feed/create-post
+      post=post
+      uploads=uploads
+      isExpanded=true
+      isEditing=true
+      unitNumber=unitNumber
+      shouldUnit=(not (is-empty unitNumber))
+      onCreate=(perform updatePost)
+    }}
   {{/modal.body}}
 {{/bootstrap/bs-modal}}

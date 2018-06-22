@@ -58,6 +58,7 @@
       streamId=streamId
       streamFilter=(if (eq streamType "global") "user" "all")
       hideFilter=(eq streamType "group_timeline")
+      showFollowingFilter=(eq streamType "timeline")
       readOnly=(not (can "write post"))}}
   </div>
 

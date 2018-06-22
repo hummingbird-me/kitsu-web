@@ -40,7 +40,7 @@ export default Component.extend({
     },
 
     removeEntriesBulk(...args) {
-      invokeAction(this, 'removeEntriesBulk', ...args).then(() => {
+      return invokeAction(this, 'removeEntriesBulk', ...args).then(() => {
         if (!get(this, 'isDestroyed')) {
           invoke(this, 'resetSelection');
         }
@@ -48,7 +48,7 @@ export default Component.extend({
     },
 
     updateStatusBulk(...args) {
-      invokeAction(this, 'updateStatusBulk', ...args).then(() => {
+      return invokeAction(this, 'updateStatusBulk', ...args).then(() => {
         if (!get(this, 'isDestroyed')) {
           invoke(this, 'resetSelection');
         }

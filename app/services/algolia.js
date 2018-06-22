@@ -1,32 +1,49 @@
 import { get, set } from '@ember/object';
 import Service, { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
 import { task } from 'ember-concurrency';
 import algoliasearch from 'algoliasearch';
 import config from 'client/config/environment';
 
 export default Service.extend({
   ajax: service(),
-  keys: {},
+  queryCache: service(),
   indices: {},
 
   loadKeys() {
-    if (get(this, 'loadKeysTask.performCount') > 0) return Promise.resolve();
-    return get(this, 'loadKeysTask').perform();
+    return get(this, '_loadKeysTask').perform();
   },
 
-  loadKeysTask: task(function* () {
-    const ajax = get(this, 'ajax');
-    const keys = yield ajax.request('/algolia-keys', { method: 'GET' });
-    set(this, 'keys', keys);
-  }).drop(),
-
   getIndex: task(function* (name) {
-    if (get(this, `indices.${name}`)) return get(this, `indices.${name}`);
-    yield this.loadKeys();
-    const info = get(this, `keys.${name}`);
+    const indices = get(this, 'indices');
+    if (get(indices, name)) {
+      return get(indices, name);
+    }
+    const keys = yield this.loadKeys();
+    const info = get(keys, name);
+    // bad response for keys?
+    if (isEmpty(info)) {
+      return null;
+    }
     const client = algoliasearch(config.algolia.appId, info.key);
     const index = client.initIndex(info.index);
     set(this, `indices.${name}`, index);
     return index;
-  })
+  }),
+
+  _loadKeysTask: task(function* () {
+    // check cache for early exit
+    const cache = yield get(this, 'queryCache').get('algolia', '/algolia-keys', false);
+    if (cache) {
+      return cache;
+    }
+
+    // request and store in cache
+    const records = yield get(this, 'ajax').request('/algolia-keys');
+    // only push to cache if it isn't a bad response
+    if (Object.keys(records).length > 0) {
+      get(this, 'queryCache').push('algolia', '/algolia-keys', records);
+    }
+    return records;
+  }).drop()
 });

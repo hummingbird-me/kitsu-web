@@ -18,8 +18,8 @@ export default function errorMessages(obj) {
   let errors = get(obj, 'payload') || get(obj, 'errors') || get(obj, 'error');
   errors = errors === undefined ? get(obj, 'jqXHR.responseJSON.errors') : errors;
   if (isPresent(errors)) {
-    reason = isArray(errors) ? capitalize(get(errors[0], 'detail') || get(errors[0], 'title')) :
-      get(lookupTable, errors);
+    reason = isArray(errors) ? capitalize(get(errors[0], 'detail') || get(errors[0], 'title'))
+      : get(lookupTable, errors);
   }
   if (!reason || reason === 'Internal Server Error' || reason.charAt(0) === '<') {
     reason = defaultMessage;

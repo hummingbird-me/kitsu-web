@@ -83,8 +83,8 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, {
     return get(this, 'queryCache').query('group-member', {
       include: 'user,permissions',
       filter: {
-        query_group: get(group, 'id'),
-        query_user: get(this, 'session.account.id')
+        group: get(group, 'id'),
+        user: get(this, 'session.account.id')
       }
     }).then(records => get(records, 'firstObject'));
   }

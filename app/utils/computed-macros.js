@@ -13,7 +13,7 @@ export function concat(...dependents) {
       const value = get(this, dep);
       if (value && typeOf(value) === 'array') {
         return value.slice();
-      } else if (value && typeOf(value.toArray) === 'function') {
+      } if (value && typeOf(value.toArray) === 'function') {
         return value.toArray().slice();
       }
       return [];

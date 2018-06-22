@@ -26,7 +26,8 @@ export default Controller.extend({
 
   categories: computed('model.categories', function() {
     return get(this, 'model.categories').map(category => (
-      { id: get(category, 'id'),
+      {
+        id: get(category, 'id'),
         name: get(category, 'name'),
         slug: get(category, 'slug')
       }
@@ -34,8 +35,8 @@ export default Controller.extend({
   }).readOnly(),
 
   isValid: computed('group.validations.isValid', 'isDirty', 'saveRecordsTask.isRunning', function() {
-    return get(this, 'group.validations.isValid') &&
-      get(this, 'isDirty.length') && !get(this, 'saveRecordsTask.isRunning');
+    return get(this, 'group.validations.isValid')
+      && get(this, 'isDirty.length') && !get(this, 'saveRecordsTask.isRunning');
   }).readOnly(),
 
   searchGroupsTask: task(function* (query) {

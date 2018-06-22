@@ -71,6 +71,7 @@
         .media-posters-list {
           display: flex;
           flex-wrap: wrap;
+          width: 100%;
         }
       }
     }
@@ -315,7 +316,7 @@
       margin-right: 4px;
       text-align: center;
       background: lighten($secondary-background-color,4);
-      &:nth-child(4), &:nth-child(8) {
+      &:nth-child(3n) {
         margin-right: 0;
       }
       &:hover {
@@ -506,6 +507,11 @@
     box-shadow: none;
   }
 }
+
+html:not([dir=rtl]) .media-browse .noUi-horizontal .noUi-handle {
+  right: -4px;
+}
+
 .media-trailer {
   padding: 0 !important;
   border-radius: 3px !important;

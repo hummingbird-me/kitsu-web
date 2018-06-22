@@ -15,4 +15,3 @@ export function feedType([activities]) {
 }
 
 export default helper(feedType);
-

@@ -20,7 +20,7 @@ export default ApplicationSerializer.extend({
       get(this, 'session.account').incrementProperty('ratingsCount');
 
       // If rating is changed we want to send that data to Stream
-      if (!isNaN(json.attributes[key])) {
+      if (!Number.isNaN(json.attributes[key])) {
         const media = get(snapshot, 'record.media');
         const mediaType = capitalize(get(media, 'modelType'));
         get(this, 'metrics').invoke('trackEngagement', 'Stream', {

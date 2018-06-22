@@ -77,7 +77,7 @@ export default Route.extend(SlideHeaderMixin, Pagination, {
       const value = params[key];
       if (isEmpty(value)) {
         return;
-      } else if (isArray(value)) {
+      } if (isArray(value)) {
         const filtered = value.reject(x => isEmpty(x));
         if (isEmpty(filtered)) {
           return;

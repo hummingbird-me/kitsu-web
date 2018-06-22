@@ -1,12 +1,12 @@
 import Mixin from '@ember/object/mixin';
 import { get, set } from '@ember/object';
-/* global Clipboard */
+/* global ClipboardJS */
 
 export default Mixin.create({
   didInsertElement() {
     this._super(...arguments);
     const id = get(this, 'elementId');
-    set(this, 'clipboard', new Clipboard(`#${id} [data-clipboard-text]`));
+    set(this, 'clipboard', new ClipboardJS(`#${id} [data-clipboard-text]`));
   },
 
   willDestroyElement() {

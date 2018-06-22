@@ -9,6 +9,7 @@ export default Base.extend({
   postId: attr('number'),
   progress: attr('number'),
   rating: attr('rating'),
+  reason: attr('string'),
   replyToType: attr('string'),
   replyToUser: attr('string'),
   status: attr('string'),

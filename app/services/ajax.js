@@ -19,9 +19,8 @@ export default AjaxService.extend({
     };
     const isAuthenticated = get(this, 'session.isAuthenticated');
     if (isAuthenticated) {
-      get(this, 'session').authorize('authorizer:application', (headerName, headerValue) => {
-        headers[headerName] = headerValue;
-      });
+      const { access_token: accessToken } = get(this, 'session.data.authenticated');
+      headers.Authorization = `Bearer ${accessToken}`;
     }
     return headers;
   }).readOnly()

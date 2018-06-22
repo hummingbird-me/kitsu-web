@@ -121,6 +121,10 @@ RouterInstance.map(function() {
     this.route('feature-requests-anything', { path: '/feature-requests/*path' });
     this.route('database-requests');
     this.route('database-requests-anything', { path: '/database-requests/*path' });
+    this.route('mobile-bugs');
+    this.route('mobile-bugs-anything', { path: '/mobile-bugs/*path' });
+    this.route('mobile-features');
+    this.route('mobile-features-anything', { path: '/mobile-features/*path' });
   });
 
   this.route('admin', function() {
@@ -138,6 +142,7 @@ RouterInstance.map(function() {
 
   this.route('password-reset');
   this.route('confirm-email');
+  this.route('unsubscribe');
 
   this.route('terms');
 

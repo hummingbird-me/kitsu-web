@@ -13,11 +13,18 @@ export function initialize() {
     }
 
     Ember.Logger.error(error);
+
+    /**
+     * An Ember.onerror handler _must_ rethrow exceptions when `Ember.testing` is
+     * `true` or the test suite is unreliable.
+     */
+    if (Ember.testing) {
+      throw error;
+    }
   };
 }
 
 export default {
   name: 'onerror',
-  initialize,
-  before: 'raven'
+  initialize
 };

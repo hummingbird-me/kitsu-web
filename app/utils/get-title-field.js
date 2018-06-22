@@ -17,8 +17,8 @@ export function getComputedTitle(session, context) {
   }
   const preference = get(session, 'account.titleLanguagePreference').toLowerCase();
   const key = getTitleField(preference);
-  return key !== undefined ? get(context, `titles.${key}`) || get(context, 'canonicalTitle') :
-    get(context, 'canonicalTitle');
+  return key !== undefined ? get(context, `titles.${key}`) || get(context, 'canonicalTitle')
+    : get(context, 'canonicalTitle');
 }
 
 export default {

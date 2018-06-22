@@ -7,10 +7,13 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 import moment from 'moment';
 
 export default Route.extend(ApplicationRouteMixin, {
+  features: service(),
   head: service('head-data'),
+  headTagsService: service('head-tags'),
   intl: service(),
   metrics: service(),
   moment: service(),
+  raven: service(),
   cache: storageFor('last-used'),
   local: storageFor('local-cache'),
 
@@ -20,6 +23,7 @@ export default Route.extend(ApplicationRouteMixin, {
     if (get(session, 'isAuthenticated')) {
       return this._getCurrentUser();
     }
+    return get(this, 'features').fetchFlags();
   },
 
   title(tokens) {
@@ -119,6 +123,13 @@ export default Route.extend(ApplicationRouteMixin, {
         });
         set(controller, 'routeIsLoading', false);
       });
+    },
+
+    didTransition() {
+      scheduleOnce('afterRender', () => {
+        get(this, 'headTagsService').collectHeadTags();
+      });
+      return true;
     }
   },
 
@@ -143,6 +154,8 @@ export default Route.extend(ApplicationRouteMixin, {
         id: get(user, 'id'),
         user: get(user, 'slug')
       });
+
+      return get(this, 'features').fetchFlags();
     }).catch(() => {
       get(this, 'session').invalidate();
     });

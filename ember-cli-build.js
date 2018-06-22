@@ -63,7 +63,9 @@ module.exports = function(defaults) {
         'mstile-70x70.png',
         'mstile-150x150.png',
         'mstile-310x150.png',
-        'mstile-310x310.png'
+        'mstile-310x310.png',
+
+        'hulu-embed-frame.html'
       ]
     },
 
@@ -109,7 +111,6 @@ module.exports = function(defaults) {
   });
 
   // Work around for Ember 2.16.2 and Sourcemaps in production
-  app.import('node_modules/showdown/dist/showdown.js.map', { destDir: 'assets' });
   app.import('node_modules/zxcvbn/dist/zxcvbn.js.map', { destDir: '.' });
   app.import('node_modules/algoliasearch/dist/algoliasearchLite.min.js', {
     using: [

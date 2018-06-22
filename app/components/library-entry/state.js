@@ -3,7 +3,6 @@ import { get, set } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { bool, readOnly } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
-import isChangeset from 'ember-changeset/utils/is-changeset';
 
 export default Component.extend({
   classNames: ['library-state'],
@@ -11,6 +10,7 @@ export default Component.extend({
   showHeader: true,
   createOnly: false,
   reactionOpen: false,
+  showEditModal: false,
 
   onCreate() {},
   onRemove() {},
@@ -95,11 +95,7 @@ export default Component.extend({
         yield libraryEntry.save();
         get(owner, 'queryCache').invalidateType('library-entry');
       } catch (error) {
-        if (isChangeset(libraryEntry)) {
-          libraryEntry.rollback();
-        } else {
-          libraryEntry.rollbackAttributes();
-        }
+        libraryEntry.rollbackAttributes();
         throw error;
       }
     }

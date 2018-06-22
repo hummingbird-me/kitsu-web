@@ -1,6 +1,6 @@
 import Service, { inject as service } from '@ember/service';
 import { get } from '@ember/object';
-import { typeOf } from '@ember/utils';
+import { typeOf, isPresent } from '@ember/utils';
 import RSVP from 'rsvp';
 
 const CACHE_TIME_HOUR = 1;
@@ -36,7 +36,7 @@ export default Service.extend({
   push(type, query, records) {
     const cache = this.cache[type] || (this.cache[type] = {});
     const queryAsString = this._stringifyQuery(query);
-    if (get(records, 'length') > 0) {
+    if (records && (isPresent(records) || Object.keys(records).length > 0)) {
       cache[queryAsString] = {
         promise: RSVP.resolve(records),
         expiry: this._getExpiryDate()
@@ -49,8 +49,9 @@ export default Service.extend({
    *
    * @param {String} type
    * @param {Object} query
+   * @param {Boolean} checkExpiry
    */
-  get(type, query) {
+  get(type, query, checkExpiry = true) {
     const cache = this.cache[type];
     if (!cache) { return; }
     const queryAsString = this._stringifyQuery(query);
@@ -58,9 +59,8 @@ export default Service.extend({
     // Attempt to get the cached result
     const cachedResult = cache[queryAsString];
     if (cachedResult) {
-      if (this._isExpired(cachedResult)) {
+      if (checkExpiry && this._isExpired(cachedResult)) {
         delete cache[queryAsString];
-        return cachedResult.promise;
       }
       return cachedResult.promise;
     }

@@ -12,4 +12,3 @@ test('it returns "post" for comment activities', function(assert) {
   const result = feedType([[{ foreignId: 'Comment:42' }]]);
   assert.equal(result, 'post');
 });
-

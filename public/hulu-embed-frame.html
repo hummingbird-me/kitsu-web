@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      body { margin: 0; width: 100%; height: 100%; background-color: #000 }
+      html { width: 100%; height: 100%; background-color: #000 }
+      #embed-container iframe,
+      #embed-container object,
+      #embed-container embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="embed-container"></div>
+    <script src="https://player.hulu.com/iframe/iframe_api"></script>
+    <script>
+      function handleMessage(data) {
+        switch (data.message) {
+          case 'initialize':
+            window.HuluPlayerInstance = new HuluPlayer.DP('embed-container', {
+              width: window.innerWidth,
+              height: window.innerHeight,
+              id: data.id,
+              partner: 'kitsu',
+            });
+            break;
+          default:
+            break;
+        }
+      }
+
+      window.initializeHulu = function(videoId) {
+        if (HuluPlayer && HuluPlayer.DP) {
+          handleMessage({ message: 'initialize', id: videoId });
+        } else {
+          var element = document.getElementById('hulu-playerapi-script');
+          element.onload = function() { handleMessage({ message: 'initialize', id: videoId }); }
+        }
+      }
+
+      document.addEventListener('message', function(event) {
+        var data = event.data;
+        handleMessage(JSON.parse(data));
+      });
+    </script>
+  </body>
+</html>

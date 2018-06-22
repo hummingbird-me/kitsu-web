@@ -7,6 +7,7 @@ import { task } from 'ember-concurrency';
 export default Component.extend({
   tagName: '',
   ajax: service(),
+  raven: service(),
   store: service(),
   stream: service('stream-realtime'),
   announcements: mapBy('activities', 'subject'),

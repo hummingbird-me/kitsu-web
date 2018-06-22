@@ -8,6 +8,7 @@ import errorMessages from 'client/utils/error-messages';
 
 export default Component.extend({
   notify: service(),
+  raven: service(),
   session: service(),
   store: service(),
 

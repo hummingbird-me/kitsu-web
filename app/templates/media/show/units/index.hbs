@@ -20,7 +20,7 @@
   </div>
 {{else if taskValue}}
   {{#infinite-pagination onPagination=(route-action "onPagination")}}
-    {{media/units/unit-grid units=taskValue media=media}}
+    {{media/units/unit-grid units=taskValue media=media class="no-margin row"}}
   {{/infinite-pagination}}
 {{else}}
   <div class="text-xs-center w-100 m-t-1 m-b-1">

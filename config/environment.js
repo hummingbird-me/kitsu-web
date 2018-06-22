@@ -26,7 +26,7 @@ module.exports = function(environment) {
       providers: {
         'facebook-connect': {
           appId: '325314560922421',
-          version: 'v2.8',
+          version: 'v2.9',
           scope: 'public_profile,email,user_friends'
         }
       }
@@ -64,13 +64,17 @@ module.exports = function(environment) {
       {
         name: 'FacebookPixel',
         environments: ['production'],
-        config: { id: '237149646711154' }
+        config: { id: '1372973436170230' }
+      },
+      {
+        name: 'TwitterPixel',
+        environments: ['production'],
+        config: { id: 'nz90m' }
       }
     ],
 
     sentry: {
       dsn: 'https://1c436e52d5a54f4a94339278c8bdbe77@sentry.io/151419',
-      cdn: 'https://cdn.ravenjs.com/3.15.0/raven.min.js',
       development: environment !== 'production',
       debug: environment !== 'production',
       ravenOptions: {

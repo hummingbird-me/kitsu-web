@@ -8,8 +8,9 @@ import RSVP from 'rsvp';
 export default Component.extend({
   classNames: ['media-sidebar'],
   isFavorite: false,
-  store: service(),
   queryCache: service(),
+  raven: service(),
+  store: service(),
 
   didReceiveAttrs() {
     this._super(...arguments);

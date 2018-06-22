@@ -54,6 +54,8 @@ titles:
     bugs: "Bugs"
     feature-requests: "Feature Requests"
     database-requests: "Database Requests"
+    mobile-bugs: "Mobile Bugs"
+    mobile-features: "Mobile Features"
   admin:
     index: "Admin"
     reports: "Reports"
@@ -330,10 +332,10 @@ media:
         other: "Other"
   hide-posts:
     text: "Hide Posts about {media}"
-    info: "Posts won't appear in your {type} Feed"
+    info: "Posts won't appear in your Following or {type} Feed"
   show-posts:
     text: "Show Posts about {media}"
-    info: "Posts will appear in your {type} Feed"
+    info: "Posts will appear in your Following or {type} Feed"
 # page: users
 users:
   navigation:
@@ -664,6 +666,7 @@ settings:
       follows: "Someone <strong>follows</strong> me"
       posts: "Someone <strong>posts</strong> on my profile"
       reaction_votes: "Someone <strong>upvotes</strong> my media reaction"
+      airing: "New episode is released"
     loading: "Loading settings..."
     update: "Update Settings"
 # page: feedback
@@ -671,6 +674,8 @@ feedback:
   bugs: "Bugs"
   features: "Feature Requests"
   database: "Database Requests"
+  mobile-bugs: "Mobile Bugs"
+  mobile-features: "Mobile Features"
 # page: groups
 groups:
   index:
@@ -1025,6 +1030,7 @@ feeds:
     all: "All Activity"
     media: "Media Activity"
     user: "User Activity"
+    following: "Followed Activity"
   placeholder: "{type, select,
     user_aggr {Post to {subject}}
     group_aggr {Post to {subject}}
@@ -1041,6 +1047,8 @@ feeds:
       manga {read chapter {num}}
       other {}}"
   post:
+    meta:
+      media: "Because you recently watched {media}"
     spoilers: "{type, select,
       anime {Ep. {num}}
       manga {Ch. {num}}
@@ -1136,6 +1144,16 @@ library-entry:
     meh: "Meh"
     good: "Good"
     great: "Great"
+# component: application/user-notifications
+user-notifications:
+  # Episode 113 of One Piece! aired!
+  aired: "{type, select,
+    chapter {Chapter}
+    episode {Episode}
+    other {}} {number} of {media} {type, select,
+    chapter {Released}
+    episode {Aired}
+    other {}}!"
 # ember-power-select
 selects:
   loading: "Loading..."

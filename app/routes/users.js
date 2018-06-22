@@ -25,6 +25,11 @@ export default Route.extend(DataErrorMixin, CoverPageMixin, {
     set(this, 'headTags', tags);
   },
 
+  setupController(controller) {
+    this._super(...arguments);
+    get(controller, 'fetchFollowTask').perform();
+  },
+
   resetController(controller) {
     this._super(...arguments);
     set(controller, 'isEditing', false);

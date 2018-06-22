@@ -13,15 +13,17 @@ import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Component.extend(Pagination, {
   readOnly: false,
-  filterOptions: ['all', 'media', 'user'],
+  showFollowingFilter: false,
   allFeedItems: concat('feed', 'paginatedRecords'),
   ajax: service(),
+  features: service(),
   headData: service(),
   headTags: service(),
   notify: service(),
   store: service(),
   queryCache: service(),
   metrics: service(),
+  raven: service(),
   streamRealtime: service(),
   lastUsed: storageFor('last-used'),
 
@@ -128,10 +130,18 @@ export default Component.extend(Pagination, {
   didReceiveAttrs() {
     this._super(...arguments);
     get(this, 'headTags').collectHeadTags();
+    set(this, 'filterOptions', ['all', 'media', 'user']);
+    if (get(this, 'features').hasFeature('feed_following_filter') && get(this, 'showFollowingFilter')) {
+      this.filterOptions.push('following');
+    }
+
     if (get(this, 'kitsuGroup')) {
       set(this, 'filter', 'all');
     } else {
       set(this, 'filter', get(this, 'lastUsed.feedFilter') || get(this, 'streamFilter') || 'all');
+      if (get(this, 'filter') === 'following' && !get(this, 'showFollowingFilter')) {
+        set(this, 'filter', 'all');
+      }
     }
 
     // cancel any previous subscriptions
@@ -207,9 +217,10 @@ export default Component.extend(Pagination, {
   _setupSubscription(data) {
     if (isEmpty(data)) { return; }
     // realtime
-    const group = get(this, 'streamType');
-    const id = get(this, 'streamId');
-    const token = get(data, 'meta.readonlyToken');
+    const meta = get(data, 'meta');
+    const group = get(meta, 'feed.group');
+    const id = get(meta, 'feed.id');
+    const token = get(meta, 'readonlyToken');
     this.subscription = get(this, 'streamRealtime').subscribe(group, id, token, object => (
       this._handleRealtime(object)
     ));
@@ -272,7 +283,8 @@ export default Component.extend(Pagination, {
     }
   },
 
-  onPagination(records) {
+  onPagination(_records) {
+    const records = _records.toArray();
     const duplicates = records.filter(record => (
       get(this, 'allFeedItems').findBy('group', get(record, 'group')) !== undefined
     ));
