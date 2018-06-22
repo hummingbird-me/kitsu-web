@@ -7,5 +7,5 @@ export default Base.extend({
   uploadOrder: attr('number'),
 
   user: belongsTo('user', { inverse: 'uploads' }),
-  owner: belongsTo('upload-owner', { polymorphic: true })
+  owner: belongsTo('-upload-owner', { inverse: 'uploads' })
 });

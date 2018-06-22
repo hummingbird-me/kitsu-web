@@ -1,4 +1,4 @@
-import UploadOwner from 'client/models/upload-owner';
+import UploadOwner from 'client/models/-upload-owner';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
 

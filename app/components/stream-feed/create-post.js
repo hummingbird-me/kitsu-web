@@ -94,10 +94,11 @@ export default Component.extend({
   }).restartable(),
 
   uploadImagesTask: task(function* (file) {
-    const headers = { accept: 'application/vnd.api+json' };
-    get(this, 'session').authorize('authorizer:application', (headerName, headerValue) => {
-      headers[headerName] = headerValue;
-    });
+    const { access_token: accessToken } = get(this, 'session.data.authenticated');
+    const headers = {
+      accept: 'application/vnd.api+json',
+      authorization: `Bearer ${accessToken}`
+    };
     try {
       const { body } = yield file.upload(`${config.kitsu.APIHost}/api/edge/uploads/_bulk`, {
         fileKey: 'files[]',
@@ -236,6 +237,7 @@ export default Component.extend({
     },
 
     removeUpload(upload) {
+      upload.destroyRecord();
       get(this, 'uploads').removeObject(upload);
     }
   }

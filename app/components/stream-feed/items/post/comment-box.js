@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { isEmpty } from '@ember/utils';
 import { get, set } from '@ember/object';
-import service from '@ember/service';
+import { inject as service } from '@ember/service';
 import { notEmpty } from '@ember/object/computed';
 import { A } from '@ember/array';
 import { task } from 'ember-concurrency';
@@ -21,10 +21,11 @@ export default Component.extend({
   raven: service(),
 
   uploadImageTask: task(function* (file) {
-    const headers = { accept: 'application/vnd.api+json' };
-    get(this, 'session').authorize('authorizer:application', (headerName, headerValue) => {
-      headers[headerName] = headerValue;
-    });
+    const { access_token: accessToken } = get(this, 'session.data.authenticated');
+    const headers = {
+      accept: 'application/vnd.api+json',
+      authorization: `Bearer ${accessToken}`
+    };
     try {
       const { body } = yield file.upload(`${config.kitsu.APIHost}/api/edge/uploads/_bulk`, {
         fileKey: 'files[]',
