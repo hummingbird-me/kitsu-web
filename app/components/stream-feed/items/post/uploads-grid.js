@@ -1,7 +1,5 @@
-import Component from 'ember-component';
-import get, { getProperties } from 'ember-metal/get';
-import set, { setProperties } from 'ember-metal/set';
-import computed from 'ember-computed';
+import Component from '@ember/component';
+import { get, set, getProperties, setProperties, computed } from '@ember/object';
 import { all, task } from 'ember-concurrency';
 import request from 'ember-ajax/request';
 import { imgixUrl } from 'client/helpers/imgix-url';
@@ -97,12 +95,18 @@ const thumbSize = (length, orientation, index) => {
 export default Component.extend({
   classNames: ['stream-content-post-uploads-container'],
   classNameBindings: ['gridStyle'],
-  uploads: [],
-  galleryItems: [],
 
   gridStyle: computed('gridLength', 'gridOrientation', function() {
     return `photo-grid-${get(this, 'gridLength')} ${get(this, 'gridOrientation')}`;
   }).readOnly(),
+
+  init() {
+    this._super(...arguments);
+    setProperties(this, {
+      uploads: [],
+      galleryItems: [],
+    });
+  },
 
   didReceiveAttrs() {
     this._super(...arguments);

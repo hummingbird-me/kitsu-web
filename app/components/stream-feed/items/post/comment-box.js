@@ -1,10 +1,9 @@
-import Component from 'ember-component';
-import { isEmpty } from 'ember-utils';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import service from 'ember-service/inject';
-import { notEmpty } from 'ember-computed';
-import { A } from 'ember-array/utils';
+import Component from '@ember/component';
+import { isEmpty } from '@ember/utils';
+import { get, set } from '@ember/object';
+import service from '@ember/service';
+import { notEmpty } from '@ember/object/computed';
+import { A } from '@ember/array';
 import { task } from 'ember-concurrency';
 import { invoke } from 'ember-invoke-action';
 import File from 'ember-file-upload/file';
@@ -19,6 +18,7 @@ export default Component.extend({
   notify: service(),
   store: service(),
   fileQueue: service(),
+  raven: service(),
 
   uploadImageTask: task(function* (file) {
     const headers = { accept: 'application/vnd.api+json' };
@@ -38,6 +38,7 @@ export default Component.extend({
       const queue = get(this, 'fileQueue').find(`comment-uploads-${get(this, 'elementId')}`);
       get(queue, 'files').forEach(file => set(file, 'queue', null));
       set(queue, 'files', A());
+      get(this, 'raven').captureException(error);
     }
   }).drop(),
 
@@ -76,6 +77,6 @@ export default Component.extend({
 
     removeUpload() {
       set(this, 'upload', undefined);
-    },
+    }
   }
 });

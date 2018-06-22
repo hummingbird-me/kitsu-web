@@ -17,7 +17,6 @@ import { CanMixin } from 'ember-can';
 export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
   classNameBindings: ['comment.isNew:new-comment'],
   upload: undefined,
-  galleryItems: [],
   isEditing: false,
   isReplying: false,
   isTopLevel: false,
@@ -97,6 +96,7 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
   init() {
     this._super(...arguments);
     set(this, 'replies', []);
+    set(this, 'galleryItems', []);
     if (get(this, 'isTopLevel') === true && get(this, 'comment.repliesCount') > 0) {
       get(this, 'getReplies').perform().then((replies) => {
         const content = replies.toArray().reverse();

@@ -21,7 +21,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
   isFollowingPost: false,
   isOverflowed: false,
   isExpanded: false,
-  uploads: [],
 
   embedly: service(),
   notify: service(),
@@ -90,6 +89,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
 
   init() {
     this._super(...arguments);
+    this.set('uploads', []);
     if (!get(this, 'isExpanded')) {
       get(this, 'embedly').setupListener();
       get(this, 'embedly').addSubscription(guidFor(this), () => {

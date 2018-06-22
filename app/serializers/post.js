@@ -8,8 +8,6 @@ export default ApplicationSerializer.extend({
     topLevelCommentsCount: { serialize: false },
     createdAt: { serialize: false },
     editedAt: { serialize: false },
-    updatedAt: { serialize: false },
-
-    uploads: { serialize: true }
+    updatedAt: { serialize: false }
   }
 });

@@ -24,12 +24,12 @@ export default Component.extend({
   spoiler: false,
   shouldUnit: false,
   maxLength: 9000,
-  uploads: [],
   _usableMedia: null,
   store: service(),
   queryCache: service(),
   fileQueue: service(),
   notify: service(),
+  raven: service(),
 
   canPost: or('contentPresent', 'uploadsReady'),
   uploadsReady: and('uploadsPresent', 'queueFinished'),
@@ -42,7 +42,7 @@ export default Component.extend({
   }).readOnly(),
 
   createPost: task(function* () {
-    const options = getProperties(this, 'nsfw', 'spoiler', 'uploads');
+    const options = Object.assign({}, getProperties(this, 'nsfw', 'spoiler', 'uploads'));
     if (this._usableMedia !== null) {
       options.media = this._usableMedia;
     }
@@ -113,6 +113,7 @@ export default Component.extend({
       const queue = get(this, 'fileQueue').find('uploads');
       get(queue, 'files').forEach(file => set(file, 'queue', null));
       set(queue, 'files', A());
+      get(this, 'raven').captureException(error);
     }
   }).maxConcurrency(3).enqueue(),
 
@@ -130,6 +131,11 @@ export default Component.extend({
         set(this, 'isExpanded', false);
       }
     }
+  },
+
+  init() {
+    this._super(...arguments);
+    this.set('uploads', []);
   },
 
   didReceiveAttrs() {
@@ -231,6 +237,6 @@ export default Component.extend({
 
     removeUpload(upload) {
       get(this, 'uploads').removeObject(upload);
-    },
+    }
   }
 });
