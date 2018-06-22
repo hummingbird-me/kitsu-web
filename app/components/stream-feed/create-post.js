@@ -37,8 +37,8 @@ export default Component.extend({
   queueFinished: empty('fileQueue.files'),
 
   contentPresent: computed('content', function() {
-    return isPresent(get(this, 'content')) &&
-      get(this, 'content.length') <= get(this, 'maxLength');
+    return isPresent(get(this, 'content'))
+      && get(this, 'content.length') <= get(this, 'maxLength');
   }).readOnly(),
 
   createPost: task(function* () {

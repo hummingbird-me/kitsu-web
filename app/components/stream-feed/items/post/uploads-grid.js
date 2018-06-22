@@ -26,7 +26,7 @@ const avgOrientation = (uploads, length) => {
       o = landscapeFreq > portraitFreq ? 1 : 2;
       break;
     }
-    case 4: o = os[0]; break;
+    case 4: [o] = os; break;
     default:
   }
   let avgOrientation;
