@@ -36,7 +36,7 @@
           {{#sortable-group direction="x" tagName="ul" class="uploads-list" onChange=(action "reorderUploads") as |group|}}
             {{#each uploads as |upload|}}
               {{#sortable-item model=upload group=group tagName="li" class="uploads-item"}}
-                {{lazy-image src=(image upload.content "original")}}
+                <img src={{upload.content.original}} />
                 <div class="uploads-number">{{add upload.uploadOrder 1}}</div>
                 <a href="#" {{action "removeUpload" upload}}>{{svg-jar "cancel"}}</a>
               {{/sortable-item}}

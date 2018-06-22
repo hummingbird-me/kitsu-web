@@ -57,16 +57,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     return this.can('edit post', get(this, 'post'));
   }).readOnly(),
 
-  getUploadsTask: task(function* () {
-    return yield get(this, 'store').query('upload', {
-      filter: {
-        ownerId: get(this, 'post.id'),
-        ownerType: 'Post'
-      },
-      sort: 'uploadOrder'
-    });
-  }).drop(),
-
   _streamAnalytics(label, foreignId) {
     const data = {
       label,
@@ -81,7 +71,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
 
   init() {
     this._super(...arguments);
-    this.set('uploads', []);
     if (!get(this, 'isExpanded')) {
       get(this, 'embedly').setupListener();
       get(this, 'embedly').addSubscription(guidFor(this), () => {
@@ -110,13 +99,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
       set(this, 'isHidden', hideNsfw);
     } else {
       set(this, 'isHidden', hideNsfw || hideSpoilers);
-    }
-
-    // uploads
-    if (isEmpty(get(this, 'uploads'))) {
-      get(this, 'getUploadsTask').perform().then((uploads) => {
-        set(this, 'uploads', uploads.toArray());
-      });
     }
 
     // groups

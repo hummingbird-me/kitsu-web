@@ -24,7 +24,7 @@
 
   {{#if upload}}
     <div class="comment-box-upload">
-      {{lazy-image src=(image upload.content "original")}}
+      <img src={{upload.content.original}} />
       <a href="#" {{action "removeUpload" upload}}>{{svg-jar "cancel"}}</a>
     </div>
   {{/if}}

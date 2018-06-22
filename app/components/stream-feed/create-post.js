@@ -136,7 +136,11 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.set('uploads', []);
+    let uploads = [];
+    if (this.get('post.uploads') && this.get('post.uploads.length') > 0) {
+      this.get('post.uploads').forEach(upload => uploads.push(upload));
+    }
+    this.set('uploads', uploads);
   },
 
   didReceiveAttrs() {

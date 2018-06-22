@@ -103,7 +103,7 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     setProperties(this, {
-      uploads: [],
+      uploads: this.uploads || [],
       galleryItems: [],
     });
   },
@@ -138,5 +138,5 @@ export default Component.extend({
         src, w: data.PixelWidth, h: data.PixelHeight, type: data['Content-Type']
       }));
     }));
-  }).drop(),
+  }).restartable(),
 });

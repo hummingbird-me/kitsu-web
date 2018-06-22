@@ -139,8 +139,8 @@
           {{/if}}
         {{/if}}
 
-        {{#if uploads}}
-          {{stream-feed/items/post/uploads-grid uploads=uploads}}
+        {{#if post.uploads}}
+          {{stream-feed/items/post/uploads-grid uploads=post.uploads}}
         {{/if}}
       {{/if}}
 
@@ -280,7 +280,6 @@
             {{#if editModalOpened}}
               {{to-elsewhere named="modal" send=(component "stream-feed/edit-post"
                 post=post
-                uploads=uploads
                 unitNumber=post.spoiledUnit.number
                 onClose=(toggle-action "editModalOpened" this)
               )}}
