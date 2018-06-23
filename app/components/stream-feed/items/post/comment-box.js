@@ -5,7 +5,6 @@ import { inject as service } from '@ember/service';
 import { notEmpty } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 import { invoke } from 'ember-invoke-action';
-import File from 'ember-file-upload/file';
 import config from 'client/config/environment';
 import errorMessages from 'client/utils/error-messages';
 import isFileValid from 'client/utils/is-file-valid';
@@ -49,7 +48,7 @@ export default Component.extend({
       const queue = get(this, 'fileQueue').find(`comment-uploads-${get(this, 'elementId')}`);
       const files = get(queue, 'files');
       const failedFiles = files.filter(file => ['failed', 'timed_out'].indexOf(file.state) !== -1);
-      failedFiles.forEach(file => {
+      failedFiles.forEach((file) => {
         files.removeObject(file);
         set(file, 'queue', null);
       });
@@ -70,7 +69,6 @@ export default Component.extend({
 
     paste(event) {
       const { items } = event.clipboardData;
-      const images = [];
       let image;
       let i = 0;
       while (!image && i < items.length) {

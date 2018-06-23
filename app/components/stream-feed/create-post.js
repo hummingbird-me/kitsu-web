@@ -5,7 +5,6 @@ import { isEmpty, isPresent } from '@ember/utils';
 import { empty, notEmpty, and, or } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
-import File from 'ember-file-upload/file';
 import jQuery from 'jquery';
 import RSVP from 'rsvp';
 import config from 'client/config/environment';
