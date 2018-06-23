@@ -25,28 +25,6 @@ function canny() {
 }
 
 /**
- * Inject Embedly's script into the `head` on initialzation.
- */
-function embedly() {
-  // setup defaults for embedly
-  window.embedly = window.embedly || function() {
-    (window.embedly.q = window.embedly.q || []).push(arguments);
-  };
-  window.embedly('defaults', {
-    integrations: ['google'],
-    cards: {
-      key: config.embedly.apiKey,
-      recommend: '0',
-      controls: '0',
-      chrome: '0',
-      align: 'left',
-      width: '100%'
-    }
-  });
-  injectScript('https://cdn.embedly.com/widgets/platform.js').catch(() => {});
-}
-
-/**
  * Inject OneSignal's script into the `head` on initialzation.
  */
 function onesignal() {
@@ -84,7 +62,6 @@ export function initialize() {
   // Inject scripts
   adwords();
   canny();
-  embedly();
   onesignal();
 }
 

@@ -21,7 +21,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
   isOverflowed: false,
   isExpanded: false,
 
-  embedly: service(),
   notify: service(),
   router: service(),
   store: service(),
@@ -66,16 +65,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
       data.feed_id = get(this, 'feedId');
     }
     get(this, 'metrics').invoke('trackEngagement', 'Stream', data);
-  },
-
-  init() {
-    this._super(...arguments);
-    if (!get(this, 'isExpanded')) {
-      get(this, 'embedly').setupListener();
-      get(this, 'embedly').addSubscription(guidFor(this), () => {
-        this._overflow();
-      });
-    }
   },
 
   didReceiveAttrs() {
@@ -131,11 +120,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
     if (!get(this, 'isHidden')) {
       this._overflow();
     }
-  },
-
-  willDestroyElement() {
-    this._super(...arguments);
-    get(this, 'embedly').removeSubscription(guidFor(this));
   },
 
   _hideLongBody() {
