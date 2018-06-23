@@ -35,11 +35,16 @@ export default Component.extend({
       store.pushPayload(body);
       set(this, 'upload', store.peekRecord('upload', body.data[0].id));
     } catch (error) {
-      get(this, 'notify').error(errorMessages(error));
-      const queue = get(this, 'fileQueue').find(`comment-uploads-${get(this, 'elementId')}`);
-      get(queue, 'files').forEach(file => set(file, 'queue', null));
-      set(queue, 'files', A());
       get(this, 'raven').captureException(error);
+      get(this, 'notify').error(errorMessages(error));
+
+      const queue = get(this, 'fileQueue').find(`comment-uploads-${get(this, 'elementId')}`);
+      const files = get(queue, 'files');
+      const failedFiles = files.filter(file => ['failed', 'timed_out'].indexOf(file.state) !== -1);
+      failedFiles.forEach(file => {
+        files.removeObject(file);
+        set(file, 'queue', null);
+      });
     }
   }).drop(),
 

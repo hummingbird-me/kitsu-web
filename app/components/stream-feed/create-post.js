@@ -110,11 +110,16 @@ export default Component.extend({
       uploads.addObjects(body.data.map(upload => store.peekRecord('upload', upload.id)));
       this._orderUploads(uploads);
     } catch (error) {
-      get(this, 'notify').error(errorMessages(error));
-      const queue = get(this, 'fileQueue').find('uploads');
-      get(queue, 'files').forEach(file => set(file, 'queue', null));
-      set(queue, 'files', A());
       get(this, 'raven').captureException(error);
+      get(this, 'notify').error(errorMessages(error));
+
+      const queue = get(this, 'fileQueue').find('uploads');
+      const files = get(queue, 'files');
+      const failedFiles = files.filter(file => ['failed', 'timed_out'].indexOf(file.state) !== -1);
+      failedFiles.forEach(file => {
+        files.removeObject(file);
+        set(file, 'queue', null);
+      });
     }
   }).maxConcurrency(3).enqueue(),
 
