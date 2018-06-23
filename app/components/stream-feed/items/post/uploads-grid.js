@@ -131,7 +131,7 @@ export default Component.extend({
 
   getGalleryItemsTask: task(function* () {
     const uploads = get(this, 'uploads');
-    return yield all(uploads.map((upload) => {
+    return yield all(uploads.sortBy('uploadOrder').map((upload) => {
       const src = get(upload, 'content.original');
       const jsonUrl = imgixUrl([src, { fm: 'json' }]);
       return request(jsonUrl).then(data => ({

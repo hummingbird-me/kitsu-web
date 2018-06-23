@@ -136,7 +136,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    let uploads = [];
+    const uploads = [];
     if (this.get('post.uploads') && this.get('post.uploads.length') > 0) {
       this.get('post.uploads').forEach(upload => uploads.push(upload));
     }

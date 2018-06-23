@@ -6,7 +6,6 @@ import { typeOf, isEmpty } from '@ember/utils';
 import { capitalize } from '@ember/string';
 import { scheduleOnce } from '@ember/runloop';
 import { invoke, invokeAction } from 'ember-invoke-action';
-import { task } from 'ember-concurrency';
 import { CanMixin } from 'ember-can';
 import getter from 'client/utils/getter';
 import ClipboardMixin from 'client/mixins/clipboard';
