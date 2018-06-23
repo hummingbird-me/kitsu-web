@@ -100,7 +100,7 @@ export default Component.extend({
       authorization: `Bearer ${accessToken}`
     };
     try {
-      if (!isFileValid(file, get(this, 'accept'))) {
+      if (!isFileValid(get(file, 'blob'), get(this, 'accept'))) {
         const queue = get(this, 'fileQueue').find('uploads');
         const files = get(queue, 'files');
         files.removeObject(file);
@@ -124,7 +124,7 @@ export default Component.extend({
       const queue = get(this, 'fileQueue').find('uploads');
       const files = get(queue, 'files');
       const failedFiles = files.filter(file => ['failed', 'timed_out'].indexOf(file.state) !== -1);
-      failedFiles.forEach(file => {
+      failedFiles.forEach((file) => {
         files.removeObject(file);
         set(file, 'queue', null);
       });
@@ -232,20 +232,17 @@ export default Component.extend({
 
     paste(event) {
       const { items } = event.clipboardData;
-      const accept = get(this, 'accept');
       const images = [];
       for (let i = 0; i < items.length; i += 1) {
-        if (accept.includes(items[i].type)) {
+        const file = items[i].getAsFile();
+        if (file && isFileValid(file, get(this, 'accept'))) {
           event.preventDefault();
-          images.push(items[i].getAsFile());
+          images.push(file);
         }
       }
-      if (images) {
-        const reader = new FileReader();
-        reader.addEventListener('load', () => {
-          get(this, 'uploadImagesTask').perform(File.fromDataURL(reader.result));
-        });
-        images.forEach(image => reader.readAsDataURL(image));
+      if (images && images.length > 0) {
+        const queue = get(this, 'fileQueue').find('uploads');
+        queue._addFiles(images);
       }
     },
 

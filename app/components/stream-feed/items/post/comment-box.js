@@ -27,7 +27,7 @@ export default Component.extend({
       authorization: `Bearer ${accessToken}`
     };
     try {
-      if (!isFileValid(file, get(this, 'accept'))) {
+      if (!isFileValid(get(file, 'blob'), get(this, 'accept'))) {
         const queue = get(this, 'fileQueue').find(`comment-uploads-${get(this, 'elementId')}`);
         const files = get(queue, 'files');
         files.removeObject(file);
@@ -70,22 +70,20 @@ export default Component.extend({
 
     paste(event) {
       const { items } = event.clipboardData;
-      const accept = get(this, 'accept');
+      const images = [];
       let image;
       let i = 0;
       while (!image && i < items.length) {
-        if (accept.includes(items[i].type)) {
+        const file = items[i].getAsFile();
+        if (file && isFileValid(file, get(this, 'accept'))) {
           event.preventDefault();
-          image = items[i].getAsFile();
+          image = file;
         }
         i += 1;
       }
       if (image) {
-        const reader = new FileReader();
-        reader.addEventListener('load', () => {
-          get(this, 'uploadImageTask').perform(File.fromDataURL(reader.result));
-        });
-        reader.readAsDataURL(image);
+        const queue = get(this, 'fileQueue').find(`comment-uploads-${get(this, 'elementId')}`);
+        queue._addFiles([image]);
       }
     },
 
