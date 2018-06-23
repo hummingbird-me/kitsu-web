@@ -3,12 +3,12 @@ import { isEmpty } from '@ember/utils';
 import { get, set } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { notEmpty } from '@ember/object/computed';
-import { A } from '@ember/array';
 import { task } from 'ember-concurrency';
 import { invoke } from 'ember-invoke-action';
 import File from 'ember-file-upload/file';
 import config from 'client/config/environment';
 import errorMessages from 'client/utils/error-messages';
+import isFileValid from 'client/utils/is-file-valid';
 
 export default Component.extend({
   classNames: ['comment-box'],
@@ -27,6 +27,14 @@ export default Component.extend({
       authorization: `Bearer ${accessToken}`
     };
     try {
+      if (!isFileValid(file, get(this, 'accept'))) {
+        const queue = get(this, 'fileQueue').find(`comment-uploads-${get(this, 'elementId')}`);
+        const files = get(queue, 'files');
+        files.removeObject(file);
+        set(file, 'queue', null);
+        return;
+      }
+
       const { body } = yield file.upload(`${config.kitsu.APIHost}/api/edge/uploads/_bulk`, {
         fileKey: 'files[]',
         headers

@@ -3,7 +3,6 @@ import { inject as service } from '@ember/service';
 import { get, set, setProperties, getProperties, computed } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
 import { empty, notEmpty, and, or } from '@ember/object/computed';
-import { A } from '@ember/array';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import File from 'ember-file-upload/file';
@@ -11,6 +10,7 @@ import jQuery from 'jquery';
 import RSVP from 'rsvp';
 import config from 'client/config/environment';
 import errorMessages from 'client/utils/error-messages';
+import isFileValid from 'client/utils/is-file-valid';
 
 export default Component.extend({
   classNameBindings: ['isExpanded:is-expanded'],
@@ -100,6 +100,14 @@ export default Component.extend({
       authorization: `Bearer ${accessToken}`
     };
     try {
+      if (!isFileValid(file, get(this, 'accept'))) {
+        const queue = get(this, 'fileQueue').find('uploads');
+        const files = get(queue, 'files');
+        files.removeObject(file);
+        set(file, 'queue', null);
+        return;
+      }
+
       const { body } = yield file.upload(`${config.kitsu.APIHost}/api/edge/uploads/_bulk`, {
         fileKey: 'files[]',
         headers
