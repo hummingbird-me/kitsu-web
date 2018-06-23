@@ -37,8 +37,8 @@
 
     {{! comment upload}}
     {{#if galleryItems.firstObject}}
-      {{#photo-swipe bgOpacity=0.92 showAnimationDuration=0 hideAnimationDuration=0 history=false items=galleryItems as |photoswipe|}}
-        <a href="#" {{action photoswipe.actions.open (hash index=0 shareEl=false)}}>
+      {{#photo-swipe class="uploads-photo-swipe" bgOpacity=0.92 showAnimationDuration=0 hideAnimationDuration=0 history=false items=galleryItems as |photoswipe|}}
+        <a href="#" class="uploads-item" {{action photoswipe.actions.open (hash index=0 shareEl=false)}}>
           {{lazy-image src=galleryItems.firstObject.thumbSrc class="comment-upload"}}
           {{#if (eq galleryItems.firstObject.type "image/gif")}}
             <div class="uploads-overlay uploads-gif">GIF</div>
