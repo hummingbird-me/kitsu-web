@@ -5,6 +5,8 @@
     <div class="embed-video-info">{{embed.site.name}} - {{truncate embed.title 50}}</div>
     {{svg-jar "trailer"}}
   </a>
+{{else if (eq embed.kind "link")}}
+  {{! Do nothing... }}
 {{else}}
   <a href={{embed.url}} target="_blank" class="embed-article {{orientation}}" rel="nofollow noopener">
     {{lazy-image src=(or embed.image.url embed.image)}}
