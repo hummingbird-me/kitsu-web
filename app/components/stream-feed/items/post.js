@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { get, set, computed, observer } from '@ember/object';
-import { guidFor } from '@ember/object/internals';
 import { typeOf, isEmpty } from '@ember/utils';
 import { capitalize } from '@ember/string';
 import { scheduleOnce } from '@ember/runloop';

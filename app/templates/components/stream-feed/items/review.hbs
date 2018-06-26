@@ -53,7 +53,7 @@
               </div>
             {{else}}
               {{#if isExpanded}}
-                {{format-content review.contentFormatted embed=false}}
+                {{format-content review.contentFormatted}}
               {{else}}
                 {{text-clipper (format-content review.contentFormatted embed=false) length=480
                   expandText="Read More" expandHref=(href-to "reviews" review.id)
