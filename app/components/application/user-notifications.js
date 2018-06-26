@@ -100,6 +100,7 @@ export default Component.extend(Pagination, {
    */
   _createTempNotifications(groups) {
     const notifications = [];
+    if (!groups) { return notifications; }
     groups.forEach((group) => {
       const notification = get(this, 'store').createRecord('notification', {
         streamId: get(group, 'id'),

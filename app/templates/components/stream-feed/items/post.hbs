@@ -121,20 +121,26 @@
           {{/if}}
         {{/if}}
       {{else}}
-        <span class="stream-content-post {{if isExpanded "full-post"}}">
-          {{format-content post.contentFormatted}}
-        </span>
+        {{#if post.contentFormatted}}
+          <span class="stream-content-post {{if isExpanded "full-post"}}">
+            {{format-content post.contentFormatted}}
+          </span>
 
-        {{#if isOverflowed}}
-          <div class="text-xs-center view-more">
-            <a href="#" {{action (toggle "isExpanded" this)}}>
-              {{#if isExpanded}}
-                View Less
-              {{else}}
-                View More
-              {{/if}}
-            </a>
-          </div>
+          {{#if isOverflowed}}
+            <div class="text-xs-center view-more">
+              <a href="#" {{action (toggle "isExpanded" this)}}>
+                {{#if isExpanded}}
+                  View Less
+                {{else}}
+                  View More
+                {{/if}}
+              </a>
+            </div>
+          {{/if}}
+        {{/if}}
+
+        {{#if post.uploads}}
+          {{stream-feed/items/post/uploads-grid uploads=post.uploads}}
         {{/if}}
       {{/if}}
 

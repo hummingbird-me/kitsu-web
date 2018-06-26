@@ -1,8 +1,15 @@
 {{! Activity Page }}
 <div class="container no-padding">
   <div class="feed-container row">
+    {{! Feed Aside }}
+    <div class="feed-aside col-sm">
+      <div class="is-sticky">
+        {{dashboard/unread-groups class="sidebar-item"}}
+      </div>
+    </div>
+
     {{! Group Feed }}
-    <div class="feed-stream col-sm-12 col-md-8">
+    <div class="feed-stream">
       {{#stream-feed/list
         subject=group.name
         streamType="group_aggr"

@@ -31,29 +31,33 @@ export default Route.extend(DataErrorMixin, {
   },
 
   setHeadTags(model) {
-    const description = get(model, 'content').substring(0, 140);
-    const tags = [{
-      type: 'meta',
-      tagId: 'meta-description',
-      attrs: {
-        name: 'description',
-        content: description
-      }
-    }, {
-      type: 'meta',
-      tagId: 'meta-og-description',
-      attrs: {
-        name: 'og:description',
-        content: description
-      }
-    }, {
-      type: 'meta',
-      tagId: 'meta-og-image',
-      attrs: {
-        name: 'og:image',
-        content: get(model, 'user.avatar.medium')
-      }
-    }];
+    const tags = [];
+    const content = get(model, 'content');
+    if (content) {
+      const description = content.substring(0, 140);
+      tags.push({
+        type: 'meta',
+        tagId: 'meta-description',
+        attrs: {
+          name: 'description',
+          content: description
+        }
+      }, {
+        type: 'meta',
+        tagId: 'meta-og-description',
+        attrs: {
+          name: 'og:description',
+          content: description
+        }
+      }, {
+        type: 'meta',
+        tagId: 'meta-og-image',
+        attrs: {
+          name: 'og:image',
+          content: get(model, 'user.avatar.medium') || get(model, 'user.avatar')
+        }
+      });
+    }
 
     // If the post has likes, add extra data (Slack uses this for example)
     if (get(model, 'postLikesCount')) {

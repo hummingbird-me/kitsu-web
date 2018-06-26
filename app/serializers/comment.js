@@ -7,6 +7,7 @@ export default ApplicationSerializer.extend({
     repliesCount: { serialize: false },
     createdAt: { serialize: false },
     editedAt: { serialize: false },
-    updatedAt: { serialize: false }
+    updatedAt: { serialize: false },
+    uploads: { serialize: true }
   }
 });
