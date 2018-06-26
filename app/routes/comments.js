@@ -48,6 +48,13 @@ export default Route.extend(DataErrorMixin, {
         }
       }, {
         type: 'meta',
+        tagId: 'meta-og-type',
+        attrs: {
+          name: 'og:type',
+          content: 'article'
+        }
+      }, {
+        type: 'meta',
         tagId: 'meta-og-description',
         attrs: {
           name: 'og:description',
