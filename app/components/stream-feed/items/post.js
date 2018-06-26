@@ -3,7 +3,6 @@ import { inject as service } from '@ember/service';
 import { get, set, computed, observer } from '@ember/object';
 import { typeOf, isEmpty } from '@ember/utils';
 import { capitalize } from '@ember/string';
-import { scheduleOnce } from '@ember/runloop';
 import { invoke, invokeAction } from 'ember-invoke-action';
 import { CanMixin } from 'ember-can';
 import getter from 'client/utils/getter';
@@ -17,8 +16,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
   showNsfw: false,
   showSpoilers: false,
   isFollowingPost: false,
-  isOverflowed: false,
-  isExpanded: false,
 
   notify: service(),
   router: service(),
@@ -115,42 +112,11 @@ export default Component.extend(ClipboardMixin, CanMixin, {
         this._updateFollow();
       }
     }
-
-    if (!get(this, 'isHidden')) {
-      this._overflow();
-    }
-  },
-
-  _hideLongBody() {
-    if (get(this, 'isDestroyed')) { return; }
-    const body = this.$('.stream-content-post');
-    if (body && body[0] && body.height() < body[0].scrollHeight) {
-      set(this, 'isOverflowed', true);
-    } else {
-      set(this, 'isOverflowed', false);
-    }
-  },
-
-  _overflow() {
-    if (!get(this, 'isExpanded')) {
-      scheduleOnce('afterRender', () => {
-        if (get(this, 'isDestroyed')) { return; }
-        this._hideLongBody();
-        const image = this.$('img');
-        if (image && image.length > 0) {
-          this.$('img').one('load', () => { this._hideLongBody(); });
-        }
-      });
-    }
   },
 
   _updateHidden: observer('post.nsfw', 'post.spoiler', function() {
     const post = get(this, 'post');
     set(this, 'isHidden', get(post, 'nsfw') || get(post, 'spoiler'));
-  }),
-
-  _updateContent: observer('post.contentFormatted', function() {
-    this._overflow();
   }),
 
   _updateFollow() {
@@ -249,7 +215,6 @@ export default Component.extend(ClipboardMixin, CanMixin, {
 
     toggleHidden() {
       this.toggleProperty('isHidden');
-      this._overflow();
     },
 
     likeCreated() {
