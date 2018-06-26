@@ -79,7 +79,7 @@ export default Component.extend({
       const { shiftKey } = event;
       if (shiftKey === false) {
         event.preventDefault();
-        get(this, 'onSubmit').perform(content, this.get('embeds.firstObject'));
+        get(this, 'onSubmit').perform(content, this.get('embedUrl'));
         component.clear();
         invoke(this, 'removeUpload');
         this.set('embeds', []);
