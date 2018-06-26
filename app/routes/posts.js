@@ -9,7 +9,7 @@ export default Route.extend(DataErrorMixin, {
 
   model({ id }) {
     return get(this, 'store').findRecord('post', id, {
-      include: 'user,targetUser,targetGroup,media',
+      include: 'user,targetUser,targetGroup,media,uploads',
       reload: true
     });
   },

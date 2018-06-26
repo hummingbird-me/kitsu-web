@@ -1136,6 +1136,73 @@
   }
 }
 
+.stream-content-embed {
+  position: relative;
+
+  .embed-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+    .embed-video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0) 100%);
+    }
+    .embed-video-info {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      font-size: 20px;
+      color: white;
+    }
+    svg {
+      position: absolute;
+      top: calc(50% - 25px);
+      left: calc(50% - 34px);
+      width: 68px;
+      height: 50px;
+      fill-opacity: 0.9;
+    }
+    img {
+      width: 100%;
+    }
+  }
+  .embed-article {
+    &.landscape {
+      img {
+        width: 100%;
+      }
+    }
+    &.portrait {
+      display: flex;
+      .lazy-image, img {
+        max-width: 150px;
+        max-height: 150px;
+      }
+    }
+    .embed-info {
+      padding: 15px;
+      width: 100%;
+      background-color: darken($foreground-background-color, 5);
+      .embed-sitename {
+        color: $body-secondary-text-color;
+      }
+      .embed-title {
+        font-weight: 700;
+        color: $body-text-color;
+      }
+      .embed-desc {
+        color: $body-text-color;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
 .comment-actions {
   width: 100%;
   font-size: 12px;

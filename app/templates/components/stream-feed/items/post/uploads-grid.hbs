@@ -6,7 +6,7 @@
       {{#if (eq img.type "image/gif")}}
         <div class="uploads-overlay uploads-gif">GIF</div>
       {{else if (and (gt galleryItems.length 5) (eq index 4))}}
-        <div class="uploads-overlay uploads-more">+{{subtract galleryItems.length 4}}</div>
+        <div class="uploads-overlay uploads-more">+{{dec 4 galleryItems.length}}</div>
       {{/if}}
     </a>
   {{/each}}

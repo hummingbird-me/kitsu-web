@@ -37,7 +37,7 @@
             {{#each uploads as |upload|}}
               {{#sortable-item model=upload group=group tagName="li" class="uploads-item"}}
                 <img src={{upload.content.original}} />
-                <div class="uploads-number">{{add upload.uploadOrder 1}}</div>
+                <div class="uploads-number">{{inc upload.uploadOrder}}</div>
                 <a href="#" {{action "removeUpload" upload}}>{{svg-jar "cancel"}}</a>
               {{/sortable-item}}
             {{/each}}
