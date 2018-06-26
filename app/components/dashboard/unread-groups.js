@@ -4,10 +4,12 @@ import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
+  session: service(),
   store: service(),
 
   init() {
     this._super(...arguments);
+    if (!this.get('session.isAuthenticated')) { return; }
     get(this, 'getGroupsTask').perform();
   },
 
