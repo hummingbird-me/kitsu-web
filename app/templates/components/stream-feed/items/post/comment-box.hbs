@@ -29,7 +29,7 @@
       <img src={{upload.content.original}} />
       <a href="#" {{action "removeUpload" upload}}>{{svg-jar "cancel"}}</a>
     </div>
-  {{else if (gt embeds.length 0)}}
+  {{else if embedUrl}}
     <div class="embed-helper">
       <div class="embed-preview-action">
         {{t "feeds.embed.preview"}}

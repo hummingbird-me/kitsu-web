@@ -27,6 +27,7 @@ export default Component.extend({
   shouldUnit: false,
   maxLength: 9000,
   _usableMedia: null,
+  embedUrl: undefined,
 
   ajax: service(),
   store: service(),
@@ -42,20 +43,17 @@ export default Component.extend({
   hasMaxUploads: gte('uploads.length', FILE_UPLOAD_LIMIT),
 
   contentPresent: computed('content', function() {
-    return isPresent(get(this, 'content'))
-      && get(this, 'content.length') <= get(this, 'maxLength');
+    return (isPresent(get(this, 'content'))
+      && get(this, 'content.length') <= get(this, 'maxLength')) || isPresent(this.get('embedUrl'));
   }).readOnly(),
 
   createPost: task(function* () {
-    const options = Object.assign({}, getProperties(this, 'nsfw', 'spoiler', 'uploads'));
+    const options = Object.assign({}, getProperties(this, 'nsfw', 'spoiler', 'uploads', 'embedUrl'));
     if (this._usableMedia !== null) {
       options.media = this._usableMedia;
     }
     if (get(this, 'shouldUnit') === true && isEmpty(get(this, 'unitNumber')) === false) {
       options.unitNumber = get(this, 'unitNumber');
-    }
-    if (this.get('embeds.length') > 0) {
-      options.embedUrl = this.get('embeds.firstObject');
     }
     yield invokeAction(this, 'onCreate', get(this, 'content'), options);
     this._resetProperties();
@@ -147,6 +145,7 @@ export default Component.extend({
 
   previewEmbedTask: task(function* () {
     const url = this.get('embeds.firstObject');
+    if (!url) { return; }
     return yield this.get('ajax').request('/embeds', {
       method: 'POST',
       data: { url }
@@ -226,6 +225,7 @@ export default Component.extend({
       nsfw: false,
       uploads: [],
       embeds: [],
+      embedUrl: undefined
     });
     if (get(this, 'mediaReadOnly') === false) {
       set(this, '_usableMedia', null);
@@ -292,12 +292,9 @@ export default Component.extend({
         const length = embeds.get('length');
         embeds.addObjects(links);
 
-        // remove any links that exist in embeds but not the content
-        // could have deleted all text but didn't refresh page so component still
-        // considers them valid embeds.
-        const dead = embeds.reject(embed => links.includes(embed));
-        embeds.removeObjects(dead);
+        // only run the preview task when the embeds are empty
         if (length === 0) {
+          this.set('embedUrl', embeds.get('firstObject'));
           this.get('previewEmbedTask').perform();
         }
       } else {
@@ -308,11 +305,8 @@ export default Component.extend({
     removeEmbed() {
       const embeds = this.get('embeds');
       embeds.removeObject(embeds.get('firstObject'));
-      if (embeds.get('length') > 0) {
-        this.get('previewEmbedTask').perform();
-      } else {
-        invoke(this, 'processLinks');
-      }
+      this.set('embedUrl', embeds.get('firstObject'));
+      this.get('previewEmbedTask').perform();
     }
   }
 });

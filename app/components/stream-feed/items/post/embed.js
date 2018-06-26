@@ -17,6 +17,11 @@ export default Component.extend({
   }).readOnly(),
 
   orientation: computed('embed.image.{height,width}', function() {
+    const kind = this.get('embed.kind');
+    if (kind === 'image') {
+      return 'landscape';
+    }
+
     const image = this.get('embed.image');
     if (image) {
       const { width, height } = image;

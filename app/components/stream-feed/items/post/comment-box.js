@@ -15,6 +15,7 @@ export default Component.extend({
   classNames: ['comment-box'],
   content: null,
   upload: undefined,
+  embedUrl: undefined,
   accept: 'image/jpg, image/jpeg, image/png, image/gif',
   dropzoneDisabled: notEmpty('upload'),
 
@@ -65,6 +66,7 @@ export default Component.extend({
 
   previewEmbedTask: task(function* () {
     const url = this.get('embeds.firstObject');
+    if (!url) { return; }
     return yield this.get('ajax').request('/embeds', {
       method: 'POST',
       data: { url }
@@ -81,6 +83,7 @@ export default Component.extend({
         component.clear();
         invoke(this, 'removeUpload');
         this.set('embeds', []);
+        this.set('embedUrl', undefined);
       }
     },
 
@@ -119,12 +122,9 @@ export default Component.extend({
         const length = embeds.get('length');
         embeds.addObjects(links);
 
-        // remove any links that exist in embeds but not the content
-        // could have deleted all text but didn't refresh page so component still
-        // considers them valid embeds.
-        const dead = embeds.reject(embed => links.includes(embed));
-        embeds.removeObjects(dead);
+        // only run the preview task when the embeds are empty
         if (length === 0) {
+          this.set('embedUrl', embeds.get('firstObject'));
           this.get('previewEmbedTask').perform();
         }
       } else {
@@ -135,11 +135,8 @@ export default Component.extend({
     removeEmbed() {
       const embeds = this.get('embeds');
       embeds.removeObject(embeds.get('firstObject'));
-      if (embeds.get('length') > 0) {
-        this.get('previewEmbedTask').perform();
-      } else {
-        invoke(this, 'processLinks');
-      }
+      this.set('embedUrl', embeds.get('firstObject'));
+      this.get('previewEmbedTask').perform();
     }
   }
 });
