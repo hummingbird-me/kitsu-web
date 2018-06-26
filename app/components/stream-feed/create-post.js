@@ -4,7 +4,7 @@ import { get, set, setProperties, getProperties, computed } from '@ember/object'
 import { isEmpty, isPresent } from '@ember/utils';
 import { empty, notEmpty, and, or, gte } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
-import { invokeAction, invoke } from 'ember-invoke-action';
+import { invokeAction } from 'ember-invoke-action';
 import jQuery from 'jquery';
 import RSVP from 'rsvp';
 import config from 'client/config/environment';
