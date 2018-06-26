@@ -44,28 +44,30 @@
           {{/sortable-group}}
         {{/if}}
 
-        {{#if (or dropzone.active queue.files.length)}}
-          <div class="add-uploads">
-            {{#if dropzone.active}}
-              {{#if dropzone.valid}}
-                {{t "feeds.uploads.drop"}}
-              {{else}}
-                {{t "feeds.uploads.invalid"}}
+        {{#unless hasMaxUploads}}
+          {{#if (or dropzone.active queue.files.length)}}
+            <div class="add-uploads">
+              {{#if dropzone.active}}
+                {{#if dropzone.valid}}
+                  {{t "feeds.uploads.drop"}}
+                {{else}}
+                  {{t "feeds.uploads.invalid"}}
+                {{/if}}
+              {{else if queue.files.length}}
+                {{t "feeds.uploads.uploading" number=queue.files.length progress=queue.progress}}
               {{/if}}
-            {{else if queue.files.length}}
-              {{t "feeds.uploads.uploading" number=queue.files.length progress=queue.progress}}
-            {{/if}}
-          </div>
-        {{else}}
-          {{#file-upload name="uploads"
-            accept=accept
-            multiple=true
-            onfileadd=(action (perform uploadImagesTask))
-          }}
-            {{svg-jar "picture"}}
-            {{t "feeds.uploads.select"}}
-          {{/file-upload}}
-        {{/if}}
+            </div>
+          {{else}}
+            {{#file-upload name="uploads"
+              accept=accept
+              multiple=true
+              onfileadd=(action (perform uploadImagesTask))
+            }}
+              {{svg-jar "picture"}}
+              {{t "feeds.uploads.select"}}
+            {{/file-upload}}
+          {{/if}}
+        {{/unless}}
       </div>
     {{/file-dropzone}}
 

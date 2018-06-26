@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { get, set, setProperties, getProperties, computed } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
-import { empty, notEmpty, and, or } from '@ember/object/computed';
+import { empty, notEmpty, and, or, gte } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import jQuery from 'jquery';
@@ -10,6 +10,8 @@ import RSVP from 'rsvp';
 import config from 'client/config/environment';
 import errorMessages from 'client/utils/error-messages';
 import isFileValid from 'client/utils/is-file-valid';
+
+const FILE_UPLOAD_LIMIT = 20;
 
 export default Component.extend({
   classNameBindings: ['isExpanded:is-expanded'],
@@ -34,6 +36,7 @@ export default Component.extend({
   uploadsReady: and('uploadsPresent', 'queueFinished'),
   uploadsPresent: notEmpty('uploads'),
   queueFinished: empty('fileQueue.files'),
+  hasMaxUploads: gte('uploads.length', FILE_UPLOAD_LIMIT),
 
   contentPresent: computed('content', function() {
     return isPresent(get(this, 'content'))
@@ -99,11 +102,19 @@ export default Component.extend({
       authorization: `Bearer ${accessToken}`
     };
     try {
+      if (this.get('hasMaxUploads')) {
+        const queue = get(this, 'fileQueue').find('uploads');
+        const files = get(queue, 'files');
+        files.removeObject(file);
+        return;
+      }
+
+
+      // valid size & type?
       if (!isFileValid(get(file, 'blob'), get(this, 'accept'))) {
         const queue = get(this, 'fileQueue').find('uploads');
         const files = get(queue, 'files');
         files.removeObject(file);
-        set(file, 'queue', null);
         return;
       }
 
@@ -125,7 +136,6 @@ export default Component.extend({
       const failedFiles = files.filter(file => ['failed', 'timed_out'].indexOf(file.state) !== -1);
       failedFiles.forEach((file) => {
         files.removeObject(file);
-        set(file, 'queue', null);
       });
     }
   }).maxConcurrency(3).enqueue(),
