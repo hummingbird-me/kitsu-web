@@ -4,7 +4,7 @@ import { get, set, setProperties, getProperties, computed } from '@ember/object'
 import { isEmpty, isPresent } from '@ember/utils';
 import { empty, notEmpty, and, or, gte } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
-import { invokeAction } from 'ember-invoke-action';
+import { invokeAction, invoke } from 'ember-invoke-action';
 import jQuery from 'jquery';
 import RSVP from 'rsvp';
 import config from 'client/config/environment';
@@ -281,7 +281,10 @@ export default Component.extend({
 
     processLinks() {
       const content = this.get('content');
-      if (isEmpty(content)) { return; }
+      if (isEmpty(content)) {
+        this.set('embeds', []);
+        return;
+      }
 
       const links = content.match(LINK_REGEX);
       if (links && links.length > 0) {
@@ -297,13 +300,19 @@ export default Component.extend({
         if (length === 0) {
           this.get('previewEmbedTask').perform();
         }
+      } else {
+        this.set('embeds', []);
       }
     },
 
     removeEmbed() {
       const embeds = this.get('embeds');
       embeds.removeObject(embeds.get('firstObject'));
-      this.get('previewEmbedTask').perform();
+      if (embeds.get('length') > 0) {
+        this.get('previewEmbedTask').perform();
+      } else {
+        invoke(this, 'processLinks');
+      }
     }
   }
 });

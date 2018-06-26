@@ -108,7 +108,10 @@ export default Component.extend({
 
     processLinks() {
       const content = this.get('content');
-      if (isEmpty(content)) { return; }
+      if (isEmpty(content)) {
+        this.set('embeds', []);
+        return;
+      }
 
       const links = content.match(LINK_REGEX);
       if (links && links.length > 0) {
@@ -124,13 +127,19 @@ export default Component.extend({
         if (length === 0) {
           this.get('previewEmbedTask').perform();
         }
+      } else {
+        this.set('embeds', []);
       }
     },
 
     removeEmbed() {
       const embeds = this.get('embeds');
       embeds.removeObject(embeds.get('firstObject'));
-      this.get('previewEmbedTask').perform();
+      if (embeds.get('length') > 0) {
+        this.get('previewEmbedTask').perform();
+      } else {
+        invoke(this, 'processLinks');
+      }
     }
   }
 });

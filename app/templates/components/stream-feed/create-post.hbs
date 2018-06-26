@@ -74,11 +74,18 @@
     {{! embeds }}
     {{#if (gt embeds.length 0)}}
       <div class="embed-helper">
-        {{#if (and previewEmbedTask.isIdle previewEmbedTask.last.value)}}
-          {{stream-feed/items/post/embed embed=previewEmbedTask.last.value}}
+        <div class="embed-preview-action">
+          {{t "feeds.embed.preview"}}
           <span class="hint--top hint--bounce hint--rounded" aria-label="Remove" {{action "removeEmbed"}}>
             {{svg-jar "close"}}
           </span>
+        </div>
+        {{#if previewEmbedTask.isRunning}}
+          <div class="w-100 text-xs-center">
+            {{loading-spinner size="small"}}
+          </div>
+        {{else}}
+          {{stream-feed/items/post/embed embed=previewEmbedTask.last.value}}
         {{/if}}
       </div>
     {{/if}}
