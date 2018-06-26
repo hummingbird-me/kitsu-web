@@ -45,7 +45,7 @@
           {{/if}}
         </a>
       {{/photo-swipe}}
-    {{else if comment.embed.kind}}
+    {{else if (not (is-object-empty comment.embed))}}
       {{stream-feed/items/post/embed embed=comment.embed embedUrl=comment.embedUrl}}
     {{/if}}
 

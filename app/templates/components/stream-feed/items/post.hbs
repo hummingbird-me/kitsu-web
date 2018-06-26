@@ -142,7 +142,7 @@
         {{! uploads }}
         {{#if post.uploads}}
           {{stream-feed/items/post/uploads-grid uploads=post.uploads}}
-        {{else if post.embed.kind}}
+        {{else if (not (is-object-empty post.embed))}}
           {{stream-feed/items/post/embed embed=post.embed embedUrl=post.embedUrl}}
         {{/if}}
       {{/if}}
