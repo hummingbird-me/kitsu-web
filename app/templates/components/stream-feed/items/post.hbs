@@ -139,14 +139,11 @@
           {{/if}}
         {{/if}}
 
-        {{! embeds }}
-        {{#if post.embed.kind}}
-          {{stream-feed/items/post/embed embed=post.embed embedUrl=post.embedUrl}}
-        {{/if}}
-
         {{! uploads }}
         {{#if post.uploads}}
           {{stream-feed/items/post/uploads-grid uploads=post.uploads}}
+        {{else if post.embed.kind}}
+          {{stream-feed/items/post/embed embed=post.embed embedUrl=post.embedUrl}}
         {{/if}}
       {{/if}}
 

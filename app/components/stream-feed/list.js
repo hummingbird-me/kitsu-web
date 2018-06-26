@@ -10,6 +10,7 @@ import errorMessages from 'client/utils/error-messages';
 import { unshiftObjects } from 'client/utils/array-utils';
 import { concat } from 'client/utils/computed-macros';
 import Pagination from 'kitsu-shared/mixins/pagination';
+import { scheduleOnce } from '@ember/runloop';
 
 export default Component.extend(Pagination, {
   readOnly: false,
@@ -129,7 +130,9 @@ export default Component.extend(Pagination, {
 
   didReceiveAttrs() {
     this._super(...arguments);
-    get(this, 'headTags').collectHeadTags();
+    scheduleOnce('afterRender', () => {
+      get(this, 'headTags').collectHeadTags();
+    });
     set(this, 'filterOptions', ['all', 'media', 'user']);
     if (get(this, 'features').hasFeature('feed_following_filter') && get(this, 'showFollowingFilter')) {
       this.filterOptions.push('following');

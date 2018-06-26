@@ -12,6 +12,7 @@ import errorMessages from 'client/utils/error-messages';
 import isFileValid from 'client/utils/is-file-valid';
 
 const FILE_UPLOAD_LIMIT = 20;
+const LINK_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
 
 export default Component.extend({
   classNameBindings: ['isExpanded:is-expanded'],
@@ -26,6 +27,8 @@ export default Component.extend({
   shouldUnit: false,
   maxLength: 9000,
   _usableMedia: null,
+
+  ajax: service(),
   store: service(),
   queryCache: service(),
   fileQueue: service(),
@@ -50,6 +53,9 @@ export default Component.extend({
     }
     if (get(this, 'shouldUnit') === true && isEmpty(get(this, 'unitNumber')) === false) {
       options.unitNumber = get(this, 'unitNumber');
+    }
+    if (this.get('embeds.length') > 0) {
+      options.embedUrl = this.get('embeds.firstObject');
     }
     yield invokeAction(this, 'onCreate', get(this, 'content'), options);
     this._resetProperties();
@@ -109,7 +115,6 @@ export default Component.extend({
         return;
       }
 
-
       // valid size & type?
       if (!isFileValid(get(file, 'blob'), get(this, 'accept'))) {
         const queue = get(this, 'fileQueue').find('uploads');
@@ -140,6 +145,14 @@ export default Component.extend({
     }
   }).maxConcurrency(3).enqueue(),
 
+  previewEmbedTask: task(function* () {
+    const url = this.get('embeds.firstObject');
+    return yield this.get('ajax').request('/embeds', {
+      method: 'POST',
+      data: { url }
+    });
+  }).restartable(),
+
   /**
    * If the user clicks outside the bounds of this component
    * then set `isExpanded` to false.
@@ -163,6 +176,7 @@ export default Component.extend({
       this.get('post.uploads').forEach(upload => uploads.push(upload));
     }
     this.set('uploads', uploads);
+    this.set('embeds', []);
   },
 
   didReceiveAttrs() {
@@ -179,7 +193,7 @@ export default Component.extend({
         contentOriginal: get(this, 'post.content'),
         spoiler: get(this, 'post.spoiler'),
         nsfw: get(this, 'post.nsfw'),
-        author: get(this, 'post.user')
+        author: get(this, 'post.user'),
       });
     } else if (get(this, 'media') !== undefined) {
       set(this, '_usableMedia', get(this, 'media'));
@@ -210,7 +224,8 @@ export default Component.extend({
       content: '',
       isExpanded: false,
       nsfw: false,
-      uploads: []
+      uploads: [],
+      embeds: [],
     });
     if (get(this, 'mediaReadOnly') === false) {
       set(this, '_usableMedia', null);
@@ -262,6 +277,33 @@ export default Component.extend({
     removeUpload(upload) {
       upload.destroyRecord();
       get(this, 'uploads').removeObject(upload);
+    },
+
+    processLinks() {
+      const content = this.get('content');
+      if (isEmpty(content)) { return; }
+
+      const links = content.match(LINK_REGEX);
+      if (links && links.length > 0) {
+        const embeds = this.get('embeds');
+        const length = embeds.get('length');
+        embeds.addObjects(links);
+
+        // remove any links that exist in embeds but not the content
+        // could have deleted all text but didn't refresh page so component still
+        // considers them valid embeds.
+        const dead = embeds.reject(embed => links.includes(embed));
+        embeds.removeObjects(dead);
+        if (length === 0) {
+          this.get('previewEmbedTask').perform();
+        }
+      }
+    },
+
+    removeEmbed() {
+      const embeds = this.get('embeds');
+      embeds.removeObject(embeds.get('firstObject'));
+      this.get('previewEmbedTask').perform();
     }
   }
 });

@@ -52,9 +52,10 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
     }, { cache: false });
   }).drop(),
 
-  createReply: task(function* (content) {
+  createReply: task(function* (content, embedUrl = undefined) {
     const data = {
       content,
+      embedUrl,
       post: get(this, 'post'),
       parent: get(this, 'comment'),
       user: get(this, 'session.account'),
