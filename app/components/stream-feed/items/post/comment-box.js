@@ -27,7 +27,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.set('embeds', []);
+    this.set('skippedEmbeds', []);
   },
 
   uploadImageTask: task(function* (file) {
@@ -65,7 +65,7 @@ export default Component.extend({
   }).drop(),
 
   previewEmbedTask: task(function* () {
-    const url = this.get('embeds.firstObject');
+    const url = this.get('embedUrl');
     if (!url) { return; }
     return yield this.get('ajax').request('/embeds', {
       method: 'POST',
@@ -82,7 +82,7 @@ export default Component.extend({
         get(this, 'onSubmit').perform(content, this.get('embedUrl'));
         component.clear();
         invoke(this, 'removeUpload');
-        this.set('embeds', []);
+        this.set('skippedEmbeds', []);
         this.set('embedUrl', undefined);
       }
     },
@@ -109,34 +109,31 @@ export default Component.extend({
       set(this, 'upload', undefined);
     },
 
-    processLinks() {
-      const content = this.get('content');
+    // This action is executed everytime the content of the text-area is changed
+    processLinks(content, force = false) {
+      // reset the skipped embeds if the content is empty (this will be from a deletion)
       if (isEmpty(content)) {
-        this.set('embeds', []);
+        this.set('skippedEmbeds', []);
         return;
       }
 
-      const links = content.match(LINK_REGEX);
-      if (links && links.length > 0) {
-        const embeds = this.get('embeds');
-        const length = embeds.get('length');
-        embeds.addObjects(links);
-
-        // only run the preview task when the embeds are empty
-        if (length === 0) {
+      // find all the links within the text
+      if (force || isEmpty(this.get('embedUrl'))) {
+        const links = content.match(LINK_REGEX);
+        if (links && links.length > 0) {
+          const skipped = this.get('skippedEmbeds');
+          const embeds = links.reject(link => skipped.includes(link));
           this.set('embedUrl', embeds.get('firstObject'));
           this.get('previewEmbedTask').perform();
         }
-      } else {
-        this.set('embeds', []);
       }
     },
 
     removeEmbed() {
-      const embeds = this.get('embeds');
-      embeds.removeObject(embeds.get('firstObject'));
-      this.set('embedUrl', embeds.get('firstObject'));
-      this.get('previewEmbedTask').perform();
+      const skipped = this.get('skippedEmbeds');
+      const embed = this.get('embedUrl');
+      skipped.addObject(embed);
+      invoke(this, 'processLinks', this.get('content'), true);
     }
   }
 });
