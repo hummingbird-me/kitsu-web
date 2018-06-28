@@ -27,9 +27,7 @@ export default Component.extend({
     };
     try {
       if (!isFileValid(get(file, 'blob'), get(this, 'accept'))) {
-        const queue = get(this, 'fileQueue').find(`comment-uploads-${get(this, 'elementId')}`);
-        const files = get(queue, 'files');
-        files.removeObject(file);
+        set(file, 'state', 'aborted');
         return;
       }
 
@@ -48,7 +46,7 @@ export default Component.extend({
       const files = get(queue, 'files');
       const failedFiles = files.filter(file => ['failed', 'timed_out'].indexOf(file.state) !== -1);
       failedFiles.forEach((file) => {
-        files.removeObject(file);
+        set(file, 'status', 'aborted');
       });
     }
   }).drop(),

@@ -113,7 +113,6 @@ export default Component.extend({
       });
       const store = get(this, 'store');
       store.pushPayload(body);
-      
       const uploads = get(this, 'uploads');
       uploads.addObjects(body.data.map(upload => store.peekRecord('upload', upload.id)));
       this._orderUploads(uploads);
@@ -128,7 +127,7 @@ export default Component.extend({
         set(file, 'state', 'aborted');
       });
     }
-  }).maxConcurrency(3).enqueue(),
+  }).enqueue(),
 
   /**
    * If the user clicks outside the bounds of this component
