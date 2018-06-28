@@ -141,10 +141,6 @@ module.exports = function(environment) {
       }
     },
 
-    embedly: {
-      apiKey: '90f3fb8ff40f4603991aa258127ccb5e'
-    },
-
     onesignal: {
       production: {
         appId: '01f6e47a-6809-4118-a796-949952e9c209'

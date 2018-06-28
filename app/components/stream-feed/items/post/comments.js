@@ -26,9 +26,10 @@ export default Component.extend(Pagination, {
     }, { cache: false });
   }).drop(),
 
-  createComment: task(function* (content) {
+  createComment: task(function* (content, embedUrl = undefined) {
     const data = {
       content,
+      embedUrl,
       post: get(this, 'post'),
       user: get(this, 'session.account'),
     };

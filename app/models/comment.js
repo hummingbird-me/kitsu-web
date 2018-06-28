@@ -8,6 +8,8 @@ export default UploadOwner.extend({
   contentFormatted: attr('string'),
   createdAt: attr('utc', { defaultValue() { return new Date(); } }),
   editedAt: attr('utc'),
+  embed: attr('object'),
+  embedUrl: attr('string'),
   likesCount: attr('number'),
   repliesCount: attr('number'),
   updatedAt: attr('utc'),

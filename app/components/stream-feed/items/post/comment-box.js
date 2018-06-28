@@ -9,15 +9,26 @@ import config from 'client/config/environment';
 import errorMessages from 'client/utils/error-messages';
 import isFileValid from 'client/utils/is-file-valid';
 
+const LINK_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
+
 export default Component.extend({
   classNames: ['comment-box'],
+  content: null,
   upload: undefined,
+  embedUrl: undefined,
   accept: 'image/jpg, image/jpeg, image/png, image/gif',
   dropzoneDisabled: notEmpty('upload'),
+
+  ajax: service(),
   notify: service(),
   store: service(),
   fileQueue: service(),
   raven: service(),
+
+  init() {
+    this._super(...arguments);
+    this.set('skippedEmbeds', []);
+  },
 
   uploadImageTask: task(function* (file) {
     const { access_token: accessToken } = get(this, 'session.data.authenticated');
@@ -51,15 +62,26 @@ export default Component.extend({
     }
   }).drop(),
 
+  previewEmbedTask: task(function* () {
+    const url = this.get('embedUrl');
+    if (!url) { return; }
+    return yield this.get('ajax').request('/embeds', {
+      method: 'POST',
+      data: { url }
+    });
+  }).restartable(),
+
   actions: {
     submit(component, event, content) {
       if (isEmpty(content) === true && isEmpty(get(this, 'upload')) === true) { return; }
       const { shiftKey } = event;
       if (shiftKey === false) {
         event.preventDefault();
-        get(this, 'onSubmit').perform(content);
+        get(this, 'onSubmit').perform(content, this.get('embedUrl'));
         component.clear();
         invoke(this, 'removeUpload');
+        this.set('skippedEmbeds', []);
+        this.set('embedUrl', undefined);
       }
     },
 
@@ -83,6 +105,33 @@ export default Component.extend({
 
     removeUpload() {
       set(this, 'upload', undefined);
+    },
+
+    // This action is executed everytime the content of the text-area is changed
+    processLinks(content, force = false) {
+      // reset the skipped embeds if the content is empty (this will be from a deletion)
+      if (isEmpty(content)) {
+        this.set('skippedEmbeds', []);
+        return;
+      }
+
+      // find all the links within the text
+      if (force || isEmpty(this.get('embedUrl'))) {
+        const links = content.match(LINK_REGEX);
+        if (links && links.length > 0) {
+          const skipped = this.get('skippedEmbeds');
+          const embeds = links.reject(link => skipped.includes(link));
+          this.set('embedUrl', embeds.get('firstObject'));
+          this.get('previewEmbedTask').perform();
+        }
+      }
+    },
+
+    removeEmbed() {
+      const skipped = this.get('skippedEmbeds');
+      const embed = this.get('embedUrl');
+      skipped.addObject(embed);
+      invoke(this, 'processLinks', this.get('content'), true);
     }
   }
 });

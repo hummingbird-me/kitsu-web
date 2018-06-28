@@ -122,25 +122,16 @@
         {{/if}}
       {{else}}
         {{#if post.contentFormatted}}
-          <span class="stream-content-post {{if isExpanded "full-post"}}">
+          <span class="stream-content-post full-post">
             {{format-content post.contentFormatted}}
           </span>
-
-          {{#if isOverflowed}}
-            <div class="text-xs-center view-more">
-              <a href="#" {{action (toggle "isExpanded" this)}}>
-                {{#if isExpanded}}
-                  View Less
-                {{else}}
-                  View More
-                {{/if}}
-              </a>
-            </div>
-          {{/if}}
         {{/if}}
 
+        {{! uploads }}
         {{#if post.uploads}}
           {{stream-feed/items/post/uploads-grid uploads=post.uploads}}
+        {{else if (not (is-object-empty post.embed))}}
+          {{stream-feed/items/post/embed embed=post.embed embedUrl=post.embedUrl}}
         {{/if}}
       {{/if}}
 

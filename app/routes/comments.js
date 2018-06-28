@@ -8,7 +8,7 @@ export default Route.extend(DataErrorMixin, {
 
   model({ id }) {
     return get(this, 'store').findRecord('comment', id, {
-      include: 'user,parent,uploads,post,post.user,post.targetUser,post.targetGroup,post.media',
+      include: 'user,parent,uploads,post,post.user,post.targetUser,post.targetGroup,post.media,post.uploads',
       reload: true
     });
   },
@@ -24,7 +24,9 @@ export default Route.extend(DataErrorMixin, {
     const postId = get(model, 'post.id');
     const parentId = get(model, 'parent.id');
     set(controller, 'post', get(this, 'store').peekRecord('post', postId));
-    set(controller, 'parent', get(this, 'store').peekRecord('comment', parentId));
+    if (parentId) {
+      set(controller, 'parent', get(this, 'store').peekRecord('comment', parentId));
+    }
   },
 
   titleToken(model) {
@@ -43,6 +45,13 @@ export default Route.extend(DataErrorMixin, {
         attrs: {
           name: 'description',
           content: description
+        }
+      }, {
+        type: 'meta',
+        tagId: 'meta-og-type',
+        attrs: {
+          name: 'og:type',
+          content: 'article'
         }
       }, {
         type: 'meta',

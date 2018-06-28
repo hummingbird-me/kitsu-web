@@ -4,7 +4,7 @@ import { get, set, setProperties, getProperties, computed } from '@ember/object'
 import { isEmpty, isPresent } from '@ember/utils';
 import { empty, notEmpty, and, or, equal } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
-import { invokeAction } from 'ember-invoke-action';
+import { invokeAction, invoke } from 'ember-invoke-action';
 import jQuery from 'jquery';
 import RSVP from 'rsvp';
 import config from 'client/config/environment';
@@ -12,6 +12,7 @@ import errorMessages from 'client/utils/error-messages';
 import isFileValid from 'client/utils/is-file-valid';
 
 const FILE_UPLOAD_LIMIT = 20;
+const LINK_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
 
 export default Component.extend({
   classNameBindings: ['isExpanded:is-expanded'],
@@ -26,6 +27,10 @@ export default Component.extend({
   shouldUnit: false,
   maxLength: 9000,
   _usableMedia: null,
+
+  embedUrl: undefined,
+
+  ajax: service(),
   store: service(),
   queryCache: service(),
   fileQueue: service(),
@@ -39,12 +44,61 @@ export default Component.extend({
   hasMaxUploads: equal('uploads.length', FILE_UPLOAD_LIMIT),
 
   contentPresent: computed('content', function() {
-    return isPresent(get(this, 'content'))
-      && get(this, 'content.length') <= get(this, 'maxLength');
+    return (isPresent(get(this, 'content'))
+      && get(this, 'content.length') <= get(this, 'maxLength')) || isPresent(this.get('embedUrl'));
   }).readOnly(),
 
+  init() {
+    this._super(...arguments);
+    // copy uploads into our own list
+    const uploads = [];
+    if (this.get('post.uploads') && this.get('post.uploads.length') > 0) {
+      this.get('post.uploads').forEach(upload => uploads.push(upload));
+    }
+    this.set('uploads', uploads);
+
+    // initialize skipped embeds list
+    this.set('skippedEmbeds', []);
+  },
+
+  didReceiveAttrs() {
+    this._super(...arguments);
+    if (get(this, 'forceUnit') === true) {
+      set(this, 'shouldUnit', get(this, 'forceUnit'));
+    }
+    set(this, 'author', get(this, 'session.account'));
+    if (get(this, 'isEditing') === true && get(this, 'post')) {
+      setProperties(this, {
+        _usableMedia: get(this, 'post.media'),
+        mediaReadOnly: true,
+        content: get(this, 'post.content'),
+        contentOriginal: get(this, 'post.content'),
+        spoiler: get(this, 'post.spoiler'),
+        nsfw: get(this, 'post.nsfw'),
+        author: get(this, 'post.user'),
+      });
+    } else if (get(this, 'media') !== undefined) {
+      set(this, '_usableMedia', get(this, 'media'));
+      set(this, 'mediaReadOnly', true);
+      set(this, 'spoiler', true);
+      get(this, 'setUnitNumberTask').perform();
+    }
+  },
+
+  didInsertElement() {
+    this._super(...arguments);
+    if (get(this, 'isEditing') === false) {
+      jQuery(document.body).on('click.create-post', event => this._handleClick(event));
+    }
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    jQuery(document.body).off('click.create-post');
+  },
+
   createPost: task(function* () {
-    const options = Object.assign({}, getProperties(this, 'nsfw', 'spoiler', 'uploads'));
+    const options = Object.assign({}, getProperties(this, 'nsfw', 'spoiler', 'uploads', 'embedUrl'));
     if (this._usableMedia !== null) {
       options.media = this._usableMedia;
     }
@@ -129,6 +183,15 @@ export default Component.extend({
     }
   }).enqueue(),
 
+  previewEmbedTask: task(function* () {
+    const url = this.get('embedUrl');
+    if (!url) { return; }
+    return yield this.get('ajax').request('/embeds', {
+      method: 'POST',
+      data: { url }
+    });
+  }).restartable(),
+
   /**
    * If the user clicks outside the bounds of this component
    * then set `isExpanded` to false.
@@ -145,51 +208,6 @@ export default Component.extend({
     }
   },
 
-  init() {
-    this._super(...arguments);
-    const uploads = [];
-    if (this.get('post.uploads') && this.get('post.uploads.length') > 0) {
-      this.get('post.uploads').forEach(upload => uploads.push(upload));
-    }
-    this.set('uploads', uploads);
-  },
-
-  didReceiveAttrs() {
-    this._super(...arguments);
-    if (get(this, 'forceUnit') === true) {
-      set(this, 'shouldUnit', get(this, 'forceUnit'));
-    }
-    set(this, 'author', get(this, 'session.account'));
-    if (get(this, 'isEditing') === true && get(this, 'post')) {
-      setProperties(this, {
-        _usableMedia: get(this, 'post.media'),
-        mediaReadOnly: true,
-        content: get(this, 'post.content'),
-        contentOriginal: get(this, 'post.content'),
-        spoiler: get(this, 'post.spoiler'),
-        nsfw: get(this, 'post.nsfw'),
-        author: get(this, 'post.user')
-      });
-    } else if (get(this, 'media') !== undefined) {
-      set(this, '_usableMedia', get(this, 'media'));
-      set(this, 'mediaReadOnly', true);
-      set(this, 'spoiler', true);
-      get(this, 'setUnitNumberTask').perform();
-    }
-  },
-
-  didInsertElement() {
-    this._super(...arguments);
-    if (get(this, 'isEditing') === false) {
-      jQuery(document.body).on('click.create-post', event => this._handleClick(event));
-    }
-  },
-
-  willDestroyElement() {
-    this._super(...arguments);
-    jQuery(document.body).off('click.create-post');
-  },
-
   _resetProperties() {
     if (get(this, 'isEditing') === true) {
       return;
@@ -199,7 +217,9 @@ export default Component.extend({
       content: '',
       isExpanded: false,
       nsfw: false,
-      uploads: []
+      uploads: [],
+      skippedEmbeds: [],
+      embedUrl: undefined
     });
     if (get(this, 'mediaReadOnly') === false) {
       set(this, '_usableMedia', null);
@@ -251,6 +271,33 @@ export default Component.extend({
     removeUpload(upload) {
       upload.destroyRecord();
       get(this, 'uploads').removeObject(upload);
+    },
+
+    // This action is executed everytime the content of the text-area is changed
+    processLinks(content, force = false) {
+      // reset the skipped embeds if the content is empty (this will be from a deletion)
+      if (isEmpty(content)) {
+        this.set('skippedEmbeds', []);
+        return;
+      }
+
+      // find all the links within the text
+      if (force || isEmpty(this.get('embedUrl'))) {
+        const links = content.match(LINK_REGEX);
+        if (links && links.length > 0) {
+          const skipped = this.get('skippedEmbeds');
+          const embeds = links.reject(link => skipped.includes(link));
+          this.set('embedUrl', embeds.get('firstObject'));
+          this.get('previewEmbedTask').perform();
+        }
+      }
+    },
+
+    removeEmbed() {
+      const skipped = this.get('skippedEmbeds');
+      const embed = this.get('embedUrl');
+      skipped.addObject(embed);
+      invoke(this, 'processLinks', this.get('content'), true);
     }
   }
 });
