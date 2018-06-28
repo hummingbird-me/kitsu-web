@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { get, set, setProperties, getProperties, computed } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
-import { empty, notEmpty, and, or, gte } from '@ember/object/computed';
+import { empty, notEmpty, and, or, equal } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction, invoke } from 'ember-invoke-action';
 import jQuery from 'jquery';
@@ -41,7 +41,7 @@ export default Component.extend({
   uploadsReady: and('uploadsPresent', 'queueFinished'),
   uploadsPresent: notEmpty('uploads'),
   queueFinished: empty('fileQueue.files'),
-  hasMaxUploads: gte('uploads.length', FILE_UPLOAD_LIMIT),
+  hasMaxUploads: equal('uploads.length', FILE_UPLOAD_LIMIT),
 
   contentPresent: computed('content', function() {
     return (isPresent(get(this, 'content'))
@@ -156,18 +156,8 @@ export default Component.extend({
       authorization: `Bearer ${accessToken}`
     };
     try {
-      if (this.get('hasMaxUploads')) {
-        const queue = get(this, 'fileQueue').find('uploads');
-        const files = get(queue, 'files');
-        files.removeObject(file);
-        return;
-      }
-
-      // valid size & type?
-      if (!isFileValid(get(file, 'blob'), get(this, 'accept'))) {
-        const queue = get(this, 'fileQueue').find('uploads');
-        const files = get(queue, 'files');
-        files.removeObject(file);
+      if (this.get('hasMaxUploads') || !isFileValid(get(file, 'blob'), get(this, 'accept'))) {
+        set(file, 'state', 'aborted');
         return;
       }
 
@@ -188,10 +178,10 @@ export default Component.extend({
       const files = get(queue, 'files');
       const failedFiles = files.filter(file => ['failed', 'timed_out'].indexOf(file.state) !== -1);
       failedFiles.forEach((file) => {
-        files.removeObject(file);
+        set(file, 'state', 'aborted');
       });
     }
-  }).maxConcurrency(3).enqueue(),
+  }).enqueue(),
 
   previewEmbedTask: task(function* () {
     const url = this.get('embedUrl');
