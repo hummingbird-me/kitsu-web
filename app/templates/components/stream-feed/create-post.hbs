@@ -62,19 +62,19 @@
         {{/if}}
 
         {{#unless embedUrl}}
-          {{#if (or dropzone.active queue.files.length)}}
+          {{#if dropzone.active}}
             <div class="add-uploads">
-              {{#if dropzone.active}}
-                {{#if dropzone.valid}}
-                  {{t "feeds.uploads.drop"}}
-                {{else}}
-                  {{t "feeds.uploads.invalid"}}
-                {{/if}}
-              {{else if queue.files.length}}
-                {{t "feeds.uploads.uploading" number=queue.files.length progress=queue.progress}}
+              {{#if dropzone.valid}}
+                {{t "feeds.uploads.drop"}}
+              {{else}}
+                {{t "feeds.uploads.invalid"}}
               {{/if}}
             </div>
           {{else}}
+            {{#if queue.files.length}}
+              {{t "feeds.uploads.uploading" number=queue.files.length progress=queue.progress}}
+            {{/if}}
+          
             {{#file-upload name="uploads"
               accept=accept
               multiple=true
