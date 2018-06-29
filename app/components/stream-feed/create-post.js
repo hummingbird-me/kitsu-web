@@ -53,7 +53,7 @@ export default Component.extend({
     // copy uploads into our own list
     const uploads = [];
     if (this.get('post.uploads') && this.get('post.uploads.length') > 0) {
-      this.get('post.uploads').forEach(upload => uploads.push(upload));
+      this.get('post.uploads').sortBy('uploadOrder').forEach(upload => uploads.push(upload));
     }
     this.set('uploads', uploads);
 
