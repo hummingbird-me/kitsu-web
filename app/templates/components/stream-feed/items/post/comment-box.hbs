@@ -12,11 +12,11 @@
       class=className
     }}
 
-    {{#unless upload}}
+    {{#unless (or upload embedUrl)}}
       {{#file-upload name=(concat "comment-uploads-" elementId)
         accept=accept
         multiple=false
-        disabled=(gt queue.files.length 0)
+        disabled=(or (gt queue.files.length 0) (not (is-empty embedUrl)))
         onfileadd=(action (perform uploadImageTask))
       }}
         {{svg-jar "picture"}}

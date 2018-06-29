@@ -18,6 +18,7 @@
 
 {{#if isExpanded}}
   <div class="add-content-expanded">
+    {{! uploads }}
     {{#file-dropzone name="uploads" as |dropzone queue|}}
       {{! editor }}
       {{expanding-textarea content
@@ -42,9 +43,25 @@
               {{/sortable-item}}
             {{/each}}
           {{/sortable-group}}
+        {{else if embedUrl}}
+          <div class="embed-helper">
+            <div class="embed-preview-action">
+              {{t "feeds.embed.preview"}}
+              <span class="hint--top hint--bounce hint--rounded" aria-label="Remove" {{action "removeEmbed"}}>
+                {{svg-jar "close"}}
+              </span>
+            </div>
+            {{#if previewEmbedTask.isRunning}}
+              <div class="w-100 text-xs-center">
+                {{loading-spinner size="small"}}
+              </div>
+            {{else}}
+              {{stream-feed/items/post/embed embed=previewEmbedTask.last.value}}
+            {{/if}}
+          </div>
         {{/if}}
 
-        {{#unless hasMaxUploads}}
+        {{#unless embedUrl}}
           {{#if (or dropzone.active queue.files.length)}}
             <div class="add-uploads">
               {{#if dropzone.active}}
@@ -62,6 +79,7 @@
               accept=accept
               multiple=true
               onfileadd=(action (perform uploadImagesTask))
+              disabled=(or hasMaxUploads (not (is-empty embedUrl)))
             }}
               {{svg-jar "picture"}}
               {{t "feeds.uploads.select"}}
@@ -70,25 +88,6 @@
         {{/unless}}
       </div>
     {{/file-dropzone}}
-
-    {{! embeds }}
-    {{#if embedUrl}}
-      <div class="embed-helper">
-        <div class="embed-preview-action">
-          {{t "feeds.embed.preview"}}
-          <span class="hint--top hint--bounce hint--rounded" aria-label="Remove" {{action "removeEmbed"}}>
-            {{svg-jar "close"}}
-          </span>
-        </div>
-        {{#if previewEmbedTask.isRunning}}
-          <div class="w-100 text-xs-center">
-            {{loading-spinner size="small"}}
-          </div>
-        {{else}}
-          {{stream-feed/items/post/embed embed=previewEmbedTask.last.value}}
-        {{/if}}
-      </div>
-    {{/if}}
 
     {{! media tagging }}
     <div class="tag-media">

@@ -43,7 +43,7 @@ export default Component.extend({
   queueFinished: empty('fileQueue.files'),
   hasMaxUploads: equal('uploads.length', FILE_UPLOAD_LIMIT),
 
-  contentPresent: computed('content', function() {
+  contentPresent: computed('content', 'embedUrl', function() {
     return (isPresent(get(this, 'content'))
       && get(this, 'content.length') <= get(this, 'maxLength')) || isPresent(this.get('embedUrl'));
   }).readOnly(),
@@ -271,12 +271,13 @@ export default Component.extend({
     removeUpload(upload) {
       upload.destroyRecord();
       get(this, 'uploads').removeObject(upload);
+      invoke(this, 'processLinks', this.get('content'));
     },
 
     // This action is executed everytime the content of the text-area is changed
     processLinks(content, force = false) {
       // reset the skipped embeds if the content is empty (this will be from a deletion)
-      if (isEmpty(content)) {
+      if (isEmpty(content) || (!this.get('queueFinished') || this.get('uploads.length') > 0)) {
         this.set('skippedEmbeds', []);
         return;
       }
@@ -297,6 +298,9 @@ export default Component.extend({
       const skipped = this.get('skippedEmbeds');
       const embed = this.get('embedUrl');
       skipped.addObject(embed);
+      if (isEmpty(this.get('content'))) {
+        this.set('embedUrl', undefined);
+      }
       invoke(this, 'processLinks', this.get('content'), true);
     }
   }
