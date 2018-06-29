@@ -72,14 +72,17 @@
             </div>
           {{else}}
             {{#if queue.files.length}}
-              {{t "feeds.uploads.uploading" number=queue.files.length progress=queue.progress}}
+              <div class="add-uploads">
+                {{t "feeds.uploads.uploading" number=uploadCount progress=queue.progress}}
+              </div>
             {{/if}}
-          
+
             {{#file-upload name="uploads"
               accept=accept
               multiple=true
               onfileadd=(action (perform uploadImagesTask))
               disabled=(or hasMaxUploads (not (is-empty embedUrl)))
+              class=(if (or hasMaxUploads (not (is-empty embedUrl))) "disabled" "")
             }}
               {{svg-jar "picture"}}
               {{t "feeds.uploads.select"}}

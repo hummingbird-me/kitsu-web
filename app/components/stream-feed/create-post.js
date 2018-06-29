@@ -48,6 +48,10 @@ export default Component.extend({
       && get(this, 'content.length') <= get(this, 'maxLength')) || isPresent(this.get('embedUrl'));
   }).readOnly(),
 
+  uploadCount: computed('fileQueue.files.[]', function() {
+    return Math.max(0, Math.min(this.get('fileQueue.files.length'), FILE_UPLOAD_LIMIT));
+  }).readOnly(),
+
   init() {
     this._super(...arguments);
     // copy uploads into our own list
