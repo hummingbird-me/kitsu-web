@@ -1,21 +1,25 @@
 {{! Kitsu Media Reviews Top }}
-{{ad-unit unit="kitsu.media.reviews.top"
-  targeting=(hash
-    section="media"
-    media=media.slug)
-  sizes=(hash
-    mobile=(array (array 300 250) (array 320 100) (array 320 50))
-    desktop=(array 728 90))
-}}
+{{#unless media.nsfw}}
+  {{ad-unit unit="kitsu.media.reviews.top"
+    targeting=(hash
+      section="media"
+      media=media.slug)
+    sizes=(hash
+      mobile=(array (array 300 250) (array 320 100) (array 320 50))
+      desktop=(array 728 90))
+  }}
+{{/unless}}
 
 {{media/media-reactions media=media noLimit=true}}
 
 {{! Kitsu Media Reactions Bottom }}
-{{ad-unit unit="kitsu.media.reviews.bottom"
-  targeting=(hash
-    section="media"
-    media=media.slug)
-  sizes=(hash
-    mobile=(array (array 300 250) (array 320 100) (array 320 50))
-    desktop=(array 728 90))
-}}
+{{#unless media.nsfw}}
+  {{ad-unit unit="kitsu.media.reviews.bottom"
+    targeting=(hash
+      section="media"
+      media=media.slug)
+    sizes=(hash
+      mobile=(array (array 300 250) (array 320 100) (array 320 50))
+      desktop=(array 728 90))
+  }}
+{{/unless}}

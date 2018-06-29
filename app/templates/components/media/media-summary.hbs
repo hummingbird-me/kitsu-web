@@ -13,11 +13,13 @@
 </div>
 
 {{! Kitsu Media Summary Sidebar }}
-{{ad-unit unit="kitsu.media.summary.sidebar"
-  targeting=(hash
-    section="media"
-    media=media.slug)
-  sizes=(hash
-    mobile=(array (array 300 250) (array 320 100) (array 320 50))
-    tablet=(array (array 336 280) (array 300 250)))
-}}
+{{#unless media.nsfw}}
+  {{ad-unit unit="kitsu.media.summary.sidebar"
+    targeting=(hash
+      section="media"
+      media=media.slug)
+    sizes=(hash
+      mobile=(array (array 300 250) (array 320 100) (array 320 50))
+      tablet=(array (array 336 280) (array 300 250)))
+  }}
+{{/unless}}

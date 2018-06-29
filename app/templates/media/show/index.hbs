@@ -1,14 +1,16 @@
 <div class="row">
   {{! Kitsu Media Summary Top }}
-  <div class="col-sm-12 no-padding-right">
-    {{ad-unit unit="kitsu.media.summary.top"
-      targeting=(hash
-        section="media"
-        media=media.slug)
-      sizes=(hash
-        mobile=(array (array 300 250) (array 320 100) (array 320 50))
-        desktop=(array 728 90))}}
-  </div>
+  {{#unless media.nsfw}}
+    <div class="col-sm-12 no-padding-right">
+      {{ad-unit unit="kitsu.media.summary.top"
+        targeting=(hash
+          section="media"
+          media=media.slug)
+        sizes=(hash
+          mobile=(array (array 300 250) (array 320 100) (array 320 50))
+          desktop=(array 728 90))}}
+    </div>
+  {{/unless}}
 
   <div class="col-sm-8">
     {{! Title }}
@@ -46,14 +48,16 @@
     {{media/media-reactions media=media}}
 
     {{! Kitsu Media Summary Bottom }}
-    {{ad-unit unit="kitsu.media.summary.bottom"
-      targeting=(hash
-        section="media"
-        media=media.slug)
-      sizes=(hash
-        mobile=(array (array 300 250) (array 320 100) (array 320 50))
-        tablet=(array (array 468 60) (array 300 250)))
-    }}
+    {{#unless media.nsfw}}
+      {{ad-unit unit="kitsu.media.summary.bottom"
+        targeting=(hash
+          section="media"
+          media=media.slug)
+        sizes=(hash
+          mobile=(array (array 300 250) (array 320 100) (array 320 50))
+          tablet=(array (array 468 60) (array 300 250)))
+      }}
+    {{/unless}}
 
     {{! Feed }}
     <section class="media--feed">
