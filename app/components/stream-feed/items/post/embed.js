@@ -10,6 +10,7 @@ export default Component.extend({
     const kind = this.get('embed.kind');
     if (kind === 'video' || kind === 'video.other') {
       const video = this.get('embed.video');
+      if (!video) { return null; }
       const { width, height } = video;
       return htmlSafe(`padding-bottom: calc(100% * (${height} / ${width}))`);
     }
