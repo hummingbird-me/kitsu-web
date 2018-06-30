@@ -10,6 +10,7 @@ export default Component.extend({
     const kind = this.get('embed.kind');
     if (kind === 'video' || kind === 'video.other') {
       const video = this.get('embed.video');
+      if (!video) { return null; }
       const { width, height } = video;
       return htmlSafe(`padding-bottom: calc(100% * (${height} / ${width}))`);
     }
@@ -38,7 +39,10 @@ export default Component.extend({
       const siteName = this.get('embed.site.name');
       const video = this.get('embed.video');
       const { type, url } = video;
-      const src = `${url}${siteName === 'YouTube' ? '?autoplay=1' : ''}`;
+      let src = url;
+      if (siteName === 'YouTube') {
+        src = src.includes('?') ? `${src}&autoplay=1` : `${src}?autoplay=1`;
+      }
       const attrs = `src=${src} class="embed-video"`;
       let embed;
       if (type === 'video/mp4') {
