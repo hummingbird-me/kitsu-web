@@ -38,7 +38,10 @@ export default Component.extend({
       const siteName = this.get('embed.site.name');
       const video = this.get('embed.video');
       const { type, url } = video;
-      const src = `${url}${siteName === 'YouTube' ? '?autoplay=1' : ''}`;
+      let src = url;
+      if (siteName === 'YouTube') {
+        src = src.includes('?') ? `${src}&autoplay=1` : `${src}?autoplay=1`;
+      }
       const attrs = `src=${src} class="embed-video"`;
       let embed;
       if (type === 'video/mp4') {
