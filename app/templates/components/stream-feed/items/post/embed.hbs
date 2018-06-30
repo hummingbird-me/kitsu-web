@@ -1,4 +1,4 @@
-{{#if (or (eq embed.kind "video") (eq embed.kind "video.other"))}}
+{{#if (and (or (eq embed.kind "video") (eq embed.kind "video.other")) (is-object embed.video))}}
   <a href="#" {{action "revealVideo"}} class="embed-video" rel="nofollow noopener">
     {{lazy-image src=embed.image.url}}
     <div class="embed-video-overlay"></div>
