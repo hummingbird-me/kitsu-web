@@ -9,8 +9,8 @@
       {{#if comment}}
         <div class="comment-actions clearfix">
           <div class="pull-sm-left">
-            <a href={{href-to "posts" post}}>View All Comments</a>
-            {{#if isReply}}
+            <a href={{href-to "posts" post.id}}>View All Comments</a>
+            {{#if (and isReply comment.parent)}}
               &mdash;
               <a href={{href-to "comments" comment.parent.id}}>View Parent Comment</a>
             {{/if}}
