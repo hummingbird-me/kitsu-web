@@ -117,6 +117,11 @@ module.exports = function(defaults) {
       { transformation: 'amd', as: 'algoliasearch' }
     ]
   });
+  app.import('node_modules/text-clipper/dist/index.js', {
+    using: [
+      { transformation: 'cjs', as: 'text-clipper' }
+    ]
+  });
 
   return app.toTree();
 };

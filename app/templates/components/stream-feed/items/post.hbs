@@ -123,7 +123,19 @@
       {{else}}
         {{#if post.contentFormatted}}
           <span class="stream-content-post full-post">
-            {{format-content post.contentFormatted}}
+            {{#read-more text=(format-content post.contentFormatted) length=360 isHTML=true as |rm|}}
+              {{#if rm.wasTruncated}}
+                <div class="view-more">
+                  <a href="#" {{action rm.toggleVisibility}}>
+                    {{#if rm.isTruncated}}
+                      {{t "feeds.post.more"}}
+                    {{else}}
+                      {{t "feeds.post.less"}}
+                    {{/if}}
+                  </a>
+                </div>
+              {{/if}}
+            {{/read-more}}
           </span>
         {{/if}}
 
