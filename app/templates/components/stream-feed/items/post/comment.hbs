@@ -30,7 +30,19 @@
           class="form-control add-comment"}}
       {{else}}
         {{#if comment.contentFormatted}}
-          {{format-content comment.contentFormatted}}
+          {{#read-more text=(format-content comment.contentFormatted) length=350 isHTML=true as |rm|}}
+              {{#if rm.wasTruncated}}
+                <div class="view-more">
+                  <a href="#" {{action rm.toggleVisibility}}>
+                    {{#if rm.isTruncated}}
+                      {{t "feeds.post.more"}}
+                    {{else}}
+                      {{t "feeds.post.less"}}
+                    {{/if}}
+                  </a>
+                </div>
+              {{/if}}
+            {{/read-more}}
         {{/if}}
       {{/if}}
     </span>
