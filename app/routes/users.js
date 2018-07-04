@@ -12,11 +12,11 @@ export default Route.extend(DataErrorMixin, CoverPageMixin, {
     if (slug.match(/\D+/)) {
       return get(this, 'queryCache').query('user', {
         filter: { slug },
-        include: 'profileLinks.profileLinkSite,favorites.item'
+        include: 'profileLinks.profileLinkSite,favorites.item,pinnedPost.user,pinnedPost.targetUser,pinnedPost.spoiledUnit,pinnedPost.media,pinnedPost.targetGroup,pinnedPost.uploads'
       }).then(records => get(records, 'firstObject'));
     }
     return get(this, 'store').findRecord('user', slug, {
-      include: 'profileLinks.profileLinkSite,favorites.item'
+      include: 'profileLinks.profileLinkSite,favorites.item,pinnedPost.user,pinnedPost.targetUser,pinnedPost.spoiledUnit,pinnedPost.media,pinnedPost.targetGroup,pinnedPost.uploads'
     });
   },
 
