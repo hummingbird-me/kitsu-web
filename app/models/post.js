@@ -18,11 +18,11 @@ export default UploadOwner.extend({
   topLevelCommentsCount: attr('number'),
   updatedAt: attr('utc', { defaultValue() { return new Date(); } }),
 
-  media: belongsTo('media'),
-  spoiledUnit: belongsTo('-base'),
-  targetGroup: belongsTo('group'),
-  targetUser: belongsTo('user'),
-  user: belongsTo('user'),
+  media: belongsTo('media', { async: false }),
+  spoiledUnit: belongsTo('-base', { async: false }),
+  targetGroup: belongsTo('group', { async: false }),
+  targetUser: belongsTo('user', { async: false }),
+  user: belongsTo('user', { async: false }),
 
   comments: hasMany('comment', { inverse: 'post' }),
   postLikes: hasMany('post-like', { inverse: 'post' })
