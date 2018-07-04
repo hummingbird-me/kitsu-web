@@ -34,6 +34,9 @@
       </li>
     {{/if}}
   </ul>
+{{else if (not session.hasUser)}}
+  Anyone can create and discover groups. Each group centers around a topic or activity.
+  <a href="#" {{action "signUp"}}>Join Kitsu</a> to get started!
 {{else}}
   <p>{{t "errors.contentEmpty"}}</p>
 {{/if}}

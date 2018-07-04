@@ -24,5 +24,11 @@ export default Component.extend({
       page: { limit: 8 },
       sort: '-group.last_activity_at'
     });
-  })
+  }),
+
+  actions: {
+    signUp() {
+      this.get('session').signUpModal();
+    }
+  }
 });
