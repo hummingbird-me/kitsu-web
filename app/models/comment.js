@@ -16,7 +16,7 @@ export default UploadOwner.extend({
 
   parent: belongsTo('comment', { inverse: 'replies' }),
   post: belongsTo('post', { inverse: 'comments' }),
-  user: belongsTo('user'),
+  user: belongsTo('user', { async: false }),
 
   likes: hasMany('comment-like'),
   replies: hasMany('comment', { inverse: 'parent' })
