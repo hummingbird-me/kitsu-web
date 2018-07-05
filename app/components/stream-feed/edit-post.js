@@ -10,8 +10,6 @@ export default Component.extend({
   store: service(),
 
   updatePost: task(function* (content, options) {
-    console.debug(options);
-
     const post = get(this, 'post');
     set(post, 'content', content);
     Object.keys(options).forEach((option) => {

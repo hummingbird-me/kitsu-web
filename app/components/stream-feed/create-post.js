@@ -27,8 +27,7 @@ export default Component.extend({
   shouldUnit: false,
   maxLength: 9000,
   _usableMedia: null,
-
-  embedUrl: undefined,
+  embedUrl: null,
 
   ajax: service(),
   store: service(),
@@ -44,8 +43,13 @@ export default Component.extend({
   hasMaxUploads: equal('uploads.length', FILE_UPLOAD_LIMIT),
 
   contentPresent: computed('content', 'embedUrl', function() {
-    return (isPresent(get(this, 'content'))
-      && get(this, 'content.length') <= get(this, 'maxLength')) || isPresent(this.get('embedUrl'));
+    const hasContent = (isPresent(get(this, 'content'))
+      && get(this, 'content.length') <= get(this, 'maxLength'));
+    let hasEmbed = isPresent(this.get('embedUrl'));
+    if (this.get('isEditing')) {
+      hasEmbed = hasEmbed && (this.get('post.embed.url') !== this.get('embedUrl'));
+    }
+    return hasContent || hasEmbed;
   }).readOnly(),
 
   uploadCount: computed('fileQueue.files.[]', function() {
@@ -80,6 +84,7 @@ export default Component.extend({
         spoiler: get(this, 'post.spoiler'),
         nsfw: get(this, 'post.nsfw'),
         author: get(this, 'post.user'),
+        embedUrl: get(this, 'post.embed.url')
       });
     } else if (get(this, 'media') !== undefined) {
       set(this, '_usableMedia', get(this, 'media'));
