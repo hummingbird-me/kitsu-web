@@ -51,6 +51,6 @@
       {{svg-jar "cal"}}
     </span>
     <strong>Join Date:</strong>
-    <span>{{moment-format user.createdAt "MMMM Do, YYYY"}} ({{moment-from-now user.createdAt}})</span>
+    <span>{{moment-format user.createdAt "MMMM Do, YYYY"}} ({{createdHumanize}} ago)</span>
   </li>
 </ul>
