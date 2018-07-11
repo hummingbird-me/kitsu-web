@@ -58,7 +58,7 @@ export default Component.extend({
       if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
       this._swapAttributes();
       this._loadImage();
-    }, { rootMargin: this._getRootMargin(), ALLOW_CACHED_SCHEDULER: true });
+    }, { rootMargin: this._getRootMargin() });
   },
 
   _teardownViewport() {
