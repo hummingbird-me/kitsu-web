@@ -7,7 +7,7 @@ export default function isFileValid(file, accept) {
   }
   const size = get(file, 'size');
   const sizeInMb = size / 1000000;
-  if (sizeInMb >= 10) {
+  if (sizeInMb >= 20) {
     return false;
   }
   return true;
