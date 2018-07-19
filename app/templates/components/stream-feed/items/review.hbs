@@ -55,9 +55,19 @@
               {{#if isExpanded}}
                 {{format-content review.contentFormatted}}
               {{else}}
-                {{text-clipper (format-content review.contentFormatted embed=false) length=480
-                  expandText="Read More" expandHref=(href-to "reviews" review.id)
-                  options=(hash html=true)}}
+                {{#read-more text=(format-content review.contentFormatted) length=480 isHTML=true as |rm|}}
+                  {{#if rm.wasTruncated}}
+                    <div class="view-more">
+                      <a href="#" {{action rm.toggleVisibility}}>
+                        {{#if rm.isTruncated}}
+                          {{t "feeds.post.more"}}
+                        {{else}}
+                          {{t "feeds.post.less"}}
+                        {{/if}}
+                      </a>
+                    </div>
+                  {{/if}}
+                {{/read-more}}
               {{/if}}
             {{/if}}
           </div>

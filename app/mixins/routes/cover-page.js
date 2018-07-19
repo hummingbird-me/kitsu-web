@@ -1,8 +1,7 @@
 import Mixin from '@ember/object/mixin';
 import { get, set } from '@ember/object';
 import { isEmpty } from '@ember/utils';
-import { later, cancel, scheduleOnce } from '@ember/runloop';
-import { scheduleRead } from 'spaniel';
+import { later, cancel, scheduleOnce, join } from '@ember/runloop';
 
 const DISTANCE = 210;
 const HOVER_DELAY = 500;
@@ -28,15 +27,17 @@ export default Mixin.create({
       element.addEventListener('mouseenter', this._handleMouseEnter);
 
       this._handleMouseLeave = () => {
-        scheduleRead(() => {
-          const searchElement = document.getElementById('search');
-          const scrollPoint = document.scrollingElement && document.scrollingElement.scrollTop;
-          if (scrollPoint < DISTANCE && isEmpty(searchElement.value)) {
-            this.fadeTimer = later(() => {
-              element.classList.add('transparent');
-            }, HOVER_DELAY);
-          }
-          set(this, 'isHovered', false);
+        window.requestAnimationFrame(() => {
+          join(() => {
+            const searchElement = document.getElementById('search');
+            const scrollPoint = document.scrollingElement && document.scrollingElement.scrollTop;
+            if (scrollPoint < DISTANCE && isEmpty(searchElement.value)) {
+              this.fadeTimer = later(() => {
+                element.classList.add('transparent');
+              }, HOVER_DELAY);
+            }
+            set(this, 'isHovered', false);
+          });
         });
       };
       element.addEventListener('mouseleave', this._handleMouseLeave);
@@ -56,14 +57,16 @@ export default Mixin.create({
   },
 
   handleScroll() {
-    scheduleRead(() => {
-      const element = document.getElementById('kitsu-navbar');
-      const searchElement = document.getElementById('search');
-      if (document.scrollingElement && document.scrollingElement.scrollTop >= DISTANCE) {
-        element.classList.remove('transparent');
-      } else if (!get(this, 'isHovered') && isEmpty(searchElement.value)) {
-        element.classList.add('transparent');
-      }
+    window.requestAnimationFrame(() => {
+      join(() => {
+        const element = document.getElementById('kitsu-navbar');
+        const searchElement = document.getElementById('search');
+        if (document.scrollingElement && document.scrollingElement.scrollTop >= DISTANCE) {
+          element.classList.remove('transparent');
+        } else if (!get(this, 'isHovered') && isEmpty(searchElement.value)) {
+          element.classList.add('transparent');
+        }
+      });
     });
   }
 });

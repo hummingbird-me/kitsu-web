@@ -1,13 +1,11 @@
 import Component from '@ember/component';
 import { get, set } from '@ember/object';
-import { inject as service } from '@ember/service';
 import { scheduleOnce, next } from '@ember/runloop';
 
 export default Component.extend({
   classNames: ['lazy-image'],
   classNameBindings: ['isLoaded'],
   isLoaded: false,
-  viewport: service(),
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -53,27 +51,34 @@ export default Component.extend({
   },
 
   _setupViewport() {
-    const element = get(this, 'element');
-    this.clearViewportCallback = get(this, 'viewport').onInViewportOnce(element, () => {
-      if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
-      this._swapAttributes();
-      this._loadImage();
-    }, { rootMargin: this._getRootMargin() });
+    this.observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.intersectionRatio > 0) {
+          if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
+          this._swapAttributes();
+          this._loadImage();
+          observer.unobserve(this.element);
+        }
+      });
+    }, { root: null, rootMargin: this._getRootMargin(), threshold: 0 });
+    this.observer.observe(this.element);
   },
 
   _teardownViewport() {
-    if (this.clearViewportCallback) {
-      this.clearViewportCallback();
+    if (this.observer) {
+      this.observer.unobserve(this.element);
+      this.observer.disconnect();
     }
   },
 
   _getRootMargin() {
-    const rootMargin = get(this, 'rootMargin');
-    return Object.assign({
+    let rootMargin = get(this, 'rootMargin');
+    rootMargin = Object.assign({
       top: 0,
       left: 0,
       right: 0,
-      bottom: -300
+      bottom: 300
     }, rootMargin);
+    return `${rootMargin.top}px ${rootMargin.right}px ${rootMargin.bottom}px ${rootMargin.left}px`;
   }
 });

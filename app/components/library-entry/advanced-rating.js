@@ -2,8 +2,8 @@ import Component from '@ember/component';
 import { get, set } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
-import { scheduleRead, scheduleWork } from 'spaniel';
 import canUseDOM from 'client/utils/can-use-dom';
+import { join } from '@ember/runloop';
 
 export default Component.extend({
   tagName: '',
@@ -72,11 +72,19 @@ export default Component.extend({
 
   _scheduleRead(callback) {
     if (get(this, 'isDestroyed')) { return; }
-    scheduleRead(callback);
+    window.requestAnimationFrame(() => {
+      join(() => {
+        callback();
+      });
+    });
   },
 
   _scheduleWork(callback) {
     if (get(this, 'isDestroyed')) { return; }
-    scheduleWork(callback);
+    window.requestAnimationFrame(() => {
+      join(() => {
+        callback();
+      });
+    });
   }
 });
