@@ -126,7 +126,8 @@ module.exports = function(environment) {
       min: true,
       features: [
         'default-3.6',
-        'Intl.~locale.en-US'
+        'Intl.~locale.en-US',
+        'IntersectionObserver'
       ],
       flags: ['gated'],
       unknown: 'polyfill',
