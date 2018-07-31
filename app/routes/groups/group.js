@@ -18,7 +18,7 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, {
         });
       });
     }
-    return get(this, 'store').findRecord('group', slug);
+    return get(this, 'store').findRecord('group', slug, { reload: true });
   },
 
   afterModel(model) {

@@ -54,7 +54,8 @@ export default Component.extend({
     const reactionIndex = get(this, 'reactionIndex');
     const libraryEntryId = get(this, 'reactions').objectAt(reactionIndex);
     const libraryEntry = yield get(this, 'store').findRecord('library-entry', libraryEntryId, {
-      include: 'anime,manga'
+      include: 'anime,manga',
+      reload: true
     });
     set(this, 'nextReactionLibraryEntry', libraryEntry);
     // preload the image

@@ -7,7 +7,7 @@ export default Route.extend(DataError, AuthenticatedRouteMixin, {
   authenticationRoute: 'dashboard',
 
   model({ id }) {
-    return get(this, 'store').findRecord('group-invite', id, { include: 'group,sender,user' });
+    return get(this, 'store').findRecord('group-invite', id, { include: 'group,sender,user', reload: true });
   },
 
   afterModel(model) {
