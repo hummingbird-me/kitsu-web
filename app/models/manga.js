@@ -7,5 +7,5 @@ export default Media.extend({
   serialization: attr('string'),
   volumeCount: attr('number'),
 
-  chapters: hasMany('chapter')
+  chapters: hasMany('chapter', { inverse: 'manga' })
 });

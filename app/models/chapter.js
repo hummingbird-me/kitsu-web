@@ -12,5 +12,5 @@ export default Base.extend({
   thumbnail: attr('object'),
   titles: attr('object'),
 
-  manga: belongsTo('manga')
+  manga: belongsTo('manga', { inverse: 'chapters' })
 });

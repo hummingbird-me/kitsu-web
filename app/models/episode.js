@@ -12,5 +12,5 @@ export default Base.extend({
   thumbnail: attr('object'),
   titles: attr('object'),
 
-  media: belongsTo('media'),
+  media: belongsTo('media', { inverse: 'episodes' }),
 });

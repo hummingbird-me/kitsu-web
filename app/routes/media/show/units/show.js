@@ -10,7 +10,7 @@ export default Route.extend({
 
   modelTask: task(function* (number) {
     const mediaType = capitalize(get(this, 'routeName').split('.')[0]);
-    const media = this.modelFor(`${mediaType}.show`);
+    const media = this.modelFor(`${mediaType.toLowerCase()}.show`);
     const unitType = mediaType === 'Anime' ? 'episode' : 'chapter';
     let filter;
     if (mediaType === 'Anime') {

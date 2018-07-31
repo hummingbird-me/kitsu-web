@@ -23,11 +23,13 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
         include
       }).then(records => get(records, 'firstObject'));
     }
-    return get(this, 'store').findRecord(type, slug, { include });
+    return get(this, 'store').findRecord(type, slug, { include, reload: true });
   },
 
   afterModel(model) {
-    set(this, 'breadcrumb', get(model, 'canonicalTitle'));
+    if (model) {
+      set(this, 'breadcrumb', get(model, 'canonicalTitle'));
+    }
   },
 
   setupController(controller, model) {

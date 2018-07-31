@@ -8,6 +8,10 @@ export default Component.extend({
     return get(this, 'group.activities.firstObject');
   }).readOnly(),
 
+  isUser: computed('activity', function() {
+    return get(this, 'activity.actor.modelType') === 'user';
+  }).readOnly(),
+
   others: computed('group.activities.[]', function() {
     return get(this, 'group.activities').toArray().slice(1).reject(a => (
       get(a, 'actor.id') === get(this, 'activity.actor.id')
@@ -72,12 +76,13 @@ export default Component.extend({
         }
         return '#';
       }
-      case 'Episode':
+      case 'Episode': // Aired
       case 'Chapter': {
         const actor = get(activity, 'actor');
         if (isPresent(actor)) {
           const type = get(actor, 'modelType');
-          return hrefTo(this, `${type}.show`, get(actor, 'slug'), queryParams);
+          const unitType = `${modelType.toLowerCase()}s`;
+          return hrefTo(this, `${type}.show.${unitType}.show`, get(actor, 'slug'), get(activity, 'subject.number'), queryParams);
         }
         return '#';
       }

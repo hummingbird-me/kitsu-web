@@ -121,6 +121,7 @@ export default Service.extend({
       }
       return records;
     }).catch((error) => {
+      console.error('cache-query error:', error);
       get(this, 'raven').captureException(error);
       return {};
     });

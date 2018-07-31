@@ -6,5 +6,5 @@ export default Mixin.create({
   episodeCount: attr('number'),
   episodeLength: attr('number'),
 
-  episodes: hasMany('episode')
+  episodes: hasMany('episode', { inverse: 'media' })
 });

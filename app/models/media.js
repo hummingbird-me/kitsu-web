@@ -33,6 +33,7 @@ export default Base.extend({
   categories: hasMany('category'),
   mediaRelationships: hasMany('media-relationship', { inverse: 'source' }),
   reviews: hasMany('review'),
+  episodes: hasMany('episode', { inverse: 'media' }),
 
   unitCount: or('episodeCount', 'chapterCount'),
   computedTitle: computed('session.account.titleLanguagePreference', 'titles', function() {
