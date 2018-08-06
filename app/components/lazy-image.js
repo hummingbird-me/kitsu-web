@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { get, set } from '@ember/object';
 import { scheduleOnce, next } from '@ember/runloop';
+import observerManager from '../utils/observer-manager';
 
 export default Component.extend({
   classNames: ['lazy-image'],
@@ -51,24 +52,20 @@ export default Component.extend({
   },
 
   _setupViewport() {
-    this.observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.intersectionRatio > 0) {
-          if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
-          this._swapAttributes();
-          this._loadImage();
-          observer.unobserve(this.element);
-        }
-      });
-    }, { root: null, rootMargin: this._getRootMargin(), threshold: 0 });
-    this.observer.observe(this.element);
+    const options = { root: null, rootMargin: this._getRootMargin(), threshold: 0 };
+    const observe = observerManager(options);
+    this.unobserve = observe(this.element, (entry) => {
+      if (entry && entry.isIntersecting) {
+        if (get(this, 'isDestroyed') || get(this, 'isDestroying')) { return; }
+        this._swapAttributes();
+        this._loadImage();
+        if (this.unobserve) { this.unobserve(); }
+      }
+    });
   },
 
   _teardownViewport() {
-    if (this.observer) {
-      this.observer.unobserve(this.element);
-      this.observer.disconnect();
-    }
+    if (this.unobserve) { this.unobserve(); }
   },
 
   _getRootMargin() {
