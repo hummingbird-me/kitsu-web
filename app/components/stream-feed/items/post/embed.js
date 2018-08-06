@@ -26,12 +26,9 @@ export default Component.extend({
     return url;
   }),
 
-  style: computed('embed.video.{width,height}', function() {
-    const kind = this.get('embed.kind');
-    if (kind === 'video' || kind === 'video.other') {
-      const video = this.get('embed.video');
-      if (!video) { return null; }
-      const { width, height } = video;
+  style: computed('isVideo', 'embed.video.{width,height}', function() {
+    if (this.isVideo) {
+      const { width, height } = this.embed.video;
       return htmlSafe(`padding-bottom: calc(100% * (${height} / ${width}))`);
     }
     return null;
