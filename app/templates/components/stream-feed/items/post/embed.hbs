@@ -1,10 +1,18 @@
-{{#if (and (or (eq embed.kind "video") (eq embed.kind "video.other")) (is-object embed.video))}}
-  <a href="#" {{action "revealVideo"}} class="embed-video" rel="nofollow noopener">
-    {{lazy-image src=embed.image.url}}
-    <div class="embed-video-overlay"></div>
-    <div class="embed-video-info">{{embed.site.name}} - {{truncate embed.title 50}}</div>
-    {{svg-jar "trailer"}}
-  </a>
+{{#if isVideo}}
+  {{#if shouldRenderVideo}}
+    {{#if requiresIFrame}}
+      <iframe src={{videoSrc}} class="embed-video"></iframe>
+    {{else}}
+      <video controls autoplay src={{videoSrc}} class="embed-video"></video>
+    {{/if}}
+  {{else}}
+    <a href="#" {{action "revealVideo"}} class="embed-video" rel="nofollow noopener">
+      {{lazy-image src=embed.image.url}}
+      <div class="embed-video-overlay"></div>
+      <div class="embed-video-info">{{embed.site.name}} - {{truncate embed.title 50}}</div>
+      {{svg-jar "trailer"}}
+    </a>
+  {{/if}}
 {{else}}
   <a href={{embed.url}} target="_blank" class="embed-article {{orientation}}" rel="nofollow noopener">
     {{lazy-image src=(or embed.image.url embed.image)}}
