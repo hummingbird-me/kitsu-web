@@ -59,7 +59,7 @@
       }}
     {{/unless}}
 
-    {{#if (can "edit library-entry" user)}}
+    {{#if canEditLibrary}}
       <hr>
       {{#basic-dropdown horizontalPosition="center" as |dd|}}
         {{#dd.trigger class="library-manage-text"}}
@@ -96,7 +96,7 @@
     {{/if}}
   </div>
 
-  {{#if (and (gt reactionsCount 0) (can "edit library-entry" user))}}
+  {{#if (and (gt reactionsCount 0) canEditLibrary)}}
     <div class="library-issues">
       <div class="library-issues--title">
         <span>{{t "users.library.sidebar.issues.header"}}</span>

@@ -34,7 +34,7 @@
           {{yield}}
         </span>
       {{else}}
-        <button class="btn btn-secondary" disabled={{disabled}} {{action (toggle "showTooltip" this)}}>
+        <button class="btn btn-secondary" disabled={{disabled}} {{action "toggleTether"}}>
           {{! Simple State }}
           {{#if session.account.isSimpleRating}}
             <span class="rating-simple">
@@ -59,7 +59,7 @@
       <ul class="list-unstyled">
         <li class="dropdown-item" {{action (queue
           (action dd.actions.toggle)
-          (toggle-action "showTooltip" this))}}>
+          (action "toggleTether"))}}>
           {{t "library-entry.state.change-rating"}}
         </li>
         <li class="dropdown-divider"></li>
@@ -72,7 +72,7 @@
     {{/dd.content}}
   {{/basic-dropdown}}
 {{else}}
-  <span class="{{class}} rating-button rating-button-{{guid}}" {{action (toggle "showTooltip" this)}}>
+  <span class="{{class}} rating-button rating-button-{{guid}}" {{action "toggleTether"}}>
     {{yield}}
   </span>
 {{/if}}

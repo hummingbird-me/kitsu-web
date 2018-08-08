@@ -3,10 +3,18 @@ import { get, set, computed } from '@ember/object';
 import { htmlSafe } from '@ember/string';
 import { task } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
   tagName: '',
   readOnlyModal: false,
+  session: service(),
+
+  canEditLibrary: computed('session.hasUser', 'libraryEntry.user', function() {
+    if (!get(this, 'session.hasUser')) { return false; }
+    const user = get(this, 'libraryEntry.user');
+    return get(this, 'session').isCurrentUser(user);
+  }).readOnly(),
 
   hasReaction: computed('libraryEntry.mediaReaction', function() {
     const reaction = get(this, 'libraryEntry').belongsTo('mediaReaction').value();

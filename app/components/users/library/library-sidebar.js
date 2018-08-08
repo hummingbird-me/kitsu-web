@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { get, set } from '@ember/object';
+import { get, set, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { reads } from '@ember/object/computed';
 import { camelize } from '@ember/string';
@@ -11,8 +11,16 @@ export default Component.extend({
   reactionIndex: 0,
   ajax: service(),
   store: service(),
+  session: service(),
+
   reactions: reads('getIssuesTask.last.value.reaction'),
   reactionsCount: reads('reactions.length'),
+
+  canEditLibrary: computed('session.hasUser', 'user', function() {
+    if (!get(this, 'session.hasUser')) { return false; }
+    const user = get(this, 'user');
+    return get(this, 'session').isCurrentUser(user);
+  }).readOnly(),
 
   init() {
     this._super(...arguments);

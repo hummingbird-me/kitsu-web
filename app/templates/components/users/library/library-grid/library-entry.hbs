@@ -37,7 +37,7 @@
 
       {{! Edit }}
       <div class="grid-edit-wrapper">
-        {{#if (can "edit library-entry" libraryEntry)}}
+        {{#if canEditLibrary}}
           <a href="#" class="grid-edit" {{action (toggle "showEditModal" this)}}>
             {{t "users.library.list.edit"}}
           </a>
@@ -81,7 +81,7 @@
   {{! Rating }}
   <span class="entry-rating entry-rating-{{if session.account.isSimpleRating "simple" (if session.hasUser "star" "simple")}}">
     {{#if (gt libraryEntry.rating 0)}}
-      {{#if (can "edit library-entry" libraryEntry)}}
+      {{#if canEditLibrary}}
         {{#library-entry/rating-button
           rating=libraryEntry.rating
           showDropdown=true
@@ -101,7 +101,7 @@
         }}
       {{/if}}
     {{else}}
-      {{#if (can "edit library-entry" libraryEntry)}}
+      {{#if canEditLibrary}}
         {{#library-entry/rating-button
           rating=libraryEntry.rating
           onClick=(action "changeRating")
