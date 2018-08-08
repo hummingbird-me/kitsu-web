@@ -3,7 +3,7 @@ import { get, set } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import canUseDOM from 'client/utils/can-use-dom';
-import { join } from '@ember/runloop';
+import batcher from 'ember-batcher/batcher';
 
 export default Component.extend({
   tagName: '',
@@ -47,9 +47,11 @@ export default Component.extend({
     handleDot.classList.add('noUi-handle-dot');
     const handleBackground = document.createElement('span');
     handleBackground.classList.add('noUi-handle-background');
-    this._scheduleRead(() => {
+    batcher.scheduleRead(() => {
+      if (get(this, 'isDestroyed')) { return; }
       const width = slider.clientWidth;
-      this._scheduleWork(() => {
+      batcher.scheduleWork(() => {
+        if (get(this, 'isDestroyed')) { return; }
         handleBackground.style.width = `${width}px`;
         element.appendChild(handleDot);
         handleDot.appendChild(handleBackground);
@@ -61,30 +63,14 @@ export default Component.extend({
     const value = ((rating - 1) * 10);
     const element = document.getElementsByClassName('advanced-rating-slider')[0];
     if (!element) { return; }
-    this._scheduleRead(() => {
+    batcher.scheduleRead(() => {
+      if (get(this, 'isDestroyed')) { return; }
       const offset = -((value / 100) * element.clientWidth);
-      this._scheduleWork(() => {
+      batcher.scheduleWork(() => {
+        if (get(this, 'isDestroyed')) { return; }
         const handle = element.getElementsByClassName('noUi-handle-background')[0];
         handle.style.left = `${offset}px`;
       });
     });
   },
-
-  _scheduleRead(callback) {
-    if (get(this, 'isDestroyed')) { return; }
-    window.requestAnimationFrame(() => {
-      join(() => {
-        callback();
-      });
-    });
-  },
-
-  _scheduleWork(callback) {
-    if (get(this, 'isDestroyed')) { return; }
-    window.requestAnimationFrame(() => {
-      join(() => {
-        callback();
-      });
-    });
-  }
 });
