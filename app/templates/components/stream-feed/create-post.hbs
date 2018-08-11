@@ -56,7 +56,7 @@
                 {{loading-spinner size="small"}}
               </div>
             {{else}}
-              {{#let (if (and isEditing (not (is-object-empty post.embed))) post.embed previewEmbedTask.last.value) as |embed|}}
+              {{#let (or previewEmbedTask.last.value post.embed) as |embed|}}
                 {{stream-feed/items/post/embed embed=embed}}
               {{/let}}
             {{/if}}
