@@ -28,7 +28,8 @@ export default Controller.extend({
   actions: {
     selectCategory(category) {
       set(this, 'selectedCategory', category);
-      set(this, 'group.category', get(this, 'store').peekRecord('group-category', get(category, 'id')));
+      const record = get(this, 'store').peekRecord('group-category', get(category, 'id'));
+      this.group.set('category', record);
     },
   }
 });

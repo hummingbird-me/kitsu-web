@@ -38,7 +38,7 @@ export default Base.extend(Validations, {
   slug: attr('string'),
   tagline: attr('string'),
 
-  category: belongsTo('group-category'),
+  category: belongsTo('group-category', { async: false }),
   categoryHack: attr('boolean'),
 
   actionLogs: hasMany('group-action-log', { inverse: 'group' }),
