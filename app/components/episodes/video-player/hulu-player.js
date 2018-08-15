@@ -53,12 +53,19 @@ export default Component.extend({
     const containerId = get(this, 'elementId');
 
     // Initialize the HuluPlayer instance
-    const player = new HuluPlayer.DP(containerId, {
+    const options = {
       ...getProperties(this, 'width', 'height'),
       id: get(this, 'videoId'),
-      partner: 'kitsu',
       playerType: 'dash'
-    });
+    };
+
+    // tag this embed if needed
+    const data = this.video && this.video.embedData;
+    if (data && data.network === undefined) {
+      options.partner = 'kitsu';
+    }
+
+    const player = new HuluPlayer.DP(containerId, options);
     set(this, 'player', player);
 
     // Hook onto the events

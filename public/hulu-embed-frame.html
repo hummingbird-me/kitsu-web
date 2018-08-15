@@ -22,12 +22,13 @@
       function handleMessage(data) {
         switch (data.message) {
           case 'initialize':
-            window.HuluPlayerInstance = new HuluPlayer.DP('embed-container', {
+            const options = {
               width: window.innerWidth,
               height: window.innerHeight,
-              id: data.id,
-              partner: 'kitsu',
-            });
+              id: data.id
+            };
+            if (data.network === undefined) { options.partner = 'kitsu'; }
+            window.HuluPlayerInstance = new HuluPlayer.DP('embed-container', options);
             break;
           default:
             break;
@@ -36,10 +37,10 @@
 
       window.initializeHulu = function(videoId) {
         if (HuluPlayer && HuluPlayer.DP) {
-          handleMessage({ message: 'initialize', id: videoId });
+          handleMessage({ message: 'initialize', id: videoId, network: undefined });
         } else {
           var element = document.getElementById('hulu-playerapi-script');
-          element.onload = function() { handleMessage({ message: 'initialize', id: videoId }); }
+          element.onload = function() { handleMessage({ message: 'initialize', id: videoId, network: undefined }); }
         }
       }
 
