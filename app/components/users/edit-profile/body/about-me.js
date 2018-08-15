@@ -9,15 +9,20 @@ const GENDER_KEYS = ['secret', 'male', 'female', 'custom'];
 
 export default Component.extend({
   classNames: ['tab-pane'],
+
+  algolia: service(),
   intl: service(),
   store: service(),
 
   searchCharacters: task(function* (query) {
     yield timeout(150);
-    return yield get(this, 'store').query('character', {
-      filter: { name: query },
-      page: { limit: 4 }
+    const index = yield this.get('algolia.getIndex').perform('characters');
+    if (isEmpty(index) || isEmpty(query)) { return []; }
+    const response = yield index.search(query, {
+      // attributesToRetrieve: ['id', 'slug', 'canonicalName', 'image'],
+      hitsPerPage: 5
     });
+    return response.hits;
   }).restartable(),
 
   init() {
@@ -59,6 +64,14 @@ export default Component.extend({
         set(this, 'user.gender', options.find(o => o.str === value).key);
       }
       set(this, 'selectedGender', value);
+    },
+
+    // we need to get the record from the API as `character` is from Algolia
+    setWaifu(character) {
+      this.store.findRecord('character', character.id).then((record) => {
+        this.set('user.waifu', record);
+        this.set('user.waifuDirtyHack', true);
+      });
     }
   }
 });

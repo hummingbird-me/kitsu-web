@@ -85,7 +85,7 @@
       {{#power-select
         search=(perform searchCharacters)
         selected=user.waifu
-        onchange=(action (queue (action (mut user.waifu)) (action (mut user.waifuDirtyHack) true)))
+        onchange=(action "setWaifu")
         renderInPlace=true
         placeholder=(t "users.edit-modal.about.waifu.search")
         as |character|
@@ -93,7 +93,7 @@
         <span class="waifu-wrapper">
           <img src={{image character.image}}>
         </span>
-        <span class="waifu-name">{{character.name}}</span>
+        <span class="waifu-name">{{or character.name character.canonicalName}}</span>
       {{/power-select}}
 
       {{#if user.waifu}}

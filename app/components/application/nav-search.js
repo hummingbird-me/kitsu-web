@@ -2,12 +2,10 @@ import Ember from 'ember';
 import { get, set, computed } from '@ember/object';
 import { isPresent } from '@ember/utils';
 import jQuery from 'jquery';
-import { inject as service } from '@ember/service';
 
 export default Ember.Component.extend({
   isOpened: false,
   query: undefined,
-  algolia: service(),
 
   inputClass: computed('isOpened', 'query', function() {
     const isActive = get(this, 'isOpened') || isPresent(get(this, 'query'));
@@ -41,10 +39,6 @@ export default Ember.Component.extend({
   actions: {
     close() {
       set(this, 'isOpened', false);
-    },
-
-    loadKeys() {
-      get(this, 'algolia').loadKeys();
     }
   }
 });
