@@ -1,5 +1,5 @@
 {{! Kitsu Media Characters Top }}
-{{#unless media.nsfw}}
+{{#if media.shouldShowAds}}
   {{ad-unit unit="kitsu.media.characters.top"
     targeting=(hash
       section="media"
@@ -8,7 +8,7 @@
       mobile=(array (array 300 250) (array 320 100) (array 320 50))
       desktop=(array 728 90))
   }}
-{{/unless}}
+{{/if}}
 
 <h2 class="d-inline-block">{{t "media.show.characters.header" title=media.computedTitle}}</h2>
 {{#if (and taskValue (gt availableLanguages.length 1))}}
@@ -77,7 +77,7 @@
 {{/if}}
 
 {{! Kitsu Media Characters Bottom }}
-{{#unless media.nsfw}}
+{{#if media.shouldShowAds}}
   {{ad-unit unit="kitsu.media.characters.bottom"
     targeting=(hash
       section="media"
@@ -86,4 +86,4 @@
       mobile=(array (array 300 250) (array 320 100) (array 320 50))
       desktop=(array 728 90))
   }}
-{{/unless}}
+{{/if}}

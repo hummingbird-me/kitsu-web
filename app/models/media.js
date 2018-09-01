@@ -2,7 +2,7 @@ import Base from 'client/models/-base';
 import attr from 'ember-data/attr';
 import { hasMany } from 'ember-data/relationships';
 import { get, computed } from '@ember/object';
-import { or } from '@ember/object/computed';
+import { or, alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { getComputedTitle } from 'client/utils/get-title-field';
 
@@ -34,6 +34,7 @@ export default Base.extend({
   mediaRelationships: hasMany('media-relationship', { inverse: 'source' }),
   reviews: hasMany('review'),
   episodes: hasMany('episode', { inverse: 'media' }),
+  shouldShowAds: alias('nsfw'),
 
   unitCount: or('episodeCount', 'chapterCount'),
   computedTitle: computed('session.account.titleLanguagePreference', 'titles', function() {

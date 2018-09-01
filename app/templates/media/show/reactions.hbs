@@ -1,5 +1,5 @@
 {{! Kitsu Media Reviews Top }}
-{{#unless media.nsfw}}
+{{#if media.shouldShowAds}}
   {{ad-unit unit="kitsu.media.reviews.top"
     targeting=(hash
       section="media"
@@ -8,12 +8,12 @@
       mobile=(array (array 300 250) (array 320 100) (array 320 50))
       desktop=(array 728 90))
   }}
-{{/unless}}
+{{/if}}
 
 {{media/media-reactions media=media noLimit=true}}
 
 {{! Kitsu Media Reactions Bottom }}
-{{#unless media.nsfw}}
+{{#if media.shouldShowAds}}
   {{ad-unit unit="kitsu.media.reviews.bottom"
     targeting=(hash
       section="media"
@@ -22,4 +22,4 @@
       mobile=(array (array 300 250) (array 320 100) (array 320 50))
       desktop=(array 728 90))
   }}
-{{/unless}}
+{{/if}}

@@ -1,5 +1,5 @@
 {{! Kitsu Media Episodes Top }}
-{{#unless media.nsfw}}
+{{#if media.shouldShowAds}}
   {{ad-unit unit="kitsu.media.episodes.top"
     targeting=(hash
       section="media"
@@ -8,7 +8,7 @@
       mobile=(array (array 300 250) (array 320 100) (array 320 50))
       desktop=(array 728 90))
   }}
-{{/unless}}
+{{/if}}
 
 {{#if model.taskInstance.isRunning}}
   {{! @TODO: Unit loader }}
@@ -31,7 +31,7 @@
 {{/if}}
 
 {{! Kitsu Media Episodes Bottom }}
-{{#unless media.nsfw}}
+{{#if media.shouldShowAds}}
   {{ad-unit unit="kitsu.media.episodes.bottom"
     targeting=(hash
       section="media"
@@ -40,4 +40,4 @@
       mobile=(array (array 300 250) (array 320 100) (array 320 50))
       desktop=(array 728 90))
   }}
-{{/unless}}
+{{/if}}
