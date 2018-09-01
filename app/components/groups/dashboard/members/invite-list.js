@@ -7,6 +7,7 @@ import errorMessages from 'client/utils/error-messages';
 import Pagination from 'kitsu-shared/mixins/pagination';
 
 export default Component.extend(Pagination, {
+  algolia: service(),
   notify: service(),
   store: service(),
   invites: concat('getInvitesTask.last.value', 'paginatedRecords'),
@@ -29,13 +30,17 @@ export default Component.extend(Pagination, {
 
   searchUsersTask: task(function* (query) {
     yield timeout(250);
-    return yield get(this, 'store').query('user', {
-      filter: { query }
+    const index = yield this.get('algolia.getIndex').perform('users');
+    const response = yield index.search(query, {
+      attributesToRetrieve: ['id', 'name'],
+      hitsPerPage: 10
     });
+    return response.hits || [];
   }).restartable(),
 
   inviteUserTask: task(function* () {
-    const user = get(this, 'inviteUser');
+    const invitee = get(this, 'inviteUser');
+    const user = yield get(this, 'store').findRecord('user', get(invitee, 'id'));
     const invite = get(this, 'store').createRecord('group-invite', {
       group: get(this, 'group'),
       sender: get(this, 'session.account'),
