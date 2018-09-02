@@ -35,12 +35,12 @@
         }
       }
 
-      window.initializeHulu = function(videoId) {
+      window.initializeHulu = function(videoId, network) {
         if (HuluPlayer && HuluPlayer.DP) {
-          handleMessage({ message: 'initialize', id: videoId, network: undefined });
+          handleMessage({ message: 'initialize', id: videoId, network });
         } else {
           var element = document.getElementById('hulu-playerapi-script');
-          element.onload = function() { handleMessage({ message: 'initialize', id: videoId, network: undefined }); }
+          element.onload = function() { handleMessage({ message: 'initialize', id: videoId, network }); }
         }
       }
 
