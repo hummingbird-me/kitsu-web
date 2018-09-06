@@ -13,6 +13,6 @@ export default Media.extend(EpisodicMixin, {
   streamingLinks: hasMany('streaming-link'),
 
   shouldShowAds: computed('nsfw', 'ageRating', function() {
-    return !(this.nsfw || this.ageRating == 'R');
+    return !(this.nsfw || this.ageRating === 'R');
   })
 });
