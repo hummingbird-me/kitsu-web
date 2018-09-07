@@ -68,7 +68,11 @@
         {{else if (eq activity.verb "vote")}}
           liked your {{activity.target.media.computedTitle}} reaction.
         {{else if (eq activity.verb "aired")}}
-          {{t "user-notifications.aired" type=activity.subject.modelType number=activity.subject.number media=activity.actor.computedTitle}}
+          {{#if (and activity.subject (gt activity.subject.number 0))}}
+            {{t "user-notifications.aired" type=activity.subject.modelType number=activity.subject.number media=activity.actor.computedTitle}}
+          {{else}}
+            {{t "user-notifications.aired-unknown" type=activity.actor.modelType media=activity.actor.computedTitle}}
+          {{/if}}
         {{/if}}
       </p>
       <small class="media-secondary">{{moment-from-now activity.time interval=60000}}</small>

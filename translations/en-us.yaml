@@ -1158,6 +1158,13 @@ user-notifications:
     chapter {Released}
     episode {Aired}
     other {}}"
+  aired-unknown: "{media} {type, select,
+    manga {released}
+    anime {aired}
+    other {}} a new {type, select,
+    manga {Chapter}
+    anime {Episode}
+    other {}}"
 # ember-power-select
 selects:
   loading: "Loading..."

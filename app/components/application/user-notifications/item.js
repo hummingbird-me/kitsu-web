@@ -79,10 +79,11 @@ export default Component.extend({
       case 'Episode': // Aired
       case 'Chapter': {
         const actor = get(activity, 'actor');
-        if (isPresent(actor)) {
+        const subject = get(activity, 'subject');
+        if (isPresent(actor) && isPresent(subject) && get(subject, 'number') > 0) {
           const type = get(actor, 'modelType');
           const unitType = `${modelType.toLowerCase()}s`;
-          return hrefTo(this, `${type}.show.${unitType}.show`, get(actor, 'slug'), get(activity, 'subject.number'), queryParams);
+          return hrefTo(this, `${type}.show.${unitType}.show`, get(actor, 'slug'), get(subject, 'number'), queryParams);
         }
         return '#';
       }
