@@ -4,10 +4,7 @@
   transform: translateY(-50%);
 }
 
-@mixin word-break($break: '') {
-  @if $break == 'all' {
-    word-break: break-all;
-  }
-  word-wrap: break-word;
-  word-break: break-word;
+@mixin word-break() {
+  word-wrap: break-word; // Non-standard name for overflow-wrap (Edge)
+  overflow-wrap: word-break; 
 }
