@@ -46,15 +46,20 @@
                         View Past Names
                       {{/dropdown.menu-item}}
                       {{#if isViewingPastNames}}
-                        TEST
                         {{to-elsewhere named="modal" send=(component "users/view-past-names"
                           user=user
                           modalId="view-past-names-modal"
                           onClose=(toggle-action "isViewingPastNames" this))}}
                       {{/if}}
-                      {{#dropdown.menu-item}}
+                      {{#dropdown.menu-item onClick=(action (toggle "isViewingAltAccounts" this))}}
                         View Alt Accounts
                       {{/dropdown.menu-item}}
+                      {{#if isViewingAltAccounts}}
+                        {{to-elsewhere named="modal" send=(component "users/view-alt-accounts"
+                          user=user
+                          modalId="view-alt-accounts-modal"
+                          onClose=(toggle-action "isViewingAltAccounts" this))}}
+                      {{/if}}
                       {{#dropdown.menu-item}}
                         Delete All Posts/Comments
                       {{/dropdown.menu-item}}
