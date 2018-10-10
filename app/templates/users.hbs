@@ -60,9 +60,15 @@
                           modalId="view-alt-accounts-modal"
                           onClose=(toggle-action "isViewingAltAccounts" this))}}
                       {{/if}}
-                      {{#dropdown.menu-item}}
-                        Delete All Posts/Comments
+                      {{#dropdown.menu-item onClick=(action (toggle "isDeletingContent" this))}}
+                        Delete User-Created Content
                       {{/dropdown.menu-item}}
+                      {{#if isDeletingContent}}
+                        {{to-elsewhere named="modal" send=(component "users/delete-user-content"
+                          user=user
+                          modalId="delete-user-content-modal"
+                          onClose=(toggle-action "isDeletingContent" this))}}
+                      {{/if}}
                       {{#dropdown.menu-item}}
                         Ban
                       {{/dropdown.menu-item}}
