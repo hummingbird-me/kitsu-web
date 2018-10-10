@@ -19,6 +19,7 @@ export default Component.extend({
       dataType: 'json',
       data: { kind }
     });
+    get(this, 'onClose')();
   }).drop(),
 
   actions: {
