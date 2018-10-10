@@ -69,9 +69,15 @@
                           modalId="delete-user-content-modal"
                           onClose=(toggle-action "isDeletingContent" this))}}
                       {{/if}}
-                      {{#dropdown.menu-item}}
+                      {{#dropdown.menu-item onClick=(action (toggle "isBanningUser" this))}}
                         Ban
                       {{/dropdown.menu-item}}
+                      {{#if isBanningUser}}
+                        {{to-elsewhere named="modal" send=(component "users/ban-user"
+                          user=user
+                          modalId="ban-user-modal"
+                          onClose=(toggle-action "isBanningUser" this))}}
+                      {{/if}}
                     {{/dropdown.menu}}
                   {{/bootstrap/bs-dropdown}}
                 {{/if}}
