@@ -7,6 +7,7 @@ import { image } from 'client/helpers/image';
 
 export default Controller.extend({
   isEditing: false,
+  isViewingPastNames: false,
   user: alias('model'),
 
   queryCache: service(),

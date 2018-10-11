@@ -37,21 +37,49 @@
 
                 {{! admin actions }}
                 {{#if (can "view admin" user)}}
-                  {{! Previous names }}
-                  {{#unless (is-empty user.pastNames)}}
-                    {{#bootstrap/bs-dropdown class="d-inline" as |dropdown|}}
-                      {{#dropdown.button class="button button--light-outline"}}
-                        Previous Names
-                      {{/dropdown.button}}
-                      {{#dropdown.menu}}
-                        {{#each user.pastNames as |name|}}
-                          {{#dropdown.menu-item}}
-                            {{name}}
-                          {{/dropdown.menu-item}}
-                        {{/each}}
-                      {{/dropdown.menu}}
-                    {{/bootstrap/bs-dropdown}}
-                  {{/unless}}
+                  {{#bootstrap/bs-dropdown class="d-inline" as |dropdown|}}
+                    {{#dropdown.button class="button button--light-outline"}}
+                      Admin
+                    {{/dropdown.button}}
+                    {{#dropdown.menu}}
+                      {{#dropdown.menu-item onClick=(action (toggle "isViewingPastNames" this))}}
+                        View Past Names
+                      {{/dropdown.menu-item}}
+                      {{#if isViewingPastNames}}
+                        {{to-elsewhere named="modal" send=(component "users/view-past-names"
+                          user=user
+                          modalId="view-past-names-modal"
+                          onClose=(toggle-action "isViewingPastNames" this))}}
+                      {{/if}}
+                      {{#dropdown.menu-item onClick=(action (toggle "isViewingAltAccounts" this))}}
+                        View Alt Accounts
+                      {{/dropdown.menu-item}}
+                      {{#if isViewingAltAccounts}}
+                        {{to-elsewhere named="modal" send=(component "users/view-alt-accounts"
+                          user=user
+                          modalId="view-alt-accounts-modal"
+                          onClose=(toggle-action "isViewingAltAccounts" this))}}
+                      {{/if}}
+                      {{#dropdown.menu-item onClick=(action (toggle "isDeletingContent" this))}}
+                        Delete User-Created Content
+                      {{/dropdown.menu-item}}
+                      {{#if isDeletingContent}}
+                        {{to-elsewhere named="modal" send=(component "users/delete-user-content"
+                          user=user
+                          modalId="delete-user-content-modal"
+                          onClose=(toggle-action "isDeletingContent" this))}}
+                      {{/if}}
+                      {{#dropdown.menu-item onClick=(action (toggle "isBanningUser" this))}}
+                        Ban
+                      {{/dropdown.menu-item}}
+                      {{#if isBanningUser}}
+                        {{to-elsewhere named="modal" send=(component "users/ban-user"
+                          user=user
+                          modalId="ban-user-modal"
+                          onClose=(toggle-action "isBanningUser" this))}}
+                      {{/if}}
+                    {{/dropdown.menu}}
+                  {{/bootstrap/bs-dropdown}}
                 {{/if}}
               </div>
             </div>
