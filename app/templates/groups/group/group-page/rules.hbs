@@ -10,9 +10,9 @@
         <p class="m-b-2">
           {{t "groups.rules.empty" link=(href-to "groups.group.dashboard.settings") htmlSafe=true}}
         </p>
-        {{markdown-to-html markdown=(fr-markdown-file "community-guidelines")}}
+        {{render-markdown "community-guidelines"}}
       {{else}}
-        {{markdown-to-html markdown=(fr-markdown-file "community-guidelines")}}
+        {{render-markdown "community-guidelines"}}
       {{/if}}
       </p>
     {{/if}}
