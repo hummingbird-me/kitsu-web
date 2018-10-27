@@ -57,8 +57,6 @@ module.exports = function(defaults) {
         'OneSignalSDKWorker.js',
         'OneSignalSDKUpdaterWorker.js',
 
-        'apple-app-site-association',
-
         // can be removed when ember-web-app supports mstile
         'mstile-70x70.png',
         'mstile-150x150.png',
