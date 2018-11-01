@@ -145,6 +145,7 @@ RouterInstance.map(function() {
   this.route('unsubscribe');
 
   this.route('terms');
+  this.route('pro');
 
   // These must remain at the bottom of the RouterInstance map
   this.route('server-error', { path: '/500' });
