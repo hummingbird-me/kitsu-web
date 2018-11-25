@@ -48,8 +48,8 @@ module.exports = function(environment) {
         environments: ['production', 'staging', 'development'],
         config: {
           production: {
-            apiKey: 'eb6dvmba4ct3',
-            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwidXNlcl9pZCI6IioiLCJyZXNvdXJjZSI6ImFuYWx5dGljcyJ9.fXxS0SjjkETZRNvKOnv69RBtfxOaLPcrRNOqLuMmnV4'
+            apiKey: 'gxzv2wchqpd3',
+            token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZSI6ImFuYWx5dGljcyIsImFjdGlvbiI6IioiLCJ1c2VyX2lkIjoiKiJ9.ggV4B3jmTxcdMqHSjxoXk0kOYKu0YtC2u4fyeuCq3Qs'
           },
           staging: {
             apiKey: 'ekx6xkn9v9xx',
@@ -100,8 +100,8 @@ module.exports = function(environment) {
             app: '17647'
           },
           production: {
-            key: 'eb6dvmba4ct3',
-            app: '18373'
+            key: 'gxzv2wchqpd3',
+            app: '40293'
           }
         }
       }
