@@ -1,11 +1,13 @@
 import Component from '@ember/component';
 import { get, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { storageFor } from 'ember-local-storage';
 
 export default Component.extend({
   authOpened: false,
   authComponent: 'social-auth',
   router: service(),
+  dismissedAnnouncements: storageFor('dismissedAnnouncements'),
 
   isBrowseRoute: computed('router.currentRouteName', function() {
     const route = get(this, 'router.currentRouteName');
