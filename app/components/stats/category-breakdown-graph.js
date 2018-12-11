@@ -3,10 +3,9 @@ import { get, computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
 import { scheduleOnce } from '@ember/runloop';
 import { select } from 'd3-selection';
-import { scaleOrdinal } from 'd3-scale';
 import { arc, pie } from 'd3-shape';
 
-const COLORS = ['#53c79f', '#7a6fca', '#ca6f96', '#e58c72', '#e8e8e9'];
+const COLORS = ['#FEB700', '#FF9300', '#FF3281', '#BC6EDA', '#00BBED', '#545C97', '#EA6200'];
 
 export default Component.extend({
   stat: null,
@@ -26,16 +25,14 @@ export default Component.extend({
     // Get the data, conver it to an object of {name, number}
     const data = get(this, 'stat.categories');
     const arrayData = Object.keys(data).map(key => ({ name: key, number: data[key] }));
-    // Sort the data from biggest to smallest
-    const sorted = arrayData.sort(({ number: a }, { number: b }) => a < b);
-    // Split it into a 4-item head and a summarized tail
-    const primaryData = sorted.slice(0, 4);
-    const otherSum = sorted.slice(4).reduce((sum, { number }) => sum + number, 0);
-    // Rebuild the list with the summarized entry
-    const outputData = [...primaryData, { name: 'Other', number: otherSum }];
+    // Sort the data from biggest to smallest and take the top 7
+    const sorted = arrayData.sort(({ number: a }, { number: b }) => a < b).slice(0, 7);
     // Add the colors
-    const color = scaleOrdinal().range(COLORS);
-    return outputData.map(datum => ({ ...datum, color: color(datum.number) }));
+    return sorted.map((datum, i) => ({
+      ...datum,
+      relativeSize: (datum.number / sorted[0].number * 100),
+      color: COLORS[i % COLORS.length]
+    }));
   }),
 
   draw() {
@@ -45,8 +42,6 @@ export default Component.extend({
 
     // The donut chart
     const outerArc = arc().outerRadius(radius).innerRadius(radius - 25);
-    // The inner shadow
-    const innerArc = arc().outerRadius(radius - 20).innerRadius(radius - 25);
 
     const chart = pie().sort(null).value(({ number }) => number);
 
@@ -65,9 +60,5 @@ export default Component.extend({
     g.append('path')
       .attr('d', outerArc)
       .style('fill', ({ data: { color } }) => color);
-
-    g.append('path')
-      .attr('d', innerArc)
-      .style('fill', 'rgba(0, 0, 0, 0.1)');
   }
 });
