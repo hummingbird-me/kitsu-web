@@ -1,3 +1,7 @@
+{{format-number primaryUnit.count maximumFractionDigits=1}} {{t (concat "timeUnits." primaryUnit.name) count=unit.count}} spent watching anime.
+
+{{format-number stat.media}} completed.
+
 {{#each breakdown as |unit|}}
   {{format-number unit.count}} {{t (concat "timeUnits." unit.name) count=unit.count}}
 {{/each}}
