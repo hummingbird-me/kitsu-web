@@ -16,11 +16,13 @@
     {{#each displayGenres as |genre|}}
       <tr>
         <td>
-          <span class="genre-badge" style="background-color: {{genre.color}};"></span>
           {{genre.name}}
         </td>
-        <td>
+        <td style="color: {{genre.color}};">
           {{genre.number}}
+          <div style="width: 100px; position: relative; height: 5px;">
+            <div style="height: 100%; width: {{genre.relativeSize}}%; background-color: currentColor"></div>
+          </div>
         </td>
       </tr>
     {{/each}}
