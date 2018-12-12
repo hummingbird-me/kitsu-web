@@ -14,9 +14,11 @@
     </div>
     <div class="time-spent-secondary">
       {{format-number stat.media}} completed.
-      More than
-      <span class="time-spent-percentile">{{decimal-number percentile 0}}%</span>
-      of users.
+      {{#if (gt percentile 0)}}
+        More than
+        <span class="time-spent-percentile">{{decimal-number percentile 0}}%</span>
+        of users.
+      {{/if}}
     </div>
   </div>
   {{#if (eq kind "anime")}}
