@@ -41,6 +41,12 @@ cache:
   directories:
   - node_modules
 
+deploy:
+  provider: script
+  script: ember deploy production
+  on:
+    branch: the-future
+
 notifications:
   email: false
   slack:
