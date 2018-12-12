@@ -22,5 +22,7 @@ export default Component.extend({
     if (normed.mangaCategoryBreakdown && normed.mangaCategoryBreakdown.statsData.total < 1) {
       delete normed.mangaCategoryBreakdown;
     }
+
+    return normed;
   }).readOnly()
 });
