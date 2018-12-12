@@ -149,3 +149,21 @@
 .rating-tether {
   z-index: 10000;
 }
+
+.time-spent-tooltip {
+  background-color: lighten($secondary-background-color, 4);
+  color: lighten($secondary-background-color, 60);
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+  .attach {
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: -8px;
+    right: 12px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid lighten($secondary-background-color, 4);
+  }
+}
