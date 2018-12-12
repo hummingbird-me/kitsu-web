@@ -1,54 +1,21 @@
-<div class="user-stats-panel">  
-  <div class="user-stats-tabs">
-    <span
-      class={{concat "user-stats-tab" (if (eq tab "anime") " active")}}
-      onclick={{action (mut tab) "anime"}}>
+{{! anime }}
+{{#if (and normStats.animeCategoryBreakdown normStats.animeAmountConsumed)}}
+  <div class="user-stats-panel">  
+    <div class="user-stats-heading">
       {{t "users.activity.stats.headings.anime"}}
-    </span>
-    <span
-      class={{concat "user-stats-tab" (if (eq tab "manga") " active")}}
-      onclick={{action (mut tab) "manga"}}>
-      {{t "users.activity.stats.headings.manga"}}
-    </span>
+    </div>
+    {{stats/category-breakdown-graph stat=normStats.animeCategoryBreakdown.statsData}}
+    {{stats/time-spent stat=normStats.animeAmountConsumed.statsData kind='anime'}}
   </div>
+{{/if}}
 
-  {{#if (eq tab "anime")}}
-    {{! anime }}
-    <div>
-      {{#if (and normStats.animeCategoryBreakdown normStats.animeAmountConsumed)}}
-        {{stats/category-breakdown-graph stat=normStats.animeCategoryBreakdown.statsData}}
-        {{stats/time-spent stat=normStats.animeAmountConsumed.statsData kind='anime'}}
-      {{else}}
-        <span class="user-stats-empty">
-          {{#if (is-self user)}}
-            {{t "users.activity.stats.empty.header"}}
-            <a href={{href-to "anime.index"}} class="button button--primary m-t-1">
-              {{t "users.library.list.empty.button" type="Anime"}}
-            </a>
-          {{else}}
-            {{t "users.activity.stats.empty.guest-header" user=user.name}}
-          {{/if}}
-        </span>
-      {{/if}}
+{{! manga }}
+{{#if (and normStats.mangaCategoryBreakdown normStats.mangaAmountConsumed)}}
+  <div class="user-stats-panel">  
+    <div class="user-stats-heading">
+      {{t "users.activity.stats.headings.manga"}}
     </div>
-  {{else}}
-    {{! manga }}
-    <div>
-      {{#if (and normStats.mangaCategoryBreakdown normStats.mangaAmountConsumed)}}
-        {{stats/category-breakdown-graph stat=normStats.mangaCategoryBreakdown.statsData}}
-        {{stats/time-spent stat=normStats.mangaAmountConsumed.statsData kind='manga'}}
-      {{else}}
-        <span class="user-stats-empty">
-          {{#if (is-self user)}}
-            {{t "users.activity.stats.empty.header"}}
-            <a href={{href-to "manga.index"}} class="button button--primary m-t-1">
-              {{t "users.library.list.empty.button" type="Manga"}}
-            </a>
-          {{else}}
-            {{t "users.activity.stats.empty.guest-header" user=user.name}}
-          {{/if}}
-        </span>
-      {{/if}}
-    </div>
-  {{/if}}
-</div>
+    {{stats/category-breakdown-graph stat=normStats.mangaCategoryBreakdown.statsData}}
+    {{stats/time-spent stat=normStats.mangaAmountConsumed.statsData kind='manga'}}
+  </div>
+{{/if}}
