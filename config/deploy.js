@@ -16,7 +16,21 @@ module.exports = function(deployTarget) {
       type: 'git-commit'
     },
     slack: {
-      webhookURL: 'https://hooks.slack.com/services/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'
+      webhookURL: 'https://hooks.slack.com/services/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',
+      didDeploy: context => slack => slack.notify({
+        attachments: [{
+          fallback: 'Deployment finished! New revision was successfully uploaded.',
+          pretext: 'Deployment finished! New revision was successfully uploaded.',
+          color: 'good',
+          fields: [
+            {
+              title: 'View',
+              value: `https://${context.revisionData.revisionKey}.production.kitsu.io/`,
+              short: false
+            }
+          ]
+        }]
+      })
     }
   };
 
