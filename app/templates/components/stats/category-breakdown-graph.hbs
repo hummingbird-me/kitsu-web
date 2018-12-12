@@ -1,30 +1,30 @@
-<div class="graph">
-  <svg class="graph-canvas"></svg>
-  <div class="graph-overlay">
-    <span class="graph-overlay-number">{{mediaCount}}</span>
-    <span class="graph-overlay-kind">{{kind}}</span>
+<div class="category-breakdown">
+  <div class="graph" style="width: {{size}}px; height: {{size}}px;">
+    <svg class="graph-canvas"></svg>
+    <div class="graph-overlay">
+      {{#each (take 1 displayGenres) as |genre|}}
+        <div class="graph-percent">{{decimal-number genre.percent 0}}%</div>
+        <div class="graph-genre">{{genre.name}}</div>
+      {{/each}}
+    </div>
   </div>
+  <table class="graph-legend">
+    <tbody>
+      {{#each displayGenres as |genre|}}
+        <tr>
+          <td style="color: {{genre.color}};">
+            {{decimal-number genre.percent 0}}%
+          </td>
+          <td nowrap class="hint--top hint--bounce hint--rounded" aria-label={{genre.name}}>
+            {{truncate genre.name 10 true}}
+          </td>
+          <td style="color: {{genre.color}};">
+            <div class="legend-bar-container">
+              <div class="legend-bar" style="height: 100%; width: {{genre.relativeSize}}%; background-color: currentColor"></div>
+            </div>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </div>
-<table class="graph-legend">
-  <thead>
-    <tr>
-      <th>Genre</th>
-      <th># shows</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each displayGenres as |genre|}}
-      <tr>
-        <td>
-          {{genre.name}}
-        </td>
-        <td style="color: {{genre.color}};">
-          {{genre.number}}
-          <div style="width: 100px; position: relative; height: 5px;">
-            <div style="height: 100%; width: {{genre.relativeSize}}%; background-color: currentColor"></div>
-          </div>
-        </td>
-      </tr>
-    {{/each}}
-  </tbody>
-</table>

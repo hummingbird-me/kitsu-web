@@ -111,6 +111,7 @@ export default Base.extend(Validations, {
   notificationSettings: hasMany('notification-setting', { inverse: 'user' }),
   oneSignalPlayers: hasMany('one-signal-player', { inverse: 'user' }),
   profileLinks: hasMany('profile-link', { inverse: 'user' }),
+  stats: hasMany('stat', { inverse: 'user' }),
   userRoles: hasMany('user-role'),
 
   // HACK: We use this to flag the model as dirty when waifu changes, as ember-data
