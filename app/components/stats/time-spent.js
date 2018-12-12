@@ -33,8 +33,11 @@ export default Component.extend({
     }
   }),
 
-  percentile: computed('stat.percentiles.time', function() {
-    const percentile = get(this, 'stat.percentiles.time');
+  percentile: computed('kind', 'stat.percentiles', function() {
+    const kind = get(this, 'kind');
+    const percentile = kind === 'anime'
+      ? get(this, 'stat.percentiles.time')
+      : get(this, 'stat.percentiles.units');
     return percentile * 100;
   })
 });
