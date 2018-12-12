@@ -30,6 +30,9 @@
       {{! About User }}
       {{users/about-me user=user}}
 
+      {{! Stats }}
+      {{users/user-stats user=user}}
+
       {{! Kitsu Profile Sidebar Top }}
       {{! Hidden on mobile }}
       {{ad-unit unit="kitsu.profile.sidebar.top"
@@ -38,9 +41,6 @@
           tablet=(array 300 250)
           desktop=(array (array 336 280) (array 300 250)))
       }}
-
-      {{! Stats }}
-      {{users/user-stats user=user}}
 
       {{! Favorites }}
       {{users/user-favorites user=user}}
