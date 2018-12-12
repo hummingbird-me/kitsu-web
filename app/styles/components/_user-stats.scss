@@ -168,16 +168,23 @@
 
 .time-spent-info {
   position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 10px;
-  height: 10px;
+  top: 0px;
+  right: 0px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
   svg {
     position: absolute;
+    top: 5px;
+    right: 5px;
     width: 10px;
     height: 10px;
+    opacity: 0.5;
   }
+}
+
+.time-spent-info.active > svg, .time-spent-info:hover > svg {
+  opacity: 1.0;
 }
 
 .time-spent-breakdown {

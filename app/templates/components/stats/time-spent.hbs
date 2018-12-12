@@ -20,8 +20,8 @@
     </div>
   </div>
   {{#if (eq kind "anime")}}
-    <div class="time-spent-info" id="time-spent-info" onclick={{action (toggle "showTooltip" this)}}>
-      {{svg-jar "info"}}
+    <div class="time-spent-info {{if showTooltip "active"}}" id="time-spent-info" onclick={{action (toggle "showTooltip" this)}}>
+      {{svg-jar "info-button"}}
     </div>
     {{#if showTooltip}}
       <div>
