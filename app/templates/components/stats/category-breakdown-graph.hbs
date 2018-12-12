@@ -4,7 +4,9 @@
     <div class="graph-overlay">
       {{#each (take 1 displayGenres) as |genre|}}
         <div class="graph-percent">{{decimal-number genre.percent 0}}%</div>
-        <div class="graph-genre">{{genre.name}}</div>
+        <div class="graph-genre hint--top hint--bounce hint--rounded" aria-label={{genre.name}}>
+          {{truncate genre.name 10 true}}
+        </div>
       {{/each}}
     </div>
   </div>
