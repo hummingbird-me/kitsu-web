@@ -1,7 +1,50 @@
-{{format-number primaryUnit.count maximumFractionDigits=1}} {{t (concat "timeUnits." primaryUnit.name) count=unit.count}} spent watching anime.
-
-{{format-number stat.media}} completed.
-
-{{#each breakdown as |unit|}}
-  {{format-number unit.count}} {{t (concat "timeUnits." unit.name) count=unit.count}}
-{{/each}}
+<div class="time-spent-card">
+  <div class={{concat "time-spent-badge time-spent-" kind "-" primaryUnit.index}}>
+    {{svg-jar (concat kind "-" primaryUnit.index)}}
+  </div>
+  <div class="time-spent-text">
+    <div class="time-spent-primary">
+      {{format-number primaryUnit.count maximumFractionDigits=1}} 
+      {{#if (eq kind "anime")}}
+        {{t (concat "timeUnits." primaryUnit.name) count=primaryUnit.count}}
+        spent watching anime.
+      {{else}}
+        {{t "users.activity.stats.chapters-read" count=primaryUnit.count}}
+      {{/if}}
+    </div>
+    <div class="time-spent-secondary">
+      {{format-number stat.media}} completed.
+      More than
+      <span class="time-spent-percentile">{{decimal-number percentile 0}}%</span>
+      of users.
+    </div>
+  </div>
+  {{#if (eq kind "anime")}}
+    <div class="time-spent-info" id="time-spent-info" onclick={{action (toggle "showTooltip" this)}}>
+      {{svg-jar "info"}}
+    </div>
+    {{#if showTooltip}}
+      <div>
+        {{#ember-tether
+          class="time-spent-tooltip"
+          target="#time-spent-info"
+          attachment="bottom right"
+          targetAttachment="top center"
+          offset="15px -20px"
+        }}
+          <span class="time-spent-breakdown">
+            {{#each breakdown as |unit index|}}
+              <span>
+                {{if (gt index 0) ", "}}
+                {{format-number unit.count}} {{t (concat "timeUnits." unit.name) count=unit.count}}
+              </span>
+            {{/each}}
+          </span>
+          {{t "users.activity.stats.time-breakdown"}}
+          <div class="attach" />
+        {{/ember-tether}}
+      </div>
+    {{/if}}
+  {{/if}}
+</div>
+  
