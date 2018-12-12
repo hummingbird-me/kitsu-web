@@ -43,6 +43,7 @@ cache:
 
 deploy:
   provider: script
+  skip_cleanup: true
   script: ember deploy production
   on:
     branch: the-future
