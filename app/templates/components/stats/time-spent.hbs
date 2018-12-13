@@ -13,8 +13,8 @@
       {{/if}}
     </div>
     <div class="time-spent-secondary">
-      {{#if (gt stat.media 0)}}
-        {{format-number stat.media}} completed.
+      {{#if (gt stat.completed 0)}}
+        {{format-number stat.completed}} completed.
       {{/if}}
       {{#if (gt percentile 0)}}
         More than
@@ -23,6 +23,7 @@
       {{/if}}
     </div>
   </div>
+  
   {{#if (eq kind "anime")}}
     <div class="time-spent-info {{if showTooltip "active"}}" id="time-spent-info">
       {{svg-jar "info-button"}}
