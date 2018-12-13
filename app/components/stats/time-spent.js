@@ -1,13 +1,15 @@
 import Component from '@ember/component';
 import { get, computed } from '@ember/object';
 import moment from 'moment';
+import HoverIntentMixin from 'client/mixins/hover-intent';
 
 const UNITS = ['years', 'months', 'days', 'hours', 'minutes', 'seconds'];
 
-export default Component.extend({
-  stat: {},
+export default Component.extend(HoverIntentMixin, {
+  hoverTimeout: 0,
   kind: 'anime',
   showTooltip: false,
+  stat: {},
 
   breakdown: computed('stat.time', function () {
     const time = moment.duration(get(this, 'stat.time'), 'seconds');
