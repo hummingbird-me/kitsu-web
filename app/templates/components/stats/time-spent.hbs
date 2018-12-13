@@ -13,7 +13,9 @@
       {{/if}}
     </div>
     <div class="time-spent-secondary">
-      {{format-number stat.media}} completed.
+      {{#if (gt stat.media 0)}}
+        {{format-number stat.media}} completed.
+      {{/if}}
       {{#if (gt percentile 0)}}
         More than
         <span class="time-spent-percentile">{{decimal-number percentile 0}}%</span>
