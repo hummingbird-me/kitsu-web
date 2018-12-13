@@ -16,17 +16,14 @@
       {{#if (gt stat.completed 0)}}
         {{format-number stat.completed}} completed.
       {{/if}}
-      {{#if (gt averageDiff 0)}}
-        <span class="time-spent-percentile">{{decimal-number averageDiff 0}}%</span>
-        more than average.
-      {{else if (gt percentile 0)}}
+      {{#if (gt percentile 0)}}
         More than
         <span class="time-spent-percentile">{{decimal-number percentile 0}}%</span>
         of users.
       {{/if}}
     </div>
   </div>
-
+  
   {{#if (eq kind "anime")}}
     <div class="time-spent-info {{if showTooltip "active"}}" id="time-spent-info">
       {{svg-jar "info-button"}}
