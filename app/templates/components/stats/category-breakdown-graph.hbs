@@ -1,32 +1,34 @@
-<div class="category-breakdown">
-  <div class="graph" style="width: {{size}}px; height: {{size}}px;">
-    <svg class="graph-canvas"></svg>
-    <div class="graph-overlay">
-      {{#each (take 1 displayGenres) as |genre|}}
-        <div class="graph-percent">{{decimal-number genre.percent 0}}%</div>
-        <div class="graph-genre hint--top hint--bounce hint--rounded" aria-label={{genre.name}}>
-          {{truncate genre.name 10 true}}
-        </div>
-      {{/each}}
-    </div>
-  </div>
-  <table class="graph-legend">
-    <tbody>
-      {{#each displayGenres as |genre|}}
-        <tr>
-          <td style="color: {{genre.color}};">
-            {{decimal-number genre.percent 0}}%
-          </td>
-          <td nowrap class="hint--top hint--bounce hint--rounded" aria-label={{genre.name}}>
+{{#if (gt displayGenres.length 0)}}
+  <div class="category-breakdown">
+    <div class="graph" style="width: {{size}}px; height: {{size}}px;">
+      <svg class="graph-canvas"></svg>
+      <div class="graph-overlay">
+        {{#each (take 1 displayGenres) as |genre|}}
+          <div class="graph-percent">{{decimal-number genre.percent 0}}%</div>
+          <div class="graph-genre hint--top hint--bounce hint--rounded" aria-label={{genre.name}}>
             {{truncate genre.name 10 true}}
-          </td>
-          <td style="color: {{genre.color}};">
-            <div class="legend-bar-container">
-              <div class="legend-bar" style="height: 100%; width: {{genre.relativeSize}}%; background-color: currentColor"></div>
-            </div>
-          </td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
-</div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+    <table class="graph-legend">
+      <tbody>
+        {{#each displayGenres as |genre|}}
+          <tr>
+            <td style="color: {{genre.color}};">
+              {{decimal-number genre.percent 0}}%
+            </td>
+            <td nowrap class="hint--top hint--bounce hint--rounded" aria-label={{genre.name}}>
+              {{truncate genre.name 10 true}}
+            </td>
+            <td style="color: {{genre.color}};">
+              <div class="legend-bar-container">
+                <div class="legend-bar" style="height: 100%; width: {{genre.relativeSize}}%; background-color: currentColor"></div>
+              </div>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+{{/if}}
