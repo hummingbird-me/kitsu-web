@@ -23,7 +23,8 @@ export default Component.extend(HoverIntentMixin, {
       for (let i = 0; i < UNITS.length; i += 1) {
         const unitTime = time.as(UNITS[i]);
         if (unitTime > 1) {
-          return { index: 4 - i, name: UNITS[i], count: unitTime };
+          const index = i < 4 ? 4 - i : 1;
+          return { index, name: UNITS[i], count: unitTime };
         }
       }
     } else {
