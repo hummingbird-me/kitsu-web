@@ -35,11 +35,19 @@ export default Component.extend(HoverIntentMixin, {
     }
   }),
 
-  percentile: computed('kind', 'stat.percentiles', function() {
+  percentile: computed('stat.percentiles', function() {
     const kind = get(this, 'kind');
     const percentile = kind === 'anime'
       ? get(this, 'stat.percentiles.time')
       : get(this, 'stat.percentiles.units');
     return percentile * 100;
+  }),
+
+  averageDiff: computed('stat.averaveDiffs', function() {
+    const kind = get(this, 'kind');
+    const averageDiff = kind === 'anime'
+      ? get(this, 'stat.averageDiffs.time')
+      : get(this, 'stat.averageDiffs.units');
+    return averageDiff * 100;
   })
 });
