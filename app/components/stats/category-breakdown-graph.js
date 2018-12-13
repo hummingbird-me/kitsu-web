@@ -23,19 +23,14 @@ export default Component.extend({
     const arrayData = Object.keys(data).map(key => ({
       name: key, percent: data[key] / total * 100
     }));
-    // Sort the data from biggest to smallest and take the top 6
-    const sorted = arrayData.sort(({ percent: a }, { percent: b }) => b - a).slice(0, 6);
+    // Sort the data from biggest to smallest and take the top 7
+    const sorted = arrayData.sort(({ percent: a }, { percent: b }) => b - a).slice(0, 7);
     // Remove smaller than 1% categories
     const filtered = sorted.filter(({ percent }) => Math.round(percent) > 0);
-    // Sum up percentages to calculate other
-    const shownPercent = filtered.reduce((acc, { percent }) => acc + percent, 0);
-    const all = [...filtered, {
-      name: 'Other', percent: 100 - shownPercent
-    }];
     // Add the colors
-    return all.map((datum, i) => ({
+    return filtered.map((datum, i) => ({
       ...datum,
-      relativeSize: (datum.percent / all[0].percent * 100),
+      relativeSize: (datum.percent / filtered[0].percent * 100),
       color: COLORS[i % COLORS.length]
     }));
   }),
