@@ -4705,7 +4705,7 @@ ember-cli-htmlbars-inline-precompile@^1.0.0, ember-cli-htmlbars-inline-precompil
     heimdalljs-logger "^0.1.9"
     silent-error "^1.1.0"
 
-ember-cli-htmlbars@^1.0.11, ember-cli-htmlbars@^1.0.3, ember-cli-htmlbars@^1.1.1:
+ember-cli-htmlbars@^1.0.11, ember-cli-htmlbars@^1.0.3:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-1.3.4.tgz#461289724b34af372a6a0c4b6635819156963353"
   dependencies:
@@ -4791,7 +4791,7 @@ ember-cli-mirage@0.4.7:
     pretender "^1.6.1"
     route-recognizer "^0.2.3"
 
-ember-cli-moment-shim@3.7.1:
+ember-cli-moment-shim@3.7.1, ember-cli-moment-shim@^3.6.0:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.7.1.tgz#3ad691c5027c1f38a4890fe47d74b5224cc98e32"
   dependencies:
@@ -5438,12 +5438,14 @@ ember-photoswipe@^0.4.1:
     fastboot-transform "^0.1.2"
     photoswipe "^4.1.2"
 
-ember-pikaday@2.2.4:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/ember-pikaday/-/ember-pikaday-2.2.4.tgz#72c2ada3e5c028f66b56df760bf9f1583e6d5b99"
+ember-pikaday@2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/ember-pikaday/-/ember-pikaday-2.3.1.tgz#c70eaefcbe3fd7306bf72f27acfdd9be117aecb6"
+  integrity sha512-pFFyamXuoKO8Qd/NPygWlvlMTL/hXuJ3cdXQ4jlZEmw0Py+4KApQCaTOlPIBrXbLCabh2+CkqSuBv6dP8+F1dg==
   dependencies:
-    ember-cli-babel "^5.1.7"
-    ember-cli-htmlbars "^1.1.1"
+    ember-cli-babel "^6.16.0"
+    ember-cli-htmlbars "^3.0.0"
+    ember-cli-moment-shim "^3.6.0"
     ember-cli-node-assets "^0.2.2"
     fastboot-transform "^0.1.1"
     pikaday "^1.5.1"
