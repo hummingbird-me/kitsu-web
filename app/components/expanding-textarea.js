@@ -5,6 +5,8 @@ import { later } from '@ember/runloop';
 /* global autosize */
 
 export default OneWayTextAreaComponent.extend({
+  autocomplete: 'ignore',
+
   keyUp() { },
   keyDown(event) {
     const method = get(this, `keyEvents.${event.keyCode}`);
