@@ -31,7 +31,9 @@
       {{users/about-me user=user}}
 
       {{! Stats }}
-      {{users/user-stats user=user}}
+      {{#if (has-feature "profile_stats")}}
+        {{users/user-stats user=user}}
+      {{/if}}
 
       {{! Kitsu Profile Sidebar Top }}
       {{! Hidden on mobile }}
