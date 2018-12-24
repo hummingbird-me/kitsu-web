@@ -10,7 +10,6 @@
         (if dropzone.valid (t "feeds.uploads.drop") (t "feeds.uploads.invalid"))
         (if queue.files.length (t "feeds.uploads.uploading" number=queue.files.length progress=queue.progress) placeholder))
       class=className
-      autocomplete="reply"
     }}
 
     {{#unless (or upload embedUrl)}}
