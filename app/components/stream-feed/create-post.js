@@ -36,7 +36,7 @@ export default Component.extend({
   notify: service(),
   raven: service(),
 
-  canPost: or('contentPresent', 'uploadsReady'),
+  canPost: or('contentPresent', 'uploadsReady', 'embedUrl'),
   uploadsReady: and('uploadsPresent', 'queueFinished'),
   uploadsPresent: notEmpty('uploads'),
   queueFinished: empty('fileQueue.files'),
