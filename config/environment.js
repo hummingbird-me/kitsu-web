@@ -17,7 +17,7 @@ module.exports = function(environment) {
     },
 
     kitsu: {
-      APIHost: undefined,
+      APIHost: 'https://kitsu.io',
       isStaging: IS_STAGING_ENV,
       env: environment
     },
