@@ -41,6 +41,10 @@ export default Component.extend(HoverIntentMixin, {
     const percentile = kind === 'anime'
       ? get(this, 'stat.percentiles.time')
       : get(this, 'stat.percentiles.units');
-    return percentile * 100;
+    const percentage = percentile * 100;
+    if (Number(percentage).toFixed(0) >= 100) {
+      return 99;
+    }
+    return percentage;
   })
 });
