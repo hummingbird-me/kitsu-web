@@ -1,20 +1,4 @@
 <nav id="kitsu-navbar" class="navbar navbar-fixed-top navbar-light primary-nav" role="navigation">
-  {{#unless dismissedAnnouncements.2018_12_10}}
-    <div class="header-announce">
-      <div class="container">
-        <div class="row">
-          <span class="header-announce--message">
-            Give us your feedback!
-          </span>
-          <a href="https://kitsu.typeform.com/to/tqNQN4" class="btn button--primary header-announce--btn" target="_blank">Complete a short survey</a>
-          <a href="#" class="header-announce--dismiss" {{action (mut dismissedAnnouncements.2018_12_10) true}}>
-            {{svg-jar "close"}}
-          </a>
-        </div>
-      </div>
-    </div>
-  {{/unless}}
-
   <div class="container">
     <div class="row">
       <button class="navbar-toggler pull-xs-left" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
