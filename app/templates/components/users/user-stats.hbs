@@ -1,6 +1,6 @@
 {{! anime }}
 {{#if normStats.animeAmountConsumed}}
-  <div class="user-stats-panel">  
+  <div class="user-stats-panel">
     <div class="user-stats-heading">
       {{t "users.activity.stats.headings.anime"}}
     </div>
@@ -13,12 +13,20 @@
 
 {{! manga }}
 {{#if normStats.mangaAmountConsumed}}
-  <div class="user-stats-panel">  
+  <div class="user-stats-panel">
     <div class="user-stats-heading">
       {{t "users.activity.stats.headings.manga"}}
     </div>
     {{#if normStats.mangaCategoryBreakdown}}
       {{stats/category-breakdown-graph stat=normStats.mangaCategoryBreakdown.statsData}}
+    {{else}}
+      <div class="user-stats-empty">
+        {{#if (is-self user)}}
+          {{t "users.activity.stats.empty.header"}}
+        {{else}}
+          {{t "users.activity.stats.empty.guest-header" user=user.name}}
+        {{/if}}
+      </div>
     {{/if}}
     {{stats/time-spent stat=normStats.mangaAmountConsumed.statsData kind='manga'}}
   </div>
