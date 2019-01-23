@@ -6,7 +6,7 @@
 
 [meta]:https://github.com/hummingbird-me/hummingbird
 [server]:https://github.com/hummingbird-me/hummingbird-server
-[api docs]:https://github.com/hummingbird-me/hummingbird-client
+[api docs]:https://github.com/hummingbird-me/api-docs
 
 ---
 
