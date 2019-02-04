@@ -9,6 +9,8 @@ class Getter {
   }
 
   teardown() { } // eslint-disable-line
+
+  setup() { } // eslint-disable-line
 }
 
 export default function getter(func) {
