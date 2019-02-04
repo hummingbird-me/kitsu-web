@@ -9,8 +9,7 @@ module.exports = function(defaults) {
     browseryStats: EmberApp.env() === 'development',
 
     babel: {
-      comments: false,
-      plugins: ['transform-object-rest-spread']
+      plugins: ['@babel/plugin-proposal-object-rest-spread']
     },
 
     'ember-cli-babel': {
