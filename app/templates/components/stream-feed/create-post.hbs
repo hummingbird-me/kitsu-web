@@ -19,7 +19,7 @@
 {{#if isExpanded}}
   <div class="add-content-expanded">
     {{! uploads }}
-    {{#file-dropzone name="uploads" as |dropzone queue|}}
+    {{#file-dropzone name="uploads" as |dropzone uploadQueue|}}
       {{! editor }}
       {{expanding-textarea content
         update=(action (queue (action (mut content)) (action "processLinks")))
@@ -73,9 +73,9 @@
               {{/if}}
             </div>
           {{else}}
-            {{#if queue.files.length}}
+            {{#if uploadQueue.files.length}}
               <div class="add-uploads">
-                {{t "feeds.uploads.uploading" number=uploadCount progress=queue.progress}}
+                {{t "feeds.uploads.uploading" number=uploadCount progress=uploadQueue.progress}}
               </div>
             {{/if}}
 
