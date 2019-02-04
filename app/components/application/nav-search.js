@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { get, set, computed } from '@ember/object';
 import { isPresent } from '@ember/utils';
 import jQuery from 'jquery';
 
-export default Ember.Component.extend({
+export default Component.extend({
   isOpened: false,
   query: undefined,
 
