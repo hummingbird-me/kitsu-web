@@ -32,8 +32,10 @@ module.exports = {
   overrides: [
     {
       files: [
-        'testem.js',
+        '.eslintrc.js',
+        '.template-lintrc.js',
         'ember-cli-build.js',
+        'testem.js',
         'config/**/*.js'
       ],
       parserOptions: {
