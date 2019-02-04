@@ -1,4 +1,4 @@
-{{#file-dropzone name=(concat "comment-uploads-" elementId) disabled=dropzoneDisabled as |dropzone queue|}}
+{{#file-dropzone name=(concat "comment-uploads-" elementId) disabled=dropzoneDisabled as |dropzone uploadQueue|}}
   <div class="comment-box-row">
     {{expanding-textarea content
       update=(action (queue (action (mut content)) (action "processLinks")))
@@ -8,7 +8,7 @@
       rows="1"
       placeholder=(if dropzone.active
         (if dropzone.valid (t "feeds.uploads.drop") (t "feeds.uploads.invalid"))
-        (if queue.files.length (t "feeds.uploads.uploading" number=queue.files.length progress=queue.progress) placeholder))
+        (if uploadQueue.files.length (t "feeds.uploads.uploading" number=uploadQueue.files.length progress=uploadQueue.progress) placeholder))
       class=className
     }}
 
@@ -16,7 +16,7 @@
       {{#file-upload name=(concat "comment-uploads-" elementId)
         accept=accept
         multiple=false
-        disabled=(or (gt queue.files.length 0) (not (is-empty embedUrl)))
+        disabled=(or (gt uploadQueue.files.length 0) (not (is-empty embedUrl)))
         onfileadd=(action (perform uploadImageTask))
       }}
         {{svg-jar "picture"}}
