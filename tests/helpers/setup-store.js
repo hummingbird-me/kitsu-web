@@ -1,3 +1,4 @@
+import { get } from '@ember/object';
 import Ember from 'ember';
 import DS from 'ember-data';
 import Owner from 'client/tests/helpers/owner';
@@ -15,7 +16,7 @@ export default function(options = {}) {
 
   DS._setupContainer(registry);
   Object.keys(options).forEach(prop => (
-    registry.register(`model:${prop}`, Ember.get(options, prop))
+    registry.register(`model:${prop}`, get(options, prop))
   ));
   registry.register('adapter:application', DS.JSONAPIAdapter);
   registry.register('serializer:application', ApplicationSerializer);
