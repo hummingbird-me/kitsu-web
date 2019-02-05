@@ -1,18 +1,5 @@
-class Getter {
-  constructor(func) {
-    this.isDescriptor = true;
-    this._getter = func;
-  }
-
-  get(obj) {
-    return this._getter.call(obj);
-  }
-
-  teardown() { } // eslint-disable-line
-
-  setup() { } // eslint-disable-line
-}
+import { computed } from '@ember/object';
 
 export default function getter(func) {
-  return new Getter(func);
+  return computed(func);
 }
