@@ -98,3 +98,17 @@
     margin-right: 10px;
   }
 }
+
+.button--pro {
+  @extend .button--primary;
+  display: block;
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 3rem;
+}
+
+.button--patron {
+  @extend .button--pro;
+  background-image: linear-gradient(to left, rgb(232,120,74) 0%,rgb(234,76,137) 100%);
+}
