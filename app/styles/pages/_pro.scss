@@ -99,3 +99,26 @@
   grid-area: cycle;
   align-self: start;
 }
+
+.logo-rule {
+  color: #DDD;
+  position: relative;
+  text-align: center;
+  margin: 40px 0;
+
+  svg {
+    fill: currentcolor;
+    width: auto;
+    height: 50px;
+  }
+  &::after, &::before {
+    content: "";
+    position: absolute;
+    border-top: 2px solid currentcolor;
+    top: calc(50% - 1px);
+    width: calc(50% - 30px);
+  }
+  &::after { right: 0 }
+  &::before { left: 0 }
+}
+
