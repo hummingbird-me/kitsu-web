@@ -22,6 +22,10 @@ module.exports = function(environment) {
       env: environment
     },
 
+    stripe: {
+      key: 'pk_test_aQbfVWeOwvtES5FRSY7iIjk9'
+    },
+
     torii: {
       providers: {
         'facebook-connect': {
