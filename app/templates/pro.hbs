@@ -1,3 +1,10 @@
+{{#if buyingTier}}
+  {{to-elsewhere named="modal" send=(component "modals/buy-pro"
+    tier=buyingTier
+    onClose=(action (mut buyingTier) false)
+  )}}
+{{/if}}
+
 <header class="pro-header">
   <div class="container">
     <div class="row">
@@ -11,6 +18,7 @@
     </div>
   </div>
 </header>
+
 <div class="container pro-tiers">
   <section class="pro-tier">
     <header>
@@ -38,7 +46,7 @@
             billed annually
           </span>
         </div>
-        <button class="button button--pro" {{action "openCheckout" "pro"}}>
+        <button class="button button--pro" {{action "buyTier" "pro"}}>
           Upgrade to PRO
         </button>
       </div>
@@ -71,15 +79,36 @@
             billed annually
           </span>
         </div>
-        <button class="button button--patron">
+        <button class="button button--patron" {{action "buyTier" "patron"}}>
           Upgrade to PATRON
         </button>
       </div>
     </div>
   </section>
 </div>
+
 <div class="container">
   <div class="logo-rule">
     {{svg-jar "kitsu"}}
   </div>
 </div>
+
+<section class="container hall-of-fame">
+  <header>
+    <h3>The Hall Of Fame</h3>
+    <div>
+      The following users have upgraded to <span class="patron-badge">PATRON</span>, offering the
+      pinnacle of financial support to keep our community alive.
+    </div>
+  </header>
+
+  {{#if hallOfFame}}
+    <ul>
+      <li>
+        silverwaterlilies
+      </li>
+    </ul>
+  {{else}}
+    <!-- @josh Hall of Fame empty state goes here-->
+  {{/if}}
+</section>

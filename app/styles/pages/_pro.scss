@@ -122,3 +122,19 @@
   &::before { left: 0 }
 }
 
+.hall-of-fame {
+  header { text-align: center }
+  h3 { text-transform: uppercase }
+  ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-template-rows: repeat(auto-fit, 1fr);
+    list-style: none;
+  }
+  li {
+    @extend .card;
+
+    display: block;
+  }
+}

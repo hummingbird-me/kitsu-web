@@ -192,9 +192,7 @@ module.exports = function(environment) {
   }
 
   // Production app @ Heroku
-  if (process.env.HEROKU_EMBER_APP === 'production') {
-    ENV.kitsu.APIHost = 'https://kitsu.io';
-  }
+  ENV.kitsu.APIHost = 'https://kitsu.io';
 
   ENV.apollo = { apiURL: `${ENV.kitsu.APIHost}/api/edge/graphql` };
 
