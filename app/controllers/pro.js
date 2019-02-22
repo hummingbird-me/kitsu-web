@@ -29,7 +29,7 @@ export default Controller.extend({
       });
     },
 
-    buyPro(tier) {
+    buyTier(tier) {
       set(this, 'buyingTier', tier);
     }
   }

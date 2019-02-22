@@ -1,7 +1,10 @@
 {{! @josh just leave me some buttons to hook up to PayPal and Stripe }}
 
-{{#bootstrap/bs-modal largeModal=true backdrop="static" keyboard="false" onClose=onClose as |modal|}}
+{{#bootstrap/bs-modal onClose=onClose as |modal|}}
   {{#modal.header}}
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
     <h4>
       {{#if (eq tier "pro")}}
         BUYING PRO

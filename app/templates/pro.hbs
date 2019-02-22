@@ -1,7 +1,7 @@
 {{#if buyingTier}}
   {{to-elsewhere named="modal" send=(component "modals/buy-pro"
     tier=buyingTier
-    onClose=(action (mut buyingTier) false)
+    onClose=(action "buyTier" false)
   )}}
 {{/if}}
 
