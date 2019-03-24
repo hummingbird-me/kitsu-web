@@ -56,6 +56,15 @@
             onClose=(toggle-action "exportModal" this))
           }}
         {{/if}}
+
+        {{#if (has-feature "xml_download")}}
+          <a class="import-option" href={{animeDownloadUrl}}>
+            <span class="import-title">{{t "settings.exports.download" kind="Anime"}}</span>
+          </a>
+          <a class="import-option" href={{mangaDownloadUrl}}>
+            <span class="import-title">{{t "settings.exports.download" kind="Manga"}}</span>
+          </a>
+        {{/if}}
       </div>
     </div>
   </header>
