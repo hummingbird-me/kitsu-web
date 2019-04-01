@@ -8,8 +8,10 @@ export function userBadge([user]) {
     const title = get(user, 'title').toUpperCase();
     return htmlSafe(`<span class="tag tag-default role-tag">${title}</span>`);
   } if (get(user, 'isPro')) {
-    const tier = get(user, 'proTier').toUpperCase();
-    return htmlSafe(`<span class="tag tag-default role-tag">${tier}</span>`);
+    const tier = get(user, 'proTier');
+    return htmlSafe(`<span class="tag tag-default role-tag role-tag-${tier}">
+      ${tier.toUpperCase()}
+    </span>`);
   }
 }
 
