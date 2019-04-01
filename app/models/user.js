@@ -77,6 +77,7 @@ export default Base.extend(Validations, {
   password: attr('string'),
   pastNames: attr('array'),
   postsCount: attr('number'),
+  proTier: attr('string'),
   proExpiresAt: attr('utc'),
   profileCompleted: attr('boolean'),
   ratingsCount: attr('number'),
