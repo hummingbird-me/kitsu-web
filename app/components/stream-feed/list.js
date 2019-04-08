@@ -206,15 +206,7 @@ export default Component.extend(Pagination, {
     return [group, activity];
   },
 
-  _trackImpressions(data) {
-    const list = data.map(group => get(group, 'activities').map(activity => get(activity, 'foreignId')));
-    if (isEmpty(list) === true) {
-      return;
-    }
-    get(this, 'metrics').invoke('trackImpression', 'Stream', {
-      content_list: list.reduce((a, b) => a.concat(b)).uniq(),
-      feed_id: get(this, 'feedId')
-    });
+  _trackImpressions() {
   },
 
   _setupSubscription(data) {
