@@ -79,11 +79,11 @@ export const MEDIA_QUERY_PARAMS = {
     }
   },
   year: {
-    defaultValue: [1907, moment().year() + 2],
+    defaultValue: [1868, moment().year() + 2],
     refresh: true,
     serialize(value) {
       const [lower, upper] = value;
-      if (lower === 1907 && upper === (moment().year() + 2)) {
+      if (lower === 1868 && upper === (moment().year() + 2)) {
         return undefined;
       } if (upper === (moment().year() + 2)) {
         return serializeArray([lower, null]);
