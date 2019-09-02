@@ -1,6 +1,6 @@
 export function initialize(appInstance) {
   const intl = appInstance.lookup('service:intl');
-  intl.setLocale('en-us');
+  intl.setLocale('fr-fr');
 }
 
 export default {
