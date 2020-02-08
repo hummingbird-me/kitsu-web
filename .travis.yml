@@ -1,8 +1,8 @@
 ---
+os: linux
 language: node_js
 node_js: 10
 
-sudo: false
 dist: trusty
 
 addons:
@@ -39,7 +39,6 @@ cache:
 
 deploy:
   provider: script
-  skip_cleanup: true
   script: ember deploy production
   on:
     branch: the-future
