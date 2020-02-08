@@ -1,16 +1,12 @@
 ---
+os: linux
 language: node_js
 node_js: 10
 
-sudo: false
 dist: trusty
 
 addons:
-  apt:
-    sources:
-    - google-chrome
-    packages:
-    - google-chrome-stable
+  chrome: stable
   code_climate:
     repo_token: f15069c85832661086a0f758b25cf410e58ae1f80dbcbc762021dfc71feb8f71
 
@@ -43,7 +39,6 @@ cache:
 
 deploy:
   provider: script
-  skip_cleanup: true
   script: ember deploy production
   on:
     branch: the-future
