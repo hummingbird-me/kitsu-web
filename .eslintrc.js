@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   parserOptions: {
-    ecmaVersion: 2019,
+    ecmaVersion: 2018,
     sourceType: 'module'
   },
   extends: 'airbnb-base',
@@ -40,7 +40,7 @@ module.exports = {
       ],
       parserOptions: {
         sourceType: 'script',
-        ecmaVersion: 2019
+        ecmaVersion: 2018
       },
       env: {
         browser: false,
