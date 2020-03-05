@@ -9,8 +9,7 @@ module.exports = function(deployTarget) {
     },
     's3-index': {
       bucket: 'kitsu-web',
-      region: 'us-east-1',
-      allowOverwrite: true
+      region: 'us-east-1'
     },
     'revision-data': {
       // Use Git Commit ID for the revision key
