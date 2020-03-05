@@ -16,7 +16,7 @@ module.exports = function(deployTarget) {
       type: 'git-commit'
     },
     slack: {
-      webhookURL: 'https://hooks.slack.com/services/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',
+      webhookURL: 'https://hooks.slack.com/services/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',
       didDeploy: context => slack => slack.notify({
         attachments: [{
           fallback: 'Deployment finished! New revision was successfully uploaded.',
