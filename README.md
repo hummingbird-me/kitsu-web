@@ -2,10 +2,11 @@
 [![Build Status](https://travis-ci.org/hummingbird-me/hummingbird-client.svg?branch=the-future)](https://travis-ci.org/hummingbird-me/hummingbird-client) [![Code Climate](https://codeclimate.com/github/hummingbird-me/hummingbird-client/badges/gpa.svg)](https://codeclimate.com/github/hummingbird-me/hummingbird-client) [![Test Coverage](https://codeclimate.com/github/hummingbird-me/hummingbird-client/badges/coverage.svg)](https://codeclimate.com/github/hummingbird-me/hummingbird-client/coverage)
 
 ---
-**<p align="center">This is our client repository. It contains the Ember.js application for Kitsu.<br />Check out the [tools], [server] and [api docs] repositories.</p>**
+**<p align="center">This is our client repository. It contains the Ember.js application for Kitsu.<br />Check out the [tools], [server], [mobile app] and [api docs] repositories.</p>**
 
 [tools]:https://github.com/hummingbird-me/kitsu-tools
 [server]:https://github.com/hummingbird-me/kitsu-server
+[mobile app]:https://github.com/hummingbird-me/kitsu-mobile
 [api docs]:https://github.com/hummingbird-me/api-docs
 
 ---
