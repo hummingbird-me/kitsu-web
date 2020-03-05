@@ -40,7 +40,7 @@ module.exports = {
       ],
       parserOptions: {
         sourceType: 'script',
-        ecmaVersion: 2015
+        ecmaVersion: 2019
       },
       env: {
         browser: false,
