@@ -106,6 +106,10 @@ module.exports = function(defaults) {
         srcDir: 'dist',
         import: ['hoverintent.min.js']
       }
+    },
+    
+    emberApolloClient: {
+      keepGraphqlFileExtension: false
     }
   });
 
