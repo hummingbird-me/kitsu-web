@@ -8,6 +8,7 @@ import { getComputedTitle } from 'client/utils/get-title-field';
 
 export default Base.extend({
   session: service(),
+  intl: service(),
 
   abbreviatedTitles: attr('array'),
   averageRating: attr('number'),
@@ -59,4 +60,13 @@ export default Base.extend({
       prev + (parseInt(freqs[curr], 10) || 0)
     ), 0);
   }).readOnly(),
+
+  titlesSorted: computed('titles', function() {
+    const data = get(this, 'titles');
+    const titlesArray = Object.keys(data).map(code => ({ code, value: data[code] }));
+    const collator = new Intl.Collator(this.intl.primaryLocale || 'en', { numeric: true, sensitivity: 'base' });
+    const translateCode = code => this.intl.t(`media.show.summary.titles.${code}`, code);
+    titlesArray.sort((a, b) => collator.compare(translateCode(a.code), translateCode(b.code)));
+    return titlesArray;
+  }).readOnly()
 });

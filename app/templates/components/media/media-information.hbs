@@ -1,19 +1,19 @@
 <h5>{{t "media.show.summary.information.header" type=media.modelType}}</h5>
 <ul>
   {{! Titles }}
-  {{#each-in media.titles as |key value|}}
-    {{#if value}}
+  {{#each media.titlesSorted as |title|}}
+    {{#if title}}
       <li>
-        <strong>{{t (concat "media.show.summary.titles." key)}}</strong>
-        {{value}}
+        <strong>{{t (concat "media.show.summary.titles." title.code)}}</strong>
+        <span>{{title.value}}</span>
       </li>
     {{/if}}
-  {{/each-in}}
+  {{/each}}
 
   {{#if media.abbreviatedTitles}}
     <li>
       <strong>{{t "media.show.summary.titles.synonyms"}}</strong>
-      {{join ", " media.abbreviatedTitles}}
+      <span>{{join ", " media.abbreviatedTitles}}</span>
     </li>
   {{/if}}
 
@@ -21,7 +21,7 @@
   {{#if media.subtype}}
     <li>
       <strong>{{t "media.show.summary.information.type"}}</strong>
-      {{t (concat "media-shared.types." media.modelType "." (to-lower media.subtype))}}
+      <span>{{t (concat "media-shared.types." media.modelType "." (to-lower media.subtype))}}</span>
     </li>
   {{/if}}
 
@@ -29,7 +29,7 @@
   {{#if (and isManga media.volumeCount)}}
     <li>
       <strong>{{t "media.show.summary.information.volumes"}}</strong>
-      {{media.volumeCount}}
+      <span>{{media.volumeCount}}</span>
     </li>
   {{/if}}
 
@@ -37,29 +37,29 @@
   {{#if media.unitCount}}
     <li>
       <strong>{{t "media.show.summary.information.unit" type=media.modelType}}</strong>
-      {{media.unitCount}}
+      <span>{{media.unitCount}}</span>
     </li>
   {{/if}}
 
   {{! Status }}
   <li>
     <strong>{{t "media.show.summary.information.status"}}</strong>
-    {{t (concat "media-shared.statuses." media.modelType "." media.status)}}
+    <span>{{t (concat "media-shared.statuses." media.modelType "." media.status)}}</span>
   </li>
 
   {{! Airing / Status }}
   {{#if media.tba}}
     <li>
       <strong>{{t "media.show.summary.information.tba"}}</strong>
-      {{media.tba}}
+      <span>{{media.tba}}</span>
     </li>
   {{else if media.startDate}}
     <li>
       <strong>{{t "media.show.summary.information.start" type=media.modelType}}</strong>
-      {{moment-format media.startDate "MMM D, YYYY" timeZone="UTC"}}
+      <span>{{moment-format media.startDate "MMM D, YYYY" timeZone="UTC"}}
       {{#if (and media.endDate airedLongerThanOneDay)}}
         to {{moment-format media.endDate "MMM D, YYYY" timeZone="UTC"}}
-      {{/if}}
+      {{/if}}</span>
     </li>
     {{#if isAnime}}
       <li>
@@ -79,10 +79,10 @@
     {{#if media.ageRating}}
       <li>
         <strong>{{t "media.show.summary.information.rating"}}</strong>
-        {{media.ageRating}}
+        <span>{{media.ageRating}}
         {{#if media.ageRatingGuide}}
           - {{media.ageRatingGuide}}
-        {{/if}}
+        {{/if}}</span>
       </li>
     {{/if}}
 
@@ -91,19 +91,19 @@
       {{#if producers}}
         <li>
           <strong>{{t "media.show.summary.information.producers"}}</strong>
-          {{producers}}
+          <span>{{producers}}</span>
         </li>
       {{/if}}
       {{#if licensors}}
         <li>
           <strong>{{t "media.show.summary.information.licensors"}}</strong>
-          {{licensors}}
+          <span>{{licensors}}</span>
         </li>
       {{/if}}
       {{#if studios}}
         <li>
           <strong>{{t "media.show.summary.information.studios"}}</strong>
-          {{studios}}
+          <span>{{studios}}</span>
         </li>
       {{/if}}
     {{/if}}
@@ -112,7 +112,7 @@
     {{#if (and isManga media.serialization)}}
       <li>
         <strong>{{t "media.show.summary.information.serialization"}}</strong>
-        {{media.serialization}}
+        <span>{{media.serialization}}</span>
       </li>
     {{/if}}
 
@@ -120,12 +120,12 @@
     {{#if (and isAnime media.episodeLength)}}
       <li>
         <strong>{{t "media.show.summary.information.duration"}}</strong>
-        {{#if (and media.unitCount media.episodeLength (gt media.unitCount 1))}}
+        <span>{{#if (and media.unitCount media.episodeLength (gt media.unitCount 1))}}
           {{t "media.show.summary.information.total" total=totalTime}}
           ({{t "media.show.summary.information.length" count=media.unitCount length=media.episodeLength}})
         {{else}}
           {{t "media.show.summary.information.length" count=media.unitCount length=media.episodeLength}}
-        {{/if}}
+        {{/if}}</span>
       </li>
     {{/if}}
   {{/if}}
