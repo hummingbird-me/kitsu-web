@@ -2,6 +2,7 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const PostCSSFlex = require('postcss-flexbugs-fixes');
 const Autoprefixer = require('autoprefixer');
 const svgoUniqueIds = require('svgo-plugin-unify-ids');
+const nodeSass = require('node-sass');
 const targets = require('./config/targets');
 
 module.exports = function(defaults) {
@@ -35,6 +36,7 @@ module.exports = function(defaults) {
     },
 
     sassOptions: {
+      implementation: nodeSass,
       includePaths: ['node_modules/bootstrap/scss']
     },
 
@@ -107,7 +109,7 @@ module.exports = function(defaults) {
         import: ['hoverintent.min.js']
       }
     },
-    
+
     emberApolloClient: {
       keepGraphqlFileExtension: false
     }
