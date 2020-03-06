@@ -4,7 +4,6 @@ module.exports = function() {
     short_name: 'Kitsu',
     start_url: '/?utm_source=web_app_manifest',
     display: 'standalone',
-    gcm_sender_id: '482941778795',
     orientation: 'portrait',
     background_color: '#332532',
     theme_color: '#332532',
