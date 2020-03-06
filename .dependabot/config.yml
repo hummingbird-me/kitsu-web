@@ -6,7 +6,10 @@ update_configs:
   version_requirement_updates: increase_versions
   allowed_updates:
   - match: 
-      update_type: all
+      # update_type: all
+      update_type: security
+  - match:
+      update_type: direct
 - package_manager: docker
   directory: /
   update_schedule: daily 
