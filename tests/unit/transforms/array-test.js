@@ -1,20 +1,20 @@
-import { moduleFor, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 
-moduleFor('transform:array', 'Unit | Transform | array', {
-  // Specify the other units that are required for this test.
-  // needs: ['serializer:foo']
-});
+module('Unit | Transform | array', function(hooks) {
+  setupTest(hooks);
 
-test('#serialize', function(assert) {
-  const transform = this.subject();
-  assert.deepEqual(transform.serialize(null), []);
-  assert.deepEqual(transform.serialize(undefined), []);
-  assert.deepEqual(transform.serialize([1, 2, 3]), [1, 2, 3]);
-});
+  test('#serialize', function(assert) {
+    const transform = this.owner.lookup('transform:array');
+    assert.deepEqual(transform.serialize(null), []);
+    assert.deepEqual(transform.serialize(undefined), []);
+    assert.deepEqual(transform.serialize([1, 2, 3]), [1, 2, 3]);
+  });
 
-test('#deserialize', function(assert) {
-  const transform = this.subject();
-  assert.deepEqual(transform.deserialize(null), []);
-  assert.deepEqual(transform.deserialize(undefined), []);
-  assert.deepEqual(transform.deserialize([1, 2, 3]), [1, 2, 3]);
+  test('#deserialize', function(assert) {
+    const transform = this.owner.lookup('transform:array');
+    assert.deepEqual(transform.deserialize(null), []);
+    assert.deepEqual(transform.deserialize(undefined), []);
+    assert.deepEqual(transform.deserialize([1, 2, 3]), [1, 2, 3]);
+  });
 });
