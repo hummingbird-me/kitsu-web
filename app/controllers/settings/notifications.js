@@ -15,11 +15,11 @@ export default Controller.extend({
 
   updateSettingsTask: task(function* () {
     const settingsTasks = [];
-    get(this, 'dirtySettings').forEach((setting) => {
+    get(this, 'dirtySettings').forEach(setting => {
       settingsTasks.push(get(this, 'updateSettingTask').perform(setting));
     });
     yield get(this, 'session.account').save();
-    yield all(settingsTasks).then((results) => {
+    yield all(settingsTasks).then(results => {
       if (isEmpty(results.filter(result => result === undefined))) {
         get(this, 'notify').success('Your notification settings were updated.');
       }
@@ -27,7 +27,7 @@ export default Controller.extend({
   }).drop(),
 
   updateSettingTask: task(function* (setting) {
-    return yield setting.save().catch((err) => {
+    return yield setting.save().catch(err => {
       get(this, 'notify').error(errorMessages(err));
       setting.rollbackAttributes();
     });

@@ -52,7 +52,7 @@ module('Acceptance | Authentication', function (hooks) {
 
   test('shows an error when using incorrect details on sign up', async function(assert) {
     assert.expect(1);
-    this.sandbox.stub(this.notify, 'error').callsFake((message) => {
+    this.sandbox.stub(this.notify, 'error').callsFake(message => {
       assert.equal(message, 'Email is already taken.');
     });
     server.post('/users', { errors: [{ detail: 'email is already taken.' }] }, 400);
@@ -114,7 +114,7 @@ module('Acceptance | Authentication', function (hooks) {
 
   test('shows an error when using incorrect details on sign in', async function(assert) {
     assert.expect(1);
-    this.sandbox.stub(this.notify, 'error').callsFake((message) => {
+    this.sandbox.stub(this.notify, 'error').callsFake(message => {
       assert.equal(message, 'The provided credentials are invalid.');
     });
     server.post('http://localhost:7357/api/oauth/token', { error: 'invalid_grant' }, 400);

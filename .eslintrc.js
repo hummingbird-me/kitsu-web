@@ -10,9 +10,9 @@ module.exports = {
   },
   rules: {
     // enable
-    'curly': 'error',
+    curly: 'error',
     // disable
-    'strict': 'off',
+    strict: 'off',
     'no-console': 'off',
     'comma-dangle': 'off',
     'import/no-extraneous-dependencies': 'off',
@@ -25,9 +25,10 @@ module.exports = {
     'func-names': 'off',
     'no-useless-escape': 'off',
     'newline-per-chained-call': 'off',
-    'no-constant-condition': ['error', { 'checkLoops': false }],
+    'no-constant-condition': ['error', { checkLoops: false }],
     'no-shadow': 'off',
-    'object-curly-newline': 'off' // No way to disable just for function params
+    'object-curly-newline': 'off', // No way to disable just for function params
+    'arrow-parens': ['error', 'as-needed']
   },
   overrides: [
     {
@@ -50,7 +51,7 @@ module.exports = {
     {
       files: ['tests/**/*.js'],
       globals: {
-        'server': true
+        server: true
       },
       rules: {
         'prefer-arrow-callback': 'off'

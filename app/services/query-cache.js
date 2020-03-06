@@ -114,13 +114,13 @@ export default Service.extend({
 
     // Execute the task (API Request), cache and return the results.
     const promise = task();
-    return promise.then((records) => {
+    return promise.then(records => {
       // Don't cache empty results
       if (options.cache && get(records, 'length') > 0) {
         cache[queryAsString] = { promise, expiry: this._getExpiryDate() };
       }
       return records;
-    }).catch((error) => {
+    }).catch(error => {
       console.error('cache-query error:', error);
       get(this, 'raven').captureException(error);
       return {};

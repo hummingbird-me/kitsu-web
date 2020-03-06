@@ -32,8 +32,8 @@ export default Component.extend(Pagination, {
       sort: 'fav_rank',
       page: { limit: 20 }
     };
-    return yield this.queryPaginated('favorite', options).then((records) => {
-      records.forEach((record) => {
+    return yield this.queryPaginated('favorite', options).then(records => {
+      records.forEach(record => {
         strictInvokeAction(this, 'addRecord', record);
       });
       return records;
@@ -55,7 +55,7 @@ export default Component.extend(Pagination, {
 
   onPagination(records) {
     this._super(records);
-    records.forEach((record) => {
+    records.forEach(record => {
       strictInvokeAction(this, 'addRecord', record);
     });
   },

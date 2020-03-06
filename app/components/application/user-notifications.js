@@ -52,7 +52,7 @@ export default Component.extend(Pagination, {
   init() {
     this._super(...arguments);
     set(this, 'groups', []);
-    get(this, 'getNotifications').perform().then((groups) => {
+    get(this, 'getNotifications').perform().then(groups => {
       const notifications = this._createTempNotifications(groups);
       get(this, 'groups').addObjects(notifications);
       // initialize realtime
@@ -71,7 +71,7 @@ export default Component.extend(Pagination, {
       const notifications = get(this, 'notifications').filter(group => get(group, 'isSeen') === false);
       if (get(notifications, 'length') > 0) {
         notifications.forEach(group => set(group, 'isSeen', true));
-        this._mark('seen', notifications).catch((err) => {
+        this._mark('seen', notifications).catch(err => {
           notifications.forEach(group => set(group, 'isSeen', false));
           get(this, 'notify').error(errorMessages(err));
         });
@@ -101,7 +101,7 @@ export default Component.extend(Pagination, {
   _createTempNotifications(groups) {
     const notifications = [];
     if (!groups) { return notifications; }
-    groups.forEach((group) => {
+    groups.forEach(group => {
       const notification = get(this, 'store').createRecord('notification', {
         streamId: get(group, 'id'),
         group: get(group, 'group'),
@@ -135,9 +135,9 @@ export default Component.extend(Pagination, {
   _handleRealtime(object) {
     // new activities
     if (isPresent(get(object, 'new'))) {
-      get(this, 'getNotifications').perform(get(object, 'new.length')).then((groups) => {
+      get(this, 'getNotifications').perform(get(object, 'new.length')).then(groups => {
         // remove duplicate records
-        groups.forEach((group) => {
+        groups.forEach(group => {
           const record = get(this, 'notifications').findBy('group', get(group, 'group'));
           if (isPresent(record)) {
             get(this, 'groups').removeObject(record);
@@ -146,7 +146,7 @@ export default Component.extend(Pagination, {
         });
         const notifications = this._createTempNotifications(groups);
         unshiftObjects(get(this, 'groups'), notifications);
-        notifications.forEach((notification) => {
+        notifications.forEach(notification => {
           const actor = get(notification, 'activities.firstObject.actor.name');
           const message = `You have a new notification from ${actor}`;
           get(this, 'notify').info(message);
@@ -155,7 +155,7 @@ export default Component.extend(Pagination, {
     }
 
     // deleted activities
-    get(object, 'deleted').forEach((id) => {
+    get(object, 'deleted').forEach(id => {
       const groups = get(this, 'notifications');
       const group = groups.find(g => get(g, 'activities').findBy('id', id) !== undefined);
       if (group !== undefined) {
@@ -200,7 +200,7 @@ export default Component.extend(Pagination, {
       const notifications = get(this, 'notifications').filter(group => get(group, 'isRead') === false);
       if (get(notifications, 'length') > 0) {
         notifications.forEach(group => set(group, 'isRead', true));
-        this._mark('read', notifications).catch((err) => {
+        this._mark('read', notifications).catch(err => {
           notifications.forEach(group => set(group, 'isRead', false));
           get(this, 'notify').error(errorMessages(err));
         });

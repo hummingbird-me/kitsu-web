@@ -12,7 +12,7 @@ export default Component.extend({
   updatePost: task(function* (content, options) {
     const post = get(this, 'post');
     set(post, 'content', content);
-    Object.keys(options).forEach((option) => {
+    Object.keys(options).forEach(option => {
       set(post, option, get(options, option));
     });
 

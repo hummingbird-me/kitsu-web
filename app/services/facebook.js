@@ -11,9 +11,9 @@ export default Service.extend({
     return new RSVP.Promise((resolve, reject) => {
       get(this, 'torii').open('facebook', {})
         .then(response => resolve(response)).catch(err => reject(err));
-    }).then((response) => {
+    }).then(response => {
       set(user, 'facebookId', get(response, 'userId'));
-      return user.save().catch((error) => {
+      return user.save().catch(error => {
         set(user, 'facebookId', null);
         throw error;
       });
@@ -23,7 +23,7 @@ export default Service.extend({
   disconnect(user) {
     const id = get(user, 'facebookId');
     set(user, 'facebookId', null);
-    return user.save().catch((error) => {
+    return user.save().catch(error => {
       set(user, 'facebookId', id);
       throw error;
     });
@@ -33,8 +33,8 @@ export default Service.extend({
     if (this._isInitialized() === false) {
       throw new Error('Facebook not initialized.');
     }
-    return new RSVP.Promise((resolve) => {
-      window.FB.api('/me', { fields: 'id,name,email,gender' }, (response) => {
+    return new RSVP.Promise(resolve => {
+      window.FB.api('/me', { fields: 'id,name,email,gender' }, response => {
         resolve(response);
       });
     });

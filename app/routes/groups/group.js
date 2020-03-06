@@ -10,9 +10,9 @@ export default Route.extend(DataErrorMixin, CanonicalRedirectMixin, {
 
   model({ slug }) {
     if (slug.match(/\D+/)) {
-      return get(this, 'queryCache').query('group', { filter: { slug } }).then((records) => {
+      return get(this, 'queryCache').query('group', { filter: { slug } }).then(records => {
         const record = get(records, 'firstObject');
-        return this._getMembership(record).then((membership) => {
+        return this._getMembership(record).then(membership => {
           set(record, 'userMembership', membership);
           return record;
         });

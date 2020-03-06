@@ -34,9 +34,7 @@ export default BaseAdapter.extend({
   trackImpression(data) {
     const router = get(this.this, 'router');
     if (canUseDOM && get(this, 'hasUser')) {
-      const options = Object.assign({
-        location: get(router, 'currentRouteName')
-      }, data);
+      const options = { location: get(router, 'currentRouteName'), ...data };
       get(this, 'client').trackImpression(options);
     }
   },
@@ -44,9 +42,7 @@ export default BaseAdapter.extend({
   trackEngagement(data) {
     const router = get(this.this, 'router');
     if (canUseDOM && get(this, 'hasUser')) {
-      const options = Object.assign({
-        location: get(router, 'currentRouteName')
-      }, data);
+      const options = { location: get(router, 'currentRouteName'), ...data };
       get(this, 'client').trackEngagement(options);
     }
   },

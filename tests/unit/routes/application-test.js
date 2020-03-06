@@ -1,24 +1,13 @@
-import { moduleFor, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 
-moduleFor('route:application', 'Unit | Route | application', {
-  needs: [
-    'service:session',
-    'service:metrics',
-    'service:head-data',
-    'service:ajax',
-    'service:router-scroll',
-    'service:scheduler',
-    'service:intl',
-    'service:moment',
-    'service:raven',
-    'service:features',
-    'service:head-tags'
-  ]
-});
+module('Unit | Route | application', function(hooks) {
+  setupTest(hooks);
 
-test('title works', function(assert) {
-  assert.expect(2);
-  const route = this.subject();
-  assert.equal(route.title(['One', 'Two']), 'Two | One | Kitsu');
-  assert.equal(route.title(), 'Kitsu');
+  test('title works', function(assert) {
+    assert.expect(2);
+    const route = this.owner.lookup('route:application');
+    assert.equal(route.title(['One', 'Two']), 'Two | One | Kitsu');
+    assert.equal(route.title(), 'Kitsu');
+  });
 });

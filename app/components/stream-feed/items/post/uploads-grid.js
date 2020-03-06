@@ -4,7 +4,7 @@ import { all, task } from 'ember-concurrency';
 import request from 'ember-ajax/request';
 import { imgixUrl } from 'client/helpers/imgix-url';
 
-const orientation = (upload) => {
+const orientation = upload => {
   const { w, h } = getProperties(upload, 'w', 'h');
   const ratio = w / h;
   if (ratio > 1.25) { return 1; }
@@ -110,7 +110,7 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    get(this, 'getGalleryItemsTask').perform().then((galleryItems) => {
+    get(this, 'getGalleryItemsTask').perform().then(galleryItems => {
       const length = get(galleryItems, 'length');
       const gridLength = length < 5 ? length : 5;
       const gridOrientation = avgOrientation(galleryItems, gridLength);
@@ -131,7 +131,7 @@ export default Component.extend({
 
   getGalleryItemsTask: task(function* () {
     const uploads = get(this, 'uploads');
-    return yield all(uploads.sortBy('uploadOrder').map((upload) => {
+    return yield all(uploads.sortBy('uploadOrder').map(upload => {
       const src = get(upload, 'content.original');
       const jsonUrl = imgixUrl([src, { fm: 'json' }]);
       return request(jsonUrl).then(data => ({

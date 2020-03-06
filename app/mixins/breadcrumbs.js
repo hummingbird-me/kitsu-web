@@ -14,12 +14,14 @@ import { hrefTo } from 'ember-href-to/helpers/href-to';
 export default Mixin.create({
   head: service('head-data'),
 
-  didTransition() {
+  init() {
     this._super(...arguments);
-    scheduleOnce('afterRender', () => {
-      const data = this._schemaData();
-      const head = get(this, 'head');
-      set(head, 'structuredData.meta-breadcrumbs', data);
+    this.on('routeDidChange', () => {
+      scheduleOnce('afterRender', () => {
+        const data = this._schemaData();
+        const head = get(this, 'head');
+        set(head, 'structuredData.meta-breadcrumbs', data);
+      });
     });
   },
 

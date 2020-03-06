@@ -3,7 +3,7 @@ import { get, set } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 import { invokeAction } from 'ember-invoke-action';
 import canUseDOM from 'client/utils/can-use-dom';
-import batcher from 'ember-batcher/batcher';
+import { readDOM, mutateDOM } from 'ember-batcher/batcher';
 
 export default Component.extend({
   tagName: '',
@@ -47,10 +47,10 @@ export default Component.extend({
     handleDot.classList.add('noUi-handle-dot');
     const handleBackground = document.createElement('span');
     handleBackground.classList.add('noUi-handle-background');
-    batcher.scheduleRead(() => {
+    readDOM(() => {
       if (get(this, 'isDestroyed')) { return; }
       const width = slider.clientWidth;
-      batcher.scheduleWork(() => {
+      mutateDOM(() => {
         if (get(this, 'isDestroyed')) { return; }
         handleBackground.style.width = `${width}px`;
         element.appendChild(handleDot);
@@ -63,10 +63,10 @@ export default Component.extend({
     const value = ((rating - 1) * 10);
     const element = document.getElementsByClassName('advanced-rating-slider')[0];
     if (!element) { return; }
-    batcher.scheduleRead(() => {
+    readDOM(() => {
       if (get(this, 'isDestroyed')) { return; }
       const offset = -((value / 100) * element.clientWidth);
-      batcher.scheduleWork(() => {
+      mutateDOM(() => {
         if (get(this, 'isDestroyed')) { return; }
         const handle = element.getElementsByClassName('noUi-handle-background')[0];
         handle.style.left = `${offset}px`;

@@ -15,7 +15,7 @@ export default Route.extend({
       get(this, 'ajax').request('/users?filter[self]=true', {
         headers: { Authorization: `Bearer ${token}` }
       }).then(response => resolve(response)).catch(err => reject(err));
-    }).then((response) => {
+    }).then(response => {
       if (isEmpty(get(response, 'data')) === true) {
         get(this, 'notify').error('The token is either invalid or expired.');
         this.transitionTo('dashboard');

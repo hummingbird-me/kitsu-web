@@ -12,8 +12,8 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    get(this, 'getSites').perform().then((sites) => {
-      const data = sites.map((site) => {
+    get(this, 'getSites').perform().then(sites => {
+      const data = sites.map(site => {
         let profileLink = get(this, 'user.profileLinks').findBy('site.name', get(site, 'name'));
         if (profileLink !== undefined) {
           if (!get(profileLink, 'isNew')) {

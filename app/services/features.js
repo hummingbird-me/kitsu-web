@@ -6,7 +6,7 @@ export default Service.extend({
 
   fetchFlags() {
     this.features = {};
-    return get(this, 'ajax').request('_flags').then((response) => {
+    return get(this, 'ajax').request('_flags').then(response => {
       this.features = response;
     });
   },

@@ -27,7 +27,7 @@ export default Service.extend({
    */
   subscribe(feed, id, token, callback) {
     if (!this.client) { return; }
-    return this.client.feed(feed, id, token).subscribe((data) => {
+    return this.client.feed(feed, id, token).subscribe(data => {
       callback(data);
     });
   }

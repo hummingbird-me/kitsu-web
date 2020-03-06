@@ -9,7 +9,7 @@ import { typeOf } from '@ember/utils';
 export function concat(...dependents) {
   const dependentKeys = dependents.map(dep => `${dep}.[]`);
   return computed(...dependentKeys, function() {
-    const array = dependents.map((dep) => {
+    const array = dependents.map(dep => {
       const value = get(this, dep);
       if (value && typeOf(value) === 'array') {
         return value.slice();

@@ -123,7 +123,7 @@ export default Component.extend({
     // build responsive size mapping
     let mapping = window.googletag.sizeMapping();
     mapping.addSize([0, 0], [1, 1]);
-    Object.keys(viewports).forEach((viewport) => {
+    Object.keys(viewports).forEach(viewport => {
       const viewportSize = viewports[viewport];
       const adSizes = sizes[viewport];
       if (adSizes) {
@@ -140,7 +140,7 @@ export default Component.extend({
     const slot = window.googletag.defineSlot(adUnitPath, initialSize || [], divId)
       .defineSizeMapping(mapping)
       .addService(window.googletag.pubads());
-    Object.keys(targeting).forEach((targetingKey) => {
+    Object.keys(targeting).forEach(targetingKey => {
       slot.setTargeting(targetingKey, targeting[targetingKey]);
     });
     set(this, 'adSlotRef', slot);

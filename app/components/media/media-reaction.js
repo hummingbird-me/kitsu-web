@@ -103,7 +103,7 @@ export default Component.extend(ClipboardMixin, {
     deleteReaction() {
       if (get(this, 'reaction.isDeleted')) { return; }
       get(this, 'reaction').destroyRecord()
-        .catch((err) => {
+        .catch(err => {
           get(this, 'reaction').rollbackAttributes();
           get(this, 'notify').error(errorMessages(err));
         });

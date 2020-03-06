@@ -22,7 +22,7 @@ export default Component.extend({
     yield get(this, 'exporter').save().then(() => {
       invokeAction(this, 'close');
       invokeAction(this, 'componentData.refresh');
-    }).catch((error) => {
+    }).catch(error => {
       let statusCode = get(error, 'errors.firstObject.status');
       statusCode = parseInt(statusCode, 10);
       if (statusCode === 422) {

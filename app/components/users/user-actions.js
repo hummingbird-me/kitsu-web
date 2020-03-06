@@ -14,7 +14,7 @@ export default Component.extend({
       const follow = get(this, 'follow');
       set(follow, 'hidden', hidden);
       follow.save()
-        .catch((err) => {
+        .catch(err => {
           get(this, 'notify').error(errorMessages(err));
           follow.rollbackAttributes();
         });

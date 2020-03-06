@@ -13,7 +13,7 @@ export default Component.extend(CanMixin, {
 
   savePermissionsTask: task(function* () {
     const promises = [];
-    get(this, 'leader.permissions').forEach((permission) => {
+    get(this, 'leader.permissions').forEach(permission => {
       if (permission && get(permission, 'hasDirtyAttributes')) {
         promises.push(permission.save());
       }
@@ -21,7 +21,7 @@ export default Component.extend(CanMixin, {
     yield RSVP.all(promises).then(() => {
       invokeAction(this, 'onSave');
       this._closeModal();
-    }).catch((error) => {
+    }).catch(error => {
       get(this, 'notify').error(errorMessages(error));
     });
   }),
@@ -29,7 +29,7 @@ export default Component.extend(CanMixin, {
   actions: {
     closeModal() {
       const records = get(this, 'leader.permissions');
-      records.forEach((record) => {
+      records.forEach(record => {
         if (record && get(record, 'hasDirtyAttributes')) {
           record.rollbackAttributes();
         }

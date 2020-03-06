@@ -73,7 +73,7 @@ export default Route.extend(SlideHeaderMixin, Pagination, {
       page: { offset: 0, limit: 20 },
       fields: this._getFieldsets()
     };
-    Object.keys(params).forEach((key) => {
+    Object.keys(params).forEach(key => {
       const value = params[key];
       if (isEmpty(value)) {
         return;

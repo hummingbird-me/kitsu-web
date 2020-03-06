@@ -8,7 +8,7 @@ export default Component.extend({
     updateProfile() {
       get(this, 'updateTask').perform().then(() => {
         invokeAction(this, 'onUpdate');
-      }).catch((errors) => {
+      }).catch(errors => {
         const firstError = get(errors, 'firstObject.reason');
         set(this, 'errorMessage', errorMessages(firstError));
       });

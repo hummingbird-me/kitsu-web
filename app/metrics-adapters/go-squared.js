@@ -52,7 +52,7 @@ export default BaseAdapter.extend({
 
   willDestroy() {
     document.querySelectorAll('script[src*="//d1l6p2sc9645hc.cloudfront.net/tracker.js"]')
-      .forEach((element) => {
+      .forEach(element => {
         element.remove();
       });
   }

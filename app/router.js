@@ -13,14 +13,16 @@ const RouterInstance = Router.extend(RouterScroll, Breadcrumbs, {
   metrics: service(),
   head: service('head-data'),
 
-  willTransition() {
+  init() {
     this._super(...arguments);
-    this._resetStructuredData();
-  },
 
-  didTransition() {
-    this._super(...arguments);
-    this._trackPage();
+    this.on('routeWillChange', () => {
+      this._resetStructuredData();
+    });
+
+    this.on('routeDidChange', () => {
+      this._trackPage();
+    });
   },
 
   setTitle(title) {
@@ -60,7 +62,7 @@ RouterInstance.map(function() {
     });
   });
 
-  ['anime', 'manga'].forEach((media) => {
+  ['anime', 'manga'].forEach(media => {
     this.route(media, function() {
       this.route('show', { path: '/:slug' }, function() {
         const units = media === 'anime' ? 'episodes' : 'chapters';

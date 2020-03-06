@@ -15,7 +15,7 @@ export default Component.extend({
     set(report, 'moderator', get(this, 'session.account'));
     yield report.save()
       .then(() => get(this, 'notify').success(`Report was marked as ${status}.`))
-      .catch((err) => {
+      .catch(err => {
         report.rollbackAttributes();
         get(this, 'notify').error(errorMessages(err));
       });

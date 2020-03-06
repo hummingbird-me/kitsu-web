@@ -10,7 +10,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    get(this, 'buildMessageTask').perform().then((message) => {
+    get(this, 'buildMessageTask').perform().then(message => {
       set(this, 'message', message);
     });
   },

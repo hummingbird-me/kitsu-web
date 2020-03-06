@@ -18,7 +18,7 @@ export default Component.extend(Pagination, {
     this._super(...arguments);
     const likesCount = get(this, 'likes.length');
     if (likesCount === 0) {
-      strictInvokeAction(this, 'getLikes').then((records) => {
+      strictInvokeAction(this, 'getLikes').then(records => {
         this.updatePageState(records);
       });
     } else if (likesCount <= 20) {

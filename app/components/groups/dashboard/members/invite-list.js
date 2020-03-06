@@ -49,7 +49,7 @@ export default Component.extend(Pagination, {
     yield invite.save().then(() => {
       set(this, 'inviteUser', null);
       get(this, 'paginatedRecords').addObject(invite);
-    }).catch((error) => {
+    }).catch(error => {
       get(this, 'notify').error(errorMessages(error));
     });
   })

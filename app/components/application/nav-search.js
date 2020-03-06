@@ -14,7 +14,7 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    jQuery(document.body).on('click.nav-search', (event) => {
+    jQuery(document.body).on('click.nav-search', event => {
       const target = get(event, 'target');
       const id = `#${get(this, 'elementId')}`;
       const isChild = jQuery(target).is(`${id} *, ${id}`);

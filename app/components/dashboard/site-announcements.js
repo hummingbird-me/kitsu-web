@@ -18,7 +18,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    get(this, 'getAnnouncementsTask').perform().then((records) => {
+    get(this, 'getAnnouncementsTask').perform().then(records => {
       // filter out read activity groups
       const groups = records.reject(record => get(record, 'isRead'));
       set(this, 'activityGroups', groups || []);
@@ -27,7 +27,7 @@ export default Component.extend({
       const { feed } = get(records, 'meta');
       if (feed) {
         const { group, id, token } = feed;
-        this.realtime = get(this, 'stream').subscribe(group, id, token, (data) => {
+        this.realtime = get(this, 'stream').subscribe(group, id, token, data => {
           this._handleSubscription(data);
         });
       }
@@ -47,11 +47,10 @@ export default Component.extend({
    * @param {Object} options Request options
    */
   getAnnouncementsTask: task(function* (options = {}) {
-    const requestOptions = Object.assign({
-      type: 'site_announcements',
+    const requestOptions = { type: 'site_announcements',
       id: get(this, 'session.account.id'),
-      include: 'subject'
-    }, options);
+      include: 'subject',
+      ...options };
     return yield get(this, 'store').query('feed', requestOptions);
   }).drop(),
 
@@ -68,7 +67,7 @@ export default Component.extend({
         method: 'POST',
         data: JSON.stringify([get(activity, 'id')]),
         contentType: 'application/json'
-      }).catch((error) => {
+      }).catch(error => {
         get(this, 'announcements').unshiftObject(announcement);
         get(this, 'raven').captureException(error);
       });
@@ -84,7 +83,7 @@ export default Component.extend({
     const { new: created, deleted } = data;
     // Handle deleted announcements by removing them from the stack
     if (deleted.length > 0) {
-      deleted.forEach((activityId) => {
+      deleted.forEach(activityId => {
         const activity = get(this, 'activities').findBy('id', activityId);
         get(this, 'announcements').removeObject(get(activity, 'subject'));
       });
@@ -94,7 +93,7 @@ export default Component.extend({
     if (created.length > 0) {
       get(this, 'getAnnouncementsTask').perform({
         page: { limit: created.length }
-      }).then((records) => {
+      }).then(records => {
         const groups = records.reject(record => get(record, 'isRead'));
         get(this, 'activityGroups').unshiftObjects(groups);
       });

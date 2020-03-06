@@ -28,7 +28,7 @@ export default Component.extend({
       fields: { users: ['avatar', 'name', 'slug'].join(',') },
       page: { limit: 4 },
       include: 'user'
-    }).then((likes) => {
+    }).then(likes => {
       set(this, 'likes', likes.toArray());
       set(this, 'likes.links', get(likes, 'links'));
 
@@ -109,7 +109,7 @@ export default Component.extend({
   },
 
   _getStatus() {
-    get(this, 'getLocalLike').perform().then((records) => {
+    get(this, 'getLocalLike').perform().then(records => {
       const record = get(records, 'firstObject');
       if (record !== undefined) {
         set(record, 'user', get(this, 'session.account'));

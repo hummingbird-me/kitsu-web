@@ -17,7 +17,7 @@ export default MediaShowRoute.extend({
       const [mediaType] = get(this, 'routeName').split('.');
       const media = this.modelFor(`${mediaType}.show`);
       const id = get(media, 'id');
-      return get(this, 'ajax').request(`/anime/${id}/_languages`).then((results) => {
+      return get(this, 'ajax').request(`/anime/${id}/_languages`).then(results => {
         const languages = results.map(result => capitalize(result));
         set(controller, 'availableLanguages', languages);
         this._languageCheck(queryParams);

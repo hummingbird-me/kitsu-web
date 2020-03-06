@@ -46,7 +46,7 @@ export default Component.extend(Pagination, {
     yield comment.save().then(() => {
       invokeAction(this, 'trackEngagement', 'comment');
       get(this, 'metrics').trackEvent({ category: 'comment', action: 'create', value: get(this, 'post.id') });
-    }).catch((err) => {
+    }).catch(err => {
       get(this, 'comments').removeObject(comment);
       invokeAction(this, 'countUpdate', get(this, 'post.topLevelCommentsCount') - 1);
       get(this, 'session.account').decrementProperty('commentsCount');
@@ -117,7 +117,7 @@ export default Component.extend(Pagination, {
   },
 
   _getComments() {
-    get(this, 'getComments').perform().then((comments) => {
+    get(this, 'getComments').perform().then(comments => {
       let content = comments.toArray();
       if (!get(this, 'isModalView')) {
         content = content.reverse();

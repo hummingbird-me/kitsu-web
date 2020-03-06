@@ -21,7 +21,7 @@ export default Controller.extend({
         set(this, 'user.password', null);
         get(this, 'notify').success('Password updated.');
       })
-      .catch((err) => {
+      .catch(err => {
         get(this, 'notify').error(errorMessages(err));
         get(this, 'user').rollbackAttributes();
       });

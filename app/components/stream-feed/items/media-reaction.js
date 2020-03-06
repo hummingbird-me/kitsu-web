@@ -65,7 +65,7 @@ export default Component.extend(ClipboardMixin, {
           }
           get(this, 'notify').success('Success! The reaction has been deleted.');
         })
-        .catch((err) => {
+        .catch(err => {
           get(this, 'reaction').rollbackAttributes();
           get(this, 'notify').error(errorMessages(err));
         });

@@ -14,7 +14,7 @@ export default Component.extend({
       const membership = get(this, 'membership');
       set(membership, 'hidden', hidden);
       membership.save()
-        .catch((err) => {
+        .catch(err => {
           get(this, 'notify').error(errorMessages(err));
           membership.rollbackAttributes();
         });

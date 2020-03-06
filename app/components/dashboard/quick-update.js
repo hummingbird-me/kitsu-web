@@ -63,7 +63,7 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
         // remove element from flickity
         const elements = this.$(`[data-entry-id="${get(entry, 'id')}"]`).eq(0).parent();
         this.$('.carousel').flickity('remove', elements);
-      }).catch((error) => {
+      }).catch(error => {
         entry.rollbackAttributes();
         get(this, 'raven').captureException(error);
       });
@@ -71,7 +71,7 @@ export default Component.extend(FlickityActionsMixin, Pagination, {
 
     reloadUnit(entry) {
       const idWas = get(entry, 'unit.id');
-      return entry.belongsTo('unit').reload().then((unit) => {
+      return entry.belongsTo('unit').reload().then(unit => {
         // if the id hasn't changed then that means the API returned a `null` value
         const value = get(unit, 'id') === idWas ? null : unit;
         set(entry, 'unit', value);

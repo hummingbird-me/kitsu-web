@@ -10,7 +10,7 @@ export default function humanizeDuration(duration, highestUnit = false) {
   if (!moment.isDuration(duration)) { return; }
   let str = null;
   const types = ['years', 'months', 'weeks', 'days', 'hours', 'minutes'];
-  types.forEach((type) => {
+  types.forEach(type => {
     if (highestUnit && str) { return; }
     const amount = duration.get(type);
     if (amount === 0) { return; }

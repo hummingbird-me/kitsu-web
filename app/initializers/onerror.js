@@ -12,7 +12,7 @@ export function initialize() {
       return later(() => window.location.reload(), 1);
     }
 
-    Ember.Logger.error(error);
+    console.error(error);
 
     /**
      * An Ember.onerror handler _must_ rethrow exceptions when `Ember.testing` is

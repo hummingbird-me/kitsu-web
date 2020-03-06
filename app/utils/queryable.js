@@ -13,7 +13,7 @@ export function serializeArray(value) {
 export function deserializeArray(value) {
   const isRange = value.includes('..');
   if (isRange) {
-    return value.split('..').map((x) => {
+    return value.split('..').map(x => {
       if (isEmpty(x)) { return ''; }
       if (Number.isInteger(JSON.parse(x))) {
         return parseInt(x, 10);

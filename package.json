@@ -9,8 +9,9 @@
   "scripts": {
     "build": "ember build",
     "start": "ember serve",
-    "test": "ember test --reporter dot",
-    "lint:js": "eslint ./*.js app config lib server tests"
+    "test": "ember test --reporter tap",
+    "test:ci": "ember test --reporter dot",
+    "lint": "eslint ./*.js app config lib tests"
   },
   "repository": "https://github.com/hummingbird-me/hummingbird-client",
   "engines": {
@@ -107,8 +108,8 @@
     "ember-truth-helpers": "2.1.0",
     "ember-web-app": "~4.0.0",
     "ember-web-app-rename": "~1.0.0",
-    "eslint": "~4.17.0",
-    "eslint-config-airbnb-base": "~13.0.0",
+    "eslint": "~6.8.0",
+    "eslint-config-airbnb-base": "~14.0.0",
     "eslint-plugin-import": "~2.20.1",
     "getstream": "~4.4.0",
     "hoverintent": "~2.2.1",

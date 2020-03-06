@@ -20,11 +20,10 @@ export default Component.extend({
       }
     }
     const response = yield get(this, 'queryCache').query('casting', {
-      filter: Object.assign({
-        media_id: mediaId,
+      filter: { media_id: mediaId,
         media_type: capitalize(mediaType),
-        is_character: true
-      }, { language }),
+        is_character: true,
+        language },
       include: 'character',
       sort: '-featured',
       page: { limit: 4 }

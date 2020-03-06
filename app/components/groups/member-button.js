@@ -25,7 +25,7 @@ export default Component.extend({
     if (get(this, 'membership') !== undefined) {
       this._updateMemberState(get(this, 'membership'));
     } else {
-      get(this, 'getMemberStatusTask').perform().then((record) => {
+      get(this, 'getMemberStatusTask').perform().then(record => {
         this._updateMemberState(record);
       }).catch(() => {});
     }
@@ -56,7 +56,7 @@ export default Component.extend({
         get(this, 'memberRecord').rollbackAttributes();
       });
     } else {
-      get(this, 'joinGroupTask').perform().then((record) => {
+      get(this, 'joinGroupTask').perform().then(record => {
         this._updateMemberState(record);
       }).catch(() => {
         get(this, 'notify').error(get(this, 'intl').t('errors.request'));

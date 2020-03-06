@@ -25,7 +25,7 @@ export default Component.extend({
         reader.onload = evt => run(() => {
           set(this, property, evt.target.result);
         });
-        reader.onerror = (err) => {
+        reader.onerror = err => {
           invokeAction(this, 'onError', errorMessage(err));
         };
         reader.readAsDataURL(event.files[0]);

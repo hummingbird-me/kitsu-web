@@ -56,7 +56,7 @@ export default Component.extend({
       const queue = get(this, 'fileQueue').find(`comment-uploads-${get(this, 'elementId')}`);
       const files = get(queue, 'files');
       const failedFiles = files.filter(file => ['failed', 'timed_out'].indexOf(file.state) !== -1);
-      failedFiles.forEach((file) => {
+      failedFiles.forEach(file => {
         set(file, 'status', 'aborted');
       });
     }
