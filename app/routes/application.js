@@ -18,7 +18,12 @@ export default Route.extend(ApplicationRouteMixin, {
   local: storageFor('local-cache'),
 
   // If the user is authenticated on first load, grab the users data
-  beforeModel() {
+  async beforeModel() {
+    // Load english translation as default
+    const translations = await fetch('/translations/en-us.json');
+    get(this, 'intl').addTranslations('en-us', await translations.json());
+
+    // session
     const session = get(this, 'session');
     if (get(session, 'isAuthenticated')) {
       return this._getCurrentUser();
@@ -136,13 +141,21 @@ export default Route.extend(ApplicationRouteMixin, {
   },
 
   _getCurrentUser() {
-    return get(this, 'session').getCurrentUser().then(user => {
+    return get(this, 'session').getCurrentUser().then(async user => {
       // user setup
       this._loadTheme(user);
       get(this, 'moment').changeTimeZone(get(user, 'timeZone') || moment.tz.guess());
 
       // notifications
       this._registerNotifications();
+
+      // i18n
+      if (get(user, 'language') === 'fr') {
+        const translations = await fetch('/translations/fr-fr.json');
+        get(this, 'intl').addTranslations('fr-fr', await translations.json());
+        // use en-us as fallback as it is already loaded
+        get(this, 'intl').set('locale', ['fr-fr', 'en-us']);
+      }
 
       // metrics
       get(this, 'metrics').identify({

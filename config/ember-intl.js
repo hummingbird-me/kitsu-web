@@ -1,6 +1,7 @@
 /* eslint-env node */
 module.exports = function() {
   return {
-    disablePolyfill: true
+    disablePolyfill: true,
+    publicOnly: true
   };
 };
