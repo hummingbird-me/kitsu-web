@@ -10,7 +10,8 @@
     "build": "ember build",
     "start": "ember serve",
     "test": "ember test --reporter tap",
-    "lint:js": "eslint ./*.js app config lib tests"
+    "test:ci": "ember test --reporter dot",
+    "lint": "eslint ./*.js app config lib tests"
   },
   "repository": "https://github.com/hummingbird-me/hummingbird-client",
   "engines": {
