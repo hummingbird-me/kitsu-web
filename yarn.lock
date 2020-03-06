@@ -2958,6 +2958,11 @@ babel-plugin-htmlbars-inline-precompile@^0.2.5:
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-0.2.5.tgz#7a7c37cf22c73fb57a1f828c76520f0360c5c5f3"
 
+babel-plugin-htmlbars-inline-precompile@^2.1.0:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-2.1.1.tgz#59edd4eab28d27fbafa26d51bc19795278d103a9"
+  integrity sha512-obo5//IFrEZNAQovcXxOXLn5nwkQ0Y+xhR7AMg1sYR6W7KxQLZI9/XzbIytVhjwwY+Bd2e0+qyHEplJbHyZ1Og==
+
 babel-plugin-inline-environment-variables@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-inline-environment-variables/-/babel-plugin-inline-environment-variables-1.0.1.tgz#1f58ce91207ad6a826a8bf645fafe68ff5fe3ffe"
@@ -6787,7 +6792,7 @@ ember-cli-head@^0.4.0, ember-cli-head@^0.4.1:
     ember-cli-babel "^6.11.0"
     ember-cli-htmlbars "^2.0.3"
 
-ember-cli-htmlbars-inline-precompile@^1.0.0, ember-cli-htmlbars-inline-precompile@^1.0.2:
+ember-cli-htmlbars-inline-precompile@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars-inline-precompile/-/ember-cli-htmlbars-inline-precompile-1.0.3.tgz#332ff96c06fc522965162f1090d78a615379c3c2"
   dependencies:
@@ -6795,6 +6800,18 @@ ember-cli-htmlbars-inline-precompile@^1.0.0, ember-cli-htmlbars-inline-precompil
     ember-cli-version-checker "^2.1.2"
     hash-for-dep "^1.2.3"
     heimdalljs-logger "^0.1.9"
+    silent-error "^1.1.0"
+
+ember-cli-htmlbars-inline-precompile@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars-inline-precompile/-/ember-cli-htmlbars-inline-precompile-3.0.1.tgz#dc1f6fbc3bb5e51d01ca334e692c7f0b5e298d57"
+  integrity sha512-mLGJjxEPiOFty9HVM7LHg+5cfM1M9lwbEBmlanZMM333cnwvgZulKjTYU0/e0tpWDvNvPdX8rM+/Leh0TIrqqA==
+  dependencies:
+    babel-plugin-htmlbars-inline-precompile "^2.1.0"
+    ember-cli-version-checker "^3.1.3"
+    hash-for-dep "^1.5.1"
+    heimdalljs-logger "^0.1.9"
+    semver "^6.3.0"
     silent-error "^1.1.0"
 
 ember-cli-htmlbars@^1.0.11, ember-cli-htmlbars@^1.0.3, ember-cli-htmlbars@^1.1.1:
@@ -9646,7 +9663,7 @@ hash-base@^3.0.0:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-hash-for-dep@^1.0.2, hash-for-dep@^1.2.3, hash-for-dep@^1.4.7, hash-for-dep@^1.5.0:
+hash-for-dep@^1.0.2, hash-for-dep@^1.2.3, hash-for-dep@^1.4.7, hash-for-dep@^1.5.0, hash-for-dep@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/hash-for-dep/-/hash-for-dep-1.5.1.tgz#497754b39bee2f1c4ade4521bfd2af0a7c1196e3"
   integrity sha512-/dQ/A2cl7FBPI2pO0CANkvuuVi/IFS5oTyJ0PsOb6jW6WbVW1js5qJXMJTNbWHXBIPdFTWFbabjB+mE0d+gelw==
@@ -15062,13 +15079,7 @@ signale@^1.2.1:
     figures "^2.0.0"
     pkg-conf "^2.1.0"
 
-silent-error@^1.0.0, silent-error@^1.0.1, silent-error@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/silent-error/-/silent-error-1.1.0.tgz#2209706f1c850a9f1d10d0d840918b46f26e1bc9"
-  dependencies:
-    debug "^2.2.0"
-
-silent-error@^1.1.1:
+silent-error@^1.0.0, silent-error@^1.0.1, silent-error@^1.1.0, silent-error@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/silent-error/-/silent-error-1.1.1.tgz#f72af5b0d73682a2ba1778b7e32cd8aa7c2d8662"
   integrity sha512-n4iEKyNcg4v6/jpb3c0/iyH2G1nzUNl7Gpqtn/mHIJK9S/q/7MCfoO4rwVOoO59qPFIc0hVHvMbiOJ0NdtxKKw==
