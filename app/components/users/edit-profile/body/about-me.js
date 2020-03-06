@@ -34,7 +34,7 @@ export default Component.extend({
 
   _setGenderOptions() {
     const i18n = [];
-    GENDER_KEYS.forEach((key) => {
+    GENDER_KEYS.forEach(key => {
       i18n.push(this._translateGender(key));
     });
     set(this, 'genderOptions', i18n);
@@ -68,7 +68,7 @@ export default Component.extend({
 
     // we need to get the record from the API as `character` is from Algolia
     setWaifu(character) {
-      this.store.findRecord('character', character.id).then((record) => {
+      this.store.findRecord('character', character.id).then(record => {
         this.set('user.waifu', record);
         this.set('user.waifuDirtyHack', true);
       });

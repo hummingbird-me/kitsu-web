@@ -64,7 +64,7 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     set(this, 'reasons', ['NSFW', 'Offensive', 'Spoiler', 'Bullying', 'Other']);
-    get(this, 'checkReport').perform().then((report) => {
+    get(this, 'checkReport').perform().then(report => {
       if (isEmpty(report) === false) {
         set(this, 'hasReported', true);
         set(this, 'report', get(report, 'firstObject'));

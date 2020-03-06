@@ -22,7 +22,7 @@ export default Component.extend({
       if (isEmpty(value) === true) {
         set(this, 'items', []);
       } else {
-        get(this, 'request').perform(value).then((items) => {
+        get(this, 'request').perform(value).then(items => {
           set(this, 'items', items);
           set(this, 'isOpened', true);
         }).catch(() => {});

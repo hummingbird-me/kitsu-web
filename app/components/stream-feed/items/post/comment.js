@@ -75,7 +75,7 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
         invokeAction(this, 'trackEngagement', 'comment');
         get(this, 'metrics').trackEvent({ category: 'comment', action: 'reply', value: get(this, 'comment.id') });
       })
-      .catch((err) => {
+      .catch(err => {
         invokeAction(this, 'replyCountUpdate', get(this, 'comment.repliesCount') - 1);
         get(this, 'replies').removeObject(reply);
         get(this, 'notify').error(errorMessages(err));
@@ -91,7 +91,7 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
     set(this, 'replies', []);
     set(this, 'galleryItems', []);
     if (get(this, 'isTopLevel') === true && get(this, 'comment.repliesCount') > 0) {
-      get(this, 'getReplies').perform().then((replies) => {
+      get(this, 'getReplies').perform().then(replies => {
         const content = replies.toArray().reverse();
         set(content, 'links', get(replies, 'links'));
         set(this, 'replies', content);
@@ -121,7 +121,7 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
             user: get(this, 'session.account.id')
           },
           include: 'permissions'
-        }).then((records) => {
+        }).then(records => {
           const record = get(records, 'firstObject');
           set(this, 'groupMembership', record);
         }).catch(() => {});
@@ -152,7 +152,7 @@ export default Component.extend(ClipboardMixin, Pagination, CanMixin, {
           invokeAction(this, 'onDelete', get(this, 'comment'));
           get(this, 'notify').success('Success! Your comment has been deleted.');
         })
-        .catch((err) => {
+        .catch(err => {
           get(this, 'comment').rollbackAttributes();
           get(this, 'notify').error(errorMessages(err));
         });

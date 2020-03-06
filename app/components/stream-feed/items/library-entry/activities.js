@@ -16,13 +16,13 @@ export default Component.extend({
     }
     const groups = {};
     const activities = get(this, 'activities').filterBy('isDeleted', false);
-    activities.forEach((activity) => {
+    activities.forEach(activity => {
       const key = this._getGroupingKey(activity);
       groups[key] = groups[key] || [];
       groups[key].addObject(activity);
     });
     const result = [];
-    Object.keys(groups).forEach((key) => {
+    Object.keys(groups).forEach(key => {
       const group = groups[key];
       const others = group.toArray().slice(1).reject(a => (
         get(a, 'actor.id') === get(group, 'firstObject.actor.id')

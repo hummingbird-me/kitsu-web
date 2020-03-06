@@ -35,7 +35,7 @@ export default Controller.extend({
         set(this, 'currentSelection', null);
         // add this block to our store
         get(this, 'model.paginatedRecords').addObject(block);
-      }).catch((err) => {
+      }).catch(err => {
         get(this, 'notify').error(errorMessages(err));
       });
     },
@@ -45,7 +45,7 @@ export default Controller.extend({
       block.destroyRecord().then(() => {
         get(this, 'notify').success(`${name} was unblocked.`);
         get(this, 'taskValue').removeObject(block);
-      }).catch((err) => {
+      }).catch(err => {
         get(this, 'notify').error(errorMessages(err));
       });
     }

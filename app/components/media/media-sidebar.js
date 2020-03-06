@@ -15,7 +15,7 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
     if (get(this, 'session.hasUser')) {
-      get(this, 'getFavorite').perform().then((results) => {
+      get(this, 'getFavorite').perform().then(results => {
         const record = get(results, 'firstObject');
         if (record) {
           set(this, 'favoriteRecord', record);
@@ -24,7 +24,7 @@ export default Component.extend({
           set(this, 'favoriteRecord', null);
           set(this, 'isFavorite', false);
         }
-      }).catch((error) => {
+      }).catch(error => {
         get(this, 'raven').captureException(error);
       });
     }

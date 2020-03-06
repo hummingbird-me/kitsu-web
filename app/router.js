@@ -60,7 +60,7 @@ RouterInstance.map(function() {
     });
   });
 
-  ['anime', 'manga'].forEach((media) => {
+  ['anime', 'manga'].forEach(media => {
     this.route(media, function() {
       this.route('show', { path: '/:slug' }, function() {
         const units = media === 'anime' ? 'episodes' : 'chapters';

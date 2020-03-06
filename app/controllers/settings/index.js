@@ -55,7 +55,7 @@ export default Controller.extend({
         this._loadTheme();
         get(this, 'notify').success('Your profile was updated.');
       })
-      .catch((err) => {
+      .catch(err => {
         get(this, 'notify').error(errorMessages(err));
         get(this, 'user').rollbackAttributes();
         set(this, 'name', get(this, 'user.name'));

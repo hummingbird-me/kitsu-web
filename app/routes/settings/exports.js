@@ -22,7 +22,7 @@ export default Route.extend({
     deleteAccount(account) {
       account.destroyRecord().then(() => {
         this.refresh();
-      }).catch((error) => {
+      }).catch(error => {
         get(this, 'notify').error(errorMessages(error));
       });
     },

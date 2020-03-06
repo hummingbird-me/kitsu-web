@@ -98,7 +98,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
               user: get(this, 'session.account.id')
             },
             include: 'permissions'
-          }).then((records) => {
+          }).then(records => {
             const record = get(records, 'firstObject');
             set(this, 'groupMembership', record);
           }).catch(() => {});
@@ -125,7 +125,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
         user_id: get(this, 'session.account.id'),
         post_id: get(this, 'post.id')
       }
-    }).then((records) => {
+    }).then(records => {
       if (get(this, 'isDestroyed')) { return; }
       const record = get(records, 'firstObject');
       set(this, 'isFollowingPost', !!record);
@@ -167,14 +167,14 @@ export default Component.extend(ClipboardMixin, CanMixin, {
           group: get(group, 'id'),
           user: get(this, 'session.account.id')
         }
-      }).then((records) => {
+      }).then(records => {
         const membership = get(records, 'firstObject');
         set(membership, 'hidden', true);
         membership.save()
           .then(() => {
             invokeAction(this, 'removeGroup', get(this, 'group'));
           })
-          .catch((err) => {
+          .catch(err => {
             get(this, 'notify').error(errorMessages(err));
             membership.rollbackAttributes();
           });
@@ -188,14 +188,14 @@ export default Component.extend(ClipboardMixin, CanMixin, {
           follower: currentUser,
           followed: get(user, 'id')
         }
-      }).then((records) => {
+      }).then(records => {
         const follow = get(records, 'firstObject');
         set(follow, 'hidden', true);
         follow.save()
           .then(() => {
             invokeAction(this, 'removeGroup', get(this, 'group'));
           })
-          .catch((err) => {
+          .catch(err => {
             get(this, 'notify').error(errorMessages(err));
             follow.rollbackAttributes();
           });
@@ -208,7 +208,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
         user, media
       }).save().then(() => {
         invokeAction(this, 'removeGroup', get(this, 'group'));
-      }).catch((err) => {
+      }).catch(err => {
         get(this, 'notify').error(errorMessages(err));
       });
     },
@@ -241,7 +241,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
           }
           get(this, 'notify').success('Success! Your post has been deleted.');
         })
-        .catch((err) => {
+        .catch(err => {
           get(this, 'post').rollbackAttributes();
           get(this, 'notify').error(errorMessages(err));
         });

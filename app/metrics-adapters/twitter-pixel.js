@@ -23,10 +23,10 @@ export default BaseAdapter.extend({
   trackEvent() {},
 
   willDestroy() {
-    document.querySelectorAll('script[src*="//static.ads-twitter.com/uwt.js"]').forEach((element) => {
+    document.querySelectorAll('script[src*="//static.ads-twitter.com/uwt.js"]').forEach(element => {
       element.remove();
     });
-    document.querySelectorAll('script[src*="analytics.twitter.com"]').forEach((element) => {
+    document.querySelectorAll('script[src*="analytics.twitter.com"]').forEach(element => {
       element.remove();
     });
   }

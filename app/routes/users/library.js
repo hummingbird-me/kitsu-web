@@ -43,7 +43,7 @@ export default Route.extend(Pagination, {
       data: JSON.stringify({ filter: { id: ids.join(',') } })
     });
     // delete the records locally, as we used ajax
-    entries.forEach((entry) => {
+    entries.forEach(entry => {
       entry.deleteRecord();
     });
   }).drop(),
@@ -64,7 +64,7 @@ export default Route.extend(Pagination, {
     get(this, 'queryCache').invalidateType('library-entry');
     // push serialized records into the store
     const { data } = response;
-    data.forEach((entry) => {
+    data.forEach(entry => {
       const normalizedData = get(this, 'store').normalize('library-entry', entry);
       get(this, 'store').push(normalizedData);
     });
@@ -83,7 +83,7 @@ export default Route.extend(Pagination, {
     // delete all local records belonging to the user
     let entries = get(this, 'store').peekAll('library-entry');
     entries = entries.filterBy('user.id', get(this, 'session.account.id'));
-    entries.forEach((entry) => {
+    entries.forEach(entry => {
       entry.deleteRecord();
     });
   }).drop(),
@@ -100,7 +100,7 @@ export default Route.extend(Pagination, {
     },
 
     removeEntry(entry) {
-      return entry.destroyRecord().catch((error) => {
+      return entry.destroyRecord().catch(error => {
         entry.rollbackAttributes();
         get(this, 'raven').captureException(error);
       });

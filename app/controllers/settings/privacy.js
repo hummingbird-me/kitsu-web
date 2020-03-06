@@ -12,7 +12,7 @@ export default Controller.extend({
   updateProfile: task(function* () {
     yield get(this, 'user').save()
       .then(() => get(this, 'notify').success('Your profile was updated.'))
-      .catch((err) => {
+      .catch(err => {
         get(this, 'notify').error(errorMessages(err));
         get(this, 'user').rollbackAttributes();
       });

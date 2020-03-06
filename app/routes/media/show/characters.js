@@ -13,11 +13,10 @@ export default Route.extend(Pagination, {
     const filters = this._getFilters(...args);
     return {
       taskInstance: this.queryPaginated('casting', {
-        filter: Object.assign({
-          media_type: capitalize(get(media, 'modelType')),
+        filter: { media_type: capitalize(get(media, 'modelType')),
           media_id: get(media, 'id'),
-          is_character: true
-        }, filters),
+          is_character: true,
+          ...filters },
         include: 'character,person',
         sort: '-featured'
       }),

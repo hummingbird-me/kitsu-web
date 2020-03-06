@@ -54,7 +54,7 @@ export default Component.extend({
       return [];
     }
     const records = [];
-    response.data.forEach((data) => {
+    response.data.forEach(data => {
       const normalize = get(this, 'store').normalize(type, data);
       const record = get(this, 'store').push(normalize);
       records.addObject(record);

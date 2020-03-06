@@ -42,7 +42,7 @@ export default Component.extend({
       }
       return 0;
     });
-    activities.forEach((activity) => {
+    activities.forEach(activity => {
       const time = momentUser(this, get(activity, 'time'));
       const calendar = time.calendar(null, {
         sameDay: '[Today]',

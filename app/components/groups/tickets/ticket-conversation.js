@@ -44,7 +44,7 @@ export default Component.extend(Pagination, {
 
     // if the ticket is new then save that first
     if (get(this, 'isNewTicket')) {
-      yield get(this, 'ticket').save().catch((error) => {
+      yield get(this, 'ticket').save().catch(error => {
         get(this, 'notify').error(errorMessages(error));
         throw error;
       });
@@ -64,14 +64,14 @@ export default Component.extend(Pagination, {
         autosize.update(get(this, 'element').getElementsByClassName('ticket-input'));
       });
       invokeAction(this, 'onCreate', get(this, 'ticket'));
-    }).catch((error) => {
+    }).catch(error => {
       get(this, 'notify').error(errorMessages(error));
     });
   }),
 
   updateStatusTask: task(function* (status) {
     set(this, 'ticket.status', status);
-    yield get(this, 'ticket').save().catch((error) => {
+    yield get(this, 'ticket').save().catch(error => {
       get(this, 'notify').error(errorMessages(error));
     });
   }),

@@ -107,7 +107,7 @@ export default Component.extend({
   },
 
   createPost: task(function* () {
-    const options = Object.assign({}, getProperties(this, 'nsfw', 'spoiler', 'uploads', 'embedUrl'));
+    const options = { ...getProperties(this, 'nsfw', 'spoiler', 'uploads', 'embedUrl') };
     if (this._usableMedia !== null) {
       options.media = this._usableMedia;
     }
@@ -152,7 +152,7 @@ export default Component.extend({
     yield timeout(150);
     const anime = get(this, 'getMedia').perform('anime', query);
     const manga = get(this, 'getMedia').perform('manga', query);
-    return yield RSVP.allSettled([anime, manga], 'Search Media').then((states) => {
+    return yield RSVP.allSettled([anime, manga], 'Search Media').then(states => {
       const fulfilled = states.filter(state => get(state, 'state') === 'fulfilled');
       return fulfilled.map(i => get(i, 'value').toArray()).reduce((a, b) => a.concat(b));
     });
@@ -186,7 +186,7 @@ export default Component.extend({
       const queue = get(this, 'fileQueue').find('uploads');
       const files = get(queue, 'files');
       const failedFiles = files.filter(file => ['failed', 'timed_out'].indexOf(file.state) !== -1);
-      failedFiles.forEach((file) => {
+      failedFiles.forEach(file => {
         set(file, 'state', 'aborted');
       });
     }

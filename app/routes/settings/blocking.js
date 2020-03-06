@@ -15,7 +15,7 @@ export default Route.extend(Pagination, {
     return yield this.queryPaginated('block', {
       filter: { user: get(this, 'session.account.id') },
       include: 'blocked'
-    }).then((records) => {
+    }).then(records => {
       const controller = this.controllerFor(get(this, 'routeName'));
       set(controller, 'hasNextPage', this._hasNextPage());
       return records;

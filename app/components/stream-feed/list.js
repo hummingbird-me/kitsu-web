@@ -122,7 +122,7 @@ export default Component.extend(Pagination, {
     this._cancelSubscription();
     const promise = this._getFeedData(10);
     if (promise) {
-      promise.then((data) => {
+      promise.then(data => {
         this._setupSubscription(data);
       });
     }
@@ -151,7 +151,7 @@ export default Component.extend(Pagination, {
     this._cancelSubscription();
     const promise = this._getFeedData(10);
     if (promise !== undefined) {
-      promise.then((data) => {
+      promise.then(data => {
         this._setupSubscription(data);
       });
     }
@@ -176,7 +176,7 @@ export default Component.extend(Pagination, {
     set(this, 'feed', []);
     set(this, 'paginatedRecords', []);
     set(this, 'newItems', EmberObject.create({ length: 0, cache: [] }));
-    return get(this, 'getFeedData').perform(limit).then((data) => {
+    return get(this, 'getFeedData').perform(limit).then(data => {
       get(this, 'feed').addObjects(data);
       set(this, 'feed.links', get(data, 'links'));
 
@@ -184,7 +184,7 @@ export default Component.extend(Pagination, {
       this._trackImpressions(data);
 
       return data;
-    }).catch((error) => {
+    }).catch(error => {
       this.resetPageState();
       get(this, 'raven').captureException(error);
     });
@@ -230,7 +230,7 @@ export default Component.extend(Pagination, {
 
   _handleRealtime(object) {
     // handle deletion
-    (get(object, 'deleted') || []).forEach((activityId) => {
+    (get(object, 'deleted') || []).forEach(activityId => {
       let activity = get(this, 'feed').findBy('id', activityId);
       if (activity) {
         get(this, 'feed').removeObject(activity);
@@ -243,7 +243,7 @@ export default Component.extend(Pagination, {
     const groupCache = get(this, 'newItems.cache');
     const filter = get(this, 'filter');
     get(this, 'newItems').beginPropertyChanges();
-    get(object, 'new').forEach((activity) => {
+    get(object, 'new').forEach(activity => {
       const type = get(activity, 'foreign_id').split(':')[0];
 
       // filter out content not apart of the current filter
@@ -305,7 +305,7 @@ export default Component.extend(Pagination, {
           callback(...arguments);
         }
         get(this, 'notify').success('Your feed activity was deleted.');
-      }).catch((err) => {
+      }).catch(err => {
         get(this, 'notify').error(errorMessages(err));
       });
     },
@@ -326,7 +326,7 @@ export default Component.extend(Pagination, {
     newActivities() {
       const limit = get(this, 'newItems.length');
       set(this, 'realtimeLoading', true);
-      get(this, 'getFeedData').perform(limit).then((data) => {
+      get(this, 'getFeedData').perform(limit).then(data => {
         set(this, 'newItems.length', 0);
         set(this, 'newItems.cache', []);
         get(this, 'headTags').collectHeadTags();

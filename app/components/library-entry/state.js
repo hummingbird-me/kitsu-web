@@ -26,7 +26,7 @@ export default Component.extend({
     const media = get(this, 'media');
     if (!('libraryEntry' in this.attrs)) {
       if (get(media, 'id') !== get(this, '_mediaIdWas') && get(this, 'session.hasUser')) {
-        get(this, 'getLibraryEntryTask').perform().then((libraryEntry) => {
+        get(this, 'getLibraryEntryTask').perform().then(libraryEntry => {
           if (libraryEntry) {
             set(libraryEntry, get(this, 'mediaType'), get(this, 'media'));
           }

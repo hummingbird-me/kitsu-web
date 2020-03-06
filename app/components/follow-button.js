@@ -42,7 +42,7 @@ export default Component.extend({
       yield get(this, 'store').createRecord('follow', {
         follower: get(this, 'session.account'),
         followed: get(this, 'user')
-      }).save().then((record) => {
+      }).save().then(record => {
         set(this, 'relationship', record);
         get(this, 'session.account').incrementProperty('followingCount');
         get(this, 'metrics').trackEvent({

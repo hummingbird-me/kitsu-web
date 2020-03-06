@@ -43,7 +43,7 @@ export default Component.extend({
         get(this, 'store').createRecord('media-ignore', {
           user: get(this, 'session.account'),
           media: get(this, 'media')
-        }).save().then((record) => {
+        }).save().then(record => {
           set(this, 'ignore', record);
         }).catch(err => get(this, 'notify').error(errorMessages(err)));
       }

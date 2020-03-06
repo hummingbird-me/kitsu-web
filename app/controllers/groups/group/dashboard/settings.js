@@ -51,11 +51,11 @@ export default Controller.extend({
     const records = get(this, 'records');
     const saving = records.filterBy('hasDirtyAttributes').map(record => record.save());
     return yield new RSVP.Promise((resolve, reject) => {
-      RSVP.allSettled(saving).then((data) => {
+      RSVP.allSettled(saving).then(data => {
         const failed = data.filterBy('state', 'rejected');
         return failed.length > 0 ? reject(failed) : resolve();
       });
-    }).catch((error) => {
+    }).catch(error => {
       set(this, 'errorMessage', errorMessages(error));
     });
   }),

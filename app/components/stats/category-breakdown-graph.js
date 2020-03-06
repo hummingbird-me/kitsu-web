@@ -21,7 +21,7 @@ export default Component.extend({
     const data = get(this, 'stat.categories');
     const total = get(this, 'stat.total');
     const arrayData = Object.keys(data).map(key => ({
-      name: key, percent: data[key] / total * 100
+      name: key, percent: (data[key] / total) * 100
     }));
     // Sort the data from biggest to smallest and take the top 7
     const sorted = arrayData.sort(({ percent: a }, { percent: b }) => b - a).slice(0, 7);
@@ -30,7 +30,7 @@ export default Component.extend({
     // Add the colors
     return filtered.map((datum, i) => ({
       ...datum,
-      relativeSize: (datum.percent / filtered[0].percent * 100),
+      relativeSize: (datum.percent / filtered[0].percent) * 100,
       color: COLORS[i % COLORS.length]
     }));
   }),

@@ -15,7 +15,7 @@ function injectBrowser(src) {
 
     // add the new script to our loading cache
     let done;
-    _scriptsLoading[src] = new RSVP.Promise((_resolve) => {
+    _scriptsLoading[src] = new RSVP.Promise(_resolve => {
       done = _resolve;
     });
     _scriptsLoading[src].then(() => {

@@ -30,8 +30,8 @@ export default function observerManager(options = {}) {
   const key = JSON.stringify(sortObject(options));
   let observer = ObserverMap.get(key);
   if (observer === undefined) {
-    const callback = (entries) => {
-      entries.forEach((entry) => {
+    const callback = entries => {
+      entries.forEach(entry => {
         const targets = mapGetWithDefault(ListenerMap, entry.target, []);
         targets.forEach(listener => listener(entry));
       });

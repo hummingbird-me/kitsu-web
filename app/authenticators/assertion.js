@@ -10,9 +10,9 @@ export default Base.extend({
 
   authenticate(provider, options = {}) {
     return new RSVP.Promise((resolve, reject) => {
-      get(this, 'torii').open(provider, options).then((providerResponse) => {
+      get(this, 'torii').open(provider, options).then(providerResponse => {
         const data = { grant_type: 'assertion', assertion: get(providerResponse, 'accessToken'), provider };
-        this.makeRequest(get(this, 'serverTokenEndpoint'), data).then((response) => {
+        this.makeRequest(get(this, 'serverTokenEndpoint'), data).then(response => {
           run(() => {
             const expiresIn = response.expires_in;
             const expiresAt = this._absolutizeExpirationTime(expiresIn);
@@ -22,7 +22,7 @@ export default Base.extend({
             }
             resolve(response);
           });
-        }, (xhr) => {
+        }, xhr => {
           run(null, reject, xhr.responseJSON || xhr.responseText);
         });
       });

@@ -8,7 +8,7 @@ export function unshiftObject(target, object) {
 
 export function unshiftObjects(target, objects) {
   target.beginPropertyChanges();
-  objects.reverse().forEach((object) => { unshiftObject(target, object); });
+  objects.reverse().forEach(object => { unshiftObject(target, object); });
   target.endPropertyChanges();
   return target;
 }

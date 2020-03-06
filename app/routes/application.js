@@ -134,7 +134,7 @@ export default Route.extend(ApplicationRouteMixin, {
   },
 
   _getCurrentUser() {
-    return get(this, 'session').getCurrentUser().then((user) => {
+    return get(this, 'session').getCurrentUser().then(user => {
       // user setup
       this._loadTheme(user);
       get(this, 'moment').changeTimeZone(get(user, 'timeZone') || moment.tz.guess());
@@ -164,7 +164,7 @@ export default Route.extend(ApplicationRouteMixin, {
   _registerNotifications() {
     if (get(this, 'session.account.feedCompleted')) {
       window.OneSignal.push(() => {
-        window.OneSignal.isPushNotificationsEnabled((isEnabled) => {
+        window.OneSignal.isPushNotificationsEnabled(isEnabled => {
           if (isEnabled) {
             // retry hookup if it failed last time
             const userId = get(this, 'local.oneSignalPlayerId');
@@ -173,9 +173,9 @@ export default Route.extend(ApplicationRouteMixin, {
             }
           } else {
             window.OneSignal.showHttpPrompt();
-            window.OneSignal.on('subscriptionChange', (isSubscribed) => {
+            window.OneSignal.on('subscriptionChange', isSubscribed => {
               if (isSubscribed) {
-                window.OneSignal.getUserId().then((userId) => {
+                window.OneSignal.getUserId().then(userId => {
                   // store the id so we can retry on next refresh if hookup fails
                   set(this, 'local.oneSignalPlayerId', userId);
                   this._setupNotifications(userId);

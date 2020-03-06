@@ -75,7 +75,7 @@ export default Component.extend(ClipboardMixin, {
           }
           get(this, 'notify').success('Success! Your review has been deleted.');
         })
-        .catch((err) => {
+        .catch(err => {
           get(this, 'review').rollbackAttributes();
           get(this, 'notify').error(errorMessages(err));
         });

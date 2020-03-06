@@ -21,7 +21,7 @@ module('Integration | Component | media/filter widgets/multi select', function(h
   test('selection is added to selected on click', async function(assert) {
     this.set('selection', ['one', 'two', 'three']);
     this.set('selected', ['two', 'three']);
-    this.set('testSelect', (value) => {
+    this.set('testSelect', value => {
       assert.deepEqual(value, ['two', 'three', 'one']);
     });
 
@@ -39,7 +39,7 @@ module('Integration | Component | media/filter widgets/multi select', function(h
   test('selection is removed to selected on click', async function(assert) {
     this.set('selection', ['one', 'two', 'three']);
     this.set('selected', ['one', 'two', 'three']);
-    this.set('testSelect', (value) => {
+    this.set('testSelect', value => {
       assert.deepEqual(value, ['one', 'three']);
     });
 

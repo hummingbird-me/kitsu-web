@@ -46,18 +46,18 @@ export default Component.extend({
     set(this, 'queryWas', query);
     get(this, 'searchTask').perform(query).then(() => {
       get(this, 'metrics').trackEvent({ category: 'search', action: 'query', label: query });
-    }).catch((error) => {
+    }).catch(error => {
       get(this, 'raven').captureException(error);
     });
   },
 
   searchTask: task(function* (query) {
-    Object.keys(INDICES).forEach((type) => {
-      get(this, `${type}Task`).perform(query).then((response) => {
+    Object.keys(INDICES).forEach(type => {
+      get(this, `${type}Task`).perform(query).then(response => {
         const records = get(response, 'hits') || [];
         set(this, `groups.${type}`, records);
         set(this, `groups.${type}.nbPages`, get(response, 'nbPages'));
-      }).catch((error) => {
+      }).catch(error => {
         get(this, 'raven').captureException(error);
       });
     });
