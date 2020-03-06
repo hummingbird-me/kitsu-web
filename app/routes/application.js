@@ -125,11 +125,13 @@ export default Route.extend(ApplicationRouteMixin, {
       });
     },
 
-    didTransition() {
-      scheduleOnce('afterRender', () => {
-        get(this, 'headTagsService').collectHeadTags();
+    init() {
+      this.on('routeDidChange', () => {
+        scheduleOnce('afterRender', () => {
+          get(this, 'headTagsService').collectHeadTags();
+        });
+        return true;
       });
-      return true;
     }
   },
 
