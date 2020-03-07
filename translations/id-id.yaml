@@ -1,20 +1,20 @@
 # route titles -- these are used if the route doesn't specify the title itself
 titles:
   anime:
-    index: "Explore Anime"
+    index: "Jelajah Anime"
   manga:
-    index: "Explore Manga"
+    index: "Jelajah Manga"
   media:
     show:
       units: "{type, select,
-        anime {Episodes}
-        manga {Chapters}
+        anime {Episode}
+        manga {Bab}
         other {}}"
-      characters: "Characters"
-      reactions: "Reactions"
+      characters: "Karakter"
+      reactions: "Reaksi"
       franchise: "Franchise"
   explore:
-    index: "Explore {mediaType, select,
+    index: "Jelajah {mediaType, select,
       anime {Anime}
       manga {Manga}
       other {}}"
@@ -22,7 +22,7 @@ titles:
       trending: "Trending {type, select,
         anime {Anime}
         manga {Manga}
-        other {}} This Week"
+        other {}} Minggu Ini"
       top-current: "Top {type, select,
         Anime {Airing}
         Manga {Publishing}
@@ -39,102 +39,102 @@ titles:
   not-found: "Not Found"
   server-error: "Server Error"
   users:
-    index: "{user}'s Profile"
-    library: "{user}'s Library"
-    reviews: "{user}'s Reviews"
-    reactions: "{user}'s Reactions"
-    followers: "{user}'s Followers"
-    following: "Followed by {user}"
-    groups: "{user}'s Groups"
-    stats: "{user}'s Stats"
-  posts: "Post by {user}"
-  comments: "Comment by {user}"
-  reviews: "Review by {user}"
-  notifications: "Notifications"
+    index: "Profil {user}"
+    library: "Pustaka {user}"
+    reviews: "Ulasan {user}"
+    reactions: "Reaksi {user}"
+    followers: "Pengikut {user}"
+    following: "Diikuti oleh {user}"
+    groups: "Grup {user}"
+    stats: "Stat {user}"
+  posts: "Kiriman oleh {user}"
+  comments: "Komentar oleh {user}"
+  reviews: "Ulasan oleh {user}"
+  notifications: "Notifikasi"
   feedback:
-    bugs: "Bugs"
-    feature-requests: "Feature Requests"
-    database-requests: "Database Requests"
-    mobile-bugs: "Mobile Bugs"
-    mobile-features: "Mobile Features"
+    bugs: "Bug"
+    feature-requests: "Usul Fitur"
+    database-requests: "Usul Database"
+    mobile-bugs: "Bug Aplikasi"
+    mobile-features: "Fitur Aplikasi"
   admin:
     index: "Admin"
-    reports: "Reports"
+    reports: "Laporan"
   groups:
-    index: "Groups"
-    new: "Create a Group"
+    index: "Grup"
+    new: "Buat Grup"
     group:
       group-page:
-        rules: "{group} Rules"
-        members: "{group} Members"
-        leaders: "{group} Leaders"
+        rules: "Aturan {group}"
+        members: "Anggota {group}"
+        leaders: "Pemimpin {group}"
       dashboard:
-        index: "{group} Overview"
-        reports: "{group} Reports"
-        tickets: "{group} Tickets"
-        members: "{group} Members"
-        leaders: "{group} Leaders"
-        settings: "{group} Settings"
-  group-invite: "Group Invite"
+        index: "Gambaran {group}"
+        reports: "Laporan {group}"
+        tickets: "Tiket {group}"
+        members: "Anggota {group}"
+        leaders: "Pemimpin {group}"
+        settings: "Aturan {group}"
+  group-invite: "Undangan Grup"
 # head
 head:
   users:
-    description: "{user} is using Kitsu to track their progress and share their anime & manga experiences."
+    description: "{user} menggunakan Kitsu untuk membuat pustaka dan berbagi kesan tentang anime dan manga."
 # header
 header:
-  library: "Library"
+  library: "Pustaka"
   anime: "Anime"
   manga: "Manga"
   trending: "Trending"
-  groups: "Groups"
-  feedback: "Feedback"
-  browse: "Browse"
+  groups: "Grup"
+  feedback: "Umpan Balik"
+  browse: "Cari"
   auth:
-    sign-in: "Sign In"
-    sign-up: "Sign Up"
+    sign-in: "Masuk"
+    sign-up: "Daftar"
   user:
-    profile: "View Profile"
-    settings: "Settings"
+    profile: "Lihat Profil"
+    settings: "Pengaturan"
     admin: "Admin"
-    logout: "Logout"
+    logout: "Keluar"
 # authentication modal
 auth-modal:
   sign-up:
     submit: "{step, select,
-      0 {Let's get some basic info first}
-      1 {Very witty - email is next!}
-      2 {Looks legit, how about a password?}
-      3 {Cool- Let's create that account}
+      0 {Masukkan informasi dasar dahulu!}
+      1 {Jangan lupa email!}
+      2 {Untuk pengamanan, kata sandi?}
+      3 {Sip! Akun siap dibuat}
       other {}}"
 # page: dashboard
 dashboard:
   quick-update:
     filter:
-      all: "All"
+      all: "Semua"
       anime: "Anime"
       manga: "Manga"
     empty:
       html: "Media you've added or updated within your <a href={link}>Library</a> will show up
         here for you to quickly update."
-      discover: "Discover Media"
+      discover: "Jeladah Media"
     media:
-      complete: "Complete"
-      unstarted: "Not Started"
+      complete: "Selesai"
+      unstarted: "Belum Mulai"
       unit: "{type, select,
         anime {Ep. {num} {total, select,
           undefined {}
-          other {of {total}}}}
+          other {dari {total}}}}
         manga {Ch. {num} {total, select,
           null {}
-          other {of {total}}}}
+          other {dari {total}}}}
         other {}}"
     overlay:
       button:
         update: "{type, select,
           anime {Ep.}
-          manga {Ch.}
+          manga {Bab}
           other {}} {number}"
-        complete: "Complete"
+        complete: "Selesai"
         tooltip:
           empty: "Update Library"
           content: "Create post and update library"
@@ -157,11 +157,11 @@ dashboard:
   groups:
     header: "My Groups"
   announcements:
-    button: "Learn More"
+    button: "Pelajari Lebih Lanjut"
 # page: anime/manga
 media:
   index:
-    search: "Search by title, character, or cast..."
+    search: "Cari berdasarkan judul, karakter, atau pemeran..."
     filter: "Filter"
     remove: "Remove"
     filters:
@@ -234,32 +234,32 @@ media:
         more: "View all characters"
       titles:
         header: "Alternative Titles"
-        ar: "Arabic"
-        ar_ar: "Arabic" # Invalid use ar
-        de_de: "German"
-        en: "English"
-        en_cn: "Chinese (Pinyin)"
-        en_gb: "English (UK)"
-        en_jp: "Japanese (Romaji)"
-        en_kr: "Korean (Romaja)"
-        en_th: "Thai (Romanized)"
-        en_us: "English (US)"
-        es_es: "Spanish"
-        fr_fr: "French"
-        id_id: "Indonesian"
-        it_it: "Italian"
-        ja_jp: "Japanese"
-        ko_kr: "Korean"
-        nl_nl: "Dutch"
-        pt_br: "Portuguese (Brazilian)"
-        pt_pt: "Portuguese"
-        ru_ru: "Russian"
+        ar: "Arab"
+        ar_ar: "Arab" # Invalid use ar
+        de_de: "Jerman"
+        en: "Inggris"
+        en_cn: "TIongkok (Pinyin)"
+        en_gb: "Inggris (Britania Raya)"
+        en_jp: "Jepang (Romaji)"
+        en_kr: "Korea (Romaja)"
+        en_th: "Thai (Romanisasi)"
+        en_us: "Inggris (Amerika)"
+        es_es: "Spanyol"
+        fr_fr: "Prancis"
+        id_id: "Indonesia"
+        it_it: "Italia"
+        ja_jp: "Jepang"
+        ko_kr: "Korea"
+        nl_nl: "Belanda"
+        pt_br: "Portugal (Brazil)"
+        pt_pt: "Portugal"
+        ru_ru: "Rusia"
         th_th: "Thai"
-        uk_ua: "Ukrainian"
-        vi_vi: "Vietnamese" # Invalid use vi_vn
-        vi_vn: "Vietnamese"
-        zh_cn: "Chinese (Simplified)"
-        zh_tw: "Chinese (Traditional)"
+        uk_ua: "Ukraine"
+        vi_vi: "Vietnam" # Invalid use vi_vn
+        vi_vn: "Vietnam"
+        zh_cn: "Tionghoa (Tiongkok)"
+        zh_tw: "Tionghoa (Taiwan)"
         synonyms: "Synonyms"
       information:
         header: "{type, select,
@@ -269,135 +269,135 @@ media:
         type: "Type"
         volumes: "Volumes"
         unit: "{type, select,
-          anime {Episodes}
-          manga {Chapters}
+          anime {Episode}
+          manga {Bab}
           other {}}"
         start: "{type, select,
-          anime {Aired}
-          manga {Published}
+          anime {Tanggal Tayang}
+          manga {Tanggal Terbit}
           other {}}"
         status: "Status"
         tba: "Expected"
-        season: "Season"
-        producers: "Producers"
-        licensors: "Licensors"
-        studios: "Studios"
-        serialization: "Serialization"
-        duration: "Length"
+        season: "Musim"
+        producers: "Produser"
+        licensors: "Pelisensi"
+        studios: "Studio"
+        serialization: "Serialisasi"
+        duration: "Durasi"
         total: "{total} total"
         length: "{count, plural,
-          =1 {{length} minutes}
-          other {{length} minutes each}}"
+          =1 {{length} menit}
+          other {{length} menit tiap episode}}"
         rating: "Rating"
         expand:
-          false: "More info"
-          true: "Less Info"
+          false: "Info lebih"
+          true: "Sembunyikan info tambahan"
       feed:
-        header: "Community Feed"
-      trailer: "Play Trailer"
+        header: "Umpan Komunitas"
+      trailer: "Putar Trailer"
     units:
       unit: "{type, select,
         episode {Episode}
-        chapter {Chapter}
+        chapter {Bab}
         other {}}"
       back: "Back to {type, select,
         episode {episode}
-        chapter {chapter}
+        chapter {bab}
         other {}} list"
       pages: "{length} Pages"
       date: "{type, select,
-        episode {Aired}
-        chapter {Published}
+        episode {Tanggal Tayang}
+        chapter {Tanggal Terbit}
         other {}}"
       completed: "{type, select,
-        episode {Watched}
-        chapter {Read}
-        other {Complete}}"
+        episode {Ditonton}
+        chapter {Dibaca}
+        other {Selesai}}"
       feed:
         header: "{type, select,
           episode {Episode}
-          chapter {Chapter}
-          other {}} Discussion"
+          chapter {bab}
+          other {}} Diskusi"
     characters:
-      header: "{title} Characters"
+      header: "{title} Karakter"
       sub-header: "{type, select,
         anime {The following is a full list of characters and their {language} voice actors for
           the anime {title}}
         manga {The following is a full list of characters for the manga {title}}
         other {}}"
     reactions:
-      loading: "Loading Reactions..."
-      delete: "Delete Reaction"
-      report: "Report Reaction"
-      copy: "Copy Link to Reaction"
+      loading: "Memuat reaksi..."
+      delete: "Hapus Reaksi"
+      report: "Laporkan Reaksi"
+      copy: "Salin Link Menuju Reaksi"
     franchise:
       header: "{title} Franchise"
       roles:
-        sequel: "Sequel"
-        prequel: "Prequel"
-        alternative_setting: "Alt. setting"
-        alternative_version: "Alt. version"
-        side_story: "Side story"
-        parent_story: "Parent story"
-        summary: "Summary"
-        full_story: "Full story"
+        sequel: "Sekuel"
+        prequel: "Prekuel"
+        alternative_setting: "Latar Alt."
+        alternative_version: "Versi Alt."
+        side_story: "Cerita Sampingan"
+        parent_story: "Cerita Utama"
+        summary: "Ringkasan"
+        full_story: "Cerita Penuh"
         spinoff: "Spin-off"
-        adaptation: "Adaptation"
+        adaptation: "Adaptasi"
         anime_adaptation: "Anime"
         manga_adaptation: "Manga"
-        character: "Character"
-        other: "Other"
+        character: "Karakter"
+        other: "Lain-lain"
   hide-posts:
-    text: "Hide Posts about {media}"
-    info: "Posts won't appear in your Following or {type} Feed"
+    text: "Sembunyikan Kiriman tentang {media}"
+    info: "Kiriman tidak akan muncul di umpan Anda"
   show-posts:
-    text: "Show Posts about {media}"
-    info: "Posts will appear in your Following or {type} Feed"
+    text: "Tampilkan Kiriman tentang {media}"
+    info: "Kiriman tidak akan muncul di umpan Anda"
 # page: users
 users:
   navigation:
-    activity: "Activity"
-    library: "Library"
-    reviews: "Reviews"
-    reactions: "Reactions"
-    followers: "Followers"
-    following: "Following"
-    groups: "Groups"
+    activity: "Aktivitas"
+    library: "Pustaka"
+    reviews: "Ulasan"
+    reactions: "Reaksi"
+    followers: "Pengikut"
+    following: "Mengikuti"
+    groups: "Grup"
   edit-modal:
-    cover: "Change your cover photo"
+    cover: "Ganti foto sampul"
     navigation:
-      about: "About Me"
-      profile-links: "Profile Links"
-      favorites: "Favorites"
+      about: "Tentang Saya"
+      profile-links: "Link Profil"
+      favorites: "Favorit"
     about:
-      header: "About Me"
+      header: "Tentang Saya"
       location:
-        label: "Location"
-        placeholder: "Where do you live?"
-      birthday: "Birthday"
+        label: "Lokasi"
+        placeholder: "Di mana kamu tinggal?"
+      birthday: "Ulang Tahun"
       gender:
         label: "Gender"
         options:
-          secret: "It's a secret"
-          male: "Male"
-          female: "Female"
-          custom: "Custom"
+          secret: "Rahasia"
+          male: "Pria"
+          female: "Wanita"
+          custom: "Khusus"
       waifu:
         label: "Waifu"
         placeholder: "Waifu/Husbando"
-        search: "Find your special someone"
+        search: "Cari seseorang spesialmu"
       bio:
         label: "Bio"
-        placeholder: "Tell the world your story."
+        placeholder: "Ceritakan kisahmu kepada dunia."
     profile-links:
-      header: "Profile Links"
+      header: "Link Profil"
       sites:
         website:
-          about: "Enter your personal website below to add a link to your profile."
-          placeholder: "Your website URL"
+          about: "Masukkan URL situsmu untuk menambah situs."
+          placeholder: "URL situsmu"
         twitter:
-          about: "Enter your Twitter username below to add a link to your profile."
-          placeholder: "Your Twitter username (@Username)"
+          about: "Masukkan nama pengguna Twitter-mu untuk menautkan akun Twitter."
+          placeholder: "Nama Pengguna Twitter-mu(@Username)"
         facebook:
           about: "Enter your Facebook URL below to add a link to your profile."
           placeholder: "Your Facebook URL"
