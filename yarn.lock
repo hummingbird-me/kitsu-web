@@ -3099,7 +3099,7 @@ broccoli-builder@^0.18.14:
     rsvp "^3.0.17"
     silent-error "^1.0.1"
 
-broccoli-caching-writer@3.0.3, broccoli-caching-writer@^3.0.3:
+broccoli-caching-writer@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/broccoli-caching-writer/-/broccoli-caching-writer-3.0.3.tgz#0bd2c96a9738d6a6ab590f07ba35c5157d7db476"
   dependencies:
@@ -3196,24 +3196,6 @@ broccoli-filter@^1.2.2, broccoli-filter@^1.2.3:
 broccoli-funnel-reducer@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/broccoli-funnel-reducer/-/broccoli-funnel-reducer-1.0.0.tgz#11365b2a785aec9b17972a36df87eef24c5cc0ea"
-
-broccoli-funnel@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/broccoli-funnel/-/broccoli-funnel-2.0.1.tgz#6823c73b675ef78fffa7ab800f083e768b51d449"
-  dependencies:
-    array-equal "^1.0.0"
-    blank-object "^1.0.1"
-    broccoli-plugin "^1.3.0"
-    debug "^2.2.0"
-    fast-ordered-set "^1.0.0"
-    fs-tree-diff "^0.5.3"
-    heimdalljs "^0.2.0"
-    minimatch "^3.0.0"
-    mkdirp "^0.5.0"
-    path-posix "^1.0.0"
-    rimraf "^2.4.3"
-    symlink-or-copy "^1.0.0"
-    walk-sync "^0.3.1"
 
 broccoli-funnel@^1.0.0, broccoli-funnel@^1.0.1, broccoli-funnel@^1.0.2, broccoli-funnel@^1.1.0:
   version "1.2.0"
@@ -3391,24 +3373,6 @@ broccoli-output-wrapper@^3.1.1:
     heimdalljs-logger "^0.1.10"
     symlink-or-copy "^1.2.0"
 
-broccoli-persistent-filter@1.4.3:
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/broccoli-persistent-filter/-/broccoli-persistent-filter-1.4.3.tgz#3511bc52fc53740cda51621f58a28152d9911bc1"
-  dependencies:
-    async-disk-cache "^1.2.1"
-    async-promise-queue "^1.0.3"
-    broccoli-plugin "^1.0.0"
-    fs-tree-diff "^0.5.2"
-    hash-for-dep "^1.0.2"
-    heimdalljs "^0.2.1"
-    heimdalljs-logger "^0.1.7"
-    mkdirp "^0.5.1"
-    promise-map-series "^0.2.1"
-    rimraf "^2.6.1"
-    rsvp "^3.0.18"
-    symlink-or-copy "^1.0.1"
-    walk-sync "^0.3.1"
-
 broccoli-persistent-filter@^1.0.3, broccoli-persistent-filter@^1.1.5, broccoli-persistent-filter@^1.1.6, broccoli-persistent-filter@^1.2.0, broccoli-persistent-filter@^1.4.2, broccoli-persistent-filter@^1.4.3:
   version "1.4.6"
   resolved "https://registry.yarnpkg.com/broccoli-persistent-filter/-/broccoli-persistent-filter-1.4.6.tgz#80762d19000880a77da33c34373299c0f6a3e615"
@@ -3494,24 +3458,26 @@ broccoli-plugin@^4.0.1:
     rimraf "^3.0.0"
     symlink-or-copy "^1.3.0"
 
-broccoli-postcss-single@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/broccoli-postcss-single/-/broccoli-postcss-single-1.6.0.tgz#da008ba24087f5cd1d7ec851d3d8921c9896a8ff"
+broccoli-postcss-single@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/broccoli-postcss-single/-/broccoli-postcss-single-3.0.0.tgz#1393f87b69e4bbf20a1a1e614e09bbf066db28a2"
+  integrity sha512-+CsV6zdK9CXTplZvQeAsZm7mEh+BwIN6GBzpqm7agqsMZTvW6kkcWDaL2ahG1+Aq2HfLYk1Sam6iQ3jdESNmPA==
   dependencies:
-    broccoli-caching-writer "3.0.3"
-    include-path-searcher "0.1.0"
-    mkdirp "0.5.1"
-    object-assign "4.1.1"
-    postcss "6.0.16"
+    broccoli-caching-writer "^3.0.3"
+    include-path-searcher "^0.1.0"
+    mkdirp "^0.5.1"
+    object-assign "^4.1.1"
+    postcss "^7.0.0"
 
-broccoli-postcss@^3.5.3:
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/broccoli-postcss/-/broccoli-postcss-3.5.3.tgz#bfbb12531d8c774d23651b462c3ed23f0227a8e8"
+broccoli-postcss@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/broccoli-postcss/-/broccoli-postcss-5.0.0.tgz#b4ac48e936b0ce0032e68a5872d54323fcf4744d"
+  integrity sha512-iJk+meVt0Oe33iaaE0T6z2lxSs349BRD7pz2kk/I6MuSjjWrZSzP/2txmEHQN7LyQGZjbC222MzBgSQj/O8kTw==
   dependencies:
-    broccoli-funnel "2.0.1"
-    broccoli-persistent-filter "1.4.3"
-    object-assign "4.1.1"
-    postcss "6.0.22"
+    broccoli-funnel "^2.0.1"
+    broccoli-persistent-filter "^2.1.0"
+    object-assign "^4.1.1"
+    postcss "^7.0.5"
 
 broccoli-replace@^0.12.0:
   version "0.12.0"
@@ -6038,16 +6004,16 @@ ember-cli-polyfill-io@~1.2.3:
   dependencies:
     debug "^2.6.8"
 
-ember-cli-postcss@~4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-postcss/-/ember-cli-postcss-4.0.0.tgz#d32c4ab5539122e3bc8fe26bb9cc18d8ac377739"
-  integrity sha512-PApMjEhR6cIDegoI8OlNIESdYKoECsbByqsBJ239BNfwne5BaqwvoUlj+RaZV5isye7uHR8cjG5aD2BX0ES97A==
+ember-cli-postcss@~5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-postcss/-/ember-cli-postcss-5.0.0.tgz#07891b2950e0a6e8b35234d5960575d0471da50a"
+  integrity sha512-znJOyXeYmhDF3DOocfcCUrnGN0iWmDGvMJKTVPszFeBd1/cqx+lSxc1Tx25RAF1KpOyI0FqD1amp6s9lud62EQ==
   dependencies:
     broccoli-file-creator "^2.1.1"
     broccoli-merge-trees "^3.0.0"
-    broccoli-postcss "^3.5.3"
-    broccoli-postcss-single "^1.6.0"
-    ember-cli-babel "^6.12.0"
+    broccoli-postcss "^5.0.0"
+    broccoli-postcss-single "^3.0.0"
+    ember-cli-babel "^7.1.0"
     merge "^1.2.0"
 
 ember-cli-preprocess-registry@^3.1.2:
@@ -8718,7 +8684,7 @@ in-publish@^2.0.0:
   resolved "https://registry.yarnpkg.com/in-publish/-/in-publish-2.0.0.tgz#e20ff5e3a2afc2690320b6dc552682a9c7fadf51"
   integrity sha1-4g/146KvwmkDILbcVSaCqcf631E=
 
-include-path-searcher@0.1.0, include-path-searcher@^0.1.0:
+include-path-searcher@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/include-path-searcher/-/include-path-searcher-0.1.0.tgz#c0cf2ddfa164fb2eae07bc7ca43a7f191cb4d7bd"
 
@@ -10374,7 +10340,7 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
-mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
+mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
@@ -10738,7 +10704,7 @@ oauth-sign@~0.9.0:
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"
   integrity sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==
 
-object-assign@4.1.1, object-assign@^4.0.1, object-assign@^4.1.0:
+object-assign@4.1.1, object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
   integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
@@ -11300,23 +11266,7 @@ postcss-value-parser@^4.0.2:
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.0.3.tgz#651ff4593aa9eda8d5d0d66593a2417aeaeb325d"
   integrity sha512-N7h4pG+Nnu5BEIzyeaaIYWs0LI5XC40OrRh5L60z0QjFsqGWcHcbkBvpe1WYpcIS9yQ8sOi/vIPt1ejQCrMVrg==
 
-postcss@6.0.16:
-  version "6.0.16"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.16.tgz#112e2fe2a6d2109be0957687243170ea5589e146"
-  dependencies:
-    chalk "^2.3.0"
-    source-map "^0.6.1"
-    supports-color "^5.1.0"
-
-postcss@6.0.22:
-  version "6.0.22"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.22.tgz#e23b78314905c3b90cbd61702121e7a78848f2a3"
-  dependencies:
-    chalk "^2.4.1"
-    source-map "^0.6.1"
-    supports-color "^5.4.0"
-
-postcss@^7.0.26:
+postcss@^7.0.0, postcss@^7.0.26, postcss@^7.0.5:
   version "7.0.27"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.27.tgz#cc67cdc6b0daa375105b7c424a85567345fc54d9"
   integrity sha512-WuQETPMcW9Uf1/22HWUWP9lgsIC+KEHg2kozMflKjbeUtw9ujvFX6QmIfozaErDkmLWS9WEnEdEe6Uo9/BNTdQ==
@@ -12996,7 +12946,7 @@ supports-color@^3.1.0:
   dependencies:
     has-flag "^1.0.0"
 
-supports-color@^5.1.0, supports-color@^5.3.0, supports-color@^5.4.0:
+supports-color@^5.3.0, supports-color@^5.4.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
   integrity sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==
