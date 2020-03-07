@@ -3,7 +3,6 @@ const PostCSSFlex = require('postcss-flexbugs-fixes');
 const Autoprefixer = require('autoprefixer');
 const svgoUniqueIds = require('svgo-plugin-unify-ids');
 const nodeSass = require('node-sass');
-const targets = require('./config/targets');
 
 const environment = EmberApp.env();
 const IS_PROD = environment === 'production';
@@ -57,9 +56,7 @@ module.exports = function(defaults) {
         enabled: true,
         plugins: [
           { module: PostCSSFlex },
-          { module: Autoprefixer,
-            options: { browsers: targets.browsers }
-          }
+          { module: Autoprefixer }
         ]
       }
     },
