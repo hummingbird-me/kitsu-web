@@ -15,14 +15,6 @@ module.exports = function(defaults) {
     hinting: IS_TEST,
     tests: IS_TEST,
 
-    babel: {
-      plugins: ['@babel/plugin-proposal-object-rest-spread']
-    },
-
-    'ember-cli-babel': {
-      includePolyfill: IS_PROD
-    },
-
     'ember-cli-password-strength': {
       bundleZxcvbn: false
     },
