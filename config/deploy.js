@@ -5,7 +5,11 @@ module.exports = function(deployTarget) {
     build: {},
     s3: {
       bucket: 'kitsu-web',
-      region: 'us-east-1'
+      region: 'us-east-1',
+      filePattern(context, pluginHelper) {
+        const filePattern = pluginHelper.readConfigDefault('filePattern');
+        return filePattern.replace('}', ',json}');
+      }
     },
     's3-index': {
       bucket: 'kitsu-web',

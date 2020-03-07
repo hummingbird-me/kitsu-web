@@ -19,7 +19,7 @@ export default Route.extend(ApplicationRouteMixin, {
 
   // If the user is authenticated on first load, grab the users data
   async beforeModel() {
-    // Load english translation as default
+    // Load English translation as default
     const translations = await fetch('/translations/en-us.json');
     get(this, 'intl').addTranslations('en-us', await translations.json());
 

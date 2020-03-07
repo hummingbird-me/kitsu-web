@@ -54,6 +54,8 @@ module.exports = function(defaults) {
     },
 
     fingerprint: {
+      generateAssetMap: true,
+      fingerprintAssetMap: true,
       extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'json'],
       exclude: [
         'OneSignalSDKWorker.js',
