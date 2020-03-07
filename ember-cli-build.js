@@ -5,24 +5,35 @@ const svgoUniqueIds = require('svgo-plugin-unify-ids');
 const nodeSass = require('node-sass');
 const targets = require('./config/targets');
 
+const environment = EmberApp.env();
+const IS_PROD = environment === 'production';
+const IS_TEST = environment === 'test';
+const IS_DEV = environment === 'development';
+
 module.exports = function(defaults) {
   const app = new EmberApp(defaults, {
-    browseryStats: EmberApp.env() === 'development',
+    browseryStats: IS_DEV,
+    hinting: IS_TEST,
+    tests: IS_TEST,
 
     babel: {
       plugins: ['@babel/plugin-proposal-object-rest-spread']
     },
 
     'ember-cli-babel': {
-      includePolyfill: true
+      includePolyfill: IS_PROD
     },
 
     'ember-cli-password-strength': {
       bundleZxcvbn: false
     },
 
+    autoprefixer: {
+      sourcemaps: false
+    },
+
     sourcemaps: {
-      enabled: true,
+      enabled: IS_PROD,
       extensions: ['js']
     },
 
