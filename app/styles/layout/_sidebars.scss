@@ -24,7 +24,7 @@
 }
 
 .sidebar-footer {
-  .footer-social {
+  .footer-s0cial {
     display: inline-block;
     border-top: 1px solid $divider-color;
     padding-top: 10px;
@@ -35,11 +35,9 @@
     svg {
       fill: $body-text-color;
       width: 20px;
-    }
-    &:first-child {
-      svg {
-        position: relative;
-        top: -2px;
+      transition: color .2s;
+      &:hover {
+        fill: $body-link-color;
       }
     }
   }
