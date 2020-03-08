@@ -19,46 +19,43 @@ titles:
       manga {manga}
       other {}}"
     more:
-      trending: "{type select,
+      trending: "{type, select,
         anime {Animes}
         manga {Mangas}
-        other {}} en tendencia durante la semana"
-      top-current: "{type select,
-        anime {Animes}
-        manga {Mangas}
-        other {type}} {type, select,
-        anime {en emisión}
-        manga {en publicación}
+        other {}} en tendencia esta semana"
+      top-current: "Top {type, select,
+      Anime {animes}
+      Manga {mangas}
+      other {type}} {type, select,
+        Anime {en emisión}
+        Manga {en publicación}
         other {}}"
-      top-upcoming: "Próximos {type select,
-        anime {animes}
-        manga {mangas}
-        other {type}} populares"
-      highest-rated: "{type select,
-        anime {Animes}
-        manga {Mangas}
-        other {type}} mejor puntuados"
-      most-popular: "{type select,
-        anime {Animes}
-        manga {Mangas}
-        other {type}} más populares"
+      top-upcoming: "Próximos {type, select,
+      Anime {animes}
+      Manga {mangas}
+      other {type}} populares"
+      highest-rated: "{type, select,
+      Anime {Animes}
+      Manga {Mangas}
+      other {type}} mejor puntuados"
+      most-popular: "{type, select,
+      Anime {Animes}
+      Manga {Mangas}
+      other {type}} más populares"
     category:
       index: "{category} {type}"
       more:
-        newly-released: "{type select,
-        anime {Animes}
-        manga {Mangas}
-        other {type}} {category} de reciente {type, select,
-        anime {estreno}
-        manga {publicación}
-        other {}}"
-        trending: "{type select,
-        anime {Animes}
-        manga {Mangas}
+        newly-released: "{type, select,
+        Anime {Animes}
+        Manga {Mangas}
+        other {type}} {category} recientes"
+        trending: "{type, select,
+        Anime {Animes}
+        Manga {Mangas}
         other {type}} {category} en tendencia"
-        most-popular: "{type select,
-        anime {Animes}
-        manga {Mangas}
+        most-popular: "{type, select,
+        Anime {Animes}
+        Manga {Mangas}
         other {type}} {category} más populares"
   not-found: "No encontrado"
   server-error: "Error del servidor"
