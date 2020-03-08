@@ -924,7 +924,7 @@ groups:
         locale_changed: "meperbarui lokal {group}."
         rules_changed: "meperbarui aturan {group}."
         nsfw_changed: "meperbarui status NSFW {group}."
-        about_changed: "meperbarui tentang {group}."
+        about_changed: "meperbarui informasi {group}."
         tagline_changed: "meperbarui tagline {group}."
         category_changed: "meperbarui kategori {group}."
       group-report:
@@ -948,15 +948,15 @@ group-invite:
   declined: "Kamu mengabaikan undangan grup ini."
 # page: explore
 explore:
-  view-more: "Lihat lebih banyak"
-  search-placeholder: "Apa yang kamu sedang cari?"
+  view-more: "Lebih banyak"
+  search-placeholder: "Apa yang kamu cari?"
   advanced-search: "Atau, jelajahi menggunakan <a href=\"/{mediaType}\">pencarian lanjutan</a>"
-  no-data: "Hmm, sepertinya tidak ada media yang dapat ditemukan di bagian ini."
+  no-data: "Hmm, sepertinya tidak ada media yang dapat ditemukan di sini."
   widget:
     related: "Kategori Terkait"
     categories: "Kategori"
     favorite-categories: "Kategori Favorit"
-    no-favorites: "Menyukai kategori dapat meningkatkan rekomendasi kamu."
+    no-favorites: "Pilih kategori untuk meningkatkan rekomendasi kamu."
     more-categories: "Kategori lainnya..."
   modal:
     header: "Semua Kategori"
@@ -1024,8 +1024,8 @@ library-shared:
     manga {Dijeda}
     other {}}"
   dropped: "{type, select,
-    anime {Tidak Diselesaikan}
-    manga {Tidak Diselesaikan}
+    anime {Tidak Selesai}
+    manga {Tidak Selesai}
     other {}}"
 # shared: form:
 form-shared:
@@ -1035,18 +1035,18 @@ form-shared:
 # component: auth-onboarding
 onboarding:
   aozora-conflict:
-    title: "Oh, kamu sudah memiliki akun Kitsu! Manakah yang kamu ingin simpan?"
-    info: "Aktifitas umpan berita dari kedua akun akan disatukan. Semua informasi dari akun lainnya akan ditimpa dengan akun yang kamu pilih dibawah ini.."
+    title: "Oh, kamu sudah memiliki akun Kitsu! Akun mana yang ingin kamu simpan?"
+    info: "Aktivitas umpan berita dari kedua akun akan disatukan. Semua informasi dari akun lainnya akan ditimpa dengan akun yang kamu pilih dibawah ini.."
   aozora-account-details:
     submit: "Terlihat Bagus!"
 # component: follow-button
 follow-button:
   follow: "Ikuti"
-  unfollow: "Batal Mengikuti"
+  unfollow: "Batal Ikuti"
 # component: kitsu-feed
 feeds:
   embed:
-    preview: "Ini merupakan tinjauan dari embed kamu."
+    preview: "Ini merupakan tinjauan dari link kamu."
   uploads:
     select: "Unggah"
     drop: "Lepaskan untuk Mengunggah"
@@ -1055,33 +1055,33 @@ feeds:
       =1 {Mengunggah foto... {progress}%}
       other {Mengunggah {number} foto... {progress}%}}"
   filter:
-    all: "Semua Aktifitas"
-    media: "Aktifitas Media"
-    user: "Aktifitas Pengguna"
-    following: "Aktifitas yang Diikuti"
+    all: "Semua Aktivitas"
+    media: "Aktivitas Media"
+    user: "Aktivitas Pengguna"
+    following: "Aktivitas yang Diikuti"
   placeholder: "{type, select,
-    user_aggr {Posting ke {subject}}
-    group_aggr {Posting ke {subject}}
-    media_aggr {Posting mengenai {subject}}
-    episode_aggr {Postinging mengenai Episode {subject}}
-    chapter_aggr {Posting mengenai Chapter {subject}}
-    interest_timeline {Posting mengenai {subject}}
-    other {Buat postingan}}..."
+    user_aggr {Kirim ke {subject}}
+    group_aggr {Kirim ke {subject}}
+    media_aggr {Kirim mengenai {subject}}
+    episode_aggr {Kirim tentang Episode {subject}}
+    chapter_aggr {Kirim tentang Bab {subject}}
+    interest_timeline {Kirim tentang {subject}}
+    other {Buat kiriman}}..."
   library:
-    updated: "ubah ke {status}"
+    updated: "pindah ke {status}"
     rated: "dinilai"
     progressed: "{type, select,
       anime {telah menonton episode {num}}
       manga {telah membaca bab {num}}
       other {}}"
   post:
-    more: "Lihat Lebih Banyak"
-    less: "Lihat Lebih Sedikit"
+    more: "Lebih Banyak"
+    less: "Lebih Sedikit"
     meta:
       media: "Karena kamu baru saja menyaksikan {media}"
     spoilers: "{type, select,
       anime {Ep. {num}}
-      manga {Bb. {num}}
+      manga {Bab {num}}
       other {}}"
     sorts:
       likes: "Suka"
@@ -1092,24 +1092,24 @@ feeds:
     author: "Ulasan oleh {user}"
     progress: "{type, select,
       anime {Berikut adalah ulasan sampai Episode {num}.}
-      manga {Berikut adalah ulsana sampai Bab {num}.}
+      manga {Berikut adalah ulasan sampai Bab {num}.}
       other {}}"
   interest:
     anime:
       header: "Selamat datang di Umpan Anime kamu!"
-      body: "Selama kamu perbarui <a href={link}>pustaka anime</a> kamu, kamu akan melihat apa yang dikatakan orang lain
+      body: "Selama kamu memperbarui <a href={link}>pustaka anime</a> kamu, kamu akan melihat apa yang dikatakan orang lain
         mengenai anime yang sedang kamu tonton."
     manga:
       header: "Selamat datang di Umpan Manga kamu!"
-      body: "Selama kamu perbarui <a href={link}>pustaka manga</a> kamu, kamu akan melihat apa yang dikatakan orang lain
+      body: "Selama kamu memperbarui <a href={link}>pustaka manga</a> kamu, kamu akan melihat apa yang dikatakan orang lain
         mengenai manga yang sedang kamu baca."
     button: "Baik, saya paham"
 # component: image-form
 image-form:
-  help-text: "Ketuk disini untuk memilih gambar."
+  help-text: "Klik disini untuk memilih gambar."
 # component: groups/group-list
 group-list:
-  filter: "Urutkan Grup"
+  filter: "Saring Grup"
   sort:
     featured: "Unggulan"
     recent: "Aktivitas Terbaru"
@@ -1117,17 +1117,17 @@ group-list:
     oldest: "Grup Terlama"
 # component: media/media-reaction
 media-reaction:
-  self-vote: "Kamu tidak bisa memberikan vote di reaksi kamu sendiri."
+  self-vote: "Kamu tidak bisa memberikan vote pada reaksi kamu sendiri."
   edit: "Sunting Reaksi"
 # component: modals/media-reaction
 reaction-modal:
-  post: "Posting"
+  post: "Kirim"
   edit: "Sunting"
   edit-warning: "Hati-hati! Menyunting dapat mengakibatkan vote kamu terhapus."
   delete: "Hapus Reaksi"
   placeholder: "{index, plural,
     =0 {Sampai-sampai saya memikirkan kembali tujuan hidup saya.}
-    =1 {Rupanya bagus sekali! Banyak scene yang terkenang.}
+    =1 {Rupanya bagus sekali! Banyak adegan yang terkenang.}
     =2 {Meski ini bisa saja bukan kesukaan semua orang, tetap saja menarik.}
     other {Terlalu berlebihan, jangan habiskan waktumu dengan yang satu ini.}}"
   skip: "Lewati"
@@ -1157,20 +1157,20 @@ library-entry:
     drop-this: "Dibatalkan"
     change-rating: "Ubah Skor"
     remove-rating: "Hapus Skor"
-    rate-this: "Tambahkan Skor"
+    rate-this: "Tambah Skor"
     edit-library: "Sunting Entri Pustaka"
-    post-reaction: "Post Reaksi"
+    post-reaction: "Kirim Reaksi"
     edit-reaction: "Sunting Reaksi"
     rewatch: "{type, select,
-      anime {Tonton Kembali}
-      manga {Baca Kembali}
+      anime {Tonton Ulang}
+      manga {Baca Ulang}
       other {}}"
     remove-from-library: "Hapus dari Pustaka"
     saved-in: "Disimpan di <a href={link}>{status}</a>"
     progress: "Kemajuan"
     not-rated: "Tidak Ada Skor"
   rating:
-    awful: "Sampah"
+    awful: "Buruk"
     meh: "Meh"
     good: "Bagus"
     great: "Keren"
@@ -1180,7 +1180,7 @@ user-notifications:
   aired: "{type, select,
     chapter {Bab}
     episode {Episode}
-    other {}} {number} {media} {type, select,
+    other {}} {number} dari {media} {type, select,
     chapter {Diterbitkan}
     episode {Ditayangkan}
     other {}}"
@@ -1195,7 +1195,7 @@ user-notifications:
 selects:
   loading: "Memuat..."
   none: "Hasil tidak ditemukan"
-  search: "Mulailah mengetik untuk mencari"
+  search: "Mulai mengetik untuk mencari"
 # ember-cp-validations
 errors:
   description: "Bidang ini"
