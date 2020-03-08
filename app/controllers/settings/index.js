@@ -13,7 +13,11 @@ export default Controller.extend({
   notify: service(),
   lastUsed: storageFor('last-used'),
   user: alias('session.account'),
-  languages: getter(() => [{ id: 'en', text: 'English' }, { id: 'fr', text: 'Français' }]),
+  languages: getter(() => [
+    { id: 'en', text: 'English' }, 
+    { id: 'fr', text: 'Français' },
+    { id: 'es', text: 'Español' }
+  ]),
   timezoneGuess: getter(() => moment.tz.guess()),
   timezones: getter(() => moment.tz.names()),
 
