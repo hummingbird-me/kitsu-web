@@ -15,8 +15,8 @@ export default Controller.extend({
   user: alias('session.account'),
   languages: getter(() => [
     { id: 'en', text: 'English' },
-    { id: 'fr', text: 'Français' },
-    { id: 'es', text: 'Español' }
+    { id: 'es', text: 'Español' },
+    { id: 'fr', text: 'Français' }
   ]),
   timezoneGuess: getter(() => moment.tz.guess()),
   timezones: getter(() => moment.tz.names()),
