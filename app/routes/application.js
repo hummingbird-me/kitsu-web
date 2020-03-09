@@ -164,6 +164,13 @@ export default Route.extend(ApplicationRouteMixin, {
         get(this, 'intl').set('locale', ['es-ES', 'en-us']);
       }
 
+      if (get(user, 'language') === 'id') {
+        const translations = await fetch('/translations/id-id.json');
+        get(this, 'intl').addTranslations('id-id', await translations.json());
+        // use en-us as fallback as it is already loaded
+        get(this, 'intl').set('locale', ['id-id', 'en-us']);
+      }
+
       // metrics
       get(this, 'metrics').identify({
         distinctId: get(user, 'id'),

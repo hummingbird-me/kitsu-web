@@ -14,6 +14,7 @@ export default Controller.extend({
   lastUsed: storageFor('last-used'),
   user: alias('session.account'),
   languages: getter(() => [
+    { id: 'id', text: 'Bahasa Indonesia' },
     { id: 'en', text: 'English' },
     { id: 'es', text: 'Español' },
     { id: 'fr', text: 'Français' }
