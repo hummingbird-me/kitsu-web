@@ -44,8 +44,8 @@ titles:
     bugs: "バッグ"
     feature-requests: "Feature Requests"
     database-requests: "Database Requests"
-    mobile-bugs: "Mobile Bugs"
-    mobile-features: "Mobile Features"
+    mobile-bugs: "アプリのバッグ"
+    mobile-features: "アプリ特徴"
   admin:
     index: "Admin"
     reports: "Reports"
@@ -71,21 +71,21 @@ head:
     description: "{user} is using Kitsu to track their progress and share their anime & manga experiences."
 #header
 header:
-  library: "Library"
+  library: "ライブラリ"
   anime: "アニメ"
-  manga: "Manga"
+  manga: "漫画"
   trending: "Trending"
-  groups: "Groups"
+  groups: "グループ"
   feedback: "Feedback"
   browse: "Browse"
   auth:
-    sign-in: "Sign In"
+    sign-in: "ログイン"
     sign-up: "Sign Up"
   user:
     profile: "View Profile"
     settings: "設定"
-    admin: "Admin"
-    logout: "Logout"
+    admin: "アドミン"
+    logout: "ログアウト"
 #authentication modal
 auth-modal:
   sign-up:
@@ -94,20 +94,20 @@ auth-modal:
 dashboard:
   quick-update:
     filter:
-      all: "All"
+      all: "全て"
       anime: "アニメ"
       manga: "漫画"
     empty:
       html: "Media you've added or updated within your <a href={link}>Library</a> will show up here for you to quickly update."
       discover: "Discover Media"
     media:
-      complete: "Complete"
+      complete: "完成"
       unstarted: "Not Started"
       unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {of {total}}}} manga {Ch. {num} {total, select, null {} other {of {total}}}} other {}}"
     overlay:
       button:
         update: "{type, select, anime {Ep.} manga {Ch.} other {}} {number}"
-        complete: "Complete"
+        complete: "完成"
         tooltip:
           empty: "Update Library"
           content: "Create post and update library"
@@ -314,7 +314,7 @@ users:
           placeholder: "Your website URL"
         twitter:
           about: "Enter your Twitter username below to add a link to your profile."
-          placeholder: "Your Twitter username (@Username)"
+          placeholder: "Twitterのユーザー名（@username）"
         facebook:
           about: "Enter your Facebook URL below to add a link to your profile."
           placeholder: "Your Facebook URL"
@@ -326,16 +326,16 @@ users:
           placeholder: "Your Google+ profile URL or username (+Username)"
         instagram:
           about: "Enter your Instagram username below to add a link to your profile."
-          placeholder: "Your Instagram username"
+          placeholder: "Instagramのユーザー名"
         twitch:
           about: "Enter your Twitch username below to add a link to your profile."
-          placeholder: "Your Twitch username"
+          placeholder: "Twitchのユーザー名"
         vimeo:
           about: "Enter your Vimeo username below to add a link to your profile."
-          placeholder: "Your Vimeo username"
+          placeholder: "Vimeoのユーザー名"
         github:
           about: "Enter your GitHub username below to add a link to your profile."
-          placeholder: "Your GitHub username"
+          placeholder: "Githubのユーザー名"
         battlenet:
           about: "Enter your Battle.net BattleTag below to add a link to your profile."
           placeholder: "Your Battle.net BattleTag (User#1234)"
@@ -344,7 +344,7 @@ users:
           placeholder: "Your Steam Community username"
         raptr:
           about: "Enter your Raptr username below to add a link to your profile."
-          placeholder: "Your Raptr username"
+          placeholder: "Raptrのユーザー名"
         discord:
           about: "Enter your Discord tag below to add a link to your profile."
           placeholder: "Your Discord tag (User#1234)"
@@ -353,16 +353,16 @@ users:
           placeholder: "Your Tumblr blog name"
         soundcloud:
           about: "Enter your SoundCloud username below to add a link to your profile."
-          placeholder: "Your SoundCloud username"
+          placeholder: "SoundCloudのユーザー名"
         dailymotion:
           about: "Enter your Dailymotion username below to add a link to your profile."
-          placeholder: "Your Dailymotion username"
+          placeholder: "Dailymotionのユーザー名"
         kickstarter:
           about: "Enter your Kickstarter username below to add a link to your profile."
-          placeholder: "Your Kickstarter username"
+          placeholder: "Kickstarterのユーザー名"
         mobcrush:
           about: "Enter your Mobcrush username below to add a link to your profile."
-          placeholder: "Your Mobcrush username"
+          placeholder: "Mobcrushのユーザー名"
         osu:
           about: "Enter your Osu! ID number below to add a link to your profile."
           placeholder: "Your Osu! ID number"
@@ -371,31 +371,31 @@ users:
           placeholder: "Your Patreon project name"
         deviantart:
           about: "Enter your DeviantArt username below to add a link to your profile."
-          placeholder: "Your DeviantArt username"
+          placeholder: "DeviantArtのユーザー名"
         dribbble:
           about: "Enter your Dribbble username below to add a link to your profile."
-          placeholder: "Your Dribbble username"
+          placeholder: "Dribbbleのユーザー名"
         imdb:
           about: "Enter your IMDb profile URL below to add a link to your profile."
           placeholder: "Your IMDb profile URL"
         lastfm:
           about: "Enter your Last.fm username below to add a link to your profile."
-          placeholder: "Your Last.fm username"
+          placeholder: "Last.fmのユーザー名"
         letterboxd:
           about: "Enter your Letterboxd username below to add a link to your profile."
-          placeholder: "Your Letterboxd username"
+          placeholder: "Letterboxdのユーザー名"
         medium:
           about: "Enter your Medium username or publication name below to add a link to your profile."
           placeholder: "Your Medium username (@user) or publication name"
         playerme:
           about: "Enter your Player.me username below to add a link to your profile."
-          placeholder: "Your Player.me username"
+          placeholder: "Player.meのユーザー名"
         reddit:
           about: "Enter your Reddit username below to add a link to your profile."
-          placeholder: "Your Reddit username"
+          placeholder: "Redditのユーザー名"
         trakt:
           about: "Enter your Trakt username below to add a link to your profile."
-          placeholder: "Your Trakt username"
+          placeholder: "Traktのユーザー名"
     favorites:
       header: "Favorites"
       anime: "アニメ"
@@ -504,7 +504,7 @@ users:
       privacy: "Privacy"
       started: "Started"
       finished: "Finished"
-      notes: "Personal Notes"
+      notes: "個人のノート"
       remove: "Remove from Library"
       save: "Save Changes"
       saving: "Saving..."
@@ -553,7 +553,7 @@ settings:
     no-logs: "We're processing your library and syncing it with MyAnimeList. Hold tight!"
     logs:
       header:
-        media: "Title"
+        media: "タイトル"
         library-status: "Status"
         progress: "Progress"
         rating: "Rating"
@@ -573,8 +573,8 @@ settings:
     sub-header: "General site-wide notifications"
     contexts:
       web: "Web"
-      email: "Email"
-      mobile: "Mobile"
+      email: "メール"
+      mobile: "アプリ"
     descriptions:
       mentions: "Someone <strong>mentions</strong> me in a post or comment"
       replies: "Someone <strong>replies</strong> to my post or comment"
@@ -590,8 +590,8 @@ feedback:
   bugs: "Bugs"
   features: "Feature Requests"
   database: "Database Requests"
-  mobile-bugs: "Mobile Bugs"
-  mobile-features: "Mobile Features"
+  mobile-bugs: "アプリのバッグ"
+  mobile-features: "アプリ特徴"
 #page: groups
 groups:
   index:
@@ -744,7 +744,7 @@ groups:
       tickets: "Tickets"
       members: "Members"
       leaders: "Leaders"
-      settings: "Settings"
+      settings: "設定"
     overview:
       members:
         header: "Members"
@@ -851,7 +851,7 @@ media-reactions:
 media-shared:
   types:
     anime:
-      All: "All"
+      All: "全て"
       tv: "TV"
       special: "Special"
       ona: "ONA"
@@ -859,7 +859,7 @@ media-shared:
       movie: "Movie"
       music: "Music"
     manga:
-      All: "All"
+      All: "全て"
       manga: "Manga"
       novel: "Novel"
       manhua: "Manhua"
@@ -891,8 +891,8 @@ library-shared:
 #shared: form:
 form-shared:
   placeholders:
-    username: "Username"
-    password: "Password"
+    username: "ユーザー名"
+    password: "パスワード"
 #component: auth-onboarding
 onboarding:
   aozora-conflict:
