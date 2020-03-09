@@ -211,8 +211,8 @@ media:
             manga {#{rank} Terpopuler}
             other {}}"
           rating: "{type, select,
-            anime {#{rank} Peringkat Tertinggi}
-            manga {#{rank} Peringkat Tertinggi}
+            anime {#{rank} Skor Tertinggi}
+            manga {#{rank} Skor Tertinggi}
             other {}}"
       categories: "Kategori"
       relationships:
@@ -226,7 +226,7 @@ media:
           -createdAt: "Terbaru"
         new: "Reaksi Baru"
         edit: "Reaksi Saya"
-        empty: "Sepertinya belum ada siapapun yang menuliskan reaksi"
+        empty: "Sepertinya belum ada siapapun yang menuliskan reaksi..."
       characters:
         header: "Karakter"
         more: "Lihat semua karakter"
@@ -264,8 +264,8 @@ media:
           anime {Anime}
           manga {Manga}
           other {}} Details"
-        type: "Type"
-        volumes: "Volumes"
+        type: "Tipe"
+        volumes: "Volume"
         unit: "{type, select,
           anime {Episode}
           manga {Bab}
@@ -319,8 +319,8 @@ media:
     characters:
       header: "{title} Karakter"
       sub-header: "{type, select,
-        anime {Di bawah ini adalah daftar seluruh karakter dari dan pengisi suara bahasa {language} untuk anime {title}}
-        manga {Di bawah ini adalah daftar seluruh karakter dari manga {title}}
+        anime {Berikut ini adalah daftar seluruh karakter dari dan pengisi suara bahasa {language} untuk anime {title}.}
+        manga {Berikut ini adalah daftar seluruh karakter dari manga {title}.}
         other {}}"
     reactions:
       loading: "Memuat reaksi..."
@@ -345,10 +345,10 @@ media:
         character: "Karakter"
         other: "Lain-lain"
   hide-posts:
-    text: "Sembunyikan Kiriman tentang {media}"
+    text: "Sembunyikan kiriman tentang {media}"
     info: "Kiriman tidak akan muncul di umpan Anda"
   show-posts:
-    text: "Tampilkan Kiriman tentang {media}"
+    text: "Tampilkan kiriman tentang {media}"
     info: "Kiriman tidak akan muncul di umpan Anda"
 # page: users
 users:
@@ -515,7 +515,7 @@ users:
         finished: "Tanggal Selesai"
         added: "Tanggal Penambahan"
         progress: "Progres"
-        rating: "Rating"
+        rating: "Skor"
         title: "Judul"
         length: "Durasi"
       directions:
@@ -702,7 +702,7 @@ feedback:
 # page: groups
 groups:
   index:
-    call-to-action: "Semua bisa membuat dan menumukan grup yang diinginkan. Tiap grup memiliki topik maupun aktivitas khusus."
+    call-to-action: "Kamu bisa membuat dan menemukan grup apapun yang diinginkan. Tiap grup memiliki topik maupun aktivitas khusus."
     create-btn: "Buat Grup"
   create:
     header: "Buat Grup"
