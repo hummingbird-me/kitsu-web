@@ -23,37 +23,37 @@ titles:
         anime {Animés}
         manga {Mangas}
         other {}} cette semaine"
-      top-current: "Top {type, select, 
+      top-current: "Top {type, select,
       Anime {animés}
       Manga {mangas}
       other {type}} {type, select,
         Anime {en cours de diffusion}
         Manga {en cours de publication}
         other {}}"
-      top-upcoming: "Top {type, select, 
+      top-upcoming: "Top {type, select,
       Anime {animés}
       Manga {mangas}
       other {type}} à venir"
-      highest-rated: "{type, select, 
+      highest-rated: "{type, select,
       Anime {Animés}
       Manga {Mangas}
       other {type}} les mieux notés"
-      most-popular: "{type, select, 
+      most-popular: "{type, select,
       Anime {Animés}
       Manga {Mangas}
       other {type}} les plus populaires"
     category:
       index: "{category} {type}"
       more:
-        newly-released: "{type, select, 
+        newly-released: "{type, select,
       Anime {Animés}
       Manga {Mangas}
       other {type}} {category} récemment sortis"
-        trending: "{type, select, 
+        trending: "{type, select,
       Anime {Animés}
       Manga {Mangas}
       other {type}} {category} tendances"
-        most-popular: "{type, select, 
+        most-popular: "{type, select,
       Anime {Animés}
       Manga {Mangas}
       other {type}} {category} les plus populaires"
@@ -516,14 +516,8 @@ users:
   activity:
     onboarding:
       welcome: "Salut {user}, cette page est la tienne !"
-      about:
-        "En utilisant Kitsu, votre <strong>fil d'actualité personnel</strong> ci-dessous se remplira
-        des animés et des mangas que vous avez vus, lus, ou ceux auxquels vous comptiez jeter un œil.
-        Vous pouvez aussi poster des messages, des images, et des vidéos en utilisant le formulaire.
-        Ces posts seront vus et appréciés par vos abonnés et les utilisateurs du fil global."
-      action:
-        "Faites comme chez vous ! Envoyez une photo de profil et de couverture ! Cliquez sur <span>Modifier</span> au dessus
-        pour commencer"
+      about: "En utilisant Kitsu, votre <strong>fil d'actualité personnel</strong> ci-dessous se remplira des animés et des mangas que vous avez vus, lus, ou ceux auxquels vous comptiez jeter un œil. Vous pouvez aussi poster des messages, des images, et des vidéos en utilisant le formulaire. Ces posts seront vus et appréciés par vos abonnés et les utilisateurs du fil global."
+      action: "Faites comme chez vous ! Envoyez une photo de profil et de couverture ! Cliquez sur <span>Modifier</span> au dessus pour commencer"
     about:
       empty: "C'est un secret"
       gender:
@@ -778,8 +772,7 @@ groups:
           desc: "Le nom du groupe devrait expliciter le thème, mais vous faites ce que vous voulez, soyez créatif !"
         tagline:
           header: "Slogan"
-          desc: "Une petite phrase de moins de 60 caractères.
-            Vous pourrez ajouter plus d'informations après"
+          desc: "Une petite phrase de moins de 60 caractères. Vous pourrez ajouter plus d'informations après"
         about:
           header: "Description"
           desc: "Expliquez ce que fait votre groupe en détail, partagez des informations importantes, ou autre."
@@ -828,15 +821,11 @@ groups:
     feed-restricted: "C'est un groupe restreint. Tout le monde peut commenter, mais seuls les leaders peuvent créer des posts."
   rules:
     header: "Règlement du groupe"
-    empty:
-      "Salut, toi ! On dirait que vous utilisez le règlement de la communauté. Si vous voulez spécifier
-      vos propres règles, vous pouvez le faire sur la <a href={link}>page des paramètres.</a>"
+    empty: "Salut, toi ! On dirait que vous utilisez le règlement de la communauté. Si vous voulez spécifier vos propres règles, vous pouvez le faire sur la <a href={link}>page des paramètres.</a>"
   tickets:
     search: "Chercher un ticket"
     empty: "Ouais ! Vous n'avez pas de ticket à traiter."
-    helper:
-      "Les tickets permettent de communiquer avec les leaders du groupe pour résoudre des problèmes potentiels.
-      Envoyez un message ici pour créer un ticket."
+    helper: "Les tickets permettent de communiquer avec les leaders du groupe pour résoudre des problèmes potentiels. Envoyez un message ici pour créer un ticket."
     filter:
       open: "Tickets ouverts"
       resolved: "Tickets résolus"
@@ -976,9 +965,7 @@ groups:
 group-invite:
   header: "Invitation de groupe"
   subtitle: "Vous avez été invité sur le groupe {group} par {sender}"
-  text:
-    "Vous pourrez accéder à la page de {group} après avoir accepté cette invitation. Nous vous redirigerons
-    quand vous l'aurez accepté."
+  text: "Vous pourrez accéder à la page de {group} après avoir accepté cette invitation. Nous vous redirigerons quand vous l'aurez accepté."
   accept: "Accepter"
   decline: "Refuser"
   accepted: "Vous avez déjà accepté cette invitation."
@@ -1136,13 +1123,11 @@ feeds:
     anime:
       header: "Bienvenue sur votre fil d'Animés !"
       body:
-        "Lorsque vous mettez à jour votre <a href={link}>bibliothèque d'animés</a>, vous voyez ce que les autres disent
-        des animés que vous regardez."
+        "Lorsque vous mettez à jour votre <a href={link}>bibliothèque d'animés</a>, vous voyez ce que les autres disent des animés que vous regardez."
     manga:
       header: Bienvenu sur votre fil de Mangas !"
       body:
-        "Lorsque vous mettez à jour votre <a href={link}>bibliothèque de mangas</a>, vous voyez ce que les autres disent
-        des mangas que vous lisez."
+        "Lorsque vous mettez à jour votre <a href={link}>bibliothèque de mangas</a>, vous voyez ce que les autres disent des mangas que vous lisez."
     button: "Oki, j'ai compris"
 # component: image-form
 image-form:
@@ -1290,8 +1275,8 @@ loading: "Chargement {subject, select,
   chapters {des chapitres}
   other {}}…"
 timeUnits:
-  years: "{count, plural, one {année} other {années}}"
-  months: "{count, plural, one {mois} other {mois}}"
-  days: "{count, plural, one {journée} other {jours}}"
-  hours: "{count, plural, one {heure} other {heures}}"
-  minutes: "{count, plural, one {minute} other {minutes}}"
+  years: "{count, plural, =1 {année} other {années}}"
+  months: "{count, plural, =1 {mois} other {mois}}"
+  days: "{count, plural, =1 {journée} other {jours}}"
+  hours: "{count, plural, =1 {heure} other {heures}}"
+  minutes: "{count, plural, =1 {minute} other {minutes}}"

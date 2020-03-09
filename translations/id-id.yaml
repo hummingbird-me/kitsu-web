@@ -147,11 +147,8 @@ dashboard:
           other {}} {number}"
   onboarding:
     welcome: "Halo {user}, selamat datang di Kitsu!"
-    about: "Ini adalah umpan aktivitas global. Umpan ini berisi tentang kiriman yang dibuat oleh
-      para pengguna - termasuk kamu! Kalau kamu sudah mengikuti pengguna lain yang menurutmu menarik, 
-      kami akan mengubah umpan awalmu ke umpan pengguna yang diikuti."
-    action: "Yuk, cobalah memperkenalkan diri di sini dengan menuliskan kiriman untuk memperkenalkan dirimu.
-      Kamu bisa memulai dengan hanya mengatakan 'Halo Semua, Aku baru di Kitsu. I'm from Indonesia.' Dan tulislah sebebasnya sesuai imajinasi kreatifmu!"
+    about: "Ini adalah umpan aktivitas global. Umpan ini berisi tentang kiriman yang dibuat oleh para pengguna - termasuk kamu! Kalau kamu sudah mengikuti pengguna lain yang menurutmu menarik, kami akan mengubah umpan awalmu ke umpan pengguna yang diikuti."
+    action: "Yuk, cobalah memperkenalkan diri di sini dengan menuliskan kiriman untuk memperkenalkan dirimu. Kamu bisa memulai dengan hanya mengatakan 'Halo Semua, Aku baru di Kitsu. I'm from Indonesia.' Dan tulislah sebebasnya sesuai imajinasi kreatifmu!"
   groups:
     header: "Grup Saya"
   announcements:
@@ -485,7 +482,7 @@ users:
   activity:
     onboarding:
       welcome: "Hey {user}, halaman ini adalah khusus tentangmu!"
-      about: "Sembari kamu menggunakan Kitsu, <strong>Umpan Personal</strong> milikmu dibawah akan 
+      about: "Sembari kamu menggunakan Kitsu, <strong>Umpan Personal</strong> milikmu dibawah akan
         menampilkan anime dan manga yang telah kamu tonton, baca, atau pun dalam rencana.
         Kamu juga bisa membuat kiriman teks, gambar, dan video dengan isian di bawah ini. Kirimanmu
         akan dilihat dan diapresiasi oleh pengikutmu dan pengguna dari umpan global."
@@ -1094,12 +1091,10 @@ feeds:
   interest:
     anime:
       header: "Selamat datang di Umpan Anime kamu!"
-      body: "Selama kamu memperbarui <a href={link}>pustaka anime</a> kamu, kamu akan melihat apa yang dikatakan orang lain
-        mengenai anime yang sedang kamu tonton."
+      body: "Selama kamu memperbarui <a href={link}>pustaka anime</a> kamu, kamu akan melihat apa yang dikatakan orang lain mengenai anime yang sedang kamu tonton."
     manga:
       header: "Selamat datang di Umpan Manga kamu!"
-      body: "Selama kamu memperbarui <a href={link}>pustaka manga</a> kamu, kamu akan melihat apa yang dikatakan orang lain
-        mengenai manga yang sedang kamu baca."
+      body: "Selama kamu memperbarui <a href={link}>pustaka manga</a> kamu, kamu akan melihat apa yang dikatakan orang lain mengenai manga yang sedang kamu baca."
     button: "Baik, saya paham"
 # component: image-form
 image-form:
@@ -1247,8 +1242,8 @@ loading: "Memuat {subject, select,
   chapters {Bab}
   other {}}..."
 timeUnits:
-  years: "{count, plural, one {tahun} other {tahun}}"
-  months: "{count, plural, one {bulan} other {bulan}}"
-  days: "{count, plural, one {hari} other {hari}}"
-  hours: "{count, plural, one {jam} other {jam}}"
-  minutes: "{count, plural, one {menit} other {menit}}"
+  years: "{count, plural, =1 {tahun} other {tahun}}"
+  months: "{count, plural, =1 {bulan} other {bulan}}"
+  days: "{count, plural, =1 {hari} other {hari}}"
+  hours: "{count, plural, =1 {jam} other {jam}}"
+  minutes: "{count, plural, =1 {menit} other {menit}}"
