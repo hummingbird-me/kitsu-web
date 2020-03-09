@@ -16,9 +16,9 @@ titles:
     more:
       trending: "Tendance {type, select, anime {Animés} manga {Mangas} other {}} cette semaine"
       top-current: "Top {type, select, Anime {animés} Manga {mangas} other {type}} {type, select, Anime {en cours de diffusion} Manga {en cours de publication} other {}}"
-      top-upcoming: "Top {type, select, Anime {Animés} Manga {Mangas} other {type}} à venir"
-      highest-rated: "{type, select, Anime {Animés} Manga {Mangas} other {type}} les mieux notés"
-      most-popular: "{type, select, Anime {Animés} Manga {Mangas} other {type}} les plus populaires"
+      top-upcoming: "Top {type, select, Anime {anime} Manga {mangas} other {type}} à venir"
+      highest-rated: "{type, select, Anime {Anime} Manga {Mangas} other {type}} les mieux notés"
+      most-popular: "{type, select, Anime {Anime} Manga {Mangas} other {type}} les plus populaires"
     category:
       index: "{category} {type}"
       more:
@@ -68,7 +68,7 @@ titles:
 #head
 head:
   users:
-    description: "{user} utilise Kitsu pour enregistrer sa progression, et partager ses expériences d'animés & mangas."
+    description: "{user} utilise Kitsu pour enregistrer sa progression, et partager ses expériences d'anime & mangas."
 #header
 header:
   library: "Bibliothèque"
@@ -267,10 +267,10 @@ media:
         other: "Autre"
   hide-posts:
     text: "Masquer les posts concernant {media}"
-    info: "Les posts n'apparaîtrons plus ni dans votre fil d'abonnements{type, select, Anime {, ni d'animés} Manga {, ni de mangas} other {}}"
+    info: "Les posts n'apparaîtront plus ni dans votre fil d'abonnements{type, select, Anime {, ni d'anime} Manga {, ni de mangas} other {}}"
   show-posts:
     text: "Voir les posts concernant {media}"
-    info: "Les posts apparaîtrons dans votre fil d'abonnements{type, select, Anime { et d'animés} Manga { et de mangas} other {}}"
+    info: "Les posts apparaîtrons dans votre fil d'abonnements {type, select, Anime {et d'anime} Manga {et de mangas} other {}}"
 #page: users
 users:
   navigation:
@@ -544,11 +544,11 @@ settings:
       helper: "Nous mettrons à jour votre liste sur {site} à chaque fois que vous la modifiez sur Kitsu."
       create: "Synchroniser avec {site}"
     header: "Exporter"
-    sub-header: "Synchronisez automatique votre bibliothèque vers MyAnimeList."
+    sub-header: "Synchronisez automatiquement votre bibliothèque vers MyAnimeList."
     remove: "Supprimer l'Export"
     disabled: "La synchronisation MAL a été désactivée à cause du problème suivant : <strong>{reason}</strong>"
     create: "Paramétrer la synchronisation vers MyAnimeList"
-    download: "Télécharger la bibliothèque {kind, select, Anime {d'animés} Manga {de mangas} other {{kind}}}"
+    download: "Télécharger la bibliothèque {kind, select, Anime {d'anime} Manga {de mangas} other {{kind}}}"
     recent: "Activité de synchronisation récente"
     sync-header: "Synchronisation MyAnimeList"
     no-logs: "Nous préparons votre bibliothèque pour la synchroniser avec MyAnimeList. Ne bougez pas !"
@@ -941,7 +941,7 @@ feeds:
   interest:
     anime:
       header: "Bienvenue sur votre fil d'Anime !"
-      body: "Lorsque vous mettez à jour votre <a href={link}>bibliothèque d'animés</a>, vous voyez ce que les autres disent des animés que vous regardez."
+      body: "Lorsque vous mettez à jour votre <a href={link}>bibliothèque d'anime</a>, vous voyez ce que les autres disent des anime que vous regardez."
     manga:
       header: "Bienvenu sur votre fil de Mangas !\""
       body: "Lorsque vous mettez à jour votre <a href={link}>bibliothèque de mangas</a>, vous voyez ce que les autres disent des mangas que vous lisez."
@@ -1056,8 +1056,8 @@ errors:
 #Loading
 loading: "Chargement {subject, select, episode {de l'épisode} chapter {du chapitre} episodes {des épisodes} chapters {des chapitres} other {}}…"
 timeUnits:
-  years: "{count, plural, =1 {année} other {années}}"
-  months: "{count, plural, =1 {mois} other {mois}}"
-  days: "{count, plural, =1 {journée} other {jours}}"
-  hours: "{count, plural, =1 {heure} other {heures}}"
+  years: "{count, plural, =1 {year} other {years}}"
+  months: "{count, plural, =1 {month} other {months}}"
+  days: "{count, plural, =1 {day} other {days}}"
+  hours: "{count, plural, =1 {hour} other {hours}}"
   minutes: "{count, plural, =1 {minute} other {minutes}}"
