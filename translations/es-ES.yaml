@@ -20,13 +20,13 @@ titles:
       other {}}"
     more:
       trending: "{type, select,
-        anime {Animes}
-        manga {Mangas}
+        Anime {Animes}
+        Manga {Mangas}
         other {}} en tendencia esta semana"
-      top-current: "Top {type, select,
+      top-current: "{type, select,
       Anime {animes}
       Manga {mangas}
-      other {type}} {type, select,
+      other {type}} más populares {type, select,
         Anime {en emisión}
         Manga {en publicación}
         other {}}"
@@ -37,7 +37,7 @@ titles:
       highest-rated: "{type, select,
       Anime {Animes}
       Manga {Mangas}
-      other {type}} mejor puntuados"
+      other {type}} mejor evaluados"
       most-popular: "{type, select,
       Anime {Animes}
       Manga {Mangas}
@@ -145,7 +145,7 @@ dashboard:
         anime {Ep. {num} {total, select,
           undefined {}
           other {de {total}}}}
-        manga {Ch. {num} {total, select,
+        manga {Cap. {num} {total, select,
           null {}
           other {de {total}}}}
         other {}}"
@@ -172,7 +172,7 @@ dashboard:
     about: "Este es el panel de actividad global. En él encontrarás la actividad reciente de todos los usuarios de
       Kitsu, ¡incluyéndote! Una vez que tengas la oportunidad de seguir a un par de usuarios interesantes,
       cambiaremos tu panel de global a la actividad de quienes estés siguiendo."
-    action: "¿Por qué no intentas crear una publicación para presentarte usando el formulario a continuación?
+    action: "¿Por qué no intentas realizar una publicación para presentarte usando el formulario a continuación?
       Puedes decir algo tan simple como 'Hola todos, soy nuevo en Kitsu', ¡o puedes mostrarnos tu creatividad!"
   groups:
     header: "Mis grupos"
@@ -186,14 +186,14 @@ media:
     remove: "Remover"
     filters:
       year: "Año"
-      score: "Puntuación promedio"
+      score: "Puntaje promedio"
       seasons: "Temporadas"
       streamers: "Servicios de streaming (EE.UU.)"
       units: "{type, select,
         anime {Episodios}
         manga {Capítulos}
         other {}}"
-      rating: "Puntuación"
+      rating: "Puntaje"
       categories: "Categorías"
       types: "Tipos"
     sort:
@@ -220,21 +220,21 @@ media:
       ranking:
         full:
           popularity: "{type, select,
-            anime {Lugar #{rank} (Anime muy popular)}
-            manga {Lugar #{rank} (Manga muy popular)}
+            anime {Lugar #{rank} (Animes populares)}
+            manga {Lugar #{rank} (Mangas populares)}
             other {}}"
           rating: "{type, select,
-            anime {Lugar #{rank} (Anime mejor puntuado)}
-            manga {Lugar #{rank} (Manga mejor puntuado)}
+            anime {Lugar #{rank} (Animes mejor evaluados)}
+            manga {Lugar #{rank} (Mangas mejor evaluados)}
             other {}}"
         short:
           popularity: "{type, select,
-            anime {#{rank} más popular}
-            manga {#{rank} más popular}
+            anime {#{rank} en popularidad}
+            manga {#{rank} en popularidad}
             other {}}"
           rating: "{type, select,
-            anime {#{rank} mejor puntuado}
-            manga {#{rank} mejor puntuado}
+            anime {#{rank} en puntaje}
+            manga {#{rank} en puntaje}
             other {}}"
       categories: "Categorías"
       relationships:
@@ -307,7 +307,7 @@ media:
         length: "{count, plural,
           =1 {{length} minutos}
           other {{length} minutos cada uno}}"
-        rating: "Clasificación"
+        rating: "Puntaje"
         expand:
           false: "Más info"
           true: "Menos info"
@@ -538,7 +538,7 @@ users:
         finished: "Fecha de finalización"
         added: "Fecha de adición"
         progress: "Progreso"
-        rating: "Clasificación"
+        rating: "Puntaje"
         title: "Título"
         length: "Duración"
       directions:
@@ -547,10 +547,10 @@ users:
           asc: "Antiguos primero"
         started:
           desc: "Recientes primero"
-          asc: "Oldest primero"
+          asc: "Antiguos primero"
         finished:
           desc: "Recientes primero"
-          asc: "Oldest primero"
+          asc: "Antiguos primero"
         added:
           desc: "Recientes primero"
           asc: "Antiguos primero"
@@ -568,8 +568,8 @@ users:
           asc: "Cortos primero"
     sidebar:
       media-select: "{type, select,
-        anime {Anime de {user}}
-        manga {Manga de {user}}
+        anime {Animes de {user}}
+        manga {Mangas de {user}}
         other {}}"
       manage: "Gestionar biblioteca"
       import: "Importar biblioteca"
@@ -586,7 +586,7 @@ users:
       list-edit: "Editar"
       more: "Más"
       unstarted: "No empezado"
-      unrated: "No puntuado"
+      unrated: "No evaluado"
       progress: "{type, select,
         anime {Ep. {progress}}
         manga {Cap. {progress}}
@@ -596,7 +596,7 @@ users:
           anime {Título del anime}
           manga {Título del manga}
           other {}}"
-        rating: "Clasificación"
+        rating: "Puntaje"
         progress: "Progreso"
         volumes: "Volúmenes"
       add-reaction: "Añadir reacción"
@@ -619,7 +619,7 @@ users:
         other {}}"
       volumes: "Volúmenes"
       volume-units: "de {num} volúmenes"
-      rating: "Rating"
+      rating: "Puntaje"
       rewatch: "{type, select,
         anime {Conteo de veces vista}
         manga {Conteo de veces leído}
@@ -673,7 +673,7 @@ settings:
       helper: "Actualizaremos tus listas de anime y manga en {site} cada vez que los actualices en Kitsu."
       create: "Sincronizar con {site}"
     header: "Exportar"
-    sub-header: "Sincronizar automáticamente tus actualizaciones de la biblioteca de Kitsu con MyAnimeList."
+    sub-header: "Sincroniza automáticamente tus actualizaciones de la biblioteca de Kitsu con MyAnimeList."
     remove: "Remover exportador"
     disabled: "Tu exportación de MAL ha sido desactivada debido a la siguiente razón: <strong>{reason}</strong>"
     create: "Configurar exportación a cuenta de MyAnimeList"
@@ -686,8 +686,8 @@ settings:
         media: "Título"
         library-status: "Estado"
         progress: "Progreso"
-        rating: "Clasificación"
-        reconsumes: "Contador de veces vista"
+        rating: "Puntaje"
+        reconsumes: "Contador de veces visto"
         action: "Acción"
         status: "Estado"
       action:
@@ -706,7 +706,7 @@ settings:
       email: "Correo"
       mobile: "Móvil"
     descriptions:
-      mentions: "Alguien me <strong>menciona</strong> en una publicación o comentario"
+      mentions: "Alguien <strong>me menciona</strong> en una publicación o comentario"
       replies: "Alguien <strong>responde</strong> a mi publicación o comentario"
       likes: "A alguien <strong>le gusta</strong> mi publicación o comentario"
       follows: "Alguien <strong>me sigue</strong>"
@@ -1076,7 +1076,7 @@ feeds:
   filter:
     all: "Toda la actividad"
     media: "Actividad de medios"
-    user: "Actividad del usuario"
+    user: "Actividad de usuario"
     following: "Actividad de quienes sigo"
   placeholder: "{type, select,
     user_aggr {Publicar a {subject}}
@@ -1085,10 +1085,10 @@ feeds:
     episode_aggr {Publicar sobre el episodio {subject}}
     chapter_aggr {Publicar sobre el capítulo {subject}}
     interest_timeline {Publicar sobre  {subject}}
-    other {Crear una publicación}}..."
+    other {Realizar una publicación}}..."
   library:
     updated: "movió esto a {status}"
-    rated: "lo puntuó"
+    rated: "lo evaluó"
     progressed: "{type, select,
       anime {vió el episodio {num}}
       manga {leyó el capítulo {num}}
@@ -1174,9 +1174,9 @@ library-entry:
     finished-this: "Completado"
     place-on-hold: "En pausa"
     drop-this: "Abandonado"
-    change-rating: "Cambiar puntuación"
-    remove-rating: "Eliminar puntuación"
-    rate-this: "Añadir puntuación"
+    change-rating: "Cambiar puntaje"
+    remove-rating: "Eliminar puntaje"
+    rate-this: "Evaluar"
     edit-library: "Editar entrada de biblioteca"
     post-reaction: "Publicar reacción"
     edit-reaction: "Editar reacción"
@@ -1187,7 +1187,7 @@ library-entry:
     remove-from-library: "Remover de la biblioteca"
     saved-in: "Guardado en <a href={link}>{status}</a>"
     progress: "Progreso"
-    not-rated: "No puntuada"
+    not-rated: "No evaluado"
   rating:
     awful: "Horrible"
     meh: "Meh"
