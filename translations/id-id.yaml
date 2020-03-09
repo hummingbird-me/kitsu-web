@@ -24,12 +24,12 @@ titles:
         manga {Manga}
         other {}} Minggu Ini"
       top-current: "Top {type, select,
-        Anime {Airing}
-        Manga {Publishing}
+        Anime {Sedang Tayang}
+        Manga {Sedang Terbit}
         other {}} {type}"
       top-upcoming: "Top Upcoming {type}"
-      highest-rated: "Highest Rated {type}"
-      most-popular: "Most Popular {type}"
+      highest-rated: "Peringkat Tertinggi {type}"
+      most-popular: "Paling Populer {type}"
     category:
       index: "{category} {type}"
       more:
@@ -114,8 +114,7 @@ dashboard:
       anime: "Anime"
       manga: "Manga"
     empty:
-      html: "Media you've added or updated within your <a href={link}>Library</a> will show up
-        here for you to quickly update."
+      html: "Media yang telah kamu tambah akan muncul di <a href={link}>Pustaka</a> untuk pembaruan cepat."
       discover: "Jeladah Media"
     media:
       complete: "Selesai"
@@ -124,7 +123,7 @@ dashboard:
         anime {Ep. {num} {total, select,
           undefined {}
           other {dari {total}}}}
-        manga {Ch. {num} {total, select,
+        manga {Bab {num} {total, select,
           null {}
           other {dari {total}}}}
         other {}}"
@@ -136,104 +135,103 @@ dashboard:
           other {}} {number}"
         complete: "Selesai"
         tooltip:
-          empty: "Update Library"
-          content: "Create post and update library"
-      discussion: "View Discussion"
-      edit: "Edit Library Entry"
-      popout: "Pop-out editor"
+          empty: "Perbarui Pustaka"
+          content: "Buat kiriman dan perbarui pustaka"
+      discussion: "Lihat Diskusi"
+      edit: "Sunting Entri Pustaka"
+      popout: "Penyunting Pop-out"
       editor:
-        placeholder: "(Optional) Share your thoughts on {type, select,
+        placeholder: "(Bebas) Bagikan pikiranmu tentang {type, select,
           anime {Episode}
-          manga {Chapter}
+          manga {Bab}
           other {}} {number}"
   onboarding:
-    welcome: "Hey {user}, welcome to Kitsu!"
-    about: "This is the global activity feed. It's populated by recent activity from all of Kitsu's
-      users - even you! Once you've had a chance to follow a few more interesting users, we'll
-      switch your default feed from Global to Following."
-    action: "Why don't you try creating a feed post to introduce yourself using the form below?
-      You can say something as simple as 'Hey everyone, I'm new to Kitsu', or you can show us how
-      creative and witty you are!"
+    welcome: "Halo {user}, selamat datang di Kitsu!"
+    about: "Ini adalah umpan aktivitas global. Umpan ini berisi tentang kiriman yang dibuat oleh
+      para pengguna - termasuk kamu! Kalau kamu sudah mengikuti pengguna lain yang menurutmu menarik, 
+      kami akan mengubah umpan awalmu ke umpan pengguna yang diikuti."
+    action: "Yuk, cobalah memperkenalkan diri di sini dengan menuliskan kiriman untuk memperkenalkan dirimu.
+      Kamu bisa memulai dengan hanya mengatakan 'Halo Semua, Aku baru di Kitsu. I'm from Indonesia.' Dan tulislah sebebasnya sesuai imajinasi kreatifmu!"
   groups:
-    header: "My Groups"
+    header: "Grup Saya"
   announcements:
     button: "Pelajari Lebih Lanjut"
 # page: anime/manga
 media:
   index:
     search: "Cari berdasarkan judul, karakter, atau pemeran..."
-    filter: "Filter"
-    remove: "Remove"
+    filter: "Saring"
+    remove: "Hapus"
     filters:
-      year: "Year"
-      score: "Average Rating"
-      seasons: "Seasons"
-      streamers: "Streamers (U.S.)"
+      year: "Tahun"
+      score: "Peringkat Rata-rata"
+      seasons: "Musim"
+      streamers: "Layanan Streaming (Amerika)"
       units: "{type, select,
-        anime {Episodes}
-        manga {Chapters}
+        anime {Episode}
+        manga {Bab}
         other {}}"
       rating: "Rating"
-      categories: "Categories"
-      types: "Types"
+      categories: "Kategori"
+      types: "Tipe"
     sort:
-      popularity: "Popularity"
-      rating: "Average Rating"
-      date: "Date"
-      recent: "Recently Added"
+      popularity: "Popularitas"
+      rating: "Peringkat Rata-rata"
+      date: "Tanggal"
+      recent: "Baru Saja Ditambah"
   show:
     navigation:
-      summary: "Summary"
+      summary: "Ringkasan"
       units: "{type, select,
-        anime {Episodes}
-        manga {Chapters}
+        anime {Episode}
+        manga {Bab}
         other {}}"
-      characters: "Characters"
-      reactions: "Reactions"
+      characters: "Karakter"
+      reactions: "Reaksi"
       franchise: "Franchise"
     sidebar:
-      watch: "Watch Online"
+      watch: "Tonton Online"
     summary:
       ratings:
-        community: "{rating}% Community Approval"
-        match: "{rating}% Match"
+        community: "{rating}% Skor Komunitas"
+        match: "{rating}% Cocok"
       ranking:
         full:
           popularity: "{type, select,
-            anime {Rank #{rank} (Most Popular Anime)}
-            manga {Rank #{rank} (Most Popular Manga)}
+            anime {Peringkat #{rank} (Anime Terpopuler)}
+            manga {Peringkat #{rank} (Manga Terpopuler)}
             other {}}"
           rating: "{type, select,
-            anime {Rank #{rank} (Highest Rated Anime)}
-            manga {Rank #{rank} (Highest Rated Manga)}
+            anime {Peringkat #{rank} (Skor Tertinggi)}
+            manga {Peringkat #{rank} (Skor Tertinggi)}
             other {}}"
         short:
           popularity: "{type, select,
-            anime {#{rank} Most Popular}
-            manga {#{rank} Most Popular}
+            anime {#{rank} Terpopuler}
+            manga {#{rank} Terpopuler}
             other {}}"
           rating: "{type, select,
-            anime {#{rank} Highest Rated}
-            manga {#{rank} Highest Rated}
+            anime {#{rank} Peringkat Tertinggi}
+            manga {#{rank} Peringkat Tertinggi}
             other {}}"
-      categories: "Categories"
+      categories: "Kategori"
       relationships:
-        header: "More from this Series"
-        more: "View all in {title}"
+        header: "Lainnya dari seri ini"
+        more: "Lihat semua di {title}"
       reactions:
-        header: "Reactions"
-        more: "View More Reactions"
+        header: "Reaksi"
+        more: "Reaksi Lebih Banyak"
         sorts:
           -upVotesCount: "Popular"
-          -createdAt: "Recent"
-        new: "New Reaction"
-        edit: "My Reaction"
-        empty: "Doesn't look like anyone has reacted to this yet"
+          -createdAt: "Terbaru"
+        new: "Reaksi Baru"
+        edit: "Reaksi Saya"
+        empty: "Sepertinya belum ada siapapun yang menuliskan reaksi"
       characters:
-        header: "Characters"
-        more: "View all characters"
+        header: "Karakter"
+        more: "Lihat semua karakter"
       titles:
-        header: "Alternative Titles"
+        header: "Judul Alternatif"
         ar: "Arab"
         ar_ar: "Arab" # Invalid use ar
         de_de: "Jerman"
@@ -277,7 +275,7 @@ media:
           manga {Tanggal Terbit}
           other {}}"
         status: "Status"
-        tba: "Expected"
+        tba: "Akan Diumumkan"
         season: "Musim"
         producers: "Produser"
         licensors: "Pelisensi"
@@ -316,14 +314,13 @@ media:
       feed:
         header: "{type, select,
           episode {Episode}
-          chapter {bab}
+          chapter {Bab}
           other {}} Diskusi"
     characters:
       header: "{title} Karakter"
       sub-header: "{type, select,
-        anime {The following is a full list of characters and their {language} voice actors for
-          the anime {title}}
-        manga {The following is a full list of characters for the manga {title}}
+        anime {Di bawah ini adalah daftar seluruh karakter dari dan pengisi suara bahasa {language} untuk anime {title}}
+        manga {Di bawah ini adalah daftar seluruh karakter dari manga {title}}
         other {}}"
     reactions:
       loading: "Memuat reaksi..."
