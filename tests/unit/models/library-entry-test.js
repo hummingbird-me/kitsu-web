@@ -5,7 +5,7 @@ import testValidations from 'client/tests/helpers/test-validations';
 
 module('Unit | Model | library-entry', function(hooks) {
   setupTest(hooks);
-  setupIntl(hooks, 'en-US');
+  setupIntl(hooks, 'en-us');
 
   test('model validations', function(assert) {
     const entry = this.owner.lookup('service:store').createRecord('library-entry');

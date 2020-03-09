@@ -7,7 +7,7 @@ module('media/media-poster', function(hooks) {
   setupRenderingTest(hooks);
   hooks.beforeEach(function() {
     const service = this.owner.lookup('service:intl');
-    service.setLocale('en-US');
+    service.setLocale('en-us');
     // @Note: This can most likely be removed once ember-href-to solves issue #94
     this.owner.lookup('router:main').setupRouter();
   });

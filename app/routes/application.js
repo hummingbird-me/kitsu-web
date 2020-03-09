@@ -21,7 +21,7 @@ export default Route.extend(ApplicationRouteMixin, {
   async beforeModel() {
     // Load English translation as default
     const translations = await fetch('/translations/en-US.json');
-    get(this, 'intl').addTranslations('en-US', await translations.json());
+    get(this, 'intl').addTranslations('en-us', await translations.json());
 
     // session
     const session = get(this, 'session');
@@ -154,21 +154,21 @@ export default Route.extend(ApplicationRouteMixin, {
         const translations = await fetch('/translations/fr-FR.json');
         get(this, 'intl').addTranslations('fr-FR', await translations.json());
         // use en-us as fallback as it is already loaded
-        get(this, 'intl').set('locale', ['fr-FR', 'en-US']);
+        get(this, 'intl').set('locale', ['fr-FR', 'en-us']);
       }
 
       if (get(user, 'language') === 'es') {
         const translations = await fetch('/translations/es-ES.json');
         get(this, 'intl').addTranslations('es-ES', await translations.json());
         // use en-us as fallback as it is already loaded
-        get(this, 'intl').set('locale', ['es-ES', 'en-US']);
+        get(this, 'intl').set('locale', ['es-ES', 'en-us']);
       }
 
       if (get(user, 'language') === 'id') {
         const translations = await fetch('/translations/id-ID.json');
         get(this, 'intl').addTranslations('id-ID', await translations.json());
         // use en-us as fallback as it is already loaded
-        get(this, 'intl').set('locale', ['id-ID', 'en-US']);
+        get(this, 'intl').set('locale', ['id-ID', 'en-us']);
       }
 
       // metrics
