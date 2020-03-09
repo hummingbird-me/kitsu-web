@@ -1,86 +1,54 @@
-# route titles -- these are used if the route doesn't specify the title itself
+---
+#route titles -- these are used if the route doesn't specify the title itself
 titles:
   anime:
-    index: "Explorar animes"
+    index: "Explore Anime"
   manga:
-    index: "Explorar mangas"
+    index: "Explore Manga"
   media:
     show:
-      units: "{type, select,
-        anime {Episodios}
-        manga {Capítulos}
-        other {}}"
+      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
       characters: "Personajes"
       reactions: "Reacciones"
-      franchise: "Franquicia"
+      franchise: "Franchise"
   explore:
-    index: "Explorar {mediaType, select,
-      anime {anime}
-      manga {manga}
-      other {}}"
+    index: "Explore {mediaType, select, anime {Anime} manga {Manga} other {}}"
     more:
-      trending: "{type, select,
-        Anime {Animes}
-        Manga {Mangas}
-        other {}} en tendencia esta semana"
-      top-current: "{type, select,
-      Anime {animes}
-      Manga {mangas}
-      other {type}} más populares {type, select,
-        Anime {en emisión}
-        Manga {en publicación}
-        other {}}"
-      top-upcoming: "{type, select,
-      Anime {Animes}
-      Manga {Mangas}
-      other {type}} más esperados"
-      highest-rated: "{type, select,
-      Anime {Animes}
-      Manga {Mangas}
-      other {type}} mejor evaluados"
-      most-popular: "{type, select,
-      Anime {Animes}
-      Manga {Mangas}
-      other {type}} más populares"
+      trending: "Trending {type, select, anime {Anime} manga {Manga} other {}} This Week"
+      top-current: "Top {type, select, Anime {Airing} Manga {Publishing} other {}} {type}"
+      top-upcoming: "Top Upcoming {type}"
+      highest-rated: "Highest Rated {type}"
+      most-popular: "Most Popular {type}"
     category:
       index: "{category} {type}"
       more:
-        newly-released: "{type, select,
-        Anime {Animes}
-        Manga {Mangas}
-        other {type}} {category} recientes"
-        trending: "{type, select,
-        Anime {Animes}
-        Manga {Mangas}
-        other {type}} {category} en tendencia"
-        most-popular: "{type, select,
-        Anime {Animes}
-        Manga {Mangas}
-        other {type}} {category} más populares"
-  not-found: "No encontrado"
-  server-error: "Error del servidor"
+        newly-released: "Newly Released {category} {type}"
+        trending: "Trending {category} {type}"
+        most-popular: "Most Popular {category} {type}"
+  not-found: "Not Found"
+  server-error: "Server Error"
   users:
     index: "Perfil de {user}"
-    library: "Biblioteca de {user}"
-    reviews: "Reseñas de {user}"
-    reactions: "Reacciones de {user}"
-    followers: "Seguidores de {user}"
-    following: "Seguido por {user}"
+    library: "{user}'s Library"
+    reviews: "{user}'s Reviews"
+    reactions: "Reacctiones de {user}"
+    followers: "{user}'s Followers"
+    following: "Followed by {user}"
     groups: "Grupos de {user}"
-    stats: "Estadísticas de {user}"
-  posts: "Publicado por {user}"
-  comments: "Comentado por {user}"
-  reviews: "Reseña de {user}"
+    stats: "{user}'s Stats"
+  posts: "Post by {user}"
+  comments: "Comment by {user}"
+  reviews: "Review by {user}"
   notifications: "Notificaciones"
   feedback:
     bugs: "Bugs"
-    feature-requests: "Solicitudes de funcionalidades"
-    database-requests: "Solicitudes de base de datos"
-    mobile-bugs: "Bugs de dispositivos móviles"
-    mobile-features: "Solicitudes de funcionalidades para dispositivos móviles"
+    feature-requests: "Feature Requests"
+    database-requests: "Database Requests"
+    mobile-bugs: "Mobile Bugs"
+    mobile-features: "Mobile Features"
   admin:
     index: "Admin"
-    reports: "Reportes"
+    reports: "Reports"
   groups:
     index: "Grupos"
     new: "Crear un grupo"
@@ -88,46 +56,41 @@ titles:
       group-page:
         rules: "Reglas de {group}"
         members: "Miembros de {group}"
-        leaders: "Líderes de {group}"
+        leaders: "{group} Leaders"
       dashboard:
-        index: "Acerca de {group}"
-        reports: "Reportes de {group}"
-        tickets: "Tickets de {group}"
-        members: "Miembros de {group}"
-        leaders: "Lideres de {group}"
-        settings: "Ajustes de {group}"
-  group-invite: "Invitación al grupo"
-# head
+        index: "{group} Overview"
+        reports: "{group} Reports"
+        tickets: "{group} Tickets"
+        members: "{group} Members"
+        leaders: "{group} Leaders"
+        settings: "{group} Settings"
+  group-invite: "Group Invite"
+#head
 head:
   users:
-    description: "{user} está usando Kitsu para llevar un registro de su progreso y compartir sus experiencias de anime y manga."
-# header
+    description: "{user} is using Kitsu to track their progress and share their anime & manga experiences."
+#header
 header:
-  library: "Biblioteca"
-  anime: "Animes"
-  manga: "Mangas"
-  trending: "Tendencia"
-  groups: "Grupos"
-  feedback: "Comentarios"
-  browse: "Navegar"
+  library: "Library"
+  anime: "Anime"
+  manga: "Manga"
+  trending: "Trending"
+  groups: "Groups"
+  feedback: "Feedback"
+  browse: "Browse"
   auth:
-    sign-in: "Conectarse"
-    sign-up: "Registrarse"
+    sign-in: "Sign In"
+    sign-up: "Sign Up"
   user:
-    profile: "Ver perfil"
+    profile: "View Profile"
     settings: "Ajustes"
     admin: "Admin"
-    logout: "Salir"
-# authentication modal
+    logout: "Logout"
+#authentication modal
 auth-modal:
   sign-up:
-    submit: "{step, select,
-      0 {Empecemos por los datos básicos}
-      1 {Genial - ¡Ahora tu correo!}
-      2 {Luce bien, ¿que tal una contraseña?}
-      3 {Fantástico - Creemos esta cuenta}
-      other {}}"
-# page: dashboard
+    submit: "{step, select, 0 {Let's get some basic info first} 1 {Very witty - email is next!} 2 {Looks legit, how about a password?} 3 {Cool- Let's create that account} other {}}"
+#page: dashboard
 dashboard:
   quick-update:
     filter:
@@ -135,873 +98,771 @@ dashboard:
       anime: "Anime"
       manga: "Manga"
     empty:
-      html: "Los medios que hayas añadido o subido dentro de tu <a href={link}>Biblioteca</a> se mostrarán
-        aquí para que los puedas actualizar de forma rápida."
-      discover: "Descubrir medios"
+      html: "Media you've added or updated within your <a href={link}>Library</a> will show up here for you to quickly update."
+      discover: "Discover Media"
     media:
-      complete: "Completado"
-      unstarted: "No empezado"
-      unit: "{type, select,
-        anime {Ep. {num} {total, select,
-          undefined {}
-          other {de {total}}}}
-        manga {Cap. {num} {total, select,
-          null {}
-          other {de {total}}}}
-        other {}}"
+      complete: "Complete"
+      unstarted: "Not Started"
+      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {of {total}}}} manga {Ch. {num} {total, select, null {} other {of {total}}}} other {}}"
     overlay:
       button:
-        update: "{type, select,
-          anime {Ep.}
-          manga {Cap.}
-          other {}} {number}"
-        complete: "Completado"
+        update: "{type, select, anime {Ep.} manga {Ch.} other {}} {number}"
+        complete: "Complete"
         tooltip:
-          empty: "Actualizar biblioteca"
-          content: "Crea una publicación y actualiza la biblioteca"
-      discussion: "Ver discusión"
-      edit: "Editar entrada de la biblioteca"
-      popout: "Editor emergente"
+          empty: "Update Library"
+          content: "Create post and update library"
+      discussion: "View Discussion"
+      edit: "Edit Library Entry"
+      popout: "Pop-out editor"
       editor:
-        placeholder: "(Opcional) Comparte tus pensamientos del {type, select,
-          anime {episodio}
-          manga {capítulo}
-          other {}} {number}"
+        placeholder: "(Optional) Share your thoughts on {type, select, anime {Episode} manga {Chapter} other {}} {number}"
   onboarding:
-    welcome: "Hey {user}, ¡te damos la bienvenida a Kitsu!"
-    about: "Este es el panel de actividad global. En él encontrarás la actividad reciente de todos los usuarios de
-      Kitsu, ¡incluyéndote! Una vez que tengas la oportunidad de seguir a un par de usuarios interesantes,
-      cambiaremos tu panel de global a la actividad de quienes estés siguiendo."
-    action: "¿Por qué no intentas realizar una publicación para presentarte usando el formulario a continuación?
-      Puedes decir algo tan simple como \"Hola todos, soy nuevo en Kitsu\", ¡o puedes mostrarnos tu creatividad!"
+    welcome: "Hey {user}, welcome to Kitsu!"
+    about: "This is the global activity feed. It's populated by recent activity from all of Kitsu's users - even you! Once you've had a chance to follow a few more interesting users, we'll switch your default feed from Global to Following."
+    action: "Why don't you try creating a feed post to introduce yourself using the form below? You can say something as simple as 'Hey everyone, I'm new to Kitsu', or you can show us how creative and witty you are!"
   groups:
-    header: "Mis grupos"
+    header: "My Groups"
   announcements:
-    button: "Aprender más"
-# page: anime/manga
+    button: "Learn More"
+#page: anime/manga
 media:
   index:
-    search: "Buscar por título, personaje o elenco..."
-    filter: "Filtrar"
-    remove: "Remover"
+    search: "Search by title, character, or cast..."
+    filter: "Filter"
+    remove: "Remove"
     filters:
-      year: "Año"
-      score: "Puntaje promedio"
-      seasons: "Temporadas"
-      streamers: "Servicios de streaming (EE.UU.)"
-      units: "{type, select,
-        anime {Episodios}
-        manga {Capítulos}
-        other {}}"
-      rating: "Puntaje"
-      categories: "Categorías"
-      types: "Tipos"
+      year: "Year"
+      score: "Average Rating"
+      seasons: "Seasons"
+      streamers: "Streamers (U.S.)"
+      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
+      rating: "Rating"
+      categories: "Categories"
+      types: "Types"
     sort:
-      popularity: "Popularidad"
-      rating: "Puntuación promedio"
-      date: "Fecha"
-      recent: "Añadidos recientemente"
+      popularity: "Popularity"
+      rating: "Average Rating"
+      date: "Date"
+      recent: "Recently Added"
   show:
     navigation:
-      summary: "Resumen"
-      units: "{type, select,
-        anime {Episodios}
-        manga {Capítulos}
-        other {}}"
-      characters: "Personajes"
-      reactions: "Reacciones"
-      franchise: "Franquicia"
+      summary: "Summary"
+      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
+      characters: "Characters"
+      reactions: "Reactions"
+      franchise: "Franchise"
     sidebar:
-      watch: "Ver en línea"
+      watch: "Watch Online"
     summary:
       ratings:
-        community: "{rating}% de aprovación por la comunidad"
-        match: "{rating}% coinciden"
+        community: "{rating}% Community Approval"
+        match: "{rating}% Match"
       ranking:
         full:
-          popularity: "{type, select,
-            anime {Lugar #{rank} (Animes populares)}
-            manga {Lugar #{rank} (Mangas populares)}
-            other {}}"
-          rating: "{type, select,
-            anime {Lugar #{rank} (Animes mejor evaluados)}
-            manga {Lugar #{rank} (Mangas mejor evaluados)}
-            other {}}"
+          popularity: "{type, select, anime {Rank #{rank} (Most Popular Anime)} manga {Rank #{rank} (Most Popular Manga)} other {}}"
+          rating: "{type, select, anime {Rank #{rank} (Highest Rated Anime)} manga {Rank #{rank} (Highest Rated Manga)} other {}}"
         short:
-          popularity: "{type, select,
-            anime {#{rank} en popularidad}
-            manga {#{rank} en popularidad}
-            other {}}"
-          rating: "{type, select,
-            anime {#{rank} en puntaje}
-            manga {#{rank} en puntaje}
-            other {}}"
-      categories: "Categorías"
+          popularity: "{type, select, anime {#{rank} Most Popular} manga {#{rank} Most Popular} other {}}"
+          rating: "{type, select, anime {#{rank} Highest Rated} manga {#{rank} Highest Rated} other {}}"
+      categories: "Categories"
       relationships:
-        header: "Más de esta serie"
-        more: "Ver todos en {title}"
+        header: "More from this Series"
+        more: "View all in {title}"
       reactions:
-        header: "Reacciones"
-        more: "Ver más reacciones"
+        header: "Reactions"
+        more: "View More Reactions"
         sorts:
           -upVotesCount: "Popular"
-          -createdAt: "Reciente"
-        new: "Nueva reacción"
-        edit: "Mi reacción"
-        empty: "No parece que alguien haya reaccionado a esto"
+          -createdAt: "Recent"
+        new: "New Reaction"
+        edit: "My Reaction"
+        empty: "Doesn't look like anyone has reacted to this yet"
       characters:
-        header: "Personajes"
-        more: "Ver todos los personajes"
+        header: "Characters"
+        more: "View all characters"
       titles:
-        header: "Títulos alternativos"
-        ar: "Arábico"
-        ar_ar: "Arábico" # Invalid use ar
-        de_de: "Alemán"
-        en: "Inglés"
-        en_cn: "Chino (Pinyin)"
-        en_gb: "Inglés (UK)"
-        en_jp: "Japonés (Romaji)"
-        en_kr: "Coreano (Romaja)"
-        en_th: "Tailandés (Romanizado)"
-        en_us: "Inglés (US)"
-        es_es: "Español"
-        fr_fr: "Frances"
-        it_it: "Italiano"
-        ja_jp: "Japonés"
-        ko_kr: "Coreano"
-        nl_nl: "Danés"
-        pt_br: "Portugués (Brasil)"
-        pt_pt: "Portugués"
-        ru_ru: "Ruso"
-        th_th: "Tailandés"
-        uk_ua: "Ucraniano"
-        vi_vi: "Vietnamita" # Invalid use vi_vn
-        vi_vn: "Vietnamita"
-        zh_cn: "Chino (Simplificado)"
-        zh_tw: "Chino (Tradicional)"
-        synonyms: "Sinónimos"
+        header: "Alternative Titles"
+        ar: "Arabic"
+        ar_ar: "Arabic" #Invalid use ar
+        de_de: "German"
+        en: "English"
+        en_cn: "Chinese (Pinyin)"
+        en_gb: "English (UK)"
+        en_jp: "Japanese (Romaji)"
+        en_kr: "Korean (Romaja)"
+        en_th: "Thai (Romanized)"
+        en_us: "English (US)"
+        es_es: "Spanish"
+        fr_fr: "French"
+        id_id: "Indonesian"
+        it_it: "Italian"
+        ja_jp: "Japanese"
+        ko_kr: "Korean"
+        nl_nl: "Dutch"
+        pt_br: "Portuguese (Brazilian)"
+        pt_pt: "Portuguese"
+        ru_ru: "Russian"
+        th_th: "Thai"
+        uk_ua: "Ukrainian"
+        vi_vi: "Vietnamese" #Invalid use vi_vn
+        vi_vn: "Vietnamese"
+        zh_cn: "Chinese (Simplified)"
+        zh_tw: "Chinese (Traditional)"
+        synonyms: "Synonyms"
       information:
-        header: "Detalles del {type, select,
-          anime {anime}
-          manga {manga}
-          other {}}"
-        type: "Tipo"
-        volumes: "Volúmenes"
-        unit: "{type, select,
-          anime {Episodios}
-          manga {Capítulos}
-          other {}}"
-        start: "{type, select,
-          anime {Emitido}
-          manga {Publicado}
-          other {}}"
-        status: "Estado"
-        tba: "Por ser anunciado"
-        season: "Temporada"
-        producers: "Productores"
-        licensors: "Licenciadores"
-        studios: "Estudios"
-        serialization: "Serialización"
-        duration: "Duración"
-        total: "{total} en total"
-        length: "{count, plural,
-          =1 {{length} minutos}
-          other {{length} minutos cada uno}}"
-        rating: "Puntaje"
+        header: "{type, select, anime {Anime} manga {Manga} other {}} Details"
+        type: "Type"
+        volumes: "Volumes"
+        unit: "{type, select, anime {Episodes} manga {Chapters} other {}}"
+        start: "{type, select, anime {Aired} manga {Published} other {}}"
+        status: "Status"
+        tba: "Expected"
+        season: "Season"
+        producers: "Producers"
+        licensors: "Licensors"
+        studios: "Studios"
+        serialization: "Serialization"
+        duration: "Length"
+        total: "{total} total"
+        length: "{count, plural, =1 {{length} minutes} other {{length} minutes each}}"
+        rating: "Rating"
         expand:
-          false: "Más info"
-          true: "Menos info"
+          false: "More info"
+          true: "Less Info"
       feed:
-        header: "Panel de la comunidad"
-      trailer: "Reproducir trailer"
+        header: "Community Feed"
+      trailer: "Play Trailer"
     units:
-      unit: "{type, select,
-        episode {Episodio}
-        chapter {Capítulo}
-        other {}}"
-      back: "Regresar al listado de {type, select,
-        episode {episodios}
-        chapter {capítulos}
-        other {}}"
-      pages: "{length} páginas"
-      date: "{type, select,
-        episode {Emitido}
-        chapter {Publicado}
-        other {}}"
-      completed: "{type, select,
-        episode {Visto}
-        chapter {Leído}
-        other {Completado}}"
+      unit: "{type, select, episode {Episode} chapter {Chapter} other {}}"
+      back: "Back to {type, select, episode {episode} chapter {chapter} other {}} list"
+      pages: "{length} Pages"
+      date: "{type, select, episode {Aired} chapter {Published} other {}}"
+      completed: "{type, select, episode {Watched} chapter {Read} other {Complete}}"
       feed:
-        header: "Discusión del {type, select,
-          episode {episodio}
-          chapter {capítulo}
-          other {}}"
+        header: "{type, select, episode {Episode} chapter {Chapter} other {}} Discussion"
     characters:
-      header: "Personajes de {title}"
-      sub-header: "{type, select,
-        anime {La siguiente es una lista completa de los personajes y sus actores de voz en {language} para
-          el anime {title}}
-        manga {La siguiente es una lista completa de los personajes para el manga {title}}
-        other {}}"
+      header: "{title} Characters"
+      sub-header: "{type, select, anime {The following is a full list of characters and their {language} voice actors for the anime {title}} manga {The following is a full list of characters for the manga {title}} other {}}"
     reactions:
-      loading: "Cargando reacciones..."
-      delete: "Eliminar reacción"
-      report: "Reportar reacción"
-      copy: "Copiar enlace a la reacción"
+      loading: "Loading Reactions..."
+      delete: "Delete Reaction"
+      report: "Report Reaction"
+      copy: "Copy Link to Reaction"
     franchise:
-      header: "Franquicia {title}"
+      header: "{title} Franchise"
       roles:
-        sequel: "Secuela"
-        prequel: "Precuela"
-        alternative_setting: "Universo alt."
-        alternative_version: "Version alt."
-        side_story: "Historia paralela"
-        parent_story: "Historia previa"
-        summary: "Recapitulación"
-        full_story: "Historia completa"
+        sequel: "Sequel"
+        prequel: "Prequel"
+        alternative_setting: "Alt. setting"
+        alternative_version: "Alt. version"
+        side_story: "Side story"
+        parent_story: "Parent story"
+        summary: "Summary"
+        full_story: "Full story"
         spinoff: "Spin-off"
-        adaptation: "Adaptación"
+        adaptation: "Adaptation"
         anime_adaptation: "Anime"
         manga_adaptation: "Manga"
-        character: "Personaje"
-        other: "Otro"
+        character: "Character"
+        other: "Other"
   hide-posts:
-    text: "Ocultar publicaciones acerca de {media}"
-    info: "Las publicaciones no aparecerán en tu panel de seguimiento o {type}"
+    text: "Hide Posts about {media}"
+    info: "Posts won't appear in your Following or {type} Feed"
   show-posts:
-    text: "Mostrar publicaciones acerca de {media}"
-    info: "Las publicaciones no aparecerán en tu panel de seguimiento o {type}"
-# page: users
+    text: "Show Posts about {media}"
+    info: "Posts will appear in your Following or {type} Feed"
+#page: users
 users:
   navigation:
-    activity: "Actividad"
-    library: "Biblioteca"
-    reviews: "Reseñas"
-    reactions: "Reacciones"
-    followers: "Seguidores"
-    following: "Siguiendo"
-    groups: "Grupos"
+    activity: "Activity"
+    library: "Library"
+    reviews: "Reviews"
+    reactions: "Reactions"
+    followers: "Followers"
+    following: "Following"
+    groups: "Groups"
   edit-modal:
-    cover: "Cambiar tu foto de cabecera"
+    cover: "Change your cover photo"
     navigation:
-      about: "Acerca de mi"
-      profile-links: "Enlaces del perfil"
-      favorites: "Favoritos"
+      about: "About Me"
+      profile-links: "Profile Links"
+      favorites: "Favorites"
     about:
-      header: "Acerca de mi"
+      header: "About Me"
       location:
-        label: "Ubicación"
-        placeholder: "¿Dónde vives?"
-      birthday: "Cumpleaños"
+        label: "Location"
+        placeholder: "Where do you live?"
+      birthday: "Birthday"
       gender:
-        label: "Género"
+        label: "Gender"
         options:
-          secret: "Es un secreto"
-          male: "Hombre"
-          female: "Mujer"
-          custom: "Personalizado"
+          secret: "It's a secret"
+          male: "Male"
+          female: "Female"
+          custom: "Custom"
       waifu:
         label: "Waifu"
         placeholder: "Waifu/Husbando"
-        search: "Encuentra alguien especial"
+        search: "Find your special someone"
       bio:
         label: "Bio"
-        placeholder: "Cuéntale al mundo tu historia."
+        placeholder: "Tell the world your story."
     profile-links:
-      header: "Enlaces del perfil"
+      header: "Profile Links"
       sites:
         website:
-          about: "Ingresa tu sitio web personal a continuación para añadir un enlace a tu perfil."
-          placeholder: "La URL de tu sitio web"
+          about: "Enter your personal website below to add a link to your profile."
+          placeholder: "Your website URL"
         twitter:
-          about: "Ingresa tu nombre de usuario de Twitter a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de Twitter (@Usuario)"
+          about: "Enter your Twitter username below to add a link to your profile."
+          placeholder: "Your Twitter username (@Username)"
         facebook:
-          about: "Ingresa la URL de tu Facebook a continuación para añadir un enlace a tu perfil."
-          placeholder: "La URL de tu Facebook"
+          about: "Enter your Facebook URL below to add a link to your profile."
+          placeholder: "Your Facebook URL"
         youtube:
-          about: "Ingresa la URL de tu canal de YouTube a continuación para añadir un enlace a tu perfil."
-          placeholder: "La URL de tu canal de YouTube"
+          about: "Enter your YouTube channel URL below to add a link to your profile."
+          placeholder: "Your YouTube channel URL"
         google:
-          about: "Ingresa la URL de tu perfil de Google+ o tu usuario a continuación para añadir un enlace a tu perfil."
-          placeholder: "La URL de tu perfil de Google+ o nombre de usuario (+Usuario)"
+          about: "Enter your Google+ profile URL or username below to add a link to your profile."
+          placeholder: "Your Google+ profile URL or username (+Username)"
         instagram:
-          about: "Ingresa tu nombre de usuario de Instagram a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de Instagram"
+          about: "Enter your Instagram username below to add a link to your profile."
+          placeholder: "Your Instagram username"
         twitch:
-          about: "Ingresa tu nombre de usuario de Twitch a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de Twitch"
+          about: "Enter your Twitch username below to add a link to your profile."
+          placeholder: "Your Twitch username"
         vimeo:
-          about: "Ingresa tu nombre de usuario de Vimeo a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de Vimeo"
+          about: "Enter your Vimeo username below to add a link to your profile."
+          placeholder: "Your Vimeo username"
         github:
-          about: "Ingresa tu nombre de usuario de GitHub a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de GitHub"
+          about: "Enter your GitHub username below to add a link to your profile."
+          placeholder: "Your GitHub username"
         battlenet:
-          about: "Ingresa tu BattleTag de Battle.net a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu BattleTag de Battle.net (Usuario#1234)"
+          about: "Enter your Battle.net BattleTag below to add a link to your profile."
+          placeholder: "Your Battle.net BattleTag (User#1234)"
         steam:
-          about: "Ingresa tu nombre de usuario de Steam Community a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de Steam Community"
+          about: "Enter your Steam Community username below to add a link to your profile."
+          placeholder: "Your Steam Community username"
         raptr:
-          about: "Ingresa tu nombre de usuario de Raptr a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de Raptr"
+          about: "Enter your Raptr username below to add a link to your profile."
+          placeholder: "Your Raptr username"
         discord:
-          about: "Ingresa tu tag de Discord a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu tag de Discord (Usuario#1234)"
+          about: "Enter your Discord tag below to add a link to your profile."
+          placeholder: "Your Discord tag (User#1234)"
         tumblr:
-          about: "Ingresa nombre de tu blog de Tumblr a continuación para añadir un enlace a tu perfil."
-          placeholder: "El nombre de tu blog de Tumblr"
+          about: "Enter your Tumblr blog name below to add a link to your profile."
+          placeholder: "Your Tumblr blog name"
         soundcloud:
-          about: "Ingresa tu nombre de usuario de SoundCloud a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de SoundCloud"
+          about: "Enter your SoundCloud username below to add a link to your profile."
+          placeholder: "Your SoundCloud username"
         dailymotion:
-          about: "Ingresa tu nombre de usuario de Dailymotion a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de Dailymotion"
+          about: "Enter your Dailymotion username below to add a link to your profile."
+          placeholder: "Your Dailymotion username"
         kickstarter:
-          about: "Ingresa tu nombre de usuario de Kickstarter a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de Kickstarter"
+          about: "Enter your Kickstarter username below to add a link to your profile."
+          placeholder: "Your Kickstarter username"
         mobcrush:
-          about: "Ingresa tu nombre de usuario de Mobcrush a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de Mobcrush"
+          about: "Enter your Mobcrush username below to add a link to your profile."
+          placeholder: "Your Mobcrush username"
         osu:
-          about: "Ingresa tu número de ID de Osu! a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu número de ID de Osu!"
+          about: "Enter your Osu! ID number below to add a link to your profile."
+          placeholder: "Your Osu! ID number"
         patreon:
-          about: "Ingresa el nombre de tu proyecto de Patreon a continuación para añadir un enlace a tu perfil."
-          placeholder: "El nombre de tu proyecto de Patreon"
+          about: "Enter your Patreon project name to add a link to your profile."
+          placeholder: "Your Patreon project name"
         deviantart:
-          about: "Ingresa tu nombre de usuario de DeviantArt a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de DeviantArt"
+          about: "Enter your DeviantArt username below to add a link to your profile."
+          placeholder: "Your DeviantArt username"
         dribbble:
-          about: "Ingresa tu nombre de usuario de Dribbble a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de Dribbble"
+          about: "Enter your Dribbble username below to add a link to your profile."
+          placeholder: "Your Dribbble username"
         imdb:
-          about: "Ingresa la URL de tu perfil de IMDb a continuación para añadir un enlace a tu perfil."
-          placeholder: "La URL de tu perfil de IMDb"
+          about: "Enter your IMDb profile URL below to add a link to your profile."
+          placeholder: "Your IMDb profile URL"
         lastfm:
-          about: "Ingresa tu nombre de usuario de Last.fm a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de Last.fm"
+          about: "Enter your Last.fm username below to add a link to your profile."
+          placeholder: "Your Last.fm username"
         letterboxd:
-          about: "Ingresa tu nombre de usuario de Letterboxd a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de Letterboxd"
+          about: "Enter your Letterboxd username below to add a link to your profile."
+          placeholder: "Your Letterboxd username"
         medium:
-          about: "Ingresa tu nombre de usuario de Medium (@usuario) o nombre de publicación a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de Medium (@usuario) o nombre de publicación"
+          about: "Enter your Medium username or publication name below to add a link to your profile."
+          placeholder: "Your Medium username (@user) or publication name"
         playerme:
-          about: "Ingresa tu nombre de usuario de Player.me a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de Player.me"
+          about: "Enter your Player.me username below to add a link to your profile."
+          placeholder: "Your Player.me username"
         reddit:
-          about: "Ingresa tu nombre de usuario de Reddit a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de Reddit"
+          about: "Enter your Reddit username below to add a link to your profile."
+          placeholder: "Your Reddit username"
         trakt:
-          about: "Ingresa tu nombre de usuario de Trakt a continuación para añadir un enlace a tu perfil."
-          placeholder: "Tu nombre de usuario de Trakt"
+          about: "Enter your Trakt username below to add a link to your profile."
+          placeholder: "Your Trakt username"
     favorites:
-      header: "Favoritos"
+      header: "Favorites"
       anime: "Anime"
       manga: "Manga"
-      characters: "Personajes"
-      remove: "¿Remover favorito?"
+      characters: "Characters"
+      remove: "Remove Favorite?"
   activity:
     onboarding:
-      welcome: "Hey {user}, ¡esta página trata solamente de ti!"
-      about: "A medida que sigas usando Kitsu, tu <strong>panel personal</strong> a continuación empezará a
-        llenarse con los animes y mangas que has visto, leido, completado y planeas mirar.
-        También puedes publicar texto, imagenes y videos en tu panel usando el formulario a continuación. Tus publicaciones
-        serán vistas y apreciadas por tus seguidores y usuarios del panel global."
-      action: "¡Siéntete en casa! Sube un avatar y una imagen de cabecera! Haz clic en <span>Editar</span> arriba
-        para empezar."
+      welcome: "Hey {user}, this page is all about YOU!"
+      about: "As you continue to use Kitsu your <strong>Personal Feed</strong> below will begin to populate with the anime and manga you've watched, read, completed, and plan to check out. You can also post text, images, and videos to your feed using the form below. Your posts will be seen and appreciated by your followers and users from the global feed."
+      action: "Make yourself at home! Upload an avatar and cover image! Click <span>Edit</span> above to get started."
     about:
-      empty: "Es un secreto"
+      empty: "It's a secret"
       gender:
-        secret: "Es un secreto"
-        male: "Hombre"
-        female: "Mujer"
+        secret: "It's a secret"
+        male: "Male"
+        female: "Female"
     stats:
       headings:
-        anime: "Estadísticas de anime"
-        manga: "Estadísticas de manga"
-      chapters-read: "capítulos leídos."
-      time-breakdown: "de anime visto en total."
+        anime: "Anime Stats"
+        manga: "Manga Stats"
+      chapters-read: "chapters read."
+      time-breakdown: "spent watching anime in total."
       empty:
-        header: "¡Parece que todavía no tienes suficientes datos! ¿Empezamos algo nuevo?"
-        guest-header: "Parece que {user} todavía no tiene estadísticas."
+        header: "Looks like you don't have enough data yet! Ready to start something new?"
+        guest-header: "Looks like {user} doesn't have any stats yet."
   library:
-    search: "Buscar en la biblioteca de {name}..."
+    search: "Search {name}'s Library..."
     sorting:
-      label: "Ordenar por:"
+      label: "Sort by:"
       options:
-        watched: "Fecha actualización"
-        started: "Fecha de inicio"
-        finished: "Fecha de finalización"
-        added: "Fecha de adición"
-        progress: "Progreso"
-        rating: "Puntaje"
-        title: "Título"
-        length: "Duración"
+        watched: "Date Updated"
+        started: "Date Started"
+        finished: "Date Finished"
+        added: "Date Added"
+        progress: "Progress"
+        rating: "Rating"
+        title: "Title"
+        length: "Length"
       directions:
         watched:
-          desc: "Recientes primero"
-          asc: "Antiguos primero"
+          desc: "Recent First"
+          asc: "Oldest First"
         started:
-          desc: "Recientes primero"
-          asc: "Antiguos primero"
+          desc: "Recent First"
+          asc: "Oldest First"
         finished:
-          desc: "Recientes primero"
-          asc: "Antiguos primero"
+          desc: "Recent First"
+          asc: "Oldest First"
         added:
-          desc: "Recientes primero"
-          asc: "Antiguos primero"
+          desc: "Recent First"
+          asc: "Oldest First"
         progress:
-          desc: "Mayor primero"
-          asc: "Menor primero"
+          desc: "Most First"
+          asc: "Least First"
         rating:
-          desc: "Mayor primero"
-          asc: "Menor primero"
+          desc: "Highest First"
+          asc: "Lowest First"
         title:
           desc: "A-Z"
           asc: "Z-A"
         length:
-          desc: "Largos primero"
-          asc: "Cortos primero"
+          desc: "Longest First"
+          asc: "Shortest First"
     sidebar:
-      media-select: "{type, select,
-        anime {Animes de {user}}
-        manga {Mangas de {user}}
-        other {}}"
-      manage: "Gestionar biblioteca"
-      import: "Importar biblioteca"
-      export: "Exportar biblioteca"
-      reset: "Restablecer biblioteca"
-      reset-loading: "Restableciendo..."
-      reset-confirmation: "Esto eliminará toda tu biblioteca, reseñas asociadas y reacciones. ¿De verdad quieres continuar?"
+      media-select: "{type, select, anime {{user}'s Anime} manga {{user}'s Manga} other {}}"
+      manage: "Manage Library"
+      import: "Import Library"
+      export: "Export Library"
+      reset: "Reset Library"
+      reset-loading: "Resetting..."
+      reset-confirmation: "This will delete your entire library, associated reviews, and reactions. Are you sure you want to continue?"
       issues:
-        header: "Problemas con la biblioteca"
-        reactions: "Faltan {count} <b>reacciones</b> en medios completados"
-        fix: "solucionar"
+        header: "Library Issues"
+        reactions: "{count} completed media missing <b>reactions</b>"
+        fix: "fix"
     list:
-      edit: "Editar entrada"
-      list-edit: "Editar"
-      more: "Más"
-      unstarted: "No empezado"
-      unrated: "No evaluado"
-      progress: "{type, select,
-        anime {Ep. {progress}}
-        manga {Cap. {progress}}
-        other {}}"
+      edit: "Edit Entry"
+      list-edit: "Edit"
+      more: "More"
+      unstarted: "Not Started"
+      unrated: "No Rating"
+      progress: "{type, select, anime {Ep. {progress}} manga {Ch. {progress}} other {}}"
       table-header:
-        title: "{type, select,
-          anime {Título del anime}
-          manga {Título del manga}
-          other {}}"
-        rating: "Puntaje"
-        progress: "Progreso"
-        volumes: "Volúmenes"
-      add-reaction: "Añadir reacción"
+        title: "{type, select, anime {Anime Title} manga {Manga Title} other {}}"
+        rating: "Rating"
+        progress: "Progress"
+        volumes: "Volumes"
+      add-reaction: "Add Reaction"
       empty:
-        search: "No se pudo encontrar una entrada de biblioteca con tus términos de búsqueda."
-        header: "¡Parece que tu biblioteca está vacía! ¿Empezamos algo nuevo?"
-        guest-header: "Parece que {user} no tiene entradas de biblioteca aquí."
-        button: "Navegar {type}"
+        search: "Couldn't find any library entries with your search query."
+        header: "Looks like your library here is empty! Ready to start something new?"
+        guest-header: "Looks like {user} doesn't have any library entries here."
+        button: "Browse {type}"
     grid:
-      view-media: "Ver {type, select,
-        anime {anime}
-        manga {manga}
-        other {}}"
+      view-media: "View {type, select, anime {Anime} manga {Manga} other {}}"
     edit:
-      status: "Estado de la biblioteca"
-      progress: "Progreso"
-      units: "{type, select,
-        anime {de {num} episodios}
-        manga {de {num} capítulos}
-        other {}}"
-      volumes: "Volúmenes"
-      volume-units: "de {num} volúmenes"
-      rating: "Puntaje"
-      rewatch: "{type, select,
-        anime {Conteo de veces vista}
-        manga {Conteo de veces leído}
-        other {}}"
-      start-rewatch: "{type, select,
-        anime {Iniciar nueva reproducción}
-        manga {Iniciar nueva lectura}
-        other {}}"
-      privacy: "Privacidad"
-      started: "Iniciado"
-      finished: "Completado"
-      notes: "Notas personales"
-      remove: "Remover de la biblioteca"
-      save: "Guardar cambios"
-      saving: "Guardando..."
+      status: "Library Status"
+      progress: "Progress"
+      units: "{type, select, anime {of {num} episodes} manga {of {num} chapters} other {}}"
+      volumes: "Volumes"
+      volume-units: "of {num} volumes"
+      rating: "Rating"
+      rewatch: "{type, select, anime {Rewatch Count} manga {Reread Count} other {}}"
+      start-rewatch: "{type, select, anime {Start Rewatch} manga {Start Reread} other {}}"
+      privacy: "Privacy"
+      started: "Started"
+      finished: "Finished"
+      notes: "Personal Notes"
+      remove: "Remove from Library"
+      save: "Save Changes"
+      saving: "Saving..."
     bulk:
-      selected: "{type, select,
-        anime {{num} animes seleccionados}
-        manga {{num} mangas seleccionados}
-        other {}}"
-      select-all: "Seleccionar todos"
-      select-none: "Seleccionar ninguno"
-      remove: "Remover <strong>{num}</strong>"
-      move-to: "Mover <strong>{num}</strong> a..."
-      remove-loading: "Removiendo..."
-      update-loading: "Actualizando..."
+      selected: "{type, select, anime {{num} anime selected} manga {{num} manga selected} other {}}"
+      select-all: "Select All"
+      select-none: "Select None"
+      remove: "Remove <strong>{num}</strong>"
+      move-to: "Move <strong>{num}</strong> to..."
+      remove-loading: "Removing..."
+      update-loading: "Updating..."
   groups:
     sort:
-      newest: "Ingreso reciente"
-      oldest: "Ingreso antiguo"
+      newest: "Recently Joined"
+      oldest: "Oldest Joined"
   reactions:
-    empty: "Este usuario no tiene reacciones"
+    empty: "This user has no reactions"
     filters:
-      all: "Todas las reacciones"
-      anime: "Reacciones de anime"
-      manga: "Reacciones de manga"
+      all: "All Reactions"
+      anime: "Anime Reactions"
+      manga: "Manga Reactions"
     sorts:
-      best: "Mejor"
-      new: "Nuevo"
+      best: "Best"
+      new: "New"
   hide-posts:
-    text: "Ocultar publicaciones de {user}"
-    info: "Sus publicaciones no aparecerán en tu panel de seguimiento"
+    text: "Hide Posts from {user}"
+    info: "Posts won't appear in your Following Feed"
   show-posts:
-    text: "Mostrar publicaciones de {user}"
-    info: "Sus publicaciones aparecerán en tu panel de seguimiento"
-# page: settings
+    text: "Show Posts from {user}"
+    info: "Posts will appear in your Following Feed"
+#page: settings
 settings:
   exports:
     modal:
-      header: "Sincronizar con {site}"
-      helper: "Actualizaremos tus listas de anime y manga en {site} cada vez que los actualices en Kitsu."
-      create: "Sincronizar con {site}"
-    header: "Exportar"
-    sub-header: "Sincroniza automáticamente tus actualizaciones de la biblioteca de Kitsu con MyAnimeList."
-    remove: "Remover exportador"
-    disabled: "Tu exportación de MAL ha sido desactivada debido a la siguiente razón: <strong>{reason}</strong>"
-    create: "Configurar exportación a cuenta de MyAnimeList"
-    download: "Descargar biblioteca de {kind}"
-    recent: "Actividad de sincronización reciente"
-    sync-header: "Sincronización con MyAnimeList"
-    no-logs: "Estamos procesando tu biblioteca y sincronizándola con MyAnimeList. ¡Prepárate!"
+      header: "Sync with {site}"
+      helper: "We'll update your anime and manga lists on {site} every time you update them on Kitsu."
+      create: "Sync to {site}"
+    header: "Export"
+    sub-header: "Automatically sync your library updates from Kitsu to MyAnimeList."
+    remove: "Remove Exporter"
+    disabled: "Your MAL Export has been disabled due to the following reason: <strong>{reason}</strong>"
+    create: "Setup Export to MyAnimeList Account"
+    download: "Download {kind} Library"
+    recent: "Recent Sync Activity"
+    sync-header: "MyAnimeList Sync"
+    no-logs: "We're processing your library and syncing it with MyAnimeList. Hold tight!"
     logs:
       header:
-        media: "Título"
-        library-status: "Estado"
-        progress: "Progreso"
-        rating: "Puntaje"
-        reconsumes: "Contador de veces visto"
-        action: "Acción"
-        status: "Estado"
+        media: "Title"
+        library-status: "Status"
+        progress: "Progress"
+        rating: "Rating"
+        reconsumes: "Rewatches"
+        action: "Action"
+        status: "Status"
       action:
-        create: "Crear"
-        update: "Actualizar"
-        destroy: "Remover"
+        create: "Create"
+        update: "Update"
+        destroy: "Remove"
       status:
-        pending: "Pendiente"
-        success: "Éxito"
+        pending: "Pending"
+        success: "Success"
         error: "Error"
   notifications:
-    header: "Notificaciones push"
-    sub-header: "Notificaciones generales a nivel de sitio"
+    header: "Push Notifications"
+    sub-header: "General site-wide notifications"
     contexts:
       web: "Web"
-      email: "Correo"
-      mobile: "Móvil"
+      email: "Email"
+      mobile: "Mobile"
     descriptions:
-      mentions: "Alguien <strong>me menciona</strong> en una publicación o comentario"
-      replies: "Alguien <strong>responde</strong> a mi publicación o comentario"
-      likes: "A alguien <strong>le gusta</strong> mi publicación o comentario"
-      follows: "Alguien <strong>me sigue</strong>"
-      posts: "Alguien <strong>publica</strong> en mi perfil"
-      reaction_votes: "Alguien <strong>vota</strong> mi reacción a un medio"
-      airing: "Sale un nuevo episodio"
-    loading: "Cargando ajustes..."
-    update: "Actualizar ajustes"
-# page: feedback
+      mentions: "Someone <strong>mentions</strong> me in a post or comment"
+      replies: "Someone <strong>replies</strong> to my post or comment"
+      likes: "Someone <strong>likes</strong> my post or comment"
+      follows: "Someone <strong>follows</strong> me"
+      posts: "Someone <strong>posts</strong> on my profile"
+      reaction_votes: "Someone <strong>upvotes</strong> my media reaction"
+      airing: "New episode is released"
+    loading: "Loading settings..."
+    update: "Update Settings"
+#page: feedback
 feedback:
   bugs: "Bugs"
-  features: "Solicitudes de funcionalidades"
-  database: "Solicitudes de base de datos"
-  mobile-bugs: "Solicitudes de dispositivos móviles"
-  mobile-features: "Solicitudes de funcionalidades de dispositivos móviles"
-# page: groups
+  features: "Feature Requests"
+  database: "Database Requests"
+  mobile-bugs: "Mobile Bugs"
+  mobile-features: "Mobile Features"
+#page: groups
 groups:
   index:
-    call-to-action: "Cualquiera puede crear y descubrir grupos. Cada grupo se centra en un tema o actividad."
-    create-btn: "Crear un grupo"
+    call-to-action: "Anyone can create and discover groups. Each group centers around a topic or activity."
+    create-btn: "Create a Group"
   create:
-    header: "Crear un grupo"
+    header: "Create a Group"
     form:
-      required: "Requerido"
-      name: "Nombre"
-      tagline: "Lema"
-      about: "Descripción"
-      rules: "Reglas"
-      neighbors: "Vecinos"
-      neighbors-placeholder: "Buscar el grupo"
-      privacy: "Privacidad"
+      required: "Required"
+      name: "Name"
+      tagline: "Tagline"
+      about: "Description"
+      rules: "Rules"
+      neighbors: "Neighbors"
+      neighbors-placeholder: "Search for group"
+      privacy: "Privacy"
       privacy-options:
-        open: "Público"
-        closed: "Privado"
-        restricted: "Restringido"
+        open: "Public"
+        closed: "Private"
+        restricted: "Restricted"
       privacy-features:
-        open: "<li>Cualquiera puede ver</li>
-          <li>Cualquiera puede unirse</li>
-          <li>Cualquiera puede publicar o comentar</li>"
-        closed: "<li>Oculto del público</li>
-          <li>Los usuarios solo pueden unirse por invitación</li>
-          <li>No puede ser transformado en público</li>"
-        restricted: "<li>Cualquiera puede ver</li>
-          <li>Cualquiera puede unirse</li>
-          <li>Solo los líderes pueden crear nuevas publicaciones.</li>"
-      category: "Categoría"
-      category-placeholder: "Selecciona una categoría"
+        open: "<li>Anyone can view</li> <li>Anyone can join</li> <li>Anyone can post or comment</li>"
+        closed: "<li>Hidden from public</li> <li>Users may only join via invitation</li> <li>Can't be made public</li>"
+        restricted: "<li>Anyone can view</li> <li>Anyone can join</li> <li>Only leaders can create new posts.</li>"
+      category: "Category"
+      category-placeholder: "Select a Category"
       avatar: "Avatar"
-      cover: "Imagen de cabecera"
-      create-btn: "¡Crea tu grupo!"
-      save-btn: "Guardar"
+      cover: "Cover Image"
+      create-btn: "Create your Group!"
+      save-btn: "Save"
       helper:
         name:
-          header: "Nombre"
-          desc: "Los nombres de los grupos debieran comunicar de forma clara de que trata el grupo, ¡pero aún así puedes mostrar tu creatividad y hacer algo entretenido!"
+          header: "Name"
+          desc: "Group names should clearly communicate what your group is about, but you can still be creative and have fun with it!"
         tagline:
-          header: "Lema"
-          desc: "Resume el propósito de tu grupo en 60 caracteres o menos.
-            Tendrás espacio para añadir más información después."
+          header: "Tagline"
+          desc: "Summarize the purpose of your group in 60 characters or less. You'll have room to add more information later."
         about:
-          header: "Descripción"
-          desc: "Explica el propósito del grupo en profundidad, comparte información importante o cualquier otra cosa."
+          header: "Description"
+          desc: "Explain your group's purpose in depth, share important information, or anything else."
         rules:
-          header: "Reglas"
-          desc: "Crea algunas normativas que los miembros del grupo deban seguir. ¡Se soporta Markdown en las reglas!"
+          header: "Rules"
+          desc: "Set out some guidelines for your group members to follow. These rules are Markdown supported!"
         neighbors:
-          header: "Vecinos"
-          desc: "¡Añade grupos relacionados a tu vecindario para que tus miembros puedan descubrir nuevas comunidades!"
+          header: "Neighbors"
+          desc: "Add related groups to your Neighborhood so your members can discover new communities!"
         privacy:
-          header: "Privacidad"
-          desc: "Tus ajustes de privacidad determinan cuan abierto o cerrado es tu grupo para el público. Si eliges hacer el grupo privado, NO podrás transformarlo en público en el futuro."
+          header: "Privacy"
+          desc: "Your privacy settings determine how open or closed your group is to the public. If you choose to make your group private, you will NOT be able to make it public in the future."
         category:
-          header: "Categoría"
-          desc: "Kitsu usa categorías para organizar grupos para ayudar a los usuarios a encontrar más de lo que aman."
+          header: "Category"
+          desc: "Kitsu uses categories to organize groups to help users find more of what they love."
         avatar:
           header: "Avatar"
-          desc: "Esta imagen será usada en todo Kitsu para identificar tu grupo."
+          desc: "This image will be used throughout Kitsu to identify your group."
         cover:
-          header: "Imagen de cabecera"
-          desc: "Esta imagen aparecerá en la parte superior de la página de tu grupo en computadoras. Los laterales podrían ser recortados para ajustarla al tamaño de la pantalla de quien la visualice."
+          header: "Cover Image"
+          desc: "This image will appear at the top of your group's page on desktops. Sides may be cropped slightly based on the viewer's screen size."
       errors:
-        neighbors-same: "No puedes añadir tu grupo como vecino."
-  dashboard-btn: "Panel de control"
-  join-group: "Unirse al grupo"
-  leave-group: "Dejar el grupo"
+        neighbors-same: "You can't add your group as a neighbor."
+  dashboard-btn: "Dashboard"
+  join-group: "Join Group"
+  leave-group: "Leave Group"
   hide-posts:
-    text: "Ocultar publicaciones de {group}"
-    info: "Las publicaciones no aparecerán en tu panel de seguimiento"
+    text: "Hide Posts from {group}"
+    info: "Posts won't appear in your Following Feed"
   show-posts:
-    text: "Mostrar publicaciones de {group}"
-    info: "Las publicaciones aparecerán en tu panel de seguimiento"
+    text: "Show Posts from {group}"
+    info: "Posts will appear in your Following Feed"
   nsfw: "NSFW"
-  neighbors: "Vecinos"
+  neighbors: "Neighbors"
   navigation:
-    activity: "Actividad"
-    rules: "Reglas"
-    members: "Miembros"
-    leaders: "Líderes"
-    neighbors: "Vecinos"
+    activity: "Activity"
+    rules: "Rules"
+    members: "Members"
+    leaders: "Leaders"
+    neighbors: "Neighbors"
   activity:
-    feed-header: "Actividad del grupo"
-    about: "Acerca de {group}"
-    members: "Miembros"
-    view-members: "ver todos"
-    feed-restricted: "Este es un grupo restringido. Todos pueden comentar, solo los líderes pueden crear publicaciones."
+    feed-header: "Group Activity"
+    about: "About {group}"
+    members: "Members"
+    view-members: "view all"
+    feed-restricted: "This is a restricted group. Anyone can comment, only leaders can create posts."
   rules:
-    header: "Reglas de la comunidad"
-    empty: "¡Hola! Parece que estás usando la normativa de comunidad de Kitsu. Si quieres
-      especificar tus propias reglas, puedes hacerlo en tu <a href={link}>página de ajustes</a>."
+    header: "Community Rules"
+    empty: "Hey there! Looks like you're using the Kitsu community guidelines. If you'd like to specify your own rules you can do that on your <a href={link}>settings page.</a>"
   tickets:
-    search: "Buscar tickets"
-    empty: "¡Hurra! No hay tickets que resolver."
-    helper: "Los tickets te permiten comunicarte con los líderes de este grupo para resolver cualquier problema
-      que puedas tener. Envía un mensaje a los líderes aquí para crear un ticket."
+    search: "Search Tickets"
+    empty: "Hooray! You don't have any tickets to handle."
+    helper: "Tickets allow you to communicate with the leaders of this group to solve any issues you might have. Message the leaders here to create a ticket."
     filter:
-      open: "Tickets abiertos"
-      resolved: "Tickets resueltos"
-      all: "Todos los tickets"
+      open: "Open Tickets"
+      resolved: "Resolved Tickets"
+      all: "All Tickets"
     conversation:
-      title: "Ticket de <a href={link}>{name}</a>"
-      mark-resolved: "Marcar como resulto"
-      mark-closed: "Marcar como cerrado"
-      mark-open: "Marcar como abierto"
+      title: "Ticket from <a href={link}>{name}</a>"
+      mark-resolved: "Mark Resolved"
+      mark-closed: "Mark Closed"
+      mark-open: "Mark Open"
       nav:
-        reply: "Responder al usuario"
-        leader: "Nota del líder"
-      create-btn: "Crear ticket"
-      reply-btn: "Enviar respuesta"
-      reply-placeholder: "Escribe tu mensaje"
-      helper: "¡Escribe tu mensaje a continuación para crear un ticket! Los líderes de este grupo responderán tu ticket tan pronto como les sea posible."
+        reply: "Reply to User"
+        leader: "Leader Note"
+      create-btn: "Create Ticket"
+      reply-btn: "Send Reply"
+      reply-placeholder: "Type your message"
+      helper: "Write your message below to create a ticket! Leaders for this group will reply to your ticket as soon as they can."
   reports:
-    no-explanation: "No se proveyó una explicación"
-    empty: "¡Hurra! No tienes reportes que resolver."
+    no-explanation: "No Explanation Provided"
+    empty: "Hooray! You don't have any reports to handle."
     filter:
-      open: "Reportes abiertos"
-      resolved: "Reportes resueltos"
-      all: "Todos los reportes"
-    show-more: "Mostrar {num} reportes"
-    hide-more: "Ocultar {num} reportes"
+      open: "Open Reports"
+      resolved: "Resolved Reports"
+      all: "All Reports"
+    show-more: "Show {num} reports"
+    hide-more: "Hide {num} reports"
     status:
-      resolved: "Este reporte fue resuelto por {user}."
-      declined: "Este reporte fue rechazado por {user}."
-      escalated: "Este reporte fue escalado por {user}."
+      resolved: "This report was resolved by {user}."
+      declined: "This report was declined by {user}."
+      escalated: "This report was escalated by {user}."
     actions:
-      close: "Cerrar reporte"
-      remove: "Remover contenido"
-      escalate: "Notificar a Kitsu"
-      view: "Ver contenido"
+      close: "Close Report"
+      remove: "Remove Content"
+      escalate: "Notify Kitsu"
+      view: "View Content"
   leaders:
     list:
-      header: "Líderes"
-      edit-btn: "Editar"
-      add-btn: "Añadir"
-      add-placeholder: "Miembro del grupo"
-      not-found: "No se pudo encontrar un miembro del grupo con ese nombre."
-      message-btn: "Enviar un mensaje a los líderes"
-      message-leader: "¡Eres líder de este grupo!"
+      header: "Leaders"
+      edit-btn: "Edit"
+      add-btn: "Add"
+      add-placeholder: "Group member"
+      not-found: "Couldn't find a group member with that name."
+      message-btn: "Message the leaders"
+      message-leader: "You're a leader of this group!"
       modal:
-        header: "Permisos del líder:"
-        owner: "Dueño del grupo"
-        tickets: "Gestionar tickets"
-        members: "Gestionar miembros"
-        leaders: "Gestionar líderes"
-        community: "Gestionar ajustes"
-        content: "Gestionar contenido y reportes"
-        owner-help: "Los dueños tienen todos los permisos."
-        cancel-btn: "Cancelar"
-        save-btn: "Guardar permisos"
+        header: "Leader Permissions:"
+        owner: "Group Owner"
+        tickets: "Manage Tickets"
+        members: "Manage Members"
+        leaders: "Manage Leaders"
+        community: "Manage Settings"
+        content: "Manage Content & Reports"
+        owner-help: "Owners have all permissions."
+        cancel-btn: "Cancel"
+        save-btn: "Save Permissions"
   dashboard:
-    back: "Regresar a {group}"
+    back: "Back to {group}"
     navigation:
-      overview: "Vista general"
-      reports: "Reportes"
+      overview: "Overview"
+      reports: "Reports"
       tickets: "Tickets"
-      members: "Miembros"
-      leaders: "Líderes"
-      settings: "Ajustes"
+      members: "Members"
+      leaders: "Leaders"
+      settings: "Settings"
     overview:
       members:
-        header: "Miembros"
-        today: "Sumados hoy"
-        total: "Total de miembros"
+        header: "Members"
+        today: "Joined Today"
+        total: "Total Members"
       activity:
-        header: "Actividad de usuario"
-        posts: "Publicaciones de hoy"
-        comments: "Comentarios de hoy"
+        header: "User Activity"
+        posts: "Posts Today"
+        comments: "Comments Today"
       help-desk:
-        header: "Casos abiertos"
+        header: "Open Cases"
         tickets: "Tickets"
-        reports: "Reportes"
-      tickets: "Últimos tickets"
-      reports: "Últimos reportes"
-      log: "Registro de líder"
+        reports: "Reports"
+      tickets: "Latest Tickets"
+      reports: "Latest Reports"
+      log: "Leader Log"
     members:
       invites:
-        header: "Invitaciones pendientes"
-        invited: "Invitado"
-        revoke: "Cancelar invitación"
-        invite: "Invitar"
-        placeholder: "Buscar por un usuario a invitar. ¡Debe estar siguiéndote!"
-        empty: "Parece que no tienes invitaciones pendientes para el grupo."
+        header: "Pending Invites"
+        invited: "Invited"
+        revoke: "Cancel Invite"
+        invite: "Invite"
+        placeholder: "Search for a user to invite. They must be following you!"
+        empty: "Looks like you don't have any pending invites to the group."
       bans:
-        header: "Usuarios baneados"
-        unban: "Desbanear"
-        ban: "Banear"
-        placeholder: "Nombre"
-        empty: "¡Hurra! No tienes usuarios baneados."
+        header: "Banned Users"
+        unban: "Unban"
+        ban: "Ban"
+        placeholder: "Name"
+        empty: "Hooray! You don't have any banned users."
       members:
-        header: "Miembros"
+        header: "Members"
         table:
-          users: "Usuario"
-          permissions: "Rango"
-          joined: "Se unió el"
-          actions: "Acciones"
-        remove: "Remover"
-        ban: "Banear"
+          users: "User"
+          permissions: "Rank"
+          joined: "Joined"
+          actions: "Actions"
+        remove: "Remove"
+        ban: "Ban"
     leaders:
       chat:
-        header: "Chat de líderes"
-        post-btn: "Publicar"
-        placeholder: "Enviar mensaje a líderes"
+        header: "Leader Chat"
+        post-btn: "Post"
+        placeholder: "Send message to leaders"
     audit:
       user:
-        banned: "baneó a <a href={link}>{user}</a>."
-        unbanned: "desbaneó a <a href={link}>{user}</a>."
-        invited: "invitó a <a href={link}>{user}</a> a unirse a la comunidad."
-        granted: "entregó permisos  a <a href={link}>{user}</a>."
-        revoked: "revocó permisos a <a href={link}>{user}</a>."
+        banned: "banned <a href={link}>{user}</a>."
+        unbanned: "unbanned <a href={link}>{user}</a>."
+        invited: "invited <a href={link}>{user}</a> to join the community."
+        granted: "granted permissions to <a href={link}>{user}</a>."
+        revoked: "removed permissions from <a href={link}>{user}</a>."
       group:
-        added_neighbor: "añadió <a href={link}>{group}</a> como vecino."
-        removed_neighbor: "removió <a href={link}>{group}</a> como vecino."
-        avatar_changed: "actualizó el avatar de {group}."
-        cover_changed: "actualizó la imagen de cabecera de {group}."
-        locale_changed: "actualizó la localización de {group}."
-        rules_changed: "actualizó las reglas de {group}."
-        nsfw_changed: "actualizó el estado NSFW de {group}."
-        about_changed: "actualizó la información de {group}."
-        tagline_changed: "actualizó el lema de {group}."
-        category_changed: "actualizó la categoría de {group}."
+        added_neighbor: "added <a href={link}>{group}</a> as a neighbor."
+        removed_neighbor: "removed <a href={link}>{group}</a> as a neighbor."
+        avatar_changed: "updated the {group} avatar."
+        cover_changed: "updated the {group} cover image."
+        locale_changed: "updated the {group} locale."
+        rules_changed: "updated the {group} rules."
+        nsfw_changed: "updated the {group} NSFW status."
+        about_changed: "updated the {group} about."
+        tagline_changed: "updated the {group} tagline."
+        category_changed: "updated the {group} category."
       group-report:
-        resolved: "resolvió un reporte."
-        declined: "rechazó un reporte."
-        escalated: "escaló un reporte."
+        resolved: "resolved a report."
+        declined: "declined a report."
+        escalated: "esclated a report."
       group-ticket:
-        assigned: "asignó un ticket a <a href={link}>{user}</a>."
-        resolved: "marcó un ticket como resuelto."
-        created: "reabrió un ticket."
-# page: group-invite
+        assigned: "assigned a ticket to <a href={link}>{user}</a>."
+        resolved: "marked a ticket as resolved."
+        created: "re-opened a ticket."
+#page: group-invite
 group-invite:
-  header: "Invitación de grupo"
-  subtitle: "Has recibido una invitación a {group} por {sender}"
-  text: "Tendrás acceso a la página de {group} después de aceptar esta invitación. Te redirigiremos
-    después de aceptarla."
-  accept: "Aceptar"
-  decline: "Rechazar"
-  accepted: "Ya has aceptado esta invitación."
-  revoked: "Tu invitación ha sido revocada por un moderador del grupo."
-  declined: "Rechazaste esta invitación de grupo."
-# page: explore
+  header: "Group Invite"
+  subtitle: "You have been invited to {group} by {sender}"
+  text: "You'll be able to access {group}'s page after accepting this invite. We'll redirect you after accepting."
+  accept: "Accept"
+  decline: "Decline"
+  accepted: "You've already accepted this invite."
+  revoked: "Your invitation has been revoked by a group moderator."
+  declined: "You declined this group invite."
+#page: explore
 explore:
-  view-more: "Ver más"
-  search-placeholder: "¿Qué buscas?"
-  advanced-search: "O realiza una <a href=\"/{mediaType}\">búsqueda avanzada</a>"
-  no-data: "Hmm, no parece que se pueda encontrar un medio para esta sección."
+  view-more: "View more"
+  search-placeholder: "What are you searching for?"
+  advanced-search: "Or, browse with the <a href=\"/{mediaType}\">advanced search</a>"
+  no-data: "Hmm, doesn't seem like any media can be found for this section."
   widget:
-    related: "Categorías relacionadas"
-    categories: "Categorías"
-    favorite-categories: "Mis categorías favoritas"
-    no-favorites: "Marcar categorías como favoritas mejorará tus recomendaciones."
-    more-categories: "Más categorías..."
+    related: "Related Categories"
+    categories: "Categories"
+    favorite-categories: "My Favorite Categories"
+    no-favorites: "Favoriting categories will improve your recommendations."
+    more-categories: "More categories..."
   modal:
-    header: "Todas las categorías"
+    header: "All Categories"
   favorite-button:
-    remove: "Remover de favoritos"
-    removing: "Removiendo..."
-    create: "Añadir a favoritos"
-    creating: "Añadiendo..."
-# page: media-reactions
+    remove: "Remove from Favorites"
+    removing: "Removing..."
+    create: "Add to Favorites"
+    creating: "Adding..."
+#page: media-reactions
 media-reactions:
-  create-account: "Crear una cuenta"
-# shared: media
+  create-account: "Create Account"
+#shared: media
 media-shared:
   types:
     anime:
-      All: "Todos"
+      All: "All"
       tv: "TV"
-      special: "Especial"
+      special: "Special"
       ona: "ONA"
       ova: "OVA"
-      movie: "Película"
-      music: "Música"
+      movie: "Movie"
+      music: "Music"
     manga:
-      All: "Todos"
+      All: "All"
       manga: "Manga"
-      novel: "Novela"
+      novel: "Novel"
       manhua: "Manhua"
       oneshot: "One-shot"
       doujin: "Doujin"
@@ -1009,268 +870,194 @@ media-shared:
       oel: "OEL"
   statuses:
     anime:
-      current: "En emisión"
-      finished: "Finalizado"
-      upcoming: "Próximo lanzamiento"
-      unreleased: "No lanzado"
-      tba: "Por anunciar"
+      current: "Currently Airing"
+      finished: "Finished"
+      upcoming: "Upcoming"
+      unreleased: "Unreleased"
+      tba: "TBA"
     manga:
-      current: "En publicación"
-      finished: "Finalizado"
-      upcoming: "Próximo lanzamiento"
-      unreleased: "No lanzado"
-      tba: "Por anunciar"
-# shared: library
+      current: "Publishing"
+      finished: "Finished"
+      upcoming: "Upcoming"
+      unreleased: "Unreleased"
+      tba: "TBA"
+#shared: library
 library-shared:
-  all: "{type, select,
-    anime {Todos los animes}
-    manga {Todos los mangas}
-    other {}}"
-  current: "{type, select,
-    anime {Actualmente viendo}
-    manga {Actualmente leyendo}
-    other {}}"
-  planned: "{type, select,
-    anime {Pendiente de ver}
-    manga {Pendiente de leer}
-    other {}}"
-  completed: "{type, select,
-    anime {Completado}
-    manga {Completado}
-    other {}}"
-  on_hold: "{type, select,
-    anime {En pausa}
-    manga {En pausa}
-    other {}}"
-  dropped: "{type, select,
-    anime {Abandonado}
-    manga {Abandonado}
-    other {}}"
-# shared: form:
+  all: "{type, select, anime {All Anime} manga {All Manga} other {}}"
+  current: "{type, select, anime {Currently Watching} manga {Currently Reading} other {}}"
+  planned: "{type, select, anime {Want to Watch} manga {Want to Read} other {}}"
+  completed: "{type, select, anime {Completed} manga {Completed} other {}}"
+  on_hold: "{type, select, anime {On Hold} manga {On Hold} other {}}"
+  dropped: "{type, select, anime {Dropped} manga {Dropped} other {}}"
+#shared: form:
 form-shared:
   placeholders:
-    username: "Nombre de usuario"
-    password: "Contraseña"
-# component: auth-onboarding
+    username: "Username"
+    password: "Password"
+#component: auth-onboarding
 onboarding:
   aozora-conflict:
-    title: "Oh, ¡ya tienes una cuenta de Kitsu! ¿Cuál quieres mantener?"
-    info: "Las publicaciones del panel de actividad de ambas cuentas serán fusionadas. Todo el resto de la información de la cuenta será sobre-escrito por la cuenta que elijas a continuación."
+    title: "Oh, you already have a Kitsu account! Which do you want to keep?"
+    info: "Activity feed posts from both accounts will be merged.  All other account information will be overwritten by the account you select below."
   aozora-account-details:
-    submit: "¡Luce bien!"
-# component: follow-button
+    submit: "Looks Good!"
+#component: follow-button
 follow-button:
-  follow: "Seguir"
-  unfollow: "Dejar de seguir"
-# component: kitsu-feed
+  follow: "Follow"
+  unfollow: "Unfollow"
+#component: kitsu-feed
 feeds:
   embed:
-    preview: "Esta es una vista previa de lo incrustado."
+    preview: "This is a preview of your embed."
   uploads:
-    select: "Subir"
-    drop: "Arrastra para subir"
-    invalid: "Tipo de archivo inválido"
-    uploading: "{number, plural,
-      =1 {Subiendo foto... {progress}%}
-      other {Subiendo {number} fotos... {progress}%}}"
+    select: "Upload"
+    drop: "Drop to upload"
+    invalid: "Invalid file type"
+    uploading: "{number, plural, =1 {Uploading photo... {progress}%} other {Uploading {number} photos... {progress}%}}"
   filter:
-    all: "Toda la actividad"
-    media: "Actividad de medios"
-    user: "Actividad de usuario"
-    following: "Actividad de quienes sigo"
-  placeholder: "{type, select,
-    user_aggr {Publicar a {subject}}
-    group_aggr {Publicar a {subject}}
-    media_aggr {Publicar sobre {subject}}
-    episode_aggr {Publicar sobre el episodio {subject}}
-    chapter_aggr {Publicar sobre el capítulo {subject}}
-    interest_timeline {Publicar sobre  {subject}}
-    other {Realizar una publicación}}..."
+    all: "All Activity"
+    media: "Media Activity"
+    user: "User Activity"
+    following: "Followed Activity"
+  placeholder: "{type, select, user_aggr {Post to {subject}} group_aggr {Post to {subject}} media_aggr {Post about {subject}} episode_aggr {Post about Episode {subject}} chapter_aggr {Post about Chapter {subject}} interest_timeline {Post about {subject}} other {Create a post}}..."
   library:
-    updated: "movió esto a {status}"
-    rated: "lo evaluó"
-    progressed: "{type, select,
-      anime {vió el episodio {num}}
-      manga {leyó el capítulo {num}}
-      other {}}"
+    updated: "moved this to {status}"
+    rated: "rated it"
+    progressed: "{type, select, anime {watched episode {num}} manga {read chapter {num}} other {}}"
   post:
-    more: "Ver más"
-    less: "Ver menos"
+    more: "View More"
+    less: "View Less"
     meta:
-      media: "Ya que recientemente vistes {media}"
-    spoilers: "{type, select,
-      anime {Ep. {num}}
-      manga {Cap. {num}}
-      other {}}"
+      media: "Because you recently watched {media}"
+    spoilers: "{type, select, anime {Ep. {num}} manga {Ch. {num}} other {}}"
     sorts:
-      likes: "Me gusta"
-      replies: "Respuestas"
-      oldest: "Antiguedad"
+      likes: "Likes"
+      replies: "Replies"
+      oldest: "Oldest"
   review:
-    review: "Reseña"
-    author: "Reseña por {user}"
-    progress: "{type, select,
-      anime {Esta es una reseña hasta el episodio {num}.}
-      manga {Esta es una reseña hasta el capítulo {num}.}
-      other {}}"
+    review: "Review"
+    author: "Review by {user}"
+    progress: "{type, select, anime {This is a review up to Episode {num}.} manga {This is a review up to Chapter {num}.} other {}}"
   interest:
     anime:
-      header: "¡Te damos la bienvenida a tu panel de anime!"
-      body: "A medida que actualices tu <a href={link}>biblioteca de anime</a>, verás lo que otros dicen
-        acerca de lo que estas viendo."
+      header: "Welcome to your Anime Feed!"
+      body: "As you update your <a href={link}>anime library</a>, you'll see what others are saying about the shows you're watching."
     manga:
-      header: "¡Te damos la bienvenida a tu panel de manga!"
-      body: "A medida que actualices tu <a href={link}>biblioteca de manga</a>, verás lo que otros dicen
-        acerca de lo que estas leyendo."
-    button: "Okey, entendido"
-# component: image-form
+      header: "Welcome to your Manga Feed!"
+      body: "As you update your <a href={link}>manga library</a>, you'll see what others are saying about the manga you're reading."
+    button: "Okay, got it"
+#component: image-form
 image-form:
-  help-text: "Haz clic aquí para seleccionar una imagen."
-# component: groups/group-list
+  help-text: "Click here to select an image."
+#component: groups/group-list
 group-list:
-  filter: "Filtrar grupos"
+  filter: "Filter Groups"
   sort:
-    featured: "Destacado"
-    recent: "Actividad reciente"
-    newest: "Grupos más nuevos"
-    oldest: "Grupos más antiguos"
-# component: media/media-reaction
+    featured: "Featured"
+    recent: "Recent Activity"
+    newest: "Newest Groups"
+    oldest: "Oldest Groups"
+#component: media/media-reaction
 media-reaction:
-  self-vote: "No puedes votar tu propia reacción."
-  edit: "Editar reacción"
-# component: modals/media-reaction
+  self-vote: "You can't vote on your own reaction."
+  edit: "Edit Reaction"
+#component: modals/media-reaction
 reaction-modal:
-  post: "Publicar"
-  edit: "Editar"
-  edit-warning: "¡Cuidado! Editarla eliminará los votos recibidos."
-  delete: "Eliminar reacción"
-  placeholder: "{index, plural,
-    =0 {Me hizo replantearme algunas decisiones de vida importantes.}
-    =1 {¡Inesperadamente bueno! Muchas escenas memorables.}
-    =2 {Aunque pueda no ser del interés de todos, ciertamente es interesante.}
-    other {Sobrevalorado, no pierdas tu tiempo.}}"
-  skip: "Saltar"
-# component: library-entry/*
+  post: "Post"
+  edit: "Edit"
+  edit-warning: "Careful! Editing will delete your upvotes."
+  delete: "Delete Reaction"
+  placeholder: "{index, plural, =0 {Got me rethinking some important life decisions.} =1 {Unexpectedly good! Lots of memorable scenes.} =2 {While it may not be everyone's cup of tea, it's certainly interesting.} other {Overrated, don't waste your time on this one.}}"
+  skip: "Skip"
+#component: library-entry/*
 library-entry:
   state:
-    header: "{state, select,
-      false {Añadir a biblioteca}
-      true {Actualizar biblioteca}
-      other {}}"
-    add-to-library: "Añadir a biblioteca"
-    seen-this: "{type, select,
-      anime {Completado}
-      manga {Completado}
-      other {}}"
-    want-to-watch: "{type, select,
-      anime {Quiero verlo}
-      manga {Quiero leerlo}
-      other {}}"
-    started-watching: "{type, select,
-      anime {Empezado}
-      manga {Lectura iniciada}
-      other {}}"
-    watching-this: "Empezado"
-    finished-this: "Completado"
-    place-on-hold: "En pausa"
-    drop-this: "Abandonado"
-    change-rating: "Cambiar puntaje"
-    remove-rating: "Eliminar puntaje"
-    rate-this: "Evaluar"
-    edit-library: "Editar entrada de biblioteca"
-    post-reaction: "Publicar reacción"
-    edit-reaction: "Editar reacción"
-    rewatch: "{type, select,
-      anime {Volver a ver}
-      manga {Volver a leer}
-      other {}}"
-    remove-from-library: "Remover de la biblioteca"
-    saved-in: "Guardado en <a href={link}>{status}</a>"
-    progress: "Progreso"
-    not-rated: "No evaluado"
+    header: "{state, select, false {Add to Library} true {Update Library} other {}}"
+    add-to-library: "Add To Library"
+    seen-this: "{type, select, anime {Completed} manga {Completed} other {}}"
+    want-to-watch: "{type, select, anime {Want to Watch} manga {Want to Read} other {}}"
+    started-watching: "{type, select, anime {Started Watching} manga {Started Reading} other {}}"
+    watching-this: "Started"
+    finished-this: "Completed"
+    place-on-hold: "On Hold"
+    drop-this: "Dropped"
+    change-rating: "Change Rating"
+    remove-rating: "Remove Rating"
+    rate-this: "Add Rating"
+    edit-library: "Edit Library Entry"
+    post-reaction: "Post Reaction"
+    edit-reaction: "Edit Reaction"
+    rewatch: "{type, select, anime {Rewatch} manga {Reread} other {}}"
+    remove-from-library: "Remove from Library"
+    saved-in: "Saved in <a href={link}>{status}</a>"
+    progress: "Progress"
+    not-rated: "Not Rated"
   rating:
-    awful: "Horrible"
+    awful: "Awful"
     meh: "Meh"
-    good: "Bueno"
-    great: "Genial"
-# component: application/user-notifications
+    good: "Good"
+    great: "Great"
+#component: application/user-notifications
 user-notifications:
-  # Episode 113 of One Piece! aired
-  aired: "{type, select,
-    chapter {Capítulo}
-    episode {Episodio}
-    other {}} {number} de {media} {type, select,
-    chapter {lanzado}
-    episode {emitido}
-    other {}}"
-  aired-unknown: "Se ha {type, select,
-    manga {lanzado}
-    anime {emitido}
-    other {}} un nuevo {type, select,
-    manga {Capítulo}
-    anime {Epidosio}
-    other {}} de {media}"
-# ember-power-select
+  #Episode 113 of One Piece! aired
+  aired: "{type, select, chapter {Chapter} episode {Episode} other {}} {number} of {media} {type, select, chapter {Released} episode {Aired} other {}}"
+  aired-unknown: "{media} {type, select, manga {released} anime {aired} other {}} a new {type, select, manga {Chapter} anime {Episode} other {}}"
+#ember-power-select
 selects:
-  loading: "Cargando..."
-  none: "No se encontraron resultados"
-  search: "Empieza a escribir para buscar"
-# ember-cp-validations
+  loading: "Loading..."
+  none: "No results found"
+  search: "Start typing to search"
+#ember-cp-validations
 errors:
-  description: "Este campo"
-  inclusion: "{description} no está incluido en la lista"
-  exclusion: "{description} está reservado"
-  invalid: "{description} no es válido"
-  confirmation: "{description} no coincide con {on}"
-  accepted: "{description} debe ser aceptado"
-  empty: "{description} no puede estar vacío"
-  blank: "{description} no puede estar en blanco"
-  present: "{description} debe estar en blanco"
-  collection: "{description} debe ser una colección"
-  singular: "{description} no puede ser una colección"
-  tooLong: "{description} es demasiado largo (el máximo son {max} caracteres)"
-  tooShort: "{description} es demasiado corto (el minimo son {min} caracteres)"
-  before: "{description} debe estar antes de {before}"
-  after: "{description} debe estar después de {after}"
-  wrongDateFormat: "{description} debe estar en el formato {format}"
-  wrongLength: "{description} tiene un largo inadecuado (debiera ser de {is} caracteres)"
-  notANumber: "{description} debe ser un número"
-  notAnInteger: "{description} debe ser un entero"
-  greaterThan: "{description} debe ser mayor que {gt}"
-  greaterThanOrEqualTo: "{description} debe ser mayor que o igual a {gte}"
-  equalTo: "{description} debe ser igual a {is}"
-  lessThan: "{description} debe ser menor que {lt}"
-  lessThanOrEqualTo: "{description} debe ser menor que o igual a {lte}"
-  otherThan: "{description} debe ser distinto a {value}"
-  odd: "{description} debe ser impar"
-  even: "{description} debe ser par"
-  positive: "{description} debe ser positivo"
-  date: "{description} debe ser una fecha válida"
-  email: "{description} debe ser una dirección de correo válida"
-  phone: "{description} debe ser un número de teléfono válido"
-  url: "{description} debe ser una url válida"
-  # Custom Errors
+  description: "This field"
+  inclusion: "{description} is not included in the list"
+  exclusion: "{description} is reserved"
+  invalid: "{description} is invalid"
+  confirmation: "{description} doesn't match {on}"
+  accepted: "{description} must be accepted"
+  empty: "{description} can't be empty"
+  blank: "{description} can't be blank"
+  present: "{description} must be blank"
+  collection: "{description} must be a collection"
+  singular: "{description} can't be a collection"
+  tooLong: "{description} is too long (maximum is {max} characters)"
+  tooShort: "{description} is too short (minimum is {min} characters)"
+  before: "{description} must be before {before}"
+  after: "{description} must be after {after}"
+  wrongDateFormat: "{description} must be in the format of {format}"
+  wrongLength: "{description} is the wrong length (should be {is} characters)"
+  notANumber: "{description} must be a number"
+  notAnInteger: "{description} must be an integer"
+  greaterThan: "{description} must be greater than {gt}"
+  greaterThanOrEqualTo: "{description} must be greater than or equal to {gte}"
+  equalTo: "{description} must be equal to {is}"
+  lessThan: "{description} must be less than {lt}"
+  lessThanOrEqualTo: "{description} must be less than or equal to {lte}"
+  otherThan: "{description} must be other than {value}"
+  odd: "{description} must be odd"
+  even: "{description} must be even"
+  positive: "{description} must be positive"
+  date: "{description} must be a valid date"
+  email: "{description} must be a valid email address"
+  phone: "{description} must be a valid phone number"
+  url: "{description} must be a valid url"
+  #Custom Errors
   user:
     name:
-      invalid: "Este campo solo debe contener letras, números y guiones bajos"
-      numbers: "Este campo no debe estar compuesto solo por números"
-      starts: "Este campo debe empezar por una letra o un número"
-  load: "Hubo un problema al cargar el contenido."
-  contentEmpty: "Hmm, todavía no parece haber algo aquí."
-  request: "¡Ups! Algo falló con la solicitud."
+      invalid: "This field must only contain letters, numbers, and underscores"
+      numbers: "This field must not be made up of numbers entirely"
+      starts: "This field must start with a letter or number"
+  load: "There was an issue loading the content."
+  contentEmpty: "Hmm, there doesn't seem to be anything here yet."
+  request: "Oops! Something went wrong with the request."
   serverError:
-    title: "¡Ups! Parece que nuestro servidor tiene un bug."
-    body: "Nuestro equipo ha sido notificado, por favor vuelve a intentarlo en unos minutos."
-# Loading
-loading: "Cargando {subject, select,
-  episode {episodio}
-  chapter {capítulo}
-  episodes {episodios}
-  chapters {capítulos}
-  other {}}..."
+    title: "Oops! Looks like our server has a bug."
+    body: "Our team has been notified, please try again in a few minutes."
+#Loading
+loading: "Loading {subject, select, episode {Episode} chapter {Chapter} episodes {Episodes} chapters {Chapters} other {}}..."
 timeUnits:
-  years: "{count, plural, one {año} other {años}}"
-  months: "{count, plural, one {mes} other {meses}}"
-  days: "{count, plural, one {día} other {días}}"
-  hours: "{count, plural, one {hora} other {horas}}"
-  minutes: "{count, plural, one {minuto} other {minutos}}"
+  years: "{count, plural, =1 {year} other {years}}"
+  months: "{count, plural, =1 {month} other {months}}"
+  days: "{count, plural, =1 {day} other {days}}"
+  hours: "{count, plural, =1 {hour} other {hours}}"
+  minutes: "{count, plural, =1 {minute} other {minutes}}"
