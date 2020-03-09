@@ -12,11 +12,11 @@ titles:
       reactions: "Réactions"
       franchise: "Saga"
   explore:
-    index: "Explorer les {mediaType, select, anime {Animés} manga {Mangas} other {}}"
+    index: "Explorer les {mediaType, select, anime {anime} manga {mangas} other {}}"
     more:
       trending: "Tendance {type, select, anime {Animés} manga {Mangas} other {}} cette semaine"
       top-current: "Top {type, select, Anime {animés} Manga {mangas} other {type}} {type, select, Anime {en cours de diffusion} Manga {en cours de publication} other {}}"
-      top-upcoming: "Top {type, select, Anime {animés} Manga {mangas} other {type}} à venir"
+      top-upcoming: "Top {type, select, Anime {Animés} Manga {Mangas} other {type}} à venir"
       highest-rated: "{type, select, Anime {Animés} Manga {Mangas} other {type}} les mieux notés"
       most-popular: "{type, select, Anime {Animés} Manga {Mangas} other {type}} les plus populaires"
     category:
@@ -32,7 +32,7 @@ titles:
     library: "Bibliothèque de {user}"
     reviews: "Avis de {user}"
     reactions: "Réactions de {user}"
-    followers: "Abonné à {user}"
+    followers: "Abonnés à {user}"
     following: "Suivi par {user}"
     groups: "Groupes de {user}"
     stats: "Statistiques de {user}"
@@ -72,7 +72,7 @@ head:
 #header
 header:
   library: "Bibliothèque"
-  anime: "Animés"
+  anime: "Anime"
   manga: "Mangas"
   trending: "Tendance"
   groups: "Groupes"
@@ -95,7 +95,7 @@ dashboard:
   quick-update:
     filter:
       all: "Tout"
-      anime: "Animés"
+      anime: "Anime"
       manga: "Mangas"
     empty:
       html: "Les médias que vous avez ajouté ou modifié dans votre <a href={link}>Bibliothèque</a> s'afficheront ici, vous permettant de les mettre à jour."
@@ -159,7 +159,7 @@ media:
         match: "Vous correspond à {rating}%"
       ranking:
         full:
-          popularity: "{type, select, anime {Classé #{rank} (Animé le Plus Populaire)} manga {Classé #{rank} (Manga le Plus Populaire)} other {}}"
+          popularity: "{type, select, anime {Classé #{rank} (Anime le plus Populaire)} manga {Classé #{rank} (Manga le plus Populaire)} other {}}"
           rating: "{type, select, anime {Classé #{rank} (Animé le Mieux Noté)} manga {Classé #{rank} (Manga le Mieux Noté)} other {}}"
         short:
           popularity: "{type, select, anime {#{rank} En Popularité} manga {#{rank} En Popularité} other {}}"
@@ -416,10 +416,10 @@ users:
         female: "Femme"
     stats:
       headings:
-        anime: "Statistiques Animés"
+        anime: "Statistiques d'anime"
         manga: "Statistiques Mangas"
       chapters-read: "chapitres lus."
-      time-breakdown: "perdues à regarder des animés."
+      time-breakdown: "perdues à regarder des anime."
       empty:
         header: "Apparemment vous n'avez pas assez de données. Prêt à commencer quelque chose ?"
         guest-header: "On dirait que {user} n'a pas encore de statistiques."
@@ -462,7 +462,7 @@ users:
           desc: "Plus long"
           asc: "Plus court"
     sidebar:
-      media-select: "{type, select, anime {Animés de {user}} manga {Mangas de {user}} other {}}"
+      media-select: "{type, select, anime {Anime de {user}} manga {Mangas de {user}} other {}}"
       manage: "Gérer la Bibliothèque"
       import: "Importer une Bibliothèque"
       export: "Exporter la Bibliothèque"
@@ -481,7 +481,7 @@ users:
       unrated: "Pas noté"
       progress: "{type, select, anime {Ep. {progress}} manga {Ch. {progress}} other {}}"
       table-header:
-        title: "{type, select, anime {Titre de l'animé} manga {Titre du manga} other {}}"
+        title: "{type, select, anime {Titre de l'anime} manga {Titre du manga} other {}}"
         rating: "Note"
         progress: "Progression"
         volumes: "Volumes"
@@ -492,7 +492,7 @@ users:
         guest-header: "On dirait que {user} n'a encore rien vu."
         button: "Naviguer dans les {type}"
     grid:
-      view-media: "Voir les {type, select, anime {animés} manga {mangas} other {}}"
+      view-media: "Voir les {type, select, anime {anime} manga {mangas} other {}}"
     edit:
       status: "État"
       progress: "Progression"
@@ -510,7 +510,7 @@ users:
       save: "Enregistrer les modifications"
       saving: "Enregistrement…"
     bulk:
-      selected: "{type, select, anime {{num} animé sélectionné} manga {{num} manga sélectionné} other {}}"
+      selected: "{type, select, anime {{num} anime sélectionné} manga {{num} manga sélectionné} other {}}"
       select-all: "Tout Sélectionner"
       select-none: "Déselectionner"
       remove: "Supprimer <strong>{num}</strong>"
