@@ -16,6 +16,7 @@ export default Controller.extend({
   languages: getter(() => [
     { id: 'id', text: 'Bahasa Indonesia' },
     { id: 'en', text: 'English' },
+    { id: 'es', text: 'Español' },
     { id: 'fr', text: 'Français' }
   ]),
   timezoneGuess: getter(() => moment.tz.guess()),
