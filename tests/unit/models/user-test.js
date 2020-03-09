@@ -5,7 +5,7 @@ import testValidations from 'client/tests/helpers/test-validations';
 
 module('Unit | Model | user', function(hooks) {
   setupTest(hooks);
-  setupIntl(hooks, 'en-us');
+  setupIntl(hooks, 'en-US');
 
   test('model validations', function(assert) {
     const user = this.owner.lookup('service:store').createRecord('user');
