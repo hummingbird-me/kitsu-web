@@ -43,7 +43,7 @@
                     {{/dropdown.button}}
                     {{#dropdown.menu}}
                       {{#dropdown.menu-item onClick=(action (toggle "isViewingPastNames" this))}}
-                        {{t "users.admin.names"}}
+                        {{t "users.admin.past-names"}}
                       {{/dropdown.menu-item}}
                       {{#if isViewingPastNames}}
                         {{to-elsewhere named="modal" send=(component "users/view-past-names"
@@ -52,7 +52,7 @@
                           onClose=(toggle-action "isViewingPastNames" this))}}
                       {{/if}}
                       {{#dropdown.menu-item onClick=(action (toggle "isViewingAltAccounts" this))}}
-                        {{t "users.admin.accounts"}}
+                        {{t "users.admin.alt-accounts"}}
                       {{/dropdown.menu-item}}
                       {{#if isViewingAltAccounts}}
                         {{to-elsewhere named="modal" send=(component "users/view-alt-accounts"
