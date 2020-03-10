@@ -127,7 +127,6 @@ dashboard:
 #page: anime/manga
 media:
   index:
-    search: "Rechercher par titre, personnage, doubleur…"
     filter: "Filtrer"
     remove: "Supprimer"
     filters:
@@ -244,7 +243,6 @@ media:
       header: "Personnages de {title}"
       sub-header: "{type, select, anime {Voici la liste des personnages et leurs doubleurs {language} pour l'anime {title}} manga {Voici la liste des personnages pour le manga {title}} other {}}"
     reactions:
-      loading: "Chargement des Réactions…"
       delete: "Supprimer la Réaction"
       report: "Signaler la Réaction"
       copy: "Copier le lien de la Réaction"
@@ -273,6 +271,12 @@ media:
     info: "Les posts apparaîtrons dans votre fil d'abonnements {type, select, Anime {et d'anime} Manga {et de mangas} other {}}"
 #page: users
 users:
+  admin:
+    button: "Administration"
+    past-names: "Afficher les noms précédents"
+    alt-accounts: "Voir les comptes alternatifs"
+    delete-content: "Supprimer le contenu utilisateur"
+    ban: "Bannir"
   navigation:
     activity: "Activité"
     library: "Bibliothèque"
@@ -424,7 +428,6 @@ users:
         header: "Apparemment vous n'avez pas assez de données. Prêt à commencer quelque chose ?"
         guest-header: "On dirait que {user} n'a pas encore de statistiques."
   library:
-    search: "Rechercher dans la bibliothèque de {name}…"
     sorting:
       label: "Trier par :"
       options:
@@ -467,7 +470,6 @@ users:
       import: "Importer une Bibliothèque"
       export: "Exporter la Bibliothèque"
       reset: "Remettre à zéro"
-      reset-loading: "Remise à zéro…"
       reset-confirmation: "Cela effacera toute votre bibliothèque, vos avis associés, et vos réactions. Vouslez-vous continuer ?"
       issues:
         header: "Problèmes dans votre bibliothèque"
@@ -508,15 +510,11 @@ users:
       notes: "Notes Personnelles"
       remove: "Supprimer de la Bibliothèque"
       save: "Enregistrer les modifications"
-      saving: "Enregistrement…"
     bulk:
       selected: "{type, select, anime {{num} anime sélectionné} manga {{num} manga sélectionné} other {}}"
       select-all: "Tout Sélectionner"
       select-none: "Déselectionner"
       remove: "Supprimer <strong>{num}</strong>"
-      move-to: "Déplacer <strong>{num}</strong> vers…"
-      remove-loading: "Suppression…"
-      update-loading: "Mise à jour…"
   groups:
     sort:
       newest: "Récemment rejoint"
@@ -536,6 +534,12 @@ users:
   show-posts:
     text: "Afficher les posts de {user}"
     info: "Ces posts apparaîtront dans votre fil d'abonnements"
+  followers:
+    not-found: "Aucun utilisateur trouvé."
+  following:
+    not-found: "Aucun utilisateur trouvé."
+  reviews:
+    not-found: "Aucun avis trouvé."
 #page: settings
 settings:
   navigation:
@@ -560,6 +564,10 @@ settings:
   blocking:
     header: "Bloquer"
     sub-header: "Lorsque vous bloquez quelqu'un, cette personne ne peut plus vous mentionner, vous suivre, voir votre profil ou voir vos publications."
+    title: "Bloquer un utilisateur"
+    button-block: "Bloquer"
+    button-unblock: "Débloquer"
+    more: "Voir Plus"
   exports:
     modal:
       header: "Synchroniser avec {site}"
@@ -594,6 +602,8 @@ settings:
   imports:
     header: "Importer"
     sub-header: "Importer des médias d'autres fournisseurs"
+    button: "Importer un média"
+    past-imports: "Vos précédentes importations"
   index:
     header: "Profil"
     sub-header: "Paramètres de compte et de région"
@@ -622,7 +632,6 @@ settings:
       newsletter: "Newsletter"
       subscribed: "Abonné"
       message: "Si activé, vous recevrez par e-mail des mises à jour occasionnelles (et passionnantes) à propos de Kitsu, écrites par Josh lui-même."
-    loading: "Chargement des paramètres…"
     update: "Modifier les paramètres"
   password:
     header: "Mot de passe"
@@ -888,14 +897,11 @@ explore:
     categories: "Catégories"
     favorite-categories: "Catégories favorites"
     no-favorites: "Les catégories favorites vont améliorer vos recommandations."
-    more-categories: "Plus de catégories…"
   modal:
     header: "Toutes les catégories"
   favorite-button:
     remove: "Supprimer des favoris"
-    removing: "Suppression…"
     create: "Ajouter aux favoris"
-    creating: "Ajout…"
 #page: media-reactions
 media-reactions:
   create-account: "Créer un compte"
@@ -964,13 +970,11 @@ feeds:
     select: "Envoyer"
     drop: "Déposer pour envoyer"
     invalid: "Type de fichier invalide"
-    uploading: "{number, plural, =1 {Envoi de photo… {progress}%} other {Envoi de {number} photos… {progress}%}}"
   filter:
     all: "Toutes les activités"
     media: "Activités liées aux médias"
     user: "Activité liée aux utilisateurs"
     following: "Activités des abonnements"
-  placeholder: "{type, select, user_aggr {Poster pour {subject}} group_aggr {Poster pour {subject}} media_aggr {Poster à propos de {subject}} episode_aggr {Poster à propos de l'épisode {subject}} chapter_aggr {Poster à propos du chapitre {subject}} interest_timeline {Poster à propos de {subject}} other {Créer un post}}..."
   library:
     updated: "a déplacé vers {status}"
     rated: "a noté"
@@ -1055,7 +1059,6 @@ user-notifications:
   aired-unknown: "{media} {type, select, manga {est sorti} anime {a été diffusé} other {}} un {type, select, manga {nouveau chapitre} anime {nouvel épisode} other {}}"
 #ember-power-select
 selects:
-  loading: "Chargement…"
   none: "Pas de résultats"
   search: "Commencez à taper pour chercher"
 #ember-cp-validations
@@ -1104,8 +1107,6 @@ errors:
   serverError:
     title: "Oups ! On dirait qu'il y a un bug de notre côté."
     body: "Notre équipe a été notifiée, merci de réessayer dans quelques minutes."
-#Loading
-loading: "Chargement {subject, select, episode {de l'épisode} chapter {du chapitre} episodes {des épisodes} chapters {des chapitres} other {}}…"
 timeUnits:
   years: "{count, plural, =1 {an} other {ans}}"
   months: "mois"
