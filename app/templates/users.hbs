@@ -21,7 +21,7 @@
                 {{! edit button }}
                 {{#if (can "edit user" user)}}
                   <button class="button button--light-outline" onclick={{action (toggle "isEditing" this)}}>
-                    <span class="button-label button-defaultState">Edit</span>
+                    <span class="button-label button-defaultState">{{t "users.profile.edit"}}</span>
                   </button>
                   {{#if isEditing}}
                     {{to-elsewhere named="modal" send=(component "users/edit-profile"
@@ -39,11 +39,11 @@
                 {{#if (can "view admin" user)}}
                   {{#bootstrap/bs-dropdown class="d-inline" as |dropdown|}}
                     {{#dropdown.button class="button button--light-outline"}}
-                      Admin
+                      {{t "users.admin.button"}}
                     {{/dropdown.button}}
                     {{#dropdown.menu}}
                       {{#dropdown.menu-item onClick=(action (toggle "isViewingPastNames" this))}}
-                        View Past Names
+                        {{t "users.admin.past-names"}}
                       {{/dropdown.menu-item}}
                       {{#if isViewingPastNames}}
                         {{to-elsewhere named="modal" send=(component "users/view-past-names"
@@ -52,7 +52,7 @@
                           onClose=(toggle-action "isViewingPastNames" this))}}
                       {{/if}}
                       {{#dropdown.menu-item onClick=(action (toggle "isViewingAltAccounts" this))}}
-                        View Alt Accounts
+                        {{t "users.admin.alt-accounts"}}
                       {{/dropdown.menu-item}}
                       {{#if isViewingAltAccounts}}
                         {{to-elsewhere named="modal" send=(component "users/view-alt-accounts"
@@ -61,7 +61,7 @@
                           onClose=(toggle-action "isViewingAltAccounts" this))}}
                       {{/if}}
                       {{#dropdown.menu-item onClick=(action (toggle "isDeletingContent" this))}}
-                        Delete User-Created Content
+                        {{t "users.admin.delete-content"}}
                       {{/dropdown.menu-item}}
                       {{#if isDeletingContent}}
                         {{to-elsewhere named="modal" send=(component "users/delete-user-content"
@@ -70,7 +70,7 @@
                           onClose=(toggle-action "isDeletingContent" this))}}
                       {{/if}}
                       {{#dropdown.menu-item onClick=(action (toggle "isBanningUser" this))}}
-                        Ban
+                        {{t "users.admin.ban"}}
                       {{/dropdown.menu-item}}
                       {{#if isBanningUser}}
                         {{to-elsewhere named="modal" send=(component "users/ban-user"

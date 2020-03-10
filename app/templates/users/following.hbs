@@ -3,7 +3,7 @@
     {{#if model.taskInstance.isRunning}}
       <div class="text-xs-center w-100 m-t-1 m-b-1">
         {{loading-spinner size="large"}}
-        <p>Loading Users...</p>
+        <p>{{t "users.followers.loading"}}</p>
       </div>
     {{else if model.taskInstance.error}}
       <div class="text-xs-center w-100 m-t-1 m-b-1">
@@ -19,7 +19,7 @@
       {{/infinite-pagination}}
     {{else}}
       <div class="text-xs-center w-100 m-t-1 m-b-1">
-        No Users Found.
+        {{t "users.followers.not-found"}}
       </div>
     {{/if}}
   </div>

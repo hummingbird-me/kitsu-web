@@ -2,7 +2,7 @@
   {{#if model.taskInstance.isRunning}}
     <div class="text-xs-center w-100 m-t-1">
       {{loading-spinner size="large"}}
-      <p>Loading Reviews...</p>
+      <p>{{t "users.reviews.loading"}}</p>
     </div>
   {{else if model.taskInstance.error}}
     <div class="text-xs-center w-100 m-t-1">
@@ -21,7 +21,7 @@
     {{/infinite-pagination}}
   {{else}}
     <div class="text-xs-center w-100 m-t-1">
-      No Reviews Found.
+      {{t "users.reviews.not-found"}}
     </div>
   {{/if}}
 </div>
