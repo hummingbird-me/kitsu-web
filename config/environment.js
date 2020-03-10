@@ -163,6 +163,9 @@ module.exports = function(environment) {
     ENV.APP.LOG_TRANSITIONS_INTERNAL = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
     ENV.torii.providers['facebook-connect'].appId = '1189964281083789';
+    ENV['ember-cli-mirage'] = {
+      excludeFilesFromBuild: true
+    };
   }
 
   if (environment === 'test') {
