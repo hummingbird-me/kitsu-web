@@ -7,7 +7,7 @@
   <div class="container">
     {{! name }}
     <div class="form-group row">
-      <label class="col-xs-4 col-form-label">Display Name</label>
+      <label class="col-xs-4 col-form-label">{{t "settings.index.name"}}</label>
       <div class="col-xs-8">
         {{one-way-text name
           update=(action (mut name))
@@ -17,7 +17,7 @@
     </div>
     {{! slug }}
     <div class="form-group row">
-      <label class="col-xs-4 col-form-label">Profile URL</label>
+      <label class="col-xs-4 col-form-label">{{t "settings.index.url"}}</label>
       <div class="col-xs-8">
         {{one-way-text slug
           update=(action (mut slug))
@@ -28,18 +28,18 @@
     </div>
     {{! email }}
     <div class="form-group row">
-      <label class="col-xs-4 col-form-label">Email</label>
+      <label class="col-xs-4 col-form-label">{{t "settings.index.email"}}</label>
       <div class="col-xs-8">
         {{one-way-email user.email
           update=(action (mut user.email))
           class="form-control"
         }}
-        <small>Email will not be publicly displayed.</small>
+        <small>{{t "settings.index.email-message"}}</small>
       </div>
     </div>
     {{! language }}
     <div class="form-group row">
-      <label class="col-xs-4 col-form-label">Language</label>
+      <label class="col-xs-4 col-form-label">{{t "settings.index.language"}}</label>
       <div class="col-xs-8">
         {{#power-select
           renderInPlace=true
@@ -50,12 +50,12 @@
         }}
           {{language.text}}
         {{/power-select}}
-        <small>Interested in translating? <a href="https://crowdin.com/project/kitsu-web">Translate here!</a></small>
+        <small>{{t "settings.index.help-translate"}}</small>
       </div>
     </div>
     {{! timezone }}
     <div class="form-group row">
-      <label class="col-xs-4 col-form-label">Time Zone</label>
+      <label class="col-xs-4 col-form-label">{{t "settings.index.time-zone"}}</label>
       <div class="col-xs-8">
         {{#power-select
           renderInPlace=true
@@ -70,13 +70,13 @@
   </div>
 
   <div class="settings--section-head">
-    Content on Kitsu
+    {{t "settings.index.content"}}
   </div>
   <div class="container">
     {{! themes }}
     {{!--
     <div class="form-group row">
-      <label class="col-xs-4 col-form-label">Site Theme</label>
+      <label class="col-xs-4 col-form-label">{{t "settings.index.theme"}}</label>
       <div class="col-xs-8">
         {{#power-select
           renderInPlace=true
@@ -93,7 +93,7 @@
 
     {{! country }}
     <div class="form-group row">
-      <label class="col-xs-4 col-form-label">Country</label>
+      <label class="col-xs-4 col-form-label">{{t "settings.index.country"}}</label>
       <div class="col-xs-8">
         {{#power-select
           renderInPlace=true
@@ -110,7 +110,7 @@
 
     {{! titles }}
     <div class="form-group row">
-      <label class="col-xs-4 col-form-label">Titles</label>
+      <label class="col-xs-4 col-form-label">{{t "settings.index.titles"}}</label>
       <div class="col-xs-8">
         {{#power-select
           renderInPlace=true
@@ -121,13 +121,13 @@
         }}
           {{title.text}}
         {{/power-select}}
-        <small>How media titles will be displayed.</small>
+        <small>{{t "settings.index.titles-message"}}</small>
       </div>
     </div>
 
     {{! rating type }}
     <div class="form-group row rating-type">
-      <label class="col-xs-4 col-form-label">Rating Type</label>
+      <label class="col-xs-4 col-form-label">{{t "settings.index.rating"}}</label>
       <div class="col-xs-8">
         {{#power-select
           renderInPlace=true
@@ -138,13 +138,13 @@
         }}
           {{rating.text}}
         {{/power-select}}
-        <small>Choose how you would like to rate media that you've watched or read.</small>
+        <small>{{t "settings.index.rating-message"}}</small>
       </div>
     </div>
 
     {{! adult filter }}
     <div class="form-group row">
-      <label class="col-xs-4 col-form-label">Adult Content</label>
+      <label class="col-xs-4 col-form-label">{{t "settings.index.adult"}}</label>
       <div class="col-xs-8">
         {{#power-select
           renderInPlace=true
@@ -155,7 +155,7 @@
         }}
           {{filter.text}}
         {{/power-select}}
-        <small>With adult content hidden, you won't see R18+ media in the feed, libraries, or search.</small>
+        <small>{{t "settings.index.adult-message"}}</small>
       </div>
     </div>
 
@@ -164,7 +164,7 @@
         {{#if updateProfile.isRunning}}
           {{loading-spinner size="small"}}
         {{else}}
-          Update Profile
+          {{t "settings.index.update"}}
         {{/if}}
       </button>
     </div>
