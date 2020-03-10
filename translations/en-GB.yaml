@@ -127,7 +127,6 @@ dashboard:
 #page: anime/manga
 media:
   index:
-    search: "Search by title, character or cast..."
     filter: "Filter"
     remove: "Remove"
     filters:
@@ -244,7 +243,6 @@ media:
       header: "{title} Characters"
       sub-header: "The following is a full list of characters and their {language} voice actors {type, select, anime {for the anime {title}} manga {for the manga {title}} other {}}"
     reactions:
-      loading: "Loading Reactions..."
       delete: "Delete Reaction"
       report: "Report Reaction"
       copy: "Copy Link to Reaction"
@@ -424,7 +422,6 @@ users:
         header: "Looks like you don't have enough data yet! Ready to start something new?"
         guest-header: "Looks like {user} doesn't have any stats yet."
   library:
-    search: "Search {name}'s Library..."
     sorting:
       label: "Sort by:"
       options:
@@ -467,7 +464,6 @@ users:
       import: "Import Library"
       export: "Export Library"
       reset: "Reset Library"
-      reset-loading: "Resetting..."
       reset-confirmation: "This will delete your entire library and associated reactions. Are you sure you want to continue?"
       issues:
         header: "Library Issues"
@@ -508,15 +504,11 @@ users:
       notes: "Personal Notes"
       remove: "Remove from Library"
       save: "Save Changes"
-      saving: "Saving..."
     bulk:
       selected: "{type, select, anime {{num} anime selected} manga {{num} manga selected} other {}}"
       select-all: "Select All"
       select-none: "Select None"
       remove: "Remove <strong>{num}</strong>"
-      move-to: "Move <strong>{num}</strong> to..."
-      remove-loading: "Removing..."
-      update-loading: "Updating..."
   groups:
     sort:
       newest: "Recently Joined"
@@ -622,7 +614,6 @@ settings:
       newsletter: "Newsletter"
       subscribed: "Subscribed"
       message: "If enabled, you will receive occasional (and very witty) email updates about Kitsu written by Josh himself."
-    loading: "Loading settings..."
     update: "Update Settings"
   password:
     header: "Password"
@@ -888,14 +879,11 @@ explore:
     categories: "Categories"
     favorite-categories: "My Favourite Categories"
     no-favorites: "Favouriting categories will improve your recommendations."
-    more-categories: "More categories..."
   modal:
     header: "All Categories"
   favorite-button:
     remove: "Remove from favourites"
-    removing: "Removing..."
     create: "Add to favourites"
-    creating: "Adding..."
 #page: media-reactions
 media-reactions:
   create-account: "Create Account"
@@ -964,13 +952,11 @@ feeds:
     select: "Upload"
     drop: "Drop to upload"
     invalid: "Invalid file type"
-    uploading: "{number, plural, one {} =1 {Uploading photo... {progress}%} other {Uploading {number} photos... {progress}%}}"
   filter:
     all: "All Activity"
     media: "Media Activity"
     user: "User Activity"
     following: "Followed Activity"
-  placeholder: "{type, select, user_aggr {Post to {subject}} group_aggr {Post to {subject}} media_aggr {Post about {subject}} episode_aggr {Post about episode {subject}} chapter_aggr {Post about chapter {subject}} interest_timeline {Post about {subject}} other {Create a post}}..."
   library:
     updated: "moved this to {status}"
     rated: "rated it"
@@ -1055,7 +1041,6 @@ user-notifications:
   aired-unknown: "{media} {type, select, manga {released} anime {broadcasted} other {}} a new {type, select, manga {chapter} anime {episode} other {}}"
 #ember-power-select
 selects:
-  loading: "Loading..."
   none: "No results found"
   search: "Start typing to search"
 #ember-cp-validations
@@ -1104,8 +1089,6 @@ errors:
   serverError:
     title: "Oops! Looks like our server has a bug."
     body: "Our team has been notified, please try again in a few minutes."
-#Loading
-loading: "Loading {subject, select, episode {Episode} chapter {Chapter} episodes {Episodes} chapters {Chapters} other {}}..."
 timeUnits:
   years: "{count, plural, =1 {year} other {years}}"
   months: "{count, plural, =1 {month} other {months}}"
