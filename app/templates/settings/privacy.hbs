@@ -1,21 +1,21 @@
 <div class="settings-container">
-  <h1>Privacy</h1>
+  <h1>{{t "settings.privacy.header"}}</h1>
 
   <div class="settings--section-head">
-    Adjust others ability to view your content
+    {{t "settings.privacy.sub-header"}}
   </div>
   <div class="container">
     <div class="form-group row">
-      <label class="col-xs-4 col-form-label">Discoverability</label>
+      <label class="col-xs-4 col-form-label">{{t "settings.privacy.discover"}}</label>
       <div class="col-xs-8">
         <label class="form-check-label">
           {{one-way-checkbox user.shareToGlobal
             update=(action (mut user.shareToGlobal))
             class="form-check-input"
           }}
-          Show in Global Feed
+          {{t "settings.privacy.checkbox"}}
         </label>
-        <small>If disabled, your posts will only be available to your followers and guests to your profile.</small>
+        <small>{{t "settings.privacy.message"}}</small>
       </div>
     </div>
 
@@ -24,7 +24,7 @@
         {{#if updateProfile.isRunning}}
           {{loading-spinner size="small"}}
         {{else}}
-          Update Profile
+          {{t "settings.privacy.update"}}
         {{/if}}
       </button>
     </div>
