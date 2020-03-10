@@ -65,6 +65,7 @@ module.exports = function(defaults) {
     },
 
     fingerprint: {
+      enabled: true,
       generateAssetMap: true,
       fingerprintAssetMap: true,
       extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'json'],

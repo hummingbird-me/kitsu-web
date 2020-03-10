@@ -7,18 +7,14 @@ import { storageFor } from 'ember-local-storage';
 import getter from 'client/utils/getter';
 import errorMessages from 'client/utils/error-messages';
 import COUNTRIES from 'client/utils/countries';
+import LANGUAGES from 'client/utils/languages';
 import moment from 'moment';
 
 export default Controller.extend({
   notify: service(),
   lastUsed: storageFor('last-used'),
   user: alias('session.account'),
-  languages: getter(() => [
-    { id: 'id', text: 'Bahasa Indonesia' },
-    { id: 'en', text: 'English' },
-    { id: 'es', text: 'Español' },
-    { id: 'fr', text: 'Français' }
-  ]),
+  languages: getter(() => LANGUAGES.sortBy('text')),
   timezoneGuess: getter(() => moment.tz.guess()),
   timezones: getter(() => moment.tz.names()),
 
