@@ -151,10 +151,10 @@ export default Route.extend(ApplicationRouteMixin, {
 
       // i18n
       if (get(user, 'language') === 'fr') {
-        const translations = await fetch('/translations/fr-fr.json');
-        get(this, 'intl').addTranslations('fr-fr', await translations.json());
+        const translations = await fetch('/translations/fr-FR.json');
+        get(this, 'intl').addTranslations('fr-FR', await translations.json());
         // use en-us as fallback as it is already loaded
-        get(this, 'intl').set('locale', ['fr-fr', 'en-us']);
+        get(this, 'intl').set('locale', ['fr-FR', 'en-us']);
       }
 
       if (get(user, 'language') === 'es') {
@@ -165,10 +165,10 @@ export default Route.extend(ApplicationRouteMixin, {
       }
 
       if (get(user, 'language') === 'id') {
-        const translations = await fetch('/translations/id-id.json');
-        get(this, 'intl').addTranslations('id-id', await translations.json());
+        const translations = await fetch('/translations/id-ID.json');
+        get(this, 'intl').addTranslations('id-ID', await translations.json());
         // use en-us as fallback as it is already loaded
-        get(this, 'intl').set('locale', ['id-id', 'en-us']);
+        get(this, 'intl').set('locale', ['id-ID', 'en-us']);
       }
 
       // metrics
