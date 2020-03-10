@@ -586,7 +586,54 @@ settings:
       action:
         create: "Criar"
         update: "Atualizar"
+        destroy: "Remover"
+      status:
+        pending: "Pendente"
+        success: "Sucesso"
+        error: "Erro"
+  imports:
+    header: "Importações"
+    sub-header: "Importar mídias de outros provedores"
+  index:
+    header: "Perfil"
+    sub-header: "Configurações de conta e região"
+  linked-accounts:
+    header: "Contas Vinculadas"
+    sub-header: "Conectar contas de terceiros com Kitsu"
+    facebook: "Facebook"
+    disconnect: "Desconectar Facebook"
+    connect: "Conectar Facebook"
+  notifications:
+    header: "Notificações por Push"
+    sub-header: "Notificações gerais do site"
+    contexts:
+      web: "Web"
+      email: "E-Mail"
+      mobile: "Celular"
+    descriptions:
+      mentions: "Alguém me <strong>mencionar</strong> em uma postagem ou comentário"
+      replies: "Alguém <strong>responder</strong> à minha postagem ou comentário"
+      likes: "Alguém <strong>curtir</strong> a minha publicação ou comentário"
+      follows: "Alguém me <strong>seguir</strong>"
+      posts: "Alguém <strong>postar</strong> no meu perfil"
+      reaction_votes: "Alguém <strong>votar positivo</strong> na minha reação à mídia"
+      airing: "Um novo episódio for lançado"
+    newsletter:
+      newsletter: "Newsletter"
+      subscribed: "Inscrito"
+      message: "Se ativado, você receberá atualizações ocasionais (e bem-humoradas) por e-mail sobre o Kitsu escritas pelo próprio Josh."
+    loading: "Carregando configurações..."
+    update: "Atualizar Configurações"
+  password:
+    header: "Senha"
+    sub-header: "Mudar sua senha"
+    new-pswd: "Nova Senha"
+    confirm-pswd: "Confirmar Senha"
+    update-pswd: "Atualizar Senha"
   privacy:
+    header: "Privacidade"
+    sub-header: "Ajuste a capacidade dos outros de ver seu conteúdo"
+    discover: "Descoberta"
     checkbox: "Mostrar no Feed Global"
     message: "Se desativado, suas publicações só estarão disponíveis para seus seguidores e convidados ao seu perfil."
     update: "Atualizar Perfil"
@@ -923,6 +970,7 @@ feeds:
     media: "Atividade de Mídia"
     user: "Atividade de Usuários"
     following: "Atividade de Seguidos"
+  placeholder: "{type, select, user_aggr {Postar para {subject}} group_aggr {Post em {subject}} media_aggr {Postar sobre {subject}} episode_aggr {Postar sobre Episódio {subject}} chapter_aggr {Postar sobre Capítulo {subject}} interest_timeline {Postar sobre{subject}} other {Criar um post}}..."
   library:
     updated: "movido para {status}"
     rated: "classificou como"
@@ -1041,6 +1089,9 @@ errors:
   even: "{description} deve ser par"
   positive: "{description} precisa ser positivo"
   date: "{description} deve ser uma data válida"
+  email: "{description} deve ser um endereço de e-mail válido"
+  phone: "{description} deve ser um número de telefone válido"
+  url: "{description} deve ser uma url válida"
 timeUnits:
   months: "{count, plural, one {} =1 {mês} other {meses}}"
   days: "{count, plural, one {} =1 {dia} other {dias}}"
