@@ -231,6 +231,18 @@ media:
           true: "Menos informações"
       feed:
         header: "Feed da Comunidade"
+      trailer: "Assistir Trailer"
+    units:
+      unit: "{type, select, episode {Episódio} chapter {Capítulo} other {}}"
+      back: "Voltar para o {type, select, episode {episódio} chapter {capítulo} other {}}"
+      pages: "{length} páginas"
+      date: "{type, select, episode {Transmitido} chapter {Publicado} other {}}"
+      completed: "{type, select, episode {Assistido} chapter {Lido} other {Concluído}}"
+      feed:
+        header: "Discussão do {type, select, episode {Episódio} chapter {Capítulo} other {}}"
+    characters:
+      header: "Personagens de {title}"
+      sub-header: "{type, select, anime {A seguir está uma lista completa de personagens e seus dubladores {language} no anime {title}} manga {A seguir está uma lista completa de personagens do mangá {title}} other {}}"
     reactions:
       loading: "Carregando Reações..."
       delete: "Excluir Reação"
@@ -300,6 +312,7 @@ users:
       sites:
         website:
           about: "Digite seu site pessoal abaixo para adicionar um link para o seu perfil."
+          placeholder: "URL do seu website"
         patreon:
           placeholder: "Nome do seu projeto Patreon"
         deviantart:
