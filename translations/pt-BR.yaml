@@ -1092,7 +1092,22 @@ errors:
   email: "{description} deve ser um endereço de e-mail válido"
   phone: "{description} deve ser um número de telefone válido"
   url: "{description} deve ser uma url válida"
+  #Custom Errors
+  user:
+    name:
+      invalid: "Este campo deve conter apenas letras, números e sublinhados"
+      numbers: "Este campo não pode ser feito inteiramente de números"
+      starts: "Este campo deve começar com uma letra ou número"
+  load: "Ocorreu um erro ao carregar o conteúdo."
+  contentEmpty: "Hmm, parece que ainda não há nada aqui."
+  request: "Opa! Algo deu errado com a solicitação."
+  serverError:
+    title: "Opa! Parece que nosso servidor tem um bug."
+    body: "Nossa equipe foi notificada. Por favor, tente novamente em alguns minutos."
+#Loading
+loading: "Carregando {subject, select, episode {Episódio} chapter {Capítulo} episodes {Episódios} chapters {Capítulos} other {}}..."
 timeUnits:
+  years: "{count, plural, one {} =1 {ano} other {anos}}"
   months: "{count, plural, one {} =1 {mês} other {meses}}"
   days: "{count, plural, one {} =1 {dia} other {dias}}"
   hours: "{count, plural, one {} =1 {hora} other {horas}}"
