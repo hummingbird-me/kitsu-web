@@ -269,7 +269,52 @@ media:
     info: "Публикации будут повяляться в Вашей ленте подписок или {type}"
 #page: users
 users:
+  navigation:
+    activity: "Действия"
+    library: "Библиотека"
+    reviews: "Отзывы"
+    reactions: "Реакции"
+    followers: "Подписчики"
+    following: "Подписки"
+    groups: "Группы"
   edit-modal:
+    cover: "Изменить обложку"
+    navigation:
+      about: "О себе"
+      profile-links: "Ссылки на профиле"
+      favorites: "Избранное"
+    about:
+      header: "О себе"
+      location:
+        label: "Местоположение"
+        placeholder: "Где вы живёте?"
+      birthday: "День рождения"
+      gender:
+        label: "Пол"
+        options:
+          secret: "Это секрет"
+          male: "Мужской"
+          female: "Женский"
+          custom: "Настраиваемый"
+      waifu:
+        label: "Вайфу"
+        placeholder: "Вайфу/Хусбандо"
+        search: "Найдите свою вторую половинку"
+      bio:
+        label: "Биография"
+        placeholder: "Расскажите миру о себе."
+    profile-links:
+      header: "Ссылки на профиле"
+      sites:
+        website:
+          about: "Введите ссылку на свой персональный сайт, что бы добавить ссылку на него на своей странице."
+          placeholder: "URL вашего сайта"
+        twitter:
+          about: "Введите ссылку на свой аккаунт в Twitter, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Twitter (@Username)"
+        facebook:
+          about: "Введите ссылку на свой аккаунт в Facebook, что бы добавить ссылку на него на своей странице."
+          placeholder: "URL адрес Вашен страницы Facebook"
     favorites:
       anime: "Аниме"
       manga: "Манга"
@@ -293,14 +338,22 @@ settings:
     descriptions:
       posts: "Кто-то <strong>написал</strong> на моем профиле"
       airing: "Вышла новая серия"
+  privacy:
+    message: "Если отключено, Ваши публикации будут доступны только для Ваших подписчиков и поситителей Вашей страницы."
 #page: groups
 groups:
+  create:
+    form:
+      privacy-features:
+        restricted: "<li>Каждый может просматривать</li> <li>Каждый может присоединиться</li> <li>Только лидеры могут создавать новые публикации.</li>"
   hide-posts:
     text: "Скрыть публикации от {group}"
     info: "Публикации не будут повяляться в Вашей ленте подписок"
   show-posts:
     text: "Показать публикации от {group}"
     info: "Публикации будут повяляться в Вашей ленте подписок"
+  activity:
+    feed-restricted: "Это - ограниченная группа. Все могут комментировать, только лидеры могут создавать публикации."
   dashboard:
     overview:
       activity:
@@ -332,6 +385,10 @@ media-shared:
       current: "В печати"
       finished: "Завершено"
       upcoming: "Скоро"
+#component: auth-onboarding
+onboarding:
+  aozora-conflict:
+    info: "Публикации из ленты активности на обоих аккаунтах будут объеденены. Вся прочая информация об акаунте будет переписана другим аккаунтом, который Вы выбрали ниже."
 #component: kitsu-feed
 feeds:
   placeholder: "{type, select, user_aggr {Написать в {subject}} group_aggr {Написать в {subject}} media_aggr {Написать про{subject}} episode_aggr {Неписать про серию {subject}} chapter_aggr {Написать про главу {subject}} interest_timeline {Написать про {subject}} other {Создать сообщение}}..."
