@@ -20,7 +20,6 @@ titles:
       highest-rated: "{type} Mais Bem Avaliados"
       most-popular: "{type} Mais Populares"
     category:
-      index: "{type} {category}"
       more:
         newly-released: "{type} {category} Lançados Recentemente"
         trending: "{category} em Alta {type}"
@@ -127,7 +126,6 @@ dashboard:
 #page: anime/manga
 media:
   index:
-    search: "Pesquisar por título, personagem, ou papel..."
     filter: "Filtrar"
     remove: "Remover"
     filters:
@@ -244,7 +242,6 @@ media:
       header: "Personagens de {title}"
       sub-header: "{type, select, anime {A seguir está uma lista completa de personagens e seus dubladores {language} no anime {title}} manga {A seguir está uma lista completa de personagens do mangá {title}} other {}}"
     reactions:
-      loading: "Carregando Reações..."
       delete: "Excluir Reação"
       report: "Denunciar reação"
       copy: "Copiar Link de Reação"
@@ -424,7 +421,6 @@ users:
         header: "Parece que você ainda não tem dados suficientes! Pronto para começar algo novo?"
         guest-header: "Parece que {user} ainda não tem nenhuma estatística."
   library:
-    search: "Pesquisar na biblioteca de {name}..."
     sorting:
       label: "Ordenar por:"
       options:
@@ -467,7 +463,6 @@ users:
       import: "Importar Biblioteca"
       export: "Exportar Biblioteca"
       reset: "Resetar biblioteca"
-      reset-loading: "Redefinindo..."
       reset-confirmation: "Isso irá apagar toda a sua biblioteca, análises associadas e reações. Você tem certeza que deseja continuar?"
       issues:
         header: "Problemas na Biblioteca"
@@ -508,15 +503,11 @@ users:
       notes: "Notas Pessoais"
       remove: "Remover da Biblioteca"
       save: "Salvar Alterações"
-      saving: "Salvando..."
     bulk:
       selected: "{type, select, anime {{num} animes selecionados} manga {{num} mangás selecionados} other {}}"
       select-all: "Selecionar Todos"
       select-none: "Selecionar Nenhum"
       remove: "Remover <strong>{num}</strong>"
-      move-to: "Mover <strong>{num}</strong> para..."
-      remove-loading: "Removendo..."
-      update-loading: "Atualizando..."
   groups:
     sort:
       newest: "Registou-se recentemente"
@@ -622,7 +613,6 @@ settings:
       newsletter: "Newsletter"
       subscribed: "Inscrito"
       message: "Se ativado, você receberá atualizações ocasionais (e bem-humoradas) por e-mail sobre o Kitsu escritas pelo próprio Josh."
-    loading: "Carregando configurações..."
     update: "Atualizar Configurações"
   password:
     header: "Senha"
@@ -888,14 +878,11 @@ explore:
     categories: "Categorias"
     favorite-categories: "Minhas Categorias Favoritas"
     no-favorites: "Favoritar categorias melhorarão suas recomendações."
-    more-categories: "Mais categorias..."
   modal:
     header: "Todas as categorias"
   favorite-button:
     remove: "Remover dos favoritos"
-    removing: "Removendo..."
     create: "Adicionar aos Favoritos"
-    creating: "Adicionando..."
 #page: media-reactions
 media-reactions:
   create-account: "Criar Conta"
@@ -964,13 +951,11 @@ feeds:
     select: "Enviar"
     drop: "Solte para fazer upload"
     invalid: "Tipo de arquivo inválido"
-    uploading: "{number, plural, one {} =1 {Enviando foto... {progress}%} other {Enviando {number} fotos... {progress}%}}"
   filter:
     all: "Toda Atividade"
     media: "Atividade de Mídia"
     user: "Atividade de Usuários"
     following: "Atividade de Seguidos"
-  placeholder: "{type, select, user_aggr {Postar para {subject}} group_aggr {Post em {subject}} media_aggr {Postar sobre {subject}} episode_aggr {Postar sobre Episódio {subject}} chapter_aggr {Postar sobre Capítulo {subject}} interest_timeline {Postar sobre{subject}} other {Criar um post}}..."
   library:
     updated: "movido para {status}"
     rated: "classificou como"
@@ -1055,7 +1040,6 @@ user-notifications:
   aired-unknown: "{media} {type, select, manga {lançou} anime {lançou} other {}} um novo {type, select, manga {Capítulo} anime {Episódio} other {}}"
 #ember-power-select
 selects:
-  loading: "Carregando..."
   none: "Nenhum resultado encontrado"
   search: "Comece a digitar para pesquisar"
 #ember-cp-validations
@@ -1104,8 +1088,6 @@ errors:
   serverError:
     title: "Opa! Parece que nosso servidor tem um bug."
     body: "Nossa equipe foi notificada. Por favor, tente novamente em alguns minutos."
-#Loading
-loading: "Carregando {subject, select, episode {Episódio} chapter {Capítulo} episodes {Episódios} chapters {Capítulos} other {}}..."
 timeUnits:
   years: "{count, plural, one {} =1 {ano} other {anos}}"
   months: "{count, plural, one {} =1 {mês} other {meses}}"
