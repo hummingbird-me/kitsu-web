@@ -26,15 +26,7 @@
   </div>
 
   <div class="leader-chat--footer">
-    {{#power-select
-      selected=inviteUser
-      allowClear=true
-      search=(perform searchUsersTask)
-      onchange=(action (mut inviteUser))
-      placeholder=(t "groups.dashboard.members.invites.placeholder")
-      triggerClass="leader-input"
-      as |user|
-    }}
+    {{#power-select searchEnabled=true selected=inviteUser allowClear=true search=(perform searchUsersTask) onChange=(action (mut inviteUser)) placeholder=(t "groups.dashboard.members.invites.placeholder") triggerClass="leader-input" as |user|}}
       <strong>{{user.name}}</strong>
     {{/power-select}}
 

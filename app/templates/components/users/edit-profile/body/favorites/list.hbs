@@ -1,9 +1,5 @@
 <div class="favorite-search m-t-2 m-b-2">
-  {{#power-select
-    search=(perform searchTask)
-    onchange=(action "addFavorite")
-    renderInPlace=true
-    as |item|}}
+  {{#power-select searchEnabled=true search=(perform searchTask) onChange=(action "addFavorite") renderInPlace=true as |item|}}
     {{#if isCharacter}}
       <span class="waifu-wrapper">
         {{lazy-image src=(image item.image)}}

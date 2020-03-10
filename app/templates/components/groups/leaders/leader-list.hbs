@@ -24,15 +24,7 @@
 
 <div class="leader-chat--footer add-leader">
   {{#if isManaging}}
-    {{#power-select
-      selected=userToAdd
-      allowClear=true
-      search=(perform searchUsersTask)
-      onchange=(action (mut userToAdd))
-      placeholder=(t "groups.leaders.list.add-placeholder")
-      triggerClass="leader-input"
-      as |user|
-    }}
+    {{#power-select searchEnabled=true selected=userToAdd allowClear=true search=(perform searchUsersTask) onChange=(action (mut userToAdd)) placeholder=(t "groups.leaders.list.add-placeholder") triggerClass="leader-input" as |user|}}
       <strong>{{user.name}}</strong>
     {{/power-select}}
 

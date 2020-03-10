@@ -12,12 +12,7 @@
         {{t "users.library.edit.status"}}
       </label>
       <div class="col-sm-7">
-        {{#power-select
-          searchEnabled=false
-          options=statuses
-          selected=libraryEntry.status
-          disabled=isReadOnly
-          onchange=(action (mut libraryEntry.status)) as |option|}}
+        {{#power-select options=statuses selected=libraryEntry.status disabled=isReadOnly onChange=(action (mut libraryEntry.status)) as |option|}}
           {{t (concat "library-shared." option) type=libraryEntry.media.modelType}}
         {{/power-select}}
       </div>
@@ -130,11 +125,7 @@
           {{t "users.library.edit.privacy"}}
         </label>
         <div class="col-sm-7">
-          {{#power-select
-            searchEnabled=false
-            options=privacies
-            selected=(find-by "id" libraryEntry.private privacies)
-            onchange=(action "selectUpdate" "private") as |option|}}
+          {{#power-select options=privacies selected=(find-by "id" libraryEntry.private privacies) onChange=(action "selectUpdate" "private") as |option|}}
             {{option.value}}
           {{/power-select}}
         </div>

@@ -63,16 +63,7 @@
     {{#groups/group-form-field id="form-category" onHover=(action (mut hoveredField) "category")}}
       <span class="field-title">{{t "groups.create.form.category"}}</span>
       <div class="field-input-wrapper">
-        {{#power-select
-          selected=selectedCategory
-          options=categories
-          onchange=(action "selectCategory")
-          renderInPlace=true
-          searchEnabled=false
-          placeholder=(t "groups.create.form.category-placeholder")
-          triggerClass="form-control"
-          as |category|
-        }}
+        {{#power-select selected=selectedCategory options=categories onChange=(action "selectCategory") renderInPlace=true placeholder=(t "groups.create.form.category-placeholder") triggerClass="form-control" as |category|}}
           <span class="icon">{{svg-jar category.slug}}</span>
           {{category.name}}
         {{/power-select}}

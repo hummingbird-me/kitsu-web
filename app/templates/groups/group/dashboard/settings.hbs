@@ -45,13 +45,7 @@
         {{#groups/group-form-field id="form-neighbors" onHover=(action (mut hoveredField) "neighbors")}}
           <span class="field-title">{{t "groups.create.form.neighbors"}}</span>
           <div class="field-input-wrapper">
-            {{#power-select
-              search=(perform searchGroupsTask)
-              onchange=(action "addNeighbor")
-              disabled=neighborsDisabled
-              placeholder=(t "groups.create.form.neighbors-placeholder")
-              as |group|
-            }}
+            {{#power-select search=(perform searchGroupsTask) onChange=(action "addNeighbor") searchEnabled=true disabled=neighborsDisabled placeholder=(t "groups.create.form.neighbors-placeholder") as |group|}}
               <strong>{{group.name}}</strong>
             {{/power-select}}
 
@@ -96,16 +90,7 @@
         {{#groups/group-form-field id="form-category" onHover=(action (mut hoveredField) "category")}}
           <span class="field-title">{{t "groups.create.form.category"}}</span>
           <div class="field-input-wrapper">
-            {{#power-select
-              selected=selectedCategory
-              options=categories
-              onchange=(action "selectCategory")
-              renderInPlace=true
-              searchEnabled=false
-              placeholder=(t "groups.create.form.category-placeholder")
-              triggerClass="form-control"
-              as |category|
-            }}
+            {{#power-select selected=selectedCategory options=categories onChange=(action "selectCategory") renderInPlace=true placeholder=(t "groups.create.form.category-placeholder") triggerClass="form-control" as |category|}}
               <span class="icon">{{svg-jar category.slug}}</span>
               {{category.name}}
             {{/power-select}}

@@ -9,15 +9,7 @@
       <label class="col-xs-3 col-form-label">Block Users</label>
       <div class="form-inline col-xs-9">
         <div class="col-xs-9">
-          {{#power-select
-            search=(perform searchUsers)
-            selected=currentSelection
-            onchange=(action (mut currentSelection))
-            renderInPlace=true
-            allowClear=true
-            placeholder="Search users to block..."
-            as |item|
-          }}
+          {{#power-select search=(perform searchUsers) searchEnabled=true selected=currentSelection onChange=(action (mut currentSelection)) renderInPlace=true allowClear=true placeholder="Search users to block..." as |item|}}
             <span>{{item.name}}</span>
           {{/power-select}}
         </div>

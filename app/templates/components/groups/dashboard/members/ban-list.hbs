@@ -24,15 +24,7 @@
 </div>
 
 <div class="leader-chat--footer add-leader">
-  {{#power-select
-    selected=banUser
-    allowClear=true
-    search=(perform searchUsersTask)
-    onchange=(action (mut banUser))
-    placeholder=(t "groups.dashboard.members.bans.placeholder")
-    triggerClass="leader-input"
-    as |user|
-  }}
+  {{#power-select searchEnabled=true selected=banUser allowClear=true search=(perform searchUsersTask) onChange=(action (mut banUser)) placeholder=(t "groups.dashboard.members.bans.placeholder") triggerClass="leader-input" as |user|}}
     <strong>{{user.name}}</strong>
   {{/power-select}}
 

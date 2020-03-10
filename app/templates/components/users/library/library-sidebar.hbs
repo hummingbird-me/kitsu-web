@@ -1,12 +1,6 @@
 <div class="is-sticky">
   <div class="card">
-    {{#power-select
-      searchEnabled=false
-      options=mediaOptions
-      selected=media
-      onchange=(action updateMedia)
-      triggerClass="m-b-1"
-      as |option|}}
+    {{#power-select options=mediaOptions selected=media onChange=(action updateMedia) triggerClass="m-b-1" as |option|}}
       {{t "users.library.sidebar.media-select" user=user.name type=option}}
     {{/power-select}}
 

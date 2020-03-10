@@ -15,14 +15,7 @@
 
     {{! Reason Select }}
     <div class="m-b-1">
-      {{#power-select
-        renderInPlace=true
-        searchEnabled=false
-        selected=reason
-        options=reasons
-        placeholder="Reason"
-        onchange=(action (mut reason)) as |reason|
-      }}
+      {{#power-select renderInPlace=true selected=reason options=reasons placeholder="Reason" onChange=(action (mut reason)) as |reason|}}
         {{reason}}
       {{/power-select}}
     </div>

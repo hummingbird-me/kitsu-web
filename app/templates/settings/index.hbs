@@ -41,13 +41,7 @@
     <div class="form-group row">
       <label class="col-xs-4 col-form-label">Language</label>
       <div class="col-xs-8">
-        {{#power-select
-          renderInPlace=true
-          selected=(or selectedLanguage (get languages "firstObject"))
-          options=languages
-          searchEnabled=false
-          onchange=(action "changeLanguage") as |language|
-        }}
+        {{#power-select renderInPlace=true selected=(or selectedLanguage (get languages "firstObject")) options=languages searchEnabled=true onChange=(action "changeLanguage") as |language|}}
           {{language.text}}
         {{/power-select}}
         <small>Interested in translating? <a href="https://crowdin.com/project/kitsu-web">Translate here!</a></small>
@@ -57,12 +51,7 @@
     <div class="form-group row">
       <label class="col-xs-4 col-form-label">Time Zone</label>
       <div class="col-xs-8">
-        {{#power-select
-          renderInPlace=true
-          selected=(or user.timeZone timezoneGuess)
-          options=timezones
-          onchange=(action (mut user.timeZone)) as |timezone|
-        }}
+        {{#power-select renderInPlace=true selected=(or user.timeZone timezoneGuess) searchEnabled=true options=timezones onChange=(action (mut user.timeZone)) as |timezone|}}
           {{timezone}}
         {{/power-select}}
       </div>
@@ -95,14 +84,7 @@
     <div class="form-group row">
       <label class="col-xs-4 col-form-label">Country</label>
       <div class="col-xs-8">
-        {{#power-select
-          renderInPlace=true
-          options=countries
-          selected=selectedCountry
-          searchField="text"
-          placeholder="Worldwide"
-          onchange=(action "changeCountry") as |country|
-        }}
+        {{#power-select renderInPlace=true options=countries selected=selectedCountry searchEnabled=true searchField="text" placeholder="Worldwide" onChange=(action "changeCountry") as |country|}}
           {{country.text}}
         {{/power-select}}
       </div>
@@ -112,13 +94,7 @@
     <div class="form-group row">
       <label class="col-xs-4 col-form-label">Titles</label>
       <div class="col-xs-8">
-        {{#power-select
-          renderInPlace=true
-          options=titles
-          selected=selectedTitle
-          searchEnabled=false
-          onchange=(action "changeTitle") as |title|
-        }}
+        {{#power-select renderInPlace=true options=titles selected=selectedTitle onChange=(action "changeTitle") as |title|}}
           {{title.text}}
         {{/power-select}}
         <small>How media titles will be displayed.</small>
@@ -129,13 +105,7 @@
     <div class="form-group row rating-type">
       <label class="col-xs-4 col-form-label">Rating Type</label>
       <div class="col-xs-8">
-        {{#power-select
-          renderInPlace=true
-          options=ratings
-          selected=selectedRating
-          searchEnabled=false
-          onchange=(action "changeRating") as |rating|
-        }}
+        {{#power-select renderInPlace=true options=ratings selected=selectedRating onChange=(action "changeRating") as |rating|}}
           {{rating.text}}
         {{/power-select}}
         <small>Choose how you would like to rate media that you've watched or read.</small>
@@ -146,13 +116,7 @@
     <div class="form-group row">
       <label class="col-xs-4 col-form-label">Adult Content</label>
       <div class="col-xs-8">
-        {{#power-select
-          renderInPlace=true
-          options=filters
-          selected=selectedFilter
-          searchEnabled=false
-          onchange=(action "changeFilter") as |filter|
-        }}
+        {{#power-select renderInPlace=true options=filters selected=selectedFilter onChange=(action "changeFilter") as |filter|}}
           {{filter.text}}
         {{/power-select}}
         <small>With adult content hidden, you won't see R18+ media in the feed, libraries, or search.</small>
