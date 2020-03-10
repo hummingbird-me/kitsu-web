@@ -6,7 +6,7 @@
   </div>
   <div class="container">
     <div class="notification-settings--headers row">
-      <label class="col-xs-3 col-form-label">{{t "settings.blocking.title"}}</label>
+      <label class="col-xs-3 col-form-label">Block Users</label>
       <div class="form-inline col-xs-9">
         <div class="col-xs-9">
           {{#power-select
@@ -15,14 +15,14 @@
             onchange=(action (mut currentSelection))
             renderInPlace=true
             allowClear=true
-            placeholder=(t "settings.blocking.placeholder")
+            placeholder="Search users to block..."
             as |item|
           }}
             <span>{{item.name}}</span>
           {{/power-select}}
         </div>
         <div class="col-xs-3">
-          <button class="button" disabled={{unless currentSelection "disabled"}} onclick={{action "blockUser"}}>{{t "settings.blocking.button-block"}}</button>
+          <button class="button" disabled={{unless currentSelection "disabled"}} onclick={{action "blockUser"}}>Block</button>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
     {{#if model.taskInstance.isRunning}}
       <div class="text-xs-center w-100 m-t-1 m-b-1">
         {{loading-spinner size="large"}}
-        <p>{{t "settings.blocking.loading"}}</p>
+        <p>Loading Users...</p>
       </div>
     {{else if model.taskInstance.error}}
       <div class="text-xs-center w-100 m-t-1 m-b-1">
@@ -51,7 +51,7 @@
                   <a class="author-name">{{block.blocked.name}}</a>
                 </div>
                 <a href="#" class="unblock-cta" {{action "unblockUser" block}}>
-                  {{t "settings.blocking.button-unblock"}}
+                  Unblock
                 </a>
               </div>
             </li>
@@ -62,13 +62,13 @@
       <div class="text-xs-center w-100">
         {{#if hasNextPage}}
           <button class="button button--primary btn-block" disabled={{if isLoading "disabled"}} {{action (route-action "onPagination")}}>
-            {{t "settings.blocking.more"}}
+            Load More
           </button>
         {{/if}}
       </div>
     {{else}}
       <p class="text-xs-center w-100 m-t-1 m-b-1">
-        {{t "settings.blocking.not-blocking"}}
+        You aren't currently blocking anyone.
       </p>
     {{/if}}
   </div>
