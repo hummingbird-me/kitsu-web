@@ -1,8 +1,8 @@
 <div class="settings-container">
-  <h1>Account</h1>
+  <h1>{{t "settings.account.header"}}</h1>
 
   <div class="settings--section-head text-danger">
-    Danger Zone! Deleting your account is irreversible.
+    {{t "settings.account.sub-header"}}
   </div>
   <div class="container">
     <div class="form-group row">
@@ -10,14 +10,14 @@
         {{#if deleteAccount.isRunning}}
           {{loading-spinner}}
         {{else}}
-          Delete Account
+          {{t "settings.account.delete"}}
         {{/if}}
       </button>
 
       {{#if showConfirmModal}}
         {{to-elsewhere named="modal" send=(component "modals/confirm-action"
-          title="Delete Account"
-          text="We're sorry to see you go, are you sure you want to continue?"
+          title=(t "settings.account.confirm-title")
+          text=(t "settings.account.confirm-text")
           onConfirm=(perform deleteAccount)
           onClose=(toggle-action "showConfirmModal" this))}}
       {{/if}}
