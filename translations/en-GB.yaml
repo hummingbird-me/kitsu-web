@@ -262,12 +262,80 @@ media:
         spinoff: "Spin-off"
         adaptation: "Adaptation"
         anime_adaptation: "Anime"
+        manga_adaptation: "Manga"
+        character: "Character"
+        other: "Other"
+  hide-posts:
+    text: "Hide posts about {media}"
+    info: "Posts won't appear in your Following or {type} Feed"
+  show-posts:
+    text: "Show posts about {media}"
+    info: "Posts will appear in your Following or {type} Feed"
 #page: users
 users:
+  navigation:
+    activity: "Activity"
+    library: "Library"
+    reviews: "Reviews"
+    reactions: "Reactions"
+    followers: "Followers"
+    following: "Following"
+    groups: "Groups"
   edit-modal:
+    cover: "Change your cover photo"
+    navigation:
+      about: "About Me"
+      profile-links: "Profile Links"
+      favorites: "Favourites"
+    about:
+      header: "About Me"
+      location:
+        label: "Location"
+        placeholder: "Where do you live?"
+      birthday: "Birthday"
+      gender:
+        label: "Gender"
+        options:
+          secret: "It's a secret"
+          male: "Male"
+          female: "Female"
+          custom: "Custom"
+      waifu:
+        label: "Waifu"
+        placeholder: "Waifu/Husbando"
+        search: "Find your special someone"
+      bio:
+        label: "Bio"
+        placeholder: "Tell the world your story."
     profile-links:
+      header: "Profile Links"
       sites:
+        website:
+          about: "Enter your personal website below to add a link to your profile."
+          placeholder: "Your website URL"
+        twitter:
+          about: "Enter your Twitter username below to add a link to your profile."
+          placeholder: "Your Twitter username (@Username)"
+        facebook:
+          about: "Enter your Facebook URL below to add a link to your profile."
+          placeholder: "Your Facebook URL"
+        youtube:
+          about: "Enter your YouTube channel URL below to add a link to your profile."
+          placeholder: "Your YouTube channel URL"
+        google:
+          about: "Enter your Google+ profile URL or username below to add a link to your profile."
+          placeholder: "Your Google+ profile URL or username (+Username)"
+        instagram:
+          about: "Enter your Instagram username below to add a link to your profile."
+          placeholder: "Your Instagram username"
+        twitch:
+          about: "Enter your Twitch username below to add a link to your profile."
+          placeholder: "Your Twitch username"
+        vimeo:
+          about: "Enter your Vimeo username below to add a link to your profile."
+          placeholder: "Your Vimeo username"
         github:
+          about: "Enter your GitHub username below to add a link to your profile."
           placeholder: "Your GitHub username"
         battlenet:
           about: "Enter your Battle.net BattleTag below to add a link to your profile."
@@ -476,6 +544,8 @@ settings:
     notifications: "Notifications"
     password: "Password"
     privacy: "Privacy"
+  account:
+    confirm-text: "We're sorry to see you go. Are you sure you want to continue?"
   notifications:
     contexts:
       email: "Email"
@@ -596,8 +666,20 @@ groups:
     about: "About {group}"
     members: "Members"
     view-members: "view all"
+    feed-restricted: "This is a restricted group. Anyone can comment, but only leaders can create posts."
+  rules:
+    header: "Community Rules"
+    empty: "Hey there! Looks like you're using the Kitsu community guidelines. If you'd like to specify your own rules you can do that on your <a href={link}>settings page</a>."
   tickets:
+    search: "Search Tickets"
+    empty: "Hooray! You don't have any tickets to handle."
+    helper: "Tickets allow you to communicate with the leaders of this group to solve any issues you might have. Message the leaders here to create a ticket."
+    filter:
+      open: "Open Tickets"
+      resolved: "Resolved Tickets"
+      all: "All Tickets"
     conversation:
+      title: "Ticket from <a href={link}>{name}</a>"
       mark-resolved: "Mark Resolved"
       mark-closed: "Mark Closed"
       mark-open: "Mark Open"
@@ -660,6 +742,26 @@ groups:
         header: "Members"
         today: "Joined Today"
         total: "Total Members"
+      activity:
+        posts: "Posts Today"
+        comments: "Comments Today"
+      help-desk:
+        header: "Open Cases"
+        tickets: "Tickets"
+        reports: "Reports"
+      tickets: "Latest Tickets"
+      reports: "Latest Reports"
+      log: "Leader Log"
+    members:
+      invites:
+        header: "Pending Invites"
+        invited: "Invited"
+        revoke: "Cancel Invite"
+        invite: "Invite"
+        placeholder: "Search for a user to invite. They must be following you!"
+        empty: "Looks like your group doesn't have any pending invites."
+      bans:
+        header: "Banned Users"
     audit:
       group-ticket:
         created: "re-opened a ticket."
@@ -731,6 +833,39 @@ media-shared:
 #shared: library
 library-shared:
   all: "{type, select, anime {All Anime} manga {All Manga} other {}}"
+  current: "{type, select, anime {Currently Watching} manga {Currently Reading} other {}}"
+  planned: "{type, select, anime {Plan to Watch} manga {Plan to Read} other {}}"
+  on_hold: "{type, select, anime {On Hold} manga {On Hold} other {}}"
+  dropped: "{type, select, anime {Dropped} manga {Dropped} other {}}"
+#shared: form:
+form-shared:
+  placeholders:
+    username: "Username"
+    password: "Password"
+#component: auth-onboarding
+onboarding:
+  aozora-conflict:
+    title: "Oh, you already have a Kitsu account! Which do you want to keep?"
+    info: "Activity feed posts from both accounts will be merged.  All other account information will be overwritten by the account you select below."
+  aozora-account-details:
+    submit: "Looks Good!"
+#component: follow-button
+follow-button:
+  follow: "Follow"
+  unfollow: "Unfollow"
+#component: kitsu-feed
+feeds:
+  embed:
+    preview: "This is a preview of your embed."
+  uploads:
+    select: "Upload"
+    drop: "Drop to upload"
+    invalid: "Invalid file type"
+    uploading: "{number, plural, one {} =1 {Uploading photo... {progress}%} other {Uploading {number} photos... {progress}%}}"
+  filter:
+    all: "All Activity"
+    media: "Media Activity"
+    user: "User Activity"
 #component: modals/media-reaction
 reaction-modal:
   edit-warning: "Careful! Editing will delete your upvotes."
@@ -741,3 +876,4 @@ reaction-modal:
 library-entry:
   state:
     header: "{state, select, false {Add to Library} true {Update Library} other {}}"
+    want-to-watch: "{type, select, anime {Plan to Watch} manga {Plan to Read} other {}}"
