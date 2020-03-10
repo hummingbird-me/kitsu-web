@@ -544,8 +544,19 @@ settings:
     notifications: "Notifications"
     password: "Password"
     privacy: "Privacy"
+    linked-accounts: "Linked Accounts"
+    import: "Import"
+    export: "Export"
+    blocking: "Blocking"
   account:
+    delete: "Delete Account"
+    confirm-title: "Delete Account"
     confirm-text: "We're sorry to see you go. Are you sure you want to continue?"
+  exports:
+    remove: "Remove Exporter"
+    logs:
+      action:
+        destroy: "Remove"
   notifications:
     contexts:
       email: "Email"
@@ -762,8 +773,45 @@ groups:
         empty: "Looks like your group doesn't have any pending invites."
       bans:
         header: "Banned Users"
+        unban: "Unban"
+        ban: "Ban"
+        placeholder: "Name"
+        empty: "Hooray! You don't have any banned users."
+      members:
+        header: "Members"
+        table:
+          users: "User"
+          permissions: "Rank"
+          joined: "Joined"
+          actions: "Actions"
+        remove: "Remove"
+        ban: "Ban"
+    leaders:
+      chat:
+        header: "Leader Chat"
     audit:
+      user:
+        invited: "invited <a href={link}>{user}</a> to join the community."
+        granted: "granted permissions to <a href={link}>{user}</a>."
+        revoked: "removed permissions from <a href={link}>{user}</a>."
+      group:
+        added_neighbor: "added <a href={link}>{group}</a> as a neighbour."
+        removed_neighbor: "removed <a href={link}>{group}</a> as a neighbour."
+        avatar_changed: "updated the {group} avatar."
+        cover_changed: "updated the {group} cover image."
+        locale_changed: "updated the {group} locale."
+        rules_changed: "updated the {group} rules."
+        nsfw_changed: "updated the {group} NSFW status."
+        about_changed: "updated the {group} description."
+        tagline_changed: "updated the {group} tagline."
+        category_changed: "updated the {group} category."
+      group-report:
+        resolved: "resolved a report."
+        declined: "declined a report."
+        escalated: "escalated a report."
       group-ticket:
+        assigned: "assigned a ticket to <a href={link}>{user}</a>."
+        resolved: "marked a ticket as resolved."
         created: "re-opened a ticket."
 #page: group-invite
 group-invite:
@@ -835,6 +883,7 @@ library-shared:
   all: "{type, select, anime {All Anime} manga {All Manga} other {}}"
   current: "{type, select, anime {Currently Watching} manga {Currently Reading} other {}}"
   planned: "{type, select, anime {Plan to Watch} manga {Plan to Read} other {}}"
+  completed: "{type, select, anime {Completed} manga {Completed} other {}}"
   on_hold: "{type, select, anime {On Hold} manga {On Hold} other {}}"
   dropped: "{type, select, anime {Dropped} manga {Dropped} other {}}"
 #shared: form:
@@ -866,6 +915,14 @@ feeds:
     all: "All Activity"
     media: "Media Activity"
     user: "User Activity"
+    following: "Followed Activity"
+  placeholder: "{type, select, user_aggr {Post to {subject}} group_aggr {Post to {subject}} media_aggr {Post about {subject}} episode_aggr {Post about episode {subject}} chapter_aggr {Post about chapter {subject}} interest_timeline {Post about {subject}} other {Create a post}}..."
+  library:
+    updated: "moved this to {status}"
+    rated: "rated it"
+    progressed: "{type, select, anime {watched episode {num}} manga {read chapter {num}} other {}}"
+  post:
+    more: "View More"
 #component: modals/media-reaction
 reaction-modal:
   edit-warning: "Careful! Editing will delete your upvotes."
@@ -877,3 +934,5 @@ library-entry:
   state:
     header: "{state, select, false {Add to Library} true {Update Library} other {}}"
     want-to-watch: "{type, select, anime {Plan to Watch} manga {Plan to Read} other {}}"
+    remove-rating: "Remove Rating"
+    remove-from-library: "Remove from Library"
