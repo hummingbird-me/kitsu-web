@@ -20,7 +20,6 @@ titles:
       highest-rated: "{type, select, Anime {Animes} Manga {Mangas} other {type}} mejor evaluados"
       most-popular: "{type, select, Anime {Animes} Manga {Mangas} other {type}} más populares"
     category:
-      index: "{category} {type}"
       more:
         newly-released: "{type, select, Anime {Animes} Manga {Mangas} other {type}} {category} recientes"
         trending: "{type, select, Anime {Animes} Manga {Mangas} other {type}} {category} en tendencia"
@@ -41,13 +40,11 @@ titles:
   reviews: "Reseña de {user}"
   notifications: "Notificaciones"
   feedback:
-    bugs: "Bugs"
     feature-requests: "Solicitudes de funcionalidades"
     database-requests: "Solicitudes de base de datos"
     mobile-bugs: "Bugs de dispositivos móviles"
     mobile-features: "Solicitudes de funcionalidades para dispositivos móviles"
   admin:
-    index: "Admin"
     reports: "Reportes"
   groups:
     index: "Grupos"
@@ -84,7 +81,6 @@ header:
   user:
     profile: "Ver perfil"
     settings: "Ajustes"
-    admin: "Admin"
     logout: "Salir"
 #authentication modal
 auth-modal:
@@ -95,8 +91,6 @@ dashboard:
   quick-update:
     filter:
       all: "Todo"
-      anime: "Anime"
-      manga: "Manga"
     empty:
       html: "Los medios que hayas añadido o subido dentro de tu <a href={link}>Biblioteca</a> se mostrarán aquí para que los puedas actualizar de forma rápida."
       discover: "Descubrir medios"
@@ -127,7 +121,6 @@ dashboard:
 #page: anime/manga
 media:
   index:
-    search: "Buscar por título, personaje o elenco..."
     filter: "Filtrar"
     remove: "Remover"
     filters:
@@ -172,7 +165,6 @@ media:
         header: "Reacciones"
         more: "Ver más reacciones"
         sorts:
-          -upVotesCount: "Popular"
           -createdAt: "Reciente"
         new: "Nueva reacción"
         edit: "Mi reacción"
@@ -194,7 +186,6 @@ media:
         en_us: "Inglés (US)"
         es_es: "Español"
         fr_fr: "Frances"
-        id_id: "Indonesio"
         it_it: "Italiano"
         ja_jp: "Japonés"
         ko_kr: "Coreano"
@@ -244,7 +235,6 @@ media:
       header: "Personajes de {title}"
       sub-header: "{type, select, anime {La siguiente es una lista completa de los personajes y sus actores de voz en {language} para el anime {title}} manga {La siguiente es una lista completa de los personajes para el manga {title}} other {}}"
     reactions:
-      loading: "Cargando reacciones..."
       delete: "Eliminar reacción"
       report: "Reportar reacción"
       copy: "Copiar enlace a la reacción"
@@ -259,10 +249,7 @@ media:
         parent_story: "Historia previa"
         summary: "Recapitulación"
         full_story: "Historia completa"
-        spinoff: "Spin-off"
         adaptation: "Adaptación"
-        anime_adaptation: "Anime"
-        manga_adaptation: "Manga"
         character: "Personaje"
         other: "Otro"
   hide-posts:
@@ -301,11 +288,8 @@ users:
           female: "Mujer"
           custom: "Personalizado"
       waifu:
-        label: "Waifu"
-        placeholder: "Waifu/Husbando"
         search: "Encuentra alguien especial"
       bio:
-        label: "Bio"
         placeholder: "Cuéntale al mundo tu historia."
     profile-links:
       header: "Enlaces del perfil"
@@ -399,8 +383,6 @@ users:
           placeholder: "Tu nombre de usuario de Trakt"
     favorites:
       header: "Favoritos"
-      anime: "Anime"
-      manga: "Manga"
       characters: "Personajes"
       remove: "¿Remover favorito?"
   activity:
@@ -424,7 +406,6 @@ users:
         header: "¡Parece que todavía no tienes suficientes datos! ¿Empezamos algo nuevo?"
         guest-header: "Parece que {user} todavía no tiene estadísticas."
   library:
-    search: "Buscar en la biblioteca de {name}..."
     sorting:
       label: "Ordenar por:"
       options:
@@ -467,7 +448,6 @@ users:
       import: "Importar biblioteca"
       export: "Exportar biblioteca"
       reset: "Restablecer biblioteca"
-      reset-loading: "Restableciendo..."
       reset-confirmation: "Esto eliminará toda tu biblioteca, reseñas asociadas y reacciones. ¿De verdad quieres continuar?"
       issues:
         header: "Problemas con la biblioteca"
@@ -508,15 +488,11 @@ users:
       notes: "Notas personales"
       remove: "Remover de la biblioteca"
       save: "Guardar cambios"
-      saving: "Guardando..."
     bulk:
       selected: "{type, select, anime {{num} animes seleccionados} manga {{num} mangas seleccionados} other {}}"
       select-all: "Seleccionar todos"
       select-none: "Seleccionar ninguno"
       remove: "Remover <strong>{num}</strong>"
-      move-to: "Mover <strong>{num}</strong> a..."
-      remove-loading: "Removiendo..."
-      update-loading: "Actualizando..."
   groups:
     sort:
       newest: "Ingreso reciente"
@@ -590,7 +566,6 @@ settings:
       status:
         pending: "Pendiente"
         success: "Éxito"
-        error: "Error"
   imports:
     header: "Importar"
     sub-header: "Importar medios desde otros proveedores"
@@ -607,7 +582,6 @@ settings:
     header: "Notificaciones push"
     sub-header: "Notificaciones generales a nivel de sitio"
     contexts:
-      web: "Web"
       email: "Correo"
       mobile: "Móvil"
     descriptions:
@@ -622,7 +596,6 @@ settings:
       newsletter: "Boletín (en inglés)"
       subscribed: "Suscrito"
       message: "Si lo activas, recibirás actualizaciones por correo ocasionales y muy interesantes acerca de Kitsu escritas por el mismísimo Josh."
-    loading: "Cargando ajustes..."
     update: "Actualizar ajustes"
   password:
     header: "Contraseña"
@@ -639,7 +612,6 @@ settings:
     update: "Actualizar perfil"
 #page: feedback
 feedback:
-  bugs: "Bugs"
   features: "Solicitudes de funcionalidades"
   database: "Solicitudes de base de datos"
   mobile-bugs: "Solicitudes de dispositivos móviles"
@@ -670,7 +642,6 @@ groups:
         restricted: "<li>Cualquiera puede ver</li> <li>Cualquiera puede unirse</li> <li>Solo los líderes pueden crear nuevas publicaciones.</li>"
       category: "Categoría"
       category-placeholder: "Selecciona una categoría"
-      avatar: "Avatar"
       cover: "Imagen de cabecera"
       create-btn: "¡Crea tu grupo!"
       save-btn: "Guardar"
@@ -697,7 +668,6 @@ groups:
           header: "Categoría"
           desc: "Kitsu usa categorías para organizar grupos para ayudar a los usuarios a encontrar más de lo que aman."
         avatar:
-          header: "Avatar"
           desc: "Esta imagen será usada en todo Kitsu para identificar tu grupo."
         cover:
           header: "Imagen de cabecera"
@@ -713,7 +683,6 @@ groups:
   show-posts:
     text: "Mostrar publicaciones de {group}"
     info: "Las publicaciones aparecerán en tu panel de seguimiento"
-  nsfw: "NSFW"
   neighbors: "Vecinos"
   navigation:
     activity: "Actividad"
@@ -793,7 +762,6 @@ groups:
     navigation:
       overview: "Vista general"
       reports: "Reportes"
-      tickets: "Tickets"
       members: "Miembros"
       leaders: "Líderes"
       settings: "Ajustes"
@@ -808,7 +776,6 @@ groups:
         comments: "Comentarios de hoy"
       help-desk:
         header: "Casos abiertos"
-        tickets: "Tickets"
         reports: "Reportes"
       tickets: "Últimos tickets"
       reports: "Últimos reportes"
@@ -888,14 +855,11 @@ explore:
     categories: "Categorías"
     favorite-categories: "Mis categorías favoritas"
     no-favorites: "Marcar categorías como favoritas mejorará tus recomendaciones."
-    more-categories: "Más categorías..."
   modal:
     header: "Todas las categorías"
   favorite-button:
     remove: "Remover de favoritos"
-    removing: "Removiendo..."
     create: "Añadir a favoritos"
-    creating: "Añadiendo..."
 #page: media-reactions
 media-reactions:
   create-account: "Crear una cuenta"
@@ -904,21 +868,12 @@ media-shared:
   types:
     anime:
       All: "Todos"
-      tv: "TV"
       special: "Especial"
-      ona: "ONA"
-      ova: "OVA"
       movie: "Película"
       music: "Música"
     manga:
       All: "Todos"
-      manga: "Manga"
       novel: "Novela"
-      manhua: "Manhua"
-      oneshot: "One-shot"
-      doujin: "Doujin"
-      manhwa: "Manhwa"
-      oel: "OEL"
   statuses:
     anime:
       current: "En emisión"
@@ -964,13 +919,11 @@ feeds:
     select: "Subir"
     drop: "Arrastra para subir"
     invalid: "Tipo de archivo inválido"
-    uploading: "{number, plural, =1 {Subiendo foto... {progress}%} other {Subiendo {number} fotos... {progress}%}}"
   filter:
     all: "Toda la actividad"
     media: "Actividad de medios"
     user: "Actividad de usuario"
     following: "Actividad de quienes sigo"
-  placeholder: "{type, select, user_aggr {Publicar a {subject}} group_aggr {Publicar a {subject}} media_aggr {Publicar sobre {subject}} episode_aggr {Publicar sobre el episodio {subject}} chapter_aggr {Publicar sobre el capítulo {subject}} interest_timeline {Publicar sobre  {subject}} other {Realizar una publicación}}..."
   library:
     updated: "movió esto a {status}"
     rated: "lo evaluó"
@@ -1045,7 +998,6 @@ library-entry:
     not-rated: "No evaluado"
   rating:
     awful: "Horrible"
-    meh: "Meh"
     good: "Bueno"
     great: "Genial"
 #component: application/user-notifications
@@ -1055,7 +1007,6 @@ user-notifications:
   aired-unknown: "Se ha {type, select, manga {lanzado} anime {emitido} other {}} un nuevo {type, select, manga {Capítulo} anime {Epidosio} other {}} de {media}"
 #ember-power-select
 selects:
-  loading: "Cargando..."
   none: "No se encontraron resultados"
   search: "Empieza a escribir para buscar"
 #ember-cp-validations
@@ -1104,8 +1055,6 @@ errors:
   serverError:
     title: "¡Ups! Parece que nuestro servidor tiene un bug."
     body: "Nuestro equipo ha sido notificado, por favor vuelve a intentarlo en unos minutos."
-#Loading
-loading: "Cargando {subject, select, episode {episodio} chapter {capítulo} episodes {episodios} chapters {capítulos} other {}}..."
 timeUnits:
   years: "{count, plural, one {año} other {años}}"
   months: "{count, plural, one {mes} other {meses}}"
