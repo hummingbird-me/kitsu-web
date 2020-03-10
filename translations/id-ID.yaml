@@ -127,7 +127,6 @@ dashboard:
 #page: anime/manga
 media:
   index:
-    search: "Cari berdasarkan judul, karakter, atau pemeran..."
     filter: "Saring"
     remove: "Hapus"
     filters:
@@ -244,7 +243,6 @@ media:
       header: "{title} Karakter"
       sub-header: "{type, select, anime {Berikut ini adalah daftar seluruh karakter dari dan pengisi suara bahasa {language} untuk anime {title}.} manga {Berikut ini adalah daftar seluruh karakter dari manga {title}.} other {}}"
     reactions:
-      loading: "Memuat reaksi..."
       delete: "Hapus Reaksi"
       report: "Laporkan Reaksi"
       copy: "Salin Link Menuju Reaksi"
@@ -424,7 +422,6 @@ users:
         header: "Sepertinya kamu belum memiliki data yang cukup! Siap untuk mencoba sesuatu yang baru?"
         guest-header: "Sepertinya {user} masih belum memiliki stat."
   library:
-    search: "Cari Pustaka {name}..."
     sorting:
       label: "Urut berdasarkan:"
       options:
@@ -467,7 +464,6 @@ users:
       import: "Impor Pustaka"
       export: "Ekspor Pustaka"
       reset: "Hapus Pustaka"
-      reset-loading: "Menghapus..."
       reset-confirmation: "Pilihan ini kan menhapus seluruh daftar anime dan manga, termasuk ulasan dan reaksi. Apakah kamu ingin melanjutkan?"
       issues:
         header: "Masalah Pustaka"
@@ -508,15 +504,11 @@ users:
       notes: "Catatan Pribadi"
       remove: "Hapus dari Pustaka"
       save: "Simpan Perubahan"
-      saving: "Menyimpan..."
     bulk:
       selected: "{type, select, anime {{num} anime dipilih} manga {{num} manga dipilih} other {}}"
       select-all: "Pilih Semua"
       select-none: "Hapus Pilihan"
       remove: "Hapus <strong>{num}</strong>"
-      move-to: "Pindah <strong>{num}</strong> ke..."
-      remove-loading: "Menhapus..."
-      update-loading: "Membaharui..."
   groups:
     sort:
       newest: "Baru Saja Bergabung"
@@ -622,7 +614,6 @@ settings:
       newsletter: "Newsletter"
       subscribed: "Berlangganan"
       message: "Jika diaktifkan, kamu akan menerima pembaruan email sesekali (dan sangat cerdas) tentang Kitsu yang ditulis oleh Josh sendiri."
-    loading: "Memuat Pengaturan..."
     update: "Perbarui Pengaturan"
   password:
     header: "Kata sandi"
@@ -697,7 +688,6 @@ groups:
           header: "Kategori"
           desc: "Tentukan kategori agar pengguna lain dapat menemukan grup ini dengan mudah."
         avatar:
-          header: "Tagline"
           desc: "Gambar ini akan digunakan untuk mengidentifikasi grup ini."
         cover:
           header: "Gambar Sampul"
@@ -888,14 +878,11 @@ explore:
     categories: "Kategori"
     favorite-categories: "Kategori Favorit"
     no-favorites: "Pilih kategori untuk meningkatkan rekomendasi kamu."
-    more-categories: "Kategori lainnya..."
   modal:
     header: "Semua Kategori"
   favorite-button:
     remove: "Hapus dari favorit"
-    removing: "Menghapus..."
     create: "Tambahkan ke favorit"
-    creating: "Menambahkan..."
 #page: media-reactions
 media-reactions:
   create-account: "Buat Akun"
@@ -964,13 +951,11 @@ feeds:
     select: "Unggah"
     drop: "Lepaskan untuk Mengunggah"
     invalid: "Jenis file tidak valid"
-    uploading: "{number, plural, =1 {Mengunggah foto... {progress}%} other {Mengunggah {number} foto... {progress}%}}"
   filter:
     all: "Semua Aktivitas"
     media: "Aktivitas Media"
     user: "Aktivitas Pengguna"
     following: "Aktivitas yang Diikuti"
-  placeholder: "{type, select, user_aggr {Kirim ke {subject}} group_aggr {Kirim ke {subject}} media_aggr {Kirim mengenai {subject}} episode_aggr {Kirim tentang Episode {subject}} chapter_aggr {Kirim tentang Bab {subject}} interest_timeline {Kirim tentang {subject}} other {Buat kiriman}}..."
   library:
     updated: "pindah ke {status}"
     rated: "dinilai"
@@ -1055,7 +1040,6 @@ user-notifications:
   aired-unknown: "{type, select, manga {Bab} anime {Episode} other {}} terbaru dari {media} telah {type, select, manga {diterbitkan} anime {ditayangkan} other {}}"
 #ember-power-select
 selects:
-  loading: "Memuat..."
   none: "Hasil tidak ditemukan"
   search: "Mulai mengetik untuk mencari"
 #ember-cp-validations
@@ -1104,8 +1088,6 @@ errors:
   serverError:
     title: "Oops! Sepertinya server kami memiliki bug."
     body: "Tim kami telah diberitahukan, mohon coba ulang kembali dalam beberapa menit."
-#Loading
-loading: "Memuat {subject, select, episode {Episode} chapter {Bab} episodes {Episode} chapters {Bab} other {}}..."
 timeUnits:
   years: "{count, plural, =1 {tahun} other {tahun}}"
   months: "{count, plural, =1 {bulan} other {bulan}}"
