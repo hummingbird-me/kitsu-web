@@ -5,6 +5,7 @@ import { scheduleOnce } from '@ember/runloop';
 import { storageFor } from 'ember-local-storage';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import moment from 'moment';
+import LANGUAGES from 'client/utils/languages';
 
 export default Route.extend(ApplicationRouteMixin, {
   features: service(),
@@ -150,25 +151,15 @@ export default Route.extend(ApplicationRouteMixin, {
       this._registerNotifications();
 
       // i18n
-      if (get(user, 'language') === 'fr') {
-        const translations = await fetch('/translations/fr-fr.json');
-        get(this, 'intl').addTranslations('fr-fr', await translations.json());
-        // use en-us as fallback as it is already loaded
-        get(this, 'intl').set('locale', ['fr-fr', 'en-us']);
-      }
-
-      if (get(user, 'language') === 'es') {
-        const translations = await fetch('/translations/es-es.json');
-        get(this, 'intl').addTranslations('es-es', await translations.json());
-        // use en-us as fallback as it is already loaded
-        get(this, 'intl').set('locale', ['es-es', 'en-us']);
-      }
-
-      if (get(user, 'language') === 'id') {
-        const translations = await fetch('/translations/id-id.json');
-        get(this, 'intl').addTranslations('id-id', await translations.json());
-        // use en-us as fallback as it is already loaded
-        get(this, 'intl').set('locale', ['id-id', 'en-us']);
+      const userLocale = get(user, 'language');
+      if (userLocale !== 'en-us' && LANGUAGES.some(({ id }) => userLocale === id)) {
+        let translationsPath = `translations/${userLocale}.json`;
+        const assetMap = await fetch('/assets/assetMap.json');
+        const assetMapJSON = await assetMap.json();
+        translationsPath = await assetMapJSON.assets[translationsPath];
+        const translations = await fetch(`/${translationsPath}`);
+        get(this, 'intl').addTranslations(userLocale, await translations.json());
+        get(this, 'intl').set('locale', [userLocale, 'en-us']);
       }
 
       // metrics
