@@ -1,20 +1,20 @@
 <div class="settings-container">
-  <h1>Linked Accounts</h1>
+  <h1>{{t "settings.linked-accounts.header"}}</h1>
 
   <div class="settings--section-head">
-    Connect third-party accounts with Kitsu
+    {{t "settings.linked-accounts.sub-header"}}
   </div>
   <div class="container">
     <div class="form-group row">
-      <label class="col-xs-4 col-form-label">Facebook</label>
+      <label class="col-xs-4 col-form-label">{{t "settings.linked-accounts.facebook"}}</label>
       <div class="col-xs-8">
         <label class="form-check-label">
           {{#if session.account.facebookId}}
-            {{facebook-button text="Disconnect Facebook"
+            {{facebook-button text=(t "settings.linked-accounts.disconnect")
               disabled=facebookTasks.isRunning
               onclick=(perform disconnectFacebook)}}
           {{else}}
-            {{facebook-button text="Connect Facebook"
+            {{facebook-button text=(t "settings.linked-accounts.connect")
               disabled=facebookTasks.isRunning
               onclick=(perform connectFacebook)}}
           {{/if}}
