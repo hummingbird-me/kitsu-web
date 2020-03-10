@@ -325,7 +325,50 @@ users:
         google:
           about: "Digite seu nome de usuário ou a URL do seu perfil do Google+ para adicionar um link ao seu perfil."
           placeholder: "Sua URL de perfil do Google+ ou nome de usuário (+Username)"
+        instagram:
+          about: "Digite seu nome de usuário do Instagram abaixo para adicionar um link ao seu perfil."
+          placeholder: "Seu nome de usuário do Instagram"
+        twitch:
+          about: "Insira seu nome de usuário da Twitch abaixo para adicionar um link ao seu perfil."
+          placeholder: "Seu nome de usuário da Twitch"
+        vimeo:
+          about: "Digite seu nome de usuário Vimeo abaixo para adicionar um link ao seu perfil."
+          placeholder: "Seu nome de usuário Vimeo"
+        github:
+          about: "Digite seu nome de usuário no GitHub abaixo para adicionar um link ao seu perfil."
+          placeholder: "Seu nome de usuário do GitHub"
+        battlenet:
+          about: "Digite sua BattleTag da Battle.net abaixo para adicionar o link para seu perfil."
+          placeholder: "Sua BattleTag da Battle.net (Usuário#1234)"
+        steam:
+          about: "Digite seu nome de usuário da Comunidade Steam abaixo para adicionar um link ao seu perfil."
+          placeholder: "Seu nome de usuário da Comunidade Steam"
+        raptr:
+          about: "Insira seu nome de usuário do Raptr abaixo para adicionar um link ao seu perfil."
+          placeholder: "Seu nome de usuário Raptr"
+        discord:
+          about: "Digite sua tag do Discord abaixo para adicionar um link ao seu perfil."
+          placeholder: "Sua tag do Discord (Usuário#1234)"
+        tumblr:
+          about: "Digite o nome do seu blog Tumblr abaixo para adicionar um link ao seu perfil."
+          placeholder: "Nome do seu blog Tumblr"
+        soundcloud:
+          about: "Insira seu nome de usuário do SoundCloud abaixo para adicionar um link ao seu perfil."
+          placeholder: "Seu nome de usuário SoundCloud"
+        dailymotion:
+          about: "Insira seu nome de usuário Dailymotion abaixo para adicionar um link ao seu perfil."
+          placeholder: "Seu nome de usuário Dailymotion"
+        kickstarter:
+          about: "Digite seu nome de usuário do Kickstarter abaixo para adicionar um link ao seu perfil."
+          placeholder: "Seu nome de usuário do Kickstarter"
+        mobcrush:
+          about: "Insira seu nome de usuário Mobcrush abaixo para adicionar um link ao seu perfil."
+          placeholder: "Seu nome de usuário Mobcrush"
+        osu:
+          about: "Insira o seu numero ID do Osu! abaixo para adicionar um link ao seu perfil."
+          placeholder: "Seu número de ID do Osu!"
         patreon:
+          about: "Insira o nome do seu projeto Patreon para adicionar um link ao seu perfil."
           placeholder: "Nome do seu projeto Patreon"
         deviantart:
           about: "Digite seu nome de usuário DeviantArt abaixo para adicionar um link ao seu perfil."
@@ -462,8 +505,21 @@ users:
       privacy: "Privacidade"
       started: "Iniciado"
       finished: "Concluído"
+      notes: "Notas Pessoais"
+      remove: "Remover da Biblioteca"
+      save: "Salvar Alterações"
+      saving: "Salvando..."
+    bulk:
+      selected: "{type, select, anime {{num} animes selecionados} manga {{num} mangás selecionados} other {}}"
+      select-all: "Selecionar Todos"
+      select-none: "Selecionar Nenhum"
+      remove: "Remover <strong>{num}</strong>"
+      move-to: "Mover <strong>{num}</strong> para..."
+      remove-loading: "Removendo..."
+      update-loading: "Atualizando..."
   groups:
     sort:
+      newest: "Registou-se recentemente"
       oldest: "Mais Antigos a Entrar"
   reactions:
     empty: "Este usuário não tem reações"
@@ -711,8 +767,23 @@ groups:
       reports: "Últimas Denúncias"
       log: "Registro de Líder"
     members:
+      invites:
+        header: "Convites Pendentes"
+        invited: "Convidados"
+        revoke: "Cancelar Convite"
+        invite: "Convidar"
+        placeholder: "Procure um usuário para convidar. Eles precisam estar seguindo você!"
+        empty: "Parece que você não tem nenhum convite pendente para o grupo."
+      bans:
+        header: "Usuários Banidos"
+        unban: "Desbanir"
+        ban: "Banir"
+        placeholder: "Nome"
+        empty: "Viva! Você não tem nenhum usuário banido."
       members:
+        header: "Membros"
         table:
+          users: "Usuário"
           permissions: "Posição"
           joined: "Entrou"
           actions: "Ações"
@@ -786,6 +857,58 @@ media-shared:
   types:
     anime:
       All: "Todos"
+      tv: "TV"
+      special: "Especial"
+      ona: "ONA"
+      ova: "OVA"
+      movie: "Filme"
+      music: "Música"
+    manga:
+      All: "Todos"
+      manga: "Mangá"
+      novel: "Novel"
+      manhua: "Manhua"
+      oneshot: "One-shot"
+      doujin: "Doujin"
+      manhwa: "Manhwa"
+      oel: "OEL"
+  statuses:
+    anime:
+      current: "Em Exibição"
+      finished: "Concluído"
+      upcoming: "Próximos"
+      unreleased: "Não Lançados"
+      tba: "TBA"
+    manga:
+      current: "Em Publicação"
+      finished: "Concluído"
+      upcoming: "Próximos"
+      unreleased: "Não Lançados"
+      tba: "TBA"
+#shared: library
+library-shared:
+  all: "{type, select, anime {Todos os Animes} manga {Todos os Mangás} other {}}"
+  current: "{type, select, anime {Assistindo} manga {Lendo} other {}}"
+  planned: "{type, select, anime {Quer Assistir} manga {Quer Ler} other {}}"
+  completed: "{type, select, anime {Terminado} manga {Terminado} other {}}"
+  on_hold: "{type, select, anime {Em Pausa} manga {Em Pausa} other {}}"
+  dropped: "{type, select, anime {Desistido} manga {Desistido} other {}}"
+#shared: form:
+form-shared:
+  placeholders:
+    username: "Usuário"
+    password: "Senha"
+#component: auth-onboarding
+onboarding:
+  aozora-conflict:
+    title: "Ah, você já tem uma conta Kitsu! Qual você quer manter?"
+    info: "As postagens do feed de atividades de ambas as contas serão mescladas. Todas as outras informações da conta serão substituídas pela conta que você selecionar abaixo."
+  aozora-account-details:
+    submit: "Muito Bem!"
+#component: follow-button
+follow-button:
+  follow: "Seguir"
+  unfollow: "Deixar de Seguir"
 #component: kitsu-feed
 feeds:
   embed:
