@@ -1,0 +1,64 @@
+---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Explore Anime"
+  manga:
+    index: "Explore Manga"
+  media:
+    show:
+      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
+      characters: "Characters"
+      reactions: "Reactions"
+      franchise: "Franchise"
+  explore:
+    index: "Explore {mediaType, select, anime {Anime} manga {Manga} other {}}"
+    more:
+      trending: "Trending {type, select, anime {Anime} manga {Manga} other {}} This Week"
+      top-current: "Top {type, select, Anime {Airing} Manga {Publishing} other {}} {type}"
+      top-upcoming: "Top Upcoming {type}"
+      highest-rated: "Highest Rated {type}"
+      most-popular: "Most Popular {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Newly Released {category} {type}"
+        trending: "Trending {category} {type}"
+        most-popular: "Most Popular {category} {type}"
+  not-found: "Not Found"
+  server-error: "Server Error"
+  users:
+    index: "{user}'s Profile"
+    library: "{user}'s Library"
+    reviews: "{user}'s Reviews"
+    reactions: "{user}'s Reactions"
+    followers: "{user}'s Followers"
+    following: "Followed by {user}"
+    groups: "{user}'s Groups"
+    stats: "{user}'s Stats"
+  posts: "Post by {user}"
+  comments: "Comment by {user}"
+  reviews: "Review by {user}"
+  notifications: "Notifications"
+  feedback:
+    bugs: "Bugs"
+    feature-requests: "Feature Requests"
+    database-requests: "Database Requests"
+    mobile-bugs: "Mobile Bugs"
+    mobile-features: "Mobile Features"
+  admin:
+    index: "Admin"
+    reports: "Reports"
+  groups:
+    index: "Groups"
+    new: "Create a Group"
+    group:
+      group-page:
+        rules: "{group} Rules"
+        members: "{group} Members"
+        leaders: "{group} Leaders"
+      dashboard:
+        index: "{group} Overview"
+        reports: "{group} Reports"
+        tickets: "{group} Tickets"
+        members: "{group} Members"
