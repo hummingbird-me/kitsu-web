@@ -139,9 +139,70 @@ media:
       rating: "Rating"
       categories: "Categories"
       types: "Types"
+    sort:
+      popularity: "Popularity"
+      rating: "Average Rating"
+      date: "Date"
+      recent: "Recently Added"
   show:
+    navigation:
+      summary: "Summary"
+      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
+      characters: "Characters"
+      reactions: "Reactions"
+      franchise: "Franchise"
+    sidebar:
+      watch: "Watch Online"
     summary:
+      ratings:
+        community: "{rating}% Community Approval"
+        match: "{rating}% Match"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Rank #{rank} (Most Popular Anime)} manga {Rank #{rank} (Most Popular Manga)} other {}}"
+          rating: "{type, select, anime {Rank #{rank} (Highest Rated Anime)} manga {Rank #{rank} (Highest Rated Manga)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} Most Popular} manga {#{rank} Most Popular} other {}}"
+          rating: "{type, select, anime {#{rank} Highest Rated} manga {#{rank} Highest Rated} other {}}"
+      categories: "Categories"
+      relationships:
+        header: "More from this series"
+        more: "View all in {title}"
+      reactions:
+        header: "Reactions"
+        more: "View More Reactions"
+        sorts:
+          -upVotesCount: "Popular"
+          -createdAt: "Recent"
+        new: "New Reaction"
+        edit: "My Reaction"
+        empty: "Doesn't look like anyone has reacted to this yet"
+      characters:
+        header: "Characters"
+        more: "View all characters"
       titles:
+        header: "Alternative Titles"
+        ar: "Arabic"
+        ar_ar: "Arabic" #Invalid use ar
+        de_de: "German"
+        en: "English"
+        en_cn: "Chinese (Pinyin)"
+        en_gb: "English (UK)"
+        en_jp: "Japanese (Rōmaji)"
+        en_kr: "Korean (Romaja)"
+        en_th: "Thai (Romanized)"
+        en_us: "English (US)"
+        es_es: "Spanish"
+        fr_fr: "French"
+        id_id: "Indonesian"
+        it_it: "Italian"
+        ja_jp: "Japanese"
+        ko_kr: "Korean"
+        nl_nl: "Dutch"
+        pt_br: "Portuguese (Brazilian)"
+        pt_pt: "Portuguese"
+        ru_ru: "Russian"
+        th_th: "Thai"
         uk_ua: "Ukrainian"
         vi_vi: "Vietnamese" #Invalid use vi_vn
         vi_vn: "Vietnamese"
@@ -281,8 +342,75 @@ users:
       action: "Make yourself at home! Upload an avatar and cover image! Click <span>Edit</span> above to get started."
     about:
       empty: "It's a secret"
+      gender:
+        secret: "It's a secret"
+        male: "Male"
+        female: "Female"
+    stats:
+      headings:
+        anime: "Anime Stats"
+        manga: "Manga Stats"
+      chapters-read: "chapters read."
+      time-breakdown: "spent watching anime in total."
+      empty:
+        header: "Looks like you don't have enough data yet! Ready to start something new?"
+        guest-header: "Looks like {user} doesn't have any stats yet."
   library:
+    search: "Search {name}'s Library..."
+    sorting:
+      label: "Sort by:"
+      options:
+        watched: "Date Updated"
+        started: "Date Started"
+        finished: "Date Finished"
+        added: "Date Added"
+        progress: "Progress"
+        rating: "Rating"
+        title: "Title"
+        length: "Length"
+      directions:
+        watched:
+          desc: "Recent First"
+          asc: "Oldest First"
+        started:
+          desc: "Recent First"
+          asc: "Oldest First"
+        finished:
+          desc: "Recent First"
+          asc: "Oldest First"
+        added:
+          desc: "Recent First"
+          asc: "Oldest First"
+        progress:
+          desc: "Most First"
+          asc: "Least First"
+        rating:
+          desc: "Highest First"
+          asc: "Lowest First"
+        title:
+          desc: "A-Z"
+          asc: "Z-A"
+        length:
+          desc: "Longest First"
+          asc: "Shortest First"
+    sidebar:
+      media-select: "{type, select, anime {{user}'s Anime} manga {{user}'s Manga} other {}}"
+      manage: "Manage Library"
+      import: "Import Library"
+      export: "Export Library"
+      reset: "Reset Library"
+      reset-loading: "Resetting..."
+      reset-confirmation: "This will delete your entire library and associated reactions. Are you sure you want to continue?"
+      issues:
+        header: "Library Issues"
+        reactions: "{count} completed media missing <b>reactions</b>"
+        fix: "fix"
     list:
+      edit: "Edit Entry"
+      list-edit: "Edit"
+      more: "More"
+      unstarted: "Not Started"
+      unrated: "No Rating"
       progress: "{type, select, anime {Ep. {progress}} manga {Ch. {progress}} other {}}"
       table-header:
         title: "{type, select, anime {Anime Title} manga {Manga Title} other {}}"
@@ -413,6 +541,61 @@ groups:
       category: "Category"
       category-placeholder: "Select a Category"
       avatar: "Avatar"
+      cover: "Cover Image"
+      create-btn: "Create your Group!"
+      save-btn: "Save"
+      helper:
+        name:
+          header: "Name"
+          desc: "Group names should clearly communicate what your group is about, but you can still be creative and have fun with it!"
+        tagline:
+          header: "Tagline"
+          desc: "Summarise the purpose of your group in 60 characters or less. You'll have room to add more information later."
+        about:
+          header: "Description"
+          desc: "Explain your group's purpose in depth, share important information, or anything else."
+        rules:
+          header: "Rules"
+          desc: "Set out some guidelines for your group members to follow. These rules support Markdown syntax!"
+        neighbors:
+          header: "Neighbours"
+          desc: "Add related groups to your Neighbourhood so your members can discover new communities!"
+        privacy:
+          header: "Privacy"
+          desc: "Your privacy settings determine how open or closed your group is to the public. If you choose to make your group private, you will NOT be able to make it public in the future."
+        category:
+          header: "Category"
+          desc: "Kitsu uses categories to organise groups so users can find more of what they love."
+        avatar:
+          header: "Avatar"
+          desc: "This image will be used throughout Kitsu to identify your group."
+        cover:
+          header: "Cover Image"
+          desc: "This image will appear at the top of your group's page on desktops. Sides may be cropped slightly based on the viewer's screen size."
+      errors:
+        neighbors-same: "You can't add your own group as a neighbour."
+  dashboard-btn: "Dashboard"
+  join-group: "Join Group"
+  leave-group: "Leave Group"
+  hide-posts:
+    text: "Hide Posts from {group}"
+    info: "Posts won't appear in your Following Feed"
+  show-posts:
+    text: "Show posts from {group}"
+    info: "Posts will appear in your Following Feed"
+  nsfw: "NSFW"
+  neighbors: "Neighbours"
+  navigation:
+    activity: "Activity"
+    rules: "Rules"
+    members: "Members"
+    leaders: "Leaders"
+    neighbors: "Neighbours"
+  activity:
+    feed-header: "Group Activity"
+    about: "About {group}"
+    members: "Members"
+    view-members: "view all"
   tickets:
     conversation:
       mark-resolved: "Mark Resolved"
@@ -542,3 +725,19 @@ media-shared:
     manga:
       current: "Publishing"
       finished: "Finished"
+      upcoming: "Upcoming"
+      unreleased: "Unreleased"
+      tba: "TBA"
+#shared: library
+library-shared:
+  all: "{type, select, anime {All Anime} manga {All Manga} other {}}"
+#component: modals/media-reaction
+reaction-modal:
+  edit-warning: "Careful! Editing will delete your upvotes."
+  delete: "Delete Reaction"
+  placeholder: "{index, plural, one {} =0 {Got me rethinking some important life decisions.} =1 {Unexpectedly good! Lots of memorable scenes.} =2 {While it may not be everyone's cup of tea, it's certainly interesting.} other {Overrated, don't waste your time on this one.}}"
+  skip: "Skip"
+#component: library-entry/*
+library-entry:
+  state:
+    header: "{state, select, false {Add to Library} true {Update Library} other {}}"
