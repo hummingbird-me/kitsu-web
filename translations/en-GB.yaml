@@ -548,17 +548,66 @@ settings:
     import: "Import"
     export: "Export"
     blocking: "Blocking"
+    account: "Account"
   account:
+    header: "Account"
+    sub-header: "Danger Zone! Deleting your account is irreversible."
     delete: "Delete Account"
     confirm-title: "Delete Account"
     confirm-text: "We're sorry to see you go. Are you sure you want to continue?"
+  apps:
+    header: "Apps"
+  blocking:
+    header: "Blocking"
+    sub-header: "Once you block someone, that person can no longer tag you, follow you, view your profile or see your feed posts."
   exports:
+    modal:
+      header: "Sync with {site}"
+      helper: "We'll update your anime and manga lists on {site} every time you update them on Kitsu."
+      create: "Sync to {site}"
+    header: "Export"
+    sub-header: "Automatically sync your library updates from Kitsu to MyAnimeList."
     remove: "Remove Exporter"
+    disabled: "Your MAL Export has been disabled due to the following reason: <strong>{reason}</strong>"
+    create: "Setup Export to MyAnimeList Account"
+    download: "Download {kind} Library"
+    recent: "Recent Sync Activity"
+    sync-header: "MyAnimeList Sync"
+    no-logs: "We're processing your library and syncing it with MyAnimeList. Hold tight!"
     logs:
+      header:
+        media: "Title"
+        library-status: "Status"
+        progress: "Progress"
+        rating: "Rating"
+        reconsumes: "Rewatches"
+        action: "Action"
+        status: "Status"
       action:
+        create: "Create"
+        update: "Update"
         destroy: "Remove"
+      status:
+        pending: "Pending"
+        success: "Success"
+        error: "Error"
+  imports:
+    header: "Imports"
+    sub-header: "Import media from other providers"
+  index:
+    header: "Profile"
+    sub-header: "Account and region settings"
+  linked-accounts:
+    header: "Linked Accounts"
+    sub-header: "Connect third-party accounts to Kitsu"
+    facebook: "Facebook"
+    disconnect: "Disconnect Facebook"
+    connect: "Connect Facebook"
   notifications:
+    header: "Push Notifications"
+    sub-header: "General site-wide notifications"
     contexts:
+      web: "Web"
       email: "Email"
       mobile: "Mobile"
     descriptions:
@@ -754,6 +803,7 @@ groups:
         today: "Joined Today"
         total: "Total Members"
       activity:
+        header: "User Activity"
         posts: "Posts Today"
         comments: "Comments Today"
       help-desk:
@@ -789,8 +839,12 @@ groups:
     leaders:
       chat:
         header: "Leader Chat"
+        post-btn: "Post"
+        placeholder: "Send message to leaders"
     audit:
       user:
+        banned: "banned <a href={link}>{user}</a>."
+        unbanned: "unbanned <a href={link}>{user}</a>."
         invited: "invited <a href={link}>{user}</a> to join the community."
         granted: "granted permissions to <a href={link}>{user}</a>."
         revoked: "removed permissions from <a href={link}>{user}</a>."
@@ -923,8 +977,45 @@ feeds:
     progressed: "{type, select, anime {watched episode {num}} manga {read chapter {num}} other {}}"
   post:
     more: "View More"
+    less: "View Less"
+    meta:
+      media: "Because you recently watched {media}"
+    spoilers: "{type, select, anime {Ep. {num}} manga {Ch. {num}} other {}}"
+    sorts:
+      likes: "Likes"
+      replies: "Replies"
+      oldest: "Oldest"
+  review:
+    review: "Review"
+    author: "Review by {user}"
+    progress: "{type, select, anime {This is a review up to episode {num}.} manga {This is a review up to chapter {num}.} other {}}"
+  interest:
+    anime:
+      header: "Welcome to your Anime Feed!"
+      body: "As you update your <a href={link}>anime library</a>, you'll see what others are saying about the shows you're watching."
+    manga:
+      header: "Welcome to your Manga Feed!"
+      body: "As you update your <a href={link}>manga library</a>, you'll see what others are saying about the manga you're reading."
+    button: "Okay, got it"
+#component: image-form
+image-form:
+  help-text: "Click here to select an image."
+#component: groups/group-list
+group-list:
+  filter: "Filter Groups"
+  sort:
+    featured: "Featured"
+    recent: "Recent Activity"
+    newest: "Newest Groups"
+    oldest: "Oldest Groups"
+#component: media/media-reaction
+media-reaction:
+  self-vote: "You can't vote on your own reaction."
+  edit: "Edit Reaction"
 #component: modals/media-reaction
 reaction-modal:
+  post: "Post"
+  edit: "Edit"
   edit-warning: "Careful! Editing will delete your upvotes."
   delete: "Delete Reaction"
   placeholder: "{index, plural, one {} =0 {Got me rethinking some important life decisions.} =1 {Unexpectedly good! Lots of memorable scenes.} =2 {While it may not be everyone's cup of tea, it's certainly interesting.} other {Overrated, don't waste your time on this one.}}"
@@ -933,6 +1024,80 @@ reaction-modal:
 library-entry:
   state:
     header: "{state, select, false {Add to Library} true {Update Library} other {}}"
+    add-to-library: "Add To Library"
+    seen-this: "{type, select, anime {Completed} manga {Completed} other {}}"
     want-to-watch: "{type, select, anime {Plan to Watch} manga {Plan to Read} other {}}"
+    started-watching: "{type, select, anime {Started Watching} manga {Started Reading} other {}}"
+    watching-this: "Started"
+    finished-this: "Completed"
+    place-on-hold: "On Hold"
+    drop-this: "Dropped"
+    change-rating: "Change Rating"
     remove-rating: "Remove Rating"
+    rate-this: "Add Rating"
+    edit-library: "Edit Library Entry"
+    post-reaction: "Post Reaction"
+    edit-reaction: "Edit Reaction"
+    rewatch: "{type, select, anime {Rewatch} manga {Reread} other {}}"
     remove-from-library: "Remove from Library"
+    saved-in: "Saved in <a href={link}>{status}</a>"
+    progress: "Progress"
+    not-rated: "Not Rated"
+  rating:
+    awful: "Awful"
+    meh: "Meh"
+    good: "Good"
+    great: "Great"
+#ember-cp-validations
+errors:
+  inclusion: "{description} is not included in the list"
+  exclusion: "{description} is reserved"
+  invalid: "{description} is invalid"
+  confirmation: "{description} doesn't match {on}"
+  accepted: "{description} must be accepted"
+  empty: "{description} can't be empty"
+  blank: "{description} can't be blank"
+  present: "{description} must be blank"
+  collection: "{description} must be a collection"
+  singular: "{description} can't be a collection"
+  tooLong: "{description} is too long (maximum is {max} characters)"
+  tooShort: "{description} is too short (minimum is {min} characters)"
+  before: "{description} must be before {before}"
+  after: "{description} must be after {after}"
+  wrongDateFormat: "{description} must be in the format of {format}"
+  wrongLength: "{description} is the wrong length (should be {is} characters)"
+  notANumber: "{description} must be a number"
+  notAnInteger: "{description} must be an integer"
+  greaterThan: "{description} must be greater than {gt}"
+  greaterThanOrEqualTo: "{description} must be greater than or equal to {gte}"
+  equalTo: "{description} must be equal to {is}"
+  lessThan: "{description} must be less than {lt}"
+  lessThanOrEqualTo: "{description} must be less than or equal to {lte}"
+  otherThan: "{description} must be other than {value}"
+  odd: "{description} must be odd"
+  even: "{description} must be even"
+  positive: "{description} must be positive"
+  date: "{description} must be a valid date"
+  email: "{description} must be a valid email address"
+  phone: "{description} must be a valid phone number"
+  url: "{description} must be a valid url"
+  #Custom Errors
+  user:
+    name:
+      invalid: "This field must contain only letters, numbers and underscores"
+      numbers: "This field must not be made entirely of numbers"
+      starts: "This field must start with a letter or number"
+  load: "There was an issue loading the content."
+  contentEmpty: "Hmm, there doesn't seem to be anything here yet."
+  request: "Oops! Something went wrong with the request."
+  serverError:
+    title: "Oops! Looks like our server has a bug."
+    body: "Our team has been notified, please try again in a few minutes."
+#Loading
+loading: "Loading {subject, select, episode {Episode} chapter {Chapter} episodes {Episodes} chapters {Chapters} other {}}..."
+timeUnits:
+  years: "{count, plural, =1 {year} other {years}}"
+  months: "{count, plural, =1 {month} other {months}}"
+  days: "{count, plural, =1 {day} other {days}}"
+  hours: "{count, plural, =1 {hour} other {hours}}"
+  minutes: "{count, plural, =1 {minute} other {minutes}}"
