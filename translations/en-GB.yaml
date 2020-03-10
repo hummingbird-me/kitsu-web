@@ -1048,8 +1048,19 @@ library-entry:
     meh: "Meh"
     good: "Good"
     great: "Great"
+#component: application/user-notifications
+user-notifications:
+  #Episode 113 of One Piece! aired
+  aired: "{type, select, chapter {Chapter} episode {Episode} other {}} {number} of {media} {type, select, chapter {released} episode {has broadcasted} other {}}"
+  aired-unknown: "{media} {type, select, manga {released} anime {broadcasted} other {}} a new {type, select, manga {chapter} anime {episode} other {}}"
+#ember-power-select
+selects:
+  loading: "Loading..."
+  none: "No results found"
+  search: "Start typing to search"
 #ember-cp-validations
 errors:
+  description: "This field"
   inclusion: "{description} is not included in the list"
   exclusion: "{description} is reserved"
   invalid: "{description} is invalid"
@@ -1080,7 +1091,7 @@ errors:
   date: "{description} must be a valid date"
   email: "{description} must be a valid email address"
   phone: "{description} must be a valid phone number"
-  url: "{description} must be a valid url"
+  url: "{description} must be a valid URL"
   #Custom Errors
   user:
     name:
