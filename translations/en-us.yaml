@@ -355,6 +355,14 @@ media:
     info: "Posts will appear in your Following or {type} Feed"
 # page: users
 users:
+  profile:
+    edit: "Edit"
+  admin:
+    button: "Admin"
+    names: "View Past Names"
+    accounts: "View Alt Accounts"
+    delete-content: "Delete User-Created Content"
+    ban: "Ban"
   navigation:
     activity: "Activity"
     library: "Library"
@@ -646,6 +654,15 @@ users:
   show-posts:
     text: "Show Posts from {user}"
     info: "Posts will appear in your Following Feed"
+  followers:
+    not-found: "No Users Found."
+    loading: "Loading Users..."
+  following:
+    not-found: "No Users Found."
+    loading: "Loading Users..."
+  reviews:
+    not-found: "No Reviews Found."
+    loading: "Loading Reviews..."
 # page: settings
 settings:
   navigation:
@@ -670,6 +687,13 @@ settings:
   blocking:
     header: "Blocking"
     sub-header: "Once you block someone, that person can no longer tag you, follow you, view your profile, or see your feed posts."
+    title: "Block Users"
+    placeholder: "Search users to block..."
+    button-block: "Block"
+    loading: "Loading Users..."
+    button-unblock: "Unblock"
+    more: "Load More"
+    not-blocking: "You aren't currently blocking anyone."
   exports:
     modal:
       header: "Sync with {site}"
@@ -677,6 +701,7 @@ settings:
       create: "Sync to {site}"
     header: "Export"
     sub-header: "Automatically sync your library updates from Kitsu to MyAnimeList."
+    loading: "Loading Exports..."
     remove: "Remove Exporter"
     disabled: "Your MAL Export has been disabled due to the following reason: <strong>{reason}</strong>"
     create: "Setup Export to MyAnimeList Account"
@@ -704,9 +729,33 @@ settings:
   imports:
     header: "Imports"
     sub-header: "Import media from other providers"
+    button: "Import Media"
+    past-imports: "Your past imports"
+    loading: "Loading Imports..."
+    status: "Status:"
+    entries: "Total Entries Found:"
+    error: "It seems like your import has failed :( &mdash; We want to get this fixed for you so please <a href=\"mailto:help@kitsu.io\">email</a> us."
+    more: "Load More"
   index:
     header: "Profile"
     sub-header: "Account and region settings"
+    name: "Display Name"
+    url: "Profile URL"
+    email: "Email"
+    email-message: "Email will not be publicly displayed."
+    language: "Language"
+    translate-help: "Interested in translating? <a href=\"https://crowdin.com/project/kitsu-web\">Translate here!</a>"
+    time-zone: "Time Zone"
+    content: "Content on Kitsu"
+    theme: "Site Theme"
+    country: "Country"
+    titles: "Titles"
+    titles-message: "How media titles will be displayed."
+    rating: "Rating Type"
+    rating-message: "Choose how you would like to rate media that you've watched or read."
+    adult: "Adult Content"
+    adult-message: "With adult content hidden, you won't see R18+ media in the feed, libraries, or search."
+    update: "Update Profile"
   linked-accounts:
     header: "Linked Accounts"
     sub-header: "Connect third-party accounts with Kitsu"
