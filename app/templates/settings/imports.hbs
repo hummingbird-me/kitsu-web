@@ -7,7 +7,7 @@
   <div class="container">
     <div class="form-group row">
       <button class="button button--primary btn-lg btn-block" onclick={{action (toggle "importModal" this)}}>
-        Import Media
+        {{t "settings.imports.button"}}
       </button>
 
       {{#if importModal}}
@@ -21,14 +21,14 @@
   </div>
 
   <div class="settings--section-head">
-    Your past imports
+    {{t "settings.imports.past-imports"}}
   </div>
   <div class="container">
     <div class="form-group row">
       {{#if model.taskInstance.isRunning}}
         <div class="text-xs-center w-100 m-t-1 m-b-1">
           {{loading-spinner size="large"}}
-          <p>Loading Imports...</p>
+          <p>{{t "settings.imports.loading"}}</p>
         </div>
       {{else if model.taskInstance.error}}
         <div class="text-xs-center w-100 m-t-1 m-b-1">
@@ -49,13 +49,13 @@
               <div id="import-tab-{{index}}" class="collapse" role="tabpanel">
                 <div class="card-block">
                   <p class="card-text">
-                    <span class="font-weight-bold">Status:</span> {{import.status}}<br>
+                    <span class="font-weight-bold">{{t "settings.imports.status"}}</span> {{import.status}}<br>
                     {{#unless (eq import.status "queued")}}
-                      <span class="font-weight-bold">Total Entries Found:</span> {{import.total}}<br>
+                      <span class="font-weight-bold">{{t "settings.imports.entries"}}</span> {{import.total}}<br>
                       {{#if (eq import.status "failed")}}
                         <br>
                         <small>
-                          It seems like your import has failed :( &mdash; We want to get this fixed for you so please <a href="mailto:help@kitsu.io">email</a> us.
+                          {{t "settings.imports.error-part1"}} <a href="mailto:help@kitsu.io">{{t "settings.imports.error-part2"}}</a>{{t "settings.imports.error-part3"}}
                         </small>
                       {{/if}}
                     {{/unless}}
@@ -68,7 +68,7 @@
           {{#if hasNextPage}}
             <div class="text-xs-center w-100">
               <button class="button button--primary btn-block" disabled={{if isLoading "disabled"}} {{action (route-action "onPagination")}}>
-                Load More
+                {{t "settings.imports.more"}}
               </button>
             </div>
           {{/if}}
