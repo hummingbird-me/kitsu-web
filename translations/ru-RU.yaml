@@ -1,1 +1,441 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Поиск аниме"
+  manga:
+    index: "Поиск манги"
+  media:
+    show:
+      units: "{type, select, anime {Серии} manga {Главы} other {}}"
+      characters: "Персонажи"
+      reactions: "Реакции"
+      franchise: "Франшиза"
+  explore:
+    index: "Поиск {mediaType, select, anime {Аниме} manga {Манги} other {}}"
+    more:
+      top-upcoming: "Топ предстоящих {type}"
+    category:
+      index: "{category} {type}"
+  not-found: "Не найдено"
+  server-error: "Произошла ошибка сервера"
+  users:
+    index: "Профиль {user}"
+    library: "Библиотека {user}"
+    reviews: "Отзывы {user}"
+    reactions: "Реакции {user}"
+    followers: "Подписчики {user}"
+    groups: "Группы {user}"
+    stats: "Статистика {user}"
+  posts: "Опубликовано {user}"
+  comments: "Комментарий от {user}"
+  reviews: "Обзор от {user}"
+  notifications: "Уведомления"
+  feedback:
+    bugs: "Ошибки"
+    feature-requests: "Заявки на нововведения"
+    database-requests: "Запросы для базы данных"
+    mobile-features: "Функционал мобильного приложения"
+  admin:
+    index: "Админ"
+    reports: "Жалоба"
+  groups:
+    index: "Группы"
+    new: "Создать группу"
+    group:
+      group-page:
+        rules: "Правила {group}"
+        members: "Члены {group}"
+        leaders: "Лидеры {group}"
+      dashboard:
+        index: "Обзор {group}"
+        tickets: "Заявки {group}"
+        members: "Члены {group}"
+        leaders: "Лидеры {group}"
+        settings: "Настройки {group}"
+  group-invite: "Приглашение в группу"
+#header
+header:
+  library: "Библиотека"
+  anime: "Аниме"
+  manga: "Манга"
+  trending: "Популярные"
+  groups: "Группы"
+  feedback: "Обратная связь"
+  browse: "Обзор"
+  auth:
+    sign-in: "Войти"
+    sign-up: "Зарегистрироваться"
+  user:
+    profile: "Посмотреть профиль"
+    settings: "Настройки"
+    admin: "Админ"
+    logout: "Выйти"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Давайте немного расскажем о себе} 1 {Очень интересно! Теперь электронную почту!} 2 {Вроде всё правильно. Как насчёт пароля?} 3 {Прикольно! Давайте же создадим этот аккаунт!} other {}}"
+#page: dashboard
+dashboard:
+  quick-update:
+    filter:
+      all: "Все"
+      anime: "Аниме"
+      manga: "Манга"
+    empty:
+      discover: "Поиск контента"
+    media:
+      complete: "Завершен"
+      unstarted: "Не начато"
+      unit: "{type, select, anime {Серия {num} {total, select, undefined {} other {из {total}}}} manga {Глава {num} {total, select, null {} other {из {total}}}} other {}}"
+    overlay:
+      button:
+        update: "{type, select, anime {Серия} manga {Глава} other {}} {number}"
+        complete: "Завершено"
+        tooltip:
+          empty: "Обновить библиотеку"
+          content: "Создать пост и обновить библиотеку"
+      discussion: "Посмотреть обсуждение"
+      edit: "Редактировать запись библиотеки"
+      popout: "Всплывающий редактор"
+      editor:
+        placeholder: "(Необязательно) Поделитесь своим мнением о {type, select, anime {серии} manga {главе} other {}} {number}"
+  onboarding:
+    welcome: "Привет {user}, добро пожаловать на Kitsu!"
+  groups:
+    header: "Мои группы"
+  announcements:
+    button: "Подробнее"
+#page: anime/manga
+media:
+  index:
+    filter: "Фильтр"
+    remove: "Убрать"
+    filters:
+      year: "Год"
+      score: "Средняя оценка"
+      seasons: "Сезоны"
+      streamers: "Онлайн-просмотр (США)"
+      units: "{type, select, anime {Серии} manga {Главы} other {}}"
+      rating: "Рейтинг"
+      categories: "Категории"
+      types: "Типы"
+    sort:
+      popularity: "Популярность"
+      rating: "Средняя оценка"
+      date: "Дата"
+      recent: "Недавно добавленные"
+  show:
+    navigation:
+      summary: "Краткое описание"
+      units: "{type, select, anime {Серии} manga {Главы} other {}}"
+      characters: "Персонажи"
+      reactions: "Реакции"
+      franchise: "Франшиза"
+    sidebar:
+      watch: "Смотреть онлайн"
+    summary:
+      ratings:
+        match: "{rating}% в общем"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Ранг #{rank} (Популярное аниме)} manga {Ранг #{rank} (Популярная манга)} other {}}"
+          rating: "{type, select, anime {Ранг #{rank} (Высшая оценка аниме)} manga {Ранг #{rank} (Высшая оценка манги)} other {}}"
+        short:
+          rating: "{type, select, anime {#{rank} Высоко оценёённое} manga {#{rank} Высоко оценённая} other {}}"
+      categories: "Категории"
+      relationships:
+        header: "Ещё из этой серии"
+        more: "Посмотреть все в {title}"
+      reactions:
+        header: "Реакции"
+        more: "Посмотреть больше реакций"
+        sorts:
+          -upVotesCount: "Популярное"
+          -createdAt: "Недавно"
+        new: "Новая реакция"
+        edit: "Моя реакция"
+        empty: "Похоже, что никто еще не отреагировал на это"
+      characters:
+        header: "Персонажи"
+        more: "Просмотреть всех персонажей"
+      titles:
+        header: "Альтернативные названия"
+        ar: "Арабский"
+        ar_ar: "Арабский" #Invalid use ar
+        de_de: "Немецкий"
+        en: "Английский"
+        en_gb: "Английский (Великобритания)"
+        en_th: "Тайский (Романизированный)"
+        en_us: "Английский (США)"
+        es_es: "Испанский"
+        fr_fr: "Французский"
+        id_id: "Индонезийский"
+        it_it: "Итальянский"
+        ja_jp: "Японский"
+        ko_kr: "Корейский"
+        nl_nl: "Нидерландский"
+        pt_br: "Португальский (Бразильский)"
+        pt_pt: "Португальский"
+        ru_ru: "Русский"
+        th_th: "Тайский"
+        uk_ua: "Украинский"
+        zh_cn: "Китайский (упрощенный)"
+        zh_tw: "Китайский (традиционный)"
+        synonyms: "Синонимы"
+      information:
+        header: "Детали о {type, select, anime {Аниме} manga {Манге} other {}}"
+        type: "Тип"
+        volumes: "Тома"
+        unit: "{type, select, anime {Серий} manga {Глав} other {}}"
+        start: "{type, select, anime {Показано} manga {Издано} other {}}"
+        status: "Статус"
+        tba: "Ожидается"
+        season: "Сезон"
+        studios: "Студии"
+        duration: "Длинна"
+        total: "{total} всего"
+        length: "{count, plural, =1 {{length} минут} other {{length} минут каждая}}"
+        rating: "Рейтинг"
+        expand:
+          false: "Подробнее"
+          true: "Скрыть"
+      feed:
+        header: "Лента сообщества"
+      trailer: "Посмотреть трейлер"
+    units:
+      unit: "{type, select, anime {Серия} manga {Глава} other {}}"
+      back: "Вернуться к списку {type, select, episode {серий} chapter {глав} other {}}"
+      pages: "{length} страниц"
+      date: "{type, select, episode {Показано} chapter {Выпущено} other {}}"
+      completed: "{type, select, episode {Просмотрено} chapter {Прочитано} other {Завершено}}"
+      feed:
+        header: "Обсуждение {type, select, episode {серии} chapter {главы} other {}}"
+    characters:
+      header: "Персонажи {title}"
+      sub-header: "{type, select, anime {Данный лист - это полный список персонажий и голосовых актёров {language} в аниме {title}} manga {Данный лист- это список всех персонажей в манге {title}} other {}}"
+    reactions:
+      delete: "Удалить реакцию"
+      report: "Жалоба на реакцию"
+      copy: "Скопировать ссылку на реакцию"
+    franchise:
+      header: "Франшиза {title}"
+      roles:
+        side_story: "Побочный сюжет"
+        parent_story: "Основная история"
+        summary: "Краткое описание"
+        full_story: "Полная история"
+        adaptation: "Адаптация"
+        anime_adaptation: "Аниме"
+        manga_adaptation: "Манга"
+        character: "Персонаж"
+        other: "Прочие"
+  hide-posts:
+    text: "Скрыть публикации о {media}"
+  show-posts:
+    text: "Показать публикации о {media}"
+#page: users
+users:
+  navigation:
+    activity: "Действия"
+    library: "Библиотека"
+    reviews: "Отзывы"
+    reactions: "Реакции"
+    followers: "Подписчики"
+    following: "Подписки"
+    groups: "Группы"
+  edit-modal:
+    cover: "Изменить обложку"
+    navigation:
+      about: "О себе"
+      profile-links: "Ссылки на профиле"
+      favorites: "Избранное"
+    about:
+      header: "О себе"
+      location:
+        label: "Местоположение"
+        placeholder: "Где вы живёте?"
+      birthday: "День рождения"
+      gender:
+        label: "Пол"
+        options:
+          secret: "Это секрет"
+          male: "Мужской"
+          female: "Женский"
+          custom: "Настраиваемый"
+      waifu:
+        search: "Найдите свою вторую половинку"
+      bio:
+        label: "Биография"
+        placeholder: "Расскажите миру о себе."
+    profile-links:
+      header: "Ссылки на профиле"
+      sites:
+        website:
+          about: "Введите ссылку на свой персональный сайт, что бы добавить ссылку на него на своей странице."
+          placeholder: "URL адрес вашего сайта"
+        twitter:
+          about: "Введите ссылку на свой аккаунт в Twitter, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Twitter (@Username)"
+        facebook:
+          about: "Введите ссылку на свой аккаунт в Facebook, что бы добавить ссылку на него на своей странице."
+        youtube:
+          about: "Введите ссылку на свой канал в YouTube, что бы добавить ссылку на него на своей странице."
+          placeholder: "URL адрес вашего канала YouTube"
+        google:
+          about: "Введите ссылку на свой аккаунт в Google+ или имя пользователя, что бы добавить ссылку на него на своей странице."
+        instagram:
+          about: "Введите Ваше имя пользователя Instagram, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя в Instagram"
+        twitch:
+          about: "Введите Ваше имя пользователя Twitch, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Twitch"
+        vimeo:
+          about: "Введите Ваше имя пользователя Vimeo, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Vimeo"
+        github:
+          about: "Введите Ваше имя пользователя GitHub, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя GitHub"
+        battlenet:
+          about: "Введите Ваш Battle.net BattleTag, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваш Battle.net BattleTag (пользователь#1234)"
+        steam:
+          about: "Введите Ваше имя пользователя сообщества Steam, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя сообщества Steam"
+        raptr:
+          about: "Введите Ваше имя пользователя Raptr, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Raptr"
+        discord:
+          about: "Введите ваш тэг Discord, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваш тэг Discord (User#1234)"
+        tumblr:
+          about: "Введите Ваше название блога Tumblr, что бы добавить ссылку на него на своей странице."
+          placeholder: "Название вашего Tumblr блога"
+        soundcloud:
+          about: "Введите Ваше имя пользователя SoundCloud, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя SoundCloud"
+        dailymotion:
+          about: "Введите Ваше имя пользователя Dailymotion, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Dailymotion"
+        kickstarter:
+          about: "Введите Ваше имя пользователя Kickstarter, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Kickstarter"
+        mobcrush:
+          about: "Введите Ваше имя пользователя Mobcrush, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Mobcrush"
+        osu:
+          about: "Введите Ваш номер osu! ID, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваг номер osu! ID"
+        patreon:
+          about: "Введите Ваше название проекта на Pateron, что бы добавить ссылку на него на своей странице."
+          placeholder: "Название вашего проекта Patreon"
+        deviantart:
+          about: "Введите Ваше имя пользователя DeviantArt, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя DeviantArt"
+        dribbble:
+          about: "Введите Ваше имя пользователя Dribbble, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Dribbble"
+        imdb:
+          about: "Введите ссылку на свой профиль в IMDb, что бы добавить ссылку на него на своей странице."
+          placeholder: "URL вашего IMDb профиля"
+        lastfm:
+          about: "Введите Ваше имя пользователя Last.fm, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Last.fm"
+        letterboxd:
+          about: "Введите Ваше имя пользователя Letterboxd, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Letterboxd"
+        medium:
+          about: "Введите Ваше имя пользователя Medium или название публикации, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Medium (@user) или название публикации"
+        playerme:
+          about: "Введите Ваше имя пользователя Player.me, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Player.me"
+        reddit:
+          about: "Введите Ваше имя пользователя Reddit, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Reddit"
+        trakt:
+          about: "Введите Ваше имя пользователя Trakt, что бы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Trakt"
+    favorites:
+      header: "Избранное"
+      anime: "Аниме"
+      manga: "Манга"
+      characters: "Персонажи"
+      remove: "Удалить избранное?"
+  activity:
+    onboarding:
+      welcome: "Привет, {user}, эта страница все про вас!"
+      about: "Пока вы продолжаете пользоваться Kitsu, Ваша <strong>личная лента</strong> начнёт заполняться аниме и мангой, которое вы посмотрели, прочитали, завершили или пранируете посмотреть. Также, вы можете отправлять изображения, видео в свою ленту используя форму ниже. Ваши публикации будут видны всем и будут оценены Вашими подписчиками и ползователями из глобальной ленты."
+    about:
+      empty: "Это секрет"
+      gender:
+        secret: "Это секрет"
+        male: "Мужской"
+        female: "Женский"
+    stats:
+      headings:
+        anime: "Статистика Аниме"
+        manga: "Статистика манги"
+  library:
+    edit:
+      units: "{type, select, anime {{num} серий} manga {{num} глав} other {}}"
+  hide-posts:
+    text: "Скрыть публикации от {user}"
+  show-posts:
+    text: "Показать публикации от {user}"
+#page: settings
+settings:
+  blocking:
+    sub-header: "Когда вы кого-то заблокируете, этот человек больше на сможет Вас упомянуть, просматривать Ваш профиль и видеть Ваши публикации в ленте."
+  notifications:
+    descriptions:
+      posts: "Кто-то <strong>написал</strong> на моем профиле"
+      airing: "Вышла новая серия"
+#page: groups
+groups:
+  create:
+    form:
+      privacy-features:
+        restricted: "<li>Каждый может просматривать</li> <li>Каждый может присоединиться</li> <li>Только лидеры могут создавать новые публикации.</li>"
+  hide-posts:
+    text: "Скрыть публикации от {group}"
+  show-posts:
+    text: "Показать публикации от {group}"
+  activity:
+    feed-restricted: "Это - ограниченная группа. Все могут комментировать, только лидеры могут создавать публикации."
+  dashboard:
+    overview:
+      activity:
+        posts: "Публикации сегодня"
+#shared: media
+media-shared:
+  types:
+    anime:
+      All: "Все"
+      movie: "Фильм"
+      music: "Клип"
+    manga:
+      All: "Все"
+      manga: "Манга"
+      novel: "Роман"
+      doujin: "Самиздат"
+  statuses:
+    anime:
+      current: "На вещании"
+      finished: "Завершено"
+      upcoming: "Скоро"
+      unreleased: "Не выпущено"
+      tba: "Не объявлено"
+    manga:
+      current: "В печати"
+      finished: "Завершено"
+      upcoming: "Скоро"
+#component: kitsu-feed
+feeds:
+  review:
+    progress: "{type, select, anime {Это обзор до серии номер {num}.} manga {Это обзор до главы номер {num}.} other {}}"
+#component: application/user-notifications
+user-notifications:
+  #Episode 113 of One Piece! aired
+  aired: "{type, select, chapter {Глава} episode {Серия} other {}} {number} {media} {type, select, chapter {выпущена} episode {истекло} other {}}"
+  aired-unknown: "{media} {type, select, manga {Выпущена} anime {Вышла} other {}} новая {type, select, manga {глава} anime {серия} other {}}"
