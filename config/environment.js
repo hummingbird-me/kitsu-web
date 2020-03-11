@@ -138,7 +138,7 @@ module.exports = function(environment) {
     google: {
       adwords: environment === 'production',
       ads: {
-        enabled: environment === 'production',
+        enabled: false, // environment === 'production',
         networkId: '20370372407'
       }
     },
