@@ -4,5 +4,5 @@ export default [
   { id: 'es-es', text: 'Español' },
   { id: 'fr-fr', text: 'Français' },
   { id: 'pt-br', text: 'Português (Brasileiro)' },
-  { id: 'es-gb', text: 'English (British)' }
+  { id: 'en-gb', text: 'English (British)' }
 ];
