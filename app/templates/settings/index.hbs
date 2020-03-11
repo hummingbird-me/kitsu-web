@@ -43,9 +43,8 @@
       <div class="col-xs-8">
         {{#power-select
           renderInPlace=true
-          selected=(or selectedLanguage (get languages "firstObject"))
+          selected=(or selectedLanguage currentLanguage)
           options=languages
-          searchEnabled=false
           onchange=(action "changeLanguage") as |language|
         }}
           {{language.text}}

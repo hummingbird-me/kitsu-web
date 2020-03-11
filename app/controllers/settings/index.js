@@ -15,6 +15,7 @@ export default Controller.extend({
   lastUsed: storageFor('last-used'),
   user: alias('session.account'),
   languages: getter(() => LANGUAGES.sortBy('text')),
+  currentLanguage: alias('intl.primaryLocale'),
   timezoneGuess: getter(() => moment.tz.guess()),
   timezones: getter(() => moment.tz.names()),
 
