@@ -127,6 +127,7 @@ dashboard:
 #page: anime/manga
 media:
   index:
+    search: "Rechercher par titre, personnage, doubleur…"
     filter: "Filtrer"
     remove: "Supprimer"
     filters:
@@ -243,6 +244,7 @@ media:
       header: "Personnages de {title}"
       sub-header: "{type, select, anime {Voici la liste des personnages et leurs doubleurs {language} pour l'anime {title}} manga {Voici la liste des personnages pour le manga {title}} other {}}"
     reactions:
+      loading: "Chargement des réactions…"
       delete: "Supprimer la Réaction"
       report: "Signaler la Réaction"
       copy: "Copier le lien de la Réaction"
@@ -271,6 +273,8 @@ media:
     info: "Les posts apparaîtrons dans votre fil d'abonnements {type, select, Anime {et d'anime} Manga {et de mangas} other {}}"
 #page: users
 users:
+  profile:
+    edit: "Modifier"
   admin:
     button: "Administration"
     past-names: "Afficher les noms précédents"
@@ -428,6 +432,7 @@ users:
         header: "Apparemment vous n'avez pas assez de données. Prêt à commencer quelque chose ?"
         guest-header: "On dirait que {user} n'a pas encore de statistiques."
   library:
+    search: "Rechercher dans la bibliothèque de {name}…"
     sorting:
       label: "Trier par :"
       options:
@@ -470,6 +475,7 @@ users:
       import: "Importer une Bibliothèque"
       export: "Exporter la Bibliothèque"
       reset: "Remettre à zéro"
+      reset-loading: "Réinitialisation…"
       reset-confirmation: "Cela effacera toute votre bibliothèque, vos avis associés, et vos réactions. Vouslez-vous continuer ?"
       issues:
         header: "Problèmes dans votre bibliothèque"
@@ -510,11 +516,15 @@ users:
       notes: "Notes Personnelles"
       remove: "Supprimer de la Bibliothèque"
       save: "Enregistrer les modifications"
+      saving: "Enregistrement…"
     bulk:
       selected: "{type, select, anime {{num} anime sélectionné} manga {{num} manga sélectionné} other {}}"
       select-all: "Tout Sélectionner"
       select-none: "Déselectionner"
       remove: "Supprimer <strong>{num}</strong>"
+      move-to: "Déplacer <strong>{num}</strong> vers…"
+      remove-loading: "Suppression…"
+      update-loading: "Mise à jour…"
   groups:
     sort:
       newest: "Récemment rejoint"
@@ -536,10 +546,13 @@ users:
     info: "Ces posts apparaîtront dans votre fil d'abonnements"
   followers:
     not-found: "Aucun utilisateur trouvé."
+    loading: "Chargement des utilisateurs…"
   following:
     not-found: "Aucun utilisateur trouvé."
+    loading: "Chargement des utilisateurs…"
   reviews:
     not-found: "Aucun avis trouvé."
+    loading: "Chargement des avis…"
 #page: settings
 settings:
   navigation:
@@ -565,9 +578,12 @@ settings:
     header: "Bloquer"
     sub-header: "Lorsque vous bloquez quelqu'un, cette personne ne peut plus vous mentionner, vous suivre, voir votre profil ou voir vos publications."
     title: "Bloquer un utilisateur"
+    placeholder: "Rechercher un utilisateur à bloquer…"
     button-block: "Bloquer"
+    loading: "Chargement des utilisateurs…"
     button-unblock: "Débloquer"
     more: "Voir Plus"
+    not-blocking: "Vous ne bloquez personne pour le moment."
   exports:
     modal:
       header: "Synchroniser avec {site}"
@@ -575,6 +591,7 @@ settings:
       create: "Synchroniser avec {site}"
     header: "Exporter"
     sub-header: "Synchronisez automatiquement votre bibliothèque vers MyAnimeList."
+    loading: "Chargement des exports…"
     remove: "Supprimer l'Export"
     disabled: "La synchronisation MAL a été désactivée à cause du problème suivant : <strong>{reason}</strong>"
     create: "Paramétrer la synchronisation vers MyAnimeList"
@@ -604,9 +621,18 @@ settings:
     sub-header: "Importer des médias d'autres fournisseurs"
     button: "Importer un média"
     past-imports: "Vos précédentes importations"
+    loading: "Chargement des imports…"
+    status: "État :"
+    entries: "Nombre total d'entrées trouvées :"
+    more: "Voir Plus"
   index:
     header: "Profil"
     sub-header: "Paramètres de compte et de région"
+    name: "Nom Affiché"
+    url: "URL du Profil"
+    email: "E-mail"
+    email-message: "L'adresse ne sera pas publique."
+    language: "Langue"
   linked-accounts:
     header: "Comptes associés"
     sub-header: "Connecter des comptes tiers avec Kitsu"
@@ -1056,7 +1082,7 @@ library-entry:
 user-notifications:
   #Episode 113 of One Piece! aired
   aired: "{type, select, chapter {Le chapitre} episode {l'épisode} other {}} {number} de {media} {type, select, chapter {est sorti} episode {a été diffusé} other {}}"
-  aired-unknown: "{media} {type, select, manga {est sorti} anime {a été diffusé} other {}} un {type, select, manga {nouveau chapitre} anime {nouvel épisode} other {}}"
+  aired-unknown: "Un {type, select, manga {nouveau chapitre} anime {nouvel épisode} other {}} de {media} {type, select, manga {est sorti} anime {a été diffusé} other {}}"
 #ember-power-select
 selects:
   none: "Pas de résultats"
