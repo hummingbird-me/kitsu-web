@@ -77,9 +77,57 @@ header:
     settings: "Impostazioni"
     admin: "Amministratore"
     logout: "Esci"
+#page: dashboard
+dashboard:
+  quick-update:
+    filter:
+      all: "Tutti"
+      anime: "Anime"
+      manga: "Manga"
+    empty:
+      discover: "Scopri media"
+    media:
+      complete: "Completo"
+      unstarted: "Non iniziato"
+    overlay:
+      button:
+        complete: "Completo"
+        tooltip:
+          empty: "Aggiorna la libreria"
+          content: "Crea un post e aggiorna la libreria"
+      discussion: "Mostra discussione"
+      edit: "Modifica voce nella libreria"
+      popout: "Editor Pop-out"
+  groups:
+    header: "I miei gruppi"
+  announcements:
+    button: "Scopri di più"
 #page: anime/manga
 media:
+  index:
+    filter: "Filtro"
+    remove: "Rimuovi"
+    filters:
+      year: "Anno"
+      score: "Valutazione media"
+      seasons: "Stagioni"
+      streamers: "Streamers (U.S.)"
+      rating: "Valutazione"
+      categories: "Categorie"
+      types: "Tipi"
+    sort:
+      popularity: "Popolarità"
+      rating: "Valutazione media"
+      date: "Data"
+      recent: "Aggiunto di recente"
   show:
+    navigation:
+      summary: "Trama"
+      characters: "Personaggi"
+      reactions: "Reazioni"
+      franchise: "Franchise"
+    sidebar:
+      watch: "Guarda online"
     summary:
       categories: "Categorie"
       relationships:
@@ -129,8 +177,41 @@ media:
       information:
         type: "Tipo"
         volumes: "Volumi"
+        status: "Stato"
+        tba: "Previsto"
+        season: "Stagione"
+        producers: "Produttori"
+        licensors: "Licenzianti"
+        studios: "Studi"
+        serialization: "Serializzazione"
+        duration: "Durata"
+        rating: "Valutazione"
+        expand:
+          false: "Ulteriori informazioni"
+          true: "Meno informazioni"
+      feed:
+        header: "Feed della community"
+      trailer: "Riproduci il trailer"
+    reactions:
+      loading: "Caricamento delle reazioni…"
+      delete: "Elimina la reazione"
+      report: "Segnala la reazione"
+      copy: "Copia il link alla reazione"
     franchise:
       roles:
+        sequel: "Sequel"
+        prequel: "Prequel"
+        alternative_setting: "Universo alternativo"
+        alternative_version: "Versione alternativa"
+        side_story: "Storia secondaria"
+        parent_story: "Storia correlata"
+        summary: "Trama"
+        full_story: "Trama completa"
+        spinoff: "Spin-off"
+        adaptation: "Adattamento"
+        anime_adaptation: "Anime"
+        manga_adaptation: "Manga"
+        character: "Personaggio"
         other: "Altro"
   hide-posts:
     text: "Nascondi i post riguardo {media}"
@@ -140,6 +221,14 @@ media:
     info: "I post appariranno nel tuo feed {type} o Seguiti"
 #page: users
 users:
+  profile:
+    edit: "Modifica"
+  admin:
+    button: "Amministratore"
+    past-names: "Visualizza nomi precedenti"
+    alt-accounts: "Visualizza account alternativi"
+    delete-content: "Elimina i contenuti creati dagli utenti"
+    ban: "Escludi"
   navigation:
     activity: "Attività"
     library: "Libreria"
@@ -206,9 +295,19 @@ users:
           placeholder: "Il tuo nome utente GitHub"
         battlenet:
           about: "Inserisci il tuo BattleTag di Battle.net qui sotto per aggiungere un link al tuo profilo."
+    favorites:
+      anime: "Anime"
+      manga: "Anime"
+      characters: "Personaggi"
+      remove: "Rimuovere il preferito?"
   activity:
+    onboarding:
+      welcome: "Ehi {user}, questa pagina è tutta su di TE!"
     about:
+      empty: "È un segreto"
       gender:
+        secret: "È un segreto"
+        male: "Maschio"
         female: "Femmina"
     stats:
       headings:
@@ -261,6 +360,7 @@ users:
       import: "Importa una libreria"
       export: "Esporta la libreria"
       reset: "Ripristina la libreria"
+      reset-loading: "Ripristino…"
       reset-confirmation: "Questo eliminerà l'intera libreria, le recensioni associate e le reazioni. Sei sicuro di voler continuare?"
       issues:
         header: "Problemi con la libreria"
@@ -271,6 +371,15 @@ users:
       more: "Altro"
       unstarted: "Non iniziato"
       unrated: "Nessuna valutazione"
+      table-header:
+        rating: "Valutazione"
+        progress: "Avanzamento"
+        volumes: "Volumi"
+      add-reaction: "Aggiungi una reazione"
+      empty:
+        search: "Non è stato trovato alcun elemento nella libreria con la tua query di ricerca."
+        header: "Pare che la tua libreria sia vuota! Pronto a iniziare qualcosa di nuovo?"
+        guest-header: "Pare che la libreria di {user} non contenga alcun elemento."
   hide-posts:
     info: "I post non appariranno nel tuo feed"
   show-posts:
@@ -319,3 +428,87 @@ settings:
     sub-header: "Sincronizza automaticamente gli aggiornamenti della tua libreria di Kitsu con MyAnimeList."
     remove: "Rimuovere l'esportatore"
     disabled: "L'esportazione MAL è stata disabilitata per il seguente motivo: <strong>{reason}</strong>"
+    create: "Imposta l'esportazione su un account MyAnimeList"
+    download: "Scarica la libreria {kind}"
+    recent: "Attività recenti di sincronizzazione"
+    sync-header: "Sincronizzazione di MyAnimeList"
+    no-logs: "Stiamo elaborando la tua libreria e la stiamo sincronizzando con MyAnimeList. Tieni duro!"
+    logs:
+      header:
+        media: "Titolo"
+        library-status: "Stato"
+        progress: "Avanzamento"
+  linked-accounts:
+    connect: "Connettiti a Facebook"
+  notifications:
+    header: "Notifiche push"
+    sub-header: "Notifiche generali del sito"
+    contexts:
+      web: "Web"
+      email: "Email"
+      mobile: "Mobile"
+    descriptions:
+      mentions: "Qualcuno <strong>mi menziona</strong> in un post o un commento"
+      replies: "Qualcuno <strong>risponde</strong> al mio post o commento"
+      likes: "A qualcuno <strong>piace</strong> il mio post o commento"
+      follows: "Qualcuno <strong>mi segue</strong>"
+      posts: "Qualcuno <strong>scrive</strong> sul mio profilo"
+      reaction_votes: "Qualcuno <strong>vota positivamente</strong> la mia reazione"
+      airing: "È stato rilasciato un nuovo episodio"
+    newsletter:
+      newsletter: "Newsletter"
+      subscribed: "Iscritto"
+      message: "Se abilitato, riceverai aggiornamenti via email occasionali (e molto discreti) su Kitsu scritti dallo stesso Josh."
+    loading: "Caricamento delle impostazioni…"
+    update: "Aggiorna le impostazioni"
+  password:
+    header: "Password"
+    sub-header: "Cambia la password"
+    new-pswd: "Nuova password"
+    confirm-pswd: "Conferma password"
+    update-pswd: "Aggiorna la password"
+  privacy:
+    header: "Privacy"
+    sub-header: "Regola la possibilità di altri di visualizzare i tuoi contenuti"
+    discover: "Visibilità"
+    checkbox: "Mostra nel feed globale"
+    message: "Se disabilitato, i tuoi post saranno disponibili solo ai tuoi follower e ospiti sul tuo profilo."
+    update: "Aggiorna il profilo"
+#page: feedback
+feedback:
+  bugs: "Bugs"
+  features: "Richieste di funzioni"
+  database: "Richieste sul database"
+  mobile-bugs: "Bugs su mobile"
+  mobile-features: "Funzioni su mobile"
+#page: groups
+groups:
+  index:
+    call-to-action: "Chiunque può creare e scoprire gruppi. Ogni gruppo si basa su un argomento o un'attività."
+    create-btn: "Crea un gruppo"
+  create:
+    header: "Crea un gruppo"
+    form:
+      required: "Obbligatorio"
+      name: "Nome"
+      tagline: "Slogan"
+      about: "Descrizione"
+      rules: "Regole"
+      neighbors: "Vicini"
+      neighbors-placeholder: "Cerca un gruppo"
+      privacy: "Privacy"
+      privacy-options:
+        open: "Pubblico"
+        closed: "Privato"
+        restricted: "Limitato"
+      privacy-features:
+        open: "<li>Chiunque può visualizzare</li> <li>Chiunque può unirsi</li> <li>Chiunque può postare o commentare</li>"
+        closed: "<li>Nascosto al pubblico</li> <li>Gli utenti possono partecipare solo tramite invito</li> <li>I post non possono essere resi pubblici</li>"
+  dashboard:
+    members:
+      invites:
+        empty: "Pare che tu non abbia nessun invito in sospeso per il gruppo."
+#ember-cp-validations
+errors:
+  serverError:
+    title: "Oops! Pare che il nostro server abbia un bug."
