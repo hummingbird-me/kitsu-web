@@ -1,0 +1,514 @@
+---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Scopri Anime"
+  manga:
+    index: "Scopri Manga"
+  media:
+    show:
+      units: "{type, select, anime {Episodi} manga {Capitoli} other {}}"
+      characters: "Personaggi"
+      reactions: "Reazioni"
+      franchise: "Franchising"
+  explore:
+    index: "Scopri {mediaType, select, anime {Anime} manga {Manga} other {}}"
+    more:
+      trending: "Di tendenza {type, select, anime {Anime} manga {Manga} other {}} questa settimana"
+      top-upcoming: "Migliori {type} in arrivo"
+      highest-rated: "{type} con valutazioni più alte"
+      most-popular: "{type} più popolari"
+  users:
+    index: "Profilo di {user}"
+    library: "Libreria di {user}"
+    reviews: "Recensioni di {user}"
+    reactions: "Reazioni di {user}"
+    followers: "Followers di {user}"
+    following: "Seguito da {user}"
+    groups: "Gruppi di {user}"
+    stats: "Statistiche di {user}"
+  posts: "Post da {user}"
+  comments: "Commento di {user}"
+  reviews: "Recensione di {user}"
+  notifications: "Notifiche"
+  feedback:
+    bugs: "Bugs"
+    feature-requests: "Richieste di funzioni"
+    database-requests: "Richieste sul database"
+    mobile-bugs: "Bugs su mobile"
+    mobile-features: "Funzioni su mobile"
+  admin:
+    index: "Amministratore"
+    reports: "Segnalazioni"
+  groups:
+    index: "Gruppi"
+    new: "Crea un gruppo"
+    group:
+      group-page:
+        rules: "Regole di {group}"
+        members: "Membri di {group}"
+        leaders: "Leaders di {group}"
+      dashboard:
+        index: "Informazioni generali di {group}"
+        reports: "Segnalazioni di {group}"
+        tickets: "Ticket di {group}"
+        members: "Membri di {group}"
+        leaders: "Leaders di {group}"
+        settings: "Impostazioni di {group}"
+  group-invite: "Invito al gruppo"
+#head
+head:
+  users:
+    description: "{user} sta usando Kitsu per tracciare i suoi progressi e condividere le proprie esperienze riguardo anime e manga."
+#header
+header:
+  library: "Libreria"
+  anime: "Anime"
+  manga: "Manga"
+  trending: "Di tendenza"
+  groups: "Gruppi"
+  feedback: "Feedback"
+  browse: "Esplora"
+  auth:
+    sign-in: "Accedi"
+    sign-up: "Registrati"
+  user:
+    profile: "Vedi profilo"
+    settings: "Impostazioni"
+    admin: "Amministratore"
+    logout: "Esci"
+#page: dashboard
+dashboard:
+  quick-update:
+    filter:
+      all: "Tutti"
+      anime: "Anime"
+      manga: "Manga"
+    empty:
+      discover: "Scopri media"
+    media:
+      complete: "Completo"
+      unstarted: "Non iniziato"
+    overlay:
+      button:
+        complete: "Completo"
+        tooltip:
+          empty: "Aggiorna la libreria"
+          content: "Crea un post e aggiorna la libreria"
+      discussion: "Mostra discussione"
+      edit: "Modifica voce nella libreria"
+      popout: "Editor Pop-out"
+  groups:
+    header: "I miei gruppi"
+  announcements:
+    button: "Scopri di più"
+#page: anime/manga
+media:
+  index:
+    filter: "Filtro"
+    remove: "Rimuovi"
+    filters:
+      year: "Anno"
+      score: "Valutazione media"
+      seasons: "Stagioni"
+      streamers: "Streamers (U.S.)"
+      rating: "Valutazione"
+      categories: "Categorie"
+      types: "Tipi"
+    sort:
+      popularity: "Popolarità"
+      rating: "Valutazione media"
+      date: "Data"
+      recent: "Aggiunto di recente"
+  show:
+    navigation:
+      summary: "Trama"
+      characters: "Personaggi"
+      reactions: "Reazioni"
+      franchise: "Franchise"
+    sidebar:
+      watch: "Guarda online"
+    summary:
+      categories: "Categorie"
+      relationships:
+        header: "Altro in questa serie"
+        more: "Visualizza tutto in {title}"
+      reactions:
+        header: "Reazioni"
+        more: "Visualizza altre reazioni"
+        sorts:
+          -upVotesCount: "Popolari"
+          -createdAt: "Recenti"
+        new: "Nuova reazione"
+        edit: "La mia reazione"
+        empty: "Pare che nessuno abbia ancora reagito a questo"
+      characters:
+        header: "Personaggi"
+        more: "Visualizza tutti i personaggi"
+      titles:
+        header: "Titoli alternativi"
+        ar: "Arabo"
+        ar_ar: "Arabo" #Invalid use ar
+        de_de: "Tedesco"
+        en: "Inglese"
+        en_cn: "Cinese (Pinyin)"
+        en_gb: "Inglese (GB)"
+        en_jp: "Japanese (Romaji)"
+        en_kr: "Coreano (Romaja)"
+        en_th: "Tailandese (Romanizzato)"
+        en_us: "Inglese (US)"
+        es_es: "Spagnolo"
+        fr_fr: "Francese"
+        id_id: "Indonesiano"
+        it_it: "Italiano"
+        ja_jp: "Giapponese"
+        ko_kr: "Coreano"
+        nl_nl: "Olandese"
+        pt_br: "Portoghese (Brasile)"
+        pt_pt: "Portoghese"
+        ru_ru: "Russo"
+        th_th: "Tailandese"
+        uk_ua: "Ucraino"
+        vi_vi: "Vietnamese" #Invalid use vi_vn
+        vi_vn: "Vietnamese"
+        zh_cn: "Cinese (semplificato)"
+        zh_tw: "Cinese (tradizionale)"
+        synonyms: "Sinonimi"
+      information:
+        type: "Tipo"
+        volumes: "Volumi"
+        status: "Stato"
+        tba: "Previsto"
+        season: "Stagione"
+        producers: "Produttori"
+        licensors: "Licenzianti"
+        studios: "Studi"
+        serialization: "Serializzazione"
+        duration: "Durata"
+        rating: "Valutazione"
+        expand:
+          false: "Ulteriori informazioni"
+          true: "Meno informazioni"
+      feed:
+        header: "Feed della community"
+      trailer: "Riproduci il trailer"
+    reactions:
+      loading: "Caricamento delle reazioni…"
+      delete: "Elimina la reazione"
+      report: "Segnala la reazione"
+      copy: "Copia il link alla reazione"
+    franchise:
+      roles:
+        sequel: "Sequel"
+        prequel: "Prequel"
+        alternative_setting: "Universo alternativo"
+        alternative_version: "Versione alternativa"
+        side_story: "Storia secondaria"
+        parent_story: "Storia correlata"
+        summary: "Trama"
+        full_story: "Trama completa"
+        spinoff: "Spin-off"
+        adaptation: "Adattamento"
+        anime_adaptation: "Anime"
+        manga_adaptation: "Manga"
+        character: "Personaggio"
+        other: "Altro"
+  hide-posts:
+    text: "Nascondi i post riguardo {media}"
+    info: "I post non appariranno nel tuo feed {type} o Seguiti"
+  show-posts:
+    text: "Mostra post riguardo {media}"
+    info: "I post appariranno nel tuo feed {type} o Seguiti"
+#page: users
+users:
+  profile:
+    edit: "Modifica"
+  admin:
+    button: "Amministratore"
+    past-names: "Visualizza nomi precedenti"
+    alt-accounts: "Visualizza account alternativi"
+    delete-content: "Elimina i contenuti creati dagli utenti"
+    ban: "Escludi"
+  navigation:
+    activity: "Attività"
+    library: "Libreria"
+    reviews: "Recensioni"
+    reactions: "Reazioni"
+    followers: "Followers"
+    following: "Seguito"
+    groups: "Gruppi"
+  edit-modal:
+    cover: "Cambia la tua foto di copertina"
+    navigation:
+      about: "Chi sono"
+      profile-links: "Link al profilo"
+      favorites: "Preferiti"
+    about:
+      header: "Chi sono"
+      location:
+        label: "Località"
+        placeholder: "Dove abiti?"
+      birthday: "Compleanno"
+      gender:
+        label: "Genere"
+        options:
+          secret: "È un segreto"
+          male: "Maschio"
+          female: "Femmina"
+          custom: "Personalizzato"
+      waifu:
+        label: "Waifu"
+        placeholder: "Waifu/Husbando"
+        search: "Trova il tuo qualcuno speciale"
+      bio:
+        label: "Biografia"
+        placeholder: "Racconta al mondo la tua storia."
+    profile-links:
+      header: "Link al profilo"
+      sites:
+        website:
+          about: "Inserisci il tuo sito web personale qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "URL del tuo sito web"
+        twitter:
+          about: "Inserisci il tuo nome utente Twitter qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "Il tuo nome utente Twitter (@Username)"
+        facebook:
+          about: "Inserisci il tuo URL di Facebook qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "Il tuo URL Facebook"
+        youtube:
+          about: "Inserisci il URL del tuo canale YouTube qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "L'URL del tuo canale YouTube"
+        google:
+          about: "Inserisci l'URL del tuo profilo Google+ o il nome utente qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "L'URL del tuo profilo Google+ o il nome utente (+Nome Utente)"
+        instagram:
+          about: "Inserisci il tuo nome utente di Instagram qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "Il tuo nome utente Instagram"
+        twitch:
+          about: "Inserisci il tuo nome utente di Twitch qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "Il tuo nome utente Twitch"
+        vimeo:
+          about: "Inserisci il tuo nome utente Vimeo qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "Il tuo nome utente Vimeo"
+        github:
+          about: "Inserisci il tuo nome utente GitHub qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "Il tuo nome utente GitHub"
+        battlenet:
+          about: "Inserisci il tuo BattleTag di Battle.net qui sotto per aggiungere un link al tuo profilo."
+    favorites:
+      anime: "Anime"
+      manga: "Anime"
+      characters: "Personaggi"
+      remove: "Rimuovere il preferito?"
+  activity:
+    onboarding:
+      welcome: "Ehi {user}, questa pagina è tutta su di TE!"
+    about:
+      empty: "È un segreto"
+      gender:
+        secret: "È un segreto"
+        male: "Maschio"
+        female: "Femmina"
+    stats:
+      headings:
+        anime: "Statistiche Anime"
+        manga: "Statistiche Manga"
+      chapters-read: "capitoli letti."
+      time-breakdown: "trascorsi a guardare anime in totale."
+      empty:
+        header: "Pare che non ci siano ancora abbastanza dati! Pronto a leggere qualcosa?"
+        guest-header: "Pare che {user} non abbia ancora nessuna statistica."
+  library:
+    sorting:
+      label: "Ordina per:"
+      options:
+        watched: "Data di aggiornamento"
+        started: "Data di inizio"
+        finished: "Data di fine"
+        added: "Data di aggiunta"
+        progress: "Avanzamento"
+        rating: "Valutazione"
+        title: "Titolo"
+        length: "Durata"
+      directions:
+        watched:
+          desc: "Prima i più recenti"
+          asc: "Prima i meno recenti"
+        started:
+          desc: "Prima i più recenti"
+          asc: "Prima i meno recenti"
+        finished:
+          desc: "Prima i più recenti"
+          asc: "Prima i meno recenti"
+        added:
+          desc: "Prima i più recenti"
+          asc: "Prima i meno recenti"
+        progress:
+          desc: "Con più episodi visti"
+          asc: "Con meno episodi visti"
+        rating:
+          desc: "Con valutazioni più alte"
+          asc: "Con valutazioni più basse"
+        title:
+          desc: "A-Z"
+          asc: "Z-A"
+        length:
+          desc: "Più duraturo"
+          asc: "Meno duraturo"
+    sidebar:
+      manage: "Gestisci la libreria"
+      import: "Importa una libreria"
+      export: "Esporta la libreria"
+      reset: "Ripristina la libreria"
+      reset-loading: "Ripristino…"
+      reset-confirmation: "Questo eliminerà l'intera libreria, le recensioni associate e le reazioni. Sei sicuro di voler continuare?"
+      issues:
+        header: "Problemi con la libreria"
+        fix: "correggi"
+    list:
+      edit: "Modifica voce"
+      list-edit: "Modifica"
+      more: "Altro"
+      unstarted: "Non iniziato"
+      unrated: "Nessuna valutazione"
+      table-header:
+        rating: "Valutazione"
+        progress: "Avanzamento"
+        volumes: "Volumi"
+      add-reaction: "Aggiungi una reazione"
+      empty:
+        search: "Non è stato trovato alcun elemento nella libreria con la tua query di ricerca."
+        header: "Pare che la tua libreria sia vuota! Pronto a iniziare qualcosa di nuovo?"
+        guest-header: "Pare che la libreria di {user} non contenga alcun elemento."
+  hide-posts:
+    info: "I post non appariranno nel tuo feed"
+  show-posts:
+    text: "Mostra post riguardo {user}"
+    info: "I post appariranno nel tuo feed"
+  followers:
+    not-found: "Nessun utente trovato."
+  following:
+    not-found: "Nessun utente trovato."
+  reviews:
+    not-found: "Nessuna recensione trovata."
+#page: settings
+settings:
+  navigation:
+    header: "Impostazioni"
+    profile: "Profilo"
+    notifications: "Notifiche"
+    password: "Password"
+    privacy: "Privacy"
+    linked-accounts: "Account collegati"
+    import: "Importazione"
+    export: "Esportazione"
+    blocking: "Blocco"
+    account: "Account"
+  account:
+    header: "Account"
+    sub-header: "Zona di pericolo! L'eliminazione del tuo account è irreversibile."
+    delete: "Elimina account"
+    confirm-title: "Elimina account"
+    confirm-text: "Ci dispiace vederti andar via, sei sicuro di voler procedere?"
+  apps:
+    header: "Applicazioni"
+  blocking:
+    header: "Blocco"
+    title: "Blocca utenti"
+    button-block: "Blocca"
+    button-unblock: "Sblocca"
+    more: "Carica di più"
+    not-blocking: "Al momento non hai bloccato nessuno."
+  exports:
+    modal:
+      header: "Sincronizza con {site}"
+      helper: "Aggiorneremo le tue liste di anime e manga su {site} ogni volta che le aggiornerai su Kitsu."
+      create: "Sincronizza con {site}"
+    header: "Esportazione"
+    sub-header: "Sincronizza automaticamente gli aggiornamenti della tua libreria di Kitsu con MyAnimeList."
+    remove: "Rimuovere l'esportatore"
+    disabled: "L'esportazione MAL è stata disabilitata per il seguente motivo: <strong>{reason}</strong>"
+    create: "Imposta l'esportazione su un account MyAnimeList"
+    download: "Scarica la libreria {kind}"
+    recent: "Attività recenti di sincronizzazione"
+    sync-header: "Sincronizzazione di MyAnimeList"
+    no-logs: "Stiamo elaborando la tua libreria e la stiamo sincronizzando con MyAnimeList. Tieni duro!"
+    logs:
+      header:
+        media: "Titolo"
+        library-status: "Stato"
+        progress: "Avanzamento"
+  linked-accounts:
+    connect: "Connettiti a Facebook"
+  notifications:
+    header: "Notifiche push"
+    sub-header: "Notifiche generali del sito"
+    contexts:
+      web: "Web"
+      email: "Email"
+      mobile: "Mobile"
+    descriptions:
+      mentions: "Qualcuno <strong>mi menziona</strong> in un post o un commento"
+      replies: "Qualcuno <strong>risponde</strong> al mio post o commento"
+      likes: "A qualcuno <strong>piace</strong> il mio post o commento"
+      follows: "Qualcuno <strong>mi segue</strong>"
+      posts: "Qualcuno <strong>scrive</strong> sul mio profilo"
+      reaction_votes: "Qualcuno <strong>vota positivamente</strong> la mia reazione"
+      airing: "È stato rilasciato un nuovo episodio"
+    newsletter:
+      newsletter: "Newsletter"
+      subscribed: "Iscritto"
+      message: "Se abilitato, riceverai aggiornamenti via email occasionali (e molto discreti) su Kitsu scritti dallo stesso Josh."
+    loading: "Caricamento delle impostazioni…"
+    update: "Aggiorna le impostazioni"
+  password:
+    header: "Password"
+    sub-header: "Cambia la password"
+    new-pswd: "Nuova password"
+    confirm-pswd: "Conferma password"
+    update-pswd: "Aggiorna la password"
+  privacy:
+    header: "Privacy"
+    sub-header: "Regola la possibilità di altri di visualizzare i tuoi contenuti"
+    discover: "Visibilità"
+    checkbox: "Mostra nel feed globale"
+    message: "Se disabilitato, i tuoi post saranno disponibili solo ai tuoi follower e ospiti sul tuo profilo."
+    update: "Aggiorna il profilo"
+#page: feedback
+feedback:
+  bugs: "Bugs"
+  features: "Richieste di funzioni"
+  database: "Richieste sul database"
+  mobile-bugs: "Bugs su mobile"
+  mobile-features: "Funzioni su mobile"
+#page: groups
+groups:
+  index:
+    call-to-action: "Chiunque può creare e scoprire gruppi. Ogni gruppo si basa su un argomento o un'attività."
+    create-btn: "Crea un gruppo"
+  create:
+    header: "Crea un gruppo"
+    form:
+      required: "Obbligatorio"
+      name: "Nome"
+      tagline: "Slogan"
+      about: "Descrizione"
+      rules: "Regole"
+      neighbors: "Vicini"
+      neighbors-placeholder: "Cerca un gruppo"
+      privacy: "Privacy"
+      privacy-options:
+        open: "Pubblico"
+        closed: "Privato"
+        restricted: "Limitato"
+      privacy-features:
+        open: "<li>Chiunque può visualizzare</li> <li>Chiunque può unirsi</li> <li>Chiunque può postare o commentare</li>"
+        closed: "<li>Nascosto al pubblico</li> <li>Gli utenti possono partecipare solo tramite invito</li> <li>I post non possono essere resi pubblici</li>"
+  dashboard:
+    members:
+      invites:
+        empty: "Pare che tu non abbia nessun invito in sospeso per il gruppo."
+#ember-cp-validations
+errors:
+  serverError:
+    title: "Oops! Pare che il nostro server abbia un bug."
