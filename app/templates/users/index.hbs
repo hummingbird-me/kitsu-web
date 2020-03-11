@@ -8,7 +8,7 @@
     </div>
 
     {{! Feed Posts }}
-    <div class="feed-stream">
+    <div class="feed-stream feed-narrow">
       {{#if (and (is-self user) (not (is-object user.avatar)))}}
         {{users/onboarding/feed-notice}}
       {{/if}}
