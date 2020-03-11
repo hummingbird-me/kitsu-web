@@ -633,6 +633,18 @@ settings:
     email: "E-mail"
     email-message: "L'adresse ne sera pas publique."
     language: "Langue"
+    translate-help: "Intéressé par la traduction ? <a href=\"https://crowdin.com/project/kitsu-web\">Rejoignez-nous !</a>"
+    time-zone: "Fuseau Horaire"
+    content: "Contenu sur Kitsu"
+    theme: "Thème du Site"
+    country: "Pays"
+    titles: "Titres"
+    titles-message: "Quel sera le titre affiché."
+    rating: "Type de Notation"
+    rating-message: "Choisissez la façon dont vous souhaitez noter les médias que vous avez vus ou lus."
+    adult: "Contenu Adulte"
+    adult-message: "Avec le contenu pour adultes masqué, vous ne verrez pas les médias pouvant heurter la sensibilité des plus jeunes dans votre flux, les bibliothèques, ou la recherche."
+    update: "Mettre à jour le profil"
   linked-accounts:
     header: "Comptes associés"
     sub-header: "Connecter des comptes tiers avec Kitsu"
@@ -658,6 +670,7 @@ settings:
       newsletter: "Newsletter"
       subscribed: "Abonné"
       message: "Si activé, vous recevrez par e-mail des mises à jour occasionnelles (et passionnantes) à propos de Kitsu, écrites par Josh lui-même."
+    loading: "Chargement des paramètres…"
     update: "Modifier les paramètres"
   password:
     header: "Mot de passe"
@@ -923,11 +936,14 @@ explore:
     categories: "Catégories"
     favorite-categories: "Catégories favorites"
     no-favorites: "Les catégories favorites vont améliorer vos recommandations."
+    more-categories: "Plus de catégories…"
   modal:
     header: "Toutes les catégories"
   favorite-button:
     remove: "Supprimer des favoris"
+    removing: "Suppression…"
     create: "Ajouter aux favoris"
+    creating: "Ajout…"
 #page: media-reactions
 media-reactions:
   create-account: "Créer un compte"
@@ -996,11 +1012,13 @@ feeds:
     select: "Envoyer"
     drop: "Déposer pour envoyer"
     invalid: "Type de fichier invalide"
+    uploading: "{number, plural, =1 {Envoi de l'image… {progress}%} other {Envoi de {number} images… {progress}%}}"
   filter:
     all: "Toutes les activités"
     media: "Activités liées aux médias"
     user: "Activité liée aux utilisateurs"
     following: "Activités des abonnements"
+  placeholder: "{type, select, user_aggr {Poster à {subject}} group_aggr {Poster sur {subject}} media_aggr {Poster à propos de {subject}} episode_aggr {Poster à propos de l'épisode {subject}} chapter_aggr {Poster à propos du chapitre {subject}} interest_timeline {Poster à propos de {subject}} other {Créer un post}}…"
   library:
     updated: "a déplacé vers {status}"
     rated: "a noté"
@@ -1085,6 +1103,7 @@ user-notifications:
   aired-unknown: "Un {type, select, manga {nouveau chapitre} anime {nouvel épisode} other {}} de {media} {type, select, manga {est sorti} anime {a été diffusé} other {}}"
 #ember-power-select
 selects:
+  loading: "Chargement…"
   none: "Pas de résultats"
   search: "Commencez à taper pour chercher"
 #ember-cp-validations
@@ -1133,6 +1152,8 @@ errors:
   serverError:
     title: "Oups ! On dirait qu'il y a un bug de notre côté."
     body: "Notre équipe a été notifiée, merci de réessayer dans quelques minutes."
+#Loading
+loading: "Chargement {subject, select, episode {de l'épisode} chapter {du chapitre} episodes {des épisodes} chapters {des chapitres} other {}}…"
 timeUnits:
   years: "{count, plural, =1 {an} other {ans}}"
   months: "mois"
