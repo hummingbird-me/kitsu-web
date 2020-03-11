@@ -18,6 +18,8 @@ titles:
       top-upcoming: "Migliori {type} in arrivo"
       highest-rated: "{type} con valutazioni più alte"
       most-popular: "{type} più popolari"
+  not-found: "Non trovato"
+  server-error: "Errore del server"
   users:
     index: "Profilo di {user}"
     library: "Libreria di {user}"
@@ -98,6 +100,8 @@ dashboard:
       discussion: "Mostra discussione"
       edit: "Modifica voce nella libreria"
       popout: "Editor Pop-out"
+  onboarding:
+    welcome: "Ciao {user}, benvenuto in Kitsu!"
   groups:
     header: "I miei gruppi"
   announcements:
@@ -105,6 +109,7 @@ dashboard:
 #page: anime/manga
 media:
   index:
+    search: "Cerca per titolo, personaggio o interprete…"
     filter: "Filtro"
     remove: "Rimuovi"
     filters:
@@ -296,6 +301,7 @@ users:
         battlenet:
           about: "Inserisci il tuo BattleTag di Battle.net qui sotto per aggiungere un link al tuo profilo."
     favorites:
+      header: "Preferiti"
       anime: "Anime"
       manga: "Anime"
       characters: "Personaggi"
@@ -380,6 +386,20 @@ users:
         search: "Non è stato trovato alcun elemento nella libreria con la tua query di ricerca."
         header: "Pare che la tua libreria sia vuota! Pronto a iniziare qualcosa di nuovo?"
         guest-header: "Pare che la libreria di {user} non contenga alcun elemento."
+    edit:
+      status: "Stato della libreria"
+      progress: "Avanzamento"
+      volumes: "Volumi"
+      rating: "Valutazione"
+      privacy: "Privacy"
+      started: "Iniziato"
+      finished: "Terminato"
+      notes: "Note personali"
+      remove: "Rimuovi dalla libreria"
+      save: "Salva le modifiche"
+      saving: "Salvataggio in corso…"
+    bulk:
+      select-all: "Seleziona tutto"
   hide-posts:
     info: "I post non appariranno nel tuo feed"
   show-posts:
@@ -387,10 +407,13 @@ users:
     info: "I post appariranno nel tuo feed"
   followers:
     not-found: "Nessun utente trovato."
+    loading: "Caricamento utenti…"
   following:
     not-found: "Nessun utente trovato."
+    loading: "Caricamento utenti…"
   reviews:
     not-found: "Nessuna recensione trovata."
+    loading: "Caricamento recensioni…"
 #page: settings
 settings:
   navigation:
@@ -414,8 +437,11 @@ settings:
     header: "Applicazioni"
   blocking:
     header: "Blocco"
+    sub-header: "Una volta che blocchi qualcuno, quella persona non può più taggarti, seguirti, visualizzare il tuo profilo o vedere i tuoi messaggi sui feed."
     title: "Blocca utenti"
+    placeholder: "Cerca utenti da bloccare…"
     button-block: "Blocca"
+    loading: "Caricamento utenti…"
     button-unblock: "Sblocca"
     more: "Carica di più"
     not-blocking: "Al momento non hai bloccato nessuno."
@@ -426,6 +452,7 @@ settings:
       create: "Sincronizza con {site}"
     header: "Esportazione"
     sub-header: "Sincronizza automaticamente gli aggiornamenti della tua libreria di Kitsu con MyAnimeList."
+    loading: "Caricamento delle esportazioni…"
     remove: "Rimuovere l'esportatore"
     disabled: "L'esportazione MAL è stata disabilitata per il seguente motivo: <strong>{reason}</strong>"
     create: "Imposta l'esportazione su un account MyAnimeList"
@@ -438,6 +465,44 @@ settings:
         media: "Titolo"
         library-status: "Stato"
         progress: "Avanzamento"
+        rating: "Valutazione"
+        action: "Azione"
+        status: "Stato"
+      action:
+        create: "Crea"
+        update: "Aggiornamento"
+        destroy: "Rimozione"
+      status:
+        pending: "In attesa"
+        success: "Completato"
+        error: "Errore"
+  imports:
+    header: "Importazioni"
+    sub-header: "Importa media da altri provider"
+    button: "Importa media"
+    past-imports: "Le tue ultime importazioni"
+    loading: "Caricamento delle esportazioni…"
+    status: "Stato:"
+    entries: "Totale voci trovate:"
+    more: "Carica di più"
+  index:
+    header: "Profilo"
+    sub-header: "Impostazioni account e regione"
+    name: "Nome visualizzato"
+    url: "URL del profilo"
+    email: "Email"
+    email-message: "L'email non verrà visualizzata pubblicamente."
+    language: "Lingua"
+    translate-help: "Ti interessa tradurre? <a href=\"https://crowdin.com/project/kitsu-web\">Traduci qui!</a>"
+    time-zone: "Fuso orario"
+    content: "Contenuti di Kitsu"
+    theme: "Tema del sito"
+    country: "Nazione"
+    titles: "Titoli"
+    titles-message: "Come saranno visualizzati i titoli dei media."
+    rating: "Tipo di valutazione"
+    rating-message: "Scegli come vuoi valutare i media che hai guardato o letto."
+    adult: "Contenuti per adulti"
   linked-accounts:
     connect: "Connettiti a Facebook"
   notifications:
