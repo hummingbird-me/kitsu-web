@@ -127,6 +127,7 @@ dashboard:
 #page: anime/manga
 media:
   index:
+    search: "Pesquisar por título, personagem, ou elenco…"
     filter: "Filtrar"
     remove: "Remover"
     filters:
@@ -243,6 +244,7 @@ media:
       header: "Personagens de {title}"
       sub-header: "{type, select, anime {A seguir está uma lista completa de personagens e seus dubladores {language} no anime {title}} manga {A seguir está uma lista completa de personagens do mangá {title}} other {}}"
     reactions:
+      loading: "Carregando Reações…"
       delete: "Excluir Reação"
       report: "Denunciar reação"
       copy: "Copiar Link de Reação"
@@ -271,6 +273,14 @@ media:
     info: "As publicações aparecerão no seu Feed de Seguinte ou {type}"
 #page: users
 users:
+  profile:
+    edit: "Editar"
+  admin:
+    button: "Admin"
+    past-names: "Ver Nomes Anteriores"
+    alt-accounts: "Ver Contas Paralelas"
+    delete-content: "Excluir Conteúdo Criado por Usuários"
+    ban: "Banir"
   navigation:
     activity: "Atividade"
     library: "Biblioteca"
@@ -422,6 +432,7 @@ users:
         header: "Parece que você ainda não tem dados suficientes! Pronto para começar algo novo?"
         guest-header: "Parece que {user} ainda não tem nenhuma estatística."
   library:
+    search: "Pesquisar na Biblioteca de {name}…"
     sorting:
       label: "Ordenar por:"
       options:
@@ -464,6 +475,7 @@ users:
       import: "Importar Biblioteca"
       export: "Exportar Biblioteca"
       reset: "Resetar biblioteca"
+      reset-loading: "Redefinindo…"
       reset-confirmation: "Isso irá apagar toda a sua biblioteca, análises associadas e reações. Você tem certeza que deseja continuar?"
       issues:
         header: "Problemas na Biblioteca"
@@ -504,11 +516,15 @@ users:
       notes: "Notas Pessoais"
       remove: "Remover da Biblioteca"
       save: "Salvar Alterações"
+      saving: "Salvando…"
     bulk:
       selected: "{type, select, anime {{num} animes selecionados} manga {{num} mangás selecionados} other {}}"
       select-all: "Selecionar Todos"
       select-none: "Selecionar Nenhum"
       remove: "Remover <strong>{num}</strong>"
+      move-to: "Mover <strong>{num}</strong> para…"
+      remove-loading: "Removendo…"
+      update-loading: "Atualizando…"
   groups:
     sort:
       newest: "Registou-se recentemente"
@@ -528,6 +544,15 @@ users:
   show-posts:
     text: "Mostrar postagens de {user}"
     info: "As publicações aparecerão no seu Feed de Seguidos"
+  followers:
+    not-found: "Nenhum Usuário Encontrado."
+    loading: "Carregando Usuários…"
+  following:
+    not-found: "Nenhum Usuário Encontrado."
+    loading: "Carregando Usuários…"
+  reviews:
+    not-found: "Nenhuma Avaliação encontrada."
+    loading: "Carregando Avaliações…"
 #page: settings
 settings:
   navigation:
@@ -552,6 +577,13 @@ settings:
   blocking:
     header: "Bloqueio"
     sub-header: "Uma vez que você bloqueia alguém, essa pessoa não pode mais marcar você, te seguir, ver seu perfil ou ver os posts do seu Feed."
+    title: "Bloquear Usuários"
+    placeholder: "Procurar usuários para bloquear…"
+    button-block: "Bloquear"
+    loading: "Carregando Usuários…"
+    button-unblock: "Desbloquear"
+    more: "Carregar Mais"
+    not-blocking: "Você não está bloqueando ninguém no momento."
   exports:
     modal:
       header: "Sincronizar com {site}"
@@ -559,6 +591,7 @@ settings:
       create: "Sincronizar com {site}"
     header: "Exportar"
     sub-header: "Sincronizar automaticamente as atualizações da biblioteca do Kitsu com o MyAnimeList."
+    loading: "Carregando Exportações…"
     remove: "Remover Exportador"
     disabled: "Sua exportação de MAL foi desabilitada pelo seguinte motivo: <strong>{reason}</strong>"
     create: "Configurar exportação para conta do MyAnimeList"
@@ -586,9 +619,33 @@ settings:
   imports:
     header: "Importações"
     sub-header: "Importar mídias de outros provedores"
+    button: "Importar Mídia"
+    past-imports: "Suas importações anteriores"
+    loading: "Carregando Importações…"
+    status: "Status:"
+    entries: "Total de Entradas Encontradas:"
+    error: "Parece que sua importação falhou :( &mdash; Queremos corrigir isso para você, então por favor mande um <a href=\"mailto:help@kitsu.io\">e-mail</a> pra gente."
+    more: "Carregar Mais"
   index:
     header: "Perfil"
     sub-header: "Configurações de conta e região"
+    name: "Nome para Exibição"
+    url: "URL do Perfil"
+    email: "E-Mail"
+    email-message: "O e-mail não será exibido publicamente."
+    language: "Idioma"
+    translate-help: "Interessado em traduzir? <a href=\"https://crowdin.com/project/kitsu-web\">Traduza aqui!</a>"
+    time-zone: "Fuso Horário"
+    content: "Conteúdo no Kitsu"
+    theme: "Tema do Site"
+    country: "País"
+    titles: "Títulos"
+    titles-message: "Como os títulos de mídia serão exibidos."
+    rating: "Tipo de Classificação"
+    rating-message: "Escolha como você gostaria de classificar as mídias que você assistiu ou leu."
+    adult: "Conteúdo Adulto"
+    adult-message: "Com o conteúdo adulto oculto, você não verá mais mídias 18+ no feed, em bibliotecas ou buscas."
+    update: "Atualizar Perfil"
   linked-accounts:
     header: "Contas Vinculadas"
     sub-header: "Conectar contas de terceiros com Kitsu"
@@ -614,6 +671,7 @@ settings:
       newsletter: "Newsletter"
       subscribed: "Inscrito"
       message: "Se ativado, você receberá atualizações ocasionais (e bem-humoradas) por e-mail sobre o Kitsu escritas pelo próprio Josh."
+    loading: "Carregando configurações…"
     update: "Atualizar Configurações"
   password:
     header: "Senha"
@@ -879,11 +937,14 @@ explore:
     categories: "Categorias"
     favorite-categories: "Minhas Categorias Favoritas"
     no-favorites: "Favoritar categorias melhorarão suas recomendações."
+    more-categories: "Mais categorias…"
   modal:
     header: "Todas as categorias"
   favorite-button:
     remove: "Remover dos favoritos"
+    removing: "Removendo…"
     create: "Adicionar aos Favoritos"
+    creating: "Adicionando…"
 #page: media-reactions
 media-reactions:
   create-account: "Criar Conta"
@@ -952,6 +1013,7 @@ feeds:
     select: "Enviar"
     drop: "Solte para fazer upload"
     invalid: "Tipo de arquivo inválido"
+    uploading: "{number, plural, one {} =1 {Enviando foto… {progress}%} other {Enviando {number} fotos… {progress}%}}"
   filter:
     all: "Toda Atividade"
     media: "Atividade de Mídia"
