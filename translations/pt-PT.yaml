@@ -1,6 +1,81 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Explorar Anime"
+  manga:
+    index: "Explorar Mangá"
+  media:
+    show:
+      units: "{type, select,anime {Episódios} manga {Capítulos} other {}}"
+      characters: "Personagens"
+      reactions: "Reações"
+      franchise: "Franquia"
+  explore:
+    index: "Explorar {mediaType, select, anime {Anime} manga {Mangá} other {}}"
+  not-found: "Não Encontrado"
+  server-error: "Erro de Servidor"
+  users:
+    index: "Perfil de {user}"
+    library: "Biblioteca de {user}"
+    reviews: "Avaliações de {user}"
+    reactions: "Reações de {user}"
+    followers: "Seguidores de {user}"
+    following: "Seguido por {user}"
+    groups: "Grupos de {user}"
+    stats: "Estatísticas de {user}"
+  posts: "Postado por {user}"
+  comments: "Comentado por {user}"
+  reviews: "Crítica por {user}"
+  notifications: "Notificações"
+  feedback:
+    bugs: "Bugs"
+    feature-requests: "Pedidos de Funcionalidades"
+    database-requests: "Pedidos para a Base de Dados"
+    mobile-bugs: "Bugs da aplicação móvil"
+  groups:
+    index: "Grupos"
+    new: "Criar um Grupo"
+    group:
+      group-page:
+        rules: "Regras de {group}"
+        members: "Membros de {group}"
+        leaders: "Líderes de {group}"
+      dashboard:
+        index: "Visão geral de {group}"
+        members: "Membros de {group}"
+        leaders: "Líderes de {group}"
+        settings: "Definições de {group}"
+  group-invite: "Convite de Grupo"
+#head
+head:
+  users:
+    description: "{user} está a usar o Kitsu para rastrear o seu progresso e partilhar as suas experiências com anime e mangá."
+#page: dashboard
+dashboard:
+  quick-update:
+    media:
+      complete: "Completo"
+      unstarted: "Não Começado"
+    overlay:
+      button:
+        complete: "Completo"
+      discussion: "Ver Discussão"
 #page: anime/manga
 media:
+  index:
+    filter: "Filtro"
+    remove: "Remover"
+    filters:
+      year: "Ano"
+      score: "Avaliação Média"
+      seasons: "Temporadas"
+      units: "{type, select, anime {Episódios} manga {Capítulos} other {}}"
+      rating: "Classificação"
+      categories: "Categorias"
+      types: "Tipos"
+    sort:
+      popularity: "Popularidade"
   show:
     franchise:
       roles:
