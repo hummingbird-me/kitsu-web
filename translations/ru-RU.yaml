@@ -124,6 +124,11 @@ dashboard:
     header: "Мои группы"
   announcements:
     button: "Подробнее"
+  feed:
+    following: "Подписки"
+    anime: "Аниме"
+    manga: "Манга"
+    global: "Глобальная"
 #page: anime/manga
 media:
   index:
@@ -688,6 +693,7 @@ settings:
     update: "Обновить профиль"
 #page: feedback
 feedback:
+  header: "Обратная связь"
   bugs: "Баги"
   features: "Заявки на нововведения"
   database: "Запросы для базы данных"
@@ -948,6 +954,17 @@ explore:
 #page: media-reactions
 media-reactions:
   create-account: "Создать Аккаунт"
+#page: notifications
+notifications:
+  zero: "У вас нет уведомлений!"
+#page: password-reset
+password-reset:
+  password: "Пароль"
+  confirm: "Подтвердите пароль"
+  length: "Пароль должен содержать не менее 8 символов"
+  reset: "Сбросить пароль"
+  email: "Email"
+  send: "Отправить Email"
 #shared: media
 media-shared:
   types:
@@ -1067,6 +1084,7 @@ reaction-modal:
   edit: "Редактировать"
   edit-warning: "Внимание! Редактирование удалит ваши лайки."
   delete: "Удалить реакцию"
+  placeholder: "{index, plural, =0 {Заставило меня переосмыслить некоторые важные жизненные решения.} =1 {Неожиданно круто! Много запоминающихся сцен.} =2 {Хоть это и не чашечка чая для каждого, это всё равно довольно интересно.} other {Переоценено, не тратьте своё время на это.}}"
   skip: "Пропустить"
 #component: library-entry/*
 library-entry:
@@ -1154,3 +1172,23 @@ errors:
     body: "Наша команда была уведомлена, пожалуйста, повторите попытку через несколько минут."
 #Loading
 loading: "Загрузка {subject, select, episode {Эпизода} chapter {Главы} episodes {Эпизодов} chapters {Глав} other {}}…"
+timeUnits:
+  years: "{count, plural, few {года} many {лет} =1 {год} other {лет}}"
+  months: "{count, plural, few {месяца} many {месяцев} =1 {месяц} other {месяцев}}"
+  days: "{count, plural, few {дня} many {дней} =1 {день} other {дней}}"
+  hours: "{count, plural, few {часа} many {часов} =1 {час} other {часов}}"
+  minutes: "{count, plural, few {минуты} many {минут} =1 {минута} other {минут}}"
+admin:
+  reports:
+    header: "Жалобы модераторов"
+    loading: "Загрузка жалоб…"
+    open: "Открытые"
+    closed: "Закрытые"
+  header: "Панель администратора"
+  deployed-version: "Текущая установленная версия: {version}"
+  links:
+    index: "Жалобы"
+    admin: "Админ Rails"
+    sidekiq: "Sidekiq"
+    pghero: "PGHero"
+    flipper: "Flipper"
