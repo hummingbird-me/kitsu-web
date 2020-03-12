@@ -381,6 +381,9 @@ settings:
     more: "加载更多"
     not-blocking: "您目前没有屏蔽任何人。"
   exports:
+    modal:
+      header: "与 {site} 同步"
+      create: "与 {site} 同步"
     logs:
       header:
         media: "名称"
@@ -398,10 +401,52 @@ settings:
   imports:
     status: "状态:"
     more: "加载更多"
+  index:
+    header: "个人中心"
+    sub-header: "账户和地区设置"
+    name: "显示名字"
+    email: "电子邮件"
+    email-message: "电子邮件不会被公开显示。"
+    language: "语言"
+    translate-help: "对翻译感兴趣吗？ <a href=\"https://crowdin.com/project/kitsu-web\">在这里翻译！</a>"
+    time-zone: "时区"
+    country: "国家"
+    titles: "名称"
+    rating: "评分类型"
+    adult: "成年人内容"
+  linked-accounts:
+    facebook: "脸书"
+    disconnect: "断开脸书连接"
+    connect: "连接脸书"
+  notifications:
+    contexts:
+      web: "网站"
+      email: "电子邮件"
+      mobile: "手机"
+    descriptions:
+      airing: "新集已播出"
+    newsletter:
+      newsletter: "新闻通讯"
+      subscribed: "已订阅"
+    update: "更新设置"
+  password:
+    header: "密码"
+    sub-header: "更改您的密码"
+    new-pswd: "新密码"
+    confirm-pswd: "确认密码"
+    update-pswd: "更新密码"
+  privacy:
+    header: "隐私"
 #page: groups
 groups:
+  index:
+    create-btn: "建立一个组团"
   create:
+    header: "建立一个组团"
     form:
+      required: "必填"
+      name: "名字"
+      tagline: "标签"
       about: "说明"
       rules: "规则"
       neighbors: "邻居"
@@ -411,3 +456,143 @@ groups:
         restricted: "限制"
       privacy-features:
         open: "<li>任何人都可以查看</li> <li>任何人都可以加入</li> <li>任何人都可以发表评论</li>"
+        restricted: "<li>任何人都可以查看</li> <li>任何人都可以加入</li> <li>只有领导者才能创建新的帖子</li>"
+      category: "分类"
+      category-placeholder: "选择一个分类"
+      avatar: "头像"
+      cover: "封面图片"
+      create-btn: "建立你的组团!"
+      save-btn: "保存"
+      helper:
+        name:
+          header: "名字"
+        tagline:
+          header: "标签"
+          desc: "以最多60个字符来概括您的组的目的。您可以稍后添加更多信息。"
+        about:
+          header: "说明"
+          desc: "详细解释您的组的意向，分享重要信息或其他任何信息。"
+        rules:
+          header: "规则"
+        neighbors:
+          header: "邻居"
+        privacy:
+          header: "隐私"
+        category:
+          header: "分类"
+        avatar:
+          header: "头像"
+        cover:
+          header: "封面图片"
+      errors:
+        neighbors-same: "您不能将您的组团添加为邻居。"
+  join-group: "加入组团"
+  leave-group: "离开组团"
+  hide-posts:
+    text: "隐藏来自 {group} 的帖子"
+  show-posts:
+    text: "显示来自 {group} 的帖子"
+  neighbors: "邻居"
+  navigation:
+    activity: "动态"
+    rules: "规则"
+    members: "成员"
+    leaders: "领导"
+    neighbors: "邻居"
+  activity:
+    members: "成员"
+    view-members: "查看全部"
+  rules:
+    header: "社区规则"
+  tickets:
+    conversation:
+      nav:
+        reply: "回复用户"
+        leader: "领导笔记"
+      reply-btn: "发送回复"
+  reports:
+    no-explanation: "未提供解释"
+    actions:
+      remove: "删除内容"
+      escalate: "通知 Kitsu"
+      view: "查看内容"
+  leaders:
+    list:
+      header: "领导"
+      edit-btn: "编辑"
+      add-btn: "添加"
+      add-placeholder: "组团成员"
+#page: explore
+explore:
+  widget:
+    related: "相关分类"
+    categories: "分类"
+#shared: media
+media-shared:
+  types:
+    anime:
+      All: "全部"
+      tv: "电视"
+      movie: "电影"
+      music: "音乐"
+    manga:
+      All: "全部"
+      manga: "漫画"
+      novel: "小说"
+      manhua: "漫画"
+      doujin: "同人"
+      manhwa: "韩漫"
+  statuses:
+    anime:
+      current: "正在播出"
+      finished: "已完成"
+      upcoming: "即将到来"
+      unreleased: "未发布"
+    manga:
+      upcoming: "即将到来"
+      unreleased: "未发布"
+#shared: form:
+form-shared:
+  placeholders:
+    username: "用户名"
+    password: "密码"
+#component: follow-button
+follow-button:
+  follow: "关注"
+  unfollow: "取消关注"
+#component: kitsu-feed
+feeds:
+  uploads:
+    select: "上传"
+  interest:
+    button: "好的，知道了"
+#component: groups/group-list
+group-list:
+  sort:
+    featured: "精选"
+    newest: "最新的组团"
+    oldest: "最旧的组团"
+#component: media/media-reaction
+media-reaction:
+  self-vote: "您不能对自己的反应投票。"
+  edit: "编辑反应"
+#component: modals/media-reaction
+reaction-modal:
+  post: "发帖"
+  edit: "编辑"
+  edit-warning: "小心！编辑将会删除您的投票结果。"
+  delete: "删除反应"
+  skip: "跳过"
+#component: library-entry/*
+library-entry:
+  state:
+    watching-this: "已开始"
+    finished-this: "已完成"
+    drop-this: "丢弃"
+    change-rating: "更改评分"
+    remove-rating: "删除评分"
+    rate-this: "添加评分"
+    post-reaction: "发布反应"
+    edit-reaction: "编辑反应"
+    progress: "进展"
+    not-rated: "未评分"
