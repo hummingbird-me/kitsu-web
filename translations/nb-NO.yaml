@@ -105,6 +105,11 @@ dashboard:
     header: "Mine Grupper"
   announcements:
     button: "Lær mer"
+  feed:
+    following: "Følger"
+    anime: "Anime"
+    manga: "Manga"
+    global: "Global"
 #page: anime/manga
 media:
   index:
@@ -123,8 +128,22 @@ media:
       popularity: "Popularitet"
       rating: "Gjennomsnittlig score"
       date: "Dato"
+      recent: "Nylig lagt til"
   show:
+    navigation:
+      summary: "Oppsummering"
+      units: "{type, select, anime {Episoder} manga {Kapitler} other {}}"
+      characters: "Karakterer"
+      reactions: "Reaksjoner"
+      franchise: "Serie"
+    sidebar:
+      watch: "Se online"
     summary:
+      ratings:
+        match: "{rating}% match"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Rangert {rank}. plass (mest populære anime)} manga {Rangert {rank}. plass (mest populære manga)} other {}}"
       titles:
         vi_vn: "Vietnamesisk"
         zh_cn: "Kinesisk (forenklet)"
