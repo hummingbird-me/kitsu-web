@@ -546,6 +546,9 @@
       @if $theme == 'kitsu-dark' {
         color: $white;
       }
+      p {
+        @include word-break();
+      }
       p:last-child {
         margin-bottom: 0;
       }
