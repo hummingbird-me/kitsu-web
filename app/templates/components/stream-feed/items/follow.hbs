@@ -15,7 +15,7 @@
         </a>
         {{user-badge activity.actor}}
         <span class="recipient-info">
-          <small>followed</small>
+          <small>{{t "components.stream-feed.followed"}}</small>
           <a href={{href-to "users.index" follow.followed}} class="author-name" onclick={{action "trackEngagement" "click"}}>
             {{follow.followed.name}}
           </a>
@@ -34,7 +34,7 @@
           <div class="dropdown-menu dropdown-menu-right">
             {{! delete activity }}
             <a class="dropdown-item" href="#" {{action "deleteActivity"}}>
-              Delete Activity
+              {{t "components.stream-feed.delete"}}
             </a>
           </div>
         </span>
