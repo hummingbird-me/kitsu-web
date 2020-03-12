@@ -1,7 +1,130 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Animal erkunden"
+  manga:
+    index: "Manga erkunden"
+  media:
+    show:
+      units: "{type, select, anime {Folgen} manga {Kapitel} other{Sonstige}}"
+      characters: "Charaktere"
+      reactions: "Antworten"
+      franchise: "Franchise"
+  explore:
+    index: "Erkunde {mediaType, select, anime {Anime} manga {Manga} other {}}"
+    more:
+      trending: "Angesagte {type, select, anime {Anime} manga {Manga} other {}} diese Woche"
+      top-current: "Top {type, select, Anime {laufende} Manga {veröffentlichte} other {}} {type}"
+      top-upcoming: "Top bevorstehende {type}"
+      highest-rated: "Am höchsten bewertete {type}"
+      most-popular: "Beliebteste {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Neu veröffentlichte {category} {type}"
+        trending: "Angesagte {category} {type}"
+        most-popular: "Beliebteste {category} {type}"
+  not-found: "Nicht gefunden"
+  server-error: "Serverfehler"
+  users:
+    index: "{user}'s Profil"
+    library: "{user}'s Bibliothek"
+    reviews: "{user}'s Bewertungen"
+    reactions: "{user}'s Reaktionen"
+    followers: "{user}'s Followers"
+    following: "Wird gefolgt von {user}"
+    groups: "{user}'s Gruppen"
+    stats: "{user}'s Statistiken"
+  posts: "Beitrag von {user}"
+  comments: "Kommentar von {user}"
+  reviews: "Rezension von {user}"
+  notifications: "Benachrichtigungen"
+  feedback:
+    bugs: "Fehler"
+    feature-requests: "Feature Anfragen"
+    database-requests: "Datenbankanfragen"
+    mobile-bugs: "Fehler in der App"
+  admin:
+    index: "Admin"
+    reports: "Meldungen"
+  groups:
+    index: "Gruppen"
+    new: "Eine Gruppe erstellen"
+    group:
+      group-page:
+        rules: "{group} Regeln"
+        members: "{group} Mitglieder"
+        leaders: "{group} Anführer"
+      dashboard:
+        index: "{group} Übersicht"
+        reports: "{group} Meldungen"
+        tickets: "{group} Tickets"
+        members: "{group} Mitglieder"
+        leaders: "{group} Anführer"
+        settings: "{group} Einstellungen"
+  group-invite: "Gruppeneinladung"
+#head
+head:
+  users:
+    description: "{user} benutzt Kitsu, um ihre Fortschritte zu verfolgen und ihre Anime- & Manga-Erfahrungen zu teilen."
+#header
+header:
+  library: "Bibliothek"
+  anime: "Anime"
+  manga: "Manga"
+  trending: "Angesagte"
+  groups: "Gruppen"
+  feedback: "Feedback"
+  browse: "Suchen"
+  auth:
+    sign-in: "Anmelden"
+    sign-up: "Registrieren"
+  user:
+    profile: "Profil anzeigen"
+    settings: "Einstellungen"
+    admin: "Admin"
+    logout: "Abmelden"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Lassen Sie uns zuerst einige grundlegende Informationen zukommen} 1 {Sehr witzig, E-Mail kommt als nächstes dran!} 2 {Sieht echt aus, wie wärs mit einem Passwort?} 3 {Super, lass uns den Account erstellen} other {}}"
 #page: dashboard
 dashboard:
   quick-update:
+    filter:
+      all: "Alle"
+      anime: "Anime"
+      manga: "Manga"
+    empty:
+      html: "Medien, die Sie in Ihrer <a href={link}>-Bibliothek</a> hinzugefügt oder aktualisiert haben, werden hier angezeigt, damit Sie schnell aktualisiert werden können."
+      discover: "Medien entdecken"
+    media:
+      complete: "Komplett"
+      unstarted: "Nicht angefangen"
+      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {of {total}}}} manga {Kap. {num} {total, select, null {} other {of {total}}}} other {}}"
     overlay:
       button:
         update: "{type, select, anime {Ep.} manga {Kap.} other {Sonstige}} {number}"
+        complete: "Komplett"
+        tooltip:
+          empty: "Bibliothek aktualisieren"
+          content: "Beitrag erstellen und Bibliothek aktualisieren"
+      discussion: "Diskussion anzeigen"
+      edit: "Bibliothekseintrag bearbeiten"
+      popout: "Pop-out editor"
+      editor:
+        placeholder: "(Optional) Teile deine Meinung über {type, select, anime {Episode} manga {Kapitel} other {}} {number}"
+  onboarding:
+    welcome: "Hallo {user}, herzlich willkommen bei Kitsu!"
+    about: "Dies ist der globale Aktivitäts-Feed. Es ist von den letzten Aktivitäten der Kitsu Benutzern bevölkert - sogar von dir! Sobald Sie die Gelegenheit hatten, ein paar weitere interessante Benutzer zu folgen, wechseln wir Ihren Standard-Feed von Global auf Following."
+    action: "Warum versuchen Sie nicht einen Feed-Beitrag zu erstellen, um sich mit dem untenstehenden Formular vorzustellen? Du kannst etwas einfaches sagen wie \"Hey Leute, ich bin neu bei Kitsu\", oder du kannst uns zeigen, wie kreativ und witzig du bist!"
+  groups:
+    header: "Meine Gruppen"
+  announcements:
+    button: "Weitere Informationen"
+#page: anime/manga
+media:
+  index:
+    sort:
+      date: "Datum"
