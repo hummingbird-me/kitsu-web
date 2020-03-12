@@ -277,6 +277,63 @@ users:
       label: "排序方式:"
       options:
         watched: "更新日期"
+        started: "开始日期"
+        finished: "完结日期"
+        added: "添加日期"
+        progress: "进展"
+        rating: "评分"
+        title: "名称"
+        length: "时长"
+      directions:
+        watched:
+          desc: "最近在前"
+          asc: "最早在前"
+        started:
+          desc: "最近在前"
+          asc: "最早在前"
+        finished:
+          desc: "最近在前"
+          asc: "最早在前"
+        added:
+          desc: "最近在前"
+          asc: "最早在前"
+        progress:
+          desc: "最多在前"
+          asc: "最少在前"
+        rating:
+          desc: "最高在前"
+          asc: "最低在前"
+        title:
+          desc: "A-Z"
+          asc: "Z-A"
+        length:
+          desc: "最长在前"
+          asc: "最短在前"
+    sidebar:
+      media-select: "{type, select, anime {{user}的动漫} manga {{user}的漫画} other {}}"
+      issues:
+        fix: "修复"
+    list:
+      more: "更多"
+      unstarted: "还没开始"
+      unrated: "无评分"
+      table-header:
+        title: "{type, select, anime {动漫名称} manga {漫画名称} other {}}"
+        rating: "评分"
+        progress: "进展"
+        volumes: "卷"
+      add-reaction: "添加反应"
+    edit:
+      progress: "进展"
+      volumes: "卷"
+      rating: "评分"
+      privacy: "隐私"
+      started: "已开始"
+      finished: "已完成"
+      notes: "个人笔记"
+      save: "保存修改"
+    bulk:
+      select-all: "选择全部"
   groups:
     sort:
       newest: "最近加入"
@@ -341,3 +398,16 @@ settings:
   imports:
     status: "状态:"
     more: "加载更多"
+#page: groups
+groups:
+  create:
+    form:
+      about: "说明"
+      rules: "规则"
+      neighbors: "邻居"
+      neighbors-placeholder: "搜索组团"
+      privacy: "隐私"
+      privacy-options:
+        restricted: "限制"
+      privacy-features:
+        open: "<li>任何人都可以查看</li> <li>任何人都可以加入</li> <li>任何人都可以发表评论</li>"
