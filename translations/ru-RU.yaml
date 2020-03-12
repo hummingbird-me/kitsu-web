@@ -560,16 +560,116 @@ groups:
           desc: "Объясните цель вашей группы поподробнее, поделитесь важной информацией или что-нибудь еще."
         rules:
           header: "Правила"
+          desc: "Добавьте какие-нибудь правила для членов вашей группы. Эти правила поддерживают разметку!"
+        neighbors:
+          header: "Соседи"
+          desc: "Добавьте похожие группы в ваше соседство, чтобы члены вашей группы могли открыть для себя новые сообщества!"
+        privacy:
+          header: "Конфиденциальность"
+          desc: "Ваши настройки конфиденциальности определяют, как открыта или закрыта ваша группа для публичного доступа. Если вы решите сделать вашу группу приватной, вы НЕ сможете сделать ее открытой в будущем."
+        category:
+          header: "Категория"
+          desc: "Kitsu использует категории для организации групп, чтобы помочь пользователям найти то, что они любят."
+        avatar:
+          header: "Аватар"
+          desc: "Это изображение будет использоваться в Kitsu для идентификации вашей группы."
+        cover:
+          header: "Обложка"
+          desc: "Это изображение будет отображаться в верхней части страницы вашей группы на рабочих столах. Бока могут быть слегка обрезаны в зависимости от размера экрана зрителя."
+      errors:
+        neighbors-same: "Вы не можете добавить вашу группу как соседа."
+  dashboard-btn: "Панель управления"
+  join-group: "Вступить в группу"
+  leave-group: "Покинуть группу"
   hide-posts:
     text: "Скрыть посты от {group}"
+    info: "Посты не будут появляться в Вашей ленте подписок"
   show-posts:
     text: "Показать посты от {group}"
+    info: "Посты будут появляться в Вашей ленте подписок"
+  nsfw: "NSFW"
+  neighbors: "Соседи"
+  navigation:
+    activity: "Активность"
+    rules: "Правила"
+    members: "Участники"
+    leaders: "Лидеры"
+    neighbors: "Соседи"
   activity:
+    feed-header: "Активность группы"
+    about: "О {group}"
+    members: "Участники"
+    view-members: "просмотреть всё"
     feed-restricted: "Это - ограниченная группа. Все могут комментировать, только лидеры могут создавать публикации."
+  rules:
+    header: "Правила сообщества"
   dashboard:
+    navigation:
+      reports: "Жалобы"
+      tickets: "Заявки"
+      members: "Участники"
+      leaders: "Лидеры"
+      settings: "Настройки"
     overview:
+      members:
+        header: "Участники"
+        today: "Присоединились сегодня"
+        total: "Всего участников"
       activity:
+        header: "Активность пользователей"
         posts: "Публикации сегодня"
+        comments: "Комментарии сегодня"
+      help-desk:
+        header: "Открытые Обращения"
+        tickets: "Заявки"
+        reports: "Жалобы"
+      tickets: "Последние Заявки"
+      reports: "Последние Жалобы"
+      log: "Журнал Лидера"
+    members:
+      invites:
+        header: "Ожидающие приглашения"
+        invited: "Приглашены"
+        revoke: "Отменить приглашение"
+        invite: "Пригласить"
+        placeholder: "Найдите пользователя, чтобы пригласить его. Он должен быть подписан на вас!"
+        empty: "Похоже, у вас нет приглашений в группу."
+      bans:
+        header: "Забаненные пользователи"
+        unban: "Разбанить"
+        ban: "Забанить"
+        placeholder: "Имя"
+        empty: "Ура! У вас нет забаненных пользователей."
+      members:
+        header: "Участники"
+        table:
+          users: "Пользователь"
+          permissions: "Ранг"
+          joined: "Присоединился"
+          actions: "Действия"
+        remove: "Исключить"
+        ban: "Забанить"
+    leaders:
+      chat:
+        header: "Чат Лидера"
+        post-btn: "Отправить"
+        placeholder: "Отправить сообщение лидерам"
+    audit:
+      user:
+        banned: "<a href={link}>{user}</a> забанен."
+        unbanned: "<a href={link}>{user}</a> разбанен."
+        invited: "<a href={link}>{user}</a> приглашён в сообщество."
+        granted: "выданы права пользователю <a href={link}>{user}</a>."
+        revoked: "удалены права у пользователя <a href={link}>{user}</a>."
+      group:
+        added_neighbor: "добавлена <a href={link}>{group}</a> в качестве соседа."
+        removed_neighbor: "удалена <a href={link}>{group}</a> в качестве соседа."
+        avatar_changed: "обновлён аватар {group}."
+        cover_changed: "обновлена обложка {group}."
+        locale_changed: "обновлён язык {group}."
+        rules_changed: "обновлены правила {group}."
+        nsfw_changed: "обновлён статус NSFW {group}."
+        about_changed: "обновлён раздел о группе {group}."
 #shared: media
 media-shared:
   types:
@@ -593,10 +693,53 @@ media-shared:
       current: "Выпускается"
       finished: "Завершено"
       upcoming: "Скоро"
+#component: auth-onboarding
+onboarding:
+  aozora-conflict:
+    info: "Публикации из ленты активности на обоих аккаунтах будут объеденены. Вся прочая информация об акаунте будет переписана аккаунтом, который Вы выбрали ниже."
+  aozora-account-details:
+    submit: "Хорошо!"
+#component: follow-button
+follow-button:
+  follow: "Подписаться"
+  unfollow: "Отписаться"
 #component: kitsu-feed
 feeds:
+  embed:
+    preview: "Это предпросмотр вашего вложения."
+  uploads:
+    select: "Загрузить"
+    drop: "Перетащите для загрузки"
+    invalid: "Неверный тип файла"
+  filter:
+    all: "Вся активность"
+    media: "Медиа-активность"
+    user: "Активность пользователей"
+    following: "Отслеживаемая активность"
+  placeholder: "{type, select, user_aggr {Опубликовать в {subject}} group_aggr {Опубликовать в {subject}} media_aggr {Написать о {subject}} episode_aggr {Написать о Эпизоде {subject}} chapter_aggr {Написать о Главе {subject}} interest_timeline {Написать о {subject}} other {Создать пост}}…"
+  library:
+    updated: "перемещено в {status}"
+    rated: "оценено"
+  post:
+    more: "Подробнее"
+    less: "Показать меньше"
+    meta:
+      media: "Потому что вы недавно смотрели {media}"
+    spoilers: "{type, select, anime {Эп. {num}} manga {Гл. {num}} other {}}"
+    sorts:
+      likes: "Лайки"
+      replies: "Ответы"
+      oldest: "Старейшие"
   review:
+    review: "Обзор"
+    author: "Обзор от {user}"
     progress: "{type, select, anime {Это обзор до серии номер {num}.} manga {Это обзор до главы номер {num}.} other {}}"
+  interest:
+    anime:
+      header: "Добро пожаловать в вашу Ленту Аниме!"
+      body: "Когда вы обновляете свою <a href={link}>библиотеку аниме</a>, вы увидите, что говорят другие о просмотренных вами тайтлах."
+    manga:
+      header: "Добро пожаловать в вашу Ленту Манги!"
 #component: application/user-notifications
 user-notifications:
   #Episode 113 of One Piece! aired
