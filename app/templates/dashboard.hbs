@@ -17,27 +17,27 @@
         <li>
           <a href="#" class="timeline-link {{if (eq streamType "timeline") "active"}}" {{action "switchFeed" "timeline"}}>
             <span class="emoji">👀</span>
-            Following
+            {{t "dashboard.feed.following"}}
           </a>
         </li>
         {{#unless (has-feature "fresh_feeds")}}
           <li>
             <a href="#" class="timeline-link {{if (eq streamInterest "anime") "active"}}" {{action "switchFeed" "interest_timeline/anime"}}>
               <span class="emoji">📺</span>
-              Anime
+              {{t "dashboard.feed.anime"}}
             </a>
           </li>
           <li>
             <a href="#" class="timeline-link {{if (eq streamInterest "manga") "active"}}" {{action "switchFeed" "interest_timeline/manga"}}>
               <span class="emoji">📙</span>
-              Manga
+              {{t "dashboard.feed.manga"}}
             </a>
           </li>
         {{/unless}}
         <li>
           <a href="#" class="timeline-link {{if (eq streamType "global") "active"}}" {{action "switchFeed" "global"}}>
             <span class="emoji">🌎</span>
-            Global
+            {{t "dashboard.feed.global"}}
           </a>
         </li>
       </ul>
