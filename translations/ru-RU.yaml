@@ -14,13 +14,15 @@ titles:
   explore:
     index: "Поиск {mediaType, select, anime {Аниме} manga {Манги} other {}}"
     more:
+      trending: "Популярн{type, select, anime {ое Аниме} manga {ая Манга} other {ое}} на этой неделе"
+      top-current: "Популярн{type, select, Anime {ое в вещании} Manga {ая в издании} other {}} {type}"
       top-upcoming: "Топ предстоящ{type, select, Anime {их Аниме} Manga {ей Манги} other {}}"
       highest-rated: "Наиболее оценённ{type, select, Anime {ые Аниме} Manga {ая Манга} other {type}}"
       most-popular: "Самые популярн{type, select, Anime {ые Аниме} Manga {ая Манга} other {type}}"
     category:
       index: "{category} {type}"
       more:
-        newly-released: "Недавно вышедш {category}{type, select, Anime {ие Аниме} Manga {ая Манга} other {type}}"
+        newly-released: "Недавно вышедш{category}{type, select, Anime {ие Аниме} Manga {ая Манга} other {type}}"
         trending: "Популярн{category}{type, select, Anime {ые Аниме} Manga {ая Манга} other {type}}"
         most-popular: "Самые Популярн{category}{type, select, Anime {ые Аниме} Manga {ая Манга} other {type}}"
   not-found: "Не найдено"
@@ -125,6 +127,7 @@ dashboard:
 #page: anime/manga
 media:
   index:
+    search: "Поиск по названию, персонажу, или составу…"
     filter: "Фильтр"
     remove: "Убрать"
     filters:
@@ -183,7 +186,10 @@ media:
         ar_ar: "Арабский" #Invalid use ar
         de_de: "Немецкий"
         en: "Английский"
+        en_cn: "Китайский (Пиньинь)"
         en_gb: "Английский (Великобритания)"
+        en_jp: "Японский (Ромадзи)"
+        en_kr: "Корейский (Ромаджа)"
         en_th: "Тайский (Романизированный)"
         en_us: "Английский (США)"
         es_es: "Испанский"
@@ -198,6 +204,8 @@ media:
         ru_ru: "Русский"
         th_th: "Тайский"
         uk_ua: "Украинский"
+        vi_vi: "Въетнамский" #Invalid use vi_vn
+        vi_vn: "Въетнамский"
         zh_cn: "Китайский (упрощенный)"
         zh_tw: "Китайский (традиционный)"
         synonyms: "Синонимы"
@@ -211,7 +219,9 @@ media:
         tba: "Ожидается"
         season: "Сезон"
         producers: "Продюсеры"
+        licensors: "Лицензиары"
         studios: "Студии"
+        serialization: "Сериализация"
         duration: "Длина"
         total: "{total} всего"
         length: "{count, plural, =1 {{length} минут} other {{length} минут каждая}}"
@@ -234,18 +244,22 @@ media:
       header: "Персонажи {title}"
       sub-header: "{type, select, anime {Данный лист - это полный список персонажей и {language} актёров озвучки в аниме {title}} manga {Данный лист- это список всех персонажей в манге {title}} other {}}"
     reactions:
+      loading: "Загрузка реакций…"
       delete: "Удалить реакцию"
       report: "Пожаловаться на реакцию"
       copy: "Скопировать ссылку на реакцию"
     franchise:
       header: "Франшиза {title}"
       roles:
+        sequel: "Сиквел"
+        prequel: "Приквел"
         alternative_setting: "Альт. сеттинг"
         alternative_version: "Альт. версия"
         side_story: "Побочный сюжет"
         parent_story: "Основная история"
         summary: "Краткое описание"
         full_story: "Полная история"
+        spinoff: "Спин-офф"
         adaptation: "Адаптация"
         anime_adaptation: "Аниме"
         manga_adaptation: "Манга"
@@ -259,6 +273,14 @@ media:
     info: "Посты будут появляться в Вашей ленте подписок или {type}"
 #page: users
 users:
+  profile:
+    edit: "Редактировать"
+  admin:
+    button: "Админ"
+    past-names: "Показать прошлые имена"
+    alt-accounts: "Показать альтернативные аккаунты"
+    delete-content: "Удалить пользовательский контент"
+    ban: "Забанить"
   navigation:
     activity: "Действия"
     library: "Библиотека"
@@ -287,6 +309,7 @@ users:
           female: "Женский"
           custom: "Настраиваемый"
       waifu:
+        label: "Вайфу"
         placeholder: "Вайфу/Хасбэндо"
         search: "Найдите свою вторую половинку"
       bio:
@@ -311,7 +334,7 @@ users:
           about: "Введите ссылку на свой аккаунт в Google+ или имя пользователя, чтобы добавить ссылку на него на своей странице."
           placeholder: "URL адрес Вашей страницы в Google+ или имя пользователя (+Username)"
         instagram:
-          about: "Введите Ваше имя пользователя Instagram, что бы добавить ссылку на него на своей странице."
+          about: "Введите Ваше имя пользователя Instagram, чтобы добавить ссылку на него на своей странице."
           placeholder: "Ваше имя пользователя в Instagram"
         twitch:
           about: "Введите Ваше имя пользователя Twitch, чтобы добавить ссылку на него на своей странице."
@@ -403,17 +426,59 @@ users:
       headings:
         anime: "Статистика Аниме"
         manga: "Статистика Манги"
+      chapters-read: "глав прочитано."
       time-breakdown: "аниме просмотрено в целом."
       empty:
         header: "Похоже, что у Вас пока что мало данных! Готовы начать что-нибудь новое?"
+        guest-header: "Похоже, что {user} пока ещё не имеет никакой статистики."
   library:
+    search: "Поиск в библиотеке {name}…"
     sorting:
+      label: "Сортировать по:"
+      options:
+        watched: "Дате изменения"
+        started: "Дате начала"
+        finished: "Дате окончания"
+        added: "Дате добавления"
+        progress: "Прогрессу"
+        rating: "Рейтингу"
+        title: "Названию"
+        length: "Длине"
       directions:
+        watched:
+          desc: "Сначала недавние"
+          asc: "Сначала старые"
+        started:
+          desc: "Сначала недавние"
+          asc: "Сначала старые"
+        finished:
+          desc: "Сначала недавние"
+          asc: "Сначала старые"
+        added:
+          desc: "Сначала недавние"
+          asc: "Сначала старые"
+        progress:
+          desc: "Самые первые"
+          asc: "Наименее первые"
+        rating:
+          desc: "Сначала наивысшие"
+          asc: "Сначала наименьшие"
         title:
           desc: "A-Z"
           asc: "Z-A"
+        length:
+          desc: "Сначала длиннейшие"
+          asc: "Сначала кратчайшие"
     sidebar:
+      media-select: "{type, select, anime {Аниме {user}} manga {Манга {user}} other {}}"
+      manage: "Управление библиотекой"
+      import: "Импортировать библиотеку"
+      export: "Экспортировать библиотеку"
+      reset: "Сбросить библиотеку"
+      reset-loading: "Производится сброс…"
+      reset-confirmation: "Это приведет к удалению всей библиотеки, связанных с ней отзывов и реакций. Вы уверены, что хотите продолжить?"
       issues:
+        header: "Проблемы с библиотекой"
         reactions: "У {count} просмотренных тайтлов отсутствуют <b>реакции</b>"
         fix: "Исправить"
     list:
@@ -479,21 +544,70 @@ users:
   show-posts:
     text: "Показать посты от {user}"
     info: "Посты будут появляться в Вашей ленте подписок"
+  followers:
+    not-found: "Пользователи не найдены."
+    loading: "Загрузка пользователей…"
+  following:
+    not-found: "Пользователи не найдены."
+    loading: "Загрузка пользователей…"
+  reviews:
+    not-found: "Отзывы не найдены."
+    loading: "Загрузка отзывов…"
 #page: settings
 settings:
   navigation:
+    header: "Настройки"
+    profile: "Профиль"
+    notifications: "Уведомления"
+    password: "Пароль"
+    privacy: "Конфиденциальность"
+    linked-accounts: "Привязанные аккаунты"
     import: "Импорт"
     export: "Экспорт"
+    blocking: "Блокировки"
+    account: "Учетная запись"
   account:
+    header: "Учетная запись"
     sub-header: "Опасно! Процесс удаления аккаунта необратим."
+    delete: "Удалить учетную запись"
+    confirm-title: "Удалить учетную запись"
+    confirm-text: "Нам жаль, что вы уходите, уверены, что хотите продолжить?"
+  apps:
+    header: "Приложения"
   blocking:
+    header: "Блокировки"
     sub-header: "Когда вы кого-то заблокируете, этот человек больше не сможет Вас упомянуть, просматривать Ваш профиль и видеть Ваши публикации в ленте."
+    title: "Заблокировать пользователей"
+    placeholder: "Поиск пользователей для блокировки…"
+    button-block: "Заблокировать"
+    loading: "Загрузка пользователей…"
+    button-unblock: "Разблокировать"
+    more: "Загрузить еще"
+    not-blocking: "Сейчас вы никого не блокируете."
   exports:
+    modal:
+      header: "Синхронизировать с {site}"
+      helper: "Мы будем обновлять Ваш список аниме и манги на {site} всегда, когда вы их обновите на Kitsu."
+      create: "Синхронизировать с {site}"
+    header: "Экспортировать"
+    sub-header: "Автоматически синхронизируйте Вашу библиотеку Kitsu на MyAnimeList."
+    loading: "Загрузка экспорта…"
     remove: "Удалить экспортер"
+    disabled: "Ваш экспорт MAL был отключен по следующей причине: <strong>{reason}</strong>"
+    create: "Настройка экспорта в аккаунт MyAnimeList"
+    download: "Загрузить библиотеку {kind}"
     recent: "Недавние синхронизации"
+    sync-header: "Синхронизация с MyAnimeList"
+    no-logs: "Мы обрабатываем вашу библиотеку и синхронизируем ее с MyAnimeList. Держитесь крепче!"
     logs:
       header:
+        media: "Название"
+        library-status: "Статус"
+        progress: "Прогресс"
+        rating: "Рейтинг"
         reconsumes: "Перепросмотры"
+        action: "Действие"
+        status: "Статус"
       action:
         create: "Создать"
         update: "Обновить"
@@ -555,6 +669,7 @@ settings:
       airing: "Вышла новая серия"
     newsletter:
       newsletter: "Новостная рассылка"
+      subscribed: "Подписан"
       message: "Если эта опция включена, вы будете получать редкие (и очень остроумные) обновления по электронной почте о Kitsu написанные самим Джошем."
     loading: "Загрузка настроек…"
     update: "Обновить настройки"
@@ -839,6 +954,7 @@ media-shared:
     anime:
       All: "Все"
       tv: "ТВ"
+      special: "Спешл"
       ona: "ONA"
       ova: "OVA"
       movie: "Фильм"
@@ -847,7 +963,10 @@ media-shared:
       All: "Все"
       manga: "Манга"
       novel: "Роман"
+      manhua: "Манхва"
+      oneshot: "Ваншот"
       doujin: "Самиздат"
+      manhwa: "Манхва"
       oel: "OEL"
   statuses:
     anime:
@@ -879,7 +998,7 @@ form-shared:
 onboarding:
   aozora-conflict:
     title: "Ой, у вас уже есть учётная запись Kitsu! Который из аккаунтов хотите сохранить?"
-    info: "Публикации из ленты активности на обоих аккаунтах будут объеденены. Вся прочая информация об акаунте будет переписана аккаунтом, который Вы выбрали ниже."
+    info: "Публикации из ленты активности на обоих аккаунтах будут объеденены. Вся прочая информация об аккаунте будет переписана аккаунтом, который Вы выбрали ниже."
   aozora-account-details:
     submit: "Хорошо!"
 #component: follow-button
@@ -894,15 +1013,17 @@ feeds:
     select: "Загрузить"
     drop: "Перетащите для загрузки"
     invalid: "Неверный тип файла"
+    uploading: "{number, plural, =1 {Загрузка фото… {progress}%} other {Загрузка {number} фото… {progress}%}}"
   filter:
     all: "Вся активность"
     media: "Медиа-активность"
     user: "Активность пользователей"
     following: "Отслеживаемая активность"
-  placeholder: "{type, select, user_aggr {Опубликовать в {subject}} group_aggr {Опубликовать в {subject}} media_aggr {Написать о {subject}} episode_aggr {Написать о Эпизоде {subject}} chapter_aggr {Написать о Главе {subject}} interest_timeline {Написать о {subject}} other {Создать пост}}…"
+  placeholder: "{type, select, user_aggr {Опубликовать в {subject}} group_aggr {Опубликовать в {subject}} media_aggr {Написать о {subject}} episode_aggr {Написать об Эпизоде {subject}} chapter_aggr {Написать о Главе {subject}} interest_timeline {Написать о {subject}} other {Создать пост}}…"
   library:
     updated: "перемещено в {status}"
     rated: "оценено"
+    progressed: "{type, select, anime {Просмотрено {num} серий} manga {Прочитано {num} глав} other {}}"
   post:
     more: "Подробнее"
     less: "Показать меньше"
