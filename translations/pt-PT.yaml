@@ -13,6 +13,8 @@ titles:
       franchise: "Franquia"
   explore:
     index: "Explorar {mediaType, select, anime {Anime} manga {Mangá} other {}}"
+    more:
+      trending: "{type,  select, anime {Anime} manga {Mangá} other {}} nas Tendências esta Semana"
   not-found: "Não Encontrado"
   server-error: "Erro de Servidor"
   users:
@@ -33,6 +35,8 @@ titles:
     feature-requests: "Pedidos de Funcionalidades"
     database-requests: "Pedidos para a Base de Dados"
     mobile-bugs: "Bugs da aplicação móvel"
+  admin:
+    index: "Admin"
   groups:
     index: "Grupos"
     new: "Criar um Grupo"
@@ -51,23 +55,59 @@ titles:
 head:
   users:
     description: "{user} está a usar o Kitsu para rastrear o seu progresso e partilhar as suas experiências com anime e mangá."
+#header
+header:
+  library: "Biblioteca"
+  anime: "Anime"
+  manga: "Mangá"
+  trending: "Tendências"
+  groups: "Grupos"
+  browse: "Navegar"
+  auth:
+    sign-in: "Iniciar Sessão"
+    sign-up: "Criar Conta"
+  user:
+    profile: "Ver Perfil"
+    settings: "Definições"
+    admin: "Admin"
+    logout: "Terminar Sessão"
 #page: dashboard
 dashboard:
   quick-update:
+    filter:
+      all: "Todos"
+      anime: "Anime"
+      manga: "Mangá"
     media:
       complete: "Completo"
       unstarted: "Não Começado"
+      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {de {total}}}} manga {Cap. {num} {total, select, null {} other {de {total}}}} other {}}"
     overlay:
       button:
+        update: "{type,  select, anime {Ep.} manga {Cap.} other {}} {number}"
         complete: "Completo"
+        tooltip:
+          empty: "Atualizar Biblioteca"
+          content: "Criar publicação e atualizar biblioteca"
       discussion: "Ver Discussão"
+  onboarding:
+    welcome: "Olá {user}, bem-vindo ao Kitsu!"
+  groups:
+    header: "Os meus Grupos"
+  feed:
+    following: "A seguir"
+    anime: "Anime"
+    manga: "Mangá"
+    global: "Global"
 #page: anime/manga
 media:
   index:
+    search: "Pesquisar por título, personagem, ou elenco…"
     filter: "Filtro"
     remove: "Remover"
     filters:
       year: "Ano"
+      score: "Classificação Média"
       seasons: "Temporadas"
       units: "{type, select, anime {Episódios} manga {Capítulos} other {}}"
       rating: "Classificação"
@@ -75,14 +115,256 @@ media:
       types: "Tipos"
     sort:
       popularity: "Popularidade"
+      rating: "Classificação Média"
+      date: "Data"
+      recent: "Adicionado Recentemente"
   show:
+    navigation:
+      summary: "Resumo"
+      units: "{type, select, anime {Episódios} manga {Capítulos} other {}}"
+      characters: "Personagens"
+      reactions: "Reações"
+      franchise: "Franquia"
+    summary:
+      ratings:
+        community: "Aprovado por {rating}% da Comunidade"
+      categories: "Categorias"
+      relationships:
+        header: "Mais desta série"
+        more: "Ver todos em {title}"
+      reactions:
+        header: "Reações"
+        more: "Ver mais Reações"
+        sorts:
+          -upVotesCount: "Popular"
+          -createdAt: "Recente"
+        new: "Nova Reação"
+        edit: "A minha Reação"
+        empty: "Parece que ainda ninguém reagiu a isto"
+      characters:
+        header: "Personagens"
+        more: "Ver todos os personagens"
+      titles:
+        header: "Títulos alternativos"
+        ar: "Árabe"
+        ar_ar: "Árabe" #Invalid use ar
+        de_de: "Alemão"
+        en: "Inglês"
+        en_cn: "Chinês (Pinyin)"
+        en_gb: "Inglês (Reino Unido)"
+        en_jp: "Japonês (Romaji)"
+        en_kr: "Coreano (Romaja)"
+        en_th: "Tailandês (Romanizado)"
+        en_us: "Inglês (EUA)"
+        es_es: "Espanhol"
+        fr_fr: "Francês"
+        id_id: "Indonésio"
+        it_it: "Italiano"
+        ja_jp: "Japonês"
+        ko_kr: "Coreano"
+        nl_nl: "Holandês"
+        pt_br: "Português (Brasileiro)"
+        pt_pt: "Português"
+        ru_ru: "Russo"
+        th_th: "Tailandês"
+        uk_ua: "Ucraniano"
+        vi_vi: "Vietnamita" #Invalid use vi_vn
+        vi_vn: "Vietnamita"
+        zh_cn: "Chinês (Simplificado)"
+        zh_tw: "Chinês (Tradicional)"
+        synonyms: "Sinónimos"
+      information:
+        header: "Detalhes do {type, select, anime {Anime} manga {Mangá} other {}}"
+        type: "Tipo"
+    units:
+      completed: "{type, select, episode {Visto} chapter {Lido} other {Concluído}}"
+      feed:
+        header: "Discussão do {type, select, episode {Episódio} chapter {Capítulo} other {}}"
+    characters:
+      header: "Personagens de {title}"
+      sub-header: "{type, select, anime {O seguinte é uma lista completa dos personagens e dos dobradores em {language} do anime {title}} manga {O seguinte é uma lista completa dos personagens do mangá {title}} other {}}"
+    reactions:
+      loading: "Carregando Reações…"
+      delete: "Apagar Reação"
+      report: "Reportar Reação"
+      copy: "Copiar Link da Reação"
     franchise:
+      header: "Franquia de {title}"
       roles:
+        sequel: "Sequela"
         prequel: "Prequela"
+        alternative_setting: "Cenário Alternativo"
+        alternative_version: "Versão Alternativa"
+        side_story: "História secundária"
+        parent_story: "História principal"
+        summary: "Resumo"
+        spinoff: "Spin-off"
+        adaptation: "Adaptação"
+        anime_adaptation: "Anime"
+        manga_adaptation: "Mangá"
+        character: "Personagem"
+        other: "Outros"
+  hide-posts:
+    text: "Ocultar Publicações sobre {media}"
 #page: users
 users:
+  profile:
+    edit: "Editar"
+  admin:
+    button: "Admin"
+    past-names: "Ver Nomes Anteriores"
+    alt-accounts: "Ver Contas Alternativas"
+    ban: "Banir"
   navigation:
     activity: "Atividade"
+    library: "Biblioteca"
+    reviews: "Avaliações"
+    reactions: "Reações"
+    followers: "Seguidores"
+    following: "A seguir"
+    groups: "Grupos"
+  edit-modal:
+    navigation:
+      about: "Sobre mim"
+      favorites: "Favoritos"
+    about:
+      header: "Sobre Mim"
+      location:
+        label: "Localização"
+        placeholder: "Onde vives?"
+      birthday: "Aniversário"
+      gender:
+        label: "Género"
+        options:
+          secret: "É um segredo"
+          male: "Masculino"
+          female: "Feminino"
+      waifu:
+        label: "Waifu"
+        placeholder: "Waifu/Husbando"
+        search: "Encontra alguém especial"
+      bio:
+        label: "Biografia"
+        placeholder: "Conta ao mundo a tua história."
+    favorites:
+      header: "Favoritos"
+      anime: "Anime"
+      manga: "Mangá"
+      characters: "Personagens"
+      remove: "Remover Favorito?"
+  activity:
+    onboarding:
+      welcome: "Olá {user}, está página é toda sobre TI!"
+    about:
+      empty: "É um segredo"
+      gender:
+        secret: "É um segredo"
+        male: "Masculino"
+        female: "Feminino"
+    stats:
+      chapters-read: "capítulos lidos."
+      empty:
+        header: "Parece que ainda não tens dados suficientes! Pronto para começar algo novo?"
+  library:
+    sorting:
+      options:
+        watched: "Data de Atualização"
+        started: "Data de Início"
+        finished: "Data de Conclusão"
+        added: "Data de Adição"
+        progress: "Progresso"
+        rating: "Classificação"
+        title: "Título"
+        length: "Duração"
+      directions:
+        watched:
+          asc: "Mais Antigos Primeiro"
+        started:
+          desc: "Mais Recentes Primeiro"
+          asc: "Mais Antigos Primeiro"
+        finished:
+          desc: "Mais Recentes Primeiro"
+          asc: "Mais Antigos Primeiro"
+        added:
+          desc: "Mais Recentes Primeiro"
+          asc: "Mais Antigos Primeiro"
+        title:
+          desc: "A-Z"
+          asc: "Z-A"
+    sidebar:
+      import: "Importar Biblioteca"
+      export: "Exportar Biblioteca"
+    list:
+      edit: "Editar Entrada"
+      list-edit: "Editar"
+      more: "Mais"
+      unstarted: "Não Começado"
+      unrated: "Sem Classificação"
+      progress: "{type, select, anime {Ep. {progress}} manga {Cap. {progress}} other {}}"
+      table-header:
+        title: "{type, select, anime {Título do Anime} manga {Título do Mangá} other {}}"
+        rating: "Classificação"
+        progress: "Progresso"
+        volumes: "Volumes"
+      add-reaction: "Adicionar Reação"
+    edit:
+      progress: "Progresso"
+      units: "{type, select, anime {de {num} episódios} manga {de {num} capítulos} other {}}"
+      volumes: "Volumes"
+      volume-units: "de {num} volumes"
+      rating: "Classificação"
+      privacy: "Privacidade"
+      notes: "Notas Pessoais"
+      remove: "Remover da Biblioteca"
+      save: "Salvar Alterações"
+      saving: "A salvar…"
+    bulk:
+      select-all: "Selecionar Todos"
+      remove: "Remover <strong>{num}</strong>"
+      move-to: "Mover <strong>{num}</strong> para…"
+      remove-loading: "A remover…"
+      update-loading: "A atualizar…"
+  reactions:
+    filters:
+      all: "Todas as Reações"
+      anime: "Reações de Anime"
+      manga: "Reações de Mangá"
+    sorts:
+      best: "Melhores"
+      new: "Novos"
+  show-posts:
+    text: "Mostrar Publicações de {user}"
+#page: settings
+settings:
+  navigation:
+    header: "Definições"
+    profile: "Perfil"
+    notifications: "Notificações"
+    password: "Palavra-passe"
+    privacy: "Privacidade"
+    linked-accounts: "Contas Associadas"
+    import: "Importar"
+    export: "Exportar"
+    account: "Conta"
+  account:
+    header: "Conta"
+    sub-header: "Zona de Perigo! Apagar a conta é irreversível."
+    delete: "Apagar Conta"
+    confirm-title: "Apagar Conta"
+  apps:
+    header: "Aplicações"
+  blocking:
+    button-block: "Bloquear"
+    button-unblock: "Desbloquear"
+    more: "Carregar Mais"
+  exports:
+    modal:
+      header: "Sincronizar com {site}"
+      create: "Sincronizar com {site}"
+    header: "Exportar"
+    loading: "Carregando Exportações…"
+    remove: "Remover Exportador"
+    recent: "Atividade de Sincronização Recente"
 #page: groups
 groups:
   navigation:
