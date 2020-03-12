@@ -468,12 +468,24 @@ users:
     empty: "У этого пользователя нет реакций"
     filters:
       all: "Все реакции"
+      anime: "Реакции аниме"
+      manga: "Реакции манги"
+    sorts:
+      best: "Лучшие"
+      new: "Новые"
   hide-posts:
     text: "Скрыть посты от {user}"
+    info: "Посты не будут появляться в Вашей ленте подписок"
   show-posts:
     text: "Показать посты от {user}"
+    info: "Посты будут появляться в Вашей ленте подписок"
 #page: settings
 settings:
+  navigation:
+    import: "Импорт"
+    export: "Экспорт"
+  account:
+    sub-header: "Опасно! Процесс удаления аккаунта необратим."
   blocking:
     sub-header: "Когда вы кого-то заблокируете, этот человек больше не сможет Вас упомянуть, просматривать Ваш профиль и видеть Ваши публикации в ленте."
   exports:
@@ -523,14 +535,62 @@ settings:
   linked-accounts:
     header: "Привязанные аккаунты"
     sub-header: "Подключите сторонние аккаунты к Kitsu"
+    facebook: "Facebook"
+    disconnect: "Отключить Facebook"
+    connect: "Подключить Facebook"
   notifications:
+    header: "Push-уведомления"
+    sub-header: "Общие уведомления сайта"
+    contexts:
+      web: "Сайт"
+      email: "Email"
+      mobile: "Мобильное приложение"
     descriptions:
+      mentions: "Кто-то <strong>упомянул</strong> меня в посте или комментарии"
+      replies: "Кто-то <strong>ответил</strong> на мой пост или комментарий"
+      likes: "Кто-то <strong>лайкнул</strong> мой пост или комментарий"
+      follows: "Кто-то <strong>подписался</strong> на меня"
       posts: "Кто-то <strong>написал</strong> в моем профиле"
+      reaction_votes: "Кто-то <strong>лайкнул</strong> мою реакцию"
       airing: "Вышла новая серия"
+    newsletter:
+      newsletter: "Новостная рассылка"
+      message: "Если эта опция включена, вы будете получать редкие (и очень остроумные) обновления по электронной почте о Kitsu написанные самим Джошем."
+    loading: "Загрузка настроек…"
+    update: "Обновить настройки"
+  password:
+    header: "Пароль"
+    sub-header: "Изменить пароль"
+    new-pswd: "Новый пароль"
+    confirm-pswd: "Подтвердите пароль"
+    update-pswd: "Обновить пароль"
+  privacy:
+    header: "Конфиденциальность"
+    sub-header: "Настройте возможность других пользователей просматривать ваш контент"
+    discover: "Обнаружение"
+    checkbox: "Показ в Глобальной Ленте"
+    message: "Если отключено, Ваши публикации будут доступны только для Ваших подписчиков и посетителей Вашей страницы."
+    update: "Обновить профиль"
+#page: feedback
+feedback:
+  bugs: "Баги"
+  features: "Заявки на нововведения"
+  database: "Запросы для базы данных"
+  mobile-bugs: "Ошибки мобильного приложения"
+  mobile-features: "Функционал мобильного приложения"
 #page: groups
 groups:
+  index:
+    call-to-action: "Каждый может создавать и открывать для себя группы. Каждая группа сосредоточена вокруг темы или активности."
+    create-btn: "Создать группу"
   create:
+    header: "Создать группу"
     form:
+      required: "Требуется"
+      name: "Название"
+      tagline: "Подзаголовок"
+      about: "Описание"
+      rules: "Правила"
       neighbors: "Соседи"
       neighbors-placeholder: "Поиск группы"
       privacy: "Приватность"
@@ -603,8 +663,69 @@ groups:
     feed-restricted: "Это - ограниченная группа. Все могут комментировать, только лидеры могут создавать публикации."
   rules:
     header: "Правила сообщества"
+    empty: "Привет! Похоже, вы используете правила сообщества Kitsu. Если вы хотите указать свои собственные правила, вы можете сделать это на вашей <a href={link}>странице настроек.</a>"
+  tickets:
+    search: "Поиск Заявок"
+    empty: "Ура! У вас нет заявок для обработки."
+    helper: "Заявки позволяют общаться с лидерами этой группы для решения любых возможных проблем. Напишите сообщение лидерам здесь дабы создать заявку."
+    filter:
+      open: "Открытые Заявки"
+      resolved: "Решённые Заявки"
+      all: "Все Заявки"
+    conversation:
+      title: "Заявка от <a href={link}>{name}</a>"
+      mark-resolved: "Отметить как решённая"
+      mark-closed: "Отметить как закрытая"
+      mark-open: "Отметить как открытая"
+      nav:
+        reply: "Ответить пользователю"
+        leader: "Примечание Лидера"
+      create-btn: "Создать заявку"
+      reply-btn: "Ответить"
+      reply-placeholder: "Напишите сообщение"
+      helper: "Напишите Ваше сообщение ниже, чтобы создать заявку! Лидеры этой группы ответят на Вашу заявку как можно скорее."
+  reports:
+    no-explanation: "Пояснение не представлено"
+    empty: "Ура! У вас нет жалоб для обработки."
+    filter:
+      open: "Открытые Жалобы"
+      resolved: "Решённые Жалобы"
+      all: "Все жалобы"
+    show-more: "Показать {num} жалоб"
+    hide-more: "Скрыть {num} жалоб"
+    status:
+      resolved: "Эта жалоба была решена пользователем {user}."
+      declined: "Эта жалоба была отклонена пользователем {user}."
+      escalated: "Эта жалоба была передана высшей инстанции пользователем {user}."
+    actions:
+      close: "Закрыть жалобу"
+      remove: "Удалить содержимое"
+      escalate: "Уведомить Kitsu"
+      view: "Просмотреть содержимое"
+  leaders:
+    list:
+      header: "Лидеры"
+      edit-btn: "Редактировать"
+      add-btn: "Добавить"
+      add-placeholder: "Участник группы"
+      not-found: "Не удалось найти участника группы с таким именем."
+      message-btn: "Отправить сообщение лидерам"
+      message-leader: "Вы лидер этой группы!"
+      modal:
+        header: "Права Лидера:"
+        owner: "Владелец группы"
+        tickets: "Управление заявками"
+        members: "Управление участниками"
+        leaders: "Управление Лидерами"
+        community: "Управление настройками"
+        content: "Управление контентом и жалобами"
+        owner-help: "Владельцы имеют все права доступа."
+        cancel-btn: "Отмена"
+        save-btn: "Сохранить права доступа"
   dashboard:
+    back: "Вернуться в {group}"
     navigation:
+      overview: "Обзор"
       reports: "Жалобы"
       tickets: "Заявки"
       members: "Участники"
@@ -670,11 +791,56 @@ groups:
         rules_changed: "обновлены правила {group}."
         nsfw_changed: "обновлён статус NSFW {group}."
         about_changed: "обновлён раздел о группе {group}."
+        tagline_changed: "обновлён подзаголовок {group}."
+        category_changed: "обновлена категория {group}."
+      group-report:
+        resolved: "жалоба решена."
+        declined: "жалоба отклонена."
+        escalated: "жалоба передана."
+      group-ticket:
+        assigned: "назначена заявка пользователю <a href={link}>{user}</a>."
+        resolved: "заявка помечена как решенная."
+        created: "заявка переоткрыта."
+#page: group-invite
+group-invite:
+  header: "Приглашение в группу"
+  subtitle: "Вы были приглашены в {group} пользователем {sender}"
+  text: "Вы сможете получить доступ к странице {group} после принятия приглашения. Мы перенаправим Вас после принятия."
+  accept: "Принять"
+  decline: "Отклонить"
+  accepted: "Вы уже приняли это приглашение."
+  revoked: "Ваше приглашение было отклонено модератором группы."
+  declined: "Вы отклонили приглашение в группу."
+#page: explore
+explore:
+  view-more: "Показать еще"
+  search-placeholder: "Что вы ищете?"
+  advanced-search: "Или ищи с <a href=\"/{mediaType}\">расширенным поиском</a>"
+  no-data: "Хмм, кажется в этом разделе нет никакого контента."
+  widget:
+    related: "Похожие категории"
+    categories: "Категории"
+    favorite-categories: "Мои избранные категории"
+    no-favorites: "Избранные категории помогут улучшить ваши рекомендации."
+    more-categories: "Больше категорий…"
+  modal:
+    header: "Все категории"
+  favorite-button:
+    remove: "Удалить из избранного"
+    removing: "Удаление…"
+    create: "Добавить в избранное"
+    creating: "Добавление…"
+#page: media-reactions
+media-reactions:
+  create-account: "Создать Аккаунт"
 #shared: media
 media-shared:
   types:
     anime:
       All: "Все"
+      tv: "ТВ"
+      ona: "ONA"
+      ova: "OVA"
       movie: "Фильм"
       music: "Клип"
     manga:
@@ -682,6 +848,7 @@ media-shared:
       manga: "Манга"
       novel: "Роман"
       doujin: "Самиздат"
+      oel: "OEL"
   statuses:
     anime:
       current: "Онгоинг"
@@ -693,9 +860,25 @@ media-shared:
       current: "Выпускается"
       finished: "Завершено"
       upcoming: "Скоро"
+      unreleased: "Не выпущено"
+      tba: "Не аннонсировано"
+#shared: library
+library-shared:
+  all: "{type, select, anime {Всё Аниме} manga {Вся Манга} other {}}"
+  current: "{type, select, anime {Смотрю} manga {Читаю} other {}}"
+  planned: "{type, select, anime {Хочу посмотреть} manga {Хочу почитать} other {}}"
+  completed: "{type, select, anime {Просмотрено} manga {Прочитано} other {}}"
+  on_hold: "{type, select, anime {Отложено} manga {Отложено} other {}}"
+  dropped: "{type, select, anime {Брошено} manga {Брошено} other {}}"
+#shared: form:
+form-shared:
+  placeholders:
+    username: "Логин"
+    password: "Пароль"
 #component: auth-onboarding
 onboarding:
   aozora-conflict:
+    title: "Ой, у вас уже есть учётная запись Kitsu! Который из аккаунтов хотите сохранить?"
     info: "Публикации из ленты активности на обоих аккаунтах будут объеденены. Вся прочая информация об акаунте будет переписана аккаунтом, который Вы выбрали ниже."
   aozora-account-details:
     submit: "Хорошо!"
@@ -740,8 +923,113 @@ feeds:
       body: "Когда вы обновляете свою <a href={link}>библиотеку аниме</a>, вы увидите, что говорят другие о просмотренных вами тайтлах."
     manga:
       header: "Добро пожаловать в вашу Ленту Манги!"
+      body: "Когда вы обновляете свою <a href={link}>библиотеку манги</a>, вы увидите, что говорят другие о манге, которую вы читаете."
+    button: "Окей, понял"
+#component: image-form
+image-form:
+  help-text: "Нажмите здесь, чтобы выбрать изображение."
+#component: groups/group-list
+group-list:
+  filter: "Фильтр групп"
+  sort:
+    featured: "Рекомендуемые"
+    recent: "Недавняя активность"
+    newest: "Новые группы"
+    oldest: "Старейшие группы"
+#component: media/media-reaction
+media-reaction:
+  self-vote: "Вы не можете лайкать свою собственную реакцию."
+  edit: "Изменить реакцию"
+#component: modals/media-reaction
+reaction-modal:
+  post: "Отправить"
+  edit: "Редактировать"
+  edit-warning: "Внимание! Редактирование удалит ваши лайки."
+  delete: "Удалить реакцию"
+  skip: "Пропустить"
+#component: library-entry/*
+library-entry:
+  state:
+    header: "{state, select, false {Добавить в библиотеку} true {Обновить библиотеку} other {}}"
+    add-to-library: "Добавить в библиотеку"
+    seen-this: "{type, select, anime {Просмотрено} manga {Прочитано} other {}}"
+    want-to-watch: "{type, select, anime {Хочу посмотреть} manga {Хочу почитать} other {}}"
+    started-watching: "{type, select, anime {Начал смотреть} manga {Начал читать} other {}}"
+    watching-this: "Начато"
+    finished-this: "Завершено"
+    place-on-hold: "Отложено"
+    drop-this: "Брошено"
+    change-rating: "Изменить оценку"
+    remove-rating: "Удалить оценку"
+    rate-this: "Добавить оценку"
+    edit-library: "Редактировать запись библиотеки"
+    post-reaction: "Опубликовать реакцию"
+    edit-reaction: "Изменить реакцию"
+    rewatch: "{type, select, anime {Пересматриваю} manga {Перечитываю} other {}}"
+    remove-from-library: "Удалить из библиотеки"
+    saved-in: "Сохранено в <a href={link}>{status}</a>"
+    progress: "Прогресс"
+    not-rated: "Не оценено"
+  rating:
+    awful: "Ужасно"
+    meh: "Не очень"
+    good: "Хорошо"
+    great: "Отлично"
 #component: application/user-notifications
 user-notifications:
   #Episode 113 of One Piece! aired
   aired: "{type, select, chapter {Глава} episode {Серия} other {}} {number} {media} {type, select, chapter {выпущена} episode {вышла} other {}}"
   aired-unknown: "{media} {type, select, manga {Выпущена} anime {Вышла} other {}} новая {type, select, manga {глава} anime {серия} other {}}"
+#ember-power-select
+selects:
+  loading: "Загрузка…"
+  none: "Ничего не найдено"
+  search: "Начните печатать для поиска"
+#ember-cp-validations
+errors:
+  description: "Это поле"
+  inclusion: "{description} не включен в список"
+  exclusion: "{description} зарезервировано"
+  invalid: "{description} неверно"
+  confirmation: "{description} не совпадает с {on}"
+  accepted: "{description} должен быть принят"
+  empty: "{description} не может быть пустым"
+  blank: "{description} не может быть пустым"
+  present: "{description} должно быть пустым"
+  collection: "{description} должен быть коллекцией"
+  singular: "{description} не может быть коллекцией"
+  tooLong: "{description} слишком длинный (максимум {max} символов)"
+  tooShort: "{description} слишком короткий (минимум {min} символов)"
+  before: "{description} должен быть перед {before}"
+  after: "{description} должен быть после {after}"
+  wrongDateFormat: "{description} должна быть в формате {format}"
+  wrongLength: "{description} неверная длина (должна быть {is} символов)"
+  notANumber: "{description} должно быть числом"
+  notAnInteger: "{description} должно быть целым числом"
+  greaterThan: "{description} должно быть больше чем {gt}"
+  greaterThanOrEqualTo: "{description} должно быть больше или равно {gte}"
+  equalTo: "{description} должно быть равно {is}"
+  lessThan: "{description} должно быть меньше чем {lt}"
+  lessThanOrEqualTo: "{description} должно быть меньше или равно {lte}"
+  otherThan: "{description} должно отличаться от {value}"
+  odd: "{description} должно быть нечетным"
+  even: "{description} должно быть чётным"
+  positive: "{description} должно быть положительным"
+  date: "{description} должно быть действительной датой"
+  email: "{description} должен быть действительным адресом электронной почты"
+  phone: "{description} должен быть действительным номером телефона"
+  url: "{description} должен быть рабочей ссылкой"
+  #Custom Errors
+  user:
+    name:
+      invalid: "Это поле может содержать только буквы, цифры и знаки подчеркивания"
+      numbers: "Это поле не должно состоять полностью из чисел"
+      starts: "Это поле должно начинаться с буквы или цифры"
+  load: "При загрузке контента произошла ошибка."
+  contentEmpty: "Хм, кажется, здесь пока что ничего нет."
+  request: "Упс! С запросом что-то пошло не так."
+  serverError:
+    title: "Упс! Похоже, на нашем сервере ошибка."
+    body: "Наша команда была уведомлена, пожалуйста, повторите попытку через несколько минут."
+#Loading
+loading: "Загрузка {subject, select, episode {Эпизода} chapter {Главы} episodes {Эпизодов} chapters {Глав} other {}}…"
