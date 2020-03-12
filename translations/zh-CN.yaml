@@ -178,15 +178,30 @@ media:
         header: "{type, select, episode {集} chapter {章} other {}} 讨论区"
     characters:
       header: "{title} 角色"
+    reactions:
+      delete: "删除反应"
+      report: "举报反应"
     franchise:
       roles:
+        sequel: "后篇"
+        prequel: "前篇"
+        side_story: "番外故事"
+        summary: "简介"
+        full_story: "全故事"
         anime_adaptation: "动漫"
         manga_adaptation: "漫画"
         character: "角色"
         other: "其他"
 #page: users
 users:
+  profile:
+    edit: "编辑"
+  admin:
+    button: "管理员"
   navigation:
+    activity: "动态"
+    reviews: "评论"
+    reactions: "反应"
     followers: "粉丝"
     following: "关注"
     groups: "组团"
@@ -207,3 +222,122 @@ users:
       waifu:
         label: "老婆"
         placeholder: "老婆/老公"
+      bio:
+        label: "个人信息"
+        placeholder: "把你的故事告诉世界。"
+    profile-links:
+      sites:
+        instagram:
+          placeholder: "你的Instagram用户名"
+        twitch:
+          placeholder: "你的Twitch用户名"
+        vimeo:
+          placeholder: "你的Vimeo用户名"
+        github:
+          placeholder: "你的GitHub用户名"
+        steam:
+          placeholder: "你的Steam社区用户名"
+        raptr:
+          placeholder: "你的Raptr用户名"
+        dailymotion:
+          placeholder: "您的Dailymotion用户名"
+        mobcrush:
+          placeholder: "您的Mobcrush用户名"
+        patreon:
+          placeholder: "您的Patreon项目名子"
+        deviantart:
+          placeholder: "您的DeviantArt用户名"
+        dribbble:
+          placeholder: "您的Dribbble用户名"
+        letterboxd:
+          placeholder: "您的Letterboxd用户名"
+        reddit:
+          placeholder: "您的Reddit用户名"
+        trakt:
+          placeholder: "你的Trakt用户名"
+    favorites:
+      header: "收藏"
+      anime: "动漫"
+      manga: "漫画"
+      characters: "角色"
+      remove: "删除收藏?"
+  activity:
+    about:
+      empty: "这是个秘密"
+      gender:
+        secret: "这是个秘密"
+        male: "男"
+        female: "女"
+    stats:
+      headings:
+        anime: "动漫数据"
+        manga: "漫画数据"
+  library:
+    sorting:
+      label: "排序方式:"
+      options:
+        watched: "更新日期"
+  groups:
+    sort:
+      newest: "最近加入"
+      oldest: "最早加入"
+  reactions:
+    empty: "此用户没有任何反应"
+    filters:
+      all: "所有反应"
+      anime: "动漫反应"
+      manga: "漫画反应"
+    sorts:
+      best: "最佳"
+      new: "新"
+  hide-posts:
+    text: "隐藏来自 {user} 的帖子"
+  show-posts:
+    text: "显示来自 {user} 的帖子"
+  followers:
+    not-found: "未找到用户。"
+  following:
+    not-found: "未找到用户。"
+  reviews:
+    not-found: "未找到评论。"
+#page: settings
+settings:
+  navigation:
+    header: "设置"
+    profile: "个人中心"
+    notifications: "通知"
+    password: "密码"
+    privacy: "隐私"
+    blocking: "屏蔽中"
+    account: "账户"
+  account:
+    header: "账户"
+    sub-header: "危险区！删除您的账户是不可逆的。"
+    delete: "删除账户"
+    confirm-title: "删除账户"
+    confirm-text: "我们很抱歉看到您离开，您确定要继续吗？"
+  blocking:
+    header: "屏蔽中"
+    title: "屏蔽用户"
+    button-block: "屏蔽"
+    button-unblock: "解除屏蔽"
+    more: "加载更多"
+    not-blocking: "您目前没有屏蔽任何人。"
+  exports:
+    logs:
+      header:
+        media: "名称"
+        library-status: "状态"
+        progress: "进展"
+        rating: "评分"
+        status: "状态"
+      action:
+        update: "更新"
+        destroy: "删除"
+      status:
+        pending: "等待中"
+        success: "成功"
+        error: "错误"
+  imports:
+    status: "状态:"
+    more: "加载更多"
