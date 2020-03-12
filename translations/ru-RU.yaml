@@ -14,7 +14,7 @@ titles:
   explore:
     index: "Поиск {mediaType, select, anime {Аниме} manga {Манги} other {}}"
     more:
-      top-upcoming: "Топ предстоящих {type}"
+      top-upcoming: "Топ предстоящ{type, select, Anime {их Аниме} Manga {ей Манги} other {}}"
     category:
       index: "{category} {type}"
   not-found: "Не найдено"
@@ -28,7 +28,7 @@ titles:
     following: "{user} подписан"
     groups: "Группы {user}"
     stats: "Статистика {user}"
-  posts: "Опубликовано {user}"
+  posts: "Пост {user}"
   comments: "Комментарий от {user}"
   reviews: "Обзор от {user}"
   notifications: "Уведомления"
@@ -39,7 +39,7 @@ titles:
     mobile-features: "Функционал мобильного приложения"
   admin:
     index: "Админ"
-    reports: "Жалоба"
+    reports: "Жалобы"
   groups:
     index: "Группы"
     new: "Создать группу"
@@ -141,9 +141,9 @@ media:
       ranking:
         full:
           popularity: "{type, select, anime {Ранг #{rank} (Популярное аниме)} manga {Ранг #{rank} (Популярная манга)} other {}}"
-          rating: "{type, select, anime {Ранг #{rank} (Высшая оценка аниме)} manga {Ранг #{rank} (Высшая оценка манги)} other {}}"
+          rating: "{type, select, anime {Ранг #{rank} (Самые оцененные аниме)} manga {Ранг #{rank} (Самая оцененная манга)} other {}}"
         short:
-          rating: "{type, select, anime {#{rank} Высоко оценёённое} manga {#{rank} Высоко оценённая} other {}}"
+          rating: "{type, select, anime {#{rank} Высоко оценённое} manga {#{rank} Высоко оценённая} other {}}"
       categories: "Категории"
       relationships:
         header: "Ещё из этой серии"
@@ -152,8 +152,8 @@ media:
         header: "Реакции"
         more: "Посмотреть больше реакций"
         sorts:
-          -upVotesCount: "Популярное"
-          -createdAt: "Недавно"
+          -upVotesCount: "Популярные"
+          -createdAt: "Недавние"
         new: "Новая реакция"
         edit: "Моя реакция"
         empty: "Похоже, что никто еще не отреагировал на это"
@@ -185,7 +185,7 @@ media:
         zh_tw: "Китайский (традиционный)"
         synonyms: "Синонимы"
       information:
-        header: "Детали о {type, select, anime {Аниме} manga {Манге} other {}}"
+        header: "Детали {type, select, anime {об Аниме} manga {о Манге} other {}}"
         type: "Тип"
         volumes: "Тома"
         unit: "{type, select, anime {Серий} manga {Глав} other {}}"
@@ -194,7 +194,7 @@ media:
         tba: "Ожидается"
         season: "Сезон"
         studios: "Студии"
-        duration: "Длинна"
+        duration: "Длина"
         total: "{total} всего"
         length: "{count, plural, =1 {{length} минут} other {{length} минут каждая}}"
         rating: "Рейтинг"
@@ -214,10 +214,10 @@ media:
         header: "Обсуждение {type, select, episode {серии} chapter {главы} other {}}"
     characters:
       header: "Персонажи {title}"
-      sub-header: "{type, select, anime {Данный лист - это полный список персонажий и голосовых актёров {language} в аниме {title}} manga {Данный лист- это список всех персонажей в манге {title}} other {}}"
+      sub-header: "{type, select, anime {Данный лист - это полный список персонажей и {language} актёров озвучки в аниме {title}} manga {Данный лист- это список всех персонажей в манге {title}} other {}}"
     reactions:
       delete: "Удалить реакцию"
-      report: "Жалоба на реакцию"
+      report: "Пожаловаться на реакцию"
       copy: "Скопировать ссылку на реакцию"
     franchise:
       header: "Франшиза {title}"
@@ -232,9 +232,9 @@ media:
         character: "Персонаж"
         other: "Прочие"
   hide-posts:
-    text: "Скрыть публикации о {media}"
+    text: "Скрыть посты о {media}"
   show-posts:
-    text: "Показать публикации о {media}"
+    text: "Показать посты о {media}"
 #page: users
 users:
   navigation:
@@ -249,7 +249,7 @@ users:
     cover: "Изменить обложку"
     navigation:
       about: "О себе"
-      profile-links: "Ссылки на профиле"
+      profile-links: "Ссылки в профиле"
       favorites: "Избранное"
     about:
       header: "О себе"
@@ -270,7 +270,7 @@ users:
         label: "Биография"
         placeholder: "Расскажите миру о себе."
     profile-links:
-      header: "Ссылки на профиле"
+      header: "Ссылки в профиле"
       sites:
         website:
           about: "Введите ссылку на свой персональный сайт, что бы добавить ссылку на него на своей странице."
