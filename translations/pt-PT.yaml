@@ -434,10 +434,77 @@ groups:
     form:
       name: "Nome"
       about: "Descrição"
+      rules: "Regras"
+      neighbors: "Vizinhos"
+      privacy: "Privacidade"
+      privacy-options:
+        open: "Público"
+        closed: "Privado"
+        restricted: "Restrito"
+      category: "Categoria"
+      category-placeholder: "Seleciona uma Categoria"
+      avatar: "Avatar"
+      create-btn: "Cria o teu Grupo!"
+      save-btn: "Salvar"
+      helper:
+        name:
+          header: "Nome"
+          desc: "Nomes de Grupos devem comunicar claramente sobre o que é o teu grupo, mas ainda podes ser criativo e divertires-te com ele!"
+        tagline:
+          desc: "Resume o objetivo do teu grupo em 60 caracteres ou menos. Irás ter espaço mais tarde para adicionar mais informação."
+        about:
+          header: "Descrição"
+          desc: "Explica o objetivo do teu grupo em profundidade, partilha informação importante, ou qualquer outra coisa."
+        rules:
+          header: "Regras"
+        neighbors:
+          header: "Vizinhos"
+        privacy:
+          header: "Privacidade"
+        category:
+          header: "Categoria"
+        avatar:
+          header: "Avatar"
+  join-group: "Entrar no Grupo"
+  leave-group: "Sair do Grupo"
+  hide-posts:
+    text: "Ocultar Publicações de {group}"
+  show-posts:
+    text: "Mostrar Publicações de {group}"
+  nsfw: "NSFW"
+  neighbors: "Vizinhos"
   navigation:
     activity: "Atividade"
+    rules: "Regras"
+    members: "Membros"
+    leaders: "Líderes"
+    neighbors: "Vizinhos"
+  activity:
+    feed-header: "Atividade do Grupo"
+    about: "Sobre {group}"
+    members: "Membros"
+    view-members: "ver todos"
+    feed-restricted: "Este é um grupo restrito. Qualquer um pode comentar mas apenas os líderes podem criar publicações."
+  rules:
+    header: "Regras da Comunidade"
+  tickets:
+    conversation:
+      mark-resolved: "Marcar como Resolvido"
+      mark-closed: "Marcar como Fechado"
+      mark-open: "Marcar como Aberto"
+      reply-btn: "Enviar Resposta"
+      reply-placeholder: "Escreve a tua mensagem"
+  reports:
+    no-explanation: "Sem Explicação Fornecida"
+    actions:
+      remove: "Remover Conteúdo"
+      escalate: "Notificar Kitsu"
+      view: "Ver Conteúdo"
   leaders:
     list:
+      header: "Líderes"
+      edit-btn: "Editar"
+      add-btn: "Adicionar"
       add-placeholder: "Membro do Grupo"
       not-found: "Não foi possível encontrar um membro do grupo com esse nome."
       message-btn: "Contactar os líderes"
@@ -481,3 +548,58 @@ explore:
     categories: "Categorias"
     favorite-categories: "As minhas Categorias Favoritas"
     more-categories: "Mais categorias…"
+  modal:
+    header: "Todas as Categorias"
+  favorite-button:
+    remove: "Remover dos Favoritos"
+    removing: "A Remover…"
+    create: "Adicionar aos Favoritos"
+    creating: "A adicionar…"
+#page: media-reactions
+media-reactions:
+  create-account: "Criar Conta"
+#page: password-reset
+password-reset:
+  password: "Palavra-passe"
+  confirm: "Confirmar Palavra-passe"
+  email: "E-mail"
+  send: "Enviar E-mail"
+#shared: media
+media-shared:
+  types:
+    anime:
+      All: "Todos"
+      tv: "TV"
+      special: "Especial"
+      ona: "ONA"
+      ova: "OVA"
+      movie: "Filme"
+      music: "Música"
+    manga:
+      All: "Todos"
+      manga: "Mangá"
+      novel: "Novel"
+  statuses:
+    anime:
+      current: "Em Emissão"
+      finished: "Terminado"
+      unreleased: "Não Lançado"
+      tba: "Ainda não Anunciado"
+    manga:
+      current: "Em Publicação"
+      finished: "Terminado"
+#shared: library
+library-shared:
+  all: "{type, select, anime {Todos os Animes} manga {Todos os Mangás} other {}}"
+  dropped: "{type, select, anime {Largado} manga {Largado} other {}}"
+#shared: form:
+form-shared:
+  placeholders:
+    password: "Palavra-passe"
+#component: kitsu-feed
+feeds:
+  post:
+    more: "Ver Mais"
+    less: "Ver Menos"
+    sorts:
+      replies: "Respostas"
