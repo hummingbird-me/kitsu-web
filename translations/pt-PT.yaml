@@ -1,6 +1,10 @@
 ---
 #route titles -- these are used if the route doesn't specify the title itself
 titles:
+  anime:
+    index: "Explorar Animes"
+  manga:
+    index: "Explorar Mangás"
   media:
     show:
       units: "{type, select,anime {Episódios} manga {Capítulos} other {}}"
@@ -11,6 +15,14 @@ titles:
     index: "Explorar {mediaType, select, anime {Anime} manga {Mangá} other {}}"
     more:
       trending: "{type,  select, anime {Anime} manga {Mangá} other {}} nas Tendências esta Semana"
+      highest-rated: "{type, select, Anime {Animes} Manga {Mangás} other {type}} Mais Bem Classificados"
+      most-popular: "{type, select, Anime {Animes} Manga {Mangás} other {type}} Mais Populares"
+    category:
+      index: "{type, select, Anime {Animes} Manga {Mangás} other {type}} de {category}"
+      more:
+        newly-released: "{type, select, Anime {Animes} Manga {Mangás} other {type}} de {category} Lançados Recentemente"
+        trending: "{type, select, Anime {Animes} Manga {Mangás} other {type}} de {category} nas Tendências"
+        most-popular: "{type, select, Anime {Animes} Manga {Mangás} other {type}} de {category} Mais Populares"
   not-found: "Não Encontrado"
   server-error: "Erro de Servidor"
   users:
@@ -22,6 +34,7 @@ titles:
     following: "Seguido por {user}"
     groups: "Grupos de {user}"
     stats: "Estatísticas de {user}"
+  posts: "Publicado por {user}"
   comments: "Comentado por {user}"
   reviews: "Crítica por {user}"
   notifications: "Notificações"
@@ -73,6 +86,8 @@ dashboard:
       all: "Todos"
       anime: "Anime"
       manga: "Mangá"
+    empty:
+      discover: "Descobrir Mídias"
     media:
       complete: "Completo"
       unstarted: "Não Começado"
@@ -83,7 +98,10 @@ dashboard:
         complete: "Completo"
         tooltip:
           empty: "Atualizar Biblioteca"
+          content: "Criar publicação e atualizar biblioteca"
       discussion: "Ver Discussão"
+      editor:
+        placeholder: "(Opcional) Partilha os teus pensamentos sobre o {type, select, anime {Episódio} manga {Capítulo} other {}} {number}"
   onboarding:
     welcome: "Olá {user}, bem-vindo ao Kitsu!"
   groups:
@@ -122,6 +140,13 @@ media:
     summary:
       ratings:
         community: "Aprovado por {rating}% da Comunidade"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Lugar #{rank} (Animes Mais Populares)} manga {Lugar #{rank} (Mangás Mais Populares)} other {}}"
+          rating: "{type, select, anime {Lugar #{rank} (Animes Melhores Classificados)} manga {Lugar #{rank} (Mangás Melhores Classificados)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} Mais Popular} manga {#{rank} Mais Popular} other {}}"
+          rating: "{type, select, anime {#{rank} Melhor Classificado} manga {#{rank} Melhor Classificado} other {}}"
       categories: "Categorias"
       relationships:
         header: "Mais desta série"
@@ -170,7 +195,26 @@ media:
       information:
         header: "Detalhes do {type, select, anime {Anime} manga {Mangá} other {}}"
         type: "Tipo"
+        volumes: "Volumes"
+        unit: "{type, select, anime {Episódios} manga {Capítulos} other {}}"
+        status: "Estado"
+        tba: "Previsão"
+        season: "Temporada"
+        producers: "Produtores"
+        licensors: "Licenciadores"
+        studios: "Estúdios"
+        serialization: "Serialização"
+        duration: "Duração"
+        total: "{total} em total"
+        length: "{count, plural, =1 {{length} minutos} other {{length} minutos cada}}"
+        rating: "Classificação"
+        expand:
+          false: "Mais info"
+          true: "Menos info"
     units:
+      unit: "{type,  select, episode {Episódio} chapter {Capítulo} other {}}"
+      back: "Voltar à lista de {type, select, episode {episódios} chapter {capítulos} other {}}"
+      pages: "{length} páginas"
       completed: "{type, select, episode {Visto} chapter {Lido} other {Concluído}}"
       feed:
         header: "Discussão do {type, select, episode {Episódio} chapter {Capítulo} other {}}"
@@ -198,6 +242,8 @@ media:
         manga_adaptation: "Mangá"
         character: "Personagem"
         other: "Outros"
+  hide-posts:
+    text: "Ocultar Publicações sobre {media}"
 #page: users
 users:
   profile:
@@ -231,6 +277,7 @@ users:
           secret: "É um segredo"
           male: "Masculino"
           female: "Feminino"
+          custom: "Personalizado"
       waifu:
         label: "Waifu"
         placeholder: "Waifu/Husbando"
@@ -238,6 +285,37 @@ users:
       bio:
         label: "Biografia"
         placeholder: "Conta ao mundo a tua história."
+    profile-links:
+      sites:
+        twitter:
+          about: "Digita o teu nome de usuário do Twitter abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário do Twitter (@Username)"
+        instagram:
+          about: "Digita o teu nome de usuário do Instagram abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário do Instagram"
+        twitch:
+          about: "Digita o teu nome de usuário do Twitch abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário da Twitch"
+        vimeo:
+          about: "Digita o teu nome de usuário do Vimeo abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário do Vimeo"
+        github:
+          about: "Digita o teu nome de usuário do GitHub abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário do GitHub"
+        steam:
+          about: "Digita o teu nome de usuário da Comunidade do Steam abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário da Comunidade do Steam"
+        raptr:
+          about: "Digita o teu nome de usuário do Raptr abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário do Raptr"
+        soundcloud:
+          about: "Digita o teu nome de usuário do SoundCloud abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário do SoundCloud"
+        dailymotion:
+          about: "Digita o teu nome de usuário do Dailymotion abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário do Dailymotion"
+        kickstarter:
+          about: "Digita o teu nome de usuário do Kickstarter abaixo para adicionares um link no teu perfil."
     favorites:
       header: "Favoritos"
       anime: "Anime"
@@ -379,10 +457,13 @@ settings:
     entries: "Total de Entradas Encontradas:"
     error: "Parece que a tua importação falhou :( &mdash; Nós queremos corrigir isto para ti então envia-nos um <a href=\"mailto:help@kitsu.io\">e-mail</a> (em inglês)."
   index:
+    translate-help: "Interessado em traduzir? <a href=\"https://crowdin.com/project/kitsu-web\">Traduz aqui!</a>"
+    time-zone: "Fuso Horário"
     content: "Conteúdo no Kitsu"
     theme: "Tema do Site"
     country: "País"
     titles: "Títulos"
+    rating: "Tipo de Classificação"
     adult: "Conteúdo Adulto"
     update: "Atualizar Perfil"
   linked-accounts:
@@ -398,6 +479,7 @@ settings:
       replies: "Alguém <strong>responde</strong> à minha publicação ou comentário"
       likes: "Alguém <strong>gosta</strong> da minha publicação ou comentário"
       follows: "Alguém <strong>segue-me</strong>"
+      posts: "Alguém <strong>publica</strong> no meu perfil"
       reaction_votes: "Alguém <strong>apoia</strong> a minha reação"
       airing: "Novo episódio é lançado"
     newsletter:
@@ -423,6 +505,7 @@ groups:
   create:
     header: "Criar um Grupo"
     form:
+      required: "Obrigatório"
       name: "Nome"
       about: "Descrição"
       rules: "Regras"
@@ -432,6 +515,9 @@ groups:
         open: "Público"
         closed: "Privado"
         restricted: "Restrito"
+      privacy-features:
+        open: "<li>Qualquer pessoa pode ver</li> <li>Qualquer pessoa pode entrar</li> <li>Qualquer pessoa pode publicar ou comentar</li>"
+        restricted: "<li>Qualquer pessoa pode ver</li> <li>Qualquer pessoa pode entrar</li> <li>Apenas líderes podem criar novas publicações.</li>"
       category: "Categoria"
       category-placeholder: "Seleciona uma Categoria"
       avatar: "Avatar"
@@ -456,8 +542,14 @@ groups:
           header: "Categoria"
         avatar:
           header: "Avatar"
+        cover:
+          header: "Imagem de capa"
   join-group: "Entrar no Grupo"
   leave-group: "Sair do Grupo"
+  hide-posts:
+    text: "Ocultar Publicações de {group}"
+  show-posts:
+    text: "Mostrar Publicações de {group}"
   nsfw: "NSFW"
   neighbors: "Vizinhos"
   navigation:
@@ -513,12 +605,20 @@ groups:
       members:
         header: "Membros"
         total: "Total de Membros"
+      activity:
+        posts: "Publicações de Hoje"
     members:
       bans:
         placeholder: "Nome"
       members:
         header: "Membros"
+        table:
+          actions: "Ações"
         remove: "Remover"
+    leaders:
+      chat:
+        post-btn: "Publicar"
+        placeholder: "Enviar mensagem para os líderes"
 #page: group-invite
 group-invite:
   header: "Convite de Grupo"
@@ -566,6 +666,11 @@ media-shared:
       All: "Todos"
       manga: "Mangá"
       novel: "Novel"
+      manhua: "Manhua"
+      oneshot: "One-shot"
+      doujin: "Doujin"
+      manhwa: "Manhwa"
+      oel: "OEL"
   statuses:
     anime:
       current: "Em Emissão"
@@ -582,11 +687,77 @@ library-shared:
 #shared: form:
 form-shared:
   placeholders:
+    username: "Nome de Usuário"
     password: "Palavra-passe"
 #component: kitsu-feed
 feeds:
+  uploads:
+    select: "Carregar"
+    drop: "Solta para carregar"
+  filter:
+    all: "Toda a Atividade"
+  placeholder: "{type, select, user_aggr {Publicar para {subject}} group_aggr {Publicar em {subject}} media_aggr {Publicar sobre {subject}} episode_aggr {Publicar sobre Episódio {subject}} chapter_aggr {Publicar sobre Capítulo {subject}} interest_timeline {Publicar sobre {subject}} other {Criar uma publicação}}…"
   post:
     more: "Ver Mais"
     less: "Ver Menos"
+    spoilers: "{type, select, anime {Ep. {num}} manga {Cap. {num}} other {}}"
     sorts:
+      likes: "Gostos"
       replies: "Respostas"
+      oldest: "Antigos"
+#component: modals/media-reaction
+reaction-modal:
+  post: "Publicar"
+  edit: "Editar"
+  delete: "Apagar Reação"
+  skip: "Saltar"
+#component: library-entry/*
+library-entry:
+  state:
+    add-to-library: "Adicionar à Biblioteca"
+    change-rating: "Mudar Classificação"
+    remove-rating: "Remover Classificação"
+    rate-this: "Adicionar Classificação"
+    edit-library: "Editar Entrada da Biblioteca"
+    post-reaction: "Publicar Reação"
+    edit-reaction: "Editar Reação"
+    remove-from-library: "Remover da Biblioteca"
+    saved-in: "Salvo em <a href={link}>{status}</a>"
+    progress: "Progresso"
+    not-rated: "Não Classificado"
+  rating:
+    awful: "Péssimo"
+    meh: "Médio"
+    good: "Bom"
+    great: "Ótimo"
+#ember-power-select
+selects:
+  loading: "Carregando…"
+  none: "Nenhum resultado encontrado"
+#ember-cp-validations
+errors:
+  #Custom Errors
+  user:
+    name:
+      starts: "Este campo deve começar com uma letra ou número"
+  load: "Houve um problema ao carregar o conteúdo."
+  request: "Oops! Algo ocorreu errado com o teu pedido."
+  serverError:
+    body: "A nossa equipa foi notificada, por favor tenta novamente em alguns minutos."
+#Loading
+loading: "Carregando {subject, select, episode {Episódio} chapter {Capítulo} episodes {Episódios} chapters {Capítulos} other {}}…"
+timeUnits:
+  years: "{count, plural, =1 {ano} other {anos}}"
+  months: "{count, plural, =1 {mês} other {meses}}"
+  days: "{count, plural, =1 {dia} other {dias}}"
+  hours: "{count, plural, =1 {hora} other {horas}}"
+  minutes: "{count, plural, =1 {minuto} other {minutos}}"
+admin:
+  reports:
+    open: "Aberto"
+    closed: "Fechado"
+  header: "Painel do Admin"
+  links:
+    sidekiq: "Sidekiq"
+    pghero: "PGHero"
+    flipper: "Flipper"
