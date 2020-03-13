@@ -316,6 +316,37 @@ users:
           placeholder: "Nome de Usuário do Dailymotion"
         kickstarter:
           about: "Digita o teu nome de usuário do Kickstarter abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário do Kickstarter"
+        mobcrush:
+          about: "Digita o teu nome de usuário do Mobcrush abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário do Mobcrush"
+        patreon:
+          about: "Digita o nome do teu projeto no Patreon para adicionares um link no teu perfil."
+          placeholder: "Nome do projeto no Patreon"
+        deviantart:
+          about: "Digita o teu nome de usuário do DeviantArt abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário do DeviantArt"
+        dribbble:
+          about: "Digita o teu nome de usuário do Dribbble abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário do Dribbble"
+        lastfm:
+          about: "Digita o teu nome de usuário do Last.fm abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário do Last.fm"
+        letterboxd:
+          about: "Digita o teu nome de usuário do Letterboxd abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário do Letterboxd"
+        medium:
+          about: "Digita o teu nome de usuário do Medium ou nome de publicação abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de usuário do Medium (@user) ou nome de publicação"
+        playerme:
+          about: "Digita o teu nome de usuário do Player.me abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário do Player.me"
+        reddit:
+          about: "Digita o teu nome de usuário do Reddit abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário do Reddit"
+        trakt:
+          about: "Digita o teu nome de usuário do Trakt abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de Usuário do Trakt"
     favorites:
       header: "Favoritos"
       anime: "Anime"
@@ -332,11 +363,14 @@ users:
         male: "Masculino"
         female: "Feminino"
     stats:
+      headings:
+        anime: "Estatísticas de Anime"
       chapters-read: "capítulos lidos."
       empty:
         header: "Parece que ainda não tens dados suficientes! Pronto para começar algo novo?"
   library:
     sorting:
+      label: "Sortear por:"
       options:
         watched: "Data de Atualização"
         started: "Data de Início"
@@ -348,6 +382,7 @@ users:
         length: "Duração"
       directions:
         watched:
+          desc: "Recentes Primeiro"
           asc: "Mais Antigos Primeiro"
         started:
           desc: "Mais Recentes Primeiro"
@@ -358,12 +393,24 @@ users:
         added:
           desc: "Mais Recentes Primeiro"
           asc: "Mais Antigos Primeiro"
+        progress:
+          desc: "Maior Primeiro"
+          asc: "Menor Primeiro"
+        rating:
+          desc: "Maior Primeiro"
+          asc: "Menor Primeiro"
         title:
           desc: "A-Z"
           asc: "Z-A"
+        length:
+          desc: "Mais Longos Primeiro"
+          asc: "Mais Curtos Primeiro"
     sidebar:
+      media-select: "{type, select, anime {Anime de {user}} manga {Mangá de {user}} other {}}"
       import: "Importar Biblioteca"
       export: "Exportar Biblioteca"
+      issues:
+        header: "Problemas na Biblioteca"
     list:
       edit: "Editar Entrada"
       list-edit: "Editar"
@@ -377,19 +424,28 @@ users:
         progress: "Progresso"
         volumes: "Volumes"
       add-reaction: "Adicionar Reação"
+      empty:
+        guest-header: "Parece que {user} não tem nenhuma entrada aqui."
+    grid:
+      view-media: "Ver {type, select, anime {Anime} manga {Mangá} other {}}"
     edit:
+      status: "Estado da Biblioteca"
       progress: "Progresso"
       units: "{type, select, anime {de {num} episódios} manga {de {num} capítulos} other {}}"
       volumes: "Volumes"
       volume-units: "de {num} volumes"
       rating: "Classificação"
       privacy: "Privacidade"
+      started: "Começado"
+      finished: "Terminado"
       notes: "Notas Pessoais"
       remove: "Remover da Biblioteca"
       save: "Salvar Alterações"
       saving: "A salvar…"
     bulk:
+      selected: "{type, select, anime {{num} animes selecionados} manga {{num} mangás selecionados} other {}}"
       select-all: "Selecionar Todos"
+      select-none: "Selecionado Nenhum"
       remove: "Remover <strong>{num}</strong>"
       move-to: "Mover <strong>{num}</strong> para…"
       remove-loading: "A remover…"
@@ -402,6 +458,8 @@ users:
     sorts:
       best: "Melhores"
       new: "Novos"
+  hide-posts:
+    text: "Ocultar Publicações de {user}"
   show-posts:
     text: "Mostrar Publicações de {user}"
 #page: settings
@@ -450,13 +508,22 @@ settings:
         update: "Atualizar"
         destroy: "Remover"
       status:
+        pending: "Pendente"
         success: "Sucesso"
         error: "Erro"
   imports:
+    header: "Importações"
+    loading: "Carregando Importações…"
     status: "Estado:"
     entries: "Total de Entradas Encontradas:"
     error: "Parece que a tua importação falhou :( &mdash; Nós queremos corrigir isto para ti então envia-nos um <a href=\"mailto:help@kitsu.io\">e-mail</a> (em inglês)."
+    more: "Carregar Mais"
   index:
+    header: "Perfil"
+    sub-header: "Definições de conta e região"
+    name: "Nome de Exibição"
+    email: "E-mail"
+    language: "Língua"
     translate-help: "Interessado em traduzir? <a href=\"https://crowdin.com/project/kitsu-web\">Traduz aqui!</a>"
     time-zone: "Fuso Horário"
     content: "Conteúdo no Kitsu"
