@@ -309,6 +309,9 @@ users:
         steam:
           about: "Inserisci il tuo nome utente della comunità di Steam qui sotto per aggiungere un link al tuo profilo."
           placeholder: "Il tuo nome utente della comunità di Steam"
+        raptr:
+          about: "Inserisci il tuo nome utente Raptr qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "Il tuo nome utente Raptr"
         discord:
           about: "Inserisci il tuo tag Discord qui sotto per aggiungere un link al tuo profilo."
           placeholder: "Il tuo tag di Discord (utente#1234)"
@@ -320,13 +323,46 @@ users:
           placeholder: "Il tuo nome utente SoundCloud"
         dailymotion:
           about: "Inserisci il tuo nome utente Dailymotion qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "Il tuo nome utente Dailymotion"
+        kickstarter:
+          about: "Inserisci il tuo nome utente Kickstarter qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "Il tuo nome utente Kickstarter"
+        mobcrush:
+          about: "Inserisci il tuo nome utente Mobcrush qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "Il tuo nome utente Mobcrush"
+        osu:
+          about: "Inserisci il tuo ID Osu! qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "Il tuo ID Osu!"
+        patreon:
+          about: "Inserisci il nome del tuo progetto Patreon per aggiungere un link al tuo profilo."
+          placeholder: "Il nome del tuo progetto Patreon"
+        deviantart:
+          about: "Inserisci il tuo nome utente DeviantArt qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "Il tuo nome utente DeviantArt"
+        dribbble:
+          about: "Inserisci il tuo nome utente Dribbble qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "Il tuo nome utente Dribbble"
+        imdb:
+          about: "Inserisci l'URL del tuo profilo IMDb qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "URL del tuo profilo IMDb"
         lastfm:
+          about: "Inserisci il tuo nome utente Last.fm qui sotto per aggiungere un link al tuo profilo."
           placeholder: "Il tuo nome utente Last.fm"
         letterboxd:
+          about: "Inserisci il tuo nome utente Letterboxd qui sotto per aggiungere un link al tuo profilo."
           placeholder: "Il tuo nome utente Letterbox"
         medium:
           about: "Inserisci il tuo nome utente o pubblicazione di Medium qui sotto per aggiungere un link al tuo profilo."
           placeholder: "Il tuo nome utente (@utente) o nome pubblicazione Medium"
+        playerme:
+          about: "Inserisci il tuo nome utente Player.me qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "Il tuo nome utente Player.me"
+        reddit:
+          about: "Inserisci il tuo nome utente Reddit qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "Il tuo nome utente Reddit"
+        trakt:
+          about: "Inserisci il tuo nome utente Trakt qui sotto per aggiungere un link al tuo profilo."
+          placeholder: "Il tuo nome utente Trakt"
     favorites:
       header: "Preferiti"
       anime: "Anime"
@@ -427,14 +463,25 @@ users:
       saving: "Salvataggio in corso…"
     bulk:
       select-all: "Seleziona tutto"
+      remove: "Rimuovi <strong>{num}</strong>"
+      move-to: "Sposta <strong>{num}</strong> in…"
+      remove-loading: "Rimozione in corso…"
+      update-loading: "Aggiornamento…"
+  groups:
+    sort:
+      newest: "Iscritti più recenti"
+      oldest: "Iscritti meno recenti"
   reactions:
+    empty: "Questo utente non ha reazioni"
     filters:
+      all: "Tutte le reazioni"
       anime: "Reazioni a anime"
       manga: "Reazioni a manga"
     sorts:
       best: "Migliori"
       new: "Nuove"
   hide-posts:
+    text: "Nascondi i post di {user}"
     info: "I post non appariranno nel tuo feed"
   show-posts:
     text: "Mostra post riguardo {user}"
@@ -518,6 +565,7 @@ settings:
     loading: "Caricamento delle esportazioni…"
     status: "Stato:"
     entries: "Totale voci trovate:"
+    error: "Pare che la tua importazione non sia riuscita :( &mdash; Vogliamo correggere questo problema per te, quindi ti preghiamo di <a href=\"mailto:help@kitsu.io\">inviarci un'email</a>."
     more: "Carica di più"
   index:
     header: "Profilo"
@@ -537,7 +585,13 @@ settings:
     rating: "Tipo di valutazione"
     rating-message: "Scegli come vuoi valutare i media che hai guardato o letto."
     adult: "Contenuti per adulti"
+    adult-message: "Con contenuti per adulti nascosti, non vedrai più contenuti riservati a 18+ nel feed, nelle librerie o nelle ricerche."
+    update: "Aggiorna il profilo"
   linked-accounts:
+    header: "Account collegati"
+    sub-header: "Collega account di terze parti con Kitsu"
+    facebook: "Facebook"
+    disconnect: "Scollega Facebook"
     connect: "Connettiti a Facebook"
   notifications:
     header: "Notifiche push"
@@ -575,6 +629,7 @@ settings:
     update: "Aggiorna il profilo"
 #page: feedback
 feedback:
+  header: "Feedback"
   bugs: "Bugs"
   features: "Richieste di funzioni"
   database: "Richieste sul database"
@@ -603,10 +658,207 @@ groups:
       privacy-features:
         open: "<li>Chiunque può visualizzare</li> <li>Chiunque può unirsi</li> <li>Chiunque può postare o commentare</li>"
         closed: "<li>Nascosto al pubblico</li> <li>Gli utenti possono partecipare solo tramite invito</li> <li>I post non possono essere resi pubblici</li>"
+        restricted: "<li>Chiunque può visualizzare</li> <li>Chiunque può unirsi</li> <li>Solo i leader possono creare nuovi post.</li>"
+      category: "Categoria"
+      category-placeholder: "Seleziona una categoria"
+      avatar: "Avatar"
+      cover: "Immagine di copertina"
+      create-btn: "Crea il tuo gruppo!"
+      save-btn: "Salva"
+      helper:
+        name:
+          header: "Nome"
+          desc: "I nomi dei gruppi dovrebbero comunicare chiaramente di che cosa tratta il tuo gruppo, ma puoi ancora essere creativo e divertirti!"
+        tagline:
+          header: "Slogan"
+          desc: "Riassumi lo scopo del tuo gruppo in 60 caratteri o meno. Avrai spazio per aggiungere ulteriori informazioni in un secondo momento."
+        about:
+          header: "Descrizione"
+          desc: "Spiega in modo approfondito lo scopo del tuo gruppo, condividi informazioni importanti o qualsiasi altra cosa."
+        rules:
+          header: "Regolamento"
+          desc: "Definisci alcune linee guida che i membri del tuo gruppo dovranno seguire. Queste regole sono supportate da Markdown!"
+        neighbors:
+          header: "Vicini"
+          desc: "Aggiungi gruppi correlati al tuo quartiere in modo che i tuoi membri possano scoprire nuove comunità!"
+        privacy:
+          header: "Privacy"
+          desc: "Le tue impostazioni sulla privacy determinano quanto il tuo gruppo sia aperto o chiuso al pubblico. Se scegli di rendere il tuo gruppo privato, NON sarai in grado di renderlo pubblico in futuro."
+        category:
+          header: "Categoria"
+          desc: "Kitsu utilizza le categorie per organizzare i gruppi ed aiutare gli utenti a trovare di più di ciò che amano."
+        avatar:
+          header: "Avatar"
+          desc: "Questa immagine verrà utilizzata su Kitsu per identificare il tuo gruppo."
+        cover:
+          header: "Immagine di copertina"
+          desc: "Questa immagine apparirà nella parte superiore della pagina del tuo gruppo sui desktop. I lati potrebbero essere tagliati in base alle dimensioni dello schermo del visualizzatore."
+      errors:
+        neighbors-same: "Non puoi aggiungere il tuo gruppo come vicino."
+  dashboard-btn: "Dashboard"
+  join-group: "Unisciti al gruppo"
+  leave-group: "Abbandona il gruppo"
+  hide-posts:
+    text: "Nascondi i post di {group}"
+    info: "I post non appariranno nel tuo feed"
+  show-posts:
+    text: "Mostra i post di {group}"
+    info: "I post appariranno nel tuo feed"
+  nsfw: "NSFW"
+  neighbors: "Vicini"
+  leaders:
+    list:
+      message-btn: "Invia messaggi ai leader"
+      message-leader: "Sei un leader di questo gruppo!"
+      modal:
+        header: "Permessi del leader:"
+        owner: "Proprietario del gruppo"
+        tickets: "Gestisci i ticket"
+        members: "Gestisci i membri"
+        leaders: "Gestisci i leader"
+        community: "Gestisci le impostazioni"
+        content: "Gestisci contenuti e rapporti"
+        owner-help: "I proprietari dispongono di tutti i permessi."
+        cancel-btn: "Annulla"
+        save-btn: "Salva i permessi"
   dashboard:
+    back: "Torna a {group}"
+    navigation:
+      overview: "Panoramica"
+      reports: "Segnalazioni"
+      tickets: "Tickets"
+      members: "Membri"
+      leaders: "Leader"
+      settings: "Impostazioni"
+    overview:
+      members:
+        header: "Membri"
+        today: "Iscritti oggi"
+        total: "Totale membri"
+      activity:
+        header: "Attività utente"
+        posts: "Post di oggi"
+        comments: "Commenti di oggi"
+      help-desk:
+        header: "Casi aperti"
+        tickets: "Tickets"
+        reports: "Segnalazioni"
+      tickets: "Ticket più recenti"
+      reports: "Segnalazioni più recenti"
+      log: "Log dei leader"
     members:
       invites:
+        header: "Inviti in sospeso"
+        revoke: "Annulla l'invito"
+        invite: "Invita"
+        placeholder: "Cerca un utente da invitare. Deve seguirti!"
         empty: "Pare che tu non abbia nessun invito in sospeso per il gruppo."
+      bans:
+        header: "Utenti banditi"
+        unban: "Riammetti"
+        ban: "Bandisci"
+        placeholder: "Nome"
+        empty: "Urrà! Non hai nessun utente bannato."
+      members:
+        header: "Membri"
+        table:
+          users: "Utente"
+          permissions: "Rango"
+          joined: "Iscritto"
+          actions: "Azioni"
+        remove: "Rimuovi"
+        ban: "Bandisci"
+    leaders:
+      chat:
+        header: "Chat dei leader"
+        post-btn: "Pubblica"
+#page: password-reset
+password-reset:
+  reset: "Reimposta la password"
+  email: "Email"
+  send: "Invia l'email"
+#shared: media
+media-shared:
+  types:
+    anime:
+      All: "Tutti"
+      tv: "TV"
+      special: "Speciali"
+      ona: "ONA"
+      ova: "OVA"
+      movie: "Film"
+      music: "Musica"
+    manga:
+      All: "Tutti"
+      manga: "Manga"
+      novel: "Novel"
+      manhua: "Manhua"
+      oneshot: "One-shot"
+      doujin: "Doujin"
+      manhwa: "Manhwa"
+      oel: "OEL"
+  statuses:
+    anime:
+      current: "Attualmente in onda"
+      finished: "Terminato"
+      upcoming: "In arrivo"
+      unreleased: "Non pubblicato"
+      tba: "Da annunciare"
+    manga:
+      current: "In fase di pubblicazione"
+      finished: "Terminato"
+      upcoming: "In arrivo"
+      unreleased: "Non pubblicato"
+      tba: "Da annunciare"
+#shared: form:
+form-shared:
+  placeholders:
+    username: "Nome utente"
+    password: "Password"
+#component: auth-onboarding
+onboarding:
+  aozora-conflict:
+    title: "Oh, possiedi già un account Kitsu! Quale vuoi mantenere?"
+    info: "I post del feed attività di entrambi gli account verranno uniti. Tutte le altre informazioni dell'account verranno sovrascritte dall'account selezionato di seguito."
+  aozora-account-details:
+    submit: "Perfetto!"
+#component: follow-button
+follow-button:
+  follow: "Segui"
+  unfollow: "Smetti di seguire"
+#component: kitsu-feed
+feeds:
+  embed:
+    preview: "Questa è un'anteprima della tua inserzione."
+  uploads:
+    select: "Carica"
+    drop: "Trascina per caricare"
+    invalid: "Tipo di file non valido"
+  filter:
+    all: "Tutte le attività"
+    media: "Attività dei media"
+    user: "Attività degli utenti"
+    following: "Attività dei seguiti"
+#component: library-entry/*
+library-entry:
+  state:
+    remove-rating: "Rimuovi la valutazione"
+    rate-this: "Aggiungi una valutazione"
+    edit-library: "Modifica voce della libreria"
+    post-reaction: "Pubblica la reazione"
+    edit-reaction: "Modifica reazione"
+    remove-from-library: "Rimuovi dalla libreria"
+    saved-in: "Salvato in <a href={link}>{status}</a>"
+    progress: "Avanzamento"
+    not-rated: "Non valutato"
+  rating:
+    awful: "Orribile"
+    meh: "Meh"
+    good: "Buono"
+    great: "Grandioso"
+#ember-power-select
+selects:
+  loading: "Caricamento…"
 #ember-cp-validations
 errors:
   serverError:
