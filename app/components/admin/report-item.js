@@ -1,29 +1,34 @@
-import Component from '@ember/component';
-import { get, set } from '@ember/object';
-import { inject as service } from '@ember/service';
-import { task, taskGroup } from 'ember-concurrency';
-import errorMessages from 'client/utils/error-messages';
-
-export default Component.extend({
-  tagName: 'tr',
-  notify: service(),
-  reportTask: taskGroup().drop(),
-
-  updateReport: task(function* (status) {
-    const report = get(this, 'report');
-    set(report, 'status', status);
-    set(report, 'moderator', get(this, 'session.account'));
-    yield report.save()
-      .then(() => get(this, 'notify').success(`Report was marked as ${status}.`))
-      .catch(err => {
-        report.rollbackAttributes();
-        get(this, 'notify').error(errorMessages(err));
-      });
-  }).drop(),
-
-  actions: {
-    changeStatus(status) {
-      get(this, 'updateReport').perform(status);
-    }
-  }
-});
+<td>
+  <a href={{href-to "users.index" report.user}}>{{report.user.name}}</a>
+</td>
+<td>
+  <a href={{href-to (concat report.naughty.modelType "s") report.naughty.id}}>{{capitalize report.naughty.modelType}}</a>
+</td>
+<td>{{report.reason}}</td>
+<td>{{or report.explanation "No Explanation Provided."}}</td>
+<td>{{or report.moderator.name "Not Set"}}</td>
+<td>{{report.status}}</td>
+<td class="text-xs-center">
+  {{#bootstrap/bs-dropdown as |dropdown|}}
+    {{#dropdown.button class="btn-primary" type="btn-sm"}}
+      {{t "components.admin.actions"}}
+    {{/dropdown.button}}
+    {{#dropdown.menu}}
+      {{#if (or (eq report.status "resolved") (eq report.status "declined"))}}
+        {{#dropdown.menu-item onClick=(action "changeStatus" "reported")}}
+          {{t "components.admin.open"}}
+        {{/dropdown.menu-item}}
+      {{/if}}
+      {{#if (not (eq report.status "resolved"))}}
+        {{#dropdown.menu-item onClick=(action "changeStatus" "resolved")}}
+          {{t "components.admin.resolved"}}
+        {{/dropdown.menu-item}}
+      {{/if}}
+      {{#if (not (eq report.status "declined"))}}
+        {{#dropdown.menu-item onClick=(action "changeStatus" "declined")}}
+          {{t "components.admin.closed"}}
+        {{/dropdown.menu-item}}
+      {{/if}}
+    {{/dropdown.menu}}
+  {{/bootstrap/bs-dropdown}}
+</td>
