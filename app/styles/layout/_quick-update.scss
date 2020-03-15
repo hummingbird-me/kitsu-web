@@ -7,6 +7,11 @@
   background: $secondary-background-color;
   border-bottom: 1px solid darken($secondary-background-color, 3);
   overflow: hidden;
+  .carousel {
+    &:not(.flickity-enabled) {
+      display: none;
+    }
+  }
   .flickity-viewport {
     @extend .container;
     height: 250px;

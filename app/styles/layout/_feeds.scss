@@ -112,7 +112,10 @@
 
 .feed-stream {
   padding: 0;
-  width: 540px;
+  max-width: 600px;
+  &.feed-narrow {
+    width: 540px;
+  }
   @media (min-width: 650px) and (max-width: 991px) {
     padding-right: 0;
     margin-right: -10px;
@@ -409,7 +412,7 @@
 .media-body {
   position: relative;
   top: -3px;
-  max-width: 100%;
+  max-width: calc(100% - 45px);
   .stream-item-activity {
     margin: 0;
     position: relative;
@@ -542,6 +545,9 @@
       margin-bottom: 0;
       @if $theme == 'kitsu-dark' {
         color: $white;
+      }
+      p {
+        @include word-break();
       }
       p:last-child {
         margin-bottom: 0;

@@ -1,7 +1,7 @@
 {{#if model.taskInstance.isRunning}}
   <div class="text-xs-center w-100 m-t-1">
     {{loading-spinner size="large"}}
-    <p>Loading Reports...</p>
+    <p>{{t "admin.reports.loading"}}</p>
   </div>
 {{else if model.taskInstance.error}}
   <div class="text-xs-center w-100 m-t-1">
