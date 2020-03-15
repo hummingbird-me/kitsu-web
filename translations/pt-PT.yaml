@@ -14,6 +14,8 @@ titles:
   explore:
     index: "Explorar {mediaType, select, anime {Anime} manga {Mangá} other {}}"
     more:
+      trending: "{type, select, anime {Animes} manga {Mangás} other {}} nas Tendências esta Semana"
+      top-current: "{type, select, Anime {Animes} Manga {Mangás} other {}} {type, select, Anime {em Transmissão} Manga {em Publicação} other {}} Mais Populares"
       highest-rated: "{type, select, Anime {Animes} Manga {Mangás} other {type}} Mais Bem Classificados"
       most-popular: "{type, select, Anime {Animes} Manga {Mangás} other {type}} Mais Populares"
     category:
@@ -27,6 +29,7 @@ titles:
   users:
     index: "Perfil de {user}"
     library: "Biblioteca de {user}"
+    reviews: "Críticas de {user}"
     reactions: "Reações de {user}"
     followers: "Seguidores de {user}"
     following: "Seguido por {user}"
@@ -53,6 +56,8 @@ titles:
         leaders: "Líderes de {group}"
       dashboard:
         index: "Visão geral de {group}"
+        reports: "Denúncias de {group}"
+        tickets: "Tickets de {group}"
         members: "Membros de {group}"
         leaders: "Líderes de {group}"
         settings: "Definições de {group}"
@@ -68,6 +73,7 @@ header:
   manga: "Mangá"
   trending: "Tendências"
   groups: "Grupos"
+  feedback: "Feedback"
   browse: "Navegar"
   auth:
     sign-in: "Iniciar Sessão"
@@ -77,6 +83,10 @@ header:
     settings: "Definições"
     admin: "Admin"
     logout: "Terminar Sessão"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Vamos obter algumas informações básicas primeiro} 1 {Muito engenhoso - agora o e-mail!} 2 {Parece legítimo, que tal uma palavra-passe?} 3 {Fixe - Vamos criar a conta} other {}}"
 #page: dashboard
 dashboard:
   quick-update:
@@ -84,6 +94,9 @@ dashboard:
       all: "Todos"
       anime: "Anime"
       manga: "Mangá"
+    empty:
+      html: "Media que adicionaste ou atualizaste dentro da tua <a href={link}>Biblioteca</a> vai aparecer aqui para atualizares rapidamente."
+      discover: "Descobrir Media"
     media:
       complete: "Completo"
       unstarted: "Não Começado"
@@ -96,12 +109,18 @@ dashboard:
           empty: "Atualizar Biblioteca"
           content: "Criar publicação e atualizar biblioteca"
       discussion: "Ver Discussão"
+      edit: "Editar Entrada da Biblioteca"
+      popout: "Editor emergente"
       editor:
         placeholder: "(Opcional) Partilha os teus pensamentos sobre o {type, select, anime {Episódio} manga {Capítulo} other {}} {number}"
   onboarding:
     welcome: "Olá {user}, bem-vindo ao Kitsu!"
+    about: "Isto é o feed de atividade global. Ele é preenchido pela atividade recente de todos os utilizadores do Kitsu - até a tua! Após seguires alguns utilizadores mais interessantes, nós iremos mudar o teu feed predefinido de \"Global\" para \"A seguir\"."
+    action: "Porque não tentas criar uma publicação no feed para te introduzires usando o formulário abaixo? Podes dizer alguma coisa tão simples como 'Olá a todos, sou novo no Kitsu', ou podes mostrar-nos como és criativo e engenhoso!"
   groups:
     header: "Os meus Grupos"
+  announcements:
+    button: "Aprender Mais"
   feed:
     following: "A seguir"
     anime: "Anime"
@@ -117,6 +136,7 @@ media:
       year: "Ano"
       score: "Classificação Média"
       seasons: "Temporadas"
+      streamers: "Streamers (EUA)"
       units: "{type, select, anime {Episódios} manga {Capítulos} other {}}"
       rating: "Classificação"
       categories: "Categorias"
@@ -133,9 +153,12 @@ media:
       characters: "Personagens"
       reactions: "Reações"
       franchise: "Franquia"
+    sidebar:
+      watch: "Ver Online"
     summary:
       ratings:
         community: "Aprovado por {rating}% da Comunidade"
+        match: "{rating}% de Correspondência"
       ranking:
         full:
           popularity: "{type, select, anime {Lugar #{rank} (Animes Mais Populares)} manga {Lugar #{rank} (Mangás Mais Populares)} other {}}"
@@ -193,6 +216,7 @@ media:
         type: "Tipo"
         volumes: "Volumes"
         unit: "{type, select, anime {Episódios} manga {Capítulos} other {}}"
+        start: "{type, select, anime {Transmitido} manga {Publicado} other {}}"
         status: "Estado"
         tba: "Previsão"
         season: "Temporada"
