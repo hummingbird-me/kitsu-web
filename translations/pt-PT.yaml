@@ -431,15 +431,20 @@ users:
       add-reaction: "Adicionar Reação"
       empty:
         search: "Não foi possível encontrar entradas da biblioteca com os teus parâmetros de pesquisa."
+        header: "Parece que a tua biblioteca está vazia! Preparado para começar algo novo?"
         guest-header: "Parece que {user} não tem nenhuma entrada aqui."
+        button: "Navegar {type, select, Anime {Аnime} Manga {Mangá} other {}}"
     grid:
       view-media: "Ver {type, select, anime {Anime} manga {Mangá} other {}}"
     edit:
+      status: "Estado na Biblioteca"
       progress: "Progresso"
       units: "{type, select, anime {de {num} episódios} manga {de {num} capítulos} other {}}"
       volumes: "Volumes"
       volume-units: "de {num} volumes"
       rating: "Classificação"
+      rewatch: "{type, select, anime {Contagem de Revisões} manga {Contagem de Relidas} other {}}"
+      start-rewatch: "{type, select, anime {Rever} manga {Reler} other {}}"
       privacy: "Privacidade"
       started: "Começado"
       finished: "Terminado"
@@ -455,17 +460,34 @@ users:
       move-to: "Mover <strong>{num}</strong> para…"
       remove-loading: "A remover…"
       update-loading: "A atualizar…"
+  groups:
+    sort:
+      newest: "Entrada mais Recente"
+      oldest: "Entrada mais Antiga"
   reactions:
+    empty: "Este utilizador não tem reações"
     filters:
       all: "Todas as Reações"
       anime: "Reações de Anime"
       manga: "Reações de Mangá"
     sorts:
       best: "Melhores"
+      new: "Novas"
   hide-posts:
     text: "Ocultar Publicações de {user}"
+    info: "Publicações não irão aparecer no teu feed \"A seguir\""
   show-posts:
     text: "Mostrar Publicações de {user}"
+    info: "Publicações irão aparecer no teu feed \"A seguir\""
+  followers:
+    not-found: "Nenhum Utilizador Encontrado."
+    loading: "Carregando Utilizadores…"
+  following:
+    not-found: "Nenhum Utilizador Encontrado."
+    loading: "Carregando Utilizadores…"
+  reviews:
+    not-found: "Nenhuma Crítica Encontrada."
+    loading: "Carregando Críticas…"
 #page: settings
 settings:
   navigation:
@@ -477,25 +499,38 @@ settings:
     linked-accounts: "Contas Associadas"
     import: "Importar"
     export: "Exportar"
+    blocking: "Bloqueio"
     account: "Conta"
   account:
     header: "Conta"
     sub-header: "Zona de Perigo! Apagar a conta é irreversível."
     delete: "Apagar Conta"
     confirm-title: "Apagar Conta"
+    confirm-text: "Temos pena de te ver partir, tens a certeza que queres continuar?"
   apps:
     header: "Aplicações"
   blocking:
+    header: "Bloqueio"
+    sub-header: "Após bloqueares alguém, essa pessoa não pode mais mencionar-te, seguir-te, ver o teu perfil ou ver as tuas publicações no feed."
+    title: "Bloquear Utilizadores"
+    placeholder: "Procurar utilizadores para bloquear…"
     button-block: "Bloquear"
+    loading: "Carregando Utilizadores…"
     button-unblock: "Desbloquear"
     more: "Carregar Mais"
+    not-blocking: "Não estás a bloquear ninguém atualmente."
   exports:
     modal:
       header: "Sincronizar com {site}"
+      helper: "Nós vamos atualizar a tua lista de animes e mangás no {site} sempre que a atualizares no Kitsu."
       create: "Sincronizar com {site}"
     header: "Exportar"
+    sub-header: "Sincroniza automaticamente as atualizações da tua biblioteca do Kitsu com o MyAnimeList."
     loading: "Carregando Exportações…"
     remove: "Remover Exportador"
+    disabled: "A tua Exportação para o MAL foi desativada pelo seguinte motivo: <strong>{reason}</strong>"
+    create: "Configurar Exportação para Conta do MyAnimeList"
+    download: "Baixar Biblioteca de {kind}"
     recent: "Atividade de Sincronização Recente"
     sync-header: "Sincronização com o MyAnimeList"
     no-logs: "Estamos a processar a tua biblioteca e a sincronizá-la com o MyAnimeList. Segura-te firmemente!"
@@ -505,6 +540,7 @@ settings:
         library-status: "Estado"
         progress: "Progresso"
         rating: "Classificação"
+        reconsumes: "Revisões"
         action: "Ação"
         status: "Estado"
       action:
@@ -517,6 +553,9 @@ settings:
         error: "Erro"
   imports:
     header: "Importações"
+    sub-header: "Importar media de outros fornecedores"
+    button: "Importar Media"
+    past-imports: "Importações Anteriores"
     loading: "Carregando Importações…"
     status: "Estado:"
     entries: "Total de Entradas Encontradas:"
@@ -526,7 +565,9 @@ settings:
     header: "Perfil"
     sub-header: "Definições de conta e região"
     name: "Nome de Exibição"
+    url: "URL do Perfil"
     email: "E-mail"
+    email-message: "O e-mail não será exibido publicamente."
     language: "Língua"
     translate-help: "Interessado em traduzir? <a href=\"https://crowdin.com/project/kitsu-web\">Traduz aqui!</a>"
     time-zone: "Fuso Horário"
@@ -534,10 +575,15 @@ settings:
     theme: "Tema do Site"
     country: "País"
     titles: "Títulos"
+    titles-message: "Como os título de media serão exibidos."
     rating: "Tipo de Classificação"
+    rating-message: "Escolhe como queres classificar a media que já viste ou leste."
     adult: "Conteúdo Adulto"
+    adult-message: "Com o conteúdo adulto oculto, não poderás ver media para 18+ anos no feed, na biblioteca ou nas pesquisas."
     update: "Atualizar Perfil"
   linked-accounts:
+    header: "Contas Associadas"
+    sub-header: "Conecta contas de terceiros com o Kitsu"
     facebook: "Facebook"
     disconnect: "Desconectar o Facebook"
     connect: "Conectar o Facebook"
@@ -645,7 +691,11 @@ groups:
       reply-placeholder: "Escreve a tua mensagem"
   reports:
     no-explanation: "Sem Explicação Fornecida"
+    status:
+      declined: "Esta denúncia foi recusada por {user}."
+      escalated: "Esta denúncia foi escalada por {user}."
     actions:
+      close: "Fechar Denúncia"
       remove: "Remover Conteúdo"
       escalate: "Notificar Kitsu"
       view: "Ver Conteúdo"
@@ -661,6 +711,11 @@ groups:
       modal:
         header: "Permissões de Líder:"
         owner: "Dono do Grupo"
+        tickets: "Gerir Tickets"
+        members: "Gerir Membros"
+        leaders: "Gerir Líderes"
+        community: "Gerir Definições"
+        content: "Gerir Conteúdo e Denúncias"
         owner-help: "Donos têm todas as permissões."
         cancel-btn: "Cancelar"
         save-btn: "Salvar Permissões"
@@ -668,27 +723,67 @@ groups:
     back: "Voltar a {group}"
     navigation:
       overview: "Vista geral"
+      reports: "Denúncias"
+      tickets: "Tickets"
       members: "Membros"
       leaders: "Líderes"
       settings: "Definições"
     overview:
       members:
         header: "Membros"
+        today: "Entradas de Hoje"
         total: "Total de Membros"
       activity:
+        header: "Atividade dos Utilizadores"
         posts: "Publicações de Hoje"
+        comments: "Comentários de Hoje"
+      help-desk:
+        header: "Casos em Aberto"
+        tickets: "Tickets"
+        reports: "Denúncias"
+      tickets: "Últimos Tickets"
+      reports: "Últimas Denúncias"
+      log: "Registo de Líder"
     members:
+      invites:
+        header: "Convites Pendentes"
+        invited: "Convidado"
+        revoke: "Cancelar Convite"
+        invite: "Convidar"
+        placeholder: "Procura um utilizador para convidar. Eles têm de te seguir!"
+        empty: "Parece que não tens nenhum convite pendente para o grupo."
       bans:
+        header: "Utilizadores Banidos"
+        unban: "Desbanir"
+        ban: "Banir"
         placeholder: "Nome"
+        empty: "Viva! Não existem utilizadores banidos."
       members:
         header: "Membros"
         table:
+          users: "Utilizador"
+          permissions: "Posição"
+          joined: "Entrou"
           actions: "Ações"
         remove: "Remover"
+        ban: "Banir"
     leaders:
       chat:
+        header: "Chat dos Líderes"
         post-btn: "Publicar"
         placeholder: "Enviar mensagem para os líderes"
+    audit:
+      user:
+        banned: "baniu <a href={link}>{user}</a>."
+        unbanned: "desbaniu <a href={link}>{user}</a>."
+        invited: "convidou <a href={link}>{user}</a> para entrar na comunidade."
+        granted: "concedeu permissões a <a href={link}>{user}</a>."
+        revoked: "removeu permissões de <a href={link}>{user}</a>."
+      group:
+        added_neighbor: "adicionou <a href={link}>{group}</a> como vizinho."
+        removed_neighbor: "removeu <a href={link}>{group}</a> como vizinho."
+        avatar_changed: "atualizou o avatar de {group}."
+        cover_changed: "atualizou a imagem de capa de {group}."
 #page: group-invite
 group-invite:
   header: "Convite de Grupo"
