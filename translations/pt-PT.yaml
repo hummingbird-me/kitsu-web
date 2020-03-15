@@ -231,18 +231,24 @@ media:
         expand:
           false: "Mais info"
           true: "Menos info"
+      feed:
+        header: "Feed da Comunidade"
+      trailer: "Ver Trailer"
     units:
       unit: "{type,  select, episode {Episódio} chapter {Capítulo} other {}}"
       back: "Voltar à lista de {type, select, episode {episódios} chapter {capítulos} other {}}"
       pages: "{length} páginas"
+      date: "{type, select, episode {Transmitido} chapter {Publicado} other {}}"
       completed: "{type, select, episode {Visto} chapter {Lido} other {Concluído}}"
       feed:
         header: "Discussão do {type, select, episode {Episódio} chapter {Capítulo} other {}}"
     characters:
       header: "Personagens de {title}"
+      sub-header: "{type, select, anime {Lista completa dos personagens e dos dobradores em {language} do anime {title}} manga {Lista completa dos personagens do mangá {title}} other {}}"
     reactions:
       loading: "Carregando Reações…"
       delete: "Apagar Reação"
+      report: "Denunciar Reação"
       copy: "Copiar Link da Reação"
     franchise:
       header: "Franquia de {title}"
@@ -254,6 +260,7 @@ media:
         side_story: "História secundária"
         parent_story: "História principal"
         summary: "Resumo"
+        full_story: "História completa"
         spinoff: "Spin-off"
         adaptation: "Adaptação"
         anime_adaptation: "Anime"
@@ -262,6 +269,8 @@ media:
         other: "Outros"
   hide-posts:
     text: "Ocultar Publicações sobre {media}"
+  show-posts:
+    text: "Mostrar Publicações sobre {media}"
 #page: users
 users:
   profile:
@@ -270,16 +279,21 @@ users:
     button: "Admin"
     past-names: "Ver Nomes Anteriores"
     alt-accounts: "Ver Contas Alternativas"
+    delete-content: "Apagar todo o conteúdo criado por Utilizadores"
     ban: "Banir"
   navigation:
     activity: "Atividade"
     library: "Biblioteca"
+    reviews: "Críticas"
     reactions: "Reações"
     followers: "Seguidores"
     following: "A seguir"
     groups: "Grupos"
   edit-modal:
+    cover: "Alterar foto de capa"
     navigation:
+      about: "Sobre Mim"
+      profile-links: "Links de Perfil"
       favorites: "Favoritos"
     about:
       header: "Sobre Mim"
@@ -302,7 +316,34 @@ users:
         label: "Biografia"
         placeholder: "Conta ao mundo a tua história."
     profile-links:
+      header: "Links de Perfil"
       sites:
+        website:
+          about: "Digita o teu site pessoal abaixo para adicionares um link no teu perfil."
+          placeholder: "URL do site"
+        twitter:
+          about: "Digita o teu nome de utilizador do Twitter abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do Twitter (@Username)"
+        facebook:
+          about: "Digita o URL do teu Facebook abaixo para adicionares um link no teu perfil."
+          placeholder: "URL do Facebook"
+        youtube:
+          about: "Digita o URL do teu canal do YouTube abaixo para adicionares um link no teu perfil."
+          placeholder: "URL do canal do YouTube"
+        google:
+          about: "Digita o URL do teu perfil ou nome de utilizador do Google+ abaixo para adicionares um link no teu perfil."
+          placeholder: "URL do perfil ou nome de utilizador (+Username) do Google+"
+        instagram:
+          about: "Digita o teu nome de utilizador do Instagram abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do Instagram"
+        twitch:
+          about: "Digita o teu nome de utilizador do Twitch abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do Twitch"
+        vimeo:
+          about: "Digita o teu nome de utilizador do Vimeo abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do Vimeo"
+        github:
+          about: "Digita o teu nome de utilizador do GitHub abaixo para adicionares um link no teu perfil."
         patreon:
           about: "Digita o nome do teu projeto no Patreon para adicionares um link no teu perfil."
           placeholder: "Nome do projeto no Patreon"
@@ -326,6 +367,7 @@ users:
       empty:
         header: "Parece que ainda não tens dados suficientes! Pronto para começar algo novo?"
   library:
+    search: "Pesquisar na Biblioteca de {name}…"
     sorting:
       label: "Sortear por:"
       options:
@@ -363,10 +405,17 @@ users:
           desc: "Mais Longos Primeiro"
           asc: "Mais Curtos Primeiro"
     sidebar:
+      media-select: "{type, select, anime {Animes de {user}} manga {Mangás de {user}} other {}}"
+      manage: "Gerir a Biblioteca"
       import: "Importar Biblioteca"
       export: "Exportar Biblioteca"
+      reset: "Repor a Biblioteca"
+      reset-loading: "A repor…"
+      reset-confirmation: "Isto irá apagar a tua biblioteca inteira, críticas associadas e reações. Tens a certeza que queres continuar?"
       issues:
         header: "Problemas na Biblioteca"
+        reactions: "{count} media completados sem <b>reações</b>"
+        fix: "corrigir"
     list:
       edit: "Editar Entrada"
       list-edit: "Editar"
@@ -381,6 +430,7 @@ users:
         volumes: "Volumes"
       add-reaction: "Adicionar Reação"
       empty:
+        search: "Não foi possível encontrar entradas da biblioteca com os teus parâmetros de pesquisa."
         guest-header: "Parece que {user} não tem nenhuma entrada aqui."
     grid:
       view-media: "Ver {type, select, anime {Anime} manga {Mangá} other {}}"
