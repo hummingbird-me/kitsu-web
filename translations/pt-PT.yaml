@@ -16,6 +16,7 @@ titles:
     more:
       trending: "{type, select, anime {Animes} manga {Mangás} other {}} nas Tendências esta Semana"
       top-current: "{type, select, Anime {Animes} Manga {Mangás} other {}} {type, select, Anime {em Transmissão} Manga {em Publicação} other {}} Mais Populares"
+      top-upcoming: "{type, select, Anime {Animes} Manga {Mangás} other {}} Iminentes Mais Populares"
       highest-rated: "{type, select, Anime {Animes} Manga {Mangás} other {type}} Mais Bem Classificados"
       most-popular: "{type, select, Anime {Animes} Manga {Mangás} other {type}} Mais Populares"
     category:
@@ -46,6 +47,7 @@ titles:
     mobile-bugs: "Bugs da aplicação móvel"
   admin:
     index: "Admin"
+    reports: "Denúncias"
   groups:
     index: "Grupos"
     new: "Criar um Grupo"
@@ -344,9 +346,67 @@ users:
           placeholder: "Nome de utilizador do Vimeo"
         github:
           about: "Digita o teu nome de utilizador do GitHub abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do GitHub"
+        battlenet:
+          about: "Digita a tua BattleTag do Battle.net abaixo para adicionares um link no teu perfil."
+          placeholder: "BattleTag do Battle.net (User#1234)"
+        steam:
+          about: "Digita o teu nome de utilizador da Comunidade do Steam abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador da Comunidade do Steam"
+        raptr:
+          about: "Digita o teu nome de utilizador do Raptr abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do Raptr"
+        discord:
+          about: "Digita a tua tag do Discord abaixo para adicionares um link no teu perfil."
+          placeholder: "Tag do Discord (User#1234)"
+        tumblr:
+          about: "Digita o teu nome do teu blog do Tumblr abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome do blog do Tumblr"
+        soundcloud:
+          about: "Digita o teu nome de utilizador do SoundCloud abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do SoundCloud"
+        dailymotion:
+          about: "Digita o teu nome de utilizador do Dailymotion abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do Dailymotion"
+        kickstarter:
+          about: "Digita o teu nome de utilizador do Kickstarter abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do Kickstarter"
+        mobcrush:
+          about: "Digita o teu nome de utilizador do Mobcrush abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do Mobcrush"
+        osu:
+          about: "Digita o teu número de identificação do Osu! abaixo para adicionares um link no teu perfil."
+          placeholder: "Número de identificação do Osu!"
         patreon:
           about: "Digita o nome do teu projeto no Patreon para adicionares um link no teu perfil."
           placeholder: "Nome do projeto no Patreon"
+        deviantart:
+          about: "Digita o teu nome de utilizador do DeviantArt abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do DeviantArt"
+        dribbble:
+          about: "Digita o teu nome de utilizador do Dribbble abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do Dribbble"
+        imdb:
+          about: "Digita o URL do teu perfil do IMDb abaixo para adicionares um link no teu perfil."
+          placeholder: "URL do perfil do IMDb"
+        lastfm:
+          about: "Digita o teu nome de utilizador do Last.fm abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do Last.fm"
+        letterboxd:
+          about: "Digita o teu nome de utilizador do Letterboxd abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do Letterboxd"
+        medium:
+          about: "Digita o teu nome de utilizador do Medium ou nome de publicação abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do Medium (@user) ou nome de publicação"
+        playerme:
+          about: "Digita o teu nome de utilizador do Player.me abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do Player.me"
+        reddit:
+          about: "Digita o teu nome de utilizador do Reddit abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do Reddit"
+        trakt:
+          about: "Digita o teu nome de utilizador do Trakt abaixo para adicionares um link no teu perfil."
+          placeholder: "Nome de utilizador do Trakt"
     favorites:
       header: "Favoritos"
       anime: "Anime"
@@ -354,6 +414,10 @@ users:
       characters: "Personagens"
       remove: "Remover Favorito?"
   activity:
+    onboarding:
+      welcome: "Olá {user}, esta página é toda sobre ti!"
+      about: "Conforme continuares a usar o Kitsu, o teu <strong>Feed Pessoal</strong> abaixo começará a ser preenchido com animes e mangás que viste, leste, completaste e planeias dar uma olhadela. Pode também publicar texto, imagens e vídeos no teu feed usando o formulário abaixo. As tuas publicações serão vistas e apreciadas pelos teus seguidores e utilizadores do feed global."
+      action: "Sente-te em casa! Carrega um avatar e uma imagem de capa! Clica <span>Editar</span> acima para começar."
     about:
       empty: "É um segredo"
       gender:
@@ -363,9 +427,12 @@ users:
     stats:
       headings:
         anime: "Estatísticas de Anime"
+        manga: "Estatísticas de Mangá"
       chapters-read: "capítulos lidos."
+      time-breakdown: "gastadas a ver anime no total."
       empty:
         header: "Parece que ainda não tens dados suficientes! Pronto para começar algo novo?"
+        guest-header: "Parece que {user} ainda não tem nenhuma estatística."
   library:
     search: "Pesquisar na Biblioteca de {name}…"
     sorting:
@@ -588,7 +655,10 @@ settings:
     disconnect: "Desconectar o Facebook"
     connect: "Conectar o Facebook"
   notifications:
+    header: "Notificações via Push"
+    sub-header: "Notificações gerais do site"
     contexts:
+      web: "Web"
       email: "Email"
       mobile: "Telemóvel"
     descriptions:
@@ -597,9 +667,12 @@ settings:
       likes: "Alguém <strong>gosta</strong> da minha publicação ou comentário"
       follows: "Alguém <strong>segue-me</strong>"
       posts: "Alguém <strong>publica</strong> no meu perfil"
+      reaction_votes: "Alguém <strong>apoia</strong> a minha reação a uma media"
       airing: "Novo episódio é lançado"
     newsletter:
       newsletter: "Newsletter"
+      subscribed: "Subscrito"
+      message: "Se ativado, irás receber atualizações ocasionais (e bem-humoradas) por e-mail sobre o Kitsu escritas pelo próprio Josh."
     loading: "Carregando definições…"
     update: "Atualizar Definições"
   password:
@@ -610,22 +683,33 @@ settings:
     update-pswd: "Atualizar Palavra-passe"
   privacy:
     header: "Privacidade"
+    sub-header: "Ajuste a capacidade dos outros de ver o teu conteúdo"
+    discover: "Visibilidade"
+    checkbox: "Mostrar no Feed Global"
+    message: "Se desativado, as tuas publicações apenas estarão disponíveis para os teus seguidores ou convidados para o teu perfil."
     update: "Atualizar Perfil"
 #page: feedback
 feedback:
+  header: "Feedback"
   bugs: "Bugs"
+  features: "Pedidos de Funcionalidades"
+  database: "Pedidos para a Base de Dados"
+  mobile-bugs: "Bugs da aplicação móvel"
 #page: groups
 groups:
   index:
+    call-to-action: "Qualquer pessoa pode criar e descobrir grupos. Cada grupo é centrado à volta de um tópico ou atividade."
     create-btn: "Criar um Grupo"
   create:
     header: "Criar um Grupo"
     form:
       required: "Obrigatório"
       name: "Nome"
+      tagline: "Mote / Slogan"
       about: "Descrição"
       rules: "Regras"
       neighbors: "Vizinhos"
+      neighbors-placeholder: "Procurar por grupo"
       privacy: "Privacidade"
       privacy-options:
         open: "Público"
@@ -633,10 +717,12 @@ groups:
         restricted: "Restrito"
       privacy-features:
         open: "<li>Qualquer pessoa pode ver</li> <li>Qualquer pessoa pode entrar</li> <li>Qualquer pessoa pode publicar ou comentar</li>"
+        closed: "<li>Oculto do público</li> <li>Utilizadores só podem entrar via convite</li> <li>Não pode ser alterado para público</li>"
         restricted: "<li>Qualquer pessoa pode ver</li> <li>Qualquer pessoa pode entrar</li> <li>Apenas líderes podem criar novas publicações.</li>"
       category: "Categoria"
       category-placeholder: "Seleciona uma Categoria"
       avatar: "Avatar"
+      cover: "Imagem de Capa"
       create-btn: "Cria o teu Grupo!"
       save-btn: "Salvar"
       helper:
@@ -644,28 +730,40 @@ groups:
           header: "Nome"
           desc: "Nomes de Grupos devem comunicar claramente sobre o que é o teu grupo, mas ainda podes ser criativo e divertires-te com ele!"
         tagline:
+          header: "Mote / Slogan"
           desc: "Resume o objetivo do teu grupo em 60 caracteres ou menos. Irás ter espaço mais tarde para adicionar mais informação."
         about:
           header: "Descrição"
           desc: "Explica o objetivo do teu grupo em profundidade, partilha informação importante, ou qualquer outra coisa."
         rules:
           header: "Regras"
+          desc: "Define algumas diretrizes para os membros do teu grupo seguirem. Podes usar Markdown na escrita das regras!"
         neighbors:
           header: "Vizinhos"
+          desc: "Adiciona grupos relacionados à tua Vizinhança para permitir aos membros descobrir novas comunidades!"
         privacy:
           header: "Privacidade"
+          desc: "As tuas definições de privacidade determinam quão aberto ou fechado o teu grupo é para o público. Se escolheres fazer o teu grupo privado, NÃO poderás fazê-lo público no futuro."
         category:
           header: "Categoria"
+          desc: "O Kitsu usa categorias para organizar os grupos de forma a ajudar os utilizadores a encontrarem mais sobre o que amam."
         avatar:
           header: "Avatar"
+          desc: "Esta imagem será usada no Kitsu para identificar o teu grupo."
         cover:
           header: "Imagem de capa"
+          desc: "Esta imagem aparecerá no topo da página do teu grupo em computadores. As laterais podem ser ligeiramente cortadas baseadas no tamanho do ecrã do espectador."
+      errors:
+        neighbors-same: "Não podes adicionar o teu grupo como vizinho."
+  dashboard-btn: "Painel de controlo"
   join-group: "Entrar no Grupo"
   leave-group: "Sair do Grupo"
   hide-posts:
     text: "Ocultar Publicações de {group}"
+    info: "Publicações não irão aparecer no teu feed \"A seguir\""
   show-posts:
     text: "Mostrar Publicações de {group}"
+    info: "Publicações irão aparecer no teu feed \"A seguir\""
   nsfw: "NSFW"
   neighbors: "Vizinhos"
   navigation:
@@ -682,16 +780,38 @@ groups:
     feed-restricted: "Este é um grupo restrito. Qualquer um pode comentar mas apenas os líderes podem criar publicações."
   rules:
     header: "Regras da Comunidade"
+    empty: "Olá! Parece que estás a usar as regras da comunidade do Kitsu. Se quiseres especificar as tuas próprias regras, podes fazê-lo na tua <a href={link}>página de definições.</a>"
   tickets:
+    search: "Procurar Tickets"
+    empty: "Viva! Não existem tickets para tratar."
+    helper: "Tickets permitem-te comunicar com os líderes deste grupo para resolver qualquer problema que possas ter. Envia uma mensagem aos líderes aqui para criar um ticket."
+    filter:
+      open: "Tickets Abertos"
+      resolved: "Tickets Resolvidos"
+      all: "Todos os Tickets"
     conversation:
+      title: "Ticket de <a href={link}>{name}</a>"
       mark-resolved: "Marcar como Resolvido"
       mark-closed: "Marcar como Fechado"
       mark-open: "Marcar como Aberto"
+      nav:
+        reply: "Responder a Utilizador"
+        leader: "Nota do Líder"
+      create-btn: "Criar Ticket"
       reply-btn: "Enviar Resposta"
       reply-placeholder: "Escreve a tua mensagem"
+      helper: "Escreve a tua mensagem abaixo para criar um ticket! Os líderes deste grupo responderão ao teu ticket assim que puderem."
   reports:
     no-explanation: "Sem Explicação Fornecida"
+    empty: "Viva! Não existem denúncias para tratar."
+    filter:
+      open: "Denúncias Abertas"
+      resolved: "Denúncias Resolvidas"
+      all: "Todas as Denúncias"
+    show-more: "Mostrar {num} denúncias"
+    hide-more: "Ocultar {num} denúncias"
     status:
+      resolved: "Esta denúncia foi resolvida por {user}."
       declined: "Esta denúncia foi recusada por {user}."
       escalated: "Esta denúncia foi escalada por {user}."
     actions:
@@ -784,20 +904,41 @@ groups:
         removed_neighbor: "removeu <a href={link}>{group}</a> como vizinho."
         avatar_changed: "atualizou o avatar de {group}."
         cover_changed: "atualizou a imagem de capa de {group}."
+        locale_changed: "atualizou a localidade de {group}."
+        rules_changed: "atualizou as regras de {group}."
+        nsfw_changed: "atualizou o status NSFW de {group}."
+        about_changed: "atualizou a descrição de {group}."
+        tagline_changed: "atualizou o mote / slogan de {group}."
+        category_changed: "atualizou a categoria de {group}."
+      group-report:
+        resolved: "resolveu uma denúncia."
+        declined: "recusou uma denúncia."
+        escalated: "escalou uma denúncia."
+      group-ticket:
+        assigned: "atribuiu um ticket para <a href={link}>{user}</a>."
+        resolved: "marcou um ticket como resolvido."
+        created: "reabriu um ticket."
 #page: group-invite
 group-invite:
   header: "Convite de Grupo"
+  subtitle: "Foste convidado para {group} por {sender}"
+  text: "Terás acesso à página de {group} após aceitares este convite. Vamos redirecionar-te após aceitares."
   accept: "Aceitar"
+  decline: "Recusar"
   accepted: "Já aceitaste este convite."
+  revoked: "O teu convite foi anulado por um moderador do grupo."
   declined: "Tu recusaste este convite de grupo."
 #page: explore
 explore:
   view-more: "Ver mais"
   search-placeholder: "Do que estás à procura?"
+  advanced-search: "Ou navega usando a <a href=\"/{mediaType}\">pesquisa avançada</a>"
+  no-data: "Hmm, parece que não pode ser encontrada media para esta secção."
   widget:
     related: "Categorias Relacionadas"
     categories: "Categorias"
     favorite-categories: "As minhas Categorias Favoritas"
+    no-favorites: "Marcar categorias como favoritas melhorará as tuas recomendações."
     more-categories: "Mais categorias…"
   modal:
     header: "Todas as Categorias"
@@ -809,10 +950,15 @@ explore:
 #page: media-reactions
 media-reactions:
   create-account: "Criar Conta"
+#page: notifications
+notifications:
+  zero: "Não tens notificações!"
 #page: password-reset
 password-reset:
   password: "Palavra-passe"
   confirm: "Confirmar Palavra-passe"
+  length: "A palavra-passe deve ter pelo menos 8 caracteres"
+  reset: "Repor Palavra-passe"
   email: "E-mail"
   send: "Enviar E-mail"
 #shared: media
@@ -839,49 +985,122 @@ media-shared:
     anime:
       current: "Em Emissão"
       finished: "Terminado"
+      upcoming: "Iminente"
       unreleased: "Não Lançado"
       tba: "Ainda não Anunciado"
     manga:
       current: "Em Publicação"
       finished: "Terminado"
+      upcoming: "Iminente"
+      unreleased: "Não Lançado"
+      tba: "Por Anunciar"
 #shared: library
 library-shared:
   all: "{type, select, anime {Todos os Animes} manga {Todos os Mangás} other {}}"
+  current: "{type, select, anime {A ver} manga {A ler} other {}}"
+  planned: "{type, select, anime {Quero Ver} manga {Quero Ler} other {}}"
+  completed: "{type, select, anime {Completado} manga {Completado} other {}}"
+  on_hold: "{type, select, anime {Em Espera} manga {Em Espera} other {}}"
+  dropped: "{type, select, anime {Desistido} manga {Desistido} other {}}"
 #shared: form:
 form-shared:
   placeholders:
+    username: "Nome de Utilizador"
     password: "Palavra-passe"
+#component: auth-onboarding
+onboarding:
+  aozora-conflict:
+    title: "Ah, já tens uma conta do Kitsu! Qual é que queres manter?"
+    info: "As publicações do feed de atividade de ambas as contas irão ser fundidas. Todas as outras informações da conta serão sobrescritas pela conta que selecionares abaixo."
+  aozora-account-details:
+    submit: "Parece bem!"
+#component: follow-button
+follow-button:
+  follow: "Seguir"
+  unfollow: "Deixar de Seguir"
 #component: kitsu-feed
 feeds:
+  embed:
+    preview: "Isto é uma pré-visualização do embed."
   uploads:
     select: "Carregar"
     drop: "Solta para carregar"
+    invalid: "Tipo de arquivo inválido"
+    uploading: "{number, plural, =1 {Carregando foto… {progress}%} other {Carregando {number} fotos… {progress}%}}"
   filter:
     all: "Toda a Atividade"
+    media: "Atividade do(s) Media"
+    user: "Atividade dos Utilizadores"
+    following: "Atividade de Seguidos"
   placeholder: "{type, select, user_aggr {Publicar para {subject}} group_aggr {Publicar em {subject}} media_aggr {Publicar sobre {subject}} episode_aggr {Publicar sobre Episódio {subject}} chapter_aggr {Publicar sobre Capítulo {subject}} interest_timeline {Publicar sobre {subject}} other {Criar uma publicação}}…"
+  library:
+    updated: "moveu isto para {status}"
+    rated: "classificou como"
+    progressed: "{type, select, anime {viu o episódio {num}} manga {leu o capítulo {num}} other {}}"
   post:
     more: "Ver Mais"
     less: "Ver Menos"
+    meta:
+      media: "Porque viste recentemente {media}"
     spoilers: "{type, select, anime {Ep. {num}} manga {Cap. {num}} other {}}"
     sorts:
       likes: "Gostos"
       replies: "Respostas"
       oldest: "Antigos"
+  review:
+    review: "Crítica"
+    author: "Crítica de {user}"
+    progress: "{type, select, anime {Esta é uma crítica até ao Episódio {num}.} manga {Esta é uma crítica até ao Capítulo {num}.} other {}}"
+  interest:
+    anime:
+      header: "Bem-vindo(a) ao teu Feed de Animes!"
+      body: "Conforme fores atualizando a tua <a href={link}>biblioteca de animes</a>, irás vendo o que os outros têm a dizer sobre os programas que estás a ver."
+    manga:
+      header: "Bem-vindo(a) ao teu Feed de Mangás!"
+      body: "Conforme fores atualizando a tua <a href={link}>biblioteca de mangás</a>, irás vendo o que os outros têm a dizer sobre os mangás que estás a ler."
+    button: "Ok, entendido"
+#component: image-form
+image-form:
+  help-text: "Clica aqui para selecionar uma imagem."
+#component: groups/group-list
+group-list:
+  filter: "Filtrar Grupos"
+  sort:
+    featured: "Destaques"
+    recent: "Atividade Recente"
+    newest: "Grupos mais Recentes"
+    oldest: "Grupos mais Antigos"
+#component: media/media-reaction
+media-reaction:
+  self-vote: "Não podes votar na tua reação."
+  edit: "Editar Reação"
 #component: modals/media-reaction
 reaction-modal:
   post: "Publicar"
   edit: "Editar"
+  edit-warning: "Cuidado! Editar irá excluir o apoio."
   delete: "Apagar Reação"
+  placeholder: "{index, plural, =0 {Pôs-me a repensar algumas decisões de vida importantes.} =1 {Inesperadamente bom! Muitas cenas memoráveis.} =2 {Enquanto pode não ser adequado para todos, é certamente interessante.} other {Sobrevalorizado, não gastes o teu tempo com isto.}}"
   skip: "Saltar"
 #component: library-entry/*
 library-entry:
   state:
+    header: "{state, select, false {Adicionar à Biblioteca} true {Atualizar Biblioteca} other {}}"
+    add-to-library: "Adic. à Biblioteca"
+    seen-this: "{type, select, anime {Completado} manga {Completado} other {}}"
+    want-to-watch: "{type, select, anime {Quero Ver} manga {Quero Ler} other {}}"
+    started-watching: "{type, select, anime {Comecei a Ver} manga {Comecei a Ler} other {}}"
+    watching-this: "Começado"
+    finished-this: "Completado"
+    place-on-hold: "Em Espera"
+    drop-this: "Desistido"
     change-rating: "Mudar Classificação"
     remove-rating: "Remover Classificação"
     rate-this: "Adicionar Classificação"
     edit-library: "Editar Entrada da Biblioteca"
     post-reaction: "Publicar Reação"
     edit-reaction: "Editar Reação"
+    rewatch: "{type, select, anime {Rever} manga {Reler} other {}}"
     remove-from-library: "Remover da Biblioteca"
     saved-in: "Salvo em <a href={link}>{status}</a>"
     progress: "Progresso"
@@ -891,19 +1110,61 @@ library-entry:
     meh: "Médio"
     good: "Bom"
     great: "Ótimo"
+#component: application/user-notifications
+user-notifications:
+  #Episode 113 of One Piece! aired
+  aired: "{type, select, chapter {Capítulo} episode {Episódio} other {}} {number} de {media} {type, select, chapter {lançado} episode {transmitido} other {}}"
+  aired-unknown: "{media} {type, select, manga {lançou} anime {transmitiu} other {}} um {type, select, manga {Capítulo} anime {Episódio} other {}} novo"
 #ember-power-select
 selects:
   loading: "Carregando…"
   none: "Nenhum resultado encontrado"
+  search: "Começa a escrever para procurar"
 #ember-cp-validations
 errors:
+  description: "Este campo"
+  inclusion: "{description} não está incluído na lista"
+  exclusion: "{description} está reservado"
+  invalid: "{description} é inválido"
+  confirmation: "{description} não corresponde a {on}"
+  accepted: "{description} tem que ser aceito"
+  empty: "{description} não pode estar vazio"
+  blank: "{description} não pode ficar em branco"
+  present: "{description} tem que estar em branco"
+  collection: "{description} tem que ser uma coleção"
+  singular: "{description} não poder ser uma coleção"
+  tooLong: "{description} é muito longo (o máximo é {max} caracteres)"
+  tooShort: "{description} é muito curto (o mínimo é {min} caracteres)"
+  before: "{description} tem que ser antes de {before}"
+  after: "{description} tem que ser depois de {after}"
+  wrongDateFormat: "{description} tem que estar no formato de {format}"
+  wrongLength: "{description} tem o tamanho errado (deve ter {is} caracteres)"
+  notANumber: "{description} tem que ser um número"
+  notAnInteger: "{description} tem que ser um número inteiro"
+  greaterThan: "{description} tem que ser maior que {gt}"
+  greaterThanOrEqualTo: "{description} tem que ser maior ou igual a {gte}"
+  equalTo: "{description} tem que ser igual a {is}"
+  lessThan: "{description} tem que ser menor que {lt}"
+  lessThanOrEqualTo: "{description} tem que ser menor ou igual a {lte}"
+  otherThan: "{description} tem que ser diferente de {value}"
+  odd: "{description} tem que ser ímpar"
+  even: "{description} tem que ser par"
+  positive: "{description} tem que ser positivo"
+  date: "{description} tem que ser uma data válida"
+  email: "{description} tem que ser um e-mail válido"
+  phone: "{description} tem que ser um número de telemóvel válido"
+  url: "{description} tem que ser um url válido"
   #Custom Errors
   user:
     name:
+      invalid: "Este campo apenas pode conter letras, números e underscores"
+      numbers: "Este campo não pode ser composto apenas por números"
       starts: "Este campo deve começar com uma letra ou número"
   load: "Houve um problema ao carregar o conteúdo."
+  contentEmpty: "Hmm, parece que ainda não há nada aqui."
   request: "Oops! Algo ocorreu errado com o teu pedido."
   serverError:
+    title: "Oops! Parece que o nosso servidor tem um bug."
     body: "A nossa equipa foi notificada, por favor tenta novamente em alguns minutos."
 #Loading
 loading: "Carregando {subject, select, episode {Episódio} chapter {Capítulo} episodes {Episódios} chapters {Capítulos} other {}}…"
@@ -915,10 +1176,15 @@ timeUnits:
   minutes: "{count, plural, =1 {minuto} other {minutos}}"
 admin:
   reports:
+    header: "Denúncias de Mods"
+    loading: "Carregando Denúncias…"
     open: "Aberto"
     closed: "Fechado"
   header: "Painel do Admin"
+  deployed-version: "Versão Utilizada Atualmente: {version}"
   links:
+    index: "Denúncias"
+    admin: "Admin do Rails"
     sidekiq: "Sidekiq"
     pghero: "PGHero"
     flipper: "Flipper"
