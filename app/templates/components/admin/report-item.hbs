@@ -11,22 +11,22 @@
 <td class="text-xs-center">
   {{#bootstrap/bs-dropdown as |dropdown|}}
     {{#dropdown.button class="btn-primary" type="btn-sm"}}
-      {{t "components.admin.actions"}}
+      {{t "components.admin.reports.actions.button"}}
     {{/dropdown.button}}
     {{#dropdown.menu}}
       {{#if (or (eq report.status "resolved") (eq report.status "declined"))}}
         {{#dropdown.menu-item onClick=(action "changeStatus" "reported")}}
-          {{t "components.admin.open"}}
+          {{t "components.admin.reports.actions.open"}}
         {{/dropdown.menu-item}}
       {{/if}}
       {{#if (not (eq report.status "resolved"))}}
         {{#dropdown.menu-item onClick=(action "changeStatus" "resolved")}}
-          {{t "components.admin.resolved"}}
+          {{t "components.admin.reports.actions.resolved"}}
         {{/dropdown.menu-item}}
       {{/if}}
       {{#if (not (eq report.status "declined"))}}
         {{#dropdown.menu-item onClick=(action "changeStatus" "declined")}}
-          {{t "components.admin.closed"}}
+          {{t "components.admin.reports.actions.closed"}}
         {{/dropdown.menu-item}}
       {{/if}}
     {{/dropdown.menu}}
