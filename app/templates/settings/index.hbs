@@ -41,7 +41,7 @@
     <div class="form-group row">
       <label class="col-xs-4 col-form-label">{{t "settings.index.language"}}</label>
       <div class="col-xs-8">
-        {{#power-select renderInPlace=true selected=(or selectedLanguage currentLanguage) options=languages searchEnabled=true onChange=(action "changeLanguage") as |language|}}
+        {{#power-select renderInPlace=true selected=(or selectedLanguage currentLanguage) options=languages searchEnabled=true searchField="text" onChange=(action "changeLanguage") as |language|}}
           {{language.text}}
         {{/power-select}}
         <small>{{t "settings.index.translate-help" htmlSafe=true}}</small>
