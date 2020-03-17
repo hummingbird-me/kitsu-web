@@ -32,7 +32,7 @@
 
 ## Contributing
 
-Check out the main [repo][meta] for information on setting up a development environment and contributing.
+Check out the main [repo][tools] for information on setting up a development environment and contributing.
 
 ## Issues
 
