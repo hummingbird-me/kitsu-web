@@ -3,6 +3,8 @@ module.exports = function() {
   return {
     disablePolyfill: true,
     publicOnly: true,
-    requiresTranslation() { return false; }
+    requiresTranslation(key, locale) {
+      return locale === 'en-us';
+    }
   };
 };
