@@ -139,5 +139,192 @@ media:
       year: "Jahr"
       score: "Durchschnittliche Bewertung"
       seasons: "Seasons"
+      units: "{type, select, anime {Episoden} manga {Kapitel} other {}}"
+      rating: "Bewertung"
+      categories: "Kategorien"
+      types: "Typen"
     sort:
+      popularity: "Beliebtheit"
+      rating: "Durchschnittliche Bewertung"
       date: "Datum"
+      recent: "Kürzlich hinzugefügt"
+  show:
+    navigation:
+      summary: "Zusammenfassung"
+      units: "{type, select, anime {Episoden} manga {Kapitel} other {}}"
+      characters: "Charaktere"
+      reactions: "Reaktionen"
+      franchise: "Franchise"
+    sidebar:
+      watch: "Online anschauen"
+    summary:
+      ratings:
+        community: "{rating}% Community Empfehlung"
+        match: "{rating}% Übereinstimmung"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Rang #{rank} (der beliebtesten Anime)} manga {Rang #{rank} (der beliebtesten Manga)} other {}}"
+          rating: "{type, select, anime {Rang #{rank} (Höchste bewertete Anime)} manga {Rang #{rank} (Höchste bewertete Manga)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} beliebteste} manga {#{rank} beliebteste} other {}}"
+          rating: "{type, select, anime {Rang #{rank} Höchst bewertete} manga {Rang #{rank} Höchst bewertete} other {}}"
+      categories: "Kategorien"
+      relationships:
+        header: "Mehr von dieser Serie"
+        more: "Alles was zur Serie {title} ist anzeigen"
+      reactions:
+        header: "Reaktionen"
+        more: "Weitere Reaktionen anzeigen"
+        sorts:
+          -upVotesCount: "beliebt"
+          -createdAt: "neueste"
+        new: "Neue Reaktion"
+        edit: "Meine Reaktion"
+        empty: "Bisher hat keiner eine Reaktion abgegeben"
+      characters:
+        header: "Charaktere"
+        more: "Alle Charaktere anzeigen"
+      titles:
+        header: "alternativer Titel"
+        ar: "Arabisch"
+        ar_ar: "Arabisch" #Invalid use ar
+        de_de: "Deutsch"
+        en: "Englisch"
+        en_cn: "Chinesisch (Pinyin)"
+        en_gb: "Englisch (UK)"
+        en_jp: "Japanisch (Romaji)"
+        en_kr: "Koreanisch (Romaja)"
+        en_th: "Thailändisch (romanisiert)"
+        en_us: "Englisch (USA)"
+        es_es: "Spanisch"
+        fr_fr: "Französisch"
+        id_id: "Indonesisch"
+        it_it: "Italienisch"
+        ja_jp: "Japanisch"
+        ko_kr: "Koreanisch"
+        nl_nl: "Niederländisch"
+        pt_br: "Portugiesisch (Brasilianisch)"
+        pt_pt: "Portugiesisch"
+        ru_ru: "Russisch"
+        th_th: "Thailändisch"
+        uk_ua: "Ukrainisch"
+        vi_vi: "Vietnamesisch" #Invalid use vi_vn
+        vi_vn: "Vietnamesisch"
+        zh_cn: "Chinesisch (vereinfacht)"
+        zh_tw: "Chinesisch (traditionell)"
+        synonyms: "Synonyme"
+      information:
+        header: "{type, select, anime {Anime} manga {Manga} other {}} Details"
+        type: "Typ"
+        volumes: "Ausgaben"
+        unit: "{type, select, anime {Episodes} manga {Chapters} other {}}"
+        start: "{type, select, anime {Aired} manga {Published} other {}}"
+        status: "Status"
+        tba: "Erwartet"
+        season: "Staffel"
+        producers: "Produzenten"
+        licensors: "Lizenz"
+        studios: "Studios"
+        serialization: "Serialisation"
+        duration: "Länge"
+        total: "{total} Gesamt"
+        length: "{count, plural, =1 {{length} minutes} other {{length} minutes each}}"
+        rating: "Bewertung"
+        expand:
+          false: "Weitere Infos"
+          true: "Weniger Infos"
+      feed:
+        header: "Community Feed"
+      trailer: "Trailer abspielen"
+    units:
+      unit: "{type, select, episode {Episode} chapter {Kapitel} other {}}"
+      back: "Zurück zur {type, select, episode {Episode} chapter {Kapitel} other {}} Liste"
+      pages: "{length} Seiten"
+      date: "{type, select, episode {Ausgestrahlt} chapter {Veröffentlicht} other {}}"
+      completed: "{type, select, episode {Gesehen} chapter {Gelesen} other {Abgeschlossen}}"
+      feed:
+        header: "{type, select, episode {Episode} chapter {Kapitel} other {}} Discussion"
+    characters:
+      header: "{title} Charaktere"
+    reactions:
+      loading: "Lade Reaktionen…"
+      delete: "Reaktion löschen"
+      report: "Reaktion melden"
+    franchise:
+      header: "{title} Franchise"
+      roles:
+        sequel: "Sequel"
+        prequel: "Prequel"
+        alternative_setting: "Alternative Umgebung"
+        alternative_version: "Alternative Version"
+        side_story: "Nebengeschichte"
+        parent_story: "Hauptgeschichte"
+        summary: "Zusammenfassung"
+        full_story: "Vollständige Geschichte"
+        spinoff: "Spin-off"
+        adaptation: "Adaptation"
+        anime_adaptation: "Anime"
+        manga_adaptation: "Manga"
+        character: "Charakter"
+        other: "Weitere"
+  hide-posts:
+    text: "Beiträge über {media} verbergen"
+  show-posts:
+    text: "Beiträge zu {media} anzeigen"
+#page: users
+users:
+  profile:
+    edit: "Bearbeiten"
+  admin:
+    button: "Admin"
+    past-names: "Vorherige Namen anzeigen"
+    alt-accounts: "Alternative Konten anzeigen"
+    ban: "Bannen"
+  navigation:
+    activity: "Aktivität"
+    library: "Bibliothek"
+    reviews: "Bewertungen"
+    reactions: "Reaktionen"
+    followers: "Follower"
+    following: "Folge ich"
+    groups: "Gruppen"
+  edit-modal:
+    cover: "Titelbild ändern"
+    navigation:
+      about: "Über mich"
+      profile-links: "Profillinks"
+      favorites: "Favoriten"
+    about:
+      header: "Über mich"
+      location:
+        label: "Ort"
+        placeholder: "Woher kommst du?"
+      birthday: "Geburtstag"
+      gender:
+        label: "Geschlecht"
+        options:
+          secret: "Das ist ein Geheimnis"
+          male: "Männlich"
+          female: "Weiblich"
+          custom: "Benutzerdefiniert"
+      waifu:
+        label: "Waifu"
+        placeholder: "Waifu/Husbando"
+        search: "Finde jemand Besonderen für dich"
+      bio:
+        label: "Biografie"
+        placeholder: "Erzähl der Welt deine Geschichte."
+    profile-links:
+      header: "Profillinks"
+      sites:
+        website:
+          about: "Gib unten Deine persönliche Website ein, um einen Link zu Deinem Profil hinzuzufügen."
+          placeholder: "Deine Website-URL"
+admin:
+  deployed-version: "Aktuelle Versionsnummer: {version}"
+  links:
+    index: "Meldungen"
+    admin: "Rails Admin"
+    sidekiq: "Sidekiq"
+    pghero: "PGHero"
+    flipper: "Flipper"
