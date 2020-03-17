@@ -14,6 +14,7 @@ titles:
   explore:
     index: "Explorar {mediaType, select, anime {Anime} manga {Mangá} other {}}"
     more:
+      trending: "{type, select, Anime {Animes} Manga {Mangás} other {}} nas Tendências esta Semana"
       top-current: "{type, select, Anime {Animes} Manga {Mangás} other {}} {type, select, Anime {em Transmissão} Manga {em Publicação} other {}} Mais Populares"
       top-upcoming: "{type, select, Anime {Animes} Manga {Mangás} other {}} Iminentes Mais Populares"
       highest-rated: "{type, select, Anime {Animes} Manga {Mangás} other {type}} Mais Bem Classificados"
@@ -89,6 +90,9 @@ header:
 auth-modal:
   sign-up:
     submit: "{step, select, 0 {Vamos obter algumas informações básicas primeiro} 1 {Muito engenhoso - agora o e-mail!} 2 {Parece legítimo, que tal uma palavra-passe?} 3 {Fixe - Vamos criar a conta} other {}}"
+#page: about
+about:
+  header: "Sobre o Kitsu"
 #page: dashboard
 dashboard:
   quick-update:
@@ -97,8 +101,8 @@ dashboard:
       anime: "Anime"
       manga: "Mangá"
     empty:
-      html: "Media que adicionaste ou atualizaste dentro da tua <a href={link}>Biblioteca</a> vai aparecer aqui para atualizares rapidamente."
-      discover: "Descobrir Media"
+      html: "Mídia que adicionaste ou atualizaste dentro da tua <a href={link}>Biblioteca</a> vai aparecer aqui para atualizares rapidamente."
+      discover: "Descobrir Mídia"
     media:
       complete: "Completo"
       unstarted: "Não Começado"
@@ -148,6 +152,7 @@ media:
       rating: "Classificação Média"
       date: "Data"
       recent: "Adicionado Recentemente"
+  none: "Sem resultados."
   show:
     navigation:
       summary: "Resumo"
@@ -277,9 +282,65 @@ media:
     info: "Publicações irão aparecer no teu feed \"A seguir\" ou \"{type}\""
 #components
 components:
+  admin:
+    reports:
+      actions:
+        button: "Ações"
+        open: "Marcar como Aberto"
+        resolved: "Marcar como Resolvido"
+        closed: "Marcar como Fechado"
+      table:
+        user: "Utilizador"
+        type: "Tipo"
+        reason: "Razão"
+        explanation: "Explicação"
+        moderator: "Moderador"
+        status: "Estado"
+        actions: "Ações"
+  search:
+    header: "Resultados da pesquisa"
+    view: "ver mais"
+    load: "carregar mais"
+    none: "sem resultados"
+  sidebar-footer:
+    contact: "Contacto"
+    terms: "Termos"
   stream-feed:
     create-post:
+      edit: "Editar"
       create: "Publicar"
+      nsfw: "NSFW"
+      spoiler: "Spoiler"
+    edit-post:
+      header: "Editar Publicação"
+      error:
+        tagged: "Infelizmente, ainda não permitimos que edites a tua mídia marcada."
+    follow:
+      followed: "seguiu"
+      delete: "Apagar Atividade"
+    library:
+      delete: "apagar"
+      deleting: "a apagar…"
+    post:
+      pinned: "Publicação Fixada"
+      edited: "editado"
+      gate:
+        spoiler-nsfw: "Contém spoilers e NSFW."
+        nsfw: "Esta publicação contém conteúdo NSFW."
+        spoiler: "Esta publicação contém spoilers."
+        hover:
+          nsfw: "O meu corpo está pronto!"
+          spoiler: "Eu consigo lidar com a verdade!"
+      link: "Copiar Link para a Publicação"
+      unfollow: "Deixar de seguir"
+      follow: "Seguir Publicação"
+      show: "Mostrar Conteúdo da Publicação"
+      hide: "Ocultar Conteúdo da Publicação"
+      edit: "Editar Publicação"
+      delete: "Apagar Publicação"
+      pin: "Fixar Publicação no Perfil"
+      report: "Reportar Publicação"
+      block: "Bloquear @{username}"
 #page: users
 users:
   profile:
@@ -627,8 +688,8 @@ settings:
         error: "Erro"
   imports:
     header: "Importações"
-    sub-header: "Importar media de outros fornecedores"
-    button: "Importar Media"
+    sub-header: "Importar mídia de outros fornecedores"
+    button: "Importar Mídia"
     past-imports: "Importações Anteriores"
     loading: "Carregando Importações…"
     status: "Estado:"
@@ -649,7 +710,7 @@ settings:
     theme: "Tema do Site"
     country: "País"
     titles: "Títulos"
-    titles-message: "Como os título de media serão exibidos."
+    titles-message: "Como os título de mídia serão exibidos."
     rating: "Tipo de Classificação"
     rating-message: "Escolhe como queres classificar a media que já viste ou leste."
     adult: "Conteúdo Adulto"
@@ -939,6 +1000,7 @@ explore:
   view-more: "Ver mais"
   search-placeholder: "Do que estás à procura?"
   advanced-search: "Ou navega usando a <a href=\"/{mediaType}\">pesquisa avançada</a>"
+  no-data: "Hmm, parece que não pode ser encontrada mídia para esta secção."
   widget:
     related: "Categorias Relacionadas"
     categories: "Categorias"
@@ -955,6 +1017,9 @@ explore:
 #page: media-reactions
 media-reactions:
   create-account: "Criar Conta"
+#page: notifications
+notifications:
+  none: "Não tens notificações!"
 #page: password-reset
 password-reset:
   password: "Palavra-passe"
@@ -1031,7 +1096,7 @@ feeds:
     uploading: "{number, plural, =1 {Carregando foto… {progress}%} other {Carregando {number} fotos… {progress}%}}"
   filter:
     all: "Toda a Atividade"
-    media: "Atividade do(s) Media"
+    media: "Atividade do(s) Mídia"
     user: "Atividade dos Utilizadores"
     following: "Atividade de Seguidos"
   placeholder: "{type, select, user_aggr {Publicar para {subject}} group_aggr {Publicar em {subject}} media_aggr {Publicar sobre {subject}} episode_aggr {Publicar sobre Episódio {subject}} chapter_aggr {Publicar sobre Capítulo {subject}} interest_timeline {Publicar sobre {subject}} other {Criar uma publicação}}…"
@@ -1190,3 +1255,5 @@ admin:
     sidekiq: "Sidekiq"
     pghero: "PGHero"
     flipper: "Flipper"
+button:
+  view-all: "ver todos"
