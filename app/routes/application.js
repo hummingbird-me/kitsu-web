@@ -6,6 +6,7 @@ import { storageFor } from 'ember-local-storage';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import moment from 'moment';
 import LANGUAGES from 'client/utils/languages';
+import { environment } from 'client/config/environment';
 
 export default Route.extend(ApplicationRouteMixin, {
   features: service(),
@@ -145,22 +146,11 @@ export default Route.extend(ApplicationRouteMixin, {
     return get(this, 'session').getCurrentUser().then(async user => {
       // user setup
       this._loadTheme(user);
+      this._loadLanguage(user); // i18n
       get(this, 'moment').changeTimeZone(get(user, 'timeZone') || moment.tz.guess());
 
       // notifications
       this._registerNotifications();
-
-      // i18n
-      const userLocale = get(user, 'language');
-      if (userLocale !== 'en-us' && LANGUAGES.some(({ id }) => userLocale === id)) {
-        let translationsPath = `translations/${userLocale}.json`;
-        const assetMap = await fetch('/assets/assetMap.json');
-        const assetMapJSON = await assetMap.json();
-        translationsPath = await assetMapJSON.assets[translationsPath];
-        const translations = await fetch(`/${translationsPath}`);
-        get(this, 'intl').addTranslations(userLocale, await translations.json());
-        get(this, 'intl').set('locale', [userLocale, 'en-us']);
-      }
 
       // metrics
       get(this, 'metrics').identify({
@@ -233,6 +223,22 @@ export default Route.extend(ApplicationRouteMixin, {
     if (element.dataset.theme !== theme) {
       element.href = window.Kitsu.themes[theme];
       element.dataset.theme = theme;
+    }
+  },
+
+  async _loadLanguage(user) {
+    const userLocale = get(user, 'language');
+
+    if (userLocale !== 'en-us' && LANGUAGES.some(({ id }) => userLocale === id)) {
+      let translationsPath = `translations/${userLocale}.json`;
+      if (environment === 'production') {
+        const assetMap = await fetch('/assets/assetMap.json');
+        const assetMapJSON = assetMap.json();
+        translationsPath = assetMapJSON.assets[translationsPath];
+      }
+      const translations = await fetch(`/${translationsPath}`);
+      get(this, 'intl').addTranslations(userLocale, await translations.json());
+      get(this, 'intl').set('locale', [userLocale, 'en-us']);
     }
   }
 });

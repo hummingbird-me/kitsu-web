@@ -8,6 +8,7 @@ import getter from 'client/utils/getter';
 import errorMessages from 'client/utils/error-messages';
 import COUNTRIES from 'client/utils/countries';
 import LANGUAGES from 'client/utils/languages';
+import { environment } from 'client/config/environment';
 import moment from 'moment';
 
 export default Controller.extend({
@@ -18,6 +19,7 @@ export default Controller.extend({
   currentLanguage: alias('intl.primaryLocale'),
   timezoneGuess: getter(() => moment.tz.guess()),
   timezones: getter(() => moment.tz.names()),
+  intl: service(),
 
   countries: getter(() => (
     Object.keys(COUNTRIES).map(key => ({ id: key, text: COUNTRIES[key] })).sortBy('text')
@@ -55,6 +57,7 @@ export default Controller.extend({
       .then(() => {
         set(this, 'lastUsed.theme', get(this, 'user.theme'));
         this._loadTheme();
+        this._loadLanguage();
         get(this, 'notify').success('Your profile was updated.');
       })
       .catch(err => {
@@ -133,6 +136,22 @@ export default Controller.extend({
     if (element.dataset.theme !== get(this, 'user.theme')) {
       element.href = window.Kitsu.themes[get(this, 'user.theme')];
       element.dataset.theme = get(this, 'user.theme');
+    }
+  },
+
+  async _loadLanguage() {
+    const userLocale = get(this, 'user.language');
+
+    if (userLocale !== 'en-us' && LANGUAGES.some(({ id }) => userLocale === id)) {
+      let translationsPath = `translations/${userLocale}.json`;
+      if (environment === 'production') {
+        const assetMap = await fetch('/assets/assetMap.json');
+        const assetMapJSON = assetMap.json();
+        translationsPath = assetMapJSON.assets[translationsPath];
+      }
+      const translations = await fetch(`/${translationsPath}`);
+      get(this, 'intl').addTranslations(userLocale, await translations.json());
+      get(this, 'intl').set('locale', [userLocale, 'en-us']);
     }
   }
 });
