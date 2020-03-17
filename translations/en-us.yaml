@@ -393,27 +393,31 @@ components:
     contact: "Contact"
     terms: "Terms"
   stream-feed:
-    edit: "Edit"
-    create: "Post"
-    nsfw: "NSFW"
-    spoiler: "Spoiler"
-    edit-post: "Edit Post"
-    error:
-      tagged: "Unfortunately, we can't allow you to edit your tagged media yet."
-    followed: "followed"
-    delete: "Delete Activity"
-    view-all: "view-all"
+    create-post:
+      edit: "Edit"
+      create: "Post"
+      nsfw: "NSFW"
+      spoiler: "Spoiler"
+    edit-post:
+      header: "Edit Post"
+      error:
+        tagged: "Unfortunately, we can't allow you to edit your tagged media yet."
+    follow:
+      followed: "followed"
+      delete: "Delete Activity"
     library:
       delete: "delete"
       deleting: "deleting…"
     post:
       pinned: "Pinned Post"
       edited: "edited"
-      spoiler-nsfw: "Contains spoilers and NSFW."
-      nsfw: "This post contains NSFW content."
-      spoiler: "This post contains spoilers."
-      ready: "My body is ready!"
-      truth: "I can handle the truth!"
+      gate:
+        spoiler-nsfw: "Contains spoilers and NSFW."
+        nsfw: "This post contains NSFW content."
+        spoiler: "This post contains spoilers."
+        hover:
+          nsfw: "My body is ready!"
+          spoiler: "I can handle the truth!"
       link: "Copy Link to Post"
       unfollow: "Unfollow Post"
       follow: "Follow Post"
@@ -424,7 +428,7 @@ components:
       unpin: "Unpin Post from Profile"
       pin: "Pin Post to Profile"
       report: "Report Post"
-      block: "Block"
+      block: "Block @{username}"
 # page: users
 users:
   profile:

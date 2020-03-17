@@ -149,9 +149,9 @@
           {{loading-spinner size="small"}}
         {{else}}
           {{#if post}}
-            {{t "components.stream-feed.edit"}}
+            {{t "components.stream-feed.create-post.edit"}}
           {{else}}
-            {{t "components.stream-feed.create"}}
+            {{t "components.stream-feed.create-post.create"}}
           {{/if}}
         {{/if}}
       </button>
@@ -159,13 +159,13 @@
       <label class="custom-control custom-checkbox">
         {{one-way-checkbox nsfw update=(action (mut nsfw)) disabled=forceNsfw class="custom-control-input"}}
         <span class="custom-control-indicator"></span>
-        <span class="custom-control-description">{{t "components.stream-feed.nsfw"}}</span>
+        <span class="custom-control-description">{{t "components.stream-feed.create-post.nsfw"}}</span>
       </label>
 
       <label class="custom-control custom-checkbox">
         {{one-way-checkbox spoiler update=(action (mut spoiler)) class="custom-control-input"}}
         <span class="custom-control-indicator"></span>
-        <span class="custom-control-description">{{t "components.stream-feed.spoiler"}}</span>
+        <span class="custom-control-description">{{t "components.stream-feed.create-post.spoiler"}}</span>
       </label>
 
       {{! Unit Tagging }}

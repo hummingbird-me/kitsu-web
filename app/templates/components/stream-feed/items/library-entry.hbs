@@ -39,7 +39,7 @@
       {{#if (and hasMoreActivities (not showAll))}}
         {{! TODO @Josh -- Aggregate button }}
         <button class="button" onclick={{action (toggle "modalOpen" this)}}>
-          {{t "components.stream-feed.view-all"}}
+          {{t "button.view-all"}}
         </button>
         {{#if modalOpen}}
           {{to-elsewhere named="modal" send=(component "stream-feed/items/library-entry/modal"

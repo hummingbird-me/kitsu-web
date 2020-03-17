@@ -91,10 +91,10 @@
           <div class="combo-gate">
               <a href="#" {{action "toggleHidden"}}>
                 <div class="gate--label">
-                  {{t "components.stream-feed.post.spoiler-nsfw"}}
+                  {{t "components.stream-feed.post.gate.spoiler-nsfw"}}
                 </div>
                 <div class="gate--hover">
-                  {{t "components.stream-feed.post.ready"}}
+                  {{t "components.stream-feed.post.gate.hover.nsfw"}}
                 </div>
               </a>
             </div>
@@ -102,8 +102,8 @@
           {{#if post.nsfw}}
             <div class="nsfw-gate">
               <a href="#" {{action "toggleHidden"}}>
-                <div class="gate--label">{{t "components.stream-feed.post.nsfw"}}</div>
-                <div class="gate--hover">{{t "components.stream-feed.post.ready"}}</div>
+                <div class="gate--label">{{t "components.stream-feed.post.gate.nsfw"}}</div>
+                <div class="gate--hover">{{t "components.stream-feed.post.gate.hover.nsfw"}}</div>
               </a>
             </div>
           {{/if}}
@@ -111,10 +111,10 @@
             <div class="spoiler-gate">
               <a href="#" {{action "toggleHidden"}}>
                 <div class="gate--label">
-                  {{t "components.stream-feed.post.spoiler"}}
+                  {{t "components.stream-feed.post.gate.spoiler"}}
                 </div>
                 <div class="gate--hover">
-                  {{t "components.stream-feed.post.truth"}}
+                  {{t "components.stream-feed.post.gate.hover.spoiler"}}
                 </div>
               </a>
             </div>
@@ -337,7 +337,7 @@
               )}}
             {{/if}}
 
-            <a class="dropdown-item" href="#" {{action (toggle "blockUserModal" this)}}>{{t "components.stream-feed.post.block"}} @{{post.user.name}}</a>
+            <a class="dropdown-item" href="#" {{action (toggle "blockUserModal" this)}}>{{t "components.stream-feed.post.block" username=post.user.name}}</a>
             {{#if blockUserModal}}
               {{to-elsewhere named="modal" send=(component "modals/block-user"
                 user=post.user
