@@ -6,7 +6,7 @@ import { storageFor } from 'ember-local-storage';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import moment from 'moment';
 import LANGUAGES from 'client/utils/languages';
-import { environment } from 'client/config/environment';
+import { environment, kitsu } from 'client/config/environment';
 
 export default Route.extend(ApplicationRouteMixin, {
   features: service(),
@@ -227,13 +227,15 @@ export default Route.extend(ApplicationRouteMixin, {
   },
 
   async _loadLanguage(user) {
+    console.log(environment);
+    console.log(kitsu.env);
     const userLocale = get(user, 'language');
 
     if (userLocale !== 'en-us' && LANGUAGES.some(({ id }) => userLocale === id)) {
       let translationsPath = `translations/${userLocale}.json`;
       if (environment === 'production') {
         const assetMap = await fetch('/assets/assetMap.json');
-        const assetMapJSON = assetMap.json();
+        const assetMapJSON = await assetMap.json();
         translationsPath = assetMapJSON.assets[translationsPath];
       }
       const translations = await fetch(`/${translationsPath}`);

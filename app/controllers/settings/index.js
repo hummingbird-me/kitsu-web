@@ -146,7 +146,7 @@ export default Controller.extend({
       let translationsPath = `translations/${userLocale}.json`;
       if (environment === 'production') {
         const assetMap = await fetch('/assets/assetMap.json');
-        const assetMapJSON = assetMap.json();
+        const assetMapJSON = await assetMap.json();
         translationsPath = assetMapJSON.assets[translationsPath];
       }
       const translations = await fetch(`/${translationsPath}`);
