@@ -89,6 +89,9 @@ header:
 auth-modal:
   sign-up:
     submit: "{step, select, 0 {Давайте немного расскажем о себе} 1 {Очень интересно! Теперь электронную почту!} 2 {Вроде всё правильно. Как насчёт пароля?} 3 {Прикольно! Давайте же создадим этот аккаунт!} other {}}"
+#page: about
+about:
+  header: "О Kitsu"
 #page: dashboard
 dashboard:
   quick-update:
@@ -148,6 +151,7 @@ media:
       rating: "Средняя оценка"
       date: "Дата"
       recent: "Недавно добавленные"
+  none: "Нет результатов."
   show:
     navigation:
       summary: "Краткое описание"
@@ -275,6 +279,63 @@ media:
   show-posts:
     text: "Показать посты о {media}"
     info: "Посты будут появляться в Вашей ленте подписок или {type}"
+#components
+components:
+  admin:
+    reports:
+      actions:
+        button: "Действия"
+        open: "Отметить как открытая"
+        resolved: "Отметить как решённая"
+        closed: "Отметить как закрытая"
+      table:
+        user: "Пользователь"
+        type: "Тип"
+        reason: "Причина"
+        explanation: "Пояснение"
+        moderator: "Модератор"
+        status: "Статус"
+        actions: "Действия"
+  search:
+    header: "Результаты поиска"
+    view: "показать еще"
+    load: "загрузить еще"
+    none: "нет результатов"
+  sidebar-footer:
+    contact: "Контакты"
+    terms: "Условия"
+  stream-feed:
+    create-post:
+      edit: "Редактировать"
+      create: "Отправить"
+      nsfw: "NSFW"
+    edit-post:
+      header: "Редактировать"
+    follow:
+      followed: "подписался на"
+      delete: "Удалить активность"
+    library:
+      delete: "удалить"
+      deleting: "удаление…"
+    post:
+      pinned: "Закреплённый пост"
+      edited: "отредактировано"
+      gate:
+        nsfw: "Этот пост содержит NSFW контент."
+        hover:
+          nsfw: "Моё тело готово!"
+          spoiler: "Я справлюсь с правдой!"
+      link: "Скопировать ссылку на пост"
+      unfollow: "Отписаться от поста"
+      follow: "Подписаться на пост"
+      show: "Показать контент поста"
+      hide: "Скрыть контент поста"
+      edit: "Редактировать"
+      delete: "Удалить запись"
+      unpin: "Открепить пост"
+      pin: "Закрепить в профиле"
+      report: "Пожаловаться"
+      block: "Заблокировать @{username}"
 #page: users
 users:
   profile:
@@ -952,6 +1013,9 @@ explore:
 #page: media-reactions
 media-reactions:
   create-account: "Создать Аккаунт"
+#page: notifications
+notifications:
+  none: "У вас нет уведомлений!"
 #page: password-reset
 password-reset:
   password: "Пароль"
@@ -1187,3 +1251,5 @@ admin:
     sidekiq: "Sidekiq"
     pghero: "PGHero"
     flipper: "Flipper"
+button:
+  view-all: "просмотреть всё"
