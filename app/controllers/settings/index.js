@@ -8,7 +8,7 @@ import getter from 'client/utils/getter';
 import errorMessages from 'client/utils/error-messages';
 import COUNTRIES from 'client/utils/countries';
 import LANGUAGES from 'client/utils/languages';
-import { environment } from 'client/config/environment';
+import config from 'client/config/environment';
 import moment from 'moment';
 
 export default Controller.extend({
@@ -144,7 +144,7 @@ export default Controller.extend({
 
     if (userLocale !== 'en-us' && LANGUAGES.some(({ id }) => userLocale === id)) {
       let translationsPath = `translations/${userLocale}.json`;
-      if (environment === 'production') {
+      if (config.kitsu.isProduction) {
         const assetMap = await fetch('/assets/assetMap.json');
         const assetMapJSON = await assetMap.json();
         translationsPath = assetMapJSON.assets[translationsPath];
