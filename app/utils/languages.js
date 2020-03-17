@@ -2,7 +2,7 @@ export default [
   { id: 'en-us', text: 'English (American)' },
   { id: 'en-gb', text: 'English (British)' },
   // { id: 'af-za', text: 'Afrikaans' },
-  // { id: 'ar-sa', text: 'العربية' }, // rtl
+  // { id: 'ar-001', text: 'العربية' }, // rtl
   // { id: 'bn-bd', text: 'বাংলা (বাংলাদেশ)' },
   // { id: 'bg-bg', text: 'Български' },
   // { id: 'zh-cn', text: '中文 (简体)' },

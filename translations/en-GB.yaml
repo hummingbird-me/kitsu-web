@@ -14,7 +14,7 @@ titles:
   explore:
     index: "Explore {mediaType, select, anime {Anime} manga {Manga} other {}}"
     more:
-      trending: "Trending {type, select, anime {Anime} manga {Manga} other {}} This Week"
+      trending: "Trending {type, select, other {}} This Week"
       top-current: "Top {type, select, Anime {Airing} Manga {Publishing} other {}} {type}"
       top-upcoming: "Top Upcoming {type}"
       highest-rated: "Highest Rated {type}"
@@ -90,6 +90,9 @@ header:
 auth-modal:
   sign-up:
     submit: "{step, select, 0 {Let's get some basic info first} 1 {Very witty - email is next!} 2 {Looks legit, how about a password?} 3 {Neat! Let's create that account} other {}}"
+#page: about
+about:
+  header: "About Kitsu"
 #page: dashboard
 dashboard:
   quick-update:
@@ -149,6 +152,7 @@ media:
       rating: "Average Rating"
       date: "Date"
       recent: "Recently Added"
+  none: "No Results."
   show:
     navigation:
       summary: "Summary"
@@ -276,6 +280,69 @@ media:
   show-posts:
     text: "Show posts about {media}"
     info: "Posts will appear in your Following or {type} Feed"
+#components
+components:
+  ad-unit: "Ads suck, but that's how we keep the lights on. Please whitelist us in your ad blocker."
+  admin:
+    reports:
+      actions:
+        button: "Actions"
+        open: "Mark Open"
+        resolved: "Mark Resolved"
+        closed: "Mark Closed"
+      table:
+        user: "User"
+        type: "Type"
+        reason: "Reason"
+        explanation: "Explanation"
+        moderator: "Moderator"
+        status: "Status"
+        actions: "Actions"
+  search:
+    header: "Search Results"
+    view: "View More"
+    load: "Load More"
+    none: "No Results"
+  sidebar-footer:
+    contact: "Contact"
+    terms: "Terms"
+  stream-feed:
+    create-post:
+      edit: "Edit"
+      create: "Post"
+      nsfw: "NSFW"
+      spoiler: "Spoiler"
+    edit-post:
+      header: "Edit Post"
+      error:
+        tagged: "Unfortunately, we can't allow you to edit your tagged media yet."
+    follow:
+      followed: "followed"
+      delete: "Delete Activity"
+    library:
+      delete: "Delete"
+      deleting: "Deleting…"
+    post:
+      pinned: "Pinned Post"
+      edited: "Edited"
+      gate:
+        spoiler-nsfw: "This post contains spoilers and NSFW content."
+        nsfw: "This post contains NSFW content."
+        spoiler: "This post contains spoilers."
+        hover:
+          nsfw: "My body is ready!"
+          spoiler: "I can handle the truth!"
+      link: "Copy Link to Post"
+      unfollow: "Unfollow Post"
+      follow: "Follow Post"
+      show: "Show Post Content"
+      hide: "Hide Post Content"
+      edit: "Edit Post"
+      delete: "Delete Post"
+      unpin: "Unpin Post from Profile"
+      pin: "Pin Post to Profile"
+      report: "Report Post"
+      block: "Block @{username}"
 #page: users
 users:
   profile:
@@ -780,7 +847,6 @@ groups:
     feed-header: "Group Activity"
     about: "About {group}"
     members: "Members"
-    view-members: "view all"
     feed-restricted: "This is a restricted group. Anyone can comment, but only leaders can create posts."
   rules:
     header: "Community Rules"
@@ -956,7 +1022,7 @@ media-reactions:
   create-account: "Create Account"
 #page: notifications
 notifications:
-  zero: "You don't have any notifications!"
+  none: "You don't have any notifications!"
 #page: password-reset
 password-reset:
   password: "Password"
@@ -1192,3 +1258,5 @@ admin:
     sidekiq: "Sidekiq"
     pghero: "PGHero"
     flipper: "Flipper"
+button:
+  view-all: "View All"
