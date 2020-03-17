@@ -93,6 +93,8 @@ dashboard:
     welcome: "你好 {user}, 欢迎来到Kitsu!"
   groups:
     header: "我的组团"
+  announcements:
+    button: "了解更多"
 #page: anime/manga
 media:
   index:
@@ -144,8 +146,11 @@ media:
         it_it: "意大利语"
         ja_jp: "日语"
         ko_kr: "韩语"
+        nl_nl: "荷兰语"
+        pt_pt: "葡萄牙文"
         ru_ru: "俄语"
         th_th: "泰文"
+        uk_ua: "乌克兰语"
         vi_vi: "越南语" #Invalid use vi_vn
         vi_vn: "越南语"
         zh_cn: "中文 (简体)"
@@ -157,7 +162,9 @@ media:
         volumes: "卷"
         unit: "{type, select, anime {集} manga {章} other {}}"
         start: "{type, select, anime {已播出} manga {已出版} other {}}"
+        status: "状态"
         season: "季"
+        studios: "工作室"
         duration: "时长"
         rating: "评分"
         expand:
@@ -171,15 +178,30 @@ media:
         header: "{type, select, episode {集} chapter {章} other {}} 讨论区"
     characters:
       header: "{title} 角色"
+    reactions:
+      delete: "删除反应"
+      report: "举报反应"
     franchise:
       roles:
+        sequel: "后篇"
+        prequel: "前篇"
+        side_story: "番外故事"
+        summary: "简介"
+        full_story: "全故事"
         anime_adaptation: "动漫"
         manga_adaptation: "漫画"
         character: "角色"
         other: "其他"
 #page: users
 users:
+  profile:
+    edit: "编辑"
+  admin:
+    button: "管理员"
   navigation:
+    activity: "动态"
+    reviews: "评论"
+    reactions: "反应"
     followers: "粉丝"
     following: "关注"
     groups: "组团"
@@ -200,3 +222,429 @@ users:
       waifu:
         label: "老婆"
         placeholder: "老婆/老公"
+      bio:
+        label: "个人信息"
+        placeholder: "把你的故事告诉世界。"
+    profile-links:
+      sites:
+        instagram:
+          placeholder: "你的Instagram用户名"
+        twitch:
+          placeholder: "你的Twitch用户名"
+        vimeo:
+          placeholder: "你的Vimeo用户名"
+        github:
+          placeholder: "你的GitHub用户名"
+        steam:
+          placeholder: "你的Steam社区用户名"
+        raptr:
+          placeholder: "你的Raptr用户名"
+        dailymotion:
+          placeholder: "您的Dailymotion用户名"
+        mobcrush:
+          placeholder: "您的Mobcrush用户名"
+        patreon:
+          placeholder: "您的Patreon项目名子"
+        deviantart:
+          placeholder: "您的DeviantArt用户名"
+        dribbble:
+          placeholder: "您的Dribbble用户名"
+        letterboxd:
+          placeholder: "您的Letterboxd用户名"
+        reddit:
+          placeholder: "您的Reddit用户名"
+        trakt:
+          placeholder: "你的Trakt用户名"
+    favorites:
+      header: "收藏"
+      anime: "动漫"
+      manga: "漫画"
+      characters: "角色"
+      remove: "删除收藏?"
+  activity:
+    about:
+      empty: "这是个秘密"
+      gender:
+        secret: "这是个秘密"
+        male: "男"
+        female: "女"
+    stats:
+      headings:
+        anime: "动漫数据"
+        manga: "漫画数据"
+  library:
+    sorting:
+      label: "排序方式:"
+      options:
+        watched: "更新日期"
+        started: "开始日期"
+        finished: "完结日期"
+        added: "添加日期"
+        progress: "进展"
+        rating: "评分"
+        title: "名称"
+        length: "时长"
+      directions:
+        watched:
+          desc: "最近在前"
+          asc: "最早在前"
+        started:
+          desc: "最近在前"
+          asc: "最早在前"
+        finished:
+          desc: "最近在前"
+          asc: "最早在前"
+        added:
+          desc: "最近在前"
+          asc: "最早在前"
+        progress:
+          desc: "最多在前"
+          asc: "最少在前"
+        rating:
+          desc: "最高在前"
+          asc: "最低在前"
+        title:
+          desc: "A-Z"
+          asc: "Z-A"
+        length:
+          desc: "最长在前"
+          asc: "最短在前"
+    sidebar:
+      media-select: "{type, select, anime {{user}的动漫} manga {{user}的漫画} other {}}"
+      issues:
+        fix: "修复"
+    list:
+      more: "更多"
+      unstarted: "还没开始"
+      unrated: "无评分"
+      table-header:
+        title: "{type, select, anime {动漫名称} manga {漫画名称} other {}}"
+        rating: "评分"
+        progress: "进展"
+        volumes: "卷"
+      add-reaction: "添加反应"
+    edit:
+      progress: "进展"
+      volumes: "卷"
+      rating: "评分"
+      privacy: "隐私"
+      started: "已开始"
+      finished: "已完成"
+      notes: "个人笔记"
+      save: "保存修改"
+    bulk:
+      select-all: "选择全部"
+  groups:
+    sort:
+      newest: "最近加入"
+      oldest: "最早加入"
+  reactions:
+    empty: "此用户没有任何反应"
+    filters:
+      all: "所有反应"
+      anime: "动漫反应"
+      manga: "漫画反应"
+    sorts:
+      best: "最佳"
+      new: "新"
+  hide-posts:
+    text: "隐藏来自 {user} 的帖子"
+  show-posts:
+    text: "显示来自 {user} 的帖子"
+  followers:
+    not-found: "未找到用户。"
+  following:
+    not-found: "未找到用户。"
+  reviews:
+    not-found: "未找到评论。"
+#page: settings
+settings:
+  navigation:
+    header: "设置"
+    profile: "个人中心"
+    notifications: "通知"
+    password: "密码"
+    privacy: "隐私"
+    blocking: "屏蔽中"
+    account: "账户"
+  account:
+    header: "账户"
+    sub-header: "危险区！删除您的账户是不可逆的。"
+    delete: "删除账户"
+    confirm-title: "删除账户"
+    confirm-text: "我们很抱歉看到您离开，您确定要继续吗？"
+  blocking:
+    header: "屏蔽中"
+    title: "屏蔽用户"
+    button-block: "屏蔽"
+    button-unblock: "解除屏蔽"
+    more: "加载更多"
+    not-blocking: "您目前没有屏蔽任何人。"
+  exports:
+    modal:
+      header: "与 {site} 同步"
+      create: "与 {site} 同步"
+    logs:
+      header:
+        media: "名称"
+        library-status: "状态"
+        progress: "进展"
+        rating: "评分"
+        status: "状态"
+      action:
+        update: "更新"
+        destroy: "删除"
+      status:
+        pending: "等待中"
+        success: "成功"
+        error: "错误"
+  imports:
+    status: "状态:"
+    more: "加载更多"
+  index:
+    header: "个人中心"
+    sub-header: "账户和地区设置"
+    name: "显示名字"
+    email: "电子邮件"
+    email-message: "电子邮件不会被公开显示。"
+    language: "语言"
+    translate-help: "对翻译感兴趣吗？ <a href=\"https://crowdin.com/project/kitsu-web\">在这里翻译！</a>"
+    time-zone: "时区"
+    country: "国家"
+    titles: "名称"
+    rating: "评分类型"
+    adult: "成年人内容"
+  linked-accounts:
+    facebook: "脸书"
+    disconnect: "断开脸书连接"
+    connect: "连接脸书"
+  notifications:
+    contexts:
+      web: "网站"
+      email: "电子邮件"
+      mobile: "手机"
+    descriptions:
+      airing: "新集已播出"
+    newsletter:
+      newsletter: "新闻通讯"
+      subscribed: "已订阅"
+    update: "更新设置"
+  password:
+    header: "密码"
+    sub-header: "更改您的密码"
+    new-pswd: "新密码"
+    confirm-pswd: "确认密码"
+    update-pswd: "更新密码"
+  privacy:
+    header: "隐私"
+#page: groups
+groups:
+  index:
+    create-btn: "建立一个组团"
+  create:
+    header: "建立一个组团"
+    form:
+      required: "必填"
+      name: "名字"
+      tagline: "标签"
+      about: "说明"
+      rules: "规则"
+      neighbors: "邻居"
+      neighbors-placeholder: "搜索组团"
+      privacy: "隐私"
+      privacy-options:
+        restricted: "限制"
+      privacy-features:
+        open: "<li>任何人都可以查看</li> <li>任何人都可以加入</li> <li>任何人都可以发表评论</li>"
+        restricted: "<li>任何人都可以查看</li> <li>任何人都可以加入</li> <li>只有领导者才能创建新的帖子</li>"
+      category: "分类"
+      category-placeholder: "选择一个分类"
+      avatar: "头像"
+      cover: "封面图片"
+      create-btn: "建立你的组团!"
+      save-btn: "保存"
+      helper:
+        name:
+          header: "名字"
+        tagline:
+          header: "标签"
+          desc: "以最多60个字符来概括您的组的目的。您可以稍后添加更多信息。"
+        about:
+          header: "说明"
+          desc: "详细解释您的组的意向，分享重要信息或其他任何信息。"
+        rules:
+          header: "规则"
+        neighbors:
+          header: "邻居"
+        privacy:
+          header: "隐私"
+        category:
+          header: "分类"
+        avatar:
+          header: "头像"
+        cover:
+          header: "封面图片"
+      errors:
+        neighbors-same: "您不能将您的组团添加为邻居。"
+  join-group: "加入组团"
+  leave-group: "离开组团"
+  hide-posts:
+    text: "隐藏来自 {group} 的帖子"
+  show-posts:
+    text: "显示来自 {group} 的帖子"
+  neighbors: "邻居"
+  navigation:
+    activity: "动态"
+    rules: "规则"
+    members: "成员"
+    leaders: "领导"
+    neighbors: "邻居"
+  activity:
+    members: "成员"
+    view-members: "查看全部"
+  rules:
+    header: "社区规则"
+  tickets:
+    conversation:
+      nav:
+        reply: "回复用户"
+        leader: "领导笔记"
+      reply-btn: "发送回复"
+  reports:
+    no-explanation: "未提供解释"
+    actions:
+      remove: "删除内容"
+      escalate: "通知 Kitsu"
+      view: "查看内容"
+  leaders:
+    list:
+      header: "领导"
+      edit-btn: "编辑"
+      add-btn: "添加"
+      add-placeholder: "组团成员"
+      modal:
+        cancel-btn: "取消"
+  dashboard:
+    back: "返回 {group}"
+    navigation:
+      overview: "概观"
+      members: "成员"
+      leaders: "领导"
+      settings: "设置"
+    overview:
+      members:
+        header: "成员"
+        today: "今天加入"
+      activity:
+        header: "用户动态"
+        posts: "今天的帖子"
+        comments: "今天的评论"
+    members:
+      invites:
+        revoke: "取消邀请"
+        invite: "邀请"
+        placeholder: "搜索一个用户来邀请。他们必须关注你！"
+      bans:
+        placeholder: "名字"
+      members:
+        header: "成员"
+        table:
+          users: "用户"
+          permissions: "排行"
+          joined: "已加入"
+        remove: "删除"
+    leaders:
+      chat:
+        post-btn: "发帖"
+        placeholder: "发送消息给领导"
+    audit:
+      group:
+        avatar_changed: "已更新 {group} 的头像。"
+        cover_changed: "已更新 {group} 的封面图片。"
+        rules_changed: "已更新 {group} 的规则。"
+#page: group-invite
+group-invite:
+  header: "组团邀请"
+  subtitle: "您被 {sender} 邀请到 {group}"
+  text: "在接受邀请后，您将能够接受此 {group} 的页面。我们将在接受后重定向您。"
+  accept: "接受"
+  decline: "拒绝"
+  accepted: "您已经接受了此邀请。"
+  revoked: "您的邀请已被一个组团管理员撤销。"
+  declined: "您拒绝了此组的邀请。"
+#page: explore
+explore:
+  view-more: "查看更多"
+  search-placeholder: "您正在搜索什么？"
+  widget:
+    related: "相关分类"
+    categories: "分类"
+#shared: media
+media-shared:
+  types:
+    anime:
+      All: "全部"
+      tv: "电视"
+      movie: "电影"
+      music: "音乐"
+    manga:
+      All: "全部"
+      manga: "漫画"
+      novel: "小说"
+      manhua: "漫画"
+      doujin: "同人"
+      manhwa: "韩漫"
+  statuses:
+    anime:
+      current: "正在播出"
+      finished: "已完成"
+      upcoming: "即将到来"
+      unreleased: "未发布"
+    manga:
+      upcoming: "即将到来"
+      unreleased: "未发布"
+#shared: form:
+form-shared:
+  placeholders:
+    username: "用户名"
+    password: "密码"
+#component: follow-button
+follow-button:
+  follow: "关注"
+  unfollow: "取消关注"
+#component: kitsu-feed
+feeds:
+  uploads:
+    select: "上传"
+  interest:
+    button: "好的，知道了"
+#component: groups/group-list
+group-list:
+  sort:
+    featured: "精选"
+    newest: "最新的组团"
+    oldest: "最旧的组团"
+#component: media/media-reaction
+media-reaction:
+  self-vote: "您不能对自己的反应投票。"
+  edit: "编辑反应"
+#component: modals/media-reaction
+reaction-modal:
+  post: "发帖"
+  edit: "编辑"
+  edit-warning: "小心！编辑将会删除您的投票结果。"
+  delete: "删除反应"
+  skip: "跳过"
+#component: library-entry/*
+library-entry:
+  state:
+    watching-this: "已开始"
+    finished-this: "已完成"
+    drop-this: "丢弃"
+    change-rating: "更改评分"
+    remove-rating: "删除评分"
+    rate-this: "添加评分"
+    post-reaction: "发布反应"
+    edit-reaction: "编辑反应"
+    progress: "进展"
+    not-rated: "未评分"

@@ -76,7 +76,7 @@ header:
   manga: "Mangas"
   trending: "Tendances"
   groups: "Groupes"
-  feedback: "Signalements"
+  feedback: "Feedback"
   browse: "Parcourir"
   auth:
     sign-in: "Connexion"
@@ -124,6 +124,11 @@ dashboard:
     header: "Mes Groupes"
   announcements:
     button: "Voir Plus"
+  feed:
+    following: "Abonnements"
+    anime: "Anime"
+    manga: "Manga"
+    global: "Global"
 #page: anime/manga
 media:
   index:
@@ -290,7 +295,7 @@ users:
     following: "Abonnements"
     groups: "Groupes"
   edit-modal:
-    cover: "Changer votre photo de couverture"
+    cover: "Changer votre bannière"
     navigation:
       about: "À propos"
       profile-links: "Liens"
@@ -302,7 +307,7 @@ users:
         placeholder: "Où habitez-vous ?"
       birthday: "Anniversaire"
       gender:
-        label: "Sexe"
+        label: "Genre"
         options:
           secret: "C'est un secret"
           male: "Homme"
@@ -415,7 +420,7 @@ users:
     onboarding:
       welcome: "Salut {user}, cette page est la tienne !"
       about: "En utilisant Kitsu, votre <strong>fil d'actualité personnel</strong> ci-dessous se remplira des anime et des mangas que vous avez vus, lus, ou ceux auxquels vous comptiez jeter un œil. Vous pouvez aussi poster des messages, des images, et des vidéos en utilisant le formulaire. Ces posts seront vus et appréciés par vos abonnés et les utilisateurs du fil global."
-      action: "Faites comme chez vous ! Envoyez une photo de profil et de couverture ! Cliquez sur <span>Modifier</span> au dessus pour commencer"
+      action: "Faites comme chez vous ! Envoyez une photo de profil et une bannière ! Cliquez sur <span>Modifier</span> ci-dessus pour commencer."
     about:
       empty: "C'est un secret"
       gender:
@@ -624,6 +629,7 @@ settings:
     loading: "Chargement des imports…"
     status: "État :"
     entries: "Nombre total d'entrées trouvées :"
+    error: "Il semble que l'importation ait échoué :( &mdash; Nous voulons vous apporter notre aide mais nous avons pour cela besoin de la vôtre : envoyez nous un petit mail <a href=\"mailto:help@kitsu.io\">ici</a>."
     more: "Voir Plus"
   index:
     header: "Profil"
@@ -681,12 +687,13 @@ settings:
   privacy:
     header: "Confidentialité"
     sub-header: "Ajuster la visibilité de votre contenu"
-    discover: "Découvrabilité"
+    discover: "Visibilité"
     checkbox: "Afficher dans le flux global"
     message: "Si désactivé, vos publications ne seront disponibles qu'à vos followers et aux visiteurs de votre profil."
     update: "Mettre à jour le profil"
 #page: feedback
 feedback:
+  header: "Feedback"
   bugs: "Bugs"
   features: "Suggestions d'amélioration"
   database: "Suggestions de correction"
@@ -719,7 +726,7 @@ groups:
       category: "Catégorie"
       category-placeholder: "Sélectionner une catégorie"
       avatar: "Avatar"
-      cover: "Image de couverture"
+      cover: "Bannière"
       create-btn: "Créer le groupe !"
       save-btn: "Enregistrer"
       helper:
@@ -737,7 +744,7 @@ groups:
           desc: "Imposez des règles de base à votre communauté. Ces règles peuvent être en Markdown !"
         neighbors:
           header: "Voisins"
-          desc: "Ajoutez des groupes liés à votre voisinage, pour aiguiller vos membres vers de nouveaux horizons !"
+          desc: "Ajoutez des groupes similaires à votre Voisinage pour aiguiller vos membres vers de nouveaux horizons !"
         privacy:
           header: "Visibilité"
           desc: "Vos paramètres de visibilité influent sur votre communauté. Si votre groupe est en privé, vous ne pourrez PAS le rendre public plus tard."
@@ -748,7 +755,7 @@ groups:
           header: "Avatar"
           desc: "Cette image sera utilisée un peu partout sur Kitsu pour identifier votre groupe."
         cover:
-          header: "Image de couverture"
+          header: "Bannière"
           desc: "Cette image apparaîtra en haut de la page de votre groupe sur ordinateur. Les côtés peuvent être coupés selon la taille de l'écran."
       errors:
         neighbors-same: "Vous ne pouvez pas ajouter votre propre groupe en voisin."
@@ -900,7 +907,7 @@ groups:
         added_neighbor: "a ajouté <a href={link}>{group}</a> en tant que voisin."
         removed_neighbor: "a supprimé <a href={link}>{group}</a> en tant que voisin."
         avatar_changed: "à changé l'avatar de {group}."
-        cover_changed: "à changé l'image de couverture de {group}."
+        cover_changed: "a changé la bannière de {group}."
         locale_changed: "à changé la langue de {group}."
         rules_changed: "à changé le règlement de {group}."
         nsfw_changed: "à changé le status NSFW de {group}."
@@ -947,6 +954,17 @@ explore:
 #page: media-reactions
 media-reactions:
   create-account: "Créer un compte"
+#page: notifications
+notifications:
+  zero: "Vous n'avez aucune notification !"
+#page: password-reset
+password-reset:
+  password: "Mot de passe"
+  confirm: "Confirmer le mot de passe"
+  length: "Le mot de passe doit comporter au moins 8 caractères"
+  reset: "Réinitialiser le mot de passe"
+  email: "E-mail"
+  send: "Envoyer un e-mail"
 #shared: media
 media-shared:
   types:
@@ -1160,3 +1178,17 @@ timeUnits:
   days: "{count, plural, =1 {jour} other {jours}}"
   hours: "{count, plural, =1 {heure} other {heures}}"
   minutes: "{count, plural, =1 {minute} other {minutes}}"
+admin:
+  reports:
+    header: "Signalement des modérateurs"
+    loading: "Chargement des signalements…"
+    open: "En cours"
+    closed: "Terminé"
+  header: "Panel Admin"
+  deployed-version: "Version actuelle déployée : {version}"
+  links:
+    index: "Signalements"
+    admin: "Admin Rails"
+    sidekiq: "Sidekiq"
+    pghero: "PGHero"
+    flipper: "Flipper"

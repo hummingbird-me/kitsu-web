@@ -124,14 +124,20 @@ dashboard:
     header: "Grup Saya"
   announcements:
     button: "Pelajari Lebih Lanjut"
+  feed:
+    following: "Mengikuti"
+    anime: "Anime"
+    manga: "Manga"
+    global: "Global"
 #page: anime/manga
 media:
   index:
+    search: "Cari berdasarkan judul, karakter, atau pemeran…"
     filter: "Saring"
     remove: "Hapus"
     filters:
       year: "Tahun"
-      score: "Peringkat Rata-rata"
+      score: "Skor Rata-Rata"
       seasons: "Musim"
       streamers: "Layanan Streaming (Amerika)"
       units: "{type, select, anime {Episode} manga {Bab} other {}}"
@@ -140,7 +146,7 @@ media:
       types: "Tipe"
     sort:
       popularity: "Popularitas"
-      rating: "Peringkat Rata-rata"
+      rating: "Skor Rata-Rata"
       date: "Tanggal"
       recent: "Baru Saja Ditambah"
   show:
@@ -243,6 +249,7 @@ media:
       header: "{title} Karakter"
       sub-header: "{type, select, anime {Berikut ini adalah daftar seluruh karakter dari dan pengisi suara bahasa {language} untuk anime {title}.} manga {Berikut ini adalah daftar seluruh karakter dari manga {title}.} other {}}"
     reactions:
+      loading: "Memuat reaksi…"
       delete: "Hapus Reaksi"
       report: "Laporkan Reaksi"
       copy: "Salin Link Menuju Reaksi"
@@ -271,6 +278,14 @@ media:
     info: "Kiriman akan muncul di umpan Kenalan atau {type} Anda"
 #page: users
 users:
+  profile:
+    edit: "Sunting"
+  admin:
+    button: "Admin"
+    past-names: "Lihat Nama Sebelumnya"
+    alt-accounts: "Lihat Akun Alternatif"
+    delete-content: "Hapus Konten Buatan Pengguna"
+    ban: "Blokir"
   navigation:
     activity: "Aktivitas"
     library: "Pustaka"
@@ -422,6 +437,7 @@ users:
         header: "Sepertinya kamu belum memiliki data yang cukup! Siap untuk mencoba sesuatu yang baru?"
         guest-header: "Sepertinya {user} masih belum memiliki stat."
   library:
+    search: "Cari Pustaka {name}…"
     sorting:
       label: "Urut berdasarkan:"
       options:
@@ -464,6 +480,7 @@ users:
       import: "Impor Pustaka"
       export: "Ekspor Pustaka"
       reset: "Hapus Pustaka"
+      reset-loading: "Mengatur Ulang…"
       reset-confirmation: "Pilihan ini kan menhapus seluruh daftar anime dan manga, termasuk ulasan dan reaksi. Apakah kamu ingin melanjutkan?"
       issues:
         header: "Masalah Pustaka"
@@ -474,7 +491,7 @@ users:
       list-edit: "Sunting"
       more: "Lainnya"
       unstarted: "Belum Mulai"
-      unrated: "Tanpa Rating"
+      unrated: "Tanpa Skor"
       progress: "{type, select, anime {Ep. {progress}} manga {Bab {progress}} other {}}"
       table-header:
         title: "{type, select, anime {Judul Anime} manga {Judul Manga} other {}}"
@@ -504,11 +521,15 @@ users:
       notes: "Catatan Pribadi"
       remove: "Hapus dari Pustaka"
       save: "Simpan Perubahan"
+      saving: "Menyimpan…"
     bulk:
       selected: "{type, select, anime {{num} anime dipilih} manga {{num} manga dipilih} other {}}"
       select-all: "Pilih Semua"
       select-none: "Hapus Pilihan"
       remove: "Hapus <strong>{num}</strong>"
+      move-to: "Pindah <strong>{num}</strong> ke…"
+      remove-loading: "Menghapus…"
+      update-loading: "Memperbarui…"
   groups:
     sort:
       newest: "Baru Saja Bergabung"
@@ -528,6 +549,15 @@ users:
   show-posts:
     text: "Tampilakn kiriman dari {user}"
     info: "Kiriman akan muncul di umpan pengguna yang diikuti"
+  followers:
+    not-found: "Pengguna Tidak Ditemukan."
+    loading: "Memuat Pengguna…"
+  following:
+    not-found: "Pengguna Tidak Ditemukan."
+    loading: "Memuat Pengguna…"
+  reviews:
+    not-found: "Ulasan Tidak Ditemukan."
+    loading: "Memuat Ulasan…"
 #page: settings
 settings:
   navigation:
@@ -551,7 +581,14 @@ settings:
     header: "Aplikasi"
   blocking:
     header: "Pemblokiran"
-    sub-header: "Setelah kamu memblokir seseorang, orang tersebut tidak dapat tag, mengikuti, melihat profil, maupun melihat kiriman umpan kamu."
+    sub-header: "Setelah kamu memblokir seseorang, orang tersebut tidak dapat menandai, mengikuti, melihat profil, maupun melihat kirimanmu."
+    title: "Pemblokiran"
+    placeholder: "Cari pengguna untuk diblokir…"
+    button-block: "Blokir"
+    loading: "Memuat Pengguna…"
+    button-unblock: "Batal Blokir"
+    more: "Muat Lebih Banyak"
+    not-blocking: "Kamu tidak sedang memblokir siapapun."
   exports:
     modal:
       header: "Sinkron dengan {site}"
@@ -559,6 +596,7 @@ settings:
       create: "Sinkron dengan {site}"
     header: "Ekspor"
     sub-header: "Sinkronkan otomatis pustakamu dari Kitsu ke MyAnimeList."
+    loading: "Memuat Ekspor…"
     remove: "Hapus Pengekspor"
     disabled: "Ekspor MAL telah dinonaktifkan karena alasan berikut: <strong>{reason}</strong>"
     create: "Mempersiapkan Ekspor ke akun MyAnimeList"
@@ -571,7 +609,7 @@ settings:
         media: "Judul"
         library-status: "Status"
         progress: "Progres"
-        rating: "Peringkat"
+        rating: "Skor"
         reconsumes: "Tonton Ulang"
         action: "Aksi"
         status: "Status"
@@ -586,9 +624,33 @@ settings:
   imports:
     header: "Impor"
     sub-header: "Impor media dari penyedia lainnya"
+    button: "Impor Media"
+    past-imports: "Impor sebelumnya"
+    loading: "Memuat Impor…"
+    status: "Status:"
+    entries: "Total Entri Ditemukan:"
+    error: "Sepertinya impor telah gagal :( &mdash; Kami ingin memperbaiki ini untukmu, tolong kirim <a href=\"mailto:help@kitsu.io\">email</a> kepada kami."
+    more: "Muat Lebih Banyak"
   index:
     header: "Profil"
     sub-header: "Pengaturan akun dan lokasi"
+    name: "Nama Tampilan"
+    url: "URL Profil"
+    email: "Email"
+    email-message: "Email tidak akan ditampilkan ke publik."
+    language: "Bahasa"
+    translate-help: "Tertarik menerjemahkan? <a href=\"https://crowdin.com/project/kitsu-web\">Terjemahkan di sini!</a>"
+    time-zone: "Zona Waktu"
+    content: "Konten di Kitsu"
+    theme: "Tema Situs"
+    country: "Negara"
+    titles: "Judul"
+    titles-message: "Bagaimana judul media akan ditampilkan."
+    rating: "Tipe Skor"
+    rating-message: "Pilih bagaimana kamu akan memberi skor media yang telah kamu baca atau tonton."
+    adult: "Konten Dewasa"
+    adult-message: "Dengan menyembunyikan konten dewasa, kamu tidak akan melihat kiriman R18+ di umpan, pustaka, atau pencarian."
+    update: "Perbarui Profil"
   linked-accounts:
     header: "Akun Terhubung"
     sub-header: "Sambungkan akun pihak ketiga dengan Kitsu"
@@ -614,6 +676,7 @@ settings:
       newsletter: "Newsletter"
       subscribed: "Berlangganan"
       message: "Jika diaktifkan, kamu akan menerima pembaruan email sesekali (dan sangat cerdas) tentang Kitsu yang ditulis oleh Josh sendiri."
+    loading: "Memuat pengaturan…"
     update: "Perbarui Pengaturan"
   password:
     header: "Kata sandi"
@@ -630,6 +693,7 @@ settings:
     update: "Perbarui Profil"
 #page: feedback
 feedback:
+  header: "Umpan Balik"
   bugs: "Bug"
   features: "Permintaan Fitur"
   database: "Permintaan Database"
@@ -688,6 +752,7 @@ groups:
           header: "Kategori"
           desc: "Tentukan kategori agar pengguna lain dapat menemukan grup ini dengan mudah."
         avatar:
+          header: "Avatar"
           desc: "Gambar ini akan digunakan untuk mengidentifikasi grup ini."
         cover:
           header: "Gambar Sampul"
@@ -878,14 +943,28 @@ explore:
     categories: "Kategori"
     favorite-categories: "Kategori Favorit"
     no-favorites: "Pilih kategori untuk meningkatkan rekomendasi kamu."
+    more-categories: "Kategori lainnya…"
   modal:
     header: "Semua Kategori"
   favorite-button:
     remove: "Hapus dari favorit"
+    removing: "Menghapus…"
     create: "Tambahkan ke favorit"
+    creating: "Menambahkan…"
 #page: media-reactions
 media-reactions:
   create-account: "Buat Akun"
+#page: notifications
+notifications:
+  zero: "Tidak ada notifikasi di sini!"
+#page: password-reset
+password-reset:
+  password: "Kata Sandi"
+  confirm: "Konfirmasi Kata Sandi"
+  length: "Kata sandi setidaknya harus 8 karakter"
+  reset: "Atur Ulang Kata Sandi"
+  email: "Email"
+  send: "Kirim Email"
 #shared: media
 media-shared:
   types:
@@ -951,11 +1030,13 @@ feeds:
     select: "Unggah"
     drop: "Lepaskan untuk Mengunggah"
     invalid: "Jenis file tidak valid"
+    uploading: "{number, plural, =1 {Mengunggah foto… {progress}%} other {Mengunggah {number} foto… {progress}%}}"
   filter:
     all: "Semua Aktivitas"
     media: "Aktivitas Media"
     user: "Aktivitas Pengguna"
     following: "Aktivitas yang Diikuti"
+  placeholder: "{type, select, user_aggr {Kirim ke {subject}} group_aggr {Kirim ke {subject}} media_aggr {Kirim tentang {subject}} episode_aggr {Kirim tentang Episode {subject}} chapter_aggr {Kirim tentang Bab {subject}} interest_timeline {Kirim tentang {subject}} other {Buat Kiriman}}…"
   library:
     updated: "pindah ke {status}"
     rated: "dinilai"
@@ -1009,12 +1090,12 @@ reaction-modal:
 library-entry:
   state:
     header: "{state, select, false {Tambahkan ke Pustaka} true {Perbarui Pustaka} other {}}"
-    add-to-library: "Tambahkan ke Pustaka"
+    add-to-library: "Tambah ke Pustaka"
     seen-this: "{type, select, anime {Selesai} manga {Selesai} other {}}"
     want-to-watch: "{type, select, anime {Akan Ditonton} manga {Akan Dibaca} other {}}"
     started-watching: "{type, select, anime {Mulai Tonton} manga {Mulai Baca} other {}}"
-    watching-this: "Mulai Menonton"
-    finished-this: "Selesai Menonton"
+    watching-this: "Mulai"
+    finished-this: "Selesai"
     place-on-hold: "Dijeda"
     drop-this: "Dibatalkan"
     change-rating: "Ubah Skor"
@@ -1040,6 +1121,7 @@ user-notifications:
   aired-unknown: "{type, select, manga {Bab} anime {Episode} other {}} terbaru dari {media} telah {type, select, manga {diterbitkan} anime {ditayangkan} other {}}"
 #ember-power-select
 selects:
+  loading: "Memuat…"
   none: "Hasil tidak ditemukan"
   search: "Mulai mengetik untuk mencari"
 #ember-cp-validations
@@ -1088,9 +1170,25 @@ errors:
   serverError:
     title: "Oops! Sepertinya server kami memiliki bug."
     body: "Tim kami telah diberitahukan, mohon coba ulang kembali dalam beberapa menit."
+#Loading
+loading: "Memuat {subject, select, episode {Episode} chapter {Bab} episodes {Episode} chapters {Bab} other {}}…"
 timeUnits:
   years: "{count, plural, =1 {tahun} other {tahun}}"
   months: "{count, plural, =1 {bulan} other {bulan}}"
   days: "{count, plural, =1 {hari} other {hari}}"
   hours: "{count, plural, =1 {jam} other {jam}}"
   minutes: "{count, plural, =1 {menit} other {menit}}"
+admin:
+  reports:
+    header: "Laporan Mod"
+    loading: "Memuat Laporan…"
+    open: "Buka"
+    closed: "Ditutup"
+  header: "Panel Admin"
+  deployed-version: "Versi yang Digunakan: {version}"
+  links:
+    index: "Laporan"
+    admin: "Rails Admin"
+    sidekiq: "Sidekiq"
+    pghero: "PGHero"
+    flipper: "Flipper"

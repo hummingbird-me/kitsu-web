@@ -1,1 +1,330 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Anime erkunden"
+  manga:
+    index: "Manga erkunden"
+  media:
+    show:
+      units: "{type, select, anime {Folgen} manga {Kapitel} other{Sonstige}}"
+      characters: "Charaktere"
+      reactions: "Reaktionen"
+      franchise: "Franchise"
+  explore:
+    index: "Erkunde {mediaType, select, anime {Anime} manga {Manga} other {}}"
+    more:
+      trending: "Angesagte {type, select, anime {Anime} manga {Manga} other {}} diese Woche"
+      top-current: "Top {type, select, Anime {laufende} Manga {veröffentlichte} other {}} {type}"
+      top-upcoming: "Top bevorstehende {type}"
+      highest-rated: "Am höchsten bewertete {type}"
+      most-popular: "Beliebteste {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Neu veröffentlichte {category} {type}"
+        trending: "Angesagte {category} {type}"
+        most-popular: "Beliebteste {category} {type}"
+  not-found: "Nicht gefunden"
+  server-error: "Serverfehler"
+  users:
+    index: "{user}'s Profil"
+    library: "{user}'s Bibliothek"
+    reviews: "{user}'s Bewertungen"
+    reactions: "{user}'s Reaktionen"
+    followers: "{user}'s Followers"
+    following: "Wird gefolgt von {user}"
+    groups: "{user}'s Gruppen"
+    stats: "{user}'s Statistiken"
+  posts: "Beitrag von {user}"
+  comments: "Kommentar von {user}"
+  reviews: "Rezension von {user}"
+  notifications: "Benachrichtigungen"
+  feedback:
+    bugs: "Fehler"
+    feature-requests: "Feature Anfragen"
+    database-requests: "Datenbankanfragen"
+    mobile-bugs: "Fehler in der App"
+    mobile-features: "Features für's App"
+  admin:
+    index: "Admin"
+    reports: "Meldungen"
+  groups:
+    index: "Gruppen"
+    new: "Eine Gruppe erstellen"
+    group:
+      group-page:
+        rules: "{group} Regeln"
+        members: "{group} Mitglieder"
+        leaders: "{group} Anführer"
+      dashboard:
+        index: "{group} Übersicht"
+        reports: "{group} Meldungen"
+        tickets: "{group} Tickets"
+        members: "{group} Mitglieder"
+        leaders: "{group} Anführer"
+        settings: "{group} Einstellungen"
+  group-invite: "Gruppeneinladung"
+#head
+head:
+  users:
+    description: "{user} benutzt Kitsu, um ihre Fortschritte zu verfolgen und ihre Anime- & Manga-Erfahrungen zu teilen."
+#header
+header:
+  library: "Bibliothek"
+  anime: "Anime"
+  manga: "Manga"
+  trending: "Angesagte"
+  groups: "Gruppen"
+  feedback: "Feedback"
+  browse: "Suchen"
+  auth:
+    sign-in: "Anmelden"
+    sign-up: "Registrieren"
+  user:
+    profile: "Profil anzeigen"
+    settings: "Einstellungen"
+    admin: "Admin"
+    logout: "Abmelden"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Lassen Sie uns zuerst einige grundlegende Informationen zukommen} 1 {Sehr witzig, E-Mail kommt als nächstes dran!} 2 {Sieht echt aus, wie wärs mit einem Passwort?} 3 {Super, lass uns den Account erstellen} other {}}"
+#page: dashboard
+dashboard:
+  quick-update:
+    filter:
+      all: "Alle"
+      anime: "Anime"
+      manga: "Manga"
+    empty:
+      html: "Medien, die Sie in Ihrer <a href={link}>-Bibliothek</a> hinzugefügt oder aktualisiert haben, werden hier angezeigt, damit Sie schnell aktualisiert werden können."
+      discover: "Medien entdecken"
+    media:
+      complete: "Komplett"
+      unstarted: "Nicht angefangen"
+      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {of {total}}}} manga {Kap. {num} {total, select, null {} other {of {total}}}} other {}}"
+    overlay:
+      button:
+        update: "{type, select, anime {Ep.} manga {Kap.} other {Sonstige}} {number}"
+        complete: "Komplett"
+        tooltip:
+          empty: "Bibliothek aktualisieren"
+          content: "Beitrag erstellen und Bibliothek aktualisieren"
+      discussion: "Diskussion anzeigen"
+      edit: "Bibliothekseintrag bearbeiten"
+      popout: "Pop-out editor"
+      editor:
+        placeholder: "(Optional) Teile deine Meinung über {type, select, anime {Episode} manga {Kapitel} other {}} {number}"
+  onboarding:
+    welcome: "Hallo {user}, herzlich willkommen bei Kitsu!"
+    about: "Dies ist der globale Aktivitäts-Feed. Es ist von den letzten Aktivitäten der Kitsu Benutzern bevölkert - sogar von dir! Sobald Sie die Gelegenheit hatten, ein paar weitere interessante Benutzer zu folgen, wechseln wir Ihren Standard-Feed von Global auf Following."
+    action: "Warum versuchen Sie nicht einen Feed-Beitrag zu erstellen, um sich mit dem untenstehenden Formular vorzustellen? Du kannst etwas einfaches sagen wie \"Hey Leute, ich bin neu bei Kitsu\", oder du kannst uns zeigen, wie kreativ und witzig du bist!"
+  groups:
+    header: "Meine Gruppen"
+  announcements:
+    button: "Weitere Informationen"
+  feed:
+    following: "Folge ich"
+    anime: "Anime"
+    manga: "Manga"
+    global: "Global"
+#page: anime/manga
+media:
+  index:
+    search: "Suche nach Titel, Charaktere oder Besetzung…"
+    filter: "Filter"
+    remove: "Entfernen"
+    filters:
+      year: "Jahr"
+      score: "Durchschnittliche Bewertung"
+      seasons: "Seasons"
+      units: "{type, select, anime {Episoden} manga {Kapitel} other {}}"
+      rating: "Bewertung"
+      categories: "Kategorien"
+      types: "Typen"
+    sort:
+      popularity: "Beliebtheit"
+      rating: "Durchschnittliche Bewertung"
+      date: "Datum"
+      recent: "Kürzlich hinzugefügt"
+  show:
+    navigation:
+      summary: "Zusammenfassung"
+      units: "{type, select, anime {Episoden} manga {Kapitel} other {}}"
+      characters: "Charaktere"
+      reactions: "Reaktionen"
+      franchise: "Franchise"
+    sidebar:
+      watch: "Online anschauen"
+    summary:
+      ratings:
+        community: "{rating}% Community Empfehlung"
+        match: "{rating}% Übereinstimmung"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Rang #{rank} (der beliebtesten Anime)} manga {Rang #{rank} (der beliebtesten Manga)} other {}}"
+          rating: "{type, select, anime {Rang #{rank} (Höchste bewertete Anime)} manga {Rang #{rank} (Höchste bewertete Manga)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} beliebteste} manga {#{rank} beliebteste} other {}}"
+          rating: "{type, select, anime {Rang #{rank} Höchst bewertete} manga {Rang #{rank} Höchst bewertete} other {}}"
+      categories: "Kategorien"
+      relationships:
+        header: "Mehr von dieser Serie"
+        more: "Alles was zur Serie {title} ist anzeigen"
+      reactions:
+        header: "Reaktionen"
+        more: "Weitere Reaktionen anzeigen"
+        sorts:
+          -upVotesCount: "beliebt"
+          -createdAt: "neueste"
+        new: "Neue Reaktion"
+        edit: "Meine Reaktion"
+        empty: "Bisher hat keiner eine Reaktion abgegeben"
+      characters:
+        header: "Charaktere"
+        more: "Alle Charaktere anzeigen"
+      titles:
+        header: "alternativer Titel"
+        ar: "Arabisch"
+        ar_ar: "Arabisch" #Invalid use ar
+        de_de: "Deutsch"
+        en: "Englisch"
+        en_cn: "Chinesisch (Pinyin)"
+        en_gb: "Englisch (UK)"
+        en_jp: "Japanisch (Romaji)"
+        en_kr: "Koreanisch (Romaja)"
+        en_th: "Thailändisch (romanisiert)"
+        en_us: "Englisch (USA)"
+        es_es: "Spanisch"
+        fr_fr: "Französisch"
+        id_id: "Indonesisch"
+        it_it: "Italienisch"
+        ja_jp: "Japanisch"
+        ko_kr: "Koreanisch"
+        nl_nl: "Niederländisch"
+        pt_br: "Portugiesisch (Brasilianisch)"
+        pt_pt: "Portugiesisch"
+        ru_ru: "Russisch"
+        th_th: "Thailändisch"
+        uk_ua: "Ukrainisch"
+        vi_vi: "Vietnamesisch" #Invalid use vi_vn
+        vi_vn: "Vietnamesisch"
+        zh_cn: "Chinesisch (vereinfacht)"
+        zh_tw: "Chinesisch (traditionell)"
+        synonyms: "Synonyme"
+      information:
+        header: "{type, select, anime {Anime} manga {Manga} other {}} Details"
+        type: "Typ"
+        volumes: "Ausgaben"
+        unit: "{type, select, anime {Episodes} manga {Chapters} other {}}"
+        start: "{type, select, anime {Aired} manga {Published} other {}}"
+        status: "Status"
+        tba: "Erwartet"
+        season: "Staffel"
+        producers: "Produzenten"
+        licensors: "Lizenz"
+        studios: "Studios"
+        serialization: "Serialisation"
+        duration: "Länge"
+        total: "{total} Gesamt"
+        length: "{count, plural, =1 {{length} minutes} other {{length} minutes each}}"
+        rating: "Bewertung"
+        expand:
+          false: "Weitere Infos"
+          true: "Weniger Infos"
+      feed:
+        header: "Community Feed"
+      trailer: "Trailer abspielen"
+    units:
+      unit: "{type, select, episode {Episode} chapter {Kapitel} other {}}"
+      back: "Zurück zur {type, select, episode {Episode} chapter {Kapitel} other {}} Liste"
+      pages: "{length} Seiten"
+      date: "{type, select, episode {Ausgestrahlt} chapter {Veröffentlicht} other {}}"
+      completed: "{type, select, episode {Gesehen} chapter {Gelesen} other {Abgeschlossen}}"
+      feed:
+        header: "{type, select, episode {Episode} chapter {Kapitel} other {}} Discussion"
+    characters:
+      header: "{title} Charaktere"
+    reactions:
+      loading: "Lade Reaktionen…"
+      delete: "Reaktion löschen"
+      report: "Reaktion melden"
+    franchise:
+      header: "{title} Franchise"
+      roles:
+        sequel: "Sequel"
+        prequel: "Prequel"
+        alternative_setting: "Alternative Umgebung"
+        alternative_version: "Alternative Version"
+        side_story: "Nebengeschichte"
+        parent_story: "Hauptgeschichte"
+        summary: "Zusammenfassung"
+        full_story: "Vollständige Geschichte"
+        spinoff: "Spin-off"
+        adaptation: "Adaptation"
+        anime_adaptation: "Anime"
+        manga_adaptation: "Manga"
+        character: "Charakter"
+        other: "Weitere"
+  hide-posts:
+    text: "Beiträge über {media} verbergen"
+  show-posts:
+    text: "Beiträge zu {media} anzeigen"
+#page: users
+users:
+  profile:
+    edit: "Bearbeiten"
+  admin:
+    button: "Admin"
+    past-names: "Vorherige Namen anzeigen"
+    alt-accounts: "Alternative Konten anzeigen"
+    ban: "Bannen"
+  navigation:
+    activity: "Aktivität"
+    library: "Bibliothek"
+    reviews: "Bewertungen"
+    reactions: "Reaktionen"
+    followers: "Follower"
+    following: "Folge ich"
+    groups: "Gruppen"
+  edit-modal:
+    cover: "Titelbild ändern"
+    navigation:
+      about: "Über mich"
+      profile-links: "Profillinks"
+      favorites: "Favoriten"
+    about:
+      header: "Über mich"
+      location:
+        label: "Ort"
+        placeholder: "Woher kommst du?"
+      birthday: "Geburtstag"
+      gender:
+        label: "Geschlecht"
+        options:
+          secret: "Das ist ein Geheimnis"
+          male: "Männlich"
+          female: "Weiblich"
+          custom: "Benutzerdefiniert"
+      waifu:
+        label: "Waifu"
+        placeholder: "Waifu/Husbando"
+        search: "Finde jemand Besonderen für dich"
+      bio:
+        label: "Biografie"
+        placeholder: "Erzähl der Welt deine Geschichte."
+    profile-links:
+      header: "Profillinks"
+      sites:
+        website:
+          about: "Gib unten Deine persönliche Website ein, um einen Link zu Deinem Profil hinzuzufügen."
+          placeholder: "Deine Website-URL"
+admin:
+  deployed-version: "Aktuelle Versionsnummer: {version}"
+  links:
+    index: "Meldungen"
+    admin: "Rails Admin"
+    sidekiq: "Sidekiq"
+    pghero: "PGHero"
+    flipper: "Flipper"
