@@ -1,1 +1,203 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  media:
+    show:
+      reactions: "Reakciók"
+  explore:
+    more:
+      highest-rated: "Legmagasabbra értékelt {type}"
+      most-popular: "Legnépszerűbb {type}"
+  server-error: "Szerver Hiba"
+  users:
+    index: "{user} Profilja"
+    library: "{user} Könyvtára"
+    reactions: "{user} Reakciói"
+    followers: "{user} Követői"
+    groups: "{user} Csoportjai"
+  notifications: "Értesítések"
+  feedback:
+    bugs: "Hibák"
+    feature-requests: "Funkció Kérések"
+    database-requests: "Adatbázis Kérések"
+  admin:
+    index: "Admin"
+    reports: "Jelentések"
+  groups:
+    index: "Csoportok"
+    new: "Csoport létrehozása"
+    group:
+      group-page:
+        rules: "{group} Szabályok"
+        members: "{group} Tagok"
+        leaders: "{group} Vezetők"
+      dashboard:
+        index: "{group} Áttekintés"
+        members: "{group} Tagok"
+        leaders: "{group} Vezetők"
+        settings: "{group} Beállítások"
+#header
+header:
+  library: "Könyvtár"
+  groups: "Csoportok"
+  feedback: "Visszajelzés"
+  browse: "Böngészés"
+  auth:
+    sign-in: "Bejelentkezés"
+    sign-up: "Regisztráció"
+  user:
+    profile: "Profil Megtekintése"
+    settings: "Beállítások"
+    admin: "Admin"
+    logout: "Kijelentkezés"
+#page: dashboard
+dashboard:
+  quick-update:
+    filter:
+      all: "Összes"
+      anime: "Anime"
+      manga: "Manga"
+    overlay:
+      edit: "Szerkesztés"
+  feed:
+    global: "Globális"
+#page: anime/manga
+media:
+  index:
+    filters:
+      year: "Év"
+      categories: "Kategóriák"
+      types: "Típusok"
+    sort:
+      popularity: "Népszerűség"
+      rating: "Értékelési Átlag"
+      date: "Dátum"
+      recent: "Legutóbb Hozzáadva"
+  none: "Nincs találat."
+  show:
+    summary:
+      categories: "Kategóriák"
+      reactions:
+        sorts:
+          -upVotesCount: "Népszerű"
+          -createdAt: "Friss"
+        new: "Új Reakció"
+        empty: "Úgy tűnik, hogy senki sem reagált még erre"
+    reactions:
+      delete: "Reakció Törlése"
+#components
+components:
+  admin:
+    reports:
+      table:
+        moderator: "Moderátor"
+  stream-feed:
+    create-post:
+      spoiler: "Spoiler"
+    post:
+      edited: "szerkesztve"
+      edit: "Bejegyzés szerkesztése"
+      delete: "Bejegyzés törlése"
+#page: users
+users:
+  navigation:
+    library: "Könyvtár"
+    reactions: "Reakciók"
+    groups: "Csoportok"
+  edit-modal:
+    navigation:
+      about: "Rólam"
+      profile-links: "Profil Linkek"
+    about:
+      header: "Rólam"
+      gender:
+        options:
+          male: "Férfi"
+          female: "Nő"
+          custom: "Egyedi"
+  library:
+    list:
+      more: "Több"
+  reactions:
+    sorts:
+      new: "Új"
+#page: settings
+settings:
+  navigation:
+    header: "Beállítások"
+    notifications: "Értesítések"
+  exports:
+    logs:
+      header:
+        media: "Cím"
+  linked-accounts:
+    facebook: "Facebook"
+  notifications:
+    contexts:
+      email: "Email"
+#page: feedback
+feedback:
+  header: "Visszajelzés"
+  bugs: "Hibák"
+  features: "Funkció Kérések"
+  database: "Adatbázis Kérések"
+#page: groups
+groups:
+  index:
+    create-btn: "Csoport létrehozása"
+  create:
+    header: "Csoport létrehozása"
+    form:
+      privacy-options:
+        open: "Nyilvános"
+        closed: "Privát"
+      category: "Kategória"
+      save-btn: "Mentés"
+      helper:
+        name:
+          header: "Név"
+        about:
+          header: "Leírás"
+        rules:
+          header: "Szabályok"
+        neighbors:
+          header: "Szomszédok"
+        category:
+          header: "Kategória"
+  neighbors: "Szomszédok"
+  navigation:
+    rules: "Szabályok"
+    members: "Tagok"
+    leaders: "Vezetők"
+    neighbors: "Szomszédok"
+  activity:
+    members: "Tagok"
+  dashboard:
+    navigation:
+      members: "Tagok"
+      leaders: "Vezetők"
+      settings: "Beállítások"
+    overview:
+      members:
+        header: "Tagok"
+    members:
+      bans:
+        placeholder: "Név"
+      members:
+        header: "Tagok"
+#page: group-invite
+group-invite:
+  accept: "Elfogad"
+  decline: "Visszautasít"
+#page: password-reset
+password-reset:
+  email: "Email"
+#shared: media
+media-shared:
+  types:
+    anime:
+      tv: "TV"
+    manga:
+      manga: "Manga"
+      manhua: "Manhua"
+      manhwa: "Manhwa"

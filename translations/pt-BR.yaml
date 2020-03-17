@@ -14,6 +14,7 @@ titles:
   explore:
     index: "Explorar {mediaType, select, anime {Animes} manga {Mangás} other {}}"
     more:
+      trending: "{type, select, Anime {Animes} Manga {Mangás} other {}} nas Tendências esta Semana"
       top-current: "{type} Mais Populares {type, select, Animes {em Exibição} Manga {em Publicação} other {}} "
       top-upcoming: "{type} Futuros Mais Populares"
       highest-rated: "{type} Mais Bem Avaliados"
@@ -89,6 +90,9 @@ header:
 auth-modal:
   sign-up:
     submit: "{step, select, 0 {Vamos obter algumas informações básicas primeiro} 1 {Que espirituoso - agora o e-mail!} 2 {Parece legítimo, que tal uma senha?} 3 {Legal! Vamos criar essa conta} other {}}"
+#page: about
+about:
+  header: "Sobre o Kitsu"
 #page: dashboard
 dashboard:
   quick-update:
@@ -148,6 +152,7 @@ media:
       rating: "Classificação Média"
       date: "Data"
       recent: "Adicionados recentemente"
+  none: "Sem resultados."
   show:
     navigation:
       summary: "Resumo"
@@ -275,6 +280,67 @@ media:
   show-posts:
     text: "Mostrar postagens sobre {media}"
     info: "As publicações aparecerão no seu Feed de Seguinte ou {type}"
+#components
+components:
+  admin:
+    reports:
+      actions:
+        button: "Ações"
+        open: "Marcar como Aberto"
+        resolved: "Marcar como Resolvido"
+        closed: "Marcar como Fechado"
+      table:
+        user: "Utilizador"
+        type: "Tipo"
+        reason: "Razão"
+        explanation: "Explicação"
+        moderator: "Moderador"
+        status: "Estado"
+        actions: "Ações"
+  search:
+    header: "Resultados da pesquisa"
+    view: "ver mais"
+    load: "carregar mais"
+    none: "sem resultados"
+  sidebar-footer:
+    contact: "Contacto"
+    terms: "Termos"
+  stream-feed:
+    create-post:
+      edit: "Editar"
+      create: "Publicar"
+      nsfw: "NSFW"
+      spoiler: "Spoiler"
+    edit-post:
+      header: "Editar Publicação"
+      error:
+        tagged: "Infelizmente, ainda não permitimos que edites a tua mídia marcada."
+    follow:
+      followed: "seguiu"
+      delete: "Apagar Atividade"
+    library:
+      delete: "apagar"
+      deleting: "a apagar…"
+    post:
+      pinned: "Publicação Fixada"
+      edited: "editado"
+      gate:
+        spoiler-nsfw: "Contém spoilers e NSFW."
+        nsfw: "Esta publicação contém conteúdo NSFW."
+        spoiler: "Esta publicação contém spoilers."
+        hover:
+          nsfw: "O meu corpo está pronto!"
+          spoiler: "Eu consigo lidar com a verdade!"
+      link: "Copiar Link para a Publicação"
+      unfollow: "Deixar de seguir"
+      follow: "Seguir Publicação"
+      show: "Mostrar Conteúdo da Publicação"
+      hide: "Ocultar Conteúdo da Publicação"
+      edit: "Editar Publicação"
+      delete: "Apagar Publicação"
+      pin: "Fixar Publicação no Perfil"
+      report: "Reportar Publicação"
+      block: "Bloquear @{username}"
 #page: users
 users:
   profile:
@@ -952,6 +1018,9 @@ explore:
 #page: media-reactions
 media-reactions:
   create-account: "Criar Conta"
+#page: notifications
+notifications:
+  none: "Não tens notificações!"
 #page: password-reset
 password-reset:
   password: "Senha"
@@ -1187,3 +1256,5 @@ admin:
     sidekiq: "Sidekiq"
     pghero: "PGHero"
     flipper: "Flipper"
+button:
+  view-all: "ver todos"

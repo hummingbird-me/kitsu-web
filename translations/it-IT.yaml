@@ -148,6 +148,7 @@ media:
       rating: "Valutazione media"
       date: "Data"
       recent: "Aggiunto di recente"
+  none: "Nessun risultato."
   show:
     navigation:
       summary: "Trama"
@@ -275,6 +276,35 @@ media:
   show-posts:
     text: "Mostra post riguardo {media}"
     info: "I post appariranno nel tuo feed {type} o Seguiti"
+#components
+components:
+  admin:
+    reports:
+      actions:
+        button: "Azioni"
+        open: "Segna come Aperto"
+        resolved: "Segna come risolto"
+        closed: "Segna come chiuso"
+      table:
+        user: "Utente"
+        type: "Tipo"
+        reason: "Motivazione"
+        status: "Stato"
+        actions: "Azioni"
+  search:
+    view: "visualizza altro"
+    load: "carica altro"
+    none: "nessun risultato"
+  stream-feed:
+    create-post:
+      edit: "Modifica"
+    library:
+      delete: "elimina"
+      deleting: "eliminazione…"
+    post:
+      edited: "modificato"
+      link: "Copia link del post"
+      block: "Blocca @{username}"
 #page: users
 users:
   profile:
@@ -896,6 +926,7 @@ groups:
         placeholder: "Invia un messaggio ai leader"
     audit:
       user:
+        banned: "ha bannato <a href={link}>{user}</a>."
         unbanned: "ha riammesso <a href={link}>{user}</a>."
         invited: "ha invitato <a href={link}>{user}</a> ad unirsi alla comunità."
         granted: "ha concesso permessi a <a href={link}>{user}</a>."
@@ -903,11 +934,13 @@ groups:
       group:
         added_neighbor: "ha aggiunto <a href={link}>{group}</a> come vicino."
         removed_neighbor: "ha rimosso <a href={link}>{group}</a> come vicino."
+        avatar_changed: "ha aggiornato l'avatar di {group}."
         cover_changed: "ha aggiornato l'immagine di copertina di {group}."
         locale_changed: "ha aggiornato le impostazioni locali di {group}."
         rules_changed: "ha aggiornato le regole di {group}."
         nsfw_changed: "ha aggiornato lo stato NSFW di {group}."
         about_changed: "ha aggiornato la descrizione di {group}."
+        tagline_changed: "ha aggiornato la tagline di {group}."
         category_changed: "ha aggiornato la categoria di {group}."
       group-report:
         resolved: "ha risolto una segnalazione."
@@ -949,6 +982,9 @@ explore:
 #page: media-reactions
 media-reactions:
   create-account: "Crea account"
+#page: notifications
+notifications:
+  none: "Non hai nessuna notifica!"
 #page: password-reset
 password-reset:
   password: "Password"
@@ -1028,6 +1064,7 @@ feeds:
     media: "Attività dei media"
     user: "Attività degli utenti"
     following: "Attività dei seguiti"
+  placeholder: "{type, select, user_aggr {Pubblica su {subject}} group_aggr {Pubblica su {subject}} media_aggr {Pubvlica a proposito di {subject}} episode_aggr {Pubblica a proposito dell'Episodio {subject}} chapter_aggr {Pubblica a proposito del Capitolo {subject}} interest_timeline {Pubblica a proposito di {subject}} other {Crea un post}}…"
   library:
     updated: "ha spostato questo in {status}"
     rated: "l'ha valutato"
@@ -1183,3 +1220,5 @@ admin:
     sidekiq: "Sidekiq"
     pghero: "PGHero"
     flipper: "Flipper"
+button:
+  view-all: "mostra tutto"
