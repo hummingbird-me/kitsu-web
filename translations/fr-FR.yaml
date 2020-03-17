@@ -14,6 +14,7 @@ titles:
   explore:
     index: "Explorer les {mediaType, select, anime {anime} manga {mangas} other {}}"
     more:
+      trending: "{type, select, Anime {Anime} Manga {Mangas} other {type}} {category} en tendances cette semaine"
       top-current: "Top {type, select, Anime {anime} Manga {mangas} other {type}} {type, select, Anime {en cours de diffusion} Manga {en cours de publication} other {}}"
       top-upcoming: "Top {type, select, Anime {Anime} Manga {Mangas} other {type}} à venir"
       highest-rated: "{type, select, Anime {Anime} Manga {Mangas} other {type}} les mieux notés"
@@ -89,6 +90,9 @@ header:
 auth-modal:
   sign-up:
     submit: "{step, select, 0 {Commençons par faire connaissance} 1 {Joli nom ! Il faut maintenant votre email} 2 {Bien, un petit mot de passe ?} 3 {Nice :3 C'est parti mon kiki !} other {}}"
+#page: about
+about:
+  header: "À propos de Kitsu"
 #page: dashboard
 dashboard:
   quick-update:
@@ -148,6 +152,7 @@ media:
       rating: "Note Moyenne"
       date: "Date"
       recent: "Ajouté Récemment"
+  none: "Aucun résultat."
   show:
     navigation:
       summary: "Résumé"
@@ -275,6 +280,68 @@ media:
   show-posts:
     text: "Voir les posts concernant {media}"
     info: "Les posts apparaîtrons dans votre fil d'abonnements {type, select, Anime {et d'anime} Manga {et de mangas} other {}}"
+#components
+components:
+  ad-unit: "On n'aime pas les pubs non plus, mais c'est grâce à elles que nous sommes toujours là. Merci de nous ajouter à la liste de votre bloqueur de publicités."
+  admin:
+    reports:
+      actions:
+        button: "Actions"
+        open: "Rouvrir"
+        resolved: "Marquer comme résolu"
+        closed: "Fermer"
+      table:
+        user: "Utilisateurs"
+        type: "Type"
+        reason: "Raison"
+        explanation: "Explications"
+        moderator: "Modérateur"
+        status: "État"
+        actions: "Actions"
+  search:
+    header: "Résultats de la recherche"
+    view: "voir plus"
+    load: "charger plus"
+    none: "pas de résultats"
+  sidebar-footer:
+    contact: "Nous contacter"
+    terms: "Termes et conditions"
+  stream-feed:
+    create-post:
+      edit: "Éditer"
+      create: "Poster"
+      nsfw: "NSFW"
+      spoiler: "Spoiler"
+    edit-post:
+      header: "Modifier le post"
+      error:
+        tagged: "Malheureusement, nous ne pouvons pas encore vous autoriser à modifier le média associé."
+    follow:
+      followed: "abonné"
+      delete: "Supprimer l’activité"
+    library:
+      delete: "supprimer"
+      deleting: "suppression…"
+    post:
+      pinned: "Post épinglé"
+      edited: "modifié"
+      gate:
+        spoiler-nsfw: "Contient des spoilers et du NSFW."
+        nsfw: "Ce post contient du contenu NSFW."
+        spoiler: "Ce post contient des spoilers."
+        hover:
+          nsfw: "Mon corps est prêt !"
+          spoiler: "J'accepte la vérité !"
+      link: "Copier le lien vers le post"
+      unfollow: "Ne plus suivre le post"
+      follow: "Suivre le post"
+      show: "Afficher le contenu du post"
+      hide: "Masquer le contenu du post"
+      edit: "Modifier le post"
+      delete: "Supprimer le post"
+      pin: "Épingler le post sur votre profil"
+      report: "Signaler le post"
+      block: "Bloquer @{username}"
 #page: users
 users:
   profile:
@@ -952,6 +1019,9 @@ explore:
 #page: media-reactions
 media-reactions:
   create-account: "Créer un compte"
+#page: notifications
+notifications:
+  none: "Vous n'avez aucune notification !"
 #page: password-reset
 password-reset:
   password: "Mot de passe"
@@ -1187,3 +1257,5 @@ admin:
     sidekiq: "Sidekiq"
     pghero: "PGHero"
     flipper: "Flipper"
+button:
+  view-all: "voir tout"
