@@ -14,9 +14,21 @@
 
 ---
 
+## Getting Started
+
+### Installing Dependencies
+
+* `yarn`
+
+### Running Ember App
+
+* `yarn start` (default port 4200)
+* `yarn start --port 4201`
+
 ## Running Tests
 
-* `yarn test`
+* `yarn test` (tap reporter)
+* `yarn test:ci` (dot reporter)
 
 ## Contributing
 
@@ -24,4 +36,4 @@ Check out the main [repo][meta] for information on setting up a development envi
 
 ## Issues
 
-Looking to create an issue? Click this helpful link [here](https://github.com/hummingbird-me/hummingbird/issues/new?labels=realm:client) or open a [bug report on Kitsu](https://kitsu.io/feedback/bugs).
+Looking to create an issue? Open a [bug report](https://kitsu.io/feedback/bugs) or [feature request](https://kitsu.io/feedback/feature-requests) on Kitsu.
