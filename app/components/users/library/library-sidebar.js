@@ -13,7 +13,7 @@ export default Component.extend({
   store: service(),
   session: service(),
 
-  reactions: reads('getIssuesTask.last.value.reaction'),
+  reactions: reads('getIssuesTask.last.value.attributes'), // reactions
   reactionsCount: reads('reactions.length'),
 
   canEditLibrary: computed('session.hasUser', 'user', function() {
