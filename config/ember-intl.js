@@ -2,6 +2,9 @@
 module.exports = function() {
   return {
     disablePolyfill: true,
-    publicOnly: true
+    publicOnly: true,
+    requiresTranslation(key, locale) {
+      return locale === 'en-us';
+    }
   };
 };

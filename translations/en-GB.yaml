@@ -1,4 +1,5 @@
-# route titles -- these are used if the route doesn't specify the title itself
+---
+#route titles -- these are used if the route doesn't specify the title itself
 titles:
   anime:
     index: "Explore Anime"
@@ -6,25 +7,15 @@ titles:
     index: "Explore Manga"
   media:
     show:
-      units: "{type, select,
-        anime {Episodes}
-        manga {Chapters}
-        other {}}"
+      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
       characters: "Characters"
       reactions: "Reactions"
       franchise: "Franchise"
   explore:
-    index: "Explore {mediaType, select,
-      anime {Anime}
-      manga {Manga}
-      other {}}"
+    index: "Explore {mediaType, select, anime {Anime} manga {Manga} other {}}"
     more:
-      trending: "Trending {type, select,
-        other {}} This Week"
-      top-current: "Top {type, select,
-        Anime {Airing}
-        Manga {Publishing}
-        other {}} {type}"
+      trending: "Trending {type, select, other {}} This Week"
+      top-current: "Top {type, select, Anime {Airing} Manga {Publishing} other {}} {type}"
       top-upcoming: "Top Upcoming {type}"
       highest-rated: "Highest Rated {type}"
       most-popular: "Most Popular {type}"
@@ -74,11 +65,11 @@ titles:
         leaders: "{group} Leaders"
         settings: "{group} Settings"
   group-invite: "Group Invite"
-# head
+#head
 head:
   users:
     description: "{user} is using Kitsu to track their progress and share their anime & manga experiences."
-# header
+#header
 header:
   library: "Library"
   anime: "Anime"
@@ -95,19 +86,14 @@ header:
     settings: "Settings"
     admin: "Admin"
     logout: "Logout"
-# authentication modal
+#authentication modal
 auth-modal:
   sign-up:
-    submit: "{step, select,
-      0 {Let's get some basic info first}
-      1 {Very witty - email is next!}
-      2 {Looks legit, how about a password?}
-      3 {Cool- Let's create that account}
-      other {}}"
-# page: about
+    submit: "{step, select, 0 {Let's get some basic info first} 1 {Very witty - email is next!} 2 {Looks legit, how about a password?} 3 {Neat! Let's create that account} other {}}"
+#page: about
 about:
   header: "About Kitsu"
-# page: dashboard
+#page: dashboard
 dashboard:
   quick-update:
     filter:
@@ -115,26 +101,15 @@ dashboard:
       anime: "Anime"
       manga: "Manga"
     empty:
-      html: "Media you've added or updated within your <a href={link}>Library</a> will show up
-        here for you to quickly update."
+      html: "Media you've added or updated within your <a href={link}>Library</a> will show up here for you to quickly update."
       discover: "Discover Media"
     media:
       complete: "Complete"
       unstarted: "Not Started"
-      unit: "{type, select,
-        anime {Ep. {num} {total, select,
-          undefined {}
-          other {of {total}}}}
-        manga {Ch. {num} {total, select,
-          null {}
-          other {of {total}}}}
-        other {}}"
+      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {of {total}}}} manga {Ch. {num} {total, select, null {} other {of {total}}}} other {}}"
     overlay:
       button:
-        update: "{type, select,
-          anime {Ep.}
-          manga {Ch.}
-          other {}} {number}"
+        update: "{type, select, anime {Ep.} manga {Ch.} other {}} {number}"
         complete: "Complete"
         tooltip:
           empty: "Update Library"
@@ -143,18 +118,11 @@ dashboard:
       edit: "Edit Library Entry"
       popout: "Pop-out editor"
       editor:
-        placeholder: "(Optional) Share your thoughts on {type, select,
-          anime {Episode}
-          manga {Chapter}
-          other {}} {number}"
+        placeholder: "(Optional) Share your thoughts on {type, select, anime {Episode} manga {Chapter} other {}} {number}"
   onboarding:
     welcome: "Hey {user}, welcome to Kitsu!"
-    about: "This is the global activity feed. It's populated by recent activity from all of Kitsu's
-      users - even you! Once you've had a chance to follow a few more interesting users, we'll
-      switch your default feed from Global to Following."
-    action: "Why don't you try creating a feed post to introduce yourself using the form below?
-      You can say something as simple as 'Hey everyone, I'm new to Kitsu', or you can show us how
-      creative and witty you are!"
+    about: "This is the global activity feed. It's populated by recent activity from all of Kitsu's users - even you! Once you've had a chance to follow a few more interesting users, we'll switch your default feed from Global to Following."
+    action: "Why don't you try creating a feed post to introduce yourself using the form below? You can say something as simple as 'Hey everyone, I'm new to Kitsu', or you can show us how creative and witty you are!"
   groups:
     header: "My Groups"
   announcements:
@@ -164,7 +132,7 @@ dashboard:
     anime: "Anime"
     manga: "Manga"
     global: "Global"
-# page: anime/manga
+#page: anime/manga
 media:
   index:
     search: "Search by title, character, or cast…"
@@ -175,10 +143,7 @@ media:
       score: "Average Rating"
       seasons: "Seasons"
       streamers: "Streamers (U.S.)"
-      units: "{type, select,
-        anime {Episodes}
-        manga {Chapters}
-        other {}}"
+      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
       rating: "Rating"
       categories: "Categories"
       types: "Types"
@@ -191,10 +156,7 @@ media:
   show:
     navigation:
       summary: "Summary"
-      units: "{type, select,
-        anime {Episodes}
-        manga {Chapters}
-        other {}}"
+      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
       characters: "Characters"
       reactions: "Reactions"
       franchise: "Franchise"
@@ -206,26 +168,14 @@ media:
         match: "{rating}% Match"
       ranking:
         full:
-          popularity: "{type, select,
-            anime {Rank #{rank} (Most Popular Anime)}
-            manga {Rank #{rank} (Most Popular Manga)}
-            other {}}"
-          rating: "{type, select,
-            anime {Rank #{rank} (Highest Rated Anime)}
-            manga {Rank #{rank} (Highest Rated Manga)}
-            other {}}"
+          popularity: "{type, select, anime {Rank #{rank} (Most Popular Anime)} manga {Rank #{rank} (Most Popular Manga)} other {}}"
+          rating: "{type, select, anime {Rank #{rank} (Highest Rated Anime)} manga {Rank #{rank} (Highest Rated Manga)} other {}}"
         short:
-          popularity: "{type, select,
-            anime {#{rank} Most Popular}
-            manga {#{rank} Most Popular}
-            other {}}"
-          rating: "{type, select,
-            anime {#{rank} Highest Rated}
-            manga {#{rank} Highest Rated}
-            other {}}"
+          popularity: "{type, select, anime {#{rank} Most Popular} manga {#{rank} Most Popular} other {}}"
+          rating: "{type, select, anime {#{rank} Highest Rated} manga {#{rank} Highest Rated} other {}}"
       categories: "Categories"
       relationships:
-        header: "More from this Series"
+        header: "More from this series"
         more: "View all in {title}"
       reactions:
         header: "Reactions"
@@ -242,12 +192,12 @@ media:
       titles:
         header: "Alternative Titles"
         ar: "Arabic"
-        ar_ar: "Arabic" # Invalid use ar
+        ar_ar: "Arabic" #Invalid use ar
         de_de: "German"
         en: "English"
         en_cn: "Chinese (Pinyin)"
         en_gb: "English (UK)"
-        en_jp: "Japanese (Romaji)"
+        en_jp: "Japanese (Rōmaji)"
         en_kr: "Korean (Romaja)"
         en_th: "Thai (Romanized)"
         en_us: "English (US)"
@@ -263,38 +213,27 @@ media:
         ru_ru: "Russian"
         th_th: "Thai"
         uk_ua: "Ukrainian"
-        vi_vi: "Vietnamese" # Invalid use vi_vn
+        vi_vi: "Vietnamese" #Invalid use vi_vn
         vi_vn: "Vietnamese"
         zh_cn: "Chinese (Simplified)"
         zh_tw: "Chinese (Traditional)"
         synonyms: "Synonyms"
       information:
-        header: "{type, select,
-          anime {Anime}
-          manga {Manga}
-          other {}} Details"
+        header: "{type, select, anime {Anime} manga {Manga} other {}} Details"
         type: "Type"
         volumes: "Volumes"
-        unit: "{type, select,
-          anime {Episodes}
-          manga {Chapters}
-          other {}}"
-        start: "{type, select,
-          anime {Aired}
-          manga {Published}
-          other {}}"
+        unit: "{type, select, anime {Episodes} manga {Chapters} other {}}"
+        start: "{type, select, anime {Broadcasted} manga {Published} other {}}"
         status: "Status"
         tba: "Expected"
         season: "Season"
         producers: "Producers"
         licensors: "Licensors"
         studios: "Studios"
-        serialization: "Serialization"
+        serialization: "Serialisation"
         duration: "Length"
         total: "{total} total"
-        length: "{count, plural,
-          =1 {{length} minutes}
-          other {{length} minutes each}}"
+        length: "{count, plural, one {} =1 {{length} minutes} other {{length} minutes each}}"
         rating: "Rating"
         expand:
           false: "More info"
@@ -303,35 +242,16 @@ media:
         header: "Community Feed"
       trailer: "Play Trailer"
     units:
-      unit: "{type, select,
-        episode {Episode}
-        chapter {Chapter}
-        other {}}"
-      back: "Back to {type, select,
-        episode {episode}
-        chapter {chapter}
-        other {}} list"
+      unit: "{type, select, episode {Episode} chapter {Chapter} other {}}"
+      back: "Back to {type, select, episode {episode} chapter {chapter} other {}} list"
       pages: "{length} Pages"
-      date: "{type, select,
-        episode {Aired}
-        chapter {Published}
-        other {}}"
-      completed: "{type, select,
-        episode {Watched}
-        chapter {Read}
-        other {Complete}}"
+      date: "{type, select, episode {Broadcasted} chapter {Published} other {}}"
+      completed: "{type, select, episode {Watched} chapter {Read} other {Complete}}"
       feed:
-        header: "{type, select,
-          episode {Episode}
-          chapter {Chapter}
-          other {}} Discussion"
+        header: "{type, select, episode {Episode} chapter {Chapter} other {}} Discussion"
     characters:
       header: "{title} Characters"
-      sub-header: "{type, select,
-        anime {The following is a full list of characters and their {language} voice actors for
-          the anime {title}}
-        manga {The following is a full list of characters for the manga {title}}
-        other {}}"
+      sub-header: "The following is a full list of characters and their {language} voice actors {type, select, anime {for the anime {title}} manga {for the manga {title}} other {}}"
     reactions:
       loading: "Loading Reactions…"
       delete: "Delete Reaction"
@@ -355,25 +275,21 @@ media:
         character: "Character"
         other: "Other"
   hide-posts:
-    text: "Hide Posts about {media}"
+    text: "Hide posts about {media}"
     info: "Posts won't appear in your Following or {type} Feed"
   show-posts:
-    text: "Show Posts about {media}"
+    text: "Show posts about {media}"
     info: "Posts will appear in your Following or {type} Feed"
-# page: application
-application:
-  sandbox:
-    alert: "This is a sandbox. <br> All changes will be reset."
-# components
+#components
 components:
-  ad-unit: "Ads suck, but that's how we keep the lights on. Please whitelist us in your adblocker."
+  ad-unit: "Ads suck, but that's how we keep the lights on. Please whitelist us in your ad blocker."
   admin:
     reports:
       actions:
         button: "Actions"
         open: "Mark Open"
         resolved: "Mark Resolved"
-        closed: "Mark closed"
+        closed: "Mark Closed"
       table:
         user: "User"
         type: "Type"
@@ -384,9 +300,9 @@ components:
         actions: "Actions"
   search:
     header: "Search Results"
-    view: "view more"
-    load: "load more"
-    none: "no results"
+    view: "View More"
+    load: "Load More"
+    none: "No Results"
   sidebar-footer:
     contact: "Contact"
     terms: "Terms"
@@ -404,13 +320,13 @@ components:
       followed: "followed"
       delete: "Delete Activity"
     library:
-      delete: "delete"
-      deleting: "deleting…"
+      delete: "Delete"
+      deleting: "Deleting…"
     post:
       pinned: "Pinned Post"
-      edited: "edited"
+      edited: "Edited"
       gate:
-        spoiler-nsfw: "Contains spoilers and NSFW."
+        spoiler-nsfw: "This post contains spoilers and NSFW content."
         nsfw: "This post contains NSFW content."
         spoiler: "This post contains spoilers."
         hover:
@@ -427,7 +343,7 @@ components:
       pin: "Pin Post to Profile"
       report: "Report Post"
       block: "Block @{username}"
-# page: users
+#page: users
 users:
   profile:
     edit: "Edit"
@@ -450,7 +366,7 @@ users:
     navigation:
       about: "About Me"
       profile-links: "Profile Links"
-      favorites: "Favorites"
+      favorites: "Favourites"
     about:
       header: "About Me"
       location:
@@ -529,8 +445,8 @@ users:
           about: "Enter your Mobcrush username below to add a link to your profile."
           placeholder: "Your Mobcrush username"
         osu:
-          about: "Enter your Osu! ID number below to add a link to your profile."
-          placeholder: "Your Osu! ID number"
+          about: "Enter your osu! ID number below to add a link to your profile."
+          placeholder: "Your osu! ID number"
         patreon:
           about: "Enter your Patreon project name to add a link to your profile."
           placeholder: "Your Patreon project name"
@@ -562,20 +478,16 @@ users:
           about: "Enter your Trakt username below to add a link to your profile."
           placeholder: "Your Trakt username"
     favorites:
-      header: "Favorites"
+      header: "Favourites"
       anime: "Anime"
       manga: "Manga"
       characters: "Characters"
-      remove: "Remove Favorite?"
+      remove: "Remove Favourite?"
   activity:
     onboarding:
       welcome: "Hey {user}, this page is all about YOU!"
-      about: "As you continue to use Kitsu your <strong>Personal Feed</strong> below will begin
-        to populate with the anime and manga you've watched, read, completed, and plan to check out.
-        You can also post text, images, and videos to your feed using the form below. Your posts
-        will be seen and appreciated by your followers and users from the global feed."
-      action: "Make yourself at home! Upload an avatar and cover image! Click <span>Edit</span> above
-        to get started."
+      about: "As you continue to use Kitsu your <strong>Personal Feed</strong> below will begin to populate with the anime and manga you've watched, read, completed and plan to check out. You can also post text, images and videos to your feed using the form below. Your posts will be seen and appreciated by your followers and users from the global feed."
+      action: "Make yourself at home! Upload an avatar and cover image! Click <span>Edit</span> above to get started."
     about:
       empty: "It's a secret"
       gender:
@@ -630,16 +542,13 @@ users:
           desc: "Longest First"
           asc: "Shortest First"
     sidebar:
-      media-select: "{type, select,
-        anime {{user}'s Anime}
-        manga {{user}'s Manga}
-        other {}}"
+      media-select: "{type, select, anime {{user}'s Anime} manga {{user}'s Manga} other {}}"
       manage: "Manage Library"
       import: "Import Library"
       export: "Export Library"
       reset: "Reset Library"
       reset-loading: "Resetting…"
-      reset-confirmation: "This will delete your entire library, associated reviews, and reactions. Are you sure you want to continue?"
+      reset-confirmation: "This will delete your entire library and associated reactions. Are you sure you want to continue?"
       issues:
         header: "Library Issues"
         reactions: "{count} completed media missing <b>reactions</b>"
@@ -650,15 +559,9 @@ users:
       more: "More"
       unstarted: "Not Started"
       unrated: "No Rating"
-      progress: "{type, select,
-        anime {Ep. {progress}}
-        manga {Ch. {progress}}
-        other {}}"
+      progress: "{type, select, anime {Ep. {progress}} manga {Ch. {progress}} other {}}"
       table-header:
-        title: "{type, select,
-          anime {Anime Title}
-          manga {Manga Title}
-          other {}}"
+        title: "{type, select, anime {Anime Title} manga {Manga Title} other {}}"
         rating: "Rating"
         progress: "Progress"
         volumes: "Volumes"
@@ -669,28 +572,16 @@ users:
         guest-header: "Looks like {user} doesn't have any library entries here."
         button: "Browse {type}"
     grid:
-      view-media: "View {type, select,
-        anime {Anime}
-        manga {Manga}
-        other {}}"
+      view-media: "View {type, select, anime {Anime} manga {Manga} other {}}"
     edit:
       status: "Library Status"
       progress: "Progress"
-      units: "{type, select,
-        anime {of {num} episodes}
-        manga {of {num} chapters}
-        other {}}"
+      units: "{type, select, anime {of {num} episodes} manga {of {num} chapters} other {}}"
       volumes: "Volumes"
       volume-units: "of {num} volumes"
       rating: "Rating"
-      rewatch: "{type, select,
-        anime {Rewatch Count}
-        manga {Reread Count}
-        other {}}"
-      start-rewatch: "{type, select,
-        anime {Start Rewatch}
-        manga {Start Reread}
-        other {}}"
+      rewatch: "{type, select, anime {Rewatch Count} manga {Reread Count} other {}}"
+      start-rewatch: "{type, select, anime {Start Rewatch} manga {Start Reread} other {}}"
       privacy: "Privacy"
       started: "Started"
       finished: "Finished"
@@ -699,10 +590,7 @@ users:
       save: "Save Changes"
       saving: "Saving…"
     bulk:
-      selected: "{type, select,
-        anime {{num} anime selected}
-        manga {{num} manga selected}
-        other {}}"
+      selected: "{type, select, anime {{num} anime selected} manga {{num} manga selected} other {}}"
       select-all: "Select All"
       select-none: "Select None"
       remove: "Remove <strong>{num}</strong>"
@@ -723,10 +611,10 @@ users:
       best: "Best"
       new: "New"
   hide-posts:
-    text: "Hide Posts from {user}"
+    text: "Hide posts from {user}"
     info: "Posts won't appear in your Following Feed"
   show-posts:
-    text: "Show Posts from {user}"
+    text: "Show posts from {user}"
     info: "Posts will appear in your Following Feed"
   followers:
     not-found: "No Users Found."
@@ -737,7 +625,7 @@ users:
   reviews:
     not-found: "No Reviews Found."
     loading: "Loading Reviews…"
-# page: settings
+#page: settings
 settings:
   navigation:
     header: "Settings"
@@ -755,12 +643,12 @@ settings:
     sub-header: "Danger Zone! Deleting your account is irreversible."
     delete: "Delete Account"
     confirm-title: "Delete Account"
-    confirm-text: "We're sorry to see you go, are you sure you want to continue?"
+    confirm-text: "We're sorry to see you go. Are you sure you want to continue?"
   apps:
     header: "Apps"
   blocking:
     header: "Blocking"
-    sub-header: "Once you block someone, that person can no longer tag you, follow you, view your profile, or see your feed posts."
+    sub-header: "Once you block someone, that person can no longer tag you, follow you, view your profile or see your feed posts."
     title: "Block Users"
     placeholder: "Search users to block…"
     button-block: "Block"
@@ -808,7 +696,7 @@ settings:
     loading: "Loading Imports…"
     status: "Status:"
     entries: "Total Entries Found:"
-    error: "It seems like your import has failed :( &mdash; We want to get this fixed for you so please <a href=\"mailto:help@kitsu.io\">email</a> us."
+    error: "It seems like your import has failed :( – We want to get this fixed for you so please <a href=\"mailto:help@kitsu.io\">email</a> us."
     more: "Load More"
   index:
     header: "Profile"
@@ -832,7 +720,7 @@ settings:
     update: "Update Profile"
   linked-accounts:
     header: "Linked Accounts"
-    sub-header: "Connect third-party accounts with Kitsu"
+    sub-header: "Connect third-party accounts to Kitsu"
     facebook: "Facebook"
     disconnect: "Disconnect Facebook"
     connect: "Connect Facebook"
@@ -868,9 +756,9 @@ settings:
     sub-header: "Adjust others ability to view your content"
     discover: "Discoverability"
     checkbox: "Show in Global Feed"
-    message: "If disabled, your posts will only be available to your followers and guests to your profile."
+    message: "If disabled, your posts will only be available to your followers and users who visit your profile."
     update: "Update Profile"
-# page: feedback
+#page: feedback
 feedback:
   header: "Feedback"
   bugs: "Bugs"
@@ -878,10 +766,10 @@ feedback:
   database: "Database Requests"
   mobile-bugs: "Mobile Bugs"
   mobile-features: "Mobile Features"
-# page: groups
+#page: groups
 groups:
   index:
-    call-to-action: "Anyone can create and discover groups. Each group centers around a topic or activity."
+    call-to-action: "Anyone can create and discover groups. Each group centres around a topic or activity."
     create-btn: "Create a Group"
   create:
     header: "Create a Group"
@@ -891,7 +779,7 @@ groups:
       tagline: "Tagline"
       about: "Description"
       rules: "Rules"
-      neighbors: "Neighbors"
+      neighbors: "Neighbours"
       neighbors-placeholder: "Search for group"
       privacy: "Privacy"
       privacy-options:
@@ -899,15 +787,9 @@ groups:
         closed: "Private"
         restricted: "Restricted"
       privacy-features:
-        open: "<li>Anyone can view</li>
-          <li>Anyone can join</li>
-          <li>Anyone can post or comment</li>"
-        closed: "<li>Hidden from public</li>
-          <li>Users may only join via invitation</li>
-          <li>Can't be made public</li>"
-        restricted: "<li>Anyone can view</li>
-          <li>Anyone can join</li>
-          <li>Only leaders can create new posts.</li>"
+        open: "<li>Anyone can view</li> <li>Anyone can join</li> <li>Anyone can post or comment</li>"
+        closed: "<li>Hidden from public</li> <li>Users may only join via invitation</li> <li>Can't be made public</li>"
+        restricted: "<li>Anyone can view</li> <li>Anyone can join</li> <li>Only leaders can create new posts.</li>"
       category: "Category"
       category-placeholder: "Select a Category"
       avatar: "Avatar"
@@ -920,23 +802,22 @@ groups:
           desc: "Group names should clearly communicate what your group is about, but you can still be creative and have fun with it!"
         tagline:
           header: "Tagline"
-          desc: "Summarize the purpose of your group in 60 characters or less.
-            You'll have room to add more information later."
+          desc: "Summarise the purpose of your group in 60 characters or less. You'll have room to add more information later."
         about:
           header: "Description"
           desc: "Explain your group's purpose in depth, share important information, or anything else."
         rules:
           header: "Rules"
-          desc: "Set out some guidelines for your group members to follow. These rules are Markdown supported!"
+          desc: "Set out some guidelines for your group members to follow. These rules support Markdown syntax!"
         neighbors:
-          header: "Neighbors"
-          desc: "Add related groups to your Neighborhood so your members can discover new communities!"
+          header: "Neighbours"
+          desc: "Add related groups to your Neighbourhood so your members can discover new communities!"
         privacy:
           header: "Privacy"
           desc: "Your privacy settings determine how open or closed your group is to the public. If you choose to make your group private, you will NOT be able to make it public in the future."
         category:
           header: "Category"
-          desc: "Kitsu uses categories to organize groups to help users find more of what they love."
+          desc: "Kitsu uses categories to organise groups so users can find more of what they love."
         avatar:
           header: "Avatar"
           desc: "This image will be used throughout Kitsu to identify your group."
@@ -944,7 +825,7 @@ groups:
           header: "Cover Image"
           desc: "This image will appear at the top of your group's page on desktops. Sides may be cropped slightly based on the viewer's screen size."
       errors:
-        neighbors-same: "You can't add your group as a neighbor."
+        neighbors-same: "You can't add your own group as a neighbour."
   dashboard-btn: "Dashboard"
   join-group: "Join Group"
   leave-group: "Leave Group"
@@ -952,30 +833,28 @@ groups:
     text: "Hide Posts from {group}"
     info: "Posts won't appear in your Following Feed"
   show-posts:
-    text: "Show Posts from {group}"
+    text: "Show posts from {group}"
     info: "Posts will appear in your Following Feed"
   nsfw: "NSFW"
-  neighbors: "Neighbors"
+  neighbors: "Neighbours"
   navigation:
     activity: "Activity"
     rules: "Rules"
     members: "Members"
     leaders: "Leaders"
-    neighbors: "Neighbors"
+    neighbors: "Neighbours"
   activity:
     feed-header: "Group Activity"
     about: "About {group}"
     members: "Members"
-    feed-restricted: "This is a restricted group. Anyone can comment, only leaders can create posts."
+    feed-restricted: "This is a restricted group. Anyone can comment, but only leaders can create posts."
   rules:
     header: "Community Rules"
-    empty: "Hey there! Looks like you're using the Kitsu community guidelines. If you'd like to
-      specify your own rules you can do that on your <a href={link}>settings page.</a>"
+    empty: "Hey there! Looks like you're using the Kitsu community guidelines. If you'd like to specify your own rules you can do that on your <a href={link}>settings page</a>."
   tickets:
     search: "Search Tickets"
     empty: "Hooray! You don't have any tickets to handle."
-    helper: "Tickets allow you to communicate with the leaders of this group to solve any issues
-      you might have. Message the leaders here to create a ticket."
+    helper: "Tickets allow you to communicate with the leaders of this group to solve any issues you might have. Message the leaders here to create a ticket."
     filter:
       open: "Open Tickets"
       resolved: "Resolved Tickets"
@@ -991,8 +870,7 @@ groups:
       create-btn: "Create Ticket"
       reply-btn: "Send Reply"
       reply-placeholder: "Type your message"
-      helper: "Write your message below to create a ticket! Leaders for this group will reply to
-        your ticket as soon as they can."
+      helper: "Write your message below to create a ticket! Leaders for this group will reply to your ticket as soon as they can."
   reports:
     no-explanation: "No Explanation Provided"
     empty: "Hooray! You don't have any reports to handle."
@@ -1063,7 +941,7 @@ groups:
         revoke: "Cancel Invite"
         invite: "Invite"
         placeholder: "Search for a user to invite. They must be following you!"
-        empty: "Looks like you don't have any pending invites to the group."
+        empty: "Looks like your group doesn't have any pending invites."
       bans:
         header: "Banned Users"
         unban: "Unban"
@@ -1092,36 +970,35 @@ groups:
         granted: "granted permissions to <a href={link}>{user}</a>."
         revoked: "removed permissions from <a href={link}>{user}</a>."
       group:
-        added_neighbor: "added <a href={link}>{group}</a> as a neighbor."
-        removed_neighbor: "removed <a href={link}>{group}</a> as a neighbor."
+        added_neighbor: "added <a href={link}>{group}</a> as a neighbour."
+        removed_neighbor: "removed <a href={link}>{group}</a> as a neighbour."
         avatar_changed: "updated the {group} avatar."
         cover_changed: "updated the {group} cover image."
         locale_changed: "updated the {group} locale."
         rules_changed: "updated the {group} rules."
         nsfw_changed: "updated the {group} NSFW status."
-        about_changed: "updated the {group} about."
+        about_changed: "updated the {group} description."
         tagline_changed: "updated the {group} tagline."
         category_changed: "updated the {group} category."
       group-report:
         resolved: "resolved a report."
         declined: "declined a report."
-        escalated: "esclated a report."
+        escalated: "escalated a report."
       group-ticket:
         assigned: "assigned a ticket to <a href={link}>{user}</a>."
         resolved: "marked a ticket as resolved."
         created: "re-opened a ticket."
-# page: group-invite
+#page: group-invite
 group-invite:
   header: "Group Invite"
   subtitle: "You have been invited to {group} by {sender}"
-  text: "You'll be able to access {group}'s page after accepting this invite. We'll redirect you
-    after accepting."
+  text: "You'll be able to access {group}'s page after accepting this invite. We'll redirect you after accepting."
   accept: "Accept"
   decline: "Decline"
   accepted: "You've already accepted this invite."
   revoked: "Your invitation has been revoked by a group moderator."
   declined: "You declined this group invite."
-# page: explore
+#page: explore
 explore:
   view-more: "View more"
   search-placeholder: "What are you searching for?"
@@ -1130,23 +1007,23 @@ explore:
   widget:
     related: "Related Categories"
     categories: "Categories"
-    favorite-categories: "My Favorite Categories"
-    no-favorites: "Favoriting categories will improve your recommendations."
+    favorite-categories: "My Favourite Categories"
+    no-favorites: "Favouriting categories will improve your recommendations."
     more-categories: "More categories…"
   modal:
     header: "All Categories"
   favorite-button:
-    remove: "Remove from Favorites"
+    remove: "Remove from favourites"
     removing: "Removing…"
-    create: "Add to Favorites"
+    create: "Add to favourites"
     creating: "Adding…"
-# page: media-reactions
+#page: media-reactions
 media-reactions:
   create-account: "Create Account"
-# page: notifications
+#page: notifications
 notifications:
   none: "You don't have any notifications!"
-# page: password-reset
+#page: password-reset
 password-reset:
   password: "Password"
   confirm: "Confirm Password"
@@ -1154,7 +1031,7 @@ password-reset:
   reset: "Reset Password"
   email: "Email"
   send: "Send Email"
-# shared: media
+#shared: media
 media-shared:
   types:
     anime:
@@ -1163,7 +1040,7 @@ media-shared:
       special: "Special"
       ona: "ONA"
       ova: "OVA"
-      movie: "Movie"
+      movie: "Film"
       music: "Music"
     manga:
       All: "All"
@@ -1187,49 +1064,31 @@ media-shared:
       upcoming: "Upcoming"
       unreleased: "Unreleased"
       tba: "TBA"
-# shared: library
+#shared: library
 library-shared:
-  all: "{type, select,
-    anime {All Anime}
-    manga {All Manga}
-    other {}}"
-  current: "{type, select,
-    anime {Currently Watching}
-    manga {Currently Reading}
-    other {}}"
-  planned: "{type, select,
-    anime {Want to Watch}
-    manga {Want to Read}
-    other {}}"
-  completed: "{type, select,
-    anime {Completed}
-    manga {Completed}
-    other {}}"
-  on_hold: "{type, select,
-    anime {On Hold}
-    manga {On Hold}
-    other {}}"
-  dropped: "{type, select,
-    anime {Dropped}
-    manga {Dropped}
-    other {}}"
-# shared: form:
+  all: "{type, select, anime {All Anime} manga {All Manga} other {}}"
+  current: "{type, select, anime {Currently Watching} manga {Currently Reading} other {}}"
+  planned: "{type, select, anime {Plan to Watch} manga {Plan to Read} other {}}"
+  completed: "{type, select, anime {Completed} manga {Completed} other {}}"
+  on_hold: "{type, select, anime {On Hold} manga {On Hold} other {}}"
+  dropped: "{type, select, anime {Dropped} manga {Dropped} other {}}"
+#shared: form:
 form-shared:
   placeholders:
     username: "Username"
     password: "Password"
-# component: auth-onboarding
+#component: auth-onboarding
 onboarding:
   aozora-conflict:
     title: "Oh, you already have a Kitsu account! Which do you want to keep?"
     info: "Activity feed posts from both accounts will be merged.  All other account information will be overwritten by the account you select below."
   aozora-account-details:
     submit: "Looks Good!"
-# component: follow-button
+#component: follow-button
 follow-button:
   follow: "Follow"
   unfollow: "Unfollow"
-# component: kitsu-feed
+#component: kitsu-feed
 feeds:
   embed:
     preview: "This is a preview of your embed."
@@ -1237,38 +1096,23 @@ feeds:
     select: "Upload"
     drop: "Drop to upload"
     invalid: "Invalid file type"
-    uploading: "{number, plural,
-      =1 {Uploading photo… {progress}%}
-      other {Uploading {number} photos… {progress}%}}"
+    uploading: "{number, plural, one {} =1 {Uploading photo… {progress}%} other {Uploading {number} photos… {progress}%}}"
   filter:
     all: "All Activity"
     media: "Media Activity"
     user: "User Activity"
     following: "Followed Activity"
-  placeholder: "{type, select,
-    user_aggr {Post to {subject}}
-    group_aggr {Post to {subject}}
-    media_aggr {Post about {subject}}
-    episode_aggr {Post about Episode {subject}}
-    chapter_aggr {Post about Chapter {subject}}
-    interest_timeline {Post about {subject}}
-    other {Create a post}}…"
+  placeholder: "{type, select, user_aggr {Post to {subject}} group_aggr {Post to {subject}} media_aggr {Post about {subject}} episode_aggr {Post about episode {subject}} chapter_aggr {Post about chapter {subject}} interest_timeline {Post about {subject}} other {Create a post}}…"
   library:
     updated: "moved this to {status}"
     rated: "rated it"
-    progressed: "{type, select,
-      anime {watched episode {num}}
-      manga {read chapter {num}}
-      other {}}"
+    progressed: "{type, select, anime {watched episode {num}} manga {read chapter {num}} other {}}"
   post:
     more: "View More"
     less: "View Less"
     meta:
       media: "Because you recently watched {media}"
-    spoilers: "{type, select,
-      anime {Ep. {num}}
-      manga {Ch. {num}}
-      other {}}"
+    spoilers: "{type, select, anime {Ep. {num}} manga {Ch. {num}} other {}}"
     sorts:
       likes: "Likes"
       replies: "Replies"
@@ -1276,24 +1120,19 @@ feeds:
   review:
     review: "Review"
     author: "Review by {user}"
-    progress: "{type, select,
-      anime {This is a review up to Episode {num}.}
-      manga {This is a review up to Chapter {num}.}
-      other {}}"
+    progress: "{type, select, anime {This is a review up to episode {num}.} manga {This is a review up to chapter {num}.} other {}}"
   interest:
     anime:
       header: "Welcome to your Anime Feed!"
-      body: "As you update your <a href={link}>anime library</a>, you'll see what others are saying
-        about the shows you're watching."
+      body: "As you update your <a href={link}>anime library</a>, you'll see what others are saying about the shows you're watching."
     manga:
       header: "Welcome to your Manga Feed!"
-      body: "As you update your <a href={link}>manga library</a>, you'll see what others are saying
-        about the manga you're reading."
+      body: "As you update your <a href={link}>manga library</a>, you'll see what others are saying about the manga you're reading."
     button: "Okay, got it"
-# component: image-form
+#component: image-form
 image-form:
   help-text: "Click here to select an image."
-# component: groups/group-list
+#component: groups/group-list
 group-list:
   filter: "Filter Groups"
   sort:
@@ -1301,42 +1140,26 @@ group-list:
     recent: "Recent Activity"
     newest: "Newest Groups"
     oldest: "Oldest Groups"
-# component: media/media-reaction
+#component: media/media-reaction
 media-reaction:
   self-vote: "You can't vote on your own reaction."
   edit: "Edit Reaction"
-# component: modals/media-reaction
+#component: modals/media-reaction
 reaction-modal:
   post: "Post"
   edit: "Edit"
   edit-warning: "Careful! Editing will delete your upvotes."
   delete: "Delete Reaction"
-  placeholder: "{index, plural,
-    =0 {Got me rethinking some important life decisions.}
-    =1 {Unexpectedly good! Lots of memorable scenes.}
-    =2 {While it may not be everyone's cup of tea, it's certainly interesting.}
-    other {Overrated, don't waste your time on this one.}}"
+  placeholder: "{index, plural, one {} =0 {Got me rethinking some important life decisions.} =1 {Unexpectedly good! Lots of memorable scenes.} =2 {While it may not be everyone's cup of tea, it's certainly interesting.} other {Overrated, don't waste your time on this one.}}"
   skip: "Skip"
-# component: library-entry/*
+#component: library-entry/*
 library-entry:
   state:
-    header: "{state, select,
-      false {Add to Library}
-      true {Update Library}
-      other {}}"
+    header: "{state, select, false {Add to Library} true {Update Library} other {}}"
     add-to-library: "Add To Library"
-    seen-this: "{type, select,
-      anime {Completed}
-      manga {Completed}
-      other {}}"
-    want-to-watch: "{type, select,
-      anime {Want to Watch}
-      manga {Want to Read}
-      other {}}"
-    started-watching: "{type, select,
-      anime {Started Watching}
-      manga {Started Reading}
-      other {}}"
+    seen-this: "{type, select, anime {Completed} manga {Completed} other {}}"
+    want-to-watch: "{type, select, anime {Plan to Watch} manga {Plan to Read} other {}}"
+    started-watching: "{type, select, anime {Started Watching} manga {Started Reading} other {}}"
     watching-this: "Started"
     finished-this: "Completed"
     place-on-hold: "On Hold"
@@ -1347,10 +1170,7 @@ library-entry:
     edit-library: "Edit Library Entry"
     post-reaction: "Post Reaction"
     edit-reaction: "Edit Reaction"
-    rewatch: "{type, select,
-      anime {Rewatch}
-      manga {Reread}
-      other {}}"
+    rewatch: "{type, select, anime {Rewatch} manga {Reread} other {}}"
     remove-from-library: "Remove from Library"
     saved-in: "Saved in <a href={link}>{status}</a>"
     progress: "Progress"
@@ -1360,29 +1180,17 @@ library-entry:
     meh: "Meh"
     good: "Good"
     great: "Great"
-# component: application/user-notifications
+#component: application/user-notifications
 user-notifications:
-  # Episode 113 of One Piece! aired
-  aired: "{type, select,
-    chapter {Chapter}
-    episode {Episode}
-    other {}} {number} of {media} {type, select,
-    chapter {Released}
-    episode {Aired}
-    other {}}"
-  aired-unknown: "{media} {type, select,
-    manga {released}
-    anime {aired}
-    other {}} a new {type, select,
-    manga {Chapter}
-    anime {Episode}
-    other {}}"
-# ember-power-select
+  #Episode 113 of One Piece! aired
+  aired: "{type, select, chapter {Chapter} episode {Episode} other {}} {number} of {media} {type, select, chapter {released} episode {has broadcasted} other {}}"
+  aired-unknown: "{media} {type, select, manga {released} anime {broadcasted} other {}} a new {type, select, manga {chapter} anime {episode} other {}}"
+#ember-power-select
 selects:
   loading: "Loading…"
   none: "No results found"
   search: "Start typing to search"
-# ember-cp-validations
+#ember-cp-validations
 errors:
   description: "This field"
   inclusion: "{description} is not included in the list"
@@ -1415,12 +1223,12 @@ errors:
   date: "{description} must be a valid date"
   email: "{description} must be a valid email address"
   phone: "{description} must be a valid phone number"
-  url: "{description} must be a valid url"
-  # Custom Errors
+  url: "{description} must be a valid URL"
+  #Custom Errors
   user:
     name:
-      invalid: "This field must only contain letters, numbers, and underscores"
-      numbers: "This field must not be made up of numbers entirely"
+      invalid: "This field must contain only letters, numbers and underscores"
+      numbers: "This field must not be made entirely of numbers"
       starts: "This field must start with a letter or number"
   load: "There was an issue loading the content."
   contentEmpty: "Hmm, there doesn't seem to be anything here yet."
@@ -1428,13 +1236,8 @@ errors:
   serverError:
     title: "Oops! Looks like our server has a bug."
     body: "Our team has been notified, please try again in a few minutes."
-# Loading
-loading: "Loading {subject, select,
-  episode {Episode}
-  chapter {Chapter}
-  episodes {Episodes}
-  chapters {Chapters}
-  other {}}…"
+#Loading
+loading: "Loading {subject, select, episode {Episode} chapter {Chapter} episodes {Episodes} chapters {Chapters} other {}}…"
 timeUnits:
   years: "{count, plural, =1 {year} other {years}}"
   months: "{count, plural, =1 {month} other {months}}"
@@ -1456,4 +1259,4 @@ admin:
     pghero: "PGHero"
     flipper: "Flipper"
 button:
-  view-all: "view all"
+  view-all: "View All"

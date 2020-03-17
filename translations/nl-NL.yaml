@@ -1,0 +1,227 @@
+---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Verken Anime"
+  manga:
+    index: "Verken Manga"
+  media:
+    show:
+      characters: "Personages"
+      reactions: "Reacties"
+  explore:
+    more:
+      top-upcoming: "Top Aankomende {type}"
+      highest-rated: "Hoogst gewaardeerde {type}"
+      most-popular: "Populairste {type}"
+    category:
+      more:
+        newly-released: "Nieuw uitgebracht {category} {type}"
+        most-popular: "Populairste {category} {type}"
+  not-found: "Niet gevonden"
+  server-error: "Server fout"
+  users:
+    index: "Profiel van {user}"
+    library: "Bibliotheek van {user}"
+    reviews: "Beoordelingen van {user}"
+    reactions: "{user}'s reacties"
+    followers: "Volgers van {user}"
+    following: "Gevolgd door {user}"
+    groups: "Groepen van {user}"
+    stats: "Statistieken van {user}"
+  posts: "Bericht door {user}"
+  comments: "Reactie door {user}"
+  reviews: "Beoordeling door {user}"
+  notifications: "Meldingen"
+  feedback:
+    bugs: "Fouten"
+  admin:
+    index: "Beheerder"
+    reports: "Rapporten"
+  groups:
+    index: "Groepen"
+    new: "Maak een groep"
+    group:
+      group-page:
+        rules: "{group} Regels"
+        members: "{group} Leden"
+        leaders: "{group} Leiders"
+      dashboard:
+        index: "{group} Overzicht"
+        members: "{group} Leden"
+        leaders: "{group} Leiders"
+        settings: "{group} instellingen"
+  group-invite: "Groep Uitnodiging"
+#head
+head:
+  users:
+    description: "{user} gebruikt Kitsu om hun voortgang te volgen en hun anime & manga ervaringen te delen."
+#header
+header:
+  library: "Bibliotheek"
+  anime: "Anime"
+  manga: "Manga"
+  groups: "Groepen"
+  feedback: "Feedback"
+  browse: "Bladeren"
+  auth:
+    sign-in: "Log in"
+    sign-up: "Meld je aan"
+  user:
+    profile: "Profiel bekijken"
+    settings: "Instellingen"
+    admin: "Beheerder"
+    logout: "Uitloggen"
+#page: dashboard
+dashboard:
+  quick-update:
+    filter:
+      all: "Alles"
+      anime: "Anime"
+      manga: "Manga"
+    empty:
+      discover: "Ontdek Media"
+    media:
+      complete: "Klaar"
+      unstarted: "Nog niet begonnen"
+    overlay:
+      button:
+        complete: "Klaar"
+        tooltip:
+          empty: "Bibliotheek bijwerken"
+          content: "Maak post en update bibliotheek"
+      discussion: "Discussie bekijken"
+      editor:
+        placeholder: "(Optioneel) Deel je gedachten over {type, select, anime {Aflevering} manga {Hoofdstuk} other {}} {number}"
+  onboarding:
+    welcome: "Hallo {user}, welkom bij Kitsu!"
+    action: "Probeer eens een feed post te creëren waarin jezelf introduceert met behulp van onderstaand formulier! Je zou iets simpels kunnen zeggen als 'Hé iedereen, ik ben nieuw op Kitsu', of je kan ons laten zien hoe creatief en grappig je bent!"
+  groups:
+    header: "Mijn groepen"
+  announcements:
+    button: "Meer informatie"
+  feed:
+    following: "Volgend"
+    anime: "Anime"
+    manga: "Manga"
+    global: "Wereldwijd"
+#page: anime/manga
+media:
+  index:
+    search: "Zoek op titel, karakter of cast…"
+    filter: "Filteren"
+    remove: "Verwijderen"
+    filters:
+      year: "Jaar"
+      score: "Gemiddelde beoordeling"
+      seasons: "Seizoenen"
+      streamers: "Streamers (VS)"
+      units: "{type, select, anime {Afleveringen} manga {Hoofdstukken} other {}}"
+      rating: "Beoordeling"
+      categories: "Categorieën"
+      types: "Typen"
+    sort:
+      popularity: "Populariteit"
+      rating: "Gemiddelde beoordeling"
+      date: "Datum"
+      recent: "Onlangs toegevoegd"
+  show:
+    navigation:
+      summary: "Samenvatting"
+      units: "{type, select, anime {Afleveringen} manga {Hoofdstukken} other {}}"
+      characters: "Personages"
+      reactions: "Reacties"
+    sidebar:
+      watch: "Online kijken"
+    summary:
+      ratings:
+        match: "{rating}% Match"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Rang #{rank} (Meest populaire Anime)} manga {Rang #{rank} (Meest populaire Manga)} other {}}"
+      categories: "Categorieën"
+      relationships:
+        header: "Meer van deze serie"
+      reactions:
+        header: "Reacties"
+        more: "Meer reacties bekijken"
+        sorts:
+          -upVotesCount: "Populair"
+          -createdAt: "Recent"
+        new: "Nieuwe Reactie"
+        edit: "Mijn Reactie"
+        empty: "Het lijkt erop dat nog niemand hierop heeft gereageerd"
+      characters:
+        header: "Personages"
+        more: "Alle personages bekijken"
+      titles:
+        header: "Alternatieve titels"
+        ar: "Arabisch"
+        ar_ar: "Arabisch" #Invalid use ar
+        de_de: "Duits"
+        en: "Engels"
+        en_cn: "Chinees (Pinyin)"
+        en_gb: "Engels (UK)"
+        en_jp: "Japanese (Romaji)"
+        en_kr: "Koreaans (Romaja)"
+        en_us: "Engels (VS)"
+        es_es: "Spaans"
+        fr_fr: "Frans"
+        id_id: "Indonesisch"
+        it_it: "Italiaans"
+        ja_jp: "Japans"
+        ko_kr: "Koreaans"
+        nl_nl: "Nederlands"
+        pt_br: "Portugees (Braziliaans)"
+        pt_pt: "Portugees"
+        ru_ru: "Russisch"
+        th_th: "Thais"
+        zh_cn: "Chinees (vereenvoudigd)"
+        zh_tw: "Chinees (traditioneel)"
+        synonyms: "Synoniemen"
+      information:
+        status: "Status"
+        season: "Seizoen"
+        licensors: "Licentiehouders"
+        studios: "Studio's"
+        duration: "Lengte"
+        total: "{total} totaal"
+        rating: "Beoordeling"
+        expand:
+          false: "Meer informatie"
+          true: "Minder info"
+      trailer: "Trailer afspelen"
+    units:
+      pages: "{length} Pagina's"
+    franchise:
+      roles:
+        alternative_setting: "Alternatieve instelling"
+        alternative_version: "Alternatieve versie"
+        summary: "Samenvatting"
+        full_story: "Volledige verhaal"
+        anime_adaptation: "Anime"
+        manga_adaptation: "Manga"
+        character: "Personage"
+#page: users
+users:
+  profile:
+    edit: "Bewerken"
+  navigation:
+    activity: "Activiteit"
+    library: "Bibliotheek"
+    reviews: "Recensies"
+    reactions: "Reacties"
+    followers: "Volgers"
+    following: "Volgend"
+  edit-modal:
+    about:
+      gender:
+        options:
+          male: "Man"
+          female: "Vrouw"
+      waifu:
+        label: "Waifu"
+        placeholder: "Waifu/Husbando"
+        search: "Vind jouw speciale iemand"
+      bio:
+        placeholder: "Vertel de wereld jouw verhaal."

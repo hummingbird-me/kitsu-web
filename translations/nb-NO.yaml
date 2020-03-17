@@ -1,0 +1,376 @@
+---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  media:
+    show:
+      units: "{type, select, anime {Episoder} manga {Kapitler} other {}}"
+      characters: "Karakterer"
+      reactions: "Reaksjoner"
+      franchise: "Serie"
+  explore:
+    more:
+      top-current: "Topp {type, select, Anime {pågående} Manga {publiserende} other {}} {type}"
+      top-upcoming: "Topp kommende {type}"
+      highest-rated: "Høyest scoret {type}"
+      most-popular: "Mest populære {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Nylig utgitt {category} {type}"
+        most-popular: "Mest populære {category} {type}"
+  not-found: "Ikke funnet"
+  server-error: "Server feil"
+  users:
+    index: "{user}'s profil"
+    library: "{user}'s bibliotek"
+    reviews: "{user}'s anmeldelser"
+    reactions: "{user}'s reaksjoner"
+    followers: "{user}'s følgere"
+    following: "Fulgt av {user}"
+    groups: "{user}'s grupper"
+    stats: "{user}'s statistikk"
+  posts: "Innlegg fra {user}"
+  comments: "Kommentar fra {user}"
+  reviews: "Anmeldelse av {user}"
+  notifications: "Notifikasjoner"
+  feedback:
+    bugs: "Bugs"
+    feature-requests: "Funksjons forespørsler"
+    database-requests: "Database forespørsler"
+    mobile-bugs: "Mobil bugs"
+    mobile-features: "Mobil funksjoner"
+  admin:
+    index: "Admin"
+    reports: "Rapporter"
+  groups:
+    index: "Grupper"
+    new: "Lag en gruppe"
+    group:
+      group-page:
+        rules: "Regler for {group}"
+        members: "Medlemmer av {group}"
+        leaders: "Ledere av {group}"
+      dashboard:
+        index: "Overblikk over {group}"
+        reports: "Rapporter fra {group}"
+        members: "Medlemmer av {group}"
+        leaders: "Ledere av {group}"
+  group-invite: "Gruppe invitasjon"
+#head
+head:
+  users:
+    description: "{user} bruker Kitsu for å holde følge med fremdriften deres og dele sine anime og manga opplevelser."
+#header
+header:
+  library: "Bibliotek"
+  anime: "Anime"
+  manga: "Manga"
+  groups: "Grupper"
+  feedback: "Tilbakemelding"
+  auth:
+    sign-in: "Log in"
+    sign-up: "Registrer deg"
+  user:
+    profile: "Vis profil"
+    admin: "Admin"
+    logout: "Log ut"
+#page: dashboard
+dashboard:
+  quick-update:
+    filter:
+      all: "Alt"
+      anime: "Anime"
+      manga: "Manga"
+    empty:
+      html: "Media du har lagt til eller oppdatert i <a href={link}>biblioteket ditt</a> vil dukke opp her slik at du enkelt kan oppdatere det."
+    media:
+      complete: "Fullført"
+      unstarted: "Ikke påbegynt"
+    overlay:
+      button:
+        update: "{type, select, anime {Ep.} manga {Kap.} other {}} {number}"
+        complete: "Fullført"
+        tooltip:
+          empty: "Oppdater biblioteket"
+          content: "Lag innlegg og oppdater biblioteket"
+      discussion: "Se diskusjon"
+      edit: "Endre bibliotekinnholdet"
+      popout: "Pop-ut editor"
+      editor:
+        placeholder: "(Frivillig) Del tankene dine om {type, select, anime {episode} manga {kapittel} other {}} {number}."
+  onboarding:
+    welcome: "Hei {user}! Velkommen til Kitsu!"
+    action: "Hva med å lage et innlegg under her hvor du kan introdusere deg selv? Du kan si noe så enkelt som 'Hei alle sammen, jeg er ny på Kitsu!', eller så kan du vise oss hvor kreativ og vittig du er!"
+  groups:
+    header: "Mine Grupper"
+  announcements:
+    button: "Lær mer"
+  feed:
+    following: "Følger"
+    anime: "Anime"
+    manga: "Manga"
+    global: "Global"
+#page: anime/manga
+media:
+  index:
+    search: "Søk etter tittel, karakterer, eller besetning …"
+    filter: "Filtrer"
+    remove: "Fjern"
+    filters:
+      year: "År"
+      score: "Gjennomsnittlig score"
+      seasons: "Sesonger"
+      streamers: "Strømmetjenester (USA)"
+      units: "{type, select, anime {Episoder} manga {Kapitler} other {}}"
+      rating: "Score"
+      categories: "Kategorier"
+      types: "Typer"
+    sort:
+      popularity: "Popularitet"
+      rating: "Gjennomsnittlig score"
+      date: "Dato"
+      recent: "Nylig lagt til"
+  show:
+    navigation:
+      summary: "Oppsummering"
+      units: "{type, select, anime {Episoder} manga {Kapitler} other {}}"
+      characters: "Karakterer"
+      reactions: "Reaksjoner"
+      franchise: "Serie"
+    sidebar:
+      watch: "Se online"
+    summary:
+      ratings:
+        match: "{rating}% match"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Rangert {rank}. plass (mest populære anime)} manga {Rangert {rank}. plass (mest populære manga)} other {}}"
+          rating: "{type, select, anime {Rangert {rank}. plass (høyest scoret anime)} manga {Rangert {rank}. plass (høyest scoret manga)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} mest populær} manga {#{rank} mest populær} other {}}"
+          rating: "{type, select, anime {#{rank} høyest scoret} manga {#{rank} høyest scoret} other {}}"
+      categories: "Kategorier"
+      relationships:
+        header: "Mer fra denne serien"
+        more: "Se alt fra {title}"
+      reactions:
+        header: "Reaksjoner"
+        more: "Se flere reaksjoner"
+        sorts:
+          -upVotesCount: "Populær"
+          -createdAt: "Nylig"
+        new: "Nye reaksjoner"
+        edit: "Min reaksjon"
+        empty: "Det ser ikke ut som om noen har reagert på denne enda"
+      characters:
+        header: "Karakterer"
+        more: "Se alle karakterene"
+      titles:
+        header: "Alternative titler"
+        ar: "Arabisk"
+        ar_ar: "Arabisk" #Invalid use ar
+        de_de: "Tysk"
+        en: "Engelsk"
+        en_cn: "Kinesisk (Pinyin)"
+        en_gb: "Engelsk (UK)"
+        en_jp: "Japansk (Romaji)"
+        en_kr: "Koreansk (Romaja)"
+        en_th: "Thai (Romanisert)"
+        en_us: "Engelsk (USA)"
+        es_es: "Spansk"
+        fr_fr: "Fransk"
+        id_id: "Indonesisk"
+        it_it: "Italiensk"
+        ja_jp: "Japansk"
+        ko_kr: "Koreansk"
+        vi_vn: "Vietnamesisk"
+        zh_cn: "Kinesisk (forenklet)"
+        zh_tw: "Kinesisk (tradisjonelt)"
+        synonyms: "Synonym"
+      information:
+        header: "{type, select, anime {Anime} manga {Manga} other {}} detaljer"
+        type: "Type"
+        volumes: "Volum"
+        unit: "{type, select, anime {Episoder} manga {Kapitler} other {}}"
+        start: "{type, select, anime {Strømmet} manga {Publisert} other {}}"
+        status: "Status"
+        tba: "Forventet"
+        season: "Sesong"
+        producers: "Produsenter"
+        licensors: "Lisensholdere"
+        studios: "Studio"
+        serialization: "Magasin"
+        duration: "Lengde"
+        total: "{total} totalt"
+        length: "{count, plural, one {} =1 {{length} minutt} other {{length} minutt hver}}"
+        rating: "Score"
+        expand:
+          false: "Mer info"
+          true: "Mindre info"
+      trailer: "Spill trailer"
+    units:
+      unit: "{type, select, episode {Episode} chapter {Kapittel} other {}}"
+      back: "Tilbake til {type, select, episode {episode} chapter {kapittel} other {}} oversikten"
+      pages: "{length} sider"
+      date: "{type, select, episode {Strømmet} chapter {Publisert} other {}}"
+      completed: "{type, select, episode {Sett} chapter {Lest} other {Fullført}}"
+      feed:
+        header: "{type, select, episode {Episode} chapter {Kapittel} other {}} diskusjon"
+    characters:
+      header: "Karakterer i {title}"
+#page: users
+users:
+  edit-modal:
+    about:
+      birthday: "Bursdag"
+      gender:
+        label: "Kjønn"
+        options:
+          secret: "Det er hemmelig"
+          male: "Gutt"
+          female: "Jente"
+          custom: "Tilpass"
+      waifu:
+        label: "Waifu"
+        placeholder: "Waifu/Husbando"
+      bio:
+        label: "Biografi"
+        placeholder: "Fortell historien din til verden."
+    profile-links:
+      header: "Profil linker"
+      sites:
+        website:
+          about: "Legg en link til din personlige nettside nedenfor for å legge til en link på profilen din."
+          placeholder: "URL til nettsiden din"
+        twitter:
+          about: "Legg til Twitter brukernavnet ditt nedenfor for å legge til en link på profilen din."
+          placeholder: "Ditt twitter brukernavn (@Brukernavn)"
+        facebook:
+          about: "Legg til Facebook URLen din nedenfor for å legge til en link på profilen din."
+          placeholder: "URL til Facebook profilen din"
+        youtube:
+          about: "Legg til YouTube kanal URLen din nedenfor for å legge til en link på profilen din."
+          placeholder: "URL til YouTube kanalen din"
+        google:
+          about: "Legg til Google+ profil URLen din nedenfor for å legge til en link på profilen din."
+          placeholder: "URL til Google+ profilen din, eller brukernavnet ditt (+Brukernavn)"
+        instagram:
+          about: "Legg til Instagram brukernavnet ditt nedenfor for å legge til en link på profilen din."
+          placeholder: "Instagram brukernavnet ditt"
+        twitch:
+          about: "Legg til Twitch brukernavnet ditt nedenfor for å legge til en link på profilen din."
+          placeholder: "Twitch brukernavnet ditt"
+        vimeo:
+          about: "Legg til Vimeo brukernavnet ditt nedenfor for å legge til en link på profilen din."
+          placeholder: "Vimeo brukernavnet ditt"
+        github:
+          about: "Legg til GitHub brukernavnet ditt nedenfor for å legge til en link på profilen din."
+          placeholder: "GitHub brukernavnet ditt"
+        battlenet:
+          about: "Legg til Battle.net BattleTaggen din nedenfor for å legge til en link på profilen din."
+          placeholder: "Battle.net Battle Taggen din (Bruker#1234)"
+        steam:
+          about: "Legg til Steam Community brukernavnet ditt nedenfor for å legge til en link på profilen din."
+          placeholder: "Steam Community brukernavnet ditt"
+        raptr:
+          about: "Legg til Raptr brukernavnet ditt nedenfor for å legge til en link på profilen din."
+          placeholder: "Raptr brukernavnet ditt"
+        discord:
+          about: "Legg til Discord taggen din nedenfor for å legge til en link på profilen din."
+          placeholder: "Discord taggen din (Bruker#1234)"
+        tumblr:
+          about: "Legg til Tumblr blog navnet ditt nedenfor for å legge til en link på profilen din."
+          placeholder: "Tumblr blog navnet ditt"
+        soundcloud:
+          about: "Legg til SoundCloud brukernavnet ditt nedenfor for å legge til en link på profilen din."
+          placeholder: "SoundCloud brukernavnet ditt"
+        dailymotion:
+          about: "Legg til Dailymotion brukernavnet ditt nedenfor for å legge til en link på profilen din."
+          placeholder: "Dailymotion brukernavnet ditt"
+        kickstarter:
+          about: "Legg til Kickstarter brukernavnet ditt nedenfor for å legge til en link på profilen din."
+          placeholder: "Kickstarter brukernavnet ditt"
+        mobcrush:
+          about: "Legg til Mobcrush brukernavnet ditt nedenfor for å legge til en link på profilen din."
+          placeholder: "Mobcrush brukernavnet ditt"
+        osu:
+          placeholder: "Osu! ID nummeret ditt"
+  library:
+    sorting:
+      directions:
+        started:
+          desc: "Nylige først"
+          asc: "Eldste først"
+        finished:
+          desc: "Nylige først"
+          asc: "Eldste først"
+        added:
+          desc: "Nylige først"
+          asc: "Eldste først"
+        progress:
+          desc: "Mest først"
+          asc: "Minst først"
+        rating:
+          desc: "Høyest først"
+          asc: "Lavest først"
+        title:
+          desc: "A-Z"
+          asc: "Z-A"
+        length:
+          desc: "Lengste først"
+          asc: "Korteste først"
+    sidebar:
+      media-select: "{type, select, anime {{user}'s anime} manga {{user}'s manga} other {}}"
+      manage: "Behandle bibliotek"
+      import: "Importer bibliotek"
+      export: "Eksporter bibliotek"
+      reset: "Nullstill bibliotek"
+      reset-loading: "Nullstiller …"
+      issues:
+        header: "Bibliotek problemer"
+        reactions: "{count} fullførte media mangler <b>reaksjoner</b>"
+        fix: "fiks"
+    list:
+      edit: "Rediger oppføring"
+      list-edit: "Rediger"
+      more: "Mer"
+      unstarted: "Ikke påbegynt"
+      unrated: "Ingen score"
+      table-header:
+        title: "{type, select, anime {Anime tittel} manga {Manga tittel} other {}}"
+        rating: "Score"
+        progress: "Fremdrift"
+        volumes: "Volum"
+      add-reaction: "Legg til reaksjon"
+      empty:
+        search: "Kunne ikke finne noen bibliotek oppføringer med søkekriteriene dine."
+        header: "Ser ut som biblioteket ditt er helt tomt! Klar for å starte noe nytt?"
+        guest-header: "Ser ut som at {user} ikke har noenting i biblioteket sitt."
+        button: "Bla i {type}"
+    grid:
+      view-media: "Vis {type, select, anime {anime} manga {manga} other {}}"
+    edit:
+      status: "Bibliotek status"
+      progress: "Fremdrift"
+      units: "{type, select, anime {av {num} episoder} manga {av {num} kapitler} other {}}"
+      volumes: "Volumer"
+      volume-units: "av {num} volumer"
+      rating: "Score"
+      rewatch: "{type, select, anime {Ganger sett på nytt} manga {Ganger lest på nytt} other {}}"
+      start-rewatch: "{type, select, anime {Se på nytt} manga {Les på nytt} other {}}"
+      privacy: "Personvern"
+      started: "Påbegynt"
+#page: settings
+settings:
+  blocking:
+    button-block: "Blokker"
+    loading: "Laster inn brukere …"
+    button-unblock: "Opphev blokkering"
+    more: "Last mer"
+    not-blocking: "Du blokkerer ikke noen for øyeblikket."
+  exports:
+    modal:
+      helper: "Vi vill oppdatere anime og manga listene dine på {site} hver gang du oppdaterer dem på Kitsu."
+    header: "Eksporter"
+    remove: "Fjern eksporterer"
+    disabled: "Din MAL eksporterer har blitt avslått av den følgende årsaken: <strong>{reason}</strong>"

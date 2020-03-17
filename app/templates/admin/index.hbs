@@ -1,11 +1,11 @@
-<h1>Admin Panel</h1>
+<h1>{{t "admin.header"}}</h1>
 <div class="w-100">
-  <p>Current Deployed Version: {{app-version}}</p>
+  <p>{{t "admin.deployed-version" version=(app-version)}}</p>
   <ul>
-    <li><a href={{href-to "admin.reports.index"}}>Reports</a></li>
-    <li><a href="/api/admin" target="_blank">Rails Admin</a></li>
-    <li><a href="/api/sidekiq" target="_blank">Sidekiq</a></li>
-    <li><a href="/api/pghero" target="_blank">PGHero</a></li>
-    <li><a href="/api/flipper" target="_blank">Flipper</a></li>
+    <li><a href={{href-to "admin.reports.index"}}>{{t "admin.links.index"}}</a></li>
+    <li><a href="/api/admin" target="_blank">{{t "admin.links.admin"}}</a></li>
+    <li><a href="/api/sidekiq" target="_blank">{{t "admin.links.sidekiq"}}</a></li>
+    <li><a href="/api/pghero" target="_blank">{{t "admin.links.pghero"}}</a></li>
+    <li><a href="/api/flipper" target="_blank">{{t "admin.links.flipper"}}</a></li>
   </ul>
 </div>

@@ -1,0 +1,1189 @@
+---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Поиск аниме"
+  manga:
+    index: "Поиск манги"
+  media:
+    show:
+      units: "{type, select, anime {Серии} manga {Главы} other {}}"
+      characters: "Персонажи"
+      reactions: "Реакции"
+      franchise: "Франшиза"
+  explore:
+    index: "Поиск {mediaType, select, anime {Аниме} manga {Манги} other {}}"
+    more:
+      top-current: "Популярн{type, select, Anime {ое аниме в онгоинге} Manga {ая выходящая манга} other {}}"
+      top-upcoming: "Топ предстоящ{type, select, Anime {их Аниме} Manga {ей Манги} other {}}"
+      highest-rated: "Наиболее оценённ{type, select, Anime {ые Аниме} Manga {ая Манга} other {type}}"
+      most-popular: "Самые популярн{type, select, Anime {ые Аниме} Manga {ая Манга} other {type}}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Недавно вышедш{category}{type, select, Anime {ие Аниме} Manga {ая Манга} other {type}}"
+        trending: "Популярн{category}{type, select, Anime {ые Аниме} Manga {ая Манга} other {type}}"
+        most-popular: "Самые Популярн{category}{type, select, Anime {ые Аниме} Manga {ая Манга} other {type}}"
+  not-found: "Не найдено"
+  server-error: "Произошла ошибка сервера"
+  users:
+    index: "Профиль {user}"
+    library: "Библиотека {user}"
+    reviews: "Отзывы {user}"
+    reactions: "Реакции {user}"
+    followers: "Подписчики {user}"
+    following: "{user} подписан"
+    groups: "Группы {user}"
+    stats: "Статистика {user}"
+  posts: "Пост {user}"
+  comments: "Комментарий от {user}"
+  reviews: "Обзор от {user}"
+  notifications: "Уведомления"
+  feedback:
+    bugs: "Ошибки"
+    feature-requests: "Заявки на нововведения"
+    database-requests: "Запросы для базы данных"
+    mobile-bugs: "Ошибки мобильного приложения"
+    mobile-features: "Функционал мобильного приложения"
+  admin:
+    index: "Админ"
+    reports: "Жалобы"
+  groups:
+    index: "Группы"
+    new: "Создать группу"
+    group:
+      group-page:
+        rules: "Правила {group}"
+        members: "Члены {group}"
+        leaders: "Лидеры {group}"
+      dashboard:
+        index: "Обзор {group}"
+        reports: "Жалобы на {group}"
+        tickets: "Заявки {group}"
+        members: "Члены {group}"
+        leaders: "Лидеры {group}"
+        settings: "Настройки {group}"
+  group-invite: "Приглашение в группу"
+#head
+head:
+  users:
+    description: "{user} иcпользует Kitsu для отслеживания своего прогресса и впечатлений от аниме и манги."
+#header
+header:
+  library: "Библиотека"
+  anime: "Аниме"
+  manga: "Манга"
+  trending: "Популярные"
+  groups: "Группы"
+  feedback: "Обратная связь"
+  browse: "Обзор"
+  auth:
+    sign-in: "Войти"
+    sign-up: "Зарегистрироваться"
+  user:
+    profile: "Посмотреть профиль"
+    settings: "Настройки"
+    admin: "Админ"
+    logout: "Выйти"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Давайте немного расскажем о себе} 1 {Очень интересно! Теперь электронную почту!} 2 {Вроде всё правильно. Как насчёт пароля?} 3 {Прикольно! Давайте же создадим этот аккаунт!} other {}}"
+#page: dashboard
+dashboard:
+  quick-update:
+    filter:
+      all: "Все"
+      anime: "Аниме"
+      manga: "Манга"
+    empty:
+      html: "Контент, который вы обновили или добавили в своей <a href={link}>библиотеке</a> будет показан здесь для более быстрого доступа."
+      discover: "Поиск контента"
+    media:
+      complete: "Завершен"
+      unstarted: "Не начато"
+      unit: "{type, select, anime {Серия {num} {total, select, undefined {} other {из {total}}}} manga {Глава {num} {total, select, null {} other {из {total}}}} other {}}"
+    overlay:
+      button:
+        update: "{type, select, anime {Серия} manga {Глава} other {}} {number}"
+        complete: "Завершено"
+        tooltip:
+          empty: "Обновить библиотеку"
+          content: "Создать пост и обновить библиотеку"
+      discussion: "Посмотреть обсуждение"
+      edit: "Редактировать запись библиотеки"
+      popout: "Всплывающий редактор"
+      editor:
+        placeholder: "(Необязательно) Поделитесь своим мнением о {type, select, anime {серии} manga {главе} other {}} {number}"
+  onboarding:
+    welcome: "Привет {user}, добро пожаловать на Kitsu!"
+    about: "Это глобальная лента. Она заполнена недавней активностью всех пользователей Kitsu, даже Вас! Когда вы решитесь подписаться на интересных Вам пользователей, мы автоматически переключим вашу ленту с Глобального режима в режим Подписок."
+    action: "Почему бы Вам не создать пост про себя и представиться, используя форму ниже? Вы можете сказать что-то простое, например: \"Привет всем! Я тут новенький на Kitsu\" или рассказать какой Вы креативный и остроумный!"
+  groups:
+    header: "Мои группы"
+  announcements:
+    button: "Подробнее"
+  feed:
+    following: "Подписки"
+    anime: "Аниме"
+    manga: "Манга"
+    global: "Глобальная"
+#page: anime/manga
+media:
+  index:
+    search: "Поиск по названию, персонажу, или составу…"
+    filter: "Фильтр"
+    remove: "Убрать"
+    filters:
+      year: "Год"
+      score: "Средняя оценка"
+      seasons: "Сезоны"
+      streamers: "Онлайн-просмотр (США)"
+      units: "{type, select, anime {Серии} manga {Главы} other {}}"
+      rating: "Рейтинг"
+      categories: "Категории"
+      types: "Типы"
+    sort:
+      popularity: "Популярность"
+      rating: "Средняя оценка"
+      date: "Дата"
+      recent: "Недавно добавленные"
+  show:
+    navigation:
+      summary: "Краткое описание"
+      units: "{type, select, anime {Серии} manga {Главы} other {}}"
+      characters: "Персонажи"
+      reactions: "Реакции"
+      franchise: "Франшиза"
+    sidebar:
+      watch: "Смотреть онлайн"
+    summary:
+      ratings:
+        community: "{rating}% одобрено сообществом"
+        match: "{rating}% в общем"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Ранг #{rank} (Популярное аниме)} manga {Ранг #{rank} (Популярная манга)} other {}}"
+          rating: "{type, select, anime {Ранг #{rank} (Самые оцененные аниме)} manga {Ранг #{rank} (Самая оцененная манга)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} Самое популярное} manga {#{rank} Самая популярная} other {}}"
+          rating: "{type, select, anime {#{rank} Высоко оценённое} manga {#{rank} Высоко оценённая} other {}}"
+      categories: "Категории"
+      relationships:
+        header: "Ещё из этой серии"
+        more: "Посмотреть все в {title}"
+      reactions:
+        header: "Реакции"
+        more: "Посмотреть больше реакций"
+        sorts:
+          -upVotesCount: "Популярные"
+          -createdAt: "Недавние"
+        new: "Новая реакция"
+        edit: "Моя реакция"
+        empty: "Похоже, что никто еще не отреагировал на это"
+      characters:
+        header: "Персонажи"
+        more: "Просмотреть всех персонажей"
+      titles:
+        header: "Альтернативные названия"
+        ar: "Арабский"
+        ar_ar: "Арабский" #Invalid use ar
+        de_de: "Немецкий"
+        en: "Английский"
+        en_cn: "Китайский (Пиньинь)"
+        en_gb: "Английский (Великобритания)"
+        en_jp: "Японский (Ромадзи)"
+        en_kr: "Корейский (Ромаджа)"
+        en_th: "Тайский (Романизированный)"
+        en_us: "Английский (США)"
+        es_es: "Испанский"
+        fr_fr: "Французский"
+        id_id: "Индонезийский"
+        it_it: "Итальянский"
+        ja_jp: "Японский"
+        ko_kr: "Корейский"
+        nl_nl: "Нидерландский"
+        pt_br: "Португальский (Бразильский)"
+        pt_pt: "Португальский"
+        ru_ru: "Русский"
+        th_th: "Тайский"
+        uk_ua: "Украинский"
+        vi_vi: "Въетнамский" #Invalid use vi_vn
+        vi_vn: "Въетнамский"
+        zh_cn: "Китайский (упрощенный)"
+        zh_tw: "Китайский (традиционный)"
+        synonyms: "Синонимы"
+      information:
+        header: "Детали {type, select, anime {об Аниме} manga {о Манге} other {}}"
+        type: "Тип"
+        volumes: "Тома"
+        unit: "{type, select, anime {Серий} manga {Глав} other {}}"
+        start: "{type, select, anime {Показано} manga {Издано} other {}}"
+        status: "Статус"
+        tba: "Ожидается"
+        season: "Сезон"
+        producers: "Продюсеры"
+        licensors: "Лицензиары"
+        studios: "Студии"
+        serialization: "Сериализация"
+        duration: "Длина"
+        total: "{total} всего"
+        length: "{count, plural, =1 {{length} минут} other {{length} минут каждая}}"
+        rating: "Рейтинг"
+        expand:
+          false: "Подробнее"
+          true: "Скрыть"
+      feed:
+        header: "Лента сообщества"
+      trailer: "Посмотреть трейлер"
+    units:
+      unit: "{type, select, anime {Серия} manga {Глава} other {}}"
+      back: "Вернуться к списку {type, select, episode {серий} chapter {глав} other {}}"
+      pages: "{length} страниц"
+      date: "{type, select, episode {Показано} chapter {Выпущено} other {}}"
+      completed: "{type, select, episode {Просмотрено} chapter {Прочитано} other {Завершено}}"
+      feed:
+        header: "Обсуждение {type, select, episode {серии} chapter {главы} other {}}"
+    characters:
+      header: "Персонажи {title}"
+      sub-header: "{type, select, anime {Данный лист - это полный список персонажей и {language} актёров озвучки в аниме {title}} manga {Данный лист- это список всех персонажей в манге {title}} other {}}"
+    reactions:
+      loading: "Загрузка реакций…"
+      delete: "Удалить реакцию"
+      report: "Пожаловаться на реакцию"
+      copy: "Скопировать ссылку на реакцию"
+    franchise:
+      header: "Франшиза {title}"
+      roles:
+        sequel: "Сиквел"
+        prequel: "Приквел"
+        alternative_setting: "Альт. сеттинг"
+        alternative_version: "Альт. версия"
+        side_story: "Побочный сюжет"
+        parent_story: "Основная история"
+        summary: "Краткое описание"
+        full_story: "Полная история"
+        spinoff: "Спин-офф"
+        adaptation: "Адаптация"
+        anime_adaptation: "Аниме"
+        manga_adaptation: "Манга"
+        character: "Персонаж"
+        other: "Прочие"
+  hide-posts:
+    text: "Скрыть посты о {media}"
+    info: "Посты не будут появляться в Вашей ленте подписок или {type}"
+  show-posts:
+    text: "Показать посты о {media}"
+    info: "Посты будут появляться в Вашей ленте подписок или {type}"
+#page: users
+users:
+  profile:
+    edit: "Редактировать"
+  admin:
+    button: "Админ"
+    past-names: "Показать прошлые имена"
+    alt-accounts: "Показать альтернативные аккаунты"
+    delete-content: "Удалить пользовательский контент"
+    ban: "Забанить"
+  navigation:
+    activity: "Действия"
+    library: "Библиотека"
+    reviews: "Отзывы"
+    reactions: "Реакции"
+    followers: "Подписчики"
+    following: "Подписки"
+    groups: "Группы"
+  edit-modal:
+    cover: "Изменить обложку"
+    navigation:
+      about: "О себе"
+      profile-links: "Ссылки в профиле"
+      favorites: "Избранное"
+    about:
+      header: "О себе"
+      location:
+        label: "Местоположение"
+        placeholder: "Где вы живёте?"
+      birthday: "День рождения"
+      gender:
+        label: "Пол"
+        options:
+          secret: "Это секрет"
+          male: "Мужской"
+          female: "Женский"
+          custom: "Настраиваемый"
+      waifu:
+        label: "Вайфу"
+        placeholder: "Вайфу/Хасбэндо"
+        search: "Найдите свою вторую половинку"
+      bio:
+        label: "Биография"
+        placeholder: "Расскажите миру о себе."
+    profile-links:
+      header: "Ссылки в профиле"
+      sites:
+        website:
+          about: "Введите ссылку на свой персональный сайт, чтобы добавить ссылку на него на своей странице."
+          placeholder: "URL адрес вашего сайта"
+        twitter:
+          about: "Введите никнейм своего аккаунта в Twitter, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Twitter (@Username)"
+        facebook:
+          about: "Введите ссылку на свой аккаунт в Facebook, чтобы добавить ссылку на него на своей странице."
+          placeholder: "URL адрес вашей страницы Facebook"
+        youtube:
+          about: "Введите ссылку на свой канал в YouTube, чтобы добавить ссылку на него на своей странице."
+          placeholder: "URL адрес вашего канала YouTube"
+        google:
+          about: "Введите ссылку на свой аккаунт в Google+ или имя пользователя, чтобы добавить ссылку на него на своей странице."
+          placeholder: "URL адрес Вашей страницы в Google+ или имя пользователя (+Username)"
+        instagram:
+          about: "Введите Ваше имя пользователя Instagram, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя в Instagram"
+        twitch:
+          about: "Введите Ваше имя пользователя Twitch, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Twitch"
+        vimeo:
+          about: "Введите Ваше имя пользователя Vimeo, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Vimeo"
+        github:
+          about: "Введите Ваше имя пользователя GitHub, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя GitHub"
+        battlenet:
+          about: "Введите Ваш Battle.net BattleTag, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваш Battle.net BattleTag (пользователь#1234)"
+        steam:
+          about: "Введите Ваше имя пользователя сообщества Steam, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя сообщества Steam"
+        raptr:
+          about: "Введите Ваше имя пользователя Raptr, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Raptr"
+        discord:
+          about: "Введите ваш тэг Discord, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваш тэг Discord (User#1234)"
+        tumblr:
+          about: "Введите Ваше название блога Tumblr, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Название вашего Tumblr блога"
+        soundcloud:
+          about: "Введите Ваше имя пользователя SoundCloud, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя SoundCloud"
+        dailymotion:
+          about: "Введите Ваше имя пользователя Dailymotion, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Dailymotion"
+        kickstarter:
+          about: "Введите Ваше имя пользователя Kickstarter, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Kickstarter"
+        mobcrush:
+          about: "Введите Ваше имя пользователя Mobcrush, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Mobcrush"
+        osu:
+          about: "Введите Ваш номер osu! ID, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваш номер osu! ID"
+        patreon:
+          about: "Введите Ваше название проекта на Patreon, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Название вашего проекта Patreon"
+        deviantart:
+          about: "Введите Ваше имя пользователя DeviantArt, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя DeviantArt"
+        dribbble:
+          about: "Введите Ваше имя пользователя Dribbble, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Dribbble"
+        imdb:
+          about: "Введите ссылку на свой профиль в IMDb, чтобы добавить ссылку на него на своей странице."
+          placeholder: "URL вашего IMDb профиля"
+        lastfm:
+          about: "Введите Ваше имя пользователя Last.fm, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Last.fm"
+        letterboxd:
+          about: "Введите Ваше имя пользователя Letterboxd, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Letterboxd"
+        medium:
+          about: "Введите Ваше имя пользователя Medium или название публикации, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Medium (@user) или название публикации"
+        playerme:
+          about: "Введите Ваше имя пользователя Player.me, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Player.me"
+        reddit:
+          about: "Введите Ваше имя пользователя Reddit, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Reddit"
+        trakt:
+          about: "Введите Ваше имя пользователя Trakt, чтобы добавить ссылку на него на своей странице."
+          placeholder: "Ваше имя пользователя Trakt"
+    favorites:
+      header: "Избранное"
+      anime: "Аниме"
+      manga: "Манга"
+      characters: "Персонажи"
+      remove: "Удалить избранное?"
+  activity:
+    onboarding:
+      welcome: "Привет, {user}, вся эта страница о ТЕБЕ!"
+      about: "Пока вы продолжаете пользоваться Kitsu, Ваша <strong>личная лента</strong> начнёт заполняться аниме и мангой, которые вы посмотрели, прочитали, завершили или планируете посмотреть. Также, вы можете писать, отправлять изображения, видео в свою ленту используя форму ниже. Ваши публикации будут видны всем и будут оценены Вашими подписчиками и пользователями из глобальной ленты."
+      action: "Устройтесь как дома. Загрузите изображение на аватарку и обложку! Нажмите кнопку <span>Редактировать</span> сверху, чтобы начать."
+    about:
+      empty: "Это секрет"
+      gender:
+        secret: "Это секрет"
+        male: "Мужской"
+        female: "Женский"
+    stats:
+      headings:
+        anime: "Статистика Аниме"
+        manga: "Статистика Манги"
+      chapters-read: "глав прочитано."
+      time-breakdown: "аниме просмотрено в целом."
+      empty:
+        header: "Похоже, что у Вас пока что мало данных! Готовы начать что-нибудь новое?"
+        guest-header: "Похоже, что {user} пока ещё не имеет никакой статистики."
+  library:
+    search: "Поиск в библиотеке {name}…"
+    sorting:
+      label: "Сортировать по:"
+      options:
+        watched: "Дате изменения"
+        started: "Дате начала"
+        finished: "Дате окончания"
+        added: "Дате добавления"
+        progress: "Прогрессу"
+        rating: "Рейтингу"
+        title: "Названию"
+        length: "Длине"
+      directions:
+        watched:
+          desc: "Сначала недавние"
+          asc: "Сначала старые"
+        started:
+          desc: "Сначала недавние"
+          asc: "Сначала старые"
+        finished:
+          desc: "Сначала недавние"
+          asc: "Сначала старые"
+        added:
+          desc: "Сначала недавние"
+          asc: "Сначала старые"
+        progress:
+          desc: "Самые первые"
+          asc: "Наименее первые"
+        rating:
+          desc: "Сначала наивысшие"
+          asc: "Сначала наименьшие"
+        title:
+          desc: "A-Z"
+          asc: "Z-A"
+        length:
+          desc: "Сначала длиннейшие"
+          asc: "Сначала кратчайшие"
+    sidebar:
+      media-select: "{type, select, anime {Аниме {user}} manga {Манга {user}} other {}}"
+      manage: "Управление библиотекой"
+      import: "Импортировать библиотеку"
+      export: "Экспортировать библиотеку"
+      reset: "Сбросить библиотеку"
+      reset-loading: "Производится сброс…"
+      reset-confirmation: "Это приведет к удалению всей библиотеки, связанных с ней отзывов и реакций. Вы уверены, что хотите продолжить?"
+      issues:
+        header: "Проблемы с библиотекой"
+        reactions: "У {count} просмотренных тайтлов отсутствуют <b>реакции</b>"
+        fix: "Исправить"
+    list:
+      edit: "Редактировать запись"
+      list-edit: "Редактировать"
+      more: "Ещё"
+      unstarted: "Не начато"
+      unrated: "Нет оценки"
+      progress: "{type, select, anime {Эп. {progress}} manga {Гл. {progress}} other {}}"
+      table-header:
+        title: "{type, select, anime {Название Аниме} manga {Название Манги} other {}}"
+        rating: "Рейтинг"
+        progress: "Прогресс"
+        volumes: "Тома"
+      add-reaction: "Добавить реакцию"
+      empty:
+        search: "Не найдено ни одной библиотечной записи по вашему запросу."
+        header: "Похоже, ваша библиотека пуста! Готовы начать что-то новое?"
+        guest-header: "Похоже, что у {user} нет записей в библиотеке."
+        button: "Просмотр {type, select, anime {Аниме} manga {Манги} other {}}"
+    grid:
+      view-media: "Просмотр {type, select, anime {Аниме} manga {Манги} other {}}"
+    edit:
+      status: "Статус Библиотеки"
+      progress: "Прогресс"
+      units: "{type, select, anime {{num} серий} manga {{num} глав} other {}}"
+      volumes: "Тома"
+      volume-units: "из {num} томов"
+      rating: "Оценка"
+      rewatch: "{type, select, anime {Количество перепросмотров} manga {Количество перечтений} other {}}"
+      start-rewatch: "{type, select, anime {Начал пересматривать} manga {Начал перечитывать} other {}}"
+      privacy: "Приватность"
+      started: "Начато"
+      finished: "Закончено"
+      notes: "Личные заметки"
+      remove: "Удалить из библиотеки"
+      save: "Сохранить изменения"
+      saving: "Сохранение…"
+    bulk:
+      selected: "{type, select, anime {выбрано {num} аниме} manga {выбрано {num} тайтлов манги} other {}}"
+      select-all: "Выделить все"
+      select-none: "Отменить выделение"
+      remove: "Удалить <strong>{num}</strong>"
+      move-to: "Переместить <strong>{num}</strong> в…"
+      remove-loading: "Удаление…"
+      update-loading: "Обновление…"
+  groups:
+    sort:
+      newest: "Недавно присоединившиеся"
+      oldest: "Старейшие"
+  reactions:
+    empty: "У этого пользователя нет реакций"
+    filters:
+      all: "Все реакции"
+      anime: "Реакции аниме"
+      manga: "Реакции манги"
+    sorts:
+      best: "Лучшие"
+      new: "Новые"
+  hide-posts:
+    text: "Скрыть посты от {user}"
+    info: "Посты не будут появляться в Вашей ленте подписок"
+  show-posts:
+    text: "Показать посты от {user}"
+    info: "Посты будут появляться в Вашей ленте подписок"
+  followers:
+    not-found: "Пользователи не найдены."
+    loading: "Загрузка пользователей…"
+  following:
+    not-found: "Пользователи не найдены."
+    loading: "Загрузка пользователей…"
+  reviews:
+    not-found: "Отзывы не найдены."
+    loading: "Загрузка отзывов…"
+#page: settings
+settings:
+  navigation:
+    header: "Настройки"
+    profile: "Профиль"
+    notifications: "Уведомления"
+    password: "Пароль"
+    privacy: "Конфиденциальность"
+    linked-accounts: "Привязанные аккаунты"
+    import: "Импорт"
+    export: "Экспорт"
+    blocking: "Блокировки"
+    account: "Учетная запись"
+  account:
+    header: "Учетная запись"
+    sub-header: "Опасно! Процесс удаления аккаунта необратим."
+    delete: "Удалить учетную запись"
+    confirm-title: "Удалить учетную запись"
+    confirm-text: "Нам жаль, что вы уходите, уверены, что хотите продолжить?"
+  apps:
+    header: "Приложения"
+  blocking:
+    header: "Блокировки"
+    sub-header: "Когда вы кого-то заблокируете, этот человек больше не сможет Вас упомянуть, просматривать Ваш профиль и видеть Ваши публикации в ленте."
+    title: "Заблокировать пользователей"
+    placeholder: "Поиск пользователей для блокировки…"
+    button-block: "Заблокировать"
+    loading: "Загрузка пользователей…"
+    button-unblock: "Разблокировать"
+    more: "Загрузить еще"
+    not-blocking: "Сейчас вы никого не блокируете."
+  exports:
+    modal:
+      header: "Синхронизировать с {site}"
+      helper: "Мы будем обновлять Ваш список аниме и манги на {site} всегда, когда вы их обновите на Kitsu."
+      create: "Синхронизировать с {site}"
+    header: "Экспортировать"
+    sub-header: "Автоматически синхронизируйте Вашу библиотеку Kitsu на MyAnimeList."
+    loading: "Загрузка экспорта…"
+    remove: "Удалить экспортер"
+    disabled: "Ваш экспорт MAL был отключен по следующей причине: <strong>{reason}</strong>"
+    create: "Настройка экспорта в аккаунт MyAnimeList"
+    download: "Загрузить библиотеку {kind}"
+    recent: "Недавние синхронизации"
+    sync-header: "Синхронизация с MyAnimeList"
+    no-logs: "Мы обрабатываем вашу библиотеку и синхронизируем ее с MyAnimeList. Держитесь крепче!"
+    logs:
+      header:
+        media: "Название"
+        library-status: "Статус"
+        progress: "Прогресс"
+        rating: "Рейтинг"
+        reconsumes: "Перепросмотры"
+        action: "Действие"
+        status: "Статус"
+      action:
+        create: "Создать"
+        update: "Обновить"
+        destroy: "Удалить"
+      status:
+        pending: "В процессе"
+        success: "Успешно"
+        error: "Ошибка"
+  imports:
+    header: "Импорты"
+    sub-header: "Импортировать медиа из других источников"
+    button: "Импортировать медиа"
+    past-imports: "Ваши предыдущие импорты"
+    loading: "Загрузка импортов…"
+    status: "Статус:"
+    entries: "Всего записей найдено:"
+    error: "Кажется ваш импорт не удался :( &mdash; Мы хотим исправить это для вас, пожалуйста, напишите нам <a href=\"mailto:help@kitsu.io\">на электронную почту</a>."
+    more: "Загрузить ещё"
+  index:
+    header: "Профиль"
+    sub-header: "Настройки аккаунта и региона"
+    name: "Никнейм"
+    url: "URL профиля"
+    email: "Email"
+    email-message: "Email не будет отображаться публично."
+    language: "Язык сайта"
+    translate-help: "Заинтересованы в переводе? <a href=\"https://crowdin.com/project/kitsu-web\">Переводите здесь!</a>"
+    time-zone: "Часовой пояс"
+    content: "Контент на Kitsu"
+    theme: "Тема сайта"
+    country: "Страна"
+    titles: "Названия"
+    titles-message: "Как будут отображаться названия тайтлов."
+    rating: "Тип рейтинга"
+    rating-message: "Выберите, как бы вы хотели оценивать просмотренный или прочитанный контент."
+    adult: "Контент для взрослых"
+    adult-message: "При скрытии контента для взрослых вы не увидите 18+ контент в ленте, библиотеках или поиске."
+    update: "Обновить профиль"
+  linked-accounts:
+    header: "Привязанные аккаунты"
+    sub-header: "Подключите сторонние аккаунты к Kitsu"
+    facebook: "Facebook"
+    disconnect: "Отключить Facebook"
+    connect: "Подключить Facebook"
+  notifications:
+    header: "Push-уведомления"
+    sub-header: "Общие уведомления сайта"
+    contexts:
+      web: "Сайт"
+      email: "Email"
+      mobile: "Мобильное приложение"
+    descriptions:
+      mentions: "Кто-то <strong>упомянул</strong> меня в посте или комментарии"
+      replies: "Кто-то <strong>ответил</strong> на мой пост или комментарий"
+      likes: "Кто-то <strong>лайкнул</strong> мой пост или комментарий"
+      follows: "Кто-то <strong>подписался</strong> на меня"
+      posts: "Кто-то <strong>написал</strong> в моем профиле"
+      reaction_votes: "Кто-то <strong>лайкнул</strong> мою реакцию"
+      airing: "Вышла новая серия"
+    newsletter:
+      newsletter: "Новостная рассылка"
+      subscribed: "Подписан"
+      message: "Если эта опция включена, вы будете получать редкие (и очень остроумные) обновления по электронной почте о Kitsu написанные самим Джошем."
+    loading: "Загрузка настроек…"
+    update: "Обновить настройки"
+  password:
+    header: "Пароль"
+    sub-header: "Изменить пароль"
+    new-pswd: "Новый пароль"
+    confirm-pswd: "Подтвердите пароль"
+    update-pswd: "Обновить пароль"
+  privacy:
+    header: "Конфиденциальность"
+    sub-header: "Настройте возможность других пользователей просматривать ваш контент"
+    discover: "Обнаружение"
+    checkbox: "Показ в Глобальной Ленте"
+    message: "Если отключено, Ваши публикации будут доступны только для Ваших подписчиков и посетителей Вашей страницы."
+    update: "Обновить профиль"
+#page: feedback
+feedback:
+  header: "Обратная связь"
+  bugs: "Баги"
+  features: "Заявки на нововведения"
+  database: "Запросы для базы данных"
+  mobile-bugs: "Ошибки мобильного приложения"
+  mobile-features: "Функционал мобильного приложения"
+#page: groups
+groups:
+  index:
+    call-to-action: "Каждый может создавать и открывать для себя группы. Каждая группа сосредоточена вокруг темы или активности."
+    create-btn: "Создать группу"
+  create:
+    header: "Создать группу"
+    form:
+      required: "Требуется"
+      name: "Название"
+      tagline: "Подзаголовок"
+      about: "Описание"
+      rules: "Правила"
+      neighbors: "Соседи"
+      neighbors-placeholder: "Поиск группы"
+      privacy: "Приватность"
+      privacy-options:
+        open: "Открытая"
+        closed: "Приватная"
+        restricted: "Ограниченная"
+      privacy-features:
+        open: "<li>Любой может просматривать</li> <li>Любой может присоединиться к</li> <li>Любой может постить или комментировать</li>"
+        closed: "<li>Скрыта от просмотра</li> <li>Пользователи могут войти только по приглашению</li> <li>Нельзя сделать открытой</li>"
+        restricted: "<li>Каждый может просматривать</li> <li>Каждый может присоединиться</li> <li>Только лидеры могут писать новые посты.</li>"
+      category: "Категория"
+      category-placeholder: "Выберите категорию"
+      avatar: "Аватар"
+      cover: "Обложка"
+      create-btn: "Создать свою группу!"
+      save-btn: "Сохранить"
+      helper:
+        name:
+          header: "Название"
+          desc: "Названия групп должны четко объяснять суть вашей группы, но вы все еще можете быть творческими и развлекаться с ними!"
+        tagline:
+          header: "Подзаголовок"
+          desc: "Опишите назначение вашей группы в 60 символах или меньше. Вы сможете добавить больше информации позже."
+        about:
+          header: "Описание"
+          desc: "Объясните цель вашей группы поподробнее, поделитесь важной информацией или что-нибудь еще."
+        rules:
+          header: "Правила"
+          desc: "Добавьте какие-нибудь правила для членов вашей группы. Эти правила поддерживают разметку!"
+        neighbors:
+          header: "Соседи"
+          desc: "Добавьте похожие группы в ваше соседство, чтобы члены вашей группы могли открыть для себя новые сообщества!"
+        privacy:
+          header: "Конфиденциальность"
+          desc: "Ваши настройки конфиденциальности определяют, как открыта или закрыта ваша группа для публичного доступа. Если вы решите сделать вашу группу приватной, вы НЕ сможете сделать ее открытой в будущем."
+        category:
+          header: "Категория"
+          desc: "Kitsu использует категории для организации групп, чтобы помочь пользователям найти то, что они любят."
+        avatar:
+          header: "Аватар"
+          desc: "Это изображение будет использоваться в Kitsu для идентификации вашей группы."
+        cover:
+          header: "Обложка"
+          desc: "Это изображение будет отображаться в верхней части страницы вашей группы на рабочих столах. Бока могут быть слегка обрезаны в зависимости от размера экрана зрителя."
+      errors:
+        neighbors-same: "Вы не можете добавить вашу группу как соседа."
+  dashboard-btn: "Панель управления"
+  join-group: "Вступить в группу"
+  leave-group: "Покинуть группу"
+  hide-posts:
+    text: "Скрыть посты от {group}"
+    info: "Посты не будут появляться в Вашей ленте подписок"
+  show-posts:
+    text: "Показать посты от {group}"
+    info: "Посты будут появляться в Вашей ленте подписок"
+  nsfw: "NSFW"
+  neighbors: "Соседи"
+  navigation:
+    activity: "Активность"
+    rules: "Правила"
+    members: "Участники"
+    leaders: "Лидеры"
+    neighbors: "Соседи"
+  activity:
+    feed-header: "Активность группы"
+    about: "О {group}"
+    members: "Участники"
+    feed-restricted: "Это - ограниченная группа. Все могут комментировать, только лидеры могут создавать публикации."
+  rules:
+    header: "Правила сообщества"
+    empty: "Привет! Похоже, вы используете правила сообщества Kitsu. Если вы хотите указать свои собственные правила, вы можете сделать это на вашей <a href={link}>странице настроек.</a>"
+  tickets:
+    search: "Поиск Заявок"
+    empty: "Ура! У вас нет заявок для обработки."
+    helper: "Заявки позволяют общаться с лидерами этой группы для решения любых возможных проблем. Напишите сообщение лидерам здесь дабы создать заявку."
+    filter:
+      open: "Открытые Заявки"
+      resolved: "Решённые Заявки"
+      all: "Все Заявки"
+    conversation:
+      title: "Заявка от <a href={link}>{name}</a>"
+      mark-resolved: "Отметить как решённая"
+      mark-closed: "Отметить как закрытая"
+      mark-open: "Отметить как открытая"
+      nav:
+        reply: "Ответить пользователю"
+        leader: "Примечание Лидера"
+      create-btn: "Создать заявку"
+      reply-btn: "Ответить"
+      reply-placeholder: "Напишите сообщение"
+      helper: "Напишите Ваше сообщение ниже, чтобы создать заявку! Лидеры этой группы ответят на Вашу заявку как можно скорее."
+  reports:
+    no-explanation: "Пояснение не представлено"
+    empty: "Ура! У вас нет жалоб для обработки."
+    filter:
+      open: "Открытые Жалобы"
+      resolved: "Решённые Жалобы"
+      all: "Все жалобы"
+    show-more: "Показать {num} жалоб"
+    hide-more: "Скрыть {num} жалоб"
+    status:
+      resolved: "Эта жалоба была решена пользователем {user}."
+      declined: "Эта жалоба была отклонена пользователем {user}."
+      escalated: "Эта жалоба была передана высшей инстанции пользователем {user}."
+    actions:
+      close: "Закрыть жалобу"
+      remove: "Удалить содержимое"
+      escalate: "Уведомить Kitsu"
+      view: "Просмотреть содержимое"
+  leaders:
+    list:
+      header: "Лидеры"
+      edit-btn: "Редактировать"
+      add-btn: "Добавить"
+      add-placeholder: "Участник группы"
+      not-found: "Не удалось найти участника группы с таким именем."
+      message-btn: "Отправить сообщение лидерам"
+      message-leader: "Вы лидер этой группы!"
+      modal:
+        header: "Права Лидера:"
+        owner: "Владелец группы"
+        tickets: "Управление заявками"
+        members: "Управление участниками"
+        leaders: "Управление Лидерами"
+        community: "Управление настройками"
+        content: "Управление контентом и жалобами"
+        owner-help: "Владельцы имеют все права доступа."
+        cancel-btn: "Отмена"
+        save-btn: "Сохранить права доступа"
+  dashboard:
+    back: "Вернуться в {group}"
+    navigation:
+      overview: "Обзор"
+      reports: "Жалобы"
+      tickets: "Заявки"
+      members: "Участники"
+      leaders: "Лидеры"
+      settings: "Настройки"
+    overview:
+      members:
+        header: "Участники"
+        today: "Присоединились сегодня"
+        total: "Всего участников"
+      activity:
+        header: "Активность пользователей"
+        posts: "Публикации сегодня"
+        comments: "Комментарии сегодня"
+      help-desk:
+        header: "Открытые Обращения"
+        tickets: "Заявки"
+        reports: "Жалобы"
+      tickets: "Последние Заявки"
+      reports: "Последние Жалобы"
+      log: "Журнал Лидера"
+    members:
+      invites:
+        header: "Ожидающие приглашения"
+        invited: "Приглашены"
+        revoke: "Отменить приглашение"
+        invite: "Пригласить"
+        placeholder: "Найдите пользователя, чтобы пригласить его. Он должен быть подписан на вас!"
+        empty: "Похоже, у вас нет приглашений в группу."
+      bans:
+        header: "Забаненные пользователи"
+        unban: "Разбанить"
+        ban: "Забанить"
+        placeholder: "Имя"
+        empty: "Ура! У вас нет забаненных пользователей."
+      members:
+        header: "Участники"
+        table:
+          users: "Пользователь"
+          permissions: "Ранг"
+          joined: "Присоединился"
+          actions: "Действия"
+        remove: "Исключить"
+        ban: "Забанить"
+    leaders:
+      chat:
+        header: "Чат Лидера"
+        post-btn: "Отправить"
+        placeholder: "Отправить сообщение лидерам"
+    audit:
+      user:
+        banned: "<a href={link}>{user}</a> забанен."
+        unbanned: "<a href={link}>{user}</a> разбанен."
+        invited: "<a href={link}>{user}</a> приглашён в сообщество."
+        granted: "выданы права пользователю <a href={link}>{user}</a>."
+        revoked: "удалены права у пользователя <a href={link}>{user}</a>."
+      group:
+        added_neighbor: "добавлена <a href={link}>{group}</a> в качестве соседа."
+        removed_neighbor: "удалена <a href={link}>{group}</a> в качестве соседа."
+        avatar_changed: "обновлён аватар {group}."
+        cover_changed: "обновлена обложка {group}."
+        locale_changed: "обновлён язык {group}."
+        rules_changed: "обновлены правила {group}."
+        nsfw_changed: "обновлён статус NSFW {group}."
+        about_changed: "обновлён раздел о группе {group}."
+        tagline_changed: "обновлён подзаголовок {group}."
+        category_changed: "обновлена категория {group}."
+      group-report:
+        resolved: "жалоба решена."
+        declined: "жалоба отклонена."
+        escalated: "жалоба передана."
+      group-ticket:
+        assigned: "назначена заявка пользователю <a href={link}>{user}</a>."
+        resolved: "заявка помечена как решенная."
+        created: "заявка переоткрыта."
+#page: group-invite
+group-invite:
+  header: "Приглашение в группу"
+  subtitle: "Вы были приглашены в {group} пользователем {sender}"
+  text: "Вы сможете получить доступ к странице {group} после принятия приглашения. Мы перенаправим Вас после принятия."
+  accept: "Принять"
+  decline: "Отклонить"
+  accepted: "Вы уже приняли это приглашение."
+  revoked: "Ваше приглашение было отклонено модератором группы."
+  declined: "Вы отклонили приглашение в группу."
+#page: explore
+explore:
+  view-more: "Показать еще"
+  search-placeholder: "Что вы ищете?"
+  advanced-search: "Или ищи с <a href=\"/{mediaType}\">расширенным поиском</a>"
+  no-data: "Хмм, кажется в этом разделе нет никакого контента."
+  widget:
+    related: "Похожие категории"
+    categories: "Категории"
+    favorite-categories: "Мои избранные категории"
+    no-favorites: "Избранные категории помогут улучшить ваши рекомендации."
+    more-categories: "Больше категорий…"
+  modal:
+    header: "Все категории"
+  favorite-button:
+    remove: "Удалить из избранного"
+    removing: "Удаление…"
+    create: "Добавить в избранное"
+    creating: "Добавление…"
+#page: media-reactions
+media-reactions:
+  create-account: "Создать Аккаунт"
+#page: password-reset
+password-reset:
+  password: "Пароль"
+  confirm: "Подтвердите пароль"
+  length: "Пароль должен содержать не менее 8 символов"
+  reset: "Сбросить пароль"
+  email: "Email"
+  send: "Отправить Email"
+#shared: media
+media-shared:
+  types:
+    anime:
+      All: "Все"
+      tv: "ТВ"
+      special: "Спешл"
+      ona: "ONA"
+      ova: "OVA"
+      movie: "Фильм"
+      music: "Клип"
+    manga:
+      All: "Все"
+      manga: "Манга"
+      novel: "Роман"
+      manhua: "Манхва"
+      oneshot: "Ваншот"
+      doujin: "Самиздат"
+      manhwa: "Манхва"
+      oel: "OEL"
+  statuses:
+    anime:
+      current: "Онгоинг"
+      finished: "Завершено"
+      upcoming: "Скоро"
+      unreleased: "Не выпущено"
+      tba: "Не объявлено"
+    manga:
+      current: "Выпускается"
+      finished: "Завершено"
+      upcoming: "Скоро"
+      unreleased: "Не выпущено"
+      tba: "Не аннонсировано"
+#shared: library
+library-shared:
+  all: "{type, select, anime {Всё Аниме} manga {Вся Манга} other {}}"
+  current: "{type, select, anime {Смотрю} manga {Читаю} other {}}"
+  planned: "{type, select, anime {Хочу посмотреть} manga {Хочу почитать} other {}}"
+  completed: "{type, select, anime {Просмотрено} manga {Прочитано} other {}}"
+  on_hold: "{type, select, anime {Отложено} manga {Отложено} other {}}"
+  dropped: "{type, select, anime {Брошено} manga {Брошено} other {}}"
+#shared: form:
+form-shared:
+  placeholders:
+    username: "Логин"
+    password: "Пароль"
+#component: auth-onboarding
+onboarding:
+  aozora-conflict:
+    title: "Ой, у вас уже есть учётная запись Kitsu! Который из аккаунтов хотите сохранить?"
+    info: "Публикации из ленты активности на обоих аккаунтах будут объеденены. Вся прочая информация об аккаунте будет переписана аккаунтом, который Вы выбрали ниже."
+  aozora-account-details:
+    submit: "Хорошо!"
+#component: follow-button
+follow-button:
+  follow: "Подписаться"
+  unfollow: "Отписаться"
+#component: kitsu-feed
+feeds:
+  embed:
+    preview: "Это предпросмотр вашего вложения."
+  uploads:
+    select: "Загрузить"
+    drop: "Перетащите для загрузки"
+    invalid: "Неверный тип файла"
+    uploading: "{number, plural, =1 {Загрузка фото… {progress}%} other {Загрузка {number} фото… {progress}%}}"
+  filter:
+    all: "Вся активность"
+    media: "Медиа-активность"
+    user: "Активность пользователей"
+    following: "Отслеживаемая активность"
+  placeholder: "{type, select, user_aggr {Опубликовать в {subject}} group_aggr {Опубликовать в {subject}} media_aggr {Написать о {subject}} episode_aggr {Написать об Эпизоде {subject}} chapter_aggr {Написать о Главе {subject}} interest_timeline {Написать о {subject}} other {Создать пост}}…"
+  library:
+    updated: "перемещено в {status}"
+    rated: "оценено"
+    progressed: "{type, select, anime {Просмотрено {num} серий} manga {Прочитано {num} глав} other {}}"
+  post:
+    more: "Подробнее"
+    less: "Показать меньше"
+    meta:
+      media: "Потому что вы недавно смотрели {media}"
+    spoilers: "{type, select, anime {Эп. {num}} manga {Гл. {num}} other {}}"
+    sorts:
+      likes: "Лайки"
+      replies: "Ответы"
+      oldest: "Старейшие"
+  review:
+    review: "Обзор"
+    author: "Обзор от {user}"
+    progress: "{type, select, anime {Это обзор до серии номер {num}.} manga {Это обзор до главы номер {num}.} other {}}"
+  interest:
+    anime:
+      header: "Добро пожаловать в вашу Ленту Аниме!"
+      body: "Когда вы обновляете свою <a href={link}>библиотеку аниме</a>, вы увидите, что говорят другие о просмотренных вами тайтлах."
+    manga:
+      header: "Добро пожаловать в вашу Ленту Манги!"
+      body: "Когда вы обновляете свою <a href={link}>библиотеку манги</a>, вы увидите, что говорят другие о манге, которую вы читаете."
+    button: "Окей, понял"
+#component: image-form
+image-form:
+  help-text: "Нажмите здесь, чтобы выбрать изображение."
+#component: groups/group-list
+group-list:
+  filter: "Фильтр групп"
+  sort:
+    featured: "Рекомендуемые"
+    recent: "Недавняя активность"
+    newest: "Новые группы"
+    oldest: "Старейшие группы"
+#component: media/media-reaction
+media-reaction:
+  self-vote: "Вы не можете лайкать свою собственную реакцию."
+  edit: "Изменить реакцию"
+#component: modals/media-reaction
+reaction-modal:
+  post: "Отправить"
+  edit: "Редактировать"
+  edit-warning: "Внимание! Редактирование удалит ваши лайки."
+  delete: "Удалить реакцию"
+  placeholder: "{index, plural, =0 {Заставило меня переосмыслить некоторые важные жизненные решения.} =1 {Неожиданно круто! Много запоминающихся сцен.} =2 {Хоть это и не чашечка чая для каждого, это всё равно довольно интересно.} other {Переоценено, не тратьте своё время на это.}}"
+  skip: "Пропустить"
+#component: library-entry/*
+library-entry:
+  state:
+    header: "{state, select, false {Добавить в библиотеку} true {Обновить библиотеку} other {}}"
+    add-to-library: "Добавить"
+    seen-this: "{type, select, anime {Просмотрено} manga {Прочитано} other {}}"
+    want-to-watch: "{type, select, anime {Хочу посмотреть} manga {Хочу почитать} other {}}"
+    started-watching: "{type, select, anime {Начал смотреть} manga {Начал читать} other {}}"
+    watching-this: "Начато"
+    finished-this: "Завершено"
+    place-on-hold: "Отложено"
+    drop-this: "Брошено"
+    change-rating: "Изменить оценку"
+    remove-rating: "Удалить оценку"
+    rate-this: "Добавить оценку"
+    edit-library: "Редактировать запись библиотеки"
+    post-reaction: "Опубликовать реакцию"
+    edit-reaction: "Изменить реакцию"
+    rewatch: "{type, select, anime {Пересматриваю} manga {Перечитываю} other {}}"
+    remove-from-library: "Удалить из библиотеки"
+    saved-in: "Сохранено в <a href={link}>{status}</a>"
+    progress: "Прогресс"
+    not-rated: "Не оценено"
+  rating:
+    awful: "Ужасно"
+    meh: "Не очень"
+    good: "Хорошо"
+    great: "Отлично"
+#component: application/user-notifications
+user-notifications:
+  #Episode 113 of One Piece! aired
+  aired: "{type, select, chapter {Глава} episode {Серия} other {}} {number} {media} {type, select, chapter {выпущена} episode {вышла} other {}}"
+  aired-unknown: "{media} {type, select, manga {Выпущена} anime {Вышла} other {}} новая {type, select, manga {глава} anime {серия} other {}}"
+#ember-power-select
+selects:
+  loading: "Загрузка…"
+  none: "Ничего не найдено"
+  search: "Начните печатать для поиска"
+#ember-cp-validations
+errors:
+  description: "Это поле"
+  inclusion: "{description} не включен в список"
+  exclusion: "{description} зарезервировано"
+  invalid: "{description} неверно"
+  confirmation: "{description} не совпадает с {on}"
+  accepted: "{description} должен быть принят"
+  empty: "{description} не может быть пустым"
+  blank: "{description} не может быть пустым"
+  present: "{description} должно быть пустым"
+  collection: "{description} должен быть коллекцией"
+  singular: "{description} не может быть коллекцией"
+  tooLong: "{description} слишком длинный (максимум {max} символов)"
+  tooShort: "{description} слишком короткий (минимум {min} символов)"
+  before: "{description} должен быть перед {before}"
+  after: "{description} должен быть после {after}"
+  wrongDateFormat: "{description} должна быть в формате {format}"
+  wrongLength: "{description} неверная длина (должна быть {is} символов)"
+  notANumber: "{description} должно быть числом"
+  notAnInteger: "{description} должно быть целым числом"
+  greaterThan: "{description} должно быть больше чем {gt}"
+  greaterThanOrEqualTo: "{description} должно быть больше или равно {gte}"
+  equalTo: "{description} должно быть равно {is}"
+  lessThan: "{description} должно быть меньше чем {lt}"
+  lessThanOrEqualTo: "{description} должно быть меньше или равно {lte}"
+  otherThan: "{description} должно отличаться от {value}"
+  odd: "{description} должно быть нечетным"
+  even: "{description} должно быть чётным"
+  positive: "{description} должно быть положительным"
+  date: "{description} должно быть действительной датой"
+  email: "{description} должен быть действительным адресом электронной почты"
+  phone: "{description} должен быть действительным номером телефона"
+  url: "{description} должен быть рабочей ссылкой"
+  #Custom Errors
+  user:
+    name:
+      invalid: "Это поле может содержать только буквы, цифры и знаки подчеркивания"
+      numbers: "Это поле не должно состоять полностью из чисел"
+      starts: "Это поле должно начинаться с буквы или цифры"
+  load: "При загрузке контента произошла ошибка."
+  contentEmpty: "Хм, кажется, здесь пока что ничего нет."
+  request: "Упс! С запросом что-то пошло не так."
+  serverError:
+    title: "Упс! Похоже, на нашем сервере ошибка."
+    body: "Наша команда была уведомлена, пожалуйста, повторите попытку через несколько минут."
+#Loading
+loading: "Загрузка {subject, select, episode {Эпизода} chapter {Главы} episodes {Эпизодов} chapters {Глав} other {}}…"
+timeUnits:
+  years: "{count, plural, few {года} many {лет} =1 {год} other {лет}}"
+  months: "{count, plural, few {месяца} many {месяцев} =1 {месяц} other {месяцев}}"
+  days: "{count, plural, few {дня} many {дней} =1 {день} other {дней}}"
+  hours: "{count, plural, few {часа} many {часов} =1 {час} other {часов}}"
+  minutes: "{count, plural, few {минуты} many {минут} =1 {минута} other {минут}}"
+admin:
+  reports:
+    header: "Жалобы модераторов"
+    loading: "Загрузка жалоб…"
+    open: "Открытые"
+    closed: "Закрытые"
+  header: "Панель администратора"
+  deployed-version: "Текущая установленная версия: {version}"
+  links:
+    index: "Жалобы"
+    admin: "Админ Rails"
+    sidekiq: "Sidekiq"
+    pghero: "PGHero"
+    flipper: "Flipper"

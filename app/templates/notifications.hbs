@@ -10,7 +10,7 @@
           {{application/user-notifications/item tagName="li" class="notification-item" group=group}}
         {{else}}
           <div class="stream-error-wrapper">
-            You don't have any notifications!
+            {{t "notifications.none"}}
           </div>
         {{/each}}
       {{/infinite-pagination}}

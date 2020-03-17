@@ -1,13 +1,13 @@
 <div class="settings--header">
   <div class="container">
     <div class="row">
-      <h2>Mod Reports</h2>
+      <h2>{{t "admin.reports.header"}}</h2>
       <ul class="settings--navigation">
         {{#link-to "admin.reports.index" tagName="li" class="list-item"}}
-          <a href={{href-to "admin.reports.index"}}>Open</a>
+          <a href={{href-to "admin.reports.index"}}>{{t "admin.reports.open"}}</a>
         {{/link-to}}
         {{#link-to "admin.reports.closed" tagName="li" class="list-item"}}
-          <a href={{href-to "admin.reports.closed"}}>Closed</a>
+          <a href={{href-to "admin.reports.closed"}}>{{t "admin.reports.closed"}}</a>
         {{/link-to}}
       </ul>
     </div>

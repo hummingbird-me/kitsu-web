@@ -138,7 +138,7 @@ module.exports = function(environment) {
     google: {
       adwords: environment === 'production',
       ads: {
-        enabled: environment === 'production',
+        enabled: false, // environment === 'production',
         networkId: '20370372407'
       }
     },
@@ -163,6 +163,9 @@ module.exports = function(environment) {
     ENV.APP.LOG_TRANSITIONS_INTERNAL = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
     ENV.torii.providers['facebook-connect'].appId = '1189964281083789';
+    ENV['ember-cli-mirage'] = {
+      excludeFilesFromBuild: true
+    };
   }
 
   if (environment === 'test') {
