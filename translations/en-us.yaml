@@ -104,6 +104,9 @@ auth-modal:
       2 {Looks legit, how about a password?}
       3 {Cool- Let's create that account}
       other {}}"
+# page: about
+about:
+  header: "About Kitsu"
 # page: dashboard
 dashboard:
   quick-update:
@@ -184,6 +187,7 @@ media:
       rating: "Average Rating"
       date: "Date"
       recent: "Recently Added"
+  none: "No Results."
   show:
     navigation:
       summary: "Summary"
@@ -356,6 +360,73 @@ media:
   show-posts:
     text: "Show Posts about {media}"
     info: "Posts will appear in your Following or {type} Feed"
+# page: application
+application:
+  sandbox:
+    alert: "This is a sandbox. <br> All changes will be reset."
+# components
+components:
+  ad-unit: "Ads suck, but that's how we keep the lights on. Please whitelist us in your adblocker."
+  admin:
+    reports:
+      actions:
+        button: "Actions"
+        open: "Mark Open"
+        resolved: "Mark Resolved"
+        closed: "Mark closed"
+      table:
+        user: "User"
+        type: "Type"
+        reason: "Reason"
+        explanation: "Explanation"
+        moderator: "Moderator"
+        status: "Status"
+        actions: "Actions"
+  search:
+    header: "Search Results"
+    view: "view more"
+    load: "load more"
+    none: "no results"
+  sidebar-footer:
+    contact: "Contact"
+    terms: "Terms"
+  stream-feed:
+    create-post:
+      edit: "Edit"
+      create: "Post"
+      nsfw: "NSFW"
+      spoiler: "Spoiler"
+    edit-post:
+      header: "Edit Post"
+      error:
+        tagged: "Unfortunately, we can't allow you to edit your tagged media yet."
+    follow:
+      followed: "followed"
+      delete: "Delete Activity"
+    library:
+      delete: "delete"
+      deleting: "deleting…"
+    post:
+      pinned: "Pinned Post"
+      edited: "edited"
+      gate:
+        spoiler-nsfw: "Contains spoilers and NSFW."
+        nsfw: "This post contains NSFW content."
+        spoiler: "This post contains spoilers."
+        hover:
+          nsfw: "My body is ready!"
+          spoiler: "I can handle the truth!"
+      link: "Copy Link to Post"
+      unfollow: "Unfollow Post"
+      follow: "Follow Post"
+      show: "Show Post Content"
+      hide: "Hide Post Content"
+      edit: "Edit Post"
+      delete: "Delete Post"
+      unpin: "Unpin Post from Profile"
+      pin: "Pin Post to Profile"
+      report: "Report Post"
+      block: "Block @{username}"
 # page: users
 users:
   profile:
@@ -895,7 +966,6 @@ groups:
     feed-header: "Group Activity"
     about: "About {group}"
     members: "Members"
-    view-members: "view all"
     feed-restricted: "This is a restricted group. Anyone can comment, only leaders can create posts."
   rules:
     header: "Community Rules"
@@ -1075,7 +1145,7 @@ media-reactions:
   create-account: "Create Account"
 # page: notifications
 notifications:
-  zero: "You don't have any notifications!"
+  none: "You don't have any notifications!"
 # page: password-reset
 password-reset:
   password: "Password"
@@ -1385,3 +1455,5 @@ admin:
     sidekiq: "Sidekiq"
     pghero: "PGHero"
     flipper: "Flipper"
+button:
+  view-all: "view all"

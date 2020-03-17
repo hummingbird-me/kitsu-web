@@ -30,7 +30,7 @@
     {{/each}}
     {{#if (gt getGroupsTask.last.value.meta.count 8)}}
       <li class="joined-group view-more">
-        <a href={{href-to "users.groups" session.account}}>view all</a>
+        <a href={{href-to "users.groups" session.account}}>{{t "button.view-all"}}</a>
       </li>
     {{/if}}
   </ul>

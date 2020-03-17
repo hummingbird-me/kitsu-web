@@ -3,15 +3,15 @@
   <div class="pull-sm-right">
     {{#if items}}
       {{#if moreLink}}
-        <a href="#" {{action "transitionTo" moreLink}}>view more</a>
+        <a href="#" {{action "transitionTo" moreLink}}>{{t "components.search.view"}}</a>
       {{else}}
         {{#if hasNextPage}}
-          <a href="#" {{action "onPagination"}}>load more</a>
+          <a href="#" {{action "onPagination"}}>{{t "components.search.load"}}</a>
         {{/if}}
       {{/if}}
     {{else}}
       {{#unless isLoading}}
-        <small>no results</small>
+        <small>{{t "components.search.none"}}</small>
       {{/unless}}
     {{/if}}
   </div>
