@@ -74,7 +74,7 @@
   </div>
   <div class="container">
     {{! themes }}
-    {{!--
+
     <div class="form-group row">
       <label class="col-xs-4 col-form-label">{{t "settings.index.theme"}}</label>
       <div class="col-xs-8">
@@ -89,7 +89,7 @@
         {{/power-select}}
       </div>
     </div>
-    --}}
+
 
     {{! country }}
     <div class="form-group row">
@@ -100,7 +100,7 @@
           options=countries
           selected=selectedCountry
           searchField="text"
-          placeholder="Worldwide"
+          placeholder=(t "settings.index.worldwide")
           onchange=(action "changeCountry") as |country|
         }}
           {{country.text}}
