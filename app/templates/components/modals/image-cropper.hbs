@@ -5,16 +5,16 @@
   {{#modal.body}}
     <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
       <img id="{{elementId}}-image" src={{image image}}>
-      <span class="text-muted m-t-1">Width: {{width}}, Height: {{height}}</span>
+      <span class="text-muted m-t-1">{{t "modals.image-cropper.width"}} {{width}}, {{t "modals.image-cropper.height"}} {{height}}</span>
     </div>
   {{/modal.body}}
   {{#modal.footer}}
     <div class="pull-sm-right">
       <button class="button" {{action "closeModal"}}>
-        Close
+        {{t "modals.image-cropper.close"}}
       </button>
       <button class="button btn-primary" {{action "updateImage"}}>
-        Select
+        {{t "modals.image-cropper.select"}}
       </button>
     </div>
   {{/modal.footer}}
