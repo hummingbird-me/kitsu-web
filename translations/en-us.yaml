@@ -1235,9 +1235,12 @@ onboarding:
     steps: "steps left! 🦊"
     feed: "Visit your feed"
     rate: "Rate 5 anime or manga"
+    rate-left: "Rate {count} anime or manga"
     follow: "Follow 5 users"
+    follow-left: "Follow {count} {count, plural, =1 {user} other {users}}"
     comment: "Comment on a post"
     like: "Like 3 feed posts"
+    like-left: "Like {count} feed posts"
 # component: follow-button
 follow-button:
   follow: "Follow"
@@ -1333,8 +1336,7 @@ reaction-modal:
 # component: modals
   modals:
     image-cropper:
-      width: "Width:"
-      height: "Height:"
+      size: "Width: {width}, Height: {height}"
       select: "Select"
       close: "Close"
     confirm:
@@ -1348,7 +1350,7 @@ reaction-modal:
       button: "Block"
   report-content:
     header: "You can only report this content once."
-    status: "The current status of your report:"
+    status: "The current status of your report: {status}"
     reason: "Please give a reason for reporting this content."
     button: "Report"
 # component: library-entry/*
