@@ -33,7 +33,7 @@
         <a href={{href-to "users.groups" session.account}}>{{t "button.view-all"}}</a>
       </li>
     {{/if}}
-  </ul>g
+  </ul>
 {{else if (not session.hasUser)}}
   {{t "groups.index.call-to-action"}}
   <a href="#" {{action "signUp"}}>Join Kitsu</a> to get started!
