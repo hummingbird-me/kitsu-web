@@ -7,7 +7,7 @@
         {{#if title}}
           {{title}}
         {{else}}
-          Are you sure you want to do this?
+          {{t "modals.confirm.text"}}
         {{/if}}
       </h4>
       {{#if text}}
@@ -20,7 +20,7 @@
 
   {{#modal.footer}}
     <button class="button button--primary btn-lg btn-block" onclick={{action "onConfirm"}}>
-      Confirm
+      {{t "modals.confirm.button"}}
     </button>
   {{/modal.footer}}
 {{/bootstrap/bs-modal}}
