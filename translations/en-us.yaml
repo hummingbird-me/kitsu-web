@@ -586,7 +586,9 @@ users:
       headings:
         anime: "Anime Stats"
         manga: "Manga Stats"
+      time-watched: " spent watching anime."
       chapters-read: "chapters read."
+      completed: "completed."
       time-breakdown: "spent watching anime in total."
       empty:
         header: "Looks like you don't have enough data yet! Ready to start something new?"
@@ -1218,6 +1220,8 @@ form-shared:
   placeholders:
     username: "Username"
     password: "Password"
+# component: application
+mobile: "Get a better experience using the official Kitsu mobile application."
 # component: auth-onboarding
 onboarding:
   aozora-conflict:
@@ -1225,6 +1229,14 @@ onboarding:
     info: "Activity feed posts from both accounts will be merged.  All other account information will be overwritten by the account you select below."
   aozora-account-details:
     submit: "Looks Good!"
+  checklist:
+    header: "Getting Started on Kitsu"
+    steps: "steps left! 🦊"
+    feed: "Visit your feed"
+    rate: "Rate 5 anime or manga"
+    follow: "Follow 5 users"
+    comment: "Comment on a post"
+    like: "Like 3 feed posts"
 # component: follow-button
 follow-button:
   follow: "Follow"
@@ -1377,6 +1389,10 @@ user-notifications:
     manga {Chapter}
     anime {Episode}
     other {}}"
+  menu:
+    all: "See All Notifications"
+    mark-read: "Mark all as Read"
+    none: "You don't have any notifications!"
 # ember-power-select
 selects:
   loading: "Loading…"
@@ -1428,6 +1444,7 @@ errors:
   serverError:
     title: "Oops! Looks like our server has a bug."
     body: "Our team has been notified, please try again in a few minutes."
+    reload: "Reload"
 # Loading
 loading: "Loading {subject, select,
   episode {Episode}
