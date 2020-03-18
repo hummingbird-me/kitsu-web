@@ -26,7 +26,7 @@
         {{#if hasRatings}}
           {{t "onboarding.checklist.rate"}}
         {{else}}
-          Rate {{ratingsLeft}} anime or manga
+          {{t "onboarding.checklist.rate-left" count=ratingsLeft}}
         {{/if}}
       </span>
     </li>
@@ -43,7 +43,7 @@
         {{#if hasFollows}}
           {{t "onboarding.checklist.follow"}}
         {{else}}
-          Follow {{pluralize followsLeft "user"}}
+          {{t "onboarding.checklist.follow-left" count=followsLeft}}
         {{/if}}
       </span>
     </li>
@@ -71,7 +71,7 @@
         {{#if hasLikes}}
           {{t "onboarding.checklist.like"}}
         {{else}}
-          Like {{likesLeft}} feed posts
+          {{t "onboarding.checklist.like-left" count=likesLeft}}
         {{/if}}
       </span>
     </li>
