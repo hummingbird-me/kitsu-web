@@ -110,6 +110,7 @@ about:
 # page: dashboard
 dashboard:
   quick-update:
+    title: "Quick Update"
     filter:
       all: "All"
       anime: "Anime"
@@ -586,7 +587,9 @@ users:
       headings:
         anime: "Anime Stats"
         manga: "Manga Stats"
+      time-watched: " spent watching anime."
       chapters-read: "chapters read."
+      completed: "completed."
       time-breakdown: "spent watching anime in total."
       empty:
         header: "Looks like you don't have enough data yet! Ready to start something new?"
@@ -823,6 +826,7 @@ settings:
     content: "Content on Kitsu"
     theme: "Site Theme"
     country: "Country"
+    worldwide: "Wordlwide"
     titles: "Titles"
     titles-message: "How media titles will be displayed."
     rating: "Rating Type"
@@ -1142,6 +1146,7 @@ explore:
     creating: "Adding…"
 # page: media-reactions
 media-reactions:
+  view-all: "View all <strong>{count}</strong> of {user}'s reactions"
   create-account: "Create Account"
 # page: notifications
 notifications:
@@ -1218,6 +1223,8 @@ form-shared:
   placeholders:
     username: "Username"
     password: "Password"
+# component: application
+mobile: "Get a better experience using the official Kitsu mobile application."
 # component: auth-onboarding
 onboarding:
   aozora-conflict:
@@ -1225,6 +1232,17 @@ onboarding:
     info: "Activity feed posts from both accounts will be merged.  All other account information will be overwritten by the account you select below."
   aozora-account-details:
     submit: "Looks Good!"
+  checklist:
+    header: "Getting Started on Kitsu"
+    steps: "steps left! 🦊"
+    feed: "Visit your feed"
+    rate: "Rate 5 anime or manga"
+    rate-left: "Rate {count} anime or manga"
+    follow: "Follow 5 users"
+    follow-left: "Follow {count} {count, plural, =1 {user} other {users}}"
+    comment: "Comment on a post"
+    like: "Like 3 feed posts"
+    like-left: "Like {count} feed posts"
 # component: follow-button
 follow-button:
   follow: "Follow"
@@ -1317,6 +1335,26 @@ reaction-modal:
     =2 {While it may not be everyone's cup of tea, it's certainly interesting.}
     other {Overrated, don't waste your time on this one.}}"
   skip: "Skip"
+# component: modals
+  modals:
+    image-cropper:
+      size: "Width: {width}, Height: {height}"
+      select: "Select"
+      close: "Close"
+    confirm:
+      text: "Are you sure you want to do this?"
+      button: "Confirm"
+    block-user:
+      header: "Block User"
+      body-header: "Before you block this person, we want to let you know how blocking will work."
+      body-text: "Blocking this person will make it so that their content is no longer visible to you,
+      and your content will no longer be visible or interactable for them."
+      button: "Block"
+  report-content:
+    header: "You can only report this content once."
+    status: "The current status of your report: {status}"
+    reason: "Please give a reason for reporting this content."
+    button: "Report"
 # component: library-entry/*
 library-entry:
   state:
@@ -1377,6 +1415,10 @@ user-notifications:
     manga {Chapter}
     anime {Episode}
     other {}}"
+  menu:
+    all: "See All Notifications"
+    mark-read: "Mark all as Read"
+    none: "You don't have any notifications!"
 # ember-power-select
 selects:
   loading: "Loading…"
@@ -1428,6 +1470,7 @@ errors:
   serverError:
     title: "Oops! Looks like our server has a bug."
     body: "Our team has been notified, please try again in a few minutes."
+    reload: "Reload"
 # Loading
 loading: "Loading {subject, select,
   episode {Episode}
@@ -1457,3 +1500,6 @@ admin:
     flipper: "Flipper"
 button:
   view-all: "view all"
+unsubscribe:
+  email: "Email"
+  unsubscribe: "Unsubscribe"
