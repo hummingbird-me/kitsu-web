@@ -5,13 +5,13 @@
     {{#modal.header}}
       <div class="alert alert-danger">
         <p>{{t "modals.report-content.header"}}</p>
-        <small>{{t "modals.report-content.status"}} {{report.status}}</small>
+        <small>{{t "reaction-modal.report-content.status"}} {{report.status}}</small>
       </div>
     {{/modal.header}}
   {{/if}}
 
   {{#modal.body}}
-    <p>{{t "modals.report-content.reason"}}</p>
+    <p>{{t "reaction-modal.report-content.reason"}}</p>
 
     {{! Reason Select }}
     <div class="m-b-1">
@@ -39,7 +39,7 @@
       {{#if createReport.isRunning}}
         {{loading-spinner size="small"}}
       {{else}}
-        {{t "modals.report-content.button"}}
+        {{t "reaction-modal.report-content.button"}}
       {{/if}}
     </button>
   {{/modal.footer}}
