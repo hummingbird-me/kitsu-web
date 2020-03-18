@@ -12,9 +12,9 @@
 
 <div class="dropdown-menu notification-drop">
   <header>
-    <a href={{href-to "notifications"}} class="see-all-notifications">See All Notifications</a>
+    <a href={{href-to "notifications"}} class="see-all-notifications">{{t "user-notifications.menu.all"}}</a>
     {{#if hasUnread}}
-      <a href="#" class="mark-as-read" {{action "markRead"}}>Mark all as Read</a>
+      <a href="#" class="mark-as-read" {{action "markRead"}}>{{t "user-notifications.menu.mark-read"}}</a>
     {{/if}}
   </header>
   {{#if getNotifications.isRunning}}
@@ -24,7 +24,7 @@
   {{else}}
     {{#if (eq notifications.length 0)}}
       <p class="notifications-empty">
-        You don't have any notifications!
+        {{t "user-notifications.menu.none"}}
       </p>
     {{else}}
       <ul class="notification-list">
