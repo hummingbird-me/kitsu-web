@@ -4,14 +4,14 @@
   {{#if hasReported}}
     {{#modal.header}}
       <div class="alert alert-danger">
-        <p>You can only report this content once.</p>
-        <small>The current status of your report: {{report.status}}</small>
+        <p>{{t "modals.report-content.header"}}</p>
+        <small>{{t "modals.report-content.status"}} {{report.status}}</small>
       </div>
     {{/modal.header}}
   {{/if}}
 
   {{#modal.body}}
-    <p>Please give a reason for reporting this content.</p>
+    <p>{{t "modals.report-content.reason"}}</p>
 
     {{! Reason Select }}
     <div class="m-b-1">
@@ -39,7 +39,7 @@
       {{#if createReport.isRunning}}
         {{loading-spinner size="small"}}
       {{else}}
-        Report
+        {{t "modals.report-content.button"}}
       {{/if}}
     </button>
   {{/modal.footer}}
