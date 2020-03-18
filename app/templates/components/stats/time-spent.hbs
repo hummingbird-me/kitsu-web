@@ -4,17 +4,17 @@
   </div>
   <div class="time-spent-text">
     <div class="time-spent-primary">
-      {{format-number primaryUnit.count maximumFractionDigits=1}} 
+      {{format-number primaryUnit.count maximumFractionDigits=1}}
       {{#if (eq kind "anime")}}
         {{t (concat "timeUnits." primaryUnit.name) count=primaryUnit.count}}
-        spent watching anime.
-      {{else}}
+        {{t "users.activity.stats.time-watched"}}
+            {{else}}
         {{t "users.activity.stats.chapters-read" count=primaryUnit.count}}
       {{/if}}
     </div>
     <div class="time-spent-secondary">
       {{#if (gt stat.completed 0)}}
-        {{format-number stat.completed}} completed.
+        {{format-number stat.completed}} {{t "users.activity.stats.completed"}}
       {{/if}}
       {{#if (gt percentile 0)}}
         More than
@@ -23,7 +23,7 @@
       {{/if}}
     </div>
   </div>
-  
+
   {{#if (eq kind "anime")}}
     <div class="time-spent-info {{if showTooltip "active"}}" id="time-spent-info">
       {{svg-jar "info-button"}}
@@ -52,4 +52,3 @@
     {{/if}}
   {{/if}}
 </div>
-  
