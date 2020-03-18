@@ -5,7 +5,7 @@
   {{#modal.body}}
     <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
       <img id="{{elementId}}-image" src={{image image}}>
-      <span class="text-muted m-t-1">{{t "modals.image-cropper.width"}} {{width}}, {{t "modals.image-cropper.height"}} {{height}}</span>
+      <span class="text-muted m-t-1">{{t "modals.image-cropper.size" width=width height=height}}</span>
     </div>
   {{/modal.body}}
   {{#modal.footer}}
