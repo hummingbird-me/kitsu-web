@@ -33,9 +33,9 @@
         <a href={{href-to "users.groups" session.account}}>{{t "button.view-all"}}</a>
       </li>
     {{/if}}
-  </ul>
+  </ul>g
 {{else if (not session.hasUser)}}
-  Anyone can create and discover groups. Each group centers around a topic or activity.
+  {{t "groups.index.call-to-action"}}
   <a href="#" {{action "signUp"}}>Join Kitsu</a> to get started!
 {{else}}
   <p>{{t "errors.contentEmpty"}}</p>
