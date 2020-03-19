@@ -53,7 +53,7 @@
         <a href="#" class="uploads-item" {{action photoswipe.actions.open (hash index=0 shareEl=false)}}>
           {{lazy-image src=galleryItems.firstObject.thumbSrc class="comment-upload"}}
           {{#if (eq galleryItems.firstObject.type "image/gif")}}
-            <div class="uploads-overlay uploads-gif">GIF</div>
+            <div class="uploads-overlay uploads-gif">{{t "components.stream-feed.post.comment.gif"}}</div>
           {{/if}}
         </a>
       {{/photo-swipe}}
@@ -73,7 +73,7 @@
       <span class="seperator"> · </span>
       {{#unless isReply}}
         <small class="comment-reply" {{action "showReply"}}>
-          Reply
+          {{t "components.stream-feed.post.comment.reply"}}
         </small>
       {{/unless}}
 
@@ -96,13 +96,13 @@
           <div class="dropdown-menu">
             {{! Copy Permalink }}
             <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "comments" comment.id)}} {{action "trackEngagement" "click"}}>
-              Copy Link to Comment
+              {{t "components.stream-feed.post.comment.link"}}
             </a>
 
             {{! Edit/Delete Options }}
             {{#if canEditComment}}
-              <a class="dropdown-item" href="#" {{action (toggle "isEditing" this)}}>Edit Comment</a>
-              <a class="dropdown-item" href="#" {{action (toggle "deleteModalOpened" this)}}>Delete Comment</a>
+              <a class="dropdown-item" href="#" {{action (toggle "isEditing" this)}}>{{t "components.stream-feed.post.comment.edit"}}</a>
+              <a class="dropdown-item" href="#" {{action (toggle "deleteModalOpened" this)}}>{{t "components.stream-feed.post.comment.delete"}}</a>
               {{#if deleteModalOpened}}
                 {{to-elsewhere named="modal" send=(component "modals/confirm-action"
                   onConfirm=(action "deleteComment")
@@ -113,7 +113,7 @@
 
             {{! Report/Blocking Options }}
             {{#if (and session.hasUser (not (is-self comment.user)))}}
-              <a class="dropdown-item" href="#" {{action (toggle "reportingComment" this)}}>Report Comment</a>
+              <a class="dropdown-item" href="#" {{action (toggle "reportingComment" this)}}>{{t "components.stream-feed.post.comment.report"}}</a>
               {{#if reportingComment}}
                 {{to-elsewhere named="modal" send=(component "modals/report-content"
                   content=comment
@@ -122,7 +122,7 @@
                 )}}
               {{/if}}
 
-              <a class="dropdown-item" href="#" {{action (toggle "blockUserModal" this)}}>Block @{{comment.user.name}}</a>
+              <a class="dropdown-item" href="#" {{action (toggle "blockUserModal" this)}}>{{t "components.stream-feed.post.comment.block" user=comment.user.name}}</a>
                 {{#if blockUserModal}}
                   {{to-elsewhere named="modal" send=(component "modals/block-user"
                     user=comment.user
@@ -151,13 +151,13 @@
                 {{#if isLoading}}
                   {{loading-spinner size="small"}}
                 {{else}}
-                  <a href="#" {{action "onPagination"}}>Show Previous Replies</a>
+                  <a href="#" {{action "onPagination"}}>{{t "components.stream-feed.post.comment.previous"}}</a>
                 {{/if}}
               </div>
 
               {{! Comment count }}
               <div class="pull-sm-right">
-                {{replies.length}} of {{comment.repliesCount}}
+                {{t "components.stream-feed.post.comment.block" count=replies.length total=comment.repliesCount}}
               </div>
             </div>
           {{/if}}
@@ -187,7 +187,7 @@
           <div class="add-reply-wrapper">
             {{stream-feed/items/post/comment-box
               onSubmit=createReply
-              placeholder="Add a reply..."
+              placeholder=(t "components.stream-feed.post.comment.placeholder")
               className="form-control reply-comment"
               upload=upload
             }}
