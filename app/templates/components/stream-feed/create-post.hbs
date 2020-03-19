@@ -131,7 +131,7 @@
           value=_usableMedia.computedTitle
           search=(perform search)
           disabled=mediaReadOnly
-          placeholder="Type to tag a show or manga" as |media|
+          placeholder=(t "components.stream-feed.create-post.placeholder") as |media|
         }}
           <div {{action (queue (action (mut _usableMedia) media) (perform setUnitNumberTask) (action (mut spoiler) true))}}>
             <span class="tag-poster">{{lazy-image src=(image media.posterImage "tiny")}}</span>
