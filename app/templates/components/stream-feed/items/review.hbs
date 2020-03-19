@@ -17,7 +17,7 @@
               {{lazy-image src=(image review.user.avatar "small")}}
             </a>
             <h5 class="name-heading person-heading left">
-              <small>Review by</small>
+              <small>{{t "components.stream-feed.review.by"}}</small>
               <a href={{href-to "users.index" review.user}}>{{review.user.name}}</a>
             </h5>
           </header>
@@ -44,10 +44,10 @@
               <div class="spoiler-gate">
                 <a href="#" {{action (toggle "isHidden" this)}}>
                   <div class="gate--label">
-                    This review contains spoilers.
+                    {{t "components.stream-feed.review.spoiler"}}
                   </div>
                   <div class="gate--hover">
-                    I can handle the truth!
+                    {{t "components.stream-feed.review.spoiler-hover"}}
                   </div>
                 </a>
               </div>
@@ -88,11 +88,11 @@
     <div class="stream-item-options">
       <a href={{tweetLink}} target="_blank" {{action "trackEngagement" "click" preventDefault=false}}>
         {{svg-jar "l-twitter"}}
-        Tweet
+        {{t "components.stream-feed.review.twitter"}}
       </a>
       <a href={{facebookLink}} target="_blank" {{action "trackEngagement" "click" preventDefault=false}}>
         {{svg-jar "l-facebook"}}
-        Share
+        {{t "components.stream-feed.review.facebook"}}
       </a>
 
       {{! options }}
@@ -102,21 +102,21 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <a href="#" data-clipboard-text={{concat host (href-to "reviews" review.id)}} class="dropdown-item" {{action "trackEngagement" "click"}}>
-            Copy Link to Review
+            {{t "components.stream-feed.review.link"}}
           </a>
 
           {{! Re-hide the review }}
           {{#if review.spoiler}}
             {{#if isHidden}}
-              <a class="dropdown-item" href="#" {{action (toggle "isHidden" this)}}>Show Review Content</a>
+              <a class="dropdown-item" href="#" {{action (toggle "isHidden" this)}}>{{t "components.stream-feed.review.show"}}</a>
             {{else}}
-              <a class="dropdown-item" href="#" {{action (toggle "isHidden" this)}}>Hide Review Content</a>
+              <a class="dropdown-item" href="#" {{action (toggle "isHidden" this)}}>{{t "components.stream-feed.review.hide"}}</a>
             {{/if}}
           {{/if}}
 
           {{! edit/delete review }}
           {{#if (can "edit review" review)}}
-            <a href="#" class="dropdown-item" {{action (toggle "editReview" this)}}>Edit Review</a>
+            <a href="#" class="dropdown-item" {{action (toggle "editReview" this)}}>{{t "components.stream-feed.review.edit"}}</a>
             {{#if editReview}}
               {{to-elsewhere named="modal" send=(component "modals/media-review"
                 onClose=(toggle-action "editReview" this)
@@ -124,7 +124,7 @@
               )}}
             {{/if}}
 
-            <a class="dropdown-item" href="#" {{action (toggle "deleteModalOpened" this)}}>Delete Review</a>
+            <a class="dropdown-item" href="#" {{action (toggle "deleteModalOpened" this)}}>{{t "components.stream-feed.review.delete"}}</a>
             {{#if deleteModalOpened}}
               {{to-elsewhere named="modal" send=(component "modals/confirm-action"
                 onConfirm=(action "deleteReview")
@@ -135,7 +135,7 @@
 
           {{! report }}
           {{#if (and session.hasUser (not (is-self review.user)))}}
-            <a class="dropdown-item" href="#" {{action (toggle "reportReview" this)}}>Report Review</a>
+            <a class="dropdown-item" href="#" {{action (toggle "reportReview" this)}}>{{t "components.stream-feed.review.report"}}</a>
             {{#if reportReview}}
               {{to-elsewhere named="modal" send=(component "modals/report-content"
                 content=review
