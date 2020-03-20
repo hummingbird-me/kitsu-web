@@ -110,6 +110,7 @@ about:
 # page: dashboard
 dashboard:
   quick-update:
+    title: "Quick Update"
     filter:
       all: "All"
       anime: "Anime"
@@ -369,6 +370,8 @@ components:
   ad-unit: "Ads suck, but that's how we keep the lights on. Please whitelist us in your adblocker."
   admin:
     reports:
+      no-explanation: "No Explanation Provided."
+      not-set: "Not Set"
       actions:
         button: "Actions"
         open: "Mark Open"
@@ -382,7 +385,21 @@ components:
         moderator: "Moderator"
         status: "Status"
         actions: "Actions"
+  application:
+    nav-search: "Search Kitsu"
+  episodes:
+    video-shortcut: "EP {number}"
+    updated: "Library progress fast-forwarded to episode {number}!"
+    undo: "Undo"
+    update: "Update library progress to episode {number}?"
+    watched: "Mark Watched"
+    track: "Track your progress and join the discussion!"
+    join: "Create Kitsu Account"
+  likeable-resource:
+    loading: "Loading…"
+    more: "Load More"
   search:
+    placeholder: "placeholder"
     header: "Search Results"
     view: "view more"
     load: "load more"
@@ -396,6 +413,7 @@ components:
       create: "Post"
       nsfw: "NSFW"
       spoiler: "Spoiler"
+      placeholder: "Type to tag a show or manga"
     edit-post:
       header: "Edit Post"
       error:
@@ -425,8 +443,62 @@ components:
       delete: "Delete Post"
       unpin: "Unpin Post from Profile"
       pin: "Pin Post to Profile"
+      pin-text: "Do you really want to pin this post to your profile?"
       report: "Report Post"
       block: "Block @{username}"
+      comment:
+        deleting: "Comment Deleting…"
+        gif: "GIF"
+        reply: "Reply"
+        link: "Copy Link to Comment"
+        edit: "Edit Comment"
+        delete: "Delete Comment"
+        report: "Report Comment"
+        block: "Block @{user}"
+        previous: "Show Previous Replies"
+        count: "{count} of {total}"
+        placeholder: "Add a reply…"
+      comments:
+        all: "View All Comments"
+        parent: "View Parent Comment"
+        previous: "Show Previous Comments"
+        count: "{count} of {total}"
+        placeholder: "Leave a comment…"
+    review:
+      by: "Review by"
+      spoiler: "This review contains spoilers."
+      spoiler-hover: "I can handle the truth!"
+      twitter: "Tweet"
+      facebook: "Share"
+      link: "Copy Link to Review"
+      show: "Show Review Content"
+      hide: "Hide Review Content"
+      edit: "Edit Review"
+      delete: "Delete Review"
+      report: "Report Review"
+  users:
+    ban:
+      title: "Are you sure you want to ban this user?"
+      text: "They can access and update their library, but cannot make posts, comments, or reactions."
+    delete:
+      title: "Delete Content by {user}"
+      posts: "Posts"
+      comments: "Comments"
+      reactions: "Reactions"
+      delete: "Delete"
+    block: "Block @{user}"
+    you: "Hey, that's you!"
+    favorites:
+      title: "Favorite Series"
+      anime: "Anime"
+      manga: "Manga"
+      more: "Show More"
+    alt-name:
+      title: "Possible Alt Accounts of {user}"
+      none: "No alts found"
+    past-name:
+      title: "Past Names"
+      none: "No previous names"
 # page: users
 users:
   profile:
@@ -467,7 +539,9 @@ users:
       waifu:
         label: "Waifu"
         placeholder: "Waifu/Husbando"
+        date: "DD/MM/YYYY"
         search: "Find your special someone"
+        divorce: "divorce"
       bio:
         label: "Bio"
         placeholder: "Tell the world your story."
@@ -561,6 +635,10 @@ users:
         trakt:
           about: "Enter your Trakt username below to add a link to your profile."
           placeholder: "Your Trakt username"
+      remove: "Remove from profile"
+    footer:
+      updating: "Updating…"
+      update: "Update Profile"
     favorites:
       header: "Favorites"
       anime: "Anime"
@@ -576,17 +654,34 @@ users:
         will be seen and appreciated by your followers and users from the global feed."
       action: "Make yourself at home! Upload an avatar and cover image! Click <span>Edit</span> above
         to get started."
+      title: "Set-Up Your Profile"
+      steps: "steps left! 🦊"
+      feed: "Visit your personal feed"
+      rate: "Rate 5 anime or manga"
+      rate-left: "Rate {left} anime or manga"
+      avatar: "Set your user avatar"
+      cover: "Set a profile cover image"
+      about-me: "Complete your <i>About Me</i>"
+      favorite: "Pick your favorite anime / manga"
     about:
+      header: "About Me"
       empty: "It's a secret"
       gender:
+        gender: "Gender:"
         secret: "It's a secret"
         male: "Male"
         female: "Female"
+      location: "Location:"
+      birthday: "Birthday:"
+      joined: "Join Date:"
     stats:
       headings:
         anime: "Anime Stats"
         manga: "Manga Stats"
+      time-watched: " spent watching anime."
       chapters-read: "chapters read."
+      completed: "completed."
+      comparison: "More than <span class=\"time-spent-percentile\">{percent}%</span> of users."
       time-breakdown: "spent watching anime in total."
       empty:
         header: "Looks like you don't have enough data yet! Ready to start something new?"
@@ -823,6 +918,7 @@ settings:
     content: "Content on Kitsu"
     theme: "Site Theme"
     country: "Country"
+    worldwide: "Wordlwide"
     titles: "Titles"
     titles-message: "How media titles will be displayed."
     rating: "Rating Type"
@@ -1142,6 +1238,7 @@ explore:
     creating: "Adding…"
 # page: media-reactions
 media-reactions:
+  view-all: "View all <strong>{count}</strong> of {user}'s reactions"
   create-account: "Create Account"
 # page: notifications
 notifications:
@@ -1218,6 +1315,8 @@ form-shared:
   placeholders:
     username: "Username"
     password: "Password"
+# component: application
+mobile: "Get a better experience using the official Kitsu mobile application."
 # component: auth-onboarding
 onboarding:
   aozora-conflict:
@@ -1225,6 +1324,17 @@ onboarding:
     info: "Activity feed posts from both accounts will be merged.  All other account information will be overwritten by the account you select below."
   aozora-account-details:
     submit: "Looks Good!"
+  checklist:
+    header: "Getting Started on Kitsu"
+    steps: "steps left! 🦊"
+    feed: "Visit your feed"
+    rate: "Rate 5 anime or manga"
+    rate-left: "Rate {count} anime or manga"
+    follow: "Follow 5 users"
+    follow-left: "Follow {count} {count, plural, =1 {user} other {users}}"
+    comment: "Comment on a post"
+    like: "Like 3 feed posts"
+    like-left: "Like {count} feed posts"
 # component: follow-button
 follow-button:
   follow: "Follow"
@@ -1317,6 +1427,28 @@ reaction-modal:
     =2 {While it may not be everyone's cup of tea, it's certainly interesting.}
     other {Overrated, don't waste your time on this one.}}"
   skip: "Skip"
+# component: modals
+  modals:
+    image-cropper:
+      size: "Width: {width}, Height: {height}"
+      select: "Select"
+      close: "Close"
+    image-edit:
+      date: "DD/MM/YYYY"
+    confirm:
+      text: "Are you sure you want to do this?"
+      button: "Confirm"
+    block-user:
+      header: "Block User"
+      body-header: "Before you block this person, we want to let you know how blocking will work."
+      body-text: "Blocking this person will make it so that their content is no longer visible to you,
+      and your content will no longer be visible or interactable for them."
+      button: "Block"
+  report-content:
+    header: "You can only report this content once."
+    status: "The current status of your report: {status}"
+    reason: "Please give a reason for reporting this content."
+    button: "Report"
 # component: library-entry/*
 library-entry:
   state:
@@ -1377,6 +1509,10 @@ user-notifications:
     manga {Chapter}
     anime {Episode}
     other {}}"
+  menu:
+    all: "See All Notifications"
+    mark-read: "Mark all as Read"
+    none: "You don't have any notifications!"
 # ember-power-select
 selects:
   loading: "Loading…"
@@ -1428,6 +1564,7 @@ errors:
   serverError:
     title: "Oops! Looks like our server has a bug."
     body: "Our team has been notified, please try again in a few minutes."
+    reload: "Reload"
 # Loading
 loading: "Loading {subject, select,
   episode {Episode}
@@ -1457,3 +1594,6 @@ admin:
     flipper: "Flipper"
 button:
   view-all: "view all"
+unsubscribe:
+  email: "Email"
+  unsubscribe: "Unsubscribe"
