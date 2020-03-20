@@ -20,7 +20,7 @@
 
       {{! Block }}
       {{#if (and session.hasUser (not (is-self user)))}}
-        <a class="dropdown-item" href="#" {{action (toggle "blockUserModal" this)}}>Block @{{user.name}}</a>
+        <a class="dropdown-item" href="#" {{action (toggle "blockUserModal" this)}}>{{t "components.users.block" user=user.name}}</a>
         {{#if blockUserModal}}
           {{to-elsewhere named="modal" send=(component "modals/block-user"
             user=user
