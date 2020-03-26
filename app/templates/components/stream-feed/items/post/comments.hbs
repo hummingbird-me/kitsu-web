@@ -9,7 +9,7 @@
       {{#if comment}}
         <div class="comment-actions clearfix">
           <div class="pull-sm-left">
-            <a href={{href-to "posts" post.id}}>{{t "components.stream-feed.post.comments.all"}}</a>
+            <a href={{href-to "posts" post.id}}>{{t "components.stream-feed.post.comment.all"}}</a>
             {{#if (and isReply comment.parent)}}
               &mdash;
               <a href={{href-to "comments" comment.parent.id}}>{{t "components.stream-feed.post.comments.parent"}}</a>
@@ -53,7 +53,7 @@
             {{/unless}}
             {{! Comment count }}
             <div class="pull-sm-right">
-              {{t "components.stream-feed.post.comments.count count=comments.length total=post.topLevelCommentsCount"}}
+              {{t "components.stream-feed.post.comments.count" count=comments.length total=post.topLevelCommentsCount}}
             </div>
           </div>
         {{/if}}
