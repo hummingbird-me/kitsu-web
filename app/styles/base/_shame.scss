@@ -64,10 +64,6 @@ body {
     .user-reports {
       overflow-x: auto;
     }
-    // Hide extra whitespace created by the overflow hack
-    body {
-      padding-top: 55px;
-    }
     .settings--header {
       margin-top: 0;
     }
@@ -75,3 +71,10 @@ body {
       overflow-y: hidden;
     }
 }
+// Hide extra whitespace created by the overflow hack above
+@media (min-width: 432px) and (max-width: 554px) {
+  body {
+    padding-top: 55px;
+  }
+}
+  
