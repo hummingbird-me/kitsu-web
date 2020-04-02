@@ -1,17 +1,18 @@
 <div class="container">
   <div class="row">
     {{! Kitsu Library Content Ad }}
-    <div class="library-ad col-sm-12 no-padding">
-      {{#unless session.account.isPro}}
+    {{#unless session.account.isPro}}
+      <div class="library-ad col-sm-12 no-padding">
         {{ad-unit unit="kitsu.library.top"
           targeting=(hash section="library")
           sizes=(hash
             mobile=(array (array 320 100) (array 320 50))
             tablet=(array 728 90)
             desktop=(array (array 970 90) (array 728 90))
-          )}}
-      {{/unless}}
-    </div>
+          )
+        }}
+      </div>
+    {{/unless}}
 
     <div class="library-content col-sm no-padding-left">
       {{! Search }}
