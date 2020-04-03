@@ -29,6 +29,11 @@
     .poster-wrapper {
       padding-right: 10px;
       margin-bottom: 10px;
+      @media (max-width: 1220px) {
+        &:nth-child(5) {
+          display: none;
+        }
+      }
     }
   }
 }
@@ -60,6 +65,11 @@
   .edit-favorite-categories {
     font-size: 12px;
   }
+  @media (max-width: 543px) {
+    order: -1;
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .categories-list {
@@ -72,6 +82,9 @@
   a {
     color: inherit;
     font-family: inherit;
+  }
+  @media (max-width: 543px) {
+    max-height: 180px;
   }
 }
 
