@@ -1,15 +1,6 @@
 .feed-aside {
   max-width: 250px;
   padding-left: 15px;
-  @media (max-width: 992px) {
-    display: none;
-  }
-  .is-sticky {
-    @media screen and (max-height: 575px) {
-      position: relative;
-      top: 0;
-    }
-  }
   .sidebar-item:first-child {
     .panel-heading {
       margin-top: 0;
@@ -90,6 +81,33 @@
         color: lighten($body-text-color, 4);
       }
     }
+  }
+  @media (max-width: 768px) {
+    padding-left: 0px;
+    padding-bottom: 3px;
+    margin-top: -10px;
+    padding-right: 0px;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    .is-sticky {
+      margin-right: -10px;
+    }
+    .sidebar-item {
+      display: none;
+    }
+    ul > li {
+      display: inline-block;
+    }
+    .timeline-link {
+      .emoji {
+        top: 1px;
+      }
+    }
+  }
+  @media (max-width: 554px) and (min-width: 432px) {
+    padding-top: 38px;;
   }
 }
 
