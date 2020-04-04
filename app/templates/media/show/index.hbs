@@ -44,6 +44,29 @@
     {{! Rankings }}
     {{media/media-rankings media=media length="full"}}
 
+    {{! Secondary Content (Tablet & Mobile) }}
+    {{#if (responsive 'isTablet')}}
+      {{! Trailer }}
+      {{#if media.youtubeVideoId}}
+        <div class="media-preview" {{action (toggle "trailerOpen" this)}}>
+          <img src="https://img.youtube.com/vi/{{media.youtubeVideoId}}/mqdefault.jpg">
+          <div class="media-preview--overlay">
+            {{svg-jar "trailer"}}
+            <h3>{{t "media.show.summary.trailer"}}</h3>
+          </div>
+        </div>
+        {{#if trailerOpen}}
+          {{to-elsewhere named="modal" send=(component "modals/media-trailer"
+            onClose=(toggle-action "trailerOpen" this)
+            media=media
+          )}}
+        {{/if}}
+      {{/if}}
+
+      {{! Summary }}
+      {{media/media-summary media=media}}
+    {{/if}}
+
     {{! Reactions }}
     {{media/media-reactions media=media}}
 
@@ -73,28 +96,30 @@
     </section>
   </div>
 
-  {{! Secondary Content }}
-  <div class="col-sm media--sidebar">
-    <div class="is-sticky">
-      {{! Trailer }}
-      {{#if media.youtubeVideoId}}
-        <div class="media-preview" {{action (toggle "trailerOpen" this)}}>
-          <img src="https://img.youtube.com/vi/{{media.youtubeVideoId}}/mqdefault.jpg">
-          <div class="media-preview--overlay">
-            {{svg-jar "trailer"}}
-            <h3>{{t "media.show.summary.trailer"}}</h3>
+  {{! Secondary Content (Desktop) }}
+  {{#if (responsive 'isDesktop')}}
+    <div class="col-sm media--sidebar">
+      <div class="is-sticky">
+        {{! Trailer }}
+        {{#if media.youtubeVideoId}}
+          <div class="media-preview" {{action (toggle "trailerOpen" this)}}>
+            <img src="https://img.youtube.com/vi/{{media.youtubeVideoId}}/mqdefault.jpg">
+            <div class="media-preview--overlay">
+              {{svg-jar "trailer"}}
+              <h3>{{t "media.show.summary.trailer"}}</h3>
+            </div>
           </div>
-        </div>
-        {{#if trailerOpen}}
-          {{to-elsewhere named="modal" send=(component "modals/media-trailer"
-            onClose=(toggle-action "trailerOpen" this)
-            media=media
-          )}}
+          {{#if trailerOpen}}
+            {{to-elsewhere named="modal" send=(component "modals/media-trailer"
+              onClose=(toggle-action "trailerOpen" this)
+              media=media
+            )}}
+          {{/if}}
         {{/if}}
-      {{/if}}
 
-      {{! Summary }}
-      {{media/media-summary media=media}}
+        {{! Summary }}
+        {{media/media-summary media=media}}
+      </div>
     </div>
-  </div>
+  {{/if}}
 </div>
