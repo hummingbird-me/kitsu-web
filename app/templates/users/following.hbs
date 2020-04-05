@@ -7,7 +7,7 @@
       </div>
     {{else if model.taskInstance.error}}
       <div class="text-xs-center w-100 m-t-1 m-b-1">
-        {{t "erros.load"}}
+        {{t "errors.load"}}
       </div>
     {{else if taskValue}}
       {{#infinite-pagination onPagination=(route-action "onPagination")}}
