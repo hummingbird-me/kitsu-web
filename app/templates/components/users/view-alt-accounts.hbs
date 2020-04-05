@@ -1,7 +1,7 @@
 {{#bootstrap/bs-modal id=modalId onClose=onClose as |modal|}}
   {{#modal.header}}
     <h3 class="text-xs-center">
-      Possible Alt Accounts of {{user.name}}
+      {{t "components.users.alt-name.title" user=user.name}}
     </h3>
   {{/modal.header}}
 
@@ -18,7 +18,7 @@
             (Weight: {{decimal-number alt.weight}})
           </li>
         {{else}}
-          <li><i>No alts found</i></li>
+          <li><i>{{t "components.users.alt-name.none"}}</i></li>
         {{/each}}
       </ul>
     {{/if}}

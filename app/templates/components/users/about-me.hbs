@@ -1,4 +1,4 @@
-<h6 class="panel-heading">About Me</h6>
+<h6 class="panel-heading">{{t "users.activity.about.header"}}</h6>
 <p>{{user.about}}</p>
 <ul class="about-me-stats">
   {{#if user.waifu}}
@@ -6,7 +6,7 @@
       <span class="stat-icon">
         {{svg-jar "sm-heart"}}
       </span>
-      <strong>{{or user.waifuOrHusbando "Waifu/Husbando"}}:</strong>
+      <strong>{{or (t "users.activity.about.waifu.label" waifu=user.waifuOrHusbando) (t "users.activity.about.waifu.empty")}}</strong>
         <span class="waifu-wrapper">
           <img src={{image user.waifu.image}}>
         </span>
@@ -17,14 +17,14 @@
     <span class="stat-icon">
       {{svg-jar "gender"}}
     </span>
-    <strong>Gender:</strong>
+    <strong>{{t "users.activity.about.gender.label"}}</strong>
     <span>{{gender}}</span>
   </li>
   <li class="about-stat about--location">
     <span class="stat-icon">
       {{svg-jar "location"}}
     </span>
-    <strong>Location:</strong>
+    <strong>{{t "users.activity.about.location"}}</strong>
     <span>
       {{#if user.location}}
         {{user.location}}
@@ -37,7 +37,7 @@
     <span class="stat-icon">
       {{svg-jar "cake"}}
     </span>
-    <strong>Birthday:</strong>
+    <strong>{{t "users.activity.about.birthday"}}</strong>
     <span>
       {{#if user.birthday}}
         {{moment-format user.birthday "MMMM Do" timeZone="UTC"}}
@@ -50,7 +50,7 @@
     <span class="stat-icon">
       {{svg-jar "cal"}}
     </span>
-    <strong>Join Date:</strong>
+    <strong>{{t "users.activity.about.joined"}}</strong>
     <span>{{moment-format user.createdAt "MMMM Do, YYYY"}} ({{createdHumanize}} ago)</span>
   </li>
 </ul>

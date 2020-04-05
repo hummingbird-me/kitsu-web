@@ -1,7 +1,7 @@
 <div class="checklist card">
-  <h6>Set-Up Your Profile</h6>
+  <h6>{{t "users.activity.onboarding.title"}}</h6>
   <div class="steps-remaining">
-    {{dec stepsCompleted 6}} steps left! 🦊
+    {{t "onboarding.checklist.steps" count=(dec stepsCompleted 6)}}
     <svg class="rc-progress-line progressBar_35bcd" viewBox="0 0 100 4" preserveAspectRatio="none" data-reactid="1130">
       <path class="rc-progress-line-trail" d="M 2,2 L 98,2" stroke-linecap="round" stroke="#D9D9D9" stroke-width="1" fill-opacity="0" data-reactid="1131"></path>
       <path class="rc-progress-line-path" d="M 2,2 L 98,2" stroke-linecap="round" stroke="#FD755C" stroke-width="4" fill-opacity="0" style="stroke-dasharray:100px, 100px; stroke-dashoffset:{{percentageComplete}}px; transition:stroke-dashoffset 0.3s ease 0s, stroke 0.3s linear;" data-reactid="1132"></path>
@@ -12,7 +12,7 @@
     {{! default checked }}
     <li class="step step--complete">
       <span class="step-status">☑️</span>
-      <span class="step-description">Visit your personal feed</span>
+      <span class="step-description">{{t "onboarding.checklist.feed"}}</span>
     </li>
 
     <li class="step {{if hasRatings "step--complete"}}">
@@ -25,9 +25,9 @@
       </span>
       <span class="step-description">
         {{#if hasRatings}}
-          Rate 5 anime or manga
+          {{t "onboarding.checklist.rate"}}
         {{else}}
-          Rate {{ratingsLeft}} anime or manga
+          {{t "onboarding.checklist.rate-incomplete" left=ratingsLeft}}
         {{/if}}
       </span>
     </li>
@@ -40,7 +40,7 @@
           😎
         {{/if}}
       </span>
-      <span class="step-description">Set your user avatar</span>
+      <span class="step-description">{{t "onboarding.checklist.avatar"}}</span>
     </li>
 
     <li class="step {{if hasCover "step--complete"}}">
@@ -51,7 +51,7 @@
           🖼️
         {{/if}}
       </span>
-      <span class="step-description">Set a profile cover image</span>
+      <span class="step-description">{{t "onboarding.checklist.cover"}}</span>
     </li>
 
     <li class="step {{if hasAbout "step--complete"}}">
@@ -62,7 +62,7 @@
           📖
         {{/if}}
       </span>
-      <span class="step-description">Complete your <i>About Me</i></span>
+      <span class="step-description">{{t "onboarding.checklist.about-me" htmlSafe=true}}</span>
     </li>
 
     <li class="step {{if hasFavorites "step--complete"}}">
@@ -73,7 +73,7 @@
           💯
         {{/if}}
       </span>
-      <span class="step-description">Pick your favorite anime / manga</span>
+      <span class="step-description">{{t "onboarding.checklist.favorite"}}</span>
     </li>
   </ul>
 </div>

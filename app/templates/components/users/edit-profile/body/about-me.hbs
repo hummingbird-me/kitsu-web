@@ -32,7 +32,7 @@
         class="form-control"
         format="DD/MM/YYYY"
         yearRange="1900,currentYear"
-        placeholder="DD/MM/YYYY"
+        placeholder=(t "date-format")
         options=(hash maxDate=(now))
       }}
     </div>
@@ -98,7 +98,7 @@
 
       {{#if user.waifu}}
         <a href="#" class="pull-sm-right" {{action (action (queue (action (mut user.waifu) null) (action (mut user.waifuDirtyHack) true)))}}>
-          divorce
+          {{t "users.edit-modal.about.waifu.divorce"}}
         </a>
       {{/if}}
     </div>

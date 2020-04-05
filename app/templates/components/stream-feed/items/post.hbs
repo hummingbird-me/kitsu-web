@@ -337,7 +337,7 @@
               )}}
             {{/if}}
 
-            <a class="dropdown-item" href="#" {{action (toggle "blockUserModal" this)}}>{{t "components.stream-feed.post.block" username=post.user.name}}</a>
+            <a class="dropdown-item" href="#" {{action (toggle "blockUserModal" this)}}>{{t "components.users.block" user=post.user.name}}</a>
             {{#if blockUserModal}}
               {{to-elsewhere named="modal" send=(component "modals/block-user"
                 user=post.user

@@ -11,8 +11,8 @@
         disabled={{if (or updateTask.isRunning (is-empty isDirty)) "disabled"}}
         onclick={{action "updateProfile"}}>
   {{#if updateTask.isRunning}}
-    Updating...
+    {{t "users.edit-modal.footer.updating"}}
   {{else}}
-    Update Profile
+    {{t "users.edit-modal.footer.update"}}
   {{/if}}
 </button>

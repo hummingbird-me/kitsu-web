@@ -466,7 +466,6 @@ components:
       pin: "Pin Post to Profile"
       pin-text: "Do you really want to pin this post to your profile?"
       report: "Report Post"
-      block: "Block @{username}"
       comment-count: "{count} of {total}"
       comment:
         deleting: "Deleting Comment…"
@@ -476,7 +475,6 @@ components:
         edit: "Edit Comment"
         delete: "Delete Comment"
         report: "Report Comment"
-        block-user: "Block @{user}"
         previous-replies: "Show Previous Replies"
         add-reply: "Add a reply…"
       comments:
@@ -497,6 +495,30 @@ components:
       edit: "Edit Review"
       delete: "Delete Review"
       report: "Report Review"
+  users:
+    ban:
+      title: "Are you sure you want to ban this user?"
+      text: "They can access and update their library, but cannot make posts, comments, or reactions."
+    delete-user-content:
+      title: "Delete Content by {user}"
+      checkbox:
+        posts: "Posts"
+        comments: "Comments"
+        reactions: "Reactions"
+      delete: "Delete"
+    block: "Block @{user}"
+    you: "Hey, that's you!"
+    favorites:
+      title: "Favorite Series"
+      anime: "Anime"
+      manga: "Manga"
+      more: "Show More"
+    alt-name:
+      title: "Possible Alt Accounts of {user}"
+      none: "No alts found"
+    past-name:
+      title: "Past Names"
+      none: "No previous names"
 # page: users
 users:
   profile:
@@ -538,11 +560,13 @@ users:
         label: "Waifu"
         placeholder: "Waifu/Husbando"
         search: "Find your special someone"
+        divorce: "divorce"
       bio:
         label: "Bio"
         placeholder: "Tell the world your story."
     profile-links:
       header: "Profile Links"
+      remove: "Remove from profile"
       sites:
         website:
           about: "Enter your personal website below to add a link to your profile."
@@ -631,6 +655,9 @@ users:
         trakt:
           about: "Enter your Trakt username below to add a link to your profile."
           placeholder: "Your Trakt username"
+    footer:
+      updating: "Updating…"
+      update: "Update Profile"
     favorites:
       header: "Favorites"
       anime: "Anime"
@@ -646,12 +673,21 @@ users:
         will be seen and appreciated by your followers and users from the global feed."
       action: "Make yourself at home! Upload an avatar and cover image! Click <span>Edit</span> above
         to get started."
+      title: "Set-Up Your Profile"
     about:
+      header: "About Me"
       empty: "It's a secret"
+      waifu:
+        label: "{waifu, select, Waifu {Waifu} Husbando {Husbando} other {{waifu}}}:"
+        empty: "Waifu/Husbando:"
       gender:
+        label: "Gender:"
         secret: "It's a secret"
         male: "Male"
         female: "Female"
+      location: "Location:"
+      birthday: "Birthday:"
+      joined: "Join Date:"
     stats:
       headings:
         anime: "Anime Stats"
@@ -1311,7 +1347,7 @@ onboarding:
   checklist:
     header: "Getting Started on Kitsu"
     steps: "{count} steps left! 🦊"
-    feed: "Visit your feed"
+    feed: "Visit your personal feed"
     rate: "Rate 5 anime or manga"
     rate-incomplete: "Rate {count} anime or manga"
     follow: "Follow 5 users"
@@ -1319,6 +1355,10 @@ onboarding:
     comment: "Comment on a post"
     like: "Like 3 feed posts"
     like-incomplete: "Like {count} feed posts"
+    avatar: "Set your user avatar"
+    cover: "Set a profile cover image"
+    about-me: "Complete your <i>About Me</i>"
+    favorite: "Pick your favorite anime / manga"
 # component: follow-button
 follow-button:
   follow: "Follow"
@@ -1418,8 +1458,6 @@ reaction-modal:
       dimensions: "Width: {width}, Height: {height}"
       select: "Select"
       close: "Close"
-    image-edit:
-      date: "DD/MM/YYYY"
     confirm:
       check: "Are you sure you want to do this?"
       button: "Confirm"
@@ -1827,3 +1865,4 @@ category:
   shota: "Shota"
   small-breasts: "Small Breasts"
   yuri: "Yuri"
+date-format: "DD/MM/YYYY"
