@@ -5,7 +5,6 @@
   <div class="time-spent-text">
     <div class="time-spent-primary">
       {{#if (eq kind "anime")}}
-        {{!t (concat "timeUnits." primaryUnit.name) count=primaryUnit.count}}
         {{t "users.activity.stats.time-watched" count=(format-number primaryUnit.count maximumFractionDigits=1) timeUnit=(t (concat "timeUnits." primaryUnit.name) count=primaryUnit.count)}}
       {{else}}
         {{t "users.activity.stats.chapters-read" count=(format-number primaryUnit.count maximumFractionDigits=1)}}
