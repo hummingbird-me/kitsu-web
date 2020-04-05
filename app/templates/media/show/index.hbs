@@ -22,6 +22,26 @@
     {{! Ratings }}
     {{media/media-rating media=media}}
 
+    {{! Secondary Content (Tablet & Mobile) }}
+    {{#if (responsive 'isTablet')}}
+      {{! Trailer }}
+      {{#if media.youtubeVideoId}}
+        <div class="media-preview media-preview-tablet" {{action (toggle "trailerOpen" this)}}>
+          <img src="https://img.youtube.com/vi/{{media.youtubeVideoId}}/mqdefault.jpg">
+          <div class="media-preview--overlay">
+            {{svg-jar "trailer"}}
+            <h3>{{t "media.show.summary.trailer"}}</h3>
+          </div>
+        </div>
+        {{#if trailerOpen}}
+          {{to-elsewhere named="modal" send=(component "modals/media-trailer"
+            onClose=(toggle-action "trailerOpen" this)
+            media=media
+          )}}
+        {{/if}}
+      {{/if}}
+    {{/if}}
+
     {{! Synopsis }}
     <section class="media-synopsis m-b-1">
       {{read-more media.synopsis 480 tagName="p"}}
@@ -46,23 +66,6 @@
 
     {{! Secondary Content (Tablet & Mobile) }}
     {{#if (responsive 'isTablet')}}
-      {{! Trailer }}
-      {{#if media.youtubeVideoId}}
-        <div class="media-preview" {{action (toggle "trailerOpen" this)}}>
-          <img src="https://img.youtube.com/vi/{{media.youtubeVideoId}}/mqdefault.jpg">
-          <div class="media-preview--overlay">
-            {{svg-jar "trailer"}}
-            <h3>{{t "media.show.summary.trailer"}}</h3>
-          </div>
-        </div>
-        {{#if trailerOpen}}
-          {{to-elsewhere named="modal" send=(component "modals/media-trailer"
-            onClose=(toggle-action "trailerOpen" this)
-            media=media
-          )}}
-        {{/if}}
-      {{/if}}
-
       {{! Summary }}
       {{media/media-summary media=media}}
     {{/if}}
