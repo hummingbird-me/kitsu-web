@@ -11,14 +11,19 @@
       margin-top: 0;
     }
   }
-  @media (max-width: 1200px) {
-    display: none;
-  }
   .is-sticky {
     max-width: 300px;
     @media screen and (max-height: 800px) {
       position: relative;
       top: 0;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  body:not(.cover-page) {
+    .feed-sidebar {
+      display: none;
     }
   }
 }
@@ -186,11 +191,11 @@
   }
 }
 .favorite-item {
-  padding: 0 3px;
+  padding: 0 .5rem .5rem 0;
   a {
     border-radius: 3px;
     overflow: hidden;
-    display: inline-block;
+    display: inline;
   }
   img {
     width: 100%;
@@ -217,6 +222,154 @@
     padding: 5px;
     &:hover {
       color: $white;
+    }
+  }
+}
+
+@media (max-width: 1199px) {
+  .cover-page {
+    .feed-stream {
+      width: 100%;
+    }
+    .feed-sidebar {
+      order: -1;
+      max-width: 100%;
+      min-width: 100%;
+      padding-bottom: 2rem;
+    }
+    .user-favorites {
+      .favorite-series-panel {
+        display: flex;
+        flex-wrap: wrap;
+        .panel-heading {
+          width: 60%;
+        }
+        .nav-tabs {
+          width: 40%;
+          align-self: flex-start;
+          justify-content: flex-end;
+          display: flex;
+          margin-top: -6px;
+        }
+        .tab-content {
+          flex-shrink: 0;
+          width: 100%;
+          margin-top: -10px;
+        }
+      }
+      .favorite-series-panel,
+      .favorite-characters-panel {
+        margin-bottom: 0;
+        .panel-heading {
+          margin-top: 0;
+          height: 26px;
+        }
+      }
+    }
+    .sidebar-footer {
+      display: none;
+    }
+  }
+}
+@media (max-width: 1199px) and (min-width: 768px) {
+  .cover-page {
+    .feed-stream {
+      max-width: calc(100% - 250px);
+    }
+    .feed-sidebar {
+      padding-bottom: 0px;
+      .about-me-panel {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        > h6 {
+          flex-shrink: 0;
+          width: 100%;
+        }
+        > p {
+          order: 2;
+          padding-left: 1rem;
+        }
+        > ul {
+          min-width: 300px;
+          max-width: 300px;
+        }
+        > p,
+        > ul {
+          display: inline-block;
+          margin: 0;
+          vertical-align: top;
+          flex: 1;
+        }
+      }
+    }
+    .user-stats {
+      display: flex;
+      flex-direction: row;
+      .user-stats-panel {
+        flex: 1;
+        &:nth-child(2) {
+          margin-left: 1rem;
+        }
+      }
+    }
+    .user-favorites {
+      display: flex;
+      flex-direction: row;
+      > div {
+        flex: 1;
+      }
+      .favorite-characters-panel {
+        margin-left: 1rem;
+        // Force character images to be same height as media posters as they are slightly taller.
+        img {
+          height: 151.2px;
+          width: auto;
+          @media (min-width: 992px) {
+            height: 109.55px;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .cover-page {
+    .feed-stream {
+      max-width: 100%;
+    }
+    .user-favorites {
+      .favorite-characters-panel {
+        img {
+          height: 114.86px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 767px) {
+  .cover-page {
+    .feed-stream {
+      max-width: 100%;
+    }
+    .user-stats {
+      .graph-legend {
+        width: 100%;
+        margin-left: 1rem;
+        td:last-of-type {
+          width: 100%;
+          .legend-bar-container {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .user-favorites {
+      .favorite-characters-panel {
+        .panel-heading {
+          margin-top: 1.25rem;
+        }
+      }
     }
   }
 }

@@ -12,12 +12,13 @@ const favoriteComputed = (...args) => {
 };
 
 export default Component.extend({
+  classNames: ['user-favorites'],
   /**
    * Number of entries to show before the fold
    */
   animeCount: 8,
   mangaCount: 8,
-  characterCount: 12,
+  characterCount: 8,
 
   animeFavorites: favoriteComputed('user.favorites.@each.isDeleted', 'anime'),
   mangaFavorites: favoriteComputed('user.favorites.@each.isDeleted', 'manga'),

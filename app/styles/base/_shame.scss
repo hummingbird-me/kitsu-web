@@ -64,14 +64,38 @@ body {
     .user-reports {
       overflow-x: auto;
     }
-    // Hide extra whitespace created by the overflow hack
-    body {
-      padding-top: 55px;
-    }
     .settings--header {
       margin-top: 0;
     }
     .feed-container {
       overflow-y: hidden;
     }
+}
+
+// Hide extra whitespace created by the overflow hack above
+@media (min-width: 432px) and (max-width: 554px) {
+  body {
+    padding-top: 42px;
+  }
+}
+
+@media (max-width: 431px) {
+  body.settings-page {
+    padding-top: 42px;
+  }
+}
+
+@media (max-width: 431px) {
+  // Hide Kitsu logo on extremely small devices to prevent wrapping to 2 lines
+  .navbar button + .nav-item {
+    max-width: 28px;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 320px) {
+  // Prevent header wrapping to 2 lines on logged out iPhone 5/SE
+  .site-search__input {
+    width: 125px;
+  }
 }
