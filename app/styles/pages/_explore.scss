@@ -29,6 +29,11 @@
     .poster-wrapper {
       padding-right: 10px;
       margin-bottom: 10px;
+      @media (max-width: 1220px) {
+        &:nth-child(5) {
+          display: none;
+        }
+      }
     }
   }
 }
@@ -60,15 +65,25 @@
   .edit-favorite-categories {
     font-size: 12px;
   }
+  @media (max-width: 543px) {
+    order: -1;
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .categories-list {
   display: flex;
-  flex-flow: column wrap;
-  max-height: 375px;
+  flex-flow: row wrap;
   margin-bottom: 42px;
   font-size: 12px;
   font-weight: 600;
+  li {
+    min-width: 50%;
+    @media (min-width: 433px) and (max-width: 543px) {
+      min-width: 33%;
+    }
+  }
   a {
     color: inherit;
     font-family: inherit;

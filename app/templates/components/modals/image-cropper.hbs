@@ -1,20 +1,20 @@
 {{#bootstrap/bs-modal largeModal=true backdrop="static" keyboard="false" onClose=onClose as |modal|}}
   {{#modal.header}}
-    <h4>Image Crop</h4>
+    <h4>{{ t "reaction-modal.modals.image-cropper.header"}}</h4>
   {{/modal.header}}
   {{#modal.body}}
     <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
       <img id="{{elementId}}-image" src={{image image}}>
-      <span class="text-muted m-t-1">Width: {{width}}, Height: {{height}}</span>
+      <span class="text-muted m-t-1">{{t "reaction-modal.modals.image-cropper.dimensions" width=width height=height}}</span>
     </div>
   {{/modal.body}}
   {{#modal.footer}}
     <div class="pull-sm-right">
       <button class="button" {{action "closeModal"}}>
-        Close
+        {{t "reaction-modal.modals.image-cropper.close"}}
       </button>
       <button class="button btn-primary" {{action "updateImage"}}>
-        Select
+        {{t "reaction-modal.modals.image-cropper.select"}}
       </button>
     </div>
   {{/modal.footer}}

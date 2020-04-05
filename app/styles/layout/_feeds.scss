@@ -1,15 +1,6 @@
 .feed-aside {
   max-width: 250px;
   padding-left: 15px;
-  @media (max-width: 992px) {
-    display: none;
-  }
-  .is-sticky {
-    @media screen and (max-height: 575px) {
-      position: relative;
-      top: 0;
-    }
-  }
   .sidebar-item:first-child {
     .panel-heading {
       margin-top: 0;
@@ -91,6 +82,30 @@
       }
     }
   }
+  @media (max-width: 768px) {
+    padding-left: 0px;
+    padding-bottom: 3px;
+    margin-top: -10px;
+    padding-right: 0px;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    .sidebar-item {
+      display: none;
+    }
+    ul > li {
+      display: inline-block;
+    }
+    .timeline-link {
+      .emoji {
+        top: 1px;
+      }
+    }
+  }
+  @media (max-width: 554px) and (min-width: 432px) {
+    padding-top: 38px;
+  }
 }
 
 .feed-container {
@@ -113,8 +128,10 @@
 .feed-stream {
   padding: 0;
   max-width: 600px;
+  width: 100%;
   &.feed-narrow {
     width: 540px;
+    max-width: 540px;
   }
   @media (min-width: 650px) and (max-width: 991px) {
     padding-right: 0;
@@ -412,7 +429,6 @@
 .media-body {
   position: relative;
   top: -3px;
-  max-width: calc(100% - 45px);
   .stream-item-activity {
     margin: 0;
     position: relative;
@@ -540,6 +556,7 @@
   }
   .media-body {
     font-size: 14px;
+    max-width: calc(100% - 45px);
     .comment-body {
       @include word-break();
       margin-bottom: 0;
@@ -1261,8 +1278,8 @@
 .nsfw-gate, .spoiler-gate, .combo-gate {
   padding: 0 20px;
   a {
-    background: #fafafa;
-    border: 1px solid #eee;
+    background: $tertiary-background-color;
+    border: 1px solid $divider-color;
     border-radius: 3px;
     margin-bottom: 15px;
     text-align: center;
@@ -1417,9 +1434,9 @@
 
 .tagged-media {
   position: relative;
-  border: 1px solid #eee;
+  background: $tertiary-background-color;
+  border: 1px solid $divider-color;
   border-radius: 3px;
-  background: #fafafa;
   margin-left: 0;
   margin-right: 0;
   padding: 10px;

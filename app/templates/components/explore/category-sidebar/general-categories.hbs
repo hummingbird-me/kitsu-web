@@ -12,7 +12,7 @@
       {{else}}
         {{#each getUserFavoritesTask.value as |favorite|}}
           <li>
-            <a href={{href-to "explore.category" favorite.category.slug}}>{{favorite.category.title}}</a>
+            <a href={{href-to "explore.category" favorite.category.slug}}>{{t (category-to-i18n favorite.category.slug)}}</a>
           </li>
         {{else}}
           {{t "explore.widget.no-favorites"}}

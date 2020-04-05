@@ -223,7 +223,7 @@ media:
         type: "Type"
         volumes: "Volumes"
         unit: "{type, select, anime {Episodes} manga {Chapters} other {}}"
-        start: "{type, select, anime {Broadcasted} manga {Published} other {}}"
+        start: "{type, select, anime {Aired} manga {Published} other {}}"
         status: "Status"
         tba: "Expected"
         season: "Season"
@@ -245,7 +245,7 @@ media:
       unit: "{type, select, episode {Episode} chapter {Chapter} other {}}"
       back: "Back to {type, select, episode {episode} chapter {chapter} other {}} list"
       pages: "{length} Pages"
-      date: "{type, select, episode {Broadcasted} chapter {Published} other {}}"
+      date: "{type, select, episode {Aired} chapter {Published} other {}}"
       completed: "{type, select, episode {Watched} chapter {Read} other {Complete}}"
       feed:
         header: "{type, select, episode {Episode} chapter {Chapter} other {}} Discussion"
@@ -498,8 +498,6 @@ users:
       headings:
         anime: "Anime Stats"
         manga: "Manga Stats"
-      chapters-read: "chapters read."
-      time-breakdown: "spent watching anime in total."
       empty:
         header: "Looks like you don't have enough data yet! Ready to start something new?"
         guest-header: "Looks like {user} doesn't have any stats yet."
@@ -1183,8 +1181,8 @@ library-entry:
 #component: application/user-notifications
 user-notifications:
   #Episode 113 of One Piece! aired
-  aired: "{type, select, chapter {Chapter} episode {Episode} other {}} {number} of {media} {type, select, chapter {released} episode {has broadcasted} other {}}"
-  aired-unknown: "{media} {type, select, manga {released} anime {broadcasted} other {}} a new {type, select, manga {chapter} anime {episode} other {}}"
+  aired: "{type, select, chapter {Chapter} episode {Episode} other {}} {number} of {media} {type, select, chapter {released} episode {has aired} other {}}"
+  aired-unknown: "{media} {type, select, manga {released} anime {aired} other {}} a new {type, select, manga {chapter} anime {episode} other {}}"
 #ember-power-select
 selects:
   loading: "Loading…"

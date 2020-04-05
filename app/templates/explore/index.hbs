@@ -1,5 +1,14 @@
 <div class="explore-page col-sm no-padding-left">
   <h3>{{t (concat "titles." mediaType ".index")}}</h3>
+
+  {{#if (responsive 'isMobile')}}
+    <div class="explore-sidebar col-sm">
+      {{explore/category-sidebar/general-categories
+        getUserFavoritesTask=model.userFavoritesTask
+      }}
+    </div>
+  {{/if}}
+
   {{explore/explore-search mediaType=mediaType}}
 
   {{! Trending Week }}
@@ -52,8 +61,10 @@
   }}
 </div>
 
-<div class="explore-sidebar col-sm">
-  {{explore/category-sidebar/general-categories
-    getUserFavoritesTask=model.userFavoritesTask
-  }}
-</div>
+{{#unless (responsive 'isMobile')}}
+  <div class="explore-sidebar col-sm">
+    {{explore/category-sidebar/general-categories
+      getUserFavoritesTask=model.userFavoritesTask
+    }}
+  </div>
+{{/unless}}

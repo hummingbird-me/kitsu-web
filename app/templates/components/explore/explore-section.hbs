@@ -2,7 +2,7 @@
   {{t (concat "titles." more "." type)
     mediaType=mediaType
     type=(capitalize mediaType)
-    category=category.title
+    category=(t (category-to-i18n category.slug))
   }}
 </h6>
 

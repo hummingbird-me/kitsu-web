@@ -3,6 +3,7 @@ import { get, computed } from '@ember/object';
 import { camelize } from '@ember/string';
 
 export default Component.extend({
+  classNames: ['user-stats'],
   normStats: computed('user.stats', function() {
     const stats = get(this, 'user.stats');
     const normed = stats.reduce((acc, stat) => {
