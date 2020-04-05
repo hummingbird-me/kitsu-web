@@ -6,7 +6,7 @@
       <span class="stat-icon">
         {{svg-jar "sm-heart"}}
       </span>
-      <strong>{{or user.waifuOrHusbando "Waifu/Husbando"}}:</strong>
+      <strong>{{or (t "users.activity.about.waifu.label" waifu=user.waifuOrHusbando) (t "users.activity.about.waifu.empty")}}</strong>
         <span class="waifu-wrapper">
           <img src={{image user.waifu.image}}>
         </span>
@@ -17,7 +17,7 @@
     <span class="stat-icon">
       {{svg-jar "gender"}}
     </span>
-    <strong>{{t "users.activity.about.gender.gender"}}</strong>
+    <strong>{{t "users.activity.about.gender.label"}}</strong>
     <span>{{gender}}</span>
   </li>
   <li class="about-stat about--location">
