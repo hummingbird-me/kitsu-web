@@ -236,38 +236,38 @@
       max-width: 100%;
       min-width: 100%;
       padding-bottom: 2rem;
-      .user-favorites {
-        .favorite-series-panel {
+    }
+    .user-favorites {
+      .favorite-series-panel {
+        display: flex;
+        flex-wrap: wrap;
+        .panel-heading {
+          width: 60%;
+        }
+        .nav-tabs {
+          width: 40%;
+          align-self: flex-start;
+          justify-content: flex-end;
           display: flex;
-          flex-wrap: wrap;
-          .panel-heading {
-            width: 60%;
-          }
-          .nav-tabs {
-            width: 40%;
-            align-self: flex-start;
-            justify-content: flex-end;
-            display: flex;
-            margin-top: -6px;
-          }
-          .tab-content {
-            flex-shrink: 0;
-            width: 100%;
-            margin-top: -10px;
-          }
+          margin-top: -6px;
         }
-        .favorite-series-panel,
-        .favorite-characters-panel {
-          margin-bottom: 0;
-          .panel-heading {
-            margin-top: 0;
-            height: 26px;
-          }
+        .tab-content {
+          flex-shrink: 0;
+          width: 100%;
+          margin-top: -10px;
         }
       }
-      .sidebar-footer {
-        display: none;
+      .favorite-series-panel,
+      .favorite-characters-panel {
+        margin-bottom: 0;
+        .panel-heading {
+          margin-top: 0;
+          height: 26px;
+        }
       }
+    }
+    .sidebar-footer {
+      display: none;
     }
   }
 }
@@ -277,6 +277,7 @@
       max-width: calc(100% - 250px);
     }
     .feed-sidebar {
+      padding-bottom: 0px;
       .about-me-panel {
         display: flex;
         flex-wrap: wrap;
@@ -301,29 +302,31 @@
           flex: 1;
         }
       }
-      .user-stats {
-        display: flex;
-        flex-direction: row;
-        padding-top: 1rem;
-        .user-stats-panel {
-          flex: 1;
-          &:nth-child(2) {
-            margin-left: 1rem;
-          }
+    }
+    .user-stats {
+      display: flex;
+      flex-direction: row;
+      .user-stats-panel {
+        flex: 1;
+        &:nth-child(2) {
+          margin-left: 1rem;
         }
       }
-      .user-favorites {
-        display: flex;
-        flex-direction: row;
-        > div {
-          flex: 1;
-        }
-        .favorite-characters-panel {
-          margin-left: 1rem;
-          // Force character images to be same height as media posters as they are slightly taller.
-          img {
-            height: 151.2px;
-            width: auto;
+    }
+    .user-favorites {
+      display: flex;
+      flex-direction: row;
+      > div {
+        flex: 1;
+      }
+      .favorite-characters-panel {
+        margin-left: 1rem;
+        // Force character images to be same height as media posters as they are slightly taller.
+        img {
+          height: 151.2px;
+          width: auto;
+          @media (min-width: 992px) {
+            height: 109.55px;
           }
         }
       }
@@ -335,12 +338,10 @@
     .feed-stream {
       max-width: 100%;
     }
-    .feed-sidebar {
-      .user-favorites {
-        .favorite-characters-panel {
-          img {
-            height: 112.2px;
-          }
+    .user-favorites {
+      .favorite-characters-panel {
+        img {
+          height: 114.86px;
         }
       }
     }
@@ -351,12 +352,22 @@
     .feed-stream {
       max-width: 100%;
     }
-    .feed-sidebar {
-      .user-favorites {
-        .favorite-characters-panel {
-          .panel-heading {
-            margin-top: 1.25rem;
+    .user-stats {
+      .graph-legend {
+        width: 100%;
+        margin-left: 1rem;
+        td:last-of-type {
+          width: 100%;
+          .legend-bar-container {
+            width: 100%;
           }
+        }
+      }
+    }
+    .user-favorites {
+      .favorite-characters-panel {
+        .panel-heading {
+          margin-top: 1.25rem;
         }
       }
     }
