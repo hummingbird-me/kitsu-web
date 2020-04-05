@@ -587,10 +587,14 @@ users:
       headings:
         anime: "Anime Stats"
         manga: "Manga Stats"
-      time-watched: " spent watching anime."
-      chapters-read: "chapters read."
-      completed: "completed."
-      time-breakdown: "spent watching anime in total."
+      time-watched: " {count} {timeUnit} spent watching anime."
+      chapters-read: "{count} chapters read."
+      completed: "{count} completed."
+      more-than: "More than <span class=\"time-spent-percentile\">{percentage}%</span> of users."
+      time-breakdown:
+        seperator: ", " # Used to seperate time-segments (e.g 8 months, 3 hours)
+        time-segment: "{count} {timeUnit}" # 8 months (pre-translated)
+        total: "spent watching anime in total." # appended after time-segments
       empty:
         header: "Looks like you don't have enough data yet! Ready to start something new?"
         guest-header: "Looks like {user} doesn't have any stats yet."
@@ -1233,15 +1237,15 @@ onboarding:
     submit: "Looks Good!"
   checklist:
     header: "Getting Started on Kitsu"
-    steps: "steps left! 🦊"
+    steps: "{count} steps left! 🦊"
     feed: "Visit your feed"
     rate: "Rate 5 anime or manga"
-    rate-left: "Rate {count} anime or manga"
+    rate-incomplete: "Rate {count} anime or manga"
     follow: "Follow 5 users"
-    follow-left: "Follow {count} {count, plural, =1 {user} other {users}}"
+    follow-incomplete: "Follow {count} {count, plural, =1 {user} other {users}}"
     comment: "Comment on a post"
     like: "Like 3 feed posts"
-    like-left: "Like {count} feed posts"
+    like-incomplete: "Like {count} feed posts"
 # component: follow-button
 follow-button:
   follow: "Follow"
@@ -1337,23 +1341,24 @@ reaction-modal:
 # component: modals
   modals:
     image-cropper:
-      size: "Width: {width}, Height: {height}"
+      header: "Image Crop"
+      dimensions: "Width: {width}, Height: {height}"
       select: "Select"
       close: "Close"
     confirm:
-      text: "Are you sure you want to do this?"
+      check: "Are you sure you want to do this?"
       button: "Confirm"
     block-user:
       header: "Block User"
-      body-header: "Before you block this person, we want to let you know how blocking will work."
-      body-text: "Blocking this person will make it so that their content is no longer visible to you,
-      and your content will no longer be visible or interactable for them."
-      button: "Block"
-  report-content:
-    header: "You can only report this content once."
-    status: "The current status of your report: {status}"
-    reason: "Please give a reason for reporting this content."
-    button: "Report"
+      body:
+        header: "Before you block this person, we want to let you know how blocking will work."
+        text: "Blocking this person will make it so that their content is no longer visible to you, and your content will no longer be visible or interactable for them."
+      button: "Block {user}"
+    report-content:
+      header: "You can only report this content once."
+      status: "The current status of your report: {status}"
+      reason: "Please give a reason for reporting this content."
+      submit: "Report"
 # component: library-entry/*
 library-entry:
   state:

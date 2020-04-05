@@ -3,14 +3,14 @@
   onClose=onClose as |modal|}}
   {{#modal.header}}
     <h3 class="text-xs-center">
-      {{t "modals.block-user.header"}}
+      {{t "reaction-modal.modals.block-user.header"}}
     </h3>
   {{/modal.header}}
 
   {{#modal.body}}
-    <h6>{{t "modals.block-user.body-header"}}</h6>
+    <h6>{{t "reaction-modal.modals.block-user.body.header"}}</h6>
     <p>
-      {{t "modals.block-user.body-text"}}
+      {{t "reaction-modal.modals.block-user.body.text"}}
     </p>
   {{/modal.body}}
 
@@ -19,7 +19,7 @@
       {{#if blockUser.isRunning}}
         {{loading-spinner size="small"}}
       {{else}}
-        {{t "modals.block-user.button"}} {{user.name}}
+        {{t "reaction-modal.modals.block-user.button" user=user.name}}
       {{/if}}
     </button>
   {{/modal.footer}}

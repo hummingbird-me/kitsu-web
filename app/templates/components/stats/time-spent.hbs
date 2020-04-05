@@ -4,22 +4,19 @@
   </div>
   <div class="time-spent-text">
     <div class="time-spent-primary">
-      {{format-number primaryUnit.count maximumFractionDigits=1}}
       {{#if (eq kind "anime")}}
-        {{t (concat "timeUnits." primaryUnit.name) count=primaryUnit.count}}
-        {{t "users.activity.stats.time-watched"}}
-            {{else}}
-        {{t "users.activity.stats.chapters-read" count=primaryUnit.count}}
+        {{!t (concat "timeUnits." primaryUnit.name) count=primaryUnit.count}}
+        {{t "users.activity.stats.time-watched" count=(format-number primaryUnit.count maximumFractionDigits=1) timeUnit=(t (concat "timeUnits." primaryUnit.name) count=primaryUnit.count)}}
+      {{else}}
+        {{t "users.activity.stats.chapters-read" count=(format-number primaryUnit.count maximumFractionDigits=1)}}
       {{/if}}
     </div>
     <div class="time-spent-secondary">
       {{#if (gt stat.completed 0)}}
-        {{format-number stat.completed}} {{t "users.activity.stats.completed"}}
+        {{t "users.activity.stats.completed" count=(format-number stat.completed)}}
       {{/if}}
       {{#if (gt percentile 0)}}
-        More than
-        <span class="time-spent-percentile">{{decimal-number percentile 0}}%</span>
-        of users.
+        {{t "users.activity.stats.more-than" htmlSafe=true percentage=(decimal-number percentile 0)}}
       {{/if}}
     </div>
   </div>
@@ -37,15 +34,16 @@
           targetAttachment="top center"
           offset="15px -20px"
         }}
+        {{! TODO: Make this friendlier for translation }}
           <span class="time-spent-breakdown">
             {{#each breakdown as |unit index|}}
               <span>
-                {{if (gt index 0) ", "}}
-                {{format-number unit.count}} {{t (concat "timeUnits." unit.name) count=unit.count}}
+                {{if (gt index 0) (t "users.activity.stats.time-breakdown.seperator")}}
+                {{t "users.activity.stats.time-breakdown.time-segment" count=(format-number unit.count) timeUnit=(t (concat "timeUnits." unit.name) count=unit.count)}}
               </span>
             {{/each}}
           </span>
-          {{t "users.activity.stats.time-breakdown"}}
+          {{t "users.activity.stats.time-breakdown.total"}}
           <div class="attach" />
         {{/ember-tether}}
       </div>
