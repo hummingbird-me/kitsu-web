@@ -17,6 +17,7 @@
               {{lazy-image src=(image review.user.avatar "small")}}
             </a>
             <h5 class="name-heading person-heading left">
+              {{! TODO: Use helper function to include href-to in translation }}
               <small>{{t "components.stream-feed.review.by"}}</small>
               <a href={{href-to "users.index" review.user}}>{{review.user.name}}</a>
             </h5>
@@ -88,11 +89,11 @@
     <div class="stream-item-options">
       <a href={{tweetLink}} target="_blank" {{action "trackEngagement" "click" preventDefault=false}}>
         {{svg-jar "l-twitter"}}
-        {{t "components.stream-feed.review.twitter"}}
+        {{t "components.stream-feed.review.share.twitter"}}
       </a>
       <a href={{facebookLink}} target="_blank" {{action "trackEngagement" "click" preventDefault=false}}>
         {{svg-jar "l-facebook"}}
-        {{t "components.stream-feed.review.facebook"}}
+        {{t "components.stream-feed.review.share.facebook"}}
       </a>
 
       {{! options }}
@@ -102,7 +103,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <a href="#" data-clipboard-text={{concat host (href-to "reviews" review.id)}} class="dropdown-item" {{action "trackEngagement" "click"}}>
-            {{t "components.stream-feed.review.link"}}
+            {{t "components.stream-feed.review.copy-link"}}
           </a>
 
           {{! Re-hide the review }}

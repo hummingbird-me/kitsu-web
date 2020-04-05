@@ -9,7 +9,7 @@
       {{#if comment}}
         <div class="comment-actions clearfix">
           <div class="pull-sm-left">
-            <a href={{href-to "posts" post.id}}>{{t "components.stream-feed.post.comment.all"}}</a>
+            <a href={{href-to "posts" post.id}}>{{t "components.stream-feed.post.comments.all"}}</a>
             {{#if (and isReply comment.parent)}}
               &mdash;
               <a href={{href-to "comments" comment.parent.id}}>{{t "components.stream-feed.post.comments.parent"}}</a>
@@ -47,13 +47,13 @@
                 {{#if isLoading}}
                   {{loading-spinner size="small"}}
                 {{else}}
-                  <a href="#" {{action "onPagination"}}>{{t "components.stream-feed.post.comments.previous"}}</a>
+                  <a href="#" {{action "onPagination"}}>{{t "components.stream-feed.post.comments.previous-comments"}}</a>
                 {{/if}}
               </div>
             {{/unless}}
             {{! Comment count }}
             <div class="pull-sm-right">
-              {{t "components.stream-feed.post.comments.count" count=comments.length total=post.topLevelCommentsCount}}
+              {{t "components.stream-feed.post.comment-count" count=comments.length total=post.topLevelCommentsCount}}
             </div>
           </div>
         {{/if}}
@@ -112,7 +112,7 @@
     <div class="add-comment-wrapper">
       {{stream-feed/items/post/comment-box
         onSubmit=createComment
-        placeholder=(t "components.stream-feed.post.comments.placeholder")
+        placeholder=(t "components.stream-feed.post.comments.leave-comment")
         className="form-control add-comment"
         upload=upload
       }}

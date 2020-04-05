@@ -96,7 +96,7 @@
           <div class="dropdown-menu">
             {{! Copy Permalink }}
             <a class="dropdown-item" href="#" data-clipboard-text={{concat host (href-to "comments" comment.id)}} {{action "trackEngagement" "click"}}>
-              {{t "components.stream-feed.post.comment.link"}}
+              {{t "components.stream-feed.post.comment.copy-link"}}
             </a>
 
             {{! Edit/Delete Options }}
@@ -122,7 +122,7 @@
                 )}}
               {{/if}}
 
-              <a class="dropdown-item" href="#" {{action (toggle "blockUserModal" this)}}>{{t "components.stream-feed.post.comment.block" user=comment.user.name}}</a>
+              <a class="dropdown-item" href="#" {{action (toggle "blockUserModal" this)}}>{{t "components.stream-feed.post.comment.block-user" user=comment.user.name}}</a>
                 {{#if blockUserModal}}
                   {{to-elsewhere named="modal" send=(component "modals/block-user"
                     user=comment.user
@@ -151,13 +151,13 @@
                 {{#if isLoading}}
                   {{loading-spinner size="small"}}
                 {{else}}
-                  <a href="#" {{action "onPagination"}}>{{t "components.stream-feed.post.comment.previous"}}</a>
+                  <a href="#" {{action "onPagination"}}>{{t "components.stream-feed.post.comment.previous-replies"}}</a>
                 {{/if}}
               </div>
 
               {{! Comment count }}
               <div class="pull-sm-right">
-                {{t "components.stream-feed.post.comment.block" count=replies.length total=comment.repliesCount}}
+                {{t "components.stream-feed.post.comment-count" count=replies.length total=comment.repliesCount}}
               </div>
             </div>
           {{/if}}
@@ -187,7 +187,7 @@
           <div class="add-reply-wrapper">
             {{stream-feed/items/post/comment-box
               onSubmit=createReply
-              placeholder=(t "components.stream-feed.post.comment.placeholder")
+              placeholder=(t "components.stream-feed.post.comment.add-reply")
               className="form-control reply-comment"
               upload=upload
             }}
