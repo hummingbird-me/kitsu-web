@@ -36,7 +36,7 @@ const RouterInstance = Router.extend(RouterScroll, Breadcrumbs, {
   _trackPage() {
     scheduleOnce('afterRender', () => {
       const page = get(this, 'url');
-      const title = get(this, 'head.title') || get(this, 'currentRouteName');
+      const title = get(this, 'currentRouteName') || get(this, 'head.title');
       get(this, 'metrics').trackPage({ page, title });
     });
   },
