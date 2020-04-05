@@ -20,3 +20,343 @@ titles:
       most-popular: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} més populars"
     category:
       index: "{category} {type}"
+      more:
+        newly-released: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} {category} recents"
+        trending: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} {category} en tendència"
+        most-popular: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} {category} més populares"
+  not-found: "No trobat"
+  server-error: "Error del servidor"
+  users:
+    index: "Perfil de {user}"
+    library: "Biblioteca de {user}"
+    reviews: "Ressenyes de {user}"
+    reactions: "Reaccions de {user}"
+    followers: "Seguidors de {user}"
+    following: "Seguit per {user}"
+    groups: "Grups de {user}"
+    stats: "Estadístiques de {user}"
+  posts: "Publicat per {user}"
+  comments: "Comentat per {user}"
+  reviews: "Ressenyes de {user}"
+  notifications: "Notificacions"
+  feedback:
+    bugs: "Bugs"
+    feature-requests: "Sol·licituds de funcionalitats"
+    database-requests: "Sol·licituds de contingut"
+    mobile-bugs: "Bugs de dispositius mòvils"
+    mobile-features: "Sol·licituds de funcionalitats per dispositius mòvils"
+  admin:
+    index: "Admin"
+    reports: "Informes"
+  groups:
+    index: "Grups"
+    new: "Crear un grup"
+    group:
+      group-page:
+        rules: "Normes de {group}"
+        members: "Membres de {group}"
+        leaders: "Líders de {group}"
+      dashboard:
+        index: "Sobre {group}"
+        reports: "Informes de {group}"
+        tickets: "Tickets de {group}"
+        members: "Membres de {group}"
+        leaders: "Líders de {group}"
+        settings: "Paràmetres de {group}"
+  group-invite: "Invitació al grup"
+#head
+head:
+  users:
+    description: "{user} està fent servir Kitsu per fer el seguiment dels seus progressos i compartir les seves experiències d'animes i mangas."
+#header
+header:
+  library: "Biblioteca"
+  anime: "Animes"
+  manga: "Mangas"
+  groups: "Grups"
+  feedback: "Comentaris"
+  browse: "Navegar"
+  auth:
+    sign-up: "Registrar-se"
+  user:
+    profile: "Veure el perfil"
+    settings: "Paràmetres"
+    admin: "Admin"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Comencem per les dades bàsiques} 1 {Genial - Ara teu correu!} 2 {Sembla bé, que tal una contrasenya?} 3 {Fantàstic - Creiem aquest compte} other {}}"
+#page: about
+about:
+  header: "Sobre Kitsu"
+#page: dashboard
+dashboard:
+  quick-update:
+    filter:
+      all: "Tot"
+      anime: "Anime"
+      manga: "Manga"
+    empty:
+      html: "Els continguts que hagis afegit o pujat dins de la teva <a href={link}>Biblioteca</a> es mostraran aquí perquè els puguis actualitzar de forma ràpida."
+    media:
+      complete: "Completat"
+      unstarted: "No començat"
+      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {de {total}}}} manga {Cap. {num} {total, select, null {} other {de {total}}}} other {}}"
+    overlay:
+      button:
+        update: "{type, select, anime {Ep.} manga {Cap.} other {}} {number}"
+        complete: "Completat"
+        tooltip:
+          empty: "Actualitzar la biblioteca"
+          content: "Crea una publicació i actualitza la biblioteca"
+      discussion: "Veure discussió"
+      edit: "Edita entrada de la biblioteca"
+      popout: "Editor pop-out"
+      editor:
+        placeholder: "(Opcional) Comparteix els teus pensaments del {type, select, anime {episodi} manga {capítol} other {}} {number}"
+  onboarding:
+    welcome: "Hey {user}, benvingut a Kitsu!"
+    about: "Aquest és el panell d'activitat global. En ell trobaràs l'activitat recent de tots els usuaris de Kitsu, incloent-te! Un cop tinguis l'oportunitat de seguir a un parell d'usuaris interessants, canviarem el teu panell d'activitats per defecte per les activitats dels que estiguis seguint."
+    action: "Per què no intentes fer una publicació per presentar-te utilitzant el formulari a continuació? Pots dir una cosa tan simple com \"Hola a tots, sóc nou en Kitsu \", o pots mostrar-nos la teva creativitat!"
+  groups:
+    header: "Els meus grups"
+  announcements:
+    button: "Aprendre més"
+  feed:
+    following: "Seguint"
+    anime: "Anime"
+    manga: "Manga"
+    global: "Global"
+#page: anime/manga
+media:
+  index:
+    filter: "Filtrar"
+    remove: "Suprimir"
+    filters:
+      year: "Any"
+    sort:
+      rating: "Puntuació mitjana"
+      date: "Data"
+      recent: "Afegits recentment"
+  none: "Sense resultats."
+  show:
+    navigation:
+      summary: "Resum"
+      units: "{type, select, anime {Episodis} manga {Capítols} other {}}"
+      characters: "Personatges"
+      reactions: "Reaccions"
+      franchise: "Franquícia"
+    sidebar:
+      watch: "Veure en línia"
+    summary:
+      ratings:
+        community: "{rating}% d'aprovació per la comunitat"
+        match: "{rating}% coincideixen"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Rank #{rank} (Anime més popular)} manga {Rank #{rank} (Manga més popular)} other {}}"
+          rating: "{type, select, anime {Rank #{rank} (Anime més valorat)} manga {Rank #{rank} (Manga més valorat)} other {}}"
+        short:
+          popularity: "#{rank} Més Popular"
+      categories: "Categories"
+      relationships:
+        header: "Més d'aquesta sèrie"
+        more: "Veure tots en {title}"
+      reactions:
+        header: "Reaccions"
+        more: "Veure més reaccions"
+        sorts:
+          -upVotesCount: "Popular"
+          -createdAt: "Recent"
+        new: "Nova reacció"
+        edit: "La meva reacció"
+        empty: "No sembla que algú hagi reaccionat a això"
+      characters:
+        header: "Personatges"
+        more: "Veure tots els personatges"
+      titles:
+        header: "Títols alternatius"
+        ar: "Àrab"
+        ar_ar: "Àrab" #Invalid use ar
+        cs_cz: "Txec"
+        da_dk: "Danès"
+        de_de: "Alemany"
+        el_gr: "Grec"
+        en: "Anglès"
+        en_cn: "Xino (Pinyin)"
+        en_gb: "Anglès (UK)"
+        en_il: "Hebreu (romanitzat)"
+        en_kr: "Coreà (Romaja)"
+        en_th: "Tai (Romanitzat)"
+        en_us: "Anglès (US)"
+        es_es: "Espanyol"
+        fi_fi: "Finès"
+        fr_fr: "Frances"
+        he_il: "Hebreu"
+        hi_in: "Hindú"
+        hr_hr: "Croat"
+        hu_hu: "Hongarès"
+        id_id: "Indonesi"
+        it_it: "Italià"
+        is_is: "Islandès"
+        ja_jp: "Japonès"
+        ko_kr: "Coreà"
+        lv_lv: "Letó"
+        ms_my: "Malai"
+        pl_pl: "Polonès"
+        pt_br: "Portuguès (Brasil)"
+        pt_pt: "Portuguès"
+        ru_ru: "Rus"
+        sr_sp: "Serbi"
+        sv_se: "Suec"
+        tl_ph: "Tagalog"
+        tr_tr: "Turc"
+        th_th: "Tai"
+        uk_ua: "Ucraïnès"
+        vi_vi: "Vietnamita" #Invalid use vi_vn
+        vi_vn: "Vietnamita"
+        zh_cn: "Xino (Simplificat)"
+        zh_hk: "Xino (Hong Kong)"
+        zh_mo: "Xino (Macau)"
+        zh_tw: "Xino (Tradicional)"
+    franchise:
+      header: "Franquícia {title}"
+      roles:
+        sequel: "Seqüela"
+        parent_story: "Història prèvia"
+        summary: "Resum"
+        full_story: "Història completa"
+        spinoff: "Spin-off"
+        adaptation: "Adaptació"
+        anime_adaptation: "Anime"
+        manga_adaptation: "Manga"
+        character: "Personatge"
+        other: "Altre"
+  hide-posts:
+    text: "Amaga publicacions sobre {media}"
+    info: "Les publicacions no apareixeran al panell de seguiment o {type}"
+  show-posts:
+    text: "Mostra publicacions sobre {media}"
+    info: "Les publicacions apareixeran al panell de seguiment o {type}"
+#components
+components:
+  ad-unit: "La publicitat és una merda, però és el que ens manté en línia. Si us plau admetem-nos al teu bloquejador d'anuncis."
+  admin:
+    reports:
+      actions:
+        button: "Accions"
+        open: "Marcar com obert"
+        resolved: "Marcar com a resolt"
+        closed: "Marcar com tancat"
+      table:
+        user: "Usuaris"
+        type: "Tipus"
+        reason: "Raó"
+        explanation: "Explicació"
+        moderator: "Moderador"
+        status: "Estat"
+        actions: "Accions"
+  search:
+    header: "Buscar resultats"
+    view: "veure més"
+    load: "carregar més"
+    none: "sense resultats"
+  sidebar-footer:
+    contact: "Contacte"
+    terms: "Termes"
+  stream-feed:
+    create-post:
+      edit: "Editar"
+      create: "Publicar"
+      nsfw: "NSFW"
+      spoiler: "Spoiler"
+    edit-post:
+      header: "Editar publicació"
+      error:
+        tagged: "Malauradament encara no podem permetre editar els teus continguts etiquetats."
+    follow:
+      followed: "seguit"
+      delete: "Eliminar activitat"
+    library:
+      delete: "eliminar"
+      deleting: "eliminant…"
+    post:
+      pinned: "Publicació fixada"
+      edited: "editat"
+      gate:
+        spoiler-nsfw: "Conté spoilers i NSFW."
+#page: users
+users:
+  edit-modal:
+    profile-links:
+      sites:
+        website:
+          about: "Afegeix el teu lloc web personal a continuació per afegir un enllaç al teu perfil."
+          placeholder: "La URL del teu perfil"
+        twitter:
+          about: "Afegeix el teu nom d'usuari de Twitter a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari de Twitter (@Usuari)"
+        facebook:
+          about: "Afegeix la URL del teu Facebook a continuació per afegir un enllaç al teu perfil."
+          placeholder: "La URL del teu perfil Facebook"
+        youtube:
+          about: "Afegeix la URL del teu canal de YouTube a continuació per afegir un enllaç al teu perfil."
+          placeholder: "La URL del teu canal YouTube"
+        google:
+          about: "Afegeix la URL del teu perfil de Google+ o el teu usuari a continuació per afegir un enllaç al teu perfil."
+          placeholder: "La URL del teu perfil Google+ o nom d'usuari (+Usuari)"
+        instagram:
+          about: "Afegeix el teu nom d'usuari d'Instagram a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari Instagram"
+        twitch:
+          about: "Afegeix el teu nom d'usuari de Twitch a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari Twitch"
+        vimeo:
+          about: "Afegeix el teu nom d'usuari de Vimeo a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari Vimeo"
+        github:
+          about: "Afegeix el teu nom d'usuari GitHub a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari GitHub"
+        battlenet:
+          about: "Afegeix el teu BattleTag de Battle.net a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu BattleTag de Battle.net (Usuari#1234)"
+        steam:
+          about: "Afegeix el teu nom d'usuari de Steam Community a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari de Steam Community"
+        raptr:
+          about: "Afegeix el teu nom d'usuari Raptr a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari de Raptr"
+        discord:
+          placeholder: "El teu tag Discord (Usuari#1234)"
+        tumblr:
+          about: "Afegeix el nom del teu blog Tumblr a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El nombre de tu blog de Tumblr"
+        soundcloud:
+          about: "Afegeix el teu nom d'usuari SoundCloud a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari SoundCloud"
+        dailymotion:
+          about: "Afegeix el teu nom d'usuari Dailymotion a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari Dailymotion"
+        kickstarter:
+          about: "Afegeix el teu nom d'usuari Kickstarter a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari Kickstarter"
+        mobcrush:
+          about: "Afegeix el teu nom d'usuari Mobcrush a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari Mobcrush"
+        osu:
+          about: "Afegeix el numero d'ID d'OSU a continuació per afegir un enllaç al teu perfil."
+          placeholder: "Tu número de ID de osu!"
+        patreon:
+          about: "Afegeix el nom del teu projecte Patreon a continuació per afegir un enllaç al teu perfil."
+        deviantart:
+          about: "Afegeix el teu nom d'usuari DeviantArt a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari DeviantArt"
+        dribbble:
+          about: "Afegeix el teu nom d'usuari Dribbble a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari Dribbble"
+        imdb:
+          about: "Afegeix la URL del teu perfil IMDb a continuació per afegir un enllaç al teu perfil."
+          placeholder: "La URL de tu perfil de IMDb"
+        lastfm:
+          about: "Afegeix el teu nom d'usuari Last.fm a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari Last.fm"
