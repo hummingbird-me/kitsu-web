@@ -1,1 +1,22 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Explorar animes"
+  manga:
+    index: "Explorar mangas"
+  media:
+    show:
+      units: "{type, select, anime {Episodis} manga {Capítols} other {}}"
+      characters: "Personatges"
+      reactions: "Reaccions"
+      franchise: "Franquícia"
+  explore:
+    index: "Explorar {mediaType, select, anime {Animes} manga {Mangas} other {}}"
+    more:
+      trending: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} populars aquesta setmana"
+      top-upcoming: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} més esperats"
+      highest-rated: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} millor avaluats"
+      most-popular: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} més populars"
+    category:
+      index: "{category} {type}"
