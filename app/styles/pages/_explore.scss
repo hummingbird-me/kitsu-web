@@ -74,11 +74,13 @@
 
 .categories-list {
   display: flex;
-  flex-flow: column wrap;
-  max-height: 375px;
+  flex-flow: row wrap;
   margin-bottom: 42px;
   font-size: 12px;
   font-weight: 600;
+  li {
+    min-width: 50%;
+  }
   a {
     color: inherit;
     font-family: inherit;
