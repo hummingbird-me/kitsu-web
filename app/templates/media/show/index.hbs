@@ -34,7 +34,7 @@
         {{#each (sort-by "title" media.categories) as |category|}}
           <li class="media--category-tag">
             <a href={{href-to (concat media.modelType ".index") (query-params categories=category.slug)}}>
-              {{category.title}}
+              {{t (category-to-i18n category.slug)}}
             </a>
           </li>
         {{/each}}
