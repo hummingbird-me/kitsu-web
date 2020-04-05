@@ -4,18 +4,18 @@
 
 {{#if didUpdate}}
   <div class="mark-watched-prompt">
-    {{t "components.episodes.updated" number=episode.number}}
+    {{t "components.episodes.fast-forward" number=episode.number}}
     {{#if undoLibraryEntryUpdate.isRunning}}
       {{loading-spinner size="small"}}
     {{else}}
-      <a {{action (perform undoLibraryEntryUpdate)}} class="prompt-cta" href="#">{{t "components.episodes.undo"}}</a>
+      <a {{action (perform undoLibraryEntryUpdate)}} class="prompt-cta" href="#">{{t "components.episodes.undo-update"}}</a>
     {{/if}}
   </div>
 {{/if}}
 
 {{#if showUpdatePrompt}}
   <div class="mark-watched-prompt">
-    {{t "components.episodes.update" number=episode.number}}
+    {{t "components.episodes.update-progress" number=episode.number}}
     {{#if updateLibraryEntry.isRunning}}
       {{loading-spinner size="small"}}
     {{else}}
@@ -28,9 +28,9 @@
 
 {{#if showJoinPrompt}}
   <div class="join-prompt">
-    {{t "components.episodes.track"}}
+    {{t "components.episodes.join-prompt.pitch"}}
     <a {{action (toggle "authOpened" this)}}>
-      {{t "components.episodes.join"}}
+      {{t "components.episodes.join-prompt.register"}}
     </a>
   </div>
 {{/if}}

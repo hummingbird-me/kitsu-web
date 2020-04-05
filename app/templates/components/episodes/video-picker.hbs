@@ -14,13 +14,13 @@
           {{#if (eq ep episode)}}
             <li class="col-sm active {{if isPlaying "playing" "paused"}}">
               <a href="#" {{action onClickCurrent}}>
-                {{t "components.episodes.video-shortcut" number=ep.number}}
+                {{t "components.episodes.shortcut-bar.episode-number" number=ep.number}}
               </a>
             </li>
           {{else}}
             <li class="col-sm">
               <a href={{href-to "anime.show.episodes.show" ep}}>
-                {{t "components.episodes.video-shortcut" number=ep.number}}
+                {{t "components.episodes.shortcut-bar.episode-number" number=ep.number}}
               </a>
             </li>
           {{/if}}
