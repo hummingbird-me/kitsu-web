@@ -5,8 +5,8 @@
   <a href={{href-to (concat report.naughty.modelType "s") report.naughty.id}}>{{capitalize report.naughty.modelType}}</a>
 </td>
 <td>{{report.reason}}</td>
-<td>{{or report.explanation "No Explanation Provided."}}</td>
-<td>{{or report.moderator.name "Not Set"}}</td>
+<td>{{or report.explanation (t "components.admin.reports.no-explanation")}}</td>
+<td>{{or report.moderator.name (t "components.admin.reports.not-set")}}</td>
 <td>{{report.status}}</td>
 <td class="text-xs-center">
   {{#bootstrap/bs-dropdown as |dropdown|}}

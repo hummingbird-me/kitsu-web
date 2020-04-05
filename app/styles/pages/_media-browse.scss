@@ -34,12 +34,10 @@
     height: calc(100vh - 42px);
     position: fixed;
     top: 42px;
-
     @media (max-width: 768px) {
-      display: none;
-    }
-    &.scrolled {
-    // TODO: Remove functionality
+      position: unset;
+      width: 100%;
+      height: unset;
     }
   }
   .filter-wrapper {
@@ -51,9 +49,6 @@
   .media-grid {
     position: relative;
     background: $background-color;
-    @media (max-width: 768px) {
-      padding-left: 30px;
-    }
     .media-posters {
       min-width: 100%;
       min-height: calc(100vh - 42px);
@@ -61,8 +56,8 @@
       padding-right: 0;
       overflow: hidden;
       @media (max-width: 768px) {
-        padding: 75px 0 75px 0;
-        margin-left: -5px;
+        padding: 0;
+        margin-left: unset;
       }
       .row {
         @media (max-width: 768px) {
@@ -136,6 +131,50 @@
         }
       }
     }
+    @media (max-width: 768px) {
+      max-width: 100%;
+      padding-left: 0px;
+      padding-right: 0px;
+      > .row {
+        margin-left: -5px;
+      }
+      .filter-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .filter-widget {
+        flex: 1;
+        // flex-shrink: 0;
+        min-width: 50%;
+        &:last-child {
+          border-bottom: 0;
+          margin-bottom: 0;
+        }
+      }
+      .category-select {
+        padding: 0 10px;
+        margin-top: unset;
+      }
+      .media-category-filter {
+        padding: unset;
+        border-bottom: 0;
+        .category-item-span {
+          display: inline-block;
+          height: 29px;
+        }
+      }
+    }
+    @media (max-width: 768px) and (min-width: 433px) {
+      .filter-widget:nth-child(7) {
+        border-bottom: 0;
+        margin-bottom: 0;
+      }
+    }
+    @media (max-width: 432px) {
+      .filter-widget {
+        min-width: 100%;
+      }
+    }
   }
 
   .media-poster-header {
@@ -158,11 +197,9 @@
     }
     @media (max-width: 768px) {
       padding: 0 0 0 10px;
-      margin-left: -15px;
-      max-width: 576px;
-    }
-    @media (max-width: 600px) {
-      max-width: calc(100vw - 20px);
+      margin-left: unset;
+      max-width: unset;
+      position: unset;
     }
     .search-media {
       @extend .col-xs;
@@ -250,6 +287,8 @@
   }
   .filter-slider--wrapper {
     padding: 0 11px 0 3px;
+    margin-left: 7px;
+    margin-right: -7px;
   }
   .filter-header {
     @extend .clearfix;
@@ -301,22 +340,23 @@
 .box-select {
     @extend .clearfix;
     margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
     ul {
       list-style-type: none;
       margin: 0;
       padding: 0;
     }
     li {
-      float: left;
       background: $divider-color;
-      width: 50px;
       height: 45px;
+      width: calc(1 / 4 * 100% - (1 - 1 / 4) * 4px); // 4px = margin-right
       border-radius: 2px;
       margin-bottom: 5px;
       margin-right: 4px;
       text-align: center;
       background: lighten($secondary-background-color,4);
-      &:nth-child(3n) {
+      &:nth-child(4n) {
         margin-right: 0;
       }
       &:hover {
@@ -339,9 +379,13 @@
           fill: #a3a9b7;
           opacity: .5;
         }
+        // VRV logo doesn't play nice with opacity
+        .hide-inactive {
+          display: none;
+        }
       }
       svg {
-        width: 25px;
+        max-width: 32px;
         height: 26px;
         position: relative;
         top: 50%;
@@ -478,7 +522,6 @@
     background-color: #1ABC9C;
     height: 14px;
     width: 14px;
-    left: 14px;
     top: -5px;
     &:after {
       display: block;

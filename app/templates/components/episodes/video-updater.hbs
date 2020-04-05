@@ -4,23 +4,23 @@
 
 {{#if didUpdate}}
   <div class="mark-watched-prompt">
-    Library progress fast-forwarded to episode {{episode.number}}!
+    {{t "components.episodes.fast-forward" number=episode.number}}
     {{#if undoLibraryEntryUpdate.isRunning}}
       {{loading-spinner size="small"}}
     {{else}}
-      <a {{action (perform undoLibraryEntryUpdate)}} class="prompt-cta" href="#">Undo</a>
+      <a {{action (perform undoLibraryEntryUpdate)}} class="prompt-cta" href="#">{{t "components.episodes.undo-update"}}</a>
     {{/if}}
   </div>
 {{/if}}
 
 {{#if showUpdatePrompt}}
   <div class="mark-watched-prompt">
-    Update library progress to episode {{episode.number}}?
+    {{t "components.episodes.update-progress" number=episode.number}}
     {{#if updateLibraryEntry.isRunning}}
       {{loading-spinner size="small"}}
     {{else}}
       <a {{action (perform updateLibraryEntry true)}} class="prompt-cta" href="#">
-        Mark Watched
+        {{t "components.episodes.watched"}}
       </a>
     {{/if}}
   </div>
@@ -28,9 +28,9 @@
 
 {{#if showJoinPrompt}}
   <div class="join-prompt">
-    Track your progress and join the discussion!
+    {{t "components.episodes.join-prompt.pitch"}}
     <a {{action (toggle "authOpened" this)}}>
-      Create Kitsu Account
+      {{t "components.episodes.join-prompt.register"}}
     </a>
   </div>
 {{/if}}

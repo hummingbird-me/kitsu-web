@@ -2,7 +2,7 @@
   <div class="media">
     <div class="media-body">
       {{explore/favorite-button category=category}}
-      <h3>{{concat category.title " " (titleize mediaType)}}</h3>
+      <h3>{{t 'explore.category.index' category=(t (category-to-i18n category.slug)) type=mediaType}}</h3>
       {{#if (not (is-empty category.description))}}
         <p>{{read-more category.description 280}}</p>
       {{/if}}
