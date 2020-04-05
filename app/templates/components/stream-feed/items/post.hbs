@@ -318,8 +318,8 @@
                   {{to-elsewhere named="modal" send=(component "modals/confirm-action"
                     onConfirm=(queue (action "pinOrUnpinPost" post) (toggle-action "pinModalOpened" this))
                     onClose=(toggle-action "pinModalOpened" this)
-                    title="Pin Post to Profile"
-                    text="Do you really want to pin this post to your profile?"
+                    title=(t "components.stream-feed.post.pin")
+                    text=(t "components.stream-feed.post.pin-text")
                   )}}
                 {{/if}}
               {{/if}}

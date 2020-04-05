@@ -29,9 +29,9 @@
   {{#if (and (is-self activity.actor) (not readOnly))}}
     &mdash;
     {{#if isDeleteing}}
-      deleting...
+      {{t "components.stream-feed.post.pinned"}}{{t "components.stream-feed.library.deleting"}}
     {{else}}
-      <a href="#" {{action "deleteActivity" activity}}>delete</a>
+      <a href="#" {{action "deleteActivity" activity}}>{{t "components.stream-feed.library.delete"}}</a>
     {{/if}}
   {{/if}}
 </span>
