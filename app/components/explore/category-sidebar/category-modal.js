@@ -5,6 +5,7 @@ import { reads, sort } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
+  classNames: ['category-select'],
   router: service(),
   queryCache: service(),
   categories: reads('getCategoriesTask.last.value'),

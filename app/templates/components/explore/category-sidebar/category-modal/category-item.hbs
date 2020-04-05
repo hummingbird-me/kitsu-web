@@ -1,7 +1,7 @@
 {{#if isLinkable}}
-  <a class="category-modal-title" href={{href-to "explore.category" category.slug}} {{action handleTransition category.slug}}>{{category.title}}</a>
+  <a class="category-modal-title" href={{href-to "explore.category" category.slug}} {{action handleTransition category.slug}}>{{t (category-to-i18n category.slug)}}</a>
 {{else}}
-  <span class="category-modal-title">{{category.title}}</span>
+  <span class="category-modal-title">{{t (category-to-i18n category.slug)}}</span>
 {{/if}}
 {{#if (gt category.childCount 0)}}
   <span class="category-modal-expand-btn" {{action "toggleExpansion"}}>

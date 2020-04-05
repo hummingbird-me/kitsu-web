@@ -9,7 +9,7 @@
     </span>
   {{/if}}
 
-  <span class="category-title">{{category.title}}</span>
+  <span class="category-title">{{t (category-to-i18n category.slug)}}</span>
   {{#if isChild}}
     <span class="include-category hint--left hint--rounded hint--bounce" aria-label={{t "media.index.filter"}}>
       {{svg-jar "checkmark"}}

@@ -5,7 +5,9 @@
       {{media/media-reaction-card reaction=model media=model.media large=true}}
 
       <div class="more-reactions">
-        <a href={{href-to "users.reactions" model.user}}>View all <strong>{{model.user.mediaReactionsCount}}</strong> of {{model.user.name}}'s reactions</a>
+        <a href={{href-to "users.reactions" model.user}}>
+          {{t "media-reactions.view-all" count=model.user.mediaReactionsCount user=model.user.name htmlSafe=true}}
+        </a>
       </div>
     </div>
     <div class="col-xs-12 col-md-5 permalink--author-card">

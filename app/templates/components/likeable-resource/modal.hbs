@@ -11,9 +11,9 @@
   {{#modal.footer}}
     <button class="button button--primary btn-lg btn-block" disabled={{if isDisabled "disabled"}} {{action "onPagination"}}>
       {{#if isLoading}}
-        Loading...
+        {{t "components.likeable-resource.loading"}}
       {{else}}
-        Load More
+        {{t "components.likeable-resource.more"}}
       {{/if}}
     </button>
   {{/modal.footer}}

@@ -2,12 +2,12 @@
 {{one-way-email
   update=(action (mut email))
   value=email
-  placeholder="Email"
+  placeholder=(t "unsubscribe.email")
 }}
 <button class="button button--primary" onclick={{action (perform unsubscribeEmail)}}>
   {{#if sendEmail.isRunning}}
     {{loading-spinner size="small"}}
   {{else}}
-    Unsubscribe
+    {{t "unsubscribe.unsubscribe"}}
   {{/if}}
 </button>

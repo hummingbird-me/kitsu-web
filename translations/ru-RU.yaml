@@ -198,7 +198,7 @@ media:
         en_gb: "Английский (Великобритания)"
         en_jp: "Японский (Ромадзи)"
         en_kr: "Корейский (Ромаджа)"
-        en_th: "Тайский (Романизированный)"
+        en_th: "Тайский (Латиница)"
         en_us: "Английский (США)"
         es_es: "Испанский"
         fr_fr: "Французский"
@@ -491,8 +491,6 @@ users:
       headings:
         anime: "Статистика Аниме"
         manga: "Статистика Манги"
-      chapters-read: "глав прочитано."
-      time-breakdown: "аниме просмотрено в целом."
       empty:
         header: "Похоже, что у Вас пока что мало данных! Готовы начать что-нибудь новое?"
         guest-header: "Похоже, что {user} пока ещё не имеет никакой статистики."
@@ -569,7 +567,7 @@ users:
     edit:
       status: "Статус Библиотеки"
       progress: "Прогресс"
-      units: "{type, select, anime {{num} серий} manga {{num} глав} other {}}"
+      units: "{type, select, anime {из {num} серий} manga {из {num} глав} other {}}"
       volumes: "Тома"
       volume-units: "из {num} томов"
       rating: "Оценка"
@@ -723,7 +721,7 @@ settings:
     contexts:
       web: "Сайт"
       email: "Email"
-      mobile: "Мобильное приложение"
+      mobile: "Моб. приложение"
     descriptions:
       mentions: "Кто-то <strong>упомянул</strong> меня в посте или комментарии"
       replies: "Кто-то <strong>ответил</strong> на мой пост или комментарий"
