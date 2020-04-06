@@ -5,6 +5,6 @@ export default {
   tabletSmall: '(max-width: 768px)',
   tablet: '(max-width: 991px)',
   desktop: '(min-width: 992px)',
-  profileLeftRightCollapse: '(max-width: 1199px)',
-  profileRightCollapse: '(min-width: 992px) and (max-width: 1199px)'
+  sidebarLeftRightCollapse: '(max-width: 1199px)',
+  sidebarRightCollapse: '(min-width: 992px) and (max-width: 1199px)'
 };

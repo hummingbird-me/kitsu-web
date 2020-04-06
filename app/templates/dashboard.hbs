@@ -12,6 +12,13 @@
 
   {{! Feed Aside }}
   <div class="feed-aside col-sm">
+    {{! Onboarding Mobile }}
+    {{#if (responsive "isSidebarLeftRightCollapse")}}
+      {{#if (and session.hasUser (not session.account.feedCompleted))}}
+        {{dashboard/onboarding/checklist-progress user=session.account class="sidebar-item onboarding-mobile"}}
+      {{/if}}
+    {{/if}}
+
     <div class="is-sticky">
       <ul>
         <li>
@@ -70,9 +77,11 @@
       {{dashboard/site-announcements}}
 
       {{! Onboarding }}
-      {{#if (and session.hasUser (not session.account.feedCompleted))}}
-        {{dashboard/onboarding/checklist-progress user=session.account class="sidebar-item"}}
-      {{/if}}
+      {{#unless (responsive "isSidebarLeftRightCollapse")}}
+        {{#if (and session.hasUser (not session.account.feedCompleted))}}
+          {{dashboard/onboarding/checklist-progress user=session.account class="sidebar-item"}}
+        {{/if}}
+      {{/unless}}
 
       {{! Kitsu Dashboard Sidebar Ad }}
       {{ad-unit unit="kitsu.dashboard.sidebar"

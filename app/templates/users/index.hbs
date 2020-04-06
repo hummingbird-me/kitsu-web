@@ -2,10 +2,15 @@
   <div class="feed-container row">
     {{! Feed Aside }}
     <div class="feed-aside col-sm">
+      {{#if (responsive "isSidebarRightCollapse")}}
+        {{#if (and (is-self user) (not user.profileCompleted))}}
+          {{users/onboarding/checklist-progress user=user class="onboarding-mobile"}}
+        {{/if}}
+      {{/if}}
       <div class="is-sticky">
         {{dashboard/unread-groups class="sidebar-item"}}
         {{! About Me }}
-        {{#if (responsive "isProfileRightCollapse")}}
+        {{#if (responsive "isSidebarRightCollapse")}}
           {{users/about-me user=user}}
         {{/if}}
       </div>
@@ -14,7 +19,7 @@
     {{! Feed Posts }}
     <div class="feed-stream feed-narrow">
       {{! Stats }}
-      {{#if (responsive "isProfileLeftRightCollapse")}}
+      {{#if (responsive "isSidebarLeftRightCollapse")}}
         {{#if (has-feature "profile_stats")}}
           {{users/user-stats user=user}}
         {{/if}}
@@ -37,17 +42,17 @@
     </div>
 
     <div class="feed-sidebar col-sm">
-      {{#if (and (is-self user) (not user.profileCompleted))}}
-        {{users/onboarding/checklist-progress user=user}}
-      {{/if}}
+      {{#unless (responsive "isSidebarRightCollapse")}}
+        {{#if (and (is-self user) (not user.profileCompleted))}}
+          {{users/onboarding/checklist-progress user=user class="onboarding-mobile"}}
+        {{/if}}
 
-      {{! About User }}
-      {{#unless (responsive "isProfileRightCollapse")}}
+        {{! About User }}
         {{users/about-me user=user}}
       {{/unless}}
 
       {{! Stats }}
-      {{#unless (responsive "isProfileLeftRightCollapse")}}
+      {{#unless (responsive "isSidebarLeftRightCollapse")}}
         {{#if (has-feature "profile_stats")}}
           {{users/user-stats user=user}}
         {{/if}}

@@ -91,11 +91,19 @@
     max-width: 100%;
     display: flex;
     justify-content: flex-end;
-    .sidebar-item {
-      display: none;
-    }
+    flex-wrap: wrap;
     ul > li {
       display: inline-block;
+    }
+    .sidebar-item {
+      display: none;
+      &.onboarding-mobile {
+        display: unset;
+        min-width: 100%;
+        ul > li {
+          display: unset;
+        }
+      }
     }
     .timeline-link {
       .emoji {
