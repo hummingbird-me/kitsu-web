@@ -1,1 +1,623 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "استكشف أنيمي"
+  manga:
+    index: "استكشف مانجا"
+  media:
+    show:
+      units: "{type, select, anime {حلقات} manga {فصول} other {}}"
+      characters: "الشخصيات"
+      reactions: "ردود الفعل"
+  explore:
+    index: "استكشف {mediaType, select, anime {أنيمي} manga {مانجا} other {}}"
+    more:
+      trending: "شائع {type, select, other {}} هذا الأسبوع"
+      top-current: "افضل {type, select, Anime {يُبَث} Manga {يُنشَر} other {}} {type}"
+      top-upcoming: "أفضل {type} قادم"
+      highest-rated: "ال{type} الأعلى تصنيفاً"
+      most-popular: "ال{type} الأكثر شهرة"
+    category:
+      index: "{category} {type}"
+      more:
+        most-popular: "{type} {category} الأكثر شهرة"
+  not-found: "غير موجود"
+  server-error: "خطأ في الخادم"
+  users:
+    index: "ملف {user} الشخصي"
+    library: "مكتبة {user}"
+    reviews: "مراجعات {user}"
+    reactions: "آراء {user}"
+    followers: "متابِعون {user}"
+    following: "مُتابَع من قبل {user}"
+    groups: "مجموعات {user}"
+    stats: "إحصائيات {user}"
+  comments: "تعليق بواسطة {user}"
+  reviews: "مراجعة من قبل {user}"
+  notifications: "الإشعارات"
+  feedback:
+    bugs: "الأخطاء"
+    feature-requests: "اطلب مميزات"
+    database-requests: "طلبات قاعدة البيانات"
+    mobile-bugs: "أخطاء الجوال"
+    mobile-features: "مميزات الجوال"
+  admin:
+    index: "المشرف"
+    reports: "البلاغات"
+  groups:
+    index: "المجموعات"
+    new: "إنشاء مجموعة"
+    group:
+      group-page:
+        rules: "قواعد {group}"
+        members: "أعضاء {group}"
+        leaders: "قادة {group}"
+      dashboard:
+        index: "نظرة عامة على {group}"
+        reports: "بلاغات {group}"
+        tickets: "تذاكر {group}"
+        members: "أعضاء {group}"
+        leaders: "قادة {group}"
+        settings: "إعدادات {group}"
+  group-invite: "دعوة إلى مجموعة"
+#head
+head:
+  users:
+    description: "يستخدم {user} كيتسو لتتبع تقدمه ولمشاركة تجاربه مع أنيمي ومانجا."
+#header
+header:
+  library: "مكتبتي"
+  anime: "أنمي"
+  manga: "مانجا"
+  trending: "شائع"
+  groups: "المجموعات"
+  feedback: "المساعدة"
+  browse: "إكتشف"
+  auth:
+    sign-in: "تسجيل الدخول"
+    sign-up: "اشتراك"
+  user:
+    profile: "عرض الملف الشخصي"
+    settings: "الإعدادات"
+    admin: "المشرف"
+    logout: "تسجيل الخروج"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {دعنا نحصل على بعض المعلومات الأساسية أولاً} 1 {رائع جدًا - البريد الإلكتروني هو التالي!} 2 {يبدو جيداً، ماذا عن كلمة المرور؟} 3 {رائع - هيا بنا لننشئ ذلك الحساب} other {}}"
+#page: about
+about:
+  header: "حول كيتسو"
+#page: dashboard
+dashboard:
+  quick-update:
+    filter:
+      all: "الكل"
+      anime: "أنمي"
+      manga: "مانجا"
+    empty:
+      html: "الوسائط التي قمت بإضافتها أو تحديثها داخل <a href={link}>مكتبتك</a> ستظهر هنا من أجل تحديثها بسرعة."
+      discover: "اكتشف وسائط"
+    media:
+      complete: "مكتمل"
+      unstarted: "لم يتم البدء"
+      unit: "{type, select, anime {الحلقة {num} {total, select, undefined {} other {من {total}}}} manga {الفصل {num} {total, select, null {} other {من {total}}}} other {}}"
+    overlay:
+      button:
+        update: "{type, select, anime {الحلقة} manga {الفصل} other {}} {number}"
+        complete: "مكتمل"
+        tooltip:
+          empty: "تحديث المكتبة"
+      discussion: "عرض المناقشة"
+      editor:
+        placeholder: "شارك أفكارك حول {type, select, anime {الحلقة} manga {الفصل} other {}} {number}"
+  groups:
+    header: "مجموعاتي"
+  announcements:
+    button: "معرفة المزيد"
+  feed:
+    anime: "أنمي"
+    manga: "مانجا"
+#page: anime/manga
+media:
+  index:
+    remove: "إزالة"
+    filters:
+      seasons: "المواسم"
+      units: "{type, select, anime {حلقات} manga {فصول} other {}}"
+      rating: "التقييم"
+  show:
+    navigation:
+      units: "{type, select, anime {حلقات} manga {فصول} other {}}"
+      characters: "الشخصيات"
+      reactions: "آراء المتابعين"
+    sidebar:
+      watch: "مشاهدة على الإنترنت"
+    summary:
+      relationships:
+        header: "المزيد من هذه السلسلة"
+      reactions:
+        header: "آراء المتابعين"
+        sorts:
+          -upVotesCount: "الاكثر شهرة"
+          -createdAt: "الأحدث"
+        new: "رد فعل جديد"
+        edit: "رد فعلي"
+        empty: "لا يبدو أن أي شخص قد تفاعل مع هذا حتى الآن"
+      characters:
+        header: "الشخصيات"
+        more: "عرض جميع الشخصيات"
+      titles:
+        header: "عناوين بديلة"
+        ar: "العربية"
+        ar_ar: "العربية" #Invalid use ar
+        cs_cz: "التشيكية"
+        da_dk: "الدانماركية"
+        de_de: "الألمانية"
+        el_gr: "اليونانية"
+        en: "الإنجليزية"
+        en_cn: "الصينية (بينيين)"
+        en_gb: "الإنجليزية (UK)"
+        en_il: "العبرية (رومنة)"
+        en_jp: "اليابانية (روماجي)"
+        en_kr: "الكورية (روماجا)"
+        en_th: "التايلندية (رومنة)"
+        en_us: "الإنجليزية (US)"
+        es_es: "الإسبانية"
+        fi_fi: "الفنلندية"
+        fr_fr: "الفرنسية"
+        he_il: "العبرية"
+        hi_in: "الهندية"
+        hr_hr: "الكرواتية"
+        hu_hu: "الهنغارية"
+        id_id: "الإندونيسية"
+        it_it: "الإيطالية"
+        is_is: "الآيسلندية"
+        ja_jp: "اليابانية"
+        ko_kr: "الكورية"
+        lv_lv: "اللاتفية"
+        ms_my: "الماليزية"
+        nl_nl: "الهولندية"
+        pl_pl: "البولندية"
+        pt_br: "البرتغالية (البرازيلية)"
+        pt_pt: "البرتغالية"
+        ru_ru: "الروسية"
+        sr_sp: "الصربية"
+        sv_se: "السويدية"
+        tl_ph: "التاغالوغية"
+        tr_tr: "التركية"
+        th_th: "التايلندية"
+        uk_ua: "الأوكرانية"
+        vi_vi: "الفيتنامية" #Invalid use vi_vn
+        vi_vn: "الفيتنامية"
+        zh_cn: "الصينية (المبسطة)"
+        zh_hk: "الصينية (هونغ كونغ)"
+        zh_mo: "الصينية (ماكاو)"
+        zh_tw: "الصينية (التقليدية)"
+        synonyms: "أسماء أخرى"
+      information:
+        header: "تفاصيل {type, select, anime {أنيمي} manga {مانجا} other {}}"
+        type: "النوع"
+        volumes: "أجزاء"
+        unit: "{type, select, anime {حلقات} manga {فصول} other {}}"
+        start: "{type, select, anime {تم البث} manga {تم النشر} other {}}"
+        status: "الحالة"
+        tba: "متوقع"
+        season: "الموسم"
+        producers: "المنتجون"
+        licensors: "التراخيص"
+        studios: "الاستوديوهات"
+        duration: "الطول"
+        total: "مجموع {total}"
+        length: "{count, plural, =1 {دقيقة واحدة} =2 {دقيقتين} few {{length} دقائق} other {{length} دقيقة}} في كل حلقة"
+        rating: "التقييم"
+        expand:
+          false: "المزيد من المعلومات"
+          true: "معلومات أقل"
+      trailer: "مشاهدة الإعلان (التريلر)"
+    units:
+      unit: "{type, select, anime {حلقات} manga {فصول} other {}}"
+      back: "العودة إلى قائمة {type, select, episode {الحلقات} chapter {الفصول} other {}}"
+      pages: "{length} صفحات"
+      date: "{type, select, anime {تم البث} manga {تم النشر} other {}}"
+    characters:
+      header: "شخصيات {title}"
+    franchise:
+      roles:
+        sequel: "تتمة"
+        prequel: "سابقة"
+        alternative_setting: "إعدادات بديلة"
+        alternative_version: "نسخة بديلة"
+        side_story: "قصة جانبية"
+        summary: "ملخص"
+        anime_adaptation: "أنمي"
+        manga_adaptation: "مانجا"
+        other: "أخرى"
+  hide-posts:
+    text: "إخفاء المنشورات حول {media}"
+#components
+components:
+  admin:
+    reports:
+      table:
+        status: "الحالة"
+  search:
+    header: "نتائج البحث"
+    view: "عرض المزيد"
+  sidebar-footer:
+    contact: "اتصل بنا"
+    terms: "بنود الاستخدام"
+  stream-feed:
+    create-post:
+      edit: "تعديل"
+      create: "نشر"
+      nsfw: "NSFW"
+      spoiler: "حرق"
+    edit-post:
+      header: "تعديل المنشور"
+    follow:
+      followed: "تابع"
+      delete: "حذف النشاط"
+    library:
+      deleting: "جارٍ الحذف…"
+    post:
+      pinned: "منشور مثبت"
+      edited: "تم تعديله"
+      gate:
+        nsfw: "هذا المنشور قد يحتوي على محتوى للبالغين."
+        spoiler: "هذا المنشور قد يحتوي على حرق."
+      link: "نسخ رابط المنشور"
+      unfollow: "إلغاء متابعة المنشور"
+      follow: "متابعة المنشور"
+      show: "إظهار محتوى المنشور"
+      hide: "إخفاء محتوى المنشور"
+      edit: "تعديل المنشور"
+      delete: "حذف المنشور"
+      pin: "تثبيت المنشور في الملف الشخصي"
+      report: "الإبلاغ عن المنشور"
+#page: users
+users:
+  profile:
+    edit: "تعديل"
+  admin:
+    button: "المشرف"
+  navigation:
+    activity: "النشاطات"
+    library: "المكتبة"
+    reviews: "المراجعات"
+    reactions: "الآراء"
+    followers: "المتابعين"
+    following: "متابَعًا"
+    groups: "المجموعات"
+  edit-modal:
+    cover: "تحديث صورة الغلاف"
+    navigation:
+      about: "عني"
+      favorites: "المفضلة"
+    about:
+      header: "عني"
+      birthday: "تاريخ الميلاد"
+      gender:
+        label: "الجنس"
+        options:
+          secret: "إنه سر"
+          male: "ذكر"
+          female: "أنثى"
+          custom: "مخصص"
+    favorites:
+      header: "المفضلة"
+      anime: "أنمي"
+      manga: "مانجا"
+      characters: "الشخصيات"
+      remove: "إزالة من المفضلة؟"
+  activity:
+    about:
+      empty: "إنه سر"
+      gender:
+        secret: "إنه سر"
+        male: "ذكر"
+        female: "أنثى"
+    stats:
+      headings:
+        anime: "إحصائيات الأنمي"
+  library:
+    search: "البحث في مكتبة {name}…"
+    sorting:
+      label: "ترتيب حسب:"
+      options:
+        watched: "تاريخ التحديث"
+        started: "تاريخ البدء"
+        finished: "تاريخ الإنهاء"
+        added: "تاريخ الإضافة"
+        progress: "التقدم"
+        rating: "التقييم"
+        title: "العنوان"
+    sidebar:
+      manage: "إدارة المكتبة"
+      issues:
+        header: "مشاكل في المكتبة"
+        fix: "إصلاح"
+    list:
+      list-edit: "تعديل"
+      more: "المزيد"
+      unrated: "بدون تقييم"
+      progress: "{type, select, anime {الحلقة {progress}} manga {الفصل {progress}} other {}}"
+      table-header:
+        title: "{type, select, anime {عنوان الأنمي} manga {عنوان المانجا} other {}}"
+        rating: "التقييم"
+        progress: "التقدم"
+    edit:
+      status: "الحالة"
+      progress: "التقدم"
+      units: "{type, select, anime {من {num} حلقة} manga {من {num} فصلاً} other {}}"
+      rating: "التقييم"
+      privacy: "الخصوصية"
+      started: "تاريخ البدء"
+      finished: "تاريخ الإنهاء"
+      notes: "ملاحظات شخصية"
+      save: "حفظ التغييرات"
+      saving: "جارٍ الحفظ…"
+    bulk:
+      remove-loading: "جارٍ الإزالة…"
+  reactions:
+    empty: "هذا المستخدم لم ينشر أي الآراء"
+  hide-posts:
+    text: "إخفاء المنشورات {user}"
+  followers:
+    not-found: "لم يتم العثور على مستخدمين."
+  following:
+    not-found: "لم يتم العثور على مستخدمين."
+#page: settings
+settings:
+  navigation:
+    header: "الإعدادات"
+    profile: "الملف الشخصي"
+    notifications: "الإشعارات"
+    password: "كلمة المرور"
+    privacy: "الخصوصية"
+    linked-accounts: "الحسابات المرتبطة"
+    import: "إستيراد"
+    export: "تصدير"
+    blocking: "الحظر"
+    account: "الحساب"
+  account:
+    header: "الحساب"
+  blocking:
+    header: "إدارة الحظر"
+    sub-header: "بمجرد حظر شخص ما ، لن يتمكن هذا الشخص من وضع علامة باسمك أو متابعتك أو عرض ملفك الشخصي أو مشاهدة منشوراتك."
+    title: "حظر المستخدمين"
+    button-block: "حظر"
+    button-unblock: "إلغاء الحظر"
+    not-blocking: "لم تقم بحظر أي شخص."
+  exports:
+    logs:
+      header:
+        library-status: "الحالة"
+        progress: "التقدم"
+        rating: "التقييم"
+        status: "الحالة"
+      status:
+        error: "خطأ"
+  imports:
+    status: "الحالة:"
+  index:
+    name: "الاسم"
+    url: "اسم المستخدم"
+    email: "البريد الإلكتروني"
+    email-message: "لن يتمّ عرض عنوان بريدك الإلكترونيّ بشكل علني."
+    language: "لغة العرض"
+    country: "الدولة"
+    rating: "طريقة التقييم"
+    adult: "محتوى البالغين"
+    update: "حفظ التغييرات"
+  linked-accounts:
+    header: "الحسابات المرتبطة"
+    facebook: "فيسبوك"
+  notifications:
+    header: "الإشعارات المباشرة"
+    contexts:
+      web: "المتصفح"
+      email: "البريد الإلكتروني"
+      mobile: "الهاتف"
+    update: "تحديث الإعدادات"
+  password:
+    header: "كلمة المرور"
+    sub-header: "تغييركلمة المرور"
+    new-pswd: "كلمة المرور الجديدة"
+    confirm-pswd: "تأكيد كلمة المرور"
+    update-pswd: "تحديث كلمة المرور"
+  privacy:
+    header: "الخصوصية"
+    update: "حفظ التغييرات"
+#page: feedback
+feedback:
+  header: "المساعدة"
+#page: groups
+groups:
+  index:
+    create-btn: "إنشاء مجموعة"
+  create:
+    header: "إنشاء مجموعة"
+    form:
+      name: "إسم المجموعة"
+      about: "الوصف"
+      rules: "القواعد"
+      privacy: "الخصوصية"
+      privacy-options:
+        open: "عامة"
+        closed: "خاصة"
+      avatar: "صورة الرمزية"
+      cover: "صورة الغلاف"
+      save-btn: "حفظ"
+      helper:
+        about:
+          header: "الوصف"
+        rules:
+          header: "القواعد"
+        privacy:
+          header: "الخصوصية"
+        avatar:
+          header: "صورة الرمزية"
+        cover:
+          header: "صورة الغلاف"
+  dashboard-btn: "لوحة التحكم"
+  join-group: "انضم إلى المجموعة"
+  leave-group: "مغادرة المجموعة"
+  hide-posts:
+    text: "إخفاء المنشورات {group}"
+  nsfw: "NSFW"
+  navigation:
+    activity: "النشاطات"
+    rules: "القواعد"
+    members: "الأعضاء"
+  activity:
+    feed-header: "نشاطات المجموعة"
+    about: "حول {group}"
+    members: "الأعضاء"
+  tickets:
+    filter:
+      all: "جميع التذاكر"
+  reports:
+    status:
+      declined: "تم رفض هذا التقرير من قبل {user}."
+  leaders:
+    list:
+      edit-btn: "تعديل"
+      add-btn: "إضافة"
+      modal:
+        owner: "منشئ المجموعة"
+        cancel-btn: "إلغاء"
+  dashboard:
+    navigation:
+      members: "الأعضاء"
+      settings: "الإعدادات"
+    overview:
+      members:
+        header: "الأعضاء"
+        total: "إجمالي الأعضاء"
+    members:
+      invites:
+        revoke: "إلغاء الدعوة"
+      members:
+        header: "الأعضاء"
+        remove: "إزالة"
+    leaders:
+      chat:
+        post-btn: "نشر"
+    audit:
+      user:
+        granted: "تم منح الصلاحيات ل <a href={link}>{user}</a>."
+#page: group-invite
+group-invite:
+  subtitle: "‏تمت دعوتك بواسطة {sender} للانضمام إلى المجموعة {group}"
+  accept: "قبول"
+  decline: "رفض"
+  accepted: "لقد قبلت هذه الدعوة مسبقاً."
+#page: explore
+explore:
+  view-more: "عرض المزيد"
+  widget:
+    favorite-categories: "تصنيفاتي المفضلة"
+  favorite-button:
+    remove: "إزالة من المفضلة"
+    create: "إضافة إلى المفضلة"
+    creating: "جارٍ الإضافة…"
+#page: notifications
+notifications:
+  none: "ليس لديك أي إشعارات!"
+#page: password-reset
+password-reset:
+  password: "كلمة المرور"
+  confirm: "تأكيد كلمة المرور"
+  email: "البريد الإلكتروني"
+#shared: media
+media-shared:
+  types:
+    anime:
+      All: "الكل"
+      tv: "تلفزي"
+      special: "حلقات الخاصة"
+      ona: "أونا"
+      ova: "أوفا"
+      movie: "فيلم"
+      music: "موسيقى"
+    manga:
+      All: "الكل"
+      manga: "مانجا"
+      novel: "رواية"
+      manhua: "مانها"
+      oneshot: "ون شوت"
+      doujin: "دوجين"
+      manhwa: "مانهوا"
+  statuses:
+    anime:
+      current: "مستمر"
+      finished: "انتهى"
+      upcoming: "قريباً"
+      tba: "في انتظار الإعلان"
+    manga:
+      current: "مستمرة"
+      finished: "منتهية"
+      upcoming: "قريباً"
+      tba: "في انتظار الإعلان"
+#shared: library
+library-shared:
+  current: "{type, select, anime {جاري المشاهدة} manga {جاري القراءة} other {}}"
+#shared: form:
+form-shared:
+  placeholders:
+    username: "اسم المستخدم"
+    password: "كلمة المرور"
+#component: follow-button
+follow-button:
+  follow: "تابع"
+  unfollow: "إلغاء المتابعة"
+#component: kitsu-feed
+feeds:
+  post:
+    more: "عرض المزيد"
+    sorts:
+      likes: "إعجابات"
+#component: groups/group-list
+group-list:
+  sort:
+    recent: "أحدث الأنشطة"
+    newest: "أحدث المجموعات"
+    oldest: "أقدم المجموعات"
+#component: modals/media-reaction
+reaction-modal:
+  post: "نشر"
+  edit: "تعديل"
+#component: library-entry/*
+library-entry:
+  state:
+    header: "{state, select, false {إضافة إلى مكتبتي} true {حدّث المكتبة} other {}}"
+    add-to-library: "إضافة إلى مكتبتي"
+    finished-this: "مكتمل"
+    remove-rating: "إزالة التقييم"
+    rate-this: "إضافة تقييم"
+    remove-from-library: "إزالة من المكتبة"
+    saved-in: "تم الحفظ في <a href={link}>{status}</a>"
+    progress: "التقدم"
+  rating:
+    good: "جيد"
+    great: "رائع"
+#ember-cp-validations
+errors:
+  #Custom Errors
+  user:
+    name:
+      starts: "يجب أن يبدأ هذا الحقل بحرف أو رقم"
+  contentEmpty: "همم، لا يبدو أن هناك أي شيء هنا حتى الآن."
+  serverError:
+    body: "تم إخطار فريقنا ، يرجى المحاولة مرة أخرى بعد بضع دقائق."
+#Loading
+loading: "جار تحميل {subject, select, episode {الحلقة} chapter {الفصل} episodes {الحلقات} chapters {الفصول} other {}}…"
+timeUnits:
+  hours: "{count, plural, =1 {ساعة} =2 {ساعتين} other {ساعات}}"
+  minutes: "{count, plural, zero {} one {دقيقة واحدة} two {دقيقتين} few {دقائق} other {دقيقة}}"
+admin:
+  header: "لوحة التحكم"
+button:
+  view-all: "عرض الكل"
