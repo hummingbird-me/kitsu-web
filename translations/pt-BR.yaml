@@ -14,7 +14,7 @@ titles:
   explore:
     index: "Explorar {mediaType, select, anime {Animes} manga {Mangás} other {}}"
     more:
-      trending: "{type, select, Anime {Animes} Manga {Mangás} other {}} nas Tendências esta Semana"
+      trending: "Tendência de {type, select, other {}} Esta semana"
       top-current: "{type} Mais Populares {type, select, Animes {em Exibição} Manga {em Publicação} other {}} "
       top-upcoming: "{type} Futuros Mais Populares"
       highest-rated: "{type} Mais Bem Avaliados"
@@ -92,10 +92,11 @@ auth-modal:
     submit: "{step, select, 0 {Vamos obter algumas informações básicas primeiro} 1 {Que espirituoso - agora o e-mail!} 2 {Parece legítimo, que tal uma senha?} 3 {Legal! Vamos criar essa conta} other {}}"
 #page: about
 about:
-  header: "Sobre o Kitsu"
+  header: "About Kitsu"
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Atualização Rápida"
     filter:
       all: "Todos"
       anime: "Anime"
@@ -152,7 +153,7 @@ media:
       rating: "Classificação Média"
       date: "Data"
       recent: "Adicionados recentemente"
-  none: "Sem resultados."
+  none: "No Results."
   show:
     navigation:
       summary: "Resumo"
@@ -193,29 +194,46 @@ media:
         header: "Títulos alternativos"
         ar: "Árabe"
         ar_ar: "Árabe" #Invalid use ar
+        cs_cz: "Checo"
+        da_dk: "Dinamarquês"
         de_de: "Alemão"
+        el_gr: "Grego"
         en: "Inglês"
         en_cn: "Chinês (Pinyin)"
         en_gb: "Inglês (Reino Unido)"
+        en_il: "Hebraico (Romanizado)"
         en_jp: "Japanese (Romaji)"
         en_kr: "Coreano (Romaja)"
         en_th: "Tailandês (Romanizado)"
         en_us: "Inglês (EUA)"
         es_es: "Espanhol"
+        fi_fi: "Finlandês"
         fr_fr: "Francês"
+        he_il: "Hebraico"
+        hi_in: "Hindi"
+        hr_hr: "Croata"
+        hu_hu: "Húngaro"
         id_id: "Indonésio"
         it_it: "Italiano"
+        is_is: "Islandês"
         ja_jp: "Japonês"
         ko_kr: "Coreano"
+        lv_lv: "Lituano"
+        ms_my: "Malaio"
         nl_nl: "Holandês"
+        pl_pl: "Polaco"
         pt_br: "Português (Brasileiro)"
         pt_pt: "Português"
         ru_ru: "Russo"
+        sr_sp: "Sérvio"
+        tr_tr: "Turco"
         th_th: "Tailandês"
         uk_ua: "Ucraniano"
         vi_vi: "Vietnamita" #Invalid use vi_vn
         vi_vn: "Vietnamita"
         zh_cn: "Chinês (Simplificado)"
+        zh_hk: "Chinês (Hong Kong)"
+        zh_mo: "Chinês (Macau)"
         zh_tw: "Chinês (Tradicional)"
         synonyms: "Sinônimos"
       information:
@@ -282,8 +300,10 @@ media:
     info: "As publicações aparecerão no seu Feed de Seguinte ou {type}"
 #components
 components:
+  ad-unit: "Anúncios são chatos, mas é assim que mantemos as luzes acesas. Por favor, adiciona-nos à whitelist do teu bloqueador de anúncios."
   admin:
     reports:
+      no-explanation: "Sem Explicação Fornecida."
       actions:
         button: "Ações"
         open: "Marcar como Aberto"
@@ -297,6 +317,19 @@ components:
         moderator: "Moderador"
         status: "Estado"
         actions: "Ações"
+  application:
+    nav-search: "Procurar no Kitsu"
+  episodes:
+    shortcut-bar:
+      episode-number: "EP {number}"
+    undo-update: "Anular"
+    update-progress: "Atualizar o progresso da biblioteca para o episódio {number}?"
+    watched: "Marcar com Visto"
+    join-prompt:
+      register: "Criar Conta do Kitsu"
+  likeable-resource:
+    loading: "A carregar…"
+    more: "Carregar Mais"
   search:
     header: "Resultados da pesquisa"
     view: "ver mais"
@@ -340,6 +373,49 @@ components:
       delete: "Apagar Publicação"
       pin: "Fixar Publicação no Perfil"
       report: "Reportar Publicação"
+      comment-count: "{count} de {total}"
+      comment:
+        deleting: "A apagar o Comentário…"
+        reply: "Responder"
+        copy-link: "Copiar Link para o Comentário"
+        edit: "Editar Comentário"
+        delete: "Apagar Comentário"
+        report: "Denunciar Comentário"
+        previous-replies: "Mostrar Respostas Anteriores"
+        add-reply: "Adicionar uma resposta…"
+      comments:
+        all: "Ver todos os Comentários"
+        parent: "Ver o Comentário Principal"
+        previous-comments: "Ver Comentários Anteriores"
+        leave-comment: "Deixar um comentário…"
+    review:
+      by: "Crítica por"
+      spoiler: "Esta crítica contém spoilers."
+      spoiler-hover: "Eu consigo lidar com a verdade!"
+      share:
+        facebook: "Partilhar"
+      copy-link: "Copiar Link da Crítica"
+      show: "Mostrar Conteúdo da Crítica"
+      hide: "Ocultar Conteúdo da Crítica"
+      edit: "Editar Crítica"
+      delete: "Apagar Crítica"
+      report: "Denunciar Crítica"
+  users:
+    ban:
+      title: "Tens a certeza que queres banir este utilizador?"
+      text: "Eles podem aceder e atualizar a sua biblioteca, mas não podem fazer publicações, comentários ou reações."
+    delete-user-content:
+      title: "Apagar Conteúdo de {user}"
+      checkbox:
+        posts: "Publicações"
+        comments: "Comentários"
+        reactions: "Reações"
+      delete: "Apagar"
+    block: "Bloquear @{user}"
+    favorites:
+      title: "Séries Favoritas"
+      anime: "Anime"
+      more: "Mostrar Mais"
 #page: users
 users:
   profile:
@@ -381,11 +457,13 @@ users:
         label: "Waifu"
         placeholder: "Waifu/Husbando"
         search: "Encontre o seu alguém especial"
+        divorce: "divorciar"
       bio:
         label: "Biografia"
         placeholder: "Conte ao mundo a sua história."
     profile-links:
       header: "Links de Perfil"
+      remove: "Remover do perfil"
       sites:
         website:
           about: "Digite seu site pessoal abaixo para adicionar um link para o seu perfil."
@@ -474,6 +552,9 @@ users:
         trakt:
           about: "Digite seu nome de usuário Trakt abaixo para adicionar um link ao seu perfil."
           placeholder: "Seu nome de usuário Trakt"
+    footer:
+      updating: "A atualizar…"
+      update: "Atualizar Perfil"
     favorites:
       header: "Favoritos"
       anime: "Anime"
@@ -486,15 +567,31 @@ users:
       about: "Como você continuar usando Kitsu seu <strong>Feed Pessoal</strong> abaixo começará a preencher com o anime e manga que você assistiu, lida, completa e planeja fazer check-out. Você também pode postar textos, imagens e vídeos para seu feed usando o formulário abaixo. Seus posts serão vistos e apreciados por seus seguidores e usuários do feed global."
       action: "Sinta-se em casa! Faça o upload de um avatar e uma imagem de capa! Clique em <span>Editar</span> acima para começar."
     about:
+      header: "Sobre Mim"
       empty: "É segredo"
+      waifu:
+        label: "{waifu, select, Waifu {Waifu} Husbando {Husbando} other {{waifu}}}:"
+        empty: "Waifu/Husbando:"
       gender:
+        label: "Género:"
         secret: "É segredo"
         male: "Masculino"
         female: "Feminino"
+      location: "Localização:"
+      birthday: "Aniversário:"
+      joined: "Data de Entrada:"
     stats:
       headings:
         anime: "Estatísticas de Anime"
         manga: "Estatísticas de Mangá"
+      time-watched: "{count} {timeUnit} gastas a ver anime."
+      chapters-read: "{count} capítulos lidos."
+      completed: "{count} completados."
+      more-than: "Mais que <span class=\"time-spent-percentile\">{percentage}%</span> dos utilizadores."
+      time-breakdown:
+        seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
+        time-segment: "{count} {timeUnit}" #8 months (pre-translated)
+        total: "gastadas a ver anime no total." #appended after time-segments
       empty:
         header: "Parece que você ainda não tem dados suficientes! Pronto para começar algo novo?"
         guest-header: "Parece que {user} ainda não tem nenhuma estatística."
@@ -1012,8 +1109,11 @@ explore:
     removing: "Removendo…"
     create: "Adicionar aos Favoritos"
     creating: "Adicionando…"
+  category:
+    index: "{type, select, anime {Animes} manga {Mangás} other {}} de {category}" #category is pre-translated
 #page: media-reactions
 media-reactions:
+  view-all: "Ver todas as <strong>{count}</strong> reações de {user}"
   create-account: "Criar Conta"
 #page: notifications
 notifications:
@@ -1079,6 +1179,15 @@ onboarding:
     info: "As postagens do feed de atividades de ambas as contas serão mescladas. Todas as outras informações da conta serão substituídas pela conta que você selecionar abaixo."
   aozora-account-details:
     submit: "Muito Bem!"
+  checklist:
+    steps: "Faltam {count} passos! 🦊"
+    feed: "Visita o teu feed pessoal"
+    rate: "Classifica 5 animes ou mangás"
+    rate-incomplete: "Classifica {count} animes ou mangás"
+    follow: "Segue 5 utilizadores"
+    follow-incomplete: "Segue {count} {count, plural, =1 {utilizador} other {utilizadores}}"
+    comment: "Comenta numa publicação"
+    favorite: "Escolhe o teu anime / mangá favorito"
 #component: follow-button
 follow-button:
   follow: "Seguir"
@@ -1147,6 +1256,19 @@ reaction-modal:
   delete: "Excluir Reação"
   placeholder: "{index, plural, one {} =0 {Me fez repensar algumas decisões de vida importantes.} =1 {Surpreendentemente bom! Muitas cenas memoráveis.} =2 {Talvez não seja a praia de todo mundo, mas é certamente interessante.} other {Superestimado, não perca seu tempo com esse.}}"
   skip: "Pular"
+  #component: modals
+  modals:
+    image-cropper:
+      select: "Selecionar"
+      close: "Fechar"
+    confirm:
+      check: "Tens a certeza que queres fazer isto?"
+      button: "Confirmar"
+    block-user:
+      header: "Bloquear Utilizador"
+      button: "Bloquear {user}"
+    report-content:
+      submit: "Denunciar"
 #component: library-entry/*
 library-entry:
   state:
@@ -1180,6 +1302,10 @@ user-notifications:
   #Episode 113 of One Piece! aired
   aired: "{type, select, chapter {Capítulo} episode {Episódio} other {}} {number} de {media} {type, select, chapter {lançado} episode {lançado} other {}}"
   aired-unknown: "{media} {type, select, manga {lançou} anime {lançou} other {}} um novo {type, select, manga {Capítulo} anime {Episódio} other {}}"
+  menu:
+    all: "Ver todas as Notificações"
+    mark-read: "Marcar todas como Lidas"
+    none: "Não tens notificações!"
 #ember-power-select
 selects:
   loading: "Carregando…"
@@ -1231,6 +1357,7 @@ errors:
   serverError:
     title: "Opa! Parece que nosso servidor tem um bug."
     body: "Nossa equipe foi notificada. Por favor, tente novamente em alguns minutos."
+    reload: "Recarregar"
 #Loading
 loading: "Carregando {subject, select, episode {Episódio} chapter {Capítulo} episodes {Episódios} chapters {Capítulos} other {}}…"
 timeUnits:
@@ -1255,3 +1382,82 @@ admin:
     flipper: "Flipper"
 button:
   view-all: "ver todos"
+unsubscribe:
+  email: "E-mail"
+category:
+  action: "Ação"
+  adventure: "Aventura"
+  africa: "África"
+  all-girls-school: "Escola para Raparigas"
+  alternative-past: "Passado Alternativo"
+  alternative-present: "Presente Alternativo"
+  americas: "Américas"
+  angel: "Anjo"
+  anti-war: "Anti Guerra"
+  asia: "Ásia"
+  assassin: "Assassino"
+  china: "China"
+  combat: "Combate"
+  comedy: "Comédia"
+  cops: "Polícia"
+  countryside: "Campo"
+  crime: "Crime"
+  delinquent: "Delinquente"
+  dementia: "Demência"
+  desert: "Deserto"
+  detective: "Detetive"
+  disaster: "Desastre"
+  dragon: "Dragão"
+  drama: "Drama"
+  dynamic: "Dinâmico"
+  earth: "Terra"
+  elementary-school: "Escola Primária (1º e 2º Ciclo)"
+  elements: "Elementos"
+  epidemic: "Epidemia"
+  europe: "Europa"
+  family: "Família"
+  fantasy: "Fantasia"
+  fantasy-world: "Mundo de Fantasia"
+  high-school: "Escola Secundária"
+  island: "Ilha"
+  italy: "Itália"
+  japan: "Japão"
+  kids: "Crianças"
+  korea: "Coreia"
+  kyoto: "Kyoto"
+  law-and-order: "Lei e Ordem"
+  loli: "Loli"
+  love-polygon: "Polígono Amoroso"
+  mafia: "Máfia"
+  magic: "Magia"
+  mars: "Marte"
+  martial-arts: "Artes Marciais"
+  middle-east: "Oriente Médio"
+  middle-school: "Escola Primária (3º Ciclo)"
+  military: "Militar"
+  music: "Música"
+  new-york: "Nova Iorque"
+  ninja: "Ninja"
+  nurse: "Enfermeira"
+  past: "Passado"
+  pirate: "Pirata"
+  politics: "Política"
+  present: "Presente"
+  religion: "Religião"
+  revenge: "Vingança"
+  school-clubs: "Clubes Escolares"
+  school-life: "Vida Escolar"
+  space: "Espaço"
+  sports: "Desportos"
+  tentacle: "Tentáculos"
+  tokyo: "Tóquio"
+  united-kingdom: "Reino Unido"
+  united-states: "Estado Unidos"
+  university: "Universidade"
+  violence: "Violência"
+  anal: "Anal"
+  masturbation: "Masturbação"
+  prostitution: "Prostituição"
+  public-sex: "Sexo Público"
+  rape: "Violação"
+  sex-toys: "Brinquedos Sexuais"
