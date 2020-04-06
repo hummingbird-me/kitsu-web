@@ -152,6 +152,7 @@ media:
       rating: "Skor Rata-Rata"
       date: "Tanggal"
       recent: "Baru Saja Ditambah"
+  none: "Tidak Ada Hasil."
   show:
     navigation:
       summary: "Ringkasan"
@@ -192,7 +193,9 @@ media:
         header: "Judul Alternatif"
         ar: "Arab"
         ar_ar: "Arab" #Invalid use ar
+        da_dk: "Denmark"
         de_de: "Jerman"
+        el_gr: "Yunani"
         en: "Inggris"
         en_cn: "Tionghoa (Pinyin)"
         en_gb: "Inggris (Britania Raya)"
@@ -202,14 +205,23 @@ media:
         en_us: "Inggris (Amerika)"
         es_es: "Spanyol"
         fr_fr: "Prancis"
+        hi_in: "Hindi"
+        hu_hu: "Hongaria"
         id_id: "Indonesia"
         it_it: "Italia"
+        is_is: "Islandia"
         ja_jp: "Jepang"
         ko_kr: "Korea"
+        ms_my: "Melayu"
         nl_nl: "Belanda"
+        pl_pl: "Polandia"
         pt_br: "Portugal (Brazil)"
         pt_pt: "Portugal"
         ru_ru: "Rusia"
+        sr_sp: "Serbia"
+        sv_se: "Swedia"
+        tl_ph: "Tagalog"
+        tr_tr: "Turki"
         th_th: "Thai"
         uk_ua: "Ukraine"
         vi_vi: "Vietnam" #Invalid use vi_vn
@@ -279,6 +291,59 @@ media:
   show-posts:
     text: "Tampilkan kiriman tentang {media}"
     info: "Kiriman akan muncul di umpan Kenalan atau {type} Anda"
+#components
+components:
+  admin:
+    reports:
+      actions:
+        button: "Aksi"
+        open: "Tandai Dibuka"
+        resolved: "Tandai Selesai"
+        closed: "Tandai Ditutup"
+      table:
+        user: "Pengguna"
+        type: "Tipe"
+        reason: "Alasan"
+        explanation: "Penjelasan"
+        moderator: "Moderator"
+        status: "Status"
+        actions: "Aksi"
+  search:
+    header: "Hasil Pencarian"
+    view: "lebih banyak"
+    load: "muat lagi"
+    none: "tidak ada hasil"
+  sidebar-footer:
+    contact: "Kontak"
+    terms: "Ketentuan"
+  stream-feed:
+    create-post:
+      edit: "Sunting"
+      create: "Kirim"
+      nsfw: "NSFW"
+      spoiler: "Spoiler"
+    edit-post:
+      header: "Sunting Kiriman"
+    follow:
+      followed: "diikuti"
+      delete: "Hapus Aktivitas"
+    library:
+      delete: "hapus"
+      deleting: "menghapus…"
+    post:
+      pinned: "Kiriman Disematkan"
+      gate:
+        spoiler-nsfw: "Mengandung spoiler dan NSFW."
+        spoiler: "Kiriman ini mengandung spoiler."
+        hover:
+          nsfw: "Aku siap!"
+      link: "Salin Link Kiriman"
+      unfollow: "Batal Ikuti"
+      follow: "Ikuti Kiriman"
+      edit: "Sunting Kiriman"
+      delete: "Hapus Kiriman"
+      unpin: "Hapus Sematan dari Profil"
+      report: "Laporkan Kiriman"
 #page: users
 users:
   profile:
@@ -954,6 +1019,9 @@ explore:
 #page: media-reactions
 media-reactions:
   create-account: "Buat Akun"
+#page: notifications
+notifications:
+  none: "Tidak ada notifikasi di sini!"
 #page: password-reset
 password-reset:
   password: "Kata Sandi"
@@ -1189,3 +1257,5 @@ admin:
     sidekiq: "Sidekiq"
     pghero: "PGHero"
     flipper: "Flipper"
+button:
+  view-all: "lihat semua"
