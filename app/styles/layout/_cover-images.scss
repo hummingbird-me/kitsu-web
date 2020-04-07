@@ -289,20 +289,21 @@
   ul {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
   }
   li {
     display: inline-block;
     max-width: 23.5%;
-    padding: 0 3px;
+    padding: 0 3px 6px;
   }
   a {
     max-width: 100%;
-    display: inline-block;
+    display: flex;
     background: $white;
     padding: 8px;
-    padding-bottom: 3px;
     border-radius: 3px;
     border: 1px solid #eee;
+    flex-direction: column;
   }
   svg {
     width: auto;
