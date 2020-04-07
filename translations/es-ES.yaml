@@ -1281,6 +1281,20 @@ reaction-modal:
       header: "Cortador de imagen"
       dimensions: "Ancho: {width}, Alto: {height}"
       select: "Seleccionar"
+      close: "Cerrar"
+    confirm:
+      check: "¿De verdad quieres hacer esto?"
+      button: "Confirmar"
+    block-user:
+      header: "Bloquear usuario"
+      body:
+        header: "Antes de que bloquees a esta persona, queremos que sepas cómo funcionan los bloqueos."
+      button: "Bloquear a {user}"
+    report-content:
+      header: "Solo puedes reportar este contenido una vez."
+      status: "El estado actual de tu reporte es: {status}"
+      reason: "Por favor, da una razón para reportar este contenido."
+      submit: "Reportar"
 #component: library-entry/*
 library-entry:
   state:
@@ -1314,6 +1328,10 @@ user-notifications:
   #Episode 113 of One Piece! aired
   aired: "{type, select, chapter {Capítulo} episode {Episodio} other {}} {number} de {media} {type, select, chapter {lanzado} episode {emitido} other {}}"
   aired-unknown: "Se ha {type, select, manga {lanzado} anime {emitido} other {}} un nuevo {type, select, manga {Capítulo} anime {Epidosio} other {}} de {media}"
+  menu:
+    all: "Ver todas las notificaciones"
+    mark-read: "Marcar todo como leído"
+    none: "¡No tienes ninguna notificación!"
 #ember-power-select
 selects:
   loading: "Cargando…"
@@ -1365,6 +1383,7 @@ errors:
   serverError:
     title: "¡Ups! Parece que nuestro servidor tiene un bug."
     body: "Nuestro equipo ha sido notificado, por favor vuelve a intentarlo en unos minutos."
+    reload: "Recargar"
 #Loading
 loading: "Cargando {subject, select, episode {episodio} chapter {capítulo} episodes {episodios} chapters {capítulos} other {}}…"
 timeUnits:
@@ -1389,3 +1408,17 @@ admin:
     flipper: "Flipper"
 button:
   view-all: "ver todo"
+unsubscribe:
+  email: "Correo"
+category:
+  absurdist-humour: "Humor absurdo"
+  bakumatsu-meiji-period: "Periodo Bakumatsu - Meiji"
+  france: "Francia"
+  germany: "Alemania"
+  korea: "Corea"
+  netorare: "NTR"
+  new-york: "Nueva York"
+  russia: "Rusia"
+  united-kingdom: "Reino Unido"
+  united-states: "Estados Unidos"
+  bdsm: "BDSM"
