@@ -1,25 +1,47 @@
 ---
 #route titles -- these are used if the route doesn't specify the title itself
 titles:
+  anime:
+    index: "Anime Felfedezése"
+  manga:
+    index: "Manga Felfedezése"
   media:
     show:
+      units: "{type, select, anime {Epizódok} manga {Fejezetek} other {}}"
+      characters: "Karakterek"
       reactions: "Reakciók"
+      franchise: "Franchise"
   explore:
+    index: "{mediaType, select, anime {Anime} manga {Manga} other{}} Felfedezése"
     more:
+      trending: "Felkapott{type, select, other {}} Ezen A Héten"
+      top-current: "Legjobb {type, select, Anime {Futó} Manga {Futó} other {}} {type}"
+      top-upcoming: "Legjobb Közelgő {type}"
       highest-rated: "Legmagasabbra értékelt {type}"
       most-popular: "Legnépszerűbb {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Újonnan Megjelent {category} {type}"
+        trending: "Felkapott {category} {type}"
+        most-popular: "Legnépszerűbb {category} {type}"
+  not-found: "Nem Található"
   server-error: "Szerver Hiba"
   users:
     index: "{user} Profilja"
     library: "{user} Könyvtára"
+    reviews: "{user} Ismertetői"
     reactions: "{user} Reakciói"
     followers: "{user} Követői"
     groups: "{user} Csoportjai"
+  posts: "{user} Posztja"
   notifications: "Értesítések"
   feedback:
     bugs: "Hibák"
     feature-requests: "Funkció Kérések"
     database-requests: "Adatbázis Kérések"
+    mobile-bugs: "Mobil Hibák"
+    mobile-features: "Mobil Funkciók"
   admin:
     index: "Admin"
     reports: "Jelentések"
@@ -33,12 +55,16 @@ titles:
         leaders: "{group} Vezetők"
       dashboard:
         index: "{group} Áttekintés"
+        reports: "{group} Jelentések"
         members: "{group} Tagok"
         leaders: "{group} Vezetők"
         settings: "{group} Beállítások"
 #header
 header:
   library: "Könyvtár"
+  anime: "Anime"
+  manga: "Manga"
+  trending: "Felkapott"
   groups: "Csoportok"
   feedback: "Visszajelzés"
   browse: "Böngészés"
@@ -53,19 +79,42 @@ header:
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Gyors Frissítés"
     filter:
       all: "Összes"
       anime: "Anime"
       manga: "Manga"
+    empty:
+      discover: "Média Felfedezése"
+    media:
+      complete: "Befejez"
+      unstarted: "Nincs Elkezdve"
     overlay:
+      button:
+        update: "{number}. {type, select, anime {Ep.} manga {Fjzt.} other {}}"
+        complete: "Befejez"
+        tooltip:
+          empty: "Könyvtár Frissítés"
+          content: "Poszt létrehozása és könyvtár frissítése"
+      discussion: "Vitalap Megtekintése"
       edit: "Szerkesztés"
+  groups:
+    header: "Csoportjaim"
   feed:
+    following: "Követed"
+    anime: "Anime"
+    manga: "Manga"
     global: "Globális"
 #page: anime/manga
 media:
   index:
+    search: "Keresés cím, karakter vagy szereplő szerint…"
+    remove: "Eltávolít"
     filters:
       year: "Év"
+      score: "Értékelési Átlag"
+      units: "{type, select, anime {Epizódok} manga {Fejezetek} other {}}"
+      rating: "Értékelés"
       categories: "Kategóriák"
       types: "Típusok"
     sort:
@@ -75,14 +124,88 @@ media:
       recent: "Legutóbb Hozzáadva"
   none: "Nincs találat."
   show:
+    navigation:
+      summary: "Áttekintés"
+      units: "{type, select, anime {Epizódok} manga {Fejezetek} other {}}"
+      characters: "Karakterek"
+      reactions: "Reakciók"
+      franchise: "Franchise"
+    sidebar:
+      watch: "Nézd Online"
     summary:
+      ratings:
+        community: "{rating}% Közösségi Helyeslés"
+      ranking:
+        full:
+          popularity: "{type, select, anime {{rank}. Helyezett (Legnépszerűbb Anime)} manga {{rank}. Helyezett (Legnépszerűbb Manga)} other {}}"
+          rating: "{type, select, anime {{rank}. Helyezett (Legmagasabbra Értékelt Anime)} manga {{rank}. Helyezett (Legmagasabbra Értékelt Manga)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} Legnépszerűbb} manga {#{rank} Legnépszerűbb} other {}}"
+          rating: "{type, select, anime {#{rank} Legmagasabbra Értékelt} manga {#{rank} Legmagasabbra Értékelt} other {}}"
       categories: "Kategóriák"
+      relationships:
+        header: "Több ebből a Sorozatból"
       reactions:
+        header: "Reakciók"
+        more: "További Reakciók Megtekintése"
         sorts:
           -upVotesCount: "Népszerű"
           -createdAt: "Friss"
         new: "Új Reakció"
         empty: "Úgy tűnik, hogy senki sem reagált még erre"
+      characters:
+        header: "Karakterek"
+        more: "Összes karakter megtekintése"
+      titles:
+        header: "Alternatív Címek"
+        ar: "Arab"
+        ar_ar: "Arab" #Invalid use ar
+        cs_cz: "Cseh"
+        da_dk: "Dán"
+        de_de: "Német"
+        el_gr: "Görög"
+        en: "Angol"
+        en_cn: "Kínai (Pinjin)"
+        en_gb: "Angol (Brit)"
+        en_jp: "Japán (Romaji)"
+        en_us: "Angol (Amerikai)"
+        es_es: "Spanyol"
+        fi_fi: "Finn"
+        fr_fr: "Francia"
+        he_il: "Héber"
+        hi_in: "Hindi"
+        hr_hr: "Horvát"
+        hu_hu: "Magyar"
+        id_id: "Indonéz"
+        it_it: "Olasz"
+        is_is: "Izlandi"
+        ja_jp: "Japán"
+        ko_kr: "Koreai"
+        lv_lv: "Lett"
+        ms_my: "Maláj"
+        nl_nl: "Holland"
+        pl_pl: "Lengyel"
+        pt_br: "Portugál (Brazil)"
+        pt_pt: "Portugál"
+        ru_ru: "Orosz"
+        sr_sp: "Szerb"
+        sv_se: "Svéd"
+        tl_ph: "Tagalog"
+        tr_tr: "Török"
+        th_th: "Thai"
+        uk_ua: "Ukrán"
+        zh_cn: "Kínai (Egyszerűsített)"
+        zh_hk: "Kínai (Hong Kong)"
+        zh_mo: "Kínai (Makaó)"
+        zh_tw: "Kínai (Hagyományos)"
+        synonyms: "Szinonimák"
+      information:
+        header: "{type, select, anime {Anime} manga {Manga} other {}} Részletek"
+        type: "Típus"
+        volumes: "Kötetek"
+        unit: "{type, select, anime {Epizódok} manga {Fejezetek} other {}}"
+        start: "{type, select, anime {Sugározva} manga {Kiadva} other {}}"
+        status: "Státusz"
     reactions:
       delete: "Reakció Törlése"
 #components
@@ -90,7 +213,23 @@ components:
   admin:
     reports:
       table:
+        user: "Felhasználó"
+        type: "Típus"
+        reason: "Ok"
+        explanation: "Magyarázat"
         moderator: "Moderátor"
+        status: "Státusz"
+        actions: "Műveletek"
+  episodes:
+    shortcut-bar:
+      episode-number: "{number}. EP"
+    join-prompt:
+      register: "Kitsu Fiók Létrehozása"
+  likeable-resource:
+    loading: "Betöltés…"
+    more: "Több Betöltése"
+  search:
+    header: "Keresési Eredmények"
   stream-feed:
     create-post:
       spoiler: "Spoiler"
