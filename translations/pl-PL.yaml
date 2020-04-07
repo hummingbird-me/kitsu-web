@@ -1,1 +1,270 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Przeglądaj Anime"
+  manga:
+    index: "Przeglądaj Manga"
+  media:
+    show:
+      units: "{type, select, anime {Odcinki} manga {Rozdziały} other {}}"
+      characters: "Bohaterowie"
+      reactions: "Reakcje"
+      franchise: "Seria"
+  explore:
+    index: "Przeglądaj {mediaType, select, anime {Anime} manga {Mangi} other {}}"
+    more:
+      trending: "Na Czasie {type, select, other {}} W Tym Tygodniu"
+    category:
+      index: "{category} {type}"
+  not-found: "Nie znaleziono"
+  server-error: "Błąd serwera"
+  users:
+    index: "Profil {user}"
+    library: "Biblioteka {user}"
+    reviews: "Opinie {user}"
+  notifications: "Powiadomienia"
+  feedback:
+    bugs: "Błędy"
+  groups:
+    index: "Grupy"
+    new: "Utwórz grupę"
+    group:
+      group-page:
+        rules: "Zasady {group}"
+        members: "Członkowie {group}"
+      dashboard:
+        index: "Przegląd {group}"
+        settings: "Ustawienia {group}"
+#header
+header:
+  library: "Biblioteka"
+  anime: "Anime"
+  manga: "Manga"
+  trending: "Popularne"
+  groups: "Grupy"
+  feedback: "Opinia"
+  browse: "Przeglądaj"
+  auth:
+    sign-in: "Zaloguj"
+    sign-up: "Zarejestruj"
+  user:
+    profile: "Wyświetl profil"
+    settings: "Ustawienia"
+    admin: "Administrator"
+    logout: "Wyloguj"
+#page: about
+about:
+  header: "O Kitsu"
+#page: dashboard
+dashboard:
+  quick-update:
+    filter:
+      all: "Wszystko"
+      anime: "Anime"
+      manga: "Manga"
+    empty:
+      discover: "Odkrywaj"
+    media:
+      complete: "Ukończone"
+      unstarted: "Nierozpoczęte"
+    overlay:
+      button:
+        tooltip:
+          empty: "Uaktualnij bibliotekę"
+          content: "Utwórz wpis i uaktualnij bibliotekę"
+      discussion: "Wyświetl dyskusję"
+      popout: "Edytor w oknie"
+  groups:
+    header: "Moje grupy"
+  announcements:
+    button: "Dowiedz się więcej"
+  feed:
+    anime: "Anime"
+    manga: "Manga"
+#page: anime/manga
+media:
+  index:
+    search: "Szukaj według tytułu, bohatera lub obsady…"
+    filter: "Filtruj"
+    remove: "Usuń"
+    filters:
+      year: "Rok"
+      score: "Średnia ocena"
+      seasons: "Sezony"
+      rating: "Ocena"
+      categories: "Kategorie"
+      types: "Rodzaje"
+    sort:
+      popularity: "Popularność"
+      rating: "Średnia ocena"
+      recent: "Ostatnio dodane"
+  none: "Brak wyników."
+  show:
+    navigation:
+      summary: "Podsumowanie"
+      characters: "Bohaterowie"
+      reactions: "Reakcje"
+    sidebar:
+      watch: "Oglądaj online"
+    summary:
+      categories: "Kategorie"
+      relationships:
+        more: "Wyświetl wszystko w {title}"
+      reactions:
+        header: "Reakcje"
+        more: "Wyświetl więcej reakcji"
+        sorts:
+          -upVotesCount: "Popularne"
+          -createdAt: "Najnowsze"
+        new: "Nowa reakcja"
+        edit: "Moja reakcja"
+        empty: "Wygląda na to, że jeszcze nikt na to nie zareagował"
+      characters:
+        header: "Bohaterowie"
+        more: "Wyświetl wszystkich bohaterów"
+      titles:
+        header: "Alternatywne tytuły"
+        ar: "Arabski"
+        ar_ar: "Arabski" #Invalid use ar
+        de_de: "Niemiecki"
+        en: "Angielski"
+        en_cn: "Chiński (Pinyin)"
+        en_gb: "Angielski (UK)"
+        en_jp: "Japoński (Romaji)"
+        en_kr: "Koreański (Romaja)"
+        en_us: "Angielski (US)"
+        es_es: "Hiszpański"
+        fr_fr: "Francuski"
+        id_id: "Indonezyjski"
+        it_it: "Włoski"
+        ja_jp: "Japoński"
+        ko_kr: "Koreański"
+        nl_nl: "Holenderski"
+        pt_br: "Portugalski (Brazylia)"
+        pt_pt: "Portugalski"
+        ru_ru: "Rosyjski"
+        th_th: "Tajski"
+        uk_ua: "Ukraiński"
+        vi_vi: "Wietnamski" #Invalid use vi_vn
+        vi_vn: "Wietnamski"
+        zh_cn: "Chiński (uproszczony)"
+        zh_tw: "Chiński (tradycyjny)"
+        synonyms: "Synonimy"
+      information:
+        type: "Rodzaj"
+        rating: "Ocena"
+        expand:
+          false: "Więcej informacji"
+          true: "Mniej informacji"
+      trailer: "Odtwórz zwiastun"
+    units:
+      pages: "{length} stron"
+    franchise:
+      roles:
+        adaptation: "Adaptacja"
+        anime_adaptation: "Anime"
+        manga_adaptation: "Manga"
+        character: "Bohater"
+        other: "Inne"
+  hide-posts:
+    text: "Ukryj wpisy na temat {media}"
+#components
+components:
+  admin:
+    reports:
+      actions:
+        open: "Oznacz jako otwarte"
+        resolved: "Oznacz jako rozwiązane"
+        closed: "Oznacz jako zamknięte"
+      table:
+        user: "Użytkownik"
+        type: "Rodzaj"
+        reason: "Powód"
+        explanation: "Wyjaśnienie"
+        moderator: "Moderator"
+        status: "Status"
+        actions: "Czynności"
+  search:
+    header: "Wyniki wyszukiwania"
+    view: "wyświetl więcej"
+    load: "wczytaj więcej"
+    none: "brak wyników"
+  sidebar-footer:
+    contact: "Kontakt"
+    terms: "Warunki"
+  stream-feed:
+    create-post:
+      edit: "Edytuj"
+      create: "Wpis"
+      nsfw: "NSFW"
+      spoiler: "Spoiler"
+    edit-post:
+      header: "Edytuj wpis"
+    library:
+      delete: "usuń"
+      deleting: "usuwanie…"
+    post:
+      pinned: "Przypięty wpis"
+      edited: "edytowano"
+      gate:
+        spoiler-nsfw: "Zawiera spoilery oraz NSFW."
+        nsfw: "Ten wpis zawiera treść NSFW."
+        spoiler: "Ten wpis zawiera spoilery."
+      link: "Kopiuj odnośnik do wpisu"
+      unfollow: "Przestań obserwować wpis"
+      follow: "Obserwuj wpis"
+      show: "Pokaż zawartość wpisu"
+      hide: "Ukryj zawartość wpisu"
+      edit: "Edytuj wpis"
+      delete: "Usuń wpis"
+      unpin: "Odepnij wpis z profilu"
+      pin: "Przypnij wpis do profilu"
+      report: "Zgłoś wpis"
+#page: users
+users:
+  profile:
+    edit: "Edytuj"
+  admin:
+    button: "Admin"
+    past-names: "Wyświetl poprzednie nazwy"
+    alt-accounts: "Wyświetl inne konta"
+    delete-content: "Usuń zawartość utworzoną przez użytkownika"
+    ban: "Zbanuj"
+  navigation:
+    activity: "Aktywność"
+    library: "Biblioteka"
+    reviews: "Opinie"
+    reactions: "Reakcje"
+    followers: "Obserwujący"
+    following: "Obserwowane"
+    groups: "Grupy"
+  edit-modal:
+    cover: "Zmień swoje zdjęcie w tle"
+    navigation:
+      about: "O mnie"
+      favorites: "Ulubione"
+    about:
+      header: "O mnie"
+      location:
+        label: "Lokalizacja"
+        placeholder: "Gdzie mieszkasz?"
+      birthday: "Urodziny"
+      gender:
+        label: "Płeć"
+        options:
+          secret: "To tajemnica"
+          male: "Mężczyzna"
+          female: "Kobieta"
+          custom: "Własne"
+      waifu:
+        label: "Waifu"
+        placeholder: "Waifu/Husbando"
+        search: "Znajdź swoją drugą połówkę"
+      bio:
+        label: "Bio"
+        placeholder: "Opowiedz światu o sobie."
+    profile-links:
+      sites:
+        website:
+          placeholder: "Adres URL Twojej witryny"

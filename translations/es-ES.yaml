@@ -96,6 +96,7 @@ about:
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Actualización rápida"
     filter:
       all: "Todo"
       anime: "Anime"
@@ -193,29 +194,46 @@ media:
         header: "Títulos alternativos"
         ar: "Arábico"
         ar_ar: "Arábico" #Invalid use ar
+        cs_cz: "Checo"
+        da_dk: "Danés"
         de_de: "Alemán"
+        el_gr: "Griego"
         en: "Inglés"
         en_cn: "Chino (Pinyin)"
         en_gb: "Inglés (UK)"
+        en_il: "Hebreo (romanizado)"
         en_jp: "Japonés (Romaji)"
         en_kr: "Coreano (Romaja)"
         en_th: "Tailandés (Romanizado)"
         en_us: "Inglés (US)"
         es_es: "Español"
         fr_fr: "Frances"
+        he_il: "Hebreo"
+        hi_in: "Hindú"
+        hr_hr: "Croata"
+        hu_hu: "Húngaro"
         id_id: "Indonesio"
         it_it: "Italiano"
+        is_is: "Islandés"
         ja_jp: "Japonés"
         ko_kr: "Coreano"
+        ms_my: "Malayo"
         nl_nl: "Danés"
+        pl_pl: "Polaco"
         pt_br: "Portugués (Brasil)"
         pt_pt: "Portugués"
         ru_ru: "Ruso"
+        sr_sp: "Serbio"
+        sv_se: "Sueco"
+        tl_ph: "Tagalo"
+        tr_tr: "Turco"
         th_th: "Tailandés"
         uk_ua: "Ucraniano"
         vi_vi: "Vietnamita" #Invalid use vi_vn
         vi_vn: "Vietnamita"
         zh_cn: "Chino (Simplificado)"
+        zh_hk: "Chino (Hong Kong)"
+        zh_mo: "Chino (Macao)"
         zh_tw: "Chino (Tradicional)"
         synonyms: "Sinónimos"
       information:
@@ -284,6 +302,8 @@ media:
 components:
   admin:
     reports:
+      no-explanation: "No se proveyó de una explicación."
+      not-set: "No establecido"
       actions:
         button: "Acciones"
         open: "Marcar como abierto"
@@ -297,6 +317,19 @@ components:
         moderator: "Moderador"
         status: "Estado"
         actions: "Acciones"
+  application:
+    nav-search: "Buscar en Kitsu"
+  episodes:
+    fast-forward: "¡Progreso de la biblioteca avanzado hasta el episodio {number}!"
+    undo-update: "Deshacer"
+    update-progress: "¿Actualizar progreso de la biblioteca al episodio {number}?"
+    watched: "Marcar como visto"
+    join-prompt:
+      pitch: "¡Sigue tu progreso y únete a la discusión!"
+      register: "Crea una cuenta de Kitsu"
+  likeable-resource:
+    loading: "Cargando…"
+    more: "Cargar más"
   search:
     header: "Buscar resultados"
     view: "ver más"
@@ -311,10 +344,11 @@ components:
       create: "Publicar"
       nsfw: "NSFW"
       spoiler: "Spoiler"
+      tag-media: "Toca para etiquetar un espectáculo o manga"
     edit-post:
       header: "Editar publicación"
     follow:
-      followed: "seguido"
+      followed: "ha seguido a"
       delete: "Eliminar actividad"
     library:
       delete: "eliminar"
@@ -338,7 +372,58 @@ components:
       delete: "Eliminar publicación"
       unpin: "Soltar publicación del perfil"
       pin: "Fijar publicación en el perfil"
+      pin-text: "¿De verdad quieres fijar esta publicación a tu perfil?"
       report: "Reportar publicación"
+      comment-count: "{count} de {total}"
+      comment:
+        deleting: "Eliminando comentario…"
+        reply: "Responder"
+        copy-link: "Copiar enlace al comentario"
+        edit: "Editar comentario"
+        delete: "Eliminar comentario"
+        report: "Reportar comentario"
+        previous-replies: "Mostrar respuestas anteriores"
+        add-reply: "Añadir una respuesta…"
+      comments:
+        all: "Ver todos los comentarios"
+        parent: "Ver comentario padre"
+        previous-comments: "Mostrar comentarios previos"
+        leave-comment: "Dejar un comentario…"
+    review:
+      by: "Reseña por"
+      spoiler: "Esta reseña contiene spoilers."
+      spoiler-hover: "¡Yo puedo con la verdad!"
+      share:
+        facebook: "Compartir"
+      copy-link: "Copiar enlace a la reseña"
+      show: "Mostrar contenido de la reseña"
+      hide: "Ocultar contenido de la reseña"
+      edit: "Editar reseña"
+      delete: "Eliminar reseña"
+      report: "Reportar reseña"
+  users:
+    ban:
+      text: "Pueden acceder y actualizar su librería, pero no pueden realizar publicaciones, comentarios o reacciones."
+    delete-user-content:
+      title: "Eliminar contenido de {user}"
+      checkbox:
+        posts: "Publicaciones"
+        comments: "Comentarios"
+        reactions: "Reacciones"
+      delete: "Eliminar"
+    block: "Bloquear @{user}"
+    you: "Hey, ¡ese eres tu!"
+    favorites:
+      title: "Series favoritas"
+      anime: "Anime"
+      manga: "Manga"
+      more: "Mostrar más"
+    alt-name:
+      title: "Posibles cuentas alternativas de {user}"
+      none: "No se encontraron alternativas"
+    past-name:
+      title: "Nombres anteriores"
+      none: "No hay nombres previos"
 #page: users
 users:
   profile:
@@ -380,11 +465,13 @@ users:
         label: "Waifu"
         placeholder: "Waifu/Husbando"
         search: "Encuentra alguien especial"
+        divorce: "divorciarse"
       bio:
         label: "Bio"
         placeholder: "Cuéntale al mundo tu historia."
     profile-links:
       header: "Enlaces del perfil"
+      remove: "Remover del perfil"
       sites:
         website:
           about: "Ingresa tu sitio web personal a continuación para añadir un enlace a tu perfil."
@@ -473,6 +560,9 @@ users:
         trakt:
           about: "Ingresa tu nombre de usuario de Trakt a continuación para añadir un enlace a tu perfil."
           placeholder: "Tu nombre de usuario de Trakt"
+    footer:
+      updating: "Actualizando…"
+      update: "Actualizar perfil"
     favorites:
       header: "Favoritos"
       anime: "Anime"
@@ -484,16 +574,33 @@ users:
       welcome: "Hey {user}, ¡esta página trata solamente de ti!"
       about: "A medida que sigas usando Kitsu, tu <strong>panel personal</strong> a continuación empezará a llenarse con los animes y mangas que has visto, leido, completado y planeas mirar. También puedes publicar texto, imagenes y videos en tu panel usando el formulario a continuación. Tus publicaciones serán vistas y apreciadas por tus seguidores y usuarios del panel global."
       action: "¡Siéntete en casa! Sube un avatar y una imagen de cabecera! Haz clic en <span>Editar</span> arriba para empezar."
+      title: "Configura tu perfil"
     about:
+      header: "Acerca de mi"
       empty: "Es un secreto"
+      waifu:
+        label: "{waifu, select, Waifu {Waifu} Husbando {Husbando} other {{waifu}}}:"
+        empty: "Waifu/Husbando:"
       gender:
+        label: "Género:"
         secret: "Es un secreto"
         male: "Hombre"
         female: "Mujer"
+      location: "Ubicación:"
+      birthday: "Cumpleaños:"
+      joined: "Fecha de registro:"
     stats:
       headings:
         anime: "Estadísticas de anime"
         manga: "Estadísticas de manga"
+      time-watched: "{count} {timeUnit} ocupados viendo anime."
+      chapters-read: "{count} capítulos leídos."
+      completed: "{count} completados."
+      more-than: "Más que el <span class=\"time-spent-percentile\">{percentage}%</span> de los usuarios."
+      time-breakdown:
+        seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
+        time-segment: "{count} {timeUnit}" #8 months (pre-translated)
+        total: "ocupados viendo anime en total." #appended after time-segments
       empty:
         header: "¡Parece que todavía no tienes suficientes datos! ¿Empezamos algo nuevo?"
         guest-header: "Parece que {user} todavía no tiene estadísticas."
@@ -653,7 +760,7 @@ settings:
   exports:
     modal:
       header: "Sincronizar con {site}"
-      helper: "Actualizaremos tus listas de anime y manga en {site} cada vez que los actualices en Kitsu."
+      helper: "Actualizaremos tus listas de anime y manga en {site} cada vez que las actualices en Kitsu."
       create: "Sincronizar con {site}"
     header: "Exportar"
     sub-header: "Sincroniza automáticamente tus actualizaciones de la biblioteca de Kitsu con MyAnimeList."
@@ -705,6 +812,7 @@ settings:
     content: "Contenido en Kitsu"
     theme: "Tema del sitio"
     country: "País"
+    worldwide: "Mundial"
     titles: "Títulos"
     titles-message: "Cómo se muestran los títulos de los medios."
     rating: "Tipo de evaluación"
@@ -1011,8 +1119,11 @@ explore:
     removing: "Removiendo…"
     create: "Añadir a favoritos"
     creating: "Añadiendo…"
+  category:
+    index: "{type, select, anime {Anime} manga {Manga} other {}} sobre {category}" #category is pre-translated
 #page: media-reactions
 media-reactions:
+  view-all: "Ver todas las <strong>{count}</strong> reacciones de {user}"
   create-account: "Crear una cuenta"
 #page: notifications
 notifications:
@@ -1071,6 +1182,9 @@ form-shared:
   placeholders:
     username: "Nombre de usuario"
     password: "Contraseña"
+#component: mobile-banner
+mobile-banner:
+  pitch: "Obtén una mejor experiencia usando la aplicación oficial de Kitsu para móviles."
 #component: auth-onboarding
 onboarding:
   aozora-conflict:
@@ -1078,6 +1192,21 @@ onboarding:
     info: "Las publicaciones del panel de actividad de ambas cuentas serán fusionadas. Todo el resto de la información de la cuenta será sobre-escrito por la cuenta que elijas a continuación."
   aozora-account-details:
     submit: "¡Luce bien!"
+  checklist:
+    header: "Empezando en Kitsu"
+    steps: "¡Faltan {count} pasos! 🦊"
+    feed: "Visita tu panel personal"
+    rate: "Evalúa 5 animes o mangas"
+    rate-incomplete: "Evalúa {count} animes o mangas"
+    follow: "Sigue a 5 usuarios"
+    follow-incomplete: "Sigue a {count} {count, plural, =1 {usuario} other {usuarios}}"
+    comment: "Comenta en una publicación"
+    like: "Dale me gusta a 3 publicaciones del panel"
+    like-incomplete: "Dale me gusta a {count} publicaciones del panel"
+    avatar: "Establece tu avatar de usuario"
+    cover: "Establece una imagen de cabecera para tu perfil"
+    about-me: "Completa tu <i>Acerca de mi</i>"
+    favorite: "Selecciona tus anime / manga favoritos"
 #component: follow-button
 follow-button:
   follow: "Seguir"
@@ -1146,6 +1275,26 @@ reaction-modal:
   delete: "Eliminar reacción"
   placeholder: "{index, plural, =0 {Me hizo replantearme algunas decisiones de vida importantes.} =1 {¡Inesperadamente bueno! Muchas escenas memorables.} =2 {Aunque pueda no ser del interés de todos, ciertamente es interesante.} other {Sobrevalorado, no pierdas tu tiempo.}}"
   skip: "Saltar"
+  #component: modals
+  modals:
+    image-cropper:
+      header: "Cortador de imagen"
+      dimensions: "Ancho: {width}, Alto: {height}"
+      select: "Seleccionar"
+      close: "Cerrar"
+    confirm:
+      check: "¿De verdad quieres hacer esto?"
+      button: "Confirmar"
+    block-user:
+      header: "Bloquear usuario"
+      body:
+        header: "Antes de que bloquees a esta persona, queremos que sepas cómo funcionan los bloqueos."
+      button: "Bloquear a {user}"
+    report-content:
+      header: "Solo puedes reportar este contenido una vez."
+      status: "El estado actual de tu reporte es: {status}"
+      reason: "Por favor, da una razón para reportar este contenido."
+      submit: "Reportar"
 #component: library-entry/*
 library-entry:
   state:
@@ -1179,6 +1328,10 @@ user-notifications:
   #Episode 113 of One Piece! aired
   aired: "{type, select, chapter {Capítulo} episode {Episodio} other {}} {number} de {media} {type, select, chapter {lanzado} episode {emitido} other {}}"
   aired-unknown: "Se ha {type, select, manga {lanzado} anime {emitido} other {}} un nuevo {type, select, manga {Capítulo} anime {Epidosio} other {}} de {media}"
+  menu:
+    all: "Ver todas las notificaciones"
+    mark-read: "Marcar todo como leído"
+    none: "¡No tienes ninguna notificación!"
 #ember-power-select
 selects:
   loading: "Cargando…"
@@ -1230,6 +1383,7 @@ errors:
   serverError:
     title: "¡Ups! Parece que nuestro servidor tiene un bug."
     body: "Nuestro equipo ha sido notificado, por favor vuelve a intentarlo en unos minutos."
+    reload: "Recargar"
 #Loading
 loading: "Cargando {subject, select, episode {episodio} chapter {capítulo} episodes {episodios} chapters {capítulos} other {}}…"
 timeUnits:
@@ -1254,3 +1408,17 @@ admin:
     flipper: "Flipper"
 button:
   view-all: "ver todo"
+unsubscribe:
+  email: "Correo"
+category:
+  absurdist-humour: "Humor absurdo"
+  bakumatsu-meiji-period: "Periodo Bakumatsu - Meiji"
+  france: "Francia"
+  germany: "Alemania"
+  korea: "Corea"
+  netorare: "NTR"
+  new-york: "Nueva York"
+  russia: "Rusia"
+  united-kingdom: "Reino Unido"
+  united-states: "Estados Unidos"
+  bdsm: "BDSM"

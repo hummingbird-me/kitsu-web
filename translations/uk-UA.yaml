@@ -1,1 +1,239 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Досліджуй аніме"
+  media:
+    show:
+      units: "{type, select, anime {Серії} manga {Глави} other {}}"
+      characters: "Персонажі"
+      reactions: "Реакції"
+      franchise: "Франшиза"
+  explore:
+    more:
+      trending: "В тренді цього тижня {type, select, other {}}"
+      highest-rated: "{type} з найвищим рейтингом"
+    category:
+      index: "{type} в категорії {category}"
+      more:
+        trending: "Зараз в тренді {type} в категорії {category}"
+        most-popular: "Найпопулярніше {type} в категорії {category}"
+  not-found: "Не знайдено"
+  server-error: "Помилка сервера"
+  users:
+    index: "Профіль користувача {user}"
+    library: "Бібліотека користувача {user}"
+    reviews: "Рецензії користувача {user}"
+    reactions: "Реакції користувача {user}"
+    followers: "Послідовники {user}"
+    following: "{user} слідує"
+    groups: "Групи {user}"
+    stats: "Статистика {user}"
+  posts: "Допис від {user}"
+  comments: "Коментар від {user}"
+  reviews: "Рецензія від {user}"
+  notifications: "Сповіщення"
+  feedback:
+    feature-requests: "Запити щодо функціональності"
+    database-requests: "Запити щодо бази даних"
+    mobile-bugs: "Мобільні вади"
+    mobile-features: "Мобільний функціонал"
+  admin:
+    reports: "Звіти"
+  groups:
+    index: "Групи"
+    new: "Створити групу"
+    group:
+      group-page:
+        rules: "Правила {group}"
+        members: "Члени {group}"
+        leaders: "Лідери {group}"
+      dashboard:
+        index: "Огляд {group}"
+        reports: "Звіти {group}"
+        tickets: "Заявки {group}"
+        members: "Члени {group}"
+        leaders: "Лідери {group}"
+        settings: "Налаштування {group}"
+  group-invite: "Запрошення до групи"
+#header
+header:
+  library: "Бібліотека"
+  anime: "Аніме"
+  trending: "Популярні"
+  groups: "Групи"
+  browse: "Огляд"
+  auth:
+    sign-in: "Увійти"
+    sign-up: "Зареєструватись"
+  user:
+    profile: "Переглянути профіль"
+    settings: "Налаштування"
+    logout: "Вийти"
+#page: about
+about:
+  header: "Про Kitsu"
+#page: dashboard
+dashboard:
+  quick-update:
+    title: "Швидке оновлення"
+    filter:
+      all: "Все"
+      anime: "Аніме"
+    empty:
+      html: "Вміст, який ви додали або оновили в межах своєї <a href={link}>Бібліотеки</a>, з’явиться тут для швидкого оновлення."
+      discover: "Знайти вміст"
+    media:
+      complete: "Завершене"
+      unstarted: "Непочате"
+      unit: "{type, select, anime {Серія {num} {total, select, undefined {} other {з {total}}}} manga {Глава {num} {total, select, null {} other {з {total}}}} other {}}"
+    overlay:
+      button:
+        update: "{type, select, anime {Серія} manga {Глава} other {}} {number}"
+        complete: "Завершене"
+        tooltip:
+          empty: "Оновити бібліотеку"
+          content: "Створити допис та оновити бібліотеку"
+      discussion: "Переглянути дискусію"
+      edit: "Редагувати запис бібліотеки"
+      popout: "Редактор-у-вікні"
+  onboarding:
+    welcome: "Агов, {user}, вітаємо в Kitsu!"
+    about: "Це стрічка глобальної активності. Вона заповнена останньою активністю всіх користувачів Kitsu — навіть вашою! Після того, як у вас з’явиться можливість слідкувати за ще кількома цікавими користувачами, ми перемкнемо вашу стрічку за замовчуванням із Глобальної на стрічку Слідування."
+    action: "Чому б не спробувати створити допис стрічки, щоб представити себе, за допомогою наведеної нижче форми? Ви можете сказати щось таке просте, як «Агов, усі, я новачок на Kitsu», або ви можете показати нам, наскільки ви творчі та дотепні!"
+  groups:
+    header: "Мої групи"
+  announcements:
+    button: "Дізнатись більше"
+  feed:
+    following: "Слідування"
+    anime: "Аніме"
+    manga: "Манга"
+    global: "Глобальна"
+#page: anime/manga
+media:
+  index:
+    search: "Пошук за назвою, персонажем, або акторським складом…"
+    filter: "Фільтр"
+    remove: "Видалити"
+    filters:
+      year: "Рік"
+      score: "Середня оцінка"
+      seasons: "Сезони"
+      streamers: "Онлайн-перегляд (США)"
+      units: "{type, select, anime {Серії} manga {Глави} other {}}"
+      rating: "Рейтинг"
+      categories: "Категорії"
+      types: "Типи"
+    sort:
+      popularity: "Популярність"
+      rating: "Середня оцінка"
+      date: "Дата"
+      recent: "Нещодавно додані"
+  none: "Немає результатів."
+  show:
+    navigation:
+      summary: "Резюме"
+      units: "{type, select, anime {Серії} manga {Глави} other {}}"
+      characters: "Персонажі"
+      reactions: "Реакції"
+      franchise: "Франшиза"
+    sidebar:
+      watch: "Дивитись онлайн"
+    summary:
+      ratings:
+        community: "{rating}% схвалення спільноти"
+        match: "Збігається на {rating}%"
+      ranking:
+        short:
+          popularity: "{type, select, anime {№{rank} найпопулярніше} manga {№{rank} найпопулярніша} other {}}"
+      categories: "Категорії"
+      relationships:
+        header: "Більше з цієї серії"
+        more: "Переглянути все в {title}"
+      reactions:
+        header: "Реакції"
+        more: "Дивитись більше реакцій"
+        sorts:
+          -upVotesCount: "Популярні"
+          -createdAt: "Нещодавні"
+        new: "Нова реакція"
+        edit: "Моя реакція"
+        empty: "Схоже, ніхто на це ще не відреагував"
+      characters:
+        header: "Персонажі"
+        more: "Переглянути всіх персонажів"
+      titles:
+        header: "Альтернативні назви"
+        ar: "Арабська"
+        ar_ar: "Арабська" #Invalid use ar
+        cs_cz: "Чеська"
+        da_dk: "Данська"
+        de_de: "Німецька"
+        el_gr: "Грецька"
+        en: "Англійська"
+        en_gb: "Англійська (Великобританія)"
+        en_il: "Іврит (латиниця)"
+        en_th: "Тайська (латиниця)"
+        en_us: "Англійська (США)"
+        es_es: "Іспанська"
+        fi_fi: "Фінська"
+        fr_fr: "Французька"
+        he_il: "Іврит"
+        hi_in: "Гінді"
+        hr_hr: "Хорватська"
+        hu_hu: "Угорська"
+        id_id: "Індонезійська"
+        it_it: "Італійська"
+        is_is: "Ісландська"
+        ja_jp: "Японська"
+        ko_kr: "Корейська"
+        lv_lv: "Латвійська"
+        ms_my: "Малайська"
+        nl_nl: "Нідерландська"
+        pl_pl: "Польська"
+        pt_br: "Португальська (бразильська)"
+        pt_pt: "Португальська"
+        ru_ru: "Російська"
+        sr_sp: "Сербська"
+        sv_se: "Шведська"
+        tl_ph: "Тагальська"
+        tr_tr: "Турецька"
+        th_th: "Тайська"
+        uk_ua: "Українська"
+        zh_cn: "Китайська (спрощена)"
+        zh_hk: "Китайська (Гонконг)"
+        zh_mo: "Китайська (Макао)"
+        zh_tw: "Китайська (традиційна)"
+        synonyms: "Синоніми"
+      information:
+        type: "Тип"
+        volumes: "Томи"
+        unit: "{type, select, anime {Серії} manga {Глави} other {}}"
+    franchise:
+      roles:
+        adaptation: "Адаптація"
+        anime_adaptation: "Аніме"
+        character: "Персонаж"
+        other: "Інші"
+  hide-posts:
+    text: "Приховати дописи про {media}"
+#page: users
+users:
+  navigation:
+    following: "Слідування"
+  hide-posts:
+    info: "Дописи не з’являтимуться у вашій стрічці слідування"
+#page: settings
+settings:
+  navigation:
+    header: "Налаштування"
+  index:
+    adult-message: "Якщо вміст для дорослих приховано, ви не побачите вміст з рейтингом 18+ у стрічці, бібліотеках чи пошуку."
+#page: groups
+groups:
+  hide-posts:
+    info: "Дописи не з’являтимуться у вашій стрічці слідування"
+  dashboard:
+    navigation:
+      settings: "Налаштування"
