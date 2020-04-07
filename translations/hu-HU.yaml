@@ -332,9 +332,16 @@ components:
       comment:
         deleting: "Komment Törlése…"
         reply: "Válasz"
+        copy-link: "Link Másolása a Kommenthez"
+        edit: "Komment Szerkesztése"
+        delete: "Komment Törlése"
+        report: "Komment Jelentése"
         previous-replies: "Korábbi Válaszok Megjelenítése"
         add-reply: "Adj hozzá egy választ…"
+      comments:
+        previous-comments: "Korábbi Kommentek Megjelenítése"
     review:
+      spoiler: "Ez az ismertető spoilereket tartalmaz."
       share:
         facebook: "Megosztás"
       copy-link: "Link Másolása az Ismertetőhöz"
@@ -346,6 +353,7 @@ components:
       title: "{user} Által Készített Tartalmak Törlése"
       checkbox:
         posts: "Posztok"
+        comments: "Kommentek"
         reactions: "Reakciók"
       delete: "Törlés"
     favorites:
@@ -359,23 +367,81 @@ components:
       none: "Nincs korábbi név"
 #page: users
 users:
+  profile:
+    edit: "Szerkesztés"
+  admin:
+    button: "Admin"
+    past-names: "Korábbi Nevek Megtekintése"
+    alt-accounts: "Alt Fiókok Megtekintése"
+    delete-content: "Felhasználó Által Létrehozott Tartalmak Törlése"
   navigation:
+    activity: "Tevékenység"
     library: "Könyvtár"
+    reviews: "Ismertetők"
     reactions: "Reakciók"
+    followers: "Követők"
+    following: "Követés"
     groups: "Csoportok"
   edit-modal:
     navigation:
       about: "Rólam"
       profile-links: "Profil Linkek"
+      favorites: "Kedvencek"
     about:
       header: "Rólam"
+      location:
+        placeholder: "Hol élsz?"
+      birthday: "Születésnap"
       gender:
+        label: "Nem"
         options:
+          secret: "Ez titok"
           male: "Férfi"
           female: "Nő"
           custom: "Egyedi"
+      waifu:
+        search: "Keresd meg a különleges valakidet"
+        divorce: "válás"
+      bio:
+        label: "Rólam"
+        placeholder: "Mondd el a világnak a történeted."
     profile-links:
+      header: "Profil Linkek"
+      remove: "Eltávolítás a profilról"
       sites:
+        website:
+          placeholder: "A Weboldalad URL-je"
+        twitter:
+          about: "Írd be a Twitter felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Twitter felhasználóneved (@Felhasználónév)"
+        facebook:
+          about: "Írd be a Facebookod URL-jét, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Facebookod URL-je"
+        youtube:
+          about: "Írd be a YouTube csatornád URL-jét, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A YouTube csatornád URL-je"
+        google:
+          placeholder: "A Google+ profilod URL-je vagy a felhasználóneved (+Felhasználónév)"
+        instagram:
+          about: "Írd be az Instagram felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "Az Instagram felhasználóneved"
+        twitch:
+          about: "Írd be a Twitch felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Twitch felhasználóneved"
+        vimeo:
+          about: "Írd be a Vimeo felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Vimeo felhasználóneved"
+        github:
+          about: "Írd be a GitHub felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A GitHub felhasználóneved"
+        raptr:
+          about: "Írd be a Raptr felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Raptr felhasználóneved"
+        tumblr:
+          placeholder: "A Tumblr blogod neve"
+        soundcloud:
+          about: "Írd be a SoundCloud felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A SoundCloud felhasználóneved"
         dailymotion:
           about: "Írd be a Dailymotion felhasználóneved, hogy hozzáadj egy linket profilodhoz."
           placeholder: "A Dailymotion felhasználóneved"
@@ -431,12 +497,14 @@ users:
       birthday: "Születésnap:"
       joined: "Csatlakozás Dátuma:"
     stats:
+      time-watched: "{count} {timeUnit} anime nézzéssel töltött idő."
       chapters-read: "{count} fejezet elolvasva."
       completed: "{count} befejezett."
       more-than: "Több mint a felhasználók <span class=\"time-spent-percentile\">{percentage}%</span>-a."
       time-breakdown:
         seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
         time-segment: "{count} {timeUnit}" #8 months (pre-translated)
+        total: "anime nézzéssel töltött idő." #appended after time-segments
       empty:
         header: "Úgy tűnik, még nincs elegendő adat! Készen állsz hogy elkezdj valami újat?"
   library:
@@ -767,6 +835,7 @@ groups:
       activity:
         header: "Felhasználói Tevékenység"
         posts: "Mai Posztok"
+        comments: "Mai Kommentek"
       help-desk:
         header: "Nyitott Esetek"
         reports: "Jelentések"
@@ -785,24 +854,90 @@ groups:
         table:
           users: "Felhasználó"
           joined: "Csatlakozott"
+          actions: "Műveletek"
+        remove: "Eltávolít"
+    leaders:
+      chat:
+        header: "Vezető Csevegő"
+        post-btn: "Poszt"
+        placeholder: "Üzenet küldése a vezetőknek"
+    audit:
+      group-report:
+        resolved: "megoldott egy jelentést."
+        declined: "elutasított egy jelentést."
 #page: group-invite
 group-invite:
   accept: "Elfogad"
   decline: "Visszautasít"
+  accepted: "Már elfogadtad ezt a meghívást."
+  revoked: "Egy csoport moderátor visszavonta a meghívásodat."
+  declined: "Elutasítottad a csoport meghívását."
+#page: explore
+explore:
+  view-more: "Több Megtekintése"
+  search-placeholder: "Mit keresel?"
+  advanced-search: "Vagy böngéssz a <a href=\"/{mediaType}\">részletes kereséssel</a>"
+  widget:
+    related: "Kapcsolódó Kategóriák"
+    categories: "Kategóriák"
+    favorite-categories: "Kedvenc Kategóriáim"
+    more-categories: "Több Kategória…"
+  favorite-button:
+    remove: "Kedvencekből Eltávolít"
+    removing: "Eltávolít…"
+    create: "Kedvencekhez Hozzáad"
+    creating: "Hozzáad…"
+#page: media-reactions
+media-reactions:
+  create-account: "Fiók Létrehozása"
+#page: notifications
+notifications:
+  none: "Nincs semmilyen értesítésed!"
 #page: password-reset
 password-reset:
+  password: "Jelszó"
+  confirm: "Jelszó Megerősítése"
+  length: "A jelszónak legalább 8 karakter hosszúnak kell lennie"
   email: "Email"
+  send: "Email Küldése"
 #shared: media
 media-shared:
   types:
     anime:
       tv: "TV"
+      movie: "Film"
+      music: "Zene"
     manga:
       manga: "Manga"
+      novel: "Regény"
       manhua: "Manhua"
+      doujin: "Doujin"
       manhwa: "Manhwa"
+  statuses:
+    anime:
+      current: "Jelenleg Fut"
+      finished: "Befejezve"
+      upcoming: "Közelgő"
+      unreleased: "Kiadatlan"
+    manga:
+      current: "Fut"
+      finished: "Befejezve"
+      upcoming: "Közelgő"
+      unreleased: "Kiadatlan"
+#shared: library
+library-shared:
+  completed: "{type, select, anime {Befejezett} manga {Befejezett} other {}}"
+  on_hold: "{type, select, anime {Függőben} manga {Függőben} other {}}"
+  dropped: "{type, select, anime {Dobott} manga {Dobott} other {}}"
+#shared: form:
+form-shared:
+  placeholders:
+    username: "Felhasználónév"
+    password: "Jelszó"
 #component: auth-onboarding
 onboarding:
+  aozora-conflict:
+    title: "Ó, már van egy Kitsu fiókod! Melyiket akarod megtartani?"
   checklist:
     follow: "Kövess 5 felhasználót"
     follow-incomplete: "Kövess {count} {count, plural,=1 {felhasználót} other {felhasználót}}"
@@ -899,7 +1034,56 @@ user-notifications:
   aired-unknown: "{media} {type, select, manga {kiadott} anime {kiadott} other {}} egy új {type, select, manga {Fejezetet} anime {Epizódot} other {}}"
   menu:
     all: "Összes Értesítés Megjelenítése"
+    mark-read: "Összes Megjelölése Olvasottként"
+    none: "Nincs semmilyen értesítésed!"
+#ember-power-select
+selects:
+  loading: "Betöltés…"
+  none: "Nincs találat"
+  search: "Kezdj el gépelni a kereséshez"
+#ember-cp-validations
+errors:
+  empty: "{description} nem lehet üres"
+  blank: "{description} nem lehet üres"
+  present: "{description} üresnek kell lennie"
+  positive: "{description} pozitívnak kell lennie"
+  #Custom Errors
+  user:
+    name:
+      numbers: "Ez a mező nem állhat teljes egészében számokból"
+      starts: "Ennek a mezőnek betűvel vagy számmal kell kezdődnie"
+  load: "Hiba történt a tartalom betöltésekor."
+  contentEmpty: "Hmm, úgy tűnik, itt még nincsen semmi."
+  request: "Hoppá! Valami rosszul sikerült a kéréssel kapcsolatban."
+  serverError:
+    title: "Hoppá! Úgy tűnik, a szerverünk egy hibába futott."
+    body: "Csapatunk értesítve lett, kérjük próbáld újra néhány perc múlva."
+#Loading
+loading: "{subject, select, episode {Epizód} chapter {Fejezet} episodes {Epizódok} chapters {Fejezetek} other {}} Betöltése…"
+timeUnits:
+  years: "{count, plural, =1 {év} other {év}}"
+  months: "{count, plural, =1 {hónap} other {hónap}}"
+  days: "{count, plural, =1 {nap} other {nap}}"
+  hours: "{count, plural, =1 {óra} other {óra}}"
+  minutes: "{count, plural, =1 {perc} other {perc}}"
+admin:
+  reports:
+    header: "Mod Jelentések"
+    loading: "Jelentések Betöltése…"
+    open: "Nyitott"
+    closed: "Lezárt"
+  header: "Admin Panel"
+  deployed-version: "Jelenleg Telepített Verzió: {version}"
+  links:
+    index: "Jelentések"
+    admin: "Rails Admin"
+unsubscribe:
+  email: "Email"
+  unsubscribe: "Leiratkozás"
 category:
+  action: "Akció"
+  adventure: "Kaland"
+  africa: "Afrika"
   ahegao: "Ahegao"
   air-force: "Légierő"
   alternative-past: "Alternatív Múlt"
