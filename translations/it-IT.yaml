@@ -468,11 +468,13 @@ users:
         label: "Waifu"
         placeholder: "Waifu/Husbando"
         search: "Trova il tuo qualcuno speciale"
+        divorce: "divorzia"
       bio:
         label: "Biografia"
         placeholder: "Racconta al mondo la tua storia."
     profile-links:
       header: "Link al profilo"
+      remove: "Rimuovi dal profilo"
       sites:
         website:
           about: "Inserisci il tuo sito web personale qui sotto per aggiungere un link al tuo profilo."
@@ -561,6 +563,9 @@ users:
         trakt:
           about: "Inserisci il tuo nome utente Trakt qui sotto per aggiungere un link al tuo profilo."
           placeholder: "Il tuo nome utente Trakt"
+    footer:
+      updating: "Aggiornamento…"
+      update: "Aggiorna il profilo"
     favorites:
       header: "Preferiti"
       anime: "Anime"
@@ -574,14 +579,28 @@ users:
       action: "Sentiti a casa! Carica un avatar e un'immagine di copertina! Clicca <span>Modifica</span> qui sopra per iniziare."
     about:
       empty: "È un segreto"
+      waifu:
+        empty: "Waifu/Husbando:"
       gender:
+        label: "Genere:"
         secret: "È un segreto"
         male: "Maschio"
         female: "Femmina"
+      location: "Località:"
+      birthday: "Compleanno:"
+      joined: "Data Iscrizione:"
     stats:
       headings:
         anime: "Statistiche Anime"
         manga: "Statistiche Manga"
+      time-watched: "{count} {timeUnit} trascorsi a guardare anime."
+      chapters-read: "{count} capitoli letti."
+      completed: "{count} Completati."
+      more-than: "Più di <span class=\"time-spent-percentile\">{percentage}%</span> utenti."
+      time-breakdown:
+        seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
+        time-segment: "{count} {timeUnit}" #8 months (pre-translated)
+        total: "trascorsi a guardare anime in totale." #appended after time-segments
       empty:
         header: "Pare che non ci siano ancora abbastanza dati! Pronto a leggere qualcosa?"
         guest-header: "Pare che {user} non abbia ancora nessuna statistica."
@@ -793,6 +812,7 @@ settings:
     content: "Contenuti di Kitsu"
     theme: "Tema del sito"
     country: "Nazione"
+    worldwide: "Globale"
     titles: "Titoli"
     titles-message: "Come saranno visualizzati i titoli dei media."
     rating: "Tipo di valutazione"
@@ -1099,8 +1119,11 @@ explore:
     removing: "Rimozione in corso…"
     create: "Aggiungi ai Preferiti"
     creating: "Aggiungendo…"
+  category:
+    index: "{category} {type, select, anime {Anime} manga {Manga} other {}}" #category is pre-translated
 #page: media-reactions
 media-reactions:
+  view-all: "Guarda tutte le reazioni <strong>{count}</strong> Di {user}"
   create-account: "Crea account"
 #page: notifications
 notifications:
@@ -1166,6 +1189,9 @@ onboarding:
     info: "I post del feed attività di entrambi gli account verranno uniti. Tutte le altre informazioni dell'account verranno sovrascritte dall'account selezionato di seguito."
   aozora-account-details:
     submit: "Perfetto!"
+  checklist:
+    follow: "Segui 5 utenti"
+    comment: "Commenta un post"
 #component: follow-button
 follow-button:
   follow: "Segui"
@@ -1236,9 +1262,16 @@ reaction-modal:
   skip: "Salta"
   #component: modals
   modals:
+    image-cropper:
+      select: "Seleziona"
+      close: "Chiudi"
+    confirm:
+      check: "Sei sicuro di volerlo fare?"
+      button: "Conferma"
     block-user:
       header: "Blocca Utente"
       body:
+        header: "Prima di bloccare questo utente, vogliamo farti sapere come funziona il blocco."
         text: "Bloccando questa persona farà si che il suo contenuto non sia più visibile a te, ed il tuo contentenuto non sarà più visibile o interagibile per lui."
       button: "Blocca {user}"
     report-content:
