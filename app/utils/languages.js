@@ -45,7 +45,7 @@ export default [
   // { id: 'sc-it', text: 'Sardu' }, // Sardinian
   // { id: 'sco-gb', text: 'Scots' },
   // { id: 'sr-cs', text: 'Srpski' }, // Serbian Latin
-  // { id: 'sr-sp', text: 'Српски' }, // Serbian Cryllic
+  // { id: 'sr-sp', text: 'Српски' }, // Serbian Cyrillic
   // { id: 'sk-sk', text: 'Slovenčina' }, // Slovak
   // { id: 'sl-sl', text: 'Slovenščina' }, // Slovenian
   { id: 'es-es', text: 'Español' },
