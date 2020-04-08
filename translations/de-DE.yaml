@@ -14,6 +14,7 @@ titles:
   explore:
     index: "Erkunde {mediaType, select, anime {Anime} manga {Manga} other {}}"
     more:
+      trending: "Beliebt {type, select, other {}} Diese Woche"
       top-current: "Top {type, select, Anime {laufende} Manga {veröffentlichte} other {}} {type}"
       top-upcoming: "Top bevorstehende {type}"
       highest-rated: "Am höchsten bewertete {type}"
@@ -89,6 +90,9 @@ header:
 auth-modal:
   sign-up:
     submit: "{step, select, 0 {Lassen Sie uns zuerst einige grundlegende Informationen zukommen} 1 {Sehr witzig, E-Mail kommt als nächstes dran!} 2 {Sieht echt aus, wie wärs mit einem Passwort?} 3 {Super, lass uns den Account erstellen} other {}}"
+#page: about
+about:
+  header: "Über Kitsu"
 #page: dashboard
 dashboard:
   quick-update:
@@ -186,26 +190,44 @@ media:
       titles:
         header: "alternativer Titel"
         ar: "Arabisch"
+        cs_cz: "Tschechisch"
+        da_dk: "Dänisch"
         de_de: "Deutsch"
+        el_gr: "Griechisch"
         en: "Englisch"
         en_cn: "Chinesisch (Pinyin)"
+        en_il: "Hebräisch (Romanized)"
         en_jp: "Japanisch (Romaji)"
         en_kr: "Koreanisch (Romaja)"
         en_th: "Thailändisch (romanisiert)"
         es_es: "Spanisch"
+        fi_fi: "Finnisch"
         fr_fr: "Französisch"
+        he_il: "Hebräisch"
+        hi_in: "Hindi"
+        hr_hr: "Kroatisch"
+        hu_hu: "Ungarisch"
         id_id: "Indonesisch"
+        is_is: "Isländisch"
         it_it: "Italienisch"
         ja_jp: "Japanisch"
         ko_kr: "Koreanisch"
+        lv_lv: "Lettisch"
+        ms_my: "Malaiisch"
         nl_nl: "Niederländisch"
+        pl_pl: "Polnisch"
         pt_br: "Portugiesisch (Brasilianisch)"
         pt_pt: "Portugiesisch"
         ru_ru: "Russisch"
+        sv_se: "Schwedisch"
         th_th: "Thailändisch"
+        tl_ph: "Tagalog"
+        tr_tr: "Türkisch"
         uk_ua: "Ukrainisch"
         vi_vn: "Vietnamesisch"
         zh_cn: "Chinesisch (vereinfacht)"
+        zh_hk: "Chinesisch (Hong Kong)"
+        zh_mo: "Chinesisch (Macao)"
         zh_tw: "Chinesisch (traditionell)"
         synonyms: "Synonyme"
       information:
@@ -245,6 +267,7 @@ media:
       loading: "Lade Reaktionen…"
       delete: "Reaktion löschen"
       report: "Reaktion melden"
+      copy: "Link in Kurzreview kopieren"
     franchise:
       header: "{title} Franchise"
       roles:
@@ -264,8 +287,75 @@ media:
         other: "Weitere"
   hide-posts:
     text: "Beiträge über {media} verbergen"
+    info: "Beiträge werden nicht in Deinem Follower- oder {type}-Feed angezeigt"
   show-posts:
     text: "Beiträge zu {media} anzeigen"
+#components
+components:
+  ad-unit: "Werbung ist doof, aber nur so halten wir uns über Wasser. Bitte mach für uns im Adblocker eine Ausnahme."
+  admin:
+    reports:
+      no-explanation: "Keine Erklärung angegeben."
+      actions:
+        button: "Aktionen"
+        open: "Markieren als ungelöst"
+        resolved: "Als gelöst markieren"
+        closed: "Als abgeschlossen markieren"
+      table:
+        user: "Nutzer"
+        type: "Typ"
+        reason: "Begründung"
+        explanation: "Erklärung"
+        moderator: "Moderatorin"
+        status: "Status"
+        actions: "Aktionen"
+  application:
+    nav-search: "Kitsu durchsuchen"
+  episodes:
+    shortcut-bar:
+      episode-number: "EP {number}"
+  search:
+    header: "Suchergebnisse"
+    view: "Mehr anzeigen"
+    load: "weitere laden"
+  sidebar-footer:
+    contact: "Kontaktieren"
+    terms: "Nutzungsbedingungen"
+  stream-feed:
+    create-post:
+      edit: "Bearbeiten"
+      create: "Posten"
+      nsfw: "NSFW"
+      spoiler: "Spoiler"
+    edit-post:
+      header: "Beitrag bearbeiten"
+      error:
+        tagged: "Leider können wir noch nicht erlauben, Deine markierten Medien zu bearbeiten."
+    follow:
+      delete: "Aktivität löschen"
+    library:
+      delete: "Löschen"
+      deleting: "… wird gelöscht"
+    post:
+      pinned: "Angehefteter Beitrag"
+      edited: "geändert"
+      gate:
+        spoiler-nsfw: "Enthält Spoiler und NSFW."
+        nsfw: "Dieser Beitrag enthält NSFW Inhalte."
+        spoiler: "Dieser Beitrag enthält Spoiler."
+        hover:
+          nsfw: "Mein Körper ist bereit!"
+          spoiler: "Ich kann die Wahrheit ertragen!"
+      link: "Link zum Beitrag kopieren"
+      unfollow: "Beitrag nicht mehr folgen"
+      follow: "Beitrag folgen"
+      show: "Beitragsinhalt anzeigen"
+      hide: "Beitragsinhalt ausblenden"
+      edit: "Beitrag bearbeiten"
+      delete: "Beitrag löschen"
+      unpin: "Post vom Profil lösen"
+      pin: "Beitrag an Profil anheften"
+      report: "Beitrag berichten"
 #page: users
 users:
   profile:
@@ -274,6 +364,7 @@ users:
     button: "Admin"
     past-names: "Vorherige Namen anzeigen"
     alt-accounts: "Alternative Konten anzeigen"
+    delete-content: "Benutzererstellte Inhalte löschen"
     ban: "Bannen"
   navigation:
     activity: "Aktivität"
@@ -315,11 +406,236 @@ users:
         website:
           about: "Gib unten Deine persönliche Website ein, um einen Link zu Deinem Profil hinzuzufügen."
           placeholder: "Deine Website-URL"
+        twitter:
+          about: "Gib unten Deinen Twitter Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Twitter Benutzername (@Username)"
+        facebook:
+          about: "Gib unten Deine Fecebook URL ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Deine Facebook URL"
+        youtube:
+          about: "Gib unten Deine Youtube Kanal URL ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Deine YouTube Kanal URL"
+        google:
+          about: "Gib unten Deine Google+ URL ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Deine Google+ URL oder dein Benutzername (+Benutzername)"
+        instagram:
+          about: "Gib unten Deinen Instagram Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Instagram Benutzername"
+        twitch:
+          about: "Gib unten Deinen Twitch Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Twitch Benutzername"
+        vimeo:
+          about: "Gib unten Deinen Vimeo Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Twitch Benutzername"
+        github:
+          about: "Gib unten Deinen GitHub Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Twitch Benutzername"
+        battlenet:
+          about: "Gib unten Deinen Battle.net Tag ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Battle.net Tag (User#1234)"
+        steam:
+          about: "Gib unten Deinen Steam Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Steam Benutzername"
+        raptr:
+          about: "Gib unten Deinen Raptr Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+        imdb:
+          about: "Gib unten Deine IMDb Kanal URL ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Deine IMDb Kanal URL"
+        lastfm:
+          about: "Gib unten Deinen Last.fm Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Last.fm Benutzername"
+        letterboxd:
+          about: "Gib unten Deinen Letterboxd Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Letterboxd Benutzername"
+        medium:
+          about: "Gib unten Deinen Medium Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+        playerme:
+          about: "Gib unten Deinen Player.me Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Player.me Benutzername"
+        reddit:
+          about: "Gib unten Deinen Reddit Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Raptr Benutzername"
+        trakt:
+          about: "Gib unten Deinen Trakt Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Trakt Benutzername"
+    favorites:
+      header: "Favoriten"
+      anime: "Anime"
+      manga: "Manga"
+      characters: "Charaktere"
+      remove: "Aus Favoriten entfernen?"
+  activity:
+    onboarding:
+      welcome: "Hallo {user}, diese Seite ist komplett über DICH!"
+    about:
+      empty: "Ist ein Geheimnis"
+      gender:
+        secret: "Ist ein Geheimnis"
+        male: "Männlich"
+        female: "Weiblich"
+    stats:
+      headings:
+        anime: "Anime Statistiken"
+        manga: "Manga Statistiken"
+      empty:
+        header: "Sieht so aus, als hättest du noch nicht genügend Daten! Bereit für etwas Neues?"
+        guest-header: "Sieht so aus, als hätte {user} noch keine Statistiken."
   library:
+    search: "Durchsuche die Bibliothek von {name}…"
+    sorting:
+      label: "Sortiere nach:"
+      options:
+        watched: "Aktualisiert am"
+        started: "Begonnen am"
+        finished: "Beendet am"
+        added: "Hinzugefügt am"
+        progress: "Fortschritt"
+        rating: "Bewertung"
+        title: "Titel"
+        length: "Länge"
+      directions:
+        watched:
+          desc: "Letzte zuerst"
+          asc: "Älteste zuerst"
+        started:
+          desc: "Letzte zuerst"
+          asc: "Älteste zuerst"
+        finished:
+          desc: "Letzte zuerst"
+          asc: "Älteste zuerst"
+        added:
+          desc: "Letzte zuerst"
+          asc: "Älteste zuerst"
+        progress:
+          desc: "Meiste zuerst"
+          asc: "Wenigste zuerst"
+        rating:
+          desc: "Höchster zuerst"
+          asc: "Niedrigste zuerst"
+        length:
+          desc: "Längstes zuerst"
+          asc: "Kürzste zuerst"
     sidebar:
       media-select: "{type, select, anime {{user}s Anime} manga {{user}s Manga} other {}}"
+      manage: "Bibliothek verwalten"
+      import: "Bibliothek importieren"
+      export: "Bibliothek exportieren"
+      reset: "Bibliothek zurücksetzen"
+      reset-loading: "Setze zurück…"
+      reset-confirmation: "Dies löscht Ihre gesamte Bibliothek, zugehörige Rezensionen und Reaktionen. Sind Sie sicher, dass Sie fortfahren möchten?"
       issues:
         reactions: "{count} an abgeschlossener Medien brauchen noch eine <b>Kurzreview</b>"
+  reactions:
+    sorts:
+      new: "Neueste"
+  hide-posts:
+    text: "Beiträge von {user} ausblenden"
+    info: "Beiträge werden nicht in Deinem Follower Feed auftauchen"
+  show-posts:
+    text: "Beiträge von {user} anzeigen"
+    info: "Beiträge werden in Deinem Follower Feed auftauchen"
+  followers:
+    not-found: "Kein Nutzer gefunden."
+    loading: "Benutzer werden geladen…"
+  following:
+    not-found: "Keine Nutzer gefunden."
+    loading: "Lade Benutzer…"
+  reviews:
+    not-found: "Keine Reviews gefunden."
+    loading: "Lade Reviews…"
+#page: settings
+settings:
+  navigation:
+    header: "Einstellungen"
+    profile: "Profil"
+    notifications: "Benachrichtigungen"
+    password: "Passwort"
+    privacy: "Privatsphäre"
+    linked-accounts: "Verknüpfte Konten"
+    import: "Import"
+    export: "Exportieren"
+    blocking: "Geblockt"
+    account: "Konto"
+  account:
+    header: "Konto"
+    sub-header: "Todeszone! Das Löschen Deines Kontos kann nicht rückgängig gemacht werden und ist Endgültig."
+    delete: "Account löschen"
+    confirm-title: "Account Endgültig löschen"
+    confirm-text: "Schade, dass du gehen willst. Bist du dir Absolut sicher dass du weiter machen willst?"
+  apps:
+    header: "Apps"
+  blocking:
+    header: "Geblockt"
+    sub-header: "Sobald Du jemanden blockierst, kann diese Person dich nicht mehr markieren, Dir folgen, dein Profil ansehen oder siehst deine Feed-Beiträge einsehen."
+    title: "Benutzer blockieren"
+    placeholder: "Zu blockierende Nutzer suchen…"
+    button-block: "Blocken"
+    loading: "Lade Benutzer…"
+    button-unblock: "Entblocken"
+    more: "Weitere laden"
+    not-blocking: "Du hast derzeit noch niemanden blockiert."
+  exports:
+    modal:
+      header: "Mit {site} synchronisieren"
+      helper: "Wir werden deine Anime und Manga-Listen auf {site} jedes Mal aktualisieren, wenn du sie auf Kitsu aktualisierst."
+      create: "Zu {site} synchronisieren"
+    header: "Export"
+    sub-header: "Synchronisiere deine Bibliotheksaktualisierungen automatisch von Kitsu zu MyAnimeList."
+    loading: "Lade Exporte…"
+    remove: "Entferne den Exporteur"
+    disabled: "Ihr MAL-Export wurde aus folgendem Grund deaktiviert: <strong>{reason}</strong>"
+    create: "Export zu MyAnimeList Konto einrichten"
+    download: "{kind} Bibliothek herunterladen"
+    recent: "Letzte Sync Aktivität"
+    sync-header: "MyAnimeList Sync"
+    no-logs: "Wird verarbeiten deine Bibliothek und synchronisieren sie mit MyAnimeList. Festhalten!"
+    logs:
+      header:
+        media: "Titel"
+        library-status: "Status"
+        progress: "Fortschritt"
+        rating: "Bewertung"
+        action: "Aktion"
+        status: "Status"
+      action:
+        create: "Erstellen"
+        update: "Aktualisieren"
+        destroy: "Entfernen"
+      status:
+        pending: "Ausstehend"
+        success: "Erfolgreich"
+        error: "Fehler"
+  imports:
+    header: "Importe"
+    sub-header: "Medien von anderen Anbietern importieren"
+    button: "Importiere Medien"
+    past-imports: "Deine letzten Importe"
+    loading: "Lade Importe…"
+    status: "Status:"
+    entries: "Insgesamt gefundene Einträge:"
+    error: "Es scheint, dass dein Import fehlgeschlagen ist :( &mdash; Wir möchten dies beheben, daher <a href=\"mailto:help@kitsu.io\">sende uns bitte eine E-Mail</a>."
+    more: "Weitere laden"
+  index:
+    header: "Profil"
+    name: "Anzeigename"
+    url: "Profil-URL"
+    email: "E-Mail"
+    email-message: "E-Mail wird nicht öffentlich angezeigt."
+    language: "Sprache"
+    translate-help: "Interessiert an der Übersetzung? <a href=\"https://crowdin.com/project/kitsu-web\">Hier übersetzen!</a>"
+    time-zone: "Zeitzone"
+    content: "Inhalt auf Kitsu"
+    theme: "Website-Theme"
+    country: "Land"
+    titles: "Titel"
+    titles-message: "Wie Medientitel dargestellt werden."
+    rating: "Bewertungsart"
+    rating-message: "Wähle wie du gerne die Medien, welches du geguckt oder gelesen hast, bewerten möchtest."
+    adult: "Inhalte für Erwachsene"
+    adult-message: "Ist der Erwachsenen Inhalt versteckt, wirst du keine Medien ab 18 Jahren in deinem Feed, Bibliothek oder der Suche finden."
+    update: "Profil aktualisieren"
+  linked-accounts:
+    header: "Verknüpfte Konten"
 admin:
   deployed-version: "Aktuelle Versionsnummer: {version}"
   links:
