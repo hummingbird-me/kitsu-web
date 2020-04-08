@@ -1,16 +1,18 @@
 {{! anime / manga }}
 <div class="favorite-series-panel">
-  <h6 class="panel-heading">{{t "users.activity.favorite.header"}}</h6>
+  <h6 class="panel-heading">
+    {{t "components.users.favorites.title" type="series"}}
+  </h6>
   {{! TODO: @Josh -- Style tab headings here }}
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" href="#favorite-anime" data-toggle="tab" role="tab">
-        {{t "users.activity.favorite.anime.anime"}}
+        {{t "components.users.favorites.anime"}}
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#favorite-manga" data-toggle="tab" role="tab">
-        {{t "users.activity.favorite.manga.manga"}}
+        {{t "components.users.favorites.manga"}}
       </a>
     </li>
   </ul>
@@ -23,15 +25,19 @@
             items=animeFavorites user=user count=animeCount
             class="favorite-media-grid row"}}
         {{#if (is-self user)}}
-          <a href="#" class="button button--secondary" {{action (queue (action (mut activeTab) "anime") (toggle-action "isManaging" this))}}>{{t "users.activity.favorite.anime.edit"}}</a>
+          <a href="#" class="button button--secondary" {{action (queue (action (mut activeTab) "anime") (toggle-action "isManaging" this))}}>
+            {{t "components.users.favorites.edit" type="anime"}}
+          </a>
         {{/if}}
       {{else}}
         <span class="favorite-placeholder">
           {{#if (is-self user)}}
-            <p>{{t "users.activity.favorite.anime.not-listed"}}</p>
-            <a href="#" class="button button--primary" {{action (queue (action (mut activeTab) "anime") (toggle-action "isManaging" this))}}>{{t "users.activity.favorite.anime.choose"}}</a>
+            <p>{{t "components.users.favorites.empty.yours" type="anime"}}</p>
+            <a href="#" class="button button--primary" {{action (queue (action (mut activeTab) "anime") (toggle-action "isManaging" this))}}>
+              {{t "components.users.favorites.choose" type="anime"}}
+            </a>
           {{else}}
-            {{t "users.activity.favorite.anime.empty"}}
+            {{t "components.users.favorites.empty.others"}}
           {{/if}}
         </span>
       {{/if}}
@@ -44,15 +50,19 @@
           items=mangaFavorites user=user count=mangaCount
           class="favorite-media-grid row"}}
         {{#if (is-self user)}}
-          <a href="#" class="button button--secondary" {{action (queue (action (mut activeTab) "manga") (toggle-action "isManaging" this))}}>{{t "users.activity.favorite.manga.edit"}}</a>
+          <a href="#" class="button button--secondary" {{action (queue (action (mut activeTab) "manga") (toggle-action "isManaging" this))}}>
+            {{t "components.users.favorites.edit" type="manga"}}
+          </a>
         {{/if}}
       {{else}}
         <span class="favorite-placeholder">
           {{#if (is-self user)}}
-            <p>{{t "users.activity.favorite.manga.not-listed"}}</p>
-            <a href="#" class="button button--primary" {{action (queue (action (mut activeTab) "manga") (toggle-action "isManaging" this))}}>{{t "users.activity.favorite.manga.choose"}}</a>
+            <p>{{t "components.users.favorites.empty.yours" type="manga"}}</p>
+            <a href="#" class="button button--primary" {{action (queue (action (mut activeTab) "manga") (toggle-action "isManaging" this))}}>
+              {{t "components.users.favorites.choose" type="manga"}}
+            </a>
           {{else}}
-            {{t "users.activity.favorite.manga.empty"}}
+            {{t "components.users.favorites.empty.others"}}
           {{/if}}
         </span>
       {{/if}}
@@ -62,22 +72,28 @@
 
 {{! characters }}
 <div class="favorite-characters-panel">
-  <h6 class="panel-heading">{{t "users.activity.favorite.characters.title"}}</h6>
+  <h6 class="panel-heading">
+    {{t "components.users.favorites.title" type="characters"}}
+  </h6>
   {{! list / manage }}
   {{#if characterFavorites}}
     {{users/user-favorites/list
       items=characterFavorites user=user count=characterCount
         class="favorite-media-grid row"}}
     {{#if (is-self user)}}
-      <a href="#" class="button button--secondary" {{action (queue (action (mut activeTab) "characters") (toggle-action "isManaging" this))}}>{{t "users.activity.favorite.characters.edit"}}</a>
+      <a href="#" class="button button--secondary" {{action (queue (action (mut activeTab) "characters") (toggle-action "isManaging" this))}}>
+        {{t "components.users.favorites.edit" type="characters"}}
+      </a>
     {{/if}}
   {{else}}
     <span class="favorite-placeholder">
       {{#if (is-self user)}}
-        <p>{{t "users.activity.favorite.characters.not-listed"}}</p>
-        <a href="#" class="button button--primary" {{action (queue (action (mut activeTab) "characters") (toggle-action "isManaging" this))}}>{{t "users.activity.favorite.characters.choose"}}</a>
+        <p>{{t "components.users.favorites.empty.yours" type="characters"}}</p>
+        <a href="#" class="button button--primary" {{action (queue (action (mut activeTab) "characters") (toggle-action "isManaging" this))}}>
+          {{t "components.users.favorites.choose" type="characters"}}
+        </a>
       {{else}}
-        {{t "users.activity.favorite.characters.empty"}}
+        {{t "components.users.favorites.empty.others" type="characters"}}
       {{/if}}
     </span>
   {{/if}}

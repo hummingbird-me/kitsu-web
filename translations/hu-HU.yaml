@@ -1,25 +1,48 @@
 ---
 #route titles -- these are used if the route doesn't specify the title itself
 titles:
+  anime:
+    index: "Anime Felfedezése"
+  manga:
+    index: "Manga Felfedezése"
   media:
     show:
+      units: "{type, select, anime {Epizódok} manga {Fejezetek} other {}}"
+      characters: "Karakterek"
       reactions: "Reakciók"
+      franchise: "Franchise"
   explore:
+    index: "{mediaType, select, anime {Anime} manga {Manga} other{}} Felfedezése"
     more:
+      trending: "Felkapott{type, select, other {}} Ezen A Héten"
+      top-current: "Legjobb {type, select, Anime {Futó} Manga {Futó} other {}} {type}"
+      top-upcoming: "Legjobb Közelgő {type}"
       highest-rated: "Legmagasabbra értékelt {type}"
       most-popular: "Legnépszerűbb {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Újonnan Megjelent {category} {type}"
+        trending: "Felkapott {category} {type}"
+        most-popular: "Legnépszerűbb {category} {type}"
+  not-found: "Nem Található"
   server-error: "Szerver Hiba"
   users:
     index: "{user} Profilja"
     library: "{user} Könyvtára"
+    reviews: "{user} Ismertetői"
     reactions: "{user} Reakciói"
     followers: "{user} Követői"
     groups: "{user} Csoportjai"
+  posts: "{user} Posztja"
+  comments: "{user} Kommentje"
   notifications: "Értesítések"
   feedback:
     bugs: "Hibák"
     feature-requests: "Funkció Kérések"
     database-requests: "Adatbázis Kérések"
+    mobile-bugs: "Mobil Hibák"
+    mobile-features: "Mobil Funkciók"
   admin:
     index: "Admin"
     reports: "Jelentések"
@@ -33,12 +56,20 @@ titles:
         leaders: "{group} Vezetők"
       dashboard:
         index: "{group} Áttekintés"
+        reports: "{group} Jelentések"
         members: "{group} Tagok"
         leaders: "{group} Vezetők"
         settings: "{group} Beállítások"
+#head
+head:
+  users:
+    description: "{user} Kitsut használ hogy nyomon kövesse és megossza anime és manga élményeit."
 #header
 header:
   library: "Könyvtár"
+  anime: "Anime"
+  manga: "Manga"
+  trending: "Felkapott"
   groups: "Csoportok"
   feedback: "Visszajelzés"
   browse: "Böngészés"
@@ -50,22 +81,54 @@ header:
     settings: "Beállítások"
     admin: "Admin"
     logout: "Kijelentkezés"
+#page: about
+about:
+  header: "A Kitsuról"
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Gyors Frissítés"
     filter:
       all: "Összes"
       anime: "Anime"
       manga: "Manga"
+    empty:
+      html: "A <a href={link}>Könyvtárodhoz</a> hozzáadott vagy frissített média itt fog megjelenni, hogy gyorsan tudd frissíteni azt."
+      discover: "Média Felfedezése"
+    media:
+      complete: "Befejez"
+      unstarted: "Nincs Elkezdve"
+      unit: "{type, select, anime {{num}. Ep. {total, select, undefined {} other { / {total}}}}manga {{num}. Fjzt. {total, select,null {}other { / {total}}}}other {}}"
     overlay:
+      button:
+        update: "{number}. {type, select, anime {Ep.} manga {Fjzt.} other {}}"
+        complete: "Befejez"
+        tooltip:
+          empty: "Könyvtár Frissítés"
+          content: "Poszt létrehozása és könyvtár frissítése"
+      discussion: "Vitalap Megtekintése"
       edit: "Szerkesztés"
+      editor:
+        placeholder: "(Opcionális) Osszd meg a gondolataidat a {number}. {type, select, anime {Epizódról} manga {Fejezetről} other {}}"
+  onboarding:
+    welcome: "Szia {user}, üdv a Kitsun!"
+  groups:
+    header: "Csoportjaim"
   feed:
+    following: "Követed"
+    anime: "Anime"
+    manga: "Manga"
     global: "Globális"
 #page: anime/manga
 media:
   index:
+    search: "Keresés cím, karakter vagy szereplő szerint…"
+    remove: "Eltávolít"
     filters:
       year: "Év"
+      score: "Értékelési Átlag"
+      units: "{type, select, anime {Epizódok} manga {Fejezetek} other {}}"
+      rating: "Értékelés"
       categories: "Kategóriák"
       types: "Típusok"
     sort:
@@ -75,129 +138,1108 @@ media:
       recent: "Legutóbb Hozzáadva"
   none: "Nincs találat."
   show:
+    navigation:
+      summary: "Áttekintés"
+      units: "{type, select, anime {Epizódok} manga {Fejezetek} other {}}"
+      characters: "Karakterek"
+      reactions: "Reakciók"
+      franchise: "Franchise"
+    sidebar:
+      watch: "Nézd Online"
     summary:
+      ratings:
+        community: "{rating}% Közösségi Helyeslés"
+      ranking:
+        full:
+          popularity: "{type, select, anime {{rank}. Helyezett (Legnépszerűbb Anime)} manga {{rank}. Helyezett (Legnépszerűbb Manga)} other {}}"
+          rating: "{type, select, anime {{rank}. Helyezett (Legmagasabbra Értékelt Anime)} manga {{rank}. Helyezett (Legmagasabbra Értékelt Manga)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} Legnépszerűbb} manga {#{rank} Legnépszerűbb} other {}}"
+          rating: "{type, select, anime {#{rank} Legmagasabbra Értékelt} manga {#{rank} Legmagasabbra Értékelt} other {}}"
       categories: "Kategóriák"
+      relationships:
+        header: "Több ebből a Sorozatból"
       reactions:
+        header: "Reakciók"
+        more: "További Reakciók Megtekintése"
         sorts:
           -upVotesCount: "Népszerű"
           -createdAt: "Friss"
         new: "Új Reakció"
         empty: "Úgy tűnik, hogy senki sem reagált még erre"
+      characters:
+        header: "Karakterek"
+        more: "Összes karakter megtekintése"
+      titles:
+        header: "Alternatív Címek"
+        ar: "Arab"
+        cs_cz: "Cseh"
+        da_dk: "Dán"
+        de_de: "Német"
+        el_gr: "Görög"
+        en: "Angol"
+        en_cn: "Kínai (Pinjin)"
+        en_il: "Héber (Romanizált)"
+        en_jp: "Japán (Romaji)"
+        en_kr: "Koreai (Romanizált)"
+        en_th: "Thai (Romanizált)"
+        es_es: "Spanyol"
+        fi_fi: "Finn"
+        fr_fr: "Francia"
+        he_il: "Héber"
+        hi_in: "Hindi"
+        hr_hr: "Horvát"
+        hu_hu: "Magyar"
+        id_id: "Indonéz"
+        is_is: "Izlandi"
+        it_it: "Olasz"
+        ja_jp: "Japán"
+        ko_kr: "Koreai"
+        lv_lv: "Lett"
+        ms_my: "Maláj"
+        nl_nl: "Holland"
+        pl_pl: "Lengyel"
+        pt_br: "Portugál (Brazil)"
+        pt_pt: "Portugál"
+        ru_ru: "Orosz"
+        sv_se: "Svéd"
+        th_th: "Thai"
+        tl_ph: "Tagalog"
+        tr_tr: "Török"
+        uk_ua: "Ukrán"
+        vi_vn: "Vietnámi"
+        zh_cn: "Kínai (Egyszerűsített)"
+        zh_hk: "Kínai (Hong Kong)"
+        zh_mo: "Kínai (Makaó)"
+        zh_tw: "Kínai (Hagyományos)"
+        synonyms: "Szinonimák"
+      information:
+        header: "{type, select, anime {Anime} manga {Manga} other {}} Részletek"
+        type: "Típus"
+        volumes: "Kötetek"
+        unit: "{type, select, anime {Epizódok} manga {Fejezetek} other {}}"
+        start: "{type, select, anime {Sugározva} manga {Kiadva} other {}}"
+        status: "Státusz"
+        tba: "Várható"
+        producers: "Producerek"
+        licensors: "Licencadók"
+        studios: "Stúdiók"
+        duration: "Hossz"
+        total: "{total} összesen"
+        length: "{count, plural,=1 {{length} perc} other {{length} perc / epizód}}"
+        rating: "Értékelés"
+        expand:
+          false: "Több Info"
+          true: "Kevesebb Info"
+      feed:
+        header: "Közösségi Hírfolyam"
+      trailer: "Előzetes Lejátszása"
+    units:
+      unit: "{type, select, episode {Epizód} chapter {Fejezet} other {}}"
+      pages: "{length} Oldal"
+      date: "{type, select, episode {Sugározva} chapter {Kiadva} other {}}"
+      completed: "{type, select, episode {Megnézve} chapter {Elolvasva} other {Befejezve}}"
+      feed:
+        header: "{type, select, episode {Epizód} chapter {Fejezet} other {}} Vitalap"
+    characters:
+      header: "{title} Karakterek"
+      sub-header: "{type, select, anime {Az alábbiakban a {title} Anime karaktereinek és a {language} szinkronszínészeinek teljes listája található} manga {Az alábbiakban a {title} Manga karaktereinek teljes listája található} other {}}"
     reactions:
+      loading: "Reakciók Betöltése…"
       delete: "Reakció Törlése"
+      report: "Reakció Jelentése"
+      copy: "Link Másolása a Reakcióhoz"
+    franchise:
+      header: "{title} Franchise"
+      roles:
+        sequel: "Folytatás"
+        prequel: "Előzmény"
+        alternative_version: "Alt. változat"
+        summary: "Áttekintés"
+        anime_adaptation: "Anime"
+        manga_adaptation: "Manga"
+        character: "Karakter"
+        other: "Egyéb"
+  hide-posts:
+    text: "{media}-t Érintő Posztok Elrejtése"
+  show-posts:
+    text: "{media}-t Érintő Posztok Megjelenítése"
 #components
 components:
   admin:
     reports:
+      no-explanation: "Nincs Magyarázat."
+      actions:
+        button: "Műveletek"
+        open: "Nyitottnak Jelölés"
+        resolved: "Megoldottnak Jelölés"
+        closed: "Lezártnak Jelölés"
       table:
+        user: "Felhasználó"
+        type: "Típus"
+        reason: "Ok"
+        explanation: "Magyarázat"
         moderator: "Moderátor"
+        status: "Státusz"
+        actions: "Műveletek"
+  episodes:
+    shortcut-bar:
+      episode-number: "{number}. EP"
+    join-prompt:
+      register: "Kitsu Fiók Létrehozása"
+  likeable-resource:
+    loading: "Betöltés…"
+    more: "Több Betöltése"
+  search:
+    header: "Keresési Eredmények"
+    view: "több megtekintése"
+    load: "több betöltése"
+    none: "nincs találat"
+  sidebar-footer:
+    contact: "Kapcsolat"
+    terms: "Feltételek"
   stream-feed:
     create-post:
+      edit: "Szerkesztés"
+      create: "Poszt"
       spoiler: "Spoiler"
+    edit-post:
+      header: "Poszt Szerkesztése"
+    follow:
+      delete: "Tevékenység Törlése"
+    library:
+      delete: "törlés"
+      deleting: "törlés…"
     post:
+      pinned: "Kitűzött Poszt"
       edited: "szerkesztve"
+      gate:
+        spoiler: "Ez a poszt spoilereket tartalmaz."
+      link: "Link Másolása a Poszthoz"
+      unfollow: "Poszt Követés Megszüntetés"
+      follow: "Poszt Követése"
+      show: "Poszt Tartalmának Megjelenítése"
+      hide: "Poszt Tartalmának Elrejtése"
       edit: "Bejegyzés szerkesztése"
       delete: "Bejegyzés törlése"
+      report: "Poszt Jelentése"
+      comment-count: "{count} / {total}"
+      comment:
+        deleting: "Komment Törlése…"
+        reply: "Válasz"
+        copy-link: "Link Másolása a Kommenthez"
+        edit: "Komment Szerkesztése"
+        delete: "Komment Törlése"
+        report: "Komment Jelentése"
+        previous-replies: "Korábbi Válaszok Megjelenítése"
+        add-reply: "Adj hozzá egy választ…"
+      comments:
+        previous-comments: "Korábbi Kommentek Megjelenítése"
+    review:
+      spoiler: "Ez az ismertető spoilereket tartalmaz."
+      share:
+        facebook: "Megosztás"
+      copy-link: "Link Másolása az Ismertetőhöz"
+      edit: "Ismertető Szerkesztése"
+      delete: "Ismertető Törlése"
+      report: "Ismertető Jelentése"
+  users:
+    delete-user-content:
+      title: "{user} Által Készített Tartalmak Törlése"
+      checkbox:
+        posts: "Posztok"
+        comments: "Kommentek"
+        reactions: "Reakciók"
+      delete: "Törlés"
+    favorites:
+      anime: "Anime"
+      manga: "Manga"
+    alt-name:
+      title: "{user} Lehetséges Alt Fiókjai"
+      none: "Nem található alt"
+    past-name:
+      title: "Korábbi Nevek"
+      none: "Nincs korábbi név"
 #page: users
 users:
+  profile:
+    edit: "Szerkesztés"
+  admin:
+    button: "Admin"
+    past-names: "Korábbi Nevek Megtekintése"
+    alt-accounts: "Alt Fiókok Megtekintése"
+    delete-content: "Felhasználó Által Létrehozott Tartalmak Törlése"
   navigation:
+    activity: "Tevékenység"
     library: "Könyvtár"
+    reviews: "Ismertetők"
     reactions: "Reakciók"
+    followers: "Követők"
+    following: "Követés"
     groups: "Csoportok"
   edit-modal:
     navigation:
       about: "Rólam"
       profile-links: "Profil Linkek"
+      favorites: "Kedvencek"
     about:
       header: "Rólam"
+      location:
+        placeholder: "Hol élsz?"
+      birthday: "Születésnap"
       gender:
+        label: "Nem"
         options:
+          secret: "Ez titok"
           male: "Férfi"
           female: "Nő"
           custom: "Egyedi"
+      waifu:
+        search: "Keresd meg a különleges valakidet"
+        divorce: "válás"
+      bio:
+        label: "Rólam"
+        placeholder: "Mondd el a világnak a történeted."
+    profile-links:
+      header: "Profil Linkek"
+      remove: "Eltávolítás a profilról"
+      sites:
+        website:
+          placeholder: "A Weboldalad URL-je"
+        twitter:
+          about: "Írd be a Twitter felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Twitter felhasználóneved (@Felhasználónév)"
+        facebook:
+          about: "Írd be a Facebookod URL-jét, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Facebookod URL-je"
+        youtube:
+          about: "Írd be a YouTube csatornád URL-jét, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A YouTube csatornád URL-je"
+        google:
+          placeholder: "A Google+ profilod URL-je vagy a felhasználóneved (+Felhasználónév)"
+        instagram:
+          about: "Írd be az Instagram felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "Az Instagram felhasználóneved"
+        twitch:
+          about: "Írd be a Twitch felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Twitch felhasználóneved"
+        vimeo:
+          about: "Írd be a Vimeo felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Vimeo felhasználóneved"
+        github:
+          about: "Írd be a GitHub felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A GitHub felhasználóneved"
+        raptr:
+          about: "Írd be a Raptr felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Raptr felhasználóneved"
+        tumblr:
+          placeholder: "A Tumblr blogod neve"
+        soundcloud:
+          about: "Írd be a SoundCloud felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A SoundCloud felhasználóneved"
+        dailymotion:
+          about: "Írd be a Dailymotion felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Dailymotion felhasználóneved"
+        kickstarter:
+          about: "Írd be a Kickstarter felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Kickstarter felhasználóneved"
+        mobcrush:
+          about: "Írd be a Mobcrush felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Mobcrush felhasználóneved"
+        patreon:
+          placeholder: "A Patreon projekted neve"
+        deviantart:
+          about: "Írd be a DeviantArt felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A DeviantArt felhasználóneved"
+        dribbble:
+          about: "Írd be a Dribbble felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Dribbble felhasználóneved"
+        imdb:
+          about: "Írd be a IMDb profilod URL-jét, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "Az IMDb profilod URL-je"
+        lastfm:
+          about: "Írd be a Last.fm felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Last.fm felhasználóneved"
+        letterboxd:
+          about: "Írd be a Letterboxd felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Letterboxd felhasználóneved"
+        playerme:
+          about: "Írd be a Player.me felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Player.me felhasználóneved"
+        reddit:
+          about: "Írd be a Reddit felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Reddit felhasználóneved"
+        trakt:
+          about: "Írd be a Trakt felhasználóneved, hogy hozzáadj egy linket profilodhoz."
+          placeholder: "A Trakt felhasználóneved"
+    footer:
+      updating: "Frissítés…"
+      update: "Profil Frissítése"
+    favorites:
+      header: "Kedvencek"
+      anime: "Anime"
+      manga: "Manga"
+      characters: "Karakterek"
+  activity:
+    about:
+      header: "Rólam"
+      empty: "Ez titok"
+      gender:
+        label: "Nem:"
+        secret: "Ez titok"
+        male: "Férfi"
+        female: "Nő"
+      birthday: "Születésnap:"
+      joined: "Csatlakozás Dátuma:"
+    stats:
+      time-watched: "{count} {timeUnit} anime nézzéssel töltött idő."
+      chapters-read: "{count} fejezet elolvasva."
+      completed: "{count} befejezett."
+      more-than: "Több mint a felhasználók <span class=\"time-spent-percentile\">{percentage}%</span>-a."
+      time-breakdown:
+        seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
+        time-segment: "{count} {timeUnit}" #8 months (pre-translated)
+        total: "anime nézzéssel töltött idő." #appended after time-segments
+      empty:
+        header: "Úgy tűnik, még nincs elegendő adat! Készen állsz hogy elkezdj valami újat?"
   library:
+    search: "Keresés {name} Könyvtárában…"
+    sorting:
+      label: "Rendezés:"
+      options:
+        watched: "Frissítés Dátuma"
+        started: "Kezdés Dátuma"
+        finished: "Befejezés Dátuma"
+        added: "Hozzáadás Dátuma"
+        rating: "Értékelés"
+        title: "Cím"
+        length: "Hossz"
+      directions:
+        progress:
+          desc: "Több Előre"
+          asc: "Kevesebb Előre"
+        rating:
+          desc: "Nagyobb Előre"
+          asc: "Kisebb Előre"
+        length:
+          desc: "Hosszabb Előre"
+          asc: "Rövidebb Előre"
+    sidebar:
+      media-select: "{type, select, anime {{user} Animéi} manga {{user} Mangái} other {}}"
+      manage: "Könyvtár Kezelése"
+      import: "Könyvtár Import"
+      export: "Könyvtár Export"
+      reset-confirmation: "Ezzel törlöd a teljes könyvtárad, a kapcsolódó ismertetőid és a reakcióidat. Biztos, hogy folytatni akarod?"
+      issues:
+        reactions: "{count} befejezett média hiányzik <b>reakciót</b>"
     list:
+      list-edit: "Szerkesztés"
       more: "Több"
+      unstarted: "Nincs Elkezdve"
+      unrated: "Nincs Értékelve"
+      progress: "{type, select, anime {{progress}. Ep.} manga {{progress}. Fjzt.} other {}}"
+      table-header:
+        title: "{type, select, anime {Anime Cím} manga {Manga Cím} other {}}"
+        rating: "Értékelés"
+        volumes: "Kötetek"
+      add-reaction: "Reakció Hozzáadása"
+      empty:
+        search: "Nem található keresésnek megfelelő könyvtárbejegyzés."
+        header: "Úgy tűnik, a könyvtárad üres! Készen állsz hogy elkezdj valami újat?"
+        button: "{type} Böngészés"
+    grid:
+      view-media: "{type, select, anime {Anime} manga {Manga} other {}} Megtekintése"
+    edit:
+      status: "Könyvtár Státusz"
+      units: "{type, select, anime { / {num} epizód} manga { / {num} fejezet} other {}}"
+      volumes: "Kötetek"
+      volume-units: "/ {num} kötet"
+      rating: "Értékelés"
+      rewatch: "{type, select, anime {Újranézés Száma} manga {Újraolvasás Száma} other {}}"
+      start-rewatch: "{type, select,anime {Újranézés Elkezdése} manga {Újraolvasás Elkezdése} other {}}"
+      started: "Elkezdve"
+      finished: "Befejezve"
+      notes: "Személyes Megjegyzések"
+      remove: "Eltávolítás"
+      save: "Változtatások Mentése"
+      saving: "Mentés…"
+    bulk:
+      selected: "{type, select, anime {{num} anime kiválasztva} manga {{num} manga kiválasztva} other {}}"
+      select-all: "Mind Kiválasztása"
+      select-none: "Semmi Kiválasztása"
+      remove: "<strong>{num}</strong> Eltávolít"
+      move-to: "<strong>{num}</strong> Mozgatás…"
+      remove-loading: "Eltávolít…"
+      update-loading: "Frissítés…"
   reactions:
+    empty: "Ennek a felhasználónak nincsenek reakciói"
+    filters:
+      all: "Minden Reakció"
+      anime: "Anime Reakciók"
+      manga: "Manga Reakciók"
     sorts:
+      best: "Legjobb"
       new: "Új"
+  hide-posts:
+    text: "{user} Posztjainak Elrejtése"
+  show-posts:
+    text: "{user} Posztjainak Megjelenítése"
+  followers:
+    not-found: "Nem Található Felhasználó."
+    loading: "Felhasználók Betöltése…"
+  following:
+    not-found: "Nem Található Felhasználó."
+    loading: "Felhasználók Betöltése…"
+  reviews:
+    not-found: "Nem Található Ismertető."
+    loading: "Ismertetők Betöltése…"
 #page: settings
 settings:
   navigation:
     header: "Beállítások"
+    profile: "Profil"
     notifications: "Értesítések"
+    password: "Jelszó"
+    linked-accounts: "Csatolt Fiókok"
+    import: "Import"
+    export: "Export"
+    account: "Fiók"
+  account:
+    header: "Fiók"
+    sub-header: "Veszélyzóna! A Fiókod Törlése Visszafordíthatatlan."
+    delete: "Fiók Törlése"
+    confirm-title: "Fiók Törlése"
+  blocking:
+    loading: "Felhasználók Betöltése…"
+    more: "Több Betöltése"
+    not-blocking: "Jelenleg nem blokkolsz senkit."
   exports:
+    header: "Export"
+    sub-header: "Automatikusan szinkronizáld a könyvtárfrissítéseid a Kitsuról a MyAnimeListre."
+    loading: "Exportok Betöltése…"
+    remove: "Exportáló Eltávolítása"
+    disabled: "A MAL Exportálásod leállt a következő ok miatt:\n<strong>{reason}</strong>"
+    create: "MyAnimeList Fiókra Exportálás Beállítása"
+    download: "{kind} Könyvtár Letöltése"
+    recent: "Legutóbbi Szinkronizálási Tevékenységek"
+    sync-header: "MyAnimeList Szinkronizálás"
+    no-logs: "Feldolgozzuk a könyvtáradat, és szinkronizáljuk a MyAnimeListtel. Kapaszkodj erősen!"
     logs:
       header:
         media: "Cím"
+        library-status: "Státusz"
+        rating: "Értékelés"
+        action: "Művelet"
+        status: "Státusz"
+      action:
+        create: "Létrehoz"
+        update: "Frissít"
+        destroy: "Eltávolít"
+      status:
+        pending: "Folyamatban"
+        success: "Siker"
+        error: "Hiba"
+  imports:
+    header: "Importok"
+    sub-header: "Importálás más médiaszolgáltatóktól"
+    button: "Média Importálás"
+    past-imports: "Múltbeli Importjaid"
+    loading: "Importok Betöltése…"
+    status: "Státusz:"
+    entries: "Összes találat:"
+    more: "Több Betöltése"
+  index:
+    header: "Profil"
+    sub-header: "Fiók- és régióbeállítások"
+    name: "Megjelenítendő név"
+    url: "Profil URL"
+    email: "Email"
+    email-message: "Az email nem lesz nyilvánosan megjelenítve."
+    language: "Nyelv"
+    translate-help: "Szeretnél fordítani? <a href=\"https://crowdin.com/project/kitsu-web\">Fordíts itt!</a>"
+    time-zone: "Időzóna"
+    content: "Tartalom a Kitsun"
+    theme: "Webhely Téma"
+    country: "Ország"
+    worldwide: "Világszerte"
+    titles: "Címek"
+    titles-message: "Hogyan jelennek meg a média címei."
+    rating: "Értékelés Típus"
+    rating-message: "Válaszd ki, hogyan szeretnéd értékelni a médiát amit megnéztél vagy elolvastál."
+    adult: "Felnőtt Tartalom"
+    update: "Profil Frissítése"
   linked-accounts:
+    header: "Csatolt Fiókok"
+    sub-header: "Harmadik féltől származó fiókok csatlakoztatása a Kitsuhoz"
     facebook: "Facebook"
+    disconnect: "Facebook Leválasztása"
+    connect: "Facebookra Csatlakozás"
   notifications:
+    header: "Leküldéses (Push) Értesítések"
+    sub-header: "Általános webhely-szintű értesítések"
     contexts:
+      web: "Webhely"
       email: "Email"
+      mobile: "Mobil"
+    descriptions:
+      mentions: "Valaki <strong>megemlít</strong> egy posztban vagy kommentben"
+      replies: "Valaki <strong>válaszol</strong> egy posztomra vagy kommentemre"
+      likes: "Valaki <strong>kedveli</strong> egy posztomat vagy kommentemet"
+      follows: "Valaki elkezd <strong>követni</strong> engem"
+      posts: "Valaki <strong>posztol</strong> a profilomon"
+      reaction_votes: "Valaki <strong>szavaz</strong> a média reakciómra"
+      airing: "Új epizód jelent meg"
+    newsletter:
+      newsletter: "Hírlevél"
+      subscribed: "Feliratkozva"
+      message: "Ha engedélyezed, akkor kaphatsz alkalmankénti (és nagyon szellemes) e-mail frissítéseket a Kitsuról amelyeket maga Josh ír."
+    loading: "Beállítások Betöltése…"
+    update: "Beállítások Frissítése"
+  password:
+    header: "Jelszó"
+    sub-header: "Jelszó Módosítása"
+    new-pswd: "Új Jelszó"
+    confirm-pswd: "Jelszó Megerősítése"
+    update-pswd: "Jelszó Frissítése"
+  privacy:
+    sub-header: "Állítsd be mások képességét a tartalmaid megtekintésére"
+    discover: "Felfedezhetőség"
+    checkbox: "Megjelenés a Globális Hírfolyamon"
+    message: "Ha ki van kapcsolva, a posztjaid csak a követőid és a profilod vendégei számára lesznek elérhetőek."
+    update: "Profil Frissítése"
 #page: feedback
 feedback:
   header: "Visszajelzés"
   bugs: "Hibák"
   features: "Funkció Kérések"
   database: "Adatbázis Kérések"
+  mobile-bugs: "Mobil Hibák"
+  mobile-features: "Mobil Funkciók"
 #page: groups
 groups:
   index:
+    call-to-action: "Bárki létrehozhat és felfedezhet csoportokat. Minden csoport egy téma vagy tevékenység köré koncentrálódik."
     create-btn: "Csoport létrehozása"
   create:
     header: "Csoport létrehozása"
     form:
+      required: "Kötelező"
+      name: "Név"
+      about: "Leírás"
+      rules: "Szabályok"
+      neighbors: "Szomszédok"
+      neighbors-placeholder: "Csoport Keresése"
       privacy-options:
         open: "Nyilvános"
         closed: "Privát"
+        restricted: "Korlátozott"
+      privacy-features:
+        open: "<li>Bárki megtekintheti</li> <li>Bárki csatlakozhat</li> <li>Bárki posztolhat vagy kommentálhat</li>"
+        closed: "<li>Rejtett a nyilvánosságtól</li> <li>A felhasználók csak meghívás útján csatlakozhatnak</li> <li>Nem lehet nyilvánossá tenni</li>"
+        restricted: "<li>Bárki megtekintheti</li> <li>Bárki csatlakozhat</li> <li>Csak vezetők hozhatnak létre új posztokat.</li>"
       category: "Kategória"
+      category-placeholder: "Kategória Kiválasztása"
+      create-btn: "Hozd létre a Csoportodat!"
       save-btn: "Mentés"
       helper:
         name:
           header: "Név"
+        tagline:
+          desc: "Összegezd a csoporod célját legfeljebb 60 karakterrel. Később lesz lehetőséged további információk megadására."
         about:
           header: "Leírás"
+          desc: "Magyarázd el mélyebben a csoportod célját, ossz meg fontos információkat vagy bármi mást."
         rules:
           header: "Szabályok"
         neighbors:
           header: "Szomszédok"
+          desc: "Adj hozzá kapcsolodó csoportokat a szomszédságodhoz, hogy a tagjaid felfedezhessenek új közösségeket!"
         category:
           header: "Kategória"
+  dashboard-btn: "Irányítópult"
+  join-group: "Csatlakozás"
+  leave-group: "Kilépés"
+  hide-posts:
+    text: "{group} Posztjainak Elrejtése"
+  show-posts:
+    text: "{group} Posztjainak Megjelenítése"
   neighbors: "Szomszédok"
   navigation:
+    activity: "Tevékenység"
     rules: "Szabályok"
     members: "Tagok"
     leaders: "Vezetők"
     neighbors: "Szomszédok"
   activity:
+    feed-header: "Csoport Tevékenység"
     members: "Tagok"
+    feed-restricted: "Ez egy korlátozott csoport. Bárki kommentálhat, csak a vezetők hozhatnak létre posztokat."
+  rules:
+    header: "Közösségi Szabályok"
+  tickets:
+    conversation:
+      mark-resolved: "Megoldottnak Jelölés"
+      mark-closed: "Lezártnak Jelölés"
+      mark-open: "Nyitottnak Jelölés"
+      reply-btn: "Válasz Küldése"
+      reply-placeholder: "Írd be az üzeneted"
+  reports:
+    no-explanation: "Nincs Magyarázat"
+    empty: "Hurrá! Nincs jelentés amit kezelned kellene."
+    filter:
+      open: "Nyitott"
+      resolved: "Megoldott"
+      all: "Minden Jelentés"
+    show-more: "{num} jelentés megjelenítése"
+    status:
+      resolved: "Ezt a jelentést {user} megoldotta."
+      declined: "Ezt a jelentést a {user} elutasította."
+    actions:
+      close: "Jelentés Lezárása"
+      remove: "Tartalom Eltávoltása"
+      escalate: "Kitsu Értesítése"
+      view: "Tartalom Megtekintése"
+  leaders:
+    list:
+      header: "Vezetők"
+      edit-btn: "Szerkesztés"
+      add-btn: "Hozzáad"
+      add-placeholder: "Csoporttag"
+      not-found: "Nem található csoporttag ezzel a névvel."
+      message-btn: "Üzenj a vezetőknek"
+      message-leader: "Te egy vezetője vagy ennek a csoportnak!"
+      modal:
+        owner: "Csoporttulajdonos"
+        members: "Tagok Kezelése"
+        leaders: "Vezetők Kezelése"
+        content: "Tartalom és Jelentések Kezelése"
+        save-btn: "Engedélyek Mentése"
   dashboard:
+    back: "Vissza {group}"
     navigation:
+      overview: "Áttekintés"
+      reports: "Jelentések"
       members: "Tagok"
       leaders: "Vezetők"
       settings: "Beállítások"
     overview:
       members:
         header: "Tagok"
+        today: "Ma Csatlakozott"
+        total: "Tagok Száma"
+      activity:
+        header: "Felhasználói Tevékenység"
+        posts: "Mai Posztok"
+        comments: "Mai Kommentek"
+      help-desk:
+        header: "Nyitott Esetek"
+        reports: "Jelentések"
+      reports: "Legújabb Jelentések"
     members:
+      invites:
+        header: "Függőben Lévő Meghívások"
+        invited: "Meghívva"
+        invite: "Meghív"
+        placeholder: "Keress egy meghívható felhasználót. Követniük kell téged!"
+        empty: "Úgy tűnik, hogy nincs függőben lévő meghívásod a csoporthoz."
       bans:
         placeholder: "Név"
       members:
         header: "Tagok"
+        table:
+          users: "Felhasználó"
+          joined: "Csatlakozott"
+          actions: "Műveletek"
+        remove: "Eltávolít"
+    leaders:
+      chat:
+        header: "Vezető Csevegő"
+        post-btn: "Poszt"
+        placeholder: "Üzenet küldése a vezetőknek"
+    audit:
+      group-report:
+        resolved: "megoldott egy jelentést."
+        declined: "elutasított egy jelentést."
 #page: group-invite
 group-invite:
   accept: "Elfogad"
   decline: "Visszautasít"
+  accepted: "Már elfogadtad ezt a meghívást."
+  revoked: "Egy csoport moderátor visszavonta a meghívásodat."
+  declined: "Elutasítottad a csoport meghívását."
+#page: explore
+explore:
+  view-more: "Több Megtekintése"
+  search-placeholder: "Mit keresel?"
+  advanced-search: "Vagy böngéssz a <a href=\"/{mediaType}\">részletes kereséssel</a>"
+  widget:
+    related: "Kapcsolódó Kategóriák"
+    categories: "Kategóriák"
+    favorite-categories: "Kedvenc Kategóriáim"
+    more-categories: "Több Kategória…"
+  favorite-button:
+    remove: "Kedvencekből Eltávolít"
+    removing: "Eltávolít…"
+    create: "Kedvencekhez Hozzáad"
+    creating: "Hozzáad…"
+#page: media-reactions
+media-reactions:
+  create-account: "Fiók Létrehozása"
+#page: notifications
+notifications:
+  none: "Nincs semmilyen értesítésed!"
 #page: password-reset
 password-reset:
+  password: "Jelszó"
+  confirm: "Jelszó Megerősítése"
+  length: "A jelszónak legalább 8 karakter hosszúnak kell lennie"
   email: "Email"
+  send: "Email Küldése"
 #shared: media
 media-shared:
   types:
     anime:
       tv: "TV"
+      movie: "Film"
+      music: "Zene"
     manga:
       manga: "Manga"
+      novel: "Regény"
       manhua: "Manhua"
+      doujin: "Doujin"
       manhwa: "Manhwa"
+  statuses:
+    anime:
+      current: "Jelenleg Fut"
+      finished: "Befejezve"
+      upcoming: "Közelgő"
+      unreleased: "Kiadatlan"
+    manga:
+      current: "Fut"
+      finished: "Befejezve"
+      upcoming: "Közelgő"
+      unreleased: "Kiadatlan"
+#shared: library
+library-shared:
+  completed: "{type, select, anime {Befejezett} manga {Befejezett} other {}}"
+  on_hold: "{type, select, anime {Függőben} manga {Függőben} other {}}"
+  dropped: "{type, select, anime {Dobott} manga {Dobott} other {}}"
+#shared: form:
+form-shared:
+  placeholders:
+    username: "Felhasználónév"
+    password: "Jelszó"
+#component: auth-onboarding
+onboarding:
+  aozora-conflict:
+    title: "Ó, már van egy Kitsu fiókod! Melyiket akarod megtartani?"
+  checklist:
+    follow: "Kövess 5 felhasználót"
+    follow-incomplete: "Kövess {count} {count, plural,=1 {felhasználót} other {felhasználót}}"
+    about-me: "Töltse ki a <i>Rólam</i>odat"
+    favorite: "Válasszd ki kedvenc animéd / mangád"
+#component: follow-button
+follow-button:
+  follow: "Követés"
+  unfollow: "Leiratkozás"
+#component: kitsu-feed
+feeds:
+  embed:
+    preview: "Ez a beágyazásod előnézete."
+  uploads:
+    select: "Feltöltés"
+    invalid: "Érvénytelen fájltípus"
+    uploading: "{number, plural,=1 {Kép feltöltése… {progress}%} other {{number} Kép feltöltése… {progress}%}}"
+  filter:
+    all: "Minden Tevékenység"
+    media: "Média Tevékenység"
+    user: "Felhasználói Tevékenység"
+    following: "Követett Tevékenység"
+  library:
+    updated: "ide mozgatta: {status}"
+    rated: "értékelte"
+  post:
+    more: "Több Megtekintése"
+    less: "Kevesebb Megtekintése"
+    spoilers: "{type, select, anime {{num}. Ep.} manga {{num}. Fjzt.} other {}}"
+    sorts:
+      replies: "Válaszok"
+  review:
+    author: "{user} Ismertetője"
+  interest:
+    anime:
+      header: "Üdv az Anime Hírfolyamodon!"
+      body: "Ahogy frissíted az <a href={link}>anime könyvtárad</a>, látni fogod, hogy mások mit mondanak a műsorokról amiket nézel."
+    manga:
+      header: "Üdv a Manga Hírfolyamodon!"
+      body: "Ahogy frissíted a <a href={link}>manga könyvtárad</a>, látni fogod, hogy mások mit mondanak a mangákról amiket olvasol."
+#component: image-form
+image-form:
+  help-text: "Kattints ide hogy válassz egy képet."
+#component: groups/group-list
+group-list:
+  sort:
+    featured: "Kiemelt"
+    recent: "Legutóbbi Tevékenység"
+    newest: "Legújabb Csoportok"
+    oldest: "Legrégebbi Csoportok"
+#component: media/media-reaction
+media-reaction:
+  self-vote: "Nem szavazhatsz a saját reakciódra."
+  edit: "Reakció Szerkesztése"
+#component: modals/media-reaction
+reaction-modal:
+  post: "Poszt"
+  edit: "Szerkesztés"
+  delete: "Reakció Törlése"
+  #component: modals
+  modals:
+    image-cropper:
+      dimensions: "Szélesség: {width}, Magasság: {height}"
+    report-content:
+      header: "Csak egyszer jelentheted ezt a tartalmat."
+      status: "Jelenlegi státusza a jelentésednek: {status}"
+      reason: "Kérlek adj egy okot amiért jelented ezt a tartalmat."
+      submit: "Jelentés"
+#component: library-entry/*
+library-entry:
+  state:
+    add-to-library: "Hozzáadás"
+    seen-this: "{type, select, anime {Befejezett} manga {Befejezett} other {}}"
+    watching-this: "Elkezdve"
+    finished-this: "Befejezett"
+    place-on-hold: "Függőben"
+    drop-this: "Dobott"
+    change-rating: "Értékelés Módosítása"
+    remove-rating: "Értékelés Eltávolítása"
+    rate-this: "Értékelés Hozzáadása"
+    post-reaction: "Reakció Posztolása"
+    edit-reaction: "Reakció Szerkesztése"
+    remove-from-library: "Eltávolítás"
+    not-rated: "Nincs Értékelve"
+  rating:
+    awful: "Borzasztó"
+    meh: "Meh"
+    good: "Jó"
+    great: "Nagyszerű"
+#component: application/user-notifications
+user-notifications:
+  #Episode 113 of One Piece! aired
+  aired: "{media} {number}. {type, select, chapter {Fejezete} episode {Epizódja} other {}} {type, select, chapter {Megjelent} episode {Megjelent} other {}}"
+  aired-unknown: "{media} {type, select, manga {kiadott} anime {kiadott} other {}} egy új {type, select, manga {Fejezetet} anime {Epizódot} other {}}"
+  menu:
+    all: "Összes Értesítés Megjelenítése"
+    mark-read: "Összes Megjelölése Olvasottként"
+    none: "Nincs semmilyen értesítésed!"
+#ember-power-select
+selects:
+  loading: "Betöltés…"
+  none: "Nincs találat"
+  search: "Kezdj el gépelni a kereséshez"
+#ember-cp-validations
+errors:
+  empty: "{description} nem lehet üres"
+  blank: "{description} nem lehet üres"
+  present: "{description} üresnek kell lennie"
+  positive: "{description} pozitívnak kell lennie"
+  #Custom Errors
+  user:
+    name:
+      numbers: "Ez a mező nem állhat teljes egészében számokból"
+      starts: "Ennek a mezőnek betűvel vagy számmal kell kezdődnie"
+  load: "Hiba történt a tartalom betöltésekor."
+  contentEmpty: "Hmm, úgy tűnik, itt még nincsen semmi."
+  request: "Hoppá! Valami rosszul sikerült a kéréssel kapcsolatban."
+  serverError:
+    title: "Hoppá! Úgy tűnik, a szerverünk egy hibába futott."
+    body: "Csapatunk értesítve lett, kérjük próbáld újra néhány perc múlva."
+#Loading
+loading: "{subject, select, episode {Epizód} chapter {Fejezet} episodes {Epizódok} chapters {Fejezetek} other {}} Betöltése…"
+timeUnits:
+  years: "{count, plural, =1 {év} other {év}}"
+  months: "{count, plural, =1 {hónap} other {hónap}}"
+  days: "{count, plural, =1 {nap} other {nap}}"
+  hours: "{count, plural, =1 {óra} other {óra}}"
+  minutes: "{count, plural, =1 {perc} other {perc}}"
+admin:
+  reports:
+    header: "Mod Jelentések"
+    loading: "Jelentések Betöltése…"
+    open: "Nyitott"
+    closed: "Lezárt"
+  header: "Admin Panel"
+  deployed-version: "Jelenleg Telepített Verzió: {version}"
+  links:
+    index: "Jelentések"
+    admin: "Rails Admin"
+unsubscribe:
+  email: "Email"
+  unsubscribe: "Leiratkozás"
+category:
+  action: "Akció"
+  adventure: "Kaland"
+  africa: "Afrika"
+  ahegao: "Ahegao"
+  air-force: "Légierő"
+  alternative-past: "Alternatív Múlt"
+  alternative-present: "Alternatív Jelen"
+  android: "Android"
+  angel: "Angyal"
+  anthropomorphism: "Antropomorfizmus"
+  asia: "Ázsia"
+  assassin: "Orgyilkos"
+  baseball: "Baseball"
+  basketball: "Kosárlabda"
+  battle-royale: "Battle Royale"
+  bishounen: "Bishounen"
+  blackmail: "Zsarolás"
+  bounty-hunter: "Fejvadász"
+  boxing: "Boksz"
+  buddhism: "Buddhizmus"
+  card-games: "Kártyajátékok"
+  china: "Kína"
+  comedy: "Komédia"
+  conspiracy: "Összeesküvés"
+  cooking: "Főzés"
+  cops: "Zsaruk"
+  countryside: "Vidék"
+  crime: "Bűnügy"
+  cycling: "Kerékpár"
+  deity: "Istenség"
+  demon: "Démon"
+  desert: "Sivatag"
+  detective: "Detektív"
+  disaster: "Katasztrófa"
+  dragon: "Sárkány"
+  drama: "Dráma"
+  dynamic: "Dinamikus"
+  earth: "Föld"
+  elementary-school: "Általános Iskola"
+  elf: "Tünde"
+  epidemic: "Járvány"
+  europe: "Európa"
+  family: "Család"
+  fantasy: "Fantázia"
+  fantasy-world: "Fantázia Világ"
+  female-teacher: "Tanárnő"
+  feudal-warfare: "Feudális Hadviselés"
+  floating-island: "Lebegő Sziget"
+  france: "Franciaország"
+  friendship: "Barátság"
+  future: "Jövő"
+  genetic-modification: "Genetikai Módosítás"
+  germany: "Németország"
+  ghost: "Szellem"
+  harem: "Hárem"
+  high-school: "Gimnázium"
+  historical: "Történelmi"
+  horror: "Horror"
+  housewives: "Feleségek"
+  isekai: "Isekai"
+  island: "Sziget"
+  italy: "Olaszország"
+  japan: "Japán"
+  korea: "Korea"
+  kyoto: "Kyoto"
+  love-polygon: "Szerelemi Sokszög"
+  mafia: "Maffia"
+  magic: "Mágia"
+  maid: "Szobalány"
+  mars: "Mars"
+  martial-arts: "Harcművészet"
+  mecha: "Mecha"
+  mermaid: "Sellő"
+  middle-east: "Közel-Kelet"
+  middle-school: "Középiskola"
+  military: "Katonaság"
+  music: "Zene"
+  musical-band: "Zenekar"
+  mystery: "Rejtély"
+  navy: "Tengerészet"
+  netorare: "Netorare"
+  new-york: "New York"
+  ninja: "Nindzsa"
+  nurse: "Nővér"
+  office-lady: "Irodai hölgy"
+  other-planet: "Más Bolygó"
+  parallel-universe: "Párhuzamos Univerzum"
+  parasite: "Parazita"
+  parody: "Paródia"
+  past: "Múlt"
+  performance: "Előadás"
+  pirate: "Kalóz"
+  politics: "Politika"
+  present: "Jelen"
+  psychological: "Pszichológiai"
+  religion: "Vallás"
+  revenge: "Bosszú"
+  reverse-harem: "Fordított Hárem"
+  robot: "Robot"
+  robot-helper: "Robot Segítő"
+  romance: "Románc"
+  rotten-world: "Romlott Világ"
+  russia: "Oroszország"
+  samurai: "Szamuráj"
+  satire: "Szatíra"
+  school-clubs: "Iskolai Klubok"
+  school-life: "Iskolai Élet"
+  seinen: "Seinen"
+  sengoku-period: "Sengoku Időszak"
+  slavery: "Rabszolgaság"
+  space: "Űr"
+  space-battles: "Űrharcok"
+  space-travel: "Űrutazás"
+  sports: "Sport"
+  stereotypes: "Sztereotípiák"
+  street-racing: "Utcai Versenyzés"
+  student-government: "Diákönkormányzat"
+  sudden-girlfriend-appearance: "Hirtelen Barátnő Megjelenés"
+  summer: "Nyár"
+  superhero: "Szuperhős"
+  supernatural: "Természetfölötti"
+  super-power: "Szupererő"
+  super-robot: "Szuper Robot"
+  swordplay: "Kardforgatás"
+  tennis: "Tenisz"
+  the-arts: "Művészetek"
+  themes: "Témák"
+  thievery: "Tolvajlás"
+  three-kingdoms: "Három Királyság"
+  time-travel: "Időutazás"
+  tokugawa-period: "Tokugawa Időszak"
+  tokyo: "Tokyo"
+  united-kingdom: "Egyesült Királyság"
+  united-states: "Egyesült Államok"
+  university: "Egyetem"
+  unrequited-love: "Viszonzatlan Szerelem"
+  vampire: "Vámpír"
+  victorian-period: "Viktoriánus Időszak"
+  violence: "Erőszak"
+  virtual-reality: "Virtuális Valóság"
+  volleyball: "Röplabda"
+  voyeurism: "Kukkolás"
+  waitress: "Pincérnő"
+  war: "Háború"
+  world-war-ii: "Második Világháború"
+  wrestling: "Birkózás"
+  yaoi: "Yaoi"
+  zombie: "Zombi"
+  #NSFW categories
+  nudity: "Meztelenség"
+  sex: "Szex"
+  ecchi: "Eccsi"
+  lingerie: "Fehérnemű"
+  pantsu: "Bugyi"
+  sexual-fantasies: "Szexuális Fantáziák"
+  incest: "Vérfertőzés"
+  teacher-x-student: "Tanár × Diák"
+  bdsm: "BDSM"
+  erotic-torture: "Erotikus Kínzás"
+  gigantic-breasts: "Hatalmas Mellek"
+  large-breasts: "Nagy Mellek"
+  masturbation: "Maszturbáció"
+  prostitution: "Prostitúció"
+  public-sex: "Nyilvános Szex"
+  shota: "Shota"
+  small-breasts: "Kis Mellek"
+  yuri: "Yuri"
