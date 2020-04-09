@@ -7,7 +7,7 @@ export default [
   // { id: 'ar-001', text: 'العربية' }, // rtl
   // { id: 'bn-bd', text: 'বাংলা (বাংলাদেশ)' },
   // { id: 'bg-bg', text: 'Български' },
-  // { id: 'ca-es', text: 'Català' },
+  { id: 'ca-es', text: 'Català' },
   // { id: 'zh-cn', text: '中文 (简体)' },
   // { id: 'zh-tw', text: '中文 (繁體)' },
   // { id: 'hr-hr', text: 'Hrvatski' },
@@ -18,11 +18,11 @@ export default [
   // { id: 'fi-fi', text: 'Suomi' },
   { id: 'fr-fr', text: 'Français' },
   // { id: 'fr-ca', text: 'Français (Canadien)' },
-  // { id: 'de-de', text: 'Deutsch' },
+  { id: 'de-de', text: 'Deutsch' },
   // { id: 'el-gr', text: 'Ελληνικά' },
   // { id: 'he-il', text: 'עברית' }, // rtl
   // { id: 'hi-in', text: 'हिन्दी' },
-  // { id: 'hu-hu', text: 'Magyar' },
+  { id: 'hu-hu', text: 'Magyar' },
   // { id: 'is-is', text: 'Íslenska' },
   { id: 'id-id', text: 'Bahasa Indonesia' },
   // { id: 'ga-ie', text: 'Gaeilge' },
