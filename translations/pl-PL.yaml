@@ -15,8 +15,15 @@ titles:
     index: "Przeglądaj {mediaType, select, anime {Anime} manga {Mangi} other {}}"
     more:
       trending: "Na Czasie {type, select, other {}} W Tym Tygodniu"
+      top-current: "Najlepsze {type, select, Anime {Nadawane} Manga {Wydawane} other {}} {type, select, Anime {Anime} Manga {Mangi} other {{type}}}"
+      highest-rated: "Najwyżej Oceniane {type, select, Anime {Anime} Manga {Mangi} other {{type}}}"
+      most-popular: "Popularne {type, select, Anime {Anime} Manga {Mangi} other {{type}}}"
     category:
       index: "{category} {type}"
+      more:
+        newly-released: "Najnowsze {category} {type, select, Anime {Anime} Manga {Mangi} other {{type}}}"
+        trending: "{category} {type, select, Anime {Anime} Manga {Mangi} other {{type}}} Na Czasie"
+        most-popular: "Popularne {category} {type, select, Anime {Anime} Manga {Mangi} other {{type}}}"
   not-found: "Nie znaleziono"
   server-error: "Błąd serwera"
   users:
