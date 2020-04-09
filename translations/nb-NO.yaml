@@ -1,6 +1,10 @@
 ---
 #route titles -- these are used if the route doesn't specify the title itself
 titles:
+  anime:
+    index: "Utforsk anime"
+  manga:
+    index: "Utforsk manga"
   media:
     show:
       units: "{type, select, anime {Episoder} manga {Kapitler} other {}}"
@@ -8,6 +12,7 @@ titles:
       reactions: "Reaksjoner"
       franchise: "Serie"
   explore:
+    index: "Utforsk {mediaType, select, anime {anime} manga {manga} other {}}"
     more:
       top-current: "Topp {type, select, Anime {pågående} Manga {publiserende} other {}} {type}"
       top-upcoming: "Topp kommende {type}"
@@ -55,6 +60,7 @@ titles:
         reports: "Rapporter fra {group}"
         members: "Medlemmer av {group}"
         leaders: "Ledere av {group}"
+        settings: "Instillinger for {group}"
   group-invite: "Gruppe invitasjon"
 #head
 head:
@@ -65,15 +71,22 @@ header:
   library: "Bibliotek"
   anime: "Anime"
   manga: "Manga"
+  trending: "Trendende"
   groups: "Grupper"
   feedback: "Tilbakemelding"
+  browse: "Utforsk"
   auth:
     sign-in: "Log in"
     sign-up: "Registrer deg"
   user:
     profile: "Vis profil"
+    settings: "Instillinger"
     admin: "Admin"
     logout: "Log ut"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Først trenger vi litt grunnleggende informasjon} 1 {Veldig morsomt. Nå trenger vi en email.} 2 {Ser korrekt ut, hva med et passord?} 3 {Kult! La oss lage brukeren din!} other {}}"
 #page: dashboard
 dashboard:
   quick-update:
@@ -83,9 +96,11 @@ dashboard:
       manga: "Manga"
     empty:
       html: "Media du har lagt til eller oppdatert i <a href={link}>biblioteket ditt</a> vil dukke opp her slik at du enkelt kan oppdatere det."
+      discover: "Utforsk media"
     media:
       complete: "Fullført"
       unstarted: "Ikke påbegynt"
+      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {av {total}}}} manga {Kap. {num} {total, select, null {} other {av {total}}}} other {}}"
     overlay:
       button:
         update: "{type, select, anime {Ep.} manga {Kap.} other {}} {number}"
@@ -100,6 +115,7 @@ dashboard:
         placeholder: "(Frivillig) Del tankene dine om {type, select, anime {episode} manga {kapittel} other {}} {number}."
   onboarding:
     welcome: "Hei {user}! Velkommen til Kitsu!"
+    about: "Dette er den globale akrivitetsstrømmen. Den rommer alt nylig innhold fra alle Kitsu brukere - selv deg! Så snart du har fått sjansen til å følge en del interessante brukere bytter vi for deg slik at du ser en egen strøm med innhold bare fra de du følger."
     action: "Hva med å lage et innlegg under her hvor du kan introdusere deg selv? Du kan si noe så enkelt som 'Hei alle sammen, jeg er ny på Kitsu!', eller så kan du vise oss hvor kreativ og vittig du er!"
   groups:
     header: "Mine Grupper"
@@ -141,6 +157,7 @@ media:
       watch: "Se online"
     summary:
       ratings:
+        community: "{rating}% sammfunnsgodkjennelse"
         match: "{rating}% match"
       ranking:
         full:
@@ -180,6 +197,8 @@ media:
         it_it: "Italiensk"
         ja_jp: "Japansk"
         ko_kr: "Koreansk"
+        nl_nl: "Nederlansk"
+        pt_br: "Portogisisk (Brasiliansk)"
         vi_vn: "Vietnamesisk"
         zh_cn: "Kinesisk (forenklet)"
         zh_tw: "Kinesisk (tradisjonelt)"
@@ -204,6 +223,8 @@ media:
         expand:
           false: "Mer info"
           true: "Mindre info"
+      feed:
+        header: "Sammfunsstrøm"
       trailer: "Spill trailer"
     units:
       unit: "{type, select, episode {Episode} chapter {Kapittel} other {}}"
@@ -230,6 +251,7 @@ users:
       waifu:
         label: "Waifu"
         placeholder: "Waifu/Husbando"
+        search: "Finn din spessielle person"
       bio:
         label: "Biografi"
         placeholder: "Fortell historien din til verden."
@@ -291,6 +313,7 @@ users:
           about: "Legg til Mobcrush brukernavnet ditt nedenfor for å legge til en link på profilen din."
           placeholder: "Mobcrush brukernavnet ditt"
         osu:
+          about: "Legg til Osu! ID nummberet ditt nedenfor for å legge til en link på profilen din."
           placeholder: "Osu! ID nummeret ditt"
   library:
     sorting:
@@ -323,6 +346,7 @@ users:
       export: "Eksporter bibliotek"
       reset: "Nullstill bibliotek"
       reset-loading: "Nullstiller …"
+      reset-confirmation: "Dette vil slette hele bibliotekt ditt, samt assosierte anmeldelser og reaksjoner. Er du sikker på at du vil fortsette?"
       issues:
         header: "Bibliotek problemer"
         reactions: "{count} fullførte media mangler <b>reaksjoner</b>"
@@ -333,6 +357,7 @@ users:
       more: "Mer"
       unstarted: "Ikke påbegynt"
       unrated: "Ingen score"
+      progress: "{type, select, anime {Ep. {progress}} manga {Kap. {progress}} other {}}"
       table-header:
         title: "{type, select, anime {Anime tittel} manga {Manga tittel} other {}}"
         rating: "Score"
@@ -367,7 +392,12 @@ settings:
     not-blocking: "Du blokkerer ikke noen for øyeblikket."
   exports:
     modal:
+      header: "Synkroniser med {site}"
       helper: "Vi vill oppdatere anime og manga listene dine på {site} hver gang du oppdaterer dem på Kitsu."
+      create: "Synkroniser til {site}"
     header: "Eksporter"
+    sub-header: "Automastisk synkroniser biblioteket ditt med oppdateringer fra Kitsu til MyAnimeList."
+    loading: "Laster eksporteringer …"
     remove: "Fjern eksporterer"
     disabled: "Din MAL eksporterer har blitt avslått av den følgende årsaken: <strong>{reason}</strong>"
+    create: "Sett opp exportering til MyAnimeList kontoen din"

@@ -15,16 +15,16 @@ titles:
     index: "Explorar {mediaType, select, anime {anime} manga {manga} other {}}"
     more:
       trending: "{type, select, Anime {Animes} Manga {Mangas} other {}} populares esta semana"
-      top-current: "{type, select, Anime {animes} Manga {mangas} other {type}} más populares {type, select, Anime {en emisión} Manga {en publicación} other {}}"
-      top-upcoming: "{type, select, Anime {Animes} Manga {Mangas} other {type}} más esperados"
-      highest-rated: "{type, select, Anime {Animes} Manga {Mangas} other {type}} mejor evaluados"
-      most-popular: "{type, select, Anime {Animes} Manga {Mangas} other {type}} más populares"
+      top-current: "{type, select, Anime {Animes} Manga {Mangas} other {type}} más populares {type, select, Anime {en emisión} Manga {en publicación} other {}}"
+      top-upcoming: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} más esperados"
+      highest-rated: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} mejor evaluados"
+      most-popular: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} más populares"
     category:
       index: "{category} {type}"
       more:
-        newly-released: "{type, select, Anime {Animes} Manga {Mangas} other {type}} {category} recientes"
-        trending: "{type, select, Anime {Animes} Manga {Mangas} other {type}} {category} en tendencia"
-        most-popular: "{type, select, Anime {Animes} Manga {Mangas} other {type}} {category} más populares"
+        newly-released: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} {category} recientes"
+        trending: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} {category} en tendencia"
+        most-popular: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} {category} más populares"
   not-found: "No encontrado"
   server-error: "Error del servidor"
   users:
@@ -204,6 +204,7 @@ media:
         en_kr: "Coreano (Romaja)"
         en_th: "Tailandés (Romanizado)"
         es_es: "Español"
+        fi_fi: "Finlandés"
         fr_fr: "Frances"
         he_il: "Hebreo"
         hi_in: "Hindú"
@@ -214,6 +215,7 @@ media:
         it_it: "Italiano"
         ja_jp: "Japonés"
         ko_kr: "Coreano"
+        lv_lv: "Letón"
         ms_my: "Malayo"
         nl_nl: "Danés"
         pl_pl: "Polaco"
@@ -292,9 +294,10 @@ media:
     info: "Las publicaciones no aparecerán en tu panel de seguimiento o {type}"
   show-posts:
     text: "Mostrar publicaciones acerca de {media}"
-    info: "Las publicaciones no aparecerán en tu panel de seguimiento o {type}"
+    info: "Las publicaciones aparecerán en tu panel de seguimiento o {type}"
 #components
 components:
+  ad-unit: "La publicidad apesta, pero es lo que nos mantiene en línea. Por favor admítenos en tu bloqueador de anuncios."
   admin:
     reports:
       no-explanation: "No se proveyó de una explicación."
@@ -315,6 +318,8 @@ components:
   application:
     nav-search: "Buscar en Kitsu"
   episodes:
+    shortcut-bar:
+      episode-number: "Cap {number}"
     fast-forward: "¡Progreso de la biblioteca avanzado hasta el episodio {number}!"
     undo-update: "Deshacer"
     update-progress: "¿Actualizar progreso de la biblioteca al episodio {number}?"
@@ -342,6 +347,8 @@ components:
       tag-media: "Toca para etiquetar un espectáculo o manga"
     edit-post:
       header: "Editar publicación"
+      error:
+        tagged: "Desafortunadamente todavía no podemos permitirte editar tus medios etiquetados."
     follow:
       followed: "ha seguido a"
       delete: "Eliminar actividad"
@@ -389,6 +396,7 @@ components:
       spoiler: "Esta reseña contiene spoilers."
       spoiler-hover: "¡Yo puedo con la verdad!"
       share:
+        twitter: "Tuitear"
         facebook: "Compartir"
       copy-link: "Copiar enlace a la reseña"
       show: "Mostrar contenido de la reseña"
@@ -398,6 +406,7 @@ components:
       report: "Reportar reseña"
   users:
     ban:
+      title: "¿De verdad quieres banear a este usuario?"
       text: "Pueden acceder y actualizar su librería, pero no pueden realizar publicaciones, comentarios o reacciones."
     delete-user-content:
       title: "Eliminar contenido de {user}"
@@ -409,10 +418,15 @@ components:
     block: "Bloquear @{user}"
     you: "Hey, ¡ese eres tu!"
     favorites:
-      title: "Series favoritas"
+      title: "{type, select, series {Series favoritas} characters {Personajes favoritos} other {}}"
       anime: "Anime"
       manga: "Manga"
       more: "Mostrar más"
+      edit: "Editar {type, select, anime {animes} manga {mangas} characters {personajes} other {}} favoritos"
+      empty:
+        yours: "¡Todavía no has listado tus {type, select, anime {animes} manga {mangas} characters {personajes} other {}} favoritos!"
+        others: "El usuario no tiene favoritos"
+      choose: "Elige tus {type, select, anime {animes} manga {mangas} characters {personajes} other {}} favoritos"
     alt-name:
       title: "Posibles cuentas alternativas de {user}"
       none: "No se encontraron alternativas"
@@ -861,7 +875,7 @@ feedback:
   bugs: "Bugs"
   features: "Solicitudes de funcionalidades"
   database: "Solicitudes de base de datos"
-  mobile-bugs: "Solicitudes de dispositivos móviles"
+  mobile-bugs: "Bugs de dispositivos móviles"
   mobile-features: "Solicitudes de funcionalidades de dispositivos móviles"
 #page: groups
 groups:
@@ -1284,6 +1298,7 @@ reaction-modal:
       header: "Bloquear usuario"
       body:
         header: "Antes de que bloquees a esta persona, queremos que sepas cómo funcionan los bloqueos."
+        text: "Bloquear a esta persona hará que su contenido deje de ser visible para ti, y tu contenido no será visible o interactuable para los otros."
       button: "Bloquear a {user}"
     report-content:
       header: "Solo puedes reportar este contenido una vez."
@@ -1405,15 +1420,37 @@ button:
   view-all: "ver todo"
 unsubscribe:
   email: "Correo"
+  unsubscribe: "Desuscribirse"
 category:
   absurdist-humour: "Humor absurdo"
   bakumatsu-meiji-period: "Periodo Bakumatsu - Meiji"
+  dynamic: "Dinámica"
+  elements: "Elementos"
   france: "Francia"
   germany: "Alemania"
+  italy: "Italia"
+  japan: "Japón"
   korea: "Corea"
+  kyoto: "Kioto"
+  mars: "Marte"
   netorare: "NTR"
   new-york: "Nueva York"
+  performance: "Actuación"
   russia: "Rusia"
+  setting: "Escenario"
+  shinsengumi: "Shinsengumi"
+  shoujo-ai: "Shoujo Ai"
+  shounen-ai: "Shounen Ai"
+  slapstick: "Payasada"
+  steampunk: "Steampunk"
+  swordplay: "Esgrima"
+  themes: "Temática"
+  thriller: "Thriller"
+  tokyo: "Tokio"
   united-kingdom: "Reino Unido"
   united-states: "Estados Unidos"
+  waitress: "Mesera"
+  teacher-x-student: "Profesor x Estudiante"
+  fetishes: "Fetiches"
   bdsm: "BDSM"
+  bondage: "Esclavitud"

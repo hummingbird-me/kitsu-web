@@ -15,6 +15,7 @@ titles:
     index: "Explorar {mediaType, select, anime {Animes} manga {Mangas} other {}}"
     more:
       trending: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} populars aquesta setmana"
+      top-current: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} més populars {type, select, Anime {en emisió} Manga {en publicació} other {}}"
       top-upcoming: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} més esperats"
       highest-rated: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} millor avaluats"
       most-popular: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} més populars"
@@ -73,15 +74,18 @@ header:
   library: "Biblioteca"
   anime: "Animes"
   manga: "Mangas"
+  trending: "Tendencia"
   groups: "Grups"
   feedback: "Comentaris"
   browse: "Navegar"
   auth:
+    sign-in: "Conectar-se"
     sign-up: "Registrar-se"
   user:
     profile: "Veure el perfil"
     settings: "Paràmetres"
     admin: "Admin"
+    logout: "Desconectar-se"
 #authentication modal
 auth-modal:
   sign-up:
@@ -98,6 +102,7 @@ dashboard:
       manga: "Manga"
     empty:
       html: "Els continguts que hagis afegit o pujat dins de la teva <a href={link}>Biblioteca</a> es mostraran aquí perquè els puguis actualitzar de forma ràpida."
+      discover: "Descubrir continguts"
     media:
       complete: "Completat"
       unstarted: "No començat"
@@ -130,11 +135,20 @@ dashboard:
 #page: anime/manga
 media:
   index:
+    search: "Buscar per títul, personatge o elenc…"
     filter: "Filtrar"
     remove: "Suprimir"
     filters:
       year: "Any"
+      score: "Puntaje promedio"
+      seasons: "Temporadas"
+      streamers: "Servicios de streaming (EE.UU.)"
+      units: "{type, select, anime {Episodios} manga {Capítulos} other {}}"
+      rating: "Puntaje"
+      categories: "Categorías"
+      types: "Tipos"
     sort:
+      popularity: "Popularidad"
       rating: "Puntuació mitjana"
       date: "Data"
       recent: "Afegits recentment"
@@ -158,6 +172,7 @@ media:
           rating: "{type, select, anime {Rank #{rank} (Anime més valorat)} manga {Rank #{rank} (Manga més valorat)} other {}}"
         short:
           popularity: "#{rank} Més Popular"
+          rating: "#{rank} Més Valorat"
       categories: "Categories"
       relationships:
         header: "Més d'aquesta sèrie"
@@ -201,6 +216,7 @@ media:
         ko_kr: "Coreà"
         lv_lv: "Letó"
         ms_my: "Malai"
+        nl_nl: "Danés"
         pl_pl: "Polonès"
         pt_br: "Portuguès (Brasil)"
         pt_pt: "Portuguès"
@@ -226,8 +242,12 @@ media:
         tba: "Per ser anunciat"
         season: "Temporada"
         producers: "Productors"
+        licensors: "Llicenciadors"
+        studios: "Estudios"
+        serialization: "Serialització"
         duration: "Duració"
         total: "{total} en total"
+        length: "{count, plural, =1 {{length} minuts} other {{length} minuts cada uno}}"
         rating: "Puntuació"
         expand:
           false: "Més info"
@@ -238,6 +258,7 @@ media:
     units:
       unit: "{type, select, episode {Episodi} chapter {Capítol} other {}}"
       back: "Tornar a la llista {type, select, episode {d'episodis} chapter {de capítols} other {}}"
+      pages: "{length} págines"
       date: "{type, select, episode {Emès} chapter {Publicat} other {}}"
       completed: "{type, select, episode {Vist} chapter {Llegit} other {Completat}}"
       feed:
@@ -254,6 +275,10 @@ media:
       header: "Franquícia {title}"
       roles:
         sequel: "Seqüela"
+        prequel: "Precuela"
+        alternative_setting: "Paràmetres alt."
+        alternative_version: "Versió alt."
+        side_story: "Història paral·lela"
         parent_story: "Història prèvia"
         summary: "Resum"
         full_story: "Història completa"
@@ -316,10 +341,67 @@ components:
       edited: "editat"
       gate:
         spoiler-nsfw: "Conté spoilers i NSFW."
+        nsfw: "Aquesta publicació conté contingut NSFW."
+        spoiler: "Aquesta publicació conté spoilers."
+        hover:
+          nsfw: "El meu cos està preparat!"
+          spoiler: "Puc suportar la veritat!"
+      link: "Copiar enllaç a la publicació"
+      unfollow: "Deixar de seguir la publicació"
+      follow: "Seguir la publicació"
+      show: "Mostra mitjans de la publicació"
+      hide: "Amaga mitjans de la publicació"
+      edit: "Editar publicació"
+      delete: "Eliminar publicació"
+      unpin: "Despenjar publicació en el perfil"
+      pin: "Fijar publicación en el perfil"
+      report: "Denunciar publicació"
 #page: users
 users:
+  profile:
+    edit: "Editar"
+  admin:
+    button: "Admin"
+    past-names: "Veure noms anteriors"
+    alt-accounts: "Veure comptes alternatives"
+    delete-content: "Eliminar el contingut creat per l'usuari"
+    ban: "Banejar"
+  navigation:
+    activity: "Activitat"
+    library: "Biblioteca"
+    reviews: "Ressenyes"
+    reactions: "Reaccions"
+    followers: "Seguidors"
+    following: "Seguint"
+    groups: "Grups"
   edit-modal:
+    cover: "Canvia la teva foto de capçalera"
+    navigation:
+      about: "Sobre mi"
+      profile-links: "Enllaços del perfil"
+      favorites: "Favorits"
+    about:
+      header: "Sobre mi"
+      location:
+        label: "Ubicació"
+        placeholder: "On vius?"
+      birthday: "Data de neixament"
+      gender:
+        label: "Gènere"
+        options:
+          secret: "És un secret"
+          male: "Home"
+          female: "Dona"
+          custom: "Personalitzat"
+      waifu:
+        label: "Waifu"
+        placeholder: "Waifu/Husbando"
+        search: "Troba algú especial"
+      bio:
+        label: "Bio"
+        placeholder: "Explica-li a el món teva història."
     profile-links:
+      header: "Enllaços del perfil"
       sites:
         website:
           about: "Afegeix el teu lloc web personal a continuació per afegir un enllaç al teu perfil."
@@ -379,6 +461,7 @@ users:
           placeholder: "Tu número de ID de osu!"
         patreon:
           about: "Afegeix el nom del teu projecte Patreon a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El nombre de tu proyecto de Patreon"
         deviantart:
           about: "Afegeix el teu nom d'usuari DeviantArt a continuació per afegir un enllaç al teu perfil."
           placeholder: "El teu nom d'usuari DeviantArt"
@@ -391,3 +474,441 @@ users:
         lastfm:
           about: "Afegeix el teu nom d'usuari Last.fm a continuació per afegir un enllaç al teu perfil."
           placeholder: "El teu nom d'usuari Last.fm"
+        letterboxd:
+          about: "Afegeix el teu nom d'usuari Letterboxd a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari Letterboxd"
+        medium:
+          placeholder: "El teu nom d'usuari Medium (@usuario) o nom de publicació"
+        playerme:
+          about: "Afegeix el teu nom d'usuari Player.me a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari Player.me"
+        reddit:
+          about: "Afegeix el teu nom d'usuari Reddit a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari Reddit"
+        trakt:
+          about: "Afegeix el teu nom d'usuari Trakt a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari Trakt"
+    favorites:
+      header: "Favorits"
+      anime: "Anime"
+      manga: "Manga"
+      characters: "Personatges"
+      remove: "Suprimir favorit?"
+  activity:
+    onboarding:
+      welcome: "Hey {user}, aquesta pàgina tracta només de tu!!"
+      about: "A mesura que segueixis fent servir Kitsu, el teu <strong>panel personal</strong> a continuació començarà a omplir-se amb els animes i mangas que has vist, llegit, completat i planeges mirar. També pots publicar text, imatges i vídeos al teu panell utilitzant el formulari a continuació. Les teves publicacions seran vistes i apreciades pels teus seguidors i usuaris de el panell global."
+      action: "Sent-te a casa! Puja un avatar i una imatge de capçalera! Fes clic en <span>Editar</span> amunt per començar."
+    about:
+      empty: "És un secret"
+      gender:
+        secret: "És un secret"
+        male: "Hombre"
+        female: "Mujer"
+    stats:
+      headings:
+        anime: "Estadístiques d'anime"
+        manga: "Estadístiques de manga"
+      empty:
+        header: "Sembla que encara no tens prou dades! Comencem alguna cosa nova?"
+        guest-header: "Sembla que {user} encara no té estadístiques."
+  library:
+    search: "Buscar en la biblioteca de {name}…"
+    sorting:
+      label: "Ordenar per:"
+      options:
+        watched: "Data actualització"
+        started: "Data d'inici"
+        finished: "Data de finalització"
+        added: "Data d'addició"
+        progress: "Progrés"
+        rating: "Puntuació"
+        title: "Títol"
+        length: "Durada"
+      directions:
+        watched:
+          desc: "Recents primer"
+          asc: "Antics primer"
+        started:
+          desc: "Recents primer"
+          asc: "Antics primer"
+        finished:
+          desc: "Recents primer"
+          asc: "Antics primer"
+        added:
+          desc: "Recents primer"
+          asc: "Antics primer"
+        progress:
+          desc: "Major primer"
+          asc: "Menor primer"
+        rating:
+          desc: "Major primer"
+          asc: "Menor primer"
+        length:
+          desc: "Llargs primer"
+          asc: "Curts primer"
+    sidebar:
+      media-select: "{type, select, anime {Animes de {user}} manga {Mangas de {user}} other {{type} de {user}}}"
+      manage: "Gestionar biblioteca"
+      import: "Importa biblioteca"
+      export: "Exporta biblioteca"
+      reset: "Restablir biblioteca"
+      reset-loading: "Restablint…"
+      reset-confirmation: "Això eliminarà tota la teva biblioteca, ressenyes associades i reaccions. De debò vols continuar?"
+      issues:
+        header: "Problemes amb la biblioteca"
+        reactions: "Falten {count} <b>reaccions</b> en continguts completats"
+        fix: "solucionar"
+    list:
+      edit: "Editar entrada"
+      list-edit: "Editar"
+      more: "Més"
+      unstarted: "No començat"
+      unrated: "No evaluat"
+      progress: "{type, select, anime {Ep. {progress}} manga {Cap. {progress}} other {}}"
+      table-header:
+        title: "Títol del {type, select, anime {anime} manga {manga} other {{type}}}"
+        rating: "Puntuació"
+        progress: "Progrés"
+        volumes: "Volums"
+      add-reaction: "Afegir reacció"
+      empty:
+        search: "No s'ha pogut trobar una entrada de biblioteca amb els teus termes de cerca."
+        header: "Sembla que el teu biblioteca està buida! Comencem alguna cosa nova?"
+        guest-header: "Sembla que {user} no té entrades de biblioteca aquí."
+        button: "Navegar {type}"
+    grid:
+      view-media: "Veure {type, select, anime {anime} manga {manga} other {{type}}}"
+    edit:
+      status: "Estat de la biblioteca"
+      progress: "Progrés"
+      units: "{type, select, anime {de {num} episodis} manga {de {num} capítols} other {}}"
+      volumes: "Volums"
+      volume-units: "de {num} volums"
+      rating: "Puntuació"
+      rewatch: "{type, select, anime {Recompte de visualitzacions} manga {Recompte de vegades llegit} other {}}"
+      start-rewatch: "Tornar a començar"
+      privacy: "Privacitat"
+      started: "Iniciat"
+      finished: "Completat"
+      notes: "Notes personals"
+      remove: "Suprimir de la biblioteca"
+      save: "Guardar cambis"
+      saving: "Guardant…"
+    bulk:
+      selected: "{num} {type, select, anime {animes} manga {mangas} other {{type}}} seleccionats"
+      select-all: "Seleccionar tots"
+      select-none: "Seleccionar cap"
+      remove: "Suprimir <strong>{num}</strong>"
+      move-to: "Moure <strong>{num}</strong> a…"
+      remove-loading: "Suprimint…"
+      update-loading: "Actualitzant…"
+  groups:
+    sort:
+      newest: "Membre recentment"
+      oldest: "Membre més antic"
+  reactions:
+    empty: "Aquest usuari no té reaccions"
+    filters:
+      all: "Totes les reaccions"
+      anime: "Reaccions de anime"
+      manga: "Reaccions de manga"
+    sorts:
+      best: "Millor"
+      new: "Nou"
+  hide-posts:
+    text: "Amaga les publicacions de {user}"
+    info: "Les seves publicacions no apareixeran al panell de seguiment"
+  show-posts:
+    text: "Mostra les publicacions de {user}"
+    info: "Les seves publicacions apareixeran al panell de seguiment"
+  followers:
+    not-found: "No s'han trobat usuaris."
+    loading: "Cargant usuaris…"
+  following:
+    not-found: "No s'han trobat usuaris."
+    loading: "Cargant usuaris…"
+  reviews:
+    not-found: "No s'han trobat ressenyes."
+    loading: "Cargando ressenyes…"
+#page: settings
+settings:
+  navigation:
+    header: "Configuració"
+    profile: "Perfil"
+    notifications: "Notificacions"
+    password: "Contrasenya"
+    privacy: "Privacitat"
+    linked-accounts: "Comptes enllaçades"
+    import: "Importar"
+    export: "Exportar"
+    blocking: "Bloqueig"
+    account: "Compte"
+  account:
+    header: "Compte"
+    sub-header: "Zona de perill! Eliminar el teu compte és irreversible."
+    delete: "Eliminar compte"
+    confirm-title: "Eliminar compte"
+    confirm-text: "Lamentem veure't partir, de debò vols continuar?"
+  apps:
+    header: "Aplicacions"
+  blocking:
+    header: "Bloqueig"
+    sub-header: "Una vegada que bloqueges a algú, aquesta persona ja no podrà etiquetar-te, seguir-te, veure el teu perfil o les teves publicacions."
+    title: "Bloquejar usuaris"
+    placeholder: "Busca usuaris a bloquejar…"
+    button-block: "Bloquejar"
+    loading: "Cargant usuaris…"
+    button-unblock: "Desbloquejar"
+    more: "Carregar més"
+    not-blocking: "No tens a ningú bloquejat."
+  exports:
+    modal:
+      header: "Sincronitzar amb {site}"
+      helper: "Actualitzarem les teves llistes d'anime i manga en {site} cada vegada que els actualitzis a Kitsu."
+      create: "Sincronitzar amb {site}"
+    header: "Exportar"
+    sub-header: "Sincronitza automàticament les teves actualitzacions de la biblioteca d'Kitsu amb MyAnimeList."
+    loading: "Cargant exportacions…"
+    remove: "Suprimir exportador"
+    disabled: "La teva exportació de MAL ha estat desactivada a causa de la següent raó: <strong>{reason}</strong>"
+    create: "Configurar la exportació de la compte MyAnimeList"
+    download: "Descarregar la biblioteca de {kind}"
+    recent: "Activitat de sincronització recent"
+    sync-header: "Sincronització amb MyAnimeList"
+    no-logs: "Estem processant la teva biblioteca i sincronizándola amb MyAnimeList. Prepara't!"
+    logs:
+      header:
+        media: "Títol"
+        library-status: "Estat"
+        progress: "Progrés"
+        rating: "Puntuació"
+        reconsumes: "Comptador de vegades vist"
+        action: "Acció"
+        status: "Estat"
+      action:
+        create: "Crear"
+        update: "Actualitzar"
+        destroy: "Suprimir"
+      status:
+        pending: "Pendent"
+        success: "Éxit"
+        error: "Error"
+  imports:
+    header: "Importar"
+    sub-header: "Importar contingut desde altres proveïdors"
+    button: "Importar de contingut"
+    past-imports: "Les teves importacions anteriors"
+    loading: "Carregant importacions…"
+    status: "Estat:"
+    entries: "Total d'entrades trobades:"
+    error: "Sembla que la teva importació ha fallat :( &mdash; Volem solucionar-ho, per la qual cosa et demanem ens escriguis un <a href=\"mailto:help@kitsu.io\">correu</a> (en anglès)."
+    more: "Carregar més"
+  index:
+    header: "Perfil"
+    sub-header: "Ajustaments del compte i regió"
+    name: "Nom de pàgina"
+    url: "URL del perfil"
+    email: "Correu"
+    email-message: "El correu no és mostrat de forma pública."
+    language: "Idioma"
+    translate-help: "Vols ajudar a traduir a altres idiomes? <a href=\"https://crowdin.com/project/kitsu-web\">¡Tradueix aquí!</a>"
+    time-zone: "Zona horària"
+    content: "Contingut en Kitsu"
+    theme: "Tema de la pàgina"
+    country: "País"
+    titles: "Títols"
+    titles-message: "Com es mostren els títols dels continguts."
+    rating: "Tipus d'avaluació"
+    rating-message: "Tria com vols donar-li la puntuació al contingut que has vist o llegit."
+    adult: "Contingut per adults"
+    adult-message: "Amb el contingut per a adults amagat, no podràs veure contingut +18 al panell, a biblioteques o a la recerca."
+    update: "Actualitzar perfil"
+  linked-accounts:
+    header: "Comptes enllaçades"
+    sub-header: "Connecta comptes de tercers amb Kitsu"
+    facebook: "Facebook"
+    disconnect: "Desconectar Facebook"
+    connect: "Conectar Facebook"
+  notifications:
+    header: "Notificacions push"
+    sub-header: "Notificacions generals a nivel de pàgina web"
+    contexts:
+      web: "Web"
+      email: "Correu"
+      mobile: "Mobil"
+    descriptions:
+      mentions: "Algú <strong>em menciona </strong> en una publicació o comentari"
+      replies: "Algú <strong>ha respòs</strong> a la meva publicació o comentari"
+      likes: "A algú <strong>li ha agradat</strong> a la meva publicació o comentari"
+      follows: "Algú <strong>em segueix</strong>"
+      posts: "Algú <strong>ha publicat</strong> al meu perfil"
+      reaction_votes: "Algú <strong>ha vota</strong> la meva reacció a un contingut"
+      airing: "Surt un nou episodi"
+    newsletter:
+      newsletter: "Butlletí (en anglès)"
+      subscribed: "Subscrit"
+      message: "Si ho actives, rebràs novetats ocasionalment emails (molt interessants) sobre Kitsu escrites pel mateix Josh."
+    loading: "Carregant configuració…"
+    update: "Actualitzar configuració"
+  password:
+    header: "Contrasenya"
+    sub-header: "Cambia la teva contrasenya"
+    new-pswd: "Nova contrasenya"
+    confirm-pswd: "Confirmar contrasenya"
+    update-pswd: "Actualizar contrasenya"
+  privacy:
+    header: "Privacitat"
+    sub-header: "Ajusta la possibilitat d'altres de veure el teu contingut"
+    discover: "Detectabilitat"
+    checkbox: "Aparèixer en el panell global"
+    message: "Si ho desactives, les teves publicacions estaran disponibles només per als teus seguidors i qui visiti el teu perfil."
+    update: "Actualitzar el perfil"
+#page: feedback
+feedback:
+  header: "Comentaris"
+  bugs: "Bugs"
+  features: "Sol·licituds de funcionalitats"
+  database: "Sol·licituds de contingut"
+  mobile-bugs: "Sol·licituds de dispositius mòbils"
+  mobile-features: "Sol·licituds de funcionalitats de dispositius mòbils"
+#page: groups
+groups:
+  index:
+    call-to-action: "Qualsevol pot crear i descobrir grups. Cada grup se centra en un tema o activitat."
+    create-btn: "Crear un grup"
+  create:
+    header: "Crear un grup"
+    form:
+      required: "Requerit"
+      name: "Nom"
+      tagline: "Lema"
+      about: "Descripció"
+      rules: "Normes"
+      neighbors: "Veïns"
+      neighbors-placeholder: "Buscar el grup"
+      privacy: "Privacitat"
+      privacy-options:
+        open: "Públic"
+        closed: "Privat"
+        restricted: "Restringit"
+      privacy-features:
+        open: "<li>Qualsevol pot veure</li> <li>Qualsevol pot unir-se</li> <li>Qualsevol pot publicar o comentar</li>"
+        closed: "<li>Tencat al públic</li> <li>Els usuaris només poden unir-se per invitació</li> <li>No pot ser transformat en públic</li>"
+        restricted: "<li>Qualsevol pot veure </li> <li>Qualsevol pot unir-se </li> <li>Només els líders poden crear noves publicacions.</li>"
+      category: "Categoria"
+      category-placeholder: "Selecciona una categoria"
+      avatar: "Avatar"
+      cover: "Imatge de capçalera"
+      create-btn: "Crea el teu grup!"
+      save-btn: "Guardar"
+      helper:
+        name:
+          header: "Nom"
+          desc: "Els noms dels grups haurien de comunicar de forma clara de què tracta el grup, però tot i així pots mostrar la teva creativitat i fer alguna cosa entretingut!"
+        tagline:
+          header: "Lema"
+          desc: "Resumeix el propòsit del teu grup a 60 caràcters o menys. Tindràs espai per afegir més informació després."
+        about:
+          header: "Descripció"
+          desc: "Explica el propósito del grupo en profundidad, comparte información importante o cualquier otra cosa."
+        rules:
+          header: "Normes"
+          desc: "Crea algunes normatives que els membres del grup hagin de seguir. Es suporta Markdown a les regles!"
+        neighbors:
+          header: "Veïns"
+          desc: "Afegeix grups relacionats al teu veïnat perquè els teus membres puguin descobrir noves comunitats!"
+        privacy:
+          header: "Privacitat"
+          desc: "Els teus paràmetres de privacitat determinen com d'obert o tancat és el teu grup per al públic. Si tries fer el grup privat, NO podràs transformar-lo en públic en el futur."
+        category:
+          header: "Categoria"
+          desc: "Kitsu fa servir categories per organitzar grups per ajudar els usuaris a trobar més facilment el que estimen."
+        avatar:
+          header: "Avatar"
+          desc: "Aquesta imatge serà utilitzada en tot Kitsu per identificar el teu grup."
+        cover:
+          header: "Imatge de capçalera"
+          desc: "Aquesta imatge apareixerà a la part superior de la pàgina del teu grup en ordinadors. Els laterals podrien ser retallats per ajustar-la a la mida de la pantalla de qui la visualitzi."
+      errors:
+        neighbors-same: "No pots afegir el teu propi grup com a veí."
+  dashboard-btn: "Panel de control"
+  join-group: "Unir-se al grup"
+  leave-group: "Deixar el grup"
+  hide-posts:
+    text: "Amaga publicacions de {group}"
+    info: "Les publicacions no apareixeran al panell de seguiment"
+  show-posts:
+    text: "Mostra publicacions de {group}"
+    info: "Les publicacions apareixeran al panell de seguiment"
+  nsfw: "NSFW"
+  neighbors: "Veïns"
+  navigation:
+    activity: "Activitat"
+    rules: "Normes"
+    members: "Membres"
+    leaders: "Líders"
+    neighbors: "Veïns"
+  activity:
+    feed-header: "Activitat del grupo"
+    about: "Sobre de {group}"
+    members: "Membres"
+    feed-restricted: "Aquest és un grup restringit. Tots poden comentar però només els líders poden crear publicacions."
+  rules:
+    header: "Regles de la comunitat"
+    empty: "Hola! Sembla que estàs fent servir la normativa de comunitat de Kitsu. Si vols especificar les teves pròpies regles, pots fer-ho a la teva <a href={link}> pàgina de configuració </a>."
+  tickets:
+    search: "Buscar tickets"
+    empty: "Hurra! No hi ha tiquets que resoldre."
+    helper: "Els tiquets et permeten comunicar-te amb els líders d'aquest grup per resoldre qualsevol problema que puguis tenir. Envia un missatge als líders aquí per crear un ticket."
+    filter:
+      open: "Tickets oberts"
+      resolved: "Tickets resolts"
+      all: "Tots els tickets"
+    conversation:
+      title: "Ticket de <a href={link}>{name}</a>"
+      mark-resolved: "Marcar com a resolt"
+      mark-closed: "Marcar com a tencat"
+      mark-open: "Maracr com a obert"
+      nav:
+        reply: "Respondre a l'usuari"
+        leader: "Nota de l'líder"
+      create-btn: "Crear ticket"
+      reply-btn: "Enviar resposta"
+      reply-placeholder: "Escriu el teu missatge"
+      helper: "Escriviu el vostre missatge a continuació per crear un ticket. Els líders d’aquest grup respondran el vostre ticket tan aviat com puguin."
+  reports:
+    no-explanation: "No s'ha proporcionat cap explicació"
+    empty: "Hooray! No teniu cap denuncia per gestionar."
+    filter:
+      open: "Obrir denuncies"
+      resolved: "Denuncies resoltes"
+      all: "Totes les denuncies"
+    show-more: "Ensenya {num} denuncies"
+    hide-more: "Amaga {num} denuncies"
+    status:
+      resolved: "Aquesta denuncia va ser resolt per {user}."
+      declined: "Aquesta denuncia ha estat rebutjat per {user}."
+      escalated: "Aquesta denuncia ha estat escalat per {user}."
+    actions:
+      close: "Tencar denuncia"
+      remove: "Elimina contingut"
+      escalate: "Notifica Kitsu"
+      view: "Veure contingut"
+  leaders:
+    list:
+      header: "Líders"
+      edit-btn: "Editar"
+      add-btn: "Afegir"
+      add-placeholder: "Membre del grup"
+      not-found: "No s'ha pogut trobar un membre del grup amb aquest nom."
+      message-btn: "Enviar un missatge als líders"
+      message-leader: "Sou un líder d’aquest grup!"
+      modal:
+        header: "Permisos del líder:"
+        owner: "Titular del grup"
+        tickets: "Gestionar tickets"
+        members: "Gestionar membres"
+        leaders: "Gestionar líders"
+        community: "Gestiona la configuració"
+        content: "Gestionar contingut i denuncies"

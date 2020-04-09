@@ -7,7 +7,7 @@ export default [
   // { id: 'ar-001', text: 'العربية' }, // Arabic rtl
   // { id: 'bn-bd', text: 'বাংলা (বাংলাদেশ)' }, // Bengali
   // { id: 'bg-bg', text: 'Български' }, // Bulgarian
-  // { id: 'ca-es', text: 'Català' }, // Catalan
+  { id: 'ca-es', text: 'Català' },
   // { id: 'zh-cn', text: '中文 (简体)' }, // Chinese Simplified
   // { id: 'zh-tw', text: '中文 (繁體)' }, // Chinese Traditional
   // { id: 'hr-hr', text: 'Hrvatski' }, // Croatian
@@ -18,11 +18,11 @@ export default [
   // { id: 'fi-fi', text: 'Suomi' }, // Finnish
   { id: 'fr-fr', text: 'Français' },
   // { id: 'fr-ca', text: 'Français (Canadien)' },
-  // { id: 'de-de', text: 'Deutsch' }, // German
+  { id: 'de-de', text: 'Deutsch' },
   // { id: 'el-gr', text: 'Ελληνικά' }, // Greek
   // { id: 'he-il', text: 'עברית' }, // Hebrew rtl
   // { id: 'hi-in', text: 'हिन्दी' }, // Hindi
-  // { id: 'hu-hu', text: 'Magyar' }, Hungarian
+  { id: 'hu-hu', text: 'Magyar' },
   // { id: 'is-is', text: 'Íslenska' }, // Icelandic
   { id: 'id-id', text: 'Bahasa Indonesia' },
   // { id: 'ga-ie', text: 'Gaeilge' }, // Irish

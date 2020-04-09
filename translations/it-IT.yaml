@@ -301,6 +301,7 @@ components:
   admin:
     reports:
       no-explanation: "Nessuna spiegazione fornita."
+      not-set: "Non impostato"
       actions:
         button: "Azioni"
         open: "Segna come Aperto"
@@ -413,7 +414,6 @@ components:
     block: "Blocca @{user}"
     you: "Hey, quello sei tu!"
     favorites:
-      title: "Serie Favorite"
       anime: "Anime"
       manga: "Manga"
       more: "Mostra Altro"
@@ -422,6 +422,7 @@ components:
       none: "Nessun multi-account trovato"
     past-name:
       title: "Nomi precedenti"
+      none: "Nessun nome precedente"
 #page: users
 users:
   profile:
@@ -572,9 +573,12 @@ users:
       welcome: "Ehi {user}, questa pagina è tutta su di TE!"
       about: "Man mano che continui ad utilizzare Kitsu il tuo <strong>Feed Personale</strong> qui sotto inizierà a popolarsi con gli anime e i manga che hai guardato, letto, completato, e hai intenzione di finire. Puoi anche pubblicare nel tuo feed testo, immagini e video usando il modulo sottostante. I tuoi post saranno visti e apprezzati dai tuoi follower e da utenti del feed globale."
       action: "Sentiti a casa! Carica un avatar e un'immagine di copertina! Clicca <span>Modifica</span> qui sopra per iniziare."
+      title: "Configura il tuo Profilo"
     about:
+      header: "Chi sono"
       empty: "È un segreto"
       waifu:
+        label: "{waifu, select, Waifu {Waifu} Husbando {Husbando} other {{waifu}}}:"
         empty: "Waifu/Husbando:"
       gender:
         label: "Genere:"
@@ -1177,6 +1181,9 @@ form-shared:
   placeholders:
     username: "Nome utente"
     password: "Password"
+#component: mobile-banner
+mobile-banner:
+  pitch: "Migliora la tua esperienza usando l'applicazione ufficiale di Kitsu per mobile."
 #component: auth-onboarding
 onboarding:
   aozora-conflict:
@@ -1185,8 +1192,15 @@ onboarding:
   aozora-account-details:
     submit: "Perfetto!"
   checklist:
+    steps: "{count} passi rimasti! 🦊"
+    rate: "Vota 5 anime o manga"
+    rate-incomplete: "Vota {count} anime o manga"
     follow: "Segui 5 utenti"
     comment: "Commenta un post"
+    avatar: "Imposta il tuo avatar"
+    cover: "Imposta un'immagine di copertina del profilo"
+    about-me: "Completa il tuo <i>Chi sono</i>"
+    favorite: "Scegli i tuoi anime / manga favoriti"
 #component: follow-button
 follow-button:
   follow: "Segui"
@@ -1258,6 +1272,7 @@ reaction-modal:
   #component: modals
   modals:
     image-cropper:
+      dimensions: "Larghezza: {width}, Altezza: {height}"
       select: "Seleziona"
       close: "Chiudi"
     confirm:
@@ -1404,4 +1419,60 @@ category:
   americas: "Americhe"
   android: "Android"
   angel: "Angelo"
+  anime-influenced: "Anime influenzati"
+  anthropomorphism: "Antropomorfismo"
+  asia: "Asia"
+  assassin: "Assassini"
+  baseball: "Baseball"
+  bishounen: "Bishounen"
+  blackmail: "Ricatto"
+  boxing: "Boxe"
+  breaking-the-fourth-wall: "Rompendo la Quarta Barriera"
+  buddhism: "Buddismo"
+  china: "Cina"
+  combat: "Combattimento"
   comedy: "Commedia"
+  conspiracy: "Cospirazione"
+  cooking: "Cucinando"
+  cops: "Polizia"
+  countryside: "Campagna"
+  future: "Futuristico"
+  germany: "Germania"
+  ghost: "Fantasmi"
+  gunfights: "Pistole"
+  harem: "Harem"
+  heian-period: "Periodo Heian"
+  henshin: "Henshin"
+  historical: "Storico"
+  horror: "Horror"
+  humanoid-alien: "Alieni Umanoidi"
+  idol: "Idol"
+  isekai: "Isekai"
+  island: "Isola"
+  italy: "Italia"
+  japan: "Giappone"
+  josei: "Josei"
+  juujin: "Juujin"
+  kids: "Bambini"
+  korea: "Corea"
+  kyoto: "Kyoto"
+  law-and-order: "Legge e Ordine"
+  loli: "Loli"
+  love-polygon: "Poliamore"
+  mafia: "Mafia"
+  magic: "Magia"
+  magical-girl: "Ragazze Magiche"
+  maid: "Cameriera"
+  mars: "Marte"
+  mecha: "Robot"
+  mermaid: "Sirene"
+  military: "Militari"
+  motorsport: "Motorsport"
+  music: "Musica"
+  musical-band: "Gruppo Musicale"
+  mystery: "Mistero"
+  navy: "Marina Militare"
+  netorare: "Netorare"
+  new-york: "New York"
+  ninja: "Ninja"
+  nurse: "Infermieri"
