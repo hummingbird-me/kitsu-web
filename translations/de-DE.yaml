@@ -607,6 +607,9 @@ users:
       move-to: "Verschiebe <strong>{num}</strong> nach…"
       remove-loading: "Entferne…"
       update-loading: "Aktualisiere…"
+  groups:
+    sort:
+      oldest: "Am längsten dabei"
   reactions:
     empty: "Dieser Benutzer hat noch keine Reaktionen"
     filters:
@@ -856,14 +859,24 @@ groups:
     header: "Community-Regeln"
     empty: "Hey! Sieht so aus, als würdest du die Kitsu-Community-Richtlinien verwenden. Wenn du deine eigenen Regeln angeben möchten, kannst du dies auf deiner <a href={link}>Einstellungsseite</a> tun"
   tickets:
+    search: "Tickets durchsuchen"
     empty: "Hurra! Du hast keine Tickets zu bearbeiten."
     filter:
       open: "Offene Tickets"
       resolved: "Gelöste Tickets"
     conversation:
       title: "Ticket von <a href={link}>{name}</a>"
+      mark-resolved: "Als gelöst markieren"
+      mark-closed: "Als abgeschlossen markieren"
+      mark-open: "Als offen markieren"
       nav:
+        reply: "Auf Benutzer antworten"
         leader: "Leiternotiz"
+      create-btn: "Ticket erstellen"
+      reply-btn: "Antwort senden"
+      reply-placeholder: "Nachricht eingeben"
+  reports:
+    no-explanation: "Keine Erklärung angegeben"
   dashboard:
     navigation:
       reports: "Meldungen"
@@ -874,6 +887,7 @@ groups:
     overview:
       members:
         header: "Mitglieder"
+        today: "Heute beigetreten"
         total: "Gesamte Mitglieder"
       activity:
         header: "Benutzeraktivität"
@@ -890,6 +904,7 @@ groups:
       invites:
         header: "Offene Einladungen"
         invited: "Eingeladen"
+        revoke: "Einladung abbrechen"
         invite: "Einladen"
       bans:
         header: "Gesperrte Benutzer"
@@ -938,10 +953,16 @@ media-shared:
       oel: "OEL"
   statuses:
     anime:
+      current: "Wird aktuell ausgestrahlt"
       finished: "Beendet"
+      upcoming: "Erscheint bald"
+      unreleased: "Nicht veröffentlicht"
       tba: "TBA"
     manga:
+      current: "Wird aktuell veröffentlicht"
       finished: "Beendet"
+      upcoming: "Erscheint bald"
+      unreleased: "Nicht veröffentlicht"
       tba: "TBA"
 #shared: form:
 form-shared:
@@ -981,7 +1002,25 @@ library-entry:
     remove-rating: "Bewertung entfernen"
     rate-this: "Bewertung hinzufügen"
     edit-library: "Bibliothekseintrag bearbeiten"
+    post-reaction: "Reaktion posten"
+    edit-reaction: "Reaktion bearbeiten"
+    remove-from-library: "Aus der Bibliothek entfernen"
+    saved-in: "In <a href={link}>{status}</a> gespeichert"
+    progress: "Fortschritt"
+    not-rated: "Nicht bewertet"
+  rating:
+    awful: "Schrecklich"
+    meh: "Meh"
+    good: "Gut"
+    great: "Sehr gut"
+#ember-power-select
+selects:
+  loading: "Wird geladen…"
+  none: "Keine Ergebnisse gefunden"
+  search: "Tippen, um zu suchen"
 admin:
+  reports:
+    closed: "Geschlossen"
   deployed-version: "Aktuelle Versionsnummer: {version}"
   links:
     index: "Meldungen"
@@ -989,3 +1028,5 @@ admin:
     sidekiq: "Sidekiq"
     pghero: "PGHero"
     flipper: "Flipper"
+button:
+  view-all: "alle anzeigen"
