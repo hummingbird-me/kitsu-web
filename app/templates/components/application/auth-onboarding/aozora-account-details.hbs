@@ -1,14 +1,14 @@
 <div class="modal-wrapper">
   <form>
     <div class="auth-section">
-      <h6 class="auth-section-title">What email should we use?</h6>
-      <p class="auth-section-helper">We'll use your email address to send you occasional updates and help you out if you forget your password.</p>
+      <h6 class="auth-section-title">{{t "onboarding.aozora-account-details.email.title"}}</h6>
+      <p class="auth-section-helper">{{t "onboarding.aozora-account-details.email.info"}}</p>
       <div class="form-group {{if hasInvalidEmail "has-warning"}} {{if hasValidEmail "has-success"}}">
         {{one-way-email user.email
           update=(action (mut user.email))
           class=(form-input-class hasInvalidEmail hasValidEmail)
           focusIn=(action "focused")
-          placeholder="Email"
+          placeholder=(t "onboarding.aozora-account-details.email.placeholder")
           data-test-email="true"}}
         {{#if hasInvalidEmail}}
           <div class="form-control-feedback" data-test-validation-email>
@@ -19,14 +19,14 @@
     </div>
 
     <div class="auth-section {{if hasValidName "active"}}">
-      <h6 class="auth-section-title">What should we call you?</h6>
-      <p class="auth-section-helper">Your username should be original, being witty is optional.</p>
+      <h6 class="auth-section-title">{{t "onboarding.aozora-account-details.username.title"}}</h6>
+      <p class="auth-section-helper">{{t "onboarding.aozora-account-details.username.info"}}</p>
       <div class="form-group {{if hasInvalidName "has-warning"}} {{if hasValidName "has-success"}}">
         {{one-way-text user.name
           update=(action (mut user.name))
           class=(form-input-class hasInvalidName hasValidName)
           focusIn=(action "focused")
-          placeholder="Username"
+          placeholder=(t "onboarding.aozora-account-details.username.placeholder")
           autofocus="autofocus"
           data-test-username="true"}}
         {{#if hasInvalidName}}
@@ -39,14 +39,14 @@
 
     {{#unless user.hasPassword}}
       <div class="auth-section">
-        <h6 class="auth-section-title">Think of a strong password.</h6>
-        <p class="auth-section-helper">Your password should be at least 8 characters. You should also consider mixing in numbers and special characters! This is to keep the bad guys from doing bad guy things with your account.</p>
+        <h6 class="auth-section-title">{{t "onboarding.aozora-account-details.password.title"}}</h6>
+        <p class="auth-section-helper">{{t "onboarding.aozora-account-details.password.info"}}</p>
         <div class="form-group password-form {{if hasInvalidPassword "has-warning"}} {{if hasValidPassword "has-success"}}">
           {{one-way-password user.password
             update=(action (mut user.password))
             class=(form-input-class hasInvalidPassword hasValidPassword)
             focusIn=(action "focused")
-            placeholder="Password"
+            placeholder=(t "onboarding.aozora-account-details.password.placeholder")
             data-test-password="true"}}
           {{#if hasInvalidPassword}}
             <div class="form-control-feedback" data-test-validation-password>
