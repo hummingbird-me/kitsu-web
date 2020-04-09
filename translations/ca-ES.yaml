@@ -15,6 +15,7 @@ titles:
     index: "Explorar {mediaType, select, anime {Animes} manga {Mangas} other {}}"
     more:
       trending: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} populars aquesta setmana"
+      top-current: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} més populars {type, select, Anime {en emisió} Manga {en publicació} other {}}"
       top-upcoming: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} més esperats"
       highest-rated: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} millor avaluats"
       most-popular: "{type, select, Anime {Animes} Manga {Mangas} other {{type}}} més populars"
@@ -73,15 +74,18 @@ header:
   library: "Biblioteca"
   anime: "Animes"
   manga: "Mangas"
+  trending: "Tendencia"
   groups: "Grups"
   feedback: "Comentaris"
   browse: "Navegar"
   auth:
+    sign-in: "Conectar-se"
     sign-up: "Registrar-se"
   user:
     profile: "Veure el perfil"
     settings: "Paràmetres"
     admin: "Admin"
+    logout: "Desconectar-se"
 #authentication modal
 auth-modal:
   sign-up:
@@ -98,6 +102,7 @@ dashboard:
       manga: "Manga"
     empty:
       html: "Els continguts que hagis afegit o pujat dins de la teva <a href={link}>Biblioteca</a> es mostraran aquí perquè els puguis actualitzar de forma ràpida."
+      discover: "Descubrir continguts"
     media:
       complete: "Completat"
       unstarted: "No començat"
@@ -130,11 +135,20 @@ dashboard:
 #page: anime/manga
 media:
   index:
+    search: "Buscar per títul, personatge o elenc…"
     filter: "Filtrar"
     remove: "Suprimir"
     filters:
       year: "Any"
+      score: "Puntaje promedio"
+      seasons: "Temporadas"
+      streamers: "Servicios de streaming (EE.UU.)"
+      units: "{type, select, anime {Episodios} manga {Capítulos} other {}}"
+      rating: "Puntaje"
+      categories: "Categorías"
+      types: "Tipos"
     sort:
+      popularity: "Popularidad"
       rating: "Puntuació mitjana"
       date: "Data"
       recent: "Afegits recentment"
@@ -158,6 +172,7 @@ media:
           rating: "{type, select, anime {Rank #{rank} (Anime més valorat)} manga {Rank #{rank} (Manga més valorat)} other {}}"
         short:
           popularity: "#{rank} Més Popular"
+          rating: "#{rank} Més Valorat"
       categories: "Categories"
       relationships:
         header: "Més d'aquesta sèrie"
@@ -201,6 +216,7 @@ media:
         ko_kr: "Coreà"
         lv_lv: "Letó"
         ms_my: "Malai"
+        nl_nl: "Danés"
         pl_pl: "Polonès"
         pt_br: "Portuguès (Brasil)"
         pt_pt: "Portuguès"
@@ -226,8 +242,12 @@ media:
         tba: "Per ser anunciat"
         season: "Temporada"
         producers: "Productors"
+        licensors: "Llicenciadors"
+        studios: "Estudios"
+        serialization: "Serialització"
         duration: "Duració"
         total: "{total} en total"
+        length: "{count, plural, =1 {{length} minuts} other {{length} minuts cada uno}}"
         rating: "Puntuació"
         expand:
           false: "Més info"
@@ -238,6 +258,7 @@ media:
     units:
       unit: "{type, select, episode {Episodi} chapter {Capítol} other {}}"
       back: "Tornar a la llista {type, select, episode {d'episodis} chapter {de capítols} other {}}"
+      pages: "{length} págines"
       date: "{type, select, episode {Emès} chapter {Publicat} other {}}"
       completed: "{type, select, episode {Vist} chapter {Llegit} other {Completat}}"
       feed:
@@ -254,6 +275,10 @@ media:
       header: "Franquícia {title}"
       roles:
         sequel: "Seqüela"
+        prequel: "Precuela"
+        alternative_setting: "Paràmetres alt."
+        alternative_version: "Versió alt."
+        side_story: "Història paral·lela"
         parent_story: "Història prèvia"
         summary: "Resum"
         full_story: "Història completa"
@@ -329,6 +354,7 @@ components:
       edit: "Editar publicació"
       delete: "Eliminar publicació"
       unpin: "Despenjar publicació en el perfil"
+      pin: "Fijar publicación en el perfil"
       report: "Denunciar publicació"
 #page: users
 users:
@@ -346,8 +372,36 @@ users:
     reviews: "Ressenyes"
     reactions: "Reaccions"
     followers: "Seguidors"
+    following: "Seguint"
+    groups: "Grups"
   edit-modal:
+    cover: "Canvia la teva foto de capçalera"
+    navigation:
+      about: "Sobre mi"
+      profile-links: "Enllaços del perfil"
+      favorites: "Favorits"
+    about:
+      header: "Sobre mi"
+      location:
+        label: "Ubicació"
+        placeholder: "On vius?"
+      birthday: "Data de neixament"
+      gender:
+        label: "Gènere"
+        options:
+          secret: "És un secret"
+          male: "Home"
+          female: "Dona"
+          custom: "Personalitzat"
+      waifu:
+        label: "Waifu"
+        placeholder: "Waifu/Husbando"
+        search: "Troba algú especial"
+      bio:
+        label: "Bio"
+        placeholder: "Explica-li a el món teva història."
     profile-links:
+      header: "Enllaços del perfil"
       sites:
         website:
           about: "Afegeix el teu lloc web personal a continuació per afegir un enllaç al teu perfil."
@@ -407,6 +461,7 @@ users:
           placeholder: "Tu número de ID de osu!"
         patreon:
           about: "Afegeix el nom del teu projecte Patreon a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El nombre de tu proyecto de Patreon"
         deviantart:
           about: "Afegeix el teu nom d'usuari DeviantArt a continuació per afegir un enllaç al teu perfil."
           placeholder: "El teu nom d'usuari DeviantArt"
@@ -419,3 +474,50 @@ users:
         lastfm:
           about: "Afegeix el teu nom d'usuari Last.fm a continuació per afegir un enllaç al teu perfil."
           placeholder: "El teu nom d'usuari Last.fm"
+        letterboxd:
+          about: "Afegeix el teu nom d'usuari Letterboxd a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari Letterboxd"
+        medium:
+          placeholder: "El teu nom d'usuari Medium (@usuario) o nom de publicació"
+        playerme:
+          about: "Afegeix el teu nom d'usuari Player.me a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari Player.me"
+        reddit:
+          about: "Afegeix el teu nom d'usuari Reddit a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari Reddit"
+        trakt:
+          about: "Afegeix el teu nom d'usuari Trakt a continuació per afegir un enllaç al teu perfil."
+          placeholder: "El teu nom d'usuari Trakt"
+    favorites:
+      header: "Favorits"
+      anime: "Anime"
+      manga: "Manga"
+      characters: "Personatges"
+      remove: "Suprimir favorit?"
+  activity:
+    onboarding:
+      welcome: "Hey {user}, aquesta pàgina tracta només de tu!!"
+      about: "A mesura que segueixis fent servir Kitsu, el teu <strong>panel personal</strong> a continuació començarà a omplir-se amb els animes i mangas que has vist, llegit, completat i planeges mirar. També pots publicar text, imatges i vídeos al teu panell utilitzant el formulari a continuació. Les teves publicacions seran vistes i apreciades pels teus seguidors i usuaris de el panell global."
+      action: "Sent-te a casa! Puja un avatar i una imatge de capçalera! Fes clic en <span>Editar</span> amunt per començar."
+    about:
+      empty: "És un secret"
+      gender:
+        secret: "És un secret"
+        male: "Hombre"
+        female: "Mujer"
+    stats:
+      headings:
+        anime: "Estadístiques d'anime"
+        manga: "Estadístiques de manga"
+      empty:
+        header: "Sembla que encara no tens prou dades! Comencem alguna cosa nova?"
+  library:
+    list:
+      empty:
+        guest-header: "Sembla que {user} no té entrades de biblioteca aquí."
+        button: "Navegar {type}"
+    grid:
+      view-media: "Veure {type, select, anime {anime} manga {manga} other {{type}}}"
+    edit:
+      status: "Estat de la biblioteca"
+      progress: "Progrés"
