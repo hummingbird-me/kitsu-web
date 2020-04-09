@@ -81,6 +81,10 @@ header:
     settings: "Beállítások"
     admin: "Admin"
     logout: "Kijelentkezés"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Kezdjünk néhány alapvető információval} 1 {Nagyon szellemes - az e-mail a következő!} 2 {Jól néz ki, még egy jelszó is kellene} 3 {Király - Hozzuk létre azt a fiókot} other {}}"
 #page: about
 about:
   header: "A Kitsuról"
@@ -172,20 +176,33 @@ media:
         more: "Összes karakter megtekintése"
       titles:
         header: "Alternatív Címek"
+        af_za: "Afrikaans"
         ar: "Arab"
+        bg_bg: "Bolgár"
+        bn_bd: "Bengáli"
+        ca_es: "Katalán"
         cs_cz: "Cseh"
+        cy_gb: "Walesi"
         da_dk: "Dán"
         de_de: "Német"
         el_gr: "Görög"
         en: "Angol"
+        en_au: "Angol (Ausztrál)"
+        en_ca: "Angol (Kanadai)"
         en_cn: "Kínai (Pinjin)"
+        en_gb: "Angol (Brit)"
         en_il: "Héber (Romanizált)"
         en_jp: "Japán (Romaji)"
         en_kr: "Koreai (Romanizált)"
         en_th: "Thai (Romanizált)"
+        en_us: "Angol (Amerikai)"
         es_es: "Spanyol"
+        et_ee: "Észt"
+        fa_ir: "Perzsa"
         fi_fi: "Finn"
+        fr_ca: "Francia (Kanadai)"
         fr_fr: "Francia"
+        ga_ie: "Ír"
         he_il: "Héber"
         hi_in: "Hindi"
         hr_hr: "Horvát"
@@ -194,19 +211,32 @@ media:
         is_is: "Izlandi"
         it_it: "Olasz"
         ja_jp: "Japán"
+        kk_kz: "Kazakh"
         ko_kr: "Koreai"
+        lt_lt: "Litván"
         lv_lv: "Lett"
         ms_my: "Maláj"
+        mt_mt: "Máltai"
+        nb_no: "Norvég (Bokmål)"
         nl_nl: "Holland"
+        nn_no: "Norvég (Nynorsk)"
         pl_pl: "Lengyel"
         pt_br: "Portugál (Brazil)"
         pt_pt: "Portugál"
+        ro_ro: "Román"
         ru_ru: "Orosz"
+        sc_it: "Szardíniai"
+        sco_gb: "Skót"
+        sk_sk: "Szlovák"
+        sl_sl: "Szlovén"
+        sr_cs: "Szerb (Latin)"
         sv_se: "Svéd"
         th_th: "Thai"
         tl_ph: "Tagalog"
         tr_tr: "Török"
         uk_ua: "Ukrán"
+        ur_in: "Urdu (Indiai)"
+        ur_pk: "Urdu (Pakisztáni)"
         vi_vn: "Vietnámi"
         zh_cn: "Kínai (Egyszerűsített)"
         zh_hk: "Kínai (Hong Kong)"
@@ -236,6 +266,7 @@ media:
       trailer: "Előzetes Lejátszása"
     units:
       unit: "{type, select, episode {Epizód} chapter {Fejezet} other {}}"
+      back: "Vissza a{type, select, episode {z epizód} chapter { fejezet} other {}} listához"
       pages: "{length} Oldal"
       date: "{type, select, episode {Sugározva} chapter {Kiadva} other {}}"
       completed: "{type, select, episode {Megnézve} chapter {Elolvasva} other {Befejezve}}"
@@ -303,6 +334,7 @@ components:
       edit: "Szerkesztés"
       create: "Poszt"
       spoiler: "Spoiler"
+      tag-media: "Kezdj el írni az anime vagy manga megjelöléséhez"
     edit-post:
       header: "Poszt Szerkesztése"
     follow:
@@ -315,6 +347,8 @@ components:
       edited: "szerkesztve"
       gate:
         spoiler: "Ez a poszt spoilereket tartalmaz."
+        hover:
+          nsfw: "A testem készen áll!"
       link: "Link Másolása a Poszthoz"
       unfollow: "Poszt Követés Megszüntetés"
       follow: "Poszt Követése"
@@ -335,15 +369,21 @@ components:
         add-reply: "Adj hozzá egy választ…"
       comments:
         previous-comments: "Korábbi Kommentek Megjelenítése"
+        leave-comment: "Komment írása…"
     review:
       spoiler: "Ez az ismertető spoilereket tartalmaz."
       share:
+        twitter: "Tweet"
         facebook: "Megosztás"
       copy-link: "Link Másolása az Ismertetőhöz"
+      show: "Ismetetői Tartalom Megjelenítése"
+      hide: "Ismetetői Tartalom Elrejtése"
       edit: "Ismertető Szerkesztése"
       delete: "Ismertető Törlése"
       report: "Ismertető Jelentése"
   users:
+    ban:
+      text: "Ők hozzáférhetnek és frissíthetik könyvtárukat, de nem tudnak posztokat, kommenteket vagy reakciókat készíteni."
     delete-user-content:
       title: "{user} Által Készített Tartalmak Törlése"
       checkbox:
@@ -351,9 +391,11 @@ components:
         comments: "Kommentek"
         reactions: "Reakciók"
       delete: "Törlés"
+    you: "Hé, ez te vagy!"
     favorites:
       anime: "Anime"
       manga: "Manga"
+      more: "Több Megjelenítése"
     alt-name:
       title: "{user} Lehetséges Alt Fiókjai"
       none: "Nem található alt"
@@ -378,6 +420,7 @@ users:
     following: "Követés"
     groups: "Csoportok"
   edit-modal:
+    cover: "Borítókép lecserélése"
     navigation:
       about: "Rólam"
       profile-links: "Profil Linkek"
@@ -385,6 +428,7 @@ users:
     about:
       header: "Rólam"
       location:
+        label: "Hely"
         placeholder: "Hol élsz?"
       birthday: "Születésnap"
       gender:
@@ -405,6 +449,7 @@ users:
       remove: "Eltávolítás a profilról"
       sites:
         website:
+          about: "Írd be a személyes weboldalad, hogy hozzáadj egy linket a profilodhoz."
           placeholder: "A Weboldalad URL-je"
         twitter:
           about: "Írd be a Twitter felhasználóneved, hogy hozzáadj egy linket profilodhoz."
@@ -515,6 +560,18 @@ users:
         title: "Cím"
         length: "Hossz"
       directions:
+        watched:
+          desc: "Újabb Előre"
+          asc: "Régebbi Előre"
+        started:
+          desc: "Újabb Előre"
+          asc: "Régebbi Előre"
+        finished:
+          desc: "Újabb Előre"
+          asc: "Régebbi Előre"
+        added:
+          desc: "Újabb Előre"
+          asc: "Régebbi Előre"
         progress:
           desc: "Több Előre"
           asc: "Kevesebb Előre"
@@ -609,11 +666,14 @@ settings:
     sub-header: "Veszélyzóna! A Fiókod Törlése Visszafordíthatatlan."
     delete: "Fiók Törlése"
     confirm-title: "Fiók Törlése"
+    confirm-text: "Sajnáljuk, hogy távozol, biztosan folytatni kívánod?"
   blocking:
     loading: "Felhasználók Betöltése…"
     more: "Több Betöltése"
     not-blocking: "Jelenleg nem blokkolsz senkit."
   exports:
+    modal:
+      helper: "Minden alkalommal amikor a Kitsun frissíted az anime és manga listádat, mi frissíteni fogjuk ezen az oldalon is: {site}."
     header: "Export"
     sub-header: "Automatikusan szinkronizáld a könyvtárfrissítéseid a Kitsuról a MyAnimeListre."
     loading: "Exportok Betöltése…"
@@ -647,6 +707,7 @@ settings:
     loading: "Importok Betöltése…"
     status: "Státusz:"
     entries: "Összes találat:"
+    error: "Úgy tűnik, az importálás nem sikerült :( &mdash; Szeretnénk kijavítani ezt a probémát, úgyhogy kérlek írj egy <a href=\"mailto:help@kitsu.io\">emailt</a> nekünk."
     more: "Több Betöltése"
   index:
     header: "Profil"
@@ -667,6 +728,7 @@ settings:
     rating: "Értékelés Típus"
     rating-message: "Válaszd ki, hogyan szeretnéd értékelni a médiát amit megnéztél vagy elolvastál."
     adult: "Felnőtt Tartalom"
+    adult-message: "Ha a felnőtt tartalom rejtett, akkor az 18+ tartalmak nem lesznek láthatóak a hírcsatornákban, a könyvtárakban és a keresések során."
     update: "Profil Frissítése"
   linked-accounts:
     header: "Csatolt Fiókok"
@@ -739,11 +801,13 @@ groups:
         restricted: "<li>Bárki megtekintheti</li> <li>Bárki csatlakozhat</li> <li>Csak vezetők hozhatnak létre új posztokat.</li>"
       category: "Kategória"
       category-placeholder: "Kategória Kiválasztása"
+      cover: "Borítókép"
       create-btn: "Hozd létre a Csoportodat!"
       save-btn: "Mentés"
       helper:
         name:
           header: "Név"
+          desc: "A csoportneveknek egyértelműen közölniük kellene miről szól a csoport, de továbbra is lehetsz kreatív és szórakozhatsz vele!"
         tagline:
           desc: "Összegezd a csoporod célját legfeljebb 60 karakterrel. Később lesz lehetőséged további információk megadására."
         about:
@@ -756,6 +820,9 @@ groups:
           desc: "Adj hozzá kapcsolodó csoportokat a szomszédságodhoz, hogy a tagjaid felfedezhessenek új közösségeket!"
         category:
           header: "Kategória"
+          desc: "A Kitsu kategóriákat használ a csoportok rendszerezésére, hogy segítse a felhasználókat abban, hogy többet találjanak abból amit szeretnek."
+        cover:
+          header: "Borítókép"
   dashboard-btn: "Irányítópult"
   join-group: "Csatlakozás"
   leave-group: "Kilépés"
@@ -791,6 +858,7 @@ groups:
       resolved: "Megoldott"
       all: "Minden Jelentés"
     show-more: "{num} jelentés megjelenítése"
+    hide-more: "{num} Jelentés Elrejtése"
     status:
       resolved: "Ezt a jelentést {user} megoldotta."
       declined: "Ezt a jelentést a {user} elutasította."
@@ -839,6 +907,7 @@ groups:
       invites:
         header: "Függőben Lévő Meghívások"
         invited: "Meghívva"
+        revoke: "Visszavonás"
         invite: "Meghív"
         placeholder: "Keress egy meghívható felhasználót. Követniük kell téged!"
         empty: "Úgy tűnik, hogy nincs függőben lévő meghívásod a csoporthoz."
@@ -862,6 +931,7 @@ groups:
         declined: "elutasított egy jelentést."
 #page: group-invite
 group-invite:
+  subtitle: "{sender} Meghívott egy csoportba: {group}"
   accept: "Elfogad"
   decline: "Visszautasít"
   accepted: "Már elfogadtad ezt a meghívást."
@@ -882,6 +952,8 @@ explore:
     removing: "Eltávolít…"
     create: "Kedvencekhez Hozzáad"
     creating: "Hozzáad…"
+  category:
+    index: "{category} {type, select, anime {Anime} manga {Manga} other {}}" #category is pre-translated
 #page: media-reactions
 media-reactions:
   create-account: "Fiók Létrehozása"
@@ -934,8 +1006,12 @@ onboarding:
   aozora-conflict:
     title: "Ó, már van egy Kitsu fiókod! Melyiket akarod megtartani?"
   checklist:
+    steps: "{count} lépés maradt hátra! 🦊"
+    rate: "Értékelj 5 animét vagy mangát"
+    rate-incomplete: "Értékelj {count} animét vagy mangát"
     follow: "Kövess 5 felhasználót"
     follow-incomplete: "Kövess {count} {count, plural,=1 {felhasználót} other {felhasználót}}"
+    comment: "Kommentelj egy posztra"
     about-me: "Töltse ki a <i>Rólam</i>odat"
     favorite: "Válasszd ki kedvenc animéd / mangád"
 #component: follow-button
@@ -948,6 +1024,7 @@ feeds:
     preview: "Ez a beágyazásod előnézete."
   uploads:
     select: "Feltöltés"
+    drop: "Ejtsd ide a feltöltéshez"
     invalid: "Érvénytelen fájltípus"
     uploading: "{number, plural,=1 {Kép feltöltése… {progress}%} other {{number} Kép feltöltése… {progress}%}}"
   filter:
@@ -991,11 +1068,16 @@ media-reaction:
 reaction-modal:
   post: "Poszt"
   edit: "Szerkesztés"
+  edit-warning: "Óvatosan! A szerkesztés törlölni fogja a szavazataid."
   delete: "Reakció Törlése"
+  placeholder: "{index, plural, =0 {Át kellett gondolnom néhány fontos életdöntést miatta.} =1 {Váratlanul jó! Rengeteg emlékezetes jelenet.} =2 {Bár lehet hogy nem mindenkinek való, minden bizonnyal érdekes.} other {Túlértékelt, ne pazarold az idődet erre.}}"
+  skip: "Kihagy"
   #component: modals
   modals:
     image-cropper:
       dimensions: "Szélesség: {width}, Magasság: {height}"
+    confirm:
+      check: "Biztos vagy benne, hogy ezt szeretnéd tenni?"
     report-content:
       header: "Csak egyszer jelentheted ezt a tartalmat."
       status: "Jelenlegi státusza a jelentésednek: {status}"
@@ -1016,6 +1098,7 @@ library-entry:
     post-reaction: "Reakció Posztolása"
     edit-reaction: "Reakció Szerkesztése"
     remove-from-library: "Eltávolítás"
+    saved-in: "Mentve: <a href={link}>{status}</a>"
     not-rated: "Nincs Értékelve"
   rating:
     awful: "Borzasztó"
@@ -1086,6 +1169,7 @@ category:
   android: "Android"
   angel: "Angyal"
   anthropomorphism: "Antropomorfizmus"
+  anti-war: "Háborúellenes"
   asia: "Ázsia"
   assassin: "Orgyilkos"
   baseball: "Baseball"
@@ -1131,6 +1215,7 @@ category:
   germany: "Németország"
   ghost: "Szellem"
   harem: "Hárem"
+  heian-period: "Heian Időszak"
   high-school: "Gimnázium"
   historical: "Történelmi"
   horror: "Horror"
@@ -1200,6 +1285,7 @@ category:
   super-power: "Szupererő"
   super-robot: "Szuper Robot"
   swordplay: "Kardforgatás"
+  target-demographics: "Célzott Demográfia"
   tennis: "Tenisz"
   the-arts: "Művészetek"
   themes: "Témák"
