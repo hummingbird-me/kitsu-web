@@ -96,6 +96,7 @@ about:
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Pembaruan Cepat"
     filter:
       all: "Semua"
       anime: "Anime"
@@ -299,6 +300,8 @@ components:
   ad-unit: "Tanpa iklan, situs ini tidak akan ada. Tolong matikan pemblokir iklan hanya untuk Kitsu."
   admin:
     reports:
+      no-explanation: "Tidak Ada Penjelasan Dimuat."
+      not-set: "Tidak Diatur"
       actions:
         button: "Aksi"
         open: "Tandai Dibuka"
@@ -312,6 +315,21 @@ components:
         moderator: "Moderator"
         status: "Status"
         actions: "Aksi"
+  application:
+    nav-search: "Cari di Kitsu"
+  episodes:
+    shortcut-bar:
+      episode-number: "EP {number}"
+    fast-forward: "Kemajuan pustaka dimajukan cepat ke episode {number}!"
+    undo-update: "Urungkan"
+    update-progress: "Perbarui kemajuan pustaka ke episode {number}?"
+    watched: "Tandai Ditonton"
+    join-prompt:
+      pitch: "Lacak kemajuan kamu dan bergabunglah dalam diskusi!"
+      register: "Buat Akun Kitsu"
+  likeable-resource:
+    loading: "Memuat…"
+    more: "Lebih Banyak"
   search:
     header: "Hasil Pencarian"
     view: "lebih banyak"
@@ -326,6 +344,7 @@ components:
       create: "Kirim"
       nsfw: "NSFW"
       spoiler: "Spoiler"
+      tag-media: "Ketik untuk menandakan tayangan atau manga"
     edit-post:
       header: "Sunting Kiriman"
       error:
@@ -355,7 +374,59 @@ components:
       delete: "Hapus Kiriman"
       unpin: "Hapus Sematan dari Profil"
       pin: "Sematkan Kiriman ke Profil"
+      pin-text: "Apakah kamu ingin menyematkan kiriman ini ke profil kamu?"
       report: "Laporkan Kiriman"
+      comment-count: "{count} dari {total}"
+      comment:
+        deleting: "Menghapus Komentar…"
+        reply: "Balas"
+        copy-link: "Salin Link Komentar"
+        edit: "Sunting Komentar"
+        delete: "Hapus Komentar"
+        report: "Lapor Komentar"
+        previous-replies: "Lihat Komentar Sebelumnya"
+        add-reply: "Balas…"
+      comments:
+        all: "Lihat Semua Komentar"
+        parent: "Lihat Komentar Awal"
+        previous-comments: "Lihat Komentar Sebelumnya"
+        leave-comment: "Buat Komentar…"
+    review:
+      by: "Ulasan oleh"
+      spoiler: "Ulasan ini mengandung spoiler."
+      spoiler-hover: "Buka saja ulasannya!"
+      share:
+        twitter: "Tweet"
+        facebook: "Bagi"
+      copy-link: "Salin Link Menuju Ulasan"
+      show: "Tampilkan Konten Ulasan"
+      hide: "Sembuyikan Konten Ulasan"
+      edit: "Sunting Ulasan"
+      delete: "Hapus Ulasan"
+      report: "Lapor Ulasan"
+  users:
+    ban:
+      title: "Apa kamu yakin untuk memblokir pengguna ini?"
+      text: "Mereka dapat mengakses dan memperbarui pustakanya, tetapi tidak dapat membuat kiriman, komentar, ataupun reaksi."
+    delete-user-content:
+      title: "Hapus konten oleh {user}"
+      checkbox:
+        posts: "Kiriman"
+        comments: "Komentar"
+        reactions: "Reaksi"
+      delete: "Hapus"
+    block: "Blokir @{user}"
+    you: "Oh, itu dirimu!"
+    favorites:
+      anime: "Anime"
+      manga: "Manga"
+      more: "Lihat Lebih"
+    alt-name:
+      title: "Kemungkinan Akun Cadangan dari {user}"
+      none: "Tidak ditemukan"
+    past-name:
+      title: "Nama Sebelumnya"
+      none: "Tidak ada nama sebelumnya"
 #page: users
 users:
   profile:
@@ -397,11 +468,13 @@ users:
         label: "Waifu"
         placeholder: "Waifu/Husbando"
         search: "Cari seorang spesialmu"
+        divorce: "cerai"
       bio:
         label: "Bio"
         placeholder: "Ceritakan kisahmu kepada dunia."
     profile-links:
       header: "Link Profil"
+      remove: "Hapus dari profil"
       sites:
         website:
           about: "Masukkan URL situsmu untuk menambah situs."
@@ -490,6 +563,8 @@ users:
         trakt:
           about: "Masukkan Trakt untuk menautkan akun ke profilmu."
           placeholder: "Nama pengguna Trakt-mu"
+    footer:
+      updating: "Memperbarui…"
     favorites:
       header: "Favorit"
       anime: "Anime"
@@ -1163,6 +1238,17 @@ reaction-modal:
   delete: "Hapus Reaksi"
   placeholder: "{index, plural, =0 {Sampai-sampai saya memikirkan kembali tujuan hidup saya.} =1 {Rupanya bagus sekali! Banyak adegan yang terkenang.} =2 {Meski ini bisa saja bukan kesukaan semua orang, tetap saja menarik.} other {Terlalu berlebihan, jangan habiskan waktumu dengan yang satu ini.}}"
   skip: "Lewati"
+  #component: modals
+  modals:
+    block-user:
+      body:
+        text: "Memblokir pengguna ini akan membuatmu tidak bisa melihat konten mereka, dan kontemu tidak akan terlihat juga bagi mereka."
+      button: "Blokir {user}"
+    report-content:
+      header: "Kamu hanya bisa melaporkan konten ini sekali."
+      status: "Status terkini mengenai laporan kamu: {status}"
+      reason: "Tolong berikan alasan untuk pelaporan konten ini."
+      submit: "Lapor"
 #component: library-entry/*
 library-entry:
   state:
@@ -1196,6 +1282,10 @@ user-notifications:
   #Episode 113 of One Piece! aired
   aired: "{type, select, chapter {Bab} episode {Episode} other {}} {number} dari {media} {type, select, chapter {Diterbitkan} episode {Ditayangkan} other {}}"
   aired-unknown: "{type, select, manga {Bab} anime {Episode} other {}} terbaru dari {media} telah {type, select, manga {diterbitkan} anime {ditayangkan} other {}}"
+  menu:
+    all: "Lihat Semua Notifikasi"
+    mark-read: "Tandai semua telah dibaca"
+    none: "Kamu tidak memiliki notifikasi apapun!"
 #ember-power-select
 selects:
   loading: "Memuat…"
@@ -1247,6 +1337,7 @@ errors:
   serverError:
     title: "Oops! Sepertinya server kami memiliki bug."
     body: "Tim kami telah diberitahukan, mohon coba ulang kembali dalam beberapa menit."
+    reload: "Muat Ulang"
 #Loading
 loading: "Memuat {subject, select, episode {Episode} chapter {Bab} episodes {Episode} chapters {Bab} other {}}…"
 timeUnits:
@@ -1271,3 +1362,145 @@ admin:
     flipper: "Flipper"
 button:
   view-all: "lihat semua"
+unsubscribe:
+  email: "Email"
+  unsubscribe: "Berhenti berlangganan"
+category:
+  absurdist-humour: "Humor Absurd"
+  action: "Aksi"
+  adventure: "Petualangan"
+  africa: "Afrika"
+  ahegao: "Ahegao"
+  air-force: "Pasukan Udara"
+  alien: "Alien"
+  all-girls-school: "Sekolah Wanita"
+  alternative-past: "Masa Lalu Alternatif"
+  alternative-present: "Masa Kini Alternatif"
+  americas: "Amerika"
+  android: "Android"
+  angel: "Malaikat"
+  angst: "Kecemasan"
+  anime-influenced: "Dipengaruhi dari Anime"
+  anthropomorphism: "Antropomorphisme"
+  anti-war: "Anti Perang"
+  asia: "Asia"
+  assassin: "Pembunuhan"
+  bakumatsu-meiji-period: "Periode Bakumatsu - Meiji"
+  baseball: "Bisbol"
+  basketball: "Bola Basket"
+  battle-royale: "Battle Royale"
+  bishounen: "Bishounen"
+  blackmail: "Pemerasan"
+  bounty-hunter: "Bounty Hunter"
+  boxing: "Tinju"
+  breaking-the-fourth-wall: "Mendobrak Dinding Keempat"
+  buddhism: "Buddhisme"
+  card-games: "Permainan Kartu"
+  china: "China"
+  combat: "Pertempurean"
+  comedy: "Komedi"
+  coming-of-age: "Keremajaan"
+  conspiracy: "Konspirasi"
+  contemporary-fantasy: "Fantasi Kontemporer"
+  content-indicators: "Indikator Konten"
+  cooking: "Memasak"
+  housewives: "Ibu Rumah Tangga"
+  human-enhancement: "Peningkatan Manusia"
+  humanoid-alien: "Alien Humanoid"
+  idol: "Idol"
+  isekai: "Isekai"
+  island: "Pulau"
+  italy: "Italia"
+  japan: "Jepang"
+  josei: "Josei"
+  juujin: "Juujin"
+  kids: "Anak-Anak"
+  korea: "Korea"
+  kyoto: "Kyoto"
+  law-and-order: "Hukum dan Aturan"
+  loli: "Loli"
+  love-polygon: "Cinta Segitiga"
+  mafia: "Mafia"
+  magic: "Sihir"
+  magical-girl: "Gadis Penyihir"
+  maid: "Pelayan"
+  mars: "Mars"
+  martial-arts: "Bela Diri"
+  mecha: "Mecha"
+  mermaid: "Putri Duyung"
+  middle-east: "Timur Tengah"
+  middle-school: "Sekolah Menengah"
+  military: "Militer"
+  motorsport: "Motorsport"
+  music: "Musik"
+  musical-band: "Band Musik"
+  mystery: "Misteri"
+  navy: "Angkatan Laut"
+  netorare: "Netorare"
+  new-york: "New York"
+  ninja: "Ninja"
+  nurse: "Perawat"
+  office-lady: "Wanita Kantoran"
+  other-planet: "Planet Lain"
+  parallel-universe: "Dunia Paralel"
+  parasite: "Parasit"
+  parental-abandonment: "Pengabaian Orangtua"
+  parody: "Parodi"
+  past: "Masa Lalu"
+  performance: "Performa"
+  piloted-robot: "Robot Berawak"
+  pirate: "Bajak Laut"
+  plot-continuity: "Kelanjutan Plot"
+  politics: "Politik"
+  post-apocalypse: "Pasca Apokalips"
+  power-suit: "Power Suit"
+  tentacle: "Tentakel"
+  the-arts: "Seni"
+  themes: "Tema"
+  thievery: "Pencurian"
+  three-kingdoms: "Tiga Kerajaan"
+  thriller: "Thriller"
+  time-travel: "Perjalanan Waktu"
+  tokugawa-period: "Periode Tokugawa"
+  tokyo: "Tokyo"
+  tone-changes: "Perubahan Suasana"
+  transforming-craft: "Transformasi Model"
+  united-kingdom: "Britania Raya"
+  united-states: "Amerika Serikat"
+  university: "Universitas"
+  unrequited-love: "Cinta Tak Terbalaskan"
+  vampire: "Vampir"
+  victorian-period: "Periode Victoria"
+  violence: "Kekerasan"
+  violent-retribution-for-accidental-infringement: "Retribusi Keras untuk Pelanggaran Tidak Disengaja"
+  virtual-reality: "Realitas Virtual"
+  volleyball: "Bola Voli"
+  voyeurism: "Voyeurisme"
+  waitress: "Pelayan"
+  war: "Perang"
+  working-life: "Kehidupan Bekerja"
+  world-war-ii: "Perang Dunia II"
+  wrestling: "Gulat"
+  yaoi: "Yaoi"
+  #NSFW categories
+  nudity: "Ketelanjangan"
+  sex: "Seks"
+  ecchi: "Ecchi"
+  lingerie: "Pakaian Dalam"
+  pantsu: "Pantsu"
+  sexual-fantasies: "Fantasi Seksual"
+  incest: "Incest"
+  teacher-x-student: "Guru x Murid"
+  sexual-abuse: "Pelecehan Seksual"
+  fetishes: "Fetish"
+  anal: "Anal"
+  bdsm: "BDSM"
+  bondage: "Bondage"
+  erotic-torture: "Penyiksaan Erotis"
+  femdom: "Dominasi Wanita" #Female Domination
+  gigantic-breasts: "Payudara Raksasa"
+  lactation: "Laktasi"
+  large-breasts: "Payudara Besar"
+  masturbation: "Masturbasi"
+  prostitution: "Prostitusi"
+  public-sex: "Seks Publik"
