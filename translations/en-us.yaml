@@ -296,7 +296,7 @@ media:
         sk_sk: "Slovak"
         sl_sl: "Slovenian"
         sr_cs: "Serbian (Latin)"
-        sr_sp: "Serbian (Cryllic)"
+        sr_sp: "Serbian (Cyrillic)"
         sv_se: "Swedish"
         th_th: "Thai"
         tl_ph: "Tagalog"
@@ -530,10 +530,15 @@ components:
     block: "Block @{user}"
     you: "Hey, that's you!"
     favorites:
-      title: "Favorite Series"
+      title: "Favorite {type, select, series {Series} characters {Characters} other {}}"
       anime: "Anime"
       manga: "Manga"
       more: "Show More"
+      edit: "Edit favorite {type, select, anime {anime} manga {manga} characters {characters} other {}}"
+      empty:
+        yours: "You haven't listed your favorite {type, select, anime {anime} manga {manga} characters {characters} other {}} yet!"
+        others: "User has no favorites"
+      choose: "Choose favorite {type, select, anime {anime} manga {manga} characters {characters} other {}}"
     alt-name:
       title: "Possible Alt Accounts of {user}"
       none: "No alts found"
