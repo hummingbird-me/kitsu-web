@@ -1359,8 +1359,100 @@ onboarding:
   aozora-conflict:
     title: "Oh, you already have a Kitsu account! Which do you want to keep?"
     info: "Activity feed posts from both accounts will be merged.  All other account information will be overwritten by the account you select below."
+    entries: "{count} Library Entries"
   aozora-account-details:
+    email:
+      title: "What email should we use?"
+      info: "We'll use your email address to send you occasional updates and help you out if you forget your password."
+      placeholder: "Email"
+    username:
+      title: "What should we call you?"
+      info: "Your username should be original, being witty is optional."
+      placeholder: "Username"
+    password:
+      title: "Think of a strong password."
+      info: "Your password should be at least 8 characters. You should also consider mixing in numbers and special characters! This is to keep the bad guys from doing bad guy things with your account."
+      placeholder: "Password"
     submit: "Looks Good!"
+  find-friends:
+    title: "Find your friends!"
+    info: "Kitsu becomes more interesting as you follow others. Connect your social accounts so you and your friends can find each other."
+    connect: "Connect to Facebook"
+    disconnect: "Disconnect"
+    description: "Friends you have on Facebook who are also on Kitsu will become part of your Kitsu network. <strong>We will never post to Facebook or message your friends without your permission.</strong>"
+    ready: "All set - Start using Kitsu!"
+  import-file:
+    title: "Okay, let's import your {siteName} account"
+    info: "Our {siteName} importer can import your existing anime and manga data from an exported file."
+    select: "Select File"
+    back: "Back to Import Select"
+    start: "Start {siteName} Import"
+  import-progress:
+    title: "Hang tight! We're importing your data!"
+    info: "Your {siteName} import will continue in the background."
+    safe: "You can safely continue setting up your account in the mean time."
+    notification: "We'll send you a notification when your import has completed!"
+    finish: "Finish"
+    continue: "Continue"
+  import-select:
+    title: "Do you have anime / manga data to import?"
+    info: "If you currently track your anime and manga on another platform, we can quickly import your data to jumpstart your account."
+    mal: "Import MyAnimeList Account"
+    anilist: "Import Anilist Account"
+    close: "Close"
+    skip: "Nothing to import, skip this"
+  import-username:
+    title: "Okay, let's import your {siteName} account"
+    info: "Our {siteName} importer can migrate your existing anime and manga data. <strong>Your lists <em>must</em> be publicly viewable for us to import!</strong>"
+    placeholder: "Username"
+    back: "Back to Import Select"
+    start: "Start {siteName} Import"
+  rate-content:
+    title: "Rate the content you've seen"
+    info: "We use your 'Library' to track the media you've seen and look forward to. Let's get your library started by rating some of the anime and manga you've seen or read."
+    anime: "Anime"
+    manga: "Manga"
+    placeholder: "Search by media title…"
+    rate: "Rate {numRatedLeft} more to continue"
+    continue: "Continue"
+  sign-in:
+    title: "Welcome back!"
+    facebook: "Continue with Facebook"
+    user: "Or, sign in with:"
+    email: "Email"
+    password: "Password"
+    forgot: "forgot password?"
+    login: "Login"
+  sign-up:
+    username:
+      title: "What should we call you?"
+      info: "Your username should be original, being witty is optional."
+      placeholder: "Username"
+    email:
+      title: "What email should we use?"
+      info: "We'll use your email address to send you occasional updates and help you out if you forget your password."
+      placeholder: "Email"
+    password:
+      title: "Think of a strong password."
+      info: "Your password should be at least 8 characters. You should also consider mixing in numbers and special characters! This is to keep the bad guys from doing bad guy things with your account."
+      placeholder: "Password"
+    submit-aozora: "Looks Good!"
+    submit: "{step, select,
+      0 {Let's get some basic info first}
+      1 {Very witty - email is next!}
+      2 {Looks legit, how about a password?}
+      3 {Cool- Let's create that account}
+      other {}}"
+  social-auth:
+    title: ""
+    intro: "Create an account to track, share and discover anime and manga in a uniquely social way."
+    facebook: "Continue with Facebook"
+    notice: "We won’t post without asking"
+    email: "Sign up with email"
+    account: "Have an account?"
+    login: "Login"
+    privacy: "If you sign up with Facebook, we’ll start you off with a network by automatically matching you with your followers/followees or friends already on Kitsu. Don't worry, we’ll never post to Facebook without your permission."
+    agreement: "By signing up you indicate that you have read and agree to the <a href=\"/terms\">Terms of Service</a> and <a href=\"/terms\">Privacy Policy</a>."
   checklist:
     header: "Getting Started on Kitsu"
     steps: "{count} steps left! 🦊"
