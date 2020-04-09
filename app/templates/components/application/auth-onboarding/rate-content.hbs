@@ -1,18 +1,18 @@
 <div class="modal-wrapper">
   <div class="auth-section active">
-    <h6 class="auth-section-title">Rate the content you've seen</h6>
-    <p class="auth-section-helper">We use your 'Library' to track the media you've seen and look forward to. Let's get your library started by rating some of the anime and manga you've seen or read.</p>
+    <h6 class="auth-section-title">{{t "onboarding.rate-content.title"}}</h6>
+    <p class="auth-section-helper">{{t "onboarding.rate-content.info"}}</p>
   </div>
 
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" data-toggle="tab" href="#anime" role="tab" {{action "updateTab" "anime"}}>
-        Anime
+        {{t "onboarding.rate-content.anime"}}
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="tab" href="#manga" role="tab" {{action "updateTab" "manga"}}>
-        Manga
+        {{t "onboarding.rate-content.manga"}}
       </a>
     </li>
   </ul>
@@ -20,7 +20,7 @@
   <div class="onboarding-search">
     {{one-way-search searchQuery
       update=(perform updateSearchQuery)
-      placeholder="Search by media title..."}}
+      placeholder=(t "onboarding.rate-content.placeholder")}}
   </div>
 
   <div class="tab-content container onboarding-media-wrapper">
@@ -69,9 +69,9 @@
     <progress class="progress" value={{numRated}} max="5"></progress>
     <button type="button" class="button button--primary" disabled={{if (not-eq numRatedLeft 0) "disabled"}} {{action "changeComponent" "find-friends"}}>
       {{#if (not-eq numRatedLeft 0)}}
-        Rate {{numRatedLeft}} more to continue
+        {{t "onboarding.rate-content.rate"}}
       {{else}}
-        Continue
+        {{t "onboarding.rate-content.continue"}}
       {{/if}}
     </button>
   </div>
