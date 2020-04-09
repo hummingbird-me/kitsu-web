@@ -142,6 +142,7 @@ media:
       year: "Jahr"
       score: "Durchschnittliche Bewertung"
       seasons: "Seasons"
+      streamers: "Streamingdienste (USA)"
       units: "{type, select, anime {Episoden} manga {Kapitel} other {}}"
       rating: "Bewertung"
       categories: "Kategorien"
@@ -151,6 +152,7 @@ media:
       rating: "Durchschnittliche Bewertung"
       date: "Datum"
       recent: "Kürzlich hinzugefügt"
+  none: "Keine Treffer :("
   show:
     navigation:
       summary: "Zusammenfassung"
@@ -263,6 +265,7 @@ media:
         header: "{type, select, episode {Episode} chapter {Kapitel} other {}} Discussion"
     characters:
       header: "{title} Charaktere"
+      sub-header: "{type, select, anime {Hier ist eine eine komplette Liste der Charactere und deren Deutsche Synchronsprecher für den Anime {title}} Manga {The following is a full list of characters for the manga {title}} other {}}"
     reactions:
       loading: "Lade Reaktionen…"
       delete: "Reaktion löschen"
@@ -290,6 +293,7 @@ media:
     info: "Beiträge werden nicht in Deinem Follower- oder {type}-Feed angezeigt"
   show-posts:
     text: "Beiträge zu {media} anzeigen"
+    info: "Beiträge werden in Deinem gefolgten- oder {type}-Feed angezeigt"
 #components
 components:
   ad-unit: "Werbung ist doof, aber nur so halten wir uns über Wasser. Bitte mach für uns im Adblocker eine Ausnahme."
@@ -318,6 +322,7 @@ components:
     header: "Suchergebnisse"
     view: "Mehr anzeigen"
     load: "weitere laden"
+    none: "Keine Treffer :("
   sidebar-footer:
     contact: "Kontaktieren"
     terms: "Nutzungsbedingungen"
@@ -332,6 +337,7 @@ components:
       error:
         tagged: "Leider können wir noch nicht erlauben, Deine markierten Medien zu bearbeiten."
     follow:
+      followed: "Folge Ich"
       delete: "Aktivität löschen"
     library:
       delete: "Löschen"
@@ -453,6 +459,22 @@ users:
           placeholder: "Dein Dailymotion Benutzername"
         kickstarter:
           about: "Gib unten Deinen Kickstarter Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Kickstarter Benutzername"
+        mobcrush:
+          about: "Gib unten Deinen Mobcrush Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Mobcrush-Benutzername"
+        osu:
+          about: "Gib unten Deine osu! ID ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Deine osu! ID"
+        patreon:
+          about: "Gib unten Deinen Patreon Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Patreon Benutzername"
+        deviantart:
+          about: "Gib unten Deinen DeviantArt Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein DeviantArt Benutzername"
+        dribbble:
+          about: "Gib unten Deinen Dribbble Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Dribbble Benutzername"
         imdb:
           about: "Gib unten Deine IMDb Kanal URL ein, um einen Link Deinem Profil hinzuzufügen."
           placeholder: "Deine IMDb Kanal URL"
@@ -482,6 +504,8 @@ users:
   activity:
     onboarding:
       welcome: "Hallo {user}, diese Seite ist komplett über DICH!"
+      about: "So wie du Kitsu benutzt wird sich dein <strong>Persönlicher Feed</strong> füllen mit den Anime and Manga die du angesehen, gelesen, abgeschlossen, und noch ansehen möchtest. Du kannst Beiträge in Text, Bild und Video mit der Box da unten beitragen. Deine Beiträge werden sowohl von deinen Followern als auch den Nutzern des Globalen Feeds gesehen und wertgeschätzt."
+      action: "Fühl dich ganz wie zuhause! Lad ein Profilbild und ein Banner hoch! Klicke <span>Bearbeiten</span> oben drüber um loszulegen."
     about:
       empty: "Ist ein Geheimnis"
       gender:
@@ -539,9 +563,58 @@ users:
       reset-loading: "Setze zurück…"
       reset-confirmation: "Dies löscht Ihre gesamte Bibliothek, zugehörige Rezensionen und Reaktionen. Sind Sie sicher, dass Sie fortfahren möchten?"
       issues:
+        header: "Probleme der Bibliothek"
         reactions: "{count} an abgeschlossener Medien brauchen noch eine <b>Kurzreview</b>"
+        fix: "Verfassen"
+    list:
+      edit: "Eintrag bearbeiten"
+      list-edit: "Bearbeiten"
+      more: "Weitere"
+      unstarted: "Noch nicht begonnen"
+      unrated: "Keine Bewertung"
+      progress: "{type, select, anime {Folge {progress}} manga {Kap. {progress}} other {}}"
+      table-header:
+        title: "{type, select, anime {Anime Titel} manga {Manga Titel} other {}}"
+        rating: "Bewertung"
+        progress: "Fortschritt"
+        volumes: "Ausgaben"
+      add-reaction: "Kurzreviews hinzufügen"
+      empty:
+        search: "Es konnten keine Bibliothekseinträge mit Ihrer Suchanfrage gefunden werden."
+        header: "Sieht so aus, als ob deine Bibliothek hier leer ist! Bereit etwas Neues anzufangen?"
+        guest-header: "Sieht so aus, als hätte {user} noch keine Bibliothekseinträge."
+        button: "Durchsuchen {type}"
+    grid:
+      view-media: "Zeige {type, select, anime {Anime} manga {Manga} other {}}"
+    edit:
+      status: "Bibliotheksstatus"
+      progress: "Fortschritt"
+      units: "{type, select, anime {von {num} Folgen} manga {von {num} Kapitel} other {}}"
+      volumes: "Ausgaben"
+      volume-units: "von {num} Bänden"
+      rating: "Bewertung"
+      privacy: "Privatsphäre"
+      started: "Begonnen am"
+      finished: "Beendet am"
+      notes: "Persönliche Notizen"
+      remove: "Aus der Bibliothek entfernen"
+      save: "Änderungen speichern"
+      saving: "Speichere…"
+    bulk:
+      select-all: "Alle auswählen"
+      select-none: "Keins auswählen"
+      remove: "Entferne <strong>{num}</strong> Dinge"
+      move-to: "Verschiebe <strong>{num}</strong> nach…"
+      remove-loading: "Entferne…"
+      update-loading: "Aktualisiere…"
   reactions:
+    empty: "Dieser Benutzer hat noch keine Reaktionen"
+    filters:
+      all: "Alle Kurzreviews"
+      anime: "Anime-Reaktionen"
+      manga: "Manga-Reaktionen"
     sorts:
+      best: "Beste"
       new: "Neueste"
   hide-posts:
     text: "Beiträge von {user} ausblenden"
@@ -632,6 +705,7 @@ settings:
     more: "Weitere laden"
   index:
     header: "Profil"
+    sub-header: "Konto- und Regionseinstellungen"
     name: "Anzeigename"
     url: "Profil-URL"
     email: "E-Mail"
@@ -651,6 +725,262 @@ settings:
     update: "Profil aktualisieren"
   linked-accounts:
     header: "Verknüpfte Konten"
+    sub-header: "Drittanbieter-Konten mit Kitsu verbinden"
+    facebook: "Facebook"
+    disconnect: "Facebook trennen"
+    connect: "Mit Facebook verbinden"
+  notifications:
+    header: "Push-Benachrichtigungen"
+    sub-header: "Allgemeine seitenweite Benachrichtigungen"
+    contexts:
+      web: "Web"
+      email: "E-Mail"
+      mobile: "Mobil"
+    descriptions:
+      mentions: "Jemand <strong>erwähnte</strong> mich in einem Post oder Kommentar"
+      replies: "Jemand <strong>schreibt</strong> in meinem Post oder Kommentar"
+      likes: "Jemand <strong>mag</strong> mein Post oder Kommentar"
+      follows: "Jemand <strong>folgt</strong> mich"
+      posts: "Jemand <strong>schreibt</strong> in meinem Profil"
+      reaction_votes: "Jemand <strong>aufwertet</strong> meine Medien Reaktion"
+      airing: "Neue Episode wurde veröffentlicht"
+    newsletter:
+      newsletter: "Newsletter"
+      subscribed: "Abonniert"
+      message: "Wenn aktiviert, dann erhälst du gelegentlich (und sehr witzige) Email updates über Kitsu, geschrieben von Josh selbst."
+    loading: "Lade Einstellungen…"
+    update: "Einstellungen aktualisieren"
+  password:
+    header: "Passwort"
+    sub-header: "Ändere Dein Passwort"
+    new-pswd: "Neues Passwort"
+    confirm-pswd: "Passwort bestätigen"
+    update-pswd: "Passwort ändern"
+  privacy:
+    header: "Privatsphäre"
+    sub-header: "Passen Sie an wie andere sie finden können"
+    checkbox: "Im globalen Feed anzeigen"
+    message: "Wenn deaktiviert, werden Ihre Beiträge nur für Deine Follower und Besucher Deines Profils verfügbar."
+    update: "Profil aktualisieren"
+#page: feedback
+feedback:
+  header: "Feedback"
+  bugs: "Fehlermeldungen"
+  features: "Featureanfragen"
+  database: "Datenbankanfragen"
+  mobile-bugs: "Appfehler"
+  mobile-features: "Appfunktionen"
+#page: groups
+groups:
+  index:
+    call-to-action: "Jeder kann eine Gruppe erstellen und entdecken. Jede Gruppe konzentriert sich auf ein Thema oder eine Aktivität."
+    create-btn: "Eine Gruppe erstellen"
+  create:
+    header: "Eine Gruppe erstellen"
+    form:
+      required: "Pflichtfeld"
+      name: "Name"
+      tagline: "Slogan"
+      about: "Beschreibung"
+      rules: "Regeln"
+      neighbors: "Nachbarn"
+      neighbors-placeholder: "Nach Gruppe suchen"
+      privacy: "Privatsphäre"
+      privacy-options:
+        open: "Öffentlich"
+        closed: "Privat"
+        restricted: "Eingeschränkt"
+      privacy-features:
+        open: "<li>Jeder sieht es</li> <li>Jeder kann beitreten</li> <li>Jeder kann posten und kommentieren</li>"
+        closed: "<li>von der Öffentlichkeit versteckt</li> <li>Benutzer können nur durch eine Einladung beitreten</li> <li>kann nicht öffentlich gemacht werden</li>"
+        restricted: "<li>Jeder sieht es</li> <li>Jeder kann beitreten</li> <li>Nur Gruppenführer können neue Posts erstellen.</li>"
+      category: "Kategorie"
+      category-placeholder: "Kategorie auswählen"
+      avatar: "Avatar"
+      cover: "Titelbild"
+      create-btn: "Erstelle deine Gruppe!"
+      save-btn: "Speichern"
+      helper:
+        name:
+          header: "Name"
+          desc: "Gruppennamen sollten aussagen worum es in deiner Gruppe geht, aber du kannst trotzdem kreative sein und damit spaß haben!"
+        tagline:
+          header: "Slogan"
+          desc: "Fasse den Zweck deiner Gruppe in maximal 60 Zeichen zusammen. Du kannst später weitere Informationen hinzufügen."
+        about:
+          header: "Beschreibung"
+          desc: "Erkläre den Zweck deiner Gruppe ausführlich, teile wichtige Informationen oder etwas anderes."
+        rules:
+          header: "Regeln"
+          desc: "Lege einige Richtlinien fest, denen deine Gruppenmitglieder folgen sollen. Diese Regeln werden von Markdown unterstützt!"
+        neighbors:
+          header: "Nachbarn"
+          desc: "Füge in deiner Nachbarschaft verwandte Gruppen hinzu, damit deine Mitglieder neue Communities entdecken können!"
+        privacy:
+          header: "Privatsphäre"
+          desc: "Deine Datenschutzeinstellungen bestimmen, wie offen oder geschlossen deine Gruppe für die Öffentlichkeit ist. Wenn du deine Gruppe privat machen möchtest, kannst du sie in Zukunft NICHT mehr öffentlich machen."
+        category:
+          header: "Kategorie"
+          desc: "Kitsu verwendet Kategorien, um Gruppen zu organisieren, damit Benutzer mehr von dem finden, was sie lieben."
+        avatar:
+          header: "Avatar"
+          desc: "Dieses Bild wird in Kitsu verwendet, um deine Gruppe zu identifizieren."
+        cover:
+          header: "Titelbild"
+          desc: "Dieses Bild wird oben auf der Seite deiner Gruppe auf Desktops angezeigt. Die Seiten können je nach Bildschirmgröße des Betrachters leicht abgeschnitten sein."
+      errors:
+        neighbors-same: "Du kannst deine Gruppe nicht als Nachbar hinzufügen."
+  dashboard-btn: "Dashboard"
+  join-group: "Gruppe beitreten"
+  leave-group: "Gruppe verlassen"
+  hide-posts:
+    text: "Beiträge von {group} ausblenden"
+    info: "Beiträge werden nicht in deinem Follower Feed auftauchen"
+  show-posts:
+    text: "Beiträge von {group} anzeigen"
+    info: "Beiträge werden in deinem Follower Feed auftauchen"
+  nsfw: "NSFW"
+  neighbors: "Nachbarn"
+  navigation:
+    activity: "Aktivität"
+    rules: "Regeln"
+    members: "Mitglieder"
+    leaders: "Leiter"
+    neighbors: "Nachbarn"
+  activity:
+    feed-header: "Gruppenaktivität"
+    about: "Über {group}"
+    members: "Mitglieder"
+    feed-restricted: "Dies ist eine eingeschränkte Gruppe. Jeder kann kommentieren, nur Gruppenführer können Beiträge erstellen."
+  rules:
+    header: "Community-Regeln"
+    empty: "Hey! Sieht so aus, als würdest du die Kitsu-Community-Richtlinien verwenden. Wenn du deine eigenen Regeln angeben möchten, kannst du dies auf deiner <a href={link}>Einstellungsseite</a> tun"
+  tickets:
+    empty: "Hurra! Du hast keine Tickets zu bearbeiten."
+    filter:
+      open: "Offene Tickets"
+      resolved: "Gelöste Tickets"
+    conversation:
+      title: "Ticket von <a href={link}>{name}</a>"
+      nav:
+        leader: "Leiternotiz"
+  dashboard:
+    navigation:
+      reports: "Meldungen"
+      tickets: "Tickets"
+      members: "Mitglieder"
+      leaders: "Leiter"
+      settings: "Einstellungen"
+    overview:
+      members:
+        header: "Mitglieder"
+        total: "Gesamte Mitglieder"
+      activity:
+        header: "Benutzeraktivität"
+        posts: "Heutige Beiträge"
+        comments: "Heutige Kommentare"
+      help-desk:
+        header: "Offene Fälle"
+        tickets: "Tickets"
+        reports: "Meldungen"
+      tickets: "Neueste Tickets"
+      reports: "Neueste Meldungen"
+      log: "Leiter-Log"
+    members:
+      invites:
+        header: "Offene Einladungen"
+        invited: "Eingeladen"
+        invite: "Einladen"
+      bans:
+        header: "Gesperrte Benutzer"
+        unban: "Entsperren"
+        ban: "Sperren"
+        placeholder: "Name"
+        empty: "Hurra! Du hast keine gesperrten Benutzer."
+      members:
+        header: "Mitglieder"
+        table:
+          users: "Benutzer"
+          permissions: "Rang"
+          joined: "Beitritt"
+          actions: "Aktionen"
+        remove: "Entfernen"
+        ban: "Sperren"
+    leaders:
+      chat:
+        header: "Leiter-Chat"
+        post-btn: "Posten"
+        placeholder: "Nachricht an die Leiter senden"
+    audit:
+      user:
+        banned: "hat <a href={link}>{user}</a> gesperrt."
+        unbanned: "hat <a href={link}>{user}</a> entsperrt."
+        invited: "hat <a href={link}>{user}</a> eingeladen, der Community beizutreten."
+#shared: media
+media-shared:
+  types:
+    anime:
+      All: "Alle"
+      tv: "TV"
+      special: "Spezial"
+      ona: "ONA"
+      ova: "OVA"
+      movie: "Film"
+      music: "Musik"
+    manga:
+      All: "Alle"
+      manga: "Manga"
+      novel: "Roman"
+      manhua: "Manhua"
+      oneshot: "One-shot"
+      doujin: "Doujin"
+      manhwa: "Manhwa"
+      oel: "OEL"
+  statuses:
+    anime:
+      finished: "Beendet"
+      tba: "TBA"
+    manga:
+      finished: "Beendet"
+      tba: "TBA"
+#shared: form:
+form-shared:
+  placeholders:
+    username: "Benutzername"
+    password: "Passwort"
+#component: auth-onboarding
+onboarding:
+  aozora-account-details:
+    submit: "Sieht gut aus!"
+#component: follow-button
+follow-button:
+  follow: "Folgen"
+  unfollow: "Entfolgen"
+#component: kitsu-feed
+feeds:
+  uploads:
+    select: "Hochladen"
+    drop: "Zum Hochladen ablegen"
+    invalid: "Ungültiger Dateityp"
+  filter:
+    all: "Alle Aktivitäten"
+    media: "Medienaktivität"
+    user: "Benutzeraktivität"
+  post:
+    meta:
+      media: "Weil du vor kurzem {media} angesehen hast"
+#component: groups/group-list
+group-list:
+  sort:
+    recent: "Letzte Aktivitäten"
+#component: library-entry/*
+library-entry:
+  state:
+    drop-this: "Abgebrochen"
+    change-rating: "Bewertung ändern"
+    remove-rating: "Bewertung entfernen"
+    rate-this: "Bewertung hinzufügen"
+    edit-library: "Bibliothekseintrag bearbeiten"
 admin:
   deployed-version: "Aktuelle Versionsnummer: {version}"
   links:
