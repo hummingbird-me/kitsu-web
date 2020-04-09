@@ -1,6 +1,6 @@
 <div class="modal-wrapper">
   <div class="auth-section active">
-    <h6 class="auth-section-title">Welcome back!</h6>
+    <h6 class="auth-section-title">{{t "onboarding.sign-in.title"}}</h6>
     <p class="auth-section-helper">Login to your Kitsu account below. If you need an account, <a href="#" {{action "changeComponent" "social-auth"}}>create one</a>.</p>
   </div>
 
@@ -12,16 +12,16 @@
         </span>
         <div class="button-labelSet">
           <span class="button-label button-label--multiLine">
-            Continue with Facebook
+            {{t "onboarding.sign-in.facebook"}}
           </span>
         </div>
       </button>
     </div>
-    <small>Or, sign in with:</small>
+    <small>{{t "onboarding.sign-in.user"}}</small>
     <form>
       <div class="form-group email-login">
         <input
-          placeholder="Email"
+          placeholder={{t "onboarding.sign-in.email"}}
           autocomplete="email username"
           class="form-control username"
           value={{identification}}
@@ -29,7 +29,7 @@
           autofocus required data-test-identification>
 
         <input
-          placeholder="Password"
+          placeholder={{t "onboarding.sign-in.password"}}
           autocomplete="current-password"
           type="password"
           class="form-control password"
@@ -37,7 +37,7 @@
           oninput={{action (mut password) value="target.value"}}
           required data-test-password>
 
-        <a href={{href-to "password-reset"}} class="forgot-pass-link" {{action "transitionToForgot"}}>forgot password?</a>
+        <a href={{href-to "password-reset"}} class="forgot-pass-link" {{action "transitionToForgot"}}>{{t "onboarding.sign-in.forgot"}}</a>
       </div>
 
       <div class="form-cta">
@@ -48,7 +48,7 @@
           {{#if authentication.isRunning}}
             {{loading-spinner}}
           {{else}}
-            Login
+            {{t "onboarding.sign-in.login"}}
           {{/if}}
         </button>
       </div>
