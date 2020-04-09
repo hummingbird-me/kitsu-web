@@ -3,6 +3,8 @@
 titles:
   anime:
     index: "Досліджуй аніме"
+  manga:
+    index: "Досліджуй манґу"
   media:
     show:
       units: "{type, select, anime {Серії} manga {Глави} other {}}"
@@ -10,12 +12,17 @@ titles:
       reactions: "Реакції"
       franchise: "Франшиза"
   explore:
+    index: "Досліджуй {mediaType, select, anime {аніме} manga {манґу} other {}}"
     more:
       trending: "В тренді цього тижня {type, select, other {}}"
+      top-current: "Топ {type}, що наразі {type, select, Anime {в ефірі} Manga {в публікації} other {}}"
+      top-upcoming: "Топ майбутн{type, select, Anime {іх аніме} Manga {ьої манґи} other {}}"
       highest-rated: "{type} з найвищим рейтингом"
+      most-popular: "Найпопулярніш{type, select, Anime {е аніме} Manga {а манґа} other {е}}"
     category:
       index: "{type} в категорії {category}"
       more:
+        newly-released: "{type}, як{type, select, Anime {е} Manga {а} other {ий}} нещодавно вийш{type, select, Anime {ло} Manga {ла} other {ов}} в категорії {category}"
         trending: "Зараз в тренді {type} в категорії {category}"
         most-popular: "Найпопулярніше {type} в категорії {category}"
   not-found: "Не знайдено"
@@ -34,11 +41,13 @@ titles:
   reviews: "Рецензія від {user}"
   notifications: "Сповіщення"
   feedback:
+    bugs: "Вади (баги)"
     feature-requests: "Запити щодо функціональності"
     database-requests: "Запити щодо бази даних"
     mobile-bugs: "Мобільні вади"
     mobile-features: "Мобільний функціонал"
   admin:
+    index: "Адмін"
     reports: "Звіти"
   groups:
     index: "Групи"
@@ -56,12 +65,18 @@ titles:
         leaders: "Лідери {group}"
         settings: "Налаштування {group}"
   group-invite: "Запрошення до групи"
+#head
+head:
+  users:
+    description: "{user} використовує Kitsu для відстеження свого прогресу та обміну враженнями від аніме та манґи."
 #header
 header:
   library: "Бібліотека"
   anime: "Аніме"
+  manga: "Манґа"
   trending: "Популярні"
   groups: "Групи"
+  feedback: "Зворотний зв’язок"
   browse: "Огляд"
   auth:
     sign-in: "Увійти"
@@ -69,7 +84,12 @@ header:
   user:
     profile: "Переглянути профіль"
     settings: "Налаштування"
+    admin: "Адмін"
     logout: "Вийти"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Давайте спочатку отримаємо основну інформацію} 1 {Дуже дотепно — тепер електронну пошту!} 2 {Наче гаразд, як щодо пароля?} 3 {Круто! Давайте створимо цю обліковку} other {}}"
 #page: about
 about:
   header: "Про Kitsu"
@@ -80,6 +100,7 @@ dashboard:
     filter:
       all: "Все"
       anime: "Аніме"
+      manga: "Манґа"
     empty:
       html: "Вміст, який ви додали або оновили в межах своєї <a href={link}>Бібліотеки</a>, з’явиться тут для швидкого оновлення."
       discover: "Знайти вміст"
@@ -97,6 +118,8 @@ dashboard:
       discussion: "Переглянути дискусію"
       edit: "Редагувати запис бібліотеки"
       popout: "Редактор-у-вікні"
+      editor:
+        placeholder: "(Необов’язково) Поділіться своїми думками про {type, select, anime {серію} manga {главу} other {}} {number}"
   onboarding:
     welcome: "Агов, {user}, вітаємо в Kitsu!"
     about: "Це стрічка глобальної активності. Вона заповнена останньою активністю всіх користувачів Kitsu — навіть вашою! Після того, як у вас з’явиться можливість слідкувати за ще кількома цікавими користувачами, ми перемкнемо вашу стрічку за замовчуванням із Глобальної на стрічку Слідування."
@@ -145,8 +168,12 @@ media:
         community: "{rating}% схвалення спільноти"
         match: "Збігається на {rating}%"
       ranking:
+        full:
+          popularity: "{type, select, anime {№{rank} у рангу (найпопулярніше аніме)} manga {№{rank} у рангу (найпопулярніша манґа)} other {}}"
+          rating: "{type, select, anime {№{rank} у рангу (аніме з найвищим рейтингом)} manga {№{rank} у рангу (манґа з найвищим рейтингом)} other {}}"
         short:
           popularity: "{type, select, anime {№{rank} найпопулярніше} manga {№{rank} найпопулярніша} other {}}"
+          rating: "№{rank} з найвищим рейтингом"
       categories: "Категорії"
       relationships:
         header: "Більше з цієї серії"
@@ -171,7 +198,10 @@ media:
         de_de: "Німецька"
         el_gr: "Грецька"
         en: "Англійська"
+        en_cn: "Китайська (піньїнь)"
         en_il: "Іврит (латиниця)"
+        en_jp: "Японська (ромаджі)"
+        en_kr: "Корейська (ромаджа)"
         en_th: "Тайська (латиниця)"
         es_es: "Іспанська"
         fi_fi: "Фінська"
@@ -197,23 +227,40 @@ media:
         tl_ph: "Тагальська"
         tr_tr: "Турецька"
         uk_ua: "Українська"
+        vi_vn: "В’єтнамська"
         zh_cn: "Китайська (спрощена)"
         zh_hk: "Китайська (Гонконг)"
         zh_mo: "Китайська (Макао)"
         zh_tw: "Китайська (традиційна)"
         synonyms: "Синоніми"
       information:
+        header: "Детальніше {type, select, anime {про аніме} manga {про манґу} other {}}"
         type: "Тип"
         volumes: "Томи"
         unit: "{type, select, anime {Серії} manga {Глави} other {}}"
+        status: "Статус"
+        tba: "Очікується"
+        season: "Сезон"
+        producers: "Продюсеры"
+        studios: "Студії"
+        total: "{total} всього"
+    reactions:
+      delete: "Видалити реакцію"
     franchise:
       roles:
         adaptation: "Адаптація"
         anime_adaptation: "Аніме"
+        manga_adaptation: "Манґа"
         character: "Персонаж"
         other: "Інші"
   hide-posts:
     text: "Приховати дописи про {media}"
+    info: "Дописи не з’являтимуться у вашій стрічці слідування або у стрічці {type, select, anime {аніме} manga {манґи} other {}}"
+#components
+components:
+  episodes:
+    shortcut-bar:
+      episode-number: "ЕП {number}"
 #page: users
 users:
   navigation:
@@ -233,3 +280,7 @@ groups:
   dashboard:
     navigation:
       settings: "Налаштування"
+#component: kitsu-feed
+feeds:
+  filter:
+    following: "Відстежувана активність"
