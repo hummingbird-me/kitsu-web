@@ -1,6 +1,6 @@
 # Node 12 requires several dependeny updates 
 # (some child dependency versions don't have 12 in their package.json "engines")
-FROM node:10
+FROM node:14
 MAINTAINER Kitsu, Inc.
 
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.0
