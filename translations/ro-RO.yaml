@@ -1,4 +1,48 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Exploreaza Anime"
+  manga:
+    index: "Exploreaza Manga"
+  media:
+    show:
+      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
+      characters: "Personaje"
+      reactions: "Reactii"
+      franchise: "Franciză"
+  explore:
+    index: "Exploreaza {mediaType, select, anime {Anime} manga {Manga} other {}}"
+    more:
+      trending: "Trending {type, select, other {}} Saptamana Aceasta"
+      top-current: "Top {type, select, Anime {Airing} Manga {Publishing} other {}} {type}"
+      top-upcoming: "Cele mai Asteptate {type}"
+      highest-rated: "Cele mai Apreciate {type}"
+      most-popular: "Cele mai populare {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Nou Lansat {category} {type}"
+        trending: "Trending {category} {type}"
+        most-popular: "Cele mai populare {category} {type}"
+  not-found: "Negăsit"
+  server-error: "Eroare de server"
+  users:
+    index: "Profilul lui {user}"
+    library: "Libraria lui {user}"
+    reviews: "Recencile lui {user}"
+    reactions: "Reactiile lui {user}"
+    followers: "Urmaritori lui {user}"
+    following: "Urmarit de {user}"
+    groups: "Grupurile lui {user}"
+    stats: "Statisticile lui {user}"
+  posts: "Postat de {user}"
+  comments: "Postat de {user}"
+  reviews: "Revizuit de {user}"
+  notifications: "Notificări"
+  feedback:
+    bugs: "Probleme"
+    feature-requests: "Solicită Caracteristici"
 #header
 header:
   anime: "Anime"
