@@ -1,4 +1,67 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Ανακαλύψτε Άνιμε"
+  manga:
+    index: "Ανακαλύψτε Μάνγκα"
+  media:
+    show:
+      units: "{type, select, anime {Επισόδια} manga {Κεφάλαια} other {}}"
+      characters: "Χαρακτήρες"
+      reactions: "Αντιδράσεις"
+      franchise: "Σειρά"
+  explore:
+    index: "Εξερευνήστε {mediaType, select, anime {Άνιμε} manga {Μάνγκα} other {}}"
+    more:
+      trending: "Τάσεις {type, select, other {}} Αυτήν την Εβδομάδα "
+      top-current: "Κορυφαία {type, select, Anime {Τρέχων} Manga {Εκδιδόμενα} other {}} {type}"
+      top-upcoming: "Κορυφαία Ανερχόμενα {type}"
+      highest-rated: "Με τις Καλύτερες Κριτήκες {type}"
+      most-popular: "Πιο δημοφιλή {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Νέες εκδόσεις {category} {type}"
+        trending: "Τάσεις {category} {type}"
+        most-popular: "Πιο δημοφιλή {category} {type}"
+  not-found: "Δεν Βρέθηκε"
+  server-error: "Σφάλμα Διακομιστή"
+  users:
+    index: "Προφίλ {user}"
+    library: "Βιβλιοθήκη {user}"
+    reviews: "Αξιολογήσεις {user}"
+    reactions: "Αντιδράσεις {user}"
+    followers: "Ακόλουθοι {user}"
+  notifications: "Ειδοποιήσεις"
+  feedback:
+    bugs: "Σφάλματα"
+    feature-requests: "Μελλοντικές Προτάσεις"
+    database-requests: "Προτάσεις Βάσεις Δεδομένων"
+    mobile-bugs: "Σφάλματα κινητού"
 #header
 header:
   anime: "Anime"
+#page: dashboard
+dashboard:
+  quick-update:
+    filter:
+      anime: "Άνιμε"
+  feed:
+    anime: "Άνιμε"
+#page: anime/manga
+media:
+  show:
+    franchise:
+      roles:
+        anime_adaptation: "Άνιμε"
+#components
+components:
+  users:
+    favorites:
+      anime: "Άνιμε"
+#page: users
+users:
+  edit-modal:
+    favorites:
+      anime: "Άνιμε"
