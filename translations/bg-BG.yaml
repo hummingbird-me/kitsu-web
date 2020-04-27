@@ -1,4 +1,167 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Разгледай Аниме"
+  manga:
+    index: "Разгледай Манга"
+  media:
+    show:
+      units: "{type, select, anime {Епизоди} manga {Части} other {}}"
+      characters: "Герои"
+      reactions: "Реакции"
+      franchise: "Франчайз"
+  explore:
+    index: "Разгледай {mediaType, select, anime {Аниме} manga {Манга} other {}}"
+    more:
+      trending: "Популярни {type, select, other {}} Тази седмица"
+      top-upcoming: "Най-добри предстоящи {type}"
+      highest-rated: "Най-високо оценени {type}"
+      most-popular: "Най-популярни {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Ново пуснати {category} {type}"
+        trending: "Популярни {category} {type}"
+        most-popular: "Най-популярни {category} {type}"
+  not-found: "Не е намерено"
+  server-error: "Грешка в сървъра"
+  users:
+    index: "Профилът на {user}"
+    library: "Библиотека на {user}"
+    reviews: "Отзиви на {user}"
+    reactions: "Реакции на {user}"
+    followers: "Последователи на {user}"
+    following: "Следвани от {user}"
+    groups: "Групи на {user}"
+    stats: "Статистика на {user}"
+  posts: "Пост от {user}"
+  comments: "Коментар от {user}"
+  reviews: "Отзив от {user}"
+  notifications: "Известия"
+  feedback:
+    bugs: "Бъгове"
+    feature-requests: "Заявки за нови функционалности"
+    database-requests: "Заявки за датабази"
+    mobile-bugs: "Мобилни бъгове"
+  admin:
+    index: "Админ"
+    reports: "Доклади"
+  groups:
+    index: "Групи"
+    new: "Създаване на група"
+    group:
+      group-page:
+        rules: "{group} Правила"
+        members: "{group} Членове"
+        leaders: "{group} Лидери"
+      dashboard:
+        members: "{group} Членове"
+        leaders: "{group} Лидери"
+        settings: "{group} Настройки"
+#head
+head:
+  users:
+    description: "{user} използва Kitsu за да проследява своя прогрес и да споделя своите аниме и манга преживявания."
 #header
 header:
+  library: "Библиотека"
   anime: "Аниме"
+  manga: "Манга"
+  trending: "Популярни"
+  groups: "Групи"
+  feedback: "Обратна връзка"
+  browse: "Разгледай"
+  auth:
+    sign-in: "Влизане"
+    sign-up: "Регистрация"
+  user:
+    profile: "Разглеждане на профил"
+    settings: "Настройки"
+    admin: "Админ"
+    logout: "Изход"
+#page: about
+about:
+  header: "За Kitsu"
+#page: dashboard
+dashboard:
+  quick-update:
+    title: "Бърза актуализация"
+    filter:
+      all: "Всички"
+      anime: "Аниме"
+      manga: "Манга"
+    media:
+      complete: "Завършени"
+      unstarted: "Не започнати"
+    overlay:
+      button:
+        complete: "Завършени"
+        tooltip:
+          empty: "Актуализирай библиотека"
+  onboarding:
+    welcome: "Здравей {user}, добре дошъл в Kitsu!"
+  groups:
+    header: "Моите Групи"
+  announcements:
+    button: "Научете повече"
+  feed:
+    anime: "Аниме"
+    manga: "Манга"
+    global: "Глобални"
+#page: anime/manga
+media:
+  index:
+    filter: "Филтър"
+    remove: "Премахни"
+    filters:
+      year: "Година"
+      score: "Среден рейтинг"
+      seasons: "Сезони"
+  show:
+    franchise:
+      roles:
+        anime_adaptation: "Аниме"
+#components
+components:
+  users:
+    favorites:
+      anime: "Аниме"
+#page: users
+users:
+  edit-modal:
+    favorites:
+      anime: "Аниме"
+#page: groups
+groups:
+  leaders:
+    list:
+      edit-btn: "Редактиране"
+      add-btn: "Добави"
+      not-found: "Не можахме да намерим член от групата с това име."
+      modal:
+        owner: "Притежател на групата"
+  dashboard:
+    navigation:
+      leaders: "Лидери"
+    overview:
+      members:
+        header: "Членове"
+        today: "Присъединили се днес"
+        total: "Общ брой членове"
+      help-desk:
+        reports: "Доклади"
+category:
+  angel: "Ангели"
+  angst: "Тъга"
+  asia: "Азия"
+  assassin: "Убийци"
+  baseball: "Бейзбол"
+  basketball: "Баскетбол"
+  card-games: "Игри на карти"
+  china: "Китай"
+  comedy: "Комедия"
+  conspiracy: "Конспирация"
+  cooking: "Готвене"
+  cops: "Полицаи"
+  crime: "Криминални"
