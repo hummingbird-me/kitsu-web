@@ -1,4 +1,25 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Anime Keşfet"
+  manga:
+    index: "Manga Keşfet"
+  media:
+    show:
+      units: "{type, select, anime {Bölümler} manga {Bölümler} other {}}"
+      characters: "Karakterler"
+      reactions: "Tepkiler"
+  explore:
+    index: "Keşfet {mediaType, select,anime {Anime} manga {Manga} other{}}"
+    more:
+      trending: "Trendler {type, select, other {}} Bu Hafta"
+      highest-rated: "En Çok Oy Alan {type}"
+      most-popular: "En Popüler {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Yeni Yayımlanmış {category} {type}"
 #header
 header:
   anime: "Anime"
