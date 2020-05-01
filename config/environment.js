@@ -27,8 +27,8 @@ module.exports = function(environment) {
       providers: {
         'facebook-connect': {
           appId: '325314560922421',
-          version: 'v2.9',
-          scope: 'public_profile,email,user_friends'
+          version: 'v6.0',
+          scope: 'public_profile,email'
         }
       }
     },
