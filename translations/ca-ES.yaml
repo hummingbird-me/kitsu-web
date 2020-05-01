@@ -96,6 +96,7 @@ about:
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Publicació Ràpida"
     filter:
       all: "Tot"
       anime: "Anime"
@@ -191,20 +192,33 @@ media:
         more: "Veure tots els personatges"
       titles:
         header: "Títols alternatius"
+        af_za: "Afrikaans"
         ar: "Àrab"
+        bg_bg: "Búlgar"
+        bn_bd: "Bengalí"
+        ca_es: "Català"
         cs_cz: "Txec"
+        cy_gb: "Gal·lès"
         da_dk: "Danès"
         de_de: "Alemany"
         el_gr: "Grec"
         en: "Anglès"
+        en_au: "Anglès (Australià)"
+        en_ca: "Anglès (Canadenc)"
         en_cn: "Xino (Pinyin)"
+        en_gb: "Anglès (Britànic)"
         en_il: "Hebreu (romanitzat)"
         en_jp: "Japonès (Romaji)"
         en_kr: "Coreà (Romaja)"
         en_th: "Tai (Romanitzat)"
+        en_us: "Anglès (Americà)"
         es_es: "Espanyol"
+        et_ee: "Estonià"
+        fa_ir: "Persa"
         fi_fi: "Finès"
+        fr_ca: "Francès (Canadenc)"
         fr_fr: "Frances"
+        ga_ie: "Irlandès"
         he_il: "Hebreu"
         hi_in: "Hindú"
         hr_hr: "Croat"
@@ -213,19 +227,33 @@ media:
         is_is: "Islandès"
         it_it: "Italià"
         ja_jp: "Japonès"
+        kk_kz: "Kazakh"
         ko_kr: "Coreà"
+        lt_lt: "Lituà"
         lv_lv: "Letó"
         ms_my: "Malai"
+        mt_mt: "Maltès"
+        nb_no: "Noruec (Bokmål)"
         nl_nl: "Danés"
+        nn_no: "Noruec (Nynorsk)"
         pl_pl: "Polonès"
         pt_br: "Portuguès (Brasil)"
         pt_pt: "Portuguès"
+        ro_ro: "Romanès"
         ru_ru: "Rus"
+        sc_it: "Sard"
+        sco_gb: "Escocès"
+        sk_sk: "Eslovac"
+        sl_sl: "Eslovè"
+        sr_cs: "Serbi (Llatí)"
+        sr_sp: "Serbi (Ciríl·lic)"
         sv_se: "Suec"
         th_th: "Tai"
         tl_ph: "Tagalog"
         tr_tr: "Turc"
         uk_ua: "Ucraïnès"
+        ur_in: "Urdú (Indi)"
+        ur_pk: "Urdú (Pakistan)"
         vi_vn: "Vietnamita"
         zh_cn: "Xino (Simplificat)"
         zh_hk: "Xino (Hong Kong)"
@@ -299,6 +327,8 @@ components:
   ad-unit: "La publicitat és una merda, però és el que ens manté en línia. Si us plau admetem-nos al teu bloquejador d'anuncis."
   admin:
     reports:
+      no-explanation: "No s'ha proporcionat cap explicació."
+      not-set: "Sense definir"
       actions:
         button: "Accions"
         open: "Marcar com obert"
@@ -312,6 +342,21 @@ components:
         moderator: "Moderador"
         status: "Estat"
         actions: "Accions"
+  application:
+    nav-search: "Buscar en Kitsu"
+  episodes:
+    shortcut-bar:
+      episode-number: "Cap {number}"
+    fast-forward: "Progrés de la biblioteca avançat fins a l'episodi {number}!"
+    undo-update: "Desfés"
+    update-progress: "Actualitzar progrés de la biblioteca a l'episodi {number}?"
+    watched: "Marcar com vist"
+    join-prompt:
+      pitch: "Feu un seguiment del teu progrés i uneix-te a la discussió!"
+      register: "Crea un compte Kitsu"
+  likeable-resource:
+    loading: "Carregant…"
+    more: "Carrega'n més"
   search:
     header: "Buscar resultats"
     view: "veure més"
@@ -326,6 +371,7 @@ components:
       create: "Publicar"
       nsfw: "NSFW"
       spoiler: "Spoiler"
+      tag-media: "Escriu per etiquetar un anime o manga"
     edit-post:
       header: "Editar publicació"
       error:
@@ -355,7 +401,42 @@ components:
       delete: "Eliminar publicació"
       unpin: "Despenjar publicació en el perfil"
       pin: "Fijar publicación en el perfil"
+      pin-text: "Vols realment fixar aquesta publicació al teu perfil?"
       report: "Denunciar publicació"
+      comment-count: "{count} de {total}"
+      comment:
+        deleting: "Suprimint el comentari…"
+        reply: "Respondre"
+        copy-link: "Copiar enllaç al comentari"
+        edit: "Editar comentari"
+        delete: "Esborrar comentari"
+        report: "Denunciar comentari"
+        previous-replies: "Mostra les respostes anteriors"
+        add-reply: "Afegeix una resposta…"
+      comments:
+        all: "Mostra tots els comentaris"
+        parent: "Mostra el comentari principal"
+        previous-comments: "Carrega comentaris anteriors"
+        leave-comment: "Deixar un comentari…"
+    review:
+      by: "Resenyat per"
+      spoiler: "Aquesta publicació conté spoilers."
+      spoiler-hover: "Puc suportar la veritat!"
+      share:
+        twitter: "Tweet"
+        facebook: "Compartir"
+      copy-link: "Copiar enllaç a la ressenya"
+      show: "Revisa el contingut de la ressenya"
+      hide: "Amaga el contingut de la ressenya"
+      edit: "Editar ressenya"
+      delete: "Eliminar ressenya"
+      report: "Denunciar ressenya"
+  users:
+    ban:
+      title: "Estàs segur de que vols banejar aquest usuari?"
+    delete-user-content:
+      checkbox:
+        posts: "Publicacions"
 #page: users
 users:
   profile:
@@ -478,6 +559,7 @@ users:
           about: "Afegeix el teu nom d'usuari Letterboxd a continuació per afegir un enllaç al teu perfil."
           placeholder: "El teu nom d'usuari Letterboxd"
         medium:
+          about: "Afegeix el teu nom d'usuari Medium o nom de publicació a continuació per afegir un enllaç al teu perfil."
           placeholder: "El teu nom d'usuari Medium (@usuario) o nom de publicació"
         playerme:
           about: "Afegeix el teu nom d'usuari Player.me a continuació per afegir un enllaç al teu perfil."
