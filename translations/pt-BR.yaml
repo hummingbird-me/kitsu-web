@@ -30,7 +30,7 @@ titles:
   users:
     index: "Perfil de {user}"
     library: "Biblioteca de {user}"
-    reviews: "Avaliações de {user}"
+    reviews: "Resenhas de {user}"
     reactions: "Reações de {user}"
     followers: "Seguidores de {user}"
     following: "Seguido por {user}"
@@ -38,7 +38,7 @@ titles:
     stats: "Estatísticas de {user}"
   posts: "Publicação por {user}"
   comments: "Comentário de {user}"
-  reviews: "Avaliação de {user}"
+  reviews: "Resenhado por {user}"
   notifications: "Notificações"
   feedback:
     bugs: "Bugs"
@@ -83,7 +83,7 @@ header:
     sign-up: "Cadastre-se"
   user:
     profile: "Ver Perfil"
-    settings: "Confirgurações"
+    settings: "Configurações"
     admin: "Admin"
     logout: "Desconectar"
 #authentication modal
@@ -92,7 +92,7 @@ auth-modal:
     submit: "{step, select, 0 {Vamos obter algumas informações básicas primeiro} 1 {Que espirituoso - agora o e-mail!} 2 {Parece legítimo, que tal uma senha?} 3 {Legal! Vamos criar essa conta} other {}}"
 #page: about
 about:
-  header: "About Kitsu"
+  header: "Sobre o Kitsu"
 #page: dashboard
 dashboard:
   quick-update:
@@ -114,7 +114,7 @@ dashboard:
         complete: "Concluído"
         tooltip:
           empty: "Atualizar Biblioteca"
-          content: "Criar post e atualizar biblioteca"
+          content: "Criar publicação e atualizar biblioteca"
       discussion: "Ver Discussão"
       edit: "Editar Registro da Biblioteca"
       popout: "Editor pop-out"
@@ -363,7 +363,7 @@ components:
     load: "carregar mais"
     none: "sem resultados"
   sidebar-footer:
-    contact: "Contacto"
+    contact: "Contato"
     terms: "Termos"
   stream-feed:
     create-post:
@@ -419,18 +419,18 @@ components:
         previous-comments: "Ver Comentários Anteriores"
         leave-comment: "Deixar um comentário…"
     review:
-      by: "Avaliado por"
-      spoiler: "Esta avaliação contém spoilers."
+      by: "Resenhado por"
+      spoiler: "Esta resenha contém spoilers."
       spoiler-hover: "Eu consigo encarar a verdade!"
       share:
         twitter: "Tweet"
         facebook: "Compartilhar"
-      copy-link: "Copiar link para a avaliação"
-      show: "Mostrar conteúdo da avaliação"
-      hide: "Ocultar conteúdo da avaliação"
-      edit: "Editar avaliação"
-      delete: "Excluir avaliação"
-      report: "Denunciar avaliação"
+      copy-link: "Copiar link para a resenha"
+      show: "Mostrar conteúdo da resenha"
+      hide: "Ocultar conteúdo da resenha"
+      edit: "Editar resenha"
+      delete: "Excluir resenha"
+      report: "Denunciar resenha"
   users:
     ban:
       title: "Tem certeza que quer banir este usuário?"
@@ -473,7 +473,7 @@ users:
   navigation:
     activity: "Atividade"
     library: "Biblioteca"
-    reviews: "Avaliações"
+    reviews: "Resenhas"
     reactions: "Reações"
     followers: "Seguidores"
     following: "Seguindo"
@@ -685,7 +685,7 @@ users:
       export: "Exportar Biblioteca"
       reset: "Resetar biblioteca"
       reset-loading: "Redefinindo…"
-      reset-confirmation: "Isso irá apagar toda a sua biblioteca, análises associadas e reações. Você tem certeza que deseja continuar?"
+      reset-confirmation: "Isso irá apagar toda a sua biblioteca, resenhas associadas e reações. Você tem certeza que deseja continuar?"
       issues:
         header: "Problemas na Biblioteca"
         reactions: "{count} mídia(s) completa(s) sem <b>reações</b>"
@@ -760,8 +760,8 @@ users:
     not-found: "Nenhum Usuário Encontrado."
     loading: "Carregando Usuários…"
   reviews:
-    not-found: "Nenhuma Avaliação encontrada."
-    loading: "Carregando Avaliações…"
+    not-found: "Nenhuma resenha encontrada."
+    loading: "Carregando resenhas…"
 #page: settings
 settings:
   navigation:
@@ -1277,9 +1277,9 @@ feeds:
       replies: "Respostas"
       oldest: "Antigos"
   review:
-    review: "Avaliação"
-    author: "Avaliação de {user}"
-    progress: "{type, select, anime {Esta é uma avaliação até o episódio {num}.} manga {Esta é uma avaliação até o capítulo {num}.} other {}}"
+    review: "Resenha"
+    author: "Resenhado por {user}"
+    progress: "{type, select, anime {Esta resenha foi escrita no episódio {num}.} manga {Esta resenha foi escrita no capítulo {num}.} other {}}"
   interest:
     anime:
       header: "Boas-vindas ao seu Feed de Animes!"
