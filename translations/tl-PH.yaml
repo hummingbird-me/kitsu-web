@@ -1,4 +1,47 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Maghanap ng Anime"
+  manga:
+    index: "Maghanap ng Manga"
+  media:
+    show:
+      units: "{type, select, anime {Mga Episode} manga {Mga Kabanata} other {}}"
+      characters: "Mga Tauhan"
+      reactions: "Mga Reaksyon"
+      franchise: "Franchise"
+  explore:
+    index: "Maghanap ng {mediaType, select, anime {Anime} manga {Manga} other {}}"
+    more:
+      trending: "Trending {type, select, other {}} Ngayong Linggo"
+      top-current: "Top na {type, select, Anime {Nagi-air pa na} Manga {Publishing na} other {}} {type}"
+      top-upcoming: "Top Upcoming {type}"
+      highest-rated: "Highest Rated {type}"
+      most-popular: "Pinaka Sikat na {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Bagong Na-Release {category} {type}"
+        trending: "Trending {category} {type}"
+        most-popular: "Pinaka Sikat na {category} {type}"
+  not-found: "Not Found"
+  server-error: "May Server Error"
+  users:
+    index: "Profile ni {user}"
+    library: "Library ni {user}"
+    reviews: "Mga Review ni {user}"
+    reactions: "Mga Reaksyon ni {user}"
+    followers: "Mga Follower ni {user}"
+    following: "Followed ni {user}"
+    groups: "Mga Pangkat ni {user}"
+    stats: "Mga Stat ni {user}"
+  posts: "Post ni {user}"
+  comments: "Komento ni {user}"
+  reviews: "Review ni {user}"
+  notifications: "Mga Notipikasyon"
+  feedback:
+    bugs: "Mga Bug"
 #header
 header:
   anime: "Anime"

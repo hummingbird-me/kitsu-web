@@ -18,3 +18,46 @@ titles:
 #header
 header:
   anime: "Anime"
+#page: dashboard
+dashboard:
+  quick-update:
+    filter:
+      anime: "Anime"
+  feed:
+    anime: "Anime"
+#page: anime/manga
+media:
+  index:
+    filters:
+      units: "{type, select, anime {Episodes} manga {Hoofstukke} other {}}"
+  show:
+    navigation:
+      units: "{type, select, anime {Episodes} manga {Hoofstukke} other {}}"
+      characters: "Karakters"
+      reactions: "Reaksie"
+    summary:
+      reactions:
+        header: "Reaksie"
+      characters:
+        header: "Karakters"
+      information:
+        unit: "{type, select, anime {Episodes} manga {Hoofstukke} other {}}"
+    franchise:
+      roles:
+        anime_adaptation: "Anime"
+#components
+components:
+  users:
+    delete-user-content:
+      checkbox:
+        reactions: "Reaksie"
+    favorites:
+      anime: "Anime"
+#page: users
+users:
+  navigation:
+    reactions: "Reaksie"
+  edit-modal:
+    favorites:
+      anime: "Anime"
+      characters: "Karakters"
