@@ -102,7 +102,6 @@ dashboard:
       anime: "Anime"
       manga: "Mangá"
     empty:
-      html: "A mídia que você adicionou ou atualizou dentro da sua <a href={link}>Biblioteca</a> aparecerá aqui para você atualizar rapidamente."
       discover: "Descobrir Mídias"
     media:
       complete: "Concluído"
@@ -608,8 +607,6 @@ users:
   activity:
     onboarding:
       welcome: "Olá {user}, esta página é sobre VOCÊ!"
-      about: "Como você continuar usando Kitsu seu <strong>Feed Pessoal</strong> abaixo começará a preencher com o anime e manga que você assistiu, lida, completa e planeja fazer check-out. Você também pode postar textos, imagens e vídeos para seu feed usando o formulário abaixo. Seus posts serão vistos e apreciados por seus seguidores e usuários do feed global."
-      action: "Sinta-se em casa! Faça o upload de um avatar e uma imagem de capa! Clique em <span>Editar</span> acima para começar."
       title: "Configurar perfil"
     about:
       header: "Sobre Mim"
@@ -632,7 +629,6 @@ users:
       time-watched: "{count} {timeUnit} gastas vendo anime."
       chapters-read: "{count} capítulos lidos."
       completed: "{count} terminados."
-      more-than: "Mais que <span class=\"time-spent-percentile\">{percentage}%</span> dos utilizadores."
       time-breakdown:
         seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
         time-segment: "{count} {timeUnit}" #8 months (pre-translated)
@@ -688,7 +684,6 @@ users:
       reset-confirmation: "Isso irá apagar toda a sua biblioteca, resenhas associadas e reações. Você tem certeza que deseja continuar?"
       issues:
         header: "Problemas na Biblioteca"
-        reactions: "{count} mídia(s) completa(s) sem <b>reações</b>"
         fix: "correção"
     list:
       edit: "Editar Registro"
@@ -730,8 +725,6 @@ users:
       selected: "{type, select, anime {{num} animes selecionados} manga {{num} mangás selecionados} other {}}"
       select-all: "Selecionar Todos"
       select-none: "Selecionar Nenhum"
-      remove: "Remover <strong>{num}</strong>"
-      move-to: "Mover <strong>{num}</strong> para…"
       remove-loading: "Removendo…"
       update-loading: "Atualizando…"
   groups:
@@ -802,7 +795,6 @@ settings:
     sub-header: "Sincronizar automaticamente as atualizações da biblioteca do Kitsu com o MyAnimeList."
     loading: "Carregando Exportações…"
     remove: "Remover Exportador"
-    disabled: "Sua exportação de MAL foi desabilitada pelo seguinte motivo: <strong>{reason}</strong>"
     create: "Configurar exportação para conta do MyAnimeList"
     download: "Baixar Biblioteca {kind}"
     recent: "Atividade de Sincronização Recente"
@@ -833,7 +825,6 @@ settings:
     loading: "Carregando Importações…"
     status: "Status:"
     entries: "Total de Entradas Encontradas:"
-    error: "Parece que sua importação falhou :( &mdash; Queremos corrigir isso para você, então por favor mande um <a href=\"mailto:help@kitsu.io\">e-mail</a> pra gente."
     more: "Carregar Mais"
   index:
     header: "Perfil"
@@ -843,7 +834,6 @@ settings:
     email: "E-Mail"
     email-message: "O e-mail não será exibido publicamente."
     language: "Idioma"
-    translate-help: "Interessado em traduzir? <a href=\"https://crowdin.com/project/kitsu-web\">Traduza aqui!</a>"
     time-zone: "Fuso Horário"
     content: "Conteúdo no Kitsu"
     theme: "Tema do Site"
@@ -870,12 +860,6 @@ settings:
       email: "E-Mail"
       mobile: "Celular"
     descriptions:
-      mentions: "Alguém me <strong>mencionar</strong> em uma postagem ou comentário"
-      replies: "Alguém <strong>responder</strong> à minha postagem ou comentário"
-      likes: "Alguém <strong>curtir</strong> a minha publicação ou comentário"
-      follows: "Alguém me <strong>seguir</strong>"
-      posts: "Alguém <strong>postar</strong> no meu perfil"
-      reaction_votes: "Alguém <strong>votar positivo</strong> na minha reação à mídia"
       airing: "Um novo episódio for lançado"
     newsletter:
       newsletter: "Newsletter"
@@ -924,10 +908,6 @@ groups:
         open: "Público"
         closed: "Privado"
         restricted: "Restrito"
-      privacy-features:
-        open: "<li>Qualquer pessoa pode ver</li> <li>Qualquer pessoa pode participar</li> <li>Qualquer pessoa pode postar ou comentar</li>"
-        closed: "<li>Oculto do público</li> <li>Usuários só podem participar via convite</li> <li>Não pode ser tornado público</li>"
-        restricted: "<li>Qualquer um pode ver</li> <li>Qualquer um pode se juntar a</li> <li>Somente líderes podem criar novas postagens.</li>"
       category: "Categoria"
       category-placeholder: "Selecione uma Categoria"
       avatar: "Avatar"
@@ -988,7 +968,6 @@ groups:
     feed-restricted: "Este é um grupo restrito. Qualquer um pode comentar, somente os líderes podem criar posts."
   rules:
     header: "Regras da Comunidade"
-    empty: "Olá! Parece que você está usando as diretrizes da comunidade Kitsu. Se você deseja especificar suas próprias regras você pode fazer isso na sua <a href={link}>página de configurações.</a>"
   tickets:
     search: "Pesquisar Tickets"
     empty: "Viva! Você não tem nenhum ticket a tratar."
@@ -998,7 +977,6 @@ groups:
       resolved: "Tickets Resolvidos"
       all: "Todos os Tickets"
     conversation:
-      title: "Ticket de <a href={link}>{name}</a>"
       mark-resolved: "Marcar como resolvido"
       mark-closed: "Marcar como fechado"
       mark-open: "Marcar como Aberto"
@@ -1101,15 +1079,7 @@ groups:
         post-btn: "Postagem"
         placeholder: "Enviar mensagem aos líderes"
     audit:
-      user:
-        banned: "baniu <a href={link}>{user}</a>."
-        unbanned: "desbaniu <a href={link}>{user}</a>."
-        invited: "convidou <a href={link}>{user}</a> para se juntar à comunidade."
-        granted: "concedeu permissões a <a href={link}>{user}</a>."
-        revoked: "removeu permissões de <a href={link}>{user}</a>."
       group:
-        added_neighbor: "adicionou <a href={link}>{group}</a> como vizinho."
-        removed_neighbor: "removeu <a href={link}>{group}</a> como vizinho."
         avatar_changed: "atualizou o avatar de {group}."
         cover_changed: "atualizou a imagem de capa de {group}."
         locale_changed: "atualizou a localidade de {group}."
@@ -1123,7 +1093,6 @@ groups:
         declined: "recusou uma denúncia."
         escalated: "escalou uma denúncia."
       group-ticket:
-        assigned: "atribuiu um ticket para <a href={link}>{user}</a>."
         resolved: "marcou um ticket como resolvido."
         created: "reabriu um ticket."
 #page: group-invite
@@ -1140,7 +1109,6 @@ group-invite:
 explore:
   view-more: "Ver mais"
   search-placeholder: "O que você está procurando?"
-  advanced-search: "Ou, navegue com a <a href=\"/{mediaType}\">pesquisa avançada</a>"
   no-data: "Hmm, não parece que qualquer mídia possa ser encontrada para esta seção."
   widget:
     related: "Categorias Relacionadas"
@@ -1159,7 +1127,6 @@ explore:
     index: "{category} {type, select, anime {Anime} manga {Mangá} other {}}" #category is pre-translated
 #page: media-reactions
 media-reactions:
-  view-all: "Ver todas as <strong>{count}</strong> reações de {user}"
   create-account: "Criar Conta"
 #page: notifications
 notifications:
@@ -1241,7 +1208,6 @@ onboarding:
     like-incomplete: "Curtir {count} publicações do feed"
     avatar: "Importar uma imagem para ser seu avatar"
     cover: "Importar uma imagem para ser a capa de seu perfil"
-    about-me: "Completar a seção <i>Sobre mim</i>"
     favorite: "Escolher seu anime / mangá favorito"
 #component: follow-button
 follow-button:
@@ -1283,10 +1249,8 @@ feeds:
   interest:
     anime:
       header: "Boas-vindas ao seu Feed de Animes!"
-      body: "À medida que você atualiza sua <a href={link}>biblioteca de animes</a>, você verá o que os outros estão dizendo sobre as séries que você está assistindo."
     manga:
       header: "Bem-vindo(a) ao seu Feed de Mangás!"
-      body: "À medida que você atualiza sua <a href={link}>biblioteca de mangás</a>, você verá o que os outros estão dizendo sobre os mangás que você está lendo."
     button: "Ok, entendi"
 #component: image-form
 image-form:
@@ -1352,7 +1316,6 @@ library-entry:
     edit-reaction: "Editar Reação"
     rewatch: "{type, select, anime {Reassistir} manga {Reler} other {}}"
     remove-from-library: "Remover da Biblioteca"
-    saved-in: "Salvo em <a href={link}>{status}</a>"
     progress: "Progresso"
     not-rated: "Não Classificado"
   rating:
