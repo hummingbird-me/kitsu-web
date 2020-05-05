@@ -116,7 +116,7 @@ dashboard:
       anime: "Anime"
       manga: "Manga"
     empty:
-      html: "Media you've added or updated within your <a href={link}>Library</a> will show up
+      html: "Media you've added or updated within your '<a href={link}>'Library'</a>' will show up
         here for you to quickly update."
       discover: "Discover Media"
     media:
@@ -405,7 +405,7 @@ media:
 # page: application
 application:
   sandbox:
-    alert: "This is a sandbox. <br> All changes will be reset."
+    alert: "This is a sandbox. '<br>' All changes will be reset."
 # components
 components:
   ad-unit: "Ads suck, but that's how we keep the lights on. Please whitelist us in your adblocker."
@@ -693,11 +693,11 @@ users:
   activity:
     onboarding:
       welcome: "Hey {user}, this page is all about YOU!"
-      about: "As you continue to use Kitsu your <strong>Personal Feed</strong> below will begin
+      about: "As you continue to use Kitsu your '<strong>'Personal Feed'</strong>' below will begin
         to populate with the anime and manga you've watched, read, completed, and plan to check out.
         You can also post text, images, and videos to your feed using the form below. Your posts
         will be seen and appreciated by your followers and users from the global feed."
-      action: "Make yourself at home! Upload an avatar and cover image! Click <span>Edit</span> above
+      action: "Make yourself at home! Upload an avatar and cover image! Click '<span>'Edit'</span>' above
         to get started."
       title: "Set-Up Your Profile"
     about:
@@ -721,7 +721,7 @@ users:
       time-watched: "{count} {timeUnit} spent watching anime."
       chapters-read: "{count} chapters read."
       completed: "{count} completed."
-      more-than: "More than <span class=\"time-spent-percentile\">{percentage}%</span> of users."
+      more-than: "More than '<span class=\"time-spent-percentile\">'{percentage}%'</span>' of users."
       time-breakdown:
         seperator: ", " # Used to seperate time-segments (e.g 8 months, 3 hours)
         time-segment: "{count} {timeUnit}" # 8 months (pre-translated)
@@ -780,7 +780,7 @@ users:
       reset-confirmation: "This will delete your entire library, associated reviews, and reactions. Are you sure you want to continue?"
       issues:
         header: "Library Issues"
-        reactions: "{count} completed media missing <b>reactions</b>"
+        reactions: "{count} completed media missing '<b>'reactions'</b>'"
         fix: "fix"
     list:
       edit: "Edit Entry"
@@ -843,8 +843,8 @@ users:
         other {}}"
       select-all: "Select All"
       select-none: "Select None"
-      remove: "Remove <strong>{num}</strong>"
-      move-to: "Move <strong>{num}</strong> to…"
+      remove: "Remove '<strong>'{num}'</strong>'"
+      move-to: "Move '<strong>'{num}'</strong>' to…"
       remove-loading: "Removing…"
       update-loading: "Updating…"
   groups:
@@ -915,7 +915,7 @@ settings:
     sub-header: "Automatically sync your library updates from Kitsu to MyAnimeList."
     loading: "Loading Exports…"
     remove: "Remove Exporter"
-    disabled: "Your MAL Export has been disabled due to the following reason: <strong>{reason}</strong>"
+    disabled: "Your MAL Export has been disabled due to the following reason: '<strong>'{reason}'</strong>'"
     create: "Setup Export to MyAnimeList Account"
     download: "Download {kind} Library"
     recent: "Recent Sync Activity"
@@ -946,7 +946,7 @@ settings:
     loading: "Loading Imports…"
     status: "Status:"
     entries: "Total Entries Found:"
-    error: "It seems like your import has failed :( &mdash; We want to get this fixed for you so please <a href=\"mailto:help@kitsu.io\">email</a> us."
+    error: "It seems like your import has failed :( &mdash; We want to get this fixed for you so please '<a href=\"mailto:help@kitsu.io\">'email'</a>' us."
     more: "Load More"
   index:
     header: "Profile"
@@ -956,7 +956,7 @@ settings:
     email: "Email"
     email-message: "Email will not be publicly displayed."
     language: "Language"
-    translate-help: "Interested in translating? <a href=\"https://crowdin.com/project/kitsu-web\">Translate here!</a>"
+    translate-help: "Interested in translating? '<a href=\"https://crowdin.com/project/kitsu-web\">'Translate here!'</a>'"
     time-zone: "Time Zone"
     content: "Content on Kitsu"
     theme: "Site Theme"
@@ -983,12 +983,12 @@ settings:
       email: "Email"
       mobile: "Mobile"
     descriptions:
-      mentions: "Someone <strong>mentions</strong> me in a post or comment"
-      replies: "Someone <strong>replies</strong> to my post or comment"
-      likes: "Someone <strong>likes</strong> my post or comment"
-      follows: "Someone <strong>follows</strong> me"
-      posts: "Someone <strong>posts</strong> on my profile"
-      reaction_votes: "Someone <strong>upvotes</strong> my media reaction"
+      mentions: "Someone '<strong>'mentions'</strong>' me in a post or comment"
+      replies: "Someone '<strong>'replies'</strong>' to my post or comment"
+      likes: "Someone '<strong>'likes'</strong>' my post or comment"
+      follows: "Someone '<strong>'follows'</strong>' me"
+      posts: "Someone '<strong>'posts'</strong>' on my profile"
+      reaction_votes: "Someone '<strong>'upvotes'</strong>' my media reaction"
       airing: "New episode is released"
     newsletter:
       newsletter: "Newsletter"
@@ -1038,15 +1038,15 @@ groups:
         closed: "Private"
         restricted: "Restricted"
       privacy-features:
-        open: "<li>Anyone can view</li>
-          <li>Anyone can join</li>
-          <li>Anyone can post or comment</li>"
-        closed: "<li>Hidden from public</li>
-          <li>Users may only join via invitation</li>
-          <li>Can't be made public</li>"
-        restricted: "<li>Anyone can view</li>
-          <li>Anyone can join</li>
-          <li>Only leaders can create new posts.</li>"
+        open: "'<li>'Anyone can view'</li>'
+          '<li>'Anyone can join'</li>'
+          '<li>'Anyone can post or comment'</li>'"
+        closed: "'<li>'Hidden from public'</li>'
+          '<li>'Users may only join via invitation'</li>'
+          '<li>'Can't be made public'</li>'"
+        restricted: "'<li>'Anyone can view'</li>'
+          '<li>'Anyone can join'</li>'
+          '<li>'Only leaders can create new posts.'</li>'"
       category: "Category"
       category-placeholder: "Select a Category"
       avatar: "Avatar"
@@ -1109,7 +1109,7 @@ groups:
   rules:
     header: "Community Rules"
     empty: "Hey there! Looks like you're using the Kitsu community guidelines. If you'd like to
-      specify your own rules you can do that on your <a href={link}>settings page.</a>"
+      specify your own rules you can do that on your '<a href={link}>'settings page.'</a>'"
   tickets:
     search: "Search Tickets"
     empty: "Hooray! You don't have any tickets to handle."
@@ -1120,7 +1120,7 @@ groups:
       resolved: "Resolved Tickets"
       all: "All Tickets"
     conversation:
-      title: "Ticket from <a href={link}>{name}</a>"
+      title: "Ticket from '<a href={link}>'{name}'</a>'"
       mark-resolved: "Mark Resolved"
       mark-closed: "Mark Closed"
       mark-open: "Mark Open"
@@ -1225,14 +1225,14 @@ groups:
         placeholder: "Send message to leaders"
     audit:
       user:
-        banned: "banned <a href={link}>{user}</a>."
-        unbanned: "unbanned <a href={link}>{user}</a>."
-        invited: "invited <a href={link}>{user}</a> to join the community."
-        granted: "granted permissions to <a href={link}>{user}</a>."
-        revoked: "removed permissions from <a href={link}>{user}</a>."
+        banned: "banned '<a href={link}>'{user}'</a>'."
+        unbanned: "unbanned '<a href={link}>'{user}'</a>'."
+        invited: "invited '<a href={link}>'{user}'</a>' to join the community."
+        granted: "granted permissions to '<a href={link}>'{user}'</a>'."
+        revoked: "removed permissions from '<a href={link}>'{user}'</a>'."
       group:
-        added_neighbor: "added <a href={link}>{group}</a> as a neighbor."
-        removed_neighbor: "removed <a href={link}>{group}</a> as a neighbor."
+        added_neighbor: "added '<a href={link}>'{group}'</a>' as a neighbor."
+        removed_neighbor: "removed '<a href={link}>'{group}'</a>' as a neighbor."
         avatar_changed: "updated the {group} avatar."
         cover_changed: "updated the {group} cover image."
         locale_changed: "updated the {group} locale."
@@ -1246,7 +1246,7 @@ groups:
         declined: "declined a report."
         escalated: "esclated a report."
       group-ticket:
-        assigned: "assigned a ticket to <a href={link}>{user}</a>."
+        assigned: "assigned a ticket to '<a href={link}>'{user}'</a>'."
         resolved: "marked a ticket as resolved."
         created: "re-opened a ticket."
 # page: group-invite
@@ -1264,7 +1264,7 @@ group-invite:
 explore:
   view-more: "View more"
   search-placeholder: "What are you searching for?"
-  advanced-search: "Or, browse with the <a href=\"/{mediaType}\">advanced search</a>"
+  advanced-search: "Or, browse with the '<a href=\"/{mediaType}\">'advanced search'</a>'"
   no-data: "Hmm, doesn't seem like any media can be found for this section."
   widget:
     related: "Related Categories"
@@ -1283,7 +1283,7 @@ explore:
     index: "{category} {type, select, anime {Anime} manga {Manga} other {}}" # category is pre-translated
 # page: media-reactions
 media-reactions:
-  view-all: "View all <strong>{count}</strong> of {user}'s reactions"
+  view-all: "View all '<strong>'{count}'</strong>' of {user}'s reactions"
   create-account: "Create Account"
 # page: notifications
 notifications:
@@ -1383,7 +1383,7 @@ onboarding:
     like-incomplete: "Like {count} feed posts"
     avatar: "Set your user avatar"
     cover: "Set a profile cover image"
-    about-me: "Complete your <i>About Me</i>"
+    about-me: "Complete your '<i>'About Me'</i>'"
     favorite: "Pick your favorite anime / manga"
 # component: follow-button
 follow-button:
@@ -1443,11 +1443,11 @@ feeds:
   interest:
     anime:
       header: "Welcome to your Anime Feed!"
-      body: "As you update your <a href={link}>anime library</a>, you'll see what others are saying
+      body: "As you update your '<a href={link}>'anime library'</a>', you'll see what others are saying
         about the shows you're watching."
     manga:
       header: "Welcome to your Manga Feed!"
-      body: "As you update your <a href={link}>manga library</a>, you'll see what others are saying
+      body: "As you update your '<a href={link}>'manga library'</a>', you'll see what others are saying
         about the manga you're reading."
     button: "Okay, got it"
 # component: image-form
@@ -1533,7 +1533,7 @@ library-entry:
       manga {Reread}
       other {}}"
     remove-from-library: "Remove from Library"
-    saved-in: "Saved in <a href={link}>{status}</a>"
+    saved-in: "Saved in '<a href={link}>'{status}'</a>'"
     progress: "Progress"
     not-rated: "Not Rated"
   rating:
