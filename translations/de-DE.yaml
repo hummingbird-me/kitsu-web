@@ -101,7 +101,6 @@ dashboard:
       anime: "Anime"
       manga: "Manga"
     empty:
-      html: "Medien, die Sie in Ihrer <a href={link}>-Bibliothek</a> hinzugefügt oder aktualisiert haben, werden hier angezeigt, damit Sie schnell aktualisiert werden können."
       discover: "Medien entdecken"
     media:
       complete: "Komplett"
@@ -504,8 +503,6 @@ users:
   activity:
     onboarding:
       welcome: "Hallo {user}, diese Seite ist komplett über DICH!"
-      about: "So wie du Kitsu benutzt wird sich dein <strong>Persönlicher Feed</strong> füllen mit den Anime and Manga die du angesehen, gelesen, abgeschlossen, und noch ansehen möchtest. Du kannst Beiträge in Text, Bild und Video mit der Box da unten beitragen. Deine Beiträge werden sowohl von deinen Followern als auch den Nutzern des Globalen Feeds gesehen und wertgeschätzt."
-      action: "Fühl dich ganz wie zuhause! Lad ein Profilbild und ein Banner hoch! Klicke <span>Bearbeiten</span> oben drüber um loszulegen."
     about:
       empty: "Ist ein Geheimnis"
       gender:
@@ -564,7 +561,6 @@ users:
       reset-confirmation: "Dies löscht Ihre gesamte Bibliothek, zugehörige Rezensionen und Reaktionen. Sind Sie sicher, dass Sie fortfahren möchten?"
       issues:
         header: "Probleme der Bibliothek"
-        reactions: "{count} an abgeschlossener Medien brauchen noch eine <b>Kurzreview</b>"
         fix: "Verfassen"
     list:
       edit: "Eintrag bearbeiten"
@@ -603,8 +599,6 @@ users:
     bulk:
       select-all: "Alle auswählen"
       select-none: "Keins auswählen"
-      remove: "Entferne <strong>{num}</strong> Dinge"
-      move-to: "Verschiebe <strong>{num}</strong> nach…"
       remove-loading: "Entferne…"
       update-loading: "Aktualisiere…"
   groups:
@@ -674,7 +668,6 @@ settings:
     sub-header: "Synchronisiere deine Bibliotheksaktualisierungen automatisch von Kitsu zu MyAnimeList."
     loading: "Lade Exporte…"
     remove: "Entferne den Exporteur"
-    disabled: "Ihr MAL-Export wurde aus folgendem Grund deaktiviert: <strong>{reason}</strong>"
     create: "Export zu MyAnimeList Konto einrichten"
     download: "{kind} Bibliothek herunterladen"
     recent: "Letzte Sync Aktivität"
@@ -704,7 +697,6 @@ settings:
     loading: "Lade Importe…"
     status: "Status:"
     entries: "Insgesamt gefundene Einträge:"
-    error: "Es scheint, dass dein Import fehlgeschlagen ist :( &mdash; Wir möchten dies beheben, daher <a href=\"mailto:help@kitsu.io\">sende uns bitte eine E-Mail</a>."
     more: "Weitere laden"
   index:
     header: "Profil"
@@ -714,7 +706,6 @@ settings:
     email: "E-Mail"
     email-message: "E-Mail wird nicht öffentlich angezeigt."
     language: "Sprache"
-    translate-help: "Interessiert an der Übersetzung? <a href=\"https://crowdin.com/project/kitsu-web\">Hier übersetzen!</a>"
     time-zone: "Zeitzone"
     content: "Inhalt auf Kitsu"
     theme: "Website-Theme"
@@ -740,12 +731,6 @@ settings:
       email: "E-Mail"
       mobile: "Mobil"
     descriptions:
-      mentions: "Jemand <strong>erwähnte</strong> mich in einem Post oder Kommentar"
-      replies: "Jemand <strong>schreibt</strong> in meinem Post oder Kommentar"
-      likes: "Jemand <strong>mag</strong> mein Post oder Kommentar"
-      follows: "Jemand <strong>folgt</strong> mich"
-      posts: "Jemand <strong>schreibt</strong> in meinem Profil"
-      reaction_votes: "Jemand <strong>aufwertet</strong> meine Medien Reaktion"
       airing: "Neue Episode wurde veröffentlicht"
     newsletter:
       newsletter: "Newsletter"
@@ -793,10 +778,6 @@ groups:
         open: "Öffentlich"
         closed: "Privat"
         restricted: "Eingeschränkt"
-      privacy-features:
-        open: "<li>Jeder sieht es</li> <li>Jeder kann beitreten</li> <li>Jeder kann posten und kommentieren</li>"
-        closed: "<li>von der Öffentlichkeit versteckt</li> <li>Benutzer können nur durch eine Einladung beitreten</li> <li>kann nicht öffentlich gemacht werden</li>"
-        restricted: "<li>Jeder sieht es</li> <li>Jeder kann beitreten</li> <li>Nur Gruppenführer können neue Posts erstellen.</li>"
       category: "Kategorie"
       category-placeholder: "Kategorie auswählen"
       avatar: "Avatar"
@@ -857,7 +838,6 @@ groups:
     feed-restricted: "Dies ist eine eingeschränkte Gruppe. Jeder kann kommentieren, nur Gruppenführer können Beiträge erstellen."
   rules:
     header: "Community-Regeln"
-    empty: "Hey! Sieht so aus, als würdest du die Kitsu-Community-Richtlinien verwenden. Wenn du deine eigenen Regeln angeben möchten, kannst du dies auf deiner <a href={link}>Einstellungsseite</a> tun"
   tickets:
     search: "Tickets durchsuchen"
     empty: "Hurra! Du hast keine Tickets zu bearbeiten."
@@ -865,7 +845,6 @@ groups:
       open: "Offene Tickets"
       resolved: "Gelöste Tickets"
     conversation:
-      title: "Ticket von <a href={link}>{name}</a>"
       mark-resolved: "Als gelöst markieren"
       mark-closed: "Als abgeschlossen markieren"
       mark-open: "Als offen markieren"
@@ -926,11 +905,6 @@ groups:
         header: "Leiter-Chat"
         post-btn: "Posten"
         placeholder: "Nachricht an die Leiter senden"
-    audit:
-      user:
-        banned: "hat <a href={link}>{user}</a> gesperrt."
-        unbanned: "hat <a href={link}>{user}</a> entsperrt."
-        invited: "hat <a href={link}>{user}</a> eingeladen, der Community beizutreten."
 #shared: media
 media-shared:
   types:
@@ -1005,7 +979,6 @@ library-entry:
     post-reaction: "Reaktion posten"
     edit-reaction: "Reaktion bearbeiten"
     remove-from-library: "Aus der Bibliothek entfernen"
-    saved-in: "In <a href={link}>{status}</a> gespeichert"
     progress: "Fortschritt"
     not-rated: "Nicht bewertet"
   rating:
