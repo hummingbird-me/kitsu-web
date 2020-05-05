@@ -1,38 +1,29 @@
 ---
 os: linux
 language: node_js
-node_js: 10
-cache: yarn
-
+node_js: 14
 addons:
   chrome: stable
   code_climate:
     repo_token: f15069c85832661086a0f758b25cf410e58ae1f80dbcbc762021dfc71feb8f71
-
 env:
   global:
   - JOBS=1
-
 before_install:
-- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.0
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.4
 - export PATH=$HOME/.yarn/bin:$PATH
-
 install:
 - travis_retry yarn install --pure-lockfile
-
 script:
 - yarn test:ci
-
 after_script:
 - codeclimate-test-reporter < coverage/lcov.info
-
 deploy:
   provider: script
   edge: true
   script: ember deploy production
   on:
     branch: the-future
-
 notifications:
   email: false
   slack:
