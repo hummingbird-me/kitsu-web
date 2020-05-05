@@ -126,14 +126,13 @@ module.exports = function(environment) {
     'polyfill-io': {
       min: true,
       features: [
-        'default-3.6',
-        'Intl.~locale.en-US',
+        'default',
+        'Intl',
         'IntersectionObserver',
         'fetch'
       ],
       flags: ['gated'],
-      unknown: 'polyfill',
-      rum: 0
+      unknown: 'polyfill'
     },
 
     google: {
