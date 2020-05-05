@@ -102,7 +102,6 @@ dashboard:
       anime: "Аниме"
       manga: "Манга"
     empty:
-      html: "Контент, который вы обновили или добавили в своей <a href={link}>библиотеке</a> будет показан здесь для более быстрого доступа."
       discover: "Поиск контента"
     media:
       complete: "Завершен"
@@ -608,8 +607,6 @@ users:
   activity:
     onboarding:
       welcome: "Привет, {user}, вся эта страница о ТЕБЕ!"
-      about: "Пока вы продолжаете пользоваться Kitsu, Ваша <strong>личная лента</strong> начнёт заполняться аниме и мангой, которые вы посмотрели, прочитали, завершили или планируете посмотреть. Также, вы можете писать, отправлять изображения, видео в свою ленту используя форму ниже. Ваши публикации будут видны всем и будут оценены Вашими подписчиками и пользователями из глобальной ленты."
-      action: "Устройтесь как дома. Загрузите изображение на аватарку и обложку! Нажмите кнопку <span>Редактировать</span> сверху, чтобы начать."
       title: "Настройте свой профиль"
     about:
       header: "О себе"
@@ -632,7 +629,6 @@ users:
       time-watched: "{count} {timeUnit} потрачено на аниме."
       chapters-read: "{count} прочитано глав."
       completed: "{count} завершено."
-      more-than: "Более чем <span class=\"time-spent-percentile\">{percentage}%</span> пользователей."
       time-breakdown:
         seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
         time-segment: "{count} {timeUnit}" #8 months (pre-translated)
@@ -688,7 +684,6 @@ users:
       reset-confirmation: "Это приведет к удалению всей библиотеки, связанных с ней отзывов и реакций. Вы уверены, что хотите продолжить?"
       issues:
         header: "Проблемы с библиотекой"
-        reactions: "У {count} просмотренных тайтлов отсутствуют <b>реакции</b>"
         fix: "Исправить"
     list:
       edit: "Редактировать"
@@ -730,8 +725,6 @@ users:
       selected: "{type, select, anime {выбрано {num} аниме} manga {выбрано {num} тайтлов манги} other {}}"
       select-all: "Выделить все"
       select-none: "Отменить выделение"
-      remove: "Удалить <strong>{num}</strong>"
-      move-to: "Переместить <strong>{num}</strong> в…"
       remove-loading: "Удаление…"
       update-loading: "Обновление…"
   groups:
@@ -802,7 +795,6 @@ settings:
     sub-header: "Автоматически синхронизируйте Вашу библиотеку Kitsu на MyAnimeList."
     loading: "Загрузка экспорта…"
     remove: "Удалить экспортер"
-    disabled: "Ваш экспорт MAL был отключен по следующей причине: <strong>{reason}</strong>"
     create: "Настройка экспорта в аккаунт MyAnimeList"
     download: "Загрузить библиотеку {kind}"
     recent: "Недавние синхронизации"
@@ -833,7 +825,6 @@ settings:
     loading: "Загрузка импортов…"
     status: "Статус:"
     entries: "Всего записей найдено:"
-    error: "Кажется ваш импорт не удался :( &mdash; Мы хотим исправить это для вас, пожалуйста, напишите нам <a href=\"mailto:help@kitsu.io\">на электронную почту</a>."
     more: "Загрузить ещё"
   index:
     header: "Профиль"
@@ -843,7 +834,6 @@ settings:
     email: "Email"
     email-message: "Email не будет отображаться публично."
     language: "Язык сайта"
-    translate-help: "Заинтересованы в переводе? <a href=\"https://crowdin.com/project/kitsu-web\">Переводите здесь!</a>"
     time-zone: "Часовой пояс"
     content: "Контент на Kitsu"
     theme: "Тема сайта"
@@ -870,12 +860,6 @@ settings:
       email: "Email"
       mobile: "Моб. приложение"
     descriptions:
-      mentions: "Кто-то <strong>упомянул</strong> меня в посте или комментарии"
-      replies: "Кто-то <strong>ответил</strong> на мой пост или комментарий"
-      likes: "Кто-то <strong>лайкнул</strong> мой пост или комментарий"
-      follows: "Кто-то <strong>подписался</strong> на меня"
-      posts: "Кто-то <strong>написал</strong> в моем профиле"
-      reaction_votes: "Кто-то <strong>лайкнул</strong> мою реакцию"
       airing: "Вышла новая серия"
     newsletter:
       newsletter: "Новостная рассылка"
@@ -924,10 +908,6 @@ groups:
         open: "Открытая"
         closed: "Приватная"
         restricted: "Ограниченная"
-      privacy-features:
-        open: "<li>Любой может просматривать</li> <li>Любой может присоединиться к</li> <li>Любой может постить или комментировать</li>"
-        closed: "<li>Скрыта от просмотра</li> <li>Пользователи могут войти только по приглашению</li> <li>Нельзя сделать открытой</li>"
-        restricted: "<li>Каждый может просматривать</li> <li>Каждый может присоединиться</li> <li>Только лидеры могут писать новые посты.</li>"
       category: "Категория"
       category-placeholder: "Выберите категорию"
       avatar: "Аватар"
@@ -988,7 +968,6 @@ groups:
     feed-restricted: "Это - ограниченная группа. Все могут комментировать, только лидеры могут создавать публикации."
   rules:
     header: "Правила сообщества"
-    empty: "Привет! Похоже, вы используете правила сообщества Kitsu. Если вы хотите указать свои собственные правила, вы можете сделать это на вашей <a href={link}>странице настроек.</a>"
   tickets:
     search: "Поиск Заявок"
     empty: "Ура! У вас нет заявок для обработки."
@@ -998,7 +977,6 @@ groups:
       resolved: "Решённые Заявки"
       all: "Все Заявки"
     conversation:
-      title: "Заявка от <a href={link}>{name}</a>"
       mark-resolved: "Отметить как решённая"
       mark-closed: "Отметить как закрытая"
       mark-open: "Отметить как открытая"
@@ -1101,15 +1079,7 @@ groups:
         post-btn: "Отправить"
         placeholder: "Отправить сообщение лидерам"
     audit:
-      user:
-        banned: "<a href={link}>{user}</a> забанен."
-        unbanned: "<a href={link}>{user}</a> разбанен."
-        invited: "<a href={link}>{user}</a> приглашён в сообщество."
-        granted: "выданы права пользователю <a href={link}>{user}</a>."
-        revoked: "удалены права у пользователя <a href={link}>{user}</a>."
       group:
-        added_neighbor: "добавлена <a href={link}>{group}</a> в качестве соседа."
-        removed_neighbor: "удалена <a href={link}>{group}</a> в качестве соседа."
         avatar_changed: "обновлён аватар {group}."
         cover_changed: "обновлена обложка {group}."
         locale_changed: "обновлён язык {group}."
@@ -1123,7 +1093,6 @@ groups:
         declined: "жалоба отклонена."
         escalated: "жалоба передана."
       group-ticket:
-        assigned: "назначена заявка пользователю <a href={link}>{user}</a>."
         resolved: "заявка помечена как решенная."
         created: "заявка переоткрыта."
 #page: group-invite
@@ -1140,7 +1109,6 @@ group-invite:
 explore:
   view-more: "Показать еще"
   search-placeholder: "Что вы ищете?"
-  advanced-search: "Или ищи с <a href=\"/{mediaType}\">расширенным поиском</a>"
   no-data: "Хмм, кажется в этом разделе нет никакого контента."
   widget:
     related: "Похожие категории"
@@ -1159,7 +1127,6 @@ explore:
     index: "{type, select, anime {Аниме из категории} manga {Манга из категории} other {}} {category}" #category is pre-translated
 #page: media-reactions
 media-reactions:
-  view-all: "Просмотреть все <strong>{count}</strong> реакций {user}"
   create-account: "Создать Аккаунт"
 #page: notifications
 notifications:
@@ -1241,7 +1208,6 @@ onboarding:
     like-incomplete: "Лайкните {count} постов в ленте"
     avatar: "Поставьте себе аватар"
     cover: "Поставьте себе обложку профиля"
-    about-me: "Заполните раздел <i>О себе</i>"
     favorite: "Выберите ваши любимые аниме / мангу"
 #component: follow-button
 follow-button:
@@ -1283,10 +1249,8 @@ feeds:
   interest:
     anime:
       header: "Добро пожаловать в вашу Ленту Аниме!"
-      body: "Когда вы обновляете свою <a href={link}>библиотеку аниме</a>, вы увидите, что говорят другие о просмотренных вами тайтлах."
     manga:
       header: "Добро пожаловать в вашу Ленту Манги!"
-      body: "Когда вы обновляете свою <a href={link}>библиотеку манги</a>, вы увидите, что говорят другие о манге, которую вы читаете."
     button: "Окей, понял"
 #component: image-form
 image-form:
@@ -1352,7 +1316,6 @@ library-entry:
     edit-reaction: "Изменить реакцию"
     rewatch: "{type, select, anime {Пересматриваю} manga {Перечитываю} other {}}"
     remove-from-library: "Удалить из библиотеки"
-    saved-in: "Сохранено в <a href={link}>{status}</a>"
     progress: "Прогресс"
     not-rated: "Не оценено"
   rating:
