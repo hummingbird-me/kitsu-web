@@ -97,7 +97,6 @@ dashboard:
       anime: "Anime"
       manga: "Manga"
     empty:
-      html: "A <a href={link}>Könyvtárodhoz</a> hozzáadott vagy frissített média itt fog megjelenni, hogy gyorsan tudd frissíteni azt."
       discover: "Média Felfedezése"
     media:
       complete: "Befejez"
@@ -523,7 +522,6 @@ users:
       time-watched: "{count} {timeUnit} anime nézzéssel töltött idő."
       chapters-read: "{count} fejezet elolvasva."
       completed: "{count} befejezett."
-      more-than: "Több mint a felhasználók <span class=\"time-spent-percentile\">{percentage}%</span>-a."
       time-breakdown:
         seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
         time-segment: "{count} {timeUnit}" #8 months (pre-translated)
@@ -570,8 +568,6 @@ users:
       import: "Könyvtár Import"
       export: "Könyvtár Export"
       reset-confirmation: "Ezzel törlöd a teljes könyvtárad, a kapcsolódó ismertetőid és a reakcióidat. Biztos, hogy folytatni akarod?"
-      issues:
-        reactions: "{count} befejezett média hiányzik <b>reakciót</b>"
     list:
       list-edit: "Szerkesztés"
       more: "Több"
@@ -606,8 +602,6 @@ users:
       selected: "{type, select, anime {{num} anime kiválasztva} manga {{num} manga kiválasztva} other {}}"
       select-all: "Mind Kiválasztása"
       select-none: "Semmi Kiválasztása"
-      remove: "<strong>{num}</strong> Eltávolít"
-      move-to: "<strong>{num}</strong> Mozgatás…"
       remove-loading: "Eltávolít…"
       update-loading: "Frissítés…"
   reactions:
@@ -660,7 +654,6 @@ settings:
     sub-header: "Automatikusan szinkronizáld a könyvtárfrissítéseid a Kitsuról a MyAnimeListre."
     loading: "Exportok Betöltése…"
     remove: "Exportáló Eltávolítása"
-    disabled: "A MAL Exportálásod leállt a következő ok miatt:\n<strong>{reason}</strong>"
     create: "MyAnimeList Fiókra Exportálás Beállítása"
     download: "{kind} Könyvtár Letöltése"
     recent: "Legutóbbi Szinkronizálási Tevékenységek"
@@ -689,7 +682,6 @@ settings:
     loading: "Importok Betöltése…"
     status: "Státusz:"
     entries: "Összes találat:"
-    error: "Úgy tűnik, az importálás nem sikerült :( &mdash; Szeretnénk kijavítani ezt a probémát, úgyhogy kérlek írj egy <a href=\"mailto:help@kitsu.io\">emailt</a> nekünk."
     more: "Több Betöltése"
   index:
     header: "Profil"
@@ -699,7 +691,6 @@ settings:
     email: "Email"
     email-message: "Az email nem lesz nyilvánosan megjelenítve."
     language: "Nyelv"
-    translate-help: "Szeretnél fordítani? <a href=\"https://crowdin.com/project/kitsu-web\">Fordíts itt!</a>"
     time-zone: "Időzóna"
     content: "Tartalom a Kitsun"
     theme: "Webhely Téma"
@@ -726,12 +717,6 @@ settings:
       email: "Email"
       mobile: "Mobil"
     descriptions:
-      mentions: "Valaki <strong>megemlít</strong> egy posztban vagy kommentben"
-      replies: "Valaki <strong>válaszol</strong> egy posztomra vagy kommentemre"
-      likes: "Valaki <strong>kedveli</strong> egy posztomat vagy kommentemet"
-      follows: "Valaki elkezd <strong>követni</strong> engem"
-      posts: "Valaki <strong>posztol</strong> a profilomon"
-      reaction_votes: "Valaki <strong>szavaz</strong> a média reakciómra"
       airing: "Új epizód jelent meg"
     newsletter:
       newsletter: "Hírlevél"
@@ -777,10 +762,6 @@ groups:
         open: "Nyilvános"
         closed: "Privát"
         restricted: "Korlátozott"
-      privacy-features:
-        open: "<li>Bárki megtekintheti</li> <li>Bárki csatlakozhat</li> <li>Bárki posztolhat vagy kommentálhat</li>"
-        closed: "<li>Rejtett a nyilvánosságtól</li> <li>A felhasználók csak meghívás útján csatlakozhatnak</li> <li>Nem lehet nyilvánossá tenni</li>"
-        restricted: "<li>Bárki megtekintheti</li> <li>Bárki csatlakozhat</li> <li>Csak vezetők hozhatnak létre új posztokat.</li>"
       category: "Kategória"
       category-placeholder: "Kategória Kiválasztása"
       cover: "Borítókép"
@@ -923,7 +904,6 @@ group-invite:
 explore:
   view-more: "Több Megtekintése"
   search-placeholder: "Mit keresel?"
-  advanced-search: "Vagy böngéssz a <a href=\"/{mediaType}\">részletes kereséssel</a>"
   widget:
     related: "Kapcsolódó Kategóriák"
     categories: "Kategóriák"
@@ -994,7 +974,6 @@ onboarding:
     follow: "Kövess 5 felhasználót"
     follow-incomplete: "Kövess {count} {count, plural,=1 {felhasználót} other {felhasználót}}"
     comment: "Kommentelj egy posztra"
-    about-me: "Töltse ki a <i>Rólam</i>odat"
     favorite: "Válasszd ki kedvenc animéd / mangád"
 #component: follow-button
 follow-button:
@@ -1028,10 +1007,8 @@ feeds:
   interest:
     anime:
       header: "Üdv az Anime Hírfolyamodon!"
-      body: "Ahogy frissíted az <a href={link}>anime könyvtárad</a>, látni fogod, hogy mások mit mondanak a műsorokról amiket nézel."
     manga:
       header: "Üdv a Manga Hírfolyamodon!"
-      body: "Ahogy frissíted a <a href={link}>manga könyvtárad</a>, látni fogod, hogy mások mit mondanak a mangákról amiket olvasol."
 #component: image-form
 image-form:
   help-text: "Kattints ide hogy válassz egy képet."
@@ -1080,7 +1057,6 @@ library-entry:
     post-reaction: "Reakció Posztolása"
     edit-reaction: "Reakció Szerkesztése"
     remove-from-library: "Eltávolítás"
-    saved-in: "Mentve: <a href={link}>{status}</a>"
     not-rated: "Nincs Értékelve"
   rating:
     awful: "Borzasztó"
