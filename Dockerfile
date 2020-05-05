@@ -1,5 +1,3 @@
-# Node 12 requires several dependeny updates 
-# (some child dependency versions don't have 12 in their package.json "engines")
 FROM node:14
 MAINTAINER Kitsu, Inc.
 
