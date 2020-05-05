@@ -2,7 +2,7 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const PostCSSFlex = require('postcss-flexbugs-fixes');
 const Autoprefixer = require('autoprefixer');
 const svgoUniqueIds = require('svgo-plugin-unify-ids');
-const dartSass = require('sass');
+const nodeSass = require('node-sass');
 const targets = require('./config/targets');
 
 const environment = EmberApp.env();
@@ -47,7 +47,7 @@ module.exports = function(defaults) {
     },
 
     sassOptions: {
-      implementation: dartSass,
+      implementation: nodeSass,
       includePaths: ['node_modules/bootstrap/scss']
     },
 

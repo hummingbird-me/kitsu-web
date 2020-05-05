@@ -1,7 +1,9 @@
-FROM node:14
+# Node 12 requires several dependeny updates 
+# (some child dependency versions don't have 12 in their package.json "engines")
+FROM node:10
 MAINTAINER Kitsu, Inc.
 
-RUN curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.4
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.0
 ENV PATH="/root/.yarn/bin:${PATH}"
 RUN mkdir -p /opt/kitsu/client
 
