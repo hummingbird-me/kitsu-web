@@ -1,7 +1,7 @@
 FROM node:14
 MAINTAINER Kitsu, Inc.
 
-RUN curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.0
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.4
 ENV PATH="/root/.yarn/bin:${PATH}"
 RUN mkdir -p /opt/kitsu/client
 
