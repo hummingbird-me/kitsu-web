@@ -50,7 +50,7 @@ export default [
   // { id: 'sl-sl', text: 'Slovenščina' }, // Slovenian
   { id: 'es-es', text: 'Español' },
   // { id: 'sv-se', text: 'Svenska' }, // Swedish
-  // { id: 'tl-ph', text: 'Wikang Tagalog' }, // [76/2 - past 50, waiting on approval] 
+  // { id: 'tl-ph', text: 'Wikang Tagalog' }, // [76/2 - past 50, waiting on approval]
   // { id: 'th-th', text: 'ไทย' }, // Thai
   // { id: 'tr-tr', text: 'Türkçe' }, // Turkish [1/0]
   // { id: 'uk-ua', text: 'Українська' }, // Ukrainian [14/13]
