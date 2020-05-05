@@ -1,7 +1,7 @@
 ---
 os: linux
 language: node_js
-node_js: 10
+node_js: 14
 cache: yarn
 
 addons:
@@ -14,7 +14,7 @@ env:
   - JOBS=1
 
 before_install:
-- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.0
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.4
 - export PATH=$HOME/.yarn/bin:$PATH
 
 install:
