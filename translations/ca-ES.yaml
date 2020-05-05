@@ -102,6 +102,7 @@ dashboard:
       anime: "Anime"
       manga: "Manga"
     empty:
+      html: "Els continguts que hagis afegit o pujat dins de la teva '<a href={link}>'Biblioteca'</a>' es mostraran aquí perquè els puguis actualitzar de forma ràpida."
       discover: "Descubrir continguts"
     media:
       complete: "Completat"
@@ -578,6 +579,8 @@ users:
   activity:
     onboarding:
       welcome: "Hey {user}, aquesta pàgina tracta només de tu!!"
+      about: "A mesura que segueixis fent servir Kitsu, el teu '<strong>'panel personal'</strong>' a continuació començarà a omplir-se amb els animes i mangas que has vist, llegit, completat i planeges mirar. També pots publicar text, imatges i vídeos al teu panell utilitzant el formulari a continuació. Les teves publicacions seran vistes i apreciades pels teus seguidors i usuaris de el panell global."
+      action: "Sent-te a casa! Puja un avatar i una imatge de capçalera! Fes clic en '<span>'Editar'</span>' amunt per començar."
     about:
       empty: "És un secret"
       gender:
@@ -636,6 +639,7 @@ users:
       reset-confirmation: "Això eliminarà tota la teva biblioteca, ressenyes associades i reaccions. De debò vols continuar?"
       issues:
         header: "Problemes amb la biblioteca"
+        reactions: "Falten {count} '<b>'reaccions'</b>' en continguts completats"
         fix: "solucionar"
     list:
       edit: "Editar entrada"
@@ -677,6 +681,8 @@ users:
       selected: "{num} {type, select, anime {animes} manga {mangas} other {{type}}} seleccionats"
       select-all: "Seleccionar tots"
       select-none: "Seleccionar cap"
+      remove: "Suprimir '<strong>'{num}'</strong>'"
+      move-to: "Moure '<strong>'{num}'</strong>' a…"
       remove-loading: "Suprimint…"
       update-loading: "Actualitzant…"
   groups:
@@ -747,6 +753,7 @@ settings:
     sub-header: "Sincronitza automàticament les teves actualitzacions de la biblioteca d'Kitsu amb MyAnimeList."
     loading: "Cargant exportacions…"
     remove: "Suprimir exportador"
+    disabled: "La teva exportació de MAL ha estat desactivada a causa de la següent raó: '<strong>'{reason}'</strong>'"
     create: "Configurar la exportació de la compte MyAnimeList"
     download: "Descarregar la biblioteca de {kind}"
     recent: "Activitat de sincronització recent"
@@ -777,6 +784,7 @@ settings:
     loading: "Carregant importacions…"
     status: "Estat:"
     entries: "Total d'entrades trobades:"
+    error: "Sembla que la teva importació ha fallat :( &mdash; Volem solucionar-ho, per la qual cosa et demanem ens escriguis un '<a href=\"mailto:help@kitsu.io\">'correu'</a>' (en anglès)."
     more: "Carregar més"
   index:
     header: "Perfil"
@@ -786,6 +794,7 @@ settings:
     email: "Correu"
     email-message: "El correu no és mostrat de forma pública."
     language: "Idioma"
+    translate-help: "Vols ajudar a traduir a altres idiomes? '<a href=\"https://crowdin.com/project/kitsu-web\">'¡Tradueix aquí!'</a>'"
     time-zone: "Zona horària"
     content: "Contingut en Kitsu"
     theme: "Tema de la pàgina"
@@ -811,6 +820,12 @@ settings:
       email: "Correu"
       mobile: "Mobil"
     descriptions:
+      mentions: "Algú '<strong>'em menciona '</strong>' en una publicació o comentari"
+      replies: "Algú '<strong>'ha respòs'</strong>' a la meva publicació o comentari"
+      likes: "A algú '<strong>'li ha agradat'</strong>' a la meva publicació o comentari"
+      follows: "Algú '<strong>'em segueix'</strong>'"
+      posts: "Algú '<strong>'ha publicat'</strong>' al meu perfil"
+      reaction_votes: "Algú '<strong>'ha vota'</strong>' la meva reacció a un contingut"
       airing: "Surt un nou episodi"
     newsletter:
       newsletter: "Butlletí (en anglès)"
@@ -859,6 +874,10 @@ groups:
         open: "Públic"
         closed: "Privat"
         restricted: "Restringit"
+      privacy-features:
+        open: "'<li>'Qualsevol pot veure'</li>' '<li>'Qualsevol pot unir-se'</li>' '<li>'Qualsevol pot publicar o comentar'</li>'"
+        closed: "'<li>'Tencat al públic'</li>' '<li>'Els usuaris només poden unir-se per invitació'</li>' '<li>'No pot ser transformat en públic'</li>'"
+        restricted: "'<li>'Qualsevol pot veure '</li>' '<li>'Qualsevol pot unir-se '</li>' '<li>'Només els líders poden crear noves publicacions.'</li>'"
       category: "Categoria"
       category-placeholder: "Selecciona una categoria"
       avatar: "Avatar"
@@ -919,6 +938,7 @@ groups:
     feed-restricted: "Aquest és un grup restringit. Tots poden comentar però només els líders poden crear publicacions."
   rules:
     header: "Regles de la comunitat"
+    empty: "Hola! Sembla que estàs fent servir la normativa de comunitat de Kitsu. Si vols especificar les teves pròpies regles, pots fer-ho a la teva '<a href={link}>' pàgina de configuració '</a>'."
   tickets:
     search: "Buscar tickets"
     empty: "Hurra! No hi ha tiquets que resoldre."
@@ -928,6 +948,7 @@ groups:
       resolved: "Tickets resolts"
       all: "Tots els tickets"
     conversation:
+      title: "Ticket de '<a href={link}>'{name}'</a>'"
       mark-resolved: "Marcar com a resolt"
       mark-closed: "Marcar com a tencat"
       mark-open: "Maracr com a obert"
