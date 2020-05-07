@@ -102,7 +102,6 @@ dashboard:
       anime: "Anime"
       manga: "Manga"
     empty:
-      html: "Media you've added or updated within your '<a href={link}>'Library'</a>' will show up here for you to quickly update."
       discover: "Discover Media"
     media:
       complete: "Complete"
@@ -988,7 +987,6 @@ groups:
     feed-restricted: "This is a restricted group. Anyone can comment, but only leaders can create posts."
   rules:
     header: "Community Rules"
-    empty: "Hey there! Looks like you're using the Kitsu community guidelines. If you'd like to specify your own rules you can do that on your '<a href={link}>'settings page'</a>'."
   tickets:
     search: "Search Tickets"
     empty: "Hooray! You don't have any tickets to handle."
@@ -998,7 +996,6 @@ groups:
       resolved: "Resolved Tickets"
       all: "All Tickets"
     conversation:
-      title: "Ticket from '<a href={link}>'{name}'</a>'"
       mark-resolved: "Mark Resolved"
       mark-closed: "Mark Closed"
       mark-open: "Mark Open"
@@ -1101,15 +1098,7 @@ groups:
         post-btn: "Post"
         placeholder: "Send message to leaders"
     audit:
-      user:
-        banned: "banned '<a href={link}>'{user}'</a>'."
-        unbanned: "unbanned '<a href={link}>'{user}'</a>'."
-        invited: "invited '<a href={link}>'{user}'</a>' to join the community."
-        granted: "granted permissions to '<a href={link}>'{user}'</a>'."
-        revoked: "removed permissions from '<a href={link}>'{user}'</a>'."
       group:
-        added_neighbor: "added '<a href={link}>'{group}'</a>' as a neighbour."
-        removed_neighbor: "removed '<a href={link}>'{group}'</a>' as a neighbour."
         avatar_changed: "updated the {group} avatar."
         cover_changed: "updated the {group} cover image."
         locale_changed: "updated the {group} locale."
@@ -1123,7 +1112,6 @@ groups:
         declined: "declined a report."
         escalated: "escalated a report."
       group-ticket:
-        assigned: "assigned a ticket to '<a href={link}>'{user}'</a>'."
         resolved: "marked a ticket as resolved."
         created: "re-opened a ticket."
 #page: group-invite
@@ -1140,7 +1128,6 @@ group-invite:
 explore:
   view-more: "View more"
   search-placeholder: "What are you searching for?"
-  advanced-search: "Or, browse with the '<a href=\"/{mediaType}\">'advanced search'</a>'"
   no-data: "Hmm, doesn't seem like any media can be found for this section."
   widget:
     related: "Related Categories"
@@ -1283,10 +1270,8 @@ feeds:
   interest:
     anime:
       header: "Welcome to your Anime Feed!"
-      body: "As you update your '<a href={link}>'anime library'</a>', you'll see what others are saying about the shows you're watching."
     manga:
       header: "Welcome to your Manga Feed!"
-      body: "As you update your '<a href={link}>'manga library'</a>', you'll see what others are saying about the manga you're reading."
     button: "Okay, got it"
 #component: image-form
 image-form:
@@ -1352,7 +1337,6 @@ library-entry:
     edit-reaction: "Edit Reaction"
     rewatch: "{type, select, anime {Rewatch} manga {Reread} other {}}"
     remove-from-library: "Remove from Library"
-    saved-in: "Saved in '<a href={link}>'{status}'</a>'"
     progress: "Progress"
     not-rated: "Not Rated"
   rating:
