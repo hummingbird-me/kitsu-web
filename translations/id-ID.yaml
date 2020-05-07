@@ -169,11 +169,11 @@ media:
         match: "{rating}% Cocok"
       ranking:
         full:
-          popularity: "{type, select, anime {Peringkat # {rank} (Anime Terpopuler)} manga {Peringkat # {rank} (Manga Terpopuler)} other {}}"
-          rating: "{type, select, anime {Peringkat # {rank} (Skor Tertinggi)} manga {Peringkat # {rank} (Skor Tertinggi)} other {}}"
+          popularity: "{type, select, anime {Peringkat #{rank} (Anime Terpopuler)} manga {Peringkat #{rank} (Manga Terpopuler)} other {}}"
+          rating: "{type, select, anime {Peringkat #{rank} (Skor Tertinggi)} manga {Peringkat #{rank} (Skor Tertinggi)} other {}}"
         short:
-          popularity: "{type, select, anime {# {rank} Terpopuler} manga {# {rank} Terpopuler} other {}}"
-          rating: "{type, select, anime {# {rank} Skor Tertinggi} manga {# {rank} Skor Tertinggi} other {}}"
+          popularity: "{type, select, anime {#{rank} Terpopuler} manga {#{rank} Terpopuler} other {}}"
+          rating: "{type, select, anime {#{rank} Skor Tertinggi} manga {#{rank} Skor Tertinggi} other {}}"
       categories: "Kategori"
       relationships:
         header: "Lainnya dari seri ini"

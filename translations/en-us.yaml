@@ -208,21 +208,21 @@ media:
       ranking:
         full:
           popularity: "{type, select,
-            anime {Rank # {rank} (Most Popular Anime)}
-            manga {Rank # {rank} (Most Popular Manga)}
+            anime {Rank #{rank} (Most Popular Anime)}
+            manga {Rank #{rank} (Most Popular Manga)}
             other {}}"
           rating: "{type, select,
-            anime {Rank # {rank} (Highest Rated Anime)}
-            manga {Rank # {rank} (Highest Rated Manga)}
+            anime {Rank #{rank} (Highest Rated Anime)}
+            manga {Rank #{rank} (Highest Rated Manga)}
             other {}}"
         short:
           popularity: "{type, select,
-            anime {# {rank} Most Popular}
-            manga {# {rank} Most Popular}
+            anime {#{rank} Most Popular}
+            manga {#{rank} Most Popular}
             other {}}"
           rating: "{type, select,
-            anime {# {rank} Highest Rated}
-            manga {# {rank} Highest Rated}
+            anime {#{rank} Highest Rated}
+            manga {#{rank} Highest Rated}
             other {}}"
       categories: "Categories"
       relationships:
