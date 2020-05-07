@@ -102,6 +102,7 @@ dashboard:
       anime: "Anime"
       manga: "Manga"
     empty:
+      html: "Media you've added or updated within your '<a' href={link}'>'Library'</a>' will show up here for you to quickly update."
       discover: "Discover Media"
     media:
       complete: "Complete"
@@ -166,6 +167,13 @@ media:
       ratings:
         community: "{rating}% Community Approval"
         match: "{rating}% Match"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Rank #{rank} (Most Popular Anime)} manga {Rank #{rank} (Most Popular Manga)} other {}}"
+          rating: "{type, select, anime {Rank #{rank} (Highest Rated Anime)} manga {Rank #{rank} (Highest Rated Manga)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} Most Popular} manga {#{rank} Most Popular} other {}}"
+          rating: "{type, select, anime {#{rank} Highest Rated} manga {#{rank} Highest Rated} other {}}"
       categories: "Categories"
       relationships:
         header: "More from this series"
@@ -990,6 +998,7 @@ groups:
       resolved: "Resolved Tickets"
       all: "All Tickets"
     conversation:
+      title: "Ticket from '<a' href={link}'>'{name}'</a>'"
       mark-resolved: "Mark Resolved"
       mark-closed: "Mark Closed"
       mark-open: "Mark Open"
@@ -1092,6 +1101,12 @@ groups:
         post-btn: "Post"
         placeholder: "Send message to leaders"
     audit:
+      user:
+        banned: "banned '<a' href={link}'>'{user}'</a>'."
+        unbanned: "unbanned '<a' href={link}'>'{user}'</a>'."
+        invited: "invited '<a' href={link}'>'{user}'</a>' to join the community."
+        granted: "granted permissions to '<a' href={link}'>'{user}'</a>'."
+        revoked: "removed permissions from '<a' href={link}'>'{user}'</a>'."
       group:
         added_neighbor: "added '<a' href={link}'>'{group}'</a>' as a neighbour."
         removed_neighbor: "removed '<a' href={link}'>'{group}'</a>' as a neighbour."
@@ -1108,6 +1123,7 @@ groups:
         declined: "declined a report."
         escalated: "escalated a report."
       group-ticket:
+        assigned: "assigned a ticket to '<a' href={link}'>'{user}'</a>'."
         resolved: "marked a ticket as resolved."
         created: "re-opened a ticket."
 #page: group-invite
@@ -1267,8 +1283,10 @@ feeds:
   interest:
     anime:
       header: "Welcome to your Anime Feed!"
+      body: "As you update your '<a' href={link}'>'anime library'</a>', you'll see what others are saying about the shows you're watching."
     manga:
       header: "Welcome to your Manga Feed!"
+      body: "As you update your '<a' href={link}'>'manga library'</a>', you'll see what others are saying about the manga you're reading."
     button: "Okay, got it"
 #component: image-form
 image-form:
@@ -1334,6 +1352,7 @@ library-entry:
     edit-reaction: "Edit Reaction"
     rewatch: "{type, select, anime {Rewatch} manga {Reread} other {}}"
     remove-from-library: "Remove from Library"
+    saved-in: "Saved in '<a' href={link}'>'{status}'</a>'"
     progress: "Progress"
     not-rated: "Not Rated"
   rating:
