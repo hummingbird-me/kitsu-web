@@ -169,11 +169,11 @@ media:
         match: "{rating}% de Correspondência"
       ranking:
         full:
-          popularity: "{type, select, anime {Rank #{rank} (Animes Mais Populares)} manga {Rank #{rank} (Mangás Mais Populares)} other {}}"
-          rating: "{type, select, anime {Rank #{rank} (Animes de Maior Classificação)} manga {Rank #{rank} (Mangás de Maior Classificação)} other {}}"
+          popularity: "{type, select, anime {Rank # {rank} (Animes Mais Populares)} manga {Rank # {rank} (Mangás Mais Populares)} other {}}"
+          rating: "{type, select, anime {Rank # {rank} (Animes de Maior Classificação)} manga {Rank # {rank} (Mangás de Maior Classificação)} other {}}"
         short:
-          popularity: "{type, select, anime {#{rank} dos Mais Populares} manga {#{rank} dos Mais Populares} other {}}"
-          rating: "{type, select, anime {#{rank} Melhores Classificações} manga {#{rank} Melhores Classificações} other {}}"
+          popularity: "{type, select, anime {# {rank} dos Mais Populares} manga {# {rank} dos Mais Populares} other {}}"
+          rating: "{type, select, anime {# {rank} Melhores Classificações} manga {# {rank} Melhores Classificações} other {}}"
       categories: "Categorias"
       relationships:
         header: "Mais desta série"
