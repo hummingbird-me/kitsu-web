@@ -102,6 +102,7 @@ dashboard:
       anime: "Аниме"
       manga: "Манга"
     empty:
+      html: "Контент, который вы обновили или добавили в своей '<a' href={link}'>'библиотеке'</a>' будет показан здесь для более быстрого доступа."
       discover: "Поиск контента"
     media:
       complete: "Завершен"
@@ -980,6 +981,7 @@ groups:
     feed-restricted: "Это - ограниченная группа. Все могут комментировать, только лидеры могут создавать публикации."
   rules:
     header: "Правила сообщества"
+    empty: "Привет! Похоже, вы используете правила сообщества Kitsu. Если вы хотите указать свои собственные правила, вы можете сделать это на вашей '<a' href={link}'>'странице настроек.'</a>'"
   tickets:
     search: "Поиск Заявок"
     empty: "Ура! У вас нет заявок для обработки."
@@ -989,6 +991,7 @@ groups:
       resolved: "Решённые Заявки"
       all: "Все Заявки"
     conversation:
+      title: "Заявка от '<a' href={link}'>'{name}'</a>'"
       mark-resolved: "Отметить как решённая"
       mark-closed: "Отметить как закрытая"
       mark-open: "Отметить как открытая"
@@ -1091,7 +1094,15 @@ groups:
         post-btn: "Отправить"
         placeholder: "Отправить сообщение лидерам"
     audit:
+      user:
+        banned: "'<a' href={link}'>'{user}'</a>' забанен."
+        unbanned: "'<a' href={link}'>'{user}'</a>' разбанен."
+        invited: "'<a' href={link}'>'{user}'</a>' приглашён в сообщество."
+        granted: "выданы права пользователю '<a' href={link}'>'{user}'</a>'."
+        revoked: "удалены права у пользователя '<a' href={link}'>'{user}'</a>'."
       group:
+        added_neighbor: "добавлена '<a' href={link}'>'{group}'</a>' в качестве соседа."
+        removed_neighbor: "удалена '<a' href={link}'>'{group}'</a>' в качестве соседа."
         avatar_changed: "обновлён аватар {group}."
         cover_changed: "обновлена обложка {group}."
         locale_changed: "обновлён язык {group}."
@@ -1105,6 +1116,7 @@ groups:
         declined: "жалоба отклонена."
         escalated: "жалоба передана."
       group-ticket:
+        assigned: "назначена заявка пользователю '<a' href={link}'>'{user}'</a>'."
         resolved: "заявка помечена как решенная."
         created: "заявка переоткрыта."
 #page: group-invite
@@ -1121,6 +1133,7 @@ group-invite:
 explore:
   view-more: "Показать еще"
   search-placeholder: "Что вы ищете?"
+  advanced-search: "Или ищи с '<a href={mediaType}>'расширенным поиском'</a>'"
   no-data: "Хмм, кажется в этом разделе нет никакого контента."
   widget:
     related: "Похожие категории"
@@ -1263,8 +1276,10 @@ feeds:
   interest:
     anime:
       header: "Добро пожаловать в вашу Ленту Аниме!"
+      body: "Когда вы обновляете свою '<a' href={link}'>'библиотеку аниме'</a>', вы увидите, что говорят другие о просмотренных вами тайтлах."
     manga:
       header: "Добро пожаловать в вашу Ленту Манги!"
+      body: "Когда вы обновляете свою '<a' href={link}'>'библиотеку манги'</a>', вы увидите, что говорят другие о манге, которую вы читаете."
     button: "Окей, понял"
 #component: image-form
 image-form:
@@ -1330,6 +1345,7 @@ library-entry:
     edit-reaction: "Изменить реакцию"
     rewatch: "{type, select, anime {Пересматриваю} manga {Перечитываю} other {}}"
     remove-from-library: "Удалить из библиотеки"
+    saved-in: "Сохранено в '<a' href={link}'>'{status}'</a>'"
     progress: "Прогресс"
     not-rated: "Не оценено"
   rating:
