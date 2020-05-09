@@ -63,7 +63,8 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    set(this, 'reasons', ['NSFW', 'Offensive', 'Spoiler', 'Bullying', 'Other']);
+    // https://github.com/hummingbird-me/kitsu-server/blob/c8b6eb31f6ee3c5414652c7083a9e48703bb5771/app/models/report.rb#L37
+    set(this, 'reasons', ['NSFW', 'Offensive', 'Spoiler', 'Bullying', 'Spam', 'Other']);
     get(this, 'checkReport').perform().then(report => {
       if (isEmpty(report) === false) {
         set(this, 'hasReported', true);
