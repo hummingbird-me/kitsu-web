@@ -1,11 +1,11 @@
 <div class="modal-wrapper">
   <div class="auth-section active">
-    <h6 class="auth-section-title">Okay, let's import your {{siteName}} account</h6>
-    <p class="auth-section-helper">Our {{siteName}} importer can import your existing anime and manga data from an exported file.</p>
+    <h6 class="auth-section-title">{{t "onboarding.import-file.title"}}</h6>
+    <p class="auth-section-helper">{{t "onboarding.import-file.info"}}</p>
     <div class="form-group">
       {{file-select id="import-file" update=(action "updateFile")}}
       <button type="button" class="button button--primary m-b-1" disabled={{if createImport.isRunning "disabled"}} {{action "triggerClick" "import-file"}}>
-        Select File
+        {{t "onboarding.import-file.select"}}
         {{#if file}}
           ({{truncate fileName 20}})
         {{/if}}
@@ -14,14 +14,14 @@
   </div>
   <div class="form-cta">
     <button type="button" class="button button--primary m-b-1" disabled={{if createImport.isRunning "disabled"}} {{action "changeComponent" "import-select"}}>
-      Back to Import Select
+      {{t "onboarding.import-file.back"}}
     </button>
 
     <button type="button" class="button button--primary" disabled={{if (is-empty file) "disabled"}} {{action "startImport"}}>
       {{#if createImport.isRunning}}
         {{loading-spinner size="small"}}
       {{else}}
-        Start {{siteName}} Import
+        {{t "onboarding.import-file.start"}}
       {{/if}}
     </button>
   </div>

@@ -1,22 +1,22 @@
 <div class="modal-wrapper">
   <div class="auth-section active">
-    <h6 class="auth-section-title">Hang tight! We're importing your data!</h6>
+    <h6 class="auth-section-title">{{t "onboarding.import-progress.title"}}</h6>
     <p class="auth-section-helper">
-      Your {{siteName}} import will continue in the background.
+      {{t "onboarding.import-progress.info"}}
       {{#unless componentData.justImport}}
-        You can safely continue setting up your account in the mean time.
+        {{t "onboarding.import-progress.safe"}}
       {{/unless}}
-      We'll send you a notification when your import has completed!
+      {{t "onboarding.import-progress.notification"}}
     </p>
   </div>
   <div class="form-cta">
     {{#if componentData.justImport}}
       <button type="button" class="button button--primary" {{action close}}>
-        Finish
+        {{t "onboarding.import-progress.finish"}}
       </button>
     {{else}}
       <button type="button" class="button button--primary" {{action "changeComponent" "find-friends"}}>
-        Continue
+        {{t "onboarding.import-progress.continue"}}
       </button>
     {{/if}}
   </div>

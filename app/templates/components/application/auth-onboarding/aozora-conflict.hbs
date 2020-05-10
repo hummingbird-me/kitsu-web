@@ -11,7 +11,7 @@
           <span class="aozora-conflict-title">
             <span class="aozora-conflict-name">{{account.name}}</span>
             <span class="aozora-conflict-count">
-              {{format-number account.library_entries}} Library Entries
+              {{t "onboarding.aozora-conflict.entries" count=(format-number account.library_entries)}}
             </span>
           </span>
           {{!-- We have to do this because the assets get fingerprinted --}}

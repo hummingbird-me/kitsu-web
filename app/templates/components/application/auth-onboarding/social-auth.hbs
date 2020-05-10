@@ -1,7 +1,7 @@
 <div class="register-cover"></div>
 <div class="modal-wrapper">
   <p class="register-intro">
-    Create an account to track, share and discover anime and manga in a uniquely social way.
+    {{t "onboarding.social-auth.intro"}}
   </p>
 
   <div class="modal-actions">
@@ -11,27 +11,27 @@
       </span>
       <div class="button-labelSet">
         <span class="button-label button-label--multiLine">
-          Continue with Facebook
+          {{t "onboarding.social-auth.facebook"}}
         </span>
         <span class="button-label button-label--subText button-label--multiLineSubtext">
-          <span class="u-fontSizeSmallest u-textColorTransparentWhiteDark">We won’t post without asking</span>
+          <span class="u-fontSizeSmallest u-textColorTransparentWhiteDark">{{t "onboarding.social-auth.notice"}}</span>
         </span>
       </div>
     </button>
     <div class="secondary-links">
       <a href="#" {{action "changeComponent" "sign-up"}} data-test-sign-up-email>
-        Sign up with email
+        {{t "onboarding.social-auth.email"}}
       </a>
       <span class="pull-sm-right">
-        Have an account?
+        {{t "onboarding.social-auth.account"}}
         <a href="#" class="text-sm-right" {{action "changeComponent" "sign-in"}} data-test-sign-in-email>
-          Login
+          {{t "onboarding.social-auth.login"}}
         </a>
       </span>
     </div>
     <div class="privacy-copy">
-      <p>If you sign up with Facebook, we’ll start you off with a network by automatically matching you with your followers/followees or friends already on Kitsu. Don't worry, we’ll never post to Facebook without your permission.</p>
-      <div>By signing up you indicate that you have read and agree to the <a href="/terms">Terms of Service</a> and <a href="/terms">Privacy Policy</a>.</div>
+      <p>{{t "onboarding.social-auth.privacy"}}</p>
+      <div>{{t "onboarding.social-auth.agreement" htmlSafe=true}}</div>
     </div>
 
   </div>
