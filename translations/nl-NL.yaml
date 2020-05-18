@@ -316,6 +316,8 @@ components:
   ad-unit: "Advertenties zuigen, maar dat is hoe we draaiend blijven. Whitelist ons alsjeblieft in je advertentieblokker."
   admin:
     reports:
+      no-explanation: "Geen Uitleg Gegeven."
+      not-set: "Niet ingesteld"
       actions:
         button: "Acties"
         open: "Markeren als open"
@@ -326,19 +328,27 @@ components:
         type: "Type"
         reason: "Reden"
         explanation: "Verklaring"
+        moderator: "Moderator"
         status: "Status"
         actions: "Acties"
+  application:
+    nav-search: "Zoeken in Kitsu"
   episodes:
     shortcut-bar:
       episode-number: "EP {number}"
+    fast-forward: "Bibliotheek progressie snel voortgezet naar aflevering {number}!"
     undo-update: "Ongedaan maken"
+    update-progress: "Wilt je de vooruitgang veranderen naar episode {number}?"
+    watched: "Markeer als bekeken"
     join-prompt:
+      pitch: "Hou je vooruitgang bij en doe mee aan de discussie!"
       register: "Kitsu Account maken"
   likeable-resource:
     loading: "Laden…"
     more: "Meer laden"
   search:
     header: "Zoekresultaten"
+    view: "meer bekijken"
     load: "meer laden"
     none: "geen resultaten"
   sidebar-footer:
@@ -350,11 +360,13 @@ components:
       create: "Post"
       nsfw: "NSFW"
       spoiler: "Spoiler"
+      tag-media: "Typ om een show of manga te taggen"
     edit-post:
       header: "Post bewerken"
       error:
         tagged: "Helaas, je mag je getagde media nog niet bewerken."
     follow:
+      followed: "gevolgd"
       delete: "Activiteit Verwijderen"
     library:
       delete: "verwijderen"
@@ -376,7 +388,11 @@ components:
       hide: "Verberg Post Content"
       edit: "Post Bewerken"
       delete: "Post Verwijderen"
+      unpin: "Post van profielpagina losmaken"
+      pin: "Post aan profielpagina toevoegen"
+      pin-text: "Weet je zeker dat je deze post aan jouw profielpagina toe wil voegen?"
       report: "Post Rapporteren"
+      comment-count: "{count} van de {total}"
       comment:
         deleting: "Comment wordt verwijderd…"
         reply: "Reageren"
@@ -388,11 +404,15 @@ components:
         add-reply: "Reactie toevoegen…"
       comments:
         all: "Bekijk alle Comments"
+        parent: "Bekijk bovenliggende reactie"
+        previous-comments: "Bekijk vorige reactie"
         leave-comment: "Laat een reactie achter…"
     review:
+      by: "Beoordeling door"
       spoiler: "Deze recensie bevat spoilers."
       spoiler-hover: "Ik kan de waarheid aan!"
       share:
+        twitter: "Tweet"
         facebook: "Deel"
       copy-link: "Link naar Recensie Kopiëren"
       hide: "Recensie content verbergen"
@@ -413,8 +433,21 @@ components:
     block: "Blokkeer @{user}"
     you: "Hey, dat ben jij!"
     favorites:
+      title: "Favoriete {type, select, series {Serie} characters {Personage} other {}}"
       anime: "Anime"
       manga: "Manga"
+      more: "Toon meer"
+      edit: "Verander favoriete {type, select, anime {anime} manga {manga} characters {characters} other {}}"
+      empty:
+        yours: "Je heeft nog niet je favoriete {type, select, anime {anime} manga {manga} characters {characters} other {}} gekozen!"
+        others: "Deze gebruiker heeft geen favorieten"
+      choose: "Kies jouw favoriete {type, select, anime {anime} manga {manga} characters {characters} other {}}"
+    alt-name:
+      title: "Misschien een alternatief account van {user}"
+      none: "Geen alternatieven gevonden"
+    past-name:
+      title: "Eerdere namen"
+      none: "Geen eerdere namen"
 #page: users
 users:
   profile:
@@ -422,6 +455,8 @@ users:
   admin:
     button: "Beheerder"
     past-names: "Zie Vorige Namen"
+    alt-accounts: "Bekijk alternatieve accounts"
+    delete-content: "Verwijder door persoon gemaakte content"
     ban: "Verbannen"
   navigation:
     activity: "Activiteit"
@@ -432,6 +467,7 @@ users:
     following: "Volgend"
     groups: "Groepen"
   edit-modal:
+    cover: "Verander jouw banner"
     navigation:
       about: "Over mij"
       profile-links: "Profiel links"
@@ -491,6 +527,9 @@ users:
         battlenet:
           about: "Vul hieronder je Battle.net BattleTag in om een link aan je profiel toe te voegen."
           placeholder: "Je Battle.net BattleTag (Gebruiker#1234)"
+        steam:
+          about: "Vul hieronder jouw Steam gebruikersnaam in om je profiel te koppelen."
+          placeholder: "Jouw Steam gebruikersnaam"
         raptr:
           about: "Vul hieronder je Raptr gebruikersnaam in om een link aan je profiel toe te voegen."
           placeholder: "Je Raptr gebruikersnaam"
@@ -517,21 +556,36 @@ users:
           placeholder: "Je osu! ID nummer"
         patreon:
           about: "Vul je Patreon project naam in om een link naar je profiel toe te voegen."
+          placeholder: "Jouw Patreon project naam"
         deviantart:
           about: "Vul hieronder je Twitter gebruikersnaam in om een link naar je profiel toe te voegen."
           placeholder: "Je DeviantArt gebruikersnaam"
         dribbble:
           about: "Vul hieronder je Twitter gebruikersnaam in om een link naar je profiel toe te voegen."
           placeholder: "Je Dribble gebruikersnaam"
+        imdb:
+          about: "Voer je IMDb profiel URL hieronder in om een link naar jouw profiel toe te voegen."
+          placeholder: "Jouw IMDb profiel URL"
         lastfm:
+          about: "Voer je Last.fm gebruikersnaam hieronder in om een link naar jouw profiel toe te voegen."
           placeholder: "Je Last.fm gebruikersnaam"
+        letterboxd:
+          about: "Voer je Letterboxd gebruikersnaam hieronder in om een link naar jouw profiel toe te voegen."
+          placeholder: "Je Letterboxd gebruikersnaam"
+        medium:
+          about: "Voer je Medium gebruikersnaam of publicatienaam hieronder in om een link naar jouw profiel toe te voegen."
+          placeholder: "Je Medium gebruikersnaam (@user) of publicatienaam"
         playerme:
+          about: "Voer je Player.me gebruikersnaam hieronder in om een link naar jouw profiel toe te voegen."
           placeholder: "Je Player.me gebruikersnaam"
         reddit:
+          about: "Voer hieronder je Reddit gebruikersnaam in om een link naar jouw profiel toe te voegen."
           placeholder: "Je Reddit gebruikersnaam"
         trakt:
+          about: "Voer hieronder je Trakt gebruikersnaam in om een link naar jouw profiel toe te voegen."
           placeholder: "Je Trakt gebruikersnaam"
     footer:
+      updating: "Aan het updaten…"
       update: "Profiel Updaten"
     favorites:
       header: "Favorieten"
@@ -543,6 +597,7 @@ users:
     onboarding:
       welcome: "Hey {user}, deze pagina gaat volledig over JOU!"
       action: "Doe alsof je thuis bent! Upload een avatar and banner! Klik om te starten hierboven op '<span>'Bewerken'</span>'."
+      title: "Je Profiel Opzetten"
     about:
       header: "Over Mij"
       empty: "Dat is een geheim"
