@@ -1,4 +1,245 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Avasta Anime"
+  manga:
+    index: "Avasta Manga"
+  media:
+    show:
+      units: "{type, select, anime {Episoodid} manga {Peatükid} other {}}"
+      characters: "Tegelased"
+      reactions: "Reaktsioonid"
+  explore:
+    index: "Otsi {mediaType, select,anime {Animet}manga {Mangat}other {}}"
+    more:
+      trending: "Trendimas {type, select, other {}} Sellel nädalal"
+      top-current: "Parim {type, select, Anime {eetrisolev} Manga {praegu avaldatav} other {}} {type}"
+      top-upcoming: "Parim eesolev {type}"
+      highest-rated: "Kõrgeimalt hinnatud {type}"
+      most-popular: "Kõige populaarsem {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Hiljuti välja lastud {category} {type}"
+        trending: "Trendikas {category} {type}"
+        most-popular: "Kõige populaarsem {category} {type}"
+  not-found: "Pole leitud"
+  server-error: "Serveri viga"
+  users:
+    index: "{user} profiil"
+    library: "{user} kogumik"
+    reviews: "{user} arvustused"
+    reactions: "{user} reaktsioonid"
+    followers: "{user} jälgijad"
+    following: "Keda {user} jälgib"
+    groups: "{user} grupid"
+    stats: "{user} statistika"
+  posts: "Postitus kasutajalt {user}"
+  comments: "Kommentaar kasutajalt {user}"
+  reviews: "Arvustus kasutajalt {user}"
+  feedback:
+    feature-requests: "Soovitud lisad"
+    database-requests: "Andmebaasi taotlused"
+    mobile-features: "Mobiili soovitud lisad"
+  admin:
+    index: "Admin"
+    reports: "Raportid"
+  groups:
+    index: "Grupid"
+    new: "Loo uus Grupp"
+    group:
+      group-page:
+        rules: "{group} reeglid"
+        members: "{group} liikmed"
+        leaders: "{group} juhid"
+      dashboard:
+        index: "{group} ülevaade"
+        reports: "{group} raportid"
+        tickets: "{group} piletid"
+        members: "{group} liikmed"
+        leaders: "{group} juhid"
+        settings: "{group} seaded"
+  group-invite: "Grupi kutse"
+#head
+head:
+  users:
+    description: "{user} kasutab Kitsu't, et jälgida oma progressi ja jagada oma anime & manga kogemusi."
 #header
 header:
+  library: "Kogumik"
   anime: "Anime"
+  manga: "Manga"
+  trending: "Trendikas"
+  groups: "Grupid"
+  feedback: "Tagasiside"
+  browse: "Sirvi"
+  auth:
+    sign-in: "Logi sisse"
+    sign-up: "Registreeri"
+  user:
+    profile: "Vaata profiili"
+    settings: "Seaded"
+    admin: "Admin"
+    logout: "Logi välja"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Esiteks veidi infot teie kohta} 1 {Väga kaval - email on järgmine!} 2 {Kena küll, nüüd parool?} 3 {Lahe! Loome selle konto} other {}}"
+#page: about
+about:
+  header: "Kitsu teave"
+#page: dashboard
+dashboard:
+  quick-update:
+    title: "Muuda kiirelt"
+    filter:
+      all: "Kõik"
+      anime: "Anime"
+      manga: "Manga"
+    empty:
+      html: "Meedia, mida oled lisanud või uuendanud oma '<a' href={link}'>'kogumikus'</a>' ilmub siia, et saaksid seda kiiresti uuendada."
+      discover: "Avasta meedia"
+    media:
+      complete: "Valmis"
+      unstarted: "Pole alustanud"
+    overlay:
+      button:
+        complete: "Valmis"
+        tooltip:
+          empty: "Uuenda kogumikku"
+      discussion: "Vaata arutelu"
+      edit: "Redigeeri kogumiku liiget"
+      popout: "Hõljuv tekstiredaktor"
+      editor:
+        placeholder: "(Valikuline) Jaga oma mõtteid {number}. {type, select, anime {episoodi} manga {peatüki} other {}} kohta"
+  onboarding:
+    welcome: "Tere {user}, tere tulemast Kitsu'sse!"
+    action: "Miks mitte proovida oma ajajoonele midagi postitada, et ennast tutvustada? Sa võid öelda midagi lihtsat, näiteks \"Tere, mina olen uus Kitsu kasutaja,\" sa võid ka meile näidata kui loominguline ja vaimukas sa oled!"
+  groups:
+    header: "Minu grupid"
+  announcements:
+    button: "Loe rohkem"
+  feed:
+    following: "Jälgimas"
+    anime: "Anime"
+    manga: "Manga"
+    global: "Globaalne"
+#page: anime/manga
+media:
+  index:
+    search: "Otsi tiitli, tegelase või osatäitja järgi…"
+    filter: "Filter"
+    remove: "Eemalda"
+    filters:
+      year: "Aasta"
+      score: "Keskmine hinnang"
+      seasons: "Hooajad"
+      streamers: "Voogedastusi (USA)"
+      units: "{type, select, anime {Episoodid} manga {Peatükid} other {}}"
+      rating: "Hinnang"
+      categories: "Kategooriad"
+      types: "Tüübid"
+    sort:
+      popularity: "Populaarsus"
+      rating: "Keskmine hinnang"
+      date: "Kuupäev"
+      recent: "Hiljuti lisatud"
+  none: "Tulemused puuduvad."
+  show:
+    navigation:
+      summary: "Kokkuvõte"
+      units: "{type, select, anime {Episoodid} manga {Peatükid} other {}}"
+      characters: "Tegelased"
+      reactions: "Reaktsioonid"
+    sidebar:
+      watch: "Vaata internetis"
+    summary:
+      ratings:
+        community: "{rating}% kogukonna hinnang"
+        match: "{rating}% vastavus"
+      categories: "Kategooriad"
+      relationships:
+        header: "Rohkem sellest seeriast"
+        more: "Vaata kõiki tiitlis {title}"
+      reactions:
+        header: "Reaktsioonid"
+        more: "Vaata veel reaktsioone"
+        sorts:
+          -upVotesCount: "Populaarne"
+          -createdAt: "Hiljutised"
+        new: "Uus reaktsioon"
+        edit: "Minu reaktsioon"
+        empty: "Paistab, et keegi pole sellele veel reageerinud"
+      characters:
+        header: "Tegelased"
+        more: "Vaata kõiki tegelasi"
+      titles:
+        header: "Alternatiivsed tiitlid"
+        af_za: "Afrikaani"
+        ar: "Araabia"
+        bn_bd: "Bengali"
+        cs_cz: "Tšehhi"
+        de_de: "Saksa"
+        el_gr: "Kreeka"
+        en: "Inglise"
+        en_cn: "Hiina (Pinyin)"
+        en_gb: "Inglise (Briti)"
+        ru_ru: "Vene"
+        sc_it: "Sardiinia"
+        sco_gb: "Šoti"
+        sk_sk: "Slovaki"
+        sl_sl: "Sloveenia"
+        sr_cs: "Serbia (ladina)"
+        sr_sp: "Serbia (kirillitsa)"
+        sv_se: "Rootsi"
+        th_th: "Tai"
+        tl_ph: "Tagalogi"
+        tr_tr: "Türgi"
+        uk_ua: "Ukraina"
+        ur_in: "Urdu (India)"
+        ur_pk: "Urdu (Pakistan)"
+        vi_vn: "Vietnami"
+        zh_cn: "Hiina (lihtsustatud)"
+        zh_hk: "Hiina (Hong Kong)"
+        zh_mo: "Hiina (Macao)"
+        zh_tw: "Hiina (traditsiooniline)"
+        synonyms: "Sünonüümid"
+      information:
+        header: "{type, select, anime {Anime} manga {Manga} other {}} üksikasjad"
+        type: "Tüüp"
+        volumes: "Köited"
+        unit: "{type, select, anime {Episoodid} manga {Peatükid} other {}}"
+        start: "{type, select, anime {Eetris olnud} manga {Avaldatud} other {}}"
+        status: "Staatus"
+        tba: "Oodatud"
+        season: "Hooaeg"
+        producers: "Produtsendid"
+        licensors: "Litsentseerijad"
+        studios: "Stuudiod"
+        serialization: "Serialiseering"
+        duration: "Pikkus"
+        total: "{total} kokku"
+        length: "{count, plural, one {} =1 {{length} minutit} other {Igaüks {length} minutit}}"
+        rating: "Hinnang"
+        expand:
+          false: "Lisateave"
+          true: "Vähem teavet"
+      feed:
+        header: "Kogukonna voog"
+      trailer: "Vaata treilerit"
+    units:
+      back: "Tagasi {type, select, episode {episoodi }chapter {peatüki }other {}}loendisse"
+      pages: "{length} lehte"
+    characters:
+      header: "{title} tegelased"
+    reactions:
+      loading: "Laeme reaktsioone…"
+      delete: "Kustuta reaktsioon"
+      report: "Raporteeri reaktsioon"
+      copy: "Kopeeri link reaktsioonile"
+    franchise:
+      header: "{title} frantsiis"
+      roles:
+        sequel: "Järg"
+        prequel: "Eeljärg"
