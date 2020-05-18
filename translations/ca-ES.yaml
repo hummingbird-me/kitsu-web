@@ -427,9 +427,31 @@ components:
   users:
     ban:
       title: "Estàs segur de que vols banejar aquest usuari?"
+      text: "Poden accedir a la llibreria, però no poden fer posts, comentaris o reaccions."
     delete-user-content:
+      title: "Contingut eliminat per {user}"
       checkbox:
         posts: "Publicacions"
+        comments: "Comentaris"
+        reactions: "Reaccions"
+      delete: "Eliminar"
+    block: "Bloquejar @{user}"
+    you: "Ep, ets tu!"
+    favorites:
+      title: "Preferit {type, select, series {Series} characters {Personatges} other {}}"
+      anime: "Anime"
+      manga: "Manga"
+      more: "Ensenya Més"
+      edit: "Editar preferit {type, select, anime {anime} manga {manga} characters {personatges} other {}}"
+      empty:
+        others: "L'usuari no té preferits"
+      choose: "Escull preferit {type, select, anime {anime} manga {manga} characters {èrsonatges} other {}}"
+    alt-name:
+      title: "Possibles Comptes Secundaris de {user}"
+      none: "Cap compte secundari trobat"
+    past-name:
+      title: "Noms Antics"
+      none: "Cap nom antic"
 #page: users
 users:
   profile:
@@ -471,11 +493,13 @@ users:
         label: "Waifu"
         placeholder: "Waifu/Husbando"
         search: "Troba algú especial"
+        divorce: "divorci"
       bio:
         label: "Bio"
         placeholder: "Explica-li a el món teva història."
     profile-links:
       header: "Enllaços del perfil"
+      remove: "Eliminar del perfil"
       sites:
         website:
           about: "Afegeix el teu lloc web personal a continuació per afegir un enllaç al teu perfil."
@@ -563,6 +587,9 @@ users:
         trakt:
           about: "Afegeix el teu nom d'usuari Trakt a continuació per afegir un enllaç al teu perfil."
           placeholder: "El teu nom d'usuari Trakt"
+    footer:
+      updating: "Actualitzant…"
+      update: "Actualitzar Perfil"
     favorites:
       header: "Favorits"
       anime: "Anime"
@@ -574,16 +601,28 @@ users:
       welcome: "Hey {user}, aquesta pàgina tracta només de tu!!"
       about: "A mesura que segueixis fent servir Kitsu, el teu '<strong>'panel personal'</strong>' a continuació començarà a omplir-se amb els animes i mangas que has vist, llegit, completat i planeges mirar. També pots publicar text, imatges i vídeos al teu panell utilitzant el formulari a continuació. Les teves publicacions seran vistes i apreciades pels teus seguidors i usuaris de el panell global."
       action: "Sent-te a casa! Puja un avatar i una imatge de capçalera! Fes clic en '<span>'Editar'</span>' amunt per començar."
+      title: "Configura el Perfil"
     about:
+      header: "Sobre Mi"
       empty: "És un secret"
+      waifu:
+        label: "{waifu, select, Waifu {Waifu} Husbando {Husbando} other {{waifu}}}:"
+        empty: "Waifu/Husbando:"
       gender:
+        label: "Gènere:"
         secret: "És un secret"
         male: "Hombre"
         female: "Mujer"
+      location: "Localització:"
+      birthday: "Aniversari:"
+      joined: "Data d'Ingrés:"
     stats:
       headings:
         anime: "Estadístiques d'anime"
         manga: "Estadístiques de manga"
+      time-breakdown:
+        seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
+        time-segment: "{count} {timeUnit}" #8 months (pre-translated)
       empty:
         header: "Sembla que encara no tens prou dades! Comencem alguna cosa nova?"
         guest-header: "Sembla que {user} encara no té estadístiques."
@@ -986,3 +1025,26 @@ groups:
         leaders: "Gestionar líders"
         community: "Gestiona la configuració"
         content: "Gestionar contingut i denuncies"
+        owner-help: "Els propietaris tenen tots els permisos."
+        save-btn: "Guardar Permisos"
+  dashboard:
+    overview:
+      members:
+        header: "Membres"
+#page: password-reset
+password-reset:
+  confirm: "Confirma Contrasenya"
+#shared: media
+media-shared:
+  statuses:
+    anime:
+      finished: "Acabat"
+    manga:
+      current: "Publicant"
+      finished: "Acabat"
+      upcoming: "Propers"
+#shared: form:
+form-shared:
+  placeholders:
+    username: "Nom d'Usuari"
+    password: "Contrasenya"
