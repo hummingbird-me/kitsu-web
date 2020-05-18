@@ -167,6 +167,13 @@ media:
       ratings:
         community: "{rating}% одобрено сообществом"
         match: "{rating}% в общем"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Ранг #{rank} (Популярное аниме)} manga {Ранг #{rank} (Популярная манга)} other {}}"
+          rating: "{type, select, anime {Ранг #{rank} (Самые оцененные аниме)} manga {Ранг #{rank} (Самая оцененная манга)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} Самое популярное} manga {#{rank} Самая популярная} other {}}"
+          rating: "{type, select, anime {#{rank} Высоко оценённое} manga {#{rank} Высоко оценённая} other {}}"
       categories: "Категории"
       relationships:
         header: "Ещё из этой серии"
@@ -1133,6 +1140,7 @@ group-invite:
 explore:
   view-more: "Показать еще"
   search-placeholder: "Что вы ищете?"
+  advanced-search: "Или ищи с '<a' href=/{mediaType}'>'расширенным поиском'</a>'"
   no-data: "Хмм, кажется в этом разделе нет никакого контента."
   widget:
     related: "Похожие категории"
