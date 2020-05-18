@@ -96,6 +96,7 @@ about:
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Schnell bearbeiten"
     filter:
       all: "Alle"
       anime: "Anime"
@@ -184,20 +185,33 @@ media:
         more: "Alle Charaktere anzeigen"
       titles:
         header: "alternativer Titel"
+        af_za: "Afrikaans"
         ar: "Arabisch"
+        bg_bg: "Bulgarisch"
+        bn_bd: "Bengalisch"
+        ca_es: "Katalanisch"
         cs_cz: "Tschechisch"
+        cy_gb: "Walisisch"
         da_dk: "Dänisch"
         de_de: "Deutsch"
         el_gr: "Griechisch"
         en: "Englisch"
+        en_au: "Englisch (Australien)"
+        en_ca: "Englisch (Kanada)"
         en_cn: "Chinesisch (Pinyin)"
+        en_gb: "Englisch (Großbritannien)"
         en_il: "Hebräisch (Romanized)"
         en_jp: "Japanisch (Romaji)"
         en_kr: "Koreanisch (Romaja)"
         en_th: "Thailändisch (romanisiert)"
+        en_us: "Englisch (Amerika)"
         es_es: "Spanisch"
+        et_ee: "Estnisch"
+        fa_ir: "Persisch"
         fi_fi: "Finnisch"
+        fr_ca: "Französisch (Kanada)"
         fr_fr: "Französisch"
+        ga_ie: "Irisch"
         he_il: "Hebräisch"
         hi_in: "Hindi"
         hr_hr: "Kroatisch"
@@ -206,19 +220,33 @@ media:
         is_is: "Isländisch"
         it_it: "Italienisch"
         ja_jp: "Japanisch"
+        kk_kz: "Kasachisch"
         ko_kr: "Koreanisch"
+        lt_lt: "Litauisch"
         lv_lv: "Lettisch"
         ms_my: "Malaiisch"
+        mt_mt: "Maltesisch"
+        nb_no: "Norwegisch (Bokmål)"
         nl_nl: "Niederländisch"
+        nn_no: "Norwegisch (Nynorsk)"
         pl_pl: "Polnisch"
         pt_br: "Portugiesisch (Brasilianisch)"
         pt_pt: "Portugiesisch"
+        ro_ro: "Rumänisch"
         ru_ru: "Russisch"
+        sc_it: "Sardisch"
+        sco_gb: "Schottisch"
+        sk_sk: "Slowakisch"
+        sl_sl: "Slowenisch"
+        sr_cs: "Serbisch (Lateinisch)"
+        sr_sp: "Serbisch (Kyrillisch)"
         sv_se: "Schwedisch"
         th_th: "Thailändisch"
         tl_ph: "Tagalog"
         tr_tr: "Türkisch"
         uk_ua: "Ukrainisch"
+        ur_in: "Urdu (Indien)"
+        ur_pk: "Urdu (Pakistan)"
         vi_vn: "Vietnamesisch"
         zh_cn: "Chinesisch (vereinfacht)"
         zh_hk: "Chinesisch (Hong Kong)"
@@ -292,6 +320,7 @@ components:
   admin:
     reports:
       no-explanation: "Keine Erklärung angegeben."
+      not-set: "Nicht festgelegt"
       actions:
         button: "Aktionen"
         open: "Markieren als ungelöst"
@@ -310,6 +339,15 @@ components:
   episodes:
     shortcut-bar:
       episode-number: "EP {number}"
+    undo-update: "Rückgängig machen"
+    update-progress: "Bibliotheken Vorschritt ändern zu Episode {number}?"
+    watched: "Als angesehen markieren"
+    join-prompt:
+      pitch: "Verfolge deinen Fortschritt und trete der Unterhaltung bei!"
+      register: "Kitsu-Account erstellen"
+  likeable-resource:
+    loading: "Wird geladen…"
+    more: "Weitere laden"
   search:
     header: "Suchergebnisse"
     view: "Mehr anzeigen"
@@ -324,6 +362,7 @@ components:
       create: "Posten"
       nsfw: "NSFW"
       spoiler: "Spoiler"
+      tag-media: "Schreibe um eine Show oder Manga zu taggen"
     edit-post:
       header: "Beitrag bearbeiten"
       error:
@@ -353,7 +392,65 @@ components:
       delete: "Beitrag löschen"
       unpin: "Post vom Profil lösen"
       pin: "Beitrag an Profil anheften"
+      pin-text: "Möchtest du wirklich diesen Post auf deinen Profil anpinnen?"
       report: "Beitrag berichten"
+      comment-count: "{count} von {total}"
+      comment:
+        deleting: "Kommentar löschen…"
+        reply: "Antworten"
+        copy-link: "Link zum Kommentar kopieren"
+        edit: "Kommentar bearbeiten"
+        delete: "Kommentar löschen"
+        report: "Kommentar melden"
+        previous-replies: "Bisherige Antworten anzeigen"
+        add-reply: "Eine Antwort hinzufügen…"
+      comments:
+        all: "Alle Kommentare anzeigen"
+        parent: "Übergeordneten Kommentar anzeigen"
+        previous-comments: "Vorherige Kommentare anzeigen"
+        leave-comment: "Kommentar hinzufügen…"
+    review:
+      by: "Rezension von"
+      spoiler: "Dieser Beitrag enthält Spoiler."
+      spoiler-hover: "Ich kann die Wahrheit ertragen!"
+      share:
+        twitter: "Tweeten"
+        facebook: "Teilen"
+      copy-link: "Link zu Review kopieren"
+      show: "Review Inhalt anzeigen"
+      hide: "Review Inhalt verbergen"
+      edit: "Review bearbeiten"
+      delete: "Review löschen"
+      report: "Review melden"
+  users:
+    ban:
+      title: "Bist du dir sicher, dass du diesen Benutzer bannen möchtest?"
+      text: "Sie können weiterhin auf ihre Bibliothek zugreifen, können jedoch keine Posts, Kommentare oder Reaktionen erstellen."
+    delete-user-content:
+      title: "Inhalt von {user} löschen"
+      checkbox:
+        posts: "Posts"
+        comments: "Kommentare"
+        reactions: "Reaktionen"
+      delete: "Löschen"
+    block: "@{user} blockieren"
+    you: "Hey, das bist du!"
+    favorites:
+      title: "Lieblings{type, select, series {serien} characters {charaktere} other {}}"
+      anime: "Anime"
+      manga: "Manga"
+      more: "Mehr Anzeigen"
+      edit: "Bearbeite Lieblings{type, select, anime {anime} manga {manga} characters {charaktere} other {}}"
+      empty:
+        yours: "Du hast noch nicht deine {type, select, anime {Lieblingsanime} manga {Lieblingsmanga} characters {Lieblingscharaktere} other {}} ausgewählt!"
+        others: "Dieser Benutzer hat keine Favoriten"
+      choose: "Wähle dein{type, select, characters {e} other {}} Lieblings{type, select, anime {anime} manga {manga} characters {charaktere} other {}}"
+    alt-name:
+      title: "Mögliche Alt-Accounts von {user}"
+      none: "Keine Alt-Accounts gefunden"
+    past-name:
+      title: "Vorherige Namen"
+      none: "Keine vorherigen Namen"
 #page: users
 users:
   profile:
@@ -395,11 +492,13 @@ users:
         label: "Waifu"
         placeholder: "Waifu/Husbando"
         search: "Finde jemand Besonderen für dich"
+        divorce: "scheiden"
       bio:
         label: "Biografie"
         placeholder: "Erzähl der Welt deine Geschichte."
     profile-links:
       header: "Profillinks"
+      remove: "Vom Profil entfernen"
       sites:
         website:
           about: "Gib unten Deine persönliche Website ein, um einen Link zu Deinem Profil hinzuzufügen."
@@ -478,6 +577,7 @@ users:
           placeholder: "Dein Letterboxd Benutzername"
         medium:
           about: "Gib unten Deinen Medium Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
+          placeholder: "Dein Medium Benutzername (@user) oder Publikationsnamen"
         playerme:
           about: "Gib unten Deinen Player.me Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
           placeholder: "Dein Player.me Benutzername"
@@ -487,6 +587,9 @@ users:
         trakt:
           about: "Gib unten Deinen Trakt Benutzernamen ein, um einen Link Deinem Profil hinzuzufügen."
           placeholder: "Dein Trakt Benutzername"
+    footer:
+      updating: "Aktualisiere…"
+      update: "Profil aktualisieren"
     favorites:
       header: "Favoriten"
       anime: "Anime"
@@ -498,16 +601,32 @@ users:
       welcome: "Hallo {user}, diese Seite ist komplett über DICH!"
       about: "So wie du Kitsu benutzt wird sich dein '<strong>'Persönlicher Feed'</strong>' füllen mit den Anime and Manga die du angesehen, gelesen, abgeschlossen, und noch ansehen möchtest. Du kannst Beiträge in Text, Bild und Video mit der Box da unten beitragen. Deine Beiträge werden sowohl von deinen Followern als auch den Nutzern des Globalen Feeds gesehen und wertgeschätzt."
       action: "Fühl dich ganz wie zuhause! Lad ein Profilbild und ein Banner hoch! Klicke '<span>'Bearbeiten'</span>' oben drüber um loszulegen."
+      title: "Profil einrichten"
     about:
+      header: "Über mich"
       empty: "Ist ein Geheimnis"
+      waifu:
+        label: "{waifu, select, Waifu {Waifu} Husbando {Husbando} other {{waifu}}}:"
+        empty: "Waifu/Husbando:"
       gender:
+        label: "Geschlecht:"
         secret: "Ist ein Geheimnis"
         male: "Männlich"
         female: "Weiblich"
+      location: "Standort:"
+      birthday: "Geburtstag:"
+      joined: "Beitrittsdatum:"
     stats:
       headings:
         anime: "Anime Statistiken"
         manga: "Manga Statistiken"
+      time-watched: "{count} {timeUnit} verbraucht in anime."
+      chapters-read: "{count} Kapitel gelesen."
+      completed: "{count} abgeschlossen."
+      more-than: "Mehr als '<span class=\"time-spent-percentile\">'{percentage}%'</span>' der Nutzer."
+      time-breakdown:
+        seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
+        total: "mit den Anime schauen verbracht." #appended after time-segments
       empty:
         header: "Sieht so aus, als hättest du noch nicht genügend Daten! Bereit für etwas Neues?"
         guest-header: "Sieht so aus, als hätte {user} noch keine Statistiken."
@@ -585,6 +704,8 @@ users:
       volumes: "Ausgaben"
       volume-units: "von {num} Bänden"
       rating: "Bewertung"
+      rewatch: "{type, select, anime {wie oft gesehen} manga {wie oft gelesen} other {}}"
+      start-rewatch: "{type, select, anime {starte mit dem erneutem ansehen} manga {starte mit dem erneutem lesen} other {}}"
       privacy: "Privatsphäre"
       started: "Begonnen am"
       finished: "Beendet am"
@@ -593,6 +714,7 @@ users:
       save: "Änderungen speichern"
       saving: "Speichere…"
     bulk:
+      selected: "{type, select, anime {{num} Anime augewählt} manga {{num} Manga ausgewählt} other {}}"
       select-all: "Alle auswählen"
       select-none: "Keins auswählen"
       remove: "Entferne '<strong>'{num}'</strong>' Dinge"
@@ -601,6 +723,7 @@ users:
       update-loading: "Aktualisiere…"
   groups:
     sort:
+      newest: "Als letzes beigetreten"
       oldest: "Am längsten dabei"
   reactions:
     empty: "Dieser Benutzer hat noch keine Reaktionen"
@@ -678,6 +801,7 @@ settings:
         library-status: "Status"
         progress: "Fortschritt"
         rating: "Bewertung"
+        reconsumes: "Rewatches"
         action: "Aktion"
         status: "Status"
       action:
@@ -711,6 +835,7 @@ settings:
     content: "Inhalt auf Kitsu"
     theme: "Website-Theme"
     country: "Land"
+    worldwide: "Weltweit"
     titles: "Titel"
     titles-message: "Wie Medientitel dargestellt werden."
     rating: "Bewertungsart"
@@ -754,6 +879,7 @@ settings:
   privacy:
     header: "Privatsphäre"
     sub-header: "Passen Sie an wie andere sie finden können"
+    discover: "Sichtbarkeit"
     checkbox: "Im globalen Feed anzeigen"
     message: "Wenn deaktiviert, werden Ihre Beiträge nur für Deine Follower und Besucher Deines Profils verfügbar."
     update: "Profil aktualisieren"
@@ -853,9 +979,11 @@ groups:
   tickets:
     search: "Tickets durchsuchen"
     empty: "Hurra! Du hast keine Tickets zu bearbeiten."
+    helper: "Mit Tickets können Sie mit den Leitern dieser Gruppe kommunizieren, um eventuelle Probleme zu lösen. Benachrichtigen sie den Leiter hier um ein Ticket zu erstellen."
     filter:
       open: "Offene Tickets"
       resolved: "Gelöste Tickets"
+      all: "Alle Tickets"
     conversation:
       title: "Ticket von '<a' href={link}'>'{name}'</a>'"
       mark-resolved: "Als gelöst markieren"
@@ -867,8 +995,40 @@ groups:
       create-btn: "Ticket erstellen"
       reply-btn: "Antwort senden"
       reply-placeholder: "Nachricht eingeben"
+      helper: "Schreiben Sie Ihre Nachricht unten um ein Ticket zu erstellen! Die Leiter dieser Gruppe werden so schnell wie möglich auf Ihr Ticket antworten."
   reports:
     no-explanation: "Keine Erklärung angegeben"
+    empty: "Hurra! Du hast keine Reports zu bearbeiten."
+    filter:
+      open: "Reports öffnen"
+      resolved: "Gelöste Reports"
+      all: "Alle Reports"
+    show-more: "{num} Reports anzeigen"
+    hide-more: "{num} Reports verbergen"
+    status:
+      resolved: "Dieser Report wurde von {user} gelöst."
+      escalated: "Dieser Report wurde von {user} eskaliert."
+    actions:
+      close: "Report schließen"
+      remove: "Inhalt entfernen"
+      escalate: "Kitsu benachrichtigen"
+      view: "Inhalt anzeigen"
+  leaders:
+    list:
+      header: "Leader"
+      edit-btn: "Bearbeiten"
+      add-btn: "Hinzufügen"
+      add-placeholder: "Gruppenmitglieder"
+      not-found: "Es konnte kein Gruppenmitglied mit diesem Namen gefunden werden."
+      message-btn: "Leader anschreiben"
+      message-leader: "Du bist ein Leader dieser Gruppe!"
+      modal:
+        header: "Leader Berechtigungen:"
+        owner: "Gruppenbesitzer"
+        tickets: "Tickets verwalten"
+        members: "Mitglieder verwalten"
+        leaders: "Leader verwalten"
+        community: "Einstellungen verwalten"
   dashboard:
     navigation:
       reports: "Meldungen"
@@ -923,6 +1083,21 @@ groups:
         banned: "hat '<a' href={link}'>'{user}'</a>' gesperrt."
         unbanned: "hat '<a' href={link}'>'{user}'</a>' entsperrt."
         invited: "hat '<a' href={link}'>'{user}'</a>' eingeladen, der Community beizutreten."
+#page: media-reactions
+media-reactions:
+  view-all: "Zeige alle '<strong>'{count}'</strong>' Reaktionen von {user}"
+  create-account: "Konto erstellen"
+#page: notifications
+notifications:
+  none: "Sie haben keine Nachrichten!"
+#page: password-reset
+password-reset:
+  password: "Passwort"
+  confirm: "Passwort bestätigen"
+  length: "Passwort muss mindestens 8 Zeichen lang sein"
+  reset: "Passwort zurücksetzen"
+  email: "E-Mail"
+  send: "E-Mail senden"
 #shared: media
 media-shared:
   types:
@@ -956,32 +1131,85 @@ media-shared:
       upcoming: "Erscheint bald"
       unreleased: "Nicht veröffentlicht"
       tba: "TBA"
+#shared: library
+library-shared:
+  all: "{type, select, anime {alle Anime} manga {alle Manga} other {}}"
+  current: "{type, select, anime {Derzeit am Angucken} manga {Derzeit am Lesen} other {}}"
+  planned: "{type, select, anime {Möchte angucken} manga {Möchte lesen} other {}}"
+  completed: "{type, select, anime {Abgeschlossen} manga {Abgeschlossen} other {}}"
+  on_hold: "{type, select, anime {Angehalten} manga {Angehalten} other {}}"
+  dropped: "{type, select, anime {Abgebrochen} manga {Abgebrochen} other {}}"
 #shared: form:
 form-shared:
   placeholders:
     username: "Benutzername"
     password: "Passwort"
+#component: mobile-banner
+mobile-banner:
+  pitch: "Bekomme ein besseres Erlebnis mit der Kitsu-App."
 #component: auth-onboarding
 onboarding:
+  aozora-conflict:
+    title: "Oh, du hast schon bereits ein Kitsu-Account! Welche möchtest du behalten?"
+    info: "Die Posts vom Aktivitäts-Feed von beiden Accounts werden zusammengeführt. Alle anderen Accounts werden überschrieben von den Account den du unterhalb auswählst."
   aozora-account-details:
     submit: "Sieht gut aus!"
+  checklist:
+    header: "Starten in Kitsu"
+    steps: "{count} Schritte übrig! 🦊"
+    feed: "Besuche deine persönliche feed"
+    rate: "Bewerte 5 anime oder manga"
+    rate-incomplete: "Bewerte {count} anime oder manga"
+    follow: "Folge 5 Nutzer"
+    follow-incomplete: "Folge {count} {count, plural, =1 {user} other {users}}"
+    comment: "Kommentiere einen Beitrag"
+    like: "Gefallen sie 3 feed Beiträge"
+    like-incomplete: "Gefallen sie {count} feed Beiträge"
+    avatar: "Bestimmen sie ihr avatar"
+    cover: "Legen sie einen cover für ihren Profil fest"
+    about-me: "Vervollständige deine '<i>'Über mich'</i>' Sektion"
+    favorite: "Suche deinen Lieblingsanime / Lieblingsmanga aus"
 #component: follow-button
 follow-button:
   follow: "Folgen"
   unfollow: "Entfolgen"
 #component: kitsu-feed
 feeds:
+  embed:
+    preview: "Das ist eine Vorschau deines Embeds."
   uploads:
     select: "Hochladen"
     drop: "Zum Hochladen ablegen"
     invalid: "Ungültiger Dateityp"
+    uploading: "{number, plural, =1 {Foto wird hochgeladen… {progress}%} other {{number} Fotos werden hochgeladen… {progress}%}}"
   filter:
     all: "Alle Aktivitäten"
     media: "Medienaktivität"
     user: "Benutzeraktivität"
+  library:
+    updated: "hat es geändert zu {status}"
+    rated: "hat es bewertet"
+    progressed: "{type, select, anime {gesehen Folge {num}} manga {gelesen Kapitel {num}} other {}}"
   post:
+    more: "Mehr anzeigen"
+    less: "Weniger anzeigen"
     meta:
       media: "Weil du vor kurzem {media} angesehen hast"
+    spoilers: "{type, select, anime {Ep. {num}} manga {Kpt. {num}} other {}}"
+    sorts:
+      likes: "Likes"
+      replies: "Antworten"
+      oldest: "am ältesten"
+  review:
+    review: "Review"
+    author: "Review von {user}"
+    progress: "{type, select, anime {Dies ist eine Review bis zu Episode {num}.} manga {Dies ist eine Review bis zum Kapitel {num}.} other {}}"
+  interest:
+    anime:
+      header: "Willkommen auf deinen Anime-Feed!"
+    manga:
+      header: "Willkommen auf deinen Manga-Feed!"
+    button: "Okay, hab's verstanden"
 #component: groups/group-list
 group-list:
   sort:
@@ -1010,9 +1238,18 @@ selects:
   loading: "Wird geladen…"
   none: "Keine Ergebnisse gefunden"
   search: "Tippen, um zu suchen"
+#ember-cp-validations
+errors:
+  serverError:
+    body: "Unser Team wurde benachrichtigt, bitte versuche es nochmal in paar Minuten."
+    reload: "Neu laden"
 admin:
   reports:
+    header: "Mod Reports"
+    loading: "Lade Reports…"
+    open: "Öffnen"
     closed: "Geschlossen"
+  header: "Admin Panel"
   deployed-version: "Aktuelle Versionsnummer: {version}"
   links:
     index: "Meldungen"
@@ -1022,3 +1259,12 @@ admin:
     flipper: "Flipper"
 button:
   view-all: "alle anzeigen"
+unsubscribe:
+  email: "Email"
+category:
+  action: "Action"
+  adventure: "Abenteuer"
+  africa: "Afrika"
+  ahegao: "Ahegao"
+  alien: "Alien"
+  all-girls-school: "Mädchenschule"
