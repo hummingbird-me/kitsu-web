@@ -199,8 +199,10 @@ media:
         en_ca: "Engels (Canada)"
         en_cn: "Chinees (Pinyin)"
         en_gb: "Engels (Groot-Brittannië)"
+        en_il: "Hebreeuws (Romanisatie)"
         en_jp: "Japanese (Romaji)"
         en_kr: "Koreaans (Romaja)"
+        en_th: "Thais (Romanisatie)"
         en_us: "Engels (Amerikaans)"
         es_es: "Spaans"
         et_ee: "Ests"
@@ -793,6 +795,8 @@ settings:
         media: "Titel"
         library-status: "Status"
         progress: "Voortgang"
+        rating: "Beoordeling"
+        reconsumes: "Keren Herbekeken"
         action: "Actie"
         status: "Status"
       action:
@@ -805,8 +809,11 @@ settings:
   imports:
     status: "Status:"
     entries: "Totaal aantal items gevonden:"
+    more: "Meer Laden"
   index:
     header: "Profiel"
+    sub-header: "Account en regio instellingen"
+    name: "Weergegeven naam"
     url: "Profiel URL"
     email: "E-mail"
     email-message: "E-mail zal niet openbaar weergegeven worden."
@@ -816,50 +823,261 @@ settings:
     content: "Content op Kitsu"
     theme: "Website Thema"
     country: "Land"
+    worldwide: "Wereldwijd"
     titles: "Titels"
     titles-message: "Hoe media titels weergegeven zullen worden."
+    rating: "Beoordelingstype"
     rating-message: "Kies hoe je media die je gezien of gelezen hebt wilt beoordelen."
+    adult: "Volwassen Content"
+    adult-message: "Met volwassen content verborgen, zie je geen R18+ media in de feed, bibliotheken of tijdens het opzoeken."
+    update: "Update profiel"
   linked-accounts:
     header: "Gelinkte Accounts"
+    sub-header: "Verbind derde partij accounts met Kitsu"
     facebook: "Facebook"
     connect: "Facebook Verbinden"
   notifications:
     header: "Push Notificaties"
     contexts:
       email: "E-mail"
+      mobile: "Mobiel"
+    descriptions:
+      airing: "Nieuwe aflevering uitgebracht"
     newsletter:
+      newsletter: "Nieuwsbrief"
       subscribed: "Geabonneerd"
+    loading: "Instellingen laden…"
     update: "Instellingen updaten"
   password:
     header: "Wachtwoord"
+    sub-header: "Verander je wachtwoord"
+    new-pswd: "Nieuw wachtwoord"
+    confirm-pswd: "Bevestig Wachtwoord"
+    update-pswd: "Werk je wachtwoord bij"
+  privacy:
+    header: "Privacy"
+    checkbox: "Weergeven in Globale Feed"
+    update: "Update profiel"
 #page: feedback
 feedback:
   header: "Feedback"
+  bugs: "Bugs"
+  features: "Functies aanvragen"
 #page: groups
 groups:
+  index:
+    create-btn: "Maak een groep"
   create:
+    header: "Maak een groep"
     form:
+      required: "Vereist"
+      name: "Naam"
+      about: "Beschrijving"
+      rules: "Regels"
+      neighbors: "Buren"
+      neighbors-placeholder: "Zoeken naar een groep"
+      privacy: "Privacy"
+      privacy-options:
+        open: "Openbaar"
+        closed: "Privé"
+        restricted: "Beperkt"
+      category: "Categorie"
+      category-placeholder: "Kies een categorie"
+      avatar: "Profielfoto"
+      create-btn: "Maak jouw Groep!"
+      save-btn: "Opslaan"
       helper:
         name:
+          header: "Naam"
           desc: "Groepsnamen moeten duidelijk weergeven waar je groep over gaat, maar je kan nog steeds creatief zijn en er plezier mee hebben!"
         tagline:
           desc: "Vat het doel van je groep samen in 60 of minder karakters. Je zult later meer ruimte hebben om meer informatie toe te voegen."
+        about:
+          header: "Beschrijving"
+          desc: "Leg het doel van je groep diep uit, deel belangrijke informatie, of andere dingen."
         rules:
           header: "Regels"
+          desc: "Maak een paar richtlijnen voor je leden om te volgen. Deze regels zijn Markdown ondersteund!"
         neighbors:
           header: "Buren"
+          desc: "Voeg gerelateerde groepen toe aan jou buurt zodat je leden nieuwe communities kunnen ontdekken!"
+        privacy:
+          header: "Privacy"
+          desc: "Jouw privacy instellingen bepalen hoe open of dicht jouw groep naar het publiek is. Als je ervoor kiest om je groep privé te maken, ben je later NIET in staat om het publiek te maken."
         category:
           header: "Categorie"
+          desc: "Kitsu deelt groepen in in categorieën om gebruikers te helpen vinden naar waar ze van houden."
         avatar:
           header: "Avatar"
           desc: "Deze afbeelding zal door Kitsu gebruikt worden om je groep te identificeren."
+      errors:
+        neighbors-same: "Je kan jouw groep niet als buren toevoegen."
   join-group: "Deelnamen aan Groep"
   leave-group: "Groep verlaten"
+  hide-posts:
+    text: "Verberg posts van {group}"
+    info: "Posts zullen niet langer in je Gevolgde Feed verschijnen"
+  show-posts:
+    text: "Laat posts van {group} zien"
+    info: "Posts zullen verschijnen in je Gevolgde Feed"
+  nsfw: "NSFW"
+  neighbors: "Buren"
   navigation:
+    activity: "Activiteit"
     rules: "Regels"
     members: "Leden"
     leaders: "Leiders"
     neighbors: "Buren"
   activity:
+    feed-header: "Groep Activiteit"
     about: "Over {group}"
     members: "Leden"
+    feed-restricted: "Dit is een beperkte groep. Iedereen kan reageren, alleen leiders kunnen posts maken."
+  rules:
+    header: "Community Regels"
+  tickets:
+    search: "Zoeken in Tickets"
+    empty: "Hoera! Je hebt geen tickets om te gebruiken."
+    helper: "Tickets zorgen ervoor dat je kan communiceren met de leiders van deze groep om problemen die je misschien hebt op te lossen. Stuur hier een bericht om een ticket te maken."
+    filter:
+      open: "Tickets die open staan"
+      resolved: "Opgeloste Tickets"
+      all: "Alle Tickets"
+    conversation:
+      mark-resolved: "Als opgelost markeren"
+      mark-closed: "Als gesloten markeren"
+      mark-open: "Als open markeren"
+      nav:
+        reply: "Antwoord naar gebruiker"
+        leader: "Leiders notitie"
+      create-btn: "Ticker Maken"
+      reply-btn: "Stuur Antwoord"
+      reply-placeholder: "Typ je bericht"
+      helper: "Typ hieronder je bericht om een ticket te maken! Leiders van deze groep zullen zo snel mogelijk beantwoorden."
+  reports:
+    no-explanation: "Geen Uitleg Gegeven"
+    actions:
+      escalate: "Meld aan Kitsu"
+      view: "Bekijk Inhoud"
+  leaders:
+    list:
+      header: "Leiders"
+      edit-btn: "Bewerken"
+      add-btn: "Toevoegen"
+      add-placeholder: "Groepsleden"
+      not-found: "Geen lid met die naam gevonden."
+      message-btn: "Stuur een bericht naar de leiders"
+      message-leader: "Je bent een leider van deze groep!"
+      modal:
+        header: "Rechten van de Leider:"
+        owner: "Groep Eigenaar"
+        tickets: "Tickets Beheren"
+        members: "Beheer Leden"
+        leaders: "Beheer Leiders"
+        community: "Instellingen Beheren"
+  dashboard:
+    navigation:
+      members: "Leden"
+      leaders: "Leiders"
+      settings: "Instellingen"
+    overview:
+      members:
+        header: "Leden"
+        today: "Vandaag lid geworden"
+        total: "Totale leden"
+      activity:
+        comments: "Reacties vandaag"
+    members:
+      invites:
+        header: "Openstaande uitnodigingen"
+        invited: "Uitgenodigd"
+        revoke: "Annuleer uitnodiging"
+        invite: "Nodig uit"
+        placeholder: "Zoek voor een gebruiker om uit te nodigen. Ze moeten je volgen!"
+      bans:
+        header: "Verbannen gebruikers"
+        placeholder: "Naam"
+        empty: "Hoera! Je hebt geen verbannen gebruikers."
+      members:
+        header: "Leden"
+        table:
+          users: "Gebruiker"
+          permissions: "Rank"
+          actions: "Acties"
+        remove: "Verwijderen"
+        ban: "Verban"
+    leaders:
+      chat:
+        placeholder: "Stuur een bericht naar de leiders"
+    audit:
+      group:
+        rules_changed: "de {group} regels zijn bijgewerkt."
+        nsfw_changed: "de {group} NSFW status is bijgewerkt."
+        about_changed: "de {group} over is bijgewerkt."
+        category_changed: "categorie van {group} is bijgewerkt."
+#page: group-invite
+group-invite:
+  header: "Groep Uitnodiging"
+  subtitle: "Ye bent uitgenodigd naar {group} door {sender}"
+  text: "Je zal in staat zijn om de pagina van {group} te bekijken nadat je deze invitatie hebt geaccepteerd. Je zult omgeleid worden na het accepteren."
+  accept: "Accepteren"
+  decline: "Weigeren"
+  accepted: "Je hebt deze uitnodiging al geaccepteerd."
+  revoked: "Je invitatie is ingenomen door een groep moderator."
+  declined: "Je hebt de invitatie voor deze groep afgewezen."
+#page: explore
+explore:
+  view-more: "Meer bekijken"
+  search-placeholder: "Waar zoek je naar?"
+  advanced-search: "Of, browse met behulp van '<a' href=/{mediaType}'>'geavanceerde zoeken'</a>'"
+  widget:
+    categories: "Categorieën"
+    favorite-categories: "Mijn favoriete Categorieën"
+    no-favorites: "Favoriete categorieën maken zal je aanbevelingen verbeteren."
+    more-categories: "Meer categorieën…"
+  modal:
+    header: "Alle Categorieën"
+  favorite-button:
+    remove: "Verwijder uit Favorieten"
+    removing: "Aan het verwijderen…"
+#page: password-reset
+password-reset:
+  confirm: "Bevestig Wachtwoord"
+  length: "Wachtwoord moet minimaal 8 tekens lang zijn"
+  reset: "Wachtwoord opnieuw instellen"
+  email: "E-mail"
+  send: "Verstuur E-mail"
+#shared: media
+media-shared:
+  types:
+    anime:
+      All: "Alles"
+      tv: "TV"
+      movie: "Film"
+      music: "Muziek"
+    manga:
+      All: "Alles"
+      manga: "Manga"
+      manhwa: "Manwha"
+  statuses:
+    anime:
+      current: "Aan het uitzenden"
+      finished: "Afgelopen"
+      upcoming: "Aankomend"
+      unreleased: "Niet uitgebracht"
+    manga:
+      current: "Aan het publiceren"
+      finished: "Afgelopen"
+      upcoming: "Aankomend"
+      unreleased: "Niet uitgebracht"
+#shared: library
+library-shared:
+  all: "{type,select,anime {Alle Anime}manga {Alle Manga}other {}}"
+  current: "{type, select,anime {Nu aan het kijken}manga {Nu aan het lezen}other {}}"
+  planned: "{type, select,anime {Wil gaan kijken}manga {Wil gaan lezen}other {}}"
+  completed: "{type, select,anime {Voltooid}manga {Voltooid}other {}}"
+#shared: form:
+form-shared:
+  placeholders:
+    username: "Gebruikersnaam"
+    password: "Wachtwoord"
