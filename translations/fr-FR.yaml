@@ -167,6 +167,13 @@ media:
       ratings:
         community: "Approuvé à {rating}% par la communauté"
         match: "Vous correspond à {rating}%"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Classé #{rank} (Animé le Plus Populaire)} manga {Classé #{rank} (Manga le Plus Populaire)} other {}}"
+          rating: "{type, select, anime {Classé #{rank} (Anime le Mieux Noté)} manga {Classé #{rank} (Manga le Mieux Noté)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} le Plus Populaire} manga {#{rank} le Plus Populaire} other {}}"
+          rating: "{type, select, anime {#{rank} le Mieux Noté} manga {#{rank} le Mieux Noté} other {}}"
       categories: "Catégories"
       relationships:
         header: "Plus de cette série"
@@ -1134,6 +1141,7 @@ group-invite:
 explore:
   view-more: "Voir plus"
   search-placeholder: "Que cherchez-vous ?"
+  advanced-search: "Sinon, cherchez avec '<a' href=/{mediaType}'>' la recherche avancée‘</a>’"
   no-data: "Mmh, on dirait qu'il n'y a rien ici."
   widget:
     related: "Catégories liées"
@@ -1418,6 +1426,7 @@ errors:
 loading: "Chargement {subject, select, episode {de l'épisode} chapter {du chapitre} episodes {des épisodes} chapters {des chapitres} other {}}…"
 timeUnits:
   years: "{count, plural, =1 {an} other {ans}}"
+  months: "{count, plural, =1 {mois} other {mois}}"
   days: "{count, plural, =1 {jour} other {jours}}"
   hours: "{count, plural, =1 {heure} other {heures}}"
   minutes: "{count, plural, =1 {minute} other {minutes}}"
