@@ -167,6 +167,13 @@ media:
       ratings:
         community: "Aprovado por {rating}% da Comunidade"
         match: "{rating}% de Correspondência"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Lugar #{rank} (Animes Mais Populares)} manga {Lugar #{rank} (Mangás Mais Populares)} other {}}"
+          rating: "{type, select, anime {Lugar #{rank} (Animes Melhores Classificados)} manga {Lugar #{rank} (Mangás Melhores Classificados)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} Mais Popular} manga {#{rank} Mais Popular} other {}}"
+          rating: "{type, select, anime {#{rank} Melhor Classificado} manga {#{rank} Melhor Classificado} other {}}"
       categories: "Categorias"
       relationships:
         header: "Mais desta série"
@@ -1133,6 +1140,7 @@ group-invite:
 explore:
   view-more: "Ver mais"
   search-placeholder: "Do que estás à procura?"
+  advanced-search: "Ou navega usando a '<a' href=/{mediaType}'>'pesquisa avançada'</a>'"
   no-data: "Hmm, parece que não pode ser encontrada mídia para esta secção."
   widget:
     related: "Categorias Relacionadas"
