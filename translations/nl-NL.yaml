@@ -15,10 +15,12 @@ titles:
     index: "Ontdek {mediaType, select, anime {Anime} manga {Manga} other {}}"
     more:
       trending: "Trending {type, select, other {}} Deze week"
+      top-current: "Beste {type, select, Anime {Uitzendende} Manga {Publicerende} other {}} {type}"
       top-upcoming: "Top Aankomende {type}"
       highest-rated: "Hoogst gewaardeerde {type}"
       most-popular: "Populairste {type}"
     category:
+      index: "{category} {type}"
       more:
         newly-released: "Nieuw uitgebracht {category} {type}"
         trending: "Populaire {category} {type}"
@@ -40,7 +42,9 @@ titles:
   notifications: "Meldingen"
   feedback:
     bugs: "Fouten"
+    feature-requests: "Functie aanvraag"
     database-requests: "Database Verzoeken"
+    mobile-bugs: "Telefonische bug"
     mobile-features: "Mobiele functies"
   admin:
     index: "Beheerder"
@@ -91,6 +95,7 @@ about:
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Snelle Update"
     filter:
       all: "Alles"
       anime: "Anime"
@@ -101,13 +106,17 @@ dashboard:
     media:
       complete: "Klaar"
       unstarted: "Nog niet begonnen"
+      unit: "{type, select, anime {Afl. {num} {total, select, undefined {} other {van de {total}}}} manga {Hfst. {num} {total, select, null {} other {van de {total}}}} other {}}"
     overlay:
       button:
+        update: "{type, select, anime {Afl.} manga {Hfst.} other {}} {number}"
         complete: "Klaar"
         tooltip:
           empty: "Bibliotheek bijwerken"
           content: "Maak post en update bibliotheek"
       discussion: "Discussie bekijken"
+      edit: "Verander Bibliotheek Item"
+      popout: "Pop-out editor"
       editor:
         placeholder: "(Optioneel) Deel je gedachten over {type, select, anime {Aflevering} manga {Hoofdstuk} other {}} {number}"
   onboarding:
@@ -155,6 +164,7 @@ media:
       watch: "Online kijken"
     summary:
       ratings:
+        community: "{rating}% goedgekeurd door de Community"
         match: "{rating}% Match"
       categories: "Categorieën"
       relationships:
@@ -174,18 +184,31 @@ media:
         more: "Alle personages bekijken"
       titles:
         header: "Alternatieve titels"
+        af_za: "Afrikaans"
         ar: "Arabisch"
+        bg_bg: "Bulgaars"
+        bn_bd: "Bengaals"
+        ca_es: "Catalaans"
         cs_cz: "Tsjechisch"
+        cy_gb: "Welsh"
         da_dk: "Deens"
         de_de: "Duits"
         el_gr: "Grieks"
         en: "Engels"
+        en_au: "Engels (Australië)"
+        en_ca: "Engels (Canada)"
         en_cn: "Chinees (Pinyin)"
+        en_gb: "Engels (Groot-Brittannië)"
         en_jp: "Japanese (Romaji)"
         en_kr: "Koreaans (Romaja)"
+        en_us: "Engels (Amerikaans)"
         es_es: "Spaans"
+        et_ee: "Ests"
+        fa_ir: "Perzisch"
         fi_fi: "Fins"
+        fr_ca: "Frans (Canadees)"
         fr_fr: "Frans"
+        ga_ie: "Iers"
         he_il: "Hebreeuws"
         hi_in: "Hindi"
         hr_hr: "Kroatisch"
@@ -194,19 +217,33 @@ media:
         is_is: "Ijslands"
         it_it: "Italiaans"
         ja_jp: "Japans"
+        kk_kz: "Kazachs"
         ko_kr: "Koreaans"
+        lt_lt: "Litouws"
         lv_lv: "Lets"
         ms_my: "Maleisisch"
+        mt_mt: "Maltees"
+        nb_no: "Noors (Bokmål)"
         nl_nl: "Nederlands"
+        nn_no: "Noors (Nynorsk)"
         pl_pl: "Pools"
         pt_br: "Portugees (Braziliaans)"
         pt_pt: "Portugees"
+        ro_ro: "Roemeens"
         ru_ru: "Russisch"
+        sc_it: "Sardinisch"
+        sco_gb: "Schots"
+        sk_sk: "Slowaaks"
+        sl_sl: "Sloveens"
+        sr_cs: "Servisch (Latijn)"
+        sr_sp: "Servisch (Cyrillisch)"
         sv_se: "Zweeds"
         th_th: "Thais"
         tl_ph: "Tagalog"
         tr_tr: "Turks"
         uk_ua: "Oekraïens"
+        ur_in: "Urdu (Indisch)"
+        ur_pk: "Urdu (Pakistaans)"
         vi_vn: "Vietnamees"
         zh_cn: "Chinees (vereenvoudigd)"
         zh_hk: "Chinees (Hong Kong)"
@@ -214,34 +251,56 @@ media:
         zh_tw: "Chinees (traditioneel)"
         synonyms: "Synoniemen"
       information:
+        header: "{type, select, anime {Anime} manga {Manga} other {}} Details"
         type: "Type"
         volumes: "Volumes"
+        unit: "{type, select, anime {Afleveringen} manga {Hoofdstukken} other {}}"
+        start: "{type, select, anime {Uitgezonden} manga {Gepubliceerd} other {}}"
         status: "Status"
         tba: "Verwacht"
         season: "Seizoen"
+        producers: "Regisseurs"
         licensors: "Licentiehouders"
         studios: "Studio's"
         duration: "Lengte"
         total: "{total} totaal"
+        length: "{count, plural, =1 {{length} minuten} other {elk {length} minuten}}"
         rating: "Beoordeling"
         expand:
           false: "Meer informatie"
           true: "Minder info"
+      feed:
+        header: "Community Feed"
       trailer: "Trailer afspelen"
     units:
+      unit: "{type, select, episode {Aflevering} chapter {Hoofdstuk} other {}}"
+      back: "Terug naar de {type, select, episode {afleveringen} chapter {hoofdstukken} other {}} lijst"
       pages: "{length} Pagina's"
+      date: "{type, select, episode {Uitgezonden} chapter {Gepubliceerd} other {}}"
+      completed: "{type, select, episode {Bekeken} chapter {Gelezen} other {Compleet}}"
+      feed:
+        header: "Discussie over {type, select, episode {Aflevering} chapter {Hoofdstuk} other {}}"
+    characters:
+      header: "{title} Personages"
+      sub-header: "{type, select, anime {Het volgende is een lijst van alle personages en hun {language} stemacteurs voor de anime {title}} manga {Het volgende is een lijst van alle personages voor de manga {title}} other {}}"
     reactions:
       loading: "Reacties aan het laden…"
       delete: "Reactie Verwijderen"
       report: "Reactie Rapporteren"
       copy: "Link naar Reactie Kopiëren"
     franchise:
+      header: "{title} Mediafranchise"
       roles:
         sequel: "Vervolg"
+        prequel: "Voorloper"
         alternative_setting: "Alternatieve instelling"
         alternative_version: "Alternatieve versie"
+        side_story: "Zij verhaal"
+        parent_story: "Bovenliggend verhaal"
         summary: "Samenvatting"
         full_story: "Volledige verhaal"
+        spinoff: "Namaak"
+        adaptation: "Aanpassing"
         anime_adaptation: "Anime"
         manga_adaptation: "Manga"
         character: "Personage"
