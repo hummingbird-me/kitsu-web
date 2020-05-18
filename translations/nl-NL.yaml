@@ -602,6 +602,7 @@ users:
       header: "Over Mij"
       empty: "Dat is een geheim"
       waifu:
+        label: "{waifu, select, Waifu {Waifu} Husbando {Husbando} other {{waifu}}}:"
         empty: "Waifu/Husbando:"
       gender:
         label: "Geslacht:"
@@ -610,11 +611,17 @@ users:
         female: "Vrouw"
       location: "Locatie:"
       birthday: "Verjaardag:"
+      joined: "Lid sinds:"
     stats:
       headings:
         anime: "Anime Statistieken"
         manga: "Manga Statistieken"
+      time-watched: "{count} {timeUnit} anime gekeken."
+      chapters-read: "{count} hoofdstukken gelezen."
+      completed: "{count} voltooid."
       time-breakdown:
+        seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
+        time-segment: "{count} {timeUnit}" #8 months (pre-translated)
         total: "totaal besteed aan het kijken van anime." #appended after time-segments
       empty:
         header: "Het lijkt erop dat je nog niet genoeg data hebt! Klaar om iets nieuws te starten?"
@@ -640,38 +647,78 @@ users:
           desc: "Recent Eerst"
           asc: "Oudste Eerst"
         finished:
+          desc: "Nieuwste Eerst"
           asc: "Oudste Eerst"
         added:
+          desc: "Nieuwste Eerst"
           asc: "Oudste Eerst"
+        progress:
+          desc: "Meetste Eerst"
+          asc: "Minste Eerst"
         rating:
           desc: "Hoogste Eerst"
+          asc: "Laagste Eerst"
+        length:
+          desc: "Langste Eerst"
+          asc: "Kortste Eerst"
     sidebar:
+      media-select: "{type, select, anime {{user}'s Anime} manga {{user}'s Manga} other {}}"
       manage: "Bibliotheek Bijwerken"
       import: "Bibliotheek Importeren"
       export: "Bibliotheek Exporteren"
       reset: "Bibliotheek Resetten"
       reset-loading: "Resetten…"
+      reset-confirmation: "Dit gaat je hele bibliotheek, geassocieerde reviews en reacties verwijderen. Weet je zeker dat je door wilt gaan?"
+      issues:
+        header: "Bibliotheek Problemen"
+        fix: "oplossen"
     list:
+      edit: "Verander Item"
       list-edit: "Bewerken"
       more: "Meer"
+      unstarted: "Nog niet gestart"
       unrated: "Geen beoordeling"
+      progress: "{type, select, anime {Afl. {progress}} manga {Hfst. {progress}} other {}}"
       table-header:
+        title: "{type, select, anime {Anime Titel} manga {Manga Titel} other {}}"
+        rating: "Beoordeling"
+        progress: "Voortgang"
         volumes: "Volumes"
       add-reaction: "Reactie Toevoegen"
       empty:
+        search: "Geen gevonden bibliotheek items met jouw zoekopdracht."
+        header: "Het lijkt erop dat jouw bibliotheek leeg is! Ben je klaar om iets nieuws te starten?"
+        guest-header: "Het lijkt erop dat {user} geen bibliotheek items hier heeft."
         button: "{type} Doorzoeken"
+    grid:
+      view-media: "Bekijk {type, select, anime {Anime} manga {Manga} other {}}"
     edit:
+      status: "Bibliotheek Status"
+      progress: "Voortgang"
+      units: "{type, select, anime {van de {num} afleveringen} manga {van de {num} hoofdstukken} other {}}"
+      volumes: "Volumes"
+      volume-units: "uit {num} volumes"
       rating: "Beoordeling"
+      rewatch: "{type, select, anime {Aantal keren herkeken} manga {Aantal keren herlezen} other {}}"
+      start-rewatch: "{type, select, anime {Beginnen met herkijken} manga {Beginnen met herlezen} other {}}"
+      privacy: "Privacy"
+      started: "Begonnen"
+      finished: "Voltooid"
+      notes: "Persoonlijke Notities"
+      remove: "Verwijderen uit je bibliotheek"
       save: "Wijzigingen opslaan"
       saving: "Opslaan…"
     bulk:
+      selected: "{type, select, anime {{num} anime geselecteerd} manga {{num} manga geselecteerd} other {}}"
       select-all: "Selecteer Alles"
+      select-none: "Niks Selecteren"
       remove: "Verwijder '<strong>'{num}'</strong>'"
       remove-loading: "Verwijderen…"
       update-loading: "Updaten…"
   groups:
     sort:
       newest: "Onlangs toegevoegd"
+      oldest: "Oudste Deelnemer"
   reactions:
     empty: "Deze gebruiker heeft geen reacties"
     filters:
@@ -692,8 +739,10 @@ users:
     loading: "Gebruikers aan het laden…"
   following:
     not-found: "Geen Gebruikers Gevonden."
+    loading: "Gebruikers Laden…"
   reviews:
     not-found: "Geen Reviews Gevonden."
+    loading: "Reviews Laden…"
 #page: settings
 settings:
   navigation:
@@ -705,34 +754,57 @@ settings:
     linked-accounts: "Gelinkte Accounts"
     import: "Importeren"
     export: "Exporteren"
+    blocking: "Blokkeren"
     account: "Account"
   account:
     header: "Account"
+    sub-header: "Gevarenzone! Je kunt niet meer terug als je je account verwijderd."
     delete: "Account Verwijderen"
     confirm-title: "Account Verwijderen"
     confirm-text: "Het spijt ons dat je weggaat, weet je zeker dat je door wilt gaan?"
   apps:
     header: "Apps"
   blocking:
+    header: "Blokkeren"
     sub-header: "Zodra je iemand blokkeert, kan die persoon je niet meer taggen, volgen, je profiel zien, of je feed posts zien."
+    title: "Blokkeer Gebruikers"
     placeholder: "Zoek gebruikers om te blokkeren…"
     button-block: "Blokkeren"
     loading: "Gebruikers aan het laden…"
     button-unblock: "Deblokkeren"
+    more: "Meer Laden"
     not-blocking: "Je hebt momenteel niemand geblokkeerd."
   exports:
     modal:
       header: "Synchroniseren met {site}"
+      helper: "We zullen je anime en manga lijsten elke keer updaten op {site} als jij ze update op Kitsu."
+      create: "Synchroniseer naar {site}"
     header: "Exporteren"
     sub-header: "Synchroniseer je bibliotheek updates automatisch van Kitsu naar MyAnimeList."
+    loading: "Exports Landen…"
     remove: "Verwijder exporteur"
+    create: "Zet export naar MyAnimeList Account op"
+    download: "Download {kind} Bibliotheek"
+    recent: "Recente synchronisatie activiteit"
+    sync-header: "MyAnimeList synchronisatie"
+    no-logs: "We zijn door je bibliotheek aan het gaan en synchroniseren het met MyAnimeList. Hou je vast!"
     logs:
       header:
         media: "Titel"
         library-status: "Status"
+        progress: "Voortgang"
+        action: "Actie"
         status: "Status"
+      action:
+        create: "Creëren"
+        update: "Bijwerken"
+        destroy: "Verwijderen"
       status:
+        success: "Succes"
         error: "Fout"
+  imports:
+    status: "Status:"
+    entries: "Totaal aantal items gevonden:"
   index:
     header: "Profiel"
     url: "Profiel URL"
