@@ -1007,6 +1007,7 @@ groups:
     hide-more: "{num} Reports verbergen"
     status:
       resolved: "Dieser Report wurde von {user} gelöst."
+      declined: "Dieser Report wurde von {user} abgelehnt."
       escalated: "Dieser Report wurde von {user} eskaliert."
     actions:
       close: "Report schließen"
@@ -1029,8 +1030,14 @@ groups:
         members: "Mitglieder verwalten"
         leaders: "Leader verwalten"
         community: "Einstellungen verwalten"
+        content: "Inhalte und Reports verwalten"
+        owner-help: "Besitzer haben alle Berechtigungen."
+        cancel-btn: "Abbrechen"
+        save-btn: "Berechtigungen speichern"
   dashboard:
+    back: "Zurück zu {group}"
     navigation:
+      overview: "Übersicht"
       reports: "Meldungen"
       tickets: "Tickets"
       members: "Mitglieder"
@@ -1058,6 +1065,7 @@ groups:
         invited: "Eingeladen"
         revoke: "Einladung abbrechen"
         invite: "Einladen"
+        placeholder: "Suche nach einen Benutzer den du einladen willst. Sie müssen dir folgen!"
       bans:
         header: "Gesperrte Benutzer"
         unban: "Entsperren"
@@ -1083,6 +1091,57 @@ groups:
         banned: "hat '<a' href={link}'>'{user}'</a>' gesperrt."
         unbanned: "hat '<a' href={link}'>'{user}'</a>' entsperrt."
         invited: "hat '<a' href={link}'>'{user}'</a>' eingeladen, der Community beizutreten."
+        granted: "hat Berechtigungen an '<a' href={link}'>'{user}'</a>' gegeben."
+        revoked: "hat Berechtigungen von '<a' href={link}'>'{user}'</a>' entfernt."
+      group:
+        added_neighbor: "hat '<a' href={link}'>'{group}'</a>' als ein Nachbar hinzugefügt."
+        removed_neighbor: "hat '<a' href={link}'>'{group}'</a>' als ein Nachbar entfernt."
+        avatar_changed: "avatar von {group} aktualisiert."
+        cover_changed: "Titelbild von {group} aktualisiert."
+        locale_changed: "hat die Sprache von {group} geändert."
+        rules_changed: "Regeln von {group} aktualisiert."
+        nsfw_changed: "hat den NSFW-Status von {group} aktualisiert."
+        about_changed: "hat die About von {group} aktualisiert."
+        tagline_changed: "hat die Tagline von {group} aktualisiert."
+        category_changed: "hat die Kategorie von {group} aktualisiert."
+      group-report:
+        resolved: "hat ein Report gelöst."
+        declined: "hat ein Report abgelehnt."
+        escalated: "hat ein Report eskaliert."
+      group-ticket:
+        assigned: "hat ein Ticket zu '<a' href={link}'>'{user}'</a>' zugewiesen."
+        resolved: "hat ein Ticket als gelöst markiert."
+        created: "hat ein Ticket erneut geöffnet."
+#page: group-invite
+group-invite:
+  header: "Gruppeneinladung"
+  subtitle: "Du wurdest von {sender} zu der Gruppe {group} eingeladen"
+  text: "Du wirst fähig sein auf {group}s Seite zuzugreifen nachdem du diese Einladung angenommen hast. Wir werden dich weiterleiten nachdem du angenommen hast."
+  accept: "Annehmen"
+  decline: "Ablehnen"
+  accepted: "Du hast die Einladung bereits angenommen."
+  revoked: "Deine Einladung wurde von einen Gruppen-Moderator widerrufen."
+  declined: "Du hast diese Gruppeneinladung abgelehnt."
+#page: explore
+explore:
+  view-more: "Mehr anzeigen"
+  search-placeholder: "Wonach suchst du?"
+  no-data: "Hmm, es scheint so als ob keine Medien für diese Auswahl gefunden werden konnten."
+  widget:
+    related: "Verwandte Kategorien"
+    categories: "Kategorien"
+    favorite-categories: "Meine Lieblings Kategorien"
+    no-favorites: "Das Markieren von Lieblingskategorien verbessert deine Empfehlungen."
+    more-categories: "Weitere Kategorien…"
+  modal:
+    header: "Alle Kategorien"
+  favorite-button:
+    remove: "Aus Favoriten entfernen"
+    removing: "am Löschen…"
+    create: "Zu Favoriten hinzufügen"
+    creating: "am Hinzufügen…"
+  category:
+    index: "{category} {type, select, anime {Anime} manga {Manga} other {}}" #category is pre-translated
 #page: media-reactions
 media-reactions:
   view-all: "Zeige alle '<strong>'{count}'</strong>' Reaktionen von {user}"
@@ -1210,13 +1269,59 @@ feeds:
     manga:
       header: "Willkommen auf deinen Manga-Feed!"
     button: "Okay, hab's verstanden"
+#component: image-form
+image-form:
+  help-text: "Klick' hier um ein Bild auszuwählen."
 #component: groups/group-list
 group-list:
+  filter: "Gruppen filtern"
   sort:
+    featured: "Vorgestellt"
     recent: "Letzte Aktivitäten"
+    newest: "Neuste Gruppen"
+    oldest: "Älteste Gruppen"
+#component: media/media-reaction
+media-reaction:
+  self-vote: "Du kannst auf deine eigene Reaktion nicht voten."
+  edit: "Reaktion bearbeiten"
+#component: modals/media-reaction
+reaction-modal:
+  post: "Eintrag"
+  edit: "Bearbeiten"
+  edit-warning: "Vorsichtig! Wenn du deine Reaktion bearbeitest werden deine Upvotes gelöscht."
+  delete: "Reaktion löschen"
+  placeholder: "{index, plural, one {} =0 {Hat mich dazu gebracht wichtige Lebensentscheidungen zu überdenken.} =1 {Überraschend gut! Sehr viele unvergessliche Szenen.} =2 {Während es nicht Jedermanns Sache ist, ist es schon interessant.} other {Überbewertet, verschwende deine Zeit nicht bei diesem.}}"
+  skip: "Überspringen"
+  #component: modals
+  modals:
+    image-cropper:
+      dimensions: "Breite: {width}, Höhe: {height}"
+      select: "Auswählen"
+      close: "Schließen"
+    confirm:
+      check: "Bist du dir sicher, dass du das tun möchtest?"
+      button: "Bestätigen"
+    block-user:
+      header: "Benutzer blockieren"
+      body:
+        header: "Bevor du diese Person blockierst, möchten wir dir zeigen wie Blockieren funktionieren wird."
+      button: "{user} blockieren"
+    report-content:
+      header: "Du kannst diesen Inhalt nur einmal melden."
+      status: "Derzeitiger Status deines Reports: {status}"
+      reason: "Bitte gebe einen Grund für deinen Report an."
+      submit: "Melden"
 #component: library-entry/*
 library-entry:
   state:
+    header: "{state, select, false {Zur Bibliothek hinzufügen} true {Bibliothek aktualisieren} other {}}"
+    add-to-library: "Zur Bibliothek hinzufügen"
+    seen-this: "{type, select, anime {Abgeschlossen} manga {Abgeschlossen} other {}}"
+    want-to-watch: "{type, select, anime {Möchte angucken} manga {Möchte lesen} other {}}"
+    started-watching: "{type, select, anime {Angefangen zu gucken} manga {Angefangen zu lesen} other {}}"
+    watching-this: "Angefangen"
+    finished-this: "Abgeschlossen"
+    place-on-hold: "Wartend"
     drop-this: "Abgebrochen"
     change-rating: "Bewertung ändern"
     remove-rating: "Bewertung entfernen"
@@ -1233,6 +1338,15 @@ library-entry:
     meh: "Meh"
     good: "Gut"
     great: "Sehr gut"
+#component: application/user-notifications
+user-notifications:
+  #Episode 113 of One Piece! aired
+  aired: "{type, select, chapter {Kapitel} episode {Episode} other {}} {number} von {media} wurde {type, select, chapter {veröffentlicht} episode {ausgestrahlt} other {}}"
+  aired-unknown: "{media} hat {type, select, manga {ein neues Kapitel veröffentlicht} anime {eine neue Episode ausgestrahlt} other {}}"
+  menu:
+    all: "Alle Benachrichtigungen anzeigen"
+    mark-read: "Alle als gelesen markieren"
+    none: "Du hast keine Benachrichtigungen!"
 #ember-power-select
 selects:
   loading: "Wird geladen…"
@@ -1240,7 +1354,17 @@ selects:
   search: "Tippen, um zu suchen"
 #ember-cp-validations
 errors:
+  description: "Dieses Feld"
+  inclusion: "{description} ist nicht in der Liste enthalten"
+  exclusion: "{description} ist reserviert"
+  invalid: "{description} ist ungültig"
+  confirmation: "{description} stimmt nicht mit {on} überein"
+  accepted: "{description} muss akzeptiert werden"
+  empty: "{description} darf nicht leer sein"
+  blank: "{description} darf nicht leer sein"
+  present: "{description} muss leer sein"
   serverError:
+    title: "Oops! Scheint so als hätte unser Server ein Bug."
     body: "Unser Team wurde benachrichtigt, bitte versuche es nochmal in paar Minuten."
     reload: "Neu laden"
 admin:
@@ -1268,3 +1392,114 @@ category:
   ahegao: "Ahegao"
   alien: "Alien"
   all-girls-school: "Mädchenschule"
+  alternative-past: "Alternative Vergangenheit"
+  angel: "Engel"
+  angst: "Angst"
+  asia: "Asien"
+  baseball: "Baseball"
+  basketball: "Basketball"
+  boxing: "Boxen"
+  card-games: "Kartenspiele"
+  china: "China"
+  combat: "Kampf"
+  comedy: "Komödie"
+  cooking: "Kochen"
+  cyberpunk: "Cyberpunk"
+  dragon: "Drache"
+  elementary-school: "Grundschule"
+  elements: "Elemente"
+  elf: "Elf"
+  epidemic: "Epidemie"
+  europe: "Europa"
+  family: "Familie"
+  fantasy: "Fantasie"
+  fantasy-world: "Fantasiewelt"
+  female-student: "Weibliche Schülerin"
+  female-teacher: "Weibliche Lehrerin"
+  floating-island: "Schwebende Inseln"
+  france: "Frankreich"
+  friendship: "Freundschaft"
+  future: "Zukunft"
+  genetic-modification: "genetische Modifikation"
+  germany: "Deutschland"
+  ghost: "Geist"
+  historical: "Historisch"
+  horror: "Horror"
+  isekai: "Isekai"
+  italy: "Italien"
+  japan: "Japan"
+  loli: "Loli"
+  magic: "Magie"
+  magical-girl: "Magisches Mädchen"
+  military: "Militär"
+  music: "Musik"
+  nurse: "Krankenschwester"
+  parallel-universe: "Paralleluniversum"
+  parasite: "Parasiten"
+  parody: "Parodie"
+  past: "Vergangenheit"
+  pirate: "Piraten"
+  politics: "Politik"
+  present: "Gegenwart"
+  religion: "Religion"
+  robot: "Roboter"
+  romance: "Romantik"
+  russia: "Russland"
+  samurai: "Samurai"
+  satire: "Satire"
+  school-clubs: "Schulclubs"
+  school-life: "Schulleben"
+  science-fiction: "Science Fiction"
+  slavery: "Sklaverei"
+  slice-of-life: "Slice of Life"
+  slow-when-it-comes-to-love: "Langsam wenn es zur Liebe kommt"
+  soccer: "Fußball"
+  space: "Weltraum"
+  sports: "Sport"
+  stereotypes: "Stereotypen"
+  street-racing: "Straßenrennen"
+  summer: "Sommer"
+  superhero: "Superheld"
+  supernatural: "Übernatürlich"
+  super-power: "Superkraft"
+  super-robot: "Super Roboter"
+  swordplay: "Schwertspiel"
+  tennis: "Tennis"
+  tentacle: "Tentakel"
+  the-arts: "Geisteswissenschaften"
+  themes: "Themen"
+  thievery: "Diebstahl"
+  three-kingdoms: "Drei Königreiche"
+  thriller: "Thriller"
+  time-travel: "Zeitreise"
+  tokyo: "Tokyo"
+  united-kingdom: "Vereinigtes Königreich"
+  united-states: "Vereinigte Staaten"
+  university: "Universität"
+  vampire: "Vampir"
+  violence: "Gewalt"
+  virtual-reality: "Virtuelle Realität"
+  volleyball: "Volleyball"
+  war: "Krieg"
+  world-war-ii: "2. Weltkrieg"
+  #NSFW categories
+  nudity: "Nacktheit"
+  sex: "Sex"
+  ecchi: "Ecchi"
+  pantsu: "Pantsu"
+  teacher-x-student: "Lehrer × Schüler"
+  sexual-abuse: "Sexuelle Vergewaltigung"
+  fetishes: "Fetische"
+  anal: "Anal"
+  bdsm: "BDSM"
+  femdom: "Femdom" #Female Domination
+  gigantic-breasts: "Gigantische Brüste"
+  large-breasts: "Große Brüste"
+  masturbation: "Masturbation"
+  prostitution: "Prostitution"
+  public-sex: "Öffentlicher Sex"
+  rape: "Vergewaltigung"
+  sex-toys: "Sex Spielzeug"
+  shota: "Shota"
+  small-breasts: "Kleine Brüste"
+  yuri: "Yuri"
