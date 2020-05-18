@@ -32,17 +32,22 @@ titles:
     reviews: "Recenze {user}"
     reactions: "Recenze {user}"
     followers: "Sledující {user}"
+    following: "Sledován(a) uživatelem {user}"
     groups: "Skupiny {user}"
     stats: "Statistiky uživatele {user}"
   posts: "Příspěvek od {user}"
+  comments: "Příspěvek od {user}"
+  reviews: "Recenze od {user}"
   notifications: "Oznámení"
   feedback:
     bugs: "Chyby"
+    feature-requests: "Žádosti o nové funkce"
     database-requests: "Požadavky na databázi"
     mobile-bugs: "Mobilní chyby"
     mobile-features: "Mobilní funkce"
   admin:
     index: "Admin"
+    reports: "Nahlášení"
   groups:
     index: "Skupiny"
     new: "Vytvořit skupinu"
@@ -53,6 +58,7 @@ titles:
         leaders: "Vedoucí {group}"
       dashboard:
         index: "Přehled {group}"
+        reports: "{group} Hlašení"
         tickets: "{group} Vstupenky"
         members: "{group} členové"
         leaders: "Vedoucí {group}"
@@ -69,6 +75,7 @@ header:
   manga: "Manga"
   trending: "Populární"
   groups: "Skupiny"
+  feedback: "Připomínky"
   browse: "Prohlížet"
   auth:
     sign-in: "Přihlásit se"
@@ -78,46 +85,83 @@ header:
     settings: "Nastavení"
     admin: "Admin"
     logout: "Odhlásit se"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Řekni nám něco o sobě, abychom ti mohli založit učet} 1 {Další na řadě je e-mail!} 2 {A teď heslo ^-^} 3 {Vytváříme účet..} other {}}"
 #page: about
 about:
   header: "O Kitsu"
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Rychlá aktualizace"
     filter:
+      all: "Vše"
       anime: "Anime"
       manga: "Manga"
+    empty:
+      html: "Tituly přidané do '<a' href={link}'>'knihovny'</a>' budou k dispozici zde pro jejich rychlou aktualizaci."
+      discover: "Najít tituly"
+    media:
+      complete: "Kompletní"
+      unstarted: "Nezahájeno"
+      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {of {total}}}} manga {Ch. {num} {total, select, null {} other {od {total}}}} other {}}"
     overlay:
       button:
+        update: "{type, select, anime {Ep.} manga {Ch.} other {}} {number}"
+        complete: "Dokončené"
         tooltip:
           empty: "Aktualizovat knihovnu"
+          content: "Vytvořit příspěvek a aktualizovat knihovnu"
       discussion: "Zobrazit diskuzi"
+      edit: "Upravit záznam v knihovně"
+      popout: "Pop-out editor"
+      editor:
+        placeholder: "(Nepovinné) Poděl se o své připomínky na {type, select, anime {epizodu} manga {kapitolu} other {}} {number}"
   onboarding:
     welcome: "Ahoj {user}, vítejte v Kitsu!"
   groups:
     header: "Moje skupiny"
+  announcements:
+    button: "Dozvědět se více"
   feed:
+    following: "Sledovaní"
     anime: "Anime"
     manga: "Manga"
+    global: "Globální"
 #page: anime/manga
 media:
   index:
+    filter: "Filtr"
     remove: "Odebrat"
     filters:
       year: "Rok"
       score: "Průměrné hodnocení"
+      seasons: "Série"
+      streamers: "Streameří (U.S.)"
+      rating: "Hodnocení"
       categories: "Kategorie"
+      types: "Typy"
     sort:
+      popularity: "Popularita"
       rating: "Průměrné hodnocení"
       date: "Datum"
       recent: "Nedávno přidané"
+  none: "Žádné výsledky."
   show:
     navigation:
+      summary: "Shrnutí"
       characters: "Postavy"
       reactions: "Reakce"
+      franchise: "Franchise"
     sidebar:
       watch: "Sledovat online"
     summary:
+      ranking:
+        full:
+          popularity: "{type, select, anime {Rank #{rank} (Nejvíce oblíbené anime)} manga {Rank #{rank} (Nejvíce oblíbená manga)} other {}}"
+          rating: "{type, select, anime {Rank #{rank} (Nejvíce hodnocené anime)} manga {Rank #{rank} (Nejvíce hodnocená manga)} other {}}"
       categories: "Kategorie"
       relationships:
         more: "Zobrazit vše v {title}"
@@ -148,18 +192,34 @@ media:
         pt_br: "Portugalština (Brazilská)"
         pt_pt: "Portugalština"
         ru_ru: "Ruština"
+        sr_cs: "Serbian (Latin)"
+        sr_sp: "Serbian (Cyrillic)"
+        sv_se: "Swedish"
         th_th: "Thajština"
+        tl_ph: "Tagalog"
+        tr_tr: "Turkish"
         uk_ua: "Ukrajinština"
+        ur_in: "Urdu (Indian)"
+        ur_pk: "Urdu (Pakistani)"
         vi_vn: "Vietnamština"
         zh_cn: "Čínština (zjednodušená)"
+        zh_hk: "Chinese (Hong Kong)"
+        zh_mo: "Chinese (Macao)"
         zh_tw: "Čínština (tradiční)"
         synonyms: "Synonyma"
       information:
+        header: "{type, select, anime {Anime} manga {Manga} other {}} podrobnosti"
         type: "Typ"
+        volumes: "Svazky"
+        unit: "{type, select, anime {Epizody} manga {Kapitoly} other {}}"
+        start: "{type, select, anime {Vysíláno} manga {Publikováno} other {}}"
         status: "Stav"
         tba: "Očekávané"
+        season: "Série"
         producers: "Výrobci"
+        licensors: "Licensoři"
         studios: "Studia"
+        serialization: "Serializace"
         duration: "Doba trvání"
         total: "Celkem {total}"
         rating: "Hodnocení"
@@ -176,12 +236,18 @@ media:
       copy: "Kopírovat odkaz k reakci"
     franchise:
       roles:
+        sequel: "Sequel"
+        prequel: "Prequel"
         alternative_setting: "Alternativní nastavení"
         alternative_version: "Alternativní verze"
         side_story: "Postranní příběh"
+        summary: "Souhrn"
         full_story: "Celý příběh"
+        spinoff: "Spin-off"
+        adaptation: "Adaptace"
         anime_adaptation: "Anime"
         manga_adaptation: "Manga"
+        character: "Postava"
         other: "Ostatní"
   hide-posts:
     text: "Skrýt příspěvky o {media}"
@@ -189,6 +255,24 @@ media:
     text: "Zobrazit příspěvky o {media}"
 #components
 components:
+  admin:
+    reports:
+      not-set: "Není nastaveno"
+      actions:
+        button: "Akce"
+        open: "Označit jako otevřené"
+        resolved: "Označit jako vyřešené"
+        closed: "Označit jako uzavřené"
+      table:
+        user: "Uživatel"
+        type: "Typ"
+        reason: "Důvod"
+        explanation: "Vysvětlení"
+        moderator: "Moderátor"
+        status: "Status"
+        actions: "Akce"
+  application:
+    nav-search: "Vyhledat na Kitsu"
   stream-feed:
     create-post:
       edit: "Upravit"
@@ -222,6 +306,33 @@ components:
       delete: "Odstranit příspěvek"
       unpin: "Odepnout příspěvek z profilu"
       report: "Nahlásit příspěvek"
+    review:
+      spoiler-hover: "Já umím zvládnout pravdu!"
+      share:
+        twitter: "Tweet"
+        facebook: "Sdílet"
+      copy-link: "Opsat odkaz k recenzi"
+      edit: "Upravit Recenzi"
+      delete: "Smazat recenzi"
+      report: "Nahlásit recenzi"
+  users:
+    ban:
+      title: "Opravdu chcete zablokovat tohoto uživatele?"
+    delete-user-content:
+      checkbox:
+        posts: "Příspěvky"
+        comments: "Komentáře"
+        reactions: "Reakce"
+      delete: "Smazat"
+    block: "Zablokovat @{user}"
+    you: "Hey, to jsi ty!"
+    favorites:
+      title: "Oblíbené {type, select, series {série} characters {postavy} other {}}"
+      anime: "Anime"
+      manga: "Manga"
+      more: "Zobrazit více"
+      empty:
+        others: "Uživatel nemá žádné oblíbené"
 #page: users
 users:
   profile:
@@ -229,12 +340,14 @@ users:
   admin:
     button: "Admin"
     past-names: "Zobrazit minulé jména"
+    ban: "Zablokovat"
   navigation:
     activity: "Aktivita"
     library: "Knihovna"
     reviews: "Recenze"
     reactions: "Reakce"
     followers: "Sledující"
+    following: "Sledovaní"
     groups: "Skupiny"
   edit-modal:
     cover: "Změnit úvodní fotku"
@@ -249,8 +362,23 @@ users:
       birthday: "Narozeniny"
       gender:
         label: "Pohlaví"
+        options:
+          secret: "To je tajemství"
+          male: "Muž"
+          female: "Žena"
+          custom: "Vlastní"
+      waifu:
+        label: "Waifu"
+        placeholder: "Waifu/Husbando"
+        divorce: "rozvod"
+      bio:
+        label: "O mně"
+        placeholder: "Sděl svůj příběh."
     profile-links:
+      remove: "Odstranit z profilu"
       sites:
+        website:
+          placeholder: "Odkaz na vaší stránku"
         patreon:
           placeholder: "Název vašeho projektu Patreon"
         deviantart:
@@ -269,6 +397,9 @@ users:
         trakt:
           about: "Zadejte své uživatelské jméno pro Trakt pro přidání odkazu na váš profil."
           placeholder: "Vaše uživatelské jméno pro Trakt"
+    footer:
+      updating: "Aktualizuji…"
+      update: "Aktualizovat profil"
     favorites:
       header: "Oblíbené"
       anime: "Anime"
@@ -279,11 +410,18 @@ users:
     onboarding:
       welcome: "Ahoj {user}, tato stránka je celá o VÁS!"
     about:
+      header: "O mně"
       empty: "Je to tajemství"
+      waifu:
+        empty: "Waifu/Husbando:"
       gender:
+        label: "Pohlaví:"
         secret: "Je to tajemství"
         male: "Muž"
         female: "Žena"
+      location: "Lokalita:"
+      birthday: "Narozeniny:"
+      joined: "Registrován:"
     stats:
       headings:
         anime: "Anime statistiky"
@@ -297,6 +435,13 @@ users:
         started: "Datum zahájení"
         finished: "Datum dokončení"
         added: "Datum přidání"
+        progress: "Progress"
+        rating: "Hodnocení"
+        title: "Titul"
+        length: "Doba trvání"
+      directions:
+        watched:
+          desc: "Nejdříve nejnovější"
     list:
       edit: "Upravit záznam"
       list-edit: "Upravit"
@@ -348,3 +493,126 @@ settings:
   exports:
     header: "Exportovat"
     sub-header: "Automaticky synchronizovat aktualizace knihovny z Kitsu na MyAnimeList."
+    logs:
+      header:
+        media: "Název"
+        library-status: "Status"
+        progress: "Progress"
+        rating: "Hodnocení"
+        reconsumes: "Opětovné sledování"
+        action: "Akce"
+        status: "Status"
+      action:
+        create: "Vytvořit"
+        update: "Aktualizovat"
+        destroy: "Odstranit"
+      status:
+        pending: "Čeká na vyřízení"
+        success: "Úspěšně dokončeno"
+        error: "Error"
+  imports:
+    header: "Importovat"
+    loading: "Načítání importů…"
+    status: "Status:"
+    more: "Načíst další"
+  index:
+    header: "Profil"
+    email: "Email"
+    language: "Jazyk"
+    time-zone: "Časové pásmo"
+    theme: "Vzhled stránky"
+    country: "Země"
+    worldwide: "Celosvětové"
+    titles: "Názvy"
+  privacy:
+    header: "Soukromí"
+#page: feedback
+feedback:
+  header: "Zpětná vazba"
+  bugs: "Bugy"
+  features: "Žádosti na nové funkce"
+  database: "Požadavky na databázi"
+  mobile-bugs: "Mobilní bugy"
+  mobile-features: "Mobilní funkce"
+#page: groups
+groups:
+  create:
+    form:
+      required: "Požadováno"
+      name: "Jméno"
+      tagline: "Doplňující text"
+      about: "Popis"
+      rules: "Pravidla"
+      neighbors: "Sousedé"
+      neighbors-placeholder: "Hledat skupinu"
+      privacy: "Soukromí"
+      privacy-options:
+        open: "Veřejné"
+        closed: "Soukromé"
+        restricted: "Omezené"
+      category: "Kategorie"
+      category-placeholder: "Vyberte kategorii"
+      avatar: "Avatar"
+      cover: "Obrázek hlavičky profilu"
+      create-btn: "Vytvoř si svojí skupinu!"
+      save-btn: "Uložit"
+      helper:
+        name:
+          header: "Název"
+        tagline:
+          header: "Doplňující text"
+        about:
+          header: "Popis"
+        rules:
+          header: "Pravidla"
+        neighbors:
+          header: "Sousedé"
+        privacy:
+          header: "Soukromí"
+        category:
+          header: "Kategorie"
+        avatar:
+          header: "Avatar"
+  tickets:
+    conversation:
+      mark-closed: "Označit jako uzavřené"
+      mark-open: "Označit jako otevřené"
+      nav:
+        reply: "Odpovědět uživateli"
+      create-btn: "Vytvoření požadavku"
+      reply-btn: "Odpovědět"
+      reply-placeholder: "Zadejte text zprávy"
+  leaders:
+    list:
+      edit-btn: "Upravit"
+      add-btn: "Přidat"
+      add-placeholder: "Člen skupiny"
+      modal:
+        cancel-btn: "Storno"
+  dashboard:
+    navigation:
+      overview: "Přehled"
+      reports: "Nahlášení"
+      tickets: "Požadavky"
+      members: "Členové"
+      leaders: "Vedoucí"
+      settings: "Nastavení"
+    overview:
+      members:
+        header: "Členové"
+        total: "Celkem členů"
+      activity:
+        header: "Aktivita uživatele"
+    members:
+      members:
+        header: "Členové"
+        table:
+          users: "Uživatel"
+          permissions: "Rank"
+          joined: "Připojen"
+          actions: "Akce"
+        remove: "Odstranit"
+        ban: "Zablokovat"
+    leaders:
+      chat:
+        post-btn: "Příspěvek"
