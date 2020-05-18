@@ -178,13 +178,52 @@ media:
         header: "Alternatiivsed tiitlid"
         af_za: "Afrikaani"
         ar: "Araabia"
+        bg_bg: "Bulgaaria"
         bn_bd: "Bengali"
+        ca_es: "Katalaani"
         cs_cz: "Tšehhi"
+        cy_gb: "Kõmri"
+        da_dk: "Taani"
         de_de: "Saksa"
         el_gr: "Kreeka"
         en: "Inglise"
+        en_au: "Inglise (Austraalia)"
+        en_ca: "Inglise (Kanada)"
         en_cn: "Hiina (Pinyin)"
         en_gb: "Inglise (Briti)"
+        en_il: "Heebrea (romaniseeritud)"
+        en_jp: "Jaapani (romaji)"
+        en_kr: "Korea (romaja)"
+        en_th: "Tai (romaniseeritud)"
+        en_us: "Inglise (Ameerika)"
+        es_es: "Hispaania"
+        et_ee: "Eesti"
+        fa_ir: "Pärsia"
+        fi_fi: "Soome"
+        fr_ca: "Prantsuse (Kanada)"
+        fr_fr: "Prantsuse"
+        ga_ie: "Iiri"
+        he_il: "Heebrea"
+        hi_in: "Hindi"
+        hr_hr: "Horvaatia"
+        hu_hu: "Ungari"
+        id_id: "Indoneesia"
+        is_is: "Islandi"
+        it_it: "Itaalia"
+        ja_jp: "Jaapani"
+        kk_kz: "Kasahhi"
+        ko_kr: "Korea"
+        lt_lt: "Leedu"
+        lv_lv: "Läti"
+        ms_my: "Malai"
+        mt_mt: "Malta"
+        nb_no: "Norra (Bokmål)"
+        nl_nl: "Hollandi"
+        nn_no: "Norra (Nynorsk)"
+        pl_pl: "Poola"
+        pt_br: "Portugali (Brasiilia)"
+        pt_pt: "Portugali"
+        ro_ro: "Rumeenia"
         ru_ru: "Vene"
         sc_it: "Sardiinia"
         sco_gb: "Šoti"
@@ -243,3 +282,207 @@ media:
       roles:
         sequel: "Järg"
         prequel: "Eeljärg"
+        alternative_setting: "Alt. ümbruslugu"
+        alternative_version: "Alt. versioon"
+        side_story: "Kaaslugu"
+        parent_story: "Juhtlugu"
+        summary: "Kokkuvõte"
+        full_story: "Terve lugu"
+        spinoff: "Kõrvallugu"
+        adaptation: "Adaptsioon"
+        anime_adaptation: "Anime"
+        manga_adaptation: "Manga"
+        character: "Tegelane"
+        other: "Muu"
+#components
+components:
+  admin:
+    reports:
+      no-explanation: "Selgitus puudub."
+      not-set: "Pole seatud"
+      actions:
+        button: "Tegevused"
+        open: "Märgi avatuks"
+        resolved: "Märgi lahendatuks"
+        closed: "Märgi suletuks"
+      table:
+        user: "Kasutaja"
+        type: "Tüüp"
+        reason: "Põhjus"
+        explanation: "Selgitus"
+        status: "Staatus"
+        actions: "Tegevused"
+  episodes:
+    shortcut-bar:
+      episode-number: "EP {number}"
+    undo-update: "Võta tagasi"
+  likeable-resource:
+    loading: "Laadimine…"
+    more: "Lae veel"
+  search:
+    header: "Otsingu tulemused"
+    view: "kuva rohkem"
+    load: "lae rohkem"
+    none: "tulemisi pole"
+  sidebar-footer:
+    contact: "Kontakt"
+    terms: "Tingimused"
+  stream-feed:
+    create-post:
+      edit: "Muuda"
+      create: "Postita"
+      nsfw: "18+"
+      spoiler: "Spoiler"
+    library:
+      delete: "kustuta"
+    post:
+      gate:
+        hover:
+          nsfw: "Ma olen valmis!"
+      pin: "Kinnita see Postitudus Profiilile"
+      comment:
+        reply: "Vasta"
+        edit: "Muuda kommentaari"
+        delete: "Kustuta kommentaar"
+        report: "Teata sobimatust kommentaarist"
+    review:
+      share:
+        facebook: "Jaga"
+      edit: "Muuda arvustust"
+  users:
+    delete-user-content:
+      checkbox:
+        comments: "Kommentaarid"
+        reactions: "Reaktsioonid"
+      delete: "Kustuta"
+    block: "Blokeeri kasutaja @{user}"
+    you: "Hei, see oled sina!"
+    favorites:
+      title: "Lemmikud {type, select, series {sarjast} characters {tegelased} other {}}"
+      anime: "Anime"
+      manga: "Manga"
+      more: "Kuva rohkem"
+      empty:
+        others: "Kasutajal ei ole lemmikuid"
+#page: users
+users:
+  profile:
+    edit: "Redigeeri"
+  navigation:
+    followers: "Jälgijad"
+  edit-modal:
+    navigation:
+      favorites: "Lemmikud"
+    favorites:
+      anime: "Anime"
+  library:
+    sorting:
+      label: "Sorteeri:"
+      options:
+        watched: "Kuupäev uuendatud"
+        started: "Kuupäev alustatud"
+        finished: "Kuupäev lõpetatud"
+        added: "Kuupäev lisatud"
+        progress: "Progress"
+        rating: "Hinnang"
+        title: "Tiitel"
+        length: "Pikkus"
+      directions:
+        watched:
+          desc: "Hiljutisem esimesena"
+          asc: "Vanim esimesena"
+        started:
+          desc: "Hiljutisem esimesena"
+          asc: "Vanim esimesena"
+        finished:
+          desc: "Hiljutisem esimesena"
+          asc: "Vanim esimesena"
+        added:
+          desc: "Hiljutisem esimesena"
+          asc: "Vanim esimesena"
+        progress:
+          desc: "Enam esimesena"
+          asc: "Vähem esimesena"
+        rating:
+          desc: "Kõrgem esimesena"
+          asc: "Madalaim esimesena"
+        length:
+          desc: "Pikim esimesena"
+          asc: "Lühim esimesena"
+    list:
+      table-header:
+        rating: "Hinnang"
+    edit:
+      rating: "Hinnang"
+  groups:
+    sort:
+      newest: "Hiljuti liitunud"
+      oldest: "Vanimalt liitunud"
+  reactions:
+    sorts:
+      best: "Parim"
+      new: "Uus"
+#page: settings
+settings:
+  exports:
+    logs:
+      header:
+        rating: "Hinnang"
+  index:
+    rating: "Hinnangu tüüp"
+#page: groups
+groups:
+  create:
+    form:
+      privacy-options:
+        open: "Avalik"
+        closed: "Privaatne"
+        restricted: "Piiratud"
+      privacy-features:
+        open: "'<li>'Kõik võivad näha'</li>' '<li>'Kõik võivad liituda'</li>' '<li>'Kõik võivad postitada või kommenteerida'</li>'"
+      save-btn: "Salvesta"
+      helper:
+        name:
+          header: "Nimi"
+        about:
+          header: "Kirjeldus"
+        rules:
+          header: "Reeglid"
+        neighbors:
+          header: "Naabrid"
+        privacy:
+          header: "Privaatsus"
+        category:
+          header: "Kategooria"
+  join-group: "Liitu grupiga"
+  leave-group: "Lahku grupist"
+  neighbors: "Naabrid"
+  navigation:
+    rules: "Reeglid"
+  activity:
+    about: "Grupist {group}"
+    members: "Liikmed"
+#component: kitsu-feed
+feeds:
+  post:
+    sorts:
+      likes: "Meeldimisi"
+      replies: "Vastuseid"
+      oldest: "Vanimad"
+#component: groups/group-list
+group-list:
+  sort:
+    featured: "Esiletõstetud"
+    recent: "Hiljutine tegevus"
+    newest: "Uusimad grupid"
+    oldest: "Vanimad grupid"
+#component: library-entry/*
+library-entry:
+  state:
+    change-rating: "Muuda hinnang"
+    remove-rating: "Eemalda hinnang"
+  rating:
+    awful: "Õudne"
+    meh: "Keskpärane"
+    good: "Hea"
+    great: "Suurepärane"
