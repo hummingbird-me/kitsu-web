@@ -1072,12 +1072,233 @@ media-shared:
       unreleased: "Niet uitgebracht"
 #shared: library
 library-shared:
-  all: "{type,select,anime {Alle Anime}manga {Alle Manga}other {}}"
-  current: "{type, select,anime {Nu aan het kijken}manga {Nu aan het lezen}other {}}"
-  planned: "{type, select,anime {Wil gaan kijken}manga {Wil gaan lezen}other {}}"
-  completed: "{type, select,anime {Voltooid}manga {Voltooid}other {}}"
+  all: "{type, select, anime {Alle Anime} manga {Alle Manga} other {}}"
+  current: "{type, select, anime {Nu aan het kijken} manga {Nu aan het lezen} other {}}"
+  planned: "{type, select, anime {Wil gaan kijken} manga {Wil gaan lezen} other {}}"
+  completed: "{type, select, anime {Voltooid} manga {Voltooid} other {}}"
 #shared: form:
 form-shared:
   placeholders:
     username: "Gebruikersnaam"
     password: "Wachtwoord"
+#component: auth-onboarding
+onboarding:
+  aozora-conflict:
+    title: "Ohh, je hebt al een Kitsu account! Welke wil je houden?"
+  aozora-account-details:
+    submit: "Ziet er goed uit!"
+  checklist:
+    header: "Beginnen met Kitsu"
+    steps: "{count} stappen over! 🦊"
+    rate: "Beoordeel 5 anime of manga"
+    rate-incomplete: "Beoordeel {count} anime of manga"
+    follow: "Volg 5 gebruikers"
+    follow-incomplete: "Volg {count} {count, plural,=1 {gebruiker} other {gebruikers}}"
+    avatar: "Stel je avatar in"
+    favorite: "Kies je favoriete anime / manga"
+#component: follow-button
+follow-button:
+  follow: "Volg"
+#component: kitsu-feed
+feeds:
+  uploads:
+    select: "Uploaden"
+    drop: "Sleep hier om te uploaden"
+    invalid: "Ongeldig bestandstype"
+    uploading: "{number, plural, =1 {Foto uploaden… {progress}%} other {{number} foto's aan het uploaden… {progress}%}}"
+  filter:
+    all: "Alle Activiteit"
+    media: "Media Activiteit"
+    user: "Gebruikers Activiteit"
+    following: "Activiteit van gevolgen"
+  library:
+    updated: "verplaatst naar {status}"
+    rated: "beoordeeld"
+    progressed: "{type, select, anime {aflevering {num} gekeken} manga {hoofdstuk {num} gelezen} other {}}"
+  post:
+    more: "Meer bekijken"
+    less: "Minder bekijken"
+    meta:
+      media: "Omdat je eerder {media} hebt gekeken"
+    spoilers: "{type, select, anime {Afl. {num}} manga {Hfst. {num}} other {}}"
+    sorts:
+      likes: "Houdt van"
+      replies: "Reacties"
+      oldest: "Oudste"
+  review:
+    author: "Beoordeling door {user}"
+#component: modals/media-reaction
+reaction-modal:
+  skip: "Overslaan"
+  #component: modals
+  modals:
+    confirm:
+      check: "Weet je zeker dat je dit wilt doen?"
+      button: "Bevestig"
+    block-user:
+      header: "Blokkeer Gebruiker"
+      body:
+        header: "Voordat je deze gebruiker blokkeert, willen we je laten weten over hoe blokkeren werkt."
+        text: "Als je deze persoon blokkeert zorgt het ervoor dat hun content niet meer zichtbaar is voor jouw, en dat jouw content niet zichtbaar of interactief meer is voor hun."
+      button: "Blokkeer {user}"
+#component: library-entry/*
+library-entry:
+  state:
+    header: "{state, select, false {Aan bibliotheek toevoegen} true {Bibliotheek bijwerken} other {}}"
+    add-to-library: "Aan bibliotheek toevoegen"
+    seen-this: "{type, select, anime {Voltooid} manga {Voltooid} other {}}"
+    want-to-watch: "{type, select, anime {Wil gaan Kijken} manga {Wil gaan Lezen} other {}}"
+    started-watching: "{type, select, anime {Begonnen met Kijken} manga {Begonnen met Lezen} other {}}"
+    watching-this: "Gestart"
+    finished-this: "Voltooid"
+    place-on-hold: "In de wacht"
+    drop-this: "Laten Vallen"
+    change-rating: "Verander Beoordeling"
+    remove-rating: "Verwijder Beoordeling"
+    rate-this: "Beoordeling Geven"
+    edit-library: "Verander Bibliotheek Item"
+    post-reaction: "Reactie Plaatsen"
+    edit-reaction: "Reactie Veranderen"
+    rewatch: "{type, select, anime {Herkeken} manga {Herlezen} other {}}"
+    remove-from-library: "Verwijderen uit Bibliotheek"
+    progress: "Voortgang"
+    not-rated: "Niet beoordeeld"
+  rating:
+    awful: "Vreselijk"
+    meh: "Meh"
+    good: "Goed"
+    great: "Geweldig"
+#component: application/user-notifications
+user-notifications:
+  #Episode 113 of One Piece! aired
+  aired: "{type, select, chapter {Hoofdstuk} episode {Aflevering} other {}} {number} van {media} {type, select, chapter {Is uitgebracht} episode {Is uitgezonden} other {}}"
+  aired-unknown: "{media} heeft een {type, select, manga {nieuw hoofdstuk} anime {nieuwe aflevering} other {}} {type, select, manga {uitgebracht} anime {uitgezonden} other {}}"
+  menu:
+    all: "Bekijk alle notificaties"
+    mark-read: "Alles als gelezen markeren"
+    none: "Je hebt geen notificaties!"
+#ember-power-select
+selects:
+  loading: "Laden…"
+  none: "Geen resultaten gevonden"
+  search: "Start met typen om te zoeken"
+#ember-cp-validations
+errors:
+  description: "Dit veld"
+  inclusion: "{description} is niet meegenomen in de lijst"
+  exclusion: "{description} is gereserveerd"
+  invalid: "{description} is ongeldig"
+  confirmation: "{description} komt niet overeen met {on}"
+  accepted: "{description} moet geaccepteerd worden"
+  empty: "{description} kan niet leeg zijn"
+  blank: "{description} kan niet leeg zijn"
+  present: "{description} moet leeg zijn"
+  collection: "{description} moet een verzameling zijn"
+  singular: "{description} kan geen verzameling zijn"
+  tooLong: "{description} is te lang (het maximum is {max} aantal letters)"
+  tooShort: "{description} is te kort (het minimum is {min} karakters)"
+  before: "{description} moet voor {before} staan"
+  after: "{description} moet achter {after} staan"
+  wrongDateFormat: "{description} moet in het formaat {format} staan"
+  wrongLength: "{description} heeft de verkeerde lengte (moet karakters {is} zijn)"
+  notANumber: "{description} moet een getal zijn"
+  notAnInteger: "{description} moet een integrator zijn"
+  greaterThan: "{description} moet groter zijn dan {gt}"
+  greaterThanOrEqualTo: "{description} moet groter of gelijk zijn aan {gte}"
+  equalTo: "{description} moet gelijk zijn aan {is}"
+  lessThan: "{description} moet kleiner zijn dan {lt}"
+  lessThanOrEqualTo: "{description} moet kleiner of gelijk zijn aan {lte}"
+  otherThan: "{description} moet een andere waarde hebben dan {value}"
+  odd: "{description} moet oneven zijn"
+  even: "{description} moet even zijn"
+  positive: "{description} moet positief zijn"
+  date: "{description} moet een geldige datum zijn"
+  email: "{description} moet een geldig e-mail adres zijn"
+  phone: "{description} moet een geldig telefoonnummer zijn"
+  url: "{description} moet een geldige url zijn"
+  #Custom Errors
+  user:
+    name:
+      invalid: "Dit veld mag alleen letters, nummers en lage streepjes bevatten"
+      numbers: "Dit veld mag niet alleen nummers bevatten"
+      starts: "Dit veld moet met een letter of nummer starten"
+  load: "Er was een probleem met het laden van de inhoud."
+  contentEmpty: "Hmm, er lijkt hier nog niks te zijn."
+  request: "Oeps! Er lijkt iets met de aanvraag verkeerd te zijn vergaan."
+  serverError:
+    title: "Oeps! het lijkt erop dan onze server een bug heeft."
+    body: "Ons team is op de hoogte gebracht, probeer alstublieft over een paar minuten opnieuw."
+    reload: "Herladen"
+#Loading
+loading: "Bezig met het laden van {subject, select, episode {Aflevering} chapter {Hoofdstuk} episodes {Afleveringen} chapters {Hoofdstukken} other {}}…"
+timeUnits:
+  years: "{count, plural, =1 {jaar} other {jaar}}"
+  months: "{count, plural, =1 {maand} other {maanden}}"
+  days: "{count, plural, =1 {dag} other {dagen}}"
+  hours: "{count, plural, =1 {uur} other {uur}}"
+  minutes: "{count, plural, =1 {minuut} other {minuten}}"
+admin:
+  reports:
+    open: "Open"
+    closed: "Gesloten"
+  deployed-version: "Huidige Versie: {version}"
+button:
+  view-all: "alles bekijken"
+unsubscribe:
+  email: "E-mail"
+  unsubscribe: "Afmelden"
+category:
+  europe: "Europa"
+  family: "Familie"
+  france: "Frankrijk"
+  friendship: "Vriendschap"
+  future: "Toekomst"
+  germany: "Duitsland"
+  past: "Verleden"
+  piloted-robot: "Bestuurde robot"
+  politics: "Politiek"
+  post-apocalypse: "Post apocalyptisch"
+  present: "Heden"
+  psychological: "Psychologisch"
+  religion: "Religie"
+  revenge: "Wraak"
+  reverse-harem: "Tegenovergestelde harem"
+  robot: "Robot"
+  romance: "Romantiek"
+  rotten-world: "Verrotte wereld"
+  russia: "Rusland"
+  school-life: "School leven"
+  sengoku-period: "Sengoku periode"
+  setting: "Instelling"
+  shounen: "Shounen"
+  slavery: "Slavernij"
+  soccer: "Voetbal"
+  space: "Ruimte"
+  space-battles: "Ruimte gevechten"
+  sports: "Sporten"
+  stereotypes: "Stereotypes"
+  street-racing: "Straat racen"
+  summer: "Zomer"
+  superhero: "Superheld"
+  supernatural: "Bovennatuurlijk"
+  tennis: "Tennis"
+  tokyo: "Tokio"
+  united-kingdom: "Verenigd Koninkrijk"
+  university: "Universiteit"
+  vampire: "Vampier"
+  violence: "Geweld"
+  volleyball: "Volleybal"
+  war: "Oorlog"
+  world-war-ii: "Tweede Wereld Oorlog"
+  #NSFW categories
+  nudity: "Naaktheid"
+  sex: "Seks"
+  gigantic-breasts: "Gigantische borsten"
+  large-breasts: "Grote borsten"
+  masturbation: "Masturbatie"
+  prostitution: "Prostitutie"
+  public-sex: "Openbare seks"
+  rape: "Verkrachting"
+  sex-toys: "Seks speeltjes"
+  small-breasts: "Kleine borsten"
+  yuri: "Yuri"
