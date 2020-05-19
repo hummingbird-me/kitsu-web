@@ -167,6 +167,13 @@ media:
       ratings:
         community: "{rating}% Skor Komunitas"
         match: "{rating}% Cocok"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Peringkat #{rank} (Anime Paling Populer)} manga {Peringkat #{rank} (Manga Paling Populer)} other {}}"
+          rating: "{type, select, anime {Peringkat #{rank} (Anime dengan Nilai Tertinggi)} manga {Peringkat #{rank} (Manga dengan Nilai Tertinggi)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} Paling Populer} manga {#{rank} Paling Populer} other {}}"
+          rating: "{type, select, anime {#{rank} Nilai Tertinggi} manga {#{rank} Nilai Tertinggi} other {}}"
       categories: "Kategori"
       relationships:
         header: "Lainnya dari seri ini"
@@ -1133,6 +1140,7 @@ group-invite:
 explore:
   view-more: "Lebih banyak"
   search-placeholder: "Apa yang kamu cari?"
+  advanced-search: "Atau, jelajahi menggunakan '<a' href=/{mediaType}'>'pencarian lanjutan'</a>'"
   no-data: "Hmm, sepertinya tidak ada media yang dapat ditemukan di sini."
   widget:
     related: "Kategori Terkait"

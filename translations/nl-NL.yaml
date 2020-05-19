@@ -15,10 +15,12 @@ titles:
     index: "Ontdek {mediaType, select, anime {Anime} manga {Manga} other {}}"
     more:
       trending: "Trending {type, select, other {}} Deze week"
+      top-current: "Beste {type, select, Anime {Uitzendende} Manga {Publicerende} other {}} {type}"
       top-upcoming: "Top Aankomende {type}"
       highest-rated: "Hoogst gewaardeerde {type}"
       most-popular: "Populairste {type}"
     category:
+      index: "{category} {type}"
       more:
         newly-released: "Nieuw uitgebracht {category} {type}"
         trending: "Populaire {category} {type}"
@@ -40,7 +42,9 @@ titles:
   notifications: "Meldingen"
   feedback:
     bugs: "Fouten"
+    feature-requests: "Functie aanvraag"
     database-requests: "Database Verzoeken"
+    mobile-bugs: "Telefonische bug"
     mobile-features: "Mobiele functies"
   admin:
     index: "Beheerder"
@@ -91,6 +95,7 @@ about:
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Snelle Update"
     filter:
       all: "Alles"
       anime: "Anime"
@@ -101,13 +106,17 @@ dashboard:
     media:
       complete: "Klaar"
       unstarted: "Nog niet begonnen"
+      unit: "{type, select, anime {Afl. {num} {total, select, undefined {} other {van de {total}}}} manga {Hfst. {num} {total, select, null {} other {van de {total}}}} other {}}"
     overlay:
       button:
+        update: "{type, select, anime {Afl.} manga {Hfst.} other {}} {number}"
         complete: "Klaar"
         tooltip:
           empty: "Bibliotheek bijwerken"
           content: "Maak post en update bibliotheek"
       discussion: "Discussie bekijken"
+      edit: "Verander Bibliotheek Item"
+      popout: "Pop-out editor"
       editor:
         placeholder: "(Optioneel) Deel je gedachten over {type, select, anime {Aflevering} manga {Hoofdstuk} other {}} {number}"
   onboarding:
@@ -155,6 +164,7 @@ media:
       watch: "Online kijken"
     summary:
       ratings:
+        community: "{rating}% goedgekeurd door de Community"
         match: "{rating}% Match"
       categories: "Categorieën"
       relationships:
@@ -174,18 +184,33 @@ media:
         more: "Alle personages bekijken"
       titles:
         header: "Alternatieve titels"
+        af_za: "Afrikaans"
         ar: "Arabisch"
+        bg_bg: "Bulgaars"
+        bn_bd: "Bengaals"
+        ca_es: "Catalaans"
         cs_cz: "Tsjechisch"
+        cy_gb: "Welsh"
         da_dk: "Deens"
         de_de: "Duits"
         el_gr: "Grieks"
         en: "Engels"
+        en_au: "Engels (Australië)"
+        en_ca: "Engels (Canada)"
         en_cn: "Chinees (Pinyin)"
+        en_gb: "Engels (Groot-Brittannië)"
+        en_il: "Hebreeuws (Romanisatie)"
         en_jp: "Japanese (Romaji)"
         en_kr: "Koreaans (Romaja)"
+        en_th: "Thais (Romanisatie)"
+        en_us: "Engels (Amerikaans)"
         es_es: "Spaans"
+        et_ee: "Ests"
+        fa_ir: "Perzisch"
         fi_fi: "Fins"
+        fr_ca: "Frans (Canadees)"
         fr_fr: "Frans"
+        ga_ie: "Iers"
         he_il: "Hebreeuws"
         hi_in: "Hindi"
         hr_hr: "Kroatisch"
@@ -194,19 +219,33 @@ media:
         is_is: "Ijslands"
         it_it: "Italiaans"
         ja_jp: "Japans"
+        kk_kz: "Kazachs"
         ko_kr: "Koreaans"
+        lt_lt: "Litouws"
         lv_lv: "Lets"
         ms_my: "Maleisisch"
+        mt_mt: "Maltees"
+        nb_no: "Noors (Bokmål)"
         nl_nl: "Nederlands"
+        nn_no: "Noors (Nynorsk)"
         pl_pl: "Pools"
         pt_br: "Portugees (Braziliaans)"
         pt_pt: "Portugees"
+        ro_ro: "Roemeens"
         ru_ru: "Russisch"
+        sc_it: "Sardinisch"
+        sco_gb: "Schots"
+        sk_sk: "Slowaaks"
+        sl_sl: "Sloveens"
+        sr_cs: "Servisch (Latijn)"
+        sr_sp: "Servisch (Cyrillisch)"
         sv_se: "Zweeds"
         th_th: "Thais"
         tl_ph: "Tagalog"
         tr_tr: "Turks"
         uk_ua: "Oekraïens"
+        ur_in: "Urdu (Indisch)"
+        ur_pk: "Urdu (Pakistaans)"
         vi_vn: "Vietnamees"
         zh_cn: "Chinees (vereenvoudigd)"
         zh_hk: "Chinees (Hong Kong)"
@@ -214,34 +253,56 @@ media:
         zh_tw: "Chinees (traditioneel)"
         synonyms: "Synoniemen"
       information:
+        header: "{type, select, anime {Anime} manga {Manga} other {}} Details"
         type: "Type"
         volumes: "Volumes"
+        unit: "{type, select, anime {Afleveringen} manga {Hoofdstukken} other {}}"
+        start: "{type, select, anime {Uitgezonden} manga {Gepubliceerd} other {}}"
         status: "Status"
         tba: "Verwacht"
         season: "Seizoen"
+        producers: "Regisseurs"
         licensors: "Licentiehouders"
         studios: "Studio's"
         duration: "Lengte"
         total: "{total} totaal"
+        length: "{count, plural, =1 {{length} minuten} other {elk {length} minuten}}"
         rating: "Beoordeling"
         expand:
           false: "Meer informatie"
           true: "Minder info"
+      feed:
+        header: "Community Feed"
       trailer: "Trailer afspelen"
     units:
+      unit: "{type, select, episode {Aflevering} chapter {Hoofdstuk} other {}}"
+      back: "Terug naar de {type, select, episode {afleveringen} chapter {hoofdstukken} other {}} lijst"
       pages: "{length} Pagina's"
+      date: "{type, select, episode {Uitgezonden} chapter {Gepubliceerd} other {}}"
+      completed: "{type, select, episode {Bekeken} chapter {Gelezen} other {Compleet}}"
+      feed:
+        header: "Discussie over {type, select, episode {Aflevering} chapter {Hoofdstuk} other {}}"
+    characters:
+      header: "{title} Personages"
+      sub-header: "{type, select, anime {Het volgende is een lijst van alle personages en hun {language} stemacteurs voor de anime {title}} manga {Het volgende is een lijst van alle personages voor de manga {title}} other {}}"
     reactions:
       loading: "Reacties aan het laden…"
       delete: "Reactie Verwijderen"
       report: "Reactie Rapporteren"
       copy: "Link naar Reactie Kopiëren"
     franchise:
+      header: "{title} Mediafranchise"
       roles:
         sequel: "Vervolg"
+        prequel: "Voorloper"
         alternative_setting: "Alternatieve instelling"
         alternative_version: "Alternatieve versie"
+        side_story: "Zij verhaal"
+        parent_story: "Bovenliggend verhaal"
         summary: "Samenvatting"
         full_story: "Volledige verhaal"
+        spinoff: "Namaak"
+        adaptation: "Aanpassing"
         anime_adaptation: "Anime"
         manga_adaptation: "Manga"
         character: "Personage"
@@ -257,6 +318,8 @@ components:
   ad-unit: "Advertenties zuigen, maar dat is hoe we draaiend blijven. Whitelist ons alsjeblieft in je advertentieblokker."
   admin:
     reports:
+      no-explanation: "Geen Uitleg Gegeven."
+      not-set: "Niet ingesteld"
       actions:
         button: "Acties"
         open: "Markeren als open"
@@ -267,19 +330,27 @@ components:
         type: "Type"
         reason: "Reden"
         explanation: "Verklaring"
+        moderator: "Moderator"
         status: "Status"
         actions: "Acties"
+  application:
+    nav-search: "Zoeken in Kitsu"
   episodes:
     shortcut-bar:
       episode-number: "EP {number}"
+    fast-forward: "Bibliotheek progressie snel voortgezet naar aflevering {number}!"
     undo-update: "Ongedaan maken"
+    update-progress: "Wilt je de vooruitgang veranderen naar episode {number}?"
+    watched: "Markeer als bekeken"
     join-prompt:
+      pitch: "Hou je vooruitgang bij en doe mee aan de discussie!"
       register: "Kitsu Account maken"
   likeable-resource:
     loading: "Laden…"
     more: "Meer laden"
   search:
     header: "Zoekresultaten"
+    view: "meer bekijken"
     load: "meer laden"
     none: "geen resultaten"
   sidebar-footer:
@@ -291,11 +362,13 @@ components:
       create: "Post"
       nsfw: "NSFW"
       spoiler: "Spoiler"
+      tag-media: "Typ om een show of manga te taggen"
     edit-post:
       header: "Post bewerken"
       error:
         tagged: "Helaas, je mag je getagde media nog niet bewerken."
     follow:
+      followed: "gevolgd"
       delete: "Activiteit Verwijderen"
     library:
       delete: "verwijderen"
@@ -317,7 +390,11 @@ components:
       hide: "Verberg Post Content"
       edit: "Post Bewerken"
       delete: "Post Verwijderen"
+      unpin: "Post van profielpagina losmaken"
+      pin: "Post aan profielpagina toevoegen"
+      pin-text: "Weet je zeker dat je deze post aan jouw profielpagina toe wil voegen?"
       report: "Post Rapporteren"
+      comment-count: "{count} van de {total}"
       comment:
         deleting: "Comment wordt verwijderd…"
         reply: "Reageren"
@@ -329,11 +406,15 @@ components:
         add-reply: "Reactie toevoegen…"
       comments:
         all: "Bekijk alle Comments"
+        parent: "Bekijk bovenliggende reactie"
+        previous-comments: "Bekijk vorige reactie"
         leave-comment: "Laat een reactie achter…"
     review:
+      by: "Beoordeling door"
       spoiler: "Deze recensie bevat spoilers."
       spoiler-hover: "Ik kan de waarheid aan!"
       share:
+        twitter: "Tweet"
         facebook: "Deel"
       copy-link: "Link naar Recensie Kopiëren"
       hide: "Recensie content verbergen"
@@ -354,8 +435,21 @@ components:
     block: "Blokkeer @{user}"
     you: "Hey, dat ben jij!"
     favorites:
+      title: "Favoriete {type, select, series {Serie} characters {Personage} other {}}"
       anime: "Anime"
       manga: "Manga"
+      more: "Toon meer"
+      edit: "Verander favoriete {type, select, anime {anime} manga {manga} characters {characters} other {}}"
+      empty:
+        yours: "Je heeft nog niet je favoriete {type, select, anime {anime} manga {manga} characters {characters} other {}} gekozen!"
+        others: "Deze gebruiker heeft geen favorieten"
+      choose: "Kies jouw favoriete {type, select, anime {anime} manga {manga} characters {characters} other {}}"
+    alt-name:
+      title: "Misschien een alternatief account van {user}"
+      none: "Geen alternatieven gevonden"
+    past-name:
+      title: "Eerdere namen"
+      none: "Geen eerdere namen"
 #page: users
 users:
   profile:
@@ -363,6 +457,8 @@ users:
   admin:
     button: "Beheerder"
     past-names: "Zie Vorige Namen"
+    alt-accounts: "Bekijk alternatieve accounts"
+    delete-content: "Verwijder door persoon gemaakte content"
     ban: "Verbannen"
   navigation:
     activity: "Activiteit"
@@ -373,6 +469,7 @@ users:
     following: "Volgend"
     groups: "Groepen"
   edit-modal:
+    cover: "Verander jouw banner"
     navigation:
       about: "Over mij"
       profile-links: "Profiel links"
@@ -432,6 +529,9 @@ users:
         battlenet:
           about: "Vul hieronder je Battle.net BattleTag in om een link aan je profiel toe te voegen."
           placeholder: "Je Battle.net BattleTag (Gebruiker#1234)"
+        steam:
+          about: "Vul hieronder jouw Steam gebruikersnaam in om je profiel te koppelen."
+          placeholder: "Jouw Steam gebruikersnaam"
         raptr:
           about: "Vul hieronder je Raptr gebruikersnaam in om een link aan je profiel toe te voegen."
           placeholder: "Je Raptr gebruikersnaam"
@@ -458,21 +558,36 @@ users:
           placeholder: "Je osu! ID nummer"
         patreon:
           about: "Vul je Patreon project naam in om een link naar je profiel toe te voegen."
+          placeholder: "Jouw Patreon project naam"
         deviantart:
           about: "Vul hieronder je Twitter gebruikersnaam in om een link naar je profiel toe te voegen."
           placeholder: "Je DeviantArt gebruikersnaam"
         dribbble:
           about: "Vul hieronder je Twitter gebruikersnaam in om een link naar je profiel toe te voegen."
           placeholder: "Je Dribble gebruikersnaam"
+        imdb:
+          about: "Voer je IMDb profiel URL hieronder in om een link naar jouw profiel toe te voegen."
+          placeholder: "Jouw IMDb profiel URL"
         lastfm:
+          about: "Voer je Last.fm gebruikersnaam hieronder in om een link naar jouw profiel toe te voegen."
           placeholder: "Je Last.fm gebruikersnaam"
+        letterboxd:
+          about: "Voer je Letterboxd gebruikersnaam hieronder in om een link naar jouw profiel toe te voegen."
+          placeholder: "Je Letterboxd gebruikersnaam"
+        medium:
+          about: "Voer je Medium gebruikersnaam of publicatienaam hieronder in om een link naar jouw profiel toe te voegen."
+          placeholder: "Je Medium gebruikersnaam (@user) of publicatienaam"
         playerme:
+          about: "Voer je Player.me gebruikersnaam hieronder in om een link naar jouw profiel toe te voegen."
           placeholder: "Je Player.me gebruikersnaam"
         reddit:
+          about: "Voer hieronder je Reddit gebruikersnaam in om een link naar jouw profiel toe te voegen."
           placeholder: "Je Reddit gebruikersnaam"
         trakt:
+          about: "Voer hieronder je Trakt gebruikersnaam in om een link naar jouw profiel toe te voegen."
           placeholder: "Je Trakt gebruikersnaam"
     footer:
+      updating: "Aan het updaten…"
       update: "Profiel Updaten"
     favorites:
       header: "Favorieten"
@@ -484,10 +599,12 @@ users:
     onboarding:
       welcome: "Hey {user}, deze pagina gaat volledig over JOU!"
       action: "Doe alsof je thuis bent! Upload een avatar and banner! Klik om te starten hierboven op '<span>'Bewerken'</span>'."
+      title: "Je Profiel Opzetten"
     about:
       header: "Over Mij"
       empty: "Dat is een geheim"
       waifu:
+        label: "{waifu, select, Waifu {Waifu} Husbando {Husbando} other {{waifu}}}:"
         empty: "Waifu/Husbando:"
       gender:
         label: "Geslacht:"
@@ -496,11 +613,17 @@ users:
         female: "Vrouw"
       location: "Locatie:"
       birthday: "Verjaardag:"
+      joined: "Lid sinds:"
     stats:
       headings:
         anime: "Anime Statistieken"
         manga: "Manga Statistieken"
+      time-watched: "{count} {timeUnit} anime gekeken."
+      chapters-read: "{count} hoofdstukken gelezen."
+      completed: "{count} voltooid."
       time-breakdown:
+        seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
+        time-segment: "{count} {timeUnit}" #8 months (pre-translated)
         total: "totaal besteed aan het kijken van anime." #appended after time-segments
       empty:
         header: "Het lijkt erop dat je nog niet genoeg data hebt! Klaar om iets nieuws te starten?"
@@ -526,38 +649,78 @@ users:
           desc: "Recent Eerst"
           asc: "Oudste Eerst"
         finished:
+          desc: "Nieuwste Eerst"
           asc: "Oudste Eerst"
         added:
+          desc: "Nieuwste Eerst"
           asc: "Oudste Eerst"
+        progress:
+          desc: "Meetste Eerst"
+          asc: "Minste Eerst"
         rating:
           desc: "Hoogste Eerst"
+          asc: "Laagste Eerst"
+        length:
+          desc: "Langste Eerst"
+          asc: "Kortste Eerst"
     sidebar:
+      media-select: "{type, select, anime {{user}'s Anime} manga {{user}'s Manga} other {}}"
       manage: "Bibliotheek Bijwerken"
       import: "Bibliotheek Importeren"
       export: "Bibliotheek Exporteren"
       reset: "Bibliotheek Resetten"
       reset-loading: "Resetten…"
+      reset-confirmation: "Dit gaat je hele bibliotheek, geassocieerde reviews en reacties verwijderen. Weet je zeker dat je door wilt gaan?"
+      issues:
+        header: "Bibliotheek Problemen"
+        fix: "oplossen"
     list:
+      edit: "Verander Item"
       list-edit: "Bewerken"
       more: "Meer"
+      unstarted: "Nog niet gestart"
       unrated: "Geen beoordeling"
+      progress: "{type, select, anime {Afl. {progress}} manga {Hfst. {progress}} other {}}"
       table-header:
+        title: "{type, select, anime {Anime Titel} manga {Manga Titel} other {}}"
+        rating: "Beoordeling"
+        progress: "Voortgang"
         volumes: "Volumes"
       add-reaction: "Reactie Toevoegen"
       empty:
+        search: "Geen gevonden bibliotheek items met jouw zoekopdracht."
+        header: "Het lijkt erop dat jouw bibliotheek leeg is! Ben je klaar om iets nieuws te starten?"
+        guest-header: "Het lijkt erop dat {user} geen bibliotheek items hier heeft."
         button: "{type} Doorzoeken"
+    grid:
+      view-media: "Bekijk {type, select, anime {Anime} manga {Manga} other {}}"
     edit:
+      status: "Bibliotheek Status"
+      progress: "Voortgang"
+      units: "{type, select, anime {van de {num} afleveringen} manga {van de {num} hoofdstukken} other {}}"
+      volumes: "Volumes"
+      volume-units: "uit {num} volumes"
       rating: "Beoordeling"
+      rewatch: "{type, select, anime {Aantal keren herkeken} manga {Aantal keren herlezen} other {}}"
+      start-rewatch: "{type, select, anime {Beginnen met herkijken} manga {Beginnen met herlezen} other {}}"
+      privacy: "Privacy"
+      started: "Begonnen"
+      finished: "Voltooid"
+      notes: "Persoonlijke Notities"
+      remove: "Verwijderen uit je bibliotheek"
       save: "Wijzigingen opslaan"
       saving: "Opslaan…"
     bulk:
+      selected: "{type, select, anime {{num} anime geselecteerd} manga {{num} manga geselecteerd} other {}}"
       select-all: "Selecteer Alles"
+      select-none: "Niks Selecteren"
       remove: "Verwijder '<strong>'{num}'</strong>'"
       remove-loading: "Verwijderen…"
       update-loading: "Updaten…"
   groups:
     sort:
       newest: "Onlangs toegevoegd"
+      oldest: "Oudste Deelnemer"
   reactions:
     empty: "Deze gebruiker heeft geen reacties"
     filters:
@@ -578,8 +741,10 @@ users:
     loading: "Gebruikers aan het laden…"
   following:
     not-found: "Geen Gebruikers Gevonden."
+    loading: "Gebruikers Laden…"
   reviews:
     not-found: "Geen Reviews Gevonden."
+    loading: "Reviews Laden…"
 #page: settings
 settings:
   navigation:
@@ -591,36 +756,64 @@ settings:
     linked-accounts: "Gelinkte Accounts"
     import: "Importeren"
     export: "Exporteren"
+    blocking: "Blokkeren"
     account: "Account"
   account:
     header: "Account"
+    sub-header: "Gevarenzone! Je kunt niet meer terug als je je account verwijderd."
     delete: "Account Verwijderen"
     confirm-title: "Account Verwijderen"
     confirm-text: "Het spijt ons dat je weggaat, weet je zeker dat je door wilt gaan?"
   apps:
     header: "Apps"
   blocking:
+    header: "Blokkeren"
     sub-header: "Zodra je iemand blokkeert, kan die persoon je niet meer taggen, volgen, je profiel zien, of je feed posts zien."
+    title: "Blokkeer Gebruikers"
     placeholder: "Zoek gebruikers om te blokkeren…"
     button-block: "Blokkeren"
     loading: "Gebruikers aan het laden…"
     button-unblock: "Deblokkeren"
+    more: "Meer Laden"
     not-blocking: "Je hebt momenteel niemand geblokkeerd."
   exports:
     modal:
       header: "Synchroniseren met {site}"
+      helper: "We zullen je anime en manga lijsten elke keer updaten op {site} als jij ze update op Kitsu."
+      create: "Synchroniseer naar {site}"
     header: "Exporteren"
     sub-header: "Synchroniseer je bibliotheek updates automatisch van Kitsu naar MyAnimeList."
+    loading: "Exports Landen…"
     remove: "Verwijder exporteur"
+    create: "Zet export naar MyAnimeList Account op"
+    download: "Download {kind} Bibliotheek"
+    recent: "Recente synchronisatie activiteit"
+    sync-header: "MyAnimeList synchronisatie"
+    no-logs: "We zijn door je bibliotheek aan het gaan en synchroniseren het met MyAnimeList. Hou je vast!"
     logs:
       header:
         media: "Titel"
         library-status: "Status"
+        progress: "Voortgang"
+        rating: "Beoordeling"
+        reconsumes: "Keren Herbekeken"
+        action: "Actie"
         status: "Status"
+      action:
+        create: "Creëren"
+        update: "Bijwerken"
+        destroy: "Verwijderen"
       status:
+        success: "Succes"
         error: "Fout"
+  imports:
+    status: "Status:"
+    entries: "Totaal aantal items gevonden:"
+    more: "Meer Laden"
   index:
     header: "Profiel"
+    sub-header: "Account en regio instellingen"
+    name: "Weergegeven naam"
     url: "Profiel URL"
     email: "E-mail"
     email-message: "E-mail zal niet openbaar weergegeven worden."
@@ -630,50 +823,482 @@ settings:
     content: "Content op Kitsu"
     theme: "Website Thema"
     country: "Land"
+    worldwide: "Wereldwijd"
     titles: "Titels"
     titles-message: "Hoe media titels weergegeven zullen worden."
+    rating: "Beoordelingstype"
     rating-message: "Kies hoe je media die je gezien of gelezen hebt wilt beoordelen."
+    adult: "Volwassen Content"
+    adult-message: "Met volwassen content verborgen, zie je geen R18+ media in de feed, bibliotheken of tijdens het opzoeken."
+    update: "Update profiel"
   linked-accounts:
     header: "Gelinkte Accounts"
+    sub-header: "Verbind derde partij accounts met Kitsu"
     facebook: "Facebook"
     connect: "Facebook Verbinden"
   notifications:
     header: "Push Notificaties"
     contexts:
       email: "E-mail"
+      mobile: "Mobiel"
+    descriptions:
+      airing: "Nieuwe aflevering uitgebracht"
     newsletter:
+      newsletter: "Nieuwsbrief"
       subscribed: "Geabonneerd"
+    loading: "Instellingen laden…"
     update: "Instellingen updaten"
   password:
     header: "Wachtwoord"
+    sub-header: "Verander je wachtwoord"
+    new-pswd: "Nieuw wachtwoord"
+    confirm-pswd: "Bevestig Wachtwoord"
+    update-pswd: "Werk je wachtwoord bij"
+  privacy:
+    header: "Privacy"
+    checkbox: "Weergeven in Globale Feed"
+    update: "Update profiel"
 #page: feedback
 feedback:
   header: "Feedback"
+  bugs: "Bugs"
+  features: "Functies aanvragen"
 #page: groups
 groups:
+  index:
+    create-btn: "Maak een groep"
   create:
+    header: "Maak een groep"
     form:
+      required: "Vereist"
+      name: "Naam"
+      about: "Beschrijving"
+      rules: "Regels"
+      neighbors: "Buren"
+      neighbors-placeholder: "Zoeken naar een groep"
+      privacy: "Privacy"
+      privacy-options:
+        open: "Openbaar"
+        closed: "Privé"
+        restricted: "Beperkt"
+      category: "Categorie"
+      category-placeholder: "Kies een categorie"
+      avatar: "Profielfoto"
+      create-btn: "Maak jouw Groep!"
+      save-btn: "Opslaan"
       helper:
         name:
+          header: "Naam"
           desc: "Groepsnamen moeten duidelijk weergeven waar je groep over gaat, maar je kan nog steeds creatief zijn en er plezier mee hebben!"
         tagline:
           desc: "Vat het doel van je groep samen in 60 of minder karakters. Je zult later meer ruimte hebben om meer informatie toe te voegen."
+        about:
+          header: "Beschrijving"
+          desc: "Leg het doel van je groep diep uit, deel belangrijke informatie, of andere dingen."
         rules:
           header: "Regels"
+          desc: "Maak een paar richtlijnen voor je leden om te volgen. Deze regels zijn Markdown ondersteund!"
         neighbors:
           header: "Buren"
+          desc: "Voeg gerelateerde groepen toe aan jou buurt zodat je leden nieuwe communities kunnen ontdekken!"
+        privacy:
+          header: "Privacy"
+          desc: "Jouw privacy instellingen bepalen hoe open of dicht jouw groep naar het publiek is. Als je ervoor kiest om je groep privé te maken, ben je later NIET in staat om het publiek te maken."
         category:
           header: "Categorie"
+          desc: "Kitsu deelt groepen in in categorieën om gebruikers te helpen vinden naar waar ze van houden."
         avatar:
           header: "Avatar"
           desc: "Deze afbeelding zal door Kitsu gebruikt worden om je groep te identificeren."
+      errors:
+        neighbors-same: "Je kan jouw groep niet als buren toevoegen."
   join-group: "Deelnamen aan Groep"
   leave-group: "Groep verlaten"
+  hide-posts:
+    text: "Verberg posts van {group}"
+    info: "Posts zullen niet langer in je Gevolgde Feed verschijnen"
+  show-posts:
+    text: "Laat posts van {group} zien"
+    info: "Posts zullen verschijnen in je Gevolgde Feed"
+  nsfw: "NSFW"
+  neighbors: "Buren"
   navigation:
+    activity: "Activiteit"
     rules: "Regels"
     members: "Leden"
     leaders: "Leiders"
     neighbors: "Buren"
   activity:
+    feed-header: "Groep Activiteit"
     about: "Over {group}"
     members: "Leden"
+    feed-restricted: "Dit is een beperkte groep. Iedereen kan reageren, alleen leiders kunnen posts maken."
+  rules:
+    header: "Community Regels"
+  tickets:
+    search: "Zoeken in Tickets"
+    empty: "Hoera! Je hebt geen tickets om te gebruiken."
+    helper: "Tickets zorgen ervoor dat je kan communiceren met de leiders van deze groep om problemen die je misschien hebt op te lossen. Stuur hier een bericht om een ticket te maken."
+    filter:
+      open: "Tickets die open staan"
+      resolved: "Opgeloste Tickets"
+      all: "Alle Tickets"
+    conversation:
+      mark-resolved: "Als opgelost markeren"
+      mark-closed: "Als gesloten markeren"
+      mark-open: "Als open markeren"
+      nav:
+        reply: "Antwoord naar gebruiker"
+        leader: "Leiders notitie"
+      create-btn: "Ticker Maken"
+      reply-btn: "Stuur Antwoord"
+      reply-placeholder: "Typ je bericht"
+      helper: "Typ hieronder je bericht om een ticket te maken! Leiders van deze groep zullen zo snel mogelijk beantwoorden."
+  reports:
+    no-explanation: "Geen Uitleg Gegeven"
+    actions:
+      escalate: "Meld aan Kitsu"
+      view: "Bekijk Inhoud"
+  leaders:
+    list:
+      header: "Leiders"
+      edit-btn: "Bewerken"
+      add-btn: "Toevoegen"
+      add-placeholder: "Groepsleden"
+      not-found: "Geen lid met die naam gevonden."
+      message-btn: "Stuur een bericht naar de leiders"
+      message-leader: "Je bent een leider van deze groep!"
+      modal:
+        header: "Rechten van de Leider:"
+        owner: "Groep Eigenaar"
+        tickets: "Tickets Beheren"
+        members: "Beheer Leden"
+        leaders: "Beheer Leiders"
+        community: "Instellingen Beheren"
+  dashboard:
+    navigation:
+      members: "Leden"
+      leaders: "Leiders"
+      settings: "Instellingen"
+    overview:
+      members:
+        header: "Leden"
+        today: "Vandaag lid geworden"
+        total: "Totale leden"
+      activity:
+        comments: "Reacties vandaag"
+    members:
+      invites:
+        header: "Openstaande uitnodigingen"
+        invited: "Uitgenodigd"
+        revoke: "Annuleer uitnodiging"
+        invite: "Nodig uit"
+        placeholder: "Zoek voor een gebruiker om uit te nodigen. Ze moeten je volgen!"
+      bans:
+        header: "Verbannen gebruikers"
+        placeholder: "Naam"
+        empty: "Hoera! Je hebt geen verbannen gebruikers."
+      members:
+        header: "Leden"
+        table:
+          users: "Gebruiker"
+          permissions: "Rank"
+          actions: "Acties"
+        remove: "Verwijderen"
+        ban: "Verban"
+    leaders:
+      chat:
+        placeholder: "Stuur een bericht naar de leiders"
+    audit:
+      group:
+        rules_changed: "de {group} regels zijn bijgewerkt."
+        nsfw_changed: "de {group} NSFW status is bijgewerkt."
+        about_changed: "de {group} over is bijgewerkt."
+        category_changed: "categorie van {group} is bijgewerkt."
+#page: group-invite
+group-invite:
+  header: "Groep Uitnodiging"
+  subtitle: "Ye bent uitgenodigd naar {group} door {sender}"
+  text: "Je zal in staat zijn om de pagina van {group} te bekijken nadat je deze invitatie hebt geaccepteerd. Je zult omgeleid worden na het accepteren."
+  accept: "Accepteren"
+  decline: "Weigeren"
+  accepted: "Je hebt deze uitnodiging al geaccepteerd."
+  revoked: "Je invitatie is ingenomen door een groep moderator."
+  declined: "Je hebt de invitatie voor deze groep afgewezen."
+#page: explore
+explore:
+  view-more: "Meer bekijken"
+  search-placeholder: "Waar zoek je naar?"
+  advanced-search: "Of, browse met behulp van '<a' href=/{mediaType}'>'geavanceerde zoeken'</a>'"
+  widget:
+    categories: "Categorieën"
+    favorite-categories: "Mijn favoriete Categorieën"
+    no-favorites: "Favoriete categorieën maken zal je aanbevelingen verbeteren."
+    more-categories: "Meer categorieën…"
+  modal:
+    header: "Alle Categorieën"
+  favorite-button:
+    remove: "Verwijder uit Favorieten"
+    removing: "Aan het verwijderen…"
+#page: password-reset
+password-reset:
+  confirm: "Bevestig Wachtwoord"
+  length: "Wachtwoord moet minimaal 8 tekens lang zijn"
+  reset: "Wachtwoord opnieuw instellen"
+  email: "E-mail"
+  send: "Verstuur E-mail"
+#shared: media
+media-shared:
+  types:
+    anime:
+      All: "Alles"
+      tv: "TV"
+      movie: "Film"
+      music: "Muziek"
+    manga:
+      All: "Alles"
+      manga: "Manga"
+      manhwa: "Manwha"
+  statuses:
+    anime:
+      current: "Aan het uitzenden"
+      finished: "Afgelopen"
+      upcoming: "Aankomend"
+      unreleased: "Niet uitgebracht"
+    manga:
+      current: "Aan het publiceren"
+      finished: "Afgelopen"
+      upcoming: "Aankomend"
+      unreleased: "Niet uitgebracht"
+#shared: library
+library-shared:
+  all: "{type, select, anime {Alle Anime} manga {Alle Manga} other {}}"
+  current: "{type, select, anime {Nu aan het kijken} manga {Nu aan het lezen} other {}}"
+  planned: "{type, select, anime {Wil gaan kijken} manga {Wil gaan lezen} other {}}"
+  completed: "{type, select, anime {Voltooid} manga {Voltooid} other {}}"
+#shared: form:
+form-shared:
+  placeholders:
+    username: "Gebruikersnaam"
+    password: "Wachtwoord"
+#component: auth-onboarding
+onboarding:
+  aozora-conflict:
+    title: "Ohh, je hebt al een Kitsu account! Welke wil je houden?"
+  aozora-account-details:
+    submit: "Ziet er goed uit!"
+  checklist:
+    header: "Beginnen met Kitsu"
+    steps: "{count} stappen over! 🦊"
+    rate: "Beoordeel 5 anime of manga"
+    rate-incomplete: "Beoordeel {count} anime of manga"
+    follow: "Volg 5 gebruikers"
+    follow-incomplete: "Volg {count} {count, plural,=1 {gebruiker} other {gebruikers}}"
+    avatar: "Stel je avatar in"
+    favorite: "Kies je favoriete anime / manga"
+#component: follow-button
+follow-button:
+  follow: "Volg"
+#component: kitsu-feed
+feeds:
+  uploads:
+    select: "Uploaden"
+    drop: "Sleep hier om te uploaden"
+    invalid: "Ongeldig bestandstype"
+    uploading: "{number, plural, =1 {Foto uploaden… {progress}%} other {{number} foto's aan het uploaden… {progress}%}}"
+  filter:
+    all: "Alle Activiteit"
+    media: "Media Activiteit"
+    user: "Gebruikers Activiteit"
+    following: "Activiteit van gevolgen"
+  library:
+    updated: "verplaatst naar {status}"
+    rated: "beoordeeld"
+    progressed: "{type, select, anime {aflevering {num} gekeken} manga {hoofdstuk {num} gelezen} other {}}"
+  post:
+    more: "Meer bekijken"
+    less: "Minder bekijken"
+    meta:
+      media: "Omdat je eerder {media} hebt gekeken"
+    spoilers: "{type, select, anime {Afl. {num}} manga {Hfst. {num}} other {}}"
+    sorts:
+      likes: "Houdt van"
+      replies: "Reacties"
+      oldest: "Oudste"
+  review:
+    author: "Beoordeling door {user}"
+#component: modals/media-reaction
+reaction-modal:
+  skip: "Overslaan"
+  #component: modals
+  modals:
+    confirm:
+      check: "Weet je zeker dat je dit wilt doen?"
+      button: "Bevestig"
+    block-user:
+      header: "Blokkeer Gebruiker"
+      body:
+        header: "Voordat je deze gebruiker blokkeert, willen we je laten weten over hoe blokkeren werkt."
+        text: "Als je deze persoon blokkeert zorgt het ervoor dat hun content niet meer zichtbaar is voor jouw, en dat jouw content niet zichtbaar of interactief meer is voor hun."
+      button: "Blokkeer {user}"
+#component: library-entry/*
+library-entry:
+  state:
+    header: "{state, select, false {Aan bibliotheek toevoegen} true {Bibliotheek bijwerken} other {}}"
+    add-to-library: "Aan bibliotheek toevoegen"
+    seen-this: "{type, select, anime {Voltooid} manga {Voltooid} other {}}"
+    want-to-watch: "{type, select, anime {Wil gaan Kijken} manga {Wil gaan Lezen} other {}}"
+    started-watching: "{type, select, anime {Begonnen met Kijken} manga {Begonnen met Lezen} other {}}"
+    watching-this: "Gestart"
+    finished-this: "Voltooid"
+    place-on-hold: "In de wacht"
+    drop-this: "Laten Vallen"
+    change-rating: "Verander Beoordeling"
+    remove-rating: "Verwijder Beoordeling"
+    rate-this: "Beoordeling Geven"
+    edit-library: "Verander Bibliotheek Item"
+    post-reaction: "Reactie Plaatsen"
+    edit-reaction: "Reactie Veranderen"
+    rewatch: "{type, select, anime {Herkeken} manga {Herlezen} other {}}"
+    remove-from-library: "Verwijderen uit Bibliotheek"
+    progress: "Voortgang"
+    not-rated: "Niet beoordeeld"
+  rating:
+    awful: "Vreselijk"
+    meh: "Meh"
+    good: "Goed"
+    great: "Geweldig"
+#component: application/user-notifications
+user-notifications:
+  #Episode 113 of One Piece! aired
+  aired: "{type, select, chapter {Hoofdstuk} episode {Aflevering} other {}} {number} van {media} {type, select, chapter {Is uitgebracht} episode {Is uitgezonden} other {}}"
+  aired-unknown: "{media} heeft een {type, select, manga {nieuw hoofdstuk} anime {nieuwe aflevering} other {}} {type, select, manga {uitgebracht} anime {uitgezonden} other {}}"
+  menu:
+    all: "Bekijk alle notificaties"
+    mark-read: "Alles als gelezen markeren"
+    none: "Je hebt geen notificaties!"
+#ember-power-select
+selects:
+  loading: "Laden…"
+  none: "Geen resultaten gevonden"
+  search: "Start met typen om te zoeken"
+#ember-cp-validations
+errors:
+  description: "Dit veld"
+  inclusion: "{description} is niet meegenomen in de lijst"
+  exclusion: "{description} is gereserveerd"
+  invalid: "{description} is ongeldig"
+  confirmation: "{description} komt niet overeen met {on}"
+  accepted: "{description} moet geaccepteerd worden"
+  empty: "{description} kan niet leeg zijn"
+  blank: "{description} kan niet leeg zijn"
+  present: "{description} moet leeg zijn"
+  collection: "{description} moet een verzameling zijn"
+  singular: "{description} kan geen verzameling zijn"
+  tooLong: "{description} is te lang (het maximum is {max} aantal letters)"
+  tooShort: "{description} is te kort (het minimum is {min} karakters)"
+  before: "{description} moet voor {before} staan"
+  after: "{description} moet achter {after} staan"
+  wrongDateFormat: "{description} moet in het formaat {format} staan"
+  wrongLength: "{description} heeft de verkeerde lengte (moet karakters {is} zijn)"
+  notANumber: "{description} moet een getal zijn"
+  notAnInteger: "{description} moet een integrator zijn"
+  greaterThan: "{description} moet groter zijn dan {gt}"
+  greaterThanOrEqualTo: "{description} moet groter of gelijk zijn aan {gte}"
+  equalTo: "{description} moet gelijk zijn aan {is}"
+  lessThan: "{description} moet kleiner zijn dan {lt}"
+  lessThanOrEqualTo: "{description} moet kleiner of gelijk zijn aan {lte}"
+  otherThan: "{description} moet een andere waarde hebben dan {value}"
+  odd: "{description} moet oneven zijn"
+  even: "{description} moet even zijn"
+  positive: "{description} moet positief zijn"
+  date: "{description} moet een geldige datum zijn"
+  email: "{description} moet een geldig e-mail adres zijn"
+  phone: "{description} moet een geldig telefoonnummer zijn"
+  url: "{description} moet een geldige url zijn"
+  #Custom Errors
+  user:
+    name:
+      invalid: "Dit veld mag alleen letters, nummers en lage streepjes bevatten"
+      numbers: "Dit veld mag niet alleen nummers bevatten"
+      starts: "Dit veld moet met een letter of nummer starten"
+  load: "Er was een probleem met het laden van de inhoud."
+  contentEmpty: "Hmm, er lijkt hier nog niks te zijn."
+  request: "Oeps! Er lijkt iets met de aanvraag verkeerd te zijn vergaan."
+  serverError:
+    title: "Oeps! het lijkt erop dan onze server een bug heeft."
+    body: "Ons team is op de hoogte gebracht, probeer alstublieft over een paar minuten opnieuw."
+    reload: "Herladen"
+#Loading
+loading: "Bezig met het laden van {subject, select, episode {Aflevering} chapter {Hoofdstuk} episodes {Afleveringen} chapters {Hoofdstukken} other {}}…"
+timeUnits:
+  years: "{count, plural, =1 {jaar} other {jaar}}"
+  months: "{count, plural, =1 {maand} other {maanden}}"
+  days: "{count, plural, =1 {dag} other {dagen}}"
+  hours: "{count, plural, =1 {uur} other {uur}}"
+  minutes: "{count, plural, =1 {minuut} other {minuten}}"
+admin:
+  reports:
+    open: "Open"
+    closed: "Gesloten"
+  deployed-version: "Huidige Versie: {version}"
+button:
+  view-all: "alles bekijken"
+unsubscribe:
+  email: "E-mail"
+  unsubscribe: "Afmelden"
+category:
+  europe: "Europa"
+  family: "Familie"
+  france: "Frankrijk"
+  friendship: "Vriendschap"
+  future: "Toekomst"
+  germany: "Duitsland"
+  past: "Verleden"
+  piloted-robot: "Bestuurde robot"
+  politics: "Politiek"
+  post-apocalypse: "Post apocalyptisch"
+  present: "Heden"
+  psychological: "Psychologisch"
+  religion: "Religie"
+  revenge: "Wraak"
+  reverse-harem: "Tegenovergestelde harem"
+  robot: "Robot"
+  romance: "Romantiek"
+  rotten-world: "Verrotte wereld"
+  russia: "Rusland"
+  school-life: "School leven"
+  sengoku-period: "Sengoku periode"
+  setting: "Instelling"
+  shounen: "Shounen"
+  slavery: "Slavernij"
+  soccer: "Voetbal"
+  space: "Ruimte"
+  space-battles: "Ruimte gevechten"
+  sports: "Sporten"
+  stereotypes: "Stereotypes"
+  street-racing: "Straat racen"
+  summer: "Zomer"
+  superhero: "Superheld"
+  supernatural: "Bovennatuurlijk"
+  tennis: "Tennis"
+  tokyo: "Tokio"
+  united-kingdom: "Verenigd Koninkrijk"
+  university: "Universiteit"
+  vampire: "Vampier"
+  violence: "Geweld"
+  volleyball: "Volleybal"
+  war: "Oorlog"
+  world-war-ii: "Tweede Wereld Oorlog"
+  #NSFW categories
+  nudity: "Naaktheid"
+  sex: "Seks"
+  gigantic-breasts: "Gigantische borsten"
+  large-breasts: "Grote borsten"
+  masturbation: "Masturbatie"
+  prostitution: "Prostitutie"
+  public-sex: "Openbare seks"
+  rape: "Verkrachting"
+  sex-toys: "Seks speeltjes"
+  small-breasts: "Kleine borsten"
+  yuri: "Yuri"

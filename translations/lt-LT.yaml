@@ -1,15 +1,79 @@
 ---
 #route titles -- these are used if the route doesn't specify the title itself
 titles:
+  anime:
+    index: "Atrask anime"
+  manga:
+    index: "Atrask manga"
   media:
     show:
       units: "{type, select, anime {Epizodai} manga {Skyriai} other {}}"
       characters: "Veikėjai"
       reactions: "Reakcijos"
+      franchise: "Franšizė"
   explore:
     more:
+      top-current: "Geriausias {type, select,Anime {Leidžiamas}Manga {Leidžiama}other {}}{type}"
+      top-upcoming: "Geriausi ateinantys {type}"
+      highest-rated: "Geriausiai įvertinta {type}"
       most-popular: "Populiariausi {type}"
+    category:
+      more:
+        newly-released: "Naujai išleista {category}{type}"
   not-found: "Rasti nepavyko"
+  server-error: "Serverio klaida"
+  users:
+    index: "{user} profilis"
+    library: "{user} kolekcija"
+    reviews: "{user} Atsiliepimai"
+    reactions: "{user} reakcijos"
+    followers: "{user} sekėjai"
+    groups: "{user} grupės"
+    stats: "{user} statistika"
+  posts: "{user} paskelbė"
+  comments: "{user} komentavo"
+  reviews: "{user} atsiliepimas"
+  notifications: "Pranešimai"
+  feedback:
+    feature-requests: "Funkcijų užklausos"
+    database-requests: "Duomenų bazės užklausos"
+    mobile-features: "Telefono funkcijos"
+  admin:
+    index: "Administratorius"
+    reports: "Ataskaitos"
+  groups:
+    index: "Grupės"
+    new: "Sukurti grupę"
+    group:
+      group-page:
+        rules: "{group} taisyklės"
+        members: "{group} nariai"
+        leaders: "{group} vadovai"
+      dashboard:
+        index: "{group} apžvalga"
+        reports: "{group} atsiliepimai"
+        tickets: "{group} bilietai"
+        members: "{group} nariai"
+        leaders: "{group} vadovai"
+        settings: "{group} nustatymai"
+  group-invite: "Grupės pakvietimas"
 #header
 header:
+  library: "Biblioteka"
   anime: "Anime"
+  manga: "Manga"
+  trending: "Tendencijos"
+  groups: "Grupės"
+  feedback: "Atsiliepimai"
+  browse: "Naršyti"
+  auth:
+    sign-in: "Prisijungti"
+    sign-up: "Registruoti"
+  user:
+    profile: "Peržiūrėti profilį"
+    settings: "Nustatymai"
+    admin: "Administratorius"
+    logout: "Atsijungti"
+#page: about
+about:
+  header: "Apie Kitsu"

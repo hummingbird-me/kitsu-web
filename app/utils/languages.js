@@ -13,7 +13,7 @@ export default [
   // { id: 'hr-hr', text: 'Hrvatski' }, // Croatian
   // { id: 'cs-cz', text: 'Česky' }, // Czech [11/11]
   // { id: 'da-dk', text: 'Dansk' }, // Danish
-  // { id: 'nl-nl', text: 'Nederlands' }, // Dutch [80/31 - past 50, waiting on approval]
+  { id: 'nl-nl', text: 'Nederlands' },
   // { id: 'et-ee', text: 'Eesti Keel' }, // Estonian [14/0]
   // { id: 'fi-fi', text: 'Suomi' }, // Finnish
   { id: 'fr-fr', text: 'Français' },
@@ -37,7 +37,7 @@ export default [
   // { id: 'nb-no', text: 'Norsk (Bokmål)' }, // [24/24]
   // { id: 'nn-no', text: 'Norsk (Nynorsk)' },
   // { id: 'fa-ir', text: 'فارسی' }, // Persian rtl
-  // { id: 'pl-pl', text: 'Polski' }, // [10/7]
+  { id: 'pl-pl', text: 'Polski' },
   { id: 'pt-pt', text: 'Português' },
   { id: 'pt-br', text: 'Português (Brasileiro)' },
   // { id: 'ro-ro', text: 'Română' }, // Romanian [6/2]
