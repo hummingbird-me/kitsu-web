@@ -16,6 +16,7 @@ titles:
     more:
       trending: "Na Czasie {type, select, other {}} W Tym Tygodniu"
       top-current: "Najlepsze {type, select, Anime {Nadawane} Manga {Wydawane} other {}} {type, select, Anime {Anime} Manga {Mangi} other {{type}}}"
+      top-upcoming: "Top Nadchodzące {type, select, Anime {Anime} Manga {Mangi} other {}}"
       highest-rated: "Najwyżej Oceniane {type, select, Anime {Anime} Manga {Mangi} other {{type}}}"
       most-popular: "Popularne {type, select, Anime {Anime} Manga {Mangi} other {{type}}}"
     category:
@@ -30,9 +31,24 @@ titles:
     index: "Profil {user}"
     library: "Biblioteka {user}"
     reviews: "Opinie {user}"
+    reactions: "reakcje {user}"
+    followers: "obserwujący {user}"
+    following: "Zaobserwowany przez {user}"
+    groups: "Grupy {user}"
+    stats: "Statystyki {user}"
+  posts: "Opublikowane przez {user}"
+  comments: "Skomentowane przez {user}"
+  reviews: "Opinia użytkownika {user}"
   notifications: "Powiadomienia"
   feedback:
     bugs: "Błędy"
+    feature-requests: "Zaproponuj funkcję"
+    database-requests: "Zaproponuj zmiany w bazie danych"
+    mobile-bugs: "Błędy w aplikacji"
+    mobile-features: "Funkcje aplikacji"
+  admin:
+    index: "Administrator"
+    reports: "Zgłoszenia"
   groups:
     index: "Grupy"
     new: "Utwórz grupę"
@@ -40,9 +56,19 @@ titles:
       group-page:
         rules: "Zasady {group}"
         members: "Członkowie {group}"
+        leaders: "Przywódcy {group}"
       dashboard:
         index: "Przegląd {group}"
+        reports: "Zgłoszenia {group}"
+        tickets: "Bilety {group}"
+        members: "Członkowie {group}"
+        leaders: "Przywódcy {group}"
         settings: "Ustawienia {group}"
+  group-invite: "Zaproszenie do grupy"
+#head
+head:
+  users:
+    description: "{user} używa Kitsu do śledzenia swoich postępów i dzielenia się doświadczeniami z mangą i anime."
 #header
 header:
   library: "Biblioteka"
@@ -60,35 +86,53 @@ header:
     settings: "Ustawienia"
     admin: "Administrator"
     logout: "Wyloguj"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select,0 {Na początku zacznijmy od podstawowych informacji}1 {Bardzo dobrze - następny jest email!}2 {Wygląda legitnie, co z hasłem?}3 {Cool - Zróbmy to konto}other {}}"
 #page: about
 about:
   header: "O Kitsu"
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Szybki Update"
     filter:
       all: "Wszystko"
       anime: "Anime"
       manga: "Manga"
     empty:
+      html: "Media, które dodałeś lub aktualizowałeś w twojej<a' href={link}'>'Bibliotece'</a> pojawią się tutaj, żebys mógł szybko zaktualizować."
       discover: "Odkrywaj"
     media:
       complete: "Ukończone"
       unstarted: "Nierozpoczęte"
+      unit: "{type, select,anime {Odc. {num}{total, select,undefined {}other {z {total}}}}manga {Roz. {num}{total, select,null {}other {z {total}}}}other {}}"
     overlay:
       button:
+        update: "{type, select,anime {Odc.}manga {Roz.}other {}}{number}"
+        complete: "Ukończone"
         tooltip:
           empty: "Uaktualnij bibliotekę"
           content: "Utwórz wpis i uaktualnij bibliotekę"
       discussion: "Wyświetl dyskusję"
+      edit: "Edytuj pozycje biblioteki"
       popout: "Edytor w oknie"
+      editor:
+        placeholder: "(Opcjonalnie) Podziel sie swoimi przemyśleniami z {type, select,anime {Odcinka}manga {Rozdziału}other {}}{number}"
+  onboarding:
+    welcome: "Hej {user}, Witaj w Kitsu!"
+    about: "To jest globalny kanał aktywności. Jest wypełniony aktywnością wszystkich użytkowników Kitsu - nawet ciebie! Kiedy zaczniesz obserwować interesujących cię użytkowników, zmienimy domyślny kanał z Globalnego na Obserwowany."
+    action: "Dlaczego nie spróbujesz stworzyć posta, aby przedstawić się za pomocą poniższego formularza? Może powiedzieć coś tak prostego, jak „Hej wszystkim, jestem nowy w Kitsu” lub możesz pokazać nam, jak jesteś kreatywny i dowcipny!"
   groups:
     header: "Moje grupy"
   announcements:
     button: "Dowiedz się więcej"
   feed:
+    following: "Obserwowane"
     anime: "Anime"
     manga: "Manga"
+    global: "Globalny"
 #page: anime/manga
 media:
   index:
@@ -99,24 +143,40 @@ media:
       year: "Rok"
       score: "Średnia ocena"
       seasons: "Sezony"
+      streamers: "Stremerzy (U.S.)"
+      units: "{type, select, anime {Odcinki} manga {Rozdziały} other {}}"
       rating: "Ocena"
       categories: "Kategorie"
       types: "Rodzaje"
     sort:
       popularity: "Popularność"
       rating: "Średnia ocena"
+      date: "Data"
       recent: "Ostatnio dodane"
   none: "Brak wyników."
   show:
     navigation:
       summary: "Podsumowanie"
+      units: "{type, select, anime {Odcinki} manga {Rozdziały} other {}}"
       characters: "Bohaterowie"
       reactions: "Reakcje"
+      franchise: "Seria"
     sidebar:
       watch: "Oglądaj online"
     summary:
+      ratings:
+        community: "{rating}% Zatwierdzone przez społeczność"
+        match: "{rating}% Dopasowanie"
+      ranking:
+        full:
+          popularity: "{type, select,anime {Ranking #{rank} (Najbardziej popularne anime)}manga {Ranking #{rank} (Najbardziej popularna manga)}other {}}"
+          rating: "{type, select,anime {Ranking #{rank} (Najwyżej oceniane anime)}manga {Ranking #{rank} (Najwyżej oceniana manga)}other {}}"
+        short:
+          popularity: "{type, select,anime {#{rank} Najpopularniejsze}manga {#{rank} Najpopularniejsza}other {}}"
+          rating: "{type, select,anime {#{rank}Najwyżej oceniane} manga {# Najwyżej oceniana}other {}}"
       categories: "Kategorie"
       relationships:
+        header: "Więcej z tej serii"
         more: "Wyświetl wszystko w {title}"
       reactions:
         header: "Reakcje"
@@ -132,39 +192,125 @@ media:
         more: "Wyświetl wszystkich bohaterów"
       titles:
         header: "Alternatywne tytuły"
+        af_za: "Afrykański"
         ar: "Arabski"
+        bg_bg: "Bułgarski"
+        bn_bd: "Bengalski"
+        ca_es: "Kataloński"
+        cs_cz: "Czeski"
+        cy_gb: "Walijski"
+        da_dk: "Duński"
         de_de: "Niemiecki"
+        el_gr: "Grecki"
         en: "Angielski"
+        en_au: "Angielski (Australijski)"
+        en_ca: "Angielski (Australijski)"
         en_cn: "Chiński (Pinyin)"
+        en_gb: "Angielski (Brytyjski)"
+        en_il: "Hebrajski (Romanizacja)"
         en_jp: "Japoński (Romaji)"
         en_kr: "Koreański (Romaja)"
+        en_th: "Tajski (Romanizacja)"
+        en_us: "Angielski (Amerykański)"
         es_es: "Hiszpański"
+        et_ee: "Estoński"
+        fa_ir: "Perski"
+        fi_fi: "Fiński"
+        fr_ca: "Francuski (Kanadyjski)"
         fr_fr: "Francuski"
+        ga_ie: "Irlandzki"
+        he_il: "Hebrajski"
+        hi_in: "Hinduski"
+        hr_hr: "Chorwacki"
+        hu_hu: "Węgierski"
         id_id: "Indonezyjski"
+        is_is: "Islandzki"
         it_it: "Włoski"
         ja_jp: "Japoński"
+        kk_kz: "Kazachski"
         ko_kr: "Koreański"
+        lt_lt: "Litewski"
+        lv_lv: "Łotewski"
+        ms_my: "Malajski"
+        mt_mt: "Maltański"
+        nb_no: "Norweski (Bokmål)"
         nl_nl: "Holenderski"
+        nn_no: "Norweski (Nynorsk)"
+        pl_pl: "Polski"
         pt_br: "Portugalski (Brazylia)"
         pt_pt: "Portugalski"
+        ro_ro: "Rumuński"
         ru_ru: "Rosyjski"
+        sc_it: "Sardyński"
+        sco_gb: "Szkocki"
+        sk_sk: "Słowacki"
+        sl_sl: "Słoweński"
+        sr_cs: "Serbski (Łacina)"
+        sr_sp: "Serbski (Cyrylica)"
+        sv_se: "Szwedzki"
         th_th: "Tajski"
+        tl_ph: "Tagalski"
+        tr_tr: "Turecki"
         uk_ua: "Ukraiński"
+        ur_in: "Urdu (Indie)"
+        ur_pk: "Urdu (Pakistan)"
         vi_vn: "Wietnamski"
         zh_cn: "Chiński (uproszczony)"
+        zh_hk: "Chiński (Hong Kong)"
+        zh_mo: "Chiński (Macao)"
         zh_tw: "Chiński (tradycyjny)"
         synonyms: "Synonimy"
       information:
+        header: "{type, select,anime {Anime}manga {Manga}other {}}Detale"
         type: "Rodzaj"
+        volumes: "Części"
+        unit: "{type, select, anime {Odcinki} manga {Rozdziały} other {}}"
+        start: "{type, select,anime {Wypuszczone}manga {Opublikowane}other {}}"
+        status: "Status"
+        tba: "Oczekiwany"
+        season: "Sezon"
+        producers: "Producenci"
+        licensors: "Licencjodawcy"
+        studios: "Studia"
+        serialization: "Serializacja"
+        duration: "Długość"
+        total: "{total} Całkowity"
+        length: "{count, plural,=1 {{length} minuty}other {{length} każdy minut}}"
         rating: "Ocena"
         expand:
           false: "Więcej informacji"
           true: "Mniej informacji"
+      feed:
+        header: "Kanał społecznościowy"
       trailer: "Odtwórz zwiastun"
     units:
+      unit: "{type, select,episode {Odcinek}chapter {Rozdział}other {}}"
+      back: "Wróć do listy {type, select,episode {odcinków}chapter {rozdziałów}other {}}"
       pages: "{length} stron"
+      date: "{type, select,episode {Wypuszczony}chapter {Opublikowany}other {}}"
+      completed: "{type, select,episode {Obejrzany}chapter {Przeczytany}other {Skończony}}"
+      feed:
+        header: "{type, select,episode {Odcinek}chapter {Rozdział}other {}} Dyskusja"
+    characters:
+      header: "{title} Bohaterowie"
+      sub-header: "{type, select,anime {Poniżej znajduje się pełna lista postaci i ich aktorów głosowych w anime {title}}manga {Poniżej znajduje sie pełna lista postaci w mandze{title}}other {}}"
+    reactions:
+      loading: "Ładowanie reakcji…"
+      delete: "Usuń reakcje"
+      report: "Zgłoś reakcje"
+      copy: "Kopiuj odnośnik do wpisu"
     franchise:
+      header: "{title} przywilej"
       roles:
+        sequel: "Dalszy ciąg"
+        prequel: "Poprzednia część"
+        alternative_setting: "Alternatywne ustawienia"
+        alternative_version: "Alternatywna wersja"
+        side_story: "Historia poboczna"
+        parent_story: "Historia nadrzędna"
+        summary: "Podsumowanie"
+        full_story: "Cała historia"
+        spinoff: "Spin-off"
         adaptation: "Adaptacja"
         anime_adaptation: "Anime"
         manga_adaptation: "Manga"
@@ -172,11 +318,19 @@ media:
         other: "Inne"
   hide-posts:
     text: "Ukryj wpisy na temat {media}"
+    info: "Wpisy nie pojawią się w Twoim kanale obserwacyjnym lub kanale {type}"
+  show-posts:
+    text: "Pokaż wpisy na temat {media}"
+    info: "Wpisy pojawią się w Twoim kanale obserwacyjnym lub kanale {type}"
 #components
 components:
+  ad-unit: "Reklamy są do kitu, ale tak właśnie włączamy światła. Dodaj nas do białej listy w swoim adblockerze."
   admin:
     reports:
+      no-explanation: "Nie podano wyjaśnień."
+      not-set: "Nie ustawiono"
       actions:
+        button: "Czynności"
         open: "Oznacz jako otwarte"
         resolved: "Oznacz jako rozwiązane"
         closed: "Oznacz jako zamknięte"
@@ -188,6 +342,21 @@ components:
         moderator: "Moderator"
         status: "Status"
         actions: "Czynności"
+  application:
+    nav-search: "Szukaj w Kitsu"
+  episodes:
+    shortcut-bar:
+      episode-number: "Odc {number}"
+    fast-forward: "Postępy biblioteki są szybko przewijane do odcinka {number}!"
+    undo-update: "Cofnij"
+    update-progress: "Zaktualizować postęp biblioteki do odcinka {number}?"
+    watched: "Oznacz jako obejrzany"
+    join-prompt:
+      pitch: "Zaznacz swój postęp i dołącz do dyskusjii!"
+      register: "Utwórz konto Kitsu"
+  likeable-resource:
+    loading: "Ładowanie…"
+    more: "Wczytaj więcej"
   search:
     header: "Wyniki wyszukiwania"
     view: "wyświetl więcej"
@@ -202,8 +371,14 @@ components:
       create: "Wpis"
       nsfw: "NSFW"
       spoiler: "Spoiler"
+      tag-media: "Wpisz, aby oznaczyć program lub mange"
     edit-post:
       header: "Edytuj wpis"
+      error:
+        tagged: "Niestety nie możemy jeszcze pozwolić na edycję otagowanych mediów."
+    follow:
+      followed: "obserwujący"
+      delete: "Usuń aktywność"
     library:
       delete: "usuń"
       deleting: "usuwanie…"
@@ -214,6 +389,9 @@ components:
         spoiler-nsfw: "Zawiera spoilery oraz NSFW."
         nsfw: "Ten wpis zawiera treść NSFW."
         spoiler: "Ten wpis zawiera spoilery."
+        hover:
+          nsfw: "Moje ciało jest gotowe!"
+          spoiler: "Wytrzymam prawdę!"
       link: "Kopiuj odnośnik do wpisu"
       unfollow: "Przestań obserwować wpis"
       follow: "Obserwuj wpis"
@@ -223,7 +401,65 @@ components:
       delete: "Usuń wpis"
       unpin: "Odepnij wpis z profilu"
       pin: "Przypnij wpis do profilu"
+      pin-text: "Czy naprawdę chcesz przypiąć ten post do twojego profilu?"
       report: "Zgłoś wpis"
+      comment-count: "{count} z {total}"
+      comment:
+        deleting: "Usuwanie komentarza…"
+        reply: "Odpowiedz"
+        copy-link: "Kopiuj odnośnik do wpisu"
+        edit: "Edytuj komentarz"
+        delete: "Usuń komentarz"
+        report: "Zgłoś komentarz"
+        previous-replies: "Pokaż wcześniejsze odpowiedzi"
+        add-reply: "Dodaj odpowiedź…"
+      comments:
+        all: "Wyświetl wszystkie komentarze"
+        parent: "Pokaż komentarz nadrzędny"
+        previous-comments: "Pokaż poprzednie komentarze"
+        leave-comment: "Zostaw komentarz…"
+    review:
+      by: "Opinia użytkownika"
+      spoiler: "Ten wpis zawiera spoilery."
+      spoiler-hover: "Wytrzymam prawdę!"
+      share:
+        twitter: "Wyślij Tweet"
+        facebook: "Udostępnij"
+      copy-link: "Kopiuj odnośnik do wpisu"
+      show: "Pokaż treść recenzji"
+      hide: "Schowaj treść recenzji"
+      edit: "Edytuj recenzję"
+      delete: "Usuń opinię"
+      report: "Zgłoś opinie"
+  users:
+    ban:
+      title: "Czy jesteś pewien, że chcesz zablokować użytkownika?"
+      text: "Mogą uzyskiwać dostęp do biblioteki i aktualizować ją, ale nie mogą publikować postów, komentarzy ani reakcji."
+    delete-user-content:
+      title: "Zawartość usunięta przez {user}"
+      checkbox:
+        posts: "Posty"
+        comments: "Komentarze"
+        reactions: "Reakcje"
+      delete: "Usuń"
+    block: "Zablokuj @{user}"
+    you: "Hej, to ty!"
+    favorites:
+      title: "Ulubione{type, select,series {Serie}characters {Bohaterowie}other {}}"
+      anime: "Anime"
+      manga: "Manga"
+      more: "Pokaż więcej"
+      edit: "Edytuj ulubione {type, select,anime {anime}manga {manga}characters {bohaterowie}other {}}"
+      empty:
+        yours: "Nie masz jeszcze ulubionych! {type, select,anime {anime}manga {manga}characters {bohaterowie}other {}}"
+        others: "Użytkownik nie ma żadnych ulubionych"
+      choose: "Wybierz ulubione{type, select,anime {anime} manga {manga}characters {bohaterowie}other {}}"
+    alt-name:
+      title: "Możliwe konta alternatywne dla {user}"
+      none: "Brak wyników wyszukiwania"
+    past-name:
+      title: "Przeszłe nazwy"
+      none: "Brak poprzednich nazw"
 #page: users
 users:
   profile:
@@ -246,6 +482,7 @@ users:
     cover: "Zmień swoje zdjęcie w tle"
     navigation:
       about: "O mnie"
+      profile-links: "Link profilu"
       favorites: "Ulubione"
     about:
       header: "O mnie"
@@ -264,10 +501,496 @@ users:
         label: "Waifu"
         placeholder: "Waifu/Husbando"
         search: "Znajdź swoją drugą połówkę"
+        divorce: "rozwód"
       bio:
         label: "Bio"
         placeholder: "Opowiedz światu o sobie."
     profile-links:
+      header: "Link profilu"
+      remove: "Usuń z profilu"
       sites:
         website:
+          about: "Wpisz swoją stronę internetową poniżej, aby dodać link do swojego profilu."
           placeholder: "Adres URL Twojej witryny"
+        twitter:
+          about: "Wpisz swoją nazwę użytkownika Twitter poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja nazwa Tweeter (@Użytkownik)"
+        facebook:
+          about: "Wpisz swój Facebook URL poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twój Facebook URL"
+        youtube:
+          about: "Wpisz swój YouTube URL poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twój YouTube URL"
+        google:
+          about: "Wpisz swój Google+ URL poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twój Google+ URL lub nazwa (+nazwa)"
+        instagram:
+          about: "Wpisz swoją nazwę użytkownika Instagram poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja nazwa Instagram"
+        twitch:
+          about: "Wpisz swoją nazwę użytkownika Twitch poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja Twitch nazwa"
+        vimeo:
+          about: "Wpisz swoją nazwę użytkownika Vimeo poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja Vimeo nazwa"
+        github:
+          about: "Wpisz swoją nazwę użytkownika GitHub poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja nazwa użytkownika w serwisie GitHub"
+        battlenet:
+          about: "Wpisz swój Battle.net BattleTag poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twój Battle.net BattleTag (Użytkownik#1234)"
+        steam:
+          about: "Wpisz swoją nazwę użytkownika Steam poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja Steam nazwa"
+        raptr:
+          about: "Wpisz swoją nazwę użytkownika Raptr poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja Raptr nazwa"
+        discord:
+          about: "Wpisz swój Discord tag poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoj Discord tag (Użytkownik#1234)"
+        tumblr:
+          about: "Wpisz swoją nazwę użytkownika Tumbrl poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja Tumbrl nazwa"
+        soundcloud:
+          about: "Wpisz swoją nazwę użytkownika SoundCloud poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja SoundCloud nazwa"
+        dailymotion:
+          about: "Wpisz swoją nazwę użytkownika Dailymotion poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja Dailymotion nazwa"
+        kickstarter:
+          about: "Wpisz swoją nazwę użytkownika Kickstarter poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja Kickstarter nazwa"
+        mobcrush:
+          about: "Wpisz swoją nazwę użytkownika Mobcrush poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja Mobcrush nazwa"
+        osu:
+          about: "Wpisz swoje Osu! ID poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoje Osu! ID"
+        patreon:
+          about: "Wpisz swoją nazwe projekty Patreon poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja nazwa projektu Patreon"
+        deviantart:
+          about: "Wpisz swoją nazwę użytkownika DeviantArt poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja DeviantArt nazwa"
+        dribbble:
+          about: "Wpisz swoją nazwę użytkownika Dribbble poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja nazwa użytkownika Dribbble"
+        imdb:
+          about: "Wpisz swój IMDb URL poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twój URL profilu IMDb"
+        lastfm:
+          about: "Wpisz swoją nazwę użytkownika Last.fm poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja nazwa użytkownika Last.fm"
+        letterboxd:
+          about: "Wpisz swoją nazwę użytkownika Letterboxd poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja nazwa użytkownika Letterboxd"
+        medium:
+          about: "Wpisz poniżej swoją nazwę użytkownika lub nazwę publikacji, aby dodać link do swojego profilu."
+          placeholder: "Twoja nazwa (@użytkownik) lub nazwa publikacji"
+        playerme:
+          about: "Wpisz swoją nazwę użytkownika Player.me poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja Player.me nazwa"
+        reddit:
+          about: "Wpisz swoją nazwę użytkownika Reddit poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja Reddit nazwa"
+        trakt:
+          about: "Wpisz swoją nazwę użytkownika Trakt poniżej, aby dodać link do swojego profilu."
+          placeholder: "Twoja Trakt nazwa"
+    footer:
+      updating: "Aktualizuję…"
+      update: "Zaktualizuj profil"
+    favorites:
+      header: "Ulubione"
+      anime: "Anime"
+      manga: "Manga"
+      characters: "Bohaterowie"
+      remove: "Usunąć z Ulubionych?"
+  activity:
+    onboarding:
+      welcome: "Hej {user}, ta strona jest cała o TOBIE!"
+      about: "Gdy będziesz nadal używać Kitsu, Twoje '<strong>'Osobiste źródło danych'</strong>' zacznie wypełniać się anime i mangą, które oglądałeś, czytałeś, ukończyłeś i planujesz obczaić. Możesz również publikować tekst, obrazy i filmy na swoim kanale, korzystając z poniższego formularza. Twoje posty będą widoczn i doceniane przez twoich obserwujących i użytkowników z globalnego kanału."
+      action: "Rozgość się! Prześlij awatar i zdjęcie na okładkę! Kliknij '<span>'Edytuj'</span>' powyżej, aby rozpocząć."
+      title: "Załóż swój profil"
+    about:
+      header: "O mnie"
+      empty: "To tajemnica"
+      waifu:
+        label: "{waifu, select,Waifu {Żonka}Husbando {Mężuś}other {{waifu}}}:"
+        empty: "Waifu/Husbando:"
+      gender:
+        label: "Płeć:"
+        secret: "To tajemnica"
+        male: "Mężczyzna"
+        female: "Kobieta"
+      location: "Lokalizacja:"
+      birthday: "Urodziny:"
+      joined: "Data dołączenia:"
+    stats:
+      headings:
+        anime: "Status Anime"
+        manga: "Status Manga"
+      time-watched: "{count}{timeUnit} czas spędzony oglądając anime."
+      chapters-read: "{count} przeczytane rozdziały."
+      completed: "{count} zakończone."
+      more-than: "Więcej niż '<span class=\"time-spent-percentile\">'{percentage}%'</span>' użytkowników."
+      time-breakdown:
+        seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
+        time-segment: "{count}{timeUnit}" #8 months (pre-translated)
+        total: "czas spędzony na oglądaniu anime." #appended after time-segments
+      empty:
+        header: "Wygląda na to, że nie masz jeszcze wystarczającej ilości danych! Gotowy, aby zacząć coś nowego?"
+        guest-header: "Wygląda na to, że {user} nie ma jeszcze żadnych statystyk."
+  library:
+    search: "Wyszukaj {name} biblioteke…"
+    sorting:
+      label: "Sortuj wg:"
+      options:
+        watched: "Data aktualizacji"
+        started: "Data rozpoczęcia"
+        finished: "Data zakończenia"
+        added: "Data dodania"
+        progress: "Postęp"
+        rating: "Ocena"
+        title: "Tytuł"
+        length: "Długość"
+      directions:
+        watched:
+          desc: "Najpierw najnowsze"
+          asc: "Najpierw najstarsze"
+        started:
+          desc: "Najpierw najnowsze"
+          asc: "Najpierw najstarsze"
+        finished:
+          desc: "Najpierw najnowsze"
+          asc: "Najpierw najstarsze"
+        added:
+          desc: "Najpierw najnowsze"
+          asc: "Sortuj od najstarszych"
+        progress:
+          desc: "Najbardziej pierwszy"
+          asc: "Pierwszy od końca"
+        rating:
+          desc: "Od największej"
+          asc: "Od najmniejszej"
+        length:
+          desc: "Od najdłuższych"
+          asc: "Najkrótszy Pierwszy"
+    sidebar:
+      media-select: "{type, select, anime {Anime {user} } manga {Mangi {user}} other {}}"
+      manage: "Zarządzaj Biblioteką"
+      import: "Importuj Bibliotekę"
+      export: "Eksportuj Bibliotekę"
+      reset: "Zresetuj Bibliotekę"
+      reset-loading: "Resetowanie…"
+      reset-confirmation: "Spowoduje to usunięcie całej biblioteki, związanych z nią recenzji i reakcji. Jesteś pewien, że chcesz kontynuować?"
+      issues:
+        header: "Problemy z Biblioteką"
+        fix: "napraw"
+    list:
+      edit: "Edytuj Wpis"
+      list-edit: "Edytuj"
+      more: "Więcej"
+      unstarted: "Nierozpoczęte"
+      table-header:
+        rating: "Ocena"
+      empty:
+        search: "Nie mogłem znaleźć żadnych wpisów w bibliotece za pomocą Twojego zapytania."
+    edit:
+      units: "{type, select,anime {z {num} odcinków}manga { z {num} rozdziałów}other {}}"
+      volumes: "Części"
+      volume-units: "z {num} części"
+      rating: "Ocena"
+      rewatch: "{type, select,anime {Rewatch Count}manga {Reread Count}other {}}"
+      start-rewatch: "{type, select,anime {Start Rewatch}manga {Start Reread}other {}}"
+      privacy: "Prywatność"
+      started: "Rozpoczęto"
+      finished: "Zakończono"
+      notes: "Osobiste notatki"
+      remove: "Usuń z biblioteki"
+      save: "Zapisz zmiany"
+      saving: "Zapisywanie…"
+    bulk:
+      selected: "{type, select,anime {{num} wybrane anime}manga {{num} wybrana manga}other {}}"
+      select-all: "Zaznacz wszystko"
+      select-none: "Wybierz Brak"
+      remove: "Usuń '<strong>'{num}'</strong>'"
+      move-to: "Przenieś '<strong>'{num}'</strong>' do…"
+      remove-loading: "Usuwanie…"
+      update-loading: "Aktualizuję…"
+  groups:
+    sort:
+      newest: "Ostatnio Dołączyli"
+      oldest: "Najdawniej Dołączyli"
+  reactions:
+    empty: "Ten użytkownik nie posiada reakcji"
+    filters:
+      all: "Wszystkie reakcje"
+      anime: "Reakcje anime"
+      manga: "Reakcje Manga"
+    sorts:
+      best: "Najlepszy"
+      new: "Nowy"
+  hide-posts:
+    text: "Ukryj wpisy na temat {user}"
+    info: "Wpisy nie pojawią się w Twoim kanale obserwacyjnym"
+  show-posts:
+    text: "Pokaż wpisy na temat {user}"
+    info: "Wpisy pojawią się w Twoim kanale obserwacyjnym"
+  followers:
+    not-found: "Nie znaleziono użytkowników."
+    loading: "Ładowanie informacji o użytkowniku…"
+  following:
+    not-found: "Nie znaleziono użytkowników."
+    loading: "Ładowanie informacji o użytkowniku…"
+  reviews:
+    not-found: "Nie znaleziono recenzji."
+    loading: "Ładowanie recenzji…"
+#page: settings
+settings:
+  navigation:
+    header: "Ustawienia"
+    profile: "Profil"
+    notifications: "Powiadomienia"
+    password: "Hasło"
+    privacy: "Prywatność"
+    linked-accounts: "Powiązane konta"
+    import: "Importuj"
+    export: "Eksportuj"
+    blocking: "Blokowanie"
+    account: "Konto"
+  account:
+    header: "Konto"
+    sub-header: "Strefa niebezpieczeństwa! Usunięcie konta jest nieodwracalne."
+    delete: "Usuń konto"
+    confirm-title: "Usuń konto"
+    confirm-text: "Przykro nam, że odchodzisz. Czy na pewno chcesz kontynuować?"
+  apps:
+    header: "Aplikacje"
+  blocking:
+    header: "Blokowanie"
+    sub-header: "Gdy kogoś zablokujesz, osoba ta nie będzie mogła już Cię oznaczać, obserwować, wyświetlać Twojego profilu ani widzieć wpisów w kanale."
+    title: "Zablokuj użytkowników"
+    placeholder: "Wyszukaj użytkowników do zablokowania…"
+    button-block: "Zablokuj"
+    loading: "Ładowanie informacji o użytkowniku…"
+    button-unblock: "Odblokuj"
+    more: "Wczytaj więcej"
+    not-blocking: "Aktualnie nikogo nie blokujesz."
+  exports:
+    modal:
+      header: "Sychronizuj z {site}"
+      helper: "Będziemy aktualizować twoje listy anime i manga na {site} za każdym razem, gdy aktualizujesz je na Kitsu."
+      create: "Sychronizuj do {site}"
+    header: "Eksportuj"
+    sub-header: "Automatycznie synchronizuj aktualizacje biblioteki z Kitsu do MyAnimeList."
+    loading: "Ładowanie Eksportowanych…"
+    remove: "Usuń Eksporter"
+    disabled: "Twój eksport MAL został wyłączony z następującego powodu: '<strong>'{reason}'</strong>'"
+    create: "Skonfiguruj eksport do konta MyAnimeList"
+    download: "Pobierz {kind} bibliotekę"
+    recent: "Ostatnia aktywność synchronizacji"
+    sync-header: "Synchronizacja MyAnimeList"
+    no-logs: "Przetwarzamy twoją bibliotekę i synchronizujemy ją z MyAnimeList. Trzymaj się!"
+    logs:
+      header:
+        media: "Tytuł"
+        library-status: "Status"
+        progress: "Postęp"
+        rating: "Ocena"
+        reconsumes: "Rewatches"
+        action: "Akcja"
+        status: "Status"
+      action:
+        create: "Stwórz"
+        update: "Aktualizuj"
+        destroy: "Usuń"
+      status:
+        pending: "Oczekujący"
+        success: "Sukces"
+        error: "Błąd"
+  imports:
+    header: "Importuj"
+    sub-header: "Importuj media od innych dostawców"
+    button: "Importuj media"
+    past-imports: "Twoje poprzednie importy"
+    loading: "Ładowanie Importowanych…"
+    status: "Status:"
+    entries: "Znaleziono ogółem wpisów:"
+    more: "Wczytaj więcej"
+  index:
+    header: "Profil"
+    sub-header: "Konto i ustawienia regionu"
+    name: "Nazwa wyświetlana"
+    url: "URL Profilu"
+    email: "Adres e-mail"
+    email-message: "Email nie będzie udostępniony publicznie."
+    language: "Język"
+    translate-help: "Zainteresowany translacją? '<a href=\"https://crowdin.com/project/kitsu-web\">'Zrób to tutaj!'</a>'"
+    time-zone: "Strefa czasowa"
+    content: "Treść na Kitsu"
+    theme: "Skórka strony"
+  notifications:
+    descriptions:
+      reaction_votes: "Ktoś '<strong>'poparł'</strong>'moją reakcję"
+      airing: "Nowy odcinek został wypuszczony"
+    newsletter:
+      newsletter: "Subskrypcja"
+      subscribed: "Subskrybowany"
+      message: "Jeśli ta opcja jest włączona, będziesz otrzymywać od czasu do czasu (i bardzo dowcipne) wiadomości e-mail o Kitsu napisane przez samego Josha."
+    loading: "Ładowanie ustawień…"
+    update: "Aktualizuj ustawienia"
+  password:
+    header: "Hasło"
+    sub-header: "Zmień swoje hasło"
+    new-pswd: "Nowe Hasło"
+    confirm-pswd: "Potwierdź hasło"
+    update-pswd: "Zaktualizuj hasło"
+  privacy:
+    header: "Prywatność"
+    sub-header: "Dostosuj możliwość przeglądania twoich treści przez innych"
+    discover: "Widoczność"
+    checkbox: "Pokaż w Globalnym kanale"
+    message: "Jeśli wyłączone, Twoje posty będą dostępne tylko dla obserwujących i gości Twojego profilu."
+    update: "Zaktualizuj profil"
+#page: feedback
+feedback:
+  header: "Opinia"
+  bugs: "Błędy"
+  features: "Zaproponuj funkcję"
+  database: "Zaproponuj zmiany w bazie danych"
+  mobile-bugs: "Błędy w aplikacji"
+  mobile-features: "Funkcje aplikacji"
+#page: groups
+groups:
+  index:
+    call-to-action: "Każdy może tworzyć i odkrywać grupy. Każda grupa koncentruje się na temacie lub działaniu."
+    create-btn: "Utwórz grupę"
+  create:
+    header: "Utwórz grupę"
+    form:
+      required: "Wymagane"
+      name: "Nazwa"
+      tagline: "Hasło reklamowe"
+      about: "Opis"
+      rules: "Zasady"
+      neighbors: "Sąsiedzi"
+      neighbors-placeholder: "Szukaj grupe"
+      privacy: "Prywatność"
+      privacy-options:
+        open: "Publiczne"
+        closed: "Prywatny"
+        restricted: "Ograniczone"
+      privacy-features:
+        open: "'<li>'Każdy może zobaczyć'</li>' '<li>'Każdy może dołączyć'</li>' '<li>'Każdy może opublikować komentarz'</li>'"
+        closed: "'<li>'Ukryte przed publiką'</li>' '<li>'Użytkownicy mogą dołączyć tylko przez zaproszenie'</li>' '<li>'Nie może zostac publiczny'</li>'"
+        restricted: "'<li>'Każdy może widzieć'</li>' '<li>'Każdy może dołączyć'</li>' '<li>'Tylko liderzy mogą tworzyć posty'</li>'"
+      category: "Kategoria"
+      category-placeholder: "Wybierz Kategorię"
+      avatar: "Awatar"
+      cover: "Obraz okładki"
+      create-btn: "Utwórz grupę!"
+      save-btn: "Zapisz"
+      helper:
+        name:
+          header: "Nazwa"
+          desc: "Nazwy grup powinny jasno komunikować, o czym jest Twoja grupa, ale nadal możesz być kreatywny i dobrze się z tym bawić!"
+        tagline:
+          header: "Hasło reklamowe"
+          desc: "Podsumuj cel swojej grupy za pomocą maksymalnie 60 znaków. Będziesz mógł później dodać więcej informacji."
+        about:
+          header: "Opis"
+          desc: "Wyjaśnij cel swojej grupy dogłębnie, udostępnij ważne informacje lub cokolwiek innego."
+        rules:
+          header: "Zasady"
+  nsfw: "NSFW"
+  navigation:
+    activity: "Aktywność"
+  activity:
+    members: "Członkowie"
+    feed-restricted: "To jest ograniczona grupa. Każdy może komentować, tylko liderzy mogą tworzyć posty."
+  rules:
+    header: "Regulamin społeczności"
+  tickets:
+    search: "Znajdź bilety"
+    empty: "Brawo! Nie masz żadnych biletów do obsłużenia."
+    helper: "Bilety pozwalają komunikować się z liderami tej grupy, aby rozwiązać ewentualne problemy. Wyślij wiadomość do liderów, aby utworzyli bilet."
+    filter:
+      open: "Otwarte zgłoszenia"
+      resolved: "Rozstrzygnięte ostrzeżenia"
+    conversation:
+      mark-resolved: "Oznacz jako rozwiązane"
+      mark-open: "Oznacz jako otwarte"
+  reports:
+    hide-more: "Ukryj {num} raporty"
+    status:
+      resolved: "Ten raport został rozwiązany przez {user}."
+      declined: "Ten raport został odrzucony przez {user}."
+  leaders:
+    list:
+      edit-btn: "Edytuj"
+  dashboard:
+    navigation:
+      settings: "Ustawienia"
+    members:
+      bans:
+        ban: "Zbanuj"
+      members:
+        table:
+          users: "Użytkownik"
+          actions: "Czynności"
+        remove: "Usuń"
+        ban: "Zbanuj"
+    leaders:
+      chat:
+        post-btn: "Wpis"
+#page: explore
+explore:
+  widget:
+    categories: "Kategorie"
+#page: password-reset
+password-reset:
+  confirm: "Potwierdź hasło"
+  length: "Hasło powinno składać się z co najmniej 8 znaków"
+  reset: "Zresetuj Hasło"
+  email: "Adres e-mail"
+  send: "Wyślij email"
+#shared: media
+media-shared:
+  types:
+    anime:
+      All: "Wszystko"
+      tv: "TV"
+      special: "Specjalne"
+      ona: "ONA"
+      ova: "OVA"
+      movie: "Film"
+      music: "Muzyka"
+    manga:
+      All: "Wszystko"
+      manga: "Manga"
+      novel: "Powieść"
+      manhua: "Manhua"
+      oneshot: "One-shot"
+      doujin: "Doujin"
+      manhwa: "Manhwa"
+      oel: "OEL"
+  statuses:
+    anime:
+      current: "Aktualnie wychodzi"
+      finished: "Zakończono"
+      upcoming: "Nadchodzące"
+      unreleased: "Niewypuszczone"
+      tba: "TBA"
+    manga:
+      current: "Publikowanie"
+      finished: "Zakończono"
+      upcoming: "Nadchodzące"
+      unreleased: "Niewypuszczone"
+      tba: "TBA"
+#shared: library
+library-shared:
+  all: "{type, select,anime {Wszystkie Anime}manga {Wszystkie Mangi}other {}}"
+#component: modals/media-reaction
+reaction-modal:
+  post: "Wpis"
+  edit: "Edytuj"
