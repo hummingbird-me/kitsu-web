@@ -11,17 +11,17 @@ export default [
   // { id: 'zh-cn', text: '中文 (简体)' }, // Chinese Simplified [21/20]
   // { id: 'zh-tw', text: '中文 (繁體)' }, // Chinese Traditional
   // { id: 'hr-hr', text: 'Hrvatski' }, // Croatian
-  // { id: 'cs-cz', text: 'Česky' }, // Czech [11/11]
+  // { id: 'cs-cz', text: 'Česky' }, // Czech [21/21]
   // { id: 'da-dk', text: 'Dansk' }, // Danish
   { id: 'nl-nl', text: 'Nederlands' },
-  // { id: 'et-ee', text: 'Eesti Keel' }, // Estonian [14/0]
+  // { id: 'et-ee', text: 'Eesti Keel' }, // Estonian [16/15]
   // { id: 'fi-fi', text: 'Suomi' }, // Finnish
   { id: 'fr-fr', text: 'Français' },
-  // { id: 'fr-ca', text: 'Français (Canadien)' },
+  { id: 'fr-ca', text: 'Français (Canadien)' },
   { id: 'de-de', text: 'Deutsch' },
   // { id: 'el-gr', text: 'Ελληνικά' }, // Greek [2/1]
   // { id: 'he-il', text: 'עברית' }, // Hebrew rtl
-  // { id: 'hi-in', text: 'हिन्दी' }, // Hindi [1/0]
+  // { id: 'hi-in', text: 'हिन्दी' }, // Hindi [1/1]
   { id: 'hu-hu', text: 'Magyar' },
   // { id: 'is-is', text: 'Íslenska' }, // Icelandic
   { id: 'id-id', text: 'Bahasa Indonesia' },
@@ -31,16 +31,16 @@ export default [
   // { id: 'kk-kz', text: 'Қазақ' }, // Kazakh
   // { id: 'ko-kr', text: '한국어' }, // Korean
   // { id: 'lv-lv', text: 'Latviešu' }, // Latvian
-  // { id: 'lt-lt', text: 'Lietuvių Kalba' }, // Lithuanian [14/0]
+  // { id: 'lt-lt', text: 'Lietuvių Kalba' }, // Lithuanian [14/2]
   // { id: 'ms-my', text: 'Bahasa Melayu' }, // Malay
   // { id: 'mt-mt', text: 'Malti' }, // Maltese
-  // { id: 'nb-no', text: 'Norsk (Bokmål)' }, // [24/24]
+  // { id: 'nb-no', text: 'Norsk (Bokmål)' }, // [23/23]
   // { id: 'nn-no', text: 'Norsk (Nynorsk)' },
   // { id: 'fa-ir', text: 'فارسی' }, // Persian rtl
   { id: 'pl-pl', text: 'Polski' },
   { id: 'pt-pt', text: 'Português' },
   { id: 'pt-br', text: 'Português (Brasileiro)' },
-  // { id: 'ro-ro', text: 'Română' }, // Romanian [6/2]
+  // { id: 'ro-ro', text: 'Română' }, // Romanian [5/2]
   { id: 'ru-ru', text: 'Русский' },
   // { id: 'sc-it', text: 'Sardu' }, // Sardinian
   // { id: 'sco-gb', text: 'Scots' },
@@ -50,10 +50,10 @@ export default [
   // { id: 'sl-sl', text: 'Slovenščina' }, // Slovenian
   { id: 'es-es', text: 'Español' },
   // { id: 'sv-se', text: 'Svenska' }, // Swedish
-  // { id: 'tl-ph', text: 'Wikang Tagalog' }, // [76/2 - past 50, waiting on approval]
+  { id: 'tl-ph', text: 'Wikang Tagalog' },
   // { id: 'th-th', text: 'ไทย' }, // Thai
-  // { id: 'tr-tr', text: 'Türkçe' }, // Turkish [1/0]
-  // { id: 'uk-ua', text: 'Українська' }, // Ukrainian [14/13]
+  // { id: 'tr-tr', text: 'Türkçe' }, // Turkish [2/0]
+  // { id: 'uk-ua', text: 'Українська' }, // Ukrainian [13/12]
   // { id: 'ur-in', text: 'اردو (پاکستانی)' }, // Urdu Indian
   // { id: 'ur-pk', text: 'اردو (ہندوستانی)' }, // Urdu Pakistani
   // { id: 'vi-vn', text: 'Việtnam' },
