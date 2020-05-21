@@ -1,0 +1,80 @@
+---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "anime explore"
+  manga:
+    index: "manga explore"
+  explore:
+    more:
+      top-current: "{type, select, Anime {yor Airing anime} Manga {Publishing manga yor} other {}}"
+    category:
+      index: "{category} {type}"
+      more:
+        trending: "trend {category} {type, select, Anime {anime} Manga {manga} other {}}"
+        most-popular: "{type, select, Anime {anime} Manga {manga} other {}} {category} rav Qat"
+  users:
+    following: "tlha' {user}"
+    groups: "{user} ghom"
+    stats: "Stats {user}"
+  posts: "post {user}"
+  comments: "comment {user}"
+  reviews: "review {user}"
+#page: dashboard
+dashboard:
+  quick-update:
+    title: "Qapchu' Update"
+#page: anime/manga
+media:
+  show:
+    characters:
+      sub-header: "{type, select, anime {tlha' yoSvetlhDaq vuDmey''e'' naQ 'ej DawI'pu' {title} anime ghogh {language} Hol} manga {tlha', qatlh yoSvetlhDaq vuDmey''e'' {title} manga naQ} other {}}"
+#components
+components:
+  users:
+    favorites:
+      title: "favorite {type, select, series {Series} characters {vuDmey''e''} other {}}"
+      choose: "favorite {type, select, anime {anime} manga {manga} characters {vuDmey''e''} other {}} wutlh"
+#page: users
+users:
+  edit-modal:
+    profile-links:
+      sites:
+        discord:
+          about: "Discord 'e' maq per below link chel qoghDu'DajDaq 'el."
+  library:
+    list:
+      unstarted: "wej start"
+#page: settings
+settings:
+  imports:
+    error: "law' 'oH rur luj DughajmoH :( &mdash; law' 'oH rur luj DughajmoH :( ghu'vam tI' '<a href=\"mailto:help@kitsu.io\">'email'</a>' vaj bel SoH Suq wIneH maHvaD."
+#page: groups
+groups:
+  rules:
+    empty: "QI'yaH pa'! legh rur kitsu community guidelines lo' SoH. vaj che' per vIvut SoH 'e' laH yap '<a' href={link}'>'settings page.'</a>'"
+  dashboard:
+    audit:
+      group:
+        avatar_changed: "{group} avatar updated."
+        cover_changed: "{group} yuvtlhe' ghItlhvam updated."
+        rules_changed: "{group} che' updated."
+category:
+  absurdist-humour: "absurdist SuboQtaHvIS cha' tlhIH"
+  ahegao: "ahegao"
+  battle-royale: "may' royale"
+  content-indicators: "'a ghIH Indicators"
+  demon: "veqlargh"
+  detective: "detective"
+  earth: "tera'"
+  housewives: "housewife"
+  plot-continuity: "plot Continuity"
+  samurai: "samurai"
+  shoujo-ai: "shoujo Ai"
+  shounen-ai: "shounen Ai"
+  slapstick: "slapstick"
+  space-battles: "logh may'"
+  space-travel: "logh leng"
+  swordplay: "swordplay"
+  target-demographics: "DoS Demographics"
+  thriller: "thriller"
