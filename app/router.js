@@ -147,6 +147,7 @@ RouterInstance.map(function() {
   this.route('unsubscribe');
 
   this.route('terms');
+  this.route('privacy');
   this.route('pro');
 
   // These must remain at the bottom of the RouterInstance map
