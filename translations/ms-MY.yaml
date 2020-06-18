@@ -1,17 +1,248 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Tinjau Anime"
+  manga:
+    index: "Tinjau Manga"
+  media:
+    show:
+      units: "{type, select, anime {Episod} manga {Bab} other {}}"
+      characters: "Watak-watak"
+      reactions: "Reaksi"
+      franchise: "Francais"
+  explore:
+    index: "Tinjau {mediaType, select, anime {Anime} manga {Manga} other {}}"
+    more:
+      trending: "Trending {type, select, other {}}Minggu Ini"
+      top-current: "Popular {type, select, Anime {Kini Disiarkan} Manga {Kini diterbitkan} other {}} {type}"
+      top-upcoming: "Akan Datang {type}"
+      highest-rated: "Rating Tertinggi {type}"
+      most-popular: "Paling Diminati {type}"
+    category:
+      more:
+        most-popular: "Paling Popular {category} {type}"
+  not-found: "Tidak Dijumpai"
+  server-error: "Ralat Pelayan"
+  users:
+    index: "Profil {user}"
+    library: "Koleksi {user}"
+    reviews: "Ulasan daripada {user}"
+    reactions: "Reaksi daripada {user}"
+    followers: "Pengikut {user}"
+    following: "Diikuti oleh {user}"
+    groups: "Kumpulan {user}"
+    stats: "statistik {user}"
+  posts: "Dihantar oleh {user}"
+  comments: "Komen daripada {user}"
+  reviews: "Ulasan oleh {user}"
+  notifications: "Pemberitahuan"
+  feedback:
+    bugs: "Ralat"
+    feature-requests: "Pemintaan Ciri Baru"
+    database-requests: "Permintaan Data"
+    mobile-bugs: "Ralat aplikasi"
+    mobile-features: "Ciri-ciri Peranti Mudah Alih"
+  admin:
+    index: "Admin"
+    reports: "Laporan"
+  groups:
+    index: "Kumpulan"
+    new: "Wujudkan Kumpulan"
+    group:
+      group-page:
+        rules: "{group} Peraturan"
+        members: "{group} ahli-ahli"
+        leaders: "{group} Pengerusi"
+      dashboard:
+        index: "{group} Gambaran"
+        reports: "{group} Laporan"
+        tickets: "{group} Tiket"
+        settings: "{group} Tetapan"
+  group-invite: "Jemputan Kumpulan"
+#head
+head:
+  users:
+    description: "{user} menggunakan Kitsu sebagai penanda buku dan platform untuk berkongsi pengalaman anime & manga meraka."
 #header
 header:
+  library: "Koleksi"
   anime: "Anime"
+  manga: "Manga"
+  trending: "Trending"
+  feedback: "Maklum balas"
+  browse: "Cari"
+  auth:
+    sign-in: "Log Masuk"
+    sign-up: "Daftar"
+  user:
+    profile: "Lihat Profil"
+    settings: "Tetapan"
+    logout: "Log Keluar"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Mari dapatkan maklumat asas terlebih dahulu} 1 {Hebat - seterusnya adalah alamat email!} 2 {Terbaik, bagaimana dengan kata laluan?} 3 {Dah Siap! - Mari lengkapkan account anda} other {}}"
+#page: about
+about:
+  header: "Tentang Kitsu"
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Kemaskini"
     filter:
+      all: "Semua"
       anime: "Anime"
+    empty:
+      html: "Media yang anda telah masukkan atau dikemaskini di r '<a' href={link}'>'Koleksi'</a>' anda akan ditunjukkan di sini bagi memudahkan kemaskini pantas."
+      discover: "Cari Media"
+    media:
+      complete: "Selesai"
+      unstarted: "Belum Mula"
+      unit: "{type, select, anime {Episod. {num} {total, select, undefined {} other {daripada {total}}}} manga {Bab. {num} {total, select, null {} other {daripada {total}}}} other {}}"
+    overlay:
+      button:
+        update: "{type, select, anime {Episod.} manga {Bab.} other {}} {number}"
+        tooltip:
+          empty: "Kemaskini Koleksi"
+          content: "Buat post dan kemaskini Koleksi"
+      discussion: "Lihst Perbincangan"
+      edit: "Sunting Entri Koleksi"
+      popout: "Tetapan Pop-naik"
+      editor:
+        placeholder: "(Bebas) Kongsi Pandangan anda untuk {type, select, anime {Episod} manga {Bab} other {}} {number}"
+  onboarding:
+    welcome: "Hey {user}, selamat datang ke Kitsu!"
+    about: "Ini adalah suapan dari aktiviti global. Ia dipenuhi dengan aktiviti daripada semua pengguna Kitsu - termasuk anda! Setelah anda mengikuti beberapa pengguna yang anda rasa menarik. Kami akan menukar suapan lalai anda daripada Global ke Following."
+    action: "Apa kata mulakan dengan menghantar suapan baru untuk memperkenalkan diri kepada pengguna Kitsu di seluruh dunia? Tunjukkan kreativiti anda kepada semua!"
+  groups:
+    header: "Kumpulan saya"
+  announcements:
+    button: "Ketahui lebih lanjut"
   feed:
     anime: "Anime"
+    global: "Global"
 #page: anime/manga
 media:
+  index:
+    search: "Cari berdasarkan name, watak, atau pelakon…"
+    filter: "Filter"
+    remove: "Keluarkan"
+    filters:
+      year: "Tahun"
+      seasons: "Musim"
+      streamers: "Pelayar (U.S.)"
+      rating: "Rating"
+      categories: "Kategori"
+      types: "Jenis"
+    sort:
+      popularity: "Populariti"
+      date: "Tarikh"
+      recent: "Baru ditambah"
+  none: "Tiada Keputusan."
   show:
+    navigation:
+      summary: "Ringkasan"
+    sidebar:
+      watch: "Tonton Online"
+    summary:
+      ratings:
+        community: "{rating}% dari Komuniti"
+        match: "{rating}% Sama"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Kedudukan #{rank} (Anime Paling Diminati)} manga {Kedudukan #{rank} (Manga Paling Diminati)} other {}}"
+          rating: "{type, select, anime {Kedudukan #{rank} (Anime dengan Rating Tertinggi)} manga {Rank #{rank} (Manga Rating dengan Tertinggi)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} Paling Diminati} manga {#{rank} Paling Diminati} other {}}"
+          rating: "{type, select, anime {#{rank} Rating Tertinggi} manga {#{rank} Rating Tertinggi} other {}}"
+      relationships:
+        header: "Lebih banyak dari Siri ini"
+        more: "Lihat Semua di {title}"
+      reactions:
+        more: "Lihat Reaksi"
+        sorts:
+          -upVotesCount: "Popular"
+          -createdAt: "Terbaru"
+        new: "Reaksi Baru"
+        edit: "Reaksi"
+        empty: "Jadi yang pertama memberi reaksi"
+      characters:
+        more: "Lihat semua watak"
+      titles:
+        header: "Tajuk alternatif"
+        af_za: "Afrikaan"
+        ar: "Arabic"
+        bg_bg: "Bulgaria"
+        bn_bd: "Bengali"
+        ca_es: "Catalan"
+        cs_cz: "Czech"
+        cy_gb: "Welsh"
+        da_dk: "Danish"
+        de_de: "German"
+        el_gr: "Greek"
+        en: "English"
+        en_au: "English (Australian)"
+        en_ca: "English (Canadian)"
+        en_cn: "Chinese (Pinyin)"
+        en_gb: "English (British)"
+        en_il: "Hebrew (Romanized)"
+        en_jp: "Japanese (Romaji)"
+        en_kr: "Korean (Romaja)"
+        en_th: "Thai (Romanized)"
+        en_us: "English (American)"
+        es_es: "Spanish"
+        et_ee: "Estonian"
+        fa_ir: "Persian"
+        fi_fi: "Finnish"
+        fr_ca: "French (Canadian)"
+        fr_fr: "French"
+        ga_ie: "Irish"
+        he_il: "Hebrew"
+        hi_in: "Hindi"
+        hr_hr: "Croatian"
+        hu_hu: "Hungarian"
+        id_id: "Indonesian"
+        is_is: "Icelandic"
+        it_it: "Italian"
+        ja_jp: "Japanese"
+        kk_kz: "Kazakh"
+        ko_kr: "Korean"
+        lt_lt: "Lithuanian"
+        lv_lv: "Latvia"
+        ms_my: "Bahasa Melayu"
+        mt_mt: "Malta"
+        nb_no: "Norwegian (Bokmål)"
+        nl_nl: "Dutch"
+        nn_no: "Norwegian (Nynorsk)"
+        pl_pl: "Polish"
+        pt_br: "Portuguese (Brazilian)"
+        pt_pt: "Portuguese"
+        ro_ro: "Romanian"
+        ru_ru: "Russian"
+        sc_it: "Sardinian"
+        sco_gb: "Scots"
+        sk_sk: "Slovak"
+        sl_sl: "Slovenian"
+        sr_cs: "Serbian (Latin)"
+        sr_sp: "Serbian (Cyrillic)"
+        sv_se: "Swedish"
+        th_th: "Thai"
+        tl_ph: "Tagalog"
+        tr_tr: "Turkish"
+        uk_ua: "Ukrainian"
+        ur_in: "Urdu (Indian)"
+        ur_pk: "Urdu (Pakistani)"
+        vi_vn: "Vietnamese"
+        zh_cn: "Chinese (Simplified)"
+        zh_hk: "Chinese (Hong Kong)"
+        zh_mo: "Chinese (Macao)"
+        zh_tw: "Chinese (Traditional)"
+        synonyms: "Synonyms"
+      information:
+        header: "{type, select, anime {Anime} manga {Manga} other {}} Details"
+        type: "Jenis"
+        volumes: "Jumlah"
     franchise:
       roles:
         anime_adaptation: "Anime"
