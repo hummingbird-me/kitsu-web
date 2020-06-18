@@ -26,6 +26,19 @@ titles:
         trending: "Популарно {category} {type}"
         most-popular: "Најпопуларнији {category} {type}"
   not-found: "Није пронађено"
+  server-error: "Серверска грешка"
+  users:
+    index: "Профил Од {user}"
+    library: "{user} - ова Библиотека"
+    reviews: "{user} - ове Оцене"
+    reactions: "{user} - ове Реакције"
+    followers: "{user} - ови Пратиоци"
+    following: "Зспраћени Сте Од {user}"
+    groups: "{user} - ове Групе"
+    stats: "{user} - ове Статистике"
+  posts: "{user} - ове Објаве"
+  comments: "{user} - ови Коментари"
+  reviews: "{user} - ова Рецензија"
   notifications: "Обавештења"
   feedback:
     bugs: "Багови"
@@ -47,10 +60,15 @@ titles:
       dashboard:
         index: "Преглед Групе {group}"
         reports: "Пријаве Групе {group}"
+        tickets: "Тикети Групе {group}"
         members: "Чланови Групе {group}"
         leaders: "Лидери Групе {group}"
         settings: "Подешавања Групе {group}"
   group-invite: "Позиви За Групе"
+#head
+head:
+  users:
+    description: "{user} користи Кицу да прати свој напредак и подели њихова аниме и манга искуства."
 #header
 header:
   library: "Библиотека"
@@ -68,24 +86,267 @@ header:
     settings: "Подешавања"
     admin: "Админ"
     logout: "Одјавите Се"
+#page: about
+about:
+  header: "О Кицуу"
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Брзо ажурирање"
     filter:
+      all: "Све"
       anime: "Аниме"
+    empty:
+      html: "Медиј који сте додали или ажурирали у својој '<a' href={link}'>'библиотеци'</a>' ће се појавити овде како би сте брзо ажурирали његов прогрес."
+      discover: "Пронађен Медиј"
+    media:
+      complete: "Завршено"
+      unstarted: "Није Започето"
+      unit: "{type, select, anime {Еп. {num} {total, select, undefined {} other {од {total}}}} manga {Пог. {num} {total, select, null {} other {од{total}}}} other {}}"
+    overlay:
+      button:
+        update: "{type, select, anime {Еп.} manga {Пог.} other {}} {number}"
+        tooltip:
+          empty: "Ажурирајте Библиотеку"
+          content: "Креирајте пост и ажурирајте библиотеку"
+      discussion: "Прегледајте Дискусију"
+      edit: "Измените Запис У Библиотеци"
+      editor:
+        placeholder: "(Опционо) Поделите своје мисли o {type, select, anime {Епизоди} manga {Поглављу} other {}} {number}"
+  onboarding:
+    welcome: "Поздрав {user}, добродошли на Кицу!"
+    about: "Ово је глобални зид активности. На њему су сви Кицуови корисници укључујући и тебе! Чим почнете да пратите више занимљивих корисника, променићемо га на зида са само корисницима које пратите."
+    action: "Жашто се не преставите користећи форму испод? Можете написати нешто просто као 'Здраво свима, ја сам нов на Кицуу', или нам можете показати колико сте креативни и духовити!"
+  groups:
+    header: "Моје Групе"
+  announcements:
+    button: "Сазнајте Више"
   feed:
     anime: "Аниме"
+    global: "Глобално"
 #page: anime/manga
 media:
+  index:
+    search: "Претражите по наслову, лику, или улози…"
+    filter: "Филтер"
+    remove: "Уклони"
+    filters:
+      year: "Година"
+      score: "Просечна Оцена"
+      seasons: "Сезоне"
+      streamers: "Стримери (САД)"
+      rating: "Рејтинг"
+      categories: "Категорије"
+      types: "Типови"
+    sort:
+      popularity: "Популарност"
+      date: "Датум"
+      recent: "Недавно Додато"
+  none: "Нема Резултата."
   show:
+    navigation:
+      summary: "Резиме"
+    sidebar:
+      watch: "Погледајте Онлајн"
+    summary:
+      ratings:
+        community: "{rating}% Одобрење Заједнице"
+        match: "{rating}% Се Слажу"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Ранг #{rank} (Најпопуларнији Аниме)} manga {Ранг #{rank} (Најпопуларнија Манга)} other {}}"
+          rating: "{type, select, anime {Ранг #{rank} (Најбоље Оцењен Аниме)} manga {Ранг #{rank} (Најбоље Оцењена Манга)}other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank}-и Најпопуларнији} manga {#{rank}-а Најпопуларнија} other {}}"
+          rating: "{type, select, anime {#{rank}-и Најбоље Оцењен} manga {#{rank}-а Најбоље Оцењена} other {}}"
+      relationships:
+        header: "Још од ове Серије"
+        more: "Погледајте све у {title}"
+      reactions:
+        more: "Прикажи Више Реакција"
+        sorts:
+          -upVotesCount: "Популарно"
+          -createdAt: "Скорашње"
+        new: "Нове Реакције"
+        edit: "Моја Реакција"
+        empty: "Изгледа да још нико није реаговао на ово"
+      characters:
+        more: "Погледај све ликове"
+      titles:
+        header: "Алтернативни Називи"
+        af_za: "Afrički"
+        ar: "Арапски"
+        bg_bg: "Бугарски"
+        bn_bd: "Бенгалски"
+        ca_es: "Каталонски"
+        cs_cz: "Чешки"
+        cy_gb: "Велшки"
+        da_dk: "Дански"
+        de_de: "Немачки"
+        el_gr: "Грчки"
+        en: "Енглески"
+        en_au: "Енглески (Аустралија)"
+        en_ca: "Енглески (Канада)"
+        en_cn: "Кинески (Пинјин)"
+        en_gb: "Енглески (Британија)"
+        en_il: "Хебрејски (Романизиран)"
+        en_jp: "Јапански (Ромаџи)"
+        en_th: "Тајландски (Романизиран)"
+        en_us: "Енглески (САД)"
+        es_es: "Шпански"
+        et_ee: "Естонски"
+        fa_ir: "Персијски"
+        fi_fi: "Фински"
+        fr_ca: "Француски (Канада)"
+        fr_fr: "Француски"
+        ga_ie: "Ирски"
+        he_il: "Хебрејски"
+        hi_in: "Хинди"
+        hr_hr: "Хрватски"
+        hu_hu: "Мађарски"
+        id_id: "Индонежански"
+        is_is: "Исландски"
+        it_it: "Италијански"
+        ja_jp: "Јапански"
+        kk_kz: "Казашки"
+        ko_kr: "Корејски"
+        lt_lt: "Литвански"
+        lv_lv: "Летонски"
+        ms_my: "Малајски"
+        mt_mt: "Малтешки"
+        nb_no: "Норвешки (Букмол)"
+        nl_nl: "Холандски"
+        nn_no: "Норвешки (Ниношк)"
+        pl_pl: "Пољски"
+        pt_br: "Португалски (Бразилски)"
+        pt_pt: "Португалски"
+        ro_ro: "Румунски"
+        ru_ru: "Руски"
+        sc_it: "Сардински"
+        sco_gb: "Шкотски"
+        sk_sk: "Словачки"
+        sl_sl: "Словеначки"
+        sr_cs: "Српски (Латиница)"
+        sr_sp: "Српски (Ћирилица)"
+        sv_se: "Шведски"
+        th_th: "Тајландски"
+        tl_ph: "Филипино"
+        tr_tr: "Турски"
+        uk_ua: "Украјински"
+        ur_in: "Урду (Индиски)"
+        ur_pk: "Урду (Пакистански)"
+        vi_vn: "Вијетнамски"
+        zh_cn: "Кинески (Поједностављени)"
+        zh_hk: "Кинески (Хонг Конг)"
+        zh_mo: "Кинески (Макао)"
+        zh_tw: "Кинески (Традиционални)"
+        synonyms: "Синоними"
+      information:
+        header: "{type, select, anime {Аниме} manga {Манга} other {}} Детаљи"
+        type: "Врста"
+        volumes: "Књига"
+        start: "{type, select,anime {Емитован} manga {Објављена} other {}}"
+        status: "Стање"
+        tba: "Очекивано"
+        season: "Сезона"
+        producers: "Произвођачи"
+        licensors: "Даваоци Лиценце"
+        studios: "Студио"
+        serialization: "Серијализација"
+        duration: "Дужина"
+        total: "{total} тотално"
+        length: "{count, plural, =1 {{length} минута} other {{length} минута свака}}"
+        expand:
+          false: "Више информација"
+          true: "Мање Информација"
+      feed:
+        header: "Зид Заједнице"
+      trailer: "Пусти Трајлер"
+    units:
+      unit: "{type, select, episode {Епизода} chapter {Поглавље} other {}}"
+      back: "Назад на {type, select, episode {епизода} chapter {поглавље} other {}} листа"
+      pages: "{length} Страна"
+      date: "{type, select, episode {Емитована} chapter {Објављен} other {}}"
+      completed: "{type, select, episode {Одгледано} chapter {Прочитано} other {Завршено}}"
+      feed:
+        header: "{type, select, episode {Епизода} chapter {Поглавље} other {}} Дискусија"
+    characters:
+      header: "{title} Ликови"
     franchise:
       roles:
         anime_adaptation: "Аниме"
 #components
 components:
+  stream-feed:
+    follow:
+      delete: "Избриши Активност"
+    library:
+      delete: "обриши"
+      deleting: "брисање…"
+    post:
+      pinned: "Закачена Објава"
+      edited: "измењено"
+      gate:
+        spoiler-nsfw: "Ова објава садржи спојлере и експлицитан садржај."
+        nsfw: "Ова објава садрзи експлицитан садржај."
+        spoiler: "Ова објава садржи спојлере."
+        hover:
+          nsfw: "Моје тело је спремно!"
+          spoiler: "Могу да поднесем истину!"
+      link: "Копирај Линк у Објаву"
+      unfollow: "Одпрати Објаву"
+      follow: "Прати Објаву"
+      show: "Прикажи Садржај Објаве"
+      hide: "Сакри Садржај Објаве"
+      delete: "Обриши Објаву"
+      unpin: "Одкачи Објаву са Профила"
+      pin: "Окачи Објаву на Профил"
+      pin-text: "Да ли желите да окачите ову објаву на ваш профил?"
+      report: "Пријави Објаву"
+      comment-count: "{count} од {total}"
+      comment:
+        deleting: "Брисање Коментара…"
+        reply: "Одговори"
+        copy-link: "Копирај линк у коментар"
+        edit: "Уреди Коментар"
+        delete: "Обриши Коментар"
+        report: "Пријави Коментар"
+        previous-replies: "Прикажи Претходне Одговоре"
+        add-reply: "Додај одговор…"
+      comments:
+        all: "Погледај Све Коментаре"
+        parent: "Прикажи Матични Коментар"
+        previous-comments: "Прикажи Претходни Коментар"
+        leave-comment: "Остави коментар…"
+    review:
+      by: "Проверио"
+      spoiler: "Овај преглед садржи спојлере."
+      share:
+        twitter: "Твитуј"
+        facebook: "Подели"
+      copy-link: "Копирај линк у Рецензију"
+      show: "Погледај Садржај Рецензије"
+      hide: "Сакри Садржај Рецензије"
+      edit: "Измени Рецензију"
+      delete: "Обриши Рецензију"
+      report: "Пријави Рецензију"
   users:
+    ban:
+      title: "Јесте ли сигирни да желите да банујете овог корисника?"
+      text: "Они могу приступити библиотеци, али не могу да објављују, коментаришу или реагују."
+    delete-user-content:
+      title: "Обриши Садржај од {user}"
+      checkbox:
+        posts: "Објаве"
+        comments: "Коментари"
+      delete: "Обриши"
+    block: "Блокирај @{user}"
+    you: "Хеј, то си ти!"
     favorites:
+      title: "Омиљени {type, select, series {Серије} characters {Ликови} other {}}"
       anime: "Аниме"
+      more: "Прикажи Више"
+      edit: "Измени омиљене {type, select, anime {аниме} manga {манга} characters {ликове} other {}}"
 #page: users
 users:
   edit-modal:
