@@ -1,17 +1,116 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "גלה אנימות"
+  manga:
+    index: "גלה מנגות"
+  users:
+    followers: "עוקבים של משתמש {user}"
+    following: "נעקב על ידי {user}"
 #header
 header:
+  library: "ספרייה"
   anime: "אנימה"
+  manga: "מנגה"
+  user:
+    settings: "הגדרות"
+    logout: "יציאה"
+#page: about
+about:
+  header: "על KITSU"
 #page: dashboard
 dashboard:
   quick-update:
     filter:
+      all: "הכל"
       anime: "אנימה"
+    media:
+      complete: "גמור"
+      unstarted: "לא הותחל"
+    overlay:
+      button:
+        tooltip:
+          empty: "עדכון הספרייה"
+          content: "תצירת פוסט ועדכון ספרייה"
+      discussion: "ראה דיון"
+      edit: "ערוך סטטוס ספרייה"
+  onboarding:
+    welcome: "שלום {user}, ברוכה הבאה לKITSU!"
+  groups:
+    header: "הקבוצות שלי"
+  announcements:
+    button: "למידע נוסף"
   feed:
     anime: "אנימה"
+    global: "גלובלי"
 #page: anime/manga
 media:
+  index:
+    search: "חפש לפי כותרת, דמות או או צוות משתתפים…"
+    filter: "סינון"
+    remove: "הסר"
+    filters:
+      year: "שנה"
+      score: "דירוג ממוצע"
+      seasons: "עונות"
+      rating: "דירוג"
+      categories: "קטגוריות"
+      types: "סוגים"
+    sort:
+      popularity: "פופולאריות"
+      date: "תאריך"
+      recent: "נוסף לאחרונה"
+  none: "אין תוצאות."
   show:
+    navigation:
+      summary: "תקציר"
+    sidebar:
+      watch: "תצפה אונלין"
+    summary:
+      ratings:
+        community: "{rating}% אישור מהקהילה"
+      reactions:
+        sorts:
+          -upVotesCount: "פופולרי"
+      titles:
+        fr_fr: "צרפתית"
+        ga_ie: "אירית"
+        he_il: "עברית"
+        hi_in: "הינדית"
+        hr_hr: "קרואטית"
+        hu_hu: "הונגרית"
+        id_id: "אינדונזית"
+        is_is: "איסלנדית"
+        it_it: "איטלקית"
+        ja_jp: "יפנית"
+        kk_kz: "קזחית"
+        ko_kr: "קוריאנית"
+        lt_lt: "ליטאית"
+        lv_lv: "לטבית"
+        ms_my: "מָלָאִית"
+        mt_mt: "מלטזית"
+        nl_nl: "הולנדית"
+        pl_pl: "פולנית"
+        pt_br: "פורטוגזית (ברזילאית)"
+        pt_pt: "פורטוגזית"
+        ro_ro: "רומנית"
+        ru_ru: "רוסית"
+        sc_it: "סרדו"
+        sco_gb: "סקוטית"
+        sk_sk: "סלובקית"
+        sl_sl: "סלובנית"
+        sr_cs: "סרבית (לטינית)"
+        sr_sp: "סרבית (קירילית)"
+        sv_se: "שוודית"
+        th_th: "תאילנדית"
+        tl_ph: "טגלוגית"
+        tr_tr: "טורקית"
+        uk_ua: "אוקראינית"
+        ur_pk: "אורדו (פקיסטנית)"
+      information:
+        type: "סוג"
+        volumes: "ספרים"
     franchise:
       roles:
         anime_adaptation: "אנימה"
