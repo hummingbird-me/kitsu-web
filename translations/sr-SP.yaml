@@ -1,7 +1,73 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Истражите Аниме"
+  manga:
+    index: "Истражите Мангу"
+  media:
+    show:
+      units: "{type, select,anime {Епизоде} manga {Поглавља} other {}}"
+      characters: "Ликови"
+      reactions: "Реакције"
+      franchise: "Франшиза"
+  explore:
+    index: "Истражи {mediaType, select, anime {Аниме} manga {Мангу} other {}}"
+    more:
+      trending: "Популарни {type, select, other {}} Ове Недеље"
+      top-current: "Најпопуларнији {type, select, Anime {Тренутно Емитовани Аниме} Manga {Тренутно Издавана Манга} other {}\n} {type}"
+      top-upcoming: "Најбољи Надолазећи {type}"
+      highest-rated: "Најбоље Оцењени {type}"
+      most-popular: "Најпопуларнији {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Најновији {category} {type}"
+        trending: "Популарно {category} {type}"
+        most-popular: "Најпопуларнији {category} {type}"
+  not-found: "Није пронађено"
+  notifications: "Обавештења"
+  feedback:
+    bugs: "Багови"
+    feature-requests: "Затражи Нову Функцију"
+    database-requests: "Захтеви За Базу Података"
+    mobile-bugs: "Багови На Телефонима"
+    mobile-features: "Функције На Телефону"
+  admin:
+    index: "Админ"
+    reports: "Пријаве"
+  groups:
+    index: "Групе"
+    new: "Направите Групу"
+    group:
+      group-page:
+        rules: "{group} Правила"
+        members: "Чланови Групе {group}"
+        leaders: "Лидери Групе {group}"
+      dashboard:
+        index: "Преглед Групе {group}"
+        reports: "Пријаве Групе {group}"
+        members: "Чланови Групе {group}"
+        leaders: "Лидери Групе {group}"
+        settings: "Подешавања Групе {group}"
+  group-invite: "Позиви За Групе"
 #header
 header:
+  library: "Библиотека"
   anime: "Аниме"
+  manga: "Манга"
+  trending: "Популарно"
+  groups: "Групе"
+  feedback: "Повратне Информације"
+  browse: "Претражите"
+  auth:
+    sign-in: "Пријавите се"
+    sign-up: "Региструјте се"
+  user:
+    profile: "Погледај Профил"
+    settings: "Подешавања"
+    admin: "Админ"
+    logout: "Одјавите Се"
 #page: dashboard
 dashboard:
   quick-update:
