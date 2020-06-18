@@ -1,4 +1,53 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Khám phá Anime"
+  manga:
+    index: "Khám phá Manga"
+  media:
+    show:
+      units: "{type, select, anime {Tập} manga {Chương} other {}}"
+      characters: "Nhân vật"
+  explore:
+    index: "Khám phá {mediaType, select, anime {Anime} manga {Manga} other {}}"
+    more:
+      trending: "Xu hương {type, select, other {}} tuần này"
+      top-current: "Top {type} {type, select, Anime {đang phát sóng} Manga {đang xuất bản} other {}}"
+      top-upcoming: "Top {type} sắp ra mắt"
+      highest-rated: "{type} được đánh giá cao nhất"
+      most-popular: "{type} phổ biến nhất"
+    category:
+      index: "{type} {category}"
+      more:
+        newly-released: "{type} {category} mới ra mắt"
+  not-found: "Không tìm thấy"
+  server-error: "Lỗi Server"
+  users:
+    index: "Trang cá nhân của {user}"
+    library: "Thư viện của {user}"
+    reviews: "Bài đánh giá của {user}"
+    reactions: "Phản ứng của {user}"
+    followers: "Người theo dõi {user}"
+    following: "Được {user} theo dõi"
+    groups: "Nhóm của {user}"
+    stats: "Thống kê của {user}"
+  posts: "Bài viết bởi {user}"
+  comments: "Bình luận bởi {user}"
+  reviews: "Bài đánh giá bởi {user}"
+  notifications: "Thông báo"
+  feedback:
+    bugs: "Báo lỗi"
+    feature-requests: "Gợi ý tính năng mới"
+    database-requests: "Gợi ý thêm vào cơ sở dữ liệu"
+    mobile-bugs: "Báo lỗi trên điện thoại"
+    mobile-features: "Tính năng cho điện thoại"
+  admin:
+    index: "Admin"
+    reports: "Báo cáo"
+  groups:
+    index: "Nhóm"
+    new: "Tạo một nhóm"
 #header
 header:
   anime: "Anime"
