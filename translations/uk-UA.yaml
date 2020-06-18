@@ -185,20 +185,33 @@ media:
         more: "Переглянути всіх персонажів"
       titles:
         header: "Альтернативні назви"
+        af_za: "Африкаанс"
         ar: "Арабська"
+        bg_bg: "Болгарська"
+        bn_bd: "Бенгальська"
+        ca_es: "Каталонська"
         cs_cz: "Чеська"
+        cy_gb: "Валлійська"
         da_dk: "Данська"
         de_de: "Німецька"
         el_gr: "Грецька"
         en: "Англійська"
+        en_au: "Англійська (Австралійська)"
+        en_ca: "Англійська (Канадська)"
         en_cn: "Китайська (піньїнь)"
+        en_gb: "Англійська (Великобританія)"
         en_il: "Іврит (латиниця)"
         en_jp: "Японська (ромаджі)"
         en_kr: "Корейська (ромаджа)"
         en_th: "Тайська (латиниця)"
+        en_us: "Англійська (американська)"
         es_es: "Іспанська"
+        et_ee: "Естонська"
+        fa_ir: "Перська"
         fi_fi: "Фінська"
+        fr_ca: "Французька (канадська)"
         fr_fr: "Французька"
+        ga_ie: "Ірландська"
         he_il: "Іврит"
         hi_in: "Гінді"
         hr_hr: "Хорватська"
@@ -207,19 +220,33 @@ media:
         is_is: "Ісландська"
         it_it: "Італійська"
         ja_jp: "Японська"
+        kk_kz: "Казахська"
         ko_kr: "Корейська"
+        lt_lt: "Литовська"
         lv_lv: "Латвійська"
         ms_my: "Малайська"
+        mt_mt: "Мальтійська"
+        nb_no: "Норвезька (Букмол)"
         nl_nl: "Нідерландська"
+        nn_no: "Норвезька (Нюнорськ)"
         pl_pl: "Польська"
         pt_br: "Португальська (бразильська)"
         pt_pt: "Португальська"
+        ro_ro: "Румунська"
         ru_ru: "Російська"
+        sc_it: "Сардинська"
+        sco_gb: "Шотландська"
+        sk_sk: "Словацька"
+        sl_sl: "Словенська"
+        sr_cs: "Сербська (латиниця)"
+        sr_sp: "Сербська (кирилиця)"
         sv_se: "Шведська"
         th_th: "Тайська"
         tl_ph: "Тагальська"
         tr_tr: "Турецька"
         uk_ua: "Українська"
+        ur_in: "Урду (Індія)"
+        ur_pk: "Урду (Пакистан)"
         vi_vn: "В’єтнамська"
         zh_cn: "Китайська (спрощена)"
         zh_hk: "Китайська (Гонконг)"
@@ -235,12 +262,40 @@ media:
         tba: "Очікується"
         season: "Сезон"
         producers: "Продюсеры"
+        licensors: "Ліцензори"
         studios: "Студії"
+        serialization: "Серіалізація"
+        duration: "Тривалість"
         total: "{total} всього"
+        length: "{count, plural, one {} few {{length} Хвилин кожен} many {{length} Хвилин кожен} =1 {{length} Хвилини} other {{length} Хвилин кожен}}"
+        rating: "Рейтинг"
+        expand:
+          false: "Детальніше"
+          true: "Менше Iнформації"
+      feed:
+        header: "Канал спільноти"
+      trailer: "Глянути трейлер"
+    units:
+      pages: "{length} Сторінок"
+    characters:
+      header: "{title} Перонажі"
+      sub-header: "{type, select, anime {Наступний список є списком персонажів та {language} акторів, що їх озвучили для аніме {title}} manga {Наступний список є списком персонажів з манги {title}} other {}}"
     reactions:
+      loading: "Завантаження реакцій…"
       delete: "Видалити реакцію"
+      report: "Звіт про реакцію"
+      copy: "Скопіювати Посилання на реакцію"
     franchise:
+      header: "{title} Франшиза"
       roles:
+        sequel: "Сиквел"
+        prequel: "Приквел"
+        alternative_setting: "Альт. сеттінг"
+        side_story: "Побічна історія"
+        parent_story: "Батьківська історія"
+        summary: "Резюме"
+        full_story: "Повна історія"
+        spinoff: "Спін-офф"
         adaptation: "Адаптація"
         anime_adaptation: "Аніме"
         manga_adaptation: "Манґа"
@@ -249,31 +304,175 @@ media:
   hide-posts:
     text: "Приховати дописи про {media}"
     info: "Дописи не з’являтимуться у вашій стрічці слідування або у стрічці {type, select, anime {аніме} manga {манґи} other {}}"
+  show-posts:
+    text: "Показати повідомлення про {media}"
 #components
 components:
+  admin:
+    reports:
+      not-set: "Не встановлено"
+      actions:
+        closed: "Відмітити завершеним"
+      table:
+        type: "Тип"
+        reason: "Причина"
+        explanation: "Пояснення"
+        moderator: "Модератор"
+        status: "Статус"
+  application:
+    nav-search: "Пошук в Кітсу"
   episodes:
     shortcut-bar:
       episode-number: "ЕП {number}"
+    fast-forward: "Прогрес бібліотеки швидко перемотати на епізод {number}!"
+    undo-update: "Відмінити"
+    update-progress: "Оновити прогрес бібліотеки до епізоду {number}?"
+    watched: "Позначити всі переглянутими"
+    join-prompt:
+      pitch: "Відстежуйте ваш прогрес та приєднайтеся до обговорення!"
+      register: "Створити обліковий запис Kitsu"
+  search:
+    header: "Результати пошуку"
+    view: "детальніше"
+    load: "завантажити ще"
+    none: "немає результатів"
+  sidebar-footer:
+    contact: "Контакти"
+    terms: "Умови"
+  stream-feed:
+    create-post:
+      spoiler: "Спойлер"
+      tag-media: "Введіть тут тег для шоу або манги"
+    edit-post:
+      header: "Редагувати допис"
+      error:
+        tagged: "На жаль, ми не можемо дозволити вам редагувати медіа з уже заданими мітками."
+    follow:
+      followed: "слідують"
+      delete: "Видалити діяльність"
+    library:
+      delete: "видалити"
+      deleting: "видалення…"
+    post:
+      pinned: "Закріплена публікація"
+      edited: "відредаговано"
+      gate:
+        spoiler-nsfw: "Містить спойлери та матеріал \"Не для сторонніх очей\"."
+        nsfw: "У цьому повідомленні присутній вміст \"Не для сторонніх очей\"."
+    review:
+      by: "Рецензія від"
+  users:
+    delete-user-content:
+      checkbox:
+        reactions: "Реакції"
+    you: "Гей, це ви!"
+    favorites:
+      anime: "Аніме"
+      manga: "Манга"
+      more: "Показати більше"
+      edit: "Редагувати списки улюблених {type, select, anime {Аніме} manga {Манги} characters {Персонажів} other {}}"
+      empty:
+        yours: "Ваш список улюблених {type, select, anime {Аніме} manga {Манги} characters {Персонажів} other {}} пустий!"
+        others: "У користувача немає уподобань"
+    alt-name:
+      title: "Можливі альтернативні облікові записи {user}"
+      none: "Альтернатив не знайдено"
+    past-name:
+      title: "Попередні імена"
+      none: "Немає попередніх імен"
 #page: users
 users:
+  admin:
+    button: "Адмін"
+    past-names: "Переглянути минулі імена"
+    alt-accounts: "Переглянути альтернативні акаунти"
   navigation:
+    activity: "Активність"
+    library: "Бібліотека"
+    reviews: "Відгуки"
+    reactions: "Реакції"
+    followers: "Послідовники"
     following: "Слідування"
+    groups: "Групи"
+  edit-modal:
+    cover: "Змінити вашу обкладинку"
+    navigation:
+      about: "Про мене"
+    favorites:
+      anime: "Аніме"
+      manga: "Манга"
+      characters: "Персонажі"
+  library:
+    sorting:
+      options:
+        rating: "Рейтинг"
+    list:
+      unstarted: "Непочате"
+      table-header:
+        rating: "Рейтинг"
+        volumes: "Томи"
   hide-posts:
     info: "Дописи не з’являтимуться у вашій стрічці слідування"
 #page: settings
 settings:
   navigation:
     header: "Налаштування"
+  imports:
+    status: "Статус:"
   index:
     adult-message: "Якщо вміст для дорослих приховано, ви не побачите вміст з рейтингом 18+ у стрічці, бібліотеках чи пошуку."
+#page: feedback
+feedback:
+  features: "Запити щодо функціональності"
+  database: "Запити щодо бази даних"
+  mobile-bugs: "Мобільні вади"
+  mobile-features: "Мобільний функціонал"
 #page: groups
 groups:
+  index:
+    create-btn: "Створити групу"
+  create:
+    header: "Створити групу"
   hide-posts:
     info: "Дописи не з’являтимуться у вашій стрічці слідування"
   dashboard:
     navigation:
+      reports: "Звіти"
       settings: "Налаштування"
+    overview:
+      help-desk:
+        reports: "Звіти"
+    members:
+      members:
+        remove: "Видалити"
+#page: group-invite
+group-invite:
+  header: "Запрошення до групи"
+#page: explore
+explore:
+  widget:
+    categories: "Категорії"
+#shared: media
+media-shared:
+  types:
+    anime:
+      All: "Все"
+    manga:
+      All: "Все"
+      manga: "Манга"
 #component: kitsu-feed
 feeds:
   filter:
     following: "Відстежувана активність"
+  review:
+    author: "Рецензія від {user}"
+#component: modals/media-reaction
+reaction-modal:
+  delete: "Видалити реакцію"
+#component: library-entry/*
+library-entry:
+  state:
+    edit-library: "Редагувати запис бібліотеки"
+admin:
+  links:
+    index: "Звіти"
