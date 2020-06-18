@@ -43,6 +43,7 @@ titles:
   feedback:
     bugs: "Probleme"
     feature-requests: "Solicită Caracteristici"
+    database-requests: "Solicitari Baza de date"
     mobile-bugs: "Eroare Mobila"
     mobile-features: "Caracteristici Mobile"
   admin:
@@ -57,6 +58,7 @@ titles:
         members: "{group} Membrii"
         leaders: "{group} Lideri"
       dashboard:
+        index: "{group} Prezentare generală"
         reports: "{group} Rapoarte"
         tickets: "{group} Bilete"
         members: "{group} Membrii"
@@ -84,6 +86,10 @@ header:
     settings: "Setări"
     admin: "Administrator"
     logout: "Deconectează-te"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Hai sa alegem nist informati de baza} 1 {Foarte bine- Email-ul e urmatorul!} 2 {Arata bine, cum ar fi o parola?} 3 {Perfect- Hai sa creeam acest cont} other {}}"
 #page: about
 about:
   header: "Despre Kitsu"
@@ -95,6 +101,9 @@ dashboard:
       all: "Tot"
       anime: "Anime"
       manga: "Manga"
+    empty:
+      html: "Lucrurile pe care le-ai adăugat sau actualizat în '<a' href={link}'>'Bibliotecă'</a>' vor apărea aici ca să le poți actualiza mai rapid."
+      discover: "Descopera"
     media:
       complete: "Finalizat"
       unstarted: "Neînceput"
@@ -103,15 +112,37 @@ dashboard:
       button:
         update: "{type, select, anime {Ep.} manga {Ch.} other {}} {number}"
         complete: "Finalizat"
+        tooltip:
+          empty: "Actualizeaza Biblioteca"
+          content: "Creeaza postari si actualizeaza biblioteca"
       discussion: "Vezi Discuția"
+      edit: "Editeaza Biblioteca"
       popout: "Editor Pop-out"
   onboarding:
     welcome: "Buna {user}, bine ai venit la Kitsu!"
+    about: "Acesta este fluxul global de activitate. Este populat de activitatea recentă a tuturor utilizatorilor Kitsu, chiar şi de tine! O dată ce ai avut șansa de a urmări câțiva utilizatori mai interesanți, îți vom schimba fluxul implicit de la Global la Urmăriri."
+    action: "De ce nu încerci să creezi o postare în flux pentru a te prezenta folosind formularul de mai jos? Poți spune ceva la fel de simplu ca 'Salutare tuturor, sunt nou în Kitsu' sau ne poți arăta cât de creativ și de isteț ești!"
+  groups:
+    header: "Grupurile Mele"
+  announcements:
+    button: "Mai Mult"
   feed:
     anime: "Anime"
+    global: "Global"
 #page: anime/manga
 media:
   index:
+    search: "Căutare după titlu, caracter sau distribuție…"
+    filter: "Filtrare"
+    remove: "Elimină"
+    filters:
+      year: "An"
+      score: "Evaluare Medie"
+      seasons: "Sezoane"
+      streamers: "Fluxuri (U.S.)"
+      rating: "Evaluare"
+      categories: "Categorii"
+      types: "Tipuri"
     sort:
       popularity: "Popularitate"
       rating: "Evaluare Medie"
@@ -123,6 +154,43 @@ media:
       summary: "Rezumat"
       units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
       characters: "Personaje"
+      reactions: "Reactii"
+    sidebar:
+      watch: "Urmărește Online"
+    summary:
+      ratings:
+        community: "{rating}% Aprobare Comunitate"
+        match: "{rating}% Potrivire"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Locul #{rank} (Cel Mai Popular Anime)} manga {Locul #{rank} (Cea Mai Populară Manga)} other {}}"
+          rating: "{type, select, anime {Locul #{rank} (Cel Mai Cotat Anime)} manga {Locul #{rank} (Cea Mai Cotată Manga)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} Cel Mai Popular} manga {#{rank} Cel Mai Popular} other {}}"
+          rating: "{type, select, anime {#{rank} Cel Mai Cotat} manga {#{rank} Cel Mai Cotat} other {}}"
+      relationships:
+        header: "Mai Multe din Această Serie"
+        more: "Vezi toate în {title}"
+      reactions:
+        more: "Vezi mai Multe Reacții"
+        sorts:
+          -upVotesCount: "Popular"
+          -createdAt: "Recente"
+        new: "Reacție Nouă"
+        edit: "Reacția Mea"
+        empty: "Nu pare că cineva a reacționat la asta încă"
+      characters:
+        more: "Vezi toate caracterele"
+      titles:
+        header: "Titluri Alternative"
+        af_za: "Afrikaans"
+        ar: "Arabă"
+        bg_bg: "Bulgară"
+        bn_bd: "Bengaleză"
+        ca_es: "Catalană"
+        cs_cz: "Cehă"
+        cy_gb: "Galeză"
+        da_dk: "Daneză"
     franchise:
       roles:
         anime_adaptation: "Anime"
