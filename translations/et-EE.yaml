@@ -38,9 +38,12 @@ titles:
   posts: "Postitus kasutajalt {user}"
   comments: "Kommentaar kasutajalt {user}"
   reviews: "Arvustus kasutajalt {user}"
+  notifications: "Teavitused"
   feedback:
+    bugs: "Vigade teavitus"
     feature-requests: "Soovitud lisad"
     database-requests: "Andmebaasi taotlused"
+    mobile-bugs: "Mobiili vigade teavitus"
     mobile-features: "Mobiili soovitud lisad"
   admin:
     index: "Admin"
@@ -105,9 +108,11 @@ dashboard:
       unstarted: "Pole alustanud"
     overlay:
       button:
+        update: "{type, select, anime {Ep.} manga {Ptk.} other {}} {number}"
         complete: "Valmis"
         tooltip:
           empty: "Uuenda kogumikku"
+          content: "Loo postitus ja uuenda kogumikku"
       discussion: "Vaata arutelu"
       edit: "Redigeeri kogumiku liiget"
       popout: "Hõljuv tekstiredaktor"
@@ -158,6 +163,9 @@ media:
       ratings:
         community: "{rating}% kogukonna hinnang"
         match: "{rating}% vastavus"
+      ranking:
+        short:
+          popularity: "{type, select, anime {#{rank} Kõige Populaarsem} manga {#{rank} Kõige Populaarsem} other {}}"
       categories: "Kategooriad"
       relationships:
         header: "Rohkem sellest seeriast"
@@ -268,8 +276,13 @@ media:
         header: "Kogukonna voog"
       trailer: "Vaata treilerit"
     units:
+      unit: "{type, select, episode {Episood} chapter {Peatükk} other {}}"
       back: "Tagasi {type, select, episode {episoodi }chapter {peatüki }other {}}loendisse"
       pages: "{length} lehte"
+      date: "{type, select, episode {Eetris olnud} chapter {Avaldatud} other {}}"
+      completed: "{type, select, episode {Vaadatud} chapter {Loetud} other {Lõpetatud}}"
+      feed:
+        header: "{type, select, episode {Episoodi} chapter {Peatüki} other {}} Arutelu"
     characters:
       header: "{title} tegelased"
     reactions:
@@ -294,8 +307,13 @@ media:
         manga_adaptation: "Manga"
         character: "Tegelane"
         other: "Muu"
+  hide-posts:
+    text: "Peida postitused {media} kohta"
+  show-posts:
+    text: "Peida postitused {media} kohta"
 #components
 components:
+  ad-unit: "Reklaamid on nõmedad, aga tänu nendele me saame edasi töötada. Palun lisage sait reklaamide blokeerija valgesse nimekirja."
   admin:
     reports:
       no-explanation: "Selgitus puudub."
@@ -310,12 +328,18 @@ components:
         type: "Tüüp"
         reason: "Põhjus"
         explanation: "Selgitus"
+        moderator: "Moderaator"
         status: "Staatus"
         actions: "Tegevused"
+  application:
+    nav-search: "Otsi Kitsu's"
   episodes:
     shortcut-bar:
       episode-number: "EP {number}"
     undo-update: "Võta tagasi"
+    watched: "Märgi Vaadatuks"
+    join-prompt:
+      register: "Loo Kitsu Konto"
   likeable-resource:
     loading: "Laadimine…"
     more: "Lae veel"
@@ -333,18 +357,28 @@ components:
       create: "Postita"
       nsfw: "18+"
       spoiler: "Spoiler"
+    edit-post:
+      header: "Muuda postitust"
+    follow:
+      delete: "Kustuta hiljutine tegevus"
     library:
       delete: "kustuta"
     post:
+      edited: "redigeeritud"
       gate:
         hover:
           nsfw: "Ma olen valmis!"
+      delete: "Kustuta postitus"
       pin: "Kinnita see Postitudus Profiilile"
+      pin-text: "Oled sa kindel, et tahad kinnitada selle postituse oma profiilile?"
       comment:
         reply: "Vasta"
         edit: "Muuda kommentaari"
         delete: "Kustuta kommentaar"
         report: "Teata sobimatust kommentaarist"
+      comments:
+        all: "Vaata kõiki kommentaare"
+        leave-comment: "Jäta kommentaar…"
     review:
       share:
         facebook: "Jaga"
@@ -352,6 +386,7 @@ components:
   users:
     delete-user-content:
       checkbox:
+        posts: "Postitused"
         comments: "Kommentaarid"
         reactions: "Reaktsioonid"
       delete: "Kustuta"
@@ -372,10 +407,48 @@ users:
     followers: "Jälgijad"
   edit-modal:
     navigation:
+      about: "Minust"
       favorites: "Lemmikud"
+    about:
+      location:
+        label: "Asukoht"
+        placeholder: "Kus sa elad?"
+      birthday: "Sünnipäev"
+      gender:
+        label: "Sugu"
+        options:
+          secret: "See on saladus"
+          male: "Mees"
+          female: "Naine"
+          custom: "Kohanda"
+      waifu:
+        label: "Waifu"
+        placeholder: "Waifu/Husbando"
+        divorce: "lahuta"
+      bio:
+        placeholder: "Räägi maailmale oma lugu."
+    profile-links:
+      remove: "Eemalda see profiililt"
+      sites:
+        instagram:
+          placeholder: "Sinu Instagram'i kasutajanimi"
+        twitch:
+          placeholder: "Sinu Twitch'i kasutajanimi"
     favorites:
       anime: "Anime"
+  activity:
+    about:
+      gender:
+        label: "Sugu:"
+      location: "Asukoht:"
+      birthday: "Sünnipäev:"
+      joined: "Liitumise kuupäev:"
+    stats:
+      headings:
+        anime: "Anime statistika"
+        manga: "Manga statistika"
   library:
+    search: "Otsi {name} Kogust…"
     sorting:
       label: "Sorteeri:"
       options:
@@ -409,11 +482,21 @@ users:
         length:
           desc: "Pikim esimesena"
           asc: "Lühim esimesena"
+    sidebar:
+      issues:
+        fix: "paranda"
     list:
+      list-edit: "Muuda"
+      more: "Rohkem"
+      unrated: "Hinnang puudub"
       table-header:
         rating: "Hinnang"
     edit:
       rating: "Hinnang"
+      privacy: "Privaatsus"
+      started: "Alustatud"
+      finished: "Lõpetatud"
+      remove: "Eemalda kogust"
   groups:
     sort:
       newest: "Hiljuti liitunud"
@@ -424,22 +507,41 @@ users:
       new: "Uus"
 #page: settings
 settings:
+  navigation:
+    profile: "Profiil"
+    blocking: "Blokeerimine"
   exports:
     logs:
       header:
         rating: "Hinnang"
   index:
     rating: "Hinnangu tüüp"
+  linked-accounts:
+    disconnect: "Ühenda Facebookist lahti"
+    connect: "Ühenda Facebookiga"
+  notifications:
+    contexts:
+      mobile: "Mobiil"
+    newsletter:
+      newsletter: "Uudiskiri"
+      subscribed: "Tellitud"
+  password:
+    sub-header: "Muuda oma parooli"
+    new-pswd: "Uus Parool"
+    confirm-pswd: "Kinnita Parool"
+    update-pswd: "Uuenda parooli"
 #page: groups
 groups:
   create:
     form:
+      rules: "Reeglid"
       privacy-options:
         open: "Avalik"
         closed: "Privaatne"
         restricted: "Piiratud"
       privacy-features:
         open: "'<li>'Kõik võivad näha'</li>' '<li>'Kõik võivad liituda'</li>' '<li>'Kõik võivad postitada või kommenteerida'</li>'"
+      create-btn: "Loo uus Grupp!"
       save-btn: "Salvesta"
       helper:
         name:
