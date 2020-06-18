@@ -102,6 +102,7 @@ dashboard:
       anime: "Anime"
       manga: "Manga"
     empty:
+      html: "Ang media na iyong idinagdag o ini-update sa loob ng iyong '<a' href={link}'>'Library'</a>' ay lalabas dito para madali mong mai-update."
       discover: "Maghanap ng Media"
     media:
       complete: "Kumpleto"
@@ -166,6 +167,13 @@ media:
       ratings:
         community: "{rating}% Community Approval"
         match: "{rating}% Match"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Rank #{rank} (Pinaka Sikat na Anime)} manga {Rank #{rank} (Pinaka Sikat na Manga)} other {}}"
+          rating: "{type, select, anime {Rank #{rank} (Pinakasikat na Anime)} manga {Rank #{rank} (Pinakasikat na Manga)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} na Pinakasikat} manga {#{rank} na Pinakasikat} other {}}"
+          rating: "{type, select, anime {#{rank} Pinakataas na Rating} manga {#{rank} Pinakataas na Rating} other {}}"
       categories: "Mga Kategorya"
       relationships:
         header: "Higit pa mula sa Series na ito"
@@ -510,9 +518,6 @@ users:
         facebook:
           about: "I-enter ang iyong Facebook URL sa ibaba upang magdagdag ng isang link sa iyong profile."
           placeholder: "Ang iyong Facebook URL"
-        youtube:
-          about: "I-enter ang iyong YouTube channel URL sa ibaba upang magdagdag ng isang link sa iyong profile."
-          placeholder: "Ang iyong YouTube channel URL"
         google:
           about: "I-enter ang iyong Google+ profile URL sa ibaba upang magdagdag ng isang link sa iyong profile."
           placeholder: "Ang iyong Google+ profile URL o username (+Username)"
@@ -622,6 +627,7 @@ users:
       time-watched: "{count} {timeUnit} ang ginugol sa panonood ng anime."
       chapters-read: "{count} na mga kabanata ang nabasa."
       completed: "{count} ang nakumpleto."
+      more-than: "Higit pa sa '<span class=\"time-spent-percentile\">'{percentage}%'</span>' ng mga users."
       time-breakdown:
         seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
         time-segment: "{count} {timeUnit}" #8 months (pre-translated)
@@ -674,6 +680,7 @@ users:
       reset-confirmation: "I-delete nito ang iyong buong library, mga associated na review, at reaksyon. Sigurado ka bang nais mong magpatuloy?"
       issues:
         header: "Mga Library Issue"
+        reactions: "{count} ng mga nakumpletong media nakukulangan ng mga '<b>'reaksyon'</b>'"
         fix: "ayusin"
     list:
       edit: "I-edit ang Entry"
@@ -715,6 +722,8 @@ users:
       selected: "{type, select, anime {{num} napili na anime} manga {{num} napili na manga} other {}}"
       select-all: "Piliin Lahat"
       select-none: "Walang Piliin"
+      remove: "Itanggal '<strong>'{num}'</strong>'"
+      move-to: "Ilipat ang '<strong>'{num}'</strong>' sa…"
       remove-loading: "Removing…"
       update-loading: "Updating…"
   groups:
@@ -785,6 +794,7 @@ settings:
     sub-header: "Awtomatikong i-sync ang iyong mga updates sa library mula sa Kitsu to MyAnimeList."
     loading: "Loading Exports…"
     remove: "I-remove ang Exporter"
+    disabled: "Ang iyong MAL Export ay na-disable dahil sa: '<strong>'{reason}'</strong>'"
     create: "I-setup ang Export to MyAnimeList Account"
     download: "I-download ang {kind} Library"
     recent: "Recent Sync Activity"
@@ -815,6 +825,7 @@ settings:
     loading: "Loading Imports…"
     status: "Status:"
     entries: "Total na Mga Entry na Nakita:"
+    error: "Mukhang na-fail ang pag-import mo :( &mdash; Nais naming ito maayos para sayo, kaya '<a href=\"mailto:help@kitsu.io\">'I-email'</a>' mo kami."
     more: "Load More"
   index:
     header: "Profile"
@@ -824,6 +835,7 @@ settings:
     email: "Email"
     email-message: "Hindi makikita ng publiko ang email."
     language: "Linggwahe"
+    translate-help: "Interesado sa pagsasalin? '<a href=\"https://crowdin.com/project/kitsu-web\">'Isalin dito!'</a>'"
     time-zone: "Sona ng Oras"
     content: "Content sa Kitsu"
     theme: "Tema ng Site"
@@ -850,6 +862,12 @@ settings:
       email: "Email"
       mobile: "Mobile"
     descriptions:
+      mentions: "May '<strong>'mag-mention'</strong>' sa akin sa isang post o komento"
+      replies: "May '<strong>'mag-reply'</strong>' sa akin post o komento"
+      likes: "May '<strong>'mag-like'</strong>' sa aking post o komento"
+      follows: "May '<strong>'mag-follow'</strong>' sa akin"
+      posts: "May '<strong>'mag-post'</strong>' sa aking profile"
+      reaction_votes: "May '<strong>'mag-upvote'</strong>' sa aking reaksyon"
       airing: "Ang bagong episode ay na-release na"
     newsletter:
       newsletter: "Newsletter"
@@ -898,6 +916,10 @@ groups:
         open: "Publiko"
         closed: "Pribado"
         restricted: "Restricted"
+      privacy-features:
+        open: "'<li>'Kahit sino ay maka-view'</li>' '<li>'Kahit sino ay maka-join'</li>' '<li>'Kahit sino ay maka-post o maka-comment'</li>'"
+        closed: "'<li>'Nakatago mula sa publiko'</li>' '<li>'Ang mga users ay maaaring sumali lamang sa pamamagitan ng imbitasyon'</li>' '<li>'Hindi ito ma-public'</li>'"
+        restricted: "'<li>'Kahit sino ay maka-view'</li>' '<li>'Kahit sino ay maka-join'</li>' '<li>'Ang mga lider lamang ang maaaring gumawa ng mga bagong post.'</li>'"
       category: "Kategorya"
       category-placeholder: "Pumili ng Kategorya"
       avatar: "Avatar"
@@ -958,6 +980,7 @@ groups:
     feed-restricted: "Ang grupo na ito ay limitado. Kahit sino ay maaring magkomento, pero ang mga lider ay maaring lamang gumawa ng mga posts."
   rules:
     header: "Mga Patakaran ng Komunidad"
+    empty: "Huy! Parang gumagamit ka nga mga alituntunin ng komunidad ng Kitsu. Kung gusto mo ay maaaring tukuyin mo ang sarili mong mga patakaran, at magawa mo ito sa iyong '<a' href={link}'>'settings page.'</a>'"
   tickets:
     search: "Maghanap ng mga Tiket"
     empty: "Yehey! Wala kang mga tiket para asikasuhin."
@@ -967,6 +990,7 @@ groups:
       resolved: "Nalutas na Mga Tiket"
       all: "Lahat ng Mga Tiket"
     conversation:
+      title: "Tiket galing sa '<a' href={link}'>'{name}'</a>'"
       mark-resolved: "Markahan bilang Naresolba na"
       mark-closed: "Markahan bilang Closed na"
       mark-open: "Markahan bilang Open"
@@ -1099,6 +1123,7 @@ group-invite:
 explore:
   view-more: "View more"
   search-placeholder: "Ano ang hinahanap mo?"
+  advanced-search: "O kaya, mag-browse sa pamamagitan ng '<a' href=/{mediaType}'>'advanced search'</a>'"
   no-data: "Hmm, mukhang walang anumang media ang mahahanap para sa seksyon na ito."
   widget:
     related: "Related na Mga Kategorya"
@@ -1117,6 +1142,7 @@ explore:
     index: "{category} {type, select, anime {Anime} manga {Manga} other {}}" #category is pre-translated
 #page: media-reactions
 media-reactions:
+  view-all: "Tingnan lahat ang '<strong>'{count}'</strong>' na mga reaksyon ni {user}"
   create-account: "Gumawa ng Account"
 #page: notifications
 notifications:
@@ -1198,6 +1224,7 @@ onboarding:
     like-incomplete: "Like {count} sa mga post ng feed"
     avatar: "Mag-set ng iyong user avatar"
     cover: "Mag-set ng isang cover image para sa profile"
+    about-me: "Kumpletuhin ang iyong '<i>'Tungkol sa Akin'</i>'"
     favorite: "Piliin ang iyong paboritong anime / manga"
 #component: follow-button
 follow-button:
@@ -1213,7 +1240,100 @@ feeds:
     invalid: "Di-wastong uri ng file"
   filter:
     all: "Lahat na Aktibidad"
+    media: "Aktibidad sa Media"
+    following: "Aktibidad na Sinusundan Ko"
+  placeholder: "{type, select, user_aggr {I-post sa {subject}} group_aggr {I-post sa {subject}} media_aggr {Mag-post tungkol sa {subject}} episode_aggr {Mag-post tungkol sa Episode {subject}} chapter_aggr {Mag-post tungkol sa Kabanata {subject}} interest_timeline {Mag-post tungkol sa/ng {subject}} other {Maggawa ng Post}}…"
+  library:
+    updated: "ay nalipat ito sa {status}"
+    rated: "ay na-rate ito"
+    progressed: "{type, select, anime {napanood na ang episode {num}} manga {nabasa na ang kabanata {num}} other {}}"
+  post:
+    more: "Ipakita ang Higit Pa"
+    less: "Tingnan nang Kaunti"
+    meta:
+      media: "Kasi kakanood mo lang ng {media}"
+    spoilers: "{type, select, anime {Ep. {num}} manga {Ch. {num}} other {}}"
+    sorts:
+      likes: "Likes"
+      oldest: "Pinakaluma"
+  interest:
+    anime:
+      header: "Maligayang Pagdating sa iyong Anime Feed!"
+    manga:
+      header: "Maligayang pagdating sa iyong Manga Feed!"
+    button: "Ah sige, nakuha ko na"
+#component: image-form
+image-form:
+  help-text: "Pindutin dito para pumili ng imahe."
+#component: groups/group-list
+group-list:
+  filter: "I-filter ang Mga Grupo"
+  sort:
+    featured: "Itinatampok"
+    recent: "Mga Kamikailang Aktibidad"
+#component: media/media-reaction
+media-reaction:
+  self-vote: "Hindi ka maaaring makaboto sa iyong sariling reaksyon."
+  edit: "I-edit ang iyong Reaksiyon"
+#component: modals/media-reaction
+reaction-modal:
+  edit-warning: "Maingat ka! Sa pag-edit mo ay tatanggalin ang iyong mga upvotes."
 #component: application/user-notifications
 user-notifications:
   menu:
     mark-read: "Markahan ang lahat bilang Nabasa na"
+#ember-cp-validations
+errors:
+  contentEmpty: "Hmm, parang wala pang anuman dito."
+  request: "Ay! May nangyaring mali sa iyong request."
+  serverError:
+    title: "Ay! Mukhang mag bug ang aming server."
+    body: "Ang aming team ay nabalitaan na ukol dito, subukan muli sa loob ng ilang minuto."
+    reload: "I-reload"
+unsubscribe:
+  unsubscribe: "Mag-unsubscribe"
+category:
+  africa: "Aprika"
+  americas: "Ang Amerika"
+  angel: "Anghel"
+  anime-influenced: "Naiimpluwensyang Anime"
+  asia: "Asya"
+  basketball: "Basketbol"
+  boxing: "Boksing"
+  buddhism: "Budismo"
+  china: "Tsina"
+  combat: "Pakikipaglaban"
+  comedy: "Komedya"
+  conspiracy: "Pagsasabwatan"
+  cooking: "Pagluluto"
+  cops: "Pulis"
+  countryside: "Kabukiran"
+  dragon: "Dragon"
+  drama: "Drama"
+  earth: "Mundo"
+  elementary-school: "Elementarya"
+  elements: "Mga Elemento"
+  epidemic: "Epidemya"
+  europe: "Europa"
+  family: "Pamilya"
+  fantasy: "Pantasiya"
+  fantasy-world: "Mundong Pantasiya"
+  female-student: "Babaeng Estudyante"
+  female-teacher: "Babaeng Guro"
+  france: "Pransiya"
+  friendship: "Pagkakaibigan"
+  future: "Ang Hinaharap"
+  germany: "Alemanya"
+  ghost: "Multo"
+  historical: "Makasaysayang"
+  horror: "Katakutan"
+  idol: "Mga Idolo"
+  isekai: "Naiibang Mundo"
+  island: "Isla"
+  italy: "Italiya"
+  japan: "Hapon"
+  korea: "Korea"
+  kyoto: "Kyoto"
+  law-and-order: "Batas at Kaayusan"
+  mafia: "Mafia"
+  mystery: "Misteryo"
