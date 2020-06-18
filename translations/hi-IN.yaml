@@ -7,6 +7,7 @@ titles:
     index: "माँगा का तलाश"
   media:
     show:
+      units: "{type, select, anime {प्रकरण} manga {प्रकरण} other {}}"
       characters: "पात्र"
       reactions: "प्रतिक्रिया"
       franchise: "मताधिकार"
@@ -68,6 +69,10 @@ header:
     settings: "समायोजन"
     admin: "प्रशासक"
     logout: "लॉग आउट"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {चलिए पहले कुछ नींव-सम्बन्धी लेते ह} 1 {बोहत सरस - अभी ईमेल का समय!} 2 {अच्छा दिख रहा है - पॉसवर्ड भी डाले क्या?} 3 {मस्त अभी अकाउंट बनाइये क्या} other {}}"
 #page: about
 about:
   header: "Kitsu के बारे में"
@@ -79,11 +84,19 @@ dashboard:
       all: "सभी"
       anime: "ऐनिमे"
       manga: "माँगा"
+    empty:
+      html: "जो मीडिया आप ऐड किये हो अपने '<a' href={link}'>'लाइब्रेरी'</a>' में, वो यहाँ पे अपडेट करने के लिए दिखाएगा"
+      discover: "डिस्कवर मीडिया"
     media:
       complete: "संपूरित"
+      unstarted: "आरंभ नहीं हुआ"
+      unit: "{type, select, anime {{total, select, undefined {} other {{total}}} का एपिसोड {num}} manga {{total, select, null {} other {{total}}} का अध्याय {num}} other {}}"
     overlay:
       button:
+        update: "{type, select, anime {एपिसोड} manga {अध्याय} other {}} {number}"
         complete: "संपूरित"
+        tooltip:
+          empty: "अपडेट लाइब्रेरी"
   feed:
     anime: "ऐनिमे"
     manga: "माँगा"
@@ -94,13 +107,24 @@ media:
       year: "वर्ष"
       rating: "रेटिंग"
       types: "प्रकार"
+    sort:
+      popularity: "लोकप्रियता"
+  none: "कोई परिणाम नहीं मिला"
   show:
     navigation:
+      summary: "सारांश"
       reactions: "प्रतिक्रिया"
       franchise: "मताधिकार"
+    sidebar:
+      watch: "ऑनलाइन देखिये"
     summary:
       reactions:
         header: "प्रतिक्रिया"
+      titles:
+        es_es: "स्पैनिश"
+        et_ee: "एस्टोनियन"
+        fi_fi: "फ़िनिश"
+        hi_in: "हिंदी"
       information:
         header: "{type, select, anime {एनीमे} manga {माँगा} other {}} का विवरण"
         status: "सामाजिक स्थिति"
@@ -152,6 +176,15 @@ users:
   edit-modal:
     favorites:
       anime: "ऐनिमे"
+  library:
+    sidebar:
+      manage: "लाइब्रेरी का प्रबंधन"
+      import: "लाइब्रेरी आयात करें"
+      export: "लाइब्रेरी निर्यात करें"
+      reset: "लाइब्रेरी रीसेट करें"
+      reset-confirmation: "ये आपके लाइब्रेरी, समीक्षा और प्रतिक्रिया को डिलीट कर देगा. क्या आप सच में ऐसा चाहते हैं ?"
+    edit:
+      remove: "लाइब्रेरी से निकालें"
 #page: settings
 settings:
   navigation:
