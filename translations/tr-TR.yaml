@@ -10,16 +10,63 @@ titles:
       units: "{type, select, anime {Bölümler} manga {Bölümler} other {}}"
       characters: "Karakterler"
       reactions: "Tepkiler"
+      franchise: "Özel Satış Hakkı"
   explore:
     index: "Keşfet {mediaType, select,anime {Anime} manga {Manga} other{}}"
     more:
       trending: "Trendler {type, select, other {}} Bu Hafta"
+      top-current: "En Çok İzlenen {type, select, Animeler {Devam Eden} Manga {Publishing} other {}} {type}"
+      top-upcoming: "Yakında Yayınlanacak En Çok İzlenen {type}"
       highest-rated: "En Çok Oy Alan {type}"
       most-popular: "En Popüler {type}"
     category:
       index: "{category} {type}"
       more:
         newly-released: "Yeni Yayımlanmış {category} {type}"
+        trending: "Trendler {category} {type}"
+        most-popular: "En Popüler {category} {type}"
+  not-found: "Bulunamadı"
+  server-error: "Server Hatası"
+  users:
+    index: "{user}'in Profili"
+    reviews: "{user}'in eleştirisi"
+    reactions: "{user}'in Tepkileri"
+    followers: "{user}'in Takipçileri"
+    following: "{user} Tarafından Takip Ediliyor"
+    groups: "{user}'in Grupları"
+    stats: "{user}'in İstatistikleri"
+  posts: "{user}'in Gönderisi"
+  comments: "{user}'in Yorumu"
+  reviews: "{user}'in eleştirisi"
+  notifications: "Bildirimler"
+  feedback:
+    bugs: "Hatalar"
+  admin:
+    index: "Yönetici"
 #header
 header:
   anime: "Anime"
+  groups: "Gruplar"
+#page: dashboard
+dashboard:
+  quick-update:
+    filter:
+      anime: "Anime"
+  feed:
+    anime: "Anime"
+#page: anime/manga
+media:
+  show:
+    franchise:
+      roles:
+        anime_adaptation: "Anime"
+#components
+components:
+  users:
+    favorites:
+      anime: "Anime"
+#page: users
+users:
+  edit-modal:
+    favorites:
+      anime: "Anime"

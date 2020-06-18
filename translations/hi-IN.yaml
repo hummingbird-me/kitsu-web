@@ -12,15 +12,29 @@ titles:
       franchise: "मताधिकार"
   explore:
     index: "ढूंढिए {mediaType, select, anime {एनीमे} manga {माँगा} other {कुछ और}}"
+    more:
+      trending: "इस सप्ताह {type, select, other {}} ट्रेंडिंग में"
+      top-current: "शीर्ष {type, select, Anime {प्रसारणीय एनीमे} Manga {प्रकाशनी माँगा} other {}}"
+      top-upcoming: "शीर्ष आनेवाला {type, select, Anime {एनीमे} Manga {माँगा} other {}}"
+      highest-rated: "उच्चतम दर पर वाला {type, select, Anime {एनीमे} Manga {माँगा} other {}}"
+      most-popular: "सबसे लोकप्रिय {type, select, Anime {एनीमे} Manga {माँगा} other {}}"
     category:
+      index: "{category} {type}"
       more:
+        newly-released: "नया निकला हुआ {category} {type, select, Anime {एनीमे} Manga {माँगा} other {}}"
         trending: "ट्रेंडिंग {category} {type}"
+        most-popular: "सबसे लोकप्रिय {category} {type, select, Anime {एनीमे} Manga {माँगा} other {}}"
+  not-found: "नहीं मिला"
+  server-error: "सर्वर एरर"
   users:
     index: "{user} का प्रोफाइल"
     library: "{user} का संग्रह"
+    reviews: "{user} का समीक्षा"
+    reactions: "{user} का प्रतिक्रिया"
   notifications: "सूचनाएँ"
   feedback:
     bugs: "बग"
+    feature-requests: "सुविधा का अनुरोध"
     mobile-bugs: "मोबाइल बग"
   groups:
     index: "ग्रुप"
@@ -33,34 +47,97 @@ titles:
       dashboard:
         members: "{group} के सदस्यों"
         leaders: "{group} के लीडर"
+#head
+head:
+  users:
+    description: "{user} Kitsu के इस्तेमाल से अपना एनीमे और माँगा के प्रगति और अनुभव को शेयर कर रहे हैं."
 #header
 header:
+  library: "लाइब्रेरी"
   anime: "ऐनिमे"
+  manga: "माँगा"
   trending: "ट्रेंडिंग"
   groups: "ग्रुप"
+  feedback: "प्रतिपुष्टि"
+  browse: "ब्राउज़ करें"
+  auth:
+    sign-in: "साइन इन"
+    sign-up: "साइन अप"
   user:
     profile: "प्रोफाइल देखिये"
+    settings: "समायोजन"
+    admin: "प्रशासक"
+    logout: "लॉग आउट"
+#page: about
+about:
+  header: "Kitsu के बारे में"
 #page: dashboard
 dashboard:
   quick-update:
+    title: "शीघ्र नवीनतम करने के लिए"
     filter:
       all: "सभी"
       anime: "ऐनिमे"
+      manga: "माँगा"
+    media:
+      complete: "संपूरित"
+    overlay:
+      button:
+        complete: "संपूरित"
   feed:
     anime: "ऐनिमे"
+    manga: "माँगा"
 #page: anime/manga
 media:
+  index:
+    filters:
+      year: "वर्ष"
+      rating: "रेटिंग"
+      types: "प्रकार"
   show:
     navigation:
       reactions: "प्रतिक्रिया"
+      franchise: "मताधिकार"
     summary:
       reactions:
         header: "प्रतिक्रिया"
+      information:
+        header: "{type, select, anime {एनीमे} manga {माँगा} other {}} का विवरण"
+        status: "सामाजिक स्थिति"
+        tba: "अपेक्षित है"
+        expand:
+          false: "अधिक सूचना"
+          true: "कम सूचना"
     franchise:
       roles:
         anime_adaptation: "ऐनिमे"
+        manga_adaptation: "माँगा"
+        character: "पात्र"
+        other: "अन्य"
 #components
 components:
+  admin:
+    reports:
+      actions:
+        open: "खुला करिये"
+        closed: "बंद करिये"
+      table:
+        user: "यूज़र"
+        reason: "कारण"
+        status: "सामाजिक स्थिति"
+  episodes:
+    fast-forward: "आप संग्रह प्रगति प्रकरण {number} तक बढ़ा दिए हैं!"
+    update-progress: "संग्रह प्रगति प्रकरण को {number} तक बढ़ा दें?"
+  likeable-resource:
+    loading: "लोड हो रहा है"
+    more: "और लोड करें"
+  search:
+    view: "और देखें"
+    load: "और पढ़ें"
+  stream-feed:
+    library:
+      delete: "हटाएँ"
+      deleting: "हटा रहे हैं"
   users:
     delete-user-content:
       checkbox:

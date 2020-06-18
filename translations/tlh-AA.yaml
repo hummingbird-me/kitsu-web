@@ -5,32 +5,173 @@ titles:
     index: "anime explore"
   manga:
     index: "manga explore"
+  media:
+    show:
+      units: "{type, select, anime {episode} manga {chapter} other {}}"
+      characters: "vuDmey''e''"
+      reactions: "reaction"
+      franchise: "franchise"
   explore:
     more:
       top-current: "{type, select, Anime {yor Airing anime} Manga {Publishing manga yor} other {}}"
+      top-upcoming: "yor {type, select, Anime {anime} Manga {manga} other {}} Upcoming"
+      highest-rated: "nlv rate {type, select, Anime {anime} Manga {manga} other {}}"
+      most-popular: "{type, select, Anime {anime} Manga {manga} other {}} rav Qat"
     category:
       index: "{category} {type}"
       more:
+        newly-released: "newly release {category} {type, select, Anime {anime} Manga {manga} other {}}"
         trending: "trend {category} {type, select, Anime {anime} Manga {manga} other {}}"
         most-popular: "{type, select, Anime {anime} Manga {manga} other {}} {category} rav Qat"
+  not-found: "wej vItu'"
+  server-error: "jabwI' Qagh"
   users:
+    library: "be'nI'''a''wI', Datu' {user}"
     following: "tlha' {user}"
     groups: "{user} ghom"
     stats: "Stats {user}"
   posts: "post {user}"
   comments: "comment {user}"
   reviews: "review {user}"
+  notifications: "notification"
+  feedback:
+    bugs: "ghew"
+    feature-requests: "feature Requests"
+    database-requests: "database Requests"
+    mobile-bugs: "mobile ghew"
+    mobile-features: "mobile Features"
+  admin:
+    index: "admin"
+    reports: "ja'"
+  groups:
+    index: "ghom"
+    new: "ghom chenmoH"
+  group-invite: "ghom vItlhobqa'"
+#head
+head:
+  users:
+    description: "kitsu lo' {user} Ser ghoch 'ej anime SoH je SIQpu'bogh manga."
+#header
+header:
+  library: "be'nI'''a''wI', Datu'"
+  anime: "anime"
+  manga: "manga"
+  trending: "trend"
+  feedback: "feedback"
+  browse: "browse"
+  auth:
+    sign-in: "login"
+  user:
+    profile: "jIH qoghDu'DajDaq"
+    settings: "setting"
+    logout: "logout"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Ha' Suq basic info wa'DIch} 1 {SoHvaD witty-email veb!} 2 {legh legit, chay' ghot tu'lu'. mej mu'wIj?} 3 {cool-Ha' account chenmoH} other {}}"
+#page: about
+about:
+  header: "vIHtaHbogh kitsu"
 #page: dashboard
 dashboard:
   quick-update:
     title: "Qapchu' Update"
+    media:
+      unstarted: "wej start"
 #page: anime/manga
 media:
   show:
+    summary:
+      titles:
+        af_za: "afrikaans"
+        ar: "arabic"
+        bg_bg: "bulgarian"
+        bn_bd: "bengali"
+        ca_es: "catalan"
+        cs_cz: "czech"
+        cy_gb: "welsh"
+        da_dk: "maghbogh"
+        de_de: "german"
+        el_gr: "greek"
+        en_cn: "chinese (pinyin)"
+        en_il: "hebrew (romanize)"
+        en_jp: "japanese (romaji)"
+        en_kr: "korean (romaja)"
+        en_th: "thai (romanize)"
+        es_es: "spanish"
+        et_ee: "estonian"
+        fa_ir: "persian"
+        fi_fi: "finnish"
+        fr_ca: "french (canadian)"
+        fr_fr: "french"
+        ga_ie: "irish"
+        he_il: "hebrew"
+        hi_in: "hindi"
+        hr_hr: "croatian"
+        hu_hu: "hungarian"
+        id_id: "indonesian"
+        is_is: "icelandic"
+        it_it: "italian"
+        ja_jp: "japanese"
+        kk_kz: "kazakh"
+        ko_kr: "korean"
+        lt_lt: "lithuanian"
+        lv_lv: "latvian"
+        ms_my: "malay"
+        mt_mt: "maltese"
+        nb_no: "norwegian (bokmål)"
+        nl_nl: "dutch"
+        nn_no: "norwegian (nynorsk)"
+        pl_pl: "polish"
+        pt_br: "portuguese (brazilian)"
+        pt_pt: "portuguese"
+        ro_ro: "romanian"
+        ru_ru: "russian"
+        sc_it: "sardinian"
     characters:
       sub-header: "{type, select, anime {tlha' yoSvetlhDaq vuDmey''e'' naQ 'ej DawI'pu' {title} anime ghogh {language} Hol} manga {tlha', qatlh yoSvetlhDaq vuDmey''e'' {title} manga naQ} other {}}"
+    franchise:
+      roles:
+        alternative_setting: "setting yInmey"
+        alternative_version: "version yInmey"
+        parent_story: "muSHa'bogh lut"
+        full_story: "lut naQ"
+        spinoff: "spin-off"
+        adaptation: "adaptation"
+        character: "vuDmey''e''"
+        other: "latlh"
+  show-posts:
+    info: "nargh posts qaStaHvIS tlha' lom nolwI'pu' {type} je' pagh"
 #components
 components:
+  ad-unit: "suck qeS Hoch HoS puS 'ach chay' wov pol maH. maHvaD bel whitelist neH adblocker."
+  admin:
+    reports:
+      not-set: "wej HIjmeH"
+      actions:
+        closed: "SoQ pablu'DI'"
+      table:
+        reason: "mo'"
+        explanation: "explanation"
+        moderator: "moderator"
+  application:
+    nav-search: "search kitsu"
+  episodes:
+    shortcut-bar:
+      episode-number: "ep {number}"
+    fast-forward: "HIjmeH be'nI''a'wI', Datu' Ser-episode-{number}!"
+    update-progress: "be'nI''a'wI', Datu' Ser-episode-{number}. ghaHDaq update BERNARDO?"
+    watched: "legh pablu'DI'"
+    join-prompt:
+      register: "kitsu Account chenmoH"
+  search:
+    header: "search ghot'e'"
+  sidebar-footer:
+    contact: "contact"
+    terms: "wabmey"
+  stream-feed:
+    create-post:
+      spoiler: "spoiler"
   users:
     favorites:
       title: "favorite {type, select, series {Series} characters {vuDmey''e''} other {}}"

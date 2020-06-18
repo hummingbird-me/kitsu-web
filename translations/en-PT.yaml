@@ -1,7 +1,139 @@
 ---
 #route titles -- these are used if the route doesn't specify the title itself
 titles:
+  anime:
+    index: "Explore Anime"
+  manga:
+    index: "Explore Manga"
+  media:
+    show:
+      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
+      characters: "Characters"
+      reactions: "Reactions"
+      franchise: "Franchise"
+  explore:
+    index: "Explore {mediaType, select, anime {Anime} manga {Manga} other {}}"
+    more:
+      trending: "Trendin' {type, select, other {}} This Week"
+      top-current: "Top {type, select, Anime {Airin'} Manga {Publishin'} other {}} {type}"
+      top-upcoming: "Top Upcomin' {type}"
+      highest-rated: "Highest Rated {type}"
+      most-popular: "Most Popular {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Newly Released {category} {type}"
+        trending: "Trendin' {category} {type}"
+        most-popular: "Most Popular {category} {type}"
+  not-found: "Nah Found"
+  server-error: "Server Error"
+  users:
+    index: "{user}'s Profile"
+    library: "{user}'s Library"
+    reviews: "{user}'s Reviews"
+    reactions: "{user}'s Reactions"
+    followers: "{user}'s Followers"
+    following: "Followed by {user}"
+    groups: "{user}'s Groups"
+    stats: "{user}'s Stats"
+  posts: "Post by {user}"
+  comments: "Comment by {user}"
+  reviews: "Review by {user}"
+  notifications: "Notifications"
+  feedback:
+    bugs: "Bugs"
+    feature-requests: "Feature Requests"
+    database-requests: "Database Requests"
+    mobile-bugs: "Mobile Bugs"
+    mobile-features: "Mobile Features"
+  admin:
+    index: "Admin"
+    reports: "Reports"
   groups:
+    index: "Groups"
+    new: "Create a Group"
     group:
       group-page:
+        rules: "{group} Rules"
+        members: "{group} Hands"
         leaders: "{group} Captains"
+      dashboard:
+        index: "{group} O'erview"
+        reports: "{group} Reports"
+        tickets: "{group} Tickets"
+        members: "{group} Hands"
+        leaders: "{group} Captains"
+        settings: "{group} Settin's"
+  group-invite: "Group Invite"
+#head
+head:
+  users:
+    description: "{user} be usin' Kitsu t' track thar progress 'n share thar anime 'n manga experiences."
+#page: anime/manga
+media:
+  index:
+    filters:
+      categories: "Categories"
+      types: "Types"
+    sort:
+      popularity: "Popularity"
+      rating: "Average Ratin'"
+      date: "Date"
+      recent: "Recently Added"
+  none: "No Results."
+  show:
+    navigation:
+      summary: "Summary"
+      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
+      characters: "Characters"
+      reactions: "Reactions"
+      franchise: "Franchise"
+    sidebar:
+      watch: "Watch Online"
+    summary:
+      ratings:
+        community: "{rating}% Community Approval"
+        match: "{rating}% Match"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Rank #{rank} (Most Popular Anime)} manga {Rank #{rank} (Most Popular Manga)} other {}}"
+          rating: "{type, select, anime {Rank #{rank} (Highest Rated Anime)} manga {Rank #{rank} (Highest Rated Manga)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} Most Popular} manga {#{rank} Most Popular} other {}}"
+          rating: "{type, select, anime {#{rank} Highest Rated} manga {#{rank} Highest Rated} other {}}"
+      categories: "Categories"
+      relationships:
+        header: "More from this Series"
+        more: "View all in {title}"
+      reactions:
+        header: "Reactions"
+        more: "View More Reactions"
+        sorts:
+          -upVotesCount: "Popular"
+          -createdAt: "Recent"
+        new: "New Reaction"
+        edit: "Me Reaction"
+        empty: "Does nah look like anyone has reacted t' this yet"
+      characters:
+        header: "Characters"
+        more: "View all characters"
+      titles:
+        header: "Alternative Titles"
+        af_za: "Afrikaans"
+        ar: "Arabic"
+        bg_bg: "Bulgarian"
+        bn_bd: "Bengali"
+        ca_es: "Catalan"
+        cs_cz: "Czech"
+        cy_gb: "Welsh"
+        da_dk: "Danish"
+        de_de: "German"
+        el_gr: "Greek"
+        en: "English"
+        en_au: "English (Australian)"
+        en_ca: "English (Canadian)"
+        en_cn: "Chinese (Pinyin)"
+        en_gb: "English (British)"
+        en_il: "Hebrew (Romanised)"
+        en_jp: "Japanese (Romaji)"
+        en_kr: "Korean (Romaja)"
