@@ -43,6 +43,96 @@ titles:
   feedback:
     bugs: "Probleme"
     feature-requests: "Solicită Caracteristici"
+    mobile-bugs: "Eroare Mobila"
+    mobile-features: "Caracteristici Mobile"
+  admin:
+    index: "Administrator"
+    reports: "Rapoarte"
+  groups:
+    index: "Grupuri"
+    new: "Creați un grup"
+    group:
+      group-page:
+        rules: "{group} Reguli"
+        members: "{group} Membrii"
+        leaders: "{group} Lideri"
+      dashboard:
+        reports: "{group} Rapoarte"
+        tickets: "{group} Bilete"
+        members: "{group} Membrii"
+        leaders: "{group} Lideri"
+        settings: "{group} Setări"
+  group-invite: "Invita in grup"
+#head
+head:
+  users:
+    description: "{user} foloseste Kitsu pentru asi inregistra progresul si sa isi imparta experienta din anime si manga."
 #header
 header:
+  library: "Bibliotecă"
   anime: "Anime"
+  manga: "Manga"
+  trending: "Trending"
+  groups: "Grupuri"
+  feedback: "Părerile tale"
+  browse: "Rasfoieste"
+  auth:
+    sign-in: "Intră în cont"
+    sign-up: "Înregistrează-te"
+  user:
+    profile: "Vezi Profilul"
+    settings: "Setări"
+    admin: "Administrator"
+    logout: "Deconectează-te"
+#page: about
+about:
+  header: "Despre Kitsu"
+#page: dashboard
+dashboard:
+  quick-update:
+    title: "Actualizare Rapida"
+    filter:
+      all: "Tot"
+      anime: "Anime"
+      manga: "Manga"
+    media:
+      complete: "Finalizat"
+      unstarted: "Neînceput"
+      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {of {total}}}} manga {Ch. {num} {total, select, null {} other {of {total}}}} other {}}"
+    overlay:
+      button:
+        update: "{type, select, anime {Ep.} manga {Ch.} other {}} {number}"
+        complete: "Finalizat"
+      discussion: "Vezi Discuția"
+      popout: "Editor Pop-out"
+  onboarding:
+    welcome: "Buna {user}, bine ai venit la Kitsu!"
+  feed:
+    anime: "Anime"
+#page: anime/manga
+media:
+  index:
+    sort:
+      popularity: "Popularitate"
+      rating: "Evaluare Medie"
+      date: "Dată"
+      recent: "Adăugate recent"
+  none: "Niciun rezultat."
+  show:
+    navigation:
+      summary: "Rezumat"
+      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
+      characters: "Personaje"
+    franchise:
+      roles:
+        anime_adaptation: "Anime"
+#components
+components:
+  users:
+    favorites:
+      anime: "Anime"
+#page: users
+users:
+  edit-modal:
+    favorites:
+      anime: "Anime"
