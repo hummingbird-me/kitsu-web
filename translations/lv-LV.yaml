@@ -1,17 +1,184 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Lūkot Anime"
+  manga:
+    index: "Lūkot Manga"
+  media:
+    show:
+      units: "{type, select, anime {Sērijas} manga {Nodaļas} other {}}"
+      characters: "Tēli"
+      reactions: "Reakcijas"
+      franchise: "Franšīze"
+  explore:
+    index: "Lūkot {mediaType, select, anime {Anime} manga {Manga} other {}}"
+    more:
+      trending: "Tendences {type, select, other {}} Šonedēļ"
+      top-current: "Populārās {type, select, Anime {Šobrīd pārraidē} Manga {Šobrīd izdošanā} other {}} {type}"
+      top-upcoming: "Top Gaidāmās {type}"
+      highest-rated: "Augstāk Vērtētās {type}"
+      most-popular: "Populārākās {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Svaigi Izdotās {category} {type}"
+        trending: "Tendences {category} {type}"
+        most-popular: "Populārākās {category} {type}"
+  not-found: "Nav Atrasts"
+  server-error: "Servera kļūda"
+  users:
+    index: "{user} Profils"
+    library: "{user} Bibliotēka"
+    reviews: "{user} Recenzijas"
+    reactions: "{user} Reakcijas"
+    followers: "{user} Sekotāji"
+    following: "{user} seko"
+    groups: "{user} Grupas"
+    stats: "{user} Stati"
+  posts: "Publicējis {user}"
+  comments: "Komentējis {user}"
+  reviews: "Recenzējis {user}"
+  notifications: "Ziņojumi"
+  feedback:
+    bugs: "Kļūdas"
+    feature-requests: "Iespēju pieprasījumi"
+    database-requests: "Datubāzes pieprasījums"
+    mobile-bugs: "Mobīlo kļūdas"
+    mobile-features: "Mobīas iespejas"
+  admin:
+    index: "Administrators"
+    reports: "Ziņojumi"
+  groups:
+    index: "Grupas"
+    new: "Izveidot grupu"
+    group:
+      group-page:
+        rules: "{group} Noteikumi"
+        members: "{group} Biedri"
+        leaders: "{group} Vadītāji"
+      dashboard:
+        index: "{group} Pārskats"
+        reports: "{group} Ziņojumi"
+        tickets: "{group} Biļetes"
+        settings: "{group} Uzstādījumi"
+  group-invite: "Grupas ielūgums"
+#head
+head:
+  users:
+    description: "{user} lieto Kitsu lai sekotu savam progresam un dalītos anime un manga pieredzē."
 #header
 header:
+  library: "Bibliotēka"
   anime: "Anime"
+  manga: "Manga"
+  trending: "Tendences"
+  feedback: "Atsauksmes"
+  browse: "Pārlūkot"
+  auth:
+    sign-in: "Ienākt"
+    sign-up: "Reģistrēties"
+  user:
+    profile: "Apskatīt profilu"
+    settings: "Iestatījumi"
+    logout: "Iziet"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Sāksim ar pamata info} 1 {Asprātīgi - tālāk e-pasts!} 2 {Izskatās derīgs, kā ar paroli?} 3 {Forši - taisām kontu vaļā} other {}}"
+#page: about
+about:
+  header: "Par Kitsu"
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Fiksais jauninājums"
     filter:
+      all: "Viss"
       anime: "Anime"
+    empty:
+      html: "Medijs ko pievienoji vai atjaunoji ar '<a' href={link}'>'Bibliotēka'</a>' parādīsies šeit ātrākai atjaunināšanai."
+      discover: "Atklāj Mēdiju"
+    media:
+      complete: "Pabeigts"
+      unstarted: "Nav sācies"
+      unit: "{type, select, anime {Sēr. {num} {total, select, undefined {} other {no {total}}}} manga {Nod. {num} {total, select, null {} other {no {total}}}} other {}}"
+    overlay:
+      button:
+        update: "{type, select, anime {Sēr.} manga {Nod.} other {}} {number}"
+        tooltip:
+          empty: "Atjaunot Bibliotēku"
+          content: "Rādīt ierakstu un atjaunot bibliotēku"
+      discussion: "Apskatīt diskusiju"
+      edit: "Rediģēt bibliotēkas ierakstu"
+      popout: "Izlecošais redaktors"
+      editor:
+        placeholder: "(Neobligāti) Dalies savās domās par {type, select, anime {Sēriju} manga {Nodaļu} other {}} {number}"
+  onboarding:
+    welcome: "Hei, {user}, laipni lūgtum Kitsu!"
+    about: "Šis ir globālo aktivitāšu pārskats. Tas satur visu Kitsu lietotāju aktivitātes - arī Tavas! Kad būsi piesekojis vairāk interesējošiem lietotājiem, noklusējuma globālais pārskats tiks pārslēgts uz sekoto lietotāju aktivitātēm."
+    action: "Varbūt iepazīstini ar sevi, veicot ierakstu ziņojumu plūsmā? Vari izteikties gan ar vienkāršu \"Sveiki, esmu jauns Kitsu lietotajs\", gan izpausties radošāk un parādīt cik asprātīgs esi!"
+  groups:
+    header: "Manas grupas"
+  announcements:
+    button: "Uzzināt vairāk"
   feed:
     anime: "Anime"
+    global: "Globāli"
 #page: anime/manga
 media:
+  index:
+    search: "Meklēt pēc nosaukuma, tēla vai lomas atveidotāja…"
+    filter: "Filtrs"
+    remove: "Noņemt"
+    filters:
+      year: "Gads"
+      score: "Vidējais vērtējums"
+      seasons: "Sezonas"
+      streamers: "Straumē (ASV)"
+      rating: "Vērtējums"
+      categories: "Kategorijas"
+      types: "Tipi"
+    sort:
+      popularity: "Popularitāte"
+      date: "Datums"
+      recent: "Nesen pievienots"
+  none: "Nav rezultātu."
   show:
+    navigation:
+      summary: "Kopsavilkums"
+    sidebar:
+      watch: "Skaties tiešsaistē"
+    summary:
+      ratings:
+        community: "{rating}% Kopienas atzīts"
+        match: "{rating}% Sakritība"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Vērtējums #{rank} (Populārākā Anime)} manga {Vērtējums #{rank} (Populārākā Manga)} other {}}"
+          rating: "{type, select, anime {Vērtējums #{rank} (Augstāk vērtētā Anime)} manga {Vērtējums #{rank} (Augstāk vērtētā Manga)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} Populārākā} manga {#{rank} Populārākā} other {}}"
+          rating: "{type, select, anime {#{rank} Augstāk Novērtētā} manga {#{rank} Augstāk Novērtētā} other {}}"
+      relationships:
+        header: "Vēl šajā franšīzē"
+        more: "Apskatīt visu {title}"
+      reactions:
+        more: "Apskatīt vēl reakcijas"
+        sorts:
+          -upVotesCount: "Populari"
+          -createdAt: "Neseni"
+        new: "Jaunā reakcija"
+        edit: "Mana reakcija"
+        empty: "Izskatās, kā neviens uz šo vēl nav reaģējis"
+      characters:
+        more: "Apskatīt visus tēlus"
+      titles:
+        header: "Alternatīvie nosaukumi"
+        af_za: "Afrikāņu"
+        ar: "Arābu"
+        bg_bg: "Bulgāru"
+        bn_bd: "Bengāļu"
     franchise:
       roles:
         anime_adaptation: "Anime"
