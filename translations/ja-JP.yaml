@@ -80,6 +80,7 @@ media:
     filters:
       year: "年"
       seasons: "シーズン"
+      units: "{type, select, anime {エピソード} manga {全話} other {}}"
       categories: "カテゴリー"
     sort:
       date: "日付"
@@ -89,6 +90,7 @@ media:
       units: "{type, select, anime {エピソード} manga {全話} other {}}"
       characters: "キャラクター"
       reactions: "リアクション"
+      franchise: "関連の作品"
     sidebar:
       watch: "ネットで見る"
     summary:
@@ -143,14 +145,32 @@ media:
       roles:
         sequel: "続編"
         prequel: "前篇"
+        summary: "あらすじ"
         spinoff: "スピンオフ"
         adaptation: "改作"
         anime_adaptation: "アニメ"
         manga_adaptation: "漫画"
         character: "キャラクター"
         other: "他の"
+#components
+components:
+  stream-feed:
+    create-post:
+      edit: "編集"
+      nsfw: "NSFW"
+  users:
+    delete-user-content:
+      checkbox:
+        reactions: "リアクション"
+    favorites:
+      anime: "アニメ"
+      manga: "漫画"
 #page: users
 users:
+  profile:
+    edit: "編集"
+  admin:
+    button: "アドミン"
   navigation:
     activity: "アクティビティ"
     library: "ライブラリ"
@@ -226,11 +246,15 @@ users:
       characters: "キャラクター"
   activity:
     about:
+      header: "自己紹介"
       empty: "秘密"
       gender:
+        label: "性別:"
         secret: "秘密"
         male: "男性"
         female: "女性"
+      location: "場所:"
+      birthday: "誕生日:"
   library:
     sorting:
       options:
@@ -242,15 +266,26 @@ users:
     list:
       list-edit: "編集"
       more: "もっと"
+      table-header:
+        volumes: "全巻"
       add-reaction: "リアクションを投稿する"
     edit:
+      volumes: "全巻"
+      privacy: "プライバシー"
       notes: "個人のノート"
 #page: settings
 settings:
   navigation:
+    header: "設定"
+    profile: "プロフィール"
+    notifications: "通知"
+    password: "パスワード"
+    privacy: "プライバシー"
     account: "アカウント"
   account:
+    header: "アカウント"
     delete: "アカウントを削除"
+    confirm-title: "アカウントを削除"
   apps:
     header: "アプリ"
   exports:
@@ -260,6 +295,7 @@ settings:
         media: "タイトル"
   index:
     header: "プロフィール"
+    email: "メール"
   linked-accounts:
     facebook: "Facebook"
   notifications:
@@ -267,6 +303,10 @@ settings:
       web: "ウェッブ"
       email: "メール"
       mobile: "アプリ"
+  password:
+    header: "パスワード"
+  privacy:
+    header: "プライバシー"
 #page: feedback
 feedback:
   bugs: "バッグ"
@@ -274,10 +314,16 @@ feedback:
   mobile-features: "アプリ特徴"
 #page: groups
 groups:
+  index:
+    create-btn: "グループを追加"
   create:
+    header: "グループを追加"
     form:
       name: "グループ名"
       tagline: "タグライン"
+      about: "説明"
+      rules: "ルール"
+      privacy: "プライバシー"
       privacy-options:
         open: "公開"
         closed: "非公開"
@@ -297,20 +343,30 @@ groups:
           header: "ルール"
         privacy:
           header: "プライバシー"
+        category:
+          header: "カテゴリー"
+        avatar:
+          header: "プロフィール画像"
+        cover:
+          header: "カバー画像"
   join-group: "グループに参加"
   leave-group: "グループを退会"
   nsfw: "NSFW"
   navigation:
+    activity: "アクティビティ"
+    rules: "ルール"
     members: "メンバー"
   activity:
     members: "メンバー"
   leaders:
     list:
+      edit-btn: "編集"
       add-placeholder: "グループメンバー"
       modal:
         cancel-btn: "キャンセル"
   dashboard:
     navigation:
+      members: "メンバー"
       settings: "設定"
     overview:
       members:
@@ -320,6 +376,17 @@ groups:
         placeholder: "ユーザー名"
       members:
         header: "メンバー"
+#page: group-invite
+group-invite:
+  header: "グループ招待"
+#page: explore
+explore:
+  widget:
+    categories: "カテゴリー"
+#page: password-reset
+password-reset:
+  password: "パスワード"
+  email: "メール"
 #shared: media
 media-shared:
   types:
@@ -357,9 +424,18 @@ feeds:
 media-reaction:
   self-vote: "自分のリアクションに投票出来ません。"
   edit: "リアクションを編集"
+#component: modals/media-reaction
+reaction-modal:
+  edit: "編集"
+  delete: "リアクションを削除"
 #component: library-entry/*
 library-entry:
   state:
     post-reaction: "リアクションを投稿する"
+    edit-reaction: "リアクションを編集"
   rating:
     great: "最高"
+unsubscribe:
+  email: "メール"
+category:
+  music: "音楽ビデオ"

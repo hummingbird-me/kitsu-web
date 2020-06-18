@@ -118,22 +118,110 @@ media:
       year: "Година"
       score: "Среден рейтинг"
       seasons: "Сезони"
+      categories: "Категории"
+    sort:
+      date: "Дата"
+  none: "Няма резултат."
   show:
+    summary:
+      titles:
+        ar: "Арабски"
+        bg_bg: "Български"
+        de_de: "Немски"
+        el_gr: "Гръцки"
+        es_es: "Испански"
+        fr_fr: "Френски"
+        it_it: "Италиански"
+        ja_jp: "Японски"
+        ko_kr: "Корейски"
+        ro_ro: "Румънски"
+        ru_ru: "Руски"
     franchise:
       roles:
         anime_adaptation: "Аниме"
+        other: "Други"
 #components
 components:
+  admin:
+    reports:
+      table:
+        reason: "Причина"
+  stream-feed:
+    create-post:
+      spoiler: "Спойлер"
+    review:
+      share:
+        twitter: "Туийт"
   users:
+    delete-user-content:
+      checkbox:
+        posts: "Публикации"
+      delete: "Изтрий"
+    block: "Блокирай @{user}"
     favorites:
       anime: "Аниме"
+    past-name:
+      title: "Предишни имена"
 #page: users
 users:
+  navigation:
+    activity: "Дейност"
+    reviews: "Отзиви"
   edit-modal:
+    navigation:
+      about: "За мен"
+      favorites: "Любими"
+    about:
+      location:
+        label: "Местоположение"
+      birthday: "Рожден ден"
+      gender:
+        label: "Пол"
+        options:
+          secret: "Тайна е"
+          male: "Мъж"
+          female: "Жена"
     favorites:
       anime: "Аниме"
+  activity:
+    about:
+      gender:
+        label: "Пол:"
+      joined: "Дата на присъединяване:"
+    stats:
+      headings:
+        anime: "Аниме статистики"
+        manga: "Манга Статистики"
+      chapters-read: "{count} глави прочетени."
+  library:
+    sorting:
+      label: "Сортиране по:"
+      options:
+        title: "Заглавие"
+    list:
+      list-edit: "Редактиране"
+      more: "Още"
+  reactions:
+    filters:
+      anime: "Аниме реакции"
+#page: settings
+settings:
+  exports:
+    logs:
+      status:
+        error: "Грешка"
+  index:
+    language: "Език"
+    country: "Държава"
+  notifications:
+    newsletter:
+      subscribed: "Абониран"
 #page: groups
 groups:
+  create:
+    form:
+      rules: "Правила"
+      category: "Категория"
   leaders:
     list:
       edit-btn: "Редактиране"
@@ -151,9 +239,31 @@ groups:
         total: "Общ брой членове"
       help-desk:
         reports: "Доклади"
+    members:
+      members:
+        table:
+          users: "Потребител"
+    leaders:
+      chat:
+        post-btn: "Публикация"
+#shared: media
+media-shared:
+  types:
+    anime:
+      movie: "Филм"
+      music: "Музика"
+#shared: form:
+form-shared:
+  placeholders:
+    password: "Парола"
+#component: auth-onboarding
+onboarding:
+  checklist:
+    rate: "Оцени 5 анимета или манги"
 category:
   angel: "Ангели"
   angst: "Тъга"
+  anthropomorphism: "Антроморфия"
   asia: "Азия"
   assassin: "Убийци"
   baseball: "Бейзбол"
@@ -165,3 +275,23 @@ category:
   cooking: "Готвене"
   cops: "Полицаи"
   crime: "Криминални"
+  cyberpunk: "Кибер-пънк"
+  cyborg: "Киборг"
+  cycling: "Колоездене"
+  detective: "Детективски"
+  drama: "Драма"
+  europe: "Европа"
+  italy: "Италия"
+  japan: "Япония"
+  mars: "Марс"
+  mystery: "Мистерия"
+  robot: "Робот"
+  russia: "Русия"
+  soccer: "Футбол"
+  summer: "Лято"
+  vampire: "Вампири"
+  victorian-period: "Викторианска ера"
+  violence: "Насилие"
+  virtual-reality: "Виртуална реалност"
+  volleyball: "Волейбол"
+  war: "Война"

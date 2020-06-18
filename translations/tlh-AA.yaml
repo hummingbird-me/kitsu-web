@@ -12,7 +12,9 @@ titles:
       reactions: "reaction"
       franchise: "franchise"
   explore:
+    index: "{mediaType, select, anime {anime} manga {manga} other {}} explore"
     more:
+      trending: "Hogh trending{type, select, other {}}"
       top-current: "{type, select, Anime {yor Airing anime} Manga {Publishing manga yor} other {}}"
       top-upcoming: "yor {type, select, Anime {anime} Manga {manga} other {}} Upcoming"
       highest-rated: "nlv rate {type, select, Anime {anime} Manga {manga} other {}}"
@@ -26,7 +28,11 @@ titles:
   not-found: "wej vItu'"
   server-error: "jabwI' Qagh"
   users:
+    index: "qoghDu'DajDaq {user}"
     library: "be'nI'''a''wI', Datu' {user}"
+    reviews: "Reviews {user}"
+    reactions: "Reactions {user}"
+    followers: "{user} pabwl'"
     following: "tlha' {user}"
     groups: "{user} ghom"
     stats: "Stats {user}"
@@ -46,6 +52,16 @@ titles:
   groups:
     index: "ghom"
     new: "ghom chenmoH"
+    group:
+      group-page:
+        rules: "{group} che'"
+        members: "{group} member"
+        leaders: "{group} ra'wI'"
+      dashboard:
+        index: "{group} Overview"
+        reports: "{group} ja'"
+        tickets: "{group} chaw'"
+        settings: "{group} Settings"
   group-invite: "ghom vItlhobqa'"
 #head
 head:
@@ -61,6 +77,7 @@ header:
   browse: "browse"
   auth:
     sign-in: "login"
+    sign-up: "Suy qachmey"
   user:
     profile: "jIH qoghDu'DajDaq"
     settings: "setting"
@@ -76,6 +93,8 @@ about:
 dashboard:
   quick-update:
     title: "Qapchu' Update"
+    filter:
+      all: "Hoch"
     media:
       unstarted: "wej start"
 #page: anime/manga
@@ -93,11 +112,16 @@ media:
         da_dk: "maghbogh"
         de_de: "german"
         el_gr: "greek"
+        en: "English Hol"
+        en_au: "English Hol (australian)"
+        en_ca: "English Hol (canadian)"
         en_cn: "chinese (pinyin)"
+        en_gb: "English Hol (british)"
         en_il: "hebrew (romanize)"
         en_jp: "japanese (romaji)"
         en_kr: "korean (romaja)"
         en_th: "thai (romanize)"
+        en_us: "English Hol (american)"
         es_es: "spanish"
         et_ee: "estonian"
         fa_ir: "persian"
@@ -134,19 +158,25 @@ media:
       roles:
         alternative_setting: "setting yInmey"
         alternative_version: "version yInmey"
+        side_story: "Dop lut"
         parent_story: "muSHa'bogh lut"
         full_story: "lut naQ"
         spinoff: "spin-off"
         adaptation: "adaptation"
         character: "vuDmey''e''"
         other: "latlh"
+  hide-posts:
+    text: "Posts So' vIHtaHbogh {media}"
+    info: "Qo' nargh posts neH tlha' lom nolwI'pu' pagh {type} je'"
   show-posts:
+    text: "Posts cha' vIHtaHbogh {media}"
     info: "nargh posts qaStaHvIS tlha' lom nolwI'pu' {type} je' pagh"
 #components
 components:
   ad-unit: "suck qeS Hoch HoS puS 'ach chay' wov pol maH. maHvaD bel whitelist neH adblocker."
   admin:
     reports:
+      no-explanation: "Explanation DuHIvDI'."
       not-set: "wej HIjmeH"
       actions:
         closed: "SoQ pablu'DI'"
@@ -160,12 +190,17 @@ components:
     shortcut-bar:
       episode-number: "ep {number}"
     fast-forward: "HIjmeH be'nI''a'wI', Datu' Ser-episode-{number}!"
+    undo-update: "Ha'"
     update-progress: "be'nI''a'wI', Datu' Ser-episode-{number}. ghaHDaq update BERNARDO?"
     watched: "legh pablu'DI'"
     join-prompt:
+      pitch: "Ser ghoch 'ej discussion!"
       register: "kitsu Account chenmoH"
   search:
     header: "search ghot'e'"
+    view: "latlh jIH"
+    load: "latlh load"
+    none: "pagh ghot'e'"
   sidebar-footer:
     contact: "contact"
     terms: "wabmey"

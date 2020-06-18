@@ -10,6 +10,7 @@ titles:
       units: "{type, select, anime {حلقات} manga {فصول} other {}}"
       characters: "الشخصيات"
       reactions: "ردود الفعل"
+      franchise: "سلسلة"
   explore:
     index: "استكشف {mediaType, select, anime {أنيمي} manga {مانجا} other {}}"
     more:
@@ -21,6 +22,8 @@ titles:
     category:
       index: "{category} {type}"
       more:
+        newly-released: "صدر حديثًا {category} {type}"
+        trending: "الشائع {category} {type}"
         most-popular: "{type} {category} الأكثر شهرة"
   not-found: "غير موجود"
   server-error: "خطأ في الخادم"
@@ -33,6 +36,7 @@ titles:
     following: "مُتابَع من قبل {user}"
     groups: "مجموعات {user}"
     stats: "إحصائيات {user}"
+  posts: "نشر بواسطة {user}"
   comments: "تعليق بواسطة {user}"
   reviews: "مراجعة من قبل {user}"
   notifications: "الإشعارات"
@@ -92,6 +96,7 @@ about:
 #page: dashboard
 dashboard:
   quick-update:
+    title: "تحديث سريع"
     filter:
       all: "الكل"
       anime: "أنمي"
@@ -109,9 +114,13 @@ dashboard:
         complete: "مكتمل"
         tooltip:
           empty: "تحديث المكتبة"
+          content: "إنشاء مشاركة و تحديث المكتبة"
       discussion: "عرض المناقشة"
+      edit: "تعديل مدخل المكتبة"
       editor:
         placeholder: "شارك أفكارك حول {type, select, anime {الحلقة} manga {الفصل} other {}} {number}"
+  onboarding:
+    welcome: "مرحبًا{user}، أهلًا بك في كيتسو!"
   groups:
     header: "مجموعاتي"
   announcements:
@@ -124,11 +133,20 @@ media:
   index:
     remove: "إزالة"
     filters:
+      year: "السنة"
+      score: "متوسط التقييم"
       seasons: "المواسم"
       units: "{type, select, anime {حلقات} manga {فصول} other {}}"
       rating: "التقييم"
+      categories: "التصانيف"
+    sort:
+      popularity: "الشعبية"
+      date: "التاريخ"
+      recent: "أُضيف مؤخرًا"
+  none: "لاتوجد نتيجة"
   show:
     navigation:
+      summary: "الملخص"
       units: "{type, select, anime {حلقات} manga {فصول} other {}}"
       characters: "الشخصيات"
       reactions: "آراء المتابعين"
@@ -139,6 +157,7 @@ media:
         header: "المزيد من هذه السلسلة"
       reactions:
         header: "آراء المتابعين"
+        more: "عرض المزيد من التقاييم"
         sorts:
           -upVotesCount: "الاكثر شهرة"
           -createdAt: "الأحدث"
@@ -237,9 +256,17 @@ components:
     reports:
       table:
         status: "الحالة"
+  episodes:
+    join-prompt:
+      register: "انشئ حساب Kitsu"
+  likeable-resource:
+    loading: "جارِ التحميل…"
+    more: "تحميل المزيد"
   search:
     header: "نتائج البحث"
     view: "عرض المزيد"
+    load: "تحميل المزيد"
+    none: "لا يوجد نتائج"
   sidebar-footer:
     contact: "اتصل بنا"
     terms: "بنود الاستخدام"
