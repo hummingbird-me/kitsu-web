@@ -518,6 +518,9 @@ users:
         facebook:
           about: "I-enter ang iyong Facebook URL sa ibaba upang magdagdag ng isang link sa iyong profile."
           placeholder: "Ang iyong Facebook URL"
+        youtube2:
+          about: "Ilagay ang iyong YouTube channel URL isa ibaba upang madagdagan ng isang link sa iyong profile."
+          placeholder: "Ang iyong YouTube channel URL"
         google:
           about: "I-enter ang iyong Google+ profile URL sa ibaba upang magdagdag ng isang link sa iyong profile."
           placeholder: "Ang iyong Google+ profile URL o username (+Username)"
@@ -605,6 +608,7 @@ users:
   activity:
     onboarding:
       welcome: "Hey {user}, ang pahinang ito ay tungkol lahat sa IYO!"
+      about: "Sa paggamit mo ng Kitsu, ang iyong '<strong>'Personal Feed'</strong>' sa ibaba ay magsisimulang magpapakita ng mga anime at manga kasama na ang nanood, nabasa, nakumpleto at subukang makita. Ikaw ay maaaring mag-post ng texto, mga imahe at mga video sa iyong feed sa pamamagitan ng form sa ibaba. Ang iyong mga posts ay makikita at ikatuwa ng mga nagsusubaybay sa iyo at ang mga users galing sa global feed."
       title: "I-set-up ang Iyong Profile"
     about:
       header: "Tungkol sa Akin"
@@ -1238,9 +1242,11 @@ feeds:
     select: "Mag-upload"
     drop: "I-drop upang makapag-upload"
     invalid: "Di-wastong uri ng file"
+    uploading: "{number, plural, one {} =1 {Ina-upload ang imahe… {progress}%} other {Ina-upload ang {number} na mga imahe… {progress}%}}"
   filter:
     all: "Lahat na Aktibidad"
     media: "Aktibidad sa Media"
+    user: "Aktibidad ng User"
     following: "Aktibidad na Sinusundan Ko"
   placeholder: "{type, select, user_aggr {I-post sa {subject}} group_aggr {I-post sa {subject}} media_aggr {Mag-post tungkol sa {subject}} episode_aggr {Mag-post tungkol sa Episode {subject}} chapter_aggr {Mag-post tungkol sa Kabanata {subject}} interest_timeline {Mag-post tungkol sa/ng {subject}} other {Maggawa ng Post}}…"
   library:
@@ -1277,13 +1283,87 @@ media-reaction:
   edit: "I-edit ang iyong Reaksiyon"
 #component: modals/media-reaction
 reaction-modal:
+  post: "I-post"
+  edit: "I-edit"
   edit-warning: "Maingat ka! Sa pag-edit mo ay tatanggalin ang iyong mga upvotes."
+  delete: "I-Delete ang Reaksyon"
+  skip: "Laktawan"
+  #component: modals
+  modals:
+    image-cropper:
+      select: "Pumili"
+      close: "Isara"
+    confirm:
+      check: "Sigurado ka bang gusto mo ito gawin?"
+      button: "Kumpirmahin"
+    block-user:
+      header: "I-block ang User"
+      body:
+        header: "Bago mo i-block ang user na ito, gusto namin ikaw malaman kung paano ito gumagana."
+        text: "Sa pagblo-block ng tao na ito ay hindi mo na makikita ang mga nilalaman sa iyo, at ang iyong nilalaman ay hindi na nilang makikita o mai-interact."
+      button: "I-block si {user}"
+    report-content:
+      header: "Maaari mo lang isumbong ang nilalaman nito nang isang beses."
+      status: "Ang current status ng iyong report: {status}"
+      submit: "I-report"
+#component: library-entry/*
+library-entry:
+  state:
+    add-to-library: "Idagdag sa Library"
+    watching-this: "Nasimulan"
+    finished-this: "Nakumpleto"
+    place-on-hold: "Mga Nahinto"
+    drop-this: "Mga na-Dropped"
+    change-rating: "Ipalitan ang Marka"
+    remove-rating: "Tanggalin ang Marka"
+    rate-this: "Idagdag ng Marka"
+    edit-library: "I-edit ang Library Entry"
+    post-reaction: "I-post ang iyong Reaksiyon"
+    edit-reaction: "I-edit ang Reaksiyon"
+    remove-from-library: "Tanggalin sa iyong Library"
+    saved-in: "Na-save sa '<a' href={link}'>'{status}'</a>'"
+    progress: "Progreso"
+    not-rated: "Hindi Na-rate"
 #component: application/user-notifications
 user-notifications:
+  #Episode 113 of One Piece! aired
+  aired: "{type, select, chapter {Kabanata} episode {Episode} other {}} {number} ng {media} {type, select, chapter {ay Na-release} episode {Aired} other {}}"
   menu:
+    all: "Lahat ng Mga Notipikasyon"
     mark-read: "Markahan ang lahat bilang Nabasa na"
+    none: "Wala kang mga notipikasyon!"
+#ember-power-select
+selects:
+  loading: "Naglo-load…"
+  none: "Walang nakitang resulta"
+  search: "Simulang mag-type upang maghanap"
 #ember-cp-validations
 errors:
+  inclusion: "Ang {description} ay hindi napapabilang sa listahan na ito"
+  exclusion: "Ang {description} ay nai-reserba"
+  empty: "Ang {description} ay hindi dapat walang laman"
+  blank: "Ang {description} ay hindi dapat blangko"
+  present: "Dapat ang {description} ay blangko"
+  collection: "Ang {description} ay dapat sa isang koleksyon"
+  singular: "Ang {description} ay hindi maaaring maging koleksyon"
+  tooLong: "Ang {description} ay masyadong mahaba (ang maximum na mga karakter ay hindi tataas sa {max} na karakter)"
+  tooShort: "Ang {description} ay masyadong maiksi (ang minimum na karakter ay hindi bababa sa {min} na karakter)"
+  before: "Ang {description} ay dapat bago ng {before}"
+  after: "Ang {description} ay dapat pagkatapos ng {after}"
+  wrongDateFormat: "Ang {description} ay dapat nasa ayos ng {format}"
+  wrongLength: "Ang {description} ay nasa maling haba (dapat ito ay nasa {is} na kabuuang na mga karakter)"
+  notANumber: "Ang {description} ay dapat isang numero"
+  notAnInteger: "Ang {description} ay dapat isang integer"
+  greaterThan: "Ang {description} ay dapat higit sa {gt}"
+  date: "Ang {description} ay dapat isang wastong petsa"
+  email: "Ang {description} ay dapat wastong email address"
+  phone: "Ang {description} ay dapat wastong phone number"
+  url: "Ang {description} ay dapat wasto na url"
+  #Custom Errors
+  user:
+    name:
+      invalid: "Ang mga palayaw ay pwede lang magkaroon ng letra, numero at underscores"
+  load: "May problema sa paglo-load ng kontent na ito."
   contentEmpty: "Hmm, parang wala pang anuman dito."
   request: "Ay! May nangyaring mali sa iyong request."
   serverError:
@@ -1308,6 +1388,7 @@ category:
   cooking: "Pagluluto"
   cops: "Pulis"
   countryside: "Kabukiran"
+  demon: "Demonyo"
   dragon: "Dragon"
   drama: "Drama"
   earth: "Mundo"
@@ -1336,4 +1417,30 @@ category:
   kyoto: "Kyoto"
   law-and-order: "Batas at Kaayusan"
   mafia: "Mafia"
+  music: "Musika"
   mystery: "Misteryo"
+  new-york: "New York"
+  ninja: "Ninja"
+  nurse: "Nars"
+  other-planet: "Ibang Planeta"
+  past: "Nakaraan"
+  pirate: "Pirata"
+  politics: "Politika"
+  present: "Kasalakuyan"
+  psychological: "Sikolohikal"
+  religion: "Relihiyon"
+  revenge: "Paghihiganti"
+  romance: "Pagmamahalan"
+  russia: "Rusiya"
+  slow-when-it-comes-to-love: "Mabagal Pagdating sa Pag-ibig"
+  themes: "Mga Tema"
+  three-kingdoms: "Tatlong Kaharian"
+  tokyo: "Tokyo"
+  united-kingdom: "Reyno Unido"
+  united-states: "Estados Unidos"
+  university: "Unibersidad"
+  vampire: "Bampira"
+  violence: "Karahasan"
+  war: "Digmaan"
+  working-life: "Buhay na Nagtatrabaho"
+  world-war-ii: "Ikalawang Digmaang Pandaigdig"
