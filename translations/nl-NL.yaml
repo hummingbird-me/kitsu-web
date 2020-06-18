@@ -59,6 +59,7 @@ titles:
         leaders: "{group} Leiders"
       dashboard:
         index: "{group} Overzicht"
+        reports: "{group} Rapportages"
         tickets: "{group} Tickets"
         members: "{group} Leden"
         leaders: "{group} Leiders"
@@ -166,6 +167,11 @@ media:
       ratings:
         community: "{rating}% goedgekeurd door de Community"
         match: "{rating}% Match"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Plaats #{rank} (Populairste Anime)} manga {Plaats #{rank} (Populairste Manga)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} Populariteit} manga {#{rank} Populariteit} other {}}"
       categories: "Categorieën"
       relationships:
         header: "Meer van deze serie"
@@ -264,6 +270,7 @@ media:
         producers: "Regisseurs"
         licensors: "Licentiehouders"
         studios: "Studio's"
+        serialization: "Serialisatie"
         duration: "Lengte"
         total: "{total} totaal"
         length: "{count, plural, =1 {{length} minuten} other {elk {length} minuten}}"
@@ -417,6 +424,7 @@ components:
         twitter: "Tweet"
         facebook: "Deel"
       copy-link: "Link naar Recensie Kopiëren"
+      show: "Recensie content tonen"
       hide: "Recensie content verbergen"
       edit: "Recensie Bewerken"
       delete: "Recensie Verwijderen"
@@ -508,9 +516,6 @@ users:
         facebook:
           about: "Vul hieronder je Facebook gebruikersnaam in om een link aan je profiel toe te voegen."
           placeholder: "Jouw Facebook URL"
-        youtube:
-          about: "Vul hieronder je YouTube kanaal URL in om een link aan je profiel toe te voegen."
-          placeholder: "Je YouTube kanaal URL"
         google:
           about: "Vul hieronder je Google+ profiel URL in om een link naar je profiel toe te voegen."
           placeholder: "Je Google+ profiel URL of gebruikersnaam (+gebruikersnaam)"
@@ -598,6 +603,7 @@ users:
   activity:
     onboarding:
       welcome: "Hey {user}, deze pagina gaat volledig over JOU!"
+      about: "Naarmate je Kitsu gebruikt zal je '<strong>'Persoonlijke Feed'</strong>' hierbeneden zich vullen met de anime en manga die je gekeken en gelezen hebt en die van plan bent om te uit te checken. Je kan ook tekst, afbeeldingen en video's plaatsen in je feed met format hierbeneden. Je berichten zullen gezien en gewaardeerd worden door je volgers en gebruikers van de wereldwijde feed."
       action: "Doe alsof je thuis bent! Upload een avatar and banner! Klik om te starten hierboven op '<span>'Bewerken'</span>'."
       title: "Je Profiel Opzetten"
     about:
@@ -621,6 +627,7 @@ users:
       time-watched: "{count} {timeUnit} anime gekeken."
       chapters-read: "{count} hoofdstukken gelezen."
       completed: "{count} voltooid."
+      more-than: "Meer dan '<span class=\"time-spent-percentile\">'{percentage}%'</span>' van de gebruikers."
       time-breakdown:
         seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
         time-segment: "{count} {timeUnit}" #8 months (pre-translated)
@@ -715,6 +722,7 @@ users:
       select-all: "Selecteer Alles"
       select-none: "Niks Selecteren"
       remove: "Verwijder '<strong>'{num}'</strong>'"
+      move-to: "Verplaats '<strong>'{num}'</strong>' naar…"
       remove-loading: "Verwijderen…"
       update-loading: "Updaten…"
   groups:
@@ -785,6 +793,7 @@ settings:
     sub-header: "Synchroniseer je bibliotheek updates automatisch van Kitsu naar MyAnimeList."
     loading: "Exports Landen…"
     remove: "Verwijder exporteur"
+    disabled: "Je MAL export is uitgeschakeld vanwege de volgende reden: '<strong>'{reason}'</strong>'"
     create: "Zet export naar MyAnimeList Account op"
     download: "Download {kind} Bibliotheek"
     recent: "Recente synchronisatie activiteit"
@@ -804,11 +813,18 @@ settings:
         update: "Bijwerken"
         destroy: "Verwijderen"
       status:
+        pending: "In behandeling"
         success: "Succes"
         error: "Fout"
   imports:
+    header: "Importeren"
+    sub-header: "Media van andere aanbieders importeren"
+    button: "Importeer Media"
+    past-imports: "Je eerdere imports"
+    loading: "Imports Laden…"
     status: "Status:"
     entries: "Totaal aantal items gevonden:"
+    error: "Het lijkt erop dat je import is mislukt :( &mdash; We willen het voor fixen, dus '<a href=\"mailto:help@kitsu.io\">'email'</a>' ons."
     more: "Meer Laden"
   index:
     header: "Profiel"
@@ -835,17 +851,27 @@ settings:
     header: "Gelinkte Accounts"
     sub-header: "Verbind derde partij accounts met Kitsu"
     facebook: "Facebook"
+    disconnect: "Facebook loskoppelen"
     connect: "Facebook Verbinden"
   notifications:
     header: "Push Notificaties"
+    sub-header: "Algemene website brede meldingen"
     contexts:
+      web: "Web"
       email: "E-mail"
       mobile: "Mobiel"
     descriptions:
+      mentions: "Iemand '<strong>'vermeldt'</strong>' me in een bericht of reactie"
+      replies: "Iemand '<strong>'reageert'</strong>' op mijn bericht of reactie"
+      likes: "Iemand '<strong>'liket'</strong>' mijn bericht of reactie"
+      follows: "Iemand '<strong>'volgt'</strong>' me"
+      posts: "Iemand '<strong>'plaatst'</strong>' op mijn profiel"
+      reaction_votes: "Iemand '<strong>'upvote'</strong>' mijn media reactie"
       airing: "Nieuwe aflevering uitgebracht"
     newsletter:
       newsletter: "Nieuwsbrief"
       subscribed: "Geabonneerd"
+      message: "Wanneer ingeschakeld, ontvang je af en toe (erg grappige) email updates over Kitsu, geschreven door Josh zelf."
     loading: "Instellingen laden…"
     update: "Instellingen updaten"
   password:
@@ -856,7 +882,10 @@ settings:
     update-pswd: "Werk je wachtwoord bij"
   privacy:
     header: "Privacy"
+    sub-header: "Pas de mogelijkheid voor anderen aan om jouw content te bekijken"
+    discover: "Vindbaarheid"
     checkbox: "Weergeven in Globale Feed"
+    message: "Wanneer uitgeschakeld zijn je berichten alleen zichtbaar voor je volgers en gasten van je profiel."
     update: "Update profiel"
 #page: feedback
 feedback:
@@ -866,12 +895,14 @@ feedback:
 #page: groups
 groups:
   index:
+    call-to-action: "Iedereen kan groepen aanmaken en ontdekken. Iedere groep richt zich op een onderwerp of activiteit."
     create-btn: "Maak een groep"
   create:
     header: "Maak een groep"
     form:
       required: "Vereist"
       name: "Naam"
+      tagline: "Label"
       about: "Beschrijving"
       rules: "Regels"
       neighbors: "Buren"
@@ -881,9 +912,14 @@ groups:
         open: "Openbaar"
         closed: "Privé"
         restricted: "Beperkt"
+      privacy-features:
+        open: "'<li>'Iedereen kan bekijken'</li>' '<li>'Iedereen kan toetreden'</li>' '<li>'Iedereen kan berichten plaatsen en reageren'</li>'"
+        closed: "'<li>'Verborgen voor publiek'</li>' '<li>'Gebruikers mogen alleen toetreden via uitnodiging'</li>' '<li>'Kan niet openbaar gemaakt worden'</li>'"
+        restricted: "'<li>'Iedereen kan bekijken'</li>' '<li>'Iedereen kan toetreden'</li>' '<li>'Alleen leiders kunnen nieuwe berichten maken'</li>'"
       category: "Categorie"
       category-placeholder: "Kies een categorie"
       avatar: "Profielfoto"
+      cover: "Omslagafbeelding"
       create-btn: "Maak jouw Groep!"
       save-btn: "Opslaan"
       helper:
@@ -910,8 +946,11 @@ groups:
         avatar:
           header: "Avatar"
           desc: "Deze afbeelding zal door Kitsu gebruikt worden om je groep te identificeren."
+        cover:
+          desc: "Deze afbeelding verschijnt bovenaan de pagina van je groep op desktops. De zijkanten kunnen mogelijk bijgesneden worden afhankelijk van de kijker zijn schermgrootte."
       errors:
         neighbors-same: "Je kan jouw groep niet als buren toevoegen."
+  dashboard-btn: "Overzicht"
   join-group: "Deelnamen aan Groep"
   leave-group: "Groep verlaten"
   hide-posts:
@@ -935,6 +974,7 @@ groups:
     feed-restricted: "Dit is een beperkte groep. Iedereen kan reageren, alleen leiders kunnen posts maken."
   rules:
     header: "Community Regels"
+    empty: "Hallo daar! Het lijkt erop dat je de Kitsu community richtlijnen gebruikt. Als je je eigen regels wil instellen doe dat dan bij je '<a' href={link}'>'instellingen.'</a>'"
   tickets:
     search: "Zoeken in Tickets"
     empty: "Hoera! Je hebt geen tickets om te gebruiken."
@@ -944,6 +984,7 @@ groups:
       resolved: "Opgeloste Tickets"
       all: "Alle Tickets"
     conversation:
+      title: "Ticket van '<a' href={link}'>'{name}'</a>'"
       mark-resolved: "Als opgelost markeren"
       mark-closed: "Als gesloten markeren"
       mark-open: "Als open markeren"
@@ -956,7 +997,20 @@ groups:
       helper: "Typ hieronder je bericht om een ticket te maken! Leiders van deze groep zullen zo snel mogelijk beantwoorden."
   reports:
     no-explanation: "Geen Uitleg Gegeven"
+    empty: "Hoera! Je hebt geen meldingen om te behandelen."
+    filter:
+      open: "Openstaande rapporten"
+      resolved: "Opgeloste rapporten"
+      all: "Alle Rapporten"
+    show-more: "Toon {num} rapporten"
+    hide-more: "Verberg {num} rapporten"
+    status:
+      resolved: "Dit rapport is opgelost door {user}."
+      declined: "Dit rapport is afgewezen door {user}."
+      escalated: "Dit rapport is geëscaleerd door {user}."
     actions:
+      close: "Sluit Rapport"
+      remove: "Verwijder inhoud"
       escalate: "Meld aan Kitsu"
       view: "Bekijk Inhoud"
   leaders:
@@ -975,8 +1029,15 @@ groups:
         members: "Beheer Leden"
         leaders: "Beheer Leiders"
         community: "Instellingen Beheren"
+        content: "Beheer Content & Rapporten"
+        owner-help: "Eigenaren hebben alle rechten."
+        cancel-btn: "Annuleer"
+        save-btn: "Rechten Opslaan"
   dashboard:
+    back: "Terug naar {group}"
     navigation:
+      overview: "Overzicht"
+      tickets: "Tickets"
       members: "Leden"
       leaders: "Leiders"
       settings: "Instellingen"
@@ -986,7 +1047,14 @@ groups:
         today: "Vandaag lid geworden"
         total: "Totale leden"
       activity:
+        header: "Gebruikers activiteiten"
+        posts: "Berichten van vandaag"
         comments: "Reacties vandaag"
+      help-desk:
+        header: "Openstaande Zaken"
+      tickets: "Nieuwste kaarten"
+      reports: "Nieuwste rapporten"
+      log: "Hoofd log"
     members:
       invites:
         header: "Openstaande uitnodigingen"
@@ -994,8 +1062,11 @@ groups:
         revoke: "Annuleer uitnodiging"
         invite: "Nodig uit"
         placeholder: "Zoek voor een gebruiker om uit te nodigen. Ze moeten je volgen!"
+        empty: "Het lijkt erop dat u geen openstaande uitnodigingen voor de groep heeft."
       bans:
         header: "Verbannen gebruikers"
+        unban: "Deblokkeren"
+        ban: "Verbannen"
         placeholder: "Naam"
         empty: "Hoera! Je hebt geen verbannen gebruikers."
       members:
@@ -1003,18 +1074,41 @@ groups:
         table:
           users: "Gebruiker"
           permissions: "Rank"
+          joined: "Lid geworden"
           actions: "Acties"
         remove: "Verwijderen"
         ban: "Verban"
     leaders:
       chat:
+        header: "Hoofd chat"
+        post-btn: "Plaatsen"
         placeholder: "Stuur een bericht naar de leiders"
     audit:
+      user:
+        banned: "heeft '<a' href={link}'>'{user}'</a>' verbannen."
+        unbanned: "heeft '<a' href={link}'>'{user}'</a>' opgeheven."
+        invited: "heeft '<a' href={link}'>'{user}'</a>' uitgenodigd om de community toe te treden."
+        granted: "heeft rechten verleend aan '<a' href={link}'>'{user}'</a>'."
+        revoked: "heeft rechten ontnomen van '<a' href={link}'>'{user}'</a>'."
       group:
+        added_neighbor: "heeft '<a' href={link}'>'{group}'</a>' toegevoegd als buren."
+        removed_neighbor: "heeft '<a' href={link}'>'{group}'</a>' verwijderd als buren."
+        avatar_changed: "heeft de avatar van {group} bijgewerkt."
+        cover_changed: "heeft de omslagfoto van {group} bijgewerkt."
+        locale_changed: "heeft de landinstelling van {group} bijgewerkt."
         rules_changed: "de {group} regels zijn bijgewerkt."
         nsfw_changed: "de {group} NSFW status is bijgewerkt."
         about_changed: "de {group} over is bijgewerkt."
+        tagline_changed: "heeft het label van {group} bijgewerkt."
         category_changed: "categorie van {group} is bijgewerkt."
+      group-report:
+        resolved: "heeft een rapport opgelost."
+        declined: "heeft een rapport afgewezen."
+        escalated: "heeft een rapport geëscaleerd."
+      group-ticket:
+        assigned: "heeft een ticket toegewezen aan '<a' href={link}'>'{user}'</a>'."
+        resolved: "heeft een ticket als opgelost gemarkeerd."
+        created: "heeft een ticket heropend."
 #page: group-invite
 group-invite:
   header: "Groep Uitnodiging"
@@ -1030,7 +1124,9 @@ explore:
   view-more: "Meer bekijken"
   search-placeholder: "Waar zoek je naar?"
   advanced-search: "Of, browse met behulp van '<a' href=/{mediaType}'>'geavanceerde zoeken'</a>'"
+  no-data: "Hmm, het lijkt er op dat er geen media gevonden kan worden voor dit gedeelte."
   widget:
+    related: "Gerelateerde Categorieën"
     categories: "Categorieën"
     favorite-categories: "Mijn favoriete Categorieën"
     no-favorites: "Favoriete categorieën maken zal je aanbevelingen verbeteren."
@@ -1040,6 +1136,17 @@ explore:
   favorite-button:
     remove: "Verwijder uit Favorieten"
     removing: "Aan het verwijderen…"
+    create: "Toevoegen aan Favorieten"
+    creating: "Toevoegen…"
+  category:
+    index: "{category} {type, select, anime {Anime} manga {Manga} other {}}" #category is pre-translated
+#page: media-reactions
+media-reactions:
+  view-all: "Bekijk alle '<strong>'{count}'</strong>' reacties van {user}"
+  create-account: "Account aanmaken"
+#page: notifications
+notifications:
+  none: "Je hebt geen meldingen!"
 #page: password-reset
 password-reset:
   confirm: "Bevestig Wachtwoord"
@@ -1053,18 +1160,25 @@ media-shared:
     anime:
       All: "Alles"
       tv: "TV"
+      special: "Speciaal"
+      ona: "ONA"
+      ova: "OVA"
       movie: "Film"
       music: "Muziek"
     manga:
       All: "Alles"
       manga: "Manga"
+      novel: "Roman"
+      doujin: "Doujin"
       manhwa: "Manwha"
+      oel: "OEL"
   statuses:
     anime:
       current: "Aan het uitzenden"
       finished: "Afgelopen"
       upcoming: "Aankomend"
       unreleased: "Niet uitgebracht"
+      tba: "Nog aan te kondigen"
     manga:
       current: "Aan het publiceren"
       finished: "Afgelopen"
@@ -1076,29 +1190,42 @@ library-shared:
   current: "{type, select, anime {Nu aan het kijken} manga {Nu aan het lezen} other {}}"
   planned: "{type, select, anime {Wil gaan kijken} manga {Wil gaan lezen} other {}}"
   completed: "{type, select, anime {Voltooid} manga {Voltooid} other {}}"
+  on_hold: "{type, select, anime {Gepauzeerd} manga {Gepauzeerd} other {}}"
+  dropped: "{type, select, anime {Laten Vallen} manga {Laten Vallen} other {}}"
 #shared: form:
 form-shared:
   placeholders:
     username: "Gebruikersnaam"
     password: "Wachtwoord"
+#component: mobile-banner
+mobile-banner:
+  pitch: "Krijg een betere ervaring op de officiële Kitsu app."
 #component: auth-onboarding
 onboarding:
   aozora-conflict:
     title: "Ohh, je hebt al een Kitsu account! Welke wil je houden?"
+    info: "Activiteiten feed berichten van beide accounts worden samengevoegd. Alle andere account informatie zal worden overschreven door het account dat je hierbeneden hebt geselecteerd."
   aozora-account-details:
     submit: "Ziet er goed uit!"
   checklist:
     header: "Beginnen met Kitsu"
     steps: "{count} stappen over! 🦊"
+    feed: "Bezoek je persoonlijke feed"
     rate: "Beoordeel 5 anime of manga"
     rate-incomplete: "Beoordeel {count} anime of manga"
     follow: "Volg 5 gebruikers"
     follow-incomplete: "Volg {count} {count, plural,=1 {gebruiker} other {gebruikers}}"
+    comment: "Reageer op een bericht"
+    like: "Like 3 feed berichten"
+    like-incomplete: "Like {count} feed berichten"
     avatar: "Stel je avatar in"
+    cover: "Stel een profiel omslagfoto in"
+    about-me: "Voltooi je '<i>'Over mij'</i>'"
     favorite: "Kies je favoriete anime / manga"
 #component: follow-button
 follow-button:
   follow: "Volg"
+  unfollow: "Ontvolgen"
 #component: kitsu-feed
 feeds:
   uploads:
@@ -1126,12 +1253,44 @@ feeds:
       replies: "Reacties"
       oldest: "Oudste"
   review:
+    review: "Review"
     author: "Beoordeling door {user}"
+    progress: "{type, select, anime {Dit is een review tot aflevering {num}.} manga {Dit is een review tot hoofdstuk {num}.} other {}}"
+  interest:
+    anime:
+      header: "Welkom bij je Anime Feed!"
+      body: "Naarmate je je '<a' href={link}'>'anime bibliotheek'</a>' bijwerkt, zie je wat andere zeggen over de series die je aan het kijken bent."
+    manga:
+      header: "Welkom bij je Manga Feed!"
+      body: "Naarmate je je '<a' href={link}'>'manga bibliotheek'</a>' bijwerkt, zie je wat andere zeggen over de manga die je aan het lezen bent."
+    button: "Oké, begrepen"
+#component: image-form
+image-form:
+  help-text: "Klik hier om een afbeelding te selecteren."
+#component: groups/group-list
+group-list:
+  filter: "Groepen filteren"
+  sort:
+    featured: "Uitgelicht"
+    recent: "Recente Activiteit"
+    newest: "Nieuwste Groepen"
+    oldest: "Oudste Groepen"
+#component: media/media-reaction
+media-reaction:
+  self-vote: "Je kunt niet stemmen op je eigen reactie."
+  edit: "Bewerk Reactie"
 #component: modals/media-reaction
 reaction-modal:
+  edit-warning: "Let op! Bewerken verwijdert je upvotes."
+  placeholder: "{index, plural, =0 {Liet me een paar belangrijke levenskeuzes heroverwegen.} =1 {Verassend goed! Veel memorabele scènes.} =2 {Het is misschien niet voor iedereen, maar het is wel interessant.} other {Overrated, verspil hier je tijd niet aan.}}"
   skip: "Overslaan"
   #component: modals
   modals:
+    image-cropper:
+      header: "Afbeelding Bijsnijden"
+      dimensions: "Breedte: {width}, Hoogte: {height}"
+      select: "Selecteer"
+      close: "Sluiten"
     confirm:
       check: "Weet je zeker dat je dit wilt doen?"
       button: "Bevestig"
@@ -1141,6 +1300,11 @@ reaction-modal:
         header: "Voordat je deze gebruiker blokkeert, willen we je laten weten over hoe blokkeren werkt."
         text: "Als je deze persoon blokkeert zorgt het ervoor dat hun content niet meer zichtbaar is voor jouw, en dat jouw content niet zichtbaar of interactief meer is voor hun."
       button: "Blokkeer {user}"
+    report-content:
+      header: "Je kunt deze inhoud maar één keer rapporteren."
+      status: "De huidige status van je rapport: {status}"
+      reason: "Geef alsjeblieft een reden waarvoor je de content rapporteert."
+      submit: "Rapporteren"
 #component: library-entry/*
 library-entry:
   state:
@@ -1161,6 +1325,7 @@ library-entry:
     edit-reaction: "Reactie Veranderen"
     rewatch: "{type, select, anime {Herkeken} manga {Herlezen} other {}}"
     remove-from-library: "Verwijderen uit Bibliotheek"
+    saved-in: "Opgeslagen in '<a' href={link}'>'{status}'</a>'"
     progress: "Voortgang"
     not-rated: "Niet beoordeeld"
   rating:
@@ -1239,17 +1404,44 @@ timeUnits:
   minutes: "{count, plural, =1 {minuut} other {minuten}}"
 admin:
   reports:
+    header: "Rapporteren Aanpassen"
+    loading: "Rapporten Laden…"
     open: "Open"
     closed: "Gesloten"
+  header: "Admin Paneel"
   deployed-version: "Huidige Versie: {version}"
+  links:
+    admin: "Rails Admin"
 button:
   view-all: "alles bekijken"
 unsubscribe:
   email: "E-mail"
   unsubscribe: "Afmelden"
 category:
+  absurdist-humour: "Absurdistische Humor"
+  adventure: "Avontuur"
+  africa: "Afrika"
+  ahegao: "Ahegao"
+  air-force: "Luchtmacht"
+  alien: "Alien"
+  all-girls-school: "Alleen meisjes school"
+  alternative-past: "Alternatief Verleden"
+  alternative-present: "Alternatief Heden"
+  drama: "Drama"
+  drifting: "Driften"
+  dynamic: "Dynamisch"
+  dystopia: "Dystopia"
+  earth: "Aarde"
+  elementary-school: "Basisschool"
+  elements: "Elementen"
+  elf: "Elf"
+  epidemic: "Epidemie"
   europe: "Europa"
   family: "Familie"
+  fantasy: "Fantasie"
+  fantasy-world: "Fantasie Wereld"
+  female-student: "Vrouwelijke leerling"
+  female-teacher: "Vrouwelijke Leraar"
   france: "Frankrijk"
   friendship: "Vriendschap"
   future: "Toekomst"
