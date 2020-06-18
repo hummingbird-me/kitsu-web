@@ -33,35 +33,701 @@ titles:
     reviews: "Αξιολογήσεις {user}"
     reactions: "Αντιδράσεις {user}"
     followers: "Ακόλουθοι {user}"
+    following: "Ακολουθείται από {user}"
+    groups: "Οι ομάδες του {user}"
+    stats: "Τα Στατιστικά του {user}"
+  posts: "Οι δημοσιεύσεις του {user}"
+  comments: "Σχόλιο από {user}"
+  reviews: "Αξιολόγηση από {user}"
   notifications: "Ειδοποιήσεις"
   feedback:
     bugs: "Σφάλματα"
     feature-requests: "Μελλοντικές Προτάσεις"
     database-requests: "Προτάσεις Βάσεις Δεδομένων"
     mobile-bugs: "Σφάλματα κινητού"
+    mobile-features: "Δυνατότητες για Κινητά"
+  admin:
+    index: "Διαχειριστής"
+    reports: "Αναφορές"
+  groups:
+    index: "Ομάδες"
+    new: "Δημιουργήστε μια ομάδα"
+    group:
+      group-page:
+        rules: "Κανόνες {group}"
+        members: "Μέλη {group}"
+        leaders: "Αρχηγοί {group}"
+      dashboard:
+        index: "Σύνοψη {group}"
+        reports: "Αναφορές {group}"
+        settings: "Ρυθμίσεις {group}"
+#head
+head:
+  users:
+    description: "{user} χρησιμοποιούν το Kitsu για να παρακολουθήσουν την πρόοδο τους και να μοιραστούν τις εμπειρίες τους από anime και manga."
 #header
 header:
+  library: "Βιβλιοθήκη"
   anime: "Anime"
+  manga: "Manga"
+  trending: "Τάσεις"
+  feedback: "Feedback"
+  browse: "Περιήγηση"
+  auth:
+    sign-in: "Σύνδεση"
+    sign-up: "Εγγραφή"
+  user:
+    profile: "Εμφάνιση Προφίλ"
+    settings: "Ρυθμίσεις"
+    logout: "Αποσύνδεση"
+#page: about
+about:
+  header: "Σχετικά με το Kitsu"
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Γρήγορη Ενημέρωση"
     filter:
+      all: "Όλα"
       anime: "Άνιμε"
+    empty:
+      discover: "Ανακαλύψτε Μέσα"
+    media:
+      complete: "Ολοκληρώθηκε"
+      unstarted: "Δεν ξεκίνησε"
+    overlay:
+      button:
+        tooltip:
+          empty: "Ενημέρωση Βιβλιοθήκης"
+          content: "Δημιουργία δημοσίευσης και ενημέρωση βιβλιοθήκης"
+      discussion: "Εμφάνιση Συνομιλίας"
+  groups:
+    header: "Οι Ομάδες μου"
+  announcements:
+    button: "Μάθετε Περισσότερα"
   feed:
     anime: "Άνιμε"
+    global: "Παγκόσμια"
 #page: anime/manga
 media:
+  index:
+    filter: "Φίλτρο"
+    remove: "Αφαίρεση"
+    filters:
+      year: "Χρόνος"
+      score: "Μέσος Όρος Βαθμολογίας"
+      seasons: "Σεζόν"
+      rating: "Βαθμολογία"
+      categories: "Κατηγορίες"
+      types: "Είδη"
+    sort:
+      popularity: "Δημοτικότητα"
+      date: "Ημερομηνία"
+      recent: "Προστέθηκαν πρόσφατα"
+  none: "Δεν βρέθηκαν αποτελέσματα."
   show:
+    navigation:
+      summary: "Περίληψη"
+    summary:
+      relationships:
+        header: "Περισσότερα από αυτή την Σειρά"
+      reactions:
+        sorts:
+          -upVotesCount: "Δημοφιλή"
+          -createdAt: "Πρόσφατα"
+      titles:
+        af_za: "Αφρικάνικα"
+        ar: "Αραβικά"
+        bg_bg: "Βουλγάρικα"
+        bn_bd: "Μπενγκάλι"
+        ca_es: "Καταλανικά"
+        cs_cz: "Τσέχικα"
+        cy_gb: "Ουαλικά"
+        da_dk: "Δανέζικα"
+        de_de: "Γερμανικά"
+        el_gr: "Ελληνικά"
+        en: "Αγγλικά"
+        en_au: "Αγγλικά (Αυστραλίας)"
+        en_ca: "Αγγλικά (Καναδά)"
+        en_gb: "Αγγλικά (Βρετανίας)"
+        en_us: "Αγγλικά (Αμερικής)"
+        es_es: "Ισπανικά"
+        et_ee: "Εσθονικά"
+        fa_ir: "Περσικά"
+        fi_fi: "Φινλανδικά"
+        fr_ca: "Γαλλικά (Καναδά)"
+        fr_fr: "Γαλλικά"
+        ga_ie: "Ιρλανδικά"
+        he_il: "Εβραϊκά"
+        hi_in: "Ινδικά"
+        hr_hr: "Κροάτικα"
+        hu_hu: "Ουγγρικά"
+        id_id: "Ινδονησιακά"
+        is_is: "Ισλανδικά"
+        it_it: "Ιταλικά"
+        ja_jp: "Ιαπωνικά"
+        kk_kz: "Καζακστανικά"
+        ko_kr: "Κορεάτικα"
+        lt_lt: "Λιθουανικά"
+        lv_lv: "Λετονικά"
+        ms_my: "Μαλάι"
+        mt_mt: "Μαλτεζικά"
+        nb_no: "Νορβηγικά (Bokmål)"
+        nl_nl: "Ολλανδικά"
+        nn_no: "Νορβηγικά (Νινόρσκ)"
+        pl_pl: "Πολωνικά"
+        pt_br: "Πορτογαλικά (Βραζιλίας)"
+        pt_pt: "Πορτογαλικά"
+        ro_ro: "Ρουμάνικα"
+        ru_ru: "Ρώσικα"
+        sc_it: "Σαρδινικά"
+        sco_gb: "Σκοτσέζικα"
+        sk_sk: "Σλοβακικά"
+        sl_sl: "Σλοβένικα"
+        sr_cs: "Σέρβικα (Λατινικά)"
+        sr_sp: "Σερβικά (Κυριλλική)"
+        sv_se: "Σουηδικά"
+        th_th: "Ταϊλανδέζικα"
+        tl_ph: "Ταγκαλόγκ"
+        tr_tr: "Τούρκικα"
+        uk_ua: "Ουκρανικά"
+        ur_in: "Ουρντού (Ινδία)"
+        ur_pk: "Ουρντού (Πακιστάν)"
+        vi_vn: "Βιετναμέζικα"
+        zh_cn: "Κινέζικα (Απλοποιημένα)"
+        zh_hk: "Κινέζικα (Χονγκ Κονγκ)"
+        zh_tw: "Κινέζικα (Παραδοσιακά)"
+        synonyms: "Συνώνυμα"
+      information:
+        header: "Λεπτομέρειες {type, select, anime {Άνιμε} manga {Μάνγκα} other {}}"
+        type: "Είδος"
+        volumes: "Τόμοι"
+        status: "Κατάσταση"
+        tba: "Αναμένεται"
+        season: "Σεζόν"
+        producers: "Παραγωγοί"
+        licensors: "Αδειοδότες"
+        studios: "Στούντιο"
+        duration: "Διάρκεια"
+        expand:
+          false: "Περισσότερες πληροφορίες"
+          true: "Λιγότερες Πληροφορίες"
+      trailer: "Παίξε το τρέιλερ"
+    units:
+      unit: "{type, select, episode {Επεισόδιο} chapter {Κεφάλαιο} other {}}"
+      back: "Πίσω στην λίστα {type, select, episode {επεισοδίων} chapter {κεφαλαίων} other {}}"
+      pages: "{length} Σελίδες"
+      date: "{type, select, episode {Προβλήθηκε} chapter {Εκδόθηκε} other {}}"
+      feed:
+        header: "Συζήτηση {type, select, episode {Επεισοδίου} chapter {Κεφαλαίου} other {}}"
+    characters:
+      header: "{title} Χαρακτήρες"
+    reactions:
+      loading: "Φόρτωση Αντιδράσεων…"
+      delete: "Διαγραφή Αντίδρασης"
+      report: "Αναφορά Αντίδρασης"
+      copy: "Αντιγραφή Συνδέσμου στην Αντίδραση"
     franchise:
+      header: "Σύμπαν του {title}"
       roles:
         anime_adaptation: "Άνιμε"
+        character: "Χαρακτήρας"
+        other: "Άλλο"
+  hide-posts:
+    text: "Κρύψε Δημοσιεύσεις σχετικά με {media}"
+  show-posts:
+    text: "Εμφάνισε Δημοσιεύσεις σχετικά με {media}"
 #components
 components:
+  admin:
+    reports:
+      not-set: "Δεν έχει οριστεί"
+      table:
+        reason: "Αιτία"
+        explanation: "Επεξήγηση"
+        moderator: "Διαχειριστής"
+  application:
+    nav-search: "Αναζήτηση στο Kitsu"
+  episodes:
+    undo-update: "Αναίρεση"
+  search:
+    none: "κανένα αποτέλεσμα"
+  sidebar-footer:
+    contact: "Επικοινωνία"
+    terms: "Όροι"
+  stream-feed:
+    create-post:
+      spoiler: "Spoiler"
+      tag-media: "Πληκτρολογήστε για να κάνετε ταγκ μία σειρά ή ένα Manga"
+    edit-post:
+      header: "Επεξεργασία δημοσίευσης"
+      error:
+        tagged: "Δυστυχώς, δεν μπορούμε να σου επιτρέψουμε να επεξεργαστείς τα μέσα σου με ετικέτα ακόμα."
+    follow:
+      followed: "ακολουθείται"
+      delete: "Διαγράψτε την Δραστηριότητα"
+    library:
+      delete: "διαγραφή"
+      deleting: "διαγράφεται…"
+    post:
+      pinned: "Καρφιτσωμένη Δημοσίευση"
+      edited: "επεξεργάστηκε"
+      gate:
+        nsfw: "Αυτή η δημοσίευση περιέχει NSFW περιεχόμενο."
+        spoiler: "Αυτή η δημοσίευση περιέχει spoilers."
+      hide: "Απόκρυψη Περιεχομένου Δημοσίευσης"
+      delete: "Διαγραφή Δημοσίευσης"
+      unpin: "Αναίρεση Καρφιτσώματος Δημοσίευσης από το Προφίλ"
+      pin: "Καρφίτσωμα Δημοσίευσης στο Προφίλ"
+      report: "Αναφορά Δημοσίευσης"
+      comment:
+        deleting: "Διαγραφή Σχόλιου…"
+        reply: "Απάντηση"
+        edit: "Επεξεργασία σχολίου"
+        delete: "Διαγραφή σχολίου"
+        report: "Αναφορά Σχολίου"
+        previous-replies: "Εμφάνιση Προηγούμενων Απαντήσεων"
+        add-reply: "Προσθήκη Απάντησης…"
+      comments:
+        all: "Δείτε Όλα τα Σχόλια"
+        leave-comment: "Αφήστε ένα σχόλιο…"
+    review:
+      share:
+        twitter: "Tweet"
+        facebook: "Κοινοποίηση"
+      copy-link: "Αντιγραφή Συνδέσμου στην Κριτική"
+      show: "Εμφάνιση Περιεχομένου Κριτικής"
+      hide: "Απόκρυψη Περιεχομένου Κριτικής"
+      edit: "Επεξεργασία Κριτικής"
+      delete: "Διαγραφή Κριτικής"
+      report: "Αναφορά Κριτικής"
   users:
+    ban:
+      title: "Είστε σίγουρος πως θέλετε να αποκλείσετε αυτόν τον χρήστη;"
+    delete-user-content:
+      checkbox:
+        posts: "Δημοσιεύσεις"
+        comments: "Σχόλια"
+      delete: "Διαγραφή"
+    block: "Αποκλεισμός @{user}"
     favorites:
       anime: "Άνιμε"
+      more: "Εμφάνιση Περισσότερων"
+      edit: "Επεξεργασία αγαπημένων {type, select, anime {ανιμε} manga {μανγκα} characters {χαρακτήρων} other {}}"
+      empty:
+        others: "Ο χρήστης δεν έχει αγαπημένα"
+      choose: "Διάλεξε αγαπημένο {type, select, anime {anime} manga {manga} characters {χαρακτήρα} other {}}"
+    past-name:
+      title: "Προηγούμενα Ονόματα"
+      none: "Δεν υπάρχουν προηγούμενα ονόματα"
 #page: users
 users:
+  admin:
+    past-names: "Προβολή Προηγούμενων Ονομάτων"
+    alt-accounts: "Προβολή Άλλων Λογαριασμών"
+  navigation:
+    activity: "Δραστηριότητα"
+    reviews: "Κριτικές"
+    followers: "Ακόλουθοι"
+    following: "Ακολουθεί"
   edit-modal:
+    navigation:
+      about: "Σχετικά με μένα"
+      favorites: "Αγαπημένα"
+    about:
+      location:
+        label: "Τοποθεσία"
+        placeholder: "Πού μένετε;"
+      birthday: "Γενέθλια"
+      gender:
+        label: "Φύλο"
+        options:
+          secret: "Είναι μυστικό"
+          male: "Αρσενικό"
+          female: "Θηλυκό"
+          custom: "Προσαρμογή"
+      waifu:
+        label: "Waifu"
+        placeholder: "Waifu/Husbando"
+      bio:
+        label: "Περιγραφή"
+        placeholder: "Πες στον κόσμο την ιστορία σου."
+    profile-links:
+      remove: "Αφαίρεση από προφίλ"
+      sites:
+        website:
+          placeholder: "Το URL της ιστοσελίδας σας"
+        facebook:
+          placeholder: "Το URL του Facebook σου"
+        reddit:
+          placeholder: "Το όνομα χρήστη σας στο Reddit"
     favorites:
       anime: "Άνιμε"
+      remove: "Αφαίρεση Αγαπημένου;"
+  activity:
+    about:
+      waifu:
+        label: "{waifu, select, Waifu {Waifu} Husbando {Husbando} other {{waifu}}}:"
+        empty: "Waifu/Husbando:"
+      gender:
+        label: "Φύλο:"
+      location: "Τοποθεσία:"
+      birthday: "Γενέθλια:"
+      joined: "Ημερομηνία εγγραφής:"
+  library:
+    sorting:
+      label: "Ταξινόμηση κατά:"
+      options:
+        progress: "Πρόοδος"
+        title: "Τίτλος"
+      directions:
+        watched:
+          desc: "Πρώτα τα πρόσφατα"
+          asc: "Πρώτα τα παλαιότερα"
+        progress:
+          desc: "Πρώτα τα περισσότερο"
+          asc: "Πρώτα τα λιγότερο"
+        rating:
+          desc: "Πρώτα τα υψηλότερα"
+          asc: "Τα χαμηλότερα πρώτα"
+        length:
+          desc: "Τα μεγαλύτερα πρώτα"
+          asc: "Τα μικρότερα πρώτα"
+    sidebar:
+      manage: "Διαχείριση Βιβλιοθήκης"
+      import: "Εισαγωγή Βιβλιοθήκης"
+      export: "Εξαγωγή Βιβλιοθήκης"
+      reset: "Επαναφορά Βιβλιοθήκης"
+      reset-loading: "Επαναφορά…"
+      issues:
+        fix: "διόρθωση"
+    list:
+      list-edit: "Επεξεργασία"
+      more: "Περισσότερα"
+      unrated: "Χωρίς Βαθμολογία"
+      add-reaction: "Προσθήκη Αντίδρασης"
+      empty:
+        button: "Περιήγηση {type}"
+    edit:
+      status: "Κατάσταση Βιβλιοθήκης"
+      privacy: "Ιδιωτικοτητα"
+      started: "Ξεκίνησε"
+      finished: "Ολοκληρώθηκε"
+      notes: "Προσωπικές Σημειώσεις"
+      remove: "Αφαίρεση από την Βιβλιοθήκη"
+      save: "Αποθήκευση Αλλαγών"
+      saving: "Αποθήκευση…"
+    bulk:
+      select-all: "Επιλογή όλων"
+      select-none: "Επιλογή Κανενός"
+      remove: "Αφαίρεση '<strong>'{num}'</strong>'"
+      move-to: "Μετακίνηση '<strong>'{num}'</strong>' σε…"
+      remove-loading: "Αφαίρεση…"
+      update-loading: "Ενημέρωση…"
+  groups:
+    sort:
+      newest: "Εγγράφηκαν Πρόσφατα"
+      oldest: "Εγγράφηκαν Παλαιότερα"
+  reactions:
+    empty: "Ο χρήστης δεν έχει αντιδράσεις"
+    filters:
+      all: "Όλες οι Αντιδράσεις"
+      anime: "Αντιδράσεις Anime"
+      manga: "Αντιδράσεις Manga"
+    sorts:
+      best: "Καλύτερα"
+      new: "Νέα"
+  hide-posts:
+    text: "Απόκρυψη Δημοσιεύσεων από {user}"
+  show-posts:
+    text: "Εμφάνιση Δημοσιεύσεων από {user}"
+  followers:
+    not-found: "Δεν βρέθηκαν Χρήστες."
+  reviews:
+    loading: "Φόρτωση Κριτικών…"
+#page: settings
+settings:
+  navigation:
+    profile: "Προφίλ"
+    account: "Λογαριασμός"
+  apps:
+    header: "Εφαρμογές"
+  blocking:
+    button-block: "Αποκλεισμός"
+    button-unblock: "Κατάργηση αποκλεισμού"
+  exports:
+    modal:
+      create: "Συγχρονιστείτε στο {site}"
+    header: "Εξαγωγή"
+    download: "Λήψη {kind} Βιβλιοθήκης"
+    sync-header: "Συγχρονισμός MyAnimeList"
+    no-logs: "Αναλύουμε την βιβλιοθήκη σου και την συγχρονίζουμε με το MyAnimeList. Κρατήσου γερά!"
+    logs:
+      action:
+        create: "Δημιουργία"
+        update: "Ενημέρωση"
+      status:
+        pending: "Σε Αναμονή"
+        success: "Επιτυχία"
+        error: "Σφάλμα"
+  imports:
+    header: "Εισαγωγές"
+  index:
+    name: "Εμφάνιση Ονόματος"
+    email-message: "Το Email δεν θα φαίνεται δημοσίως."
+    language: "Γλώσσα"
+    time-zone: "Ζώνη ώρας"
+    content: "Περιεχόμενο στο Kitsu"
+    country: "Χώρα"
+    titles: "Τίτλοι"
+    rating: "Είδος Αξιολόγησης"
+    adult: "Για ενήλικες"
+  linked-accounts:
+    facebook: "Facebook"
+    disconnect: "Αποσύνδεση από το Facebook"
+    connect: "Σύνδεση στο Facebook"
+  notifications:
+    contexts:
+      email: "Email"
+      mobile: "Κινητό"
+#page: groups
+groups:
+  create:
+    form:
+      about: "Περιγραφή"
+      rules: "Κανόνες"
+      privacy-options:
+        open: "Δημόσιο"
+        closed: "Ιδιωτικό"
+        restricted: "Περιορισμένη πρόσβαση"
+      category: "Κατηγορία"
+      cover: "Εικόνα Εξώφυλλου"
+      save-btn: "Αποθήκευση"
+  join-group: "Συμμετοχή στην Ομάδα"
+  leave-group: "Αποχώρηση από την Ομάδα"
+  hide-posts:
+    text: "Απόκρυψη Δημοσιεύσεων από {group}"
+  show-posts:
+    text: "Εμφάνιση Δημοσιεύσεων από {group}"
+  nsfw: "NSFW"
+  navigation:
+    members: "Μέλη"
+    leaders: "Αρχηγοί"
+  activity:
+    feed-header: "Δραστηριότητα Ομάδας"
+  reports:
+    actions:
+      escalate: "Ενημερώστε το Kitsu"
+      view: "Προβολή Περιεχομένου"
+  leaders:
+    list:
+      add-btn: "Προσθήκη"
+      add-placeholder: "Μέλος ομάδας"
+      message-leader: "Είστε ένας αρχηγός αυτής της ομάδας!"
+      modal:
+        owner: "Κάτοχος Ομάδας"
+        cancel-btn: "Ακύρωση"
+  dashboard:
+    overview:
+      activity:
+        posts: "Δημοσιεύσεις Σήμερα"
+    members:
+      invites:
+        revoke: "Ακύρωση Πρόσκλησης"
+        invite: "Πρόσκληση"
+      bans:
+        header: "Αποκλεισμένοι Χρήστες"
+        unban: "Κατάργηση αποκλεισμού"
+        ban: "Αποκλεισμός"
+      members:
+        table:
+          users: "Χρήστης"
+          permissions: "Κατάταξη"
+          joined: "Εγγράφηκε"
+          actions: "Ενέργειες"
+    leaders:
+      chat:
+        post-btn: "Δημοσίευση"
+#page: group-invite
+group-invite:
+  accept: "Αποδοχή"
+  decline: "Απόρριψη"
+#page: explore
+explore:
+  view-more: "Δείτε περισσότερα"
+  widget:
+    related: "Σχετικές Κατηγορίες"
+    favorite-categories: "Οι αγαπημένες μου Κατηγορίες"
+#shared: form:
+form-shared:
+  placeholders:
+    username: "Όνομα Χρήστη"
+    password: "Κωδικός πρόσβασης"
+#component: auth-onboarding
+onboarding:
+  aozora-account-details:
+    submit: "Όλα εντάξει!"
+  checklist:
+    follow: "Ακολούθησε 5 χρήστες"
+#component: kitsu-feed
+feeds:
+  uploads:
+    select: "Ανάρτηση"
+    invalid: "Μη έγκυρος τύπος αρχείου"
+  post:
+    sorts:
+      replies: "Απαντήσεις"
+      oldest: "Παλαιότερα"
+  review:
+    review: "Κριτική"
+  interest:
+    button: "Εντάξει, το κατάλαβα"
+#component: modals/media-reaction
+reaction-modal:
+  #component: modals
+  modals:
+    image-cropper:
+      dimensions: "Πλάτος: {width}, Ύψος: {height}"
+      select: "Επιλογή"
+      close: "Κλείσιμο"
+    confirm:
+      button: "Επιβεβαίωση"
+    block-user:
+      header: "Μπλοκάρισμα Χρήστη"
+    report-content:
+      submit: "Αναφορά"
+#component: library-entry/*
+library-entry:
+  state:
+    add-to-library: "Προσθήκη στη Βιβλιοθήκη"
+    finished-this: "Ολοκληρώθηκε"
+    place-on-hold: "Σε αναμονή"
+    drop-this: "Εγκαταλείφθηκε"
+    change-rating: "Αλλαγή Βαθμολογίας"
+    remove-rating: "Αφαίρεση Βαθμολογίας"
+    rate-this: "Προσθήκη Βαθμολογίας"
+    not-rated: "Δεν έχει βαθμολογηθεί"
+  rating:
+    awful: "Απαίσιο"
+    meh: "Αδιάφορο"
+    good: "Καλό"
+    great: "Τέλειο"
+#ember-power-select
+selects:
+  loading: "Φόρτωση…"
+  none: "Δε βρέθηκαν αποτελέσματα"
+#ember-cp-validations
+errors:
+  description: "Αυτό το πεδίο"
+  serverError:
+    reload: "Επαναφόρτωση"
+admin:
+  reports:
+    open: "Άνοιγμα"
+button:
+  view-all: "προβολή όλων"
+unsubscribe:
+  unsubscribe: "Κατάργηση εγγραφής"
+category:
+  adventure: "Περιπέτεια"
+  air-force: "Αεροπορία"
+  asia: "Ασία"
+  basketball: "Μπάσκετ"
+  boxing: "Μποξ"
+  cycling: "Ποδηλασία"
+  deity: "Θεότητα"
+  dementia: "Άνοια"
+  demon: "Δαίμονας"
+  desert: "Έρημος"
+  detective: "Ντεντέκτιβ"
+  disaster: "Καταστροφή"
+  dragon: "Δράκος"
+  drama: "Δράμα"
+  elementary-school: "Δημοτικό"
+  elf: "Ξωτικό"
+  europe: "Ευρώπη"
+  family: "Οικογένεια"
+  fantasy: "Φαντασία"
+  france: "Γαλλία"
+  friendship: "Φιλία"
+  future: "Μέλλον"
+  genetic-modification: "Γενετική Μετάλλαξη"
+  germany: "Γερμανία"
+  ghost: "Φάντασμα"
+  harem: "Harem"
+  high-school: "Λύκειο"
+  historical: "Ιστορικό"
+  horror: "Τρόμου"
+  island: "Νησί"
+  italy: "Ιταλία"
+  japan: "Ιαπωνία"
+  korea: "Κορέα"
+  mars: "Άρης"
+  martial-arts: "Πολεμικές Τέχνες"
+  mecha: "Mecha"
+  mermaid: "Γοργόνα"
+  middle-east: "Μέση Ανατολή"
+  middle-school: "Γυμνάσιο"
+  military: "Στρατός"
+  motorsport: "Motorsport"
+  mystery: "Μυστηρίου"
+  navy: "Ναυτικό"
+  netorare: "Netorare"
+  new-york: "Νέα Υόρκη"
+  ninja: "Νίντζα"
+  nurse: "Νοσοκόμα"
+  parallel-universe: "Παράλληλο Σύμπαν"
+  parasite: "Παράσιτο"
+  parental-abandonment: "Γονεϊκή Εγκατάλειψη"
+  parody: "Παρωδία"
+  past: "Παρελθόν"
+  pirate: "Πειρατές"
+  politics: "Πολιτική"
+  post-apocalypse: "Post Apocalypse"
+  present: "Παρόν"
+  psychological: "Ψυχολογικό"
+  religion: "Θρησκεία"
+  revenge: "Εκδίκηση"
+  robot: "Ρομπότ"
+  romance: "Ρομαντική"
+  russia: "Ρωσία"
+  samurai: "Σαμουράι"
+  satire: "Σάτιρα"
+  school-life: "Σχολική Ζωή"
+  science-fiction: "Επιστημονικής φαντασίας"
+  seinen: "Seinen"
+  shoujo: "Shoujo"
+  soccer: "Ποδόσφαιρο"
+  space: "Διάστημα"
+  sports: "Αθλήματα"
+  stereotypes: "Στερεότυπα"
+  street-racing: "Αγώνες Δρόμου"
+  summer: "Καλοκαίρι"
+  superhero: "Υπερήρωες"
+  supernatural: "Υπερφυσικό"
+  super-power: "Σούπερ Δυνάμεις"
+  tennis: "Τένις"
+  the-arts: "Τέχνες"
+  three-kingdoms: "Τρία Βασίλεια"
+  thriller: "Θρίλερ"
+  time-travel: "Ταξίδι στο Χρόνο"
+  tokyo: "Τόκιο"
+  united-kingdom: "Ηνωμένο Βασίλειο"
+  united-states: "Ηνωμένες Πολιτείες"
+  university: "Πανεπιστήμιο"
+  vampire: "Βρικόλακας"
+  victorian-period: "Βικτοριανή Εποχή"
+  violence: "Βία"
+  virtual-reality: "Εικονική Πραγματικότητα"
+  volleyball: "Βόλεϊ"
+  waitress: "Σερβιτόρα"
+  war: "Πόλεμος"
+  working-life: "Εργατική ζωή"
+  world-war-ii: "2ος Παγκόσμιος Πόλεμος"
+  wrestling: "Πυγμαχία"
+  yaoi: "Yaoi"
+  zombie: "Ζόμπι"
+  sex: "Sex"
+  ecchi: "Ecchi"
+  pantsu: "Pantsu"
+  yuri: "Yuri"
