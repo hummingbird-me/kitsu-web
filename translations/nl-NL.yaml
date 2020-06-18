@@ -365,6 +365,7 @@ components:
   sidebar-footer:
     contact: "Contact"
     terms: "Voorwaarden"
+    privacy: "Privacy"
   stream-feed:
     create-post:
       edit: "Bewerken"
@@ -518,6 +519,9 @@ users:
         facebook:
           about: "Vul hieronder je Facebook gebruikersnaam in om een link aan je profiel toe te voegen."
           placeholder: "Jouw Facebook URL"
+        youtube2:
+          about: "Vul je YouTube-kanaal URL in om een link aan je profiel toe te voegen."
+          placeholder: "Je YouTube-kanaal URL"
         google:
           about: "Vul hieronder je Google+ profiel URL in om een link naar je profiel toe te voegen."
           placeholder: "Je Google+ profiel URL of gebruikersnaam (+gebruikersnaam)"
@@ -895,6 +899,9 @@ feedback:
   header: "Feedback"
   bugs: "Bugs"
   features: "Functies aanvragen"
+  database: "Database Verzoeken"
+  mobile-bugs: "Mobiele bugs"
+  mobile-features: "Mobiele functies"
 #page: groups
 groups:
   index:
@@ -930,6 +937,7 @@ groups:
           header: "Naam"
           desc: "Groepsnamen moeten duidelijk weergeven waar je groep over gaat, maar je kan nog steeds creatief zijn en er plezier mee hebben!"
         tagline:
+          header: "Label"
           desc: "Vat het doel van je groep samen in 60 of minder karakters. Je zult later meer ruimte hebben om meer informatie toe te voegen."
         about:
           header: "Beschrijving"
@@ -950,6 +958,7 @@ groups:
           header: "Avatar"
           desc: "Deze afbeelding zal door Kitsu gebruikt worden om je groep te identificeren."
         cover:
+          header: "Omslagafbeelding"
           desc: "Deze afbeelding verschijnt bovenaan de pagina van je groep op desktops. De zijkanten kunnen mogelijk bijgesneden worden afhankelijk van de kijker zijn schermgrootte."
       errors:
         neighbors-same: "Je kan jouw groep niet als buren toevoegen."
@@ -1040,6 +1049,7 @@ groups:
     back: "Terug naar {group}"
     navigation:
       overview: "Overzicht"
+      reports: "Rapportages"
       tickets: "Tickets"
       members: "Leden"
       leaders: "Leiders"
@@ -1055,6 +1065,8 @@ groups:
         comments: "Reacties vandaag"
       help-desk:
         header: "Openstaande Zaken"
+        tickets: "Tickets"
+        reports: "Rapportages"
       tickets: "Nieuwste kaarten"
       reports: "Nieuwste rapporten"
       log: "Hoofd log"
@@ -1152,6 +1164,7 @@ notifications:
   none: "Je hebt geen meldingen!"
 #page: password-reset
 password-reset:
+  password: "Wachtwoord"
   confirm: "Bevestig Wachtwoord"
   length: "Wachtwoord moet minimaal 8 tekens lang zijn"
   reset: "Wachtwoord opnieuw instellen"
@@ -1189,6 +1202,7 @@ media-shared:
       finished: "Afgelopen"
       upcoming: "Aankomend"
       unreleased: "Niet uitgebracht"
+      tba: "n.n.b."
 #shared: library
 library-shared:
   all: "{type, select, anime {Alle Anime} manga {Alle Manga} other {}}"
@@ -1289,7 +1303,10 @@ media-reaction:
   edit: "Bewerk Reactie"
 #component: modals/media-reaction
 reaction-modal:
+  post: "Plaatsen"
+  edit: "Bewerken"
   edit-warning: "Let op! Bewerken verwijdert je upvotes."
+  delete: "Reactie verwijderen"
   placeholder: "{index, plural, =0 {Liet me een paar belangrijke levenskeuzes heroverwegen.} =1 {Verassend goed! Veel memorabele scènes.} =2 {Het is misschien niet voor iedereen, maar het is wel interessant.} other {Overrated, verspil hier je tijd niet aan.}}"
   skip: "Overslaan"
   #component: modals
@@ -1419,6 +1436,7 @@ admin:
   header: "Admin Paneel"
   deployed-version: "Huidige Versie: {version}"
   links:
+    index: "Rapportages"
     admin: "Rails Admin"
 button:
   view-all: "alles bekijken"
@@ -1427,6 +1445,7 @@ unsubscribe:
   unsubscribe: "Afmelden"
 category:
   absurdist-humour: "Absurdistische Humor"
+  action: "Actie"
   adventure: "Avontuur"
   africa: "Afrika"
   ahegao: "Ahegao"
@@ -1470,6 +1489,7 @@ category:
   cyberpunk: "Cyberpunk"
   cyborg: "Cyborg"
   cycling: "Fietsen"
+  dark-fantasy: "Dark Fantasy"
   dark-skinned-girl: "Gebruind Meisje"
   deity: "Godheid"
   dementia: "Dementie"
@@ -1507,7 +1527,10 @@ category:
   harem: "Harem"
   heian-period: "Heian periode"
   henshin: "Henshin"
+  high-fantasy: "High Fantasy"
+  high-school: "High School"
   historical: "Historisch"
+  horror: "Horror"
   housewives: "Huisvrouwen"
   human-enhancement: "Menselijke verbetering"
   humanoid-alien: "Menselijke alien"
@@ -1515,28 +1538,38 @@ category:
   isekai: "Isekai"
   island: "Eiland"
   italy: "Italië"
+  japan: "Japan"
   josei: "Josei"
   juujin: "Juujin"
   kids: "Kinderen"
+  korea: "Korea"
+  kyoto: "Kyoto"
   law-and-order: "Wet en orde"
   loli: "Loli"
   love-polygon: "Veelhoeksverhouding"
   mafia: "Maffia"
   magic: "Magie"
+  magical-girl: "Magical Girl"
   maid: "Dienstmeisje"
   mars: "Mars"
   martial-arts: "Vechtsporten"
   mecha: "Mecha"
   mermaid: "Zeemeermin"
   middle-east: "Midden-Oosten"
+  middle-school: "Middle School"
   military: "Leger"
+  motorsport: "Motorsport"
+  music: "Muziek"
   musical-band: "Muziekband"
   mystery: "Mysterie"
   navy: "Marine"
   netorare: "Netorare"
+  new-york: "New York"
+  ninja: "Ninja"
   nurse: "Verpleegster"
   office-lady: "Secretaresse"
   other-planet: "Andere Planeet"
+  parallel-universe: "Parallel universum"
   parasite: "Parasiet"
   parental-abandonment: "Verlating door ouders"
   parody: "Parodie"
@@ -1560,7 +1593,10 @@ category:
   rotten-world: "Verrotte wereld"
   russia: "Rusland"
   samurai: "Samoerai"
+  satire: "Satire"
+  school-clubs: "Schoolclubs"
   school-life: "School leven"
+  science-fiction: "Sciencefiction"
   seinen: "Seinen"
   sengoku-period: "Sengoku periode"
   setting: "Instelling"
@@ -1570,6 +1606,7 @@ category:
   shoujo-ai: "Shoujo Ai"
   shounen: "Shounen"
   shounen-ai: "Shounen Ai"
+  slapstick: "Slapstick"
   slavery: "Slavernij"
   slice-of-life: "Alledaags leven"
   slow-when-it-comes-to-love: "Sloom met betrekking tot liefde"
@@ -1580,10 +1617,13 @@ category:
   space-travel: "Ruimtereizen"
   special-squads: "Speciale teams"
   sports: "Sporten"
+  steampunk: "Steampunk"
   stereotypes: "Stereotypes"
   street-racing: "Straat racen"
   student-government: "Studentenregering"
+  sudden-girlfriend-appearance: "Sudden Girlfriend Appearance"
   summer: "Zomer"
+  super-deformed: "Super Deformed"
   superhero: "Superheld"
   supernatural: "Bovennatuurlijk"
   super-power: "Superkracht"
@@ -1593,8 +1633,10 @@ category:
   tennis: "Tennis"
   tentacle: "Tentakel"
   the-arts: "De Kunsten"
+  themes: "Thema's"
   thievery: "Diefstal"
   three-kingdoms: "Drie Koninkrijken"
+  thriller: "Thriller"
   time-travel: "Tijdreizen"
   tokugawa-period: "Tokugawa Periode"
   tokyo: "Tokio"
@@ -1608,6 +1650,7 @@ category:
   victorian-period: "Victoriaanse periode"
   violence: "Geweld"
   violent-retribution-for-accidental-infringement: "Gewelddadige vergelding voor onopzettelijke overtreden"
+  virtual-reality: "Virtual Reality"
   volleyball: "Volleybal"
   voyeurism: "Voyeurisme"
   waitress: "Serveerster"
@@ -1616,16 +1659,21 @@ category:
   world-war-ii: "Tweede Wereld Oorlog"
   wrestling: "Worstelen"
   yaoi: "Yaoi"
+  zombie: "Zombie"
   #NSFW categories
   nudity: "Naaktheid"
   sex: "Seks"
   ecchi: "Ecchi"
+  lingerie: "Lingerie"
   pantsu: "Pantsu"
   sexual-fantasies: "Seksuele fantasieën"
+  incest: "Incest"
+  teacher-x-student: "Leerkracht × Student"
   sexual-abuse: "Seksueel misbruik"
   fetishes: "Fetisjen"
   anal: "Anaal"
   bdsm: "BDSM"
+  bondage: "Bondage"
   erotic-torture: "Erotische marteling"
   femdom: "Femdom" #Female Domination
   gigantic-breasts: "Gigantische borsten"
