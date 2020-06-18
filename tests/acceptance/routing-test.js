@@ -51,11 +51,4 @@ module('Acceptance | Routing', function(hooks) {
     await visit('/password-reset');
     assert.equal(currentURL(), '/');
   });
-
-  test('visiting an unknown route redirects to `/404`', async function(assert) {
-    assert.expect(2);
-    await visit('/doesnt-exist');
-    assert.equal(currentRouteName(), 'not-found');
-    assert.equal(currentURL(), '/404');
-  });
 });
