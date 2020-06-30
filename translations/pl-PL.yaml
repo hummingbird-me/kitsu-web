@@ -687,11 +687,15 @@ users:
       list-edit: "Edytuj"
       more: "Więcej"
       unstarted: "Nierozpoczęte"
+      unrated: "Brak oceny"
       table-header:
+        title: "{type, select, anime {Tytuł Anime} manga {Tytuł Mangi} other {}}"
         rating: "Ocena"
+      add-reaction: "Dodaj reakcję"
       empty:
         search: "Nie mogłem znaleźć żadnych wpisów w bibliotece za pomocą Twojego zapytania."
     edit:
+      status: "Status biblioteki"
       units: "{type, select,anime {z {num} odcinków}manga { z {num} rozdziałów}other {}}"
       volumes: "Części"
       volume-units: "z {num} części"
@@ -825,7 +829,26 @@ settings:
     time-zone: "Strefa czasowa"
     content: "Treść na Kitsu"
     theme: "Skórka strony"
+    country: "Państwo"
+    worldwide: "Na świecie"
+    titles: "Tytuł"
+    titles-message: "Jak będą wyświetlane tytuły."
+    rating: "Rodzaj oceny"
+    rating-message: "Wybierz, jak chcesz ocenić media, które oglądałeś lub czytałeś."
+    adult: "Treści dla dorosłych"
+    adult-message: "Z ukrytą zawartością dla dorosłych, nie zobaczysz mediów +18 w kanale, bibliotekach ani w wyszukiwarce."
+  linked-accounts:
+    sub-header: "Połącz konta firm trzecich z Kitsu"
+    facebook: "Facebook"
+    disconnect: "Odłącz od Facebooka"
+    connect: "Połącz się z Facebookiem"
   notifications:
+    header: "Powiadomienia Push"
+    sub-header: "Ogólne powiadomienia dla strony"
+    contexts:
+      web: "Web"
+      email: "Adres e-mail"
+      mobile: "Telefon"
     descriptions:
       reaction_votes: "Ktoś '<strong>'poparł'</strong>'moją reakcję"
       airing: "Nowy odcinek został wypuszczony"
@@ -898,6 +921,8 @@ groups:
           desc: "Wyjaśnij cel swojej grupy dogłębnie, udostępnij ważne informacje lub cokolwiek innego."
         rules:
           header: "Zasady"
+  join-group: "Dołącz do grupy"
+  leave-group: "Opuść grupę"
   nsfw: "NSFW"
   navigation:
     activity: "Aktywność"

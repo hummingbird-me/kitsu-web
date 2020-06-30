@@ -9,6 +9,8 @@ titles:
     show:
       units: "{type, select, anime {Tập} manga {Chương} other {}}"
       characters: "Nhân vật"
+      reactions: "Phản ứng"
+      franchise: "Nhóm tác phẩm"
   explore:
     index: "Khám phá {mediaType, select, anime {Anime} manga {Manga} other {}}"
     more:
@@ -48,27 +50,225 @@ titles:
   groups:
     index: "Nhóm"
     new: "Tạo một nhóm"
+    group:
+      group-page:
+        rules: "{group} Quy định"
+        members: "{group} Thành viên"
+        leaders: "{group} Trưởng nhóm"
+      dashboard:
+        index: "{group} Tổng quan"
+        reports: "{group} Báo cáo"
+        tickets: "{group} Vé"
+        members: "{group} Thành viên"
+        leaders: "{group} Trưởng nhóm"
+        settings: "{group} Thiết lập"
+  group-invite: "Thư mời nhóm"
+#head
+head:
+  users:
+    description: "{user} đang sử dụng Kitsu để theo dõi tiến độ và chia sẻ trải nghiệm anime & manga."
 #header
 header:
+  library: "Thư viện"
   anime: "Anime"
+  manga: "Manga"
+  trending: "Xu hướng"
+  groups: "Nhóm"
+  feedback: "Phản hồi"
+  browse: "Tìm duyệt"
+  auth:
+    sign-in: "Đăng nhập"
+    sign-up: "Đăng ký"
+  user:
+    profile: "Xem Hồ sơ"
+    settings: "Thiết lập"
+    admin: "Quản trị"
+    logout: "Đăng xuất"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Hãy lấy một vài thông tin cơ bản trước} 1 {Rất hóm hỉnh - tiếp theo là email} 2 {Nhìn có vẻ hợp lý, mật khẩu thì thế nào?} 3 {Tốt - Hãy tạo tài khoản này nào} other {}}"
+#page: about
+about:
+  header: "Về Kitsu"
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Cập nhật nhanh"
     filter:
+      all: "Tất cả"
       anime: "Anime"
+      manga: "Manga"
+    empty:
+      html: "Mục bạn vừa thêm học cập nhật trong '<a' href={link}'>'Thư viện'</a>' của bạn sẽ được hiện thị ở đây để bạn nhanh chóng cập nhật."
+      discover: "Khám phá"
+    media:
+      complete: "Hoàn thành"
+      unstarted: "Chưa bắt đầu"
+      unit: "{type, select, anime {Tập {num} {total, select, undefined {} other {trên {total}}}} manga {Chương {num} {total, select, null {} other {trên {total}}}} other {}}"
+    overlay:
+      button:
+        update: "{type, select, anime {Tập} manga {Chương} other {}} {number}"
+        complete: "Hoàn thành"
+        tooltip:
+          empty: "Cập nhật Thư viện"
+          content: "Tạo bài đăng và cập nhật thư viện"
+      discussion: "Xem Thảo luận"
+      edit: "Chỉnh sửa Thư viện"
+      popout: "Lỗi phát sinh"
+      editor:
+        placeholder: "(Không bắt buộc) Chia sẻ suy nghĩ của bạn về {type, select, anime {Tập} manga {Chương} other {}} {number}"
+  onboarding:
+    welcome: "Này {user}, chào mừng đến Kitsu!"
+    about: "Thây là bản tin hoạn động toàn cầu. Nó thể hiện những hoạt động gần đây của toàn thể các thành viên của Kitsu - kể cả bạn! Một khi bạn đã có cơ hội để xem những thành viên thú vị, chung tôi sẽ chuyện bản tin mặc định của bạn từ Toàn câu sang Đang theo dõi."
+    action: "Sao bạn không thử tạo một bài đăng để giới thiệu bản thân bằng mẫu ở dưới? Bạn có thể nói một vài thứ đơn giản như \"Chào mọi người, tôi vừa mới vào Kitsu\", hoặc bạn có thể cho chung tôi xem mình sáng tạo và dỉ dỏm như thế nào!"
+  groups:
+    header: "Nhóm của tôi"
+  announcements:
+    button: "Tìm hiểu thêm"
   feed:
     anime: "Anime"
 #page: anime/manga
 media:
   show:
+    summary:
+      titles:
+        cy_gb: "Tiếng Wales"
+        da_dk: "Tiếng Đan Mạch"
+        de_de: "Tiếng Đức"
+        el_gr: "Tiếng Hy Lạp"
+        en: "Tiếng Anh"
+        en_au: "Tiếng Anh (Úc)"
+        en_ca: "Tiếng Anh (Canada)"
+        en_cn: "Tiếng Trung (Bính âm)"
+        en_gb: "Tiếng Anh (Anh)"
+        en_il: "Tiếng Do Thái (La-tinh hóa)"
+        en_jp: "Tiếng Nhật (La-tinh hóa)"
+        en_kr: "Tiếng Hàn (La-tinh hóa)"
+        en_th: "Tiếng Thái (La-tinh hóa)"
+        en_us: "Tiếng Anh (Mỹ)"
+        es_es: "Tiếng Tây Ban Nha"
+        et_ee: "Tiếng Estonia"
+        fa_ir: "Tiếng Ba Tư"
+        fi_fi: "Tiếng Phần Lan"
+        fr_ca: "Tiếng Pháp (Canada)"
+        fr_fr: "Tiếng Pháp"
+        ga_ie: "Tiếng Ireland"
+        he_il: "Tiếng Do Thái"
+        hi_in: "Tiếng Hin-đi"
+        hr_hr: "Tiếng Croatia"
+        hu_hu: "Tiếng Hungari"
+        id_id: "Tiếng Indonesia"
+        is_is: "Tiếng Iceland"
+        it_it: "Tiếng Ý"
+        ja_jp: "Tiếng Nhật"
+        kk_kz: "Tiếng Kazakhstan"
+        ko_kr: "Tiếng Hàn Quốc"
+        lt_lt: "Tiếng Lithuania"
+        lv_lv: "Tiếng Latvia"
+        ms_my: "Tiếng Mã Lai"
+        mt_mt: "Tiếng Malta"
+        nb_no: "Tiếng Na Uy (Bokmål)"
+        nl_nl: "Tiếng Hà Lan"
+        nn_no: "Tiếng Na Uy (Nynorsk)"
+        pl_pl: "Tiếng Ba Lan"
+        pt_br: "Tiếng Bồ Đào Nha (Brazil)"
+        pt_pt: "Tiếng Bồ Đào Nha"
+        ro_ro: "Tiếng Romania"
+        ru_ru: "Tiếng Nga"
+        sc_it: "Tiếng Sardinia"
+        sco_gb: "Tiếng Scotland"
+        sk_sk: "Tiếng Slovakia"
+        sl_sl: "Tiếng Slovenia"
+        sr_cs: "Tiếng Séc-bi (Latin)"
+        sr_sp: "Tiếng Séc-bi (Cyrillic)"
+        sv_se: "Tiếng Thụy Điển"
     franchise:
       roles:
+        parent_story: "Tác phẩm mẹ"
+        summary: "Tóm tắt"
+        full_story: "Toàn bộ câu truyện"
+        spinoff: "Ngoại truyện"
+        adaptation: "Chuyển thể"
         anime_adaptation: "Anime"
+        manga_adaptation: "Manga"
+        character: "Nhân vật"
+        other: "Khác"
+  hide-posts:
+    text: "Ẩn bài đăng về {media}"
+    info: "Bài đăng sẽ không xuất hiện trong Đang theo dõi hoặc Bản tin {type}"
+  show-posts:
+    text: "Hiển thị Bài đăng về {media}"
+    info: "Bài đăng sẽ xuất hiện trong Đang theo dõi hoặc Bản tin {type}"
 #components
 components:
+  ad-unit: "Quảng cáo thật khó chịu, nhưng đó là cách mà chúng tôi giữ lửa. Hãy thêm chũng tôi vào ngoại lệ của chương trịnh chặn quảng cáo của bạn."
+  admin:
+    reports:
+      no-explanation: "Không có Giải thích nào được đưa ra."
+      not-set: "Chưa đặt"
+      actions:
+        button: "Hành động"
+        open: "Đánh dấu đã mở"
+        resolved: "Đánh dấu đã giải quyết"
+        closed: "Đánh dấu đã đóng"
+      table:
+        user: "Người dùng"
+        type: "Loại"
+        reason: "Lý do"
+        explanation: "Chú thích"
+        moderator: "Điều hành viên"
+        status: "Trạng thái"
+        actions: "Hành động"
+  application:
+    nav-search: "Tìm trên Kitsu"
+  episodes:
+    shortcut-bar:
+      episode-number: "TẬP {number}"
+    fast-forward: "Tiến độ thư viện tua nhanh tới tập {number}!"
+    undo-update: "Hoàn tác"
+    update-progress: "Cập nhật tiến độ của thư viện đến tập {number}?"
+    watched: "Đánh dấu đã xem"
+    join-prompt:
+      pitch: "Theo dõi tiến độ của bạn và gia nhập thảo luận!"
+      register: "Tạo tài khoản Kitsu"
+  likeable-resource:
+    loading: "Đang tải…"
+    more: "Tải thêm"
+  search:
+    header: "Kết quả tìm kiếm"
+    view: "Xem thêm"
+    load: "Tải thêm"
+    none: "Không có kết quả"
+  sidebar-footer:
+    contact: "Liên hệ"
+    terms: "Điều khoản"
+    privacy: "Quyền riêng tư"
+  stream-feed:
+    create-post:
+      edit: "Chỉnh sửa"
+      create: "Đăng bài"
+      nsfw: "NSFW"
+      spoiler: "Tiết lộ"
+      tag-media: "Gõ để tag một bộ phim hoặc truyện"
+    edit-post:
+      header: "Sửa Bài viết"
+      error:
+        tagged: "Thật không may, chúng tôi chưa thể cho phép bạn chỉnh sửa tác phẩm đã tag của bạn."
   users:
+    delete-user-content:
+      checkbox:
+        comments: "Bình luận"
+        reactions: "Phản ứng"
+      delete: "Xóa"
+    block: "Chặn @{user}"
+    you: "Này, đó là bạn!"
     favorites:
+      title: "{type, select, series {Các tác phẩm yêu thích} characters {Các nhân vật yêu thích} other {}}"
       anime: "Anime"
+      manga: "Manga"
+      more: "Hiển thị thêm"
+      edit: "Chỉnh sửa {type, select, anime {anime yêu thích} manga {manga yêu thích} characters {nhân vật yêu thích} other {}}"
 #page: users
 users:
   edit-modal:

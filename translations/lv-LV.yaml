@@ -1,27 +1,612 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Lūkot Anime"
+  manga:
+    index: "Lūkot Manga"
+  media:
+    show:
+      units: "{type, select, anime {Sērijas} manga {Nodaļas} other {}}"
+      characters: "Tēli"
+      reactions: "Reakcijas"
+      franchise: "Franšīze"
+  explore:
+    index: "Lūkot {mediaType, select, anime {Anime} manga {Manga} other {}}"
+    more:
+      trending: "Tendences {type, select, other {}} Šonedēļ"
+      top-current: "Populārās {type, select, Anime {Šobrīd pārraidē} Manga {Šobrīd izdošanā} other {}} {type}"
+      top-upcoming: "Top Gaidāmās {type}"
+      highest-rated: "Augstāk Vērtētās {type}"
+      most-popular: "Populārākās {type}"
+    category:
+      index: "{category} {type}"
+      more:
+        newly-released: "Svaigi Izdotās {category} {type}"
+        trending: "Tendences {category} {type}"
+        most-popular: "Populārākās {category} {type}"
+  not-found: "Nav Atrasts"
+  server-error: "Servera kļūda"
+  users:
+    index: "{user} Profils"
+    library: "{user} Bibliotēka"
+    reviews: "{user} Recenzijas"
+    reactions: "{user} Reakcijas"
+    followers: "{user} Sekotāji"
+    following: "{user} seko"
+    groups: "{user} Grupas"
+    stats: "{user} Stati"
+  posts: "Publicējis {user}"
+  comments: "Komentējis {user}"
+  reviews: "Recenzējis {user}"
+  notifications: "Ziņojumi"
+  feedback:
+    bugs: "Kļūdas"
+    feature-requests: "Iespēju pieprasījumi"
+    database-requests: "Datubāzes pieprasījums"
+    mobile-bugs: "Mobīlo kļūdas"
+    mobile-features: "Mobīas iespejas"
+  admin:
+    index: "Administrators"
+    reports: "Ziņojumi"
+  groups:
+    index: "Grupas"
+    new: "Izveidot grupu"
+    group:
+      group-page:
+        rules: "{group} Noteikumi"
+        members: "{group} Biedri"
+        leaders: "{group} Vadītāji"
+      dashboard:
+        index: "{group} Pārskats"
+        reports: "{group} Ziņojumi"
+        tickets: "{group} Biļetes"
+        members: "{group} Biedri"
+        leaders: "{group} Vadītāji"
+        settings: "{group} Uzstādījumi"
+  group-invite: "Grupas ielūgums"
+#head
+head:
+  users:
+    description: "{user} lieto Kitsu lai sekotu savam progresam un dalītos anime un manga pieredzē."
 #header
 header:
+  library: "Bibliotēka"
   anime: "Anime"
+  manga: "Manga"
+  trending: "Tendences"
+  groups: "Grupas"
+  feedback: "Atsauksmes"
+  browse: "Pārlūkot"
+  auth:
+    sign-in: "Ienākt"
+    sign-up: "Reģistrēties"
+  user:
+    profile: "Apskatīt profilu"
+    settings: "Iestatījumi"
+    admin: "Administrators"
+    logout: "Iziet"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Sāksim ar pamata info} 1 {Asprātīgi - tālāk e-pasts!} 2 {Izskatās derīgs, kā ar paroli?} 3 {Forši - taisām kontu vaļā} other {}}"
+#page: about
+about:
+  header: "Par Kitsu"
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Fiksais jauninājums"
     filter:
+      all: "Viss"
       anime: "Anime"
+      manga: "Manga"
+    empty:
+      html: "Medijs ko pievienoji vai atjaunoji ar '<a' href={link}'>'Bibliotēka'</a>' parādīsies šeit ātrākai atjaunināšanai."
+      discover: "Atklāj Mēdiju"
+    media:
+      complete: "Pabeigts"
+      unstarted: "Nav sācies"
+      unit: "{type, select, anime {Sēr. {num} {total, select, undefined {} other {no {total}}}} manga {Nod. {num} {total, select, null {} other {no {total}}}} other {}}"
+    overlay:
+      button:
+        update: "{type, select, anime {Sēr.} manga {Nod.} other {}} {number}"
+        complete: "Pabeigts"
+        tooltip:
+          empty: "Atjaunot Bibliotēku"
+          content: "Rādīt ierakstu un atjaunot bibliotēku"
+      discussion: "Apskatīt diskusiju"
+      edit: "Rediģēt bibliotēkas ierakstu"
+      popout: "Izlecošais redaktors"
+      editor:
+        placeholder: "(Neobligāti) Dalies savās domās par {type, select, anime {Sēriju} manga {Nodaļu} other {}} {number}"
+  onboarding:
+    welcome: "Hei, {user}, laipni lūgtum Kitsu!"
+    about: "Šis ir globālo aktivitāšu pārskats. Tas satur visu Kitsu lietotāju aktivitātes - arī Tavas! Kad būsi piesekojis vairāk interesējošiem lietotājiem, noklusējuma globālais pārskats tiks pārslēgts uz sekoto lietotāju aktivitātēm."
+    action: "Varbūt iepazīstini ar sevi, veicot ierakstu ziņojumu plūsmā? Vari izteikties gan ar vienkāršu \"Sveiki, esmu jauns Kitsu lietotajs\", gan izpausties radošāk un parādīt cik asprātīgs esi!"
+  groups:
+    header: "Manas grupas"
+  announcements:
+    button: "Uzzināt vairāk"
   feed:
+    following: "Seko"
     anime: "Anime"
+    manga: "Manga"
+    global: "Globāli"
 #page: anime/manga
 media:
+  index:
+    search: "Meklēt pēc nosaukuma, tēla vai lomas atveidotāja…"
+    filter: "Filtrs"
+    remove: "Noņemt"
+    filters:
+      year: "Gads"
+      score: "Vidējais vērtējums"
+      seasons: "Sezonas"
+      streamers: "Straumē (ASV)"
+      units: "{type, select, anime {Sērijas} manga {Nodaļas} other {}}"
+      rating: "Vērtējums"
+      categories: "Kategorijas"
+      types: "Tipi"
+    sort:
+      popularity: "Popularitāte"
+      rating: "Vidējais vērtējums"
+      date: "Datums"
+      recent: "Nesen pievienots"
+  none: "Nav rezultātu."
   show:
+    navigation:
+      summary: "Kopsavilkums"
+      units: "{type, select, anime {Sērijas} manga {Nodaļas} other {}}"
+      characters: "Tēli"
+      reactions: "Reakcijas"
+      franchise: "Franšīze"
+    sidebar:
+      watch: "Skaties tiešsaistē"
+    summary:
+      ratings:
+        community: "{rating}% Kopienas atzīts"
+        match: "{rating}% Sakritība"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Vērtējums #{rank} (Populārākā Anime)} manga {Vērtējums #{rank} (Populārākā Manga)} other {}}"
+          rating: "{type, select, anime {Vērtējums #{rank} (Augstāk vērtētā Anime)} manga {Vērtējums #{rank} (Augstāk vērtētā Manga)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} Populārākā} manga {#{rank} Populārākā} other {}}"
+          rating: "{type, select, anime {#{rank} Augstāk Novērtētā} manga {#{rank} Augstāk Novērtētā} other {}}"
+      categories: "Kategorijas"
+      relationships:
+        header: "Vēl šajā franšīzē"
+        more: "Apskatīt visu {title}"
+      reactions:
+        header: "Reakcijas"
+        more: "Apskatīt vēl reakcijas"
+        sorts:
+          -upVotesCount: "Populari"
+          -createdAt: "Neseni"
+        new: "Jaunā reakcija"
+        edit: "Mana reakcija"
+        empty: "Izskatās, kā neviens uz šo vēl nav reaģējis"
+      characters:
+        header: "Tēli"
+        more: "Apskatīt visus tēlus"
+      titles:
+        header: "Alternatīvie nosaukumi"
+        af_za: "Afrikāņu"
+        ar: "Arābu"
+        bg_bg: "Bulgāru"
+        bn_bd: "Bengāļu"
+        ca_es: "Kataloniešu"
+        cs_cz: "Čehu"
+        cy_gb: "Velsiešu"
+        da_dk: "Dāņu"
+        de_de: "Vācu"
+        el_gr: "Grieķu"
+        en: "Angļu"
+        en_au: "Angļu (Austrālijas)"
+        en_ca: "Angļu (Kanādas)"
+        en_cn: "Ķīniešu (pinin)"
+        en_gb: "Angļu (Lielbritānija)"
+        en_il: "Ebreju (latīņu burtiem)"
+        en_jp: "Japāņu (latīņu burtiem)"
+        en_kr: "Korejiešu (latīņu burtiem)"
+        en_th: "Taizemiešu (latīņu burtiem)"
+        en_us: "Angļu (Amerika)"
+        es_es: "Spāņu"
+        et_ee: "Igauņu"
+        fa_ir: "Persiešu"
+        fi_fi: "Somu"
+        fr_ca: "Franču (Kanāda)"
+        fr_fr: "Franču"
+        ga_ie: "Īru"
+        he_il: "Ebreju"
+        hi_in: "Hindu"
+        hr_hr: "Horvātu"
+        hu_hu: "Ungāru"
+        id_id: "Indonēziešu"
+        is_is: "Islandiešu"
+        it_it: "Itāliešu"
+        ja_jp: "Japāņu"
+        kk_kz: "Kazaku"
+        ko_kr: "Korejiešu"
+        lt_lt: "Lietuviešu"
+        lv_lv: "Latviešu"
+        ms_my: "Malajiešu"
+        mt_mt: "Maltiešu"
+        nb_no: "Norvēģu (bukmols)"
+        nl_nl: "Nīderlandiešu"
+        nn_no: "Norvēģu (Jaunnorvēģu)"
+        pl_pl: "Poļu"
+        pt_br: "Portugāļu (Brazīlija)"
+        pt_pt: "Portugāļu"
+        ro_ro: "Rumāņu"
+        ru_ru: "Krievu"
+        sc_it: "Sardīniešu"
+        sco_gb: "Skotu"
+        sk_sk: "Slovāku"
+        sl_sl: "Slovēņu"
+        sr_cs: "Serbu (Latīņu)"
+        sr_sp: "Serbu (Kirilica)"
+        sv_se: "Zviedru"
+        th_th: "Taizemiešu"
+        tl_ph: "Tagalogu"
+        tr_tr: "Turku"
+        uk_ua: "Ukraiņu"
+        ur_in: "Urdu (Indiešu)"
+        ur_pk: "Urdu (Pakistāna)"
+        vi_vn: "Vjetnamiešu"
+        zh_cn: "Ķīniešu (vienkāršota)"
+        zh_hk: "Ķīniešu (Honkonga)"
+        zh_mo: "Ķīniešu (Makao)"
+        zh_tw: "Ķīniešu (tradicionāla)"
+        synonyms: "Sinonīmi"
+      information:
+        header: "{type, select, anime {Anime} manga {Manga} other {}} Detaļas"
+        type: "Tips"
+        volumes: "Izdevumi"
+        unit: "{type, select, anime {Sērijas} manga {Nodaļas} other {}}"
+        start: "{type, select, anime {Raidīta} manga {Publicēta} other {}}"
+        status: "Statuss"
+        tba: "Gaidāms"
+        season: "Sezona"
+        producers: "Producenti"
+        licensors: "Licences"
+        studios: "Studijas"
+        serialization: "Serializēts"
+        duration: "Garums"
+        total: "{total} kopā"
+        rating: "Vērtējums"
+        expand:
+          false: "Papildu informācija"
+          true: "Mazāk informacijas"
+      feed:
+        header: "Kopienas plūsma"
+      trailer: "Atskaņot treileri"
+    units:
+      unit: "{type, select, episode {Sērija} chapter {Nodaļa} other {}}"
+      back: "Atpakaļ uz {type, select, episode {sēriju} chapter {nodaļu} other {}} list"
+      pages: "{length} Lapas"
+      date: "{type, select, episode {Pārraidītas} chapter {Publicetas} other {}}"
+      completed: "{type, select, episode {Noskatītas} chapter {Izlasītas} other {Pabeigtas}}"
+      feed:
+        header: "{type, select, episode {Sērijas} chapter {Nodaļas} other {}} Diskusija"
+    characters:
+      header: "{title} Tēli"
+      sub-header: "{type, select, anime {Šeit būs pilns saraksts ar tēliem un viņu {language} balss aktieriem animē {title}} manga {Šeit būs pilns saraksts ar tēliem mangā {title}} other {}}"
+    reactions:
+      loading: "Ielādē reakcijas…"
+      delete: "Dzēst reakciju"
+      report: "Ziņot par reakciju"
+      copy: "Kopēt saiti uz reakciju"
     franchise:
+      header: "{title} Frančize"
       roles:
+        sequel: "Turpinājums"
+        prequel: "Pirmsstāsts"
+        alternative_setting: "Alternatīvā vide"
+        alternative_version: "Alternatīvā versija"
+        side_story: "Blakus stāsts"
+        parent_story: "Pamatstāsts"
+        summary: "Kopsavilkums"
+        full_story: "Pilns stāsts"
+        spinoff: "Atvasināts stāsts"
+        adaptation: "Adaptācija"
         anime_adaptation: "Anime"
+        manga_adaptation: "Manga"
+        character: "Tels"
+        other: "Citas"
+  hide-posts:
+    text: "Paslēpt ierakstus par {media}"
+    info: "Ieraksti neparādīsies sekojamo vai {type} plūsmā"
+  show-posts:
+    text: "Parādīt ierakstus par {media}"
+    info: "Ieraksti parādīsies sekojamo vai {type} plūsmā"
 #components
 components:
+  ad-unit: "Reklāmas sūkā, bet tās uztur mūs pie dzīvības. Lūdzu reklāmu bloķētājam atzīmē mūs par izņēmumu."
+  admin:
+    reports:
+      no-explanation: "Nav Paskaidrojuma."
+      not-set: "Nav iestatīts"
+      actions:
+        button: "Darbības"
+        open: "Atzīmēt atvērtu"
+        resolved: "Atzīmēt Atrisinātu"
+        closed: "Piezīme slēgta"
+      table:
+        user: "Lietotājs"
+        type: "Tips"
+        reason: "Iemesls"
+        explanation: "Paskaidrojums"
+        moderator: "Moderators"
+        status: "Statuss"
+        actions: "Darbības"
+  application:
+    nav-search: "Meklēt Kitsu"
+  episodes:
+    shortcut-bar:
+      episode-number: "Sēr. {number}"
+    fast-forward: "Bibliotēkas progres - pārlekt uz {number} Sēriju!"
+    undo-update: "Atsaukt"
+    update-progress: "Atjaunot progresu bibliotēkā līdz sērijai nr. {number}?"
+    watched: "Atzīmēt kā redzētu"
+    join-prompt:
+      pitch: "Seko savam progresam un iesaisties diskusijā!"
+      register: "Izveidot Kitsu kontu"
+  likeable-resource:
+    loading: "Notiek ielāde…"
+    more: "Ielādēt vairāk"
+  search:
+    header: "Meklēšanas rezultāti"
+    view: "skatīt vairāk"
+    load: "ielādēt vairāk"
+    none: "nav rezultātu"
+  sidebar-footer:
+    contact: "Kontakti"
+    terms: "Noteikumi"
+    privacy: "Privātums"
+  stream-feed:
+    create-post:
+      edit: "Rediģēt"
+      create: "Publicēt"
+      nsfw: "NPDA"
+      spoiler: "Spoileris"
+      tag-media: "Piesaisti pārraidi vai manga"
+    edit-post:
+      header: "Rediģēt ierakstu"
+      error:
+        tagged: "Diemžēl nevaram Tev šobrīd ļaut rediģēt pievienoto mediju."
+    follow:
+      followed: "sekotaji"
+      delete: "Dzēst aktivitāti"
+    library:
+      delete: "dzēst"
+      deleting: "dzēš…"
+    post:
+      pinned: "Piesprausts ieraksts"
+      edited: "rediģēts"
+      gate:
+        spoiler-nsfw: "Satur spoilerus un NPDA."
+        nsfw: "Ierakstā NPDA saturs."
+        spoiler: "Ierakstā ir spoileri."
+        hover:
+          nsfw: "Mans ķermenis ir gatavs!"
+          spoiler: "Varu panest patiesību!"
+      link: "Kopēt saiti ierakstā"
+      unfollow: "Atsekot ierakstam"
+      follow: "Sekot ierakstam"
+      show: "Parādīt ierakstā saturu"
+      hide: "Paslēpt ieraksta saturu"
+      edit: "Rediģēt ierakstu"
+      delete: "Dzēst ierakstu"
+      unpin: "Noņemt ierakstu no profila"
   users:
     favorites:
       anime: "Anime"
+      more: "Rādīt vairāk"
+      edit: "Rediģēt favorītus {type, select, anime {anime} manga {manga} characters {tēlus} other {}}"
+      empty:
+        others: "Lietotājam nav favorītu"
+      choose: "Izvēlies favorītus {type, select, anime {anime} manga {manga} characters {tēli} other {}}"
+    alt-name:
+      title: "Iespējams lietotāja {user} alternatīvie konti"
+      none: "Nav atrasti alternatīvi vārdi"
+    past-name:
+      title: "Pagātnes vārdi"
+      none: "Nav iepriekšēju vārdu"
 #page: users
 users:
+  admin:
+    past-names: "Apskatīt pagātnes vārdus"
+    alt-accounts: "Apskatīt alternatīvos kontus"
+    delete-content: "Dzēst lietotāja radīto saturu"
+  navigation:
+    activity: "Aktivitātes"
+    reviews: "Recenzijas"
+    followers: "Sekotāji"
+    following: "Seko"
   edit-modal:
+    cover: "Mainīt pārklāja foto"
+    navigation:
+      about: "Par mani"
+      profile-links: "Profila saites"
+      favorites: "Favorīti"
+    about:
+      location:
+        label: "Atrašanās vieta"
+        placeholder: "Kur Tu dzīvo?"
+      birthday: "Dzimšanas diena"
+      gender:
+        label: "Dzimums"
+        options:
+          secret: "Noslēpums"
+          male: "Vīrietis"
+          female: "Sieviete"
+          custom: "Cits"
+      waifu:
+        label: "Waifu"
+        placeholder: "Waifu/Husbando"
+        search: "Atrodi savu izredzēto"
+        divorce: "šķirties"
+      bio:
+        label: "Bio"
+        placeholder: "Pastāsti pasaulei par sevi."
+    profile-links:
+      remove: "Noņemt no profila"
+      sites:
+        website:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu mājas lapas adresi."
+          placeholder: "Mājas lapas URL"
+        twitter:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Twitter lietotāja vārdu."
+          placeholder: "Tavs Twitter lietotājvārds (@lietotajvards)"
+        facebook:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Facebook URL."
+          placeholder: "Tavs Facebook URL"
+        google:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Google+ lietotāja vārdu."
+          placeholder: "Tavs Google+ profila URL vai lietotāja vārds (+lietotājvārds)"
+        instagram:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Instagram lietotāja vārdu."
+          placeholder: "Tavs Instagram lietotāja vārds"
+        twitch:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Twitch lietotāja vārdu."
+          placeholder: "Tavs Twitch lietotāja vārds"
+        vimeo:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Vimeo lietotāja vārdu."
+        github:
+          placeholder: "Tava GitHub lietotāja vārds"
+        battlenet:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Battle.net BattleTag."
+          placeholder: "Tavs Battle.net BattleTag (User#1234)"
+        steam:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Steam lietotāja vārdu."
+          placeholder: "Tavs Steam lietotājvārds"
+        raptr:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Raptr lietotāja vārdu."
+          placeholder: "Tavs Raptr lietotāja vārds"
+        discord:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Discord Ragu."
+          placeholder: "Tava Discord tags (User#1234)"
+        tumblr:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Tumblr lietotāja vārdu."
+          placeholder: "Tavs Tumblr bloga vārds"
+        soundcloud:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu SoundCloud lietotāja vārdu."
+          placeholder: "Tava SoundCloud lietotāja vārds"
+        dailymotion:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Dailymotion lietotāja vārdu."
+          placeholder: "Tavs Dailymotion lietotāja vārds"
+        kickstarter:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Kickstarter lietotāja vārdu."
+          placeholder: "Tava Kickstarter lietotāja vārds"
+        mobcrush:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Mobcrush lietotāja vārdu."
+          placeholder: "Tavs Mobcrush lietotāja vārds"
+        osu:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Osu! ID numuru."
+          placeholder: "Tavs Osu! ID numurs"
+        patreon:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Patreon projekta vārdu."
+          placeholder: "Tavs Patreon projekta vārds"
+        deviantart:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu DevianArt lietotāja vārdu."
+          placeholder: "Tava DeviantArt lietotāja vārds"
+        dribbble:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Dribble lietotāja vārdu."
+          placeholder: "Tavs Dribbble lietotāja vārds"
+        imdb:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu IMDb profila URL."
+          placeholder: "Tavs IMDb profila URL"
+        lastfm:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Last.fm lietotāja vārdu."
+          placeholder: "Tavs Last.fm lietotāja vārds"
+        letterboxd:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Letterboxd lietotāja vārdu."
+          placeholder: "Tavs Letterboxd lietotāja vārds"
+        medium:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Medium lietotāja vai publikācijas vārdu."
+          placeholder: "Tavs Medium lietotāja vārds (@user) vai publikācijas nosaukums"
+        playerme:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Player.me lietotāja vārdu."
+          placeholder: "Tava Player.me lietotāja vārds"
+        reddit:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Reddit lietotāja vārdu."
+          placeholder: "Tava Reddit lietotāja vārds"
+        trakt:
+          about: "Lai pievienotu profilam saiti, ievadi zemāk savu Trakt lietotāja vārdu."
+          placeholder: "Tava Trakt lietotāja vārds"
+    footer:
+      updating: "Atjaunina…"
+      update: "Atjaunot profila informāciju"
     favorites:
+      header: "Favorīti"
       anime: "Anime"
+      manga: "Manga"
+      characters: "Tēli"
+      remove: "Noņemt no favorītiem?"
+  activity:
+    onboarding:
+      welcome: "Hwi {user}, šī lapa ir pilnībā par TEVI!"
+    about:
+      gender:
+        label: "Dzimums:"
+      location: "Atrašanās vieta:"
+      birthday: "Dzimšanas diena:"
+      joined: "Pievienošanas datums:"
+    stats:
+      headings:
+        anime: "Anime stati"
+        manga: "Manga stati"
+      time-watched: "{count} {timeUnit} laikā pavadīts skatoties anime."
+      chapters-read: "{count} nodaļas izlasītas."
+      completed: "{count} pabeigtas."
+      more-than: "Vairāk kā '<span class=\"time-spent-percentile\">'{percentage}%'</span>' lietotāju."
+      time-breakdown:
+        seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
+        time-segment: "{count} {timeUnit}" #8 months (pre-translated)
+        total: "kopsummā patērēts skatoties anime." #appended after time-segments
+      empty:
+        header: "Izskatās, ka Tev vēl nav gana datu! Gatavi sākt ko jaunu?"
+        guest-header: "Izskatās, kā {user} Nav vēl statu."
+  library:
+    search: "Meklet {name} bibliotēkā…"
+    sorting:
+      label: "Šķirot pēc:"
+      options:
+        watched: "Datums atjaunots"
+        started: "Sākuma datums"
+        finished: "Beigu datums"
+        added: "Pievienots"
+        progress: "Progress"
+        title: "Nosaukums"
+      directions:
+        watched:
+          desc: "Jaunākie vispirms"
+          asc: "Vecākie vispirms"
+        progress:
+          desc: "Lavākais sākumā"
+          asc: "Sliktākais sākumā"
+        rating:
+          desc: "Augstākais sakumā"
+          asc: "Zemākais sākumā"
+        length:
+          desc: "Garākais sākumā"
+          asc: "Īsākais sākumā"
+    sidebar:
+      media-select: "{type, select, anime {{user} Anime} manga {{user} Manga} other {}}"
+      manage: "Atjaunot Bibliotēku"
+      import: "Importēt bibliotēku"
+      export: "Eksportēt bibliotēku"
+      reset: "Atiestatītu bibliotēku"
+      reset-loading: "Atiestata…"
+      reset-confirmation: "Ar šo tiks dzēsta visa tava biblioteka, saistītās recenzijas, reakcijas. Vai tiešām vēlies turpināt?"
+      issues:
+        header: "Bibliotekas Kļūdas"
+        reactions: "{count} pabeidza, trūkst '<b>'reakcijas'</b>'"
+        fix: "labot"
+    list:
+      edit: "Rediģēt ierakstu"
+      list-edit: "Rediģēt"
+      more: "Vairāk"
+      unrated: "Nav vērtējuma"
