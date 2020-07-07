@@ -234,6 +234,8 @@ media:
 components:
   episodes:
     watched: "Pažymėti kaip žiūrėtą"
+    join-prompt:
+      register: "Susikurti Kitsu paskyrą"
   likeable-resource:
     loading: "Kraunama…"
     more: "Užkrauti daugiau"
@@ -249,6 +251,7 @@ components:
     create-post:
       edit: "Redaguoti"
       create: "Įkelti"
+      nsfw: "NDA (Nesaugu darbo aplinkai)"
       spoiler: "Gadintojas"
     edit-post:
       header: "Įrašo redagavimas"
@@ -330,6 +333,12 @@ users:
         website:
           about: "Įveskite savo puslapi žemiau, kad galėtumet sujunkti su savo profiliu."
           placeholder: "Įrašyti svetainės nuoroda"
+        twitter:
+          about: "Įveskite savo Twitter vartotojo vardą, kad galėtumet sujunkti su profiliu."
+        facebook:
+          about: "Įveskite savo Facebook nuorodą, kad galėtumet sujunkti su profiliu."
+        google:
+          about: "Įveskite savo Google+ profilio nuorodą, kad galėtumet sujunkti su savo profiliu."
         discord:
           placeholder: "Tavo Discord žymė (Narys#1234)"
     footer:
@@ -366,6 +375,7 @@ users:
       completed: "Pabaigei {count}."
       time-breakdown:
         seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
+        time-segment: "{count} {timeUnit}" #8 months (pre-translated)
         total: "praleista žiurint anime išviso." #appended after time-segments
   library:
     search: "Ieškoti {name} bibliotekoje…"
