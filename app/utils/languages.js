@@ -25,9 +25,9 @@ export default [
   // { id: 'en-pt', text: 'English (Pirate)' },
   { id: 'en-us', text: 'English (American)' },
   // { id: 'eo-uy', text: 'Esperanto' }, // Should be eo and not eo-uy
-  // { id: 'es-ar', text: 'Español (Argentino)' },
+  { id: 'es-ar', text: 'Español (Argentino)' },
   { id: 'es-es', text: 'Español' },
-  // { id: 'es-mx', text: 'Español (Mexicano)' },
+  { id: 'es-mx', text: 'Español (Mexicano)' },
   // { id: 'et-ee', text: 'Eesti Keel' }, // Estonian
   // { id: 'eu-es', text: 'Euskara' }, // Basque
   // { id: 'fa-af', text: 'دری' }, // Dari, Persian (Afghanistan) rtl
