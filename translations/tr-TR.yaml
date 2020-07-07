@@ -29,6 +29,7 @@ titles:
   server-error: "Server Hatası"
   users:
     index: "{user}'in Profili"
+    library: "{user} in Kitaplığı"
     reviews: "{user}'in eleştirisi"
     reactions: "{user}'in Tepkileri"
     followers: "{user}'in Takipçileri"
@@ -41,27 +42,204 @@ titles:
   notifications: "Bildirimler"
   feedback:
     bugs: "Hatalar"
+    feature-requests: "Özellik istekleri"
+    database-requests: "Veritabanı gereksinimleri"
+    mobile-bugs: "Uygulama hataları"
+    mobile-features: "Uygulama özellikleri"
   admin:
     index: "Yönetici"
+    reports: "Raporlar"
+  groups:
+    index: "Gruplar"
+    new: "Bir grup oluştur"
+    group:
+      group-page:
+        rules: "{group} Kurallar"
+        members: "{group} Üyeler"
+        leaders: "{group} Liderler"
+      dashboard:
+        index: "{group} Genel Bakış"
+        reports: "{group} Şikayetler"
+        tickets: "{group} Biletler"
+        members: "{group} Üyeler"
+        leaders: "{group} Liderler"
+        settings: "{group} Ayarlar"
+  group-invite: "Grup Daveti"
+#head
+head:
+  users:
+    description: "{user} İlerlemelerini takip etmek ve anime, manga deneyimlerini paylaşmak için Kitsu kullanıyor."
 #header
 header:
+  library: "Kitaplık"
   anime: "Anime"
+  manga: "Manga"
+  trending: "Öne Çıkanlar"
   groups: "Gruplar"
+  feedback: "Geribildirim"
+  browse: "Ara"
+  auth:
+    sign-in: "Giriş yap"
+    sign-up: "Kayıt ol"
+  user:
+    profile: "Profili görüntüle"
+    settings: "Ayarlar"
+    admin: "Yönetici"
+    logout: "Çıkış yap"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Önce bazı temel bilgileri alalım} 1 {Harika - Sırada e-mail var!} 2 {Doğru görünüyor, peki ya şifre?} 3 {Güzel- Şimdi hesabı oluşturalım} other {}}"
+#page: about
+about:
+  header: "Kitsu Hakkında"
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Hızlı Güncelleme"
     filter:
+      all: "Hepsi"
       anime: "Anime"
+      manga: "Manga"
+    empty:
+      html: "'<a' href={link}'>'Kitaplık'</a>' içine eklediğiniz veya güncellediğiniz medya, hızlı bir şekilde güncelleyebilmeniz için burada görünür."
+      discover: "Medyayı keşfedin"
+    media:
+      complete: "Tamamlandı"
+      unstarted: "Başlanmadı"
+    overlay:
+      button:
+        complete: "Tamamlandı"
+        tooltip:
+          empty: "Kitaplığı güncelle"
+          content: "Gönderi oluştur ve kitaplığı güncelle"
+      discussion: "Tartışmayı görüntüle"
+      edit: "Kitaplıkkaydını düzenle"
+      popout: "Pop-out düzenleyici"
+      editor:
+        placeholder: "(Opsiyonel) {type, select, anime {Bölüm} manga {Bölüm} other {}} {number} hakkındaki düşüncelerinizi paylaşın"
+  onboarding:
+    welcome: "Hey {user}, Kitsu'ya hoş geldin!"
+    about: "Burası küresel etkinlik gönderi alanı. Kitsu kullanıcılarının ve hatta sizin gönderilerinizden oluşuyor! Birkaç ilginç kullanıcıyı takip ettiğinizde varsayılan gönderi alanınızı küreselden takip edilene çevireceğiz."
+    action: "Neden aşağıdaki formu kullanarak kendinizi tanıtmak için bir gönderi oluşturmaya çalışmıyorsunuz? 'Hey millet, Kitsu'da yeniyim' kadar basit bir şey söyleyebilir ya da bize ne kadar yaratıcı ve esprili olduğunuzu gösterebilirsiniz!"
+  groups:
+    header: "Gruplarım"
+  announcements:
+    button: "Daha Fazla Bilgi Edinin"
   feed:
+    following: "Takip Edilenler"
     anime: "Anime"
+    manga: "Manga"
+    global: "Küresel"
 #page: anime/manga
 media:
+  index:
+    search: "Başlığa, karaktere veya kasta göre ara…"
+    filter: "Filtre"
+    remove: "Kaldır"
+    filters:
+      year: "Yıl"
+      score: "Ortalama Puan"
+      seasons: "Sezonlar"
+      streamers: "Yayıncı (ABD)"
+      units: "{type, select, anime {Bölümler} manga {Bölümler} other {}}"
+      rating: "Puanlama"
+      categories: "Kategoriler"
+      types: "Türler"
+    sort:
+      popularity: "Popülarite"
+      rating: "Ortalama Puan"
   show:
+    summary:
+      titles:
+        fa_ir: "İranca"
+        fi_fi: "Fince"
+        fr_ca: "Fransızca (Kanada)"
+        fr_fr: "Fransızca"
+        ga_ie: "İrlandaca"
+        he_il: "İbranice"
+        hi_in: "Hintçe"
+        hr_hr: "Hırvatça"
+        hu_hu: "Macarca"
+        id_id: "Endonezyaca"
+        is_is: "İzlandaca"
+        it_it: "İtalyanca"
+        ja_jp: "Japonca"
+        kk_kz: "Kazakça"
+        ko_kr: "Korece"
+        lt_lt: "Litvanca"
+        lv_lv: "Letonca"
+        ms_my: "Malayca"
+        mt_mt: "Maltaca"
+        nb_no: "Norveç dili (Bokmael)"
+        nl_nl: "Flemenkçe"
+        nn_no: "Norveç dili (Nynorsk)"
+        pl_pl: "Lehçe"
+        pt_br: "Portekizce (Brezilya)"
+        pt_pt: "Portekizce"
+        ro_ro: "Romence"
+        ru_ru: "Rusça"
+        sc_it: "Sardinya dili"
+        sco_gb: "İskoç Dili"
+        sk_sk: "Slovakça"
+        sl_sl: "Slovakça"
+        sr_cs: "Sırpça (Latin)"
+        sr_sp: "Sırpça (Kiril)"
+        sv_se: "İsveççe"
+        th_th: "Tayca"
+        tl_ph: "Tagalog"
+        tr_tr: "Türkçe"
+        uk_ua: "Ukraynaca"
+        ur_in: "Urduca (Hindistan)"
+        ur_pk: "Urduca (Pakistan)"
+        vi_vn: "Vietnamca"
+        zh_cn: "Çince (Basitleştirilmiş)"
+        zh_hk: "Çince (Hong Kong)"
+        zh_mo: "Çince (Macao)"
+        zh_tw: "Çince (Geleneksel)"
+        synonyms: "Eş anlamlıları"
+      information:
+        header: "{type, select, Anime {Anime} Manga {Manga} other {}} Detayları"
+        type: "Tür"
+        volumes: "Ciltler"
+        unit: "{type, select, anime {Bölümler} manga {Bölümler} other {}}"
     franchise:
       roles:
         anime_adaptation: "Anime"
 #components
 components:
+  admin:
+    reports:
+      actions:
+        open: "Açık Olarak İşaretle"
+        resolved: "Çözüldü Olarak İşaretle"
+        closed: "Kapalı olarak işaretle"
+      table:
+        user: "Kullanıcı"
+        type: "Tür"
+        reason: "Sebep"
+        explanation: "Açıklama"
+        moderator: "Moderatör"
+        status: "Durum"
+        actions: "Eylemler"
+  application:
+    nav-search: "Kitsu'da ara"
+  episodes:
+    shortcut-bar:
+      episode-number: "{number}. bölüm"
+    fast-forward: "Kitaplık ilerlemesi {number} bölümüne hızlı bir şekilde geçildi!"
+    undo-update: "Geri al"
+    update-progress: "{number} bölümüne kitaplık ilerlemesini güncelleyelim mi?"
+    watched: "İzlendi olarak işaretle"
+    join-prompt:
+      pitch: "İlerlemenizi takip edin ve tartışmaya katılın!"
+      register: "Kitsu hesabı oluştur"
+  likeable-resource:
+    loading: "Yükleniyor…"
+    more: "Daha Fazla Yükle"
+  search:
+    header: "Arama Sonuçları"
+    view: "Daha fazla görüntüle"
   users:
     favorites:
       anime: "Anime"
