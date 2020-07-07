@@ -1,12 +1,103 @@
 ---
+#route titles -- these are used if the route doesn't specify the title itself
+titles:
+  anime:
+    index: "Etsi Animea"
+  manga:
+    index: "Etsi Mangaa"
+  media:
+    show:
+      units: "{type, select, anime {Jaksot} manga {Kirjat} other {}}"
+      characters: "Hahmot"
+      reactions: "Reaktiot"
+      franchise: "Franchise"
+  explore:
+    more:
+      trending: "Suositut {type, select, other{}} Tällä Viikolla"
+      top-upcoming: "Parhaat Tulevat {type}"
+      highest-rated: "Parhaiten Arvosteltu {type}"
+      most-popular: "Suosituin {type}"
+    category:
+      more:
+        newly-released: "Juuri Julkaistu {category} {type}"
+        trending: "Suosittu {category} {type}"
+        most-popular: "Suosituin {category} {type}"
+  not-found: "Ei Löytynyt"
+  server-error: "Palvelin Virhe"
+  users:
+    index: "{user} Profiili"
+    library: "{user} Kirjasto"
+    reviews: "{user} Arvostelut"
+    reactions: "{user} Reaktiot"
+    followers: "{user} Seuraajat"
+    following: "{user} Seuratut"
+    groups: "{user} Ryhmät"
+    stats: "{user} Tiedot"
+  posts: "{user} Julkaisut"
+  comments: "{user} Kommentti"
+  reviews: "{user} Arvostelu"
+  notifications: "Ilmoitukset"
+  feedback:
+    bugs: "Bugit"
+    feature-requests: "Ehdota ominaisuutta"
+    database-requests: "Ehdota Lisäyksiä"
+    mobile-bugs: "Mobiili Bugit"
+    mobile-features: "Mobiili ominaisuudet"
+  admin:
+    index: "Ylläpitäjä"
+    reports: "Raportit"
+  groups:
+    index: "Ryhmät"
+    new: "Luo Ryhmä"
+    group:
+      group-page:
+        rules: "{group} Säännöt"
+        members: "{group} Jäsenet"
+        leaders: "{group} Johtajat"
+      dashboard:
+        index: "{group} Yhteenveto"
+        reports: "{group} Raportit"
+        tickets: "{group} Postilaatikko"
+        members: "{group} Jäsenet"
+        leaders: "{group} Johtajat"
+        settings: "{group} Asetukset"
+  group-invite: "Ryhmäkutsu"
+#head
+head:
+  users:
+    description: "{user} käyttää sivustoa Kitsu seuratakseen edistymistään ja jakaakseen omia Anime & Manga kokemuksiaan."
 #header
 header:
+  library: "Kirjasto"
   anime: "Anime"
+  manga: "Manga"
+  trending: "Nousussa"
+  groups: "Ryhmät"
+  feedback: "Palaute"
+  browse: "Selaa"
+  auth:
+    sign-in: "Kirjaudu Sisään"
+    sign-up: "Rekisteröidy"
+  user:
+    profile: "Näytä Profiili"
+    settings: "Asetukset"
+    admin: "Ylläpitäjä"
+    logout: "Kirjaudu ulos"
+#authentication modal
+auth-modal:
+  sign-up:
+    submit: "{step, select, 0 {Ensin vähän perusinfoa} 1 {Erittäin nokkelaa - seuraavaksi sähköposti!} 2 {Näyttää hyvälle, entäs salasana?} 3 {Mahtavaa- Luodaanpa se tili } other {}}"
+#page: about
+about:
+  header: "Tietoa Kitsusta"
 #page: dashboard
 dashboard:
   quick-update:
+    title: "Pikapäivitys"
     filter:
+      all: "Kaikki"
       anime: "Anime"
+      manga: "Manga"
   feed:
     anime: "Anime"
 #page: anime/manga
