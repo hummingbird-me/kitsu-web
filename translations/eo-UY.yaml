@@ -72,71 +72,71 @@ head:
 #header
 header:
   library: "Biblioteko"
-  anime: "Anime"
-  manga: "Manga"
-  trending: "Trending"
-  groups: "Groups"
-  feedback: "Feedback"
-  browse: "Browse"
+  anime: "Animeo"
+  manga: "Mangao"
+  trending: "Aktualaj"
+  groups: "Grupoj"
+  feedback: "Prikomentado"
+  browse: "Esplori"
   auth:
-    sign-in: "Sign In"
-    sign-up: "Sign Up"
+    sign-in: "Ensaluti"
+    sign-up: "Registriĝi"
   user:
-    profile: "View Profile"
-    settings: "Settings"
-    admin: "Admin"
-    logout: "Logout"
+    profile: "Rigardi profilon"
+    settings: "Agordoj"
+    admin: "Administranto"
+    logout: "Elsaluti"
 #authentication modal
 auth-modal:
   sign-up:
     submit: "{step, select, 0 {Let's get some basic info first} 1 {Very witty - email is next!} 2 {Looks legit, how about a password?} 3 {Cool- Let's create that account} other {}}"
 #page: about
 about:
-  header: "About Kitsu"
+  header: "Pri Kitsuo"
 #page: dashboard
 dashboard:
   quick-update:
-    title: "Quick Update"
+    title: "Rapida renovigo"
     filter:
-      all: "All"
-      anime: "Anime"
-      manga: "Manga"
+      all: "Ĉiuj"
+      anime: "Animeoj"
+      manga: "Mangaoj"
     empty:
-      html: "Media you've added or updated within your '<a' href={link}'>'Library'</a>' will show up here for you to quickly update."
-      discover: "Discover Media"
+      html: "Verko, kiun vi aldonis aŭ renovigis en via '<a' href={link}'>'biblioteko'</a>', aperos ĉi tie por rapida atingo."
+      discover: "Esplori"
     media:
-      complete: "Complete"
-      unstarted: "Not Started"
-      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {of {total}}}} manga {Ch. {num} {total, select, null {} other {of {total}}}} other {}}"
+      complete: "Finita"
+      unstarted: "Nekomencita"
+      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {el {total}}}} manga {Ĉ. {num} {total, select, null {} other {el {total}}}} other {}}"
     overlay:
       button:
-        update: "{type, select, anime {Ep.} manga {Ch.} other {}} {number}"
-        complete: "Complete"
+        update: "{type, select, anime {Ep.} manga {Ĉ.} other {}} {number}"
+        complete: "Fini"
         tooltip:
-          empty: "Update Library"
-          content: "Create post and update library"
-      discussion: "View Discussion"
-      edit: "Edit Library Entry"
-      popout: "Pop-out editor"
+          empty: "Renovigi bibliotekon"
+          content: "Krei afiŝon kaj renovigi bibliotekon"
+      discussion: "Rigardi diskuton"
+      edit: "Redakti bibliotekan elementon"
+      popout: "Supernnaĝa redaktilo"
       editor:
-        placeholder: "(Optional) Share your thoughts on {type, select, anime {Episode} manga {Chapter} other {}} {number}"
+        placeholder: "(Nedeviga) Rakontu viajn pensojn pri {type, select, anime {epizodo} manga {ĉapitro} other {}} {number}"
   onboarding:
-    welcome: "Hey {user}, welcome to Kitsu!"
-    about: "This is the global activity feed. It's populated by recent activity from all of Kitsu's users - even you! Once you've had a chance to follow a few more interesting users, we'll switch your default feed from Global to Following."
-    action: "Why don't you try creating a feed post to introduce yourself using the form below? You can say something as simple as 'Hey everyone, I'm new to Kitsu', or you can show us how creative and witty you are!"
+    welcome: "Saluton, {user}, bonvenon al Kitsuo!"
+    about: "Tio estas ĝenerala afiŝfluo. Ĝi pleniĝas per antaŭnelonga aktiveco de ĉiuj uzantoj de Kitsuo - eĉ de vi. Kiam vi sekvos kelkajn interesajn uzantojn, ni ŝanĝos vian defaŭltan afiŝfluon al Sekvataj."
+    action: "Kial vi ne prezentus sin kaj diru pri vi mem per formularo sube? Vi povas diri ajnan simplaĵon, ekzemple: «Saluton! Mi estas novulo en Kitsuo», aŭ rakonti pri via kreiveco kaj spriteco!"
   groups:
-    header: "My Groups"
+    header: "Miaj grupoj"
   announcements:
-    button: "Learn More"
+    button: "Lerni pli"
   feed:
-    following: "Following"
-    anime: "Anime"
-    manga: "Manga"
-    global: "Global"
+    following: "Sekvataj"
+    anime: "Animeo"
+    manga: "Mangao"
+    global: "Tuta"
 #page: anime/manga
 media:
   index:
-    search: "Search by title, character, or cast…"
+    search: "Serĉo laŭ titolo, rolulo aŭ personaro…"
     filter: "Filtrilo"
     remove: "Forigi"
     filters:
@@ -448,177 +448,177 @@ components:
         comments: "Komentoj"
         reactions: "Reagoj"
       delete: "Forigi"
-    block: "Block @{user}"
-    you: "Hey, that's you!"
+    block: "Bloki @{user}"
+    you: "Hej, tio estas vi!"
     favorites:
-      title: "Favorite {type, select, series {Series} characters {Characters} other {}}"
-      anime: "Anime"
-      manga: "Manga"
-      more: "Show More"
-      edit: "Edit favorite {type, select, anime {anime} manga {manga} characters {characters} other {}}"
+      title: "Ŝatataj {type, select, series {serioj} characters {roluloj} other {}}"
+      anime: "Animeoj"
+      manga: "Mangaoj"
+      more: "Montri pli"
+      edit: "Redakti ŝatatajn {type, select, anime {animeojn} manga {mangaojn} characters {rolulojn} other {}}"
       empty:
-        yours: "You haven't listed your favorite {type, select, anime {anime} manga {manga} characters {characters} other {}} yet!"
-        others: "User has no favorites"
+        yours: "Vi ankoraŭ ne elektis viajn ŝatatajn {type, select, anime {animeojn} manga {mangaojn} characters {rolulojn} other {}}!"
+        others: "Uzanto ne havas la ŝatatajn"
       choose: "Choose favorite {type, select, anime {anime} manga {manga} characters {characters} other {}}"
     alt-name:
-      title: "Possible Alt Accounts of {user}"
-      none: "No alts found"
+      title: "Eblaj alternativaj kontoj de {user}"
+      none: "Neniu alternativa konto estis trovita"
     past-name:
-      title: "Past Names"
-      none: "No previous names"
+      title: "Ĝisnunaj nomoj"
+      none: "Ĝisnunaj nomoj mankas"
 #page: users
 users:
   profile:
-    edit: "Edit"
+    edit: "Redakti"
   admin:
-    button: "Admin"
-    past-names: "View Past Names"
-    alt-accounts: "View Alt Accounts"
-    delete-content: "Delete User-Created Content"
-    ban: "Ban"
+    button: "Administranto"
+    past-names: "Rigardi ĝisnunaj nomoj"
+    alt-accounts: "Rigardi alt. kontoj"
+    delete-content: "Forigi uzantkreitan enhavon"
+    ban: "Forbari"
   navigation:
-    activity: "Activity"
-    library: "Library"
-    reviews: "Reviews"
-    reactions: "Reactions"
-    followers: "Followers"
-    following: "Following"
-    groups: "Groups"
+    activity: "Aktivaĵo"
+    library: "Biblioteko"
+    reviews: "Revuoj"
+    reactions: "Reagoj"
+    followers: "Sekvantoj"
+    following: "Sekvataj"
+    groups: "Grupoj"
   edit-modal:
-    cover: "Change your cover photo"
+    cover: "Ŝanĝi kovrilon"
     navigation:
-      about: "About Me"
-      profile-links: "Profile Links"
-      favorites: "Favorites"
+      about: "Pri mi"
+      profile-links: "Profilaj ligiloj"
+      favorites: "La ŝatataj"
     about:
-      header: "About Me"
+      header: "Pri mi"
       location:
-        label: "Location"
-        placeholder: "Where do you live?"
-      birthday: "Birthday"
+        label: "Loko"
+        placeholder: "Kie vi loĝas?"
+      birthday: "Naskiĝtago"
       gender:
-        label: "Gender"
+        label: "Genro"
         options:
-          secret: "It's a secret"
-          male: "Male"
-          female: "Female"
-          custom: "Custom"
+          secret: "ĝi estas sekreto"
+          male: "Viro"
+          female: "Virino"
+          custom: "Laŭmenda"
       waifu:
-        label: "Waifu"
-        placeholder: "Waifu/Husbando"
-        search: "Find your special someone"
-        divorce: "divorce"
+        label: "Edzino"
+        placeholder: "Edzino/Edzo"
+        search: "Trovu vian koramikon"
+        divorce: "divorci"
       bio:
-        label: "Bio"
-        placeholder: "Tell the world your story."
+        label: "Biografieto"
+        placeholder: "Rakontu vian historion al la mondo."
     profile-links:
-      header: "Profile Links"
-      remove: "Remove from profile"
+      header: "Profilaj ligiloj"
+      remove: "Forigi el profilo"
       sites:
         website:
-          about: "Enter your personal website below to add a link to your profile."
-          placeholder: "Your website URL"
+          about: "Malsupre tajpu ligilon al via retejo por aldoni ĝin al via profilo."
+          placeholder: "Ligilo al via retejo"
         twitter:
-          about: "Enter your Twitter username below to add a link to your profile."
-          placeholder: "Your Twitter username (@Username)"
+          about: "Malsupre tajpu tviteran uzantnomon por aldoni ligilon al via profilo."
+          placeholder: "Via tvitera uzantnomo (@Uzantnomo)"
         facebook:
-          about: "Enter your Facebook URL below to add a link to your profile."
-          placeholder: "Your Facebook URL"
+          about: "Malsupre tajpu fejsbukan ligilon por aldoni ĝin al via profilo."
+          placeholder: "Ligilo al via Fejsbuka paĝo"
         youtube2:
-          about: "Enter your YouTube channel URL below to add a link to your profile."
-          placeholder: "Your YouTube channel URL"
+          about: "Malsupre tajpu jutuban ligilon por aldoni ĝin al via profilo."
+          placeholder: "Ligilo al via jutuba kanalo"
         google:
-          about: "Enter your Google+ profile URL or username below to add a link to your profile."
-          placeholder: "Your Google+ profile URL or username (+Username)"
+          about: "Malsupre tajpu ligilon al via Google+ profilo aŭ uzantnomon por aldoni ligilon al via profilo."
+          placeholder: "Ligilo al via profilo aŭ uzantnomo (+Uzantnomo) en Google+"
         instagram:
-          about: "Enter your Instagram username below to add a link to your profile."
-          placeholder: "Your Instagram username"
+          about: "Malsupre tajpu instagraman uzantnomon por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en Instagramo"
         twitch:
-          about: "Enter your Twitch username below to add a link to your profile."
-          placeholder: "Your Twitch username"
+          about: "Malsupre tajpu tŭiĉan uzantnomon por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en Twitch"
         vimeo:
-          about: "Enter your Vimeo username below to add a link to your profile."
-          placeholder: "Your Vimeo username"
+          about: "Malsupre tajpu vimean uzantnomon por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en Vimeo"
         github:
-          about: "Enter your GitHub username below to add a link to your profile."
-          placeholder: "Your GitHub username"
+          about: "Malsupre tajpu githaban uzantnomon por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en GitHub"
         battlenet:
-          about: "Enter your Battle.net BattleTag below to add a link to your profile."
-          placeholder: "Your Battle.net BattleTag (User#1234)"
+          about: "Malsupre tajpu BattleTag-on de Battle.net por aldoni ligilon al via profilo."
+          placeholder: "Via BattleTag (Uzanto#1234) en Battle.net"
         steam:
-          about: "Enter your Steam Community username below to add a link to your profile."
-          placeholder: "Your Steam Community username"
+          about: "Malsupre tajpu uzantnomon de Steam Community por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en Steam Community"
         raptr:
-          about: "Enter your Raptr username below to add a link to your profile."
-          placeholder: "Your Raptr username"
+          about: "Malsupre tajpu uzantnomon de Raptr por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en Raptr"
         discord:
-          about: "Enter your Discord tag below to add a link to your profile."
-          placeholder: "Your Discord tag (User#1234)"
+          about: "Malsupre tajpu markon de Discord por aldoni ligilon al via profilo."
+          placeholder: "Via marko (User#1234) en Discord"
         tumblr:
-          about: "Enter your Tumblr blog name below to add a link to your profile."
-          placeholder: "Your Tumblr blog name"
+          about: "Malsupre tajpu blognomon de Tumblr por aldoni ligilon al via profilo."
+          placeholder: "Via blognomo en Tumblr"
         soundcloud:
-          about: "Enter your SoundCloud username below to add a link to your profile."
-          placeholder: "Your SoundCloud username"
+          about: "Malsupre tajpu uzantnomon de SoundCloud por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en SoundCloud"
         dailymotion:
-          about: "Enter your Dailymotion username below to add a link to your profile."
-          placeholder: "Your Dailymotion username"
+          about: "Malsupre tajpu uzantnomon de Dailymotion por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en Dailymotion"
         kickstarter:
-          about: "Enter your Kickstarter username below to add a link to your profile."
-          placeholder: "Your Kickstarter username"
+          about: "Malsupre tajpu uzantnomon de Kickstarter por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en Kickstarter"
         mobcrush:
-          about: "Enter your Mobcrush username below to add a link to your profile."
-          placeholder: "Your Mobcrush username"
+          about: "Malsupre tajpu uzantnomon de Mobcrush por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en Mobcrush"
         osu:
-          about: "Enter your Osu! ID number below to add a link to your profile."
-          placeholder: "Your Osu! ID number"
+          about: "Malsupre tajpu ID nombron de Osu! por aldoni ligilon al via profilo."
+          placeholder: "Via ID nombro en Osu!"
         patreon:
-          about: "Enter your Patreon project name to add a link to your profile."
-          placeholder: "Your Patreon project name"
+          about: "Malsupre tajpu uzantnomon de Patreon por aldoni ligilon al via profilo."
+          placeholder: "Nomo de via projekto en Patreon"
         deviantart:
-          about: "Enter your DeviantArt username below to add a link to your profile."
-          placeholder: "Your DeviantArt username"
+          about: "Malsupre tajpu uzantnomon de DeviantArt por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en DeviantArt"
         dribbble:
-          about: "Enter your Dribbble username below to add a link to your profile."
-          placeholder: "Your Dribbble username"
+          about: "Malsupre tajpu uzantnomon de Dribbble por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en Dribbble"
         imdb:
-          about: "Enter your IMDb profile URL below to add a link to your profile."
-          placeholder: "Your IMDb profile URL"
+          about: "Malsupre tajpu ligilon al via profilo en IMDb por aldoni ĝin al via profilo."
+          placeholder: "Ligilo al via profilo en IMDb"
         lastfm:
-          about: "Enter your Last.fm username below to add a link to your profile."
-          placeholder: "Your Last.fm username"
+          about: "Malsupre tajpu uzantnomon de Last.fm por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en Last.fm"
         letterboxd:
-          about: "Enter your Letterboxd username below to add a link to your profile."
-          placeholder: "Your Letterboxd username"
+          about: "Malsupre tajpu uzantnomon de Letterboxd por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en Letterboxd"
         medium:
-          about: "Enter your Medium username or publication name below to add a link to your profile."
-          placeholder: "Your Medium username (@user) or publication name"
+          about: "Malsupre tajpu uzantnomon de Medium aŭ publikigan nomon por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo (@uzanto) en Medium aŭ piblikiga nomo"
         playerme:
-          about: "Enter your Player.me username below to add a link to your profile."
-          placeholder: "Your Player.me username"
+          about: "Malsupre tajpu uzantnomon de Player.me por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en Player.me"
         reddit:
-          about: "Enter your Reddit username below to add a link to your profile."
-          placeholder: "Your Reddit username"
+          about: "Malsupre tajpu uzantnomon de Reddit por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en Reddit"
         trakt:
-          about: "Enter your Trakt username below to add a link to your profile."
-          placeholder: "Your Trakt username"
+          about: "Malsupre tajpu uzantnomon de Trakt por aldoni ligilon al via profilo."
+          placeholder: "Via uzantnomo en Trakt"
     footer:
-      updating: "Updating…"
-      update: "Update Profile"
+      updating: "Aktualigas…"
+      update: "Aktualigi profilon"
     favorites:
-      header: "Favorites"
-      anime: "Anime"
-      manga: "Manga"
-      characters: "Characters"
-      remove: "Remove Favorite?"
+      header: "La ŝatataj"
+      anime: "Animeoj"
+      manga: "Mangaoj"
+      characters: "Roluloj"
+      remove: "Forigi la ŝatatan?"
   activity:
     onboarding:
-      welcome: "Hey {user}, this page is all about YOU!"
-      about: "As you continue to use Kitsu your '<strong>'Personal Feed'</strong>' below will begin to populate with the anime and manga you've watched, read, completed, and plan to check out. You can also post text, images, and videos to your feed using the form below. Your posts will be seen and appreciated by your followers and users from the global feed."
-      action: "Make yourself at home! Upload an avatar and cover image! Click '<span>'Edit'</span>' above to get started."
-      title: "Set-Up Your Profile"
+      welcome: "Saluton {user}, ĉi tiu paĝo estas pri vi!"
+      about: "Kiam vi uzas Kitsuon via '<strong>'persona afiŝfluo'</strong>' pleniĝas je animeoj kaj mangaoj, kiujn vi spektis, legis, finis kaj volas spekti. Vi ankaŭ povas mesaĝi tekston, bildojn kaj filmojn al via afiŝfluo per formularo sube. Viaj afiŝoj estos videblaj por viaj abonantoj kaj uzantoj de ĝenerala afiŝfluo."
+      action: "Aranĝu sin kiel hejme. Alŝuti avatarbildon kaj kovrilon! Klaku '<span>'Redakti'</span>' supre por komenci."
+      title: "Agordu vian profilon"
     about:
-      header: "About Me"
+      header: "Pri mi"
       empty: "It's a secret"
       waifu:
         label: "{waifu, select, Waifu {Waifu} Husbando {Husbando} other {{waifu}}}:"
