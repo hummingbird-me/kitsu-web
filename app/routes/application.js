@@ -6,6 +6,7 @@ import { storageFor } from 'ember-local-storage';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import moment from 'moment';
 import LANGUAGES from 'client/utils/languages';
+import nearestLocale from 'client/utils/nearestLocale';
 import config from 'client/config/environment';
 
 export default Route.extend(ApplicationRouteMixin, {
@@ -21,15 +22,15 @@ export default Route.extend(ApplicationRouteMixin, {
 
   // If the user is authenticated on first load, grab the users data
   async beforeModel() {
-    // Load English translation as default
-    const translations = await fetch('/translations/en-us.json');
-    get(this, 'intl').addTranslations('en-us', await translations.json());
-
     // session
     const session = get(this, 'session');
     if (get(session, 'isAuthenticated')) {
       return this._getCurrentUser();
     }
+
+    // Get localisation for non-logged in users
+    this._loadDefaultLanguage();
+
     return get(this, 'features').fetchFlags();
   },
 
@@ -226,10 +227,19 @@ export default Route.extend(ApplicationRouteMixin, {
     }
   },
 
+  // Load the most suitable available translation
+  async _loadDefaultLanguage() {
+    const translations = await fetch(`/translations/${nearestLocale}.json`);
+    get(this, 'intl').addTranslations(nearestLocale, await translations.json());
+    get(this, 'intl').set('locale', nearestLocale);
+  },
+
   async _loadLanguage(user) {
     const userLocale = get(user, 'language');
+    const localeTranslated = LANGUAGES.some(({ id }) => userLocale === id);
 
-    if (userLocale !== 'en-us' && LANGUAGES.some(({ id }) => userLocale === id)) {
+    // Validate language field is a translated language on the client
+    if (userLocale && localeTranslated) {
       let translationsPath = `translations/${userLocale}.json`;
       if (config.kitsu.isProduction) {
         const assetMap = await fetch('/assets/assetMap.json');
@@ -238,7 +248,10 @@ export default Route.extend(ApplicationRouteMixin, {
       }
       const translations = await fetch(`/${translationsPath}`);
       get(this, 'intl').addTranslations(userLocale, await translations.json());
-      get(this, 'intl').set('locale', [userLocale, 'en-us']);
+      get(this, 'intl').set('locale', [userLocale]);
+    } else {
+      // Fall back to default if user-provided language field is not available
+      this._loadDefaultLanguage();
     }
   }
 });
