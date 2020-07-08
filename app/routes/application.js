@@ -227,10 +227,21 @@ export default Route.extend(ApplicationRouteMixin, {
     }
   },
 
+  async _fetchTranslations(locale) {
+    let translationPath = `translations/${locale}.json`;
+
+    if (config.kitsu.isProduction) {
+      const assetMap = await fetch('/assets/assetMap.json');
+      const assetMapJSON = await assetMap.json();
+      translationPath = assetMapJSON.assets[translationPath];
+    }
+
+    return (await fetch(`/${translationPath}`)).json();
+  },
+
   // Load the most suitable available translation
   async _loadDefaultLanguage() {
-    const translations = await fetch(`/translations/${nearestLocale}.json`);
-    get(this, 'intl').addTranslations(nearestLocale, await translations.json());
+    get(this, 'intl').addTranslations(nearestLocale, await this._fetchTranslations(nearestLocale));
     get(this, 'intl').set('locale', nearestLocale);
   },
 
@@ -243,14 +254,7 @@ export default Route.extend(ApplicationRouteMixin, {
 
     // Validate language field is a translated language on the client
     if (userLocale && localeTranslated) {
-      let translationsPath = `translations/${userLocale}.json`;
-      if (config.kitsu.isProduction) {
-        const assetMap = await fetch('/assets/assetMap.json');
-        const assetMapJSON = await assetMap.json();
-        translationsPath = assetMapJSON.assets[translationsPath];
-      }
-      const translations = await fetch(`/${translationsPath}`);
-      get(this, 'intl').addTranslations(userLocale, await translations.json());
+      get(this, 'intl').addTranslations(userLocale, await this._fetchTranslations(userLocale));
       get(this, 'intl').set('locale', [userLocale]);
     } else {
       // Fall back to default if user-provided language field is not available
