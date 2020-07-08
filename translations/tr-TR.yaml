@@ -107,8 +107,10 @@ dashboard:
     media:
       complete: "Tamamlandı"
       unstarted: "Başlanmadı"
+      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {of {total}}}} manga {Ch. {num} {total, select, null {} other {of {total}}}} other {}}"
     overlay:
       button:
+        update: "{type, select, anime {Ep.} manga {Ch.} other {}} {number}"
         complete: "Tamamlandı"
         tooltip:
           empty: "Kitaplığı güncelle"
@@ -158,6 +160,7 @@ media:
       units: "{type, select, anime {Bölümler} manga {Bölümler} other {}}"
       characters: "Karakterler"
       reactions: "Görüşler"
+      franchise: "Franchise"
     sidebar:
       watch: "İnternetten izle"
     summary:
@@ -319,6 +322,10 @@ media:
   show-posts:
     text: "{media} hakkındaki gönderileri göster"
     info: "Gönderiler takip ettiklerinizde ya da {type} ana sayfanızda gözükecek"
+#page: application
+application:
+  sandbox:
+    alert: "This is a sandbox. '<br>' All changes will be reset."
 #components
 components:
   ad-unit: "Reklamlar kötü evet ama biz de ekmek paramızı burdan çıkarıyoruz ne yapalım. Lütfen reklam önleyici programınızından sitemizi güvenilir adresler listesine ekleyin."
@@ -367,6 +374,7 @@ components:
     create-post:
       edit: "Düzenle"
       create: "Gönderi"
+      nsfw: "NSFW"
       spoiler: "Spoiler"
       tag-media: "Bir şovu veya mangayı etiketlemek için yazın"
     edit-post:
@@ -383,6 +391,8 @@ components:
       pinned: "Sabitlenmiş mesaj"
       edited: "Düzenlendi"
       gate:
+        spoiler-nsfw: "Contains spoilers and NSFW."
+        nsfw: "This post contains NSFW content."
         spoiler: "Bu gönderi spoiler içeriyor."
         hover:
           nsfw: "Buna hazırım!"
@@ -401,6 +411,7 @@ components:
       comment-count: "{count} de {total}"
       comment:
         deleting: "Yorum siliniyor…"
+        gif: "GIF"
         reply: "Cevapla"
         copy-link: "Yorumun linkini kopyala"
         edit: "Yorumu Düzenle"
@@ -451,6 +462,7 @@ components:
       choose: "Favori {type, select, anime {animeni} manga {manganı} characters {karakterini} other {}} seç"
     alt-name:
       title: "{user}'ya Ait Olabilecek Diğer Hesaplar"
+      none: "No alts found"
     past-name:
       title: "Eski isimler"
       none: "Eski isim yok"
@@ -512,6 +524,9 @@ users:
         facebook:
           about: "Profilinize bağlamak için Facebook linkinizi aşağıya giriniz."
           placeholder: "Facebook sayfa linkiniz"
+        youtube2:
+          about: "Enter your YouTube channel URL below to add a link to your profile."
+          placeholder: "Your YouTube channel URL"
         google:
           about: "Profilinize bağlamak için Google+ linkinizi ya da kullanıcı adınızı aşağıya giriniz."
           placeholder: "Google+ profilinizin linki ya da kullanıcı adı (+Kullanıcı_adınız)"
@@ -556,6 +571,7 @@ users:
           placeholder: "Mobcrush kullanıcı adınız"
         osu:
           about: "Profilinize bağlamak için Osu! İD'nizi aşağıya giriniz."
+          placeholder: "Your Osu! ID number"
         patreon:
           about: "Profilinize bağlamak için Patreon proje adınızı aşağıya giriniz."
           placeholder: "Patreon proje adınız"
@@ -576,24 +592,42 @@ users:
           placeholder: "Letterboxd kullanıcı adınız"
         medium:
           about: "Profilinize bağlamak için Medium kullanıcı adınızı aşağıya giriniz."
+          placeholder: "Your Medium username (@user) or publication name"
         playerme:
+          about: "Enter your Player.me username below to add a link to your profile."
           placeholder: "Player.me kullanıcı adınız"
         reddit:
+          about: "Enter your Reddit username below to add a link to your profile."
           placeholder: "Reddit kullanıcı adınız"
         trakt:
+          about: "Enter your Trakt username below to add a link to your profile."
           placeholder: "Trakt kullanıcı adınız"
+    footer:
+      updating: "Updating…"
+      update: "Update Profile"
     favorites:
+      header: "Favorites"
       anime: "Anime"
+      manga: "Manga"
+      characters: "Characters"
       remove: "Favoriyi kaldır?"
   activity:
     onboarding:
+      welcome: "Hey {user}, this page is all about YOU!"
+      about: "As you continue to use Kitsu your '<strong>'Personal Feed'</strong>' below will begin to populate with the anime and manga you've watched, read, completed, and plan to check out. You can also post text, images, and videos to your feed using the form below. Your posts will be seen and appreciated by your followers and users from the global feed."
+      action: "Make yourself at home! Upload an avatar and cover image! Click '<span>'Edit'</span>' above to get started."
       title: "Profilinizi Ayarlayın"
     about:
+      header: "About Me"
+      empty: "It's a secret"
       waifu:
         label: "{waifu, select, Waifu {Waifu} Husbando {Husbando} other {{waifu}}}:"
         empty: "Waifu/Husbando:"
       gender:
         label: "Cinsiyet:"
+        secret: "It's a secret"
+        male: "Male"
+        female: "Female"
       location: "Konum:"
       birthday: "Doğum Günü:"
       joined: "Katılma Tarihi:"
@@ -610,6 +644,7 @@ users:
         time-segment: "{count} {timeUnit}" #8 months (pre-translated)
         total: "anime izleyerek geçirildi." #appended after time-segments
       empty:
+        header: "Looks like you don't have enough data yet! Ready to start something new?"
         guest-header: "{user} şimdilik herhangi bir istatistikliğe sahip değil gibi görünüyor."
   library:
     search: "{name}'in kitaplığını ara…"
@@ -621,17 +656,31 @@ users:
         finished: "Bitiş Tarihi"
         added: "Eklenme Tarihi"
         progress: "İlerleme Durumu"
+        rating: "Rating"
         title: "Başlık"
+        length: "Length"
       directions:
         watched:
           desc: "Önce Son İşlemler"
           asc: "Önce En Eski"
+        started:
+          desc: "Recent First"
+          asc: "Oldest First"
+        finished:
+          desc: "Recent First"
+          asc: "Oldest First"
+        added:
+          desc: "Recent First"
+          asc: "Oldest First"
         progress:
           desc: "Önce Birinci Olan"
           asc: "En Son Birinci Olan"
         rating:
           desc: "Önce En Yüksek Olan"
           asc: "Önce En Düşük Olan"
+        title:
+          desc: "A-Z"
+          asc: "Z-A"
         length:
           desc: "Önce En Düşük"
           asc: "Önce En Kısa"
@@ -642,19 +691,38 @@ users:
       export: "Kitaplığı dışarı aktar"
       reset: "Kitaplığı Sıfırla"
       reset-loading: "Sıfırlanıyor…"
+      reset-confirmation: "This will delete your entire library, associated reviews, and reactions. Are you sure you want to continue?"
       issues:
         header: "Kitaplık Sorunları"
+        reactions: "{count} completed media missing '<b>'reactions'</b>'"
+        fix: "fix"
     list:
       edit: "Kaydı Düzenle"
       list-edit: "Düzenle"
       more: "Daha Fazla"
+      unstarted: "Not Started"
       unrated: "Derecesiz"
+      progress: "{type, select, anime {Ep. {progress}} manga {Ch. {progress}} other {}}"
+      table-header:
+        title: "{type, select, anime {Anime Title} manga {Manga Title} other {}}"
+        rating: "Rating"
+        progress: "Progress"
+        volumes: "Volumes"
       add-reaction: "Tepki Ekle"
       empty:
+        search: "Couldn't find any library entries with your search query."
+        header: "Looks like your library here is empty! Ready to start something new?"
+        guest-header: "Looks like {user} doesn't have any library entries here."
         button: "{type} Ara"
+    grid:
+      view-media: "View {type, select, anime {Anime} manga {Manga} other {}}"
     edit:
       status: "Kitaplık durumu"
+      progress: "Progress"
+      units: "{type, select, anime {of {num} episodes} manga {of {num} chapters} other {}}"
+      volumes: "Volumes"
       volume-units: "{num} cilt"
+      rating: "Rating"
       rewatch: "{type, select, anime {Yeniden izleme sayısı} manga {Yeniden okuma sayısı} other {}}"
       start-rewatch: "{type, select, anime {Tekrar izlemeye başla} manga {Tekrar okumaya başla} other {}}"
       privacy: "Gizlilik"
@@ -669,6 +737,7 @@ users:
       select-all: "Tümünü Seç"
       select-none: "Hiçbirini Seçme"
       remove: "'<strong>'{num}'</strong>' 'i kaldır"
+      move-to: "Move '<strong>'{num}'</strong>' to…"
       remove-loading: "Kaldırılıyor…"
       update-loading: "Güncelleniyor…"
   groups:
@@ -693,28 +762,40 @@ users:
   followers:
     not-found: "Kullanıcı bulunamadı."
     loading: "Kullanıcılar yükleniyor…"
+  following:
+    not-found: "No Users Found."
+    loading: "Loading Users…"
   reviews:
     not-found: "Eleştiri bulunamadı."
     loading: "Eleştirmeler yükleniyor…"
 #page: settings
 settings:
   navigation:
+    header: "Settings"
     profile: "Profil"
+    notifications: "Notifications"
+    password: "Password"
+    privacy: "Privacy"
     linked-accounts: "Bağlantılı hesaplar"
     import: "İçe aktar"
+    export: "Export"
     blocking: "Engelleniyor"
     account: "Hesap"
   account:
+    header: "Account"
     sub-header: "Dikkat! Hesabınızı silerseniz geri dönemezsiniz."
     delete: "Hesabı Sil"
+    confirm-title: "Delete Account"
     confirm-text: "Gittiğiniz için çok üzgünüz, devam etmek istediğinizden emin misiniz?"
   apps:
     header: "Uygulamalar"
   blocking:
+    header: "Blocking"
     sub-header: "Birini engellediğinizde, o kişi sizi etiketleyemez, takip edemez, profilinizi görüntüleyemez veya gönderilerinizi göremez."
     title: "Kullanıcıları Engelle"
     placeholder: "Engellenecek kullanıcıları ara…"
     button-block: "Engelle"
+    loading: "Loading Users…"
     button-unblock: "Engeli kaldır"
     more: "Daha Fazla Yükle"
     not-blocking: "Şu anda kimseyi engellemiyorsunuz."
@@ -724,64 +805,118 @@ settings:
       helper: "Anime ve manga listelerinizi Kitsu'da her güncellediğinizde {site} adresinde de güncellenecek."
       create: "{site} ile senkronize et"
     header: "Dışa aktar"
+    sub-header: "Automatically sync your library updates from Kitsu to MyAnimeList."
+    loading: "Loading Exports…"
+    remove: "Remove Exporter"
     disabled: "MyAnimeList aktarımınız aşağıdaki nedenlerden dolayı iptal edildi: '<strong>'{reason}'</strong>'"
     create: "MyAnimeList hesabına aktarmayı ayarla"
     download: "{kind} kitaplığını indir"
+    recent: "Recent Sync Activity"
     sync-header: "MyAnimeList Senkronizasyonu"
+    no-logs: "We're processing your library and syncing it with MyAnimeList. Hold tight!"
     logs:
       header:
+        media: "Title"
+        library-status: "Status"
+        progress: "Progress"
+        rating: "Rating"
+        reconsumes: "Rewatches"
         action: "Aksiyon"
+        status: "Status"
       action:
         create: "Oluştur"
         update: "Güncelle"
+        destroy: "Remove"
       status:
         pending: "Bekleyen"
         success: "Başarılı"
         error: "Hata"
   imports:
+    header: "Imports"
+    sub-header: "Import media from other providers"
+    button: "Import Media"
+    past-imports: "Your past imports"
+    loading: "Loading Imports…"
     status: "Durum:"
+    entries: "Total Entries Found:"
+    error: "It seems like your import has failed :( &mdash; We want to get this fixed for you so please '<a href=\"mailto:help@kitsu.io\">'email'</a>' us."
+    more: "Load More"
   index:
+    header: "Profile"
+    sub-header: "Account and region settings"
     name: "Kullanıcı Adın"
     url: "Profil linki"
+    email: "Email"
     email-message: "E-posta herkese açık olarak gösterilmez."
     language: "Dil"
     translate-help: "Çeviresiniz mi var? '<a href=\"https://crowdin.com/project/kitsu-web\">'Buradan çevirin!'</a>'"
     time-zone: "Zaman Dilimi"
+    content: "Content on Kitsu"
     theme: "Site teması"
     country: "Ülke"
     worldwide: "Dünya çapında"
     titles: "Başlıklar"
+    titles-message: "How media titles will be displayed."
     rating: "Değerlendirme türü"
+    rating-message: "Choose how you would like to rate media that you've watched or read."
     adult: "Yetişkin içerik"
+    adult-message: "With adult content hidden, you won't see R18+ media in the feed, libraries, or search."
+    update: "Update Profile"
   linked-accounts:
+    header: "Linked Accounts"
+    sub-header: "Connect third-party accounts with Kitsu"
     facebook: "Facebook"
     disconnect: "Facebook Bağlantısını Kes"
     connect: "Facebook'a bağlan"
   notifications:
+    header: "Push Notifications"
+    sub-header: "General site-wide notifications"
     contexts:
       web: "İnternet Sitesi"
       email: "E-Posta"
       mobile: "Mobil"
     descriptions:
+      mentions: "Someone '<strong>'mentions'</strong>' me in a post or comment"
+      replies: "Someone '<strong>'replies'</strong>' to my post or comment"
+      likes: "Someone '<strong>'likes'</strong>' my post or comment"
+      follows: "Someone '<strong>'follows'</strong>' me"
+      posts: "Someone '<strong>'posts'</strong>' on my profile"
+      reaction_votes: "Someone '<strong>'upvotes'</strong>' my media reaction"
       airing: "Yeni bölüm yayınlandı"
     newsletter:
       newsletter: "Bülten"
       subscribed: "Abone Olundu"
+      message: "If enabled, you will receive occasional (and very witty) email updates about Kitsu written by Josh himself."
     loading: "Ayarlar yükleniyor…"
     update: "Ayarları Güncelle"
   password:
+    header: "Password"
     sub-header: "Şifreni değiştir"
     new-pswd: "Yeni şifre"
     confirm-pswd: "Şifreyi Doğrula"
     update-pswd: "Şifreyi Güncelle"
   privacy:
+    header: "Privacy"
+    sub-header: "Adjust others ability to view your content"
     discover: "Keşfedilebilirlik"
+    checkbox: "Show in Global Feed"
+    message: "If disabled, your posts will only be available to your followers and guests to your profile."
     update: "Profilini Güncelle"
+#page: feedback
+feedback:
+  header: "Feedback"
+  bugs: "Bugs"
+  features: "Feature Requests"
+  database: "Database Requests"
+  mobile-bugs: "Mobile Bugs"
+  mobile-features: "Mobile Features"
 #page: groups
 groups:
   index:
     call-to-action: "Herkes grup oluşturabilir ve keşfedebilir. Her grup bir konu veya faaliyet etrafında odaklanır."
+    create-btn: "Create a Group"
   create:
+    header: "Create a Group"
     form:
       required: "Zorunlu"
       name: "İsim"
@@ -790,6 +925,7 @@ groups:
       rules: "Kurallar"
       neighbors: "Komşular"
       neighbors-placeholder: "Grup ara"
+      privacy: "Privacy"
       privacy-options:
         open: "Herkese Açık"
         closed: "Gizli"
@@ -806,22 +942,31 @@ groups:
       save-btn: "Kaydet"
       helper:
         name:
+          header: "Name"
           desc: "Grup adları, grubunuzun ne hakkında olduğunu açıkça belirtmelidir, ancak yine de yaratıcı olabilir ve onunla eğlenebilirsiniz!"
         tagline:
+          header: "Tagline"
           desc: "Grubunuzun amacını 60 veya daha az karakterle özetleyin. Daha sonra daha fazla bilgi eklemek için yeriniz olacak."
         about:
+          header: "Description"
           desc: "Grubunuzun amacını derinlemesine açıklayın, önemli bilgileri paylaşın ya da ne isterseniz."
         rules:
+          header: "Rules"
           desc: "Grup üyeleriniz için uyması gereken bazı kurallar belirleyin. Bu kurallar Markdown tarafından desteklenmektedir!"
         neighbors:
+          header: "Neighbors"
           desc: "Üyelerinizin yeni topluluklar bulabilmesi için komşularınıza ilgili grupları ekleyin!"
         privacy:
+          header: "Privacy"
           desc: "Gizlilik ayarlarınız, grubunuzun halka ne kadar açık veya kapalı olacağını belirler. Grubunuzu özel yapmayı seçerseniz, ileride herkese açık hale getiremezsiniz."
         category:
+          header: "Category"
           desc: "Kitsu, kullanıcıların sevdikleri şeylerden daha fazlasını bulmalarına yardımcı olmak için grupları düzenlemekte kategorileri kullanır."
         avatar:
+          header: "Avatar"
           desc: "Bu görüntü, grubunuzu tanımlamak için Kitsu genelinde kullanılacaktır."
         cover:
+          header: "Cover Image"
           desc: "Bu resim, grubunuzun masaüstü sayfasının üst kısmında görünecektir. Yanları kullanıcıların ekran boyutuna bağlı olarak biraz kırpılabilir."
       errors:
         neighbors-same: "Grubunuzu komşu olarak ekleyemezsiniz."
@@ -830,88 +975,166 @@ groups:
   leave-group: "Gruptan Ayrıl"
   hide-posts:
     text: "{group} hakkındaki gönderileri gizle"
+    info: "Posts won't appear in your Following Feed"
   show-posts:
     text: "{group} hakkındaki gönderileri göster"
+    info: "Posts will appear in your Following Feed"
+  nsfw: "NSFW"
+  neighbors: "Neighbors"
   navigation:
+    activity: "Activity"
+    rules: "Rules"
     members: "Üyeler"
     leaders: "Liderler"
+    neighbors: "Neighbors"
   activity:
     feed-header: "Grup Etkinliği"
     about: "{group} Hakkında"
+    members: "Members"
     feed-restricted: "Bu kısıtlanmış bir gruptur. Herkes yorum yapabilir, ancak yalnızca liderler gönderi atabilir."
   rules:
     header: "Topluluk kuralları"
+    empty: "Hey there! Looks like you're using the Kitsu community guidelines. If you'd like to specify your own rules you can do that on your '<a' href={link}'>'settings page.'</a>'"
   tickets:
+    search: "Search Tickets"
+    empty: "Hooray! You don't have any tickets to handle."
+    helper: "Tickets allow you to communicate with the leaders of this group to solve any issues you might have. Message the leaders here to create a ticket."
+    filter:
+      open: "Open Tickets"
+      resolved: "Resolved Tickets"
+      all: "All Tickets"
     conversation:
+      title: "Ticket from '<a' href={link}'>'{name}'</a>'"
       mark-resolved: "Çözümlenmiş olarak işaretle"
       mark-closed: "Kapalı olarak işaretle"
       mark-open: "Açık olarak işaretle"
       nav:
+        reply: "Reply to User"
         leader: "Lider Notu"
+      create-btn: "Create Ticket"
       reply-btn: "Cevap Gönder"
       reply-placeholder: "Mesajınızı yazın"
+      helper: "Write your message below to create a ticket! Leaders for this group will reply to your ticket as soon as they can."
   reports:
     no-explanation: "Açıklama Yok"
+    empty: "Hooray! You don't have any reports to handle."
     filter:
       open: "Raporları aç"
+      resolved: "Resolved Reports"
       all: "Tüm Raporlar"
+    show-more: "Show {num} reports"
+    hide-more: "Hide {num} reports"
+    status:
+      resolved: "This report was resolved by {user}."
+      declined: "This report was declined by {user}."
+      escalated: "This report was escalated by {user}."
     actions:
+      close: "Close Report"
       remove: "İçeriği kaldır"
+      escalate: "Notify Kitsu"
       view: "İçeriği Görüntüle"
   leaders:
     list:
+      header: "Leaders"
+      edit-btn: "Edit"
       add-btn: "Ekle"
       add-placeholder: "Grup üyeleri"
       not-found: "Bu isme sahip herhangi bir grup üyesi bulunamadı."
       message-btn: "Liderlere mesaj at"
       message-leader: "Bu grubun liderisiniz!"
       modal:
+        header: "Leader Permissions:"
         owner: "Grup Sahibi"
+        tickets: "Manage Tickets"
         members: "Üyeleri Yönet"
+        leaders: "Manage Leaders"
         community: "Ayarları Yönet"
+        content: "Manage Content & Reports"
+        owner-help: "Owners have all permissions."
         cancel-btn: "İptal"
         save-btn: "İzinleri Kaydet"
   dashboard:
     back: "{group} a dön"
     navigation:
       overview: "Genel Görünüm"
+      reports: "Reports"
+      tickets: "Tickets"
+      members: "Members"
+      leaders: "Leaders"
+      settings: "Settings"
     overview:
       members:
+        header: "Members"
         today: "Bugün Katılan"
         total: "Toplam Üye"
       activity:
         header: "Kullanıcı Aktivitesi"
         posts: "Bugünün Gönderileri"
         comments: "Bugünün Yorumları"
+      help-desk:
+        header: "Open Cases"
+        tickets: "Tickets"
+        reports: "Reports"
+      tickets: "Latest Tickets"
+      reports: "Latest Reports"
+      log: "Leader Log"
     members:
       invites:
         header: "Bekleyen davetler"
         invited: "Davet edildi"
         revoke: "Daveti iptal et"
         invite: "Davet et"
+        placeholder: "Search for a user to invite. They must be following you!"
+        empty: "Looks like you don't have any pending invites to the group."
       bans:
         header: "Banlanan Kullanıcılar"
         unban: "Banı kaldır"
         ban: "Banla"
+        placeholder: "Name"
+        empty: "Hooray! You don't have any banned users."
       members:
+        header: "Members"
         table:
           users: "Kullanıcı"
           permissions: "Sıralama"
           joined: "Katıldınız"
+          actions: "Actions"
+        remove: "Remove"
+        ban: "Ban"
     leaders:
       chat:
         header: "Liderler arası sohbet"
+        post-btn: "Post"
         placeholder: "Liderlere mesaj gönder"
     audit:
+      user:
+        banned: "banned '<a' href={link}'>'{user}'</a>'."
+        unbanned: "unbanned '<a' href={link}'>'{user}'</a>'."
+        invited: "invited '<a' href={link}'>'{user}'</a>' to join the community."
+        granted: "granted permissions to '<a' href={link}'>'{user}'</a>'."
+        revoked: "removed permissions from '<a' href={link}'>'{user}'</a>'."
       group:
+        added_neighbor: "added '<a' href={link}'>'{group}'</a>' as a neighbor."
+        removed_neighbor: "removed '<a' href={link}'>'{group}'</a>' as a neighbor."
         avatar_changed: "{group} avatarını güncelledi."
         cover_changed: "{group} kapak resmini güncelledi."
         locale_changed: "{group} yerel ayarını güncelledi."
         rules_changed: "{group} kurallarını güncelledi."
+        nsfw_changed: "updated the {group} NSFW status."
+        about_changed: "updated the {group} about."
         tagline_changed: "{group} sloganını güncelledi."
         category_changed: "{group} kategorisini güncelledi."
+      group-report:
+        resolved: "resolved a report."
+        declined: "declined a report."
+        escalated: "esclated a report."
+      group-ticket:
+        assigned: "assigned a ticket to '<a' href={link}'>'{user}'</a>'."
+        resolved: "marked a ticket as resolved."
+        created: "re-opened a ticket."
 #page: group-invite
 group-invite:
+  header: "Group Invite"
   subtitle: "{sender} tarafından {group} 'a davet edildiniz"
   text: "Bu davetiyeyi kabul ettikten sonra {group} 'un sayfasına erişebileceksiniz. Kabul edildikten sonra sizi yönlendireceğiz."
   accept: "Kabul Et"
@@ -923,9 +1146,11 @@ group-invite:
 explore:
   view-more: "Detayları göster"
   search-placeholder: "Ne aramıştınız?"
+  advanced-search: "Or, browse with the '<a' href=/{mediaType}'>'advanced search'</a>'"
   no-data: "Hmm, bu bölüm için herhangi bir medya bulunamıyor gibi görünüyor."
   widget:
     related: "İlgili Kategoriler"
+    categories: "Categories"
     favorite-categories: "Favori Kategorilerim"
     no-favorites: "Kategorileri favorilere eklemek önerilerinizi iyileştirir."
     more-categories: "Daha fazla kategori…"
@@ -933,42 +1158,84 @@ explore:
     header: "Tüm Kategoriler"
   favorite-button:
     remove: "Favorilerden çıkar"
+    removing: "Removing…"
     create: "Favorilere Ekle"
     creating: "Ekleniyor…"
+  category:
+    index: "{category} {type, select, anime {Anime} manga {Manga} other {}}" #category is pre-translated
 #page: media-reactions
 media-reactions:
+  view-all: "View all '<strong>'{count}'</strong>' of {user}'s reactions"
   create-account: "Hesap Oluştur"
 #page: notifications
 notifications:
   none: "Herhangi bir bildiriminiz yok!"
 #page: password-reset
 password-reset:
+  password: "Password"
+  confirm: "Confirm Password"
   length: "Parola en az 8 karakter uzunluğunda olmalıdır"
   reset: "Şifreyi sıfırla"
+  email: "Email"
   send: "E-posta gönder"
 #shared: media
 media-shared:
   types:
     anime:
+      All: "All"
       tv: "TV"
+      special: "Special"
+      ona: "ONA"
+      ova: "OVA"
       movie: "Film"
       music: "Müzik"
     manga:
+      All: "All"
+      manga: "Manga"
       novel: "Novel"
       manhua: "Manhua"
       oneshot: "Tek Bölümlük"
       doujin: "Doujin"
       manhwa: "Manhwa"
+      oel: "OEL"
+  statuses:
+    anime:
+      current: "Currently Airing"
+      finished: "Finished"
+      upcoming: "Upcoming"
+      unreleased: "Unreleased"
+      tba: "TBA"
+    manga:
+      current: "Publishing"
+      finished: "Finished"
+      upcoming: "Upcoming"
+      unreleased: "Unreleased"
+      tba: "TBA"
+#shared: library
+library-shared:
+  all: "{type, select, anime {All Anime} manga {All Manga} other {}}"
+  current: "{type, select, anime {Currently Watching} manga {Currently Reading} other {}}"
+  planned: "{type, select, anime {Want to Watch} manga {Want to Read} other {}}"
+  completed: "{type, select, anime {Completed} manga {Completed} other {}}"
+  on_hold: "{type, select, anime {On Hold} manga {On Hold} other {}}"
+  dropped: "{type, select, anime {Dropped} manga {Dropped} other {}}"
 #shared: form:
 form-shared:
   placeholders:
     username: "Kullanıcı Adı"
     password: "Şifre"
+#component: mobile-banner
+mobile-banner:
+  pitch: "Get a better experience using the official Kitsu mobile application."
 #component: auth-onboarding
 onboarding:
+  aozora-conflict:
+    title: "Oh, you already have a Kitsu account! Which do you want to keep?"
+    info: "Activity feed posts from both accounts will be merged.  All other account information will be overwritten by the account you select below."
   aozora-account-details:
     submit: "İyi görünüyor!"
   checklist:
+    header: "Getting Started on Kitsu"
     steps: "{count} aşama kaldı! 🦊"
     feed: "Size ait ana sayfanızı ziyaret edin"
     rate: "5 anime ya da manga puanla"
@@ -980,6 +1247,7 @@ onboarding:
     like-incomplete: "{count} gönderi beğen"
     avatar: "Avatarınızı ayarlayın"
     cover: "Profil kapak resmi ayarlayın"
+    about-me: "Complete your '<i>'About Me'</i>'"
     favorite: "Favori anime / manganızı seçin"
 #component: follow-button
 follow-button:
@@ -987,26 +1255,44 @@ follow-button:
   unfollow: "Takibi bırak"
 #component: kitsu-feed
 feeds:
+  embed:
+    preview: "This is a preview of your embed."
   uploads:
     select: "Yükle"
     drop: "Yüklemek için dosyayı bırak"
     invalid: "Geçersiz dosya türü"
+    uploading: "{number, plural, =1 {Uploading photo… {progress}%} other {Uploading {number} photos… {progress}%}}"
   filter:
     all: "Tüm Etkinlikler"
+    media: "Media Activity"
+    user: "User Activity"
+    following: "Followed Activity"
+  placeholder: "{type, select, user_aggr {Post to {subject}} group_aggr {Post to {subject}} media_aggr {Post about {subject}} episode_aggr {Post about Episode {subject}} chapter_aggr {Post about Chapter {subject}} interest_timeline {Post about {subject}} other {Create a post}}…"
+  library:
+    updated: "moved this to {status}"
+    rated: "rated it"
+    progressed: "{type, select, anime {watched episode {num}} manga {read chapter {num}} other {}}"
   post:
     more: "Detayları göster"
     less: "Daha az göster"
+    meta:
+      media: "Because you recently watched {media}"
+    spoilers: "{type, select, anime {Ep. {num}} manga {Ch. {num}} other {}}"
     sorts:
       likes: "Beğeniler"
       replies: "Yanıtlar"
       oldest: "En Eski"
   review:
     review: "Eleştiri"
+    author: "Review by {user}"
+    progress: "{type, select, anime {This is a review up to Episode {num}.} manga {This is a review up to Chapter {num}.} other {}}"
   interest:
     anime:
       header: "Anime ana sayfanıza hoş geldiniz!"
+      body: "As you update your '<a' href={link}'>'anime library'</a>', you'll see what others are saying about the shows you're watching."
     manga:
       header: "Manga ana sayfanıza hoş geldiniz!"
+      body: "As you update your '<a' href={link}'>'manga library'</a>', you'll see what others are saying about the manga you're reading."
     button: "Tamam, anladım"
 #component: image-form
 image-form:
@@ -1025,7 +1311,11 @@ media-reaction:
   edit: "Tepkiyi düzenle"
 #component: modals/media-reaction
 reaction-modal:
+  post: "Post"
+  edit: "Edit"
   edit-warning: "Dikkatli! Düzenleme, oylarınızı silecektir."
+  delete: "Delete Reaction"
+  placeholder: "{index, plural, =0 {Got me rethinking some important life decisions.} =1 {Unexpectedly good! Lots of memorable scenes.} =2 {While it may not be everyone's cup of tea, it's certainly interesting.} other {Overrated, don't waste your time on this one.}}"
   skip: "Geç"
   #component: modals
   modals:
@@ -1045,15 +1335,31 @@ reaction-modal:
       button: "@{user}'i Engelle"
     report-content:
       header: "Bu içeriği yalnızca bir kez bildirebilirsiniz."
+      status: "The current status of your report: {status}"
       reason: "Lütfen bu içeriği bildirmek için bir neden belirtin."
       submit: "Şikayet Et"
 #component: library-entry/*
 library-entry:
   state:
+    header: "{state, select, false {Add to Library} true {Update Library} other {}}"
     add-to-library: "Kitaplığa Ekle"
+    seen-this: "{type, select, anime {Completed} manga {Completed} other {}}"
+    want-to-watch: "{type, select, anime {Want to Watch} manga {Want to Read} other {}}"
+    started-watching: "{type, select, anime {Started Watching} manga {Started Reading} other {}}"
+    watching-this: "Started"
     finished-this: "Tamamlandı"
+    place-on-hold: "On Hold"
+    drop-this: "Dropped"
+    change-rating: "Change Rating"
     remove-rating: "Puanı Kaldır"
     rate-this: "Puan verin"
+    edit-library: "Edit Library Entry"
+    post-reaction: "Post Reaction"
+    edit-reaction: "Edit Reaction"
+    rewatch: "{type, select, anime {Rewatch} manga {Reread} other {}}"
+    remove-from-library: "Remove from Library"
+    saved-in: "Saved in '<a' href={link}'>'{status}'</a>'"
+    progress: "Progress"
     not-rated: "Puan verilmemiş"
   rating:
     awful: "Çok kötü"
@@ -1062,9 +1368,13 @@ library-entry:
     great: "Harika"
 #component: application/user-notifications
 user-notifications:
+  #Episode 113 of One Piece! aired
+  aired: "{type, select, chapter {Chapter} episode {Episode} other {}} {number} of {media} {type, select, chapter {Released} episode {Aired} other {}}"
+  aired-unknown: "{media} {type, select, manga {released} anime {aired} other {}} a new {type, select, manga {Chapter} anime {Episode} other {}}"
   menu:
     all: "Tüm Bildirimleri Görüntüle"
     mark-read: "Tümünü okundu olarak işaretle"
+    none: "You don't have any notifications!"
 #ember-power-select
 selects:
   loading: "Yükleniyor…"
@@ -1072,15 +1382,23 @@ selects:
   search: "Arama yapmak için yazmaya başlayın"
 #ember-cp-validations
 errors:
+  description: "This field"
+  inclusion: "{description} is not included in the list"
+  exclusion: "{description} is reserved"
   invalid: "{description} geçersiz"
+  confirmation: "{description} doesn't match {on}"
   accepted: "{description} kabul edilmelidir"
   empty: "{description} boş bırakılamaz"
   blank: "{description} boş bırakılamaz"
   present: "{description} boş bırakılmalı"
+  collection: "{description} must be a collection"
+  singular: "{description} can't be a collection"
   tooLong: "{description} çok uzun (en fazla {max} karakter yazılabilir)"
   tooShort: "{description} çok kısa (en az {min} karakter yazılabilir)"
   before: "{description} {before} önce olmalıdır"
   after: "{description} {after} dan sonra gelmelidir"
+  wrongDateFormat: "{description} must be in the format of {format}"
+  wrongLength: "{description} is the wrong length (should be {is} characters)"
   notANumber: "{description} bir sayı olmalı"
   notAnInteger: "{description} bir tamsayı olmalıdır"
   greaterThan: "{description}, {gt} değerinden büyük olmalıdır"
@@ -1091,6 +1409,7 @@ errors:
   otherThan: "{description}, {value} değerinden farklı olmalıdır"
   odd: "{description} tek sayı olmalı"
   even: "{description} çift olmalıdır"
+  positive: "{description} must be positive"
   date: "{description} geçerli bir tarih olmalı"
   email: "{description} geçerli bir e-posta adresi olmalı"
   phone: "{description} geçerli bir telefon numarası olmalı"
@@ -1108,6 +1427,8 @@ errors:
     title: "Ah be! Sunucumuzda bir hata var gibi görünüyor."
     body: "Ekibimiz bilgilendirildi, lütfen birkaç dakika sonra tekrar deneyin."
     reload: "Yeniden yükle"
+#Loading
+loading: "Loading {subject, select, episode {Episode} chapter {Chapter} episodes {Episodes} chapters {Chapters} other {}}…"
 timeUnits:
   years: "{count, plural, =1 {yıl} other {yıl}}"
   months: "{count, plural, =1 {ay} other {ay}}"
@@ -1115,13 +1436,27 @@ timeUnits:
   hours: "{count, plural, =1 {saat} other {saat}}"
   minutes: "{count, plural, =1 {dakika} other {dakika}}"
 admin:
+  reports:
+    header: "Mod Reports"
+    loading: "Loading Reports…"
+    open: "Open"
+    closed: "Closed"
   header: "Yönetim Paneli"
+  deployed-version: "Current Deployed Version: {version}"
+  links:
+    index: "Reports"
+    admin: "Rails Admin"
+    sidekiq: "Sidekiq"
+    pghero: "PGHero"
+    flipper: "Flipper"
 button:
   view-all: "tümünü görüntüle"
 unsubscribe:
+  email: "Email"
   unsubscribe: "Abonelikten ayrıl"
 category:
   absurdist-humour: "Saçma Mizah"
+  action: "Action"
   adventure: "Macera"
   africa: "Afrika"
   ahegao: "Ahegao"
@@ -1156,6 +1491,7 @@ category:
   coming-of-age: "Büyüme"
   conspiracy: "Komplo"
   contemporary-fantasy: "Modern Fantezi"
+  content-indicators: "Content Indicators"
   cooking: "Yemek Yapma"
   cops: "Polis"
   countryside: "Kırsal Kesim"
@@ -1208,6 +1544,7 @@ category:
   historical: "Tarihi"
   horror: "Korku"
   housewives: "Ev Hanımı"
+  human-enhancement: "Human Enhancement"
   humanoid-alien: "İnsansı Uzaylı"
   idol: "İdol"
   isekai: "İsekai"
@@ -1234,6 +1571,7 @@ category:
   middle-school: "Orta Okul"
   military: "Ordu"
   motorsport: "Motorsporları"
+  music: "Music"
   musical-band: "Müzik grubu"
   mystery: "Gizem"
   navy: "Donanma"
@@ -1254,6 +1592,7 @@ category:
   plot-continuity: "Tutarlı Konu"
   politics: "Siyaset"
   post-apocalypse: "Kıyamet sonrası"
+  power-suit: "Power Suit"
   present: "Günümüz"
   proxy-battles: "Vekalet Mücadeleleri"
   psychological: "Psikolojik"
@@ -1263,47 +1602,66 @@ category:
   robot: "Robot"
   robot-helper: "Robot Yardımcı"
   romance: "Romantizm"
+  rotten-world: "Rotten World"
   russia: "Rusya"
   samurai: "Samuray"
+  satire: "Satire"
   school-clubs: "Okul Kulüpleri"
   school-life: "Okul Hayatı"
   science-fiction: "Bilim Kurgu"
   seinen: "Seinen"
   sengoku-period: "Sengoku Dönemi"
+  setting: "Setting"
   shinsengumi: "Shinsengumi"
+  shipboard: "Shipboard"
   shoujo: "Shoujo"
   shoujo-ai: "Shoujo Ai"
   shounen: "Shounen"
   shounen-ai: "Shounen Ai"
+  slapstick: "Slapstick"
   slavery: "Kölelik"
   slice-of-life: "Gündelik Yaşam"
+  slow-when-it-comes-to-love: "Slow When It Comes To Love"
   soccer: "Futbol"
   space: "Uzay"
   space-battles: "Uzay Savaşları"
+  space-opera: "Space Opera"
   space-travel: "Uzay Yolculuğu"
+  special-squads: "Special Squads"
   sports: "Spor"
   steampunk: "Steampunk"
+  stereotypes: "Stereotypes"
   street-racing: "Sokak Yarışı"
+  student-government: "Student Government"
+  sudden-girlfriend-appearance: "Sudden Girlfriend Appearance"
   summer: "Yaz"
+  super-deformed: "Super Deformed"
   superhero: "Süper Kahraman"
   supernatural: "Olağan Üstü"
   super-power: "Süper Güç"
   super-robot: "Süper Robot"
+  swordplay: "Swordplay"
+  target-demographics: "Target Demographics"
   tennis: "Tenis"
   tentacle: "Dokunaç"
   the-arts: "Sanat"
+  themes: "Themes"
   thievery: "Hırsızlık"
   three-kingdoms: "Üç Kraliyet"
   thriller: "Gerilim"
   time-travel: "Zaman yolculuğu"
   tokugawa-period: "Tokugawa Dönemi"
   tokyo: "Tokyo"
+  tone-changes: "Tone Changes"
+  transforming-craft: "Transforming Craft"
   united-kingdom: "İngiltere"
   united-states: "Amerika"
   university: "Üniversite"
+  unrequited-love: "Unrequited Love"
   vampire: "Vampir"
   victorian-period: "Viktorya Dönemi"
   violence: "Şiddet"
+  violent-retribution-for-accidental-infringement: "Violent Retribution For Accidental Infringement"
   virtual-reality: "Sanal gerçeklik"
   volleyball: "Voleybol"
   voyeurism: "Röntgencilik"
@@ -1341,3 +1699,4 @@ category:
   shota: "Shota"
   small-breasts: "Küçük Göğüsler"
   yuri: "Yuri"
+date-format: "DD/MM/YYYY"
