@@ -1,41 +1,59 @@
 import LANGUAGES from './languages';
 
-const isString = value => typeof value === 'string';
-
-const transformLocale = locale => locale.toLowerCase().split('-');
-
-const equaliseLocale = (supported, preferred) => {
-  let i = 0;
-  const supportedLength = supported.length;
-  const preferredLength = preferred.length;
-  const minimumLength = Math.min(supportedLength, preferredLength);
-
-  for (let j = minimumLength; i < j && supported[i] === preferred[i]; i += 1);
-  return i > 0 ? (2 / (supportedLength - i + 1) + 1 / (preferredLength - i + 1)) / 3 : 0;
+/* Remove duplicate language-region locales */
+const deduplicate = array => {
+  switch (typeof array[0]) {
+    case 'string':
+      return array.filter((item, index) => array.indexOf(item) === index);
+    case 'object':
+      return array.filter(
+        (v, i, a) => a.findIndex(t => t.locale === v.locale) === i
+      );
+    default:
+      return array;
+  }
 };
 
-const nearestLocale = (supportedLocales, preferredLocales) => {
-  if (!supportedLocales.length) return null;
+const translatedLocales = LANGUAGES.map(locale => locale.id);
+const browserLocales = deduplicate(navigator.languages.concat(['en-US']));
 
-  const transformedSupportedLocales = supportedLocales.map(transformLocale);
-  let nearestEquality = 0;
-  let nearestSupportedLocaleIndex = 0;
-
-  Array.from(preferredLocales).some(preferredLocale => {
-    if (!isString(preferredLocale)) return;
-
-    const transformedPreferredLocale = transformLocale(preferredLocale);
-
-    return transformedSupportedLocales.some((supportedLocale, supportedLocaleIndex) => {
-      const equality = equaliseLocale(supportedLocale, transformedPreferredLocale);
-      if (equality > nearestEquality) {
-        nearestEquality = equality;
-        nearestSupportedLocaleIndex = supportedLocaleIndex;
-      }
-      return nearestEquality === 1;
-    });
+/* Check if we support any regional varient from the browser languages */
+const isLanguageSupported = (translatedLocales, locale, index, array) => translatedLocales
+  .filter(translatedLocale => {
+    // Strip the region code from both locales (en-gb -> en)
+    const supportedLanguage = new Intl.Locale(translatedLocale).minimize().language;
+    const unifiedBrowserLanguage = new Intl.Locale(locale).minimize().language;
+    // Update the locale field to the canonical region if we don't
+    // have translations for the browser-provided language region
+    // For example, en-xx (unknown region) to en-us (supported)
+    const languageSupported = supportedLanguage === unifiedBrowserLanguage;
+    // eslint-disable-next-line no-param-reassign
+    if (languageSupported) array[index].locale = translatedLocale;
+    return languageSupported;
   });
-  return supportedLocales[nearestSupportedLocaleIndex];
-};
 
-export default nearestLocale(LANGUAGES.map(locale => locale.id), navigator.languages || ['en-us']);
+/* Use the Internaltionalisation API to transform the locales to a consistent format */
+const unifiedBrowserLocales = deduplicate(
+  browserLocales.map((locale, index) => {
+    const unified = new Intl.Locale(locale).maximize();
+    const localeString = unified.region
+      ? `${unified.language}-${unified.region}`
+      : unified.language;
+    return {
+      locale: localeString.toLowerCase(),
+      priority: index
+    };
+  })
+);
+
+/* Restrict translated locales to those provided by the browser */
+const supportedLocales = unifiedBrowserLocales.filter(
+  (locale, index, array) => {
+    // Escape early if the language and region match exactly
+    if (translatedLocales.includes(locale.locale)) return true;
+    // Check if we support another regional varient of the language
+    return isLanguageSupported(translatedLocales, locale.locale, index, array);
+  }
+);
+
+export default supportedLocales[0].locale;

@@ -2,9 +2,6 @@
 // https://crowdin.com/project/kitsu-web
 
 export default [
-  /* Default locale is en-us. nearestLocale will default to the first array index
-     if no matching locale is found in the browsers' language options. */
-  { id: 'en-us', text: 'English (American)' }, // DEFAULT LOCALE. MUST BE FIRST
   // { id: 'af-za', text: 'Afrikaans' },
   // { id: 'am-et', text: '' }, // Amharic
   { id: 'ar-001', text: 'العربية' }, // rtl
@@ -26,6 +23,7 @@ export default [
   // { id: 'en-ca', text: 'English (Canadian)' },
   { id: 'en-gb', text: 'English (British)' },
   // { id: 'en-pt', text: 'English (Pirate)' },
+  { id: 'en-us', text: 'English (American)' },
   { id: 'eo-uy', text: 'Esperanto' }, // Should be eo and not eo-uy
   { id: 'es-ar', text: 'Español (Argentino)' },
   { id: 'es-es', text: 'Español' },
