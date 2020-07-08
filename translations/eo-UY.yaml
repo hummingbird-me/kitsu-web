@@ -1,6 +1,372 @@
 ---
 #route titles -- these are used if the route doesn't specify the title itself
 titles:
+  anime:
+    index: "Esplori animeojn"
+  manga:
+    index: "Esplori mangaojn"
+  media:
+    show:
+      characters: "Roluloj"
+      reactions: "Reagoj"
+      franchise: "Franĉizo"
   explore:
+    index: "Esplori {mediaType, select, anime {animeojn} manga {mangaojn} other {}}"
     more:
       trending: "Aktualaj {type, select, anime {animeoj} manga {mangaoj} other {}} ĉi-semajne"
+  not-found: "Ne trovita"
+  server-error: "Servila eraro"
+  users:
+    index: "Profilo de {user}"
+    library: "Libro de {user}"
+    reviews: "Revuoj de {user}"
+    reactions: "Reagoj de {user}"
+    followers: "Sekvantoj de {user}"
+    following: "Abonata de {user}"
+    groups: "Grupoj de {user}"
+    stats: "Statistiko de {user}"
+  posts: "Afiŝo de {user}"
+  comments: "Komento de {user}"
+  reviews: "Revuo de {user}"
+  notifications: "Sciigoj"
+  feedback:
+    bugs: "Cimoj"
+    feature-requests: "Peticioj pri ennovaĵoj"
+    database-requests: "Peticioj pri datenbazo"
+    mobile-bugs: "Poŝtelefonaj cimoj"
+    mobile-features: "Poŝtelefona funkciaro"
+  admin:
+    index: "Administranto"
+    reports: "Raportoj"
+  groups:
+    index: "Grupoj"
+    new: "Krei grupon"
+    group:
+      group-page:
+        rules: "Reguloj de {group}"
+        members: "Membroj de {group}"
+        leaders: "Gvidantoj de {group}"
+      dashboard:
+        index: "Superrigardo de {group}"
+        reports: "Plendoj kontraŭ {group}"
+        tickets: "Peticioj de {group}"
+        members: "Membroj de {group}"
+        leaders: "Gvidantoj de {group}"
+        settings: "Argordoj de {group}"
+  group-invite: "Invito en grupon"
+#head
+head:
+  users:
+    description: "{user} uzas Kitsuon por observi progreson kaj animeajn kaj mangaajn impresojn."
+#header
+header:
+  library: "Biblioteko"
+#page: anime/manga
+media:
+  index:
+    filter: "Filtrilo"
+    remove: "Forigi"
+    filters:
+      year: "Jaro"
+      score: "Averaĝa noto"
+      seasons: "Sezonoj"
+      streamers: "Elsendfluoj (Usono)"
+      units: "{type, select, anime {Epizodoj} manga {Ĉapitroj} other {}}"
+      rating: "Noto"
+      categories: "Kategorioj"
+      types: "Tipoj"
+    sort:
+      popularity: "Populareco"
+      rating: "Averaĝa noto"
+      date: "Dato"
+      recent: "Antaŭnelonge aldonitaj"
+  none: "Rezultoj mankas."
+  show:
+    navigation:
+      summary: "Resumo"
+      units: "{type, select, anime {Epizodoj} manga {Ĉapitroj} other {}}"
+      characters: "Roluloj"
+      reactions: "Reagoj"
+      franchise: "Franĉizo"
+    sidebar:
+      watch: "Rigardi interrete"
+    summary:
+      ratings:
+        community: "{rating}% de komunuma aprobo"
+        match: "{rating}% coincido"
+      ranking:
+        full:
+          popularity: "{type, select, anime {Rango #{rank} (plej popularaj animeoj)} manga {Rango #{rank} (plej popularaj mangaoj)} other {}}"
+          rating: "{type, select, anime {Rango #{rank} (plej alte taksitaj animeoj)} manga {Rango #{rank} (plej alte taksitaj mangaoj)} other {}}"
+        short:
+          popularity: "{type, select, anime {#{rank} Plej populara} manga {#{rank} Plej populara} other {}}"
+          rating: "{type, select, anime {#{rank} plej alte taksita} manga {#{rank} plej alte taksita} other {}}"
+      categories: "Kategorioj"
+      relationships:
+        header: "Pli el tiu serio"
+        more: "Rigardi ĉion en {title}"
+      reactions:
+        header: "Reagoj"
+        more: "Rigardi pli da reagoj"
+        sorts:
+          -upVotesCount: "Popularaj"
+          -createdAt: "Antaŭnelongaj"
+        new: "Aldoni reagon"
+        edit: "Mia reago"
+        empty: "Aspektas, ke ankoraŭ neniu reagis al tio"
+      characters:
+        header: "Roluloj"
+        more: "Rigardi ĉiujn rolulojn"
+      titles:
+        header: "Alternativaj titoloj"
+        af_za: "La afrikansa"
+        ar: "La araba"
+        bg_bg: "La bulgara"
+        bn_bd: "La bengala"
+        ca_es: "La kataluna"
+        cs_cz: "La ĉeĥa"
+        cy_gb: "La kimra"
+        da_dk: "La dana"
+        de_de: "La germana"
+        el_gr: "La greka"
+        en: "La angla"
+        en_au: "La angla (aŭstralia)"
+        en_ca: "La angla (kanada)"
+        en_cn: "La ĉina (pinjino)"
+        en_gb: "La angla (brita)"
+        en_il: "La hebrea (latinigita)"
+        en_jp: "La japana (latinigita)"
+        en_kr: "La korea (latinigita)"
+        en_th: "La taja (latinigita)"
+        en_us: "La angla (usona)"
+        es_es: "La hispana"
+        et_ee: "La estona"
+        fa_ir: "La persa"
+        fi_fi: "La finna"
+        fr_ca: "La franca (kanada)"
+        fr_fr: "La franca"
+        ga_ie: "La irlanda"
+        he_il: "La hebrea"
+        hi_in: "La hindia"
+        hr_hr: "La kroata"
+        hu_hu: "La hungara"
+        id_id: "La indonezia"
+        is_is: "La islanda"
+        it_it: "La itala"
+        ja_jp: "La japana"
+        kk_kz: "La kazaĥa"
+        ko_kr: "La korea"
+        lt_lt: "La litova"
+        lv_lv: "La latva"
+        ms_my: "La malaja"
+        mt_mt: "La malta"
+        nb_no: "La norvega (bukmolo)"
+        nl_nl: "La nederlanda"
+        nn_no: "La norvega (nova)"
+        pl_pl: "La pola"
+        pt_br: "La portugala (brazila)"
+        pt_pt: "La portugala"
+        ro_ro: "La rumana"
+        ru_ru: "La rusa"
+        sc_it: "La sarda"
+        sco_gb: "La skota"
+        sk_sk: "La slovaka"
+        sl_sl: "La slovena"
+        sr_cs: "La serba (latina)"
+        sr_sp: "La serba (cirila)"
+        sv_se: "La sveda"
+        th_th: "La taja"
+        tl_ph: "La tagaloga"
+        tr_tr: "La turka"
+        uk_ua: "La ukraina"
+        ur_in: "La urdua (hindia)"
+        ur_pk: "La urdua (pakistana)"
+        vi_vn: "La vjetnama"
+        zh_cn: "La ĉina (simpligita)"
+        zh_hk: "La ĉina (Honkongo)"
+        zh_mo: "La ĉina (Makao)"
+        zh_tw: "La ĉina (tradicia)"
+        synonyms: "Sinonimoj"
+      information:
+        header: "Detaloj pri la {type, select, anime {animeo} manga {mangao} other {}}"
+        type: "Tipo"
+        volumes: "Volumoj"
+        unit: "{type, select, anime {Epizodoj} manga {Ĉapitroj} other {}}"
+        start: "{type, select, anime {Aperita} manga {Eldonita} other {}}"
+        status: "Stato"
+        tba: "Atendata"
+        season: "Sezonoj"
+        producers: "Produktoroj"
+        licensors: "Licencantoj"
+        studios: "Studioj"
+        serialization: "Eldonejo"
+        duration: "Daŭro"
+        total: "{total} entute"
+        length: "{count, plural, =1 {{length} minutoj} other {ĉiu po {length} minutoj}}"
+        rating: "Noto"
+        expand:
+          false: "Pli da informo"
+          true: "Malpli da informo"
+      feed:
+        header: "Komunuma afiŝfluo"
+      trailer: "Rigardi reklaman diĝeston"
+    units:
+      unit: "{type, select, episode {Epizodo} chapter {Ĉapitro} other {}}"
+      back: "Reveni al listo de {type, select, episode {epizodoj} chapter {ĉapitroj} other {}}"
+      pages: "{length} paĝoj"
+      date: "{type, select, episode {Aperita} chapter {Eldonita} other {}}"
+      completed: "{type, select, episode {Spektita} chapter {Legita} other {Finita}}"
+      feed:
+        header: "Diskuto pri {type, select, episode {epizodo} chapter {ĉapitro} other {}}"
+    characters:
+      header: "Roluloj de {title}"
+      sub-header: "{type, select, anime {La sekva estas plena listo de roluloj kaj {language} voĉoaktoroj de animeo {title}} manga {La sekva estas plena listo de roluloj de mangao {title}} other {}}"
+    reactions:
+      loading: "Ŝargas reagojn…"
+      delete: "Forigi reagon"
+      report: "Plendi pri reago"
+      copy: "Kopii ligilon de reago"
+    franchise:
+      header: "Franĉizo de {title}"
+      roles:
+        sequel: "Daŭrigo"
+        prequel: "Antaŭdaŭrigo"
+        alternative_setting: "Alt. medio"
+        alternative_version: "Alt. versio"
+        side_story: "Flanka historio"
+        parent_story: "Gepatra historio"
+        summary: "Resumo"
+        full_story: "Tuta historio"
+        spinoff: "Kromverko"
+        adaptation: "Adaptaĵo"
+        anime_adaptation: "Animeo"
+        manga_adaptation: "Mangao"
+        character: "Rolulo"
+        other: "Alia"
+  hide-posts:
+    text: "Kaŝi afiŝojn pri {media}"
+    info: "Afiŝoj ne aperos en Sekvataj aŭ {type}"
+  show-posts:
+    text: "Malkaŝi afiŝojn pri {media}"
+    info: "Afiŝoj aperos en Sekvataj aŭ {type}"
+#components
+components:
+  ad-unit: "Reklamo estas malagrabla, sed ĝi helpas ĉi tiun retejon funkcii. Bonvolu aldoni la retejon en blokila blanklisto."
+  admin:
+    reports:
+      no-explanation: "Klarigo ne estis liverita."
+      not-set: "Ne elektita"
+      actions:
+        button: "Agoj"
+        open: "Marki malfermita"
+        resolved: "Marki solvita"
+        closed: "Marki fermita"
+      table:
+        user: "Uzanto"
+        type: "Tipo"
+        reason: "Kialo"
+        explanation: "Klarigo"
+        moderator: "Moderiganto"
+        status: "Stato"
+        actions: "Agoj"
+  application:
+    nav-search: "Serĉi Kitsuon"
+  episodes:
+    shortcut-bar:
+      episode-number: "EP {number}"
+    fast-forward: "Biblioteka progreso estis renovigita al {number}-a epizodo!"
+    undo-update: "Malfari"
+    update-progress: "Ĉu renovigi bibliotekan progreson al {number}-a epizodo?"
+    watched: "Marki spektita"
+    join-prompt:
+      pitch: "Observu vian progreson kaj aliĝi al diskuto!"
+      register: "Krei kitsuan konton"
+  likeable-resource:
+    loading: "Ŝargas…"
+    more: "Ŝargi pli"
+  search:
+    header: "Serĉrezultoj"
+    view: "rigardi pli"
+    load: "ŝargi pli"
+    none: "rezultoj mankas"
+  sidebar-footer:
+    contact: "Kontakto"
+    terms: "Kondiĉaro"
+    privacy: "Privateco"
+  stream-feed:
+    create-post:
+      edit: "Redakti"
+      create: "Sendi"
+      nsfw: "Tikla enhavo"
+      spoiler: "Malkaŝaĵo"
+      tag-media: "Tajpu por marki animeon aŭ mangaon"
+    edit-post:
+      header: "Redakti afiŝon"
+      error:
+        tagged: "Bedaŭrinde ni ankoraŭ ne povas permesi redaktadon de markoj al vi."
+    follow:
+      followed: "abonis"
+      delete: "Forigi aktivaĵon"
+    library:
+      delete: "forigi"
+      deleting: "forigas…"
+    post:
+      pinned: "Fiksita afiŝo"
+      edited: "redaktita"
+      gate:
+        spoiler-nsfw: "Enhavas malkaŝaĵojn kaj tiklan enhavon."
+        nsfw: "Tiu afiŝo enhavas tiklan enhavon."
+        spoiler: "Tiu afiŝo enhavas malkaŝaĵojn."
+        hover:
+          nsfw: "Mia korpo estas preta!"
+          spoiler: "Mi estas preta akcepti veron!"
+      link: "Kopii afiŝan ligilon"
+      unfollow: "Malaboni afiŝon"
+      follow: "Aboni afiŝon"
+      show: "Malkaŝi afiŝan enhavon"
+      hide: "Kaŝi afiŝan enhavon"
+      edit: "Redakti afiŝon"
+      delete: "Forigi afiŝon"
+      unpin: "Malfiksi afiŝon el profilo"
+      pin: "Fiksi afiŝon al profilo"
+      pin-text: "Ĉu vi vere volas fiksi tiun afiŝon al via profilo?"
+      report: "Plendi pri afiŝo"
+      comment-count: "{count} el {total}"
+      comment:
+        deleting: "Forigas komenton…"
+        reply: "Respondi"
+        copy-link: "Kopii komentan ligilon"
+        edit: "Redakti komenton"
+        delete: "Forigi komenton"
+        report: "Plendi pri komento"
+        previous-replies: "Vidigi antaŭajn respondojn"
+        add-reply: "Aldoni respondon…"
+      comments:
+        all: "Rigardi ĉiujn komentojn"
+        parent: "Rigardi gepatran komenton"
+        previous-comments: "Vidigi antaŭajn komentojn"
+        leave-comment: "Aldoni komenton…"
+    review:
+      by: "Revuo de"
+      spoiler: "Tiu revuo enhavas malkaŝaĵojn."
+      spoiler-hover: "Mi estas preta akcepti veron!"
+      share:
+        twitter: "Pepi"
+        facebook: "Konigi"
+      copy-link: "Kopii revuan ligilon"
+      show: "Malkaŝi revuan enhavon"
+      hide: "Kaŝi revuan enhavon"
+      edit: "Redakti revuon"
+      delete: "Forigi revuon"
+      report: "Plendi pri revuo"
+  users:
+    ban:
+      title: "Ĉu vi certas, ke vi volas bloki tiun uzanton?"
+      text: "Ili povas atingi kaj redakti iliajn bibliotekojn, sed ne povas krei afiŝojn, komentojn kaj reagoj."
+    delete-user-content:
+      title: "Forigi enhavon de {user}"
+      checkbox:
+        posts: "Afiŝoj"
+        comments: "Komentoj"
+        reactions: "Reagoj"
+      delete: "Forigi"
