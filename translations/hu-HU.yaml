@@ -322,6 +322,10 @@ media:
   show-posts:
     text: "{media}-t Érintő Posztok Megjelenítése"
     info: "Posztok meg fognak jelenni a Követed vagy {type} Hírcsatornákon"
+#page: application
+application:
+  sandbox:
+    alert: "This is a sandbox. '<br>' All changes will be reset."
 #components
 components:
   ad-unit: "A hirdetések szívnak, de így tartjuk felkapcsolva a lámpát. Hozzáadnál minket a kivételekhez a reklámblokkolódban?"
@@ -365,6 +369,7 @@ components:
   sidebar-footer:
     contact: "Kapcsolat"
     terms: "Feltételek"
+    privacy: "Privacy"
   stream-feed:
     create-post:
       edit: "Szerkesztés"
@@ -406,6 +411,7 @@ components:
       comment-count: "{count} / {total}"
       comment:
         deleting: "Komment Törlése…"
+        gif: "GIF"
         reply: "Válasz"
         copy-link: "Link Másolása a Kommenthez"
         edit: "Komment Szerkesztése"
@@ -518,6 +524,9 @@ users:
         facebook:
           about: "Írd be a Facebookod URL-jét, hogy hozzáadj egy linket a profilodhoz."
           placeholder: "A Facebookod URL-je"
+        youtube2:
+          about: "Enter your YouTube channel URL below to add a link to your profile."
+          placeholder: "Your YouTube channel URL"
         google:
           about: "Írd be a Google+ profilod URL-jét vagy a felhasználóneved, hogy hozzáadj egy linket a profilodhoz."
           placeholder: "A Google+ profilod URL-je vagy a felhasználóneved (+Felhasználónév)"
@@ -669,6 +678,9 @@ users:
         rating:
           desc: "Nagyobb Előre"
           asc: "Kisebb Előre"
+        title:
+          desc: "A-Z"
+          asc: "Z-A"
         length:
           desc: "Hosszabb Előre"
           asc: "Rövidebb Előre"
@@ -1434,6 +1446,9 @@ admin:
   links:
     index: "Jelentések"
     admin: "Rails Admin"
+    sidekiq: "Sidekiq"
+    pghero: "PGHero"
+    flipper: "Flipper"
 button:
   view-all: "összes megtekintése"
 unsubscribe:
@@ -1684,3 +1699,4 @@ category:
   shota: "Shota"
   small-breasts: "Kis Mellek"
   yuri: "Yuri / Juri"
+date-format: "DD/MM/YYYY"
