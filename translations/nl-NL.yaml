@@ -322,6 +322,10 @@ media:
   show-posts:
     text: "Posts van {media} laten zien"
     info: "Posts zullen in je Volgend of {type} Feed verschijnen"
+#page: application
+application:
+  sandbox:
+    alert: "This is a sandbox. '<br>' All changes will be reset."
 #components
 components:
   ad-unit: "Advertenties zuigen, maar dat is hoe we draaiend blijven. Whitelist ons alsjeblieft in je advertentieblokker."
@@ -407,6 +411,7 @@ components:
       comment-count: "{count} van de {total}"
       comment:
         deleting: "Comment wordt verwijderd…"
+        gif: "GIF"
         reply: "Reageren"
         copy-link: "Link naar comment kopiëren"
         edit: "Comment bewerken"
@@ -673,6 +678,9 @@ users:
         rating:
           desc: "Hoogste Eerst"
           asc: "Laagste Eerst"
+        title:
+          desc: "A-Z"
+          asc: "Z-A"
         length:
           desc: "Langste Eerst"
           asc: "Kortste Eerst"
@@ -1438,6 +1446,9 @@ admin:
   links:
     index: "Rapportages"
     admin: "Rails Admin"
+    sidekiq: "Sidekiq"
+    pghero: "PGHero"
+    flipper: "Flipper"
 button:
   view-all: "alles bekijken"
 unsubscribe:
@@ -1688,3 +1699,4 @@ category:
   shota: "Shota"
   small-breasts: "Kleine borsten"
   yuri: "Yuri"
+date-format: "DD/MM/YYYY"
