@@ -7,7 +7,7 @@ export default [
   { id: 'en-us', text: 'English (American)' }, // DEFAULT LOCALE. MUST BE FIRST
   // { id: 'af-za', text: 'Afrikaans' },
   // { id: 'am-et', text: '' }, // Amharic
-  // { id: 'ar-001', text: 'العربية' }, // Arabic rtl
+  { id: 'ar-001', text: 'العربية' }, // rtl
   // { id: 'as-in', text: '' }, // Assamese
   // { id: 'az-az', text: '' }, // Azerbaijani
   // { id: 'be-by', text: '' }, // Belarusian
@@ -26,7 +26,7 @@ export default [
   // { id: 'en-ca', text: 'English (Canadian)' },
   { id: 'en-gb', text: 'English (British)' },
   // { id: 'en-pt', text: 'English (Pirate)' },
-  // { id: 'eo-uy', text: 'Esperanto' }, // Should be eo and not eo-uy
+  { id: 'eo-uy', text: 'Esperanto' }, // Should be eo and not eo-uy
   { id: 'es-ar', text: 'Español (Argentino)' },
   { id: 'es-es', text: 'Español' },
   { id: 'es-mx', text: 'Español (Mexicano)' },
@@ -104,7 +104,7 @@ export default [
   // { id: 'sr-cs', text: 'Srpski' }, // Serbian Latin
   // { id: 'sr-sp', text: 'Српски' }, // Serbian Cyrillic
   // { id: 'su-id', text: '' }, // Sundanese
-  // { id: 'sv-se', text: 'Svenska' }, // Swedish
+  { id: 'sv-se', text: 'Svenska' },
   // { id: 'sw-ke', text: '' }, // Swahili
   // { id: 'ta-in', text: '' }, // Tamil
   // { id: 'te-in', text: '' }, // Telugu
