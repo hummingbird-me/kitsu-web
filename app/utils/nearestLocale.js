@@ -1,5 +1,9 @@
 import LANGUAGES from './languages';
 
+// Naïve ponyfill for Safari's lack of Intl.Locale support - https://caniuse.com/#search=Intl%3A%20Locale
+const localeMax = locale => ('Locale' in Intl ? new Intl.Locale(locale).maximize() : { language: locale });
+const localeMin = locale => ('Locale' in Intl ? new Intl.Locale(locale).minimize() : { language: locale.split('-')[0] });
+
 /* Remove duplicate language-region locales */
 const deduplicate = array => {
   switch (typeof array[0]) {
@@ -21,8 +25,8 @@ const browserLocales = deduplicate(navigator.languages.concat(['en-US']));
 const isLanguageSupported = (translatedLocales, locale, index, array) => translatedLocales
   .filter(translatedLocale => {
     // Strip the region code from both locales (en-gb -> en)
-    const supportedLanguage = new Intl.Locale(translatedLocale).minimize().language;
-    const unifiedBrowserLanguage = new Intl.Locale(locale).minimize().language;
+    const supportedLanguage = localeMin(translatedLocale).language;
+    const unifiedBrowserLanguage = localeMin(locale).language;
     // Update the locale field to the canonical region if we don't
     // have translations for the browser-provided language region
     // For example, en-xx (unknown region) to en-us (supported)
@@ -35,7 +39,7 @@ const isLanguageSupported = (translatedLocales, locale, index, array) => transla
 /* Use the Internaltionalisation API to transform the locales to a consistent format */
 const unifiedBrowserLocales = deduplicate(
   browserLocales.map((locale, index) => {
-    const unified = new Intl.Locale(locale).maximize();
+    const unified = localeMax(locale);
     const localeString = unified.region
       ? `${unified.language}-${unified.region}`
       : unified.language;
