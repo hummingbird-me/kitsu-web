@@ -4,7 +4,7 @@
 export default [
   // { id: 'af-za', text: 'Afrikaans' },
   // { id: 'am-et', text: '' }, // Amharic
-  { id: 'ar-001', text: 'العربية' }, // rtl
+  { id: 'ar-001', text: 'العربية (BETA)' }, // rtl
   // { id: 'as-in', text: '' }, // Assamese
   // { id: 'az-az', text: '' }, // Azerbaijani
   // { id: 'be-by', text: '' }, // Belarusian
@@ -30,8 +30,8 @@ export default [
   { id: 'es-mx', text: 'Español (Mexicano)' },
   // { id: 'et-ee', text: 'Eesti Keel' }, // Estonian
   // { id: 'eu-es', text: 'Euskara' }, // Basque
-  // { id: 'fa-af', text: 'دری' }, // Dari, Persian (Afghanistan) rtl
-  // { id: 'fa-ir', text: 'فارسی' }, // Persian (Iran) rtl
+  // { id: 'fa-af', text: 'دری (BETA)' }, // Dari, Persian (Afghanistan) rtl
+  // { id: 'fa-ir', text: 'فارسی (BETA)' }, // Persian (Iran) rtl
   // { id: 'fi-fi', text: 'Suomi' }, // Finnish
   { id: 'fr-ca', text: 'Français (Canadien)' },
   { id: 'fr-fr', text: 'Français' },
@@ -41,7 +41,7 @@ export default [
   // { id: 'gu-in', text: 'ગુજરાતી' }, // Gujarati
   // { id: 'ha-hg', text: 'هَرْشَن هَوْسَ' }, // Hausa, Should be ha-ng and not ha-hg
   // { id: 'haw-us', text: 'ʻŌlelo Hawaiʻi' }, Hawaiian
-  // { id: 'he-il', text: 'עברית' }, // Hebrew rtl
+  // { id: 'he-il', text: 'עברית (BETA)' }, // Hebrew rtl
   // { id: 'hi-in', text: 'हिन्दी' }, // Hindi
   // { id: 'hil-ph', text: '' }, // Hiligaynon
   // { id: 'hmn-cn', text: '' }, // Hmong, Miao
