@@ -29,6 +29,9 @@ module.exports = function(environment) {
           appId: '325314560922421',
           version: 'v6.0',
           scope: 'public_profile,email'
+        },
+        myanimelist: {
+          clientId: 'd4452b64fc5fc36c1a9f8785b63d44df'
         }
       }
     },
