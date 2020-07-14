@@ -156,8 +156,8 @@ module.exports = function(environment) {
     },
 
     'ember-cli-workbox': {
-      enabled: environment === 'production',
-      debug: environment === 'development',
+      enabled: true,
+      debug: environment !== 'production',
       autoRegister: true
     },
 
