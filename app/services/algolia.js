@@ -1,7 +1,7 @@
 import Service, { inject as service } from '@ember/service';
 import { isEmpty } from '@ember/utils';
 import { task, waitForProperty } from 'ember-concurrency';
-import algoliasearch from 'algoliasearch';
+import algoliasearch from 'algoliasearch/dist/algoliasearchLite.min.js';
 import config from 'client/config/environment';
 
 export default Service.extend({
