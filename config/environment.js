@@ -153,30 +153,6 @@ module.exports = function(environment) {
       development: {
         appId: '9933b0ac-ca94-4990-931b-7efa6bafdfd6'
       }
-    },
-
-    'ember-cli-workbox': {
-      enabled: true,
-      debug: environment !== 'production',
-      autoRegister: true
-    },
-
-    workbox: {
-      swDest: '/sw.js',
-      skipWaiting: true,
-      clientsClaim: true,
-      sourcemap: false,
-      navigateFallback: '/index.html',
-      navigationPreload: false,
-      runtimeCaching: [
-        {
-          urlPattern: /^https:\/\/fonts\.gstatic\.com/,
-          handler: 'CacheFirst',
-          options: {
-            cacheName: 'google-fonts'
-          }
-        }
-      ]
     }
   };
 
