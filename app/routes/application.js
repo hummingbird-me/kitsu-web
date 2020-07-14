@@ -28,7 +28,7 @@ export default Route.extend(ApplicationRouteMixin, {
       return this._getCurrentUser();
     }
 
-    this._loadDefaultLanguage();
+    await this._loadDefaultLanguage();
 
     return get(this, 'features').fetchFlags();
   },
@@ -145,7 +145,7 @@ export default Route.extend(ApplicationRouteMixin, {
   _getCurrentUser() {
     return get(this, 'session').getCurrentUser().then(async user => {
       // user setup
-      this._loadLanguage(user);
+      await this._loadLanguage(user);
       this._loadTheme(user);
       get(this, 'moment').changeTimeZone(get(user, 'timeZone') || moment.tz.guess());
 
@@ -241,8 +241,8 @@ export default Route.extend(ApplicationRouteMixin, {
   // Load the most suitable available translation
   async _loadDefaultLanguage() {
     const locale = preferredLocale(LANGUAGES.map(locale => locale.id), 'en-us', { regionLowerCase: true });
-    get(this, 'intl').set('locale', locale);
     get(this, 'intl').addTranslations(locale, await this._fetchTranslations(locale));
+    get(this, 'intl').set('locale', [locale]);
   },
 
   async _loadLanguage(user) {
@@ -254,11 +254,11 @@ export default Route.extend(ApplicationRouteMixin, {
 
     // Validate language field is a translated language on the client
     if (userLocale && localeTranslated) {
-      get(this, 'intl').set('locale', [userLocale]);
       get(this, 'intl').addTranslations(userLocale, await this._fetchTranslations(userLocale));
+      get(this, 'intl').set('locale', [userLocale]);
     } else {
       // Fall back to default if user-provided language field is not available
-      this._loadDefaultLanguage();
+      await this._loadDefaultLanguage();
     }
   }
 });
