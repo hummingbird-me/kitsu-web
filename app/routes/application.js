@@ -5,8 +5,8 @@ import { scheduleOnce } from '@ember/runloop';
 import { storageFor } from 'ember-local-storage';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import moment from 'moment';
+import preferredLocale from 'preferred-locale';
 import LANGUAGES from 'client/utils/languages';
-import nearestLocale from 'client/utils/nearestLocale';
 import config from 'client/config/environment';
 
 export default Route.extend(ApplicationRouteMixin, {
@@ -28,7 +28,6 @@ export default Route.extend(ApplicationRouteMixin, {
       return this._getCurrentUser();
     }
 
-    // Get localisation for non-logged in users
     this._loadDefaultLanguage();
 
     return get(this, 'features').fetchFlags();
@@ -146,8 +145,8 @@ export default Route.extend(ApplicationRouteMixin, {
   _getCurrentUser() {
     return get(this, 'session').getCurrentUser().then(async user => {
       // user setup
+      this._loadLanguage(user);
       this._loadTheme(user);
-      this._loadLanguage(user); // i18n
       get(this, 'moment').changeTimeZone(get(user, 'timeZone') || moment.tz.guess());
 
       // notifications
@@ -241,8 +240,9 @@ export default Route.extend(ApplicationRouteMixin, {
 
   // Load the most suitable available translation
   async _loadDefaultLanguage() {
-    get(this, 'intl').addTranslations(nearestLocale, await this._fetchTranslations(nearestLocale));
-    get(this, 'intl').set('locale', nearestLocale);
+    const locale = preferredLocale(LANGUAGES.map(locale => locale.id), 'en-us', { regionLowerCase: true });
+    get(this, 'intl').set('locale', locale);
+    get(this, 'intl').addTranslations(locale, await this._fetchTranslations(locale));
   },
 
   async _loadLanguage(user) {
@@ -254,8 +254,8 @@ export default Route.extend(ApplicationRouteMixin, {
 
     // Validate language field is a translated language on the client
     if (userLocale && localeTranslated) {
-      get(this, 'intl').addTranslations(userLocale, await this._fetchTranslations(userLocale));
       get(this, 'intl').set('locale', [userLocale]);
+      get(this, 'intl').addTranslations(userLocale, await this._fetchTranslations(userLocale));
     } else {
       // Fall back to default if user-provided language field is not available
       this._loadDefaultLanguage();
