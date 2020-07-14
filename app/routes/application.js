@@ -250,7 +250,7 @@ export default Route.extend(ApplicationRouteMixin, {
     const localeTranslated = LANGUAGES.some(({ id }) => userLocale === id);
 
     // Don't load the locale twice if user preference is same as browser lamguage preference
-    if (userLocale === get(this, 'intl.primaryLocale')) return;
+    if (userLocale !== 'en-us' && userLocale === get(this, 'intl.primaryLocale')) return;
 
     // Validate language field is a translated language on the client
     if (userLocale && localeTranslated) {
