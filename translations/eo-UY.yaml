@@ -15,21 +15,21 @@ titles:
     index: "Esplori {mediaType, select, anime {animeojn} manga {mangaojn} other {}}"
     more:
       trending: "Aktualaj {type, select, anime {animeoj} manga {mangaoj} other {}} ĉi-semajne"
-      top-current: "Top {type, select, Anime {Airing} Manga {Publishing} other {}} {type}"
-      top-upcoming: "Top Upcoming {type}"
-      highest-rated: "Highest Rated {type}"
-      most-popular: "Most Popular {type}"
+      top-current: "Popularaj daŭriĝaj {type, select, Anime {animeoj} Manga {mangaoj} other {}}"
+      top-upcoming: "Popularaj venontaj {type, select, Anime {animeoj} Manga {mangaoj} other {}}"
+      highest-rated: "Plej alte taksitaj {type, select, Anime {animeoj} Manga {mangaoj} other {}}"
+      most-popular: "Plej popularaj {type, select, Anime {animeoj} Manga {mangaoj} other {}}"
     category:
-      index: "{category} {type}"
+      index: "{type, select, Anime {Animeoj} Manga {Mangaoj} other {}} el kategorio {category}"
       more:
-        newly-released: "Newly Released {category} {type}"
-        trending: "Trending {category} {type}"
-        most-popular: "Most Popular {category} {type}"
+        newly-released: "Antaŭnelonge aperitaj {type, select, Anime {animeoj} Manga {mangaoj} other {}} el kategorio {category}"
+        trending: "Aktualaj {type, select, Anime {animeoj} Manga {mangaoj} other {}} el kategorio {category}"
+        most-popular: "Plej popularaj {type, select, Anime {animeoj} Manga {mangaoj} other {}} el kategorio {category}"
   not-found: "Ne trovita"
   server-error: "Servila eraro"
   users:
     index: "Profilo de {user}"
-    library: "Libro de {user}"
+    library: "Biblioteko de {user}"
     reviews: "Revuoj de {user}"
     reactions: "Reagoj de {user}"
     followers: "Sekvantoj de {user}"
@@ -89,7 +89,7 @@ header:
 #authentication modal
 auth-modal:
   sign-up:
-    submit: "{step, select, 0 {Let's get some basic info first} 1 {Very witty - email is next!} 2 {Looks legit, how about a password?} 3 {Cool- Let's create that account} other {}}"
+    submit: "{step, select, 0 {Rakontu pri vi} 1 {Tre interese! Nun vian retpoŝton!} 2 {Ĉio ĝustas, kaj kio pri pasvorto?} 3 {Bonege! Ni kreu tiun konton!} other {}}"
 #page: about
 about:
   header: "Pri Kitsuo"
@@ -459,7 +459,7 @@ components:
       empty:
         yours: "Vi ankoraŭ ne elektis viajn ŝatatajn {type, select, anime {animeojn} manga {mangaojn} characters {rolulojn} other {}}!"
         others: "Uzanto ne havas la ŝatatajn"
-      choose: "Choose favorite {type, select, anime {anime} manga {manga} characters {characters} other {}}"
+      choose: "Selectu Via Favorata {type, select, anime {Animeo} manga {Mangao} characters {Roluloj} other {}}"
     alt-name:
       title: "Eblaj alternativaj kontoj de {user}"
       none: "Neniu alternativa konto estis trovita"
@@ -619,7 +619,7 @@ users:
       title: "Agordu vian profilon"
     about:
       header: "Pri mi"
-      empty: "It's a secret"
+      empty: "ĝi estas sekreto"
       waifu:
         label: "{waifu, select, Waifu {Edzino} Husbando {Edzo} other {{waifu}}}:"
         empty: "Edzino/Edzo:"
@@ -1236,7 +1236,7 @@ onboarding:
     submit: "Aspektas bone!"
   checklist:
     header: "Komencante en Kitsuo"
-    steps: "{count} steps left! 🦊"
+    steps: "{count, plural, =1 {# paŝo} other {# paŝoj}} restas! 🦊"
     feed: "Vizitu vian personan afiŝfluon"
     rate: "Taksu 5 animeojn aŭ mangaojn"
     rate-incomplete: "Taksu {count} animeojn aŭ mangaojn"
@@ -1393,12 +1393,12 @@ errors:
   present: "{description} devas esti malplena"
   collection: "{description} devas esti kolekto"
   singular: "{description} ne povas esti kolekto"
-  tooLong: "{description} is too long (maximum is {max} characters)"
-  tooShort: "{description} is too short (minimum is {min} characters)"
+  tooLong: "{description} estas tre longa (maksimumo estas {max, plural, =1 {# signo} other {# signoj}})"
+  tooShort: "{description} estas tre mallonga (minimumo estas {min, plural, =1 {# signo} other {# signoj}})"
   before: "{description} devas esti antaŭ {before}"
   after: "{description} devas esti post {after}"
   wrongDateFormat: "{description} devas esti aranĝita kiel {format}"
-  wrongLength: "{description} is the wrong length (should be {is} characters)"
+  wrongLength: "{description} havas malĝustan longon (devas egali al {is, plural, =1 {# signo} other {# signoj}})"
   notANumber: "{description} devas esti nombro"
   notAnInteger: "{description} devas esti entjero"
   greaterThan: "{description} devas esti pli ol {gt}"
