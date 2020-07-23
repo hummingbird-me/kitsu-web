@@ -10,7 +10,7 @@ titles:
       units: "{type, select, anime {Bölümler} manga {Bölümler} other {}}"
       characters: "Karakterler"
       reactions: "Tepkiler"
-      franchise: "Özel Satış Hakkı"
+      franchise: "Bağlantılı Medya"
   explore:
     index: "Keşfet {mediaType, select,anime {Anime} manga {Manga} other{}}"
     more:
@@ -525,8 +525,8 @@ users:
           about: "Profilinize bağlamak için Facebook linkinizi aşağıya giriniz."
           placeholder: "Facebook sayfa linkiniz"
         youtube2:
-          about: "Enter your YouTube channel URL below to add a link to your profile."
-          placeholder: "Your YouTube channel URL"
+          about: "Profilinize bağlamak için YouTube kanalınızın linkini aşağıya giriniz."
+          placeholder: "YouTube kanalınızın linki"
         google:
           about: "Profilinize bağlamak için Google+ linkinizi ya da kullanıcı adınızı aşağıya giriniz."
           placeholder: "Google+ profilinizin linki ya da kullanıcı adı (+Kullanıcı_adınız)"
@@ -592,15 +592,15 @@ users:
           placeholder: "Letterboxd kullanıcı adınız"
         medium:
           about: "Profilinize bağlamak için Medium kullanıcı adınızı aşağıya giriniz."
-          placeholder: "Your Medium username (@user) or publication name"
+          placeholder: "Medium kullanıcı adınız (@kullanıcı) ya da yayın adınız"
         playerme:
-          about: "Enter your Player.me username below to add a link to your profile."
+          about: "Player.me kullanıcı adınızı hesabınızı profilinize bağlamak için aşağıya giriniz."
           placeholder: "Player.me kullanıcı adınız"
         reddit:
-          about: "Enter your Reddit username below to add a link to your profile."
+          about: "Reddit kullanıcı adınızı hesabınızı profilinize bağlamak için aşağıya giriniz."
           placeholder: "Reddit kullanıcı adınız"
         trakt:
-          about: "Enter your Trakt username below to add a link to your profile."
+          about: "Trakt kullanıcı adınızı hesabınızı profilinize bağlamak için aşağıya giriniz."
           placeholder: "Trakt kullanıcı adınız"
     footer:
       updating: "Güncelleniyor…"
@@ -614,8 +614,8 @@ users:
   activity:
     onboarding:
       welcome: "Hey {user} bu sayfa tamamen sizinle alakalı!"
-      about: "As you continue to use Kitsu your '<strong>'Personal Feed'</strong>' below will begin to populate with the anime and manga you've watched, read, completed, and plan to check out. You can also post text, images, and videos to your feed using the form below. Your posts will be seen and appreciated by your followers and users from the global feed."
-      action: "Make yourself at home! Upload an avatar and cover image! Click '<span>'Edit'</span>' above to get started."
+      about: "Kitsu kullanmaya devam ettikçe, aşağıdaki '<strong>'Kişisel Ana Sayfanız'</strong>' izlediğiniz, okuduğunuz, tamamladığınız ve bakmayı planladığınız anime ve manga ile dolmaya başlayacaktır. Aşağıdaki formu kullanarak da ana sayfanıza metin, resim ve video gönderebilirsiniz. Gönderileriniz, takipçileriniz ve küresel gönderi alanında diğer kullanıcılar tarafından görülecek ve takdir edilecektir."
+      action: "Kendini evinde gibi hisset! Bir avatar ve kapak resmi yükle! Başlamak için yukarıdaki '<span>'Düzenle'</span>' düğmesini tıklayın."
       title: "Profilinizi Ayarlayın"
     about:
       header: "Hakkımda"
@@ -644,7 +644,7 @@ users:
         time-segment: "{count} {timeUnit}" #8 months (pre-translated)
         total: "anime izleyerek geçirildi." #appended after time-segments
       empty:
-        header: "Looks like you don't have enough data yet! Ready to start something new?"
+        header: "Henüz yeterli veriye sahip değilmişsiniz! Yeni bir şey başlatmaya hazır mısınız?"
         guest-header: "{user} şimdilik herhangi bir istatistikliğe sahip değil gibi görünüyor."
   library:
     search: "{name}'in kitaplığını ara…"
@@ -664,14 +664,14 @@ users:
           desc: "Önce Son İşlemler"
           asc: "Önce En Eski"
         started:
-          desc: "Recent First"
-          asc: "Oldest First"
+          desc: "Önce Son İşlemler"
+          asc: "Önce En Eski"
         finished:
-          desc: "Recent First"
-          asc: "Oldest First"
+          desc: "Önce Son İşlemler"
+          asc: "Önce En Eski"
         added:
-          desc: "Recent First"
-          asc: "Oldest First"
+          desc: "Önce Son İşlemler"
+          asc: "Önce En Eski"
         progress:
           desc: "Önce Birinci Olan"
           asc: "En Son Birinci Olan"
@@ -691,22 +691,22 @@ users:
       export: "Kitaplığı dışarı aktar"
       reset: "Kitaplığı Sıfırla"
       reset-loading: "Sıfırlanıyor…"
-      reset-confirmation: "This will delete your entire library, associated reviews, and reactions. Are you sure you want to continue?"
+      reset-confirmation: "Bu, tüm kitaplığınızı, ilişkili eleştirileri ve tepkileri siler. Devam etmek istediğinize emin misiniz?"
       issues:
         header: "Kitaplık Sorunları"
-        reactions: "{count} completed media missing '<b>'reactions'</b>'"
-        fix: "fix"
+        reactions: "{count} tamamlanmış medyada '<b>' tepki '</b>' yok"
+        fix: "düzelt"
     list:
       edit: "Kaydı Düzenle"
       list-edit: "Düzenle"
       more: "Daha Fazla"
       unstarted: "Başlanmamış"
       unrated: "Derecesiz"
-      progress: "{type, select, anime {Ep. {progress}} manga {Ch. {progress}} other {}}"
+      progress: "{type, select, anime {{progress} Bölüm} manga {{progress} Bölüm} other {}}"
       table-header:
-        title: "{type, select, anime {Anime Title} manga {Manga Title} other {}}"
+        title: "{type, select, anime {Anime Adı} manga {Manga Adı} other {}}"
         rating: "Puanlama"
-        progress: "Progress"
+        progress: "İlerleyiş"
         volumes: "Ciltler"
       add-reaction: "Tepki Ekle"
       empty:
@@ -1165,7 +1165,7 @@ explore:
     index: "{category} {type, select, anime {Anime} manga {Manga} other {}}" #category is pre-translated
 #page: media-reactions
 media-reactions:
-  view-all: "View all '<strong>'{count}'</strong>' of {user}'s reactions"
+  view-all: "{user} kullanıcısının tüm '<strong>'{count}'</strong>' tepkisini göster"
   create-account: "Hesap Oluştur"
 #page: notifications
 notifications:
@@ -1264,9 +1264,9 @@ feeds:
     uploading: "{number, plural, =1 {Uploading photo… {progress}%} other {Uploading {number} photos… {progress}%}}"
   filter:
     all: "Tüm Etkinlikler"
-    media: "Media Activity"
-    user: "User Activity"
-    following: "Followed Activity"
+    media: "Medya Aktivitesi"
+    user: "Kullanıcı Aktivitesi"
+    following: "Takip Aktivitesi"
   placeholder: "{type, select, user_aggr {Post to {subject}} group_aggr {Post to {subject}} media_aggr {Post about {subject}} episode_aggr {Post about Episode {subject}} chapter_aggr {Post about Chapter {subject}} interest_timeline {Post about {subject}} other {Create a post}}…"
   library:
     updated: "moved this to {status}"
@@ -1354,8 +1354,8 @@ library-entry:
     remove-rating: "Puanı Kaldır"
     rate-this: "Puan verin"
     edit-library: "Kitaplık kaydını düzenle"
-    post-reaction: "Post Reaction"
-    edit-reaction: "Edit Reaction"
+    post-reaction: "Tepki gönder"
+    edit-reaction: "Tepkiyi düzenle"
     rewatch: "{type, select, anime {Rewatch} manga {Reread} other {}}"
     remove-from-library: "Kitaplıktan Kaldır"
     saved-in: "'<a' href={link}'>'{status}'</a>' a kaydedildi"
