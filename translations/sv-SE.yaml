@@ -15,8 +15,8 @@ titles:
     index: "Utforska {mediaType, select, anime {Anime} manga {Manga} other {}}"
     more:
       trending: "Trendigt {type, select, other {}} denna vecka"
-      top-current: "Topp {type, select, Anime {Sänds} Manga {Publiceras} other {}} {type}"
-      top-upcoming: "Top Kommande {type}"
+      top-current: "Topp {type} {type, select, Anime {som sänds just nu} Manga {som publiceras just nu} other {}} "
+      top-upcoming: "Topp Kommande {type}"
       highest-rated: "Högst Betygsatta {type}"
       most-popular: "Populäraste {type}"
     category:
@@ -132,7 +132,7 @@ dashboard:
     following: "Följer"
     anime: "Anime"
     manga: "Manga"
-    global: "Global"
+    global: "Globalt"
 #page: anime/manga
 media:
   index:
@@ -1214,8 +1214,8 @@ media-shared:
 #shared: library
 library-shared:
   all: "{type, select, anime {All Anime} manga {All Manga} other {}}"
-  current: "{type, select, anime {Titta just nu} manga {Läser just nu} other {}}"
-  planned: "{type, select, anime {Vill titta på} manga {Vill läsa} other {}}"
+  current: "{type, select, anime {Tittar på} manga {Läser} other {}}"
+  planned: "{type, select, anime {Vill se} manga {Vill läsa} other {}}"
   completed: "{type, select, anime {Slutförd} manga {Slutförd} other {}}"
   on_hold: "{type, select, anime {Pausad} manga {Pausad} other {}}"
   dropped: "{type, select, anime {Släppt} manga {Släppt} other {}}"
@@ -1344,7 +1344,7 @@ library-entry:
     header: "{state, select, false {Lägg till i bibliotek} true {Uppdatera bibliotek} other {}}"
     add-to-library: "Lägg till i bibliotek"
     seen-this: "{type, select, anime {Slutförd} manga {Slutförd} other {}}"
-    want-to-watch: "{type, select, anime {Vill titta på} manga {Vill läsa} other {}}"
+    want-to-watch: "{type, select, anime {Vill se} manga {Vill läsa} other {}}"
     started-watching: "{type, select, anime {Börjat titta} manga {Börjat läsa} other {}}"
     watching-this: "Startad"
     finished-this: "Slutförd"
