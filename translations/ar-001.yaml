@@ -4,7 +4,7 @@ titles:
   anime:
     index: "استكشف أنيمي"
   manga:
-    index: "استكشف مانجا"
+    index: "استكشف مانغا"
   media:
     show:
       units: "{type, select, anime {حلقات} manga {فصول} other {}}"
@@ -12,7 +12,7 @@ titles:
       reactions: "ردود الفعل"
       franchise: "سلسلة"
   explore:
-    index: "استكشف {mediaType, select, anime {أنيمي} manga {مانجا} other {}}"
+    index: "استكشف {mediaType, select, anime {أنيمي} manga {مانغا} other {}}"
     more:
       trending: "شائع {type, select, other {}} هذا الأسبوع"
       top-current: "افضل {type, select, Anime {يُبَث} Manga {يُنشَر} other {}} {type}"
@@ -245,7 +245,7 @@ media:
         sco_gb: "الاسكتلندية"
         sk_sk: "سولفاكية"
         sl_sl: "سلفونية"
-        sr_cs: "Serbian (Latin)"
+        sr_cs: "الصربية (لاتينية)"
         sr_sp: "الصربية (السيريلية)"
         sv_se: "السويدية"
         th_th: "التايلندية"
@@ -644,7 +644,7 @@ users:
         time-segment: "{count} {timeUnit}" #8 months (pre-translated)
         total: "مجموع الوقت الذي قضيته في مشاهدة الانمي" #appended after time-segments
       empty:
-        header: "Looks like you don't have enough data yet! Ready to start something new?"
+        header: "يبدو أنك لا تملك ما يكفي من البيانات بعد! مستعد لبدء شيء جديد؟"
         guest-header: "يبدو أن {user} ليس لديه أي إحصائيات حتى الآن."
   library:
     search: "البحث في مكتبة {name}…"
@@ -736,8 +736,8 @@ users:
       selected: "{type, select, anime {{num} انمي محدد} manga {{num} مانجا محددة} other {}}"
       select-all: "حدد الكل"
       select-none: "بدون اختيار"
-      remove: "Remove '<strong>'{num}'</strong>'"
-      move-to: "Move '<strong>'{num}'</strong>' to…"
+      remove: "حذف '<strong>'{num}'</strong>'"
+      move-to: "نقل '<strong>'{num}'</strong>' إلى…"
       remove-loading: "جارٍ الإزالة…"
       update-loading: "جارٍ التحديث…"
   groups:
@@ -839,7 +839,7 @@ settings:
     loading: "تحميل الواردات…"
     status: "الحالة:"
     entries: "إجمالي المدخلات التي تم العثور عليها:"
-    error: "It seems like your import has failed :( &mdash; We want to get this fixed for you so please '<a href=\"mailto:help@kitsu.io\">'email'</a>' us."
+    error: "يبدو أن استيرادك قد فشل:( &mdash; نحن نريد إصلاح هذا من أجلك لذا يرجى '<a href=\"mailto:help@kitsu.io\">'مراسلتنا'</a>'."
     more: "تحميل المزيد"
   index:
     header: "الملف الشخصي"
@@ -931,9 +931,9 @@ groups:
         closed: "خاصة"
         restricted: "مقيد"
       privacy-features:
-        open: "'<li>'Anyone can view'</li>' '<li>'Anyone can join'</li>' '<li>'Anyone can post or comment'</li>'"
-        closed: "'<li>'Hidden from public'</li>' '<li>'Users may only join via invitation'</li>' '<li>'Can't be made public'</li>'"
-        restricted: "'<li>'Anyone can view'</li>' '<li>'Anyone can join'</li>' '<li>'Only leaders can create new posts.'</li>'"
+        open: "'<li>'يمكن لأي شخص أن يشاهد'</li>' '<li>'يمكن لأي شخص الانضمام '</li>' '<li>'يمكن لأي شخص أن ينشر أو يعلق'</li>'"
+        closed: "'<li>'إخفاء من العام'</li>' '<li>'قد ينضم المستخدمون فقط عبر الدعوة'</li>' '<li>'لا يمكن الإعلان عنها'</li>'"
+        restricted: "'<li>'يمكن لأي شخص المشاهدة'</li>' '<li>'يمكن لأي شخص الانضمام '</li>' '<li>'فقط القادة يمكنهم إنشاء مشاركات جديدة.'</li>'"
       category: "التصنيف"
       category-placeholder: "تحديد التصنيف"
       avatar: "صورة الرمزية"
@@ -1004,7 +1004,7 @@ groups:
       resolved: "تذاكر تم حلها"
       all: "جميع التذاكر"
     conversation:
-      title: "Ticket from '<a' href={link}'>'{name}'</a>'"
+      title: "تذكرة من '<a' href={link}'>'{name}'</a>'"
       mark-resolved: "تم تحديد الحل"
       mark-closed: "تم إغلاقها"
       mark-open: "فتح علامة"
@@ -1108,19 +1108,19 @@ groups:
         placeholder: "إرسال رسالة إلى القادة"
     audit:
       user:
-        banned: "banned '<a' href={link}'>'{user}'</a>'."
-        unbanned: "unbanned '<a' href={link}'>'{user}'</a>'."
-        invited: "invited '<a' href={link}'>'{user}'</a>' to join the community."
+        banned: "حظر '<a' href={link}'>'{user}'</a>'."
+        unbanned: "غير محظور '<a' href={link}'>'{user}'</a>'."
+        invited: "دعا '<a' href={link}'>'{user}'</a>' للانضمام إلى المجتمع."
         granted: "تم منح الصلاحيات ل '<a' href={link}'>'{user}'</a>'."
-        revoked: "removed permissions from '<a' href={link}'>'{user}'</a>'."
+        revoked: "إزالة الصلاحيات من '<a' href={link}'>'{user}'</a>'."
       group:
-        added_neighbor: "added '<a' href={link}'>'{group}'</a>' as a neighbor."
-        removed_neighbor: "removed '<a' href={link}'>'{group}'</a>' as a neighbor."
-        avatar_changed: "updated the {group} avatar."
-        cover_changed: "updated the {group} cover image."
+        added_neighbor: "أضاف '<a' href={link}'>'{group}'</a>' كجار."
+        removed_neighbor: "إزالة '<a' href={link}'>'{group}'</a>' كجار."
+        avatar_changed: "تم تحديث صورة {group} الرمزية."
+        cover_changed: "تم تحديث صورة غلاف {group}."
         locale_changed: "حدّث لغة {group}."
-        rules_changed: "updated the {group} rules."
-        nsfw_changed: "updated the {group} NSFW status."
+        rules_changed: "تم تحديث قواعد {group}."
+        nsfw_changed: "تم تحديث {group} (محتوى غير مناسب)."
         about_changed: "حدث {group} حولها."
         tagline_changed: "تم تحديث العلامة {group}."
         category_changed: "تم تحديث فئة {group}."
@@ -1129,7 +1129,7 @@ groups:
         declined: "رفض تقديم تقرير."
         escalated: "استشهاد بالتقرير."
       group-ticket:
-        assigned: "assigned a ticket to '<a' href={link}'>'{user}'</a>'."
+        assigned: "تم تعيين تذكرة لـ '<a' href={link}'>'{user}'</a>'."
         resolved: "وضع علامة على تذكرة كما تم حسمها."
         created: "إعادة فتح تذكرة."
 #page: group-invite
@@ -1165,7 +1165,7 @@ explore:
     index: "{category} {type, select, anime {انمي} manga {مانجا} other {}}" #category is pre-translated
 #page: media-reactions
 media-reactions:
-  view-all: "View all '<strong>'{count}'</strong>' of {user}'s reactions"
+  view-all: "عرض كل '<strong>'{count}'</strong>' من ردود فعل {user}"
   create-account: "انشئ حساب Kitsu"
 #page: notifications
 notifications:
@@ -1241,13 +1241,13 @@ onboarding:
     rate: "قيّم 5 أنمي أو مانجا"
     rate-incomplete: "قيّم {count} أنمي أو مانجا"
     follow: "تابع 5 مستخدمين"
-    follow-incomplete: "Follow {count} {count, plural, =1 {user} other {users}}"
+    follow-incomplete: "تابع {count} {count, plural, zero {} one {مستخدمين} two {مستخدمين} few {مستخدمين} many {مستخدمين} =1 {مستخدم} other {مستخدمين}}"
     comment: "التعليق على منشور"
     like: "الاعجاب ب3 مشاركات"
     like-incomplete: "الاعجاب ب {count} تم مشاركتها"
     avatar: "تعيين صورة المستخدم الخاصة بك"
     cover: "تعيين صورة غلاف الملف الشخصي"
-    about-me: "Complete your '<i>'About Me'</i>'"
+    about-me: "أكمل '<i>'عني'</i>'"
     favorite: "اختر أنمي / مانجا المفضلة لديك"
 #component: follow-button
 follow-button:
@@ -1261,23 +1261,23 @@ feeds:
     select: "رفع"
     drop: "انزال ورفع"
     invalid: "نوع الملف غير صالح"
-    uploading: "{number, plural, =1 {Uploading photo… {progress}%} other {Uploading {number} photos… {progress}%}}"
+    uploading: "{number,plural,=1 {جاري رفع الصورة... {progress}%} other {جاري رفع {number} صور... {progress}%}}"
   filter:
     all: "جميع الأنشطة"
     media: "نشاط الوسائط"
     user: "نشاط المستخدم"
     following: "النشاط المتابعين"
-  placeholder: "{type, select, user_aggr {Post to {subject}} group_aggr {Post to {subject}} media_aggr {Post about {subject}} episode_aggr {Post about Episode {subject}} chapter_aggr {Post about Chapter {subject}} interest_timeline {Post about {subject}} other {Create a post}}…"
+  placeholder: "{type, select, user_aggr {انشر على {subject}} group_aggr {انشر على {subject}} media_aggr {انشر علي {subject}} episode_aggr {انشر حول الحلقة {subject}} chapter_aggr {انشر حول الفصل {subject}} interest_timeline {انشر حول {subject}} other {انشئ منشور}}…"
   library:
     updated: "نقل هذا إلى {status}"
     rated: "تم تقييمها"
-    progressed: "{type, select, anime {watched episode {num}} manga {read chapter {num}} other {}}"
+    progressed: "{type, select, anime {{num} حلقة مشاهدة} manga {{num} فصل مقروء} other {}}"
   post:
     more: "عرض المزيد"
     less: "عرض أقل"
     meta:
       media: "لأنك شاهدت مؤخرا {media}"
-    spoilers: "{type, select, anime {Ep. {num}} manga {Ch. {num}} other {}}"
+    spoilers: "{type, select, anime {الحلقة {num}} manga {الفصل {num}} other {}}"
     sorts:
       likes: "إعجابات"
       replies: "الردود"
@@ -1285,7 +1285,7 @@ feeds:
   review:
     review: "مراجعة"
     author: "مراجعة من قبل {user}"
-    progress: "{type, select, anime {This is a review up to Episode {num}.} manga {This is a review up to Chapter {num}.} other {}}"
+    progress: "{type, select, anime {هذه مراجعة حتى الحلقة {num}.} manga {هذه مراجعة حتى الفصل {num}.} other {}}"
   interest:
     anime:
       header: "مرحبا بك في مشاركات أنمي الخاصة بك!"
@@ -1315,7 +1315,7 @@ reaction-modal:
   edit: "تعديل"
   edit-warning: "حذر! التعديل سيؤدي إلى حذف تصويتك."
   delete: "حذف رد التفاعل"
-  placeholder: "{index, plural, =0 {Got me rethinking some important life decisions.} =1 {Unexpectedly good! Lots of memorable scenes.} =2 {While it may not be everyone's cup of tea, it's certainly interesting.} other {Overrated, don't waste your time on this one.}}"
+  placeholder: "{index, plural,=0 {جعلني أعيد التفكير في بعض قرارات الحياة الهامة.} =1 {جيد بشكل غير متوقع! الكثير من المشاهد التي لا تنسى.} =2 {على الرغم من أنه قد يكون غير مناسب للجميع، إلا أنه مثير للاهتمام.} other {مبالغ فيه، لا تضيع وقتك على هذا الشيء.}}"
   skip: "تخطي"
   #component: modals
   modals:
@@ -1369,8 +1369,8 @@ library-entry:
 #component: application/user-notifications
 user-notifications:
   #Episode 113 of One Piece! aired
-  aired: "{type, select, chapter {Chapter} episode {Episode} other {}} {number} of {media} {type, select, chapter {Released} episode {Aired} other {}}"
-  aired-unknown: "{media} {type, select, manga {released} anime {aired} other {}} a new {type, select, manga {Chapter} anime {Episode} other {}}"
+  aired: "{type, select, chapter {الفصل} episode {الحلقة} other {}} {number} من {media} {type, select, chapter {تم إصداره} episode {تم عرضه} other {}}"
+  aired-unknown: "{media} {type, select, manga {أطلق} anime {بث} other {}} {type, select, manga {فصل جديد} anime {حلقة جديدة} other {}}"
   menu:
     all: "مشاهدة جميع الإشعارات"
     mark-read: "تحديد الكل كمقروء"
@@ -1430,9 +1430,9 @@ errors:
 #Loading
 loading: "جار تحميل {subject, select, episode {الحلقة} chapter {الفصل} episodes {الحلقات} chapters {الفصول} other {}}…"
 timeUnits:
-  years: "{count, plural, =1 {year} other {years}}"
-  months: "{count, plural, =1 {month} other {months}}"
-  days: "{count, plural, =1 {day} other {days}}"
+  years: "{count, plural, zero {} one {سنوات} two {سنوات} few {سنوات} many {سنوات} =1 {سنة} other {سنوات}}"
+  months: "{count, plural, zero {} one {شهور} two {شهران} few {شهور} many {شهور} =1 {شهر} other {شهور}}"
+  days: "{count, plural, zero {} one {أيام} two {يومان} few {أيام} many {أيام} =1 {يوم} other {أيام}}"
   hours: "{count, plural, =1 {ساعة} =2 {ساعتين} other {ساعات}}"
   minutes: "{count, plural, zero {} one {دقيقة واحدة} two {دقيقتين} few {دقائق} other {دقيقة}}"
 admin:
