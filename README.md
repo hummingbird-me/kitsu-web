@@ -34,6 +34,12 @@
 
 Check out the main [repo][tools] for information on setting up a development environment and contributing.
 
+### Translations
+
+We use CrowdIn to handle translations, head on over to [crowdin.com/project/kitsu-web](https://crowdin.com/project/kitsu-web) to suggest changes or add new translations.
+
+Translations use the ICU Message Syntax format. [Read the syntax documentation](https://formatjs.io/docs/icu-syntax/).
+
 ## Issues
 
 Looking to create an issue? Open a [bug report](https://kitsu.io/feedback/bugs) or [feature request](https://kitsu.io/feedback/feature-requests) on Kitsu.
