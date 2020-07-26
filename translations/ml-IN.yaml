@@ -2,15 +2,15 @@
 #route titles -- these are used if the route doesn't specify the title itself
 titles:
   anime:
-    index: "Explore Anime"
+    index: "Anime പര്യവേക്ഷണം ചെയ്യുക"
   manga:
-    index: "Explore Manga"
+    index: "Manga പര്യവേക്ഷണം ചെയ്യുക"
   media:
     show:
-      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
-      characters: "Characters"
-      reactions: "Reactions"
-      franchise: "Franchise"
+      units: "{type, select, anime {എപ്പിസോഡുകൾ} manga {അധ്യായങ്ങൾ} other {}}"
+      characters: "കഥാപാത്രങ്ങൾ"
+      reactions: "പ്രതികരണങ്ങൾ"
+      franchise: "ഫ്രാഞ്ചൈസി"
   explore:
     index: "Explore {mediaType, select, anime {Anime} manga {Manga} other {}}"
     more:
@@ -18,22 +18,22 @@ titles:
       top-current: "Top {type, select, Anime {Airing} Manga {Publishing} other {}} {type}"
       top-upcoming: "Top Upcoming {type}"
       highest-rated: "Highest Rated {type}"
-      most-popular: "Most Popular {type}"
+      most-popular: "ഏറ്റവും ജനപ്രിയമായ {type}"
     category:
       index: "{category} {type}"
       more:
-        newly-released: "Newly Released {category} {type}"
-        trending: "Trending {category} {type}"
-        most-popular: "Most Popular {category} {type}"
-  not-found: "Not Found"
-  server-error: "Server Error"
+        newly-released: "പുതുതായി പുറത്തിറങ്ങിയത്{category} {type}"
+        trending: "ട്രെൻഡുചെയ്യുന്നു{category} {type}"
+        most-popular: "ഏറ്റവും ജനപ്രിയമായ{category} {type}"
+  not-found: "കാണ്മാനില്ല"
+  server-error: "സെർവർ തകരാർ"
   users:
-    index: "{user}'s Profile"
+    index: "{user} പ്രൊഫൈൽ"
     library: "{user}'s Library"
     reviews: "{user}'s Reviews"
     reactions: "{user}'s Reactions"
     followers: "{user}'s Followers"
-    following: "Followed by {user}"
+    following: "{user} പിന്തുടരുന്നു"
     groups: "{user}'s Groups"
     stats: "{user}'s Stats"
   posts: "Post by {user}"
@@ -47,23 +47,23 @@ titles:
     mobile-bugs: "Mobile Bugs"
     mobile-features: "Mobile Features"
   admin:
-    index: "Admin"
-    reports: "Reports"
+    index: "അഡ്മിൻ"
+    reports: "റിപ്പോർട്ടുകൾ"
   groups:
     index: "Groups"
-    new: "Create a Group"
+    new: "ഒരു ഗ്രൂപ്പ് സൃഷ്ടിക്കുക"
     group:
       group-page:
-        rules: "{group} Rules"
-        members: "{group} Members"
-        leaders: "{group} Leaders"
+        rules: "{group} നിയമങ്ങൾ"
+        members: "{group} അംഗങ്ങൾ"
+        leaders: "{group} നേതാക്കൾ"
       dashboard:
-        index: "{group} Overview"
-        reports: "{group} Reports"
-        tickets: "{group} Tickets"
-        members: "{group} Members"
-        leaders: "{group} Leaders"
-        settings: "{group} Settings"
+        index: "{group} അവലോകനം"
+        reports: "{group} റിപ്പോർട്ടുകൾ"
+        tickets: "{group} ടിക്കറ്റുകൾ"
+        members: "{group} അംഗങ്ങൾ"
+        leaders: "{group} നേതാക്കൾ"
+        settings: "{group} ക്രമീകരണങ്ങൾ"
   group-invite: "Group Invite"
 #head
 head:
@@ -115,7 +115,7 @@ dashboard:
         tooltip:
           empty: "Update Library"
           content: "Create post and update library"
-      discussion: "View Discussion"
+      discussion: "ചർച്ച കണ്ടു"
       edit: "Edit Library Entry"
       popout: "Pop-out editor"
       editor:
@@ -129,7 +129,7 @@ dashboard:
   announcements:
     button: "Learn More"
   feed:
-    following: "Following"
+    following: "പിന്തുടരുന്നു"
     anime: "Anime"
     manga: "Manga"
     global: "Global"
@@ -138,11 +138,11 @@ media:
   index:
     search: "Search by title, character, or cast…"
     filter: "Filter"
-    remove: "Remove"
+    remove: "നീക്കംചെയ്യുക"
     filters:
-      year: "Year"
+      year: "വർഷം"
       score: "Average Rating"
-      seasons: "Seasons"
+      seasons: "സീസൺ"
       streamers: "Streamers (U.S.)"
       units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
       rating: "Rating"
