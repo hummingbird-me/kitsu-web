@@ -33,8 +33,8 @@ export default [
   // { id: 'fa-af', text: 'دری (BETA)' }, // Dari, Persian (Afghanistan) rtl
   // { id: 'fa-ir', text: 'فارسی (BETA)' }, // Persian (Iran) rtl
   // { id: 'fi-fi', text: 'Suomi' }, // Finnish
+  { id: 'mis-ca', text: 'Français (Canadien, Acadien)' },
   { id: 'fr-ca', text: 'Français (Canadien, Québécois)' },
-  { id: 'fr-ca-nb', text: 'Français (Canadien, Acadien)' },
   { id: 'fr-fr', text: 'Français' },
   // { id: 'fy-nl', text: 'Frysk' }, // Westerlauwersk Frysk, Western Frisian
   // { id: 'ga-ie', text: 'Gaeilge' }, // Irish
