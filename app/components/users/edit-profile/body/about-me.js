@@ -19,8 +19,12 @@ export default Component.extend({
     const index = yield this.get('algolia.getIndex').perform('characters');
     if (isEmpty(index) || isEmpty(query)) { return []; }
     const response = yield index.search(query, {
-      // attributesToRetrieve: ['id', 'slug', 'canonicalName', 'image'],
-      hitsPerPage: 5
+      attributesToRetrieve: ['id', 'slug', 'names', 'canonicalName', 'image'],
+      attributesToHighlight: [],
+      queryLanguages: ['en', 'ja'],
+      naturalLanguages: ['en', 'ja'],
+      hitsPerPage: 5,
+      responseFields: ['hits']
     });
     return response.hits;
   }).restartable(),

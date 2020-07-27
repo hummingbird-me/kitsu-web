@@ -21,6 +21,10 @@ const search = (indexName, attributesToRetrieve, hitsPerPage = 2) => (
     return yield index.search(query, {
       attributesToRetrieve,
       hitsPerPage,
+      queryLanguages: ['en', 'ja'],
+      naturalLanguages: ['en', 'ja'],
+      attributesToHighlight: [],
+      responseFields: ['hits', 'hitsPerPage', 'nbHits', 'nbPages', 'offset', 'page'],
       ...options
     });
   }).restartable()

@@ -33,7 +33,9 @@ export default Component.extend(Pagination, {
     const index = yield this.get('algolia.getIndex').perform('users');
     const response = yield index.search(query, {
       attributesToRetrieve: ['id', 'name'],
-      hitsPerPage: 10
+      attributesToHighlight: [],
+      hitsPerPage: 10,
+      responseFields: ['hits', 'hitsPerPage', 'nbHits', 'nbPages', 'offset', 'page']
     });
     return response.hits || [];
   }).restartable(),
