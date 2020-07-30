@@ -36,11 +36,6 @@ module.exports = function() {
         targets: ['manifest', 'favicon']
       },
       {
-        src: '/mstile-70x70.png',
-        element: 'square70x70logo',
-        targets: ['ms']
-      },
-      {
         src: '/apple-touch-icon.png',
         sizes: '180x180',
         targets: ['apple']
