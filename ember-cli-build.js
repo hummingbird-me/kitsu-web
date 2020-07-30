@@ -67,19 +67,11 @@ module.exports = function(defaults) {
     fingerprint: {
       generateAssetMap: true,
       fingerprintAssetMap: true,
-      extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'json'],
+      extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'json', 'webmanifest'],
       exclude: [
         'OneSignalSDKWorker.js',
         'OneSignalSDKUpdaterWorker.js',
-
         'apple-app-site-association',
-
-        // can be removed when ember-web-app supports mstile
-        'mstile-70x70.png',
-        'mstile-150x150.png',
-        'mstile-310x150.png',
-        'mstile-310x310.png',
-
         'hulu-embed-frame.html'
       ]
     },
