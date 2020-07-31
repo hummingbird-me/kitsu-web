@@ -8,7 +8,7 @@ module.exports = function(deployTarget) {
       region: 'us-east-1',
       filePattern(context, pluginHelper) {
         const filePattern = pluginHelper.readConfigDefault('filePattern');
-        return filePattern.replace('}', ',json}');
+        return filePattern.replace('}', ',json,webmanifest}');
       }
     },
     's3-index': {
