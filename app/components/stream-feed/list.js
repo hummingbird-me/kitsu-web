@@ -265,7 +265,7 @@ export default Component.extend(Pagination, {
       }
 
       // add to new activities cache
-      if (groupCache.indexOf(get(activity, 'group')) === -1) {
+      if (groupCache && groupCache.indexOf(get(activity, 'group')) === -1) {
         set(this, 'newItems.length', get(this, 'newItems.length') + 1);
         groupCache.addObject(get(activity, 'group'));
       }
