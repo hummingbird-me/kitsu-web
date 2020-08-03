@@ -12,7 +12,7 @@ export default BaseAdapter.extend({
     /* eslint-disable */
     !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
     arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
-    d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+    d.src='https://d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
     insertBefore(d,q)}(window,document,'script','_gs');
     /* eslint-enable */
     if (window._gs && id) {
@@ -51,7 +51,7 @@ export default BaseAdapter.extend({
   },
 
   willDestroy() {
-    document.querySelectorAll('script[src*="//d1l6p2sc9645hc.cloudfront.net/tracker.js"]')
+    document.querySelectorAll('script[src*="https://d1l6p2sc9645hc.cloudfront.net/tracker.js"]')
       .forEach(element => {
         element.remove();
       });

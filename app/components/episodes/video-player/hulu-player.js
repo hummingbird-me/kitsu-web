@@ -5,7 +5,7 @@ import { inject as service } from '@ember/service';
 import { injectScript } from 'client/utils/inject-script';
 
 /* global HuluPlayer */
-const HULU_API = '//player.hulu.com/iframe/iframe_api';
+const HULU_API = 'https://player.hulu.com/iframe/iframe_api';
 
 export default Component.extend({
   classNames: ['hulu-embed'],
