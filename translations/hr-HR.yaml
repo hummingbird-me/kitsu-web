@@ -2,12 +2,12 @@
 #route titles -- these are used if the route doesn't specify the title itself
 titles:
   anime:
-    index: "Explore Anime"
+    index: "Istraži Animeje"
   manga:
-    index: "Explore Manga"
+    index: "Istraži Mange"
   media:
     show:
-      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
+      units: "{type, select, anime {Epizode} manga {Chapters} other {}}"
       characters: "Likovi"
       reactions: "Reakcije"
       franchise: "Franšiza"
@@ -16,15 +16,15 @@ titles:
     more:
       trending: "U trendu {type, select, other {}} ovaj tjedan"
       top-current: "Top {type, select, Anime {Airing} Manga {Publishing} other {}} {type}"
-      top-upcoming: "Top Upcoming {type}"
-      highest-rated: "Highest Rated {type}"
-      most-popular: "Most Popular {type}"
+      top-upcoming: "Top nadolazeći {type}"
+      highest-rated: "Najbolje ocijenjeni {type}"
+      most-popular: "Najpopularniji {type}"
     category:
       index: "{category} {type}"
       more:
-        newly-released: "Newly Released {category} {type}"
-        trending: "Trending {category} {type}"
-        most-popular: "Most Popular {category} {type}"
+        newly-released: "Tek izdano {category} {type}"
+        trending: "U trendu {category} {type}"
+        most-popular: "Najpopularniji {category} {type}"
   not-found: "Nije pronađeno"
   server-error: "Serverska greška"
   users:
@@ -34,8 +34,8 @@ titles:
     reactions: "{user} Reakcije"
     followers: "{user} Pratitelji"
     following: "{user} Prati"
-    groups: "{user}'s Groups"
-    stats: "{user}'s Stats"
+    groups: "{user}ve Grupe"
+    stats: "{user}va Statistika"
   posts: "Objavio {user}"
   comments: "Komentirao {user}"
   reviews: "Dao je recenziju {user}"
@@ -68,24 +68,24 @@ titles:
 #head
 head:
   users:
-    description: "{user} is using Kitsu to track their progress and share their anime & manga experiences."
+    description: "{user} Koristi Kitsu kako bi lakše pratio i dijelio svoja iskustva sa animejima i mangama."
 #header
 header:
-  library: "Library"
+  library: "Biblioteka"
   anime: "Anime"
   manga: "Manga"
-  trending: "Trending"
-  groups: "Groups"
-  feedback: "Feedback"
-  browse: "Browse"
+  trending: "U trendu"
+  groups: "Grupe"
+  feedback: "Povratne informacije"
+  browse: "Pretraži"
   auth:
-    sign-in: "Sign In"
-    sign-up: "Sign Up"
+    sign-in: "Prijavi se"
+    sign-up: "Registracija"
   user:
-    profile: "View Profile"
-    settings: "Settings"
-    admin: "Admin"
-    logout: "Logout"
+    profile: "Pogledaj profil"
+    settings: "Postavke"
+    admin: "Administrator"
+    logout: "Odjava"
 #authentication modal
 auth-modal:
   sign-up:
@@ -367,9 +367,10 @@ components:
     load: "load more"
     none: "no results"
   sidebar-footer:
-    contact: "Contact"
+    contact: "Contact" #Email address
     terms: "Terms"
     privacy: "Privacy"
+    status: "Status" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "Edit"

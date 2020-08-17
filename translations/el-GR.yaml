@@ -107,16 +107,16 @@ dashboard:
     media:
       complete: "Ολοκληρώθηκε"
       unstarted: "Δεν ξεκίνησε"
-      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {of {total}}}} manga {Ch. {num} {total, select, null {} other {of {total}}}} other {}}"
+      unit: "{type, select, anime {Επ. {num} {total, select, undefined {} other {of {total}}}} manga {Κεφ. {num} {total, select, null {} other {of {total}}}} other {}}"
     overlay:
       button:
-        update: "{type, select, anime {Ep.} manga {Ch.} other {}} {number}"
+        update: "{type, select, anime {Επ.} manga {Κεφ.} other {}} {number}"
         complete: "Ολοκληρώθηκε"
         tooltip:
           empty: "Ενημέρωση Βιβλιοθήκης"
           content: "Δημιουργία δημοσίευσης και ενημέρωση βιβλιοθήκης"
       discussion: "Εμφάνιση Συνομιλίας"
-      edit: "Edit Library Entry"
+      edit: "Επεξεργασία καταχώρησης βιβλιοθήκης"
       popout: "Pop-out editor"
       editor:
         placeholder: "(Optional) Share your thoughts on {type, select, anime {Episode} manga {Chapter} other {}} {number}"
@@ -150,7 +150,7 @@ media:
       types: "Είδη"
     sort:
       popularity: "Δημοτικότητα"
-      rating: "Average Rating"
+      rating: "Μέση Βαθμολογία"
       date: "Ημερομηνία"
       recent: "Προστέθηκαν πρόσφατα"
   none: "Δεν βρέθηκαν αποτελέσματα."
@@ -162,7 +162,7 @@ media:
       reactions: "Αντιδράσεις"
       franchise: "Franchise"
     sidebar:
-      watch: "Watch Online"
+      watch: "Παρακολουθήστε Online"
     summary:
       ratings:
         community: "{rating}% Community Approval"
@@ -281,7 +281,7 @@ media:
           false: "Περισσότερες πληροφορίες"
           true: "Λιγότερες Πληροφορίες"
       feed:
-        header: "Community Feed"
+        header: "Χρονολόγιο Κοινότητας"
       trailer: "Παίξε το τρέιλερ"
     units:
       unit: "{type, select, episode {Επεισόδιο} chapter {Κεφάλαιο} other {}}"
@@ -331,10 +331,10 @@ components:
   ad-unit: "Ads suck, but that's how we keep the lights on. Please whitelist us in your adblocker."
   admin:
     reports:
-      no-explanation: "No Explanation Provided."
+      no-explanation: "Δεν δόθηκε εξήγηση."
       not-set: "Δεν έχει οριστεί"
       actions:
-        button: "Actions"
+        button: "Ενέργειες"
         open: "Mark Open"
         resolved: "Mark Resolved"
         closed: "Mark closed"
@@ -345,7 +345,7 @@ components:
         explanation: "Επεξήγηση"
         moderator: "Διαχειριστής"
         status: "Κατάσταση"
-        actions: "Actions"
+        actions: "Ενέργειες"
   application:
     nav-search: "Αναζήτηση στο Kitsu"
   episodes:
@@ -357,19 +357,20 @@ components:
     watched: "Mark Watched"
     join-prompt:
       pitch: "Track your progress and join the discussion!"
-      register: "Create Kitsu Account"
+      register: "Δημιουργία Λογαριασμού Kitsu"
   likeable-resource:
     loading: "Φόρτωση…"
     more: "Φόρτωση Περισσότερων"
   search:
-    header: "Search Results"
+    header: "Αποτελέσματα Αναζήτησης"
     view: "δείτε περισσότερα"
     load: "φόρτωσε περισσότερα"
     none: "κανένα αποτέλεσμα"
   sidebar-footer:
-    contact: "Επικοινωνία"
+    contact: "Επικοινωνία" #Email address
     terms: "Όροι"
     privacy: "Ιδιωτικοτητα"
+    status: "Status" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "Επεξεργασία"
@@ -395,7 +396,7 @@ components:
         nsfw: "Αυτή η δημοσίευση περιέχει NSFW περιεχόμενο."
         spoiler: "Αυτή η δημοσίευση περιέχει spoilers."
         hover:
-          nsfw: "My body is ready!"
+          nsfw: "Το σώμα μου είναι έτοιμο!"
           spoiler: "I can handle the truth!"
       link: "Copy Link to Post"
       unfollow: "Unfollow Post"
@@ -427,7 +428,7 @@ components:
     review:
       by: "Κριτική από"
       spoiler: "Αυτή η κριτική περιέχει spoilers."
-      spoiler-hover: "I can handle the truth!"
+      spoiler-hover: "Αντέχω την αλήθεια!"
       share:
         twitter: "Tweet"
         facebook: "Κοινοποίηση"
@@ -491,7 +492,7 @@ users:
       profile-links: "Profile Links"
       favorites: "Αγαπημένα"
     about:
-      header: "About Me"
+      header: "Σχετικά με εμένα"
       location:
         label: "Τοποθεσία"
         placeholder: "Πού μένετε;"
@@ -507,7 +508,7 @@ users:
         label: "Waifu"
         placeholder: "Waifu/Husbando"
         search: "Find your special someone"
-        divorce: "divorce"
+        divorce: "διαζύγιο"
       bio:
         label: "Περιγραφή"
         placeholder: "Πες στον κόσμο την ιστορία σου."
@@ -577,7 +578,7 @@ users:
           placeholder: "Your Patreon project name"
         deviantart:
           about: "Enter your DeviantArt username below to add a link to your profile."
-          placeholder: "Your DeviantArt username"
+          placeholder: "Το όνομα χρήστη σας στο DevianArt"
         dribbble:
           about: "Enter your Dribbble username below to add a link to your profile."
           placeholder: "Your Dribbble username"
@@ -586,7 +587,7 @@ users:
           placeholder: "Your IMDb profile URL"
         lastfm:
           about: "Enter your Last.fm username below to add a link to your profile."
-          placeholder: "Your Last.fm username"
+          placeholder: "Το όνομα χρήστη σας στο Last.fm"
         letterboxd:
           about: "Enter your Letterboxd username below to add a link to your profile."
           placeholder: "Your Letterboxd username"
@@ -601,15 +602,15 @@ users:
           placeholder: "Το όνομα χρήστη σας στο Reddit"
         trakt:
           about: "Enter your Trakt username below to add a link to your profile."
-          placeholder: "Your Trakt username"
+          placeholder: "Το όνομα χρήστη σας στο Trakt"
     footer:
-      updating: "Updating…"
-      update: "Update Profile"
+      updating: "Ενημέρωση…"
+      update: "Ενημέρωση προφίλ"
     favorites:
-      header: "Favorites"
+      header: "Αγαπημένα"
       anime: "Άνιμε"
-      manga: "Manga"
-      characters: "Characters"
+      manga: "Μάνγκα"
+      characters: "Χαρακτήρες"
       remove: "Αφαίρεση Αγαπημένου;"
   activity:
     onboarding:
@@ -618,26 +619,26 @@ users:
       action: "Make yourself at home! Upload an avatar and cover image! Click '<span>'Edit'</span>' above to get started."
       title: "Set-Up Your Profile"
     about:
-      header: "About Me"
-      empty: "It's a secret"
+      header: "Σχετικά με εμένα"
+      empty: "Είναι μυστικό"
       waifu:
         label: "{waifu, select, Waifu {Waifu} Husbando {Husbando} other {{waifu}}}:"
         empty: "Waifu/Husbando:"
       gender:
         label: "Φύλο:"
-        secret: "It's a secret"
-        male: "Male"
-        female: "Female"
+        secret: "Είναι μυστικό"
+        male: "Αρσενικό"
+        female: "Θηλυκό"
       location: "Τοποθεσία:"
       birthday: "Γενέθλια:"
       joined: "Ημερομηνία εγγραφής:"
     stats:
       headings:
-        anime: "Anime Stats"
-        manga: "Manga Stats"
-      time-watched: "{count} {timeUnit} spent watching anime."
-      chapters-read: "{count} chapters read."
-      completed: "{count} completed."
+        anime: "Στατιστικά Άνιμε"
+        manga: "Στατιστικά Μάνγκα"
+      time-watched: "{count} {timeUnit} πέρασαν παρακολουθώντας Άνιμε."
+      chapters-read: "{count} κεφάλαια διαβάστηκαν."
+      completed: "{count} ολοκληρώθηκαν."
       more-than: "More than '<span class=\"time-spent-percentile\">'{percentage}%'</span>' of users."
       time-breakdown:
         seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
@@ -651,21 +652,21 @@ users:
     sorting:
       label: "Ταξινόμηση κατά:"
       options:
-        watched: "Date Updated"
-        started: "Date Started"
-        finished: "Date Finished"
-        added: "Date Added"
+        watched: "Ημερομηνία Ενημέρωσης"
+        started: "Ημερομηνία Έναρξης"
+        finished: "Ημερομηνία Ολοκλήρωσης"
+        added: "Ημερομηνίας Προσθήκης"
         progress: "Πρόοδος"
-        rating: "Rating"
+        rating: "Βαθμολογία"
         title: "Τίτλος"
-        length: "Length"
+        length: "Διάρκεια"
       directions:
         watched:
           desc: "Πρώτα τα πρόσφατα"
           asc: "Πρώτα τα παλαιότερα"
         started:
-          desc: "Recent First"
-          asc: "Oldest First"
+          desc: "Πρώτα τα πρόσφατα"
+          asc: "Πρώτα τα παλαιότερα"
         finished:
           desc: "Πρώτα τα πρόσφατα"
           asc: "Πρώτα τα παλαιότερα"
@@ -693,18 +694,18 @@ users:
       reset-loading: "Επαναφορά…"
       reset-confirmation: "This will delete your entire library, associated reviews, and reactions. Are you sure you want to continue?"
       issues:
-        header: "Library Issues"
+        header: "Προβλήματα Βιβλιοθήκης"
         reactions: "{count} completed media missing '<b>'reactions'</b>'"
         fix: "διόρθωση"
     list:
-      edit: "Edit Entry"
+      edit: "Επεξεργασία Καταχώρησης"
       list-edit: "Επεξεργασία"
       more: "Περισσότερα"
-      unstarted: "Not Started"
+      unstarted: "Δεν ξεκίνησε"
       unrated: "Χωρίς Βαθμολογία"
       progress: "{type, select, anime {Ep. {progress}} manga {Ch. {progress}} other {}}"
       table-header:
-        title: "{type, select, anime {Anime Title} manga {Manga Title} other {}}"
+        title: "{type, select, anime {Τίτλος Άνιμε} manga {Τίτλος Μάνγκα} other {}}"
         rating: "Βαθμολογία"
         progress: "Πρόοδος"
         volumes: "Τόμοι"
@@ -715,7 +716,7 @@ users:
         guest-header: "Looks like {user} doesn't have any library entries here."
         button: "Περιήγηση {type}"
     grid:
-      view-media: "View {type, select, anime {Anime} manga {Manga} other {}}"
+      view-media: "Προβολή {type, select, anime {Άνιμε} manga {Μάνγκα} other {}}"
     edit:
       status: "Κατάσταση Βιβλιοθήκης"
       progress: "Πρόοδος"
@@ -761,10 +762,10 @@ users:
     info: "Posts will appear in your Following Feed"
   followers:
     not-found: "Δεν βρέθηκαν Χρήστες."
-    loading: "Loading Users…"
+    loading: "Φόρτωση Χρηστών…"
   following:
-    not-found: "No Users Found."
-    loading: "Loading Users…"
+    not-found: "Δεν βρέθηκαν Χρήστες."
+    loading: "Φόρτωση Χρηστών…"
   reviews:
     not-found: "Δεν Βρέθηκαν Κριτικές."
     loading: "Φόρτωση Κριτικών…"
@@ -795,19 +796,19 @@ settings:
     title: "Αποκλεισμός χρηστών"
     placeholder: "Search users to block…"
     button-block: "Αποκλεισμός"
-    loading: "Loading Users…"
+    loading: "Φόρτωση Χρηστών…"
     button-unblock: "Κατάργηση αποκλεισμού"
-    more: "Load More"
+    more: "Φόρτωση Περισσότερων"
     not-blocking: "You aren't currently blocking anyone."
   exports:
     modal:
-      header: "Sync with {site}"
+      header: "Συγχρονισμός με {site}"
       helper: "We'll update your anime and manga lists on {site} every time you update them on Kitsu."
       create: "Συγχρονιστείτε στο {site}"
     header: "Εξαγωγή"
     sub-header: "Automatically sync your library updates from Kitsu to MyAnimeList."
-    loading: "Loading Exports…"
-    remove: "Remove Exporter"
+    loading: "Φόρτωση Εξαγωγών…"
+    remove: "Αφαίρεση Εξαγωγέα"
     disabled: "Your MAL Export has been disabled due to the following reason: '<strong>'{reason}'</strong>'"
     create: "Setup Export to MyAnimeList Account"
     download: "Λήψη {kind} Βιβλιοθήκης"
@@ -820,8 +821,8 @@ settings:
         library-status: "Κατάσταση"
         progress: "Πρόοδος"
         rating: "Βαθμολογία"
-        reconsumes: "Rewatches"
-        action: "Action"
+        reconsumes: "Επαναπαρακολουθήσεις"
+        action: "Δράση"
         status: "Κατάσταση"
       action:
         create: "Δημιουργία"
@@ -836,7 +837,7 @@ settings:
     sub-header: "Import media from other providers"
     button: "Import Media"
     past-imports: "Your past imports"
-    loading: "Loading Imports…"
+    loading: "Φόρτωση Εισαγωγών…"
     status: "Κατάσταση:"
     entries: "Total Entries Found:"
     error: "It seems like your import has failed :( &mdash; We want to get this fixed for you so please '<a href=\"mailto:help@kitsu.io\">'email'</a>' us."
@@ -869,7 +870,7 @@ settings:
     disconnect: "Αποσύνδεση από το Facebook"
     connect: "Σύνδεση στο Facebook"
   notifications:
-    header: "Push Notifications"
+    header: "Ειδοποιήσεις Push"
     sub-header: "General site-wide notifications"
     contexts:
       web: "Διαδίκτυο"
@@ -898,9 +899,9 @@ settings:
   privacy:
     header: "Ιδιωτικοτητα"
     sub-header: "Adjust others ability to view your content"
-    discover: "Discoverability"
+    discover: "Ανιχνευσιμότητα"
     checkbox: "Εμφάνιση Παγκόσμιου Χρονολογίου"
-    message: "If disabled, your posts will only be available to your followers and guests to your profile."
+    message: "Αν απενεργοποιηθεί, οι δημοσιεύσεις σας θα είναι διαθέσιμες μόνο στους ακολούθους και στους επισκέπτες του προφίλ σας."
     update: "Ενημέρωση προφίλ"
 #page: feedback
 feedback:
@@ -996,13 +997,13 @@ groups:
     header: "Κανόνες Κοινότητας"
     empty: "Hey there! Looks like you're using the Kitsu community guidelines. If you'd like to specify your own rules you can do that on your '<a' href={link}'>'settings page.'</a>'"
   tickets:
-    search: "Search Tickets"
+    search: "Αναζήτηση Περιστατικών"
     empty: "Hooray! You don't have any tickets to handle."
     helper: "Tickets allow you to communicate with the leaders of this group to solve any issues you might have. Message the leaders here to create a ticket."
     filter:
-      open: "Open Tickets"
+      open: "Ανοιχτά Περιστατικά"
       resolved: "Resolved Tickets"
-      all: "All Tickets"
+      all: "Όλα τα περιστατικά"
     conversation:
       title: "Ticket from '<a' href={link}'>'{name}'</a>'"
       mark-resolved: "Mark Resolved"
@@ -1048,7 +1049,7 @@ groups:
         tickets: "Manage Tickets"
         members: "Manage Members"
         leaders: "Manage Leaders"
-        community: "Manage Settings"
+        community: "Διαχείριση ρυθμίσεων"
         content: "Manage Content & Reports"
         owner-help: "Owners have all permissions."
         cancel-btn: "Ακύρωση"
@@ -1058,14 +1059,14 @@ groups:
     navigation:
       overview: "Επισκόπηση"
       reports: "Αναφορές"
-      tickets: "Tickets"
+      tickets: "Περιστατικά"
       members: "Μέλη"
       leaders: "Αρχηγοί"
       settings: "Ρυθμίσεις"
     overview:
       members:
         header: "Μέλη"
-        today: "Joined Today"
+        today: "Εγγράφηκε Σήμερα"
         total: "Σύνολο μελών"
       activity:
         header: "Δραστηριότητα Χρήστη"
@@ -1073,11 +1074,11 @@ groups:
         comments: "Σημερινά Σχόλια"
       help-desk:
         header: "Ανοιχτές Υποθέσεις"
-        tickets: "Tickets"
+        tickets: "Περιστατικά"
         reports: "Αναφορές"
-      tickets: "Latest Tickets"
+      tickets: "Πρόσφατα Περιστατικά"
       reports: "Τελευταίες Αναφορές"
-      log: "Leader Log"
+      log: "Σημειώσεις Αρχηγού"
     members:
       invites:
         header: "Εκκρεμείς Προσκλήσεις"
@@ -1103,12 +1104,12 @@ groups:
         ban: "Αποκλεισμός"
     leaders:
       chat:
-        header: "Leader Chat"
+        header: "Συνομιλία Αρχηγών"
         post-btn: "Δημοσίευση"
         placeholder: "Στείλτε μήνυμα στον αρχηγό"
     audit:
       user:
-        banned: "banned '<a' href={link}'>'{user}'</a>'."
+        banned: "αποκλείστηκε '<a' href={link}'>'{user}'</a>'."
         unbanned: "unbanned '<a' href={link}'>'{user}'</a>'."
         invited: "invited '<a' href={link}'>'{user}'</a>' to join the community."
         granted: "granted permissions to '<a' href={link}'>'{user}'</a>'."
@@ -1169,7 +1170,7 @@ media-reactions:
   create-account: "Δημιουργία Λογαριασμού"
 #page: notifications
 notifications:
-  none: "You don't have any notifications!"
+  none: "Δεν έχετε ειδοποιήσεις!"
 #page: password-reset
 password-reset:
   password: "Κωδικός πρόσβασης"
@@ -1177,7 +1178,7 @@ password-reset:
   length: "Ο Κωδικός πρέπει να είναι τουλάχιστον 8 χαρακτήρες"
   reset: "Επαναφορά Κωδικού"
   email: "Email"
-  send: "Send Email"
+  send: "Στείλτε Εmail"
 #shared: media
 media-shared:
   types:
@@ -1192,7 +1193,7 @@ media-shared:
     manga:
       All: "Όλα"
       manga: "Manga"
-      novel: "Novel"
+      novel: "Μυθιστόρημα"
       manhua: "Manhua"
       oneshot: "One-shot"
       doujin: "Doujin"
@@ -1203,13 +1204,13 @@ media-shared:
       current: "Currently Airing"
       finished: "Ολοκληρώθηκε"
       upcoming: "Προσεχή"
-      unreleased: "Unreleased"
+      unreleased: "Ακυκλοφόρητα"
       tba: "TBA"
     manga:
       current: "Δημοσιεύεται"
       finished: "Ολοκληρώθηκε"
       upcoming: "Προσεχή"
-      unreleased: "Unreleased"
+      unreleased: "Ακυκλοφόρητα"
       tba: "TBA"
 #shared: library
 library-shared:
@@ -1237,7 +1238,7 @@ onboarding:
   checklist:
     header: "Getting Started on Kitsu"
     steps: "{count} βήματα έμειναν! 🦊"
-    feed: "Visit your personal feed"
+    feed: "Επισκέψου το χρονολόγιο σου"
     rate: "Βαθμολόγησε 5 anime ή manga"
     rate-incomplete: "Rate {count} anime or manga"
     follow: "Ακολούθησε 5 χρήστες"
@@ -1252,16 +1253,16 @@ onboarding:
 #component: follow-button
 follow-button:
   follow: "Ακολουθήστε"
-  unfollow: "Unfollow"
+  unfollow: "Σταματήστε να ακολουθείτε"
 #component: kitsu-feed
 feeds:
   embed:
     preview: "This is a preview of your embed."
   uploads:
     select: "Ανάρτηση"
-    drop: "Drop to upload"
+    drop: "Αφήστε για να ανεβεί"
     invalid: "Μη έγκυρος τύπος αρχείου"
-    uploading: "{number, plural, =1 {Uploading photo… {progress}%} other {Uploading {number} photos… {progress}%}}"
+    uploading: "{number, plural, one {} =1 {Ανεβαίνει η φωτογραφία… {progress}%} other {Ανεβαίνουν {number} φωτογραφίες… {progress}%}}"
   filter:
     all: "Όλες η δραστηριότητα"
     media: "Media Activity"
@@ -1299,7 +1300,7 @@ image-form:
   help-text: "Κάντε κλικ εδώ για να επιλέξετε εικόνα."
 #component: groups/group-list
 group-list:
-  filter: "Filter Groups"
+  filter: "Φιλτράρισμα ομάδων"
   sort:
     featured: "Προτεινόμενα"
     recent: "Πρόσφατη Δραστηριότητα"
@@ -1341,24 +1342,24 @@ reaction-modal:
 #component: library-entry/*
 library-entry:
   state:
-    header: "{state, select, false {Add to Library} true {Update Library} other {}}"
+    header: "{state, select, false {Προσθήκη στη Βιβλιοθήκη} true {Ανανέωση Βιβλιοθήκης} other {}}"
     add-to-library: "Προσθήκη στη Βιβλιοθήκη"
-    seen-this: "{type, select, anime {Completed} manga {Completed} other {}}"
-    want-to-watch: "{type, select, anime {Want to Watch} manga {Want to Read} other {}}"
-    started-watching: "{type, select, anime {Started Watching} manga {Started Reading} other {}}"
-    watching-this: "Started"
+    seen-this: "{type, select, anime {Ολοκληρωμένα} manga {Ολοκληρωμένα} other {}}"
+    want-to-watch: "{type, select, anime {Θέλω να δω} manga {Θέλω να διαβάσω} other {}}"
+    started-watching: "{type, select, anime {Ξεκίνησα να βλέπω} manga {Ξεκίνησα να διαβάζω} other {}}"
+    watching-this: "Ξεκίνησε"
     finished-this: "Ολοκληρώθηκε"
     place-on-hold: "Σε αναμονή"
     drop-this: "Εγκαταλείφθηκε"
     change-rating: "Αλλαγή Βαθμολογίας"
     remove-rating: "Αφαίρεση Βαθμολογίας"
     rate-this: "Προσθήκη Βαθμολογίας"
-    edit-library: "Edit Library Entry"
+    edit-library: "Επεξεργασία καταχώρησης βιβλιοθήκης"
     post-reaction: "Δημοσίευση Αντίδρασης"
     edit-reaction: "Επεξεργασία Αντίδρασης"
-    rewatch: "{type, select, anime {Rewatch} manga {Reread} other {}}"
+    rewatch: "{type, select, anime {Ξαναβλέπω} manga {Ξαναδιαβάζω} other {}}"
     remove-from-library: "Αφαίρεση από την Βιβλιοθήκη"
-    saved-in: "Saved in '<a' href={link}'>'{status}'</a>'"
+    saved-in: "Αποθήκευση σε '<a' href={link}'>'{status}'</a>'"
     progress: "Πρόοδος"
     not-rated: "Δεν έχει βαθμολογηθεί"
   rating:
@@ -1369,7 +1370,7 @@ library-entry:
 #component: application/user-notifications
 user-notifications:
   #Episode 113 of One Piece! aired
-  aired: "{type, select, chapter {Chapter} episode {Episode} other {}} {number} of {media} {type, select, chapter {Released} episode {Aired} other {}}"
+  aired: "{type, select, chapter {Το Κεφάλαιο} episode {Το Επεισόδιο} other {}} {number} of {media} {type, select, chapter {Εκδόθηκε} episode {Προβλήθηκε} other {}}"
   aired-unknown: "{media} {type, select, manga {released} anime {aired} other {}} a new {type, select, manga {Chapter} anime {Episode} other {}}"
   menu:
     all: "Εμφάνιση όλων των ειδοποιήσεων"
@@ -1440,8 +1441,8 @@ admin:
     header: "Mod Reports"
     loading: "Φόρτωση Αναφορών…"
     open: "Άνοιγμα"
-    closed: "Closed"
-  header: "Admin Panel"
+    closed: "Κλειστές"
+  header: "Πίνακας Διαχειριστή"
   deployed-version: "Current Deployed Version: {version}"
   links:
     index: "Αναφορές"
@@ -1480,7 +1481,7 @@ category:
   battle-royale: "Battle Royale"
   bishounen: "Bishounen"
   blackmail: "Εκβιασμός"
-  bounty-hunter: "Bounty Hunter"
+  bounty-hunter: "Μισθοφόρος"
   boxing: "Μποξ"
   breaking-the-fourth-wall: "Breaking The Fourth Wall"
   buddhism: "Βουδισμός"
@@ -1489,7 +1490,7 @@ category:
   combat: "Μάχη"
   comedy: "Κωμωδία"
   coming-of-age: "Coming Of Age"
-  conspiracy: "Conspiracy"
+  conspiracy: "Συνωμοσία"
   contemporary-fantasy: "Contemporary Fantasy"
   content-indicators: "Content Indicators"
   cooking: "Μαγειρική"
@@ -1500,8 +1501,8 @@ category:
   cyberpunk: "Cyberpunk"
   cyborg: "Cyborg"
   cycling: "Ποδηλασία"
-  dark-fantasy: "Dark Fantasy"
-  dark-skinned-girl: "Dark Skinned Girl"
+  dark-fantasy: "Σκοτεινή Φαντασία"
+  dark-skinned-girl: "Σκουρόχρωμο Κορίτσι"
   deity: "Θεότητα"
   delinquent: "Delinquent"
   dementia: "Άνοια"
@@ -1522,9 +1523,9 @@ category:
   europe: "Ευρώπη"
   family: "Οικογένεια"
   fantasy: "Φαντασία"
-  fantasy-world: "Fantasy World"
-  female-student: "Female Student"
-  female-teacher: "Female Teacher"
+  fantasy-world: "Φανταστικός Κόσμος"
+  female-student: "Μαθήτρια"
+  female-teacher: "Δασκάλα"
   feudal-warfare: "Feudal Warfare"
   floating-island: "Floating Island"
   formula-racing: "Formula Racing"
@@ -1537,7 +1538,7 @@ category:
   ghost: "Φάντασμα"
   gunfights: "Gunfights"
   harem: "Harem"
-  heian-period: "Heian Period"
+  heian-period: "Περίοδος Heian"
   henshin: "Henshin"
   high-fantasy: "High Fantasy"
   high-school: "Λύκειο"
@@ -1556,12 +1557,12 @@ category:
   kids: "Παιδιά"
   korea: "Κορέα"
   kyoto: "Κιότο"
-  law-and-order: "Law And Order"
+  law-and-order: "Νόμος και Τάξη"
   loli: "Loli"
-  love-polygon: "Love Polygon"
+  love-polygon: "Πολύγωνο Αγάπης"
   mafia: "Μαφία"
   magic: "Μαγεία"
-  magical-girl: "Magical Girl"
+  magical-girl: "Μαγικό Κορίτσι"
   maid: "Maid"
   mars: "Άρης"
   martial-arts: "Πολεμικές Τέχνες"
@@ -1580,7 +1581,7 @@ category:
   ninja: "Νίντζα"
   nurse: "Νοσοκόμα"
   office-lady: "Office Lady"
-  other-planet: "Other Planet"
+  other-planet: "Από άλλο Πλανήτη"
   parallel-universe: "Παράλληλο Σύμπαν"
   parasite: "Παράσιτο"
   parental-abandonment: "Γονεϊκή Εγκατάλειψη"
@@ -1602,7 +1603,7 @@ category:
   robot: "Ρομπότ"
   robot-helper: "Robot Helper"
   romance: "Ρομαντική"
-  rotten-world: "Rotten World"
+  rotten-world: "Σάπιος Κόσμος"
   russia: "Ρωσία"
   samurai: "Σαμουράι"
   satire: "Σάτιρα"
@@ -1624,10 +1625,10 @@ category:
   slow-when-it-comes-to-love: "Slow When It Comes To Love"
   soccer: "Ποδόσφαιρο"
   space: "Διάστημα"
-  space-battles: "Space Battles"
-  space-opera: "Space Opera"
-  space-travel: "Space Travel"
-  special-squads: "Special Squads"
+  space-battles: "Μάχες Διαστήματος"
+  space-opera: "Όπερα Διαστήματος"
+  space-travel: "Ταξίδι στο Διάστημα"
+  special-squads: "Ειδικές Ομάδες"
   sports: "Αθλήματα"
   steampunk: "Steampunk"
   stereotypes: "Στερεότυπα"
@@ -1640,7 +1641,7 @@ category:
   supernatural: "Υπερφυσικό"
   super-power: "Σούπερ Δυνάμεις"
   super-robot: "Super Robot"
-  swordplay: "Swordplay"
+  swordplay: "Ξιφασκία"
   target-demographics: "Target Demographics"
   tennis: "Τένις"
   tentacle: "Πλοκάμια"

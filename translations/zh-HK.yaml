@@ -2,9 +2,9 @@
 #route titles -- these are used if the route doesn't specify the title itself
 titles:
   anime:
-    index: "探索動漫"
+    index: "Explore Anime"
   manga:
-    index: "探索漫畫"
+    index: "Explore Manga"
   media:
     show:
       units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
@@ -72,7 +72,7 @@ head:
 #header
 header:
   library: "Library"
-  anime: "动画"
+  anime: "Anime"
   manga: "Manga"
   trending: "Trending"
   groups: "Groups"
@@ -99,7 +99,7 @@ dashboard:
     title: "Quick Update"
     filter:
       all: "All"
-      anime: "动画"
+      anime: "Anime"
       manga: "Manga"
     empty:
       html: "Media you've added or updated within your '<a' href={link}'>'Library'</a>' will show up here for you to quickly update."
@@ -130,7 +130,7 @@ dashboard:
     button: "Learn More"
   feed:
     following: "Following"
-    anime: "动画"
+    anime: "Anime"
     manga: "Manga"
     global: "Global"
 #page: anime/manga
@@ -312,7 +312,7 @@ media:
         full_story: "Full story"
         spinoff: "Spin-off"
         adaptation: "Adaptation"
-        anime_adaptation: "动画"
+        anime_adaptation: "Anime"
         manga_adaptation: "Manga"
         character: "Character"
         other: "Other"
@@ -367,9 +367,10 @@ components:
     load: "load more"
     none: "no results"
   sidebar-footer:
-    contact: "Contact"
+    contact: "Contact" #Email address
     terms: "Terms"
     privacy: "Privacy"
+    status: "Status" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "Edit"
@@ -452,7 +453,7 @@ components:
     you: "Hey, that's you!"
     favorites:
       title: "Favorite {type, select, series {Series} characters {Characters} other {}}"
-      anime: "动画"
+      anime: "Anime"
       manga: "Manga"
       more: "Show More"
       edit: "Edit favorite {type, select, anime {anime} manga {manga} characters {characters} other {}}"
@@ -607,7 +608,7 @@ users:
       update: "Update Profile"
     favorites:
       header: "Favorites"
-      anime: "动画"
+      anime: "Anime"
       manga: "Manga"
       characters: "Characters"
       remove: "Remove Favorite?"
