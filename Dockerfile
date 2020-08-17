@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node:14-alpine
 MAINTAINER Kitsu, Inc.
 
 RUN mkdir -p /opt/kitsu/client
