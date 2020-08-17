@@ -1,7 +1,11 @@
 // Listed alphabetically by ID. Client displays alphabetically by text
 // https://crowdin.com/project/kitsu-web
 
-export default [
+// Also update config/environments.js when adding a new language group so
+// they can be used as Moment locales
+// Unfortunately a seperate file as Ember cannot import ESM in config files
+
+export const LANGUAGES = [
   // { id: 'af-za', text: 'Afrikaans' },
   // { id: 'am-et', text: '' }, // Amharic
   { id: 'ar-001', text: 'العربية (BETA)' }, // rtl
@@ -129,3 +133,5 @@ export default [
   // { id: 'zh-tw', text: '中文 (繁體)' }, // Taiwan, Traditional Mandarin
   // { id: 'zu-za', text: '' } // Zulu
 ];
+
+export const LANGUAGE_CODES = LANGUAGES.map(locale => locale.id);

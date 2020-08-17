@@ -1,4 +1,29 @@
 /* eslint-env node */
+// https://github.com/moment/moment/tree/2.27.0/locale
+const LANGUAGE_CODES = [
+  'en',
+  'ar',
+  'ca',
+  'de',
+  'en-gb',
+  'eo',
+  'es',
+  'fr-ca',
+  'fr',
+  'hu',
+  'id',
+  'it',
+  'nl',
+  'pl',
+  'pt-br',
+  'pt',
+  'ru',
+  'sv',
+  'tl-ph',
+  'tr',
+  'zh-cn'
+];
+
 const IS_STAGING_ENV = process.env.HEROKU_EMBER_APP === 'staging';
 
 module.exports = function(environment) {
@@ -114,7 +139,8 @@ module.exports = function(environment) {
 
     moment: {
       allowEmpty: true,
-      includeTimezone: 'subset'
+      includeTimezone: 'subset',
+      includeLocales: LANGUAGE_CODES
     },
 
     'ember-cli-mirage': {
