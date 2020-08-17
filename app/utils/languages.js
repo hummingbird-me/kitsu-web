@@ -124,7 +124,7 @@ export default [
   // { id: 'vls-be', text: '' }, // West Flemish
   // { id: 'xh-za', text: '' }, // Xhosa
   // { id: 'yo-ng', text: '' }, // Yoruba
-  // { id: 'zh-cn', text: '中文 (简体)' }, // Mainland China, Simplified Mandarin
+  { id: 'zh-cn', text: '中文 (简体)' }, // Mainland China, Simplified Mandarin
   // { id: 'zh_hk', text: '' }, // Hong Kong, Traditional Cantonese
   // { id: 'zh-tw', text: '中文 (繁體)' }, // Taiwan, Traditional Mandarin
   // { id: 'zu-za', text: '' } // Zulu
