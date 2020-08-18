@@ -526,7 +526,7 @@ users:
           about: "Wpisz swój Facebook URL poniżej, aby dodać link do swojego profilu."
           placeholder: "Twój Facebook URL"
         youtube2:
-          about: "Enter your YouTube channel URL below to add a link to your profile."
+          about: "Wprowadź adres URL kanału YouTube poniżej, aby dodać link do profilu."
           placeholder: "Link do Twojego kanału na YouTube"
         google:
           about: "Wpisz swój Google+ URL poniżej, aby dodać link do swojego profilu."
@@ -695,7 +695,7 @@ users:
       reset-confirmation: "Spowoduje to usunięcie całej biblioteki, związanych z nią recenzji i reakcji. Jesteś pewien, że chcesz kontynuować?"
       issues:
         header: "Problemy z Biblioteką"
-        reactions: "{count} completed media missing '<b>'reactions'</b>'"
+        reactions: "{count} zakończonych tytułów nie ma '<b>'reakcji'</b>'"
         fix: "napraw"
     list:
       edit: "Edytuj Wpis"
@@ -703,7 +703,7 @@ users:
       more: "Więcej"
       unstarted: "Nierozpoczęte"
       unrated: "Brak oceny"
-      progress: "{type, select, anime {Ep. {progress}} manga {Ch. {progress}} other {}}"
+      progress: "{type, select, anime {Odcinki} manga {Rozdziały} other {}}"
       table-header:
         title: "{type, select, anime {Tytuł Anime} manga {Tytuł Mangi} other {}}"
         rating: "Ocena"
@@ -713,8 +713,8 @@ users:
       empty:
         search: "Nie mogłem znaleźć żadnych wpisów w bibliotece za pomocą Twojego zapytania."
         header: "Wygląda na to, że Twoja biblioteka jest pusta! Gotowy do rozpoczęcia czegoś nowego?"
-        guest-header: "Looks like {user} doesn't have any library entries here."
-        button: "Browse {type}"
+        guest-header: "Wygląda na to, że {user} nie ma jeszcze żadnych wpisów."
+        button: "Przeglądaj {type}"
     grid:
       view-media: "View {type, select, anime {Anime} manga {Manga} other {}}"
     edit:
@@ -877,11 +877,11 @@ settings:
       email: "Adres e-mail"
       mobile: "Telefon"
     descriptions:
-      mentions: "Someone '<strong>'mentions'</strong>' me in a post or comment"
-      replies: "Someone '<strong>'replies'</strong>' to my post or comment"
-      likes: "Someone '<strong>'likes'</strong>' my post or comment"
-      follows: "Someone '<strong>'follows'</strong>' me"
-      posts: "Someone '<strong>'posts'</strong>' on my profile"
+      mentions: "Ktoś '<strong>'oznaczy'</strong>' mnie w poście lub komentarzu"
+      replies: "Ktoś '<strong>'odpowie'</strong>' na mój post lub komentarz"
+      likes: "Ktoś '<strong>'polubi'</strong>' mój post lub komentarz"
+      follows: "Ktoś '<strong>'zaobserwuje'</strong>' mnie"
+      posts: "Ktoś '<strong>'napisze'</strong>' na moim profilu"
       reaction_votes: "Ktoś '<strong>'poparł'</strong>'moją reakcję"
       airing: "Nowy odcinek został wypuszczony"
     newsletter:
@@ -953,10 +953,10 @@ groups:
           desc: "Wyjaśnij cel swojej grupy dogłębnie, udostępnij ważne informacje lub cokolwiek innego."
         rules:
           header: "Zasady"
-          desc: "Set out some guidelines for your group members to follow. These rules are Markdown supported!"
+          desc: "Określ wytyczne dla swoich członków grupy. Formatowanie Markdown jest wspierane!"
         neighbors:
-          header: "Neighbors"
-          desc: "Add related groups to your Neighborhood so your members can discover new communities!"
+          header: "Sąsiedzi"
+          desc: "Dodaj powiązane grupy do swojej okolicy, aby Twoi członkowie mogli odkryć nowe społeczności!"
         privacy:
           header: "Prywatność"
           desc: "Your privacy settings determine how open or closed your group is to the public. If you choose to make your group private, you will NOT be able to make it public in the future."
@@ -1147,7 +1147,7 @@ group-invite:
 explore:
   view-more: "Zobacz więcej"
   search-placeholder: "Czego szukasz?"
-  advanced-search: "Or, browse with the '<a' href=/{mediaType}'>'advanced search'</a>'"
+  advanced-search: "Albo przejdź do'<a' href=/{mediaType}'>'zaawansowanego wyszukiwania'</a>'"
   no-data: "Hmm, dla tej sekcji nie znaleziono żadnych mediów."
   widget:
     related: "Powiązane kategorie"
