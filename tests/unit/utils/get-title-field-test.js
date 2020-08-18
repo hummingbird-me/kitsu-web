@@ -7,9 +7,23 @@ module('Unit | Utility | get title field', function() {
     assert.equal(result, 'en');
   });
 
+  test('it returns `en_us` for `english` with language preferences', function(assert) {
+    const session = { hasUser: true, account: { titleLanguagePreference: 'english', language: 'en-us' } };
+    const media = { titles: { en_us: 'Shinjeki no Kyojin', en: 'Attack on Titan' }, canonicalTitle: 'Attack on Titan' };
+    const result = getComputedTitle(session, media);
+    assert.equal(result, 'en_us');
+  });
+
   test('it returns `en_jp` for `romanized`', function(assert) {
     const result = getTitleField('romanized');
     assert.equal(result, 'en_jp');
+  });
+
+  test('it returns `en_cn` for `romanized` with Chinese media', function(assert) {
+    const session = { hasUser: true, account: { titleLanguagePreference: 'romanized', language: 'en-us' } };
+    const media = { titles: { en_cn: 'Shinjeki no Kyojin', en: 'Attack on Titan' }, canonicalTitle: 'Attack on Titan' };
+    const result = getComputedTitle(session, media);
+    assert.equal(result, 'en_cn');
   });
 
   test('it returns `canonical` as default', function(assert) {
@@ -23,7 +37,7 @@ module('Unit | Utility | get title field', function() {
   });
 
   test('it returns session preference', function(assert) {
-    const session = { hasUser: true, account: { titleLanguagePreference: 'romanized' } };
+    const session = { hasUser: true, account: { titleLanguagePreference: 'romanized', language: 'en-us' } };
     const media = { titles: { en_jp: 'Shinjeki no Kyojin', en: 'Attack on Titan' }, canonicalTitle: 'Attack on Titan' };
     let result = getComputedTitle(session, media);
     assert.equal(result, 'Shinjeki no Kyojin');
