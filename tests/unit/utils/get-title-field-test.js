@@ -9,7 +9,7 @@ module('Unit | Utility | get title field', function() {
 
   test('it returns `en_us` for `english` with language preferences', function(assert) {
     const session = { hasUser: true, account: { titleLanguagePreference: 'english', language: 'en-us' } };
-    const media = { titles: { en_us: 'Shinjeki no Kyojin', en: 'Attack on Titan' }, canonicalTitle: 'Attack on Titan' };
+    const media = { titles: { en_us: 'en_us', en: 'en' }, canonicalTitle: 'abc' };
     const result = getComputedTitle(session, media);
     assert.equal(result, 'en_us');
   });
@@ -21,7 +21,7 @@ module('Unit | Utility | get title field', function() {
 
   test('it returns `en_cn` for `romanized` with Chinese media', function(assert) {
     const session = { hasUser: true, account: { titleLanguagePreference: 'romanized', language: 'en-us' } };
-    const media = { titles: { en_cn: 'Shinjeki no Kyojin', en: 'Attack on Titan' }, canonicalTitle: 'Attack on Titan' };
+    const media = { titles: { en_cn: 'en_cn', en: 'en' }, canonicalTitle: 'abc' };
     const result = getComputedTitle(session, media);
     assert.equal(result, 'en_cn');
   });

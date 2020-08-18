@@ -1,18 +1,16 @@
 import { get } from '@ember/object';
 
-export function getTitleField(preference, titleLocales, userLocale) {
+export function getTitleField(preference, titleLocales = {}, userLocale) {
   switch (preference) {
     case 'english':
     case 'localized':
-      if (titleLocales && userLocale in titleLocales) return userLocale;
+      if (userLocale in titleLocales) return userLocale;
       return 'en';
     case 'romanized':
       // TODO: Bodge while originalLocale is not exposed by the JSON:API endpoint
-      if (titleLocales) {
-        if ('en_jp' in titleLocales) return 'en_jp';
-        if ('en_cn' in titleLocales) return 'en_cn';
-        if ('en_kr' in titleLocales) return 'en_kr';
-      }
+      if ('en_jp' in titleLocales) return 'en_jp';
+      if ('en_cn' in titleLocales) return 'en_cn';
+      if ('en_kr' in titleLocales) return 'en_kr';
       return 'en_jp';
     default:
       return 'canonical';
