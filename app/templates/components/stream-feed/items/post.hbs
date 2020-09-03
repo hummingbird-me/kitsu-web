@@ -168,11 +168,13 @@
                       {{t "feeds.post.spoilers" type=post.media.modelType num=post.spoiledUnit.number}} {{postUnitText}}
                     </a>
                   {{/if}}
-                  <small class="secondary-text">
-                    <div class="media-tag-synopsis">
-                      {{truncate post.media.synopsis 150}}
-                    </div>
-                  </small>
+                  {{#if post.media.description}}
+                    <small class="secondary-text">
+                      <div class="media-tag-description">
+                        {{truncate post.media.description 150}}
+                      </div>
+                    </small>
+                  {{/if}}
                 </div>
               </div>
             </div>

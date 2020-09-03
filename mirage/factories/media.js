@@ -19,7 +19,7 @@ export default Factory.extend({
   status: 'tba',
   startDate() { return faker.date.past(); },
   subtype() { return faker.list.random('TV', 'Movie')(); },
-  synopsis() { return faker.lorem.paragraphs(); },
+  description() { return faker.lorem.paragraphs(); },
   titles: {
     en: 'Kitsu The Anime - Engish',
     en_jp: 'Kitsu The Anime',

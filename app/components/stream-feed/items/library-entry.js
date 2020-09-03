@@ -7,7 +7,7 @@ import { momentUser } from 'client/utils/moment';
 
 export default Component.extend({
   classNames: ['stream-item', 'row'],
-  isSynopsisExpanded: false,
+  isDescriptionExpanded: false,
   hasMoreActivities: false,
   showAll: false,
   activityLimit: 2,

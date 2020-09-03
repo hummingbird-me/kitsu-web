@@ -42,10 +42,12 @@
       {{/if}}
     {{/if}}
 
-    {{! Synopsis }}
-    <section class="media-synopsis m-b-1">
-      {{read-more media.synopsis 480 tagName="p"}}
-    </section>
+    {{! Description }}
+    {{#if media.description}}
+      <section class="media-description m-b-1">
+        {{read-more media.description 480 tagName="p"}}
+      </section>
+    {{/if}}
 
     {{! Categories }}
     {{! @TODO: Componentize and make it data-loading }}

@@ -8,7 +8,7 @@ export default Base.extend({
   length: attr('number'),
   number: attr('number'),
   seasonNumber: attr('number'),
-  synopsis: attr('string'),
+  description: attr('string'),
   thumbnail: attr('object'),
   titles: attr('object'),
 

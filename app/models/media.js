@@ -26,7 +26,7 @@ export default Base.extend({
   startDate: attr('utc'),
   status: attr('string'),
   subtype: attr('string'),
-  synopsis: attr('string'),
+  description: attr('string'),
   tba: attr('string'),
   titles: attr('object'),
 
