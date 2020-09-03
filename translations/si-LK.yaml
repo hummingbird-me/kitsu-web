@@ -2,19 +2,19 @@
 #route titles -- these are used if the route doesn't specify the title itself
 titles:
   anime:
-    index: "Explore Anime"
+    index: "ඇනිමෙ ගවේෂණය කරන්න"
   manga:
-    index: "Explore Manga"
+    index: "මංගා ගවේෂණය කරන්න"
   media:
     show:
-      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
-      characters: "Characters"
-      reactions: "Reactions"
-      franchise: "Franchise"
+      units: "{type, select, anime {කථාංග} manga {පරිච්ඡේද} other {}}"
+      characters: "චරිත"
+      reactions: "අදහස්"
+      franchise: "අදාළ වෙනත්"
   explore:
-    index: "Explore {mediaType, select, anime {Anime} manga {Manga} other {}}"
+    index: "සොයන්න {mediaType, select, anime {ඇනිමෙ} manga {මංගා} other {}}"
     more:
-      trending: "Trending {type, select, other {}} This Week"
+      trending: "ජනප්ප්‍රිය {type, select, other {}} මෙම සතිය"
       top-current: "Top {type, select, Anime {Airing} Manga {Publishing} other {}} {type}"
       top-upcoming: "Top Upcoming {type}"
       highest-rated: "Highest Rated {type}"
@@ -25,14 +25,14 @@ titles:
         newly-released: "Newly Released {category} {type}"
         trending: "Trending {category} {type}"
         most-popular: "Most Popular {category} {type}"
-  not-found: "Not Found"
-  server-error: "Server Error"
+  not-found: "සොයාගත නොහැක"
+  server-error: "සේවාදායකයේ දෝෂයක්"
   users:
-    index: "{user}'s Profile"
-    library: "{user}'s Library"
-    reviews: "{user}'s Reviews"
-    reactions: "{user}'s Reactions"
-    followers: "{user}'s Followers"
+    index: "{user}'ගේ විස්තර"
+    library: "{user}'ගේ එකතුව"
+    reviews: "{user}'ගේ විචාර"
+    reactions: "{user}'ගේ අදහස්"
+    followers: "{user}'ගේ අනුගාමිකයන්"
     following: "Followed by {user}"
     groups: "{user}'s Groups"
     stats: "{user}'s Stats"
@@ -80,12 +80,12 @@ header:
   browse: "Browse"
   auth:
     sign-in: "Sign In"
-    sign-up: "Sign Up"
+    sign-up: "ලියාපදිංචි වන්න"
   user:
     profile: "View Profile"
     settings: "Settings"
     admin: "Admin"
-    logout: "Logout"
+    logout: "ඉවත් වන්න"
 #authentication modal
 auth-modal:
   sign-up:
@@ -98,9 +98,9 @@ dashboard:
   quick-update:
     title: "Quick Update"
     filter:
-      all: "All"
-      anime: "Anime"
-      manga: "Manga"
+      all: "සියල්ල"
+      anime: "ඇනිමෙ"
+      manga: "මංගා"
     empty:
       html: "Media you've added or updated within your '<a' href={link}'>'Library'</a>' will show up here for you to quickly update."
       discover: "Discover Media"
@@ -174,12 +174,12 @@ media:
         short:
           popularity: "{type, select, anime {#{rank} Most Popular} manga {#{rank} Most Popular} other {}}"
           rating: "{type, select, anime {#{rank} Highest Rated} manga {#{rank} Highest Rated} other {}}"
-      categories: "Categories"
+      categories: "ප්‍රවර්ගයන්"
       relationships:
         header: "More from this Series"
         more: "View all in {title}"
       reactions:
-        header: "Reactions"
+        header: "අදහස්"
         more: "View More Reactions"
         sorts:
           -upVotesCount: "Popular"
