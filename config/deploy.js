@@ -35,11 +35,6 @@ module.exports = function(deployTarget) {
           ]
         }]
       })
-    },
-    'github-deployment-status': {
-      org: 'hummingbird-me',
-      repo: 'kitsu-web',
-      ref: 'the-future'
     }
   };
 
