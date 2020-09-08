@@ -399,6 +399,8 @@ components:
         hover:
           nsfw: "Mia korpo estas preta!"
           spoiler: "Mi estas preta akcepti veron!"
+      to: "\"to\""
+      group: "Group"
       link: "Kopii afiŝan ligilon"
       unfollow: "Malaboni afiŝon"
       follow: "Aboni afiŝon"
@@ -632,7 +634,10 @@ users:
         female: "Virino"
       location: "Loko:"
       birthday: "Naskiĝtago:"
-      joined: "Aliĝa dato:"
+      joined:
+        title: "Join Date:"
+        date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Animea statistiko"
