@@ -97,45 +97,45 @@
         text-decoration: none;
       }
       &.library-all {
-        background: lighten(#402F3F,67);
-        color: #8e8b8e;
+        background: $library-all-background-color-inactive;
+        color: $library-all-text-color;
         &:hover {
-          background: lighten(#402F3F,57);
+          background: $library-all-background-color-hover;
         }
       }
       &.status-current {
-        background: lighten(#2c3e50,67);
-        color: #8d9398;
+        background: $status-current-background-color-inactive;
+        color: $status-current-text-color;
         &:hover {
-          background: lighten(#2c3e50,57);
+          background: $status-current-background-color-hover;
         }
       }
       &.status-completed {
-        background: lighten(#27ae60, 52);
-        color: #798e7b;
+        background: $status-completed-background-color-inactive;
+        color: $status-completed-text-color;
         &:hover {
-          background: lighten(#27ae60, 42);
+          background: $status-completed-background-color-hover;
         }
       }
       &.status-hold {
-        background: lighten(#f39c12,45);
-        color: #9e9989;
+        background: $status-hold-background-color-inactive;
+        color: $status-hold-text-color;
         &:hover {
-          background: lighten(#f39c12,35);
+          background: $status-hold-background-color-hover;
         }
       }
       &.status-dropped {
-        background: lighten(#A12F31,57);
-        color: #867677;
+        background: $status-dropped-background-color-inactive;
+        color: $status-dropped-text-color;
         &:hover {
-          background: lighten(#A12F31,47);
+          background: $status-dropped-background-color-hover;
         }
       }
       &.status-planned {
-        background: lighten(#2980b9,52);
-        color: #8e959a;
+        background: $status-planned-background-color-inactive;
+        color: $status-planned-text-color;
         &:hover {
-          background: lighten(#2980b9,42);
+          background: $status-planned-background-color-hover;
         }
       }
     }
@@ -144,28 +144,28 @@
         box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
         position: relative;
         &.library-all {
-          background: #402F3F;
-          color: $white;
+          background: $library-all-background-color;
+          color: $library-current-text-color;
         }
         &.status-current {
-          background: #2c3e50;
-          color: $white;
+          background: $status-current-background-color;
+          color: $library-current-text-color;
         }
         &.status-completed {
-          background: #27ae60;
-          color: $white;
+          background: $status-completed-background-color;
+          color: $library-current-text-color;
         }
         &.status-hold {
-          background: #f39c12;
-          color: $white;
+          background: $status-hold-background-color;
+          color: $library-current-text-color;
         }
         &.status-dropped {
-          background: #A12F31;
-          color: $white;
+          background: $status-dropped-background-color;
+          color: $library-current-text-color;
         }
         &.status-planned {
-          background: #2980b9;
-          color: $white;
+          background: $status-planned-background-color;
+          color: $library-current-text-color;
         }
       }
     }
