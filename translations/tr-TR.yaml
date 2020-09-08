@@ -399,6 +399,8 @@ components:
         hover:
           nsfw: "Buna hazırım!"
           spoiler: "Gerçekle başa çıkabilirim!"
+      to: "\"to\""
+      group: "Group"
       link: "Gönderinin linkini kopyala"
       unfollow: "Gönderiyi takip etmeyi bırak"
       follow: "Gönderiyi takip et"
@@ -632,7 +634,10 @@ users:
         female: "Kadın"
       location: "Konum:"
       birthday: "Doğum Günü:"
-      joined: "Katılma Tarihi:"
+      joined:
+        title: "Join Date:"
+        date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Anime İstatikleri"
