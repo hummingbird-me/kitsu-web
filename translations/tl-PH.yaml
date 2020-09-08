@@ -399,6 +399,8 @@ components:
         hover:
           nsfw: "Handa na ang aking katawan!"
           spoiler: "Kakayanin ko ang katotohanan!"
+      to: "\"to\""
+      group: "Group"
       link: "Kopyahin ang Link sa Post"
       unfollow: "I-unfollow ang Post"
       follow: "I-follow ang Post"
@@ -632,7 +634,10 @@ users:
         female: "Babae"
       location: "Lokasyon:"
       birthday: "Kaarawan:"
-      joined: "Petsa kung Kailan Sumali:"
+      joined:
+        title: "Join Date:"
+        date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Anime Stats"
