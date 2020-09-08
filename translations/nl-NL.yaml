@@ -399,6 +399,8 @@ components:
         hover:
           nsfw: "Mijn lichaam is er klaar voor!"
           spoiler: "Ik kan de waarheid aan!"
+      to: "\"to\""
+      group: "Group"
       link: "Link naar post Kopiëren"
       unfollow: "Post Ontvolgen"
       follow: "Volg Post"
@@ -632,7 +634,10 @@ users:
         female: "Vrouw"
       location: "Locatie:"
       birthday: "Verjaardag:"
-      joined: "Lid sinds:"
+      joined:
+        title: "Join Date:"
+        date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Anime Statistieken"
