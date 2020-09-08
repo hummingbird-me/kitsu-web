@@ -399,6 +399,8 @@ components:
         hover:
           nsfw: "Aku siap!"
           spoiler: "Buka saja spoilernya!"
+      to: "\"to\""
+      group: "Group"
       link: "Salin Link Kiriman"
       unfollow: "Batal Ikuti"
       follow: "Ikuti Kiriman"
@@ -632,7 +634,10 @@ users:
         female: "Wanita"
       location: "Lokasi:"
       birthday: "Ulang Tahun:"
-      joined: "Tanggal Bergabung:"
+      joined:
+        title: "Join Date:"
+        date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Stat Anime"
