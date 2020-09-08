@@ -51,7 +51,7 @@
         {{#if post.targetUser}}
           {{#unless (eq post.targetUser.id userId)}}
             <span class="recipient-info">
-              <small>to</small>
+              <small>{{t "components.stream-feed.post.to"}}</small>
               <a href={{href-to "users.index" post.targetUser}} class="author-name" onclick={{action "trackEngagement" "click"}}>
                 {{post.targetUser.name}}
               </a>
@@ -67,7 +67,7 @@
               <a href={{href-to "groups.group.group-page.index" post.targetGroup.slug}} class="author-name" onclick={{action "trackEngagement" "click"}}>
                 {{post.targetGroup.name}}
               </a>
-              <span class="tag tag-default role-tag">Group</span>
+              <span class="tag tag-default role-tag">{{t "components.stream-feed.post.group"}}</span>
             </span>
           {{/unless}}
         {{/if}}
