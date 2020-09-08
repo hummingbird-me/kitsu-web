@@ -399,6 +399,8 @@ components:
         hover:
           nsfw: "Jeg ble født klar!"
           spoiler: "Jeg tåler sannheten!"
+      to: "\"to\""
+      group: "Group"
       link: "Kopier lenke til innlegget"
       unfollow: "Slutt å følge innlegget"
       follow: "Følg innlegget"
@@ -632,7 +634,10 @@ users:
         female: "Kvinne"
       location: "Sted:"
       birthday: "Bursdag:"
-      joined: "Registreringsdato:"
+      joined:
+        title: "Join Date:"
+        date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Anime statistikk"
