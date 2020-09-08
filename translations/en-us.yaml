@@ -476,7 +476,7 @@ components:
         hover:
           nsfw: "My body is ready!"
           spoiler: "I can handle the truth!"
-      to: "to" # followed by recipient user name
+      to: "to" # followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
       group: "Group"
       link: "Copy Link to Post"
       unfollow: "Unfollow Post"
@@ -717,8 +717,8 @@ users:
       birthday: "Birthday:"
       joined:
         title: "Join Date:"
-        date: "MMMM Do, YYYY"
-        time: "({time} ago)"
+        date: "MMMM Do, YYYY" # Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" # {time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Anime Stats"
