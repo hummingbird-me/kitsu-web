@@ -60,7 +60,7 @@ titles:
       dashboard:
         index: "Σύνοψη {group}"
         reports: "Αναφορές {group}"
-        tickets: "{group} Tickets"
+        tickets: "{group} Περιστατικά"
         members: "{group} Μέλη"
         leaders: "{group} Αρχηγοί"
         settings: "Ρυθμίσεις {group}"
@@ -336,8 +336,8 @@ components:
       not-set: "Δεν έχει οριστεί"
       actions:
         button: "Ενέργειες"
-        open: "Mark Open"
-        resolved: "Mark Resolved"
+        open: "Σήμανση ως εκκρεμές"
+        resolved: "Σήμανση ως επιλυμένου"
         closed: "Mark closed"
       table:
         user: "Χρήστης"
@@ -355,7 +355,7 @@ components:
     fast-forward: "Library progress fast-forwarded to episode {number}!"
     undo-update: "Αναίρεση"
     update-progress: "Update library progress to episode {number}?"
-    watched: "Mark Watched"
+    watched: "Σήμανση ως προβληθέν"
     join-prompt:
       pitch: "Track your progress and join the discussion!"
       register: "Δημιουργία Λογαριασμού Kitsu"
@@ -371,7 +371,7 @@ components:
     contact: "Επικοινωνία" #Email address
     terms: "Όροι"
     privacy: "Ιδιωτικοτητα"
-    status: "Status" #Service status - status.kitsu.io
+    status: "Κατάσταση" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "Επεξεργασία"
@@ -398,7 +398,7 @@ components:
         spoiler: "Αυτή η δημοσίευση περιέχει spoilers."
         hover:
           nsfw: "Το σώμα μου είναι έτοιμο!"
-          spoiler: "I can handle the truth!"
+          spoiler: "Αντέχω την αλήθεια!"
       #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
       to: "to"
       group: "Group"
@@ -493,7 +493,7 @@ users:
     cover: "Change your cover photo"
     navigation:
       about: "Σχετικά με μένα"
-      profile-links: "Profile Links"
+      profile-links: "Σύνδεσμοι Προφίλ"
       favorites: "Αγαπημένα"
     about:
       header: "Σχετικά με εμένα"
@@ -517,7 +517,7 @@ users:
         label: "Περιγραφή"
         placeholder: "Πες στον κόσμο την ιστορία σου."
     profile-links:
-      header: "Profile Links"
+      header: "Σύνδεσμοι Προφίλ"
       remove: "Αφαίρεση από προφίλ"
       sites:
         website:
@@ -561,31 +561,31 @@ users:
           placeholder: "Your Discord tag (User#1234)"
         tumblr:
           about: "Enter your Tumblr blog name below to add a link to your profile."
-          placeholder: "Your Tumblr blog name"
+          placeholder: "Το όνομα του Blog σας στο Tumblr"
         soundcloud:
           about: "Enter your SoundCloud username below to add a link to your profile."
-          placeholder: "Your SoundCloud username"
+          placeholder: "Το όνομα χρήστη σας στο SoundCloud"
         dailymotion:
           about: "Enter your Dailymotion username below to add a link to your profile."
-          placeholder: "Your Dailymotion username"
+          placeholder: "Το όνομα χρήστη σας στο Dailymotion"
         kickstarter:
           about: "Enter your Kickstarter username below to add a link to your profile."
-          placeholder: "Your Kickstarter username"
+          placeholder: "Το όνομα χρήστη σας στο Kickstarter"
         mobcrush:
           about: "Enter your Mobcrush username below to add a link to your profile."
-          placeholder: "Your Mobcrush username"
+          placeholder: "Το όνομα χρήστη σας στο Mobcrush"
         osu:
           about: "Enter your Osu! ID number below to add a link to your profile."
-          placeholder: "Your Osu! ID number"
+          placeholder: "Ο αριθμός σας στο Osu"
         patreon:
           about: "Enter your Patreon project name to add a link to your profile."
-          placeholder: "Your Patreon project name"
+          placeholder: "Το όνομα του Project σας στο Patreon"
         deviantart:
           about: "Enter your DeviantArt username below to add a link to your profile."
           placeholder: "Το όνομα χρήστη σας στο DevianArt"
         dribbble:
           about: "Enter your Dribbble username below to add a link to your profile."
-          placeholder: "Your Dribbble username"
+          placeholder: "Το όνομα χρήστη σας στο Dribbble"
         imdb:
           about: "Enter your IMDb profile URL below to add a link to your profile."
           placeholder: "Your IMDb profile URL"
@@ -594,13 +594,13 @@ users:
           placeholder: "Το όνομα χρήστη σας στο Last.fm"
         letterboxd:
           about: "Enter your Letterboxd username below to add a link to your profile."
-          placeholder: "Your Letterboxd username"
+          placeholder: "Το όνομα χρήστη σας στο Letterboxd"
         medium:
           about: "Enter your Medium username or publication name below to add a link to your profile."
           placeholder: "Your Medium username (@user) or publication name"
         playerme:
           about: "Enter your Player.me username below to add a link to your profile."
-          placeholder: "Your Player.me username"
+          placeholder: "Το όνομα χρήστη σας στο Player.me"
         reddit:
           about: "Enter your Reddit username below to add a link to your profile."
           placeholder: "Το όνομα χρήστη σας στο Reddit"
@@ -621,7 +621,7 @@ users:
       welcome: "Hey {user}, this page is all about YOU!"
       about: "As you continue to use Kitsu your '<strong>'Personal Feed'</strong>' below will begin to populate with the anime and manga you've watched, read, completed, and plan to check out. You can also post text, images, and videos to your feed using the form below. Your posts will be seen and appreciated by your followers and users from the global feed."
       action: "Make yourself at home! Upload an avatar and cover image! Click '<span>'Edit'</span>' above to get started."
-      title: "Set-Up Your Profile"
+      title: "Φτιάξτε το Προφίλ σας"
     about:
       header: "Σχετικά με εμένα"
       empty: "Είναι μυστικό"
@@ -784,7 +784,7 @@ settings:
     notifications: "Ειδοποιήσεις"
     password: "Κωδικός πρόσβασης"
     privacy: "Ιδιωτικότητα"
-    linked-accounts: "Linked Accounts"
+    linked-accounts: "Συνδεδεμένοι Λογαριασμοί"
     import: "Εισαγωγή"
     export: "Εξαγωγή"
     blocking: "Αποκλεισμός"
@@ -819,7 +819,7 @@ settings:
     disabled: "Your MAL Export has been disabled due to the following reason: '<strong>'{reason}'</strong>'"
     create: "Setup Export to MyAnimeList Account"
     download: "Λήψη {kind} Βιβλιοθήκης"
-    recent: "Recent Sync Activity"
+    recent: "Πρόσφατη Δραστηριότητα Συγχρονισμού"
     sync-header: "Συγχρονισμός MyAnimeList"
     no-logs: "Αναλύουμε την βιβλιοθήκη σου και την συγχρονίζουμε με το MyAnimeList. Κρατήσου γερά!"
     logs:
@@ -841,12 +841,12 @@ settings:
         error: "Σφάλμα"
   imports:
     header: "Εισαγωγές"
-    sub-header: "Import media from other providers"
-    button: "Import Media"
-    past-imports: "Your past imports"
+    sub-header: "Εισαγωγή Media από άλλους παρόχους"
+    button: "Εισαγωγή Media"
+    past-imports: "Οι προηγούμενες εισαγωγές σας"
     loading: "Φόρτωση Εισαγωγών…"
     status: "Κατάσταση:"
-    entries: "Total Entries Found:"
+    entries: "Σύνολο Καταχωρήσεων που βρέθηκαν:"
     error: "It seems like your import has failed :( &mdash; We want to get this fixed for you so please '<a href=\"mailto:help@kitsu.io\">'email'</a>' us."
     more: "Φόρτωση Περισσότερων"
   index:
@@ -868,10 +868,10 @@ settings:
     rating: "Είδος Αξιολόγησης"
     rating-message: "Choose how you would like to rate media that you've watched or read."
     adult: "Για ενήλικες"
-    adult-message: "With adult content hidden, you won't see R18+ media in the feed, libraries, or search."
-    update: "Update Profile"
+    adult-message: "Με το ενήλικο περιεχόμενο κρυφό, δεν θα βλέπετε R18+ media στο χρονολόγιο, τις βιβλιοθήκες ή στην αναζήτηση."
+    update: "Αποθήκευση Προφίλ"
   linked-accounts:
-    header: "Linked Accounts"
+    header: "Συνδεδεμένοι Λογαριασμοί"
     sub-header: "Connect third-party accounts with Kitsu"
     facebook: "Facebook"
     disconnect: "Αποσύνδεση από το Facebook"
@@ -888,7 +888,7 @@ settings:
       replies: "Someone '<strong>'replies'</strong>' to my post or comment"
       likes: "Someone '<strong>'likes'</strong>' my post or comment"
       follows: "Someone '<strong>'follows'</strong>' me"
-      posts: "Someone '<strong>'posts'</strong>' on my profile"
+      posts: "Κάποιος '<strong>'ποστάρει'</strong>' στο προφίλ μου"
       reaction_votes: "Someone '<strong>'upvotes'</strong>' my media reaction"
       airing: "Κυκλοφόρησε νέο επεισόδιο"
     newsletter:
@@ -974,7 +974,7 @@ groups:
           header: "Φωτογραφία προφίλ"
           desc: "This image will be used throughout Kitsu to identify your group."
         cover:
-          header: "Cover Image"
+          header: "Εικόνα Εξώφυλλου"
           desc: "This image will appear at the top of your group's page on desktops. Sides may be cropped slightly based on the viewer's screen size."
       errors:
         neighbors-same: "You can't add your group as a neighbor."
@@ -1005,24 +1005,24 @@ groups:
     empty: "Hey there! Looks like you're using the Kitsu community guidelines. If you'd like to specify your own rules you can do that on your '<a' href={link}'>'settings page.'</a>'"
   tickets:
     search: "Αναζήτηση Περιστατικών"
-    empty: "Hooray! You don't have any tickets to handle."
-    helper: "Tickets allow you to communicate with the leaders of this group to solve any issues you might have. Message the leaders here to create a ticket."
+    empty: "Ζήτω! Δεν έχετε κανένα περιστατικό να διαχειριστείτε."
+    helper: "Τα περιστατικά σας επιτρέπουν να επικοινωνείτε με τους αρχηγούς της ομάδας για να λύσετε τυχόν προβλήματα. Στείλτε μήνυμα στους αρχηγούς εδώ για να δημιουργήσετε ένα περιστατικό."
     filter:
       open: "Ανοιχτά Περιστατικά"
-      resolved: "Resolved Tickets"
+      resolved: "Περιστατικά που έχουν τακτοποιηθεί"
       all: "Όλα τα περιστατικά"
     conversation:
-      title: "Ticket from '<a' href={link}'>'{name}'</a>'"
-      mark-resolved: "Mark Resolved"
+      title: "Περιστατικά από '<a' href={link}'>'{name}'</a>'"
+      mark-resolved: "Σήμανση ως επιλυμένου"
       mark-closed: "Mark Closed"
-      mark-open: "Mark Open"
+      mark-open: "Σήμανση ως εκκρεμές"
       nav:
         reply: "Απαντήστε στον χρήστη"
         leader: "Σημείωση Αρχηγού"
-      create-btn: "Create Ticket"
+      create-btn: "Δημιουργία Περιστατικού"
       reply-btn: "Αποστολή Απάντησης"
       reply-placeholder: "Πληκτρολογήστε το μήνυμά σας"
-      helper: "Write your message below to create a ticket! Leaders for this group will reply to your ticket as soon as they can."
+      helper: "Γράψτε το μήνυμα παρακάτω για να δημιουργήσετε ένα περιστατικό! Οι αρχηγοί της ομάδας θα απαντήσουν στο περιστατικό σας μόλις μπορέσουν."
   reports:
     no-explanation: "Δεν δόθηκε εξήγηση"
     empty: "Hooray! You don't have any reports to handle."
@@ -1053,9 +1053,9 @@ groups:
       modal:
         header: "Leader Permissions:"
         owner: "Κάτοχος Ομάδας"
-        tickets: "Manage Tickets"
-        members: "Manage Members"
-        leaders: "Manage Leaders"
+        tickets: "Διαχείριση Περιστατικών"
+        members: "Διαχείριση μελών"
+        leaders: "Διαχείριση Αρχηγών"
         community: "Διαχείριση ρυθμίσεων"
         content: "Manage Content & Reports"
         owner-help: "Owners have all permissions."
@@ -1138,8 +1138,8 @@ groups:
         escalated: "esclated a report."
       group-ticket:
         assigned: "assigned a ticket to '<a' href={link}'>'{user}'</a>'."
-        resolved: "marked a ticket as resolved."
-        created: "re-opened a ticket."
+        resolved: "σήμανε ένα περιστατικό ως επιλυμένο."
+        created: "ξανα-άνοιξε ένα περιστατικό."
 #page: group-invite
 group-invite:
   header: "Group Invite"
@@ -1254,7 +1254,7 @@ onboarding:
     like: "Κάνε Like σε 3 δημοσιεύσεις χρονολογίου"
     like-incomplete: "Like {count} feed posts"
     avatar: "Ορίστε το Avatar σας"
-    cover: "Set a profile cover image"
+    cover: "Ορίστε μια φωτογραφία εξωφύλλου προφίλ"
     about-me: "Complete your '<i>'About Me'</i>'"
     favorite: "Επέλεξε τα αγαπημένα σου Anime / Manga"
 #component: follow-button
@@ -1333,7 +1333,7 @@ reaction-modal:
       select: "Επιλογή"
       close: "Κλείσιμο"
     confirm:
-      check: "Are you sure you want to do this?"
+      check: "Είστε βέβαιοι ότι θέλετε να το κάνετε αυτό;"
       button: "Επιβεβαίωση"
     block-user:
       header: "Μπλοκάρισμα Χρήστη"
@@ -1521,7 +1521,7 @@ category:
   drama: "Δράμα"
   drifting: "Drifting"
   dynamic: "Dynamic"
-  dystopia: "Dystopia"
+  dystopia: "Δυστοπία"
   earth: "Γη"
   elementary-school: "Δημοτικό"
   elements: "Στοιχεία"
@@ -1533,7 +1533,7 @@ category:
   fantasy-world: "Φανταστικός Κόσμος"
   female-student: "Μαθήτρια"
   female-teacher: "Δασκάλα"
-  feudal-warfare: "Feudal Warfare"
+  feudal-warfare: "Φεουδαρχικός Πόλεμος"
   floating-island: "Floating Island"
   formula-racing: "Formula Racing"
   france: "Γαλλία"
@@ -1614,7 +1614,7 @@ category:
   russia: "Ρωσία"
   samurai: "Σαμουράι"
   satire: "Σάτιρα"
-  school-clubs: "School Clubs"
+  school-clubs: "Σχολικά Club"
   school-life: "Σχολική Ζωή"
   science-fiction: "Επιστημονικής φαντασίας"
   seinen: "Seinen"
@@ -1641,7 +1641,7 @@ category:
   stereotypes: "Στερεότυπα"
   street-racing: "Αγώνες Δρόμου"
   student-government: "Student Government"
-  sudden-girlfriend-appearance: "Sudden Girlfriend Appearance"
+  sudden-girlfriend-appearance: "Ξαφνική Εμφάνιση Κοπέλας"
   summer: "Καλοκαίρι"
   super-deformed: "Super Deformed"
   superhero: "Υπερήρωες"
@@ -1660,7 +1660,7 @@ category:
   time-travel: "Ταξίδι στο Χρόνο"
   tokugawa-period: "Περίοδος Tokugawa"
   tokyo: "Τόκιο"
-  tone-changes: "Tone Changes"
+  tone-changes: "Αλλαγές στον τόνο"
   transforming-craft: "Transforming Craft"
   united-kingdom: "Ηνωμένο Βασίλειο"
   united-states: "Ηνωμένες Πολιτείες"
