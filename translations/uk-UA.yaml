@@ -203,7 +203,7 @@ media:
         de_de: "Німецька"
         el_gr: "Грецька"
         en: "Англійська"
-        en_ar: "Arabic (Romanized)"
+        en_ar: "Арабська (Латиниця)"
         en_au: "Англійська (Австралійська)"
         en_ca: "Англійська (Канадська)"
         en_cn: "Китайська (піньїнь)"
@@ -329,7 +329,7 @@ application:
     alert: "This is a sandbox. '<br>' All changes will be reset."
 #components
 components:
-  ad-unit: "Ads suck, but that's how we keep the lights on. Please whitelist us in your adblocker."
+  ad-unit: "Нам також не подобається реклама, але завдяки ній ми можемо робити для вас більше та краще. Будь ласка, внесіть нас у білий список у вашому блокувальнику реклами."
   admin:
     reports:
       no-explanation: "No Explanation Provided."
@@ -340,13 +340,13 @@ components:
         resolved: "Mark Resolved"
         closed: "Відмітити завершеним"
       table:
-        user: "User"
+        user: "Користувач"
         type: "Тип"
         reason: "Причина"
         explanation: "Пояснення"
         moderator: "Модератор"
         status: "Статус"
-        actions: "Actions"
+        actions: "Дії"
   application:
     nav-search: "Пошук в Кітсу"
   episodes:
@@ -360,8 +360,8 @@ components:
       pitch: "Відстежуйте ваш прогрес та приєднайтеся до обговорення!"
       register: "Створити обліковий запис Kitsu"
   likeable-resource:
-    loading: "Loading…"
-    more: "Load More"
+    loading: "Завантаження…"
+    more: "Завантажити більше"
   search:
     header: "Результати пошуку"
     view: "детальніше"
@@ -407,8 +407,8 @@ components:
       follow: "Follow Post"
       show: "Show Post Content"
       hide: "Hide Post Content"
-      edit: "Edit Post"
-      delete: "Delete Post"
+      edit: "Редагувати пост"
+      delete: "Видалити пост"
       unpin: "Unpin Post from Profile"
       pin: "Pin Post to Profile"
       pin-text: "Do you really want to pin this post to your profile?"
@@ -420,22 +420,22 @@ components:
         reply: "Reply"
         copy-link: "Copy Link to Comment"
         edit: "Edit Comment"
-        delete: "Delete Comment"
+        delete: "Видалити коментар"
         report: "Report Comment"
         previous-replies: "Show Previous Replies"
-        add-reply: "Add a reply…"
+        add-reply: "Відповісти…"
       comments:
-        all: "View All Comments"
-        parent: "View Parent Comment"
-        previous-comments: "Show Previous Comments"
-        leave-comment: "Leave a comment…"
+        all: "Переглянути всі коментарі"
+        parent: "Переглянути головний коментар"
+        previous-comments: "Показати попередні коментарі"
+        leave-comment: "Прокоментувати…"
     review:
       by: "Рецензія від"
-      spoiler: "This review contains spoilers."
-      spoiler-hover: "I can handle the truth!"
+      spoiler: "Цей огляд містить спойлери."
+      spoiler-hover: "Я впораюся з правдою!"
       share:
-        twitter: "Tweet"
-        facebook: "Share"
+        twitter: "Твітнути"
+        facebook: "Поділитися"
       copy-link: "Copy Link to Review"
       show: "Show Review Content"
       hide: "Hide Review Content"
@@ -444,19 +444,19 @@ components:
       report: "Report Review"
   users:
     ban:
-      title: "Are you sure you want to ban this user?"
+      title: "Ви впевнені, що хочете заблокувати цього користувача?"
       text: "They can access and update their library, but cannot make posts, comments, or reactions."
     delete-user-content:
       title: "Delete Content by {user}"
       checkbox:
-        posts: "Posts"
-        comments: "Comments"
+        posts: "Пости"
+        comments: "Коментарі"
         reactions: "Реакції"
-      delete: "Delete"
-    block: "Block @{user}"
+      delete: "Видалити"
+    block: "Заблокувати @{user}"
     you: "Гей, це ви!"
     favorites:
-      title: "Favorite {type, select, series {Series} characters {Characters} other {}}"
+      title: "Улюблені {type, select, series {тайтли} characters {персонажі} other {}}"
       anime: "Аніме"
       manga: "Манга"
       more: "Показати більше"
@@ -474,7 +474,7 @@ components:
 #page: users
 users:
   profile:
-    edit: "Edit"
+    edit: "Редагувати"
   admin:
     button: "Адмін"
     past-names: "Переглянути минулі імена"
@@ -493,39 +493,39 @@ users:
     cover: "Змінити вашу обкладинку"
     navigation:
       about: "Про мене"
-      profile-links: "Profile Links"
-      favorites: "Favorites"
+      profile-links: "Посилання в профілі"
+      favorites: "Вподобання"
     about:
-      header: "About Me"
+      header: "Про мене"
       location:
-        label: "Location"
+        label: "Місцезнаходження"
         placeholder: "Where do you live?"
-      birthday: "Birthday"
+      birthday: "День народження"
       gender:
-        label: "Gender"
+        label: "Стать"
         options:
-          secret: "It's a secret"
-          male: "Male"
-          female: "Female"
-          custom: "Custom"
+          secret: "Це секрет"
+          male: "Чоловіча"
+          female: "Жіноча"
+          custom: "Персоналізована"
       waifu:
-        label: "Waifu"
-        placeholder: "Waifu/Husbando"
-        search: "Find your special someone"
-        divorce: "divorce"
+        label: "Вайфу"
+        placeholder: "Вайфу/Хасубандо"
+        search: "Знайти когось особливого"
+        divorce: "розлучитися"
       bio:
-        label: "Bio"
-        placeholder: "Tell the world your story."
+        label: "Біографія"
+        placeholder: "Розкажіть світу про себе."
     profile-links:
-      header: "Profile Links"
-      remove: "Remove from profile"
+      header: "Посилання в профілі"
+      remove: "Видалити з профілю"
       sites:
         website:
-          about: "Enter your personal website below to add a link to your profile."
-          placeholder: "Your website URL"
+          about: "Додайте посилання на свій особистий сайт, щоб воно з'явилось у вашому профілі."
+          placeholder: "Введіть посилання на сайт"
         twitter:
-          about: "Enter your Twitter username below to add a link to your profile."
-          placeholder: "Your Twitter username (@Username)"
+          about: "Введіть своє ім'я користувача у Twitter, щоб посилання з'явилось у вашому профілі."
+          placeholder: "Введіть ім'я користувача у Twitter (@Username)"
         facebook:
           about: "Enter your Facebook URL below to add a link to your profile."
           placeholder: "Your Facebook URL"
