@@ -399,6 +399,9 @@ components:
         hover:
           nsfw: "El meu cos està preparat!"
           spoiler: "Puc suportar la veritat!"
+      #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
+      to: "to"
+      group: "Group"
       link: "Copiar enllaç a la publicació"
       unfollow: "Deixar de seguir la publicació"
       follow: "Seguir la publicació"
@@ -632,7 +635,10 @@ users:
         female: "Mujer"
       location: "Localització:"
       birthday: "Aniversari:"
-      joined: "Data d'Ingrés:"
+      joined:
+        title: "Join Date:"
+        date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. Literal text needs to be surrounded by brackets (e.g `[Today is] dddd` renders `Today is Sunday`). See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Estadístiques d'anime"

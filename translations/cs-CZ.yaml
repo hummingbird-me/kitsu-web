@@ -399,6 +399,9 @@ components:
         hover:
           nsfw: "Mé tělo je připraveno!"
           spoiler: "I can handle the truth!"
+      #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
+      to: "to"
+      group: "Skupina"
       link: "Kopírovat odkaz do příspěvku"
       unfollow: "Zrušit sledování příspěvku"
       follow: "Sledovat příspěvek"
@@ -632,7 +635,10 @@ users:
         female: "Žena"
       location: "Lokalita:"
       birthday: "Narozeniny:"
-      joined: "Registrován:"
+      joined:
+        title: "Datum připojení:"
+        date: "D. MMMM YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. Literal text needs to be surrounded by brackets (e.g `[Today is] dddd` renders `Today is Sunday`). See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "(před {time})" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Anime statistiky"
