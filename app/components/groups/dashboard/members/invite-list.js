@@ -35,7 +35,9 @@ export default Component.extend(Pagination, {
       attributesToRetrieve: ['id', 'name'],
       attributesToHighlight: [],
       hitsPerPage: 10,
-      responseFields: ['hits', 'hitsPerPage', 'nbHits', 'nbPages', 'offset', 'page']
+      responseFields: ['hits', 'hitsPerPage', 'nbHits', 'nbPages', 'offset', 'page'],
+      removeStopWords: false,
+      removeWordsIfNoResults: 'allOptional',
     });
     return response.hits || [];
   }).restartable(),
