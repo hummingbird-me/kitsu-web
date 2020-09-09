@@ -203,7 +203,7 @@ media:
         de_de: "Niemiecki"
         el_gr: "Grecki"
         en: "Angielski"
-        en_ar: "Arabic (Romanized)"
+        en_ar: "Arabski (Romanizacja)"
         en_au: "Angielski (Australijski)"
         en_ca: "Angielski (Australijski)"
         en_cn: "Chiński (Pinyin)"
@@ -723,7 +723,7 @@ users:
         guest-header: "Wygląda na to, że {user} nie ma jeszcze żadnych wpisów."
         button: "Przeglądaj {type}"
     grid:
-      view-media: "View {type, select, anime {Anime} manga {Manga} other {}}"
+      view-media: "Wybierz {type, select, anime {Anime} manga {Mangi} other {}}"
     edit:
       status: "Status biblioteki"
       progress: "Postęp"
@@ -966,7 +966,7 @@ groups:
           desc: "Dodaj powiązane grupy do swojej okolicy, aby Twoi członkowie mogli odkryć nowe społeczności!"
         privacy:
           header: "Prywatność"
-          desc: "Your privacy settings determine how open or closed your group is to the public. If you choose to make your group private, you will NOT be able to make it public in the future."
+          desc: "Twoje ustawienia prywatności decydują, jak otwarta lub zamknięta grupa jest dostępna publicznie. Jeśli zdecydujesz się, aby Twoja grupa była prywatna, NIE będziesz mógł jej upublicznić w przyszłości."
         category:
           header: "Kategoria"
           desc: "Kitsu używa kategorii do organizowania grup, aby pomóc użytkownikom znaleźć więcej tego, co kochają."
@@ -974,27 +974,27 @@ groups:
           header: "Awatar"
           desc: "Ten obrazek będzie używany do odróżniania twojej grupy."
         cover:
-          header: "Cover Image"
-          desc: "This image will appear at the top of your group's page on desktops. Sides may be cropped slightly based on the viewer's screen size."
+          header: "Obraz okładki"
+          desc: "Ten obraz pojawi się na górze strony twojej grupy na pulpitach. Boki mogą być przycięte nieco w zależności od rozmiaru ekranu widza."
       errors:
-        neighbors-same: "You can't add your group as a neighbor."
+        neighbors-same: "Nie możesz dodać swojej grupy jako sąsiada."
   dashboard-btn: "Dashboard"
   join-group: "Dołącz do grupy"
   leave-group: "Opuść grupę"
   hide-posts:
-    text: "Hide Posts from {group}"
+    text: "Ukryj posty z {group}"
     info: "Posts won't appear in your Following Feed"
   show-posts:
-    text: "Show Posts from {group}"
+    text: "Pokaż posty z {group}"
     info: "Posts will appear in your Following Feed"
   nsfw: "NSFW"
-  neighbors: "Neighbors"
+  neighbors: "Sąsiedzi"
   navigation:
     activity: "Aktywność"
     rules: "Zasady"
     members: "Członkowie"
     leaders: "Liderzy"
-    neighbors: "Neighbors"
+    neighbors: "Sąsiedzi"
   activity:
     feed-header: "Aktywność Grupy"
     about: "O {group}"
@@ -1010,11 +1010,11 @@ groups:
     filter:
       open: "Otwarte zgłoszenia"
       resolved: "Rozstrzygnięte ostrzeżenia"
-      all: "All Tickets"
+      all: "Wszystkie zgłoszenia"
     conversation:
       title: "Ticket from '<a' href={link}'>'{name}'</a>'"
       mark-resolved: "Oznacz jako rozwiązane"
-      mark-closed: "Mark Closed"
+      mark-closed: "Oznacz jako zamknięte"
       mark-open: "Oznacz jako otwarte"
       nav:
         reply: "Odpowiedz użytkownikowi"
@@ -1022,7 +1022,7 @@ groups:
       create-btn: "Create Ticket"
       reply-btn: "Wyślij odpowiedź"
       reply-placeholder: "Wpisz swoją wiadomość"
-      helper: "Write your message below to create a ticket! Leaders for this group will reply to your ticket as soon as they can."
+      helper: "Napisz swoją wiadomość poniżej, aby utworzyć zgłoszenie! Przywódcy tej grupy odpowiedzą na Twoje zgłoszenie tak szybko, jak to możliwe."
   reports:
     no-explanation: "Nie podano wyjaśnień"
     empty: "Hurra! Nie ma żadnych zgłoszeń."
@@ -1053,18 +1053,18 @@ groups:
       modal:
         header: "Uprawnienia lidera:"
         owner: "Właściciel grupy"
-        tickets: "Manage Tickets"
+        tickets: "Zarządzaj zgłoszeniami"
         members: "Zarządzanie Członkami"
-        leaders: "Manage Leaders"
+        leaders: "Zarządzaj liderami"
         community: "Zarządzanie ustawieniami"
-        content: "Manage Content & Reports"
+        content: "Zarządzaj treścią i raportami"
         owner-help: "Właściciele mają wszystkie uprawnienia."
         cancel-btn: "Anuluj"
-        save-btn: "Save Permissions"
+        save-btn: "Zapisz uprawnienia"
   dashboard:
-    back: "Back to {group}"
+    back: "Wróć do {group}"
     navigation:
-      overview: "Overview"
+      overview: "Przegląd"
       reports: "Zgłoszenia"
       tickets: "Tickets"
       members: "Członkowie"
@@ -1080,12 +1080,12 @@ groups:
         posts: "Postów dzisiaj"
         comments: "Komentarzy dzisiaj"
       help-desk:
-        header: "Open Cases"
+        header: "Otwarte Sprawy"
         tickets: "Tickets"
         reports: "Reports"
       tickets: "Latest Tickets"
       reports: "Latest Reports"
-      log: "Leader Log"
+      log: "Log lidera"
     members:
       invites:
         header: "Oczekujące zaproszenia"
@@ -1093,12 +1093,12 @@ groups:
         revoke: "Anuluj zaproszenie"
         invite: "Zaproś"
         placeholder: "Search for a user to invite. They must be following you!"
-        empty: "Looks like you don't have any pending invites to the group."
+        empty: "Wygląda na to, że nie masz żadnych oczekujących zaproszeń do grupy."
       bans:
         header: "Zbanowani użytkownicy"
         unban: "Odbanuj"
         ban: "Zbanuj"
-        placeholder: "Name"
+        placeholder: "Imię"
         empty: "Świetnie! Jeszcze nikt nie został zbanowany."
       members:
         header: "Członkowie"
@@ -1116,19 +1116,19 @@ groups:
         placeholder: "Wyślij wiadomość do liderów"
     audit:
       user:
-        banned: "banned '<a' href={link}'>'{user}'</a>'."
+        banned: "zbanowano '<a' href={link}'>'{user}'</a>'."
         unbanned: "unbanned '<a' href={link}'>'{user}'</a>'."
-        invited: "invited '<a' href={link}'>'{user}'</a>' to join the community."
+        invited: "zaprosił(a) '<a' href={link}'>'{user}'</a>' do dołączenia do społeczności."
         granted: "granted permissions to '<a' href={link}'>'{user}'</a>'."
         revoked: "removed permissions from '<a' href={link}'>'{user}'</a>'."
       group:
         added_neighbor: "added '<a' href={link}'>'{group}'</a>' as a neighbor."
         removed_neighbor: "removed '<a' href={link}'>'{group}'</a>' as a neighbor."
-        avatar_changed: "updated the {group} avatar."
-        cover_changed: "updated the {group} cover image."
-        locale_changed: "updated the {group} locale."
-        rules_changed: "updated the {group} rules."
-        nsfw_changed: "updated the {group} NSFW status."
+        avatar_changed: "zaktualizowano awatar grupy {group}."
+        cover_changed: "zaktualizowano okładkę grupy {group}."
+        locale_changed: "zaktualizowano język {group}."
+        rules_changed: "zaktualizowano reguły {group}."
+        nsfw_changed: "zaktualizowano status NSFW {group}."
         about_changed: "updated the {group} about."
         tagline_changed: "updated the {group} tagline."
         category_changed: "updated the {group} category."
@@ -1222,7 +1222,7 @@ media-shared:
 #shared: library
 library-shared:
   all: "{type, select,anime {Wszystkie Anime}manga {Wszystkie Mangi}other {}}"
-  current: "{type, select, anime {Currently Watching} manga {Currently Reading} other {}}"
+  current: "{type, select, anime {W trakcie oglądania} manga {W trakcie czytania} other {}}"
   planned: "{type, select, anime {Want to Watch} manga {Want to Read} other {}}"
   completed: "{type, select, anime {Completed} manga {Completed} other {}}"
   on_hold: "{type, select, anime {On Hold} manga {On Hold} other {}}"
