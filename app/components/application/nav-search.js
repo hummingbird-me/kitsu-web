@@ -6,6 +6,8 @@ import matches from 'client/utils/elements-match';
 export default Component.extend({
   isOpened: false,
   query: undefined,
+  searchEventListener: undefined,
+  closeSearchEventListener: undefined,
 
   inputClass: computed('isOpened', 'query', function() {
     const isActive = get(this, 'isOpened') || isPresent(get(this, 'query'));
@@ -13,6 +15,7 @@ export default Component.extend({
   }).readOnly(),
 
   _searchEventListener(event) {
+    if (this.isDestroyed) return;
     const target = get(event, 'target');
     const id = `#${get(this, 'elementId')}`;
     const isChild = matches(target, `${id} *, ${id}`);
@@ -30,6 +33,7 @@ export default Component.extend({
 
   // Close search results when the user clicks outside of the input or results window
   _closeSearchEventListener(event) {
+    if (this.isDestroyed) return;
     const searchResults = document.getElementsByClassName('navbar-search-results')[0];
     const isClickInInput = this.element && this.element.contains(event.target);
     const isClickInResults = searchResults && searchResults.contains(event.target);
@@ -38,13 +42,15 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    this.element.addEventListener('focusin', this._searchEventListener.bind(this));
-    document.addEventListener('click', this._closeSearchEventListener.bind(this));
+    set(this, 'searchEventListener', this._searchEventListener.bind(this));
+    set(this, 'closeSearchEventListener', this._closeSearchEventListener.bind(this));
+    this.element.addEventListener('focusin', get(this, 'searchEventListener'));
+    document.addEventListener('click', get(this, 'closeSearchEventListener'));
   },
 
   willDestroyElement() {
-    this.element.removeEventListener('focusin', this._searchEventListener);
-    document.removeEventListener('click', this._closeSearchEventListener);
+    this.element.removeEventListener('focusin', get(this, 'searchEventListener'));
+    document.removeEventListener('click', get(this, 'closeSearchEventListener'));
   },
 
   actions: {
