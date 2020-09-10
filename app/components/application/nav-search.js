@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { get, set, computed } from '@ember/object';
 import { isPresent } from '@ember/utils';
-import jQuery from 'jquery';
+import matches from 'client/utils/elements-match';
 
 export default Component.extend({
   isOpened: false,
@@ -14,14 +14,13 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    jQuery(document.body).on('click.nav-search', event => {
+    this.element.addEventListener('focusin', event => {
       const target = get(event, 'target');
       const id = `#${get(this, 'elementId')}`;
-      const isChild = jQuery(target).is(`${id} *, ${id}`);
-      const isPopover = jQuery(target).is('.navbar-search-results *, .navbar-search-results');
+      const isChild = matches(target, `${id} *, ${id}`);
+      const isPopover = matches(target, '.navbar-search-results *, .navbar-search-results');
       if (isChild || isPopover) {
         if (isChild) {
-          this.$('input').focus();
           if (!get(this, 'isOpened')) {
             set(this, 'isOpened', true);
           }
@@ -30,15 +29,26 @@ export default Component.extend({
       }
       set(this, 'isOpened', false);
     });
+
+    // Close search results when the user clicks outside of the input or results window
+    document.addEventListener('click', event => {
+      const searchResults = document.getElementsByClassName('navbar-search-results')[0];
+      const isClickInInput = this.element.contains(event.target);
+      const isClickInResults = searchResults && searchResults.contains(event.target);
+
+      if (!isClickInInput && !isClickInResults) set(this, 'isOpened', false);
+    });
   },
 
   willDestroyElement() {
-    jQuery(document.body).off('click.nav-search');
+    this.element.removeEventListener('focusin');
+    document.removeEventListener('click');
   },
 
   actions: {
     close() {
       set(this, 'isOpened', false);
+      console.log(get(this, 'isOpened'));
     }
   }
 });
