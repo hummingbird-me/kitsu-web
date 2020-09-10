@@ -10,6 +10,7 @@ import RSVP from 'rsvp';
 import config from 'client/config/environment';
 import errorMessages from 'client/utils/error-messages';
 import isFileValid from 'client/utils/is-file-valid';
+import matches from 'client/utils/elements-match';
 
 const FILE_UPLOAD_LIMIT = 20;
 const LINK_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
@@ -207,7 +208,7 @@ export default Component.extend({
    */
   _handleClick(event) {
     const target = get(event, 'target');
-    const isChild = jQuery(target).is('.stream-add-content *, .stream-add-content');
+    const isChild = matches(target, '.stream-add-content *, .stream-add-content');
     const isDeleted = jQuery(document.body).find(target).length === 0;
     if (isChild === false && isDeleted === false && get(this, 'isDestroyed') === false) {
       // don't collapse if user has text entered
