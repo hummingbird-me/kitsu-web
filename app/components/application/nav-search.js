@@ -31,7 +31,7 @@ export default Component.extend({
   // Close search results when the user clicks outside of the input or results window
   _closeSearchEventListener(event) {
     const searchResults = document.getElementsByClassName('navbar-search-results')[0];
-    const isClickInInput = this.element.contains(event.target);
+    const isClickInInput = this.element && this.element.contains(event.target);
     const isClickInResults = searchResults && searchResults.contains(event.target);
     if (!isClickInInput && !isClickInResults) set(this, 'isOpened', false);
   },
