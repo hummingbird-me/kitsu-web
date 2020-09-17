@@ -245,7 +245,7 @@ media:
         sc_it: "Sardština"
         sco_gb: "Skotština"
         sk_sk: "Slovenština"
-        sl_sl: "Slovenian"
+        sl_sl: "Slovinština"
         sr_cs: "Serbian (Latin)"
         sr_sp: "Serbian (Cyrillic)"
         sv_se: "Swedish"
@@ -276,39 +276,39 @@ media:
         serialization: "Serializace"
         duration: "Doba trvání"
         total: "Celkem {total}"
-        length: "{count, plural, =1 {{length} minutes} other {{length} minutes each}}"
+        length: "{count, plural, =1 {{length} minut} other {{length} každou minutu}}"
         rating: "Hodnocení"
         expand:
           false: "Více informací"
           true: "Méně informací"
       feed:
-        header: "Community Feed"
+        header: "Komunitní feed"
       trailer: "Přehrát trailer/Přehrát upoutávku"
     units:
-      unit: "{type, select, episode {Episode} chapter {Chapter} other {}}"
-      back: "Back to {type, select, episode {episode} chapter {chapter} other {}} list"
+      unit: "{type, select, episode {Episoda} chapter {Kapitola} other {}}"
+      back: "Zpět na seznam {type, select, episode {Epizod} chapter {Kapitol} other {}}"
       pages: "{length} stran"
-      date: "{type, select, episode {Aired} chapter {Published} other {}}"
-      completed: "{type, select, episode {Watched} chapter {Read} other {Complete}}"
+      date: "{type, select, episode {Vysíláno} chapter {Vydáno} other {}}"
+      completed: "{type, select, episode {Shlédnuto} chapter {Přečteno} other {Dokončeno}}"
       feed:
-        header: "{type, select, episode {Episode} chapter {Chapter} other {}} Discussion"
+        header: "{type, select, episode {Epizoda} chapter {Kapitola} other {}} Diskuse"
     characters:
-      header: "{title} Characters"
-      sub-header: "{type, select, anime {The following is a full list of characters and their {language} voice actors for the anime {title}} manga {The following is a full list of characters for the manga {title}} other {}}"
+      header: "{title} Postavy"
+      sub-header: "{type, select, anime {Následující seznam je plný postav a jejich {language} hlasových aktérů pro anime {title}} manga {Následující seznam je plný postav pro manga {title}} other {}}"
     reactions:
       loading: "Načítání reakcí…"
       delete: "Odstranit reakci"
       report: "Nahlásit reakci"
       copy: "Kopírovat odkaz k reakci"
     franchise:
-      header: "{title} Franchise"
+      header: "{title} Franšíza"
       roles:
         sequel: "Sequel"
         prequel: "Prequel"
         alternative_setting: "Alternativní nastavení"
         alternative_version: "Alternativní verze"
         side_story: "Postranní příběh"
-        parent_story: "Parent story"
+        parent_story: "Hlavní kategorie"
         summary: "Souhrn"
         full_story: "Celý příběh"
         spinoff: "Spin-off"
@@ -317,20 +317,20 @@ media:
         other: "Ostatní"
   hide-posts:
     text: "Skrýt příspěvky o {media}"
-    info: "Posts won't appear in your Following or {type} Feed"
+    info: "Příspěvky se nezobrazí ve vašem sledování nebo {type} feedu"
   show-posts:
     text: "Zobrazit příspěvky o {media}"
-    info: "Posts will appear in your Following or {type} Feed"
+    info: "Příspěvky se zobrazí ve vašem sledování nebo {type} feedu"
 #page: application
 application:
   sandbox:
     alert: "This is a sandbox. '<br>' All changes will be reset."
 #components
 components:
-  ad-unit: "Ads suck, but that's how we keep the lights on. Please whitelist us in your adblocker."
+  ad-unit: "Reklamy jsou sice otravné, ale potřebujeme je k přežíití. Prosíme, povolte nás ve vašem blokování reklam."
   admin:
     reports:
-      no-explanation: "No Explanation Provided."
+      no-explanation: "Nebylo poskytnuto žádné vysvětlení."
       not-set: "Není nastaveno"
       actions:
         button: "Akce"
@@ -350,25 +350,25 @@ components:
   episodes:
     shortcut-bar:
       episode-number: "EP {number}"
-    fast-forward: "Library progress fast-forwarded to episode {number}!"
-    undo-update: "Undo"
-    update-progress: "Update library progress to episode {number}?"
-    watched: "Mark Watched"
+    fast-forward: "Postup knihovny rychle přesměrován na epizodu {number}!"
+    undo-update: "Vrátit zpět"
+    update-progress: "Aktualizovat postup knihovny na epizodu {number}?"
+    watched: "Označit jako shlédnuté"
     join-prompt:
-      pitch: "Track your progress and join the discussion!"
-      register: "Create Kitsu Account"
+      pitch: "Sledujte svůj pokrok a připojte se k diskusi!"
+      register: "Založit Kitsu účet"
   likeable-resource:
-    loading: "Loading…"
-    more: "Load More"
+    loading: "Načítání…"
+    more: "Načíst další"
   search:
-    header: "Search Results"
-    view: "view more"
-    load: "load more"
-    none: "no results"
+    header: "Výsledky hledání"
+    view: "zobrazit více"
+    load: "načíst více"
+    none: "žádné výsledky"
   sidebar-footer:
-    contact: "Contact" #Email address
-    terms: "Terms"
-    privacy: "Privacy"
+    contact: "Kontakt" #Email address
+    terms: "Podmínky"
+    privacy: "Soukromí"
     status: "Status" #Service status - status.kitsu.io
   stream-feed:
     create-post:
@@ -376,13 +376,13 @@ components:
       create: "Publikovat"
       nsfw: "NSFW"
       spoiler: "Spoiler"
-      tag-media: "Type to tag a show or manga"
+      tag-media: "Napište pro označení seriálu nebo mangy"
     edit-post:
       header: "Upravit příspěvek"
       error:
         tagged: "Bohužel vám ještě nemůžeme dovolit upravovat vaše označená média."
     follow:
-      followed: "followed"
+      followed: "sledován"
       delete: "Odstranit aktivitu"
     library:
       delete: "smazat"
@@ -396,9 +396,9 @@ components:
         spoiler: "Tento příspěvek obsahuje spoilery."
         hover:
           nsfw: "Mé tělo je připraveno!"
-          spoiler: "I can handle the truth!"
+          spoiler: "Dokážu zvládnout pravdu!"
       #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
-      to: "to"
+      to: "do"
       group: "Skupina"
       link: "Kopírovat odkaz do příspěvku"
       unfollow: "Zrušit sledování příspěvku"
@@ -408,44 +408,44 @@ components:
       edit: "Upravit příspěvek"
       delete: "Odstranit příspěvek"
       unpin: "Odepnout příspěvek z profilu"
-      pin: "Pin Post to Profile"
-      pin-text: "Do you really want to pin this post to your profile?"
+      pin: "Připnout příspěvek na profil"
+      pin-text: "Opravdu chcete připnout tento příspěvek na svůj profil?"
       report: "Nahlásit příspěvek"
-      comment-count: "{count} of {total}"
+      comment-count: "{count} z {total}"
       comment:
-        deleting: "Deleting Comment…"
+        deleting: "Mazání komentáře…"
         gif: "GIF"
-        reply: "Reply"
-        copy-link: "Copy Link to Comment"
-        edit: "Edit Comment"
-        delete: "Delete Comment"
-        report: "Report Comment"
-        previous-replies: "Show Previous Replies"
-        add-reply: "Add a reply…"
+        reply: "Odpovědět"
+        copy-link: "Kopírovat odkaz k příspěvku"
+        edit: "Upravit komentář"
+        delete: "Odstranit komentář"
+        report: "Nahlásit komentář"
+        previous-replies: "Zobrazit předchozí odpovědi"
+        add-reply: "Přidat odpověď…"
       comments:
-        all: "View All Comments"
-        parent: "View Parent Comment"
-        previous-comments: "Show Previous Comments"
-        leave-comment: "Leave a comment…"
+        all: "Zobrazit všechny komentáře"
+        parent: "Ukaž nadřazený komentář"
+        previous-comments: "Zobrazit předchozí komentáře"
+        leave-comment: "Zanechat komentář…"
     review:
-      by: "Review by"
-      spoiler: "This review contains spoilers."
+      by: "Recenze od"
+      spoiler: "Tento příspěvek obsahuje spoilery."
       spoiler-hover: "Já umím zvládnout pravdu!"
       share:
         twitter: "Tweet"
         facebook: "Sdílet"
       copy-link: "Opsat odkaz k recenzi"
-      show: "Show Review Content"
-      hide: "Hide Review Content"
+      show: "Zobrazit obsah recenze"
+      hide: "Skrýt obsah recenze"
       edit: "Upravit Recenzi"
       delete: "Smazat recenzi"
       report: "Nahlásit recenzi"
   users:
     ban:
       title: "Opravdu chcete zablokovat tohoto uživatele?"
-      text: "They can access and update their library, but cannot make posts, comments, or reactions."
+      text: "Mají přístup ke své knihovně a mohou ji aktualizovat, ale nemohou vytvářet příspěvky, komentáře ani reakce."
     delete-user-content:
-      title: "Delete Content by {user}"
+      title: "Odstranit obsah od {user}"
       checkbox:
         posts: "Příspěvky"
         comments: "Komentáře"
@@ -458,17 +458,17 @@ components:
       anime: "Anime"
       manga: "Manga"
       more: "Zobrazit více"
-      edit: "Edit favorite {type, select, anime {anime} manga {manga} characters {characters} other {}}"
+      edit: "Upravte oblíbené {type, select, anime {anime} manga {manga} characters {postavy} other {}}"
       empty:
         yours: "You haven't listed your favorite {type, select, anime {anime} manga {manga} characters {characters} other {}} yet!"
         others: "Uživatel nemá žádné oblíbené"
       choose: "Choose favorite {type, select, anime {anime} manga {manga} characters {characters} other {}}"
     alt-name:
-      title: "Possible Alt Accounts of {user}"
-      none: "No alts found"
+      title: "Možné Alt. účty {user}"
+      none: "Žádné Alt. účty nenalezeny"
     past-name:
-      title: "Past Names"
-      none: "No previous names"
+      title: "Předchozí jména"
+      none: "Žádná předchozí jména"
 #page: users
 users:
   profile:
@@ -476,8 +476,8 @@ users:
   admin:
     button: "Admin"
     past-names: "Zobrazit minulé jména"
-    alt-accounts: "View Alt Accounts"
-    delete-content: "Delete User-Created Content"
+    alt-accounts: "Zobrazit alt. učty"
+    delete-content: "Smazat uživatelem vytvořený obsah"
     ban: "Zablokovat"
   navigation:
     activity: "Aktivita"
@@ -491,7 +491,7 @@ users:
     cover: "Změnit úvodní fotku"
     navigation:
       about: "O mně"
-      profile-links: "Profile Links"
+      profile-links: "Profilové odkazy"
       favorites: "Oblíbené"
     about:
       header: "O mně"
@@ -509,93 +509,93 @@ users:
       waifu:
         label: "Waifu"
         placeholder: "Waifu/Husbando"
-        search: "Find your special someone"
+        search: "Najděte svou speciální osobu"
         divorce: "rozvod"
       bio:
         label: "O mně"
         placeholder: "Sděl svůj příběh."
     profile-links:
-      header: "Profile Links"
+      header: "Profilové odkazy"
       remove: "Odstranit z profilu"
       sites:
         website:
-          about: "Enter your personal website below to add a link to your profile."
+          about: "Zadejte svůj osobní web pro přidání odkazu na váš profilu."
           placeholder: "Odkaz na vaší stránku"
         twitter:
-          about: "Enter your Twitter username below to add a link to your profile."
-          placeholder: "Your Twitter username (@Username)"
+          about: "Zadejte své uživatelské jméno pro Twitter pro přidání odkazu na váš profil."
+          placeholder: "Vaše Twitter uživatelské jméno (@Username)"
         facebook:
-          about: "Enter your Facebook URL below to add a link to your profile."
-          placeholder: "Your Facebook URL"
+          about: "Zadejte svoje Facebook URL pro přidání odkazu na váš profilu."
+          placeholder: "Vaše Facebook URL"
         youtube2:
-          about: "Enter your YouTube channel URL below to add a link to your profile."
-          placeholder: "Your YouTube channel URL"
+          about: "Zadejte URL vašeho kanálu YouTube pro přidání odkazu na váš profilu."
+          placeholder: "URL vašeho YouTube kanálu"
         google:
-          about: "Enter your Google+ profile URL or username below to add a link to your profile."
-          placeholder: "Your Google+ profile URL or username (+Username)"
+          about: "Zadejte URL od svého Google+ profilu nebo uživatelské jméno pro přidání odkazu na váš profil."
+          placeholder: "Vaše URL od Google+ profilu nebo uživatelské jméno (+Username)"
         instagram:
-          about: "Enter your Instagram username below to add a link to your profile."
-          placeholder: "Your Instagram username"
+          about: "Zadejte své uživatelské jméno pro Instagram pro přidání odkazu na váš profil."
+          placeholder: "Vaše uživatelské jméno pro Instagram"
         twitch:
-          about: "Enter your Twitch username below to add a link to your profile."
-          placeholder: "Your Twitch username"
+          about: "Zadejte své uživatelské jméno pro Twitch pro přidání odkazu na váš profil."
+          placeholder: "Vaše uživatelské jméno pro Twitch"
         vimeo:
-          about: "Enter your Vimeo username below to add a link to your profile."
-          placeholder: "Your Vimeo username"
+          about: "Zadejte své uživatelské jméno pro Vimeo pro přidání odkazu na váš profil."
+          placeholder: "Vaše uživatelské jméno pro Vimeo"
         github:
-          about: "Enter your GitHub username below to add a link to your profile."
-          placeholder: "Your GitHub username"
+          about: "Zadejte své uživatelské jméno pro GitHub pro přidání odkazu na váš profil."
+          placeholder: "Vaše GitHub uživatelské jméno"
         battlenet:
-          about: "Enter your Battle.net BattleTag below to add a link to your profile."
-          placeholder: "Your Battle.net BattleTag (User#1234)"
+          about: "Zadejte svůj Battle.net Battle Tag pro přidání odkazu na váš profil."
+          placeholder: "Váš Battle.net BattleTag (User#1234)"
         steam:
-          about: "Enter your Steam Community username below to add a link to your profile."
-          placeholder: "Your Steam Community username"
+          about: "Zadejte své uživatelské jméno pro Steam Community pro přidání odkazu na váš profil."
+          placeholder: "Vaše Steam Community uživatelské jméno"
         raptr:
-          about: "Enter your Raptr username below to add a link to your profile."
-          placeholder: "Your Raptr username"
+          about: "Zadejte své uživatelské jméno pro Raptr pro přidání odkazu na váš profil."
+          placeholder: "Vaše uživatelské jméno pro Raptr"
         discord:
-          about: "Enter your Discord tag below to add a link to your profile."
-          placeholder: "Your Discord tag (User#1234)"
+          about: "Zadejte svůj Discord tag pro přidání odkazu na váš profil."
+          placeholder: "Tvůj Discord tag (User#1234)"
         tumblr:
-          about: "Enter your Tumblr blog name below to add a link to your profile."
-          placeholder: "Your Tumblr blog name"
+          about: "Zadejte jméno vašeho Tumblr blogu pro přidání odkazu na váš profil."
+          placeholder: "Jméno vašeho Tumblr blogu"
         soundcloud:
-          about: "Enter your SoundCloud username below to add a link to your profile."
-          placeholder: "Your SoundCloud username"
+          about: "Zadejte své uživatelské jméno pro SoundCloud pro přidání odkazu na váš profil."
+          placeholder: "Vaše uživatelské jméno pro SoundCloud"
         dailymotion:
-          about: "Enter your Dailymotion username below to add a link to your profile."
-          placeholder: "Your Dailymotion username"
+          about: "Zadejte vaše uživatelské jméno pro Dailymotion pro přidání odkazu na váš profil."
+          placeholder: "Vaše uživatelské jméno pro Dailymotion"
         kickstarter:
-          about: "Enter your Kickstarter username below to add a link to your profile."
-          placeholder: "Your Kickstarter username"
+          about: "Zadejte své uživatelské jméno pro Kickstarted pro přidání odkazu na váš profil."
+          placeholder: "Vaše uživatelské jméno pro Kickstarter"
         mobcrush:
-          about: "Enter your Mobcrush username below to add a link to your profile."
-          placeholder: "Your Mobcrush username"
+          about: "Zadejte své uživatelské jméno pro Mobcrush pro přidání odkazu na váš profil."
+          placeholder: "Vaše uživatelské jméno pro Mobcrush"
         osu:
-          about: "Enter your Osu! ID number below to add a link to your profile."
-          placeholder: "Your Osu! ID number"
+          about: "Zadejte vaše ID číslo na Osu! pro přidání odkazu na váš profil."
+          placeholder: "Vaše ID číslo na Osu!"
         patreon:
-          about: "Enter your Patreon project name to add a link to your profile."
+          about: "Zadejte jméno vašeho Patreon projektu pro přidání odkazu na váš profil."
           placeholder: "Název vašeho projektu Patreon"
         deviantart:
           about: "Zadejte své DeviantArt uživatelské jméno pro přidání odkazu do vašeho profilu."
           placeholder: "Vaše DeviantArt uživatelské jméno"
         dribbble:
-          about: "Enter your Dribbble username below to add a link to your profile."
+          about: "Zadejte vaše uživatelské jméno pro Dribbble pro přidání odkazu na váš profil."
           placeholder: "Vaše uživatelské jméno pro Dribble"
         imdb:
-          about: "Enter your IMDb profile URL below to add a link to your profile."
-          placeholder: "Your IMDb profile URL"
+          about: "Zadejte URL vašeho IMDb profilu pro přidání odkazu na váš profil."
+          placeholder: "URL vašeho IMDb profilu"
         lastfm:
-          about: "Enter your Last.fm username below to add a link to your profile."
-          placeholder: "Your Last.fm username"
+          about: "Zadejte své uživatelské jméno pro Last.fm pro přidání odkazu na váš profil."
+          placeholder: "Vaše uživatelské jméno pro Last.fm"
         letterboxd:
-          about: "Enter your Letterboxd username below to add a link to your profile."
+          about: "Zadejte své uživatelské jméno pro Letterboxd pro přidání odkazu na váš profil."
           placeholder: "Vaše uživatelské jméno pro Letterboxd"
         medium:
-          about: "Enter your Medium username or publication name below to add a link to your profile."
-          placeholder: "Your Medium username (@user) or publication name"
+          about: "Zadejte uživatelské jméno pro Medium nebo název publikace pro přidání odkazu na váš profil."
+          placeholder: "Vaše Medium uživatelské jméno (@user) nebo jméno publikace"
         playerme:
           about: "Zadejte své uživatelské jméno pro Player.me pro přidání odkazu na váš profil."
           placeholder: "Vaše uživatelské jméno pro Player.me"
@@ -617,9 +617,9 @@ users:
   activity:
     onboarding:
       welcome: "Ahoj {user}, tato stránka je celá o VÁS!"
-      about: "As you continue to use Kitsu your '<strong>'Personal Feed'</strong>' below will begin to populate with the anime and manga you've watched, read, completed, and plan to check out. You can also post text, images, and videos to your feed using the form below. Your posts will be seen and appreciated by your followers and users from the global feed."
-      action: "Make yourself at home! Upload an avatar and cover image! Click '<span>'Edit'</span>' above to get started."
-      title: "Set-Up Your Profile"
+      about: "Jakmile budete i nadále používat Kitsu bude se váš '<strong>'Osobní feed'</strong>' naplňovat anime a manga, které jste sledovali, čtete, dokončili a plánuje omrknout. Můžete také vkládat text, obrázky a videa do svého feedu pomocí níže uvedeného formuláře. Vaše příspěvky budou vidět a budou oceněny vašimi sledujícími a uživateli z globálního feedu."
+      action: "Udělejte se doma! Nahrajte avatar a obal obrázku! Chcete-li začít, klikněte na '<span>'Upravit'</span>'."
+      title: "Nastavení profilu"
     about:
       header: "O mně"
       empty: "Je to tajemství"
@@ -640,24 +640,24 @@ users:
     stats:
       headings:
         anime: "Anime statistiky"
-        manga: "Manga Stats"
-      time-watched: "{count} {timeUnit} spent watching anime."
-      chapters-read: "{count} chapters read."
-      completed: "{count} completed."
-      more-than: "More than '<span class=\"time-spent-percentile\">'{percentage}%'</span>' of users."
+        manga: "Manga status"
+      time-watched: "{count} {timeUnit} stráveno sledováním anime."
+      chapters-read: "{count} kapitol přečteno."
+      completed: "{count} dokončeno."
+      more-than: "Více než '<span class=\"time-spent-percentile\">'{percentage}%'</span>' uživatelů."
       time-breakdown:
         seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
         time-segment: "{count} {timeUnit}" #8 months (pre-translated)
-        total: "spent watching anime in total." #appended after time-segments
+        total: "celkový čas ztrávený sledováním anime." #appended after time-segments
       empty:
-        header: "Looks like you don't have enough data yet! Ready to start something new?"
+        header: "Vypadá to, že ještě nemáte dostatek dat! Připraven začít s něčím novým?"
         guest-header: "Vypadá to, že {user} zatím nemá žádné statistiky."
   library:
     search: "Hledat knihovnu uživatele {name}…"
     sorting:
       label: "Seřadit podle:"
       options:
-        watched: "Date Updated"
+        watched: "Datum aktualizace"
         started: "Datum zahájení"
         finished: "Datum dokončení"
         added: "Datum přidání"
@@ -668,69 +668,69 @@ users:
       directions:
         watched:
           desc: "Nejdříve nejnovější"
-          asc: "Oldest First"
+          asc: "Od nejstaršího"
         started:
-          desc: "Recent First"
-          asc: "Oldest First"
+          desc: "Od nejnovějšího"
+          asc: "Od nejstaršího"
         finished:
-          desc: "Recent First"
-          asc: "Oldest First"
+          desc: "Od nejnovějšího"
+          asc: "Od nejstaršího"
         added:
-          desc: "Recent First"
-          asc: "Oldest First"
+          desc: "Od nejnovějšího"
+          asc: "Od nejstaršího"
         progress:
-          desc: "Most First"
-          asc: "Least First"
+          desc: "Nejprvnější"
+          asc: "Poslední"
         rating:
-          desc: "Highest First"
-          asc: "Lowest First"
+          desc: "Nejlepší umístění"
+          asc: "Nejnižší umístění"
         title:
           desc: "A-Z"
           asc: "Z-A"
         length:
-          desc: "Longest First"
-          asc: "Shortest First"
+          desc: "Od nejdelšího"
+          asc: "Od nejkratšího"
     sidebar:
       media-select: "{type, select, anime {{user}'s Anime} manga {{user}'s Manga} other {}}"
-      manage: "Manage Library"
-      import: "Import Library"
-      export: "Export Library"
-      reset: "Reset Library"
-      reset-loading: "Resetting…"
-      reset-confirmation: "This will delete your entire library, associated reviews, and reactions. Are you sure you want to continue?"
+      manage: "Aktualizovat knihovnu"
+      import: "Importovat knihovnu"
+      export: "Exportovat knihovnu"
+      reset: "Resetovat knihovnu"
+      reset-loading: "Resetování…"
+      reset-confirmation: "Tímto smažete celou knihovnu, související recenze a reakce. Opravdu chcete pokračovat?"
       issues:
-        header: "Library Issues"
+        header: "Problémy s knihovnou"
         reactions: "{count} completed media missing '<b>'reactions'</b>'"
-        fix: "fix"
+        fix: "opravit"
     list:
       edit: "Upravit záznam"
       list-edit: "Upravit"
       more: "Více"
       unstarted: "Nezahájeno"
       unrated: "Bez hodnocení"
-      progress: "{type, select, anime {Ep. {progress}} manga {Ch. {progress}} other {}}"
+      progress: "{type, select, anime {Ep. {progress}} manga {K. {progress}} other {}}"
       table-header:
         title: "{type, select, anime {Anime Title} manga {Manga Title} other {}}"
         rating: "Hodnocení"
         progress: "Pokrok"
-        volumes: "Volumes"
+        volumes: "Svazky"
       add-reaction: "Přidat reakci"
       empty:
         search: "Nelze najít žádné položky knihovny s vaším vyhledávacím dotazem."
         header: "Vypadá to, že tvá knihovna je zde prázdná! Připraven začít něco nového?"
-        guest-header: "Looks like {user} doesn't have any library entries here."
+        guest-header: "Vypadá to, že tady {user} nemá žádné statistiky."
         button: "Procházet {type}"
     grid:
-      view-media: "View {type, select, anime {Anime} manga {Manga} other {}}"
+      view-media: "Zobrazit {type, select, anime {Anime} manga {Manga} other {}}"
     edit:
       status: "Stav knihovny"
       progress: "Pokrok"
-      units: "{type, select, anime {of {num} episodes} manga {of {num} chapters} other {}}"
-      volumes: "Volumes"
-      volume-units: "of {num} volumes"
+      units: "{type, select, anime {z {num} episod} manga {z {num} svazků} other {}}"
+      volumes: "Svazky"
+      volume-units: "ze {num} svazků"
       rating: "Hodnocení"
-      rewatch: "{type, select, anime {Rewatch Count} manga {Reread Count} other {}}"
-      start-rewatch: "{type, select, anime {Start Rewatch} manga {Start Reread} other {}}"
+      rewatch: "{type, select, anime {Počet shlédnutí} manga {Počet přečtení} other {}}"
+      start-rewatch: "{type, select, anime {Začít znova sledovat} manga {Začít znovu číst} other {}}"
       privacy: "Soukromí"
       started: "Zahájeno"
       finished: "Dokončeno"
@@ -739,17 +739,17 @@ users:
       save: "Uložit změny"
       saving: "Ukládání…"
     bulk:
-      selected: "{type, select, anime {{num} anime selected} manga {{num} manga selected} other {}}"
+      selected: "{type, select, anime {{num} Vybrané anime} manga {{num} Vybraná manga} other {}}"
       select-all: "Vybrat vše"
       select-none: "Nevybrat žádné"
-      remove: "Remove '<strong>'{num}'</strong>'"
-      move-to: "Move '<strong>'{num}'</strong>' to…"
+      remove: "Odebrat '<strong>'{num}'</strong>'"
+      move-to: "Přesunout '<strong>'{num}'</strong>' do…"
       remove-loading: "Odstraňování…"
       update-loading: "Aktualizace…"
   groups:
     sort:
       newest: "Nedávno se připojili"
-      oldest: "Oldest Joined"
+      oldest: "Nejstarší se připojili"
   reactions:
     empty: "Tento uživatel nemá žádné reakce"
     filters:
@@ -761,65 +761,65 @@ users:
       new: "Nové"
   hide-posts:
     text: "Skrýt příspěvky od {user}"
-    info: "Posts won't appear in your Following Feed"
+    info: "Příspěvky se nezobrazí ve vašem sledovacím feedu"
   show-posts:
     text: "Zobrazit příspěvky od {user}"
-    info: "Posts will appear in your Following Feed"
+    info: "Příspěvky se zobrazí ve vašem sledovacím feedu"
   followers:
-    not-found: "No Users Found."
-    loading: "Loading Users…"
+    not-found: "Žádní uživatele nebyli nalezeni."
+    loading: "Načítání uživatelů…"
   following:
-    not-found: "No Users Found."
-    loading: "Loading Users…"
+    not-found: "Žádný uživatel nebyl nalezen."
+    loading: "Načítání uživatelů…"
   reviews:
-    not-found: "No Reviews Found."
-    loading: "Loading Reviews…"
+    not-found: "Žádná recenze nebyla nalezena."
+    loading: "Načítání reakcí…"
 #page: settings
 settings:
   navigation:
-    header: "Settings"
-    profile: "Profile"
-    notifications: "Notifications"
-    password: "Password"
-    privacy: "Privacy"
-    linked-accounts: "Linked Accounts"
-    import: "Import"
-    export: "Export"
-    blocking: "Blocking"
-    account: "Account"
+    header: "Nastavení"
+    profile: "Profil"
+    notifications: "Oznámení"
+    password: "Heslo"
+    privacy: "Soukromí"
+    linked-accounts: "Propojené účty"
+    import: "Nahrát"
+    export: "Exportovat"
+    blocking: "Blokování"
+    account: "Účet"
   account:
-    header: "Account"
-    sub-header: "Danger Zone! Deleting your account is irreversible."
-    delete: "Delete Account"
-    confirm-title: "Delete Account"
-    confirm-text: "We're sorry to see you go, are you sure you want to continue?"
+    header: "Účet"
+    sub-header: "Nebezpečná zóna! Smazání účtu je nevratné."
+    delete: "Odstranit účet"
+    confirm-title: "Odstranit účet"
+    confirm-text: "Je nám líto, že odcházíte. Jste si jisti, že chcete pokračovat?"
   apps:
-    header: "Apps"
+    header: "Aplikace"
   blocking:
-    header: "Blocking"
-    sub-header: "Once you block someone, that person can no longer tag you, follow you, view your profile, or see your feed posts."
-    title: "Block Users"
-    placeholder: "Search users to block…"
-    button-block: "Block"
-    loading: "Loading Users…"
-    button-unblock: "Unblock"
-    more: "Load More"
-    not-blocking: "You aren't currently blocking anyone."
+    header: "Blokování"
+    sub-header: "Jakmile někoho zablokujete, tato osoba Vás již nemůže označit, sledovat, prohlížet si Váš profil nebo si prohlížet Vaše příspěvky."
+    title: "Blokovat uživatele"
+    placeholder: "Hledat uživatele k blokování…"
+    button-block: "Blokovat"
+    loading: "Načítání uživatelů…"
+    button-unblock: "Odblokovat"
+    more: "Načíst více"
+    not-blocking: "V současné době nikoho neblokujete."
   exports:
     modal:
-      header: "Sync with {site}"
-      helper: "We'll update your anime and manga lists on {site} every time you update them on Kitsu."
-      create: "Sync to {site}"
+      header: "Synchronizovat s {site}"
+      helper: "Budeme aktualizovat Vaše anime a manga seznamy na {site} pokaždé, když je aktualizujete na Kitsu."
+      create: "Synchronizovat s {site}"
     header: "Exportovat"
     sub-header: "Automaticky synchronizovat aktualizace knihovny z Kitsu na MyAnimeList."
-    loading: "Loading Exports…"
-    remove: "Remove Exporter"
-    disabled: "Your MAL Export has been disabled due to the following reason: '<strong>'{reason}'</strong>'"
-    create: "Setup Export to MyAnimeList Account"
-    download: "Download {kind} Library"
-    recent: "Recent Sync Activity"
-    sync-header: "MyAnimeList Sync"
-    no-logs: "We're processing your library and syncing it with MyAnimeList. Hold tight!"
+    loading: "Načítání exportů…"
+    remove: "Odstranit exportéra"
+    disabled: "Váš MAL export byl odmítnut z následujícího důvodu: '<strong>'{reason}'</strong>'"
+    create: "Nastavení exportu do MyAnimeList účtu"
+    download: "Stáhnout {kind} knihovnu"
+    recent: "Nedávná aktivita synchronizace"
+    sync-header: "MyAnimeList synchronizace"
+    no-logs: "Zpracováváme tvou knihovnu a synchronizujeme ji s MyAnimeList. Držte palce!"
     logs:
       header:
         media: "Název"
@@ -839,75 +839,75 @@ settings:
         error: "Error"
   imports:
     header: "Importovat"
-    sub-header: "Import media from other providers"
-    button: "Import Media"
-    past-imports: "Your past imports"
+    sub-header: "Importovat média od ostatních poskytovatelů"
+    button: "Importovat média"
+    past-imports: "Vaše poslední importy"
     loading: "Načítání importů…"
     status: "Status:"
-    entries: "Total Entries Found:"
-    error: "It seems like your import has failed :( &mdash; We want to get this fixed for you so please '<a href=\"mailto:help@kitsu.io\">'email'</a>' us."
+    entries: "Celkem nalezeno položek:"
+    error: "Zdá se, že váš import selhal :( &mdash; Chceme to pro vás opravit, proto nás prosím '<a href=\"mailto:help@kitsu.io\">'kontaktujte'</a>' nás."
     more: "Načíst další"
   index:
     header: "Profil"
-    sub-header: "Account and region settings"
-    name: "Display Name"
-    url: "Profile URL"
+    sub-header: "Nastavení účtu a regionu"
+    name: "Zobrazené jméno"
+    url: "URL profilu"
     email: "Email"
-    email-message: "Email will not be publicly displayed."
+    email-message: "E-mail nebude veřejně zobrazen."
     language: "Jazyk"
-    translate-help: "Interested in translating? '<a href=\"https://crowdin.com/project/kitsu-web\">'Translate here!'</a>'"
+    translate-help: "Máte zájem o překlad? '<a href=\"https://crowdin.com/project/kitsu-web\">'Přeložit sem!'</a>'"
     time-zone: "Časové pásmo"
-    content: "Content on Kitsu"
+    content: "Obsah na Kitsu"
     theme: "Vzhled stránky"
     country: "Země"
     worldwide: "Celosvětové"
     titles: "Názvy"
-    titles-message: "How media titles will be displayed."
-    rating: "Rating Type"
-    rating-message: "Choose how you would like to rate media that you've watched or read."
-    adult: "Adult Content"
-    adult-message: "With adult content hidden, you won't see R18+ media in the feed, libraries, or search."
-    update: "Update Profile"
+    titles-message: "Jak budou zobrazeny názvy médií."
+    rating: "Typ hodnocení"
+    rating-message: "Vyberte si, jak chcete hodnotit média, která jste sledovali nebo četli."
+    adult: "Obsah pro dospělé"
+    adult-message: "Se skrytým obsahem pro dospělé nebudete v médiích R18+, knihovnách ani vyhledávání."
+    update: "Aktualizovat profil"
   linked-accounts:
-    header: "Linked Accounts"
-    sub-header: "Connect third-party accounts with Kitsu"
+    header: "Propojené účty"
+    sub-header: "Připojit účty třetích stran s Kitsu"
     facebook: "Facebook"
-    disconnect: "Disconnect Facebook"
-    connect: "Connect Facebook"
+    disconnect: "Odpojit Facebook"
+    connect: "Připojit k Facebooku"
   notifications:
-    header: "Push Notifications"
-    sub-header: "General site-wide notifications"
+    header: "Push upozornění"
+    sub-header: "Obecná oznámení ohledně dokladu"
     contexts:
       web: "Web"
-      email: "Email"
-      mobile: "Mobile"
+      email: "E-mail"
+      mobile: "Mobilní"
     descriptions:
-      mentions: "Someone '<strong>'mentions'</strong>' me in a post or comment"
-      replies: "Someone '<strong>'replies'</strong>' to my post or comment"
-      likes: "Someone '<strong>'likes'</strong>' my post or comment"
-      follows: "Someone '<strong>'follows'</strong>' me"
-      posts: "Someone '<strong>'posts'</strong>' on my profile"
-      reaction_votes: "Someone '<strong>'upvotes'</strong>' my media reaction"
-      airing: "New episode is released"
+      mentions: "Někdo '<strong>'zmíní'</strong>' na příspěvku nebo komentář"
+      replies: "Někdo '<strong>'odpověděl'</strong>' na můj příspěvek nebo komentář"
+      likes: "Někdo '<strong>'líbí'</strong>' můj příspěvek nebo komentář"
+      follows: "Někdo '<strong>'mě'</strong>' sleduje"
+      posts: "Někdo '<strong>'příspěvky'</strong>' na mém profilu"
+      reaction_votes: "Někdo '<strong>'nahromadění'</strong>' moje mediální reakce"
+      airing: "Nová epizoda byla vydána"
     newsletter:
       newsletter: "Newsletter"
-      subscribed: "Subscribed"
-      message: "If enabled, you will receive occasional (and very witty) email updates about Kitsu written by Josh himself."
-    loading: "Loading settings…"
-    update: "Update Settings"
+      subscribed: "Odebíráno"
+      message: "Pokud je povoleno, budete dostávat příležitostné e-mailové informace o Kitsu napsané Joshem."
+    loading: "Načítání nastavení…"
+    update: "Aktualizovat nastavení"
   password:
-    header: "Password"
-    sub-header: "Change your password"
-    new-pswd: "New Password"
-    confirm-pswd: "Confirm Password"
-    update-pswd: "Update Password"
+    header: "Heslo"
+    sub-header: "Změňte si Vaše heslo"
+    new-pswd: "Nové heslo"
+    confirm-pswd: "Potvrdit heslo"
+    update-pswd: "Aktualizovat heslo"
   privacy:
     header: "Soukromí"
-    sub-header: "Adjust others ability to view your content"
-    discover: "Discoverability"
-    checkbox: "Show in Global Feed"
-    message: "If disabled, your posts will only be available to your followers and guests to your profile."
-    update: "Update Profile"
+    sub-header: "Upravte ostatní možnosti zobrazení vašeho obsahu"
+    discover: "Objevovatelnost"
+    checkbox: "Zobrazit v globálním feedu"
+    message: "Pokud vyputo, vaše příspěvky budou dostupné pouze vašim následovníkům a hostům ve vašem profilu."
+    update: "Upravit profil"
 #page: feedback
 feedback:
   header: "Zpětná vazba"
@@ -919,10 +919,10 @@ feedback:
 #page: groups
 groups:
   index:
-    call-to-action: "Anyone can create and discover groups. Each group centers around a topic or activity."
-    create-btn: "Create a Group"
+    call-to-action: "Každý může vytvářet a objevovat skupiny. Každá skupina se zaměřuje kolem tématu nebo aktivity."
+    create-btn: "Vytvořte skupinu"
   create:
-    header: "Create a Group"
+    header: "Vytvořte skupinu"
     form:
       required: "Požadováno"
       name: "Jméno"
