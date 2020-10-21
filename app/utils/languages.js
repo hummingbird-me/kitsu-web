@@ -18,7 +18,7 @@ export const LANGUAGES = [
   { id: 'ca-es', text: 'Català' },
   // { id: 'ceb-ph', text: '' }, // Cebuano
   // { id: 'co-fr', text: '' }, // Corsican
-  // { id: 'cs-cz', text: 'Česky' }, // Czech
+  { id: 'cs-cz', text: 'Česky' },
   // { id: 'cy-gb', text: 'Cymraeg' } // Welsh
   // { id: 'da-dk', text: 'Dansk' }, // Danish
   { id: 'de-de', text: 'Deutsch' },
@@ -81,7 +81,7 @@ export const LANGUAGES = [
   // { id: 'ms-my', text: 'Bahasa Melayu' }, // Malay
   // { id: 'mt-mt', text: 'Malti' }, // Maltese
   // { id: 'my-mm', text: '' }, // Burmese
-  // { id: 'nb-no', text: 'Norsk (Bokmål)' }, // Norwegian
+  { id: 'nb-no', text: 'Norsk (Bokmål)' },
   // { id: 'ne-np', text: '' }, // Nepali
   { id: 'nl-nl', text: 'Nederlands' },
   // { id: 'nn-no', text: 'Norsk (Nynorsk)' }, // Norwegian
