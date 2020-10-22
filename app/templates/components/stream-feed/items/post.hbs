@@ -123,7 +123,7 @@
       {{else}}
         {{#if post.contentFormatted}}
           <span class="stream-content-post full-post">
-            {{#read-more text=(format-content post.contentFormatted) length=700 isHTML=true as |rm|}}
+            {{#read-more text=(format-content post.contentFormatted) length=700 maxLines=(if (or isPinnedPost isPermalink) Infinity 50) isHTML=true as |rm|}}
               {{#if rm.wasTruncated}}
                 <div class="view-more">
                   <a href="#" {{action rm.toggleVisibility}}>

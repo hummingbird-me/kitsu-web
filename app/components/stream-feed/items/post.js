@@ -16,6 +16,7 @@ export default Component.extend(ClipboardMixin, CanMixin, {
   showNsfw: false,
   showSpoilers: false,
   isFollowingPost: false,
+  isPermalink: false,
 
   notify: service(),
   router: service(),
@@ -65,6 +66,9 @@ export default Component.extend(ClipboardMixin, CanMixin, {
 
   didReceiveAttrs() {
     this._super(...arguments);
+
+    set(this, 'isPermalink', get(this, 'router.currentRouteName') === 'posts');
+
     if (get(this, 'group') !== undefined) {
       if (get(this, 'activity.foreignId').split(':')[0] === 'Comment') {
         set(this, 'post', get(this, 'activity.target.content') || get(this, 'activity.target'));
