@@ -116,19 +116,6 @@ RouterInstance.map(function() {
     this.route('account');
   });
 
-  this.route('feedback', function() {
-    this.route('bugs');
-    this.route('bugs-anything', { path: '/bugs/*path' });
-    this.route('feature-requests');
-    this.route('feature-requests-anything', { path: '/feature-requests/*path' });
-    this.route('database-requests');
-    this.route('database-requests-anything', { path: '/database-requests/*path' });
-    this.route('mobile-bugs');
-    this.route('mobile-bugs-anything', { path: '/mobile-bugs/*path' });
-    this.route('mobile-features');
-    this.route('mobile-features-anything', { path: '/mobile-features/*path' });
-  });
-
   this.route('admin', function() {
     this.route('reports', function() {
       this.route('index', { path: '/open' });

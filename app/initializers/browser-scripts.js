@@ -13,15 +13,14 @@ function adwords() {
 }
 
 /**
- * Inject Canny's SDK script into the `head` on initialization.
+ * Inject Nolt's SDK script into the `head` on initialization.
  */
-function canny() {
-  const c = function() {
-    c.q.push(arguments);
+function nolt() {
+  window.noltQueue = window.noltQueue || [];
+  window.nolt = function() {
+    noltQueue.push(arguments); /* eslint no-undef: "off" */
   };
-  c.q = [];
-  window.Canny = c;
-  injectScript('https://canny.io/sdk.js').catch(() => {});
+  injectScript('https://cdn.nolt.io/widgets.js').catch(() => {});
 }
 
 /**
@@ -61,7 +60,7 @@ export function initialize() {
 
   // Inject scripts
   adwords();
-  canny();
+  nolt();
   onesignal();
 }
 

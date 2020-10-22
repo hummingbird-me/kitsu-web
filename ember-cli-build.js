@@ -118,6 +118,11 @@ module.exports = function(defaults) {
 
     emberApolloClient: {
       keepGraphqlFileExtension: false
+    },
+
+    // Disable auto importing of manually imported packages listed below
+    autoImport: {
+      exclude: ['moment', 'moment-timezone', 'preferred-locale', 'algoliasearch', 'text-clipper']
     }
   });
 

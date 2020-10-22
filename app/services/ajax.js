@@ -13,14 +13,13 @@ export default AjaxService.extend({
     set(this, 'host', config.kitsu.APIHost);
   },
 
-  headers: computed('session.isAuthenticated', function() {
+  headers: computed('session.token', function() {
     const headers = {
       accept: 'application/vnd.api+json'
     };
-    const isAuthenticated = get(this, 'session.isAuthenticated');
-    if (isAuthenticated) {
-      const { access_token: accessToken } = get(this, 'session.data.authenticated');
-      headers.Authorization = `Bearer ${accessToken}`;
+    const token = get(this, 'session.token');
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
     }
     return headers;
   }).readOnly()

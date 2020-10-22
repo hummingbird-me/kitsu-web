@@ -10,7 +10,7 @@ module('Unit | Service | ajax', function(hooks) {
     const service = this.owner.factoryFor('service:ajax').create({
       session: {
         isAuthenticated: true,
-        data: { authenticated: { access_token: 'abcdef' } }
+        token: 'abcdef'
       }
     });
     const result = get(service, 'headers');

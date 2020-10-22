@@ -9,6 +9,7 @@ import preferredLocale from 'preferred-locale';
 import { LANGUAGE_CODES } from 'client/utils/languages';
 import momentLocale from 'client/utils/languages-moment';
 import config from 'client/config/environment';
+import noltTokenQuery from 'client/gql/queries/noltToken';
 
 export default Route.extend(ApplicationRouteMixin, {
   features: service(),
@@ -18,6 +19,7 @@ export default Route.extend(ApplicationRouteMixin, {
   metrics: service(),
   moment: service(),
   raven: service(),
+  apollo: service(),
   cache: storageFor('last-used'),
   local: storageFor('local-cache'),
 
@@ -150,6 +152,9 @@ export default Route.extend(ApplicationRouteMixin, {
       this._loadTheme(user);
       get(this, 'moment').changeTimeZone(get(user, 'timeZone') || moment.tz.guess());
 
+      // nolt
+      this._setupNolt();
+
       // notifications
       this._registerNotifications();
 
@@ -170,6 +175,15 @@ export default Route.extend(ApplicationRouteMixin, {
     }).catch(() => {
       get(this, 'session').invalidate();
     });
+  },
+
+  _setupNolt() {
+    get(this, 'apollo').query({ query: noltTokenQuery }, 'session').then(({ noltToken }) => {
+      // eslint-disable-next-line no-undef
+      nolt('identify', {
+        jwt: noltToken,
+      });
+    }).catch(() => {});
   },
 
   _registerNotifications() {

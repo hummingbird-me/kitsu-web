@@ -1,3 +1,5 @@
+{{nolt-feedback-script}}
+
 <nav id="kitsu-navbar" class="navbar navbar-fixed-top navbar-light primary-nav" role="navigation">
   <div class="container">
     <div class="row">
@@ -88,17 +90,10 @@
             {{link-to (t "header.groups") "groups.index" class="nav-link"}}
           </li>
           {{! Feedback}}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle {{if isFeedbackRoute "active"}}" href="#" data-toggle="dropdown" data-href-to-ignore=true>
+          <li class="nav-item nolt-button">
+            <a class="nav-link" href="#"  data-href-to-ignore=true>
               {{t "header.feedback"}}
             </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href={{href-to "feedback.bugs"}}>{{t "feedback.bugs"}}</a>
-              <a class="dropdown-item" href={{href-to "feedback.feature-requests"}}>{{t "feedback.features"}}</a>
-              <a class="dropdown-item" href="https://kitsu-stuff.com" target="_blank" rel="noopener">{{t "feedback.database"}}</a>
-              <a class="dropdown-item" href={{href-to "feedback.mobile-bugs"}}>{{t "feedback.mobile-bugs"}}</a>
-              <a class="dropdown-item" href={{href-to "feedback.mobile-features"}}>{{t "feedback.mobile-features"}}</a>
-            </div>
           </li>
         </ul>
       </div>
