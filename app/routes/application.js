@@ -178,10 +178,10 @@ export default Route.extend(ApplicationRouteMixin, {
   },
 
   _setupNolt() {
-    get(this, 'apollo').query({ query: noltTokenQuery }, 'noltToken').then(({ token }) => {
+    get(this, 'apollo').query({ query: noltTokenQuery }, 'session').then(({ noltToken }) => {
       // eslint-disable-next-line no-undef
       nolt('identify', {
-        jwt: token,
+        jwt: noltToken,
       });
     }).catch(() => {});
   },
