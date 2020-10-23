@@ -42,7 +42,7 @@ titles:
   notifications: "Meldingen"
   feedback:
     bugs: "Bugs"
-    feature-requests: "Functieaanvragen"
+    feature-requests: "Functie aanvragen"
     database-requests: "Databaseverzoeken"
     mobile-bugs: "Telefonische bug"
     mobile-features: "Mobiele functies"
@@ -203,6 +203,7 @@ media:
         de_de: "Duits"
         el_gr: "Grieks"
         en: "Engels"
+        en_ar: "Arabisch (Geromaniseerd)"
         en_au: "Engels (Australië)"
         en_ca: "Engels (Canada)"
         en_cn: "Chinees (Pinyin)"
@@ -312,8 +313,6 @@ media:
         full_story: "Volledige verhaal"
         spinoff: "Namaak"
         adaptation: "Aanpassing"
-        anime_adaptation: "Anime"
-        manga_adaptation: "Manga"
         character: "Personage"
         other: "Anders"
   hide-posts:
@@ -367,9 +366,10 @@ components:
     load: "meer laden"
     none: "geen resultaten"
   sidebar-footer:
-    contact: "Contact"
+    contact: "Contact" #Email address
     terms: "Voorwaarden"
     privacy: "Privacy"
+    status: "Status" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "Bewerken"
@@ -397,6 +397,9 @@ components:
         hover:
           nsfw: "Mijn lichaam is er klaar voor!"
           spoiler: "Ik kan de waarheid aan!"
+      #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
+      to: "aan"
+      group: "Groep"
       link: "Link naar post Kopiëren"
       unfollow: "Post Ontvolgen"
       follow: "Volg Post"
@@ -630,7 +633,10 @@ users:
         female: "Vrouw"
       location: "Locatie:"
       birthday: "Verjaardag:"
-      joined: "Lid sinds:"
+      joined:
+        title: "Lid sinds:"
+        date: "D MMMM YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. Literal text needs to be surrounded by brackets (e.g `[Today is] dddd` renders `Today is Sunday`). See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} geleden)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Anime Statistieken"

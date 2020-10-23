@@ -203,6 +203,7 @@ media:
         de_de: "Alemany"
         el_gr: "Grec"
         en: "Anglès"
+        en_ar: "Arabic (Romanized)"
         en_au: "Anglès (Australià)"
         en_ca: "Anglès (Canadenc)"
         en_cn: "Xino (Pinyin)"
@@ -312,8 +313,6 @@ media:
         full_story: "Història completa"
         spinoff: "Spin-off"
         adaptation: "Adaptació"
-        anime_adaptation: "Anime"
-        manga_adaptation: "Manga"
         character: "Personatge"
         other: "Altre"
   hide-posts:
@@ -367,9 +366,10 @@ components:
     load: "carregar més"
     none: "sense resultats"
   sidebar-footer:
-    contact: "Contacte"
+    contact: "Contacte" #Email address
     terms: "Termes"
     privacy: "Privacy"
+    status: "Status" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "Editar"
@@ -397,6 +397,9 @@ components:
         hover:
           nsfw: "El meu cos està preparat!"
           spoiler: "Puc suportar la veritat!"
+      #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
+      to: "to"
+      group: "Group"
       link: "Copiar enllaç a la publicació"
       unfollow: "Deixar de seguir la publicació"
       follow: "Seguir la publicació"
@@ -525,8 +528,8 @@ users:
           about: "Afegeix la URL del teu Facebook a continuació per afegir un enllaç al teu perfil."
           placeholder: "La URL del teu perfil Facebook"
         youtube2:
-          about: "Enter your YouTube channel URL below to add a link to your profile."
-          placeholder: "Your YouTube channel URL"
+          about: "Introdueix la URL del teu canal de Youtube per a afegir un enllaç al teu perfil."
+          placeholder: "La URL del teu canal de Youtube"
         google:
           about: "Afegeix la URL del teu perfil de Google+ o el teu usuari a continuació per afegir un enllaç al teu perfil."
           placeholder: "La URL del teu perfil Google+ o nom d'usuari (+Usuari)"
@@ -552,7 +555,7 @@ users:
           about: "Afegeix el teu nom d'usuari Raptr a continuació per afegir un enllaç al teu perfil."
           placeholder: "El teu nom d'usuari de Raptr"
         discord:
-          about: "Enter your Discord tag below to add a link to your profile."
+          about: "Introdueix el teu tag de Discord per a afegir un enllaç al teu perfil."
           placeholder: "El teu tag Discord (Usuari#1234)"
         tumblr:
           about: "Afegeix el nom del teu blog Tumblr a continuació per afegir un enllaç al teu perfil."
@@ -630,19 +633,22 @@ users:
         female: "Mujer"
       location: "Localització:"
       birthday: "Aniversari:"
-      joined: "Data d'Ingrés:"
+      joined:
+        title: "Data d'incorporació:"
+        date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. Literal text needs to be surrounded by brackets (e.g `[Today is] dddd` renders `Today is Sunday`). See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Estadístiques d'anime"
         manga: "Estadístiques de manga"
       time-watched: "{count} {timeUnit} spent watching anime."
       chapters-read: "{count} chapters read."
-      completed: "{count} completed."
+      completed: "{count} completats."
       more-than: "More than '<span class=\"time-spent-percentile\">'{percentage}%'</span>' of users."
       time-breakdown:
         seperator: ", " #Used to seperate time-segments (e.g 8 months, 3 hours)
         time-segment: "{count} {timeUnit}" #8 months (pre-translated)
-        total: "spent watching anime in total." #appended after time-segments
+        total: "hores en total veient anime." #appended after time-segments
       empty:
         header: "Sembla que encara no tens prou dades! Comencem alguna cosa nova?"
         guest-header: "Sembla que {user} encara no té estadístiques."
@@ -1051,49 +1057,49 @@ groups:
         community: "Gestiona la configuració"
         content: "Gestionar contingut i denuncies"
         owner-help: "Els propietaris tenen tots els permisos."
-        cancel-btn: "Cancel"
+        cancel-btn: "Cancel·lar"
         save-btn: "Guardar Permisos"
   dashboard:
     back: "Back to {group}"
     navigation:
       overview: "Overview"
-      reports: "Reports"
-      tickets: "Tickets"
-      members: "Members"
-      leaders: "Leaders"
-      settings: "Settings"
+      reports: "Informes"
+      tickets: "Tiquets"
+      members: "Membres"
+      leaders: "Líders"
+      settings: "Configuració"
     overview:
       members:
         header: "Membres"
         today: "Joined Today"
-        total: "Total Members"
+        total: "Total d'usuaris"
       activity:
-        header: "User Activity"
+        header: "Activitat d'usuaris"
         posts: "Posts Today"
-        comments: "Comments Today"
+        comments: "Comentaris Avui"
       help-desk:
-        header: "Open Cases"
-        tickets: "Tickets"
-        reports: "Reports"
-      tickets: "Latest Tickets"
-      reports: "Latest Reports"
+        header: "Casos Oberts"
+        tickets: "Tiquets"
+        reports: "Informes"
+      tickets: "Últims Tiquets"
+      reports: "Últims informes"
       log: "Leader Log"
     members:
       invites:
-        header: "Pending Invites"
+        header: "Invitacions pendents"
         invited: "Invited"
-        revoke: "Cancel Invite"
-        invite: "Invite"
-        placeholder: "Search for a user to invite. They must be following you!"
+        revoke: "Cancel·lar Invitació"
+        invite: "Convidar"
+        placeholder: "Busca un usuari al que convidar. Recorda que t'ha de seguir!"
         empty: "Looks like you don't have any pending invites to the group."
       bans:
-        header: "Banned Users"
-        unban: "Unban"
-        ban: "Ban"
-        placeholder: "Name"
-        empty: "Hooray! You don't have any banned users."
+        header: "Usuaris Expulsats"
+        unban: "Cancel·lar Expulsió"
+        ban: "Expulsar"
+        placeholder: "Nom"
+        empty: "Visca! No tens cap usuari expulsat."
       members:
-        header: "Members"
+        header: "Membres"
         table:
           users: "User"
           permissions: "Rank"
@@ -1105,7 +1111,7 @@ groups:
       chat:
         header: "Leader Chat"
         post-btn: "Post"
-        placeholder: "Send message to leaders"
+        placeholder: "Enviar missatge als líders"
     audit:
       user:
         banned: "banned '<a' href={link}'>'{user}'</a>'."

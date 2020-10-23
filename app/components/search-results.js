@@ -25,6 +25,8 @@ const search = (indexName, attributesToRetrieve, hitsPerPage = 2) => (
       naturalLanguages: ['en', 'ja'],
       attributesToHighlight: [],
       responseFields: ['hits', 'hitsPerPage', 'nbHits', 'nbPages', 'offset', 'page'],
+      removeStopWords: false,
+      removeWordsIfNoResults: 'allOptional',
       ...options
     });
   }).restartable()

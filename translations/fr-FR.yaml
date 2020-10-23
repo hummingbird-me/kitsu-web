@@ -203,6 +203,7 @@ media:
         de_de: "Allemand"
         el_gr: "Grec"
         en: "Anglais"
+        en_ar: "Arabic (Romanized)"
         en_au: "Anglais (Australien)"
         en_ca: "Anglais (Canadien)"
         en_cn: "Chinois (Pinyin)"
@@ -312,8 +313,6 @@ media:
         full_story: "Histoire complète"
         spinoff: "Spin-off"
         adaptation: "Adaptation"
-        anime_adaptation: "Anime"
-        manga_adaptation: "Manga"
         character: "Personnage"
         other: "Autre"
   hide-posts:
@@ -367,9 +366,10 @@ components:
     load: "charger plus"
     none: "pas de résultats"
   sidebar-footer:
-    contact: "Nous contacter"
+    contact: "Nous contacter" #Email address
     terms: "Termes et conditions"
     privacy: "Confidentialité"
+    status: "État" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "Éditer"
@@ -397,6 +397,9 @@ components:
         hover:
           nsfw: "Mon corps est prêt !"
           spoiler: "J'accepte la vérité !"
+      #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
+      to: "to"
+      group: "Group"
       link: "Copier le lien vers le post"
       unfollow: "Ne plus suivre le post"
       follow: "Suivre le post"
@@ -630,7 +633,10 @@ users:
         female: "Femme"
       location: "Position :"
       birthday: "Anniversaire :"
-      joined: "Date d'inscription :"
+      joined:
+        title: "Join Date:"
+        date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. Literal text needs to be surrounded by brackets (e.g `[Today is] dddd` renders `Today is Sunday`). See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Statistiques d'anime"
@@ -994,7 +1000,7 @@ groups:
     feed-restricted: "C'est un groupe restreint. Tout le monde peut commenter, mais seuls les leaders peuvent créer des posts."
   rules:
     header: "Règlement du groupe"
-    empty: "Salut, toi ! On dirait que vous utilisez le règlement de la communauté. Si vous voulez spécifier vos propres règles, vous pouvez le faire sur la '<a' href={link}'>'page des paramètres.'</a>'"
+    empty: "Salut ! On dirait que vous utilisez le règlement de la communauté. Si vous voulez spécifier vos propres règles, vous pouvez le faire sur la '<a' href={link}'>'page des paramètres.'</a>'"
   tickets:
     search: "Chercher un ticket"
     empty: "Hourra ! Vous n'avez pas de ticket à traiter."

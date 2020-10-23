@@ -24,7 +24,9 @@ export default Component.extend({
       queryLanguages: ['en', 'ja'],
       naturalLanguages: ['en', 'ja'],
       hitsPerPage: 5,
-      responseFields: ['hits']
+      responseFields: ['hits'],
+      removeStopWords: false,
+      removeWordsIfNoResults: 'allOptional'
     });
     return response.hits;
   }).restartable(),

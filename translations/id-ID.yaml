@@ -203,6 +203,7 @@ media:
         de_de: "Jerman"
         el_gr: "Yunani"
         en: "Inggris"
+        en_ar: "Arab (Romanisasi)"
         en_au: "Inggris (Australia)"
         en_ca: "Inggris (Kanada)"
         en_cn: "Tionghoa (Pinyin)"
@@ -312,8 +313,6 @@ media:
         full_story: "Cerita Penuh"
         spinoff: "Spin-off"
         adaptation: "Adaptasi"
-        anime_adaptation: "Anime"
-        manga_adaptation: "Manga"
         character: "Karakter"
         other: "Lain-lain"
   hide-posts:
@@ -367,16 +366,17 @@ components:
     load: "muat lagi"
     none: "tidak ada hasil"
   sidebar-footer:
-    contact: "Kontak"
+    contact: "Kontak" #Email address
     terms: "Ketentuan"
     privacy: "Privasi"
+    status: "Status" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "Sunting"
       create: "Kirim"
       nsfw: "NSFW"
       spoiler: "Spoiler"
-      tag-media: "Ketik untuk menandakan tayangan atau manga"
+      tag-media: "Cari anime atau manga untuk ditandai"
     edit-post:
       header: "Sunting Kiriman"
       error:
@@ -397,6 +397,9 @@ components:
         hover:
           nsfw: "Aku siap!"
           spoiler: "Buka saja spoilernya!"
+      #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
+      to: "to"
+      group: "Group"
       link: "Salin Link Kiriman"
       unfollow: "Batal Ikuti"
       follow: "Ikuti Kiriman"
@@ -630,7 +633,10 @@ users:
         female: "Wanita"
       location: "Lokasi:"
       birthday: "Ulang Tahun:"
-      joined: "Tanggal Bergabung:"
+      joined:
+        title: "Join Date:"
+        date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. Literal text needs to be surrounded by brackets (e.g `[Today is] dddd` renders `Today is Sunday`). See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Stat Anime"
@@ -1589,7 +1595,7 @@ category:
   performance: "Performa"
   piloted-robot: "Robot Berawak"
   pirate: "Bajak Laut"
-  plot-continuity: "Kelanjutan Plot"
+  plot-continuity: "Plot Berkelanjutan"
   politics: "Politik"
   post-apocalypse: "Pasca Apokalips"
   power-suit: "Power Suit"

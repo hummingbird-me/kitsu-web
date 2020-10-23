@@ -6,7 +6,8 @@ import { storageFor } from 'ember-local-storage';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import moment from 'moment';
 import preferredLocale from 'preferred-locale';
-import LANGUAGES from 'client/utils/languages';
+import { LANGUAGE_CODES } from 'client/utils/languages';
+import momentLocale from 'client/utils/languages-moment';
 import config from 'client/config/environment';
 
 export default Route.extend(ApplicationRouteMixin, {
@@ -240,14 +241,15 @@ export default Route.extend(ApplicationRouteMixin, {
 
   // Load the most suitable available translation
   async _loadDefaultLanguage() {
-    const locale = preferredLocale(LANGUAGES.map(locale => locale.id), 'en-us', { regionLowerCase: true });
+    const locale = preferredLocale(LANGUAGE_CODES, 'en-us', { regionLowerCase: true });
     get(this, 'intl').addTranslations(locale, await this._fetchTranslations(locale));
     get(this, 'intl').set('locale', [locale]);
+    this._setLocale();
   },
 
   async _loadLanguage(user) {
     const userLocale = get(user, 'language');
-    const localeTranslated = LANGUAGES.some(({ id }) => userLocale === id);
+    const localeTranslated = LANGUAGE_CODES.some(locale => userLocale === locale);
 
     // Don't load the locale twice if user preference is same as browser lamguage preference
     if (userLocale !== 'en-us' && userLocale === get(this, 'intl.primaryLocale')) return;
@@ -256,9 +258,14 @@ export default Route.extend(ApplicationRouteMixin, {
     if (userLocale && localeTranslated) {
       get(this, 'intl').addTranslations(userLocale, await this._fetchTranslations(userLocale));
       get(this, 'intl').set('locale', [userLocale]);
+      this._setLocale();
     } else {
       // Fall back to default if user-provided language field is not available
       await this._loadDefaultLanguage();
     }
+  },
+
+  _setLocale() {
+    get(this, 'moment').setLocale(momentLocale(get(this, 'intl.primaryLocale')));
   }
 });

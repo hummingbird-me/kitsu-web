@@ -1,7 +1,11 @@
 // Listed alphabetically by ID. Client displays alphabetically by text
 // https://crowdin.com/project/kitsu-web
 
-export default [
+// Also update config/environments.js when adding a new language group so
+// they can be used as Moment locales
+// Unfortunately a seperate file as Ember cannot import ESM in config files
+
+export const LANGUAGES = [
   // { id: 'af-za', text: 'Afrikaans' },
   // { id: 'am-et', text: '' }, // Amharic
   { id: 'ar-001', text: 'العربية (BETA)' }, // rtl
@@ -14,7 +18,7 @@ export default [
   { id: 'ca-es', text: 'Català' },
   // { id: 'ceb-ph', text: '' }, // Cebuano
   // { id: 'co-fr', text: '' }, // Corsican
-  // { id: 'cs-cz', text: 'Česky' }, // Czech
+  { id: 'cs-cz', text: 'Česky' },
   // { id: 'cy-gb', text: 'Cymraeg' } // Welsh
   // { id: 'da-dk', text: 'Dansk' }, // Danish
   { id: 'de-de', text: 'Deutsch' },
@@ -77,7 +81,7 @@ export default [
   // { id: 'ms-my', text: 'Bahasa Melayu' }, // Malay
   // { id: 'mt-mt', text: 'Malti' }, // Maltese
   // { id: 'my-mm', text: '' }, // Burmese
-  // { id: 'nb-no', text: 'Norsk (Bokmål)' }, // Norwegian
+  { id: 'nb-no', text: 'Norsk (Bokmål)' },
   // { id: 'ne-np', text: '' }, // Nepali
   { id: 'nl-nl', text: 'Nederlands' },
   // { id: 'nn-no', text: 'Norsk (Nynorsk)' }, // Norwegian
@@ -124,8 +128,10 @@ export default [
   // { id: 'vls-be', text: '' }, // West Flemish
   // { id: 'xh-za', text: '' }, // Xhosa
   // { id: 'yo-ng', text: '' }, // Yoruba
-  // { id: 'zh-cn', text: '中文 (简体)' }, // Mainland China, Simplified Mandarin
+  { id: 'zh-cn', text: '中文 (简体)' }, // Mainland China, Simplified Mandarin
   // { id: 'zh_hk', text: '' }, // Hong Kong, Traditional Cantonese
   // { id: 'zh-tw', text: '中文 (繁體)' }, // Taiwan, Traditional Mandarin
   // { id: 'zu-za', text: '' } // Zulu
 ];
+
+export const LANGUAGE_CODES = LANGUAGES.map(locale => locale.id);

@@ -203,6 +203,7 @@ media:
         de_de: "Aleman"
         el_gr: "Griyego"
         en: "Ingles"
+        en_ar: "Arabic (Romanized)"
         en_au: "Ingles (Awstralyano)"
         en_ca: "Ingles (Kanadyense)"
         en_cn: "Intsik (Pinyin)"
@@ -282,7 +283,7 @@ media:
           true: "Mas kaunting impormasyon"
       feed:
         header: "Feed ng Komunidad"
-      trailer: "I-Play ang Trailer"
+      trailer: "I-play ang Trailer"
     units:
       unit: "{type, select, episode {Episode} chapter {Kabanata} other {}}"
       back: "Bumalik sa listahan ng {type, select, episode {episode} chapter {kabanata} other {}}"
@@ -312,8 +313,6 @@ media:
         full_story: "Buong kwento"
         spinoff: "Spin-off"
         adaptation: "Adoptation"
-        anime_adaptation: "Anime"
-        manga_adaptation: "Manga"
         character: "Karakter"
         other: "Iba pa"
   hide-posts:
@@ -353,7 +352,7 @@ components:
       episode-number: "EP {number}"
     fast-forward: "Ang library progress na-fast-forwarded to episode {number}!"
     undo-update: "Undo"
-    update-progress: "I-update ang library progress to episode {number}?"
+    update-progress: "I-update ang library progress sa episode {number}?"
     watched: "Markahan bilang Napanood na"
     join-prompt:
       pitch: "I-track ang iyong progress at sumali sa diskusyon!"
@@ -367,9 +366,10 @@ components:
     load: "load more"
     none: "walang mga resulta"
   sidebar-footer:
-    contact: "Kontak"
+    contact: "Kontak" #Email address
     terms: "Mga Tuntunin"
     privacy: "Pribasidad"
+    status: "Status" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "I-edit"
@@ -397,6 +397,9 @@ components:
         hover:
           nsfw: "Handa na ang aking katawan!"
           spoiler: "Kakayanin ko ang katotohanan!"
+      #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
+      to: "to"
+      group: "Group"
       link: "Kopyahin ang Link sa Post"
       unfollow: "I-unfollow ang Post"
       follow: "I-follow ang Post"
@@ -420,10 +423,10 @@ components:
         previous-replies: "Ipakita ang Nakaraang Mga Reply"
         add-reply: "Mag-add ng reply…"
       comments:
-        all: "Tingnan ang Lahat ng Mga Comments"
-        parent: "Tingnan ang Parent na Comment"
-        previous-comments: "Tingnan ang Nakaraang Mga Comment"
-        leave-comment: "Mag-iwan ng comment…"
+        all: "Tingnan ang Lahat ng Mga Komento"
+        parent: "Tingnan ang Kabuuang Komento"
+        previous-comments: "Tingnan ang Nakaraang Mga Komento"
+        leave-comment: "Mag-iwan ng komento…"
     review:
       by: "Review ni"
       spoiler: "Ang review na ito ay naglalaman ng mga spoiler."
@@ -440,7 +443,7 @@ components:
   users:
     ban:
       title: "Sigurado ka bang gusto mong I-ban ang user na ito?"
-      text: "Sila ay maka-access at maka-update sa kanilang library, ngunit hindi makagawa ng mga post, comment, o reaksyon."
+      text: "Sila ay maka-access at maka-update sa kanilang library, ngunit hindi makagawa ng mga post, komento, o reaksyon."
     delete-user-content:
       title: "I-delete ang Content ni {user}"
       checkbox:
@@ -485,7 +488,7 @@ users:
     following: "Following"
     groups: "Mga Pangkat"
   edit-modal:
-    cover: "I-change ang iyong cover photo"
+    cover: "Ipalitan ang iyong cover photo"
     navigation:
       about: "Tungkol sa Akin"
       profile-links: "Mga Profile Link"
@@ -630,7 +633,10 @@ users:
         female: "Babae"
       location: "Lokasyon:"
       birthday: "Kaarawan:"
-      joined: "Petsa kung Kailan Sumali:"
+      joined:
+        title: "Join Date:"
+        date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. Literal text needs to be surrounded by brackets (e.g `[Today is] dddd` renders `Today is Sunday`). See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Anime Stats"
@@ -691,7 +697,7 @@ users:
       export: "I-export ang Library"
       reset: "I-reset ang Library"
       reset-loading: "Resetting…"
-      reset-confirmation: "I-delete nito ang iyong buong library, mga associated na review, at reaksyon. Sigurado ka bang nais mong magpatuloy?"
+      reset-confirmation: "I-di-delete nito ang iyong buong library, mga associated na review, at reaksyon. Sigurado ka bang nais mong magpatuloy?"
       issues:
         header: "Mga Library Issue"
         reactions: "{count} ng mga nakumpletong media nakukulangan ng mga '<b>'reaksyon'</b>'"
@@ -1070,7 +1076,7 @@ groups:
       activity:
         header: "Aktibidad ng User"
         posts: "Mga Post Ngayon"
-        comments: "Mga Comment Ngayon"
+        comments: "Mga Komento Ngayon"
       help-desk:
         header: "I-open ang Mga Kaso"
         tickets: "Mga Tiket"

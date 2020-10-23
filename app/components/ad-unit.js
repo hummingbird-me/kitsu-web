@@ -20,7 +20,7 @@ const loadGPTScript = () => {
     return _promise;
   }
 
-  const src = '//www.googletagservices.com/tag/js/gpt.js';
+  const src = 'https://www.googletagservices.com/tag/js/gpt.js';
   _promise = injectScript(src).then(() => {
     _scriptIsLoaded = true;
     window.googletag = window.googletag || {};

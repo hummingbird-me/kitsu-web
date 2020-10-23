@@ -203,6 +203,7 @@ media:
         de_de: "La germana"
         el_gr: "La greka"
         en: "La angla"
+        en_ar: "Arabic (Romanized)"
         en_au: "La angla (aŭstralia)"
         en_ca: "La angla (kanada)"
         en_cn: "La ĉina (pinjino)"
@@ -312,8 +313,6 @@ media:
         full_story: "Tuta historio"
         spinoff: "Kromverko"
         adaptation: "Adaptaĵo"
-        anime_adaptation: "Animeo"
-        manga_adaptation: "Mangao"
         character: "Rolulo"
         other: "Alia"
   hide-posts:
@@ -367,9 +366,10 @@ components:
     load: "ŝargi pli"
     none: "rezultoj mankas"
   sidebar-footer:
-    contact: "Kontakto"
+    contact: "Kontakto" #Email address
     terms: "Kondiĉaro"
     privacy: "Privateco"
+    status: "Stato" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "Redakti"
@@ -397,6 +397,9 @@ components:
         hover:
           nsfw: "Mia korpo estas preta!"
           spoiler: "Mi estas preta akcepti veron!"
+      #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
+      to: "to"
+      group: "Group"
       link: "Kopii afiŝan ligilon"
       unfollow: "Malaboni afiŝon"
       follow: "Aboni afiŝon"
@@ -630,7 +633,10 @@ users:
         female: "Virino"
       location: "Loko:"
       birthday: "Naskiĝtago:"
-      joined: "Aliĝa dato:"
+      joined:
+        title: "Join Date:"
+        date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. Literal text needs to be surrounded by brackets (e.g `[Today is] dddd` renders `Today is Sunday`). See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Animea statistiko"
@@ -713,7 +719,7 @@ users:
         search: "Serĉataj bibliotekaj elementoj ne estis trovitaj."
         header: "Aspektas, ke via biblioteko estas malplena! Ĉu vi pretas komenci ion novan?"
         guest-header: "Aspektas, ke {user} ankoraŭ ne havas ajnan bibliotekan elementon tie."
-        button: "Browse {type}"
+        button: "Esplori {type, select, Anime {animeojn} Manga {mangaojn} other {}}"
     grid:
       view-media: "Rigardi {type, select, anime {animeon} manga {mangaon} other {}}"
     edit:
@@ -1621,7 +1627,7 @@ category:
   slapstick: "Bufonaĵo"
   slavery: "Sklaveco"
   slice-of-life: "Sekco de vivo"
-  slow-when-it-comes-to-love: "Malrapida en ama demandoj"
+  slow-when-it-comes-to-love: "Malrapida en amaj demandoj"
   soccer: "Piedpilko"
   space: "Kosmo"
   space-battles: "Kosmaj bataloj"
@@ -1698,5 +1704,5 @@ category:
   sex-toys: "Seksludiloj"
   shota: "Ŝota"
   small-breasts: "Malgrandaj mamoj"
-  yuri: "Yurio"
+  yuri: "Jurio"
 date-format: "DD/MM/YYYY"

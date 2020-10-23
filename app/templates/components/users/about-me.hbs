@@ -50,7 +50,7 @@
     <span class="stat-icon">
       {{svg-jar "cal"}}
     </span>
-    <strong>{{t "users.activity.about.joined"}}</strong>
-    <span>{{moment-format user.createdAt "MMMM Do, YYYY"}} ({{createdHumanize}} ago)</span>
+    <strong>{{t "users.activity.about.joined.title"}}</strong>
+    <span>{{moment-format user.createdAt (t "users.activity.about.joined.date")}} {{t "users.activity.about.joined.time" time=createdHumanize}}</span>
   </li>
 </ul>

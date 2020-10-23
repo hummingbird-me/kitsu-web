@@ -203,6 +203,7 @@ media:
         de_de: "German"
         el_gr: "Greek"
         en: "English"
+        en_ar: "Arabic (Romanised)"
         en_au: "English (Australian)"
         en_ca: "English (Canadian)"
         en_cn: "Chinese (Pinyin)"
@@ -312,8 +313,6 @@ media:
         full_story: "Full story"
         spinoff: "Spin-off"
         adaptation: "Adaptation"
-        anime_adaptation: "Anime"
-        manga_adaptation: "Manga"
         character: "Character"
         other: "Other"
   hide-posts:
@@ -367,9 +366,10 @@ components:
     load: "Load More"
     none: "No Results"
   sidebar-footer:
-    contact: "Contact"
+    contact: "Contact" #Email address
     terms: "Terms"
     privacy: "Privacy"
+    status: "Status" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "Edit"
@@ -397,6 +397,9 @@ components:
         hover:
           nsfw: "My body is ready!"
           spoiler: "I can handle the truth!"
+      #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
+      to: "to"
+      group: "Group"
       link: "Copy Link to Post"
       unfollow: "Unfollow Post"
       follow: "Follow Post"
@@ -614,7 +617,7 @@ users:
   activity:
     onboarding:
       welcome: "Hey {user}, this page is all about YOU!"
-      about: "As you continue to use Kitsu your '<strong>'Personal Feed'</strong>' below will begin to populate with the anime and manga you've watched, read, completed and plan to check out. You can also post text, images and videos to your feed using the form below. Your posts will be seen and appreciated by your followers and users from the global feed."
+      about: "You can post text, images and videos to your feed using the form below. Your posts will be seen and appreciated by your followers and users from the global feed."
       action: "Make yourself at home! Upload an avatar and cover image! Click '<span>'Edit'</span>' above to get started."
       title: "Set up Your Profile"
     about:
@@ -630,7 +633,10 @@ users:
         female: "Female"
       location: "Location:"
       birthday: "Birthday:"
-      joined: "Join Date:"
+      joined:
+        title: "Join Date:"
+        date: "Do MMMM YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. Literal text needs to be surrounded by brackets (e.g `[Today is] dddd` renders `Today is Sunday`). See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Anime Stats"

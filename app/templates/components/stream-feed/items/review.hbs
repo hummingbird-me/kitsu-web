@@ -56,7 +56,7 @@
               {{#if isExpanded}}
                 {{format-content review.contentFormatted}}
               {{else}}
-                {{#read-more text=(format-content review.contentFormatted) length=480 isHTML=true as |rm|}}
+                {{#read-more text=(format-content review.contentFormatted) length=480 maxLines=50 isHTML=true as |rm|}}
                   {{#if rm.wasTruncated}}
                     <div class="view-more">
                       <a href="#" {{action rm.toggleVisibility}}>

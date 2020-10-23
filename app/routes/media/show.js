@@ -61,7 +61,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
       tagId: 'meta-description',
       attrs: {
         name: 'description',
-        content: get(model, 'synopsis')
+        content: get(model, 'description')
       }
     }, {
       type: 'meta',
@@ -75,7 +75,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
       tagId: 'meta-og-description',
       attrs: {
         property: 'og:description',
-        content: get(model, 'synopsis')
+        content: get(model, 'description')
       }
     }, {
       type: 'meta',
@@ -131,7 +131,7 @@ export default Route.extend(CanonicalRedirectMixin, CoverPageMixin, {
       '@context': 'http://schema.org',
       '@type': 'CreativeWorkSeries',
       name: Object.values(get(model, 'titles')).uniq(),
-      description: get(model, 'synopsis'),
+      description: get(model, 'description'),
       image: get(model, 'posterImage.large'),
       genre: get(model, 'categories').mapBy('title')
     };

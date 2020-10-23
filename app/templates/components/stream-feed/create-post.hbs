@@ -110,11 +110,13 @@
                   <a class="author-name" href={{href-to (concat _usableMedia.modelType ".show") _usableMedia.slug}}>
                     {{_usableMedia.computedTitle}}
                   </a>
-                  <small class="author-secondary">
-                    <div class="media-tag-synopsis">
-                      {{truncate _usableMedia.synopsis 150}}
-                    </div>
-                  </small>
+                  {{#if _usableMedia.description }}
+                    <small class="author-secondary">
+                      <div class="media-tag-description">
+                        {{truncate _usableMedia.description 150}}
+                      </div>
+                    </small>
+                  {{/if}}
                 </div>
               </div>
             </div>

@@ -33,7 +33,7 @@ titles:
     reviews: "{user} का समीक्षा"
     reactions: "{user} का प्रतिक्रिया"
     followers: "{user}'s Followers"
-    following: "Followed by {user}"
+    following: "फोल्लोवेद बय {user}"
     groups: "{user}'s Groups"
     stats: "{user}'s Stats"
   posts: "Post by {user}"
@@ -43,12 +43,12 @@ titles:
   feedback:
     bugs: "बग"
     feature-requests: "सुविधा का अनुरोध"
-    database-requests: "Database Requests"
+    database-requests: "डेटाबेस रिक्वेस्ट्स"
     mobile-bugs: "मोबाइल बग"
-    mobile-features: "Mobile Features"
+    mobile-features: "मोबाइल फीचर्स"
   admin:
-    index: "Admin"
-    reports: "Reports"
+    index: "एडमिन"
+    reports: "रिपोर्टस"
   groups:
     index: "ग्रुप"
     new: "समूह बनाएं"
@@ -142,11 +142,11 @@ media:
     filters:
       year: "वर्ष"
       score: "Average Rating"
-      seasons: "Seasons"
-      streamers: "Streamers (U.S.)"
+      seasons: "सीज़न्स"
+      streamers: "स्ट्रीमर्स (यु.एस)"
       units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
       rating: "रेटिंग"
-      categories: "Categories"
+      categories: "काटेगोरिईस"
       types: "प्रकार"
     sort:
       popularity: "लोकप्रियता"
@@ -203,6 +203,7 @@ media:
         de_de: "German"
         el_gr: "Greek"
         en: "English"
+        en_ar: "Arabic (Romanized)"
         en_au: "English (Australian)"
         en_ca: "English (Canadian)"
         en_cn: "Chinese (Pinyin)"
@@ -312,8 +313,6 @@ media:
         full_story: "Full story"
         spinoff: "Spin-off"
         adaptation: "Adaptation"
-        anime_adaptation: "ऐनिमे"
-        manga_adaptation: "माँगा"
         character: "पात्र"
         other: "अन्य"
   hide-posts:
@@ -367,9 +366,10 @@ components:
     load: "और पढ़ें"
     none: "no results"
   sidebar-footer:
-    contact: "Contact"
+    contact: "Contact" #Email address
     terms: "Terms"
     privacy: "Privacy"
+    status: "Status" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "Edit"
@@ -397,6 +397,9 @@ components:
         hover:
           nsfw: "My body is ready!"
           spoiler: "I can handle the truth!"
+      #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
+      to: "to"
+      group: "Group"
       link: "Copy Link to Post"
       unfollow: "Unfollow Post"
       follow: "Follow Post"
@@ -630,7 +633,10 @@ users:
         female: "Female"
       location: "Location:"
       birthday: "Birthday:"
-      joined: "Join Date:"
+      joined:
+        title: "Join Date:"
+        date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. Literal text needs to be surrounded by brackets (e.g `[Today is] dddd` renders `Today is Sunday`). See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Anime Stats"

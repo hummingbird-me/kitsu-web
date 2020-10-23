@@ -193,7 +193,7 @@ media:
       titles:
         header: "Títulos alternativos"
         af_za: "Africano"
-        ar: "Arábico"
+        ar: "Árabe"
         bg_bg: "Búlgaro"
         bn_bd: "Bengalí"
         ca_es: "Catalán"
@@ -203,6 +203,7 @@ media:
         de_de: "Alemán"
         el_gr: "Griego"
         en: "Inglés"
+        en_ar: "Árabe (Romanizado)"
         en_au: "Inglés (Australia)"
         en_ca: "Inglés (Canadá)"
         en_cn: "Chino (Pinyin)"
@@ -312,8 +313,6 @@ media:
         full_story: "Historia completa"
         spinoff: "Spin-off"
         adaptation: "Adaptación"
-        anime_adaptation: "Anime"
-        manga_adaptation: "Manga"
         character: "Personaje"
         other: "Otro"
   hide-posts:
@@ -367,9 +366,10 @@ components:
     load: "cargar más"
     none: "sin resultados"
   sidebar-footer:
-    contact: "Contacto"
+    contact: "Contacto" #Email address
     terms: "Términos"
     privacy: "Privacidad"
+    status: "Estado" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "Editar"
@@ -397,6 +397,9 @@ components:
         hover:
           nsfw: "¡Mi cuerpo está listo!"
           spoiler: "¡Yo puedo con la verdad!"
+      #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
+      to: "para"
+      group: "Grupo"
       link: "Copiar enlace a la publicación"
       unfollow: "Dejar de seguir publicación"
       follow: "Seguir publicación"
@@ -630,7 +633,10 @@ users:
         female: "Mujer"
       location: "Ubicación:"
       birthday: "Cumpleaños:"
-      joined: "Fecha de registro:"
+      joined:
+        title: "Fecha de registro:"
+        date: "d [de] MMMM [de] YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. Literal text needs to be surrounded by brackets (e.g `[Today is] dddd` renders `Today is Sunday`). See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "(hace {time})" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Estadísticas de anime"

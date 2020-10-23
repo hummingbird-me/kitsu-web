@@ -203,6 +203,7 @@ media:
         de_de: "الألمانية"
         el_gr: "اليونانية"
         en: "الإنجليزية"
+        en_ar: "مُعرَّب"
         en_au: "الإنكليزية (أستراليا)"
         en_ca: "الإنكليزية (كندية)"
         en_cn: "الصينية (بينيين)"
@@ -312,8 +313,6 @@ media:
         full_story: "القصة الكاملة"
         spinoff: "انقطاع"
         adaptation: "التكيف"
-        anime_adaptation: "أنمي"
-        manga_adaptation: "مانجا"
         character: "حرف"
         other: "أخرى"
   hide-posts:
@@ -367,9 +366,10 @@ components:
     load: "تحميل المزيد"
     none: "لا يوجد نتائج"
   sidebar-footer:
-    contact: "اتصل بنا"
+    contact: "اتصل بنا" #Email address
     terms: "بنود الاستخدام"
     privacy: "الخصوصية"
+    status: "الحالة" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "تعديل"
@@ -397,6 +397,9 @@ components:
         hover:
           nsfw: "جسمي جاهز!"
           spoiler: "استطيع تقبل الحقيقة!"
+      #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
+      to: "إلى"
+      group: "مجموعة"
       link: "نسخ رابط المنشور"
       unfollow: "إلغاء متابعة المنشور"
       follow: "متابعة المنشور"
@@ -630,7 +633,10 @@ users:
         female: "أنثى"
       location: "الموقع:"
       birthday: "تاريخ الميلاد:"
-      joined: "تاريخ الإنضمام:"
+      joined:
+        title: "تاريخ الإنضمام:"
+        date: "D/M/YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. Literal text needs to be surrounded by brackets (e.g `[Today is] dddd` renders `Today is Sunday`). See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "(قبل {time})" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "إحصائيات الأنمي"

@@ -2,9 +2,9 @@
 #route titles -- these are used if the route doesn't specify the title itself
 titles:
   anime:
-    index: "探索動漫"
+    index: "Explore Anime"
   manga:
-    index: "探索漫畫"
+    index: "Explore Manga"
   media:
     show:
       units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
@@ -72,7 +72,7 @@ head:
 #header
 header:
   library: "Library"
-  anime: "动画"
+  anime: "Anime"
   manga: "Manga"
   trending: "Trending"
   groups: "Groups"
@@ -99,7 +99,7 @@ dashboard:
     title: "Quick Update"
     filter:
       all: "All"
-      anime: "动画"
+      anime: "Anime"
       manga: "Manga"
     empty:
       html: "Media you've added or updated within your '<a' href={link}'>'Library'</a>' will show up here for you to quickly update."
@@ -130,7 +130,7 @@ dashboard:
     button: "Learn More"
   feed:
     following: "Following"
-    anime: "动画"
+    anime: "Anime"
     manga: "Manga"
     global: "Global"
 #page: anime/manga
@@ -203,6 +203,7 @@ media:
         de_de: "German"
         el_gr: "Greek"
         en: "English"
+        en_ar: "Arabic (Romanized)"
         en_au: "English (Australian)"
         en_ca: "English (Canadian)"
         en_cn: "Chinese (Pinyin)"
@@ -312,8 +313,6 @@ media:
         full_story: "Full story"
         spinoff: "Spin-off"
         adaptation: "Adaptation"
-        anime_adaptation: "动画"
-        manga_adaptation: "Manga"
         character: "Character"
         other: "Other"
   hide-posts:
@@ -367,9 +366,10 @@ components:
     load: "load more"
     none: "no results"
   sidebar-footer:
-    contact: "Contact"
+    contact: "Contact" #Email address
     terms: "Terms"
     privacy: "Privacy"
+    status: "Status" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "Edit"
@@ -397,6 +397,9 @@ components:
         hover:
           nsfw: "My body is ready!"
           spoiler: "I can handle the truth!"
+      #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
+      to: "to"
+      group: "Group"
       link: "Copy Link to Post"
       unfollow: "Unfollow Post"
       follow: "Follow Post"
@@ -452,7 +455,7 @@ components:
     you: "Hey, that's you!"
     favorites:
       title: "Favorite {type, select, series {Series} characters {Characters} other {}}"
-      anime: "动画"
+      anime: "Anime"
       manga: "Manga"
       more: "Show More"
       edit: "Edit favorite {type, select, anime {anime} manga {manga} characters {characters} other {}}"
@@ -607,7 +610,7 @@ users:
       update: "Update Profile"
     favorites:
       header: "Favorites"
-      anime: "动画"
+      anime: "Anime"
       manga: "Manga"
       characters: "Characters"
       remove: "Remove Favorite?"
@@ -630,7 +633,10 @@ users:
         female: "Female"
       location: "Location:"
       birthday: "Birthday:"
-      joined: "Join Date:"
+      joined:
+        title: "Join Date:"
+        date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. Literal text needs to be surrounded by brackets (e.g `[Today is] dddd` renders `Today is Sunday`). See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Anime Stats"

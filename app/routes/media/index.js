@@ -115,7 +115,7 @@ export default Route.extend(SlideHeaderMixin, Pagination, {
         'canonicalTitle',
         'titles',
         'posterImage',
-        'synopsis',
+        'description',
         'averageRating',
         'startDate',
         'popularityRank',

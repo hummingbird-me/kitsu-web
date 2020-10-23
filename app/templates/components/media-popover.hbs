@@ -19,9 +19,13 @@
           <span class="media-title">{{media.yearlessTitle}}</span>
           <span class="media-year">{{media.year}}</span>
         </div>
-        {{#if media.averageRating}}<div class="media-ratings {{percentageClass}}">{{media.averageRating}}%</div>{{/if}}
+        {{#if media.averageRating}}
+          <div class="media-ratings {{percentageClass}}">{{media.averageRating}}%</div>
+        {{/if}}
         {{media/media-rankings media=media length="short"}}
-        <div class="media-synopsis">{{media.synopsis}}</div>
+        {{#if media.description}}
+          <div class="media-description">{{media.description}}</div>
+        {{/if}}
       </div>
     {{/ember-tether}}
   </div>

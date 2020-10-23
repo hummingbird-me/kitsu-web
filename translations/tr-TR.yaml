@@ -203,6 +203,7 @@ media:
         de_de: "Almanca"
         el_gr: "Yunanca"
         en: "İngilizce"
+        en_ar: "Arabic (Romanized)"
         en_au: "İngilizce (Avustralya)"
         en_ca: "İngilizce (Kanada)"
         en_cn: "Çince (Pinyin)"
@@ -312,8 +313,6 @@ media:
         full_story: "Tüm hikaye"
         spinoff: "Uyarlama"
         adaptation: "Uyarlama"
-        anime_adaptation: "Anime"
-        manga_adaptation: "Manga"
         character: "Karakter"
         other: "Diğer"
   hide-posts:
@@ -367,9 +366,10 @@ components:
     load: "Daha fazlasını yükle"
     none: "Sonuç bulunamadı"
   sidebar-footer:
-    contact: "İletişim"
+    contact: "İletişim" #Email address
     terms: "Şartlar"
     privacy: "Gizlilik"
+    status: "Statü" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "Düzenle"
@@ -397,6 +397,9 @@ components:
         hover:
           nsfw: "Buna hazırım!"
           spoiler: "Gerçekle başa çıkabilirim!"
+      #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
+      to: "to"
+      group: "Grup"
       link: "Gönderinin linkini kopyala"
       unfollow: "Gönderiyi takip etmeyi bırak"
       follow: "Gönderiyi takip et"
@@ -630,7 +633,10 @@ users:
         female: "Kadın"
       location: "Konum:"
       birthday: "Doğum Günü:"
-      joined: "Katılma Tarihi:"
+      joined:
+        title: "Katılım Tarihi:"
+        date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. Literal text needs to be surrounded by brackets (e.g `[Today is] dddd` renders `Today is Sunday`). See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Anime İstatikleri"

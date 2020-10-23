@@ -203,6 +203,7 @@ media:
         de_de: "Vācu"
         el_gr: "Grieķu"
         en: "Angļu"
+        en_ar: "Arabic (Romanized)"
         en_au: "Angļu (Austrālijas)"
         en_ca: "Angļu (Kanādas)"
         en_cn: "Ķīniešu (pinin)"
@@ -312,8 +313,6 @@ media:
         full_story: "Pilns stāsts"
         spinoff: "Atvasināts stāsts"
         adaptation: "Adaptācija"
-        anime_adaptation: "Anime"
-        manga_adaptation: "Manga"
         character: "Tels"
         other: "Citas"
   hide-posts:
@@ -367,9 +366,10 @@ components:
     load: "ielādēt vairāk"
     none: "nav rezultātu"
   sidebar-footer:
-    contact: "Kontakti"
+    contact: "Kontakti" #Email address
     terms: "Noteikumi"
     privacy: "Privātums"
+    status: "Status" #Service status - status.kitsu.io
   stream-feed:
     create-post:
       edit: "Rediģēt"
@@ -397,6 +397,9 @@ components:
         hover:
           nsfw: "Mans ķermenis ir gatavs!"
           spoiler: "Varu panest patiesību!"
+      #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
+      to: "to"
+      group: "Group"
       link: "Kopēt saiti ierakstā"
       unfollow: "Atsekot ierakstam"
       follow: "Sekot ierakstam"
@@ -630,7 +633,10 @@ users:
         female: "Female"
       location: "Atrašanās vieta:"
       birthday: "Dzimšanas diena:"
-      joined: "Pievienošanas datums:"
+      joined:
+        title: "Join Date:"
+        date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. Literal text needs to be surrounded by brackets (e.g `[Today is] dddd` renders `Today is Sunday`). See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
+        time: "({time} ago)" #{time} is pre-calculated (e.g `4 years` and `23 minutes` translated to your language).
     stats:
       headings:
         anime: "Anime stati"

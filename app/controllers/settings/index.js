@@ -7,7 +7,8 @@ import { storageFor } from 'ember-local-storage';
 import getter from 'client/utils/getter';
 import errorMessages from 'client/utils/error-messages';
 import COUNTRIES from 'client/utils/countries';
-import LANGUAGES from 'client/utils/languages';
+import { LANGUAGES } from 'client/utils/languages';
+import momentLocale from 'client/utils/languages-moment';
 import config from 'client/config/environment';
 import moment from 'moment';
 
@@ -20,6 +21,7 @@ export default Controller.extend({
   timezoneGuess: getter(() => moment.tz.guess()),
   timezones: getter(() => moment.tz.names()),
   intl: service(),
+  moment: service(),
 
   countries: getter(() => (
     Object.keys(COUNTRIES).map(key => ({ id: key, text: COUNTRIES[key] })).sortBy('text')
@@ -152,6 +154,7 @@ export default Controller.extend({
       const translations = await fetch(`/${translationsPath}`);
       get(this, 'intl').addTranslations(userLocale, await translations.json());
       get(this, 'intl').set('locale', [userLocale, 'en-us']);
+      get(this, 'moment').setLocale(momentLocale(get(this, 'intl.primaryLocale')));
     }
   }
 });

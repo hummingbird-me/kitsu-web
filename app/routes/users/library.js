@@ -237,7 +237,7 @@ export default Route.extend(Pagination, {
         'posterImage',
         'canonicalTitle',
         'titles',
-        'synopsis',
+        'description',
         'subtype',
         'startDate',
         'status',
