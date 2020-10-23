@@ -88,6 +88,30 @@ module.exports = function(defaults) {
       }
     },
 
+    'ember-cli-workbox': {
+      enabled: true,
+      autoRegister: true,
+      debug: environment !== 'production'
+    },
+
+    workbox: {
+      swDest: '/sw.js',
+      skipWaiting: true,
+      clientsClaim: true,
+      sourcemap: false,
+      navigateFallback: '/index.html',
+      navigationPreload: false,
+      runtimeCaching: [
+        {
+          urlPattern: /^https:\/\/fonts\.gstatic\.com/,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'google-fonts'
+          }
+        }
+      ]
+    },
+
     // assets
     nodeAssets: {
       autosize: {
