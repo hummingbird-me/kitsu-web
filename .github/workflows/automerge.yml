@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: automerge
         uses: "pascalgn/automerge-action@v0.11.0"
-        if: contains(github.ref, "crowdin")
+        if: endsWith(github.ref, "ref/head/crowdin")
         env:
           MERGE_LABELS: ""
           MERGE_METHOD: "squash"
