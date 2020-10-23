@@ -27,7 +27,7 @@
               height: window.innerHeight,
               id: data.id
             };
-            if (data.network === undefined) { options.partner = 'kitsu'; }
+            if (data.network === undefined) { options.partner = ''; }
             window.HuluPlayerInstance = new HuluPlayer.DP('embed-container', options);
             break;
           default:
