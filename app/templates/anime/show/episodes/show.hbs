@@ -1,7 +1,9 @@
 <div class="col-sm-12 no-padding">
   <!-- <a href={{href-to (concat media.modelType ".show." model.modelType "s")}} class="episode-list">{{t "media.show.units.back" type=model.modelType}}</a> -->
   <div class="unit-summary">
-    {{episodes/episode-video episode=model media=media}}
+    {{#if (has-feature "hulu_streaming")}}
+      {{episodes/episode-video episode=model media=media}}
+    {{/if}}
 
     <div class="col-sm row">
       <div class="summary-wrapper col-sm">
