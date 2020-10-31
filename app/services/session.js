@@ -36,6 +36,15 @@ export default Session.extend({
   },
 
   /**
+   * Get the access token.  Returns undefined when not authenticated.
+   */
+  token: computed('isAuthenticated', 'data.authenticated', function() {
+    if (!this.isAuthenticated) return;
+
+    return get(this, 'data.authenticated.access_token');
+  }),
+
+  /**
    * Get the account information for the sessioned user
    */
   async getCurrentUser() {

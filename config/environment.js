@@ -224,7 +224,7 @@ module.exports = function(environment) {
     ENV.kitsu.APIHost = 'https://kitsu.io';
   }
 
-  ENV.apollo = { apiURL: `${ENV.kitsu.APIHost}/api/edge/graphql` };
+  ENV.apollo = { apiURL: `${ENV.kitsu.APIHost}/api/graphql` };
 
   return ENV;
 };
