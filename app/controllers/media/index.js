@@ -3,6 +3,7 @@ import { get, set } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 import { moment } from 'client/utils/moment';
 import { concat } from 'client/utils/computed-macros';
+import { minYearAnime, minYearManga } from 'client/utils/media-minyear';
 import { serializeArray, deserializeArray } from 'client/utils/queryable';
 
 export const MEDIA_QUERY_PARAMS = {
@@ -77,26 +78,6 @@ export const MEDIA_QUERY_PARAMS = {
       }
       return [lower, upper];
     }
-  },
-  year: {
-    defaultValue: [1868, moment().year() + 2],
-    refresh: true,
-    serialize(value) {
-      const [lower, upper] = value;
-      if (lower === 1868 && upper === (moment().year() + 2)) {
-        return undefined;
-      } if (upper === (moment().year() + 2)) {
-        return serializeArray([lower, null]);
-      }
-      return serializeArray(value);
-    },
-    deserialize(value = []) {
-      const [lower, upper] = deserializeArray(value);
-      if (isEmpty(upper)) {
-        return [lower, moment().year() + 2];
-      }
-      return [lower, upper];
-    }
   }
 };
 
@@ -106,10 +87,11 @@ export default Controller.extend({
 
   init() {
     this._super(...arguments);
-    set(this, 'maxYear', moment().year() + 2);
     const mediaType = get(this, 'mediaType');
     set(this, 'isAnime', mediaType === 'anime');
     set(this, 'isManga', mediaType === 'manga');
+    set(this, 'minYear', get(this, 'isAnime') ? minYearAnime : minYearManga);
+    set(this, 'maxYear', moment().year() + 2);
   },
 
   actions: {
