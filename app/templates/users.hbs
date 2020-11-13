@@ -38,7 +38,7 @@
                 {{! admin actions }}
                 {{#if (can "view admin" user)}}
                   {{#bootstrap/bs-dropdown class="d-inline" as |dropdown|}}
-                    {{#dropdown.button class="button button--light-outline"}}
+                    {{#dropdown.button class="button--light-outline button--outline"}}
                       {{t "users.admin.button"}}
                     {{/dropdown.button}}
                     {{#dropdown.menu}}
