@@ -14,6 +14,9 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
+    - name: Debug event name
+      run: echo ${{ github.event }}
+
     - name: Use Node ${{ matrix.node_version }}
       uses: actions/setup-node@v1
       with:
