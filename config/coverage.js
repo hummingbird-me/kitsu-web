@@ -1,4 +1,4 @@
 module.exports = {
-  reporters: ['lcov', 'html', 'text-summary'],
+  reporters: ['lcov'],
   useBabelInstrumenter: true
 };

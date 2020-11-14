@@ -31,13 +31,16 @@ jobs:
       run: yarn install --pure-lockfile
 
     - name: Test App
-      run: yarn test:ci
+      run: COVERAGE=true yarn test:ci
 
     - name: debug 3
       run: ls ${{ github.workspace }}
 
     - name: debug 2
-      run: ls ${{ github.workspace }}/coverage
+      run: ls ${{ github.workspace }}/tests
+
+    - name: debug 1
+      run: ls ${{ github.workspace }}/mirage
 
     - name: Report Test Coverage
       uses: paambaati/codeclimate-action@v2.7.4
