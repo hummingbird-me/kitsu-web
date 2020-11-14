@@ -1,0 +1,37 @@
+name: Deploy
+on:
+  push:
+    branches:
+    - the-future
+
+jobs:
+  deploy:
+    name: Deploy (Node ${{ matrix.node_version}})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node_version: [14]
+        os: [ubuntu-latest]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Use Node ${{ matrix.node_version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node_version }}
+
+    - name: Restore Cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          node_modules
+        key: ${{ matrix.os }}-${{ matrix.node_version }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: ${{ matrix.os }}-${{ matrix.node_version }}-yarn-
+
+    - name: Install Dependencies
+      run: yarn install --pure-lockfile
+
+    - name: Build App
+      run: yarn ember deploy production
