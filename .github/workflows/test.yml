@@ -31,10 +31,12 @@ jobs:
       run: yarn install --pure-lockfile
 
     - name: Test App
+      run: yarn test:ci
+
+    - name: Report Test Coverage
       uses: paambaati/codeclimate-action@v2.7.4
       env:
-        CC_TEST_REPORTER_ID: f15069c85832661086a0f758b25cf410e58ae1f80dbcbc762021dfc71feb8f71
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
-        coverageCommand: yarn test:ci
         coverageLocations: |
-          ${{ github.workspace}}/coverage/lcov.info
+          ${{ github.workspace }}/coverage/lcov.info:lcov
