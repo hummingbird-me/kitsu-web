@@ -1,6 +1,6 @@
 # Kitsu Client
 [![Crowdin](https://badges.crowdin.net/kitsu-web/localized.svg)](https://crowdin.com/project/kitsu-web)
-[![Build Status](https://travis-ci.org/hummingbird-me/kitsu-web.svg?branch=the-future)](https://travis-ci.org/hummingbird-me/kitsu-web)
+[![Build Status](https://github.com/hummingbird-me/kitsu-web/workflows/Test/badge.svg)](https://github.com/hummingbird-me/kitsu-web/actions?query=workflow%3ATest)
 [![Code Climate](https://codeclimate.com/github/hummingbird-me/kitsu-web/badges/gpa.svg)](https://codeclimate.com/github/hummingbird-me/kitsu-web)
 [![Test Coverage](https://codeclimate.com/github/hummingbird-me/kitsu-web/badges/coverage.svg)](https://codeclimate.com/github/hummingbird-me/kitsu-web/coverage)
 
