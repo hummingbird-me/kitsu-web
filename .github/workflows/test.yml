@@ -1,0 +1,43 @@
+name: Test
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Test (Node ${{ matrix.node_version}})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node_version: [14]
+        os: [ubuntu-latest]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Use Node ${{ matrix.node_version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node_version }}
+
+    - name: Restore Cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          node_modules
+        key: ${{ matrix.os }}-${{ matrix.node_version }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: ${{ matrix.os }}-${{ matrix.node_version }}-yarn-
+
+    - name: Install Dependencies
+      run: yarn install --pure-lockfile
+
+    - name: Test App
+      run: COVERAGE=true yarn test:ci
+
+    - name: Report Test Coverage
+      if: github.event_name == 'push'
+      uses: paambaati/codeclimate-action@v2.7.4
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        coverageLocations: |
+          ${{ github.workspace }}/coverage/lcov.info:lcov
