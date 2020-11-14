@@ -33,6 +33,15 @@ jobs:
     - name: Test App
       run: yarn test:ci
 
+    - name: debug
+      run: ls coverage
+
+    - name: debug 2
+      run: ls ${{ github.workspace }}/coverage
+
+    - name: debug 3
+      run: ls ${{ github.workspace }}
+
     - name: Report Test Coverage
       uses: paambaati/codeclimate-action@v2.7.4
       env:
