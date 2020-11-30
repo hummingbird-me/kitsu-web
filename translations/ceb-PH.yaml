@@ -107,10 +107,10 @@ dashboard:
     media:
       complete: "Kumpleto"
       unstarted: "Wala Pagsugod"
-      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {of {total}}}} manga {Ch. {num} {total, select, null {} other {of {total}}}} other {}}"
+      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {of {total}}}} manga {Ka. {num} {total, select, null {} other {of {total}}}} other {}}"
     overlay:
       button:
-        update: "{type, select, anime {Ep.} manga {Ch.} other {}} {number}"
+        update: "{type, select, anime {Ep.} manga {Ka.} other {}} {number}"
         complete: "Kumpleto"
         tooltip:
           empty: "Pag-update sa Library"
@@ -119,7 +119,7 @@ dashboard:
       edit: "Pag-edit ug Entry sa Imoang Library"
       popout: "Pop-out editor"
       editor:
-        placeholder: "(Optional) Share your thoughts on {type, select, anime {Episode} manga {Chapter} other {}} {number}"
+        placeholder: "(Opsyonal) Ipakigbahin ang imong mga hunahuna {type, select, anime {Episode} manga {Kapitulo} other {}} {number}"
   onboarding:
     welcome: "Huy {user}, maligayang pag-abot sa Kitsu!"
     about: "This is the global activity feed. It's populated by recent activity from all of Kitsu's users - even you! Once you've had a chance to follow a few more interesting users, we'll switch your default feed from Global to Following."
@@ -262,39 +262,39 @@ media:
         zh_tw: "Intsik (Tradisyonal)"
         synonyms: "Kapareha ug Kahulogan"
       information:
-        header: "{type, select, anime {Anime} manga {Manga} other {}} Details"
-        type: "Type"
-        volumes: "Volumes"
-        unit: "{type, select, anime {Episodes} manga {Chapters} other {}}"
-        start: "{type, select, anime {Aired} manga {Published} other {}}"
-        status: "Status"
-        tba: "Expected"
+        header: "{type, select, anime {Anime} manga {Manga} other {}} Mga Detalye"
+        type: "Uri"
+        volumes: "Mga Kagahob"
+        unit: "{type, select, anime {Episodes} manga {Kapitulo} other {}}"
+        start: "{type, select, anime {Aired} manga {Gimantala} other {}}"
+        status: "Kahimtang"
+        tba: "Gipaabot"
         season: "Season"
-        producers: "Producers"
-        licensors: "Licensors"
-        studios: "Studios"
-        serialization: "Serialization"
-        duration: "Length"
-        total: "{total} total"
-        length: "{count, plural, =1 {{length} minutes} other {{length} minutes each}}"
+        producers: "Mga Naghimo"
+        licensors: "Mga Nag-Lisensya"
+        studios: "Mga Studios"
+        serialization: "Serialisasyon"
+        duration: "Taas"
+        total: "{total} kinatibuk-an"
+        length: "{count, plural, =1 {{length} minutes} other {{length} ka minuto matag usa}}"
         rating: "Rating"
         expand:
-          false: "More info"
-          true: "Less Info"
+          false: "Dugang nga impormasyon"
+          true: "Gamay nga Impormasyon"
       feed:
-        header: "Community Feed"
-      trailer: "Play Trailer"
+        header: "Feed ng Community"
+      trailer: "Pagdula sa Trailer"
     units:
-      unit: "{type, select, episode {Episode} chapter {Chapter} other {}}"
-      back: "Back to {type, select, episode {episode} chapter {chapter} other {}} list"
-      pages: "{length} Pages"
-      date: "{type, select, episode {Aired} chapter {Published} other {}}"
-      completed: "{type, select, episode {Watched} chapter {Read} other {Complete}}"
+      unit: "{type, select, episode {Episode} chapter {Kapitulo} other {}}"
+      back: "Balik sa {type, select, episode {episode} chapter {chapter} other {}} nga list"
+      pages: "{length} na mga Panid"
+      date: "{type, select, episode {Aired} chapter {Gipatik} other {}}"
+      completed: "{type, select, episode {Tapus nga Pagtan-aw} chapter {Read} other {Kumpleto}}"
       feed:
-        header: "{type, select, episode {Episode} chapter {Chapter} other {}} Discussion"
+        header: "Panaghisgutan sa {type, select, episode {Episode} chapter {Chapter} other {}}"
     characters:
-      header: "{title} Characters"
-      sub-header: "{type, select, anime {The following is a full list of characters and their {language} voice actors for the anime {title}} manga {The following is a full list of characters for the manga {title}} other {}}"
+      header: "{title} Mga Tauhan"
+      sub-header: "{type, select, anime {Ang mosunud usa ka tibuuk nga lista sa mga karakter ug ilang {language} mga aktor sa boses alang sa anime nga {title}} manga {Ang mosunud usa ka tibuuk nga lista sa mga karakter alang sa manga nga {title}} other {}}"
     reactions:
       loading: "Loading sa Mga Reaksyon…"
       delete: "Pagtangtang sa Reaksyon"
@@ -346,17 +346,17 @@ components:
         status: "Status"
         actions: "Ang Aksyon"
   application:
-    nav-search: "Search Kitsu"
+    nav-search: "Pangitaa sa Kitsu"
   episodes:
     shortcut-bar:
       episode-number: "EP {number}"
     fast-forward: "Library progress fast-forwarded to episode {number}!"
     undo-update: "Undo"
-    update-progress: "Update library progress to episode {number}?"
-    watched: "Mark Watched"
+    update-progress: "Update ang progreso sa library sa episode {number}?"
+    watched: "Markaha ang nakitan"
     join-prompt:
-      pitch: "Track your progress and join the discussion!"
-      register: "Create Kitsu Account"
+      pitch: "Dalan imong progreso og apil sa manga diskasyon!"
+      register: "Pag himo og Kitsu Account"
   likeable-resource:
     loading: "Loading…"
     more: "Load More"
