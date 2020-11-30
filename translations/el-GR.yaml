@@ -12,7 +12,7 @@ titles:
       reactions: "Αντιδράσεις"
       franchise: "Σειρά"
   explore:
-    index: "Εξερευνήστε {mediaType, select, anime {Άνιμε} manga {Μάνγκα} other {}}"
+    index: "Εξερευνήστε τα {mediaType, select, anime {Άνιμε} manga {Μάνγκα} other {}}"
     more:
       trending: "Οι καινούργιες τάσεις {type, select, other {}} της εβδομάδας"
       top-current: "Κορυφαία {type, select, Anime {Τρέχων} Manga {Εκδιδόμενα} other {}} {type}"
@@ -454,7 +454,7 @@ components:
     block: "Αποκλεισμός @{user}"
     you: "Εε, αυτός είσαι εσύ!"
     favorites:
-      title: "Favorite {type, select, series {Series} characters {Characters} other {}}"
+      title: "{type, select, series {Αγαπημένες Σειρές} characters {Αγαπημένοι Χαρακτήρες} other {}}"
       anime: "Άνιμε"
       manga: "Manga"
       more: "Εμφάνιση Περισσότερων"
@@ -462,7 +462,7 @@ components:
       empty:
         yours: "You haven't listed your favorite {type, select, anime {anime} manga {manga} characters {characters} other {}} yet!"
         others: "Ο χρήστης δεν έχει αγαπημένα"
-      choose: "Διάλεξε αγαπημένο {type, select, anime {anime} manga {manga} characters {χαρακτήρα} other {}}"
+      choose: "Διάλεξε αγαπημένο {type, select, anime {άνιμε} manga {μάνγκα} characters {χαρακτήρα} other {}}"
     alt-name:
       title: "Possible Alt Accounts of {user}"
       none: "No alts found"
@@ -1163,7 +1163,7 @@ explore:
   modal:
     header: "Όλες οι Κατηγορίες"
   favorite-button:
-    remove: "Αφαίρεση από τα αγαπημένα"
+    remove: "Αφαίρεση από τα Αγαπημένα"
     removing: "Αφαίρεση…"
     create: "Προσθήκη στα Αγαπημένα"
     creating: "Προσθήκη…"
@@ -1269,7 +1269,7 @@ feeds:
     invalid: "Μη έγκυρος τύπος αρχείου"
     uploading: "{number, plural, one {} =1 {Ανεβαίνει η φωτογραφία… {progress}%} other {Ανεβαίνουν {number} φωτογραφίες… {progress}%}}"
   filter:
-    all: "Όλες η δραστηριότητα"
+    all: "Όλη η δραστηριότητα"
     media: "Media Activity"
     user: "Δραστηριότητα Χρήστη"
     following: "Followed Activity"
