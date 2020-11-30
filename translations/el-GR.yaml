@@ -2,9 +2,9 @@
 #route titles -- these are used if the route doesn't specify the title itself
 titles:
   anime:
-    index: "Εξερευνήστε τα Άνιμε"
+    index: "Explore Anime"
   manga:
-    index: "Εξερευνήστε τα Μάνγκα"
+    index: "Explore Manga"
   media:
     show:
       units: "{type, select, anime {Επεισόδια} manga {Κεφάλαια} other {}}"
@@ -12,9 +12,9 @@ titles:
       reactions: "Αντιδράσεις"
       franchise: "Σειρά"
   explore:
-    index: "Εξερευνήστε τα {mediaType, select, anime {Άνιμε} manga {Μάνγκα} other {}}"
+    index: "Explore {mediaType, select, anime {Anime} manga {Manga} other {}}"
     more:
-      trending: "Οι καινούργιες τάσεις {type, select, other {}} της εβδομάδας"
+      trending: "Trending {type, select, other {}} This Week"
       top-current: "Κορυφαία {type, select, Anime {Τρέχων} Manga {Εκδιδόμενα} other {}} {type}"
       top-upcoming: "Κορυφαία Ανερχόμενα {type}"
       highest-rated: "Υψηλότερη βαθμολογία {type, select, Anime {Άνιμε} Manga {Μάνγκα} other {}}"
@@ -28,11 +28,11 @@ titles:
   not-found: "Δεν Βρέθηκε"
   server-error: "Σφάλμα Διακομιστή"
   users:
-    index: "Το προφίλ του {user}"
-    library: "Η βιβλιοθήκη του {user}"
-    reviews: "Οι αξιολογήσεις του {user}"
+    index: "{user}'s Profile"
+    library: "{user}'s Library"
+    reviews: "{user}'s Reviews"
     reactions: "Αντιδράσεις {user}"
-    followers: "Οι ακόλουθοι του {user}"
+    followers: "{user}'s Followers"
     following: "Ακολουθείται από {user}"
     groups: "Οι ομάδες του {user}"
     stats: "Τα Στατιστικά του {user}"
@@ -42,10 +42,10 @@ titles:
   notifications: "Ειδοποιήσεις"
   feedback:
     bugs: "Σφάλματα"
-    feature-requests: "Προτάσεις για νέες λειτουργίες"
-    database-requests: "Προτάσεις για τη Βάση δεδομένων"
+    feature-requests: "Feature Requests"
+    database-requests: "Database Requests"
     mobile-bugs: "Σφάλματα κινητού"
-    mobile-features: "Λειτουργίες για Κινητά"
+    mobile-features: "Mobile Features"
   admin:
     index: "Διαχειριστής"
     reports: "Αναφορές"
@@ -72,7 +72,7 @@ head:
 #header
 header:
   library: "Βιβλιοθήκη"
-  anime: "Άνιμε"
+  anime: "Anime"
   manga: "Manga"
   trending: "Τάσεις"
   groups: "Ομάδες"
@@ -107,7 +107,7 @@ dashboard:
     media:
       complete: "Ολοκληρώθηκε"
       unstarted: "Δεν ξεκίνησε"
-      unit: "{type, select, anime {Επ. {num} {total, select, undefined {} other {από {total}}}} manga {Κεφ. {num} {total, select, null {} other {από {total}}}} other {}}"
+      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {of {total}}}} manga {Ch. {num} {total, select, null {} other {of {total}}}} other {}}"
     overlay:
       button:
         update: "{type, select, anime {Επ.} manga {Κεφ.} other {}} {number}"
@@ -454,15 +454,15 @@ components:
     block: "Αποκλεισμός @{user}"
     you: "Εε, αυτός είσαι εσύ!"
     favorites:
-      title: "{type, select, series {Αγαπημένες Σειρές} characters {Αγαπημένοι Χαρακτήρες} other {}}"
+      title: "Favorite {type, select, series {Series} characters {Characters} other {}}"
       anime: "Άνιμε"
       manga: "Manga"
       more: "Εμφάνιση Περισσότερων"
-      edit: "Επεξεργασία αγαπημένων {type, select, anime {άνιμε} manga {μάνγκα} characters {χαρακτήρων} other {}}"
+      edit: "Edit favorite {type, select, anime {anime} manga {manga} characters {characters} other {}}"
       empty:
         yours: "You haven't listed your favorite {type, select, anime {anime} manga {manga} characters {characters} other {}} yet!"
         others: "Ο χρήστης δεν έχει αγαπημένα"
-      choose: "Διάλεξε αγαπημένο {type, select, anime {άνιμε} manga {μάνγκα} characters {χαρακτήρα} other {}}"
+      choose: "Choose favorite {type, select, anime {anime} manga {manga} characters {characters} other {}}"
     alt-name:
       title: "Possible Alt Accounts of {user}"
       none: "No alts found"
@@ -721,7 +721,7 @@ users:
         guest-header: "Looks like {user} doesn't have any library entries here."
         button: "Περιήγηση {type}"
     grid:
-      view-media: "Δείτε τα {type, select, anime {Άνιμε} manga {Μάνγκα} other {}}"
+      view-media: "View {type, select, anime {Anime} manga {Manga} other {}}"
     edit:
       status: "Κατάσταση Βιβλιοθήκης"
       progress: "Πρόοδος"
@@ -818,7 +818,7 @@ settings:
     create: "Setup Export to MyAnimeList Account"
     download: "Λήψη {kind} Βιβλιοθήκης"
     recent: "Πρόσφατη Δραστηριότητα Συγχρονισμού"
-    sync-header: "Συγχρονισμός με το MyAnimeList"
+    sync-header: "MyAnimeList Sync"
     no-logs: "Αναλύουμε την βιβλιοθήκη σου και την συγχρονίζουμε με το MyAnimeList. Κρατήσου γερά!"
     logs:
       header:
@@ -855,7 +855,7 @@ settings:
     email: "Email"
     email-message: "Το Email δεν θα φαίνεται δημοσίως."
     language: "Γλώσσα"
-    translate-help: "Αν σας ενδιαφέρει να βοηθήσετε στη μετάφραση, '<a href=\"https://crowdin.com/project/kitsu-web\">'μπορείτε να το κάνετε εδώ!'</a>'"
+    translate-help: "Interested in translating? '<a href=\"https://crowdin.com/project/kitsu-web\">'Translate here!'</a>'"
     time-zone: "Ζώνη ώρας"
     content: "Περιεχόμενο στο Kitsu"
     theme: "Θέμα Ιστοσελίδας"
@@ -1163,7 +1163,7 @@ explore:
   modal:
     header: "Όλες οι Κατηγορίες"
   favorite-button:
-    remove: "Αφαίρεση από τα Αγαπημένα"
+    remove: "Remove from Favorites"
     removing: "Αφαίρεση…"
     create: "Προσθήκη στα Αγαπημένα"
     creating: "Προσθήκη…"
@@ -1269,7 +1269,7 @@ feeds:
     invalid: "Μη έγκυρος τύπος αρχείου"
     uploading: "{number, plural, one {} =1 {Ανεβαίνει η φωτογραφία… {progress}%} other {Ανεβαίνουν {number} φωτογραφίες… {progress}%}}"
   filter:
-    all: "Όλη η δραστηριότητα"
+    all: "All Activity"
     media: "Media Activity"
     user: "Δραστηριότητα Χρήστη"
     following: "Followed Activity"
