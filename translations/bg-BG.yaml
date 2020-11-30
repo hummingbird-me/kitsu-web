@@ -45,7 +45,7 @@ titles:
     feature-requests: "Заявки за нови функционалности"
     database-requests: "Заявки за датабази"
     mobile-bugs: "Мобилни бъгове"
-    mobile-features: "Mobile Features"
+    mobile-features: "Мобилни Характеристики"
   admin:
     index: "Админ"
     reports: "Доклади"
@@ -58,13 +58,13 @@ titles:
         members: "{group} Членове"
         leaders: "{group} Лидери"
       dashboard:
-        index: "{group} Overview"
-        reports: "{group} Reports"
-        tickets: "{group} Tickets"
+        index: "{group} Преглед"
+        reports: "{group} Докладвания"
+        tickets: "{group} Билети"
         members: "{group} Членове"
         leaders: "{group} Лидери"
         settings: "{group} Настройки"
-  group-invite: "Group Invite"
+  group-invite: "Добавяне на Група"
 #head
 head:
   users:
@@ -89,7 +89,7 @@ header:
 #authentication modal
 auth-modal:
   sign-up:
-    submit: "{step, select, 0 {Let's get some basic info first} 1 {Very witty - email is next!} 2 {Looks legit, how about a password?} 3 {Cool- Let's create that account} other {}}"
+    submit: "{step, select,0 {Да получим обща информация} 1 {Наистина умно - следва имейл!} 2 {Изглежда достоверно, какво ще кажеш за парола?} 3 {Яко- Да направим този акаунт} other {}}"
 #page: about
 about:
   header: "За Kitsu"
@@ -102,24 +102,24 @@ dashboard:
       anime: "Аниме"
       manga: "Манга"
     empty:
-      html: "Media you've added or updated within your '<a' href={link}'>'Library'</a>' will show up here for you to quickly update."
-      discover: "Discover Media"
+      html: "Медията, която добавихте или обновихте във вашата '<a' href={link}'>'Библиотека'</a>' ще се покаже тук за бързо обновяване."
+      discover: "Откриване на Медия"
     media:
       complete: "Завършени"
       unstarted: "Не започнати"
-      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {of {total}}}} manga {Ch. {num} {total, select, null {} other {of {total}}}} other {}}"
+      unit: "{type, select, anime {Еп. {num} {total, select, undefined {} other {на {total}}}} manga {Гл. {num} {total, select, null {} other {на {total}}}} other {}}"
     overlay:
       button:
-        update: "{type, select, anime {Ep.} manga {Ch.} other {}} {number}"
+        update: "{type, select, anime {Еп.} manga {Гл.} other {}} {number}"
         complete: "Завършени"
         tooltip:
           empty: "Актуализирай библиотека"
-          content: "Create post and update library"
-      discussion: "View Discussion"
-      edit: "Edit Library Entry"
-      popout: "Pop-out editor"
+          content: "Създай публикация и обнови библиотека"
+      discussion: "Виж Дискусията"
+      edit: "Редактиране на Библиотековo Вписване"
+      popout: "Изкачащ редактор"
       editor:
-        placeholder: "(Optional) Share your thoughts on {type, select, anime {Episode} manga {Chapter} other {}} {number}"
+        placeholder: "(Незадължително) Сподели мислите си за {type, select,anime {Епизод} manga {Глава} other {}} {number}"
   onboarding:
     welcome: "Здравей {user}, добре дошъл в Kitsu!"
     about: "This is the global activity feed. It's populated by recent activity from all of Kitsu's users - even you! Once you've had a chance to follow a few more interesting users, we'll switch your default feed from Global to Following."
@@ -129,14 +129,14 @@ dashboard:
   announcements:
     button: "Научете повече"
   feed:
-    following: "Following"
+    following: "Последвани"
     anime: "Аниме"
     manga: "Манга"
     global: "Глобални"
 #page: anime/manga
 media:
   index:
-    search: "Search by title, character, or cast…"
+    search: "Търси по заглавие, герой или студио…"
     filter: "Филтър"
     remove: "Премахни"
     filters:
@@ -144,65 +144,65 @@ media:
       score: "Среден рейтинг"
       seasons: "Сезони"
       streamers: "Streamers (U.S.)"
-      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
-      rating: "Rating"
+      units: "{type, select, anime {Епизоди} manga {Глави} other {}}"
+      rating: "Оценка"
       categories: "Категории"
-      types: "Types"
+      types: "Типове"
     sort:
-      popularity: "Popularity"
-      rating: "Average Rating"
+      popularity: "Популярност"
+      rating: "Средна Оценка"
       date: "Дата"
-      recent: "Recently Added"
+      recent: "Наскоро добавени"
   none: "Няма резултат."
   show:
     navigation:
-      summary: "Summary"
-      units: "{type, select, anime {Episodes} manga {Chapters} other {}}"
-      characters: "Characters"
-      reactions: "Reactions"
-      franchise: "Franchise"
+      summary: "Резюме"
+      units: "{type, select, anime {Епизоди} manga {Глави} other {}}"
+      characters: "Герои"
+      reactions: "Реакции"
+      franchise: "Франчайз"
     sidebar:
-      watch: "Watch Online"
+      watch: "Гледай Онлайн"
     summary:
       ratings:
-        community: "{rating}% Community Approval"
-        match: "{rating}% Match"
+        community: "{rating}% Обществено Одобрение"
+        match: "{rating}% Съвпадение"
       ranking:
         full:
-          popularity: "{type, select, anime {Rank #{rank} (Most Popular Anime)} manga {Rank #{rank} (Most Popular Manga)} other {}}"
-          rating: "{type, select, anime {Rank #{rank} (Highest Rated Anime)} manga {Rank #{rank} (Highest Rated Manga)} other {}}"
+          popularity: "{type, select, anime {Място #{rank} (Най-известно Аниме)} manga {Място #{rank} (Най-известна Манга)} other {}}"
+          rating: "{type, select, anime {Място #{rank} (Най-оценявано Аниме)} manga {Място #{rank} (Най-оценявана Манга)} other {}}"
         short:
-          popularity: "{type, select, anime {#{rank} Most Popular} manga {#{rank} Most Popular} other {}}"
-          rating: "{type, select, anime {#{rank} Highest Rated} manga {#{rank} Highest Rated} other {}}"
-      categories: "Categories"
+          popularity: "{type, select, anime {#{rank} Най-известно} manga {#{rank} Най-известно} other {}}"
+          rating: "{type, select, anime {#{rank} Най-оценявано} manga {#{rank} Най-оценявано} other {}}"
+      categories: "Категории"
       relationships:
-        header: "More from this Series"
-        more: "View all in {title}"
+        header: "Още от тази Поредица"
+        more: "Виж всички в {title}"
       reactions:
-        header: "Reactions"
-        more: "View More Reactions"
+        header: "Реакции"
+        more: "Виж Още Реакции"
         sorts:
-          -upVotesCount: "Popular"
-          -createdAt: "Recent"
-        new: "New Reaction"
-        edit: "My Reaction"
-        empty: "Doesn't look like anyone has reacted to this yet"
+          -upVotesCount: "Популярност"
+          -createdAt: "Скорошни"
+        new: "Нова Реакция"
+        edit: "Моите Реакции"
+        empty: "Изглежда, че никой не е реагирал на това"
       characters:
-        header: "Characters"
-        more: "View all characters"
+        header: "Герои"
+        more: "Виж всички герои"
       titles:
-        header: "Alternative Titles"
+        header: "Алтернативни Заглавия"
         af_za: "Afrikaans"
         ar: "Арабски"
         bg_bg: "Български"
         bn_bd: "Bengali"
         ca_es: "Catalan"
-        cs_cz: "Czech"
+        cs_cz: "Чешки"
         cy_gb: "Welsh"
         da_dk: "Danish"
         de_de: "Немски"
         el_gr: "Гръцки"
-        en: "English"
+        en: "Английски"
         en_ar: "Arabic (Romanized)"
         en_au: "English (Australian)"
         en_ca: "English (Canadian)"
@@ -212,7 +212,7 @@ media:
         en_jp: "Japanese (Romaji)"
         en_kr: "Korean (Romaja)"
         en_th: "Thai (Romanized)"
-        en_us: "English (American)"
+        en_us: "Английски (Американски)"
         es_es: "Испански"
         et_ee: "Estonian"
         fa_ir: "Persian"
@@ -237,7 +237,7 @@ media:
         nb_no: "Norwegian (Bokmål)"
         nl_nl: "Dutch"
         nn_no: "Norwegian (Nynorsk)"
-        pl_pl: "Polish"
+        pl_pl: "Полски"
         pt_br: "Portuguese (Brazilian)"
         pt_pt: "Portuguese"
         ro_ro: "Румънски"
@@ -252,68 +252,68 @@ media:
         th_th: "Thai"
         tl_ph: "Tagalog"
         tr_tr: "Turkish"
-        uk_ua: "Ukrainian"
+        uk_ua: "Украински"
         ur_in: "Urdu (Indian)"
-        ur_pk: "Urdu (Pakistani)"
-        vi_vn: "Vietnamese"
-        zh_cn: "Chinese (Simplified)"
-        zh_hk: "Chinese (Hong Kong)"
-        zh_mo: "Chinese (Macao)"
-        zh_tw: "Chinese (Traditional)"
-        synonyms: "Synonyms"
+        ur_pk: "Урду (Пакистан)"
+        vi_vn: "Виетнамски"
+        zh_cn: "Китайски (опростен)"
+        zh_hk: "Китайски (Хонг Конг)"
+        zh_mo: "Китайски (Макао)"
+        zh_tw: "Китайски (традиционен)"
+        synonyms: "Синоними"
       information:
-        header: "{type, select, anime {Anime} manga {Manga} other {}} Details"
-        type: "Type"
-        volumes: "Volumes"
-        unit: "{type, select, anime {Episodes} manga {Chapters} other {}}"
-        start: "{type, select, anime {Aired} manga {Published} other {}}"
-        status: "Status"
-        tba: "Expected"
-        season: "Season"
-        producers: "Producers"
-        licensors: "Licensors"
-        studios: "Studios"
-        serialization: "Serialization"
-        duration: "Length"
-        total: "{total} total"
-        length: "{count, plural, =1 {{length} minutes} other {{length} minutes each}}"
-        rating: "Rating"
+        header: "{type, select, anime {Аниме} manga {Манга} other {}} Детайли"
+        type: "Тип"
+        volumes: "Томове"
+        unit: "{type, select, anime {Епизоди} manga {Глави} other {}}"
+        start: "{type, select, anime {Излъчено} manga {Публикувана} other {}}"
+        status: "Статус"
+        tba: "Очаквано"
+        season: "Сезон"
+        producers: "Продуценти"
+        licensors: "Лицензатори"
+        studios: "Студиа"
+        serialization: "Сериализация"
+        duration: "Продължителност"
+        total: "{total} общо"
+        length: "{count, plural, =1 {{length} минути} other {{length} минути всяко}}"
+        rating: "Оценка"
         expand:
-          false: "More info"
-          true: "Less Info"
+          false: "Още информация"
+          true: "По-малко информация"
       feed:
         header: "Community Feed"
-      trailer: "Play Trailer"
+      trailer: "Гледай Трейлър"
     units:
-      unit: "{type, select, episode {Episode} chapter {Chapter} other {}}"
-      back: "Back to {type, select, episode {episode} chapter {chapter} other {}} list"
-      pages: "{length} Pages"
-      date: "{type, select, episode {Aired} chapter {Published} other {}}"
-      completed: "{type, select, episode {Watched} chapter {Read} other {Complete}}"
+      unit: "{type, select, episode {Епизод} chapter {Глава} other {}}"
+      back: "Обратно към {type, select, episode {епизод} chapter {глава} other {}} списък"
+      pages: "{length} Страници"
+      date: "{type, select, episode {Излъчени} chapter {Публикувани}other {}}"
+      completed: "{type, select, episode {Гледани} chapter {Прочетени} other {Завършени}}"
       feed:
-        header: "{type, select, episode {Episode} chapter {Chapter} other {}} Discussion"
+        header: "{type, select, episode {Епизод} chapter {Глава} other {}} Дискусия"
     characters:
-      header: "{title} Characters"
+      header: "{title} Герои"
       sub-header: "{type, select, anime {The following is a full list of characters and their {language} voice actors for the anime {title}} manga {The following is a full list of characters for the manga {title}} other {}}"
     reactions:
-      loading: "Loading Reactions…"
-      delete: "Delete Reaction"
-      report: "Report Reaction"
-      copy: "Copy Link to Reaction"
+      loading: "Зареждане на Реакции…"
+      delete: "Изтрий Реакция"
+      report: "Доклавдвай Реакция"
+      copy: "Копирай Линк на Реакция"
     franchise:
-      header: "{title} Franchise"
+      header: "{title} Франчайз"
       roles:
-        sequel: "Sequel"
-        prequel: "Prequel"
-        alternative_setting: "Alt. setting"
-        alternative_version: "Alt. version"
-        side_story: "Side story"
-        parent_story: "Parent story"
-        summary: "Summary"
-        full_story: "Full story"
+        sequel: "Последица"
+        prequel: "Предистория"
+        alternative_setting: "Др. постановка"
+        alternative_version: "Др. версия"
+        side_story: "Странична история"
+        parent_story: "История на родители"
+        summary: "Резюме"
+        full_story: "Цяла история"
         spinoff: "Spin-off"
-        adaptation: "Adaptation"
-        character: "Character"
+        adaptation: "Адаптация"
+        character: "Герой"
         other: "Други"
   hide-posts:
     text: "Hide Posts about {media}"
@@ -338,13 +338,13 @@ components:
         resolved: "Mark Resolved"
         closed: "Mark closed"
       table:
-        user: "User"
+        user: "Потребител"
         type: "Type"
         reason: "Причина"
         explanation: "Explanation"
         moderator: "Moderator"
-        status: "Status"
-        actions: "Actions"
+        status: "Статус"
+        actions: "Действия"
   application:
     nav-search: "Search Kitsu"
   episodes:
@@ -396,26 +396,26 @@ components:
         spoiler: "This post contains spoilers."
         hover:
           nsfw: "My body is ready!"
-          spoiler: "I can handle the truth!"
+          spoiler: "Мога да понеса истината!"
       #followed by recipient user/group (i.e "wopian to Kitsu" for "wopian", a user, posting to the group "Kitsu")
-      to: "to"
-      group: "Group"
-      link: "Copy Link to Post"
-      unfollow: "Unfollow Post"
-      follow: "Follow Post"
-      show: "Show Post Content"
-      hide: "Hide Post Content"
-      edit: "Edit Post"
-      delete: "Delete Post"
-      unpin: "Unpin Post from Profile"
-      pin: "Pin Post to Profile"
-      pin-text: "Do you really want to pin this post to your profile?"
-      report: "Report Post"
-      comment-count: "{count} of {total}"
+      to: "към"
+      group: "Група"
+      link: "Копирай Линка на Публикацията"
+      unfollow: "Отпоследвай Публикация"
+      follow: "Последвай Публикация"
+      show: "Покажи Съдържанието"
+      hide: "Скрий Съдържанието"
+      edit: "Редактиране на публикацията"
+      delete: "Изтрий Публикацията"
+      unpin: "Откачи Поста от Профила"
+      pin: "Закачи Поста на Профила"
+      pin-text: "Наистина ли искаш да закачиш тази публикация на профила?"
+      report: "Докладвай Публикацията"
+      comment-count: "{count} от {total}"
       comment:
-        deleting: "Deleting Comment…"
+        deleting: "Изтриване на Коментар…"
         gif: "GIF"
-        reply: "Reply"
+        reply: "Отговори"
         copy-link: "Copy Link to Comment"
         edit: "Edit Comment"
         delete: "Delete Comment"
@@ -430,10 +430,10 @@ components:
     review:
       by: "Review by"
       spoiler: "This review contains spoilers."
-      spoiler-hover: "I can handle the truth!"
+      spoiler-hover: "Мога да понеса истината!"
       share:
         twitter: "Туийт"
-        facebook: "Share"
+        facebook: "Сподели"
       copy-link: "Copy Link to Review"
       show: "Show Review Content"
       hide: "Hide Review Content"
@@ -448,16 +448,16 @@ components:
       title: "Delete Content by {user}"
       checkbox:
         posts: "Публикации"
-        comments: "Comments"
-        reactions: "Reactions"
+        comments: "Коментари"
+        reactions: "Реакции"
       delete: "Изтрий"
     block: "Блокирай @{user}"
-    you: "Hey, that's you!"
+    you: "Хей, това си ти!"
     favorites:
-      title: "Favorite {type, select, series {Series} characters {Characters} other {}}"
+      title: "Любими {type, select, series {Поредица} characters {Герои} other {}}"
       anime: "Аниме"
-      manga: "Manga"
-      more: "Show More"
+      manga: "Манга"
+      more: "Покажи Още"
       edit: "Edit favorite {type, select, anime {anime} manga {manga} characters {characters} other {}}"
       empty:
         yours: "You haven't listed your favorite {type, select, anime {anime} manga {manga} characters {characters} other {}} yet!"
@@ -472,9 +472,9 @@ components:
 #page: users
 users:
   profile:
-    edit: "Edit"
+    edit: "Редактиране"
   admin:
-    button: "Admin"
+    button: "Администратор"
     past-names: "View Past Names"
     alt-accounts: "View Alt Accounts"
     delete-content: "Delete User-Created Content"
@@ -519,8 +519,8 @@ users:
       remove: "Remove from profile"
       sites:
         website:
-          about: "Enter your personal website below to add a link to your profile."
-          placeholder: "Your website URL"
+          about: "Напиши твоят уебсайт отдолу за да добавиш линк към профилът ти."
+          placeholder: "URL на вашия уебсайт"
         twitter:
           about: "Enter your Twitter username below to add a link to your profile."
           placeholder: "Your Twitter username (@Username)"
@@ -611,8 +611,8 @@ users:
     favorites:
       header: "Favorites"
       anime: "Аниме"
-      manga: "Manga"
-      characters: "Characters"
+      manga: "Манга"
+      characters: "Герои"
       remove: "Remove Favorite?"
   activity:
     onboarding:
@@ -621,18 +621,18 @@ users:
       action: "Make yourself at home! Upload an avatar and cover image! Click '<span>'Edit'</span>' above to get started."
       title: "Set-Up Your Profile"
     about:
-      header: "About Me"
+      header: "За мен"
       empty: "It's a secret"
       waifu:
         label: "{waifu, select, Waifu {Waifu} Husbando {Husbando} other {{waifu}}}:"
         empty: "Waifu/Husbando:"
       gender:
         label: "Пол:"
-        secret: "It's a secret"
-        male: "Male"
-        female: "Female"
+        secret: "Тайна е"
+        male: "Мъж"
+        female: "Жена"
       location: "Location:"
-      birthday: "Birthday:"
+      birthday: "Рожденна дата:"
       joined:
         title: "Join Date:"
         date: "MMMM Do, YYYY" #Parsing format for dates. This will render `January 1st, 2020` translated to your language by default. Literal text needs to be surrounded by brackets (e.g `[Today is] dddd` renders `Today is Sunday`). See https://momentjs.com/docs/#/displaying/format/ for valid options for your language.
@@ -753,12 +753,12 @@ users:
   reactions:
     empty: "This user has no reactions"
     filters:
-      all: "All Reactions"
+      all: "Всички реакции"
       anime: "Аниме реакции"
-      manga: "Manga Reactions"
+      manga: "Манга реакции"
     sorts:
-      best: "Best"
-      new: "New"
+      best: "Най-добри"
+      new: "Нови"
   hide-posts:
     text: "Hide Posts from {user}"
     info: "Posts won't appear in your Following Feed"
@@ -777,21 +777,21 @@ users:
 #page: settings
 settings:
   navigation:
-    header: "Settings"
-    profile: "Profile"
-    notifications: "Notifications"
-    password: "Password"
+    header: "Настройки"
+    profile: "Профил"
+    notifications: "Известия"
+    password: "Парола"
     privacy: "Privacy"
     linked-accounts: "Linked Accounts"
     import: "Import"
     export: "Export"
     blocking: "Blocking"
-    account: "Account"
+    account: "Акаунт"
   account:
-    header: "Account"
+    header: "Акаунт"
     sub-header: "Danger Zone! Deleting your account is irreversible."
-    delete: "Delete Account"
-    confirm-title: "Delete Account"
+    delete: "Изтриване на акаунт"
+    confirm-title: "Изтриване на акаунт"
     confirm-text: "We're sorry to see you go, are you sure you want to continue?"
   apps:
     header: "Apps"
@@ -822,10 +822,10 @@ settings:
     no-logs: "We're processing your library and syncing it with MyAnimeList. Hold tight!"
     logs:
       header:
-        media: "Title"
+        media: "Заглавие"
         library-status: "Status"
         progress: "Progress"
-        rating: "Rating"
+        rating: "Оценка"
         reconsumes: "Rewatches"
         action: "Action"
         status: "Status"
@@ -856,7 +856,7 @@ settings:
     email-message: "Email will not be publicly displayed."
     language: "Език"
     translate-help: "Interested in translating? '<a href=\"https://crowdin.com/project/kitsu-web\">'Translate here!'</a>'"
-    time-zone: "Time Zone"
+    time-zone: "Часова зона"
     content: "Content on Kitsu"
     theme: "Site Theme"
     country: "Държава"
@@ -879,7 +879,7 @@ settings:
     sub-header: "General site-wide notifications"
     contexts:
       web: "Web"
-      email: "Email"
+      email: "Имейл"
       mobile: "Mobile"
     descriptions:
       mentions: "Someone '<strong>'mentions'</strong>' me in a post or comment"
@@ -896,9 +896,9 @@ settings:
     loading: "Loading settings…"
     update: "Update Settings"
   password:
-    header: "Password"
-    sub-header: "Change your password"
-    new-pswd: "New Password"
+    header: "Парола"
+    sub-header: "Промени паролата си"
+    new-pswd: "Нова парола"
     confirm-pswd: "Confirm Password"
     update-pswd: "Update Password"
   privacy:
@@ -910,7 +910,7 @@ settings:
     update: "Update Profile"
 #page: feedback
 feedback:
-  header: "Feedback"
+  header: "Обратна връзка"
   bugs: "Bugs"
   features: "Feature Requests"
   database: "Database Requests"
@@ -925,9 +925,9 @@ groups:
     header: "Create a Group"
     form:
       required: "Required"
-      name: "Name"
+      name: "Име"
       tagline: "Tagline"
-      about: "Description"
+      about: "Описание"
       rules: "Правила"
       neighbors: "Neighbors"
       neighbors-placeholder: "Search for group"
@@ -957,7 +957,7 @@ groups:
           header: "Description"
           desc: "Explain your group's purpose in depth, share important information, or anything else."
         rules:
-          header: "Rules"
+          header: "Правила"
           desc: "Set out some guidelines for your group members to follow. These rules are Markdown supported!"
         neighbors:
           header: "Neighbors"
@@ -989,7 +989,7 @@ groups:
   neighbors: "Neighbors"
   navigation:
     activity: "Activity"
-    rules: "Rules"
+    rules: "Правила"
     members: "Members"
     leaders: "Leaders"
     neighbors: "Neighbors"
