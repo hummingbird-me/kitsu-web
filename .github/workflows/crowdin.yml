@@ -7,10 +7,15 @@ on:
     - completed
 
 jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo ${{ github.ref }}
+      
   crowdin:
     name: Auto Merge
     runs-on: ubuntu-latest
-    # if: endsWith(github.ref, 'ref/head/crowdin')
+    if: endsWith(github.ref, 'ref/head/crowdin')
     
     steps:
       - name: Auto Merge
