@@ -14,6 +14,7 @@ jobs:
     name: Debug
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - run: echo ${{ github.ref }}
     - run: |
         if !(git diff --summary --exit-code the-future...); then
