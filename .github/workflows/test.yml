@@ -54,9 +54,10 @@ jobs:
     name: CrowdIn
     needs: [test]
     runs-on: ubuntu-latest
-    if: github.ref == 'ref/heads/crowdin'
     steps:
+    - uses: actions/checkout@v2
     - name: Auto Merge
+      if: github.ref == 'ref/heads/crowdin'
       uses: ridedott/merge-me-action@v1
       with:
         GITHUB_LOGIN: senkosan
