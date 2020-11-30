@@ -49,3 +49,16 @@ jobs:
       with:
         coverageLocations: |
           ${{ github.workspace }}/coverage/lcov.info:lcov
+          
+  crowdin:
+    name: CrowdIn
+    needs: [test]
+    runs-on: ubuntu-latest
+    # Run only when on the CrowdIn branch and the PR is dirty (prevent merging empty PRs)
+    if: endsWith(github.ref, 'ref/head/crowdin') && !(git diff --summary --exit-code the-future...)
+    steps:
+    - name: Auto Merge
+      uses: ridedott/merge-me-action@v1
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        MERGE_METHOD: SQUASH
