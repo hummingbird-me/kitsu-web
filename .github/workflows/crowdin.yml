@@ -1,0 +1,20 @@
+name: CrowdIn Translations
+on:
+  workflow_run:
+    workflows: [Kitsu Test Suite]
+    branches: [crowdin]
+    type:
+    - completed
+
+jobs:
+  crowdin:
+    name: Auto Merge
+    runs-on: ubuntu-latest
+    if: endsWith(github.ref, 'ref/head/crowdin')
+    
+    steps:
+      - name: Auto Merge
+        uses: ridedott/merge-me-action@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_METHOD: SQUASH
