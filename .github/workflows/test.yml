@@ -54,13 +54,14 @@ jobs:
     name: CrowdIn
     needs: [test]
     runs-on: ubuntu-latest
-    if: endsWith(github.ref, 'ref/heads/crowdin')
+    if: github.ref != 'ref/heads/the-future'
     steps:
     - uses: actions/checkout@v2
     - name: Check Changes
+      if: github.ref == 'ref/heads/crowdin'
       run: if !(git diff --summary --exit-code the-future...);then echo "HAS_CHANGES=true">>$GITHUB_ENV;else echo "HAS_CHANGES=false">>$GITHUB_ENV;fi
     - name: Auto Merge
-      if: env.HAS_CHANGES == 'true'
+      if: github.ref == 'ref/heads/crowdin' && env.HAS_CHANGES == 'true'
       uses: ridedott/merge-me-action@v1
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
