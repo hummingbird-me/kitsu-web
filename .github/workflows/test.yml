@@ -54,10 +54,12 @@ jobs:
     name: CrowdIn
     needs: [test]
     runs-on: ubuntu-latest
-    # Run only when on the CrowdIn branch and the PR is dirty (prevent merging empty PRs)
-    if: endsWith(github.ref, 'ref/head/crowdin') && ${{ !(git diff --summary --exit-code the-future...) }}
+    if: endsWith(github.ref, 'ref/head/crowdin') 
     steps:
+    - name: Check Changes
+      run: if !(git diff --summary --exit-code the-future...);then echo "HAS_CHANGES=true">>$GITHUB_ENV;else echo "HAS_CHANGES=false">>$GITHUB_ENV;fi
     - name: Auto Merge
+      if: env.HAS_CHANGES == 'true'
       uses: ridedott/merge-me-action@v1
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
