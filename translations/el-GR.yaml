@@ -2,7 +2,7 @@
 #route titles -- these are used if the route doesn't specify the title itself
 titles:
   anime:
-    index: "Ανακαλύψτε Άνιμε"
+    index: "Εξερευνήστε τα Άνιμε"
   manga:
     index: "Ανακαλύψτε Μάνγκα"
   media:
@@ -17,7 +17,7 @@ titles:
       trending: "Οι καινούργιες τάσεις {type, select, other {}} της εβδομάδας"
       top-current: "Κορυφαία {type, select, Anime {Τρέχων} Manga {Εκδιδόμενα} other {}} {type}"
       top-upcoming: "Κορυφαία Ανερχόμενα {type}"
-      highest-rated: "Με τις Καλύτερες Κριτήκες {type}"
+      highest-rated: "Υψηλότερη βαθμολογία {type, select, Anime {Άνιμε} Manga {Μάνγκα} other {}}"
       most-popular: "Πιο δημοφιλή {type}"
     category:
       index: "{category} {type}"
@@ -28,11 +28,11 @@ titles:
   not-found: "Δεν Βρέθηκε"
   server-error: "Σφάλμα Διακομιστή"
   users:
-    index: "Προφίλ {user}"
+    index: "Το προφίλ του {user}"
     library: "Η βιβλιοθήκη του {user}"
-    reviews: "Αξιολογήσεις {user}"
+    reviews: "Οι αξιολογήσεις του {user}"
     reactions: "Αντιδράσεις {user}"
-    followers: "Ακόλουθοι {user}"
+    followers: "Οι ακόλουθοι του {user}"
     following: "Ακολουθείται από {user}"
     groups: "Οι ομάδες του {user}"
     stats: "Τα Στατιστικά του {user}"
@@ -42,8 +42,8 @@ titles:
   notifications: "Ειδοποιήσεις"
   feedback:
     bugs: "Σφάλματα"
-    feature-requests: "Μελλοντικές Προτάσεις"
-    database-requests: "Προτάσεις Βάσεις Δεδομένων"
+    feature-requests: "Προτάσεις για νέες λειτουργίες"
+    database-requests: "Προτάσεις για τη Βάση δεδομένων"
     mobile-bugs: "Σφάλματα κινητού"
     mobile-features: "Δυνατότητες για Κινητά"
   admin:
@@ -72,7 +72,7 @@ head:
 #header
 header:
   library: "Βιβλιοθήκη"
-  anime: "Anime"
+  anime: "Άνιμε"
   manga: "Manga"
   trending: "Τάσεις"
   groups: "Ομάδες"
