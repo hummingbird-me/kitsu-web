@@ -49,17 +49,3 @@ jobs:
       with:
         coverageLocations: |
           ${{ github.workspace }}/coverage/lcov.info:lcov
-
-  crowdin:
-    name: CrowdIn
-    needs: [test]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Auto Merge
-      if: github.ref == 'ref/heads/crowdin'
-      uses: ridedott/merge-me-action@v1
-      with:
-        GITHUB_LOGIN: senkosan
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        MERGE_METHOD: SQUASH
