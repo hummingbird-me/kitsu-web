@@ -1,0 +1,22 @@
+name: Automerge
+on:
+  push:
+    branches: crowdin
+  workflow_run:
+    workflows:
+      - 'Kitsu Test Suite'
+    types:
+      - completed
+    branches: crowdin
+
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: reitermarkus/automerge@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          merge-method: squash
+          pull-request: ${{ github.event.inputs.pull-request }}
+          pull-request-author-associations: wopian
+          dry-run: true
