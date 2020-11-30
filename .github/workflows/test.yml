@@ -56,7 +56,10 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref != 'ref/heads/the-future'
     steps:
+    - run: echo ${{ github.ref }}
     - uses: actions/checkout@v2
+    - run: echo ${{ github.ref }}
+    - run: if !(git diff --summary --exit-code the-future...);then echo "has changes">>$GITHUB_ENV;else echo "has no changes">>$GITHUB_ENV;fi
     - name: Check Changes
       if: github.ref == 'ref/heads/crowdin'
       run: if !(git diff --summary --exit-code the-future...);then echo "HAS_CHANGES=true">>$GITHUB_ENV;else echo "HAS_CHANGES=false">>$GITHUB_ENV;fi
