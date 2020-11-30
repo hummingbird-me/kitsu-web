@@ -45,7 +45,7 @@ titles:
     feature-requests: "Μελλοντικές Προτάσεις"
     database-requests: "Προτάσεις Βάσεις Δεδομένων"
     mobile-bugs: "Σφάλματα κινητού"
-    mobile-features: "Mobile Features"
+    mobile-features: "Δυνατότητες για Κινητά"
   admin:
     index: "Διαχειριστής"
     reports: "Αναφορές"
@@ -72,7 +72,7 @@ head:
 #header
 header:
   library: "Βιβλιοθήκη"
-  anime: "Anime"
+  anime: "Άνιμε"
   manga: "Manga"
   trending: "Τάσεις"
   groups: "Ομάδες"
@@ -107,7 +107,7 @@ dashboard:
     media:
       complete: "Ολοκληρώθηκε"
       unstarted: "Δεν ξεκίνησε"
-      unit: "{type, select, anime {Ep. {num} {total, select, undefined {} other {of {total}}}} manga {Ch. {num} {total, select, null {} other {of {total}}}} other {}}"
+      unit: "{type, select, anime {Επ. {num} {total, select, undefined {} other {από {total}}}} manga {Κεφ. {num} {total, select, null {} other {από {total}}}} other {}}"
     overlay:
       button:
         update: "{type, select, anime {Επ.} manga {Κεφ.} other {}} {number}"
@@ -454,15 +454,15 @@ components:
     block: "Αποκλεισμός @{user}"
     you: "Εε, αυτός είσαι εσύ!"
     favorites:
-      title: "Favorite {type, select, series {Series} characters {Characters} other {}}"
+      title: "{type, select, series {Αγαπημένες Σειρές} characters {Αγαπημένοι Χαρακτήρες} other {}}"
       anime: "Άνιμε"
       manga: "Manga"
       more: "Εμφάνιση Περισσότερων"
-      edit: "Edit favorite {type, select, anime {anime} manga {manga} characters {characters} other {}}"
+      edit: "Επεξεργασία αγαπημένων {type, select, anime {άνιμε} manga {μάνγκα} characters {χαρακτήρων} other {}}"
       empty:
         yours: "You haven't listed your favorite {type, select, anime {anime} manga {manga} characters {characters} other {}} yet!"
         others: "Ο χρήστης δεν έχει αγαπημένα"
-      choose: "Choose favorite {type, select, anime {anime} manga {manga} characters {characters} other {}}"
+      choose: "Διάλεξε αγαπημένο {type, select, anime {άνιμε} manga {μάνγκα} characters {χαρακτήρα} other {}}"
     alt-name:
       title: "Possible Alt Accounts of {user}"
       none: "No alts found"
@@ -721,7 +721,7 @@ users:
         guest-header: "Looks like {user} doesn't have any library entries here."
         button: "Περιήγηση {type}"
     grid:
-      view-media: "View {type, select, anime {Anime} manga {Manga} other {}}"
+      view-media: "Προβολή {type, select, anime {Άνιμε} manga {Μάνγκα} other {}}"
     edit:
       status: "Κατάσταση Βιβλιοθήκης"
       progress: "Πρόοδος"
@@ -754,7 +754,7 @@ users:
     empty: "Ο χρήστης δεν έχει αντιδράσεις"
     filters:
       all: "Όλες οι Αντιδράσεις"
-      anime: "Αντιδράσεις Anime"
+      anime: "Αντιδράσεις Άνιμε"
       manga: "Αντιδράσεις Manga"
     sorts:
       best: "Καλύτερα"
@@ -818,8 +818,8 @@ settings:
     create: "Setup Export to MyAnimeList Account"
     download: "Λήψη {kind} Βιβλιοθήκης"
     recent: "Πρόσφατη Δραστηριότητα Συγχρονισμού"
-    sync-header: "MyAnimeList Sync"
-    no-logs: "Αναλύουμε την βιβλιοθήκη σου και την συγχρονίζουμε με το MyAnimeList. Κρατήσου γερά!"
+    sync-header: "Συγχρονισμός MyAnimeList"
+    no-logs: "Συγχρονίζουμε τη βιβλιοθήκη σου με το MyAnimeList. Κάνε λίγο υπομονή!"
     logs:
       header:
         media: "Τίτλος"
@@ -855,7 +855,7 @@ settings:
     email: "Email"
     email-message: "Το Email δεν θα φαίνεται δημοσίως."
     language: "Γλώσσα"
-    translate-help: "Interested in translating? '<a href=\"https://crowdin.com/project/kitsu-web\">'Translate here!'</a>'"
+    translate-help: "Αν σας ενδιαφέρει να βοηθήσετε στη μετάφραση, '<a href=\"https://crowdin.com/project/kitsu-web\">'μπορείτε να το κάνετε εδώ!'</a>'"
     time-zone: "Ζώνη ώρας"
     content: "Περιεχόμενο στο Kitsu"
     theme: "Θέμα Ιστοσελίδας"
@@ -1163,7 +1163,7 @@ explore:
   modal:
     header: "Όλες οι Κατηγορίες"
   favorite-button:
-    remove: "Remove from Favorites"
+    remove: "Αφαίρεση από τα Αγαπημένα"
     removing: "Αφαίρεση…"
     create: "Προσθήκη στα Αγαπημένα"
     creating: "Προσθήκη…"
@@ -1269,7 +1269,7 @@ feeds:
     invalid: "Μη έγκυρος τύπος αρχείου"
     uploading: "{number, plural, one {} =1 {Ανεβαίνει η φωτογραφία… {progress}%} other {Ανεβαίνουν {number} φωτογραφίες… {progress}%}}"
   filter:
-    all: "All Activity"
+    all: "Όλη η δραστηριότητα"
     media: "Media Activity"
     user: "Δραστηριότητα Χρήστη"
     following: "Followed Activity"
