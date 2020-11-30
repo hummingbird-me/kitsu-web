@@ -107,7 +107,7 @@ dashboard:
     media:
       complete: "Ολοκληρώθηκε"
       unstarted: "Δεν ξεκίνησε"
-      unit: "{type, select, anime {Επ. {num} {total, select, undefined {} other {of {total}}}} manga {Κεφ. {num} {total, select, null {} other {of {total}}}} other {}}"
+      unit: "{type, select, anime {Επ. {num} {total, select, undefined {} other {από {total}}}} manga {Κεφ. {num} {total, select, null {} other {από {total}}}} other {}}"
     overlay:
       button:
         update: "{type, select, anime {Επ.} manga {Κεφ.} other {}} {number}"
@@ -458,7 +458,7 @@ components:
       anime: "Άνιμε"
       manga: "Manga"
       more: "Εμφάνιση Περισσότερων"
-      edit: "Επεξεργασία αγαπημένων {type, select, anime {ανιμε} manga {μανγκα} characters {χαρακτήρων} other {}}"
+      edit: "Επεξεργασία αγαπημένων {type, select, anime {άνιμε} manga {μάνγκα} characters {χαρακτήρων} other {}}"
       empty:
         yours: "You haven't listed your favorite {type, select, anime {anime} manga {manga} characters {characters} other {}} yet!"
         others: "Ο χρήστης δεν έχει αγαπημένα"
@@ -721,7 +721,7 @@ users:
         guest-header: "Looks like {user} doesn't have any library entries here."
         button: "Περιήγηση {type}"
     grid:
-      view-media: "Προβολή {type, select, anime {Άνιμε} manga {Μάνγκα} other {}}"
+      view-media: "Δείτε τα {type, select, anime {Άνιμε} manga {Μάνγκα} other {}}"
     edit:
       status: "Κατάσταση Βιβλιοθήκης"
       progress: "Πρόοδος"
@@ -818,7 +818,7 @@ settings:
     create: "Setup Export to MyAnimeList Account"
     download: "Λήψη {kind} Βιβλιοθήκης"
     recent: "Πρόσφατη Δραστηριότητα Συγχρονισμού"
-    sync-header: "Συγχρονισμός MyAnimeList"
+    sync-header: "Συγχρονισμός με το MyAnimeList"
     no-logs: "Αναλύουμε την βιβλιοθήκη σου και την συγχρονίζουμε με το MyAnimeList. Κρατήσου γερά!"
     logs:
       header:
