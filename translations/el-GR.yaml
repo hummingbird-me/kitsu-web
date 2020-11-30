@@ -4,7 +4,7 @@ titles:
   anime:
     index: "Εξερευνήστε τα Άνιμε"
   manga:
-    index: "Ανακαλύψτε Μάνγκα"
+    index: "Εξερευνήστε τα Μάνγκα"
   media:
     show:
       units: "{type, select, anime {Επεισόδια} manga {Κεφάλαια} other {}}"
@@ -22,7 +22,7 @@ titles:
     category:
       index: "{category} {type}"
       more:
-        newly-released: "Νέες εκδόσεις {category} {type}"
+        newly-released: "Κυκλοφόρησε πρόσφατα {category} {type, select, Anime {Άνιμε} Manga {Μάνγκα} other {}}"
         trending: "Τάσεις {category} {type}"
         most-popular: "Πιο δημοφιλή {category} {type}"
   not-found: "Δεν Βρέθηκε"
@@ -45,7 +45,7 @@ titles:
     feature-requests: "Προτάσεις για νέες λειτουργίες"
     database-requests: "Προτάσεις για τη Βάση δεδομένων"
     mobile-bugs: "Σφάλματα κινητού"
-    mobile-features: "Δυνατότητες για Κινητά"
+    mobile-features: "Λειτουργίες για Κινητά"
   admin:
     index: "Διαχειριστής"
     reports: "Αναφορές"
@@ -679,8 +679,8 @@ users:
           desc: "Πρώτα τα πρόσφατα"
           asc: "Πρώτα τα παλαιότερα"
         progress:
-          desc: "Πρώτα τα περισσότερο"
-          asc: "Πρώτα τα λιγότερο"
+          desc: "Most Progressed First"
+          asc: "Least Progressed First"
         rating:
           desc: "Πρώτα τα υψηλότερα"
           asc: "Τα χαμηλότερα πρώτα"
