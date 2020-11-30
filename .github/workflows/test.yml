@@ -17,10 +17,10 @@ jobs:
     - run: echo ${{ github.ref }}
     - run: |
         if !(git diff --summary --exit-code the-future...); then
-          echo "::set-env name=HAS_CHANGES::true"
+          echo "HAS_CHANGES=true" >> $GITHUB_ENV
           echo "Branch is dirty"
         else
-          echo "::set-env name=HAS_CHANGES::false"
+          echo "HAS_CHANGES=false" >> $GITHUB_ENV
           echo "Branch is not ahead of the-future"
         fi
     - run: echo "HAS_CHANGES- " ${{ env.HAS_CHANGES }}
