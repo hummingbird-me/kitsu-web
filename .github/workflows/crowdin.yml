@@ -1,0 +1,21 @@
+name: CrowdIn Translations
+
+on:
+  push:
+    branches: [crowdin]
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    name: Merge
+    steps:
+    - name: Merge Bot
+      uses: squalrus/merge-bot@v0.1.0
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        test: true
+        reviewers: false
+        labels:
+        checks_enabled: true
+        method: squash
+        delete_source_branch: true
