@@ -1,0 +1,21 @@
+name: CrowdIn Translations
+
+on:
+  check_suite:
+    branches: [crowdin]
+    types: [completed]
+  pull_request:
+    branches: [crowdin]
+    types: [edited, labeled, opened, ready_for_review, reopened, synchronize, unlabled, unlocked]
+
+jobs:
+  merge:
+    name: Merge
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v1
+        with:
+          GITHUB_LOGIN: senkosan
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_METHOD: SQUASH

@@ -10,23 +10,6 @@ on:
     - '**:**'
 
 jobs:
-  debug:
-    name: Debug
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - run: echo ${{ github.ref }}
-    - run: |
-        if !(git diff --summary --exit-code the-future...); then
-          echo "HAS_CHANGES=true" >> $GITHUB_ENV
-          echo "Branch is dirty"
-        else
-          echo "HAS_CHANGES=false" >> $GITHUB_ENV
-          echo "Branch is not ahead of the-future"
-        fi
-    - run: echo "HAS_CHANGES- " ${{ env.HAS_CHANGES }}
-      #if: env.HAS_CHANGES == 'true'
-
   test:
     name: Node ${{ matrix.node_version}}
     runs-on: ${{ matrix.os }}
@@ -66,19 +49,3 @@ jobs:
       with:
         coverageLocations: |
           ${{ github.workspace }}/coverage/lcov.info:lcov
-
-  crowdin:
-    name: CrowdIn
-    needs: [test]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Check Changes
-      if: endsWith(github.ref, 'ref/head/crowdin')
-      run: if !(git diff --summary --exit-code the-future...);then echo "HAS_CHANGES=true">>$GITHUB_ENV;else echo "HAS_CHANGES=false">>$GITHUB_ENV;fi
-    - name: Auto Merge
-      if: env.HAS_CHANGES == 'true'
-      uses: ridedott/merge-me-action@v1
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        MERGE_METHOD: SQUASH
