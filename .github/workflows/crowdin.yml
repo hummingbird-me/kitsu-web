@@ -1,21 +1,34 @@
 name: CrowdIn Translations
-
 on:
   check_suite:
-    branches: [crowdin]
-    types: [completed]
+    types:
+    - completed
+    branches:
+    - crowdin
   pull_request:
-    branches: [crowdin]
-    types: [edited, labeled, opened, ready_for_review, reopened, synchronize, unlabled, unlocked]
+    types:
+    - labeled
+    - unlabeled
+    - synchronize
+    - opened
+    - edited
+    - ready_for_review
+    - reopened
+    - unlocked
+    branches:
+    - crowdin
 
 jobs:
   merge:
-    name: Merge
+    name: Sync
+    if: github.ref == 'ref/heads/crowdin'
     runs-on: ubuntu-latest
     steps:
-      - name: Merge me!
-        uses: ridedott/merge-me-action@v1
-        with:
-          GITHUB_LOGIN: senkosan
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MERGE_METHOD: SQUASH
+    - uses: pascalgn/automerge-action@v0.11.0
+      env:
+        MERGE_LABELS: ''
+        MERGE_METHOD: squash
+        MERGE_FILTER_AUTHOR: wopian
+        MERGE_FORKS: false
+        MERGE_RETRY_SLEEP: 600000 # 10 minutes in milliseconds
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
