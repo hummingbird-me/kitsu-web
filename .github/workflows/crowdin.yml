@@ -10,12 +10,12 @@ jobs:
     name: Merge
     steps:
     - name: Merge Bot
-      uses: squalrus/merge-bot@master
+      uses: squalrus/merge-bot@b183d6d72b8fe2eac181a5ead2b2c6ff55f41aed
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         test: true
         reviewers: false
-        labels: ''
+        labels:
         checks_enabled: true
         method: squash
         delete_source_branch: true
