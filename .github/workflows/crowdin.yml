@@ -1,21 +1,21 @@
 name: CrowdIn Translations
 
 on:
-  push:
+  check_suite:
     branches: [crowdin]
+    types: [completed]
+  pull_request:
+    branches: [crowdin]
+    types: [edited, labeled, opened, ready_for_review, reopened, synchronize, unlabled, unlocked]
 
 jobs:
   merge:
-    runs-on: ubuntu-latest
     name: Merge
+    runs-on: ubuntu-latest
     steps:
-    - name: Merge Bot
-      uses: squalrus/merge-bot@b183d6d72b8fe2eac181a5ead2b2c6ff55f41aed
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        test: true
-        reviewers: false
-        labels:
-        checks_enabled: true
-        method: squash
-        delete_source_branch: true
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v1
+        with:
+          GITHUB_LOGIN: senkosan
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_METHOD: SQUASH
