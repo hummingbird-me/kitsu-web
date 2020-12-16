@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Effective date: 06/10/2020
+Effective date: 12/15/2020
 
 1. **Introduction**
 
@@ -16,7 +16,7 @@ Our Terms and Conditions (&quot; **Terms**&quot;) govern all use of our Service 
 
 1. **Definitions**
 
-**SERVICE ** means the kitsu.io website and Kitsu mobile application operated by Kitsu, Inc.
+**SERVICE** means the kitsu.io website and Kitsu mobile application operated by Kitsu, Inc.
 
 **PERSONAL DATA**  means data about a living individual who can be identified from those data (or from those and other information either in our possession or likely to come into our possession).
 
@@ -28,9 +28,9 @@ Our Terms and Conditions (&quot; **Terms**&quot;) govern all use of our Service 
 
 **DATA PROCESSORS (OR SERVICE PROVIDERS)** means any natural or legal person who processes the data on behalf of the Data Controller. We may use the services of various Service Providers in order to process your data more effectively.
 
-**DATA SUBJECT ** is any living individual who is the subject of Personal Data.
+**DATA SUBJECT** is any living individual who is the subject of Personal Data.
 
-**THE USER ** is the individual using our Service. The User corresponds to the Data Subject, who is the subject of Personal Data.
+**THE USER** is the individual using our Service. The User corresponds to the Data Subject, who is the subject of Personal Data.
 
 1. **Information Collection and Use**
 
@@ -278,12 +278,6 @@ GitHub is a development platform to host and review code, manage projects, and b
 
 For more information on what data GitHub collects for what purpose and how the protection of the data is ensured, please visit GitHub Privacy Policy page:[https://help.github.com/en/articles/github-privacy-statement.](https://help.github.com/en/articles/github-privacy-statement)
 
-**Travis CI**
-
-Travis CI is a distributed continuous integration service to build and test projects hosted at GitHub.
-
-For more information on what data Travis CI collects for what purpose and how the protection of the data is ensured, please visit Travis CI Privacy Policy page: https://docs.travis-ci.com/legal/privacy-policy.
-
 **Fastlane**
 
 Fastlane is provided by Google, Inc.
@@ -364,6 +358,4 @@ You are advised to review this Privacy Policy periodically for any changes. Chan
 
 If you have any questions about this Privacy Policy, please contact us:
 
-By email: help@kitsu.io.
-
-17
+By email: help@kitsu.io
