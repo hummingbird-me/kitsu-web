@@ -107,6 +107,10 @@
   position: relative;
   display: grid;
   grid-template-columns: minmax(50px, 1fr) minmax(auto, 1150px) minmax(50px, 1fr);
+  @media (max-width: 575px) {
+    grid-template-columns: minmax(10px, 1fr) minmax(auto, 1150px) minmax(10px, 1fr);
+  }
+
 
   .cover-photo {
     background-size: cover;
