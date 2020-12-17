@@ -118,30 +118,38 @@
     width: 100%;
     bottom: 30px;
     z-index: $zIndex--cover-user-info;
+    display: grid;
+    gap: 10px;
+    grid-template-rows: auto auto;
     &.cover-media-info {
       bottom: 15px;
     }
   }
   .primary-info {
-    float: left;
-    height: 100px;
+    display: grid;
+    grid-template-columns: minmax(min-content, auto) 1fr;
+    gap: 25px;
+    z-index: $zIndex-7;
+    grid-row-start: 1;
+    grid-row-end: 1;
+
+    @media (max-width: 300px) {
+      grid-template-columns: auto;
+      grid-template-rows: auto, auto;
+    }
+
     @media (max-width: 575px) {
-      padding: 0 20px;
+      padding: 0 10px;
     }
     @media (max-width: 992px) {
       width: 100%;
-      float: initial;
-      margin-bottom: 15px;
     }
-  }
-  .cover-avatar {
-    float: left;
   }
   .cover-username {
     color: $white;
     font-size: 30px;
     font-weight: 500;
-    margin-top: 5px;
+    margin-top: 10px;
     margin-bottom: 10px;
     .tag {
       position: relative;
@@ -164,11 +172,7 @@
   .mini-bio {
     color: $white;
     font-size: 14px;
-    float: left;
-    margin-left: 25px;
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
     p {
       margin-bottom: 0;
     }
@@ -189,6 +193,8 @@
     }
   }
   .cover-profiles {
+    z-index: $zIndex-3;
+    grid-row-start: 2;
     position: absolute;
     right: 0;
     bottom: 0;
