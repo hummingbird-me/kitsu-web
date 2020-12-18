@@ -19,6 +19,15 @@
       <a href={{href-to "users.index" comment.user}}>
         {{comment.user.name}}
       </a>
+      {{#if comment.user.slug}}
+      <a class="commenter-slug" href={{href-to "users.index" comment.user}}>
+          @{{comment.user.slug}}
+      </a>
+      {{else}}
+      <a class="commenter-slug" href={{href-to "users.index" comment.user}}>
+          @{{comment.user.id}}
+      </a>
+      {{/if}}
     </h4>
 
     {{! comment content }}

@@ -252,6 +252,22 @@
   position: relative;
   z-index: $zIndex--stream-item-block;
 
+  .author-name {
+    display: inline-block;
+    font-size: 16px;
+    font-family: $heading-font-family;
+    font-weight: 700;
+  }
+  .author-slug, .author-id {
+    display: inline-block;
+    font-size: 12px;
+    font-family: $heading-font-family;
+    color: transparentize(desaturate($body-link-color, 5), 0.2);
+    font-weight: 500;
+    &:hover {
+      color: $body-link-color;
+    }
+  }
   .author-avatar {
     float: left;
     margin-right: 15px;
@@ -565,6 +581,16 @@
   .media-body {
     font-size: 14px;
     max-width: calc(100% - 45px);
+    .commenter-slug, .commenter-id {
+      display: inline-block;
+      font-size: 12px;
+      font-family: $heading-font-family;
+      color: transparentize(desaturate($body-link-color, 5), 0.2);
+      font-weight: 500;
+      &:hover {
+        color: $body-link-color;
+      }
+    }
     .comment-body {
       @include word-break();
       margin-bottom: 0;

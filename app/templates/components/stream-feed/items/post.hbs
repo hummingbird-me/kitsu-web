@@ -46,6 +46,15 @@
         <a class="author-name" href={{href-to "users.index" post.user}} onclick={{action "trackEngagement" "click"}}>
           {{post.user.name}}
         </a>
+        {{#if post.user.slug}}
+          <a class="author-slug" href={{href-to "users.index" post.user}}>
+            @{{post.user.slug}}
+          </a>
+        {{else}}
+          <a class="author-id" href={{href-to "users.index" post.user}}>
+              @{{post.user.id}}
+          </a>
+      {{/if}}
         {{user-badge post.user}}
 
         {{#if post.targetUser}}
