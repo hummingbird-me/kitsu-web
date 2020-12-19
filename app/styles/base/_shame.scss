@@ -104,3 +104,10 @@ body {
 .report-content-input {
   min-height: 6rem;
 }
+
+// Fix for Canny not working in dark-mode because we can't style it
+.w-100 > iframe {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+}
