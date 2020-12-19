@@ -15,8 +15,23 @@
   pointer-events: auto;
   display: block!important;
   overflow: hidden;
-  a, a:hover {
+  @if $theme == 'kitsu-dark' {
+    background-color: $secondary-background-color;
+  }
+  a {
     color: $body-text-color;
+    
+    &:hover {
+      color: $body-text-color;
+      @if $theme == 'kitsu-dark' {
+      background-color: darken($secondary-background-color, 3);
+      }
+    }
+  }
+}
+.open > .notification-drop {
+  @if $theme == 'kitsu-dark' {
+    background-color: $header-background-color;
   }
 }
 
@@ -34,7 +49,17 @@
 
 .ember-power-select-option {
   &[aria-selected="true"] {
-    background-color: darken($background-color, 2);
+    @if $theme == 'kitsu-light' {
+      background-color: darken($background-color, 2);
+    }
+    @if $theme == 'kitsu-dark' {
+      background-color: $secondary-background-color;
+    }
+  }
+  &[aria-selected="false"] {
+    @if $theme == 'kitsu-dark' {
+      background-color: lighten($secondary-background-color, 5);
+    }
   }
 }
 

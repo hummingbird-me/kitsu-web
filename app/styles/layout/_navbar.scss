@@ -389,7 +389,14 @@
     transition: all .2s ease-in-out;
     background: $background-color;
     &.new {
-      background: $white;
+      
+      @if $theme == 'kitsu-light' {
+        background: $white;
+      }
+      @if $theme == 'kitsu-dark' {
+        background-color: $foreground-background-color;
+      }
+
       .media-left:before {
         content: '';
         position: absolute;
