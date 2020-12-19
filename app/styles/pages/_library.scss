@@ -211,7 +211,12 @@
     text-indent: 0;
     padding-left: 50px;
     padding-right: 40px;
-    border: 1px solid $divider-color;
+    @if $theme == 'kitsu-dark' {
+      border: none;
+    }
+    @if $theme == 'kitsu-light' {
+      border: 1px solid $divider-color;
+    }
     border-radius: 5px;
   }
   .library-search--wrapper {
@@ -296,7 +301,12 @@
         }
       }
       .entry-stats {
-        background: $secondary-background-color;
+        @if $theme == 'kitsu-light' {
+          background: $secondary-background-color;
+        }
+        @if $theme == 'kitsu-dark' {
+          background: $foreground-background-color;
+        }
         border-bottom-left-radius: 3px;
         border-bottom-right-radius: 3px;
         color: $white;
