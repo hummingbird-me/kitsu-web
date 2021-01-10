@@ -11,13 +11,13 @@ body {
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  @if $theme == 'kitsu-dark' {
-    background: darken(desaturate($body-link-color, 30), 10);  
+  @if $theme == "kitsu-dark" {
+    background: darken(desaturate($body-link-color, 30), 10);
     &:hover {
       background: darken(desaturate($body-link-color, 50), 20);
     }
   }
-  @if $theme == 'kitsu-light' {
+  @if $theme == "kitsu-light" {
     background: lighten($body-link-color, 5);
     &:hover {
       background: darken(desaturate($body-link-color, 0), 5);
@@ -31,11 +31,24 @@ a {
   }
 }
 
-.form-control, input, textarea, .ember-power-select-trigger {
-  @if $theme == 'kitsu-dark' {
+.form-control,
+input,
+textarea,
+.ember-power-select-trigger {
+  @if $theme == "kitsu-dark" {
     color: $input-text-color;
     background: lighten($foreground-background-color, 3);
     border: darken($background-color, 3);
+  }
+}
+.form-control,
+input,
+input.form-control {
+  @if $theme == "kitsu-dark" {
+    &:focus {
+      background-color: $secondary-background-color;
+      color: $body-text-color;
+    }
   }
 }
 
@@ -115,11 +128,11 @@ img {
 .card {
   background: $foreground-background-color;
   color: $body-text-color;
-  @if $theme == 'kitsu-light' {
-    box-shadow: 0 1px 4px rgba(0,0,0,.04);
-    border: 1px solid rgba(0,0,0,.09);
+  @if $theme == "kitsu-light" {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.09);
   }
-  @if $theme == 'kitsu-dark' {
+  @if $theme == "kitsu-dark" {
     box-shadow: none;
     border: none;
   }
@@ -220,7 +233,7 @@ img {
     margin-bottom: 0;
 
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       top: 2px;
       left: 2px;
@@ -237,7 +250,6 @@ img {
       -webkit-transform-origin: 0 0;
       -moz-transform-origin: 0 0;
     }
-
   }
 
   input:checked + label {
@@ -254,9 +266,7 @@ img {
       -webkit-transform-origin: 100% 0;
       -moz-transform-origin: 100% 0;
     }
-
   }
-
 }
 
 @keyframes uncheck {
