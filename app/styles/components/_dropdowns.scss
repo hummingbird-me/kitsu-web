@@ -7,6 +7,9 @@
   pointer-events: none;
   border: none;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  @if $theme == "kitsu-dark" {
+    background-color: $secondary-background-color;
+  }
 }
 
 .open > .dropdown-menu {
