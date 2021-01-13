@@ -25,8 +25,8 @@
     {{! Edit in Rails}}
     {{#if (can "view admin" user)}}
     <section>
-      <a class="media--edit-media-in-rails" href="https://kitsu.io/api/admin/{{media.modelType}}/{{media.id}}/edit"
-        target="_blank" rel="noopener noreferrer">Edit in Rails</a>
+      <a class="media--edit-media-in-rails" href="/api/admin/{{media.modelType}}/{{media.id}}/edit" target="_blank">Edit in
+        Rails</a>
     </section>
     {{/if}}
 
