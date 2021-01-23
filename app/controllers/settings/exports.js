@@ -11,7 +11,7 @@ export default Controller.extend({
   downloadUrl: computed('session.isAuthenticated', function () {
     const token = get(this, 'session.data.authenticated.access_token');
 
-    return `${config.kitsu.APIHost}/api/edge/library-entries/_xml?access_token=${token}`;
+    return `/api/edge/library-entries/_xml?access_token=${token}`;
   }),
 
   animeDownloadUrl: computed('downloadUrl', function () {
