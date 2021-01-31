@@ -44,7 +44,7 @@ module.exports = function(environment) {
     },
 
     kitsu: {
-      APIHost: environment === 'production' ? undefined : 'https://kitsu.io',
+      APIHost: environment === 'production' ? '' : 'https://kitsu.io',
       isStaging: IS_STAGING_ENV,
       isProduction: environment === 'production',
       env: environment
@@ -207,21 +207,6 @@ module.exports = function(environment) {
     ENV.stream.realtime.enabled = false;
     ENV.intl_cp_validations = ENV.intl_cp_validations || {};
     ENV.intl_cp_validations.suppressWarnings = true;
-  }
-
-  // Heroku environment - So that we can append the git hash to the version
-  if (process.env.HEROKU_EMBER_APP) {
-    ENV.release = process.env.SOURCE_VERSION || process.env.HEROKU_SLUG_COMMIT || '-';
-  }
-
-  // Staging app @ Heroku
-  if (process.env.HEROKU_EMBER_APP === 'staging') {
-    ENV.kitsu.APIHost = 'https://staging.kitsu.io';
-  }
-
-  // Production app @ Heroku
-  if (process.env.HEROKU_EMBER_APP === 'production') {
-    ENV.kitsu.APIHost = 'https://kitsu.io';
   }
 
   ENV.apollo = { apiURL: `${ENV.kitsu.APIHost}/api/graphql` };
