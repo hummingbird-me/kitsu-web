@@ -14,7 +14,7 @@ export default Component.extend({
   }).drop(),
 
   actions: {
-    banUser() {
+    unbanUser() {
       get(this, 'unbanUser').perform();
     }
   }
