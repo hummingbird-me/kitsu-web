@@ -78,6 +78,15 @@
                           modalId="ban-user-modal"
                           onClose=(toggle-action "isBanningUser" this))}}
                       {{/if}}
+                      {{#dropdown.menu-item onClick=(action (toggle "isUnbanningUser" this))}}
+                        {{t "users.admin.unban"}}
+                      {{/dropdown.menu-item}}
+                      {{#if isUnbanningUser}}
+                        {{to-elsewhere named="modal" send=(component "users/unban-user"
+                          user=user
+                          modalId="unban-user-modal"
+                          onClose=(toggle-action "isUnbanningUser" this))}}
+                      {{/if}}
                     {{/dropdown.menu}}
                   {{/bootstrap/bs-dropdown}}
                 {{/if}}
