@@ -36,12 +36,14 @@
             </div>
           {{/if}}
         {{else}}
+        <!--
           <button class="import-option" onclick={{toggle-action "exportModal" this}}>
             <span class="import-logo">
               <img src="/images/mal.png">
             </span>
             <span class="import-title">{{t "settings.exports.create"}}</span>
           </button>
+        -->
         {{/if}}
 
         {{#if exportModal}}
@@ -58,10 +60,10 @@
         {{/if}}
 
         {{#if (has-feature "xml_download")}}
-          <a class="import-option" href={{animeDownloadUrl}}>
+          <a class="import-option" target="_blank" href={{animeDownloadUrl}}>
             <span class="import-title">{{t "settings.exports.download" kind="Anime"}}</span>
           </a>
-          <a class="import-option" href={{mangaDownloadUrl}}>
+          <a class="import-option" target="_blank" href={{mangaDownloadUrl}}>
             <span class="import-title">{{t "settings.exports.download" kind="Manga"}}</span>
           </a>
         {{/if}}
