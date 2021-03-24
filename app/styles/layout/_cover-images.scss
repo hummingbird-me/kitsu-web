@@ -244,6 +244,40 @@
     margin-bottom: 15px;
     padding-bottom: 20px;
     border-bottom: 1px solid $divider-color;
+
+    .media-sidebar {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: max-content auto;
+      grid-template-rows: max-content auto;
+
+      .media-poster {
+        grid-row: 1 / span 2;
+        grid-column: 1;
+        width: 195px;
+        height: 277px;
+
+        img {
+          width: unset;
+          height: unset;
+        }
+
+        .media-favorite {
+          left: 0;
+          right: auto;
+        }
+      }
+
+      .library-state {
+        grid-row: 1;
+        grid-column: 2;
+      }
+
+      .where-to-watch-widget {
+        grid-row: 2;
+        grid-column: 2;
+      }
+    }
   }
 
   @media screen and (max-height: 710px) {
@@ -262,13 +296,11 @@
   .media-sidebar {
     position: relative;
     top: -142px;
-    right: 15px;
     @media (max-width: 767px) {
       margin-top: 10px;
       margin-left: auto;
       margin-right: auto;
       top: 0;
-      width: 195px;
     }
     img {
       border-radius: 3px;
