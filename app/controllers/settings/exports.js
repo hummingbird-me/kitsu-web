@@ -2,7 +2,6 @@ import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
 import { computed, get } from '@ember/object';
 import { inject as service } from '@ember/service';
-import config from 'client/config/environment';
 
 export default Controller.extend({
   session: service('session'),
