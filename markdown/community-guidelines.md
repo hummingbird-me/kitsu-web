@@ -34,7 +34,7 @@ Don't encourage violence or hatred on the basis of things like race, ethnic orig
 We want honest and open discussion on Kitsu and for that to happen, we encourage you to behave in such a way that others feel welcome and secure in the community. You're free to express your opinion but it crosses the line into malicious speech when it, directly or indirectly, incites or propagates violence, hatred, or makes people fear, you or others, will act against them in a violent manner. We reserve the right to flush anything overtly malicious right down our digital toilet.
 
 
-#### Disinformation, misinformation, and propaganda.
+#### Disinformation, Misinformation, and Propaganda.
 
 Don’t post or repost content that is verifiably false or misleading. Sharing content that is intended to intentionally deceive or may cause public harm is prohibited. Content that may cause public harm includes but is not limited to threats to democracy, health, and other topics which may impact a person or group negatively.
 
@@ -76,7 +76,7 @@ Do not engage in behaviors to drive up artificial traffic or popularity of conte
 
 Don't post deceptive or fraudulent links in your posts. This includes giving links misleading descriptions, putting the wrong “source” field in a post, or embedding links to interstitial or pop-up ads.
 
-#### Piracy and stolen content
+#### Piracy and Stolen Content
 
 Please support legal content through suggesting reputable sources to watch and read media. We get it, it’s tough to sometimes find this content in some regions, but just remember that legal content supports artists which means more content for you. Don’t be surprised when we moderate and remove links to illegal or pirated content, as it both negatively impacts the reputation of Kitsu and hurts creators.
 
