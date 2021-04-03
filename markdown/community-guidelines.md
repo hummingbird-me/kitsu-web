@@ -37,7 +37,7 @@ We want honest and open discussion on Kitsu and for that to happen, we encourage
 
 Don’t post or repost content that is verifiably false or misleading. Sharing content that is intended to intentionally deceive or may cause public harm is prohibited. Content that may cause public harm includes but is not limited to threats to democracy, health, and other topics which may impact a person or group negatively.
 
-Recognise that content and ideas circulated on online platforms, including hate, racial prejudice and disinformation, can have real and concrete consequences in the real world. This can disproportionately affect equity-deserving communities, including but not limited to, disabled people, neurodiverse, indigenous people, racialized communities, religious minorities, gender diverse, and members of LGBTQIA+ communities.
+Recognize that content and ideas circulated on online platforms — including hate, prejudice and disinformation — can have real and concrete consequences in the real world. This can disproportionately affect marginalized groups, including but not limited to: disabled, neurodiverse, indigenous, gender-diverse, or LGBTQIA+ individuals, as well as members of racial and religious minorities.
 
 #### NSFW Content
 
