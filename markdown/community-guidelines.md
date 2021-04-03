@@ -13,7 +13,7 @@ How to behave on Kitsu
 
 #### Civility
 
-Treat each other respectfully. Comments which are overly aggressive, personally insulting or needlessly abusive are prohibited. Of course there will be heated discussions and disagreements; that's normal human emotion interjecting itself into your very rational debate. Your frustrations can be a very real part of your argument but you can still remain respectful and refrain from personal attacks or harassment. Attack the idea, not the person. 
+Treat each other respectfully. Comments which are overly aggressive, personally insulting or needlessly abusive are prohibited. Of course there will be heated discussions and disagreements; that's normal human emotion interjecting itself into your very rational debate. Your frustrations can be a very real part of your argument but you can still remain respectful and refrain from personal attacks or harassment. Attack the idea, not the person.
 
 #### Self Expression
 
@@ -32,7 +32,6 @@ Do not post your own or other people's private information, which includes but i
 Don't encourage violence or hatred on the basis of things like race, ethnic origin, religion, disability, gender, age, veteran status, sexual orientation, or any other characteristics. Refrain from the use of slurs or otherwise offensive remarks meant to target users or groups based on any of the above mentioned characteristics. 
 
 We want honest and open discussion on Kitsu and for that to happen, we encourage you to behave in such a way that others feel welcome and secure in the community. You're free to express your opinion but it crosses the line into malicious speech when it, directly or indirectly, incites or propagates violence, hatred, or makes people fear, you or others, will act against them in a violent manner. We reserve the right to flush anything overtly malicious right down our digital toilet.
-
 
 #### Disinformation, Misinformation, and Propaganda.
 
