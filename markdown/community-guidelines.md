@@ -11,9 +11,9 @@ How to behave on Kitsu
 -------------
 
 
-####  Civility
+#### Civility
 
-Treat each other respectfully. Of course there will be heated discussions and disagreements; that's normal human emotion interjecting itself into your very rational debate. You can still remain respectful and refrain from personal attacks or harassment. Attack the idea, not the person.
+Treat each other respectfully. Comments which are overly aggressive, personally insulting or needlessly abusive are prohibited. Of course there will be heated discussions and disagreements; that's normal human emotion interjecting itself into your very rational debate. Your frustrations can be a very real part of your argument but you can still remain respectful and refrain from personal attacks or harassment. Attack the idea, not the person.
 
 #### Self Expression
 
@@ -21,7 +21,7 @@ Be creative, exchange ideas, build and join groups around the things you care ab
 
 #### Harassment
 
-Harassment is behavior directed at a specific person that causes substantial emotional distress and serves no legitimate purpose. Do not engage in or provide a platform for harassment of users or groups. Harassment will not be tolerated.
+Harassment is behavior directed at a specific person or group that causes substantial emotional distress and serves no legitimate purpose. Do not engage in or provide a platform for harassment of users or groups. This includes posts and comments which portrays specific users in a negative light or ignores their wishes. If a user chooses to block you it’s their decision. Attempts to bypass or protest this is not accepted. Harassment will not be tolerated.
 
 #### Privacy Violations
 
@@ -29,10 +29,27 @@ Do not post your own or other people's private information, which includes but i
 
 #### Malicious Speech
 
+Don't encourage violence or hatred on the basis of things like race, ethnic origin, religion, disability, gender, age, veteran status, sexual orientation, or any other characteristics. Refrain from the use of slurs or otherwise offensive remarks meant to target users or groups based on any of the above mentioned characteristics. 
 
-Don't encourage violence or hatred on the basis of things like race, ethnic origin, religion, disability, gender, age, veteran status, sexual orientation, or any other characteristics. We encourage you to dismantle negative speech through discussion rather than censorship.
+We want honest and open discussion on Kitsu and for that to happen, we encourage you to behave in such a way that others feel welcome and secure in the community. You're free to express your opinion; however, it crosses the line into malicious speech when it, directly or indirectly, incites or propagates violence, hatred, or makes people fear that  you or others will act against them in a violent manner. We reserve the right to flush anything overtly malicious right down our digital toilet.
 
-You're still welcome to express your opinions, even if they are offensive to some users. We want honest and open discussion to happen on Kitsu from all sides. However, these opinions cross the line into malicious speech when they specifically incite violence or hatred, or make people fear you will act against them in a violent manner. We reserve the right to flush anything overtly malicious right down our digital toilet.
+#### Disinformation, Misinformation, and Propaganda.
+
+Don’t post or repost content that is verifiably false or misleading. Sharing content that is intended to intentionally deceive or may cause public harm is prohibited. Content that may cause public harm includes but is not limited to threats to democracy, health, and other topics which may impact a person or group negatively.
+
+Recognize that content and ideas circulated on online platforms — including hate, prejudice and disinformation — can have real and concrete consequences in the real world. This can disproportionately affect marginalized groups, including but not limited to: disabled, neurodiverse, indigenous, gender-diverse, or LGBTQIA+ individuals, as well as members of racial and religious minorities.
+
+#### NSFW Content
+
+Kitsu is home to a diverse population with different standards and needs. Please label not safe for work content accordingly. NSFW content is, in general terms, content that may be inappropriate in a professional environment, including images that are sexually suggestive or contain nudity, news photos or videos that have potentially upsetting or graphic content, excessive explicit language in videos, etc. This allows users to simply scroll past the NSFW content and still allow you the freedom to post it without conflict.
+
+#### Spam
+
+Sending or posting spam is not allowed. Spam is defined as the use of electronic messaging systems to send unsolicited messages, especially advertising, as well as sending or posting messages or links repeatedly on the same site.
+
+#### Group Name Squatting
+
+Group names are a key part of creating a common identity, and we want everyone to be able to get access to the names that suit them best. Please only create communities that you plan on actively participating in so that others can use those names if you will not. Do not squat on Group names.
 
 #### Harm to Minors
 
@@ -46,11 +63,6 @@ Do not post content that actively promotes or glorifies self-harm. This includes
 
 Don't post the mutilation, torture, or abuse of human beings, animals, or their remains.
 
-#### NSFW Content
-
-Kitsu is home to a diverse population with different standards and needs. Please label not safe for work content accordingly. NSFW content is, in general terms, content that may be inappropriate in a professional environment, including images that are sexually suggestive or contain nudity, news photos or videos that have potentially upsetting or graphic content, excessive explicit language in videos, etc. This allows users to simply scroll past the NSFW content and still allow you the freedom to post it without conflict.
-
-
 #### Terrorism
 
 The support of terrorist groups, their propaganda, or recruiting efforts on Kitsu is prohibited. We encourage political discourse and a wide breadth of opinions, but not the use of violence and intimidation in the pursuit of political aims.
@@ -63,27 +75,21 @@ Do not engage in behaviors to drive up artificial traffic or popularity of conte
 
 Don't post deceptive or fraudulent links in your posts. This includes giving links misleading descriptions, putting the wrong “source” field in a post, or embedding links to interstitial or pop-up ads.
 
-#### Group Name Squatting
+#### Piracy and Stolen Content
 
-Group names are a key part of creating a common identity, and we want everyone to be able to get access to the names that suit them best. Please only create communities that you plan on actively participating in so that others can use those names if you will not. Do not squat on Group names.
+Please support legal content through suggesting reputable sources to watch and read media. We get it, it’s tough to sometimes find this content in some regions, but just remember that legal content supports artists which means more content for you. Don’t be surprised when we moderate and remove links to illegal or pirated content, as it both negatively impacts the reputation of Kitsu and hurts creators.
 
-#### Spam
+#### Copyright/Trademark Infringement
 
-Sending or posting spam is not allowed. Spam is defined as the use of electronic messaging systems to send unsolicited messages, especially advertising, as well as sending or posting messages or links repeatedly on the same site.
-
+Don’t infringe the copyright or trademark of others. If you don’t have the right to use the copyright or trademark owned by someone else, don’t post it on Kitsu. We respond to notices of alleged copyright infringement as per the Digital Millennium Copyright Act.
 
 #### Confusion or Impersonation
 
 Don't do things that would cause confusion between you, your community, and a person or company. Satire and parody are acceptable, but you cannot misrepresent yourself as a different person or company.
 
-
 #### Unlawful Use
 
 Illegal behavior, including but not limited to fraud, phishing, promoting harm to minors, or inciting violence is not acceptable and will result in termination of your account/s.
-
-#### Copyright/Trademark Infringement
-
-Don’t infringe the copyright or trademark of others. If you don’t have the right to use the copyright or trademark owned by someone else, don’t post it on Kitsu. We respond to notices of alleged copyright infringement as per the Digital Millennium Copyright Act.
 
 #### Violations
 
