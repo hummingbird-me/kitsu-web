@@ -21,7 +21,7 @@ Be creative, exchange ideas, build and join groups around the things you care ab
 
 #### Harassment
 
-Harassment is behavior directed at a specific person or group that causes substantial emotional distress and serves no legitimate purpose. Do not engage in or provide a platform for harassment of users or groups. This includes posts and comments which portrays specific users in a negative light or ignores their wishes. If a user chooses to block you it’s their decision. Attempts to bypass or protest this is not accepted. **Harassment will not be tolerated.**
+Harassment is behavior directed at a specific person or group that causes substantial emotional distress and serves no legitimate purpose. Do not engage in or provide a platform for harassment of users or groups. This includes posts and comments which portrays specific users in a negative light or ignores their wishes. If a user chooses to block you it’s their decision. Attempts to bypass or protest this is not accepted. Harassment will not be tolerated.
 
 #### Privacy Violations
 
