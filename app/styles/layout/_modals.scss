@@ -141,10 +141,29 @@
   margin-bottom: 15px;
 }
 
+.modal-content {
+  background: $background-color;
+}
+
+.modal-header {
+  background-color: $tertiary-background-color;
+  border-bottom: none;
+  @if $theme == 'kitsu-light' {
+    border-bottom: 1px solid $divider-color;
+  }
+}
+
+.modal-body {
+  background-color: $background-color;
+}
+
 .modal-footer {
   text-align: left;
-  border-top: 1px solid $divider-color;
-  background: #f5f5f5;
+  border-top: none;
+  @if $theme == 'kitsu-light' {
+    border-top: 1px solid $divider-color;
+  }
+  background: $tertiary-background-color;
   padding: 20px;
   .link-note {
     float: left;
@@ -156,9 +175,6 @@
 
 // Onboarding modal-content
 #auth-modal {
-  .modal-content {
-    background: #fff;
-  }
   .modal-body {
     padding: 0;
   }
@@ -664,9 +680,6 @@
 .library-edit-modal {
   .modal-dialog {
     max-width: 450px;
-  }
-  .modal-content {
-    background: $white;
   }
   .form-group {
     &:last-child {

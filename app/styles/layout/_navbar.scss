@@ -3,6 +3,10 @@
   padding: 0;
   width: 100%;
   border-bottom: 1px solid darken($secondary-background-color, 4);
+  @if $theme == "kitsu-dark" {
+    border: none;
+  }
+
   border-radius: 0;
   &.primary-nav {
     z-index: $zIndex--primary-nav;
@@ -10,15 +14,18 @@
       display: inherit;
     }
     .navbar-nav .nav-link {
-      color: RGBA(237, 240, 241, .6);
-      &:hover, &.active {
+      color: $body-secondary-text-color;
+      &:hover,
+      &.active {
         color: RGBA(237, 240, 241, 1);
       }
     }
     .open {
       .nav-link {
-        color: RGBA(237, 240, 241, .6);
-        &:hover, &.active, &:focus {
+        color: $body-text-color;
+        &:hover,
+        &.active,
+        &:focus {
           color: RGBA(237, 240, 241, 1);
         }
       }
@@ -111,9 +118,9 @@
 .cover-nav.navbar-light {
   padding: 0;
   margin-bottom: 30px;
-  @if $theme == 'kitsu-light' {
+  @if $theme == "kitsu-light" {
     background-color: $white;
-    box-shadow: 0 0 1px rgba(0,0,0,.15);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
     border-bottom: none;
   }
   .nav-item {
@@ -121,17 +128,23 @@
     padding: 10px 20px;
     font-size: 14px;
     color: $body-text-color;
-    @if $theme == 'kitsu-light' {
-      color: lighten($body-text-color,35);
+    @if $theme == "kitsu-light" {
+      color: lighten($body-text-color, 35);
+    }
+    @if $theme == "kitsu-dark" {
+      border: none;
     }
     &:first-child {
       border-left: 1px solid $divider-color;
+      @if $theme == "kitsu-dark" {
+        border: none;
+      }
     }
     &:hover {
-      @if $theme == 'kitsu-light' {
+      @if $theme == "kitsu-light" {
         background: darken($white, 3);
       }
-      @if $theme == 'kitsu-dark' {
+      @if $theme == "kitsu-dark" {
         background: lighten($header-background-color, 5);
       }
 
@@ -139,7 +152,7 @@
     }
     &.active {
       color: $white;
-      @if $theme == 'kitsu-light' {
+      @if $theme == "kitsu-light" {
         background: darken($white, 3);
         color: $body-text-color;
         &:hover {
@@ -147,8 +160,9 @@
           background: darken($white, 5);
         }
       }
-      @if $theme == 'kitsu-dark' {
+      @if $theme == "kitsu-dark" {
         background: lighten($header-background-color, 5);
+        border: none;
         &:hover {
           color: $body-text-color;
           background: lighten($header-background-color, 5);
@@ -162,7 +176,7 @@
 }
 
 .edit-nav {
-  padding-left: 105px!important;
+  padding-left: 105px !important;
 }
 
 .navbar-buttons {
@@ -180,8 +194,9 @@
   position: relative;
   top: 8px;
   background: $secondary-background-color;
-  &:hover, &:active {
-    background: darken($secondary-background-color,5);
+  &:hover,
+  &:active {
+    background: darken($secondary-background-color, 5);
   }
   &.notifications--present {
     background: #d65e43;
@@ -190,7 +205,7 @@
       color: $white;
     }
     &:hover {
-      opacity: .9;
+      opacity: 0.9;
     }
   }
   svg {
@@ -206,7 +221,7 @@
 
 .open {
   .notifications {
-    background: darken($secondary-background-color,5);
+    background: darken($secondary-background-color, 5);
     path {
       fill: $white;
     }
@@ -246,21 +261,21 @@
   background: $secondary-background-color;
   height: 25px;
   padding-left: 30px;
-  color: #EDF0F1;
+  color: #edf0f1;
   outline: none;
   width: 200px;
   font-size: 13px;
   &.active {
-    background: darken($secondary-background-color,5);
+    background: darken($secondary-background-color, 5);
   }
   &:hover {
-    border-color: #EDF0F1;
+    border-color: #edf0f1;
   }
   &::placeholder {
     color: #a99fa8;
   }
   @media (max-width: 768px) {
-    width: 150px
+    width: 150px;
   }
 }
 
@@ -283,7 +298,8 @@
     img {
       width: 45px;
       height: 64px;
-      &.is-avatar-users, &.is-avatar-groups {
+      &.is-avatar-users,
+      &.is-avatar-groups {
         height: 45px;
       }
       &.is-avatar-users {
@@ -312,7 +328,8 @@
   border-bottom: 1px solid #eee;
 }
 
-.notification-drop, .user-menu-drop {
+.notification-drop,
+.user-menu-drop {
   width: 400px;
   right: 0;
   left: initial;
@@ -386,18 +403,27 @@
     color: $body-text-color;
     font-family: $base-font-family;
     border-bottom: 1px solid $divider-color;
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     background: $background-color;
     &.new {
-      background: $white;
+      @if $theme == "kitsu-light" {
+        background: $white;
+      }
+      @if $theme == "kitsu-dark" {
+        background-color: $foreground-background-color;
+      }
+
       .media-left:before {
-        content: '';
+        content: "";
         position: absolute;
         top: 14px;
         left: -5px;
         width: 6px;
         height: 6px;
-        background: linear-gradient(RGBA(237,72,95,1),RGBA(242,124,54,1));
+        background: linear-gradient(
+          RGBA(237, 72, 95, 1),
+          RGBA(242, 124, 54, 1)
+        );
         border-radius: 50%;
       }
     }
@@ -416,12 +442,12 @@
   .media-secondary {
     margin-top: 0px;
     display: block;
-    opacity: .6;
+    opacity: 0.6;
   }
 }
 
 .navbar-toggler {
-  color: RGBA(237, 240, 241, .6);
+  color: RGBA(237, 240, 241, 0.6);
   @media (min-width: 768px) {
     display: none;
   }

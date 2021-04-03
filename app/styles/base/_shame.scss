@@ -5,7 +5,6 @@
 // Hello
 // -- WOPIAN
 
-
 // temporary padding for fixed header. Will need to be addressed when dealing with cover photos.
 body {
   padding-top: 80px;
@@ -57,19 +56,19 @@ body {
 
 // Need to find the cause of horizontal scroll on mobile devices
 @media (max-width: 554px) {
-    .global-container {
-      overflow-x: hidden;
-    }
-    // Allow scrolling on the reports page until the overflow hack is no longer needed
-    .user-reports {
-      overflow-x: auto;
-    }
-    .settings--header {
-      margin-top: 0;
-    }
-    .feed-container {
-      overflow-y: hidden;
-    }
+  .global-container {
+    overflow-x: hidden;
+  }
+  // Allow scrolling on the reports page until the overflow hack is no longer needed
+  .user-reports {
+    overflow-x: auto;
+  }
+  .settings--header {
+    margin-top: 0;
+  }
+  .feed-container {
+    overflow-y: hidden;
+  }
 }
 
 // Hide extra whitespace created by the overflow hack above
@@ -103,4 +102,32 @@ body {
 // Height fix until we migrate away from deprecated ember-one-way-controls in expanding-textarea
 .report-content-input {
   min-height: 6rem;
+}
+
+// Fix for Canny not working in dark-mode because we can't style it
+.w-100 > iframe {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+// Fix for some ember-styled dropdowns that I simply can't figure out which
+// document their style comes from.
+@if $theme == "kitsu-dark" {
+  .ember-basic-dropdown,
+  .ember-basic-dropdown-content,
+  .ember-basic-dropdown-content * {
+    border: none;
+    & li:hover {
+      background-color: $foreground-background-color;
+    }
+  }
+  .ember-power-select-dropdown.ember-basic-dropdown-content--below,
+  .ember-power-select-dropdown.ember-basic-dropdown-content--in-place {
+    border: 1px solid $divider-color;
+    transform: none;
+  }
+  .ember-basic-dropdown-content {
+    background-color: $background-color;
+  }
 }
