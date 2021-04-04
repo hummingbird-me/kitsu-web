@@ -472,7 +472,12 @@
   }
   .comment-actions {
     @extend .clearfix;
-    background: darken($foreground-background-color, 4);
+    @if $theme == "kitsu-light" {
+      background: darken($foreground-background-color, 4);
+    }
+    @if $theme == "kitsu-dark" {
+      background: darken($foreground-background-color, 7);
+    }
     margin-bottom: -30px;
     display: block;
     padding: 5px 15px 5px;
@@ -540,7 +545,9 @@
 }
 
 .stream-item-comments {
-  background: darken($foreground-background-color, 2);
+  @if $theme == "kitsu-light" {
+    background: darken($foreground-background-color, 2);
+  }
   @if $theme == "kitsu-dark" {
     background: darken($foreground-background-color, 4);
   }
@@ -687,7 +694,12 @@
 }
 
 .reply-list {
-  background: darken($foreground-background-color, 4);
+  @if $theme == "kitsu-light" {
+    background: darken($foreground-background-color, 4);
+  }
+  @if $theme == "kitsu-dark" {
+    background: darken($foreground-background-color, 7);
+  }
   border-radius: 3px;
   margin-top: 30px;
   margin-bottom: 10px !important;
@@ -704,7 +716,12 @@
     font-size: 0.9rem;
     margin-bottom: 5px;
     height: 40px;
-    border: 1px solid #eee;
+    @if $theme == "kitsu-light" {
+      border: 1px solid #eee;
+    }
+    @if $theme == "kitsu-dark" {
+      border: none;
+    }
   }
   .comment-box-row {
     svg {
@@ -1315,7 +1332,12 @@
     text-align: center;
     padding: 20px;
     display: block;
-    color: darken($secondary-cta-color, 10);
+    @if $theme == "kitsu-dark" {
+      color: lighten($secondary-cta-color, 2);
+    }
+    @if $theme == "kitsu-light" {
+      color: darken($secondary-cta-color, 10);
+    }
     transition: 0.3s background ease-in-out;
     position: relative;
     font-weight: 700;
@@ -1357,9 +1379,16 @@
       }
     }
     &:hover {
-      background: #ffdcd8;
-      border: 1px dotted #e74c3c;
-      color: #e74c3c;
+      @if $theme == "kitsu-light" {
+        background: #ffdcd8;
+        color: #e74c3c;
+        border: 1px dotted #e74c3c;
+      }
+      @if $theme == "kitsu-dark" {
+        background: #52231f;
+        color: #ff6d5d;
+        border: 1px dotted #ff6d5d;
+      }
       &::after {
         content: "(¬‿¬ )";
       }
