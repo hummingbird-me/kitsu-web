@@ -53,7 +53,7 @@ textarea,
 .ember-power-select-trigger {
   @if $theme == "kitsu-dark" {
     color: $body-text-color;
-    background: $foreground-background-color;
+    background: $input-background-color;
     border: darken($background-color, 1);
   }
 }
@@ -62,7 +62,7 @@ input,
 input.form-control {
   @if $theme == "kitsu-dark" {
     &:focus {
-      background-color: $foreground-background-color;
+      background-color: $input-focus-color;
       color: $input-text-color;
     }
   }

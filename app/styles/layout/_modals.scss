@@ -30,6 +30,14 @@
       margin-bottom: 0;
     }
   }
+  .close {
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 0.8;
+    }
+    text-shadow: 0 1px 0 $close-text-shadow;
+  }
 }
 
 .modal-content {
@@ -687,7 +695,20 @@
     }
     .btn-secondary {
       height: 100%;
-      border: 1px solid #ddd;
+      border: 1px solid $divider-color;
+      border-color: darken($background-color,5);
+      background-color: $input-secondary-action-background-color;
+      color: $body-text-color;
+
+      &:hover {
+        color: $input-text-color;
+        background-color: $input-secondary-action-background-color;
+      }
+    }
+    .input-group-addon {
+      border-color: darken($background-color,5);
+      background-color: $input-secondary-action-background-color;
+      color: $body-text-color;
     }
   }
   .button--primary {
