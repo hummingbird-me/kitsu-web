@@ -251,6 +251,10 @@
       grid-template-columns: max-content auto;
       grid-template-rows: max-content auto;
 
+      @media (max-width: 370px) {
+        grid-template-columns: auto minmax(50px, 195px) auto;
+      }
+
       .media-poster {
         grid-row: 1 / span 2;
         grid-column: 1;
@@ -276,6 +280,26 @@
       .where-to-watch-widget {
         grid-row: 2;
         grid-column: 2;
+      }
+
+      @media (max-width: 370px) {
+        .media-poster {
+          grid-row: 1;
+          grid-column: 2;
+
+          width: unset;
+          height: unset;
+        }
+
+        .library-state {
+          grid-row: 2;
+          grid-column: 1 / span 3;
+        }
+  
+        .where-to-watch-widget {
+          grid-row: 3;
+          grid-column: 1 / span 3;
+        }
       }
     }
   }
