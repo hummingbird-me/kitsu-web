@@ -10,6 +10,23 @@
   @if $theme == "kitsu-dark" {
     background-color: $secondary-background-color;
   }
+  .dropdown-item {
+    &:focus, &:hover {
+      background-color: $secondary-background-color;
+    }
+
+    .dropdown-checkmark svg {
+      fill: $body-text-color;
+    }
+  }
+}
+
+.dropdown-item {
+  color: $body-text-color;
+  
+  &:hover {
+    color: $body-text-color;
+  }
 }
 
 .open > .dropdown-menu {
@@ -27,7 +44,7 @@
     &:hover {
       color: $body-text-color;
       @if $theme == 'kitsu-dark' {
-      background-color: darken($secondary-background-color, 3);
+        background-color: $search-results-hover-background;
       }
     }
   }
