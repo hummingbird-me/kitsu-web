@@ -636,7 +636,12 @@
   text-align: center;
   font-weight: 500;
   display: block;
-  color: #333;
+  @if $theme == "kitsu-light" {
+    color: #333;
+  }
+  @if $theme == "kitsu-dark" {
+    color: #ebebeb;
+  }
 }
 
 .media-character {
@@ -664,8 +669,14 @@
   font-family: $base-font-family;
   font-weight: 500;
   line-height: 25px;
-  color: #333;
-  background: #f2f2f2;
+  @if $theme == "kitsu-light" {
+    color: #333;
+    background: #f2f2f2;
+  }
+  @if $theme == "kitsu-dark" {
+    color: #ebebeb;
+    background: $background-color;
+  }
   margin-bottom: 5px;
   display: block;
   &:last-child {
