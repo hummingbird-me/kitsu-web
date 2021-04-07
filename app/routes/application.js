@@ -63,8 +63,7 @@ export default Route.extend(ApplicationRouteMixin, {
 
   headTags() {
     const title = get(this, 'head.title');
-    const description = `Share anime and manga experiences, get recommendations and see what
-      friends are watching or reading.`;
+    const description = 'Share anime and manga experiences, get recommendations and see what friends are watching or reading.';
     return [{
       type: 'title',
       tagId: 'title',
