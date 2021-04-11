@@ -138,7 +138,7 @@
   @media (max-width: 767px) {
     z-index: 1;
     background-color: $foreground-background-color;
-    margin-top: -16px;
+    //margin-top: -16px;
   }
 }
 
@@ -537,6 +537,24 @@
 
 .media--related {
   margin-bottom: 10px;
+
+  .favorite-media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, calc(25% - .5rem)));
+    gap: .5rem;
+    
+    .favorite-item.col-sm-3, .favorite-item.col-sx-3 {
+      width: unset;
+      height: unset;
+      max-width: unset;
+      padding: 0;
+      
+      img {
+        width: unset;
+        height: unset;
+      }
+    }
+  }
 }
 
 .related--title {
