@@ -167,11 +167,24 @@
           color: $body-text-color;
           background: lighten($header-background-color, 5);
         }
+        &:focus {
+          color: $white;
+        }
       }
     }
   }
   .nav-item + .nav-item {
     margin-left: 0;
+  }
+}
+
+@if $theme == "kitsu-dark" {
+  .nav-tabs .nav-link.active {
+    color: $white;
+
+    &:hover, &:focus {
+      color: $white;
+    }
   }
 }
 
@@ -267,6 +280,9 @@
   font-size: 13px;
   &.active {
     background: darken($secondary-background-color, 5);
+    @if $theme == "kitsu-dark" {
+      background: darken($secondary-background-color, 1);
+    }
   }
   &:hover {
     border-color: #edf0f1;
@@ -282,7 +298,7 @@
 .search--drop {
   width: 350px;
   max-height: 90vh;
-  background-color: #fff;
+  background-color: $search-background-color;
   overflow: auto;
   border-radius: 3px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -293,7 +309,7 @@
   .media {
     padding: 5px 10px;
     &:hover {
-      background: #faf9fa;
+      background: $search-results-hover-background;
     }
     img {
       width: 45px;
@@ -313,7 +329,7 @@
 }
 
 .search--header {
-  background-color: #efeef1;
+  background-color: $search-header-background;
   padding: 10px;
   margin-bottom: 0px;
 }
@@ -321,11 +337,11 @@
 .search--group-header {
   font-size: 12px;
   padding: 10px;
-  background-color: #faf9fa;
+  background-color: $search-group-header-background;
   margin-bottom: 0px;
   text-transform: uppercase;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  border-top: $search-group-header-border-top;
+  border-bottom: $search-group-header-border-bottom;
 }
 
 .notification-drop,
@@ -349,6 +365,7 @@
     font-size: 12px;
     padding: 5px 10px;
     border-bottom: 1px solid $divider-color;
+    background-color: $notifications-header-color;
   }
   .mark-as-read {
     float: right;
@@ -404,14 +421,9 @@
     font-family: $base-font-family;
     border-bottom: 1px solid $divider-color;
     transition: all 0.2s ease-in-out;
-    background: $background-color;
+    background: $notification-background-color;
     &.new {
-      @if $theme == "kitsu-light" {
-        background: $white;
-      }
-      @if $theme == "kitsu-dark" {
-        background-color: $foreground-background-color;
-      }
+      background: $notification-new-background-color;
 
       .media-left:before {
         content: "";
@@ -429,12 +441,16 @@
     }
     &:hover {
       text-decoration: none;
-      background-color: lighten($divider-color, 4);
+      background-color: $notification-hover-color;
       opacity: 1;
     }
   }
   .media-body {
     top: 0;
+
+    .media-heading a:hover {
+      background: transparent;
+    }
   }
   .media-heading {
     margin-bottom: 0;

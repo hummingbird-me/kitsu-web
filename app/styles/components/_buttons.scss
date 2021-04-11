@@ -54,8 +54,14 @@
   padding: 10px 60px;
   box-shadow: 0 0 0px rgba(0, 0, 0, 0.0);
   &:hover {
-    color: $body-text-color;
-    background: darken($white, 5);
+    @if $theme == 'kitsu-light' {
+      color: $body-text-color;
+      background: darken($white, 5);
+    }
+    @if $theme == 'kitsu-dark' {
+        color: darken($body-text-color, 20);
+        background: $white;
+    }
   }
 }
 
