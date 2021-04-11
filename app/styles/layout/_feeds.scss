@@ -252,6 +252,7 @@
   background: $foreground-background-color;
   position: relative;
   z-index: $zIndex--stream-item-block;
+  border-radius: 3px 3px 0 0;
 
   .author-avatar {
     float: left;
@@ -540,6 +541,7 @@
 }
 
 .stream-item-comments {
+  border-radius: 0 0 3px 3px;
   background: darken($foreground-background-color, 2);
   @if $theme == "kitsu-dark" {
     background: darken($foreground-background-color, 4);
