@@ -66,9 +66,14 @@ body {
   .settings--header {
     margin-top: 0;
   }
-  .feed-container {
-    overflow-y: hidden;
+  .stream-item-comments {
+    overflow: hidden;
   }
+}
+
+// Breaks long words and links that would otherwise cause overflow
+.full-post {
+  word-break: break-word;
 }
 
 // Hide extra whitespace created by the overflow hack above
