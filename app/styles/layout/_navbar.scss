@@ -131,6 +131,12 @@
   }
 
   @media (max-width: 767px) {
+    .container {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 767px) {
     .nav.navbar-nav {
       display: flex;
       justify-content: stretch;
@@ -144,6 +150,11 @@
     padding: 10px 20px;
     font-size: 14px;
     color: $body-text-color;
+
+    @media (max-width: 767px) {
+      min-width: max-content;
+    }
+
     @if $theme == "kitsu-light" {
       color: lighten($body-text-color, 35);
     }
