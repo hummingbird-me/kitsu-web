@@ -1,45 +1,6 @@
 body {
   background-color: $background-color;
   overflow-y: scroll;
-  
-  &::-webkit-scrollbar-thumb {
-    border-radius: 0;
-  }
-}
-
-// Scrollbar Chrome
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: darken($background-color, 2);
-}
-::-webkit-scrollbar-thumb {
-  border-radius: 3px;
-  @if $theme == "kitsu-dark" {
-    background: darken(desaturate($body-link-color, 30), 10);
-    &:hover {
-      background: darken(desaturate($body-link-color, 45), 18);
-    }
-  }
-  @if $theme == "kitsu-light" {
-    background: lighten($body-link-color, 5);
-    &:hover {
-      background: desaturate($body-link-color, 10);
-    }
-  }
-}
-
-// Scrollbar Firefox (and future-proof)
-* {
-  @if $theme == "kitsu-dark" {
-    scrollbar-color: darken(desaturate($body-link-color, 30), 10) darken($background-color, 2);
-  }
-  @if $theme == "kitsu-light" {
-    scrollbar-color: lighten($body-link-color, 5) darken($background-color, 10);
-  }
-  scrollbar-width: thin;
 }
 
 a {
