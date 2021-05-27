@@ -1,7 +1,0 @@
-{{#bootstrap/bs-modal id=modalId class="trailer-modal" largeModal=true onClose=onClose as |modal|}}
-  {{#modal.body}}
-    <div class="embed-responsive embed-responsive-16by9" {{action "playVideo" preventDefault=false}}>
-      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{media.youtubeVideoId}}?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
-    </div>
-  {{/modal.body}}
-{{/bootstrap/bs-modal}}

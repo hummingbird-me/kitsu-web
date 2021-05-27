@@ -1,9 +1,0 @@
-{{#if loading}}
-  {{loading-spinner size="large"}}
-{{/if}}
-{{episodes/video-player/hulu-player
-  onProgress=(action onProgress)
-  video=video
-  onLoad=(action (mut loading) false)
-  isPlaying=isPlaying
-}}

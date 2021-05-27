@@ -1,9 +1,0 @@
-<div class="modal-dialog {{if largeModal "modal-lg"}}" role="document">
-  <div class="modal-content">
-    {{yield (hash
-      header=(component "bootstrap/bs-modal-header" label=label)
-      body=(component "bootstrap/bs-modal-body")
-      footer=(component "bootstrap/bs-modal-footer")
-    )}}
-  </div>
-</div>

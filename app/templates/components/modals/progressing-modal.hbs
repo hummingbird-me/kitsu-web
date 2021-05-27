@@ -1,9 +1,0 @@
-{{#bootstrap/bs-modal id=modalId onClose=onClose as |modal|}}
-  {{#modal.body}}
-    {{component componentName
-      componentData=componentData
-      modal=this
-      changeComponent=(action "changeComponent")
-      close=(action "closeModal")}}
-  {{/modal.body}}
-{{/bootstrap/bs-modal}}
