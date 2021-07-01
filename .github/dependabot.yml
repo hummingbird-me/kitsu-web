@@ -1,0 +1,37 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "17:00"
+    timezone: Europe/London
+  open-pull-requests-limit: 10
+  versioning-strategy: increase-if-necessary
+  assignees:
+  - "wopian"
+  allow:
+  - dependency-type: direct
+  ignore:
+  - dependency-name: y18n
+    versions:
+    - 4.0.1
+  - dependency-name: ember-source
+    versions: ["3.24", "3.25", "3.26"]
+  - dependency-name: ember-cli-htmlbars
+    versions: ["5.3", "5.4", "5.5", "5.6", "5.7"]
+  - dependency-name: ember-power-select
+    versions: ["4.x"]
+  - dependency-name: ember-basic-dropdown
+    versions: ["3.x"]
+- package-ecosystem: docker
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "17:00"
+    timezone: Europe/London
+  open-pull-requests-limit: 10
+  assignees:
+  - "wopian"
+  allow:
+  - dependency-type: all
