@@ -5,9 +5,11 @@ updates:
   schedule:
     interval: daily
     time: "17:00"
-    timezone: America/Los_Angeles
+    timezone: Europe/London
   open-pull-requests-limit: 10
-  versioning-strategy: increase
+  versioning-strategy: increase-if-necessary
+  assignees:
+  - "wopian"
   allow:
   - dependency-type: direct
   ignore:
@@ -15,41 +17,22 @@ updates:
     versions:
     - 4.0.1
   - dependency-name: ember-source
-    versions:
-    - 3.24.1
-    - 3.25.0
-    - 3.25.1
-    - 3.25.2
-    - 3.25.3
-    - 3.26.0
+    versions: ["3.24", "3.25", "3.26"]
   - dependency-name: ember-cli-htmlbars
-    versions:
-    - 5.3.1
-    - 5.3.2
-    - 5.4.0
-    - 5.5.0
-    - 5.6.0
-    - 5.6.1
-    - 5.6.2
-    - 5.6.3
-    - 5.6.4
-    - 5.6.5
-    - 5.7.0
+    versions: ["5.3", "5.4", "5.5", "5.6", "5.7"]
   - dependency-name: ember-power-select
-    versions:
-    - 4.1.0
-    - 4.1.2
-    - 4.1.3
+    versions: ["4.x"]
   - dependency-name: ember-basic-dropdown
-    versions:
-    - 3.0.12
-    - 3.0.13
-    - 3.0.14
-    - 3.0.15
+    versions: ["3.x"]
 - package-ecosystem: docker
   directory: "/"
   schedule:
     interval: daily
     time: "17:00"
-    timezone: America/Los_Angeles
+    timezone: Europe/London
   open-pull-requests-limit: 10
+  versioning-strategy: increase-if-necessary
+  assignees:
+  - "wopian"
+  allow:
+  - dependency-type: all
