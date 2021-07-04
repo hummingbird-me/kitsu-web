@@ -1,6 +1,11 @@
 {
   "name": "kitsu-web",
   "version": "4.0.0",
+  "browserslist": [
+    "defaults",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -9,10 +14,13 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.19",
+    "autoprefixer": "^10.2.6",
     "date-fns": "^2.21.3",
     "graphql": "^15.5.0",
     "i18next": "^20.3.0",
     "i18next-icu": "^2.0.3",
+    "postcss-color-function": "^4.1.0",
+    "postcss-preset-env": "^6.7.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-i18next": "^11.9.0"
