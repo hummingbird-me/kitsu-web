@@ -1,0 +1,15 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": ["stylelint-declaration-strict-value"],
+  "rules": {
+    "color-hex-length": "long",
+    "custom-property-empty-line-before": null,
+    "scale-unlimited/declaration-strict-value": [
+      ["/color$/"],
+      {
+        "ignoreFunctions": true,
+        "ignoreValues": ["currentColor", "inherit", "transparent"]
+      }
+    ]
+  }
+}
