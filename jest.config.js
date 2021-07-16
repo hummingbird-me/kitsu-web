@@ -6,6 +6,7 @@ module.exports = {
   testRunner: 'jest-circus/runner',
   moduleNameMapper: {
     '^app/(.*)$': '<rootDir>/src/$1',
+    '\\.svg': '<rootDir>/__mocks__/svgrMock.js',
     '\\.(jpe?g|png|gif|webp)$': '<rootDir>/__mocks__/fileMock.js',
     '\\.css$': 'identity-obj-proxy',
   },
