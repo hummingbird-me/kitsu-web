@@ -1,0 +1,41 @@
+@import url('./themes/index.css');
+
+@custom-media --xlarge (min-width: 1500px);
+@custom-media --large (min-width: 1200px);
+@custom-media --medium (min-width: 900px);
+@custom-media --small (min-width: 600px);
+
+:root {
+  --layer-base: 0;
+  --layer-overlay: 1000;
+  --layer-modal: 2000;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  all: unset;
+  background-color: var(--page-background);
+  color: var(--page-text-color);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  min-height: 100vh;
+}
+
+body.scroll-lock {
+  overflow: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
