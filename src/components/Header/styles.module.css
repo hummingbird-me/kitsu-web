@@ -1,0 +1,150 @@
+.header {
+  color: var(--header-text-color);
+  font-size: 0.875rem;
+  height: 82px;
+  width: 100vw;
+  display: flex;
+  font-family: var(--heading-font-family);
+
+  @media (--medium) {
+    height: 41px;
+  }
+
+  &.opaque {
+    position: sticky;
+    border-bottom: 1px solid var(--header-secondary-background);
+    background-color: var(--header-primary-background);
+  }
+
+  &.transparent {
+    background-color: transparent;
+    position: fixed;
+  }
+}
+
+/* Set Up Grid */
+.container {
+  grid-column-gap: 10px;
+  grid-template-columns: 100px auto 25px 25px;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    'logo search notifications avatar'
+    'navigation navigation navigation navigation';
+  max-width: 100%;
+  display: grid;
+  align-items: center;
+  padding-inline: 15px;
+
+  @media (--medium) {
+    & {
+      grid-template-areas: 'logo navigation search notifications avatar';
+      grid-template-columns: 100px auto 200px 25px 25px;
+      grid-template-rows: 100%;
+    }
+  }
+}
+
+/* Logo Section */
+.logo {
+  grid-area: logo;
+
+  & > img,
+  & > svg {
+    display: block;
+    height: 25px;
+    width: 85px;
+    margin: 8px 0;
+  }
+}
+
+/* Navigation Section */
+.navList {
+  all: unset;
+  grid-area: navigation;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+
+  & > li {
+    all: unset;
+    margin-left: 1rem;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    & > a {
+      color: inherit;
+      opacity: 0.6;
+      text-decoration: none;
+      transition: opacity 50ms;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+/* Search Box */
+.search {
+  grid-area: search;
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  border: none;
+  background: var(--header-search-background);
+  height: 25px;
+  color: var(--header-search-text-color);
+
+  @media (--medium) {
+    & {
+      width: 200px;
+    }
+  }
+
+  & .icon {
+    height: 19px;
+    display: block;
+  }
+
+  & > input {
+    appearance: none;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: 0.9em;
+    text-overflow: ellipsis;
+  }
+
+  & > input::placeholder {
+    opacity: 0.8;
+  }
+}
+
+/* Circulars */
+.circular {
+  border-radius: 100px;
+  height: 25px;
+  width: 25px;
+}
+
+.notificationCount {
+  grid-area: notifications;
+  background: var(--header-notifications-background);
+  line-height: 25px;
+  text-align: center;
+  color: var(--header-notifications-text-color);
+}
+
+.avatar {
+  grid-area: avatar;
+
+  & > img {
+    display: block;
+  }
+}
