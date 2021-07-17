@@ -1,0 +1,27 @@
+.rule {
+  font-size: 0.7rem;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--light-purple);
+  align-items: center;
+  margin: 6px 0;
+
+  &::after,
+  &::before {
+    flex: 1;
+    height: 1px;
+    content: '';
+    background-color: var(--lighter-purple);
+  }
+
+  &::before {
+    margin-right: 5px;
+  }
+
+  &::after {
+    margin-left: 5px;
+  }
+}
