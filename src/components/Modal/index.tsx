@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { DialogHTMLAttributes, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import useQueryParams from 'app/hooks/useQueryParams';
@@ -15,10 +15,9 @@ import styles from './styles.module.css';
  *
  * @param {string} displayMode - which style the modal should be displayed in
  */
-const Modal: React.FC<{ displayMode: 'modal' | 'page' }> = function ({
-  children,
-  displayMode = 'modal',
-}) {
+const Modal: React.FC<
+  { displayMode: 'modal' | 'page' } & DialogHTMLAttributes<HTMLDialogElement>
+> = function ({ children, className, displayMode = 'modal', ...args }) {
   const history = useHistory();
   const params = useQueryParams();
 
@@ -51,8 +50,9 @@ const Modal: React.FC<{ displayMode: 'modal' | 'page' }> = function ({
       <dialog
         data-testid="modal"
         open
-        className={styles.modal}
-        onClick={(e) => e.stopPropagation()}>
+        className={[className, styles.modal].join(' ')}
+        onClick={(e) => e.stopPropagation()}
+        {...args}>
         {children}
       </dialog>
     </div>
