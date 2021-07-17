@@ -49,7 +49,7 @@ export default function Header({
         <Link
           className={styles.avatar}
           to={{
-            pathname: '/auth/sign-in',
+            pathname: '/auth/log-in',
             search: `?returnTo=${location.pathname}`,
             state: { background: location },
           }}>
