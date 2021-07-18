@@ -1,0 +1,25 @@
+overwrite: true
+schema: 'https://kitsu.io/api/graphql'
+documents: 'src/**/*.gql'
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+
+generates:
+  src/types/graphql.ts:
+    plugins:
+      - typescript
+    config:
+      immutableTypes: true
+
+  src/:
+    preset: near-operation-file
+    presetConfig:
+      extension: .gql.ts
+      baseTypesPath: types/graphql.ts
+    config:
+      skipTypename: true
+      dedupeOperationSuffix: true
+    plugins:
+      - typescript-operations
+      - typescript-react-apollo
