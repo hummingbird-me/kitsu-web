@@ -4,7 +4,7 @@ jest.mock('app/constants/config');
 
 import { LoginFailed, NetworkError } from 'app/errors';
 
-import loginWithAssertion from './loginWithAssertion';
+import loginWithAssertion from './withAssertion';
 describe('loginWithAssertion', () => {
   test('with successful response', async () => {
     fetchMock.post('https://kitsu.io/api/oauth/token', {

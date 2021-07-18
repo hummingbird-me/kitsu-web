@@ -2,8 +2,8 @@ import fetchMock from 'fetch-mock';
 afterEach(() => fetchMock.reset());
 jest.mock('app/constants/config');
 
-import loginWithRefreshToken from './loginWithRefreshToken';
-describe('loginWithRefreshToken', () => {
+import loginWithPassword from './withPassword';
+describe('loginWithPassword', () => {
   test('with successful response', async () => {
     fetchMock.post('https://kitsu.io/api/oauth/token', {
       status: 200,
@@ -14,7 +14,10 @@ describe('loginWithRefreshToken', () => {
         created_at: Date.now() / 1000,
       },
     });
-    const session = await loginWithRefreshToken('REFRESH-TOKEN');
+    const session = await loginWithPassword({
+      username: 'michiru',
+      password: 'ogami ear scritches',
+    });
     expect(session).not.toBeNull();
     expect(session?.accessToken).toBe('TOKEN');
   });
