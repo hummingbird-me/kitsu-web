@@ -36,15 +36,29 @@
 /* Set Up Grid */
 .container {
   grid-column-gap: 10px;
-  grid-template-columns: 100px auto 25px 25px;
   grid-template-rows: 1fr 1fr;
+  grid-template-columns: 100px auto 120px;
   grid-template-areas:
-    'logo search notifications avatar'
-    'navigation navigation navigation navigation';
+    'logo search auth'
+    'navigation navigation navigation';
   max-width: 100%;
   display: grid;
   align-items: center;
   padding-inline: 15px;
+
+  @media (--medium) {
+    & {
+      grid-template-columns: 100px auto 200px 120px;
+      grid-template-areas: 'logo navigation search auth';
+    }
+  }
+}
+
+.container.loggedIn {
+  grid-template-columns: 100px auto 25px 25px;
+  grid-template-areas:
+    'logo search notifications avatar'
+    'navigation navigation navigation navigation';
 
   @media (--medium) {
     & {
@@ -158,4 +172,12 @@
   grid-area: notifications;
   background: var(--header-notifications-background);
   color: var(--header-notifications-text-color);
+}
+
+.authCta {
+  grid-area: auth;
+
+  & > a {
+    color: var(--header-text-color);
+  }
 }
