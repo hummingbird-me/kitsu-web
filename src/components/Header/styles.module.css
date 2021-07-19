@@ -136,23 +136,17 @@
 
 /* Circulars */
 .circular {
+  background-color: var(--header-skeleton-background);
   border-radius: 100px;
   height: 25px;
   width: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .notificationCount {
   grid-area: notifications;
   background: var(--header-notifications-background);
-  line-height: 25px;
-  text-align: center;
   color: var(--header-notifications-text-color);
-}
-
-.avatar {
-  grid-area: avatar;
-
-  & > img {
-    display: block;
-  }
 }

@@ -1,0 +1,17 @@
+# import imageFields from 'app/fragments/imageFields';
+
+query loadProfileMenu {
+  currentAccount {
+    profile {
+      id
+      slug
+      name
+      avatarImage {
+        ...imageFields
+      }
+      bannerImage {
+        ...imageFields
+      }
+    }
+  }
+}

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { uniqueId } from 'lodash-es';
-import { Link, useLocation } from 'react-router-dom';
 
 import logo from 'app/assets/logo.svg';
 import { ReactComponent as SearchIcon } from 'app/assets/icons/search.svg';
 import utilStyles from 'app/styles/utils.module.css';
 
+import AvatarMenu from './AvatarMenu';
 import styles from './styles.module.css';
 
 export default function Header({
@@ -15,7 +15,6 @@ export default function Header({
 }) {
   // We don't expect to have this multiple times per page but we should still be careful
   const [searchId] = useState(() => uniqueId('header-search-'));
-  const location = useLocation();
 
   return (
     <header className={[styles.header, styles.opaque].join(' ')}>
@@ -46,18 +45,7 @@ export default function Header({
         <a className={[styles.circular, styles.notificationCount].join(' ')}>
           3
         </a>
-        <Link
-          className={styles.avatar}
-          to={{
-            pathname: '/auth/log-in',
-            search: `?returnTo=${location.pathname}`,
-            state: { background: location },
-          }}>
-          <img
-            src="https://media.kitsu.io/users/avatars/5554/small.jpeg?1597552193"
-            className={styles.circular}
-          />
-        </Link>
+        <AvatarMenu className={styles.avatar} />
       </nav>
     </header>
   );
