@@ -1,0 +1,24 @@
+.container {
+  position: relative;
+  overflow: hidden;
+}
+
+.blurhash,
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.image {
+  opacity: 0;
+  transition: opacity cubic-bezier(0.65, 0, 0.35, 1) 0.2s;
+}
+
+.image.loaded {
+  opacity: 1;
+}
