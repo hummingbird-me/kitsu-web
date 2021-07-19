@@ -1,9 +1,12 @@
 {
   "extends": "stylelint-config-standard",
   "plugins": ["stylelint-declaration-strict-value"],
+  "ignoreFiles": ["**/*.tsx"],
   "rules": {
     "color-hex-length": "long",
     "custom-property-empty-line-before": null,
+    "value-list-comma-newline-after": null,
+    "declaration-colon-newline-after": null,
     "scale-unlimited/declaration-strict-value": [
       ["/color$/"],
       {
