@@ -1,4 +1,4 @@
-import React, { useContext, ComponentProps } from 'react';
+import React, { useContext, ComponentProps, HTMLProps } from 'react';
 import { Options } from '@popperjs/core';
 import { Link } from 'react-router-dom';
 
@@ -52,11 +52,26 @@ const DropdownMenu: React.FC<{}> = function ({ children }) {
   );
 };
 
-const DropdownItem: React.FC<{}> = function ({ children }) {
-  const dropdown = useContext(DropdownContext);
-  if (!dropdown) return null;
+const DropdownItem: React.FC<HTMLProps<HTMLDivElement>> = function ({
+  className,
+  onClick,
+  ...args
+}) {
+  const ctx = useContext(DropdownContext);
+  if (!ctx) return null;
+  const { dropdown } = ctx;
 
-  return <div>{children}</div>;
+  return (
+    <div
+      onClick={(...args) => {
+        dropdown.setIsOpen(false);
+        if (onClick) onClick(...args);
+      }}
+      className={[className, styles.item].join(' ')}
+      role="menuitem"
+      {...args}
+    />
+  );
 };
 
 const DropdownItemLink: React.FC<ComponentProps<Link>> = function ({

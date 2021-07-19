@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+import { useSession } from 'app/contexts/SessionContext';
 import Image from 'app/components/Image';
 import * as Dropdown from 'app/components/Dropdown';
 
@@ -9,6 +10,7 @@ import styles from './styles.module.css';
 import headerStyles from '../styles.module.css';
 
 const AvatarMenu: React.FC<{ className?: string }> = ({ className }) => {
+  const { clearSession } = useSession();
   const { data, loading } = useLoadProfileMenuQuery();
   const profile = data?.currentAccount?.profile;
   const location = useLocation();
@@ -44,7 +46,7 @@ const AvatarMenu: React.FC<{ className?: string }> = ({ className }) => {
             </Dropdown.ItemLink>
             <Dropdown.ItemLink to="/">Settings</Dropdown.ItemLink>
             <Dropdown.ItemLink to="/">Admin</Dropdown.ItemLink>
-            <Dropdown.ItemLink to="/">Logout</Dropdown.ItemLink>
+            <Dropdown.Item onClick={clearSession}>Logout</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown.Wrapper>
       )}
