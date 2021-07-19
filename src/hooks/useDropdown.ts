@@ -20,6 +20,8 @@ export default function useDropdown(config: Partial<Options>) {
     ],
   });
 
+  const visibility: 'visible' | 'hidden' = isOpen ? 'visible' : 'hidden';
+
   return {
     isOpen,
     setIsOpen,
@@ -33,7 +35,7 @@ export default function useDropdown(config: Partial<Options>) {
       ref: setMenuElement,
       style: {
         ...popper.styles.popper,
-        visibility: isOpen ? 'visible' : 'hidden',
+        visibility,
       },
       ...popper.attributes.popper,
     },
