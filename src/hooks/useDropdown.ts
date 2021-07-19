@@ -16,6 +16,13 @@ export default function useDropdown(config: Partial<Options>) {
     ...config,
     modifiers: [
       { name: 'arrow', options: { element: arrowElement } },
+      {
+        name: 'preventOverflow',
+        options: {
+          altAxis: true,
+          padding: 10,
+        },
+      },
       ...(config.modifiers || []),
     ],
   });
