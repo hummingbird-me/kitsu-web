@@ -36,14 +36,6 @@ const AvatarMenu: React.FC<{ className?: string }> = ({ className }) => {
             <Dropdown.ItemLink to={`/users/${profile?.slug ?? profile?.id}`}>
               View Profile
             </Dropdown.ItemLink>
-            <Dropdown.ItemLink
-              to={{
-                pathname: '/auth/log-in',
-                search: `?returnTo=${location.pathname}`,
-                state: { background: location },
-              }}>
-              Sign in
-            </Dropdown.ItemLink>
             <Dropdown.ItemLink to="/">Settings</Dropdown.ItemLink>
             <Dropdown.ItemLink to="/">Admin</Dropdown.ItemLink>
             <Dropdown.Item onClick={clearSession}>Logout</Dropdown.Item>
