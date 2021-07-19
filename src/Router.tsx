@@ -18,12 +18,12 @@ export default function Router() {
       <Header background="opaque" />
       <Switch location={background || location}>
         <Route path="/users/:id">User Profile</Route>
-        <Route path="/auth/log-in">
+        <Route path="/auth/sign-in">
           <SignInModal displayMode="page" />
         </Route>
       </Switch>
       {background && (
-        <Route path="/auth/log-in">
+        <Route path="/auth/sign-in">
           <SignInModal displayMode="modal" />
         </Route>
       )}

@@ -19,8 +19,8 @@ export default function AuthModalHeader() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/auth/log-in" className={styles.navLink}>
-              Log In
+            <NavLink to="/auth/sign-in" className={styles.navLink}>
+              Sign In
             </NavLink>
           </li>
         </ul>
