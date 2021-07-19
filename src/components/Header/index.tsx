@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { uniqueId } from 'lodash-es';
+import { useWindowScroll } from 'react-use';
 
 import logo from 'app/assets/logo.svg';
 import { ReactComponent as SearchIcon } from 'app/assets/icons/search.svg';
@@ -10,14 +11,18 @@ import styles from './styles.module.css';
 
 export default function Header({
   background = 'opaque',
+  scrollBackground = 'opaque',
 }: {
   background: 'opaque' | 'transparent';
+  scrollBackground: 'opaque' | 'transparent';
 }) {
   // We don't expect to have this multiple times per page but we should still be careful
   const [searchId] = useState(() => uniqueId('header-search-'));
+  const { y } = useWindowScroll();
+  const displayBackground = y > 0 ? scrollBackground : background;
 
   return (
-    <header className={[styles.header, styles.opaque].join(' ')}>
+    <header className={[styles.header, styles[displayBackground]].join(' ')}>
       <nav className={[utilStyles.container, styles.container].join(' ')}>
         <a href="/" className={styles.logo}>
           <img src={logo} />

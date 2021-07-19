@@ -1,24 +1,33 @@
 @import url('app/styles/breakpoints.css');
 
 .header {
+  z-index: var(--layer-overlay);
   color: var(--header-text-color);
   font-size: 0.875rem;
   height: 82px;
   width: 100vw;
   display: flex;
   font-family: var(--heading-font-family);
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
 
   @media (--medium) {
     height: 41px;
+
+    &.opaque {
+      margin-bottom: 41px;
+    }
   }
 
   &.opaque {
-    position: sticky;
+    position: fixed;
+    margin-bottom: 82px;
     border-bottom: 1px solid var(--header-secondary-background);
     background-color: var(--header-primary-background);
   }
 
   &.transparent {
+    border-bottom: 1px solid transparent;
     background-color: transparent;
     position: fixed;
   }
