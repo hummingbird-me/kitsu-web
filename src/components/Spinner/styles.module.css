@@ -12,3 +12,9 @@
   animation: spinner 0.8s infinite linear;
   transform-origin: center;
 }
+
+@media (prefers-reduced-motion) {
+  .spinner {
+    animation-duration: 3s;
+  }
+}
