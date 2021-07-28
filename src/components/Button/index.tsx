@@ -17,10 +17,10 @@ const Button: FC<
   }
 > = function ({
   kind,
+  loading = false,
+  disabled = false,
   className,
   children,
-  disabled = false,
-  loading = false,
   ...args
 }) {
   if (disabled) kind = ButtonKind.DISABLED;
