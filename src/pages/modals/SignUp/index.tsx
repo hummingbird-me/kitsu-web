@@ -7,6 +7,7 @@ import {
 import { useLocation } from 'react-router-dom';
 
 import ModalLink from 'app/components/ModalLink';
+import Spinner from 'app/components/Spinner';
 import Modal from 'app/components/Modal';
 import Button, { ButtonKind } from 'app/components/Button';
 import TextInput from 'app/components/TextInput';
@@ -15,19 +16,28 @@ import AuthModalHeader from 'app/components/AuthModalHeader';
 
 import styles from './styles.module.css';
 
-export default function SignInModal({
+export default function SignUpModal({
   displayMode,
 }: {
   displayMode: 'page' | 'modal';
 }) {
   const { state } = useLocation<{ email?: string; password?: string }>();
   const [email, setEmail] = React.useState(state.email ?? '');
+  const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState(state.password ?? '');
+  const [confirmPassword, setConfirmPassword] = React.useState('');
 
   return (
     <Modal displayMode={displayMode} className={styles.modal}>
-      <AuthModalHeader email={email} />
+      <AuthModalHeader email={email} password={password} />
       <form className={styles.authForm}>
+        <TextInput
+          type="text"
+          autoComplete="username"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
         <TextInput
           type="email"
           autoComplete="email"
@@ -37,15 +47,22 @@ export default function SignInModal({
         />
         <TextInput
           type="password"
-          autoComplete="current-password"
+          autoComplete="new-password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <TextInput
+          type="password"
+          autoComplete="new-password"
+          placeholder="Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
         <Button type="submit" kind={ButtonKind.PRIMARY}>
-          Log in
+          Create account
         </Button>
-        <Rule label="Or log in with" />
+        <Rule label="Or sign up with" />
         <div className={styles.socialLoginContainer}>
           <Button
             kind={ButtonKind.OUTLINE}
@@ -62,9 +79,6 @@ export default function SignInModal({
             className={styles.socialLoginButton}>
             <AppleLogo title="Log in with Apple" />
           </Button>
-        </div>
-        <div className={styles.subformLink}>
-          <ModalLink to="/auth/forgot-password">Forgot Password?</ModalLink>
         </div>
       </form>
     </Modal>
