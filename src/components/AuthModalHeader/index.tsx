@@ -2,10 +2,16 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { ReactComponent as Logo } from 'app/assets/logo.svg';
+import ModalLink from 'app/components/ModalLink';
 
 import styles from './styles.module.css';
 
-export default function AuthModalHeader() {
+const AuthModalHeader: React.FC<{
+  email?: string;
+  password?: string;
+}> = function ({ email, password }) {
+  const state = { email, password };
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -14,17 +20,25 @@ export default function AuthModalHeader() {
       <nav>
         <ul className={styles.navList}>
           <li>
-            <NavLink to="/auth/sign-up" className={styles.navLink}>
+            <ModalLink
+              component={NavLink}
+              to={{ pathname: '/auth/sign-up', state }}
+              className={styles.navLink}>
               Sign Up
-            </NavLink>
+            </ModalLink>
           </li>
           <li>
-            <NavLink to="/auth/sign-in" className={styles.navLink}>
+            <ModalLink
+              component={NavLink}
+              to={{ pathname: '/auth/sign-in', state }}
+              className={styles.navLink}>
               Sign In
-            </NavLink>
+            </ModalLink>
           </li>
         </ul>
       </nav>
     </header>
   );
-}
+};
+
+export default AuthModalHeader;

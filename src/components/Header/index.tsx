@@ -7,6 +7,7 @@ import logo from 'app/assets/logo.svg';
 import { ReactComponent as SearchIcon } from 'app/assets/icons/search.svg';
 import utilStyles from 'app/styles/utils.module.css';
 import { useSession } from 'app/contexts/SessionContext';
+import ModalLink from 'app/components/ModalLink';
 
 import AvatarMenu from './AvatarMenu';
 import styles from './styles.module.css';
@@ -20,7 +21,6 @@ export default function Header({
 }) {
   // We don't expect to have this multiple times per page but we should still be careful
   const [searchId] = useState(() => uniqueId('header-search-'));
-  const location = useLocation();
   const { session } = useSession();
   const { y } = useWindowScroll();
   const displayBackground = y > 0 ? scrollBackground : background;
@@ -66,23 +66,9 @@ export default function Header({
           </>
         ) : (
           <div className={styles.authCta}>
-            <Link
-              to={{
-                pathname: '/auth/sign-up',
-                search: `?returnTo=${location.pathname}`,
-                state: { background: location },
-              }}>
-              Sign Up
-            </Link>
+            <ModalLink to="/auth/sign-up">Sign Up</ModalLink>
             {' or '}
-            <Link
-              to={{
-                pathname: '/auth/sign-in',
-                search: `?returnTo=${location.pathname}`,
-                state: { background: location },
-              }}>
-              Sign In
-            </Link>
+            <ModalLink to="/auth/sign-in">Sign In</ModalLink>
           </div>
         )}
       </nav>

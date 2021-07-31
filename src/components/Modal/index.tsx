@@ -1,7 +1,12 @@
 import React, { DialogHTMLAttributes, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import { Location } from 'history';
 
 import useQueryParams from 'app/hooks/useQueryParams';
+import {
+  IsModalContext,
+  IsModalContextProvider,
+} from 'app/contexts/ModalContext';
 
 import styles from './styles.module.css';
 
@@ -18,6 +23,7 @@ import styles from './styles.module.css';
 const Modal: React.FC<
   { displayMode: 'modal' | 'page' } & DialogHTMLAttributes<HTMLDialogElement>
 > = function ({ children, className, displayMode = 'modal', ...args }) {
+  const location = useLocation<{ background?: Location }>();
   const history = useHistory();
   const params = useQueryParams();
 
@@ -33,29 +39,31 @@ const Modal: React.FC<
   // page, we need to use the returnTo parameter to determine which page to return to.
   const goBack = () => {
     const returnTo = params.get('returnTo');
-    if (displayMode === 'modal') {
-      history.goBack();
+    if (displayMode === 'modal' && location.state?.background) {
+      history.push(location.state?.background);
     } else if (returnTo) {
       history.push(returnTo);
     }
   };
 
   return (
-    <div
-      data-testid="scrim"
-      className={
-        displayMode === 'modal' ? styles.modalContainer : styles.pageContainer
-      }
-      onClick={goBack}>
-      <dialog
-        data-testid="modal"
-        open
-        className={[className, styles.modal].join(' ')}
-        onClick={(e) => e.stopPropagation()}
-        {...args}>
-        {children}
-      </dialog>
-    </div>
+    <IsModalContextProvider>
+      <div
+        data-testid="scrim"
+        className={
+          displayMode === 'modal' ? styles.modalContainer : styles.pageContainer
+        }
+        onClick={goBack}>
+        <dialog
+          data-testid="modal"
+          open
+          className={[className, styles.modal].join(' ')}
+          onClick={(e) => e.stopPropagation()}
+          {...args}>
+          {children}
+        </dialog>
+      </div>
+    </IsModalContextProvider>
   );
 };
 
