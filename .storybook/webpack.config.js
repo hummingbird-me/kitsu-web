@@ -15,7 +15,19 @@ module.exports = ({ config }) => {
   // Merge our rule with existing assetLoader rules
   config.module.rules.unshift({
     test: /\.svg$/,
-    use: ['@svgr/webpack', assetLoader],
+    use: [
+      {
+        loader: '@svgr/webpack',
+        options: {
+          svgoConfig: {
+            plugins: {
+              removeViewBox: false,
+            },
+          },
+        },
+      },
+      assetLoader,
+    ],
   });
 
   return config;
