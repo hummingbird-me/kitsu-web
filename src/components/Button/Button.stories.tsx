@@ -13,8 +13,8 @@ export const Basic: ComponentStory<typeof Button> = (args) => (
 );
 
 Basic.args = {
-  kind: ButtonKind.DISABLED,
-  children: 'Label',
+  kind: ButtonKind.PRIMARY,
+  children: 'Button Label',
   disabled: false,
   loading: false,
 };
