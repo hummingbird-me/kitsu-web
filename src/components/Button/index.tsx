@@ -1,5 +1,7 @@
 import React, { FC, ButtonHTMLAttributes } from 'react';
 
+import Spinner from 'app/components/Spinner';
+
 import styles from './styles.module.css';
 
 export enum ButtonKind {
@@ -30,7 +32,7 @@ const Button: FC<
       {...args}
       disabled={disabled || loading}
       className={[className, styles.button, styles[kind]].join(' ')}>
-      {loading ? 'Loading' : children}
+      {loading ? <Spinner /> : children}
     </button>
   );
 };
