@@ -12,14 +12,21 @@ const DropdownContext =
     dropdown: ReturnType<typeof useDropdown>;
   } | null>(null);
 
-const DropdownWrapper: React.FC<{
+interface DropdownWrapperProps {
+  /** Whether to display an arrow */
   arrow: boolean;
-  popperOptions: Partial<Options>;
-}> = function ({ children, arrow, popperOptions }) {
+  /** The options to pass to Popper.js */
+  popperOptions?: Partial<Options>;
+}
+const DropdownWrapper: React.FC<DropdownWrapperProps> = function ({
+  children,
+  arrow,
+  popperOptions = {},
+}) {
   const dropdown = useDropdown({
     modifiers: [
       { name: 'offset', options: { offset: [0, 14] } },
-      ...(popperOptions.modifiers || []),
+      ...(popperOptions?.modifiers || []),
     ],
     ...popperOptions,
   });
