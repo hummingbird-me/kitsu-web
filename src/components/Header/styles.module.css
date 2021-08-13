@@ -3,7 +3,8 @@
 .header {
   z-index: var(--layer-overlay);
   color: var(--header-text-color);
-  font-size: 0.875rem;
+  font-size: var(--font-me);
+  font-weight: var(--font-semi-bold);
   height: 82px;
   width: 100vw;
   display: flex;
@@ -148,7 +149,8 @@
     border: none;
     color: inherit;
     font-family: inherit;
-    font-size: 0.9em;
+    font-size: var(--font-sm);
+    font-weight: var(--font-semi-bold);
     text-overflow: ellipsis;
   }
 
@@ -176,6 +178,7 @@
 
 .authCta {
   grid-area: auth;
+  font-weight: var(--font-regular);
 
   & > a {
     color: var(--header-text-color);
