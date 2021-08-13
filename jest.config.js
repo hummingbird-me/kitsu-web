@@ -1,6 +1,8 @@
 // jest.config.js
+
+// TODO: switch to https://github.com/sodatea/vite-jest
 module.exports = {
-  preset: 'ts-jest',
+  setupFiles: ['dotenv/config'],
   collectCoverage: process.env.COVERAGE === 'true',
   testEnvironment: 'jsdom',
   testRunner: 'jest-circus/runner',
