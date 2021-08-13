@@ -1,6 +1,15 @@
 {
   "name": "kitsu-web",
   "version": "4.0.0",
+  "files": [
+    "dist"
+  ],
+  "module": "./dist/kitsu-v4.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/kitsu-v4.es.js"
+    }
+  },
   "browserslist": [
     "defaults",
     "not ie <= 11",
