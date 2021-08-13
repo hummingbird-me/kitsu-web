@@ -9,8 +9,7 @@ import Modal from './index';
 describe('with displayMode="modal"', () => {
   test('handles clicking out of the modal', async () => {
     const history = createMemoryHistory({
-      initialEntries: ['/back', '/modal'],
-      initialIndex: 1,
+      initialEntries: ['/modal?returnTo=/back'],
     });
 
     render(
