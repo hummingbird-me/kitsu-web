@@ -7,6 +7,7 @@ import {
   IsModalContext,
   IsModalContextProvider,
 } from 'app/contexts/ModalContext';
+import Header from 'app/components/Header';
 
 import styles from './styles.module.css';
 
@@ -47,23 +48,28 @@ const Modal: React.FC<
   };
 
   return (
-    <IsModalContextProvider>
-      <div
-        data-testid="scrim"
-        className={
-          displayMode === 'modal' ? styles.modalContainer : styles.pageContainer
-        }
-        onClick={goBack}>
-        <dialog
-          data-testid="modal"
-          open
-          className={[className, styles.modal].join(' ')}
-          onClick={(e) => e.stopPropagation()}
-          {...args}>
-          {children}
-        </dialog>
-      </div>
-    </IsModalContextProvider>
+    <>
+      {displayMode === 'page' ? <Header background="opaque" /> : null}
+      <IsModalContextProvider>
+        <div
+          data-testid="scrim"
+          className={
+            displayMode === 'modal'
+              ? styles.modalContainer
+              : styles.pageContainer
+          }
+          onClick={goBack}>
+          <dialog
+            data-testid="modal"
+            open
+            className={[className, styles.modal].join(' ')}
+            onClick={(e) => e.stopPropagation()}
+            {...args}>
+            {children}
+          </dialog>
+        </div>
+      </IsModalContextProvider>
+    </>
   );
 };
 

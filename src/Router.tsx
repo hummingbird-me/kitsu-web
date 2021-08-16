@@ -3,7 +3,6 @@ import { Location } from 'history';
 import { Switch, Route, useLocation } from 'react-router-dom';
 
 import 'app/styles/index.css';
-import Header from 'app/components/Header';
 
 import SignInModal from './pages/modals/SignIn';
 import SignUpModal from './pages/modals/SignUp';
@@ -17,7 +16,6 @@ export default function Router() {
 
   return (
     <>
-      <Header background="opaque" />
       <Switch location={background || location}>
         <Route path="/users/:id">User Profile</Route>
         <Route path="/auth/sign-in">
