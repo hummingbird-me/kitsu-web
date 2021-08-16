@@ -1,7 +1,28 @@
-import React, { Suspense } from 'react';
+import React, { ComponentProps, Suspense } from 'react';
 
 import Header from 'app/components/Header';
-import Spinner from 'app/components/Spinner';
+import { SpinnerBlock } from 'app/components/Spinner';
+
+import styles from './styles.module.css';
+
+const LoadedPage: React.FC<{ headerBackground: 'opaque' | 'transparent' }> =
+  function ({ children, headerBackground }) {
+    return (
+      <>
+        <Header background={headerBackground} />
+        {children}
+      </>
+    );
+  };
+
+const LoadingPage = function () {
+  return (
+    <>
+      <Header background="opaque" />
+      <SpinnerBlock className={styles.pageSpinner} />
+    </>
+  );
+};
 
 const Page: React.FC<{
   headerBackground?: 'opaque' | 'transparent';
@@ -9,9 +30,14 @@ const Page: React.FC<{
 }> = function ({ headerBackground = 'opaque', loading = false, children }) {
   return (
     <>
-      <Header background={headerBackground} />
-      <Suspense fallback={<Spinner />}>
-        {loading ? <Spinner /> : children}
+      <Suspense fallback={<LoadingPage />}>
+        {loading ? (
+          <LoadingPage />
+        ) : (
+          <LoadedPage headerBackground={headerBackground}>
+            {children}
+          </LoadedPage>
+        )}
       </Suspense>
     </>
   );

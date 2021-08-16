@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLProps } from 'react';
 
 import { ReactComponent as SpinnerImage } from 'app/assets/spinner.svg';
 
@@ -19,3 +19,15 @@ export default function Spinner({
     />
   );
 }
+
+export const SpinnerBlock: React.FC<
+  HTMLProps<HTMLDivElement> & {
+    size?: React.SVGAttributes<SVGElement>['height'];
+  }
+> = function ({ size = '3em', className, ...props }) {
+  return (
+    <div className={[styles.spinnerBlock, className].join(' ')} {...props}>
+      <Spinner size={size} />
+    </div>
+  );
+};
