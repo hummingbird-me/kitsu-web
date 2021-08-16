@@ -2,6 +2,7 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import reactRefresh from '@vitejs/plugin-react-refresh';
 import svgr from 'vite-plugin-svgr';
+import yaml from '@rollup/plugin-yaml';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,6 +19,7 @@ export default defineConfig({
   plugins: [
     ...(process.env.NODE_ENV !== 'test' ? [reactRefresh()] : []),
     svgr(),
+    yaml(),
   ],
   resolve: {
     alias: {

@@ -7,7 +7,29 @@ i18next
   .use(LanguageDetector)
   .use(initReactI18next)
   .use(ICU)
+  .use({
+    type: 'backend',
+    read(
+      language: string,
+      namespace: string,
+      callback: (errorValue: null | Error, translations: null | {}) => void
+    ) {
+      const translations =
+        namespace === '__default'
+          ? import(`../translations/${language}.yaml`)
+          : import(`../translations/${language}/${namespace}.yaml`);
+
+      translations
+        .then((resources) => {
+          callback(null, resources);
+        })
+        .catch((error) => {
+          callback(error, null);
+        });
+    },
+  })
   .init({
+    defaultNS: '__default',
     detection: {
       order: ['querystring', 'cookie', 'navigator'],
       caches: ['cookie'],
