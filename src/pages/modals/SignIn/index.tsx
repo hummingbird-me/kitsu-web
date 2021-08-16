@@ -20,9 +20,10 @@ export default function SignInModal({
 }: {
   displayMode: 'page' | 'modal';
 }) {
-  const { state } = useLocation<{ email?: string; password?: string }>();
-  const [email, setEmail] = React.useState(state.email ?? '');
-  const [password, setPassword] = React.useState(state.password ?? '');
+  const { state } =
+    useLocation<{ email?: string; password?: string } | undefined>();
+  const [email, setEmail] = React.useState(state?.email ?? '');
+  const [password, setPassword] = React.useState(state?.password ?? '');
 
   return (
     <Modal displayMode={displayMode} className={styles.modal}>

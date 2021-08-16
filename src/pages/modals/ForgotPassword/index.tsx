@@ -14,8 +14,8 @@ export default function ForgotPasswordModal({
 }: {
   displayMode: 'page' | 'modal';
 }) {
-  const { state } = useLocation<{ email?: string }>();
-  const [email, setEmail] = React.useState(state.email ?? '');
+  const { state } = useLocation<{ email?: string } | undefined>();
+  const [email, setEmail] = React.useState(state?.email ?? '');
 
   return (
     <Modal displayMode={displayMode} className={styles.modal}>

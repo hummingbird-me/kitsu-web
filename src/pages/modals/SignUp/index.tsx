@@ -21,10 +21,11 @@ export default function SignUpModal({
 }: {
   displayMode: 'page' | 'modal';
 }) {
-  const { state } = useLocation<{ email?: string; password?: string }>();
-  const [email, setEmail] = React.useState(state.email ?? '');
+  const { state } =
+    useLocation<{ email?: string; password?: string } | undefined>();
+  const [email, setEmail] = React.useState(state?.email ?? '');
   const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState(state.password ?? '');
+  const [password, setPassword] = React.useState(state?.password ?? '');
   const [confirmPassword, setConfirmPassword] = React.useState('');
 
   return (
