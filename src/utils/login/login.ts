@@ -8,7 +8,7 @@ export default async function login({
   params = {},
   init,
 }: {
-  params?: {};
+  params?: Record<string, string>;
   init?: RequestInit;
 }): Promise<NonNullable<Session>> {
   const body = new URLSearchParams(params);

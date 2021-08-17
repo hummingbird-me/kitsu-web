@@ -6,7 +6,7 @@ import { Image as GQImage, ImageView as GQImageView } from 'app/types/graphql';
 import styles from './styles.module.css';
 
 type ImageViewType = Pick<GQImageView, 'height' | 'width' | 'url'>;
-type ImageType = Pick<GQImage, 'blurhash'> & {
+export type ImageSource = Pick<GQImage, 'blurhash'> & {
   views: ImageViewType[];
 };
 
@@ -19,12 +19,12 @@ const Image = forwardRef<
   HTMLProps<HTMLDivElement> & {
     height: number | string;
     width: number | string;
-    source: ImageType;
+    source: ImageSource | undefined;
     objectFit?: 'contain' | 'cover' | 'fill' | 'none';
     blurhashSize?: number;
     className?: string;
   }
->(function (
+>(function Image(
   {
     height,
     width,
@@ -37,6 +37,8 @@ const Image = forwardRef<
   ref
 ) {
   const [isLoaded, setIsLoaded] = useState(false);
+
+  if (!source) return null;
 
   // Figure out the intrinsic size of the image and scale to max 32x32
   const intrinsicHeight = source.views[0].height ?? 32;

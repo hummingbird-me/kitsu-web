@@ -26,11 +26,25 @@ module.exports = {
       'error',
       {
         markupOnly: true,
-        ignoreAttribute: ['path', 'to', 'displayMode'],
+        ignoreAttribute: [
+          'path',
+          'to',
+          'displayMode',
+          'role',
+          'href',
+          'background',
+          'autoComplete',
+        ],
       },
     ],
   },
   overrides: [
+    {
+      files: ['*.stories.{js,jsx,ts,tsx}'],
+      rules: {
+        'i18next/no-literal-string': 'off',
+      },
+    },
     {
       files: ['.eslintrc.js', '*.config.{js,ts}'],
       parserOptions: {

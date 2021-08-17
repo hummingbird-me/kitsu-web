@@ -11,7 +11,7 @@ const ModalLink: React.FC<
     to:
       | LocationDescriptor<{
           background?: Location;
-          [key: string]: any;
+          [key: string]: unknown;
         }>
       | string;
   } & ComponentProps<Link>

@@ -14,15 +14,15 @@ export type Scalars = {
   Int: number;
   Float: number;
   /** A date, expressed as an ISO8601 string */
-  Date: any;
+  Date: string;
   /** An ISO 8601-encoded date */
-  ISO8601Date: any;
+  ISO8601Date: string;
   /** An ISO 8601-encoded datetime */
-  ISO8601DateTime: any;
+  ISO8601DateTime: string;
   /** Represents untyped JSON */
-  JSON: any;
+  JSON: Record<string, unknown>;
   /** A loose key-value map in GraphQL */
-  Map: any;
+  Map: Record<string, string>;
   Upload: any;
 };
 

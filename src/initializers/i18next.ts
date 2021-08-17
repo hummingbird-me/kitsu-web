@@ -12,7 +12,10 @@ i18next
     read(
       language: string,
       namespace: string,
-      callback: (errorValue: null | Error, translations: null | {}) => void
+      callback: (
+        errorValue: null | Error,
+        translations: null | Record<string, unknown>
+      ) => void
     ) {
       const translations =
         namespace === '__default'

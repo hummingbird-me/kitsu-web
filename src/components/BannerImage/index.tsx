@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Image from 'app/components/Image';
+import Image, { ImageSource } from 'app/components/Image';
 
 import styles from './styles.module.css';
 
-const BannerImage: React.FC<{ background: any }> = function ({
+const BannerImage: React.FC<{ background: ImageSource }> = function ({
   background,
   children,
 }) {

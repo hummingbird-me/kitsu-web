@@ -3,10 +3,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Location } from 'history';
 
 import useQueryParams from 'app/hooks/useQueryParams';
-import {
-  IsModalContext,
-  IsModalContextProvider,
-} from 'app/contexts/ModalContext';
+import { IsModalContextProvider } from 'app/contexts/ModalContext';
 import Header from 'app/components/Header';
 
 import styles from './styles.module.css';

@@ -24,7 +24,7 @@ export default ({
   session: Session;
   setSession: (session: Session) => void;
   clearSession: () => void;
-}) => {
+}): ApolloLink => {
   return new ApolloLink((operation, forward) => {
     return new Observable((observer) => {
       // If we're logged in, set the Authorization header

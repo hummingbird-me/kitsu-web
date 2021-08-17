@@ -11,6 +11,12 @@ generates:
       - typescript
     config:
       immutableTypes: true
+      scalars:
+        Map: 'Record<string, string>'
+        JSON: 'Record<string, unknown>'
+        Date: 'string'
+        ISO8601Date: 'string'
+        ISO8601DateTime: 'string'
 
   src/:
     preset: near-operation-file

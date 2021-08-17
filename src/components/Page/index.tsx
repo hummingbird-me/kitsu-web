@@ -1,4 +1,4 @@
-import React, { ComponentProps, Suspense } from 'react';
+import React, { Suspense } from 'react';
 
 import Header from 'app/components/Header';
 import { SpinnerBlock } from 'app/components/Spinner';

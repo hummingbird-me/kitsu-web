@@ -9,13 +9,13 @@ export const SessionContext = React.createContext<{
   clearSession: () => void;
 }>({
   session: null,
+  /* eslint-disable-next-line @typescript-eslint/no-empty-function */
   setSession: () => {},
+  /* eslint-disable-next-line @typescript-eslint/no-empty-function */
   clearSession: () => {},
 });
 
-export const SessionContextProvider: React.FunctionComponent<{}> = function ({
-  children,
-}) {
+export const SessionContextProvider: React.FC = function ({ children }) {
   const [session, _setSession] = useState<Session>(SessionStore.load);
 
   const setSession = (newSession: Session) => {

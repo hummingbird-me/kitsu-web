@@ -10,7 +10,7 @@ export default function Spinner({
 }: {
   className?: string;
   size?: React.SVGAttributes<SVGElement>['height'];
-}) {
+}): JSX.Element {
   return (
     <SpinnerImage
       className={[styles.spinner, className].join(' ')}

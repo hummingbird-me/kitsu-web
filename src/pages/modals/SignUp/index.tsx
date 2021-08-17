@@ -6,8 +6,6 @@ import {
 } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
 
-import ModalLink from 'app/components/ModalLink';
-import Spinner from 'app/components/Spinner';
 import Modal from 'app/components/Modal';
 import Button, { ButtonKind } from 'app/components/Button';
 import TextInput from 'app/components/TextInput';
@@ -20,7 +18,7 @@ export default function SignUpModal({
   displayMode,
 }: {
   displayMode: 'page' | 'modal';
-}) {
+}): JSX.Element {
   const { state } =
     useLocation<{ email?: string; password?: string } | undefined>();
   const [email, setEmail] = React.useState(state?.email ?? '');

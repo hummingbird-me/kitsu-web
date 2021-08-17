@@ -19,7 +19,7 @@ export default function SignInModal({
   displayMode,
 }: {
   displayMode: 'page' | 'modal';
-}) {
+}): JSX.Element {
   const { state } =
     useLocation<{ email?: string; password?: string } | undefined>();
   const [email, setEmail] = React.useState(state?.email ?? '');

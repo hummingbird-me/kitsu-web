@@ -38,14 +38,14 @@ const DropdownWrapper: React.FC<DropdownWrapperProps> = function ({
   );
 };
 
-const DropdownToggle: React.FC<{}> = function ({ children }) {
+const DropdownToggle: React.FC = function ({ children }) {
   const ctx = useContext(DropdownContext);
   if (!ctx) return null;
 
   return <div {...ctx.dropdown.toggleProps}>{children}</div>;
 };
 
-const DropdownMenu: React.FC<{}> = function ({ children }) {
+const DropdownMenu: React.FC = function ({ children }) {
   const ctx = useContext(DropdownContext);
   if (!ctx) return null;
 

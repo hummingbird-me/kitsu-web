@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { useSession } from 'app/contexts/SessionContext';
 import Image from 'app/components/Image';
@@ -13,7 +13,6 @@ const AvatarMenu: React.FC<{ className?: string }> = ({ className }) => {
   const { clearSession } = useSession();
   const { data, loading } = useLoadProfileMenuQuery();
   const profile = data?.currentAccount?.profile;
-  const location = useLocation();
 
   return (
     <div className={styles.avatar}>

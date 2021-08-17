@@ -9,8 +9,12 @@ import 'app/styles/index.css';
 
 export * as Pages from 'app/pages/ember';
 
-export function mount(Component: any, target: HTMLElement, args: any) {
-  return ReactDOM.render(
+export function mount(
+  Component: React.ComponentType<unknown>,
+  target: HTMLElement,
+  args: Record<string, unknown>
+): void {
+  ReactDOM.render(
     <React.StrictMode>
       <SessionContextProvider>
         <ApolloContextProvider>
@@ -24,6 +28,6 @@ export function mount(Component: any, target: HTMLElement, args: any) {
   );
 }
 
-export function unmount(target: HTMLElement) {
-  return ReactDOM.unmountComponentAtNode(target);
+export function unmount(target: HTMLElement): void {
+  ReactDOM.unmountComponentAtNode(target);
 }

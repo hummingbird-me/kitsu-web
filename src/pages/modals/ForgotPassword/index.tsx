@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Spinner from 'app/components/Spinner';
 import Modal from 'app/components/Modal';
 import Button, { ButtonKind } from 'app/components/Button';
 import TextInput from 'app/components/TextInput';
@@ -13,7 +12,7 @@ export default function ForgotPasswordModal({
   displayMode,
 }: {
   displayMode: 'page' | 'modal';
-}) {
+}): JSX.Element {
   const { state } = useLocation<{ email?: string } | undefined>();
   const [email, setEmail] = React.useState(state?.email ?? '');
 
