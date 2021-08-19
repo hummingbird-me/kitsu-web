@@ -20,7 +20,9 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "test": "jest",
-    "generate-graphql-types": "graphql-codegen --config codegen.yml",
+    "codegen": "npm run codegen:intl codegen:graphql",
+    "codegen:intl": "formatjs extract --extract-source-location --out-file 'src/translations/en-US.json' -- 'src/**/*.tsx'",
+    "codegen:graphql": "graphql-codegen --config codegen.yml",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -52,6 +54,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
+    "@formatjs/cli": "^4.2.31",
     "@graphql-codegen/cli": "^1.21.7",
     "@graphql-codegen/near-operation-file-preset": "^1.18.5",
     "@graphql-codegen/typescript": "^1.23.0",
