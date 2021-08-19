@@ -1,8 +1,13 @@
-type Translations = {
-  [key: string]: string | Translations;
-};
+import { mapKeys } from 'lodash-es';
+import { MessageFormatElement } from 'react-intl';
 
-const translations: Record<string, () => Promise<Translations>> =
-  import.meta.glob('./*.yaml');
+const translationFiles = import.meta.glob('./*.json');
+
+const translations: Record<
+  string,
+  () => Promise<Record<string, { default: MessageFormatElement[] }>>
+> = mapKeys(translationFiles, (_value, key) =>
+  key.replace(/^\.\/(.*)\.json$/, '$1')
+);
 
 export default translations;
