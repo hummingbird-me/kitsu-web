@@ -35,6 +35,7 @@ module.exports = {
           'background',
           'autoComplete',
         ],
+        ignoreComponent: ['FormattedMessage'],
       },
     ],
   },
