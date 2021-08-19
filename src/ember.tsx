@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { SessionContextProvider } from 'app/contexts/SessionContext';
 import ApolloContextProvider from 'app/contexts/ApolloContext';
+import IntlProvider from 'app/contexts/IntlContext';
 
 import 'app/styles/index.css';
 
@@ -18,9 +19,11 @@ export function mount(
     <React.StrictMode>
       <SessionContextProvider>
         <ApolloContextProvider>
-          <BrowserRouter>
-            <Component {...args} />
-          </BrowserRouter>
+          <IntlProvider>
+            <BrowserRouter>
+              <Component {...args} />
+            </BrowserRouter>
+          </IntlProvider>
         </ApolloContextProvider>
       </SessionContextProvider>
     </React.StrictMode>,

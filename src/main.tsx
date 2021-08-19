@@ -7,6 +7,7 @@ import 'app/styles/index.css';
 
 import { SessionContextProvider } from 'app/contexts/SessionContext';
 import ApolloContextProvider from 'app/contexts/ApolloContext';
+import IntlProvider from 'app/contexts/IntlContext';
 import Router from 'app/Router';
 import Spinner from 'app/components/Spinner';
 
@@ -14,11 +15,13 @@ ReactDOM.render(
   <React.StrictMode>
     <SessionContextProvider>
       <ApolloContextProvider>
-        <BrowserRouter>
-          <Suspense fallback={<Spinner />}>
-            <Router />
-          </Suspense>
-        </BrowserRouter>
+        <IntlProvider>
+          <BrowserRouter>
+            <Suspense fallback={<Spinner />}>
+              <Router />
+            </Suspense>
+          </BrowserRouter>
+        </IntlProvider>
       </ApolloContextProvider>
     </SessionContextProvider>
   </React.StrictMode>,
