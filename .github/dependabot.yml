@@ -24,6 +24,19 @@ updates:
     versions: ["4.x"]
   - dependency-name: ember-basic-dropdown
     versions: ["3.x"]
+- package-ecosystem: npm
+  directory: "/"
+  target-branch: "react"
+  schedule:
+    interval: daily
+    time: "17:00"
+    timezone: America/Los_Angeles
+  open-pull-requests-limit: 10
+  versioning-strategy: increase
+  assignees:
+  - "NuckChorris"
+  allow:
+  - dependency-type: direct
 - package-ecosystem: docker
   directory: "/"
   schedule:
