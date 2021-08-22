@@ -17,7 +17,10 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "npm run build:client build:server build:library",
+    "build:client": "BUILD_TARGET=client vite build",
+    "build:server": "BUILD_TARGET=server vite build",
+    "build:library": "BUILD_TARGET=library vite build",
     "serve": "vite preview",
     "test": "jest",
     "codegen": "npm run codegen:intl codegen:graphql",
