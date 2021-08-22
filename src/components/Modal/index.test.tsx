@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, MemoryRouter } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from 'app/test-utils/testing-library';
 import userEvent from '@testing-library/user-event';
 
 import Modal from './index';
