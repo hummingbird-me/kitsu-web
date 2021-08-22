@@ -6,6 +6,7 @@ module.exports = {
   collectCoverage: process.env.COVERAGE === 'true',
   testEnvironment: 'jsdom',
   testRunner: 'jest-circus/runner',
+  transformIgnorePatterns: ['node_modules/(?!(lodash-es)/)'],
   moduleNameMapper: {
     '^app/(.*)$': '<rootDir>/src/$1',
     '\\.svg': '<rootDir>/__mocks__/svgrMock.js',
