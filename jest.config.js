@@ -8,10 +8,10 @@ module.exports = {
   testRunner: 'jest-circus/runner',
   transformIgnorePatterns: ['node_modules/(?!(lodash-es)/)'],
   moduleNameMapper: {
-    '^app/(.*)$': '<rootDir>/src/$1',
-    '\\.svg': '<rootDir>/__mocks__/svgrMock.js',
+    '\\.svg$': '<rootDir>/__mocks__/svgrMock.js',
     '\\.(jpe?g|png|gif|webp)$': '<rootDir>/__mocks__/fileMock.js',
     '\\.css$': 'identity-obj-proxy',
+    '^app/(.*)$': '<rootDir>/src/$1',
   },
   cacheDirectory: '.jest/cache',
 };
