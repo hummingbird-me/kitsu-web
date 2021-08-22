@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { uniqueId } from 'lodash-es';
 import { useWindowScroll } from 'react-use';
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import logo from 'app/assets/logo.svg';
 import { ReactComponent as SearchIcon } from 'app/assets/icons/search.svg';
@@ -18,11 +19,12 @@ export default function Header({
 }: {
   background?: 'opaque' | 'transparent';
   scrollBackground?: 'opaque' | 'transparent';
-}) {
+}): JSX.Element {
   // We don't expect to have this multiple times per page but we should still be careful
   const [searchId] = useState(() => uniqueId('header-search-'));
   const { session } = useSession();
   const { y } = useWindowScroll();
+  const { formatMessage } = useIntl();
   const displayBackground = y > 0 ? scrollBackground : background;
 
   return (
@@ -33,28 +35,58 @@ export default function Header({
           session ? styles.loggedIn : null,
           styles.container,
         ].join(' ')}>
-        <a href="/" className={styles.logo}>
+        <NavLink to="/" className={styles.logo}>
           <img src={logo} />
-        </a>
+        </NavLink>
         <ul className={styles.navList}>
           <li>
-            <a href="#">Library</a>
+            <NavLink to="#">
+              <FormattedMessage
+                id="header.library"
+                defaultMessage="Library"
+                description="Link in header to view your own library"
+              />
+            </NavLink>
           </li>
           <li>
-            <a href="#">Browse</a>
+            <NavLink to="#">
+              <FormattedMessage
+                id="header.browse"
+                defaultMessage="Browse"
+                description="Dropdown in header to browse media"
+              />
+            </NavLink>
           </li>
           <li>
-            <a href="#">Groups</a>
+            <NavLink to="#">
+              <FormattedMessage
+                id="header.groups"
+                description="Link in header to explore groups"
+              />
+            </NavLink>
           </li>
           <li>
-            <a href="#">Feedback</a>
+            <NavLink to="#">
+              <FormattedMessage
+                id="header.feedback"
+                description="Dropdown in header to provide feedback about Kitsu"
+              />
+            </NavLink>
           </li>
         </ul>
         <div className={styles.search}>
           <label htmlFor={searchId}>
             <SearchIcon className={styles.icon} />
           </label>
-          <input type="search" placeholder="Search Kitsu" id={searchId} />
+          <input
+            type="search"
+            placeholder={formatMessage({
+              id: 'components.application.nav-search',
+              defaultMessage: 'Search Kitsu',
+              description: 'Placeholder text for search field',
+            })}
+            id={searchId}
+          />
         </div>
         {session ? (
           <>
@@ -66,9 +98,21 @@ export default function Header({
           </>
         ) : (
           <div className={styles.authCta}>
-            <ModalLink to="/auth/sign-up">Sign Up</ModalLink>
+            <ModalLink to="/auth/sign-up">
+              <FormattedMessage
+                id="header.auth.sign-up"
+                defaultMessage="Sign Up"
+                description="Link in header to create an account"
+              />
+            </ModalLink>
             {' or '}
-            <ModalLink to="/auth/sign-in">Sign In</ModalLink>
+            <ModalLink to="/auth/sign-in">
+              <FormattedMessage
+                id="header.auth.sign-in"
+                defaultMessage="Sign In"
+                description="Link in header to sign in"
+              />
+            </ModalLink>
           </div>
         )}
       </nav>
