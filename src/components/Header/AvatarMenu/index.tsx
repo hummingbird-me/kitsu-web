@@ -1,5 +1,4 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 
 import { useSession } from 'app/contexts/SessionContext';
 import Image from 'app/components/Image';
@@ -8,6 +7,7 @@ import * as Dropdown from 'app/components/Dropdown';
 import { useLoadProfileMenuQuery } from './loadProfileMenu-gql';
 import styles from './styles.module.css';
 import headerStyles from '../styles.module.css';
+import { FormattedMessage } from 'react-intl';
 
 const AvatarMenu: React.FC<{ className?: string }> = ({ className }) => {
   const { clearSession } = useSession();
@@ -33,11 +33,33 @@ const AvatarMenu: React.FC<{ className?: string }> = ({ className }) => {
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.ItemLink to={`/users/${profile?.slug ?? profile?.id}`}>
-              View Profile
+              <FormattedMessage
+                id="header.user.profile"
+                defaultMessage="View Profile"
+                description="Link in user menu to view profile"
+              />
             </Dropdown.ItemLink>
-            <Dropdown.ItemLink to="/">Settings</Dropdown.ItemLink>
-            <Dropdown.ItemLink to="/">Admin</Dropdown.ItemLink>
-            <Dropdown.Item onClick={clearSession}>Logout</Dropdown.Item>
+            <Dropdown.ItemLink to="/">
+              <FormattedMessage
+                id="header.user.settings"
+                defaultMessage="Settings"
+                description="Link in user menu to view settings"
+              />
+            </Dropdown.ItemLink>
+            <Dropdown.ItemLink to="/">
+              <FormattedMessage
+                id="header.user.admin"
+                defaultMessage="Admin"
+                description="Link in user menu to view admin panel"
+              />
+            </Dropdown.ItemLink>
+            <Dropdown.Item onClick={clearSession}>
+              <FormattedMessage
+                id="header.user.logout"
+                defaultMessage="Log out"
+                description="Link in user menu to log out"
+              />
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown.Wrapper>
       )}
