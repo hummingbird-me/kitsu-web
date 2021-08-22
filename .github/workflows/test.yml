@@ -34,7 +34,7 @@ jobs:
         run: COVERAGE=true npm test
 
       - name: Report Test Coverage
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/react'
         uses: paambaati/codeclimate-action@v2.7.4
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
