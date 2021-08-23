@@ -1,4 +1,5 @@
 # Kitsu Client
+
 [![Crowdin](https://badges.crowdin.net/kitsu-web/localized.svg)](https://crowdin.com/project/kitsu-web)
 ![Test Status](https://github.com/hummingbird-me/kitsu-web/workflows/Kitsu%20Test%20Suite/badge.svg)
 ![Deploy Status](https://github.com/hummingbird-me/kitsu-web/workflows/Kitsu%20Web%20Deployment/badge.svg)
@@ -6,12 +7,13 @@
 [![Test Coverage](https://codeclimate.com/github/hummingbird-me/kitsu-web/badges/coverage.svg)](https://codeclimate.com/github/hummingbird-me/kitsu-web/coverage)
 
 ---
-**<p align="center">This is our client repository. It contains the Ember.js application for Kitsu.<br />Check out the [tools], [mobile], [server] and [api docs] repositories.</p>**
 
-[tools]:https://github.com/hummingbird-me/kitsu-tools
-[server]:https://github.com/hummingbird-me/kitsu-server
-[mobile]:https://github.com/hummingbird-me/kitsu-mobile
-[api docs]:https://github.com/hummingbird-me/api-docs
+**<p align="center">This is our client repository. It contains the React.js application for Kitsu.<br />Check out the [tools], [mobile], [server] and [api docs] repositories.</p>**
+
+[tools]: https://github.com/hummingbird-me/kitsu-tools
+[server]: https://github.com/hummingbird-me/kitsu-server
+[mobile]: https://github.com/hummingbird-me/kitsu-mobile
+[api docs]: https://github.com/hummingbird-me/api-docs
 
 ---
 
@@ -19,17 +21,36 @@
 
 ### Installing Dependencies
 
-* `yarn`
+- `npm install`
 
-### Running Ember App
+### Running React Vite App in Development Mode
 
-* `yarn start` (default port 4200)
-* `yarn start --port 4201`
+This is what you'll usually want to use.
+
+- `npm run dev` (default port 3000)
+
+### Building React Vite App
+
+- `npm run build`
+- `npm run serve` (default port 5000)
+
+### Generating GraphQL Types and Hooks
+
+Run this whenever you make changes to or add a `.gql` file. It'll generate types and hooks you can use in components.
+
+- `npm run codegen`
+
+## Running Storybook
+
+Documentation for components. We recommend you document any new components you may add. Documentation for how to use Storybook can be found [here](https://storybook.js.org/docs/react/get-started/introduction)
+
+- `npm run storybook`
 
 ## Running Tests
 
-* `yarn test` (tap reporter)
-* `yarn test:ci` (dot reporter)
+Please write tests for new code where it makes sense to do so.
+
+- `npm test`
 
 ## Contributing
 
