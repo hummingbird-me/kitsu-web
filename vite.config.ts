@@ -42,6 +42,9 @@ switch (process.env.BUILD_TARGET) {
 // https://vitejs.dev/config/
 export default defineConfig({
   build,
+  json: {
+    stringify: true,
+  },
   plugins: [
     formatjsTransformPlugin(),
     formatjsCompilePlugin({
