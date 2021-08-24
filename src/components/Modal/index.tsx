@@ -4,7 +4,7 @@ import { Location } from 'history';
 
 import useQueryParams from 'app/hooks/useQueryParams';
 import { IsModalContextProvider } from 'app/contexts/ModalContext';
-import Header from 'app/components/Header';
+import { HeaderSettings } from 'app/contexts/LayoutSettingsContext';
 
 import styles from './styles.module.css';
 
@@ -46,7 +46,9 @@ const Modal: React.FC<
 
   return (
     <>
-      {displayMode === 'page' ? <Header background="opaque" /> : null}
+      {displayMode === 'page' ? (
+        <HeaderSettings background="opaque" scrollBackground="opaque" />
+      ) : null}
       <IsModalContextProvider>
         <div
           data-testid="scrim"

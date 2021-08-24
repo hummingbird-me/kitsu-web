@@ -13,13 +13,17 @@ import ModalLink from 'app/components/ModalLink';
 import AvatarMenu from './AvatarMenu';
 import styles from './styles.module.css';
 
+export type HeaderBackground = 'opaque' | 'transparent';
+
+export type HeaderProps = {
+  background?: HeaderBackground;
+  scrollBackground?: HeaderBackground;
+};
+
 export default function Header({
   background = 'opaque',
   scrollBackground = 'opaque',
-}: {
-  background?: 'opaque' | 'transparent';
-  scrollBackground?: 'opaque' | 'transparent';
-}): JSX.Element {
+}: HeaderProps): JSX.Element {
   // We don't expect to have this multiple times per page but we should still be careful
   const [searchId] = useState(() => uniqueId('header-search-'));
   const { session } = useSession();
