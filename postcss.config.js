@@ -3,7 +3,9 @@ module.exports = {
     require('postcss-custom-media'),
     require('postcss-nesting'),
     require('autoprefixer'),
+    require('postcss-easings'),
     require('postcss-preset-env'),
-    require('postcss-color-function'),
+    require('./postcss/resolveLocalCustomProperties'),
+    require('postcss-color-mod-function'),
   ],
 };

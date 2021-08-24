@@ -2,7 +2,6 @@ import path from 'path';
 import { defineConfig, BuildOptions } from 'vite';
 import reactRefresh from '@vitejs/plugin-react-refresh';
 import svgr from 'vite-plugin-svgr';
-import yaml from '@rollup/plugin-yaml';
 import {
   formatjsCompilePlugin,
   formatjsTransformPlugin,
@@ -54,7 +53,6 @@ export default defineConfig({
     }),
     ...(process.env.NODE_ENV !== 'test' ? [reactRefresh()] : []),
     svgr(),
-    yaml(),
   ],
   resolve: {
     alias: {
