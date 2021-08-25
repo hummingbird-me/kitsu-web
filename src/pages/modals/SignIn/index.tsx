@@ -13,8 +13,32 @@ import Button, { ButtonKind } from 'app/components/Button';
 import TextInput from 'app/components/TextInput';
 import Rule from 'app/components/Rule';
 import AuthModalHeader from 'app/components/AuthModalHeader';
+import _loginWithPassword from 'app/utils/login/withPassword';
+import useLoginFn from 'app/hooks/useLoginFn';
+import { LoginFailed } from 'app/errors';
+import Alert from 'app/components/Alert';
 
 import styles from './styles.module.css';
+
+function errorMessageFor(error?: Error): JSX.Element | null {
+  if (error instanceof LoginFailed) {
+    return (
+      <FormattedMessage
+        defaultMessage="Email or password is incorrect"
+        description="Error message when a sign in fails "
+      />
+    );
+  } else if (!error) {
+    return null;
+  } else {
+    return (
+      <FormattedMessage
+        defaultMessage="An unexpected error occurred, please try again later"
+        description="Generic error message when a sign in fails"
+      />
+    );
+  }
+}
 
 export default function SignInModal({
   displayMode,
@@ -26,11 +50,24 @@ export default function SignInModal({
     useLocation<{ email?: string; password?: string } | undefined>();
   const [email, setEmail] = React.useState(state?.email ?? '');
   const [password, setPassword] = React.useState(state?.password ?? '');
+  const [passwordLoginState, loginWithPassword] = useLoginFn(
+    _loginWithPassword,
+    { username: email, password }
+  );
+  const passwordErrorMessage = errorMessageFor(passwordLoginState?.error);
 
   return (
     <Modal displayMode={displayMode} className={styles.modal}>
       <AuthModalHeader email={email} />
-      <form className={styles.authForm}>
+      <form
+        className={styles.authForm}
+        onSubmit={(ev) => {
+          ev.preventDefault();
+          loginWithPassword();
+        }}>
+        {passwordLoginState.error ? (
+          <Alert kind="error">{passwordErrorMessage}</Alert>
+        ) : null}
         <TextInput
           type="email"
           autoComplete="email"
