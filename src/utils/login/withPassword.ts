@@ -9,7 +9,7 @@ export default async function loginWithPassword(
     params: {
       grant_type: 'password',
       username,
-      password: encodeURIComponent(password),
+      password,
     },
     init,
   });
