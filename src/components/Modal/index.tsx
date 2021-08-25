@@ -7,6 +7,7 @@ import { IsModalContextProvider } from 'app/contexts/ModalContext';
 import { HeaderSettings } from 'app/contexts/LayoutSettingsContext';
 
 import styles from './styles.module.css';
+import useReturnToFn from 'app/hooks/useReturnToFn';
 
 /**
  * A Modal or dialog box component
@@ -21,9 +22,7 @@ import styles from './styles.module.css';
 const Modal: React.FC<
   { displayMode: 'modal' | 'page' } & DialogHTMLAttributes<HTMLDialogElement>
 > = function ({ children, className, displayMode = 'modal', ...args }) {
-  const location = useLocation<{ background?: Location }>();
-  const history = useHistory();
-  const params = useQueryParams();
+  const goBack = useReturnToFn();
 
   // When displaying as a modal, we need to lock the scrolling of the page
   useEffect(() => {
@@ -32,17 +31,6 @@ const Modal: React.FC<
       return () => document.body.classList.remove('scroll-lock');
     }
   }, [displayMode]);
-
-  // When displaying as a modal, closing should return to the underlying page. When displaying as a
-  // page, we need to use the returnTo parameter to determine which page to return to.
-  const goBack = () => {
-    const returnTo = params.get('returnTo');
-    if (displayMode === 'modal' && location.state?.background) {
-      history.push(location.state?.background);
-    } else if (returnTo) {
-      history.push(returnTo);
-    }
-  };
 
   return (
     <>
