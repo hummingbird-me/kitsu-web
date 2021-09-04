@@ -20,7 +20,11 @@ export const FeatureFlagsContextProvider: React.FC = function ({ children }) {
       </FeatureFlagsContext.Provider>
     );
   } else {
-    return null;
+    return (
+      <FeatureFlagsContext.Provider value={new Set()}>
+        {children}
+      </FeatureFlagsContext.Provider>
+    );
   }
 };
 
