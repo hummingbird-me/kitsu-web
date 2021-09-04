@@ -25,6 +25,12 @@ switch (process.env.BUILD_TARGET) {
   case 'client':
     build = {
       outDir: path.resolve(__dirname, 'dist/client'),
+      rollupOptions: {
+        input: {
+          main: path.resolve(__dirname, 'index.html'),
+          oauth2: path.resolve(__dirname, 'oauth2-callback.html'),
+        },
+      },
     };
     break;
   case 'server':
