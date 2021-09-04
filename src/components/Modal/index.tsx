@@ -1,8 +1,5 @@
 import React, { DialogHTMLAttributes, useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Location } from 'history';
 
-import useQueryParams from 'app/hooks/useQueryParams';
 import { IsModalContextProvider } from 'app/contexts/ModalContext';
 import { HeaderSettings } from 'app/contexts/LayoutSettingsContext';
 
