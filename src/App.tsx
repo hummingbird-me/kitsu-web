@@ -8,6 +8,7 @@ import ApolloContextProvider from 'app/contexts/ApolloContext';
 import IntlProvider from 'app/contexts/IntlContext';
 import { LayoutSettingsContextProvider } from './contexts/LayoutSettingsContext';
 import { FeatureFlagsContextProvider } from 'app/contexts/FeatureFlagsContext';
+import { ToasterContextProvider } from 'app/components/Toaster/Context';
 import Router from 'app/Router';
 import Spinner from 'app/components/Spinner';
 import Layout from 'app/components/Layout';
@@ -20,9 +21,11 @@ const App: React.FC = function ({ children = <Router /> }) {
           <ApolloContextProvider>
             <IntlProvider>
               <FeatureFlagsContextProvider>
-                <Suspense fallback={<Spinner />}>
-                  <Layout>{children}</Layout>
-                </Suspense>
+                <ToasterContextProvider>
+                  <Suspense fallback={<Spinner />}>
+                    <Layout>{children}</Layout>
+                  </Suspense>
+                </ToasterContextProvider>
               </FeatureFlagsContextProvider>
             </IntlProvider>
           </ApolloContextProvider>

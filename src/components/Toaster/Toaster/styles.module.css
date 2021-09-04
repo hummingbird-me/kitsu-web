@@ -1,0 +1,21 @@
+@import 'app/styles/breakpoints.css';
+
+.container {
+  position: fixed;
+  width: 100%;
+  pointer-events: none;
+  z-index: var(--layer-toaster);
+}
+
+.toaster {
+  display: flex;
+  padding-top: 90px;
+  padding-right: 10px;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+
+  @media (--medium) {
+    padding-top: 50px;
+  }
+}

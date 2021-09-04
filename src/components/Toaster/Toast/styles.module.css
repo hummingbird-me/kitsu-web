@@ -1,0 +1,27 @@
+.toast {
+  pointer-events: all;
+  background-color: var(--toast-background);
+  border: var(--toast-border);
+  box-shadow: var(--toast-shadow);
+  border-radius: var(--radius-medium);
+  padding: 0.5em 0.75em 0.5em 1em;
+  margin: 0.25em;
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  flex: 1;
+}
+
+.closeButton {
+  cursor: pointer;
+  flex: none;
+  opacity: 0.7;
+  color: var(--toast-close-color);
+  margin-left: 0.5em;
+
+  &:hover {
+    opacity: 1;
+  }
+}
