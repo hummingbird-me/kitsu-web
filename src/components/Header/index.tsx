@@ -65,6 +65,7 @@ export default function Header({
             <NavLink to="#">
               <FormattedMessage
                 id="header.groups"
+                defaultMessage="Groups"
                 description="Link in header to explore groups"
               />
             </NavLink>
@@ -73,6 +74,7 @@ export default function Header({
             <NavLink to="#">
               <FormattedMessage
                 id="header.feedback"
+                defaultMessage="Feedback"
                 description="Dropdown in header to provide feedback about Kitsu"
               />
             </NavLink>
