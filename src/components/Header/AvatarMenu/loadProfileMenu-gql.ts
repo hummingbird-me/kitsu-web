@@ -1,6 +1,5 @@
 import * as Types from '../../../types/graphql';
 
-import { ImageFieldsFragment } from '../../../fragments/imageFields-gql';
 import { gql } from '@apollo/client';
 import { ImageFieldsFragmentDoc } from '../../../fragments/imageFields-gql';
 import * as Apollo from '@apollo/client';
@@ -11,9 +10,27 @@ export type LoadProfileMenuQueryVariables = Types.Exact<{
 
 export type LoadProfileMenuQuery = {
   currentAccount?: Types.Maybe<{
-    profile: Pick<Types.Profile, 'id' | 'slug' | 'name'> & {
-      avatarImage?: Types.Maybe<ImageFieldsFragment>;
-      bannerImage?: Types.Maybe<ImageFieldsFragment>;
+    id: string;
+    profile: {
+      id: string;
+      slug?: Types.Maybe<string>;
+      name: string;
+      avatarImage?: Types.Maybe<{
+        blurhash?: Types.Maybe<string>;
+        views: Array<{
+          height?: Types.Maybe<number>;
+          width?: Types.Maybe<number>;
+          url: string;
+        }>;
+      }>;
+      bannerImage?: Types.Maybe<{
+        blurhash?: Types.Maybe<string>;
+        views: Array<{
+          height?: Types.Maybe<number>;
+          width?: Types.Maybe<number>;
+          url: string;
+        }>;
+      }>;
     };
   }>;
 };
@@ -21,6 +38,7 @@ export type LoadProfileMenuQuery = {
 export const LoadProfileMenuDocument = gql`
   query loadProfileMenu {
     currentAccount {
+      id
       profile {
         id
         slug

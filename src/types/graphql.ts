@@ -34,6 +34,8 @@ export type Account = WithTimestamps & {
   readonly createdAt: Scalars['ISO8601DateTime'];
   /** The email addresses associated with this account */
   readonly email: ReadonlyArray<Scalars['String']>;
+  /** The features this user has access to */
+  readonly enabledFeatures: ReadonlyArray<Scalars['String']>;
   /** Facebook account linked to the account */
   readonly facebookId?: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];

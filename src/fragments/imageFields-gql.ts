@@ -1,8 +1,13 @@
 import * as Types from '../types/graphql';
 
 import { gql } from '@apollo/client';
-export type ImageFieldsFragment = Pick<Types.Image, 'blurhash'> & {
-  views: Array<Pick<Types.ImageView, 'height' | 'width' | 'url'>>;
+export type ImageFieldsFragment = {
+  blurhash?: Types.Maybe<string>;
+  views: Array<{
+    height?: Types.Maybe<number>;
+    width?: Types.Maybe<number>;
+    url: string;
+  }>;
 };
 
 export const ImageFieldsFragmentDoc = gql`

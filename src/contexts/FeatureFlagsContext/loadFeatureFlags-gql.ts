@@ -8,12 +8,13 @@ export type LoadFeatureFlagsQueryVariables = Types.Exact<{
 }>;
 
 export type LoadFeatureFlagsQuery = {
-  currentAccount?: Types.Maybe<{ enabledFeatures: Array<string> }>;
+  currentAccount?: Types.Maybe<{ id: string; enabledFeatures: Array<string> }>;
 };
 
 export const LoadFeatureFlagsDocument = gql`
   query loadFeatureFlags {
     currentAccount {
+      id
       enabledFeatures
     }
   }
