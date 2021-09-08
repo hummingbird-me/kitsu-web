@@ -19,10 +19,11 @@ const Image = forwardRef<
   HTMLProps<HTMLDivElement> & {
     height: number | string;
     width: number | string;
-    source: ImageSource | undefined;
+    source?: ImageSource;
     objectFit?: 'contain' | 'cover' | 'fill' | 'none';
     blurhashSize?: number;
     className?: string;
+    imageClassName?: string;
   }
 >(function Image(
   {
@@ -32,29 +33,28 @@ const Image = forwardRef<
     objectFit = 'cover',
     blurhashSize = 32,
     className,
+    imageClassName,
     ...props
   },
   ref
 ) {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  if (!source) return null;
-
   // Figure out the intrinsic size of the image and scale to max 32x32
-  const intrinsicHeight = source.views[0].height ?? 32;
-  const intrinsicWidth = source.views[0].width ?? 32;
+  const intrinsicHeight = source?.views[0].height ?? 32;
+  const intrinsicWidth = source?.views[0].width ?? 32;
   const scale = Math.min(
     blurhashSize / intrinsicHeight,
     blurhashSize / intrinsicWidth
   );
 
-  return source ? (
+  return (
     <div
       className={[styles.container, className].join(' ')}
       style={{ height, width }}
       ref={ref}
       {...props}>
-      {source.blurhash ? (
+      {source?.blurhash ? (
         <BlurhashCanvas
           hash={source.blurhash}
           height={Math.ceil(intrinsicHeight * scale)}
@@ -63,16 +63,22 @@ const Image = forwardRef<
           style={{ objectFit }}
         />
       ) : null}
-      <img
-        onLoad={() => setIsLoaded(true)}
-        height={height}
-        width={width}
-        className={[styles.image, isLoaded ? styles.loaded : null].join(' ')}
-        style={{ objectFit }}
-        srcSet={viewsToSrcset(source.views)}
-      />
+      {source ? (
+        <img
+          onLoad={() => setIsLoaded(true)}
+          height={height}
+          width={width}
+          className={[
+            styles.image,
+            imageClassName,
+            isLoaded ? styles.loaded : null,
+          ].join(' ')}
+          style={{ objectFit }}
+          srcSet={viewsToSrcset(source.views)}
+        />
+      ) : null}
     </div>
-  ) : null;
+  );
 });
 
 export default Image;
