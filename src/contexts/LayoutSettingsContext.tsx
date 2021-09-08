@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { isEqual, merge } from 'lodash-es';
 import { PartialDeep } from 'type-fest';
 
@@ -53,7 +53,9 @@ export const setLayoutSettings = function (
     settings
   );
   if (!isEqual(layoutSettings, mergedLayoutSettings)) {
-    return setLayoutSettings(mergedLayoutSettings);
+    useEffect(() => {
+      return setLayoutSettings(mergedLayoutSettings);
+    }, [mergedLayoutSettings]);
   }
 };
 
