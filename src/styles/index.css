@@ -23,7 +23,7 @@ body {
   all: unset;
   background-color: var(--page-background);
   color: var(--page-text-color);
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--font-family-body);
   font-weight: var(--font-regular);
   font-size: var(--font-me);
   min-height: 100vh;
@@ -31,6 +31,15 @@ body {
 
 body.scroll-lock {
   overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-headings);
 }
 
 #root {
