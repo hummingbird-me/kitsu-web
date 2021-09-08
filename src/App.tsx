@@ -7,7 +7,7 @@ import { SessionContextProvider } from 'app/contexts/SessionContext';
 import ApolloContextProvider from 'app/contexts/ApolloContext';
 import IntlProvider from 'app/contexts/IntlContext';
 import { LayoutSettingsContextProvider } from './contexts/LayoutSettingsContext';
-import { FeatureFlagsContextProvider } from 'app/contexts/FeatureFlagsContext';
+import { AccountSettingsContextProvider } from 'app/contexts/AccountSettingsContext';
 import { ToasterContextProvider } from 'app/components/Toaster/Context';
 import Router from 'app/Router';
 import Spinner from 'app/components/Spinner';
@@ -20,13 +20,13 @@ const App: React.FC = function ({ children = <Router /> }) {
         <SessionContextProvider>
           <ApolloContextProvider>
             <IntlProvider>
-              <FeatureFlagsContextProvider>
+              <AccountSettingsContextProvider>
                 <ToasterContextProvider>
                   <Suspense fallback={<Spinner />}>
                     <Layout>{children}</Layout>
                   </Suspense>
                 </ToasterContextProvider>
-              </FeatureFlagsContextProvider>
+              </AccountSettingsContextProvider>
             </IntlProvider>
           </ApolloContextProvider>
         </SessionContextProvider>
