@@ -34,6 +34,15 @@
   }
 }
 
+.headerScrollMonitor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1px;
+  width: 100vw;
+  pointer-events: none;
+}
+
 /* Set Up Grid */
 .container {
   grid-column-gap: 10px;
@@ -42,7 +51,6 @@
   grid-template-areas:
     'logo search auth'
     'navigation navigation navigation';
-  max-width: 100%;
   display: grid;
   align-items: center;
   padding-inline: 15px;
