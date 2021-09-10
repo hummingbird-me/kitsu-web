@@ -1,8 +1,9 @@
 {
   "extends": "stylelint-config-standard",
-  "plugins": ["stylelint-declaration-strict-value"],
+  "plugins": ["stylelint-declaration-strict-value", "stylelint-use-logical"],
   "ignoreFiles": ["**/*.tsx"],
   "rules": {
+    "csstools/use-logical": true,
     "color-hex-length": "long",
     "custom-property-empty-line-before": null,
     "value-list-comma-newline-after": null,
