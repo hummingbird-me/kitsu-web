@@ -136,6 +136,8 @@ export type Anime = Media &
     readonly id: Scalars['ID'];
     /** A list of mappings for this media */
     readonly mappings: MappingConnection;
+    /** Your library entry related to this media. */
+    readonly myLibraryEntry?: Maybe<LibraryEntry>;
     /** A list of your wiki submissions for this media */
     readonly myWikiSubmissions: WikiSubmissionConnection;
     /** The time of the next release of this media */
@@ -193,6 +195,7 @@ export type AnimeCharactersArgs = {
   before?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
+  sort?: Maybe<ReadonlyArray<Maybe<MediaCharacterSortOption>>>;
 };
 
 export type AnimeDescriptionArgs = {
@@ -241,6 +244,7 @@ export type AnimeReactionsArgs = {
   before?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
+  sort?: Maybe<ReadonlyArray<Maybe<MediaReactionSortOption>>>;
 };
 
 export type AnimeStaffArgs = {
@@ -1482,6 +1486,8 @@ export type Manga = Media &
     readonly id: Scalars['ID'];
     /** A list of mappings for this media */
     readonly mappings: MappingConnection;
+    /** Your library entry related to this media. */
+    readonly myLibraryEntry?: Maybe<LibraryEntry>;
     /** A list of your wiki submissions for this media */
     readonly myWikiSubmissions: WikiSubmissionConnection;
     /** The time of the next release of this media */
@@ -1540,6 +1546,7 @@ export type MangaCharactersArgs = {
   before?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
+  sort?: Maybe<ReadonlyArray<Maybe<MediaCharacterSortOption>>>;
 };
 
 export type MangaDescriptionArgs = {
@@ -1580,6 +1587,7 @@ export type MangaReactionsArgs = {
   before?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
+  sort?: Maybe<ReadonlyArray<Maybe<MediaReactionSortOption>>>;
 };
 
 export type MangaStaffArgs = {
@@ -1811,6 +1819,8 @@ export type Media = {
   readonly id: Scalars['ID'];
   /** A list of mappings for this media */
   readonly mappings: MappingConnection;
+  /** Your library entry related to this media. */
+  readonly myLibraryEntry?: Maybe<LibraryEntry>;
   /** A list of your wiki submissions for this media */
   readonly myWikiSubmissions: WikiSubmissionConnection;
   /** The time of the next release of this media */
@@ -1859,6 +1869,7 @@ export type MediaCharactersArgs = {
   before?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
+  sort?: Maybe<ReadonlyArray<Maybe<MediaCharacterSortOption>>>;
 };
 
 /** A media in the Kitsu database */
@@ -1905,6 +1916,7 @@ export type MediaReactionsArgs = {
   before?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
+  sort?: Maybe<ReadonlyArray<Maybe<MediaReactionSortOption>>>;
 };
 
 /** A media in the Kitsu database */
@@ -1960,6 +1972,17 @@ export type MediaCharacterEdge = {
   readonly cursor: Scalars['String'];
   /** The item at the end of the edge. */
   readonly node?: Maybe<MediaCharacter>;
+};
+
+export enum MediaCharacterSortEnum {
+  CreatedAt = 'CREATED_AT',
+  UpdatedAt = 'UPDATED_AT',
+  Role = 'ROLE',
+}
+
+export type MediaCharacterSortOption = {
+  readonly on: MediaCharacterSortEnum;
+  readonly direction: SortDirection;
 };
 
 /** The connection type for Media. */
@@ -2073,6 +2096,17 @@ export type MediaReactionEdge = {
   readonly cursor: Scalars['String'];
   /** The item at the end of the edge. */
   readonly node?: Maybe<MediaReaction>;
+};
+
+export enum MediaReactionSortEnum {
+  CreatedAt = 'CREATED_AT',
+  UpdatedAt = 'UPDATED_AT',
+  UpVotesCount = 'UP_VOTES_COUNT',
+}
+
+export type MediaReactionSortOption = {
+  readonly on: MediaReactionSortEnum;
+  readonly direction: SortDirection;
 };
 
 /** Information about a person working on an anime */
@@ -2505,6 +2539,7 @@ export type ProfileMediaReactionsArgs = {
   before?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
+  sort?: Maybe<ReadonlyArray<Maybe<MediaReactionSortOption>>>;
 };
 
 /** A user profile on Kitsu */
