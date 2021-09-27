@@ -25,7 +25,7 @@ const UrqlContext: React.FC = function ({ children }): JSX.Element {
       authExchange(session),
       fetchExchange,
     ],
-    url: `${apiHost}/api/graphql`,
+    url: `${apiHost}api/graphql`,
     fetchOptions: {
       headers: { 'Accept-Language': buildAcceptLanguage(locale) },
     },
