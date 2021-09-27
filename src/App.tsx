@@ -4,7 +4,7 @@ import 'app/initializers';
 import 'app/styles/index.css';
 
 import { SessionContextProvider } from 'app/contexts/SessionContext';
-import ApolloContextProvider from 'app/contexts/ApolloContext';
+import UrqlContextProvider from 'app/contexts/UrqlContext';
 import IntlProvider from 'app/contexts/IntlContext';
 import { LayoutSettingsContextProvider } from './contexts/LayoutSettingsContext';
 import { AccountSettingsContextProvider } from 'app/contexts/AccountSettingsContext';
@@ -16,21 +16,21 @@ import Layout from 'app/components/Layout';
 const App: React.FC = function ({ children = <Router /> }) {
   return (
     <React.StrictMode>
-      <LayoutSettingsContextProvider>
-        <SessionContextProvider>
-          <ApolloContextProvider>
-            <IntlProvider>
-              <AccountSettingsContextProvider>
-                <ToasterContextProvider>
-                  <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<Spinner />}>
+        <LayoutSettingsContextProvider>
+          <SessionContextProvider>
+            <UrqlContextProvider>
+              <IntlProvider>
+                <AccountSettingsContextProvider>
+                  <ToasterContextProvider>
                     <Layout>{children}</Layout>
-                  </Suspense>
-                </ToasterContextProvider>
-              </AccountSettingsContextProvider>
-            </IntlProvider>
-          </ApolloContextProvider>
-        </SessionContextProvider>
-      </LayoutSettingsContextProvider>
+                  </ToasterContextProvider>
+                </AccountSettingsContextProvider>
+              </IntlProvider>
+            </UrqlContextProvider>
+          </SessionContextProvider>
+        </LayoutSettingsContextProvider>
+      </Suspense>
     </React.StrictMode>
   );
 };
