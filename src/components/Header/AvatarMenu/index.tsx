@@ -11,7 +11,7 @@ import { FormattedMessage } from 'react-intl';
 
 const AvatarMenu: React.FC<{ className?: string }> = ({ className }) => {
   const { clearSession } = useSession();
-  const { data, loading } = useLoadProfileMenuQuery();
+  const [{ data, loading }] = useLoadProfileMenuQuery();
   const profile = data?.currentAccount?.profile;
 
   return (

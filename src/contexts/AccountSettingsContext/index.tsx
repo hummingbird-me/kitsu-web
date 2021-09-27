@@ -35,7 +35,7 @@ export const AccountSettingsContext = React.createContext<AccountSettings>(
 export const AccountSettingsContextProvider: React.FC = function ({
   children,
 }) {
-  const { data, error } = useLoadAccountSettingsQuery();
+  const [{ data, error }] = useLoadAccountSettingsQuery();
 
   // If the query fails, log the error to Sentry and return an empty list of settings
   if (error) captureException(error);
