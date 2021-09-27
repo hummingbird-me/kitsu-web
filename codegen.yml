@@ -24,8 +24,15 @@ generates:
       extension: -gql.ts
       baseTypesPath: types/graphql.ts
     config:
+      documentMode: documentNodeImportFragments
       skipTypename: true
       dedupeOperationSuffix: true
+      scalars:
+        Map: 'Record<string, string>'
+        JSON: 'Record<string, unknown>'
+        Date: 'string'
+        ISO8601Date: 'string'
+        ISO8601DateTime: 'string'
     plugins:
       - typescript-operations
-      - typescript-react-apollo
+      - typescript-urql

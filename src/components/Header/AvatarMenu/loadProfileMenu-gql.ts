@@ -1,9 +1,9 @@
 import * as Types from '../../../types/graphql';
 
-import { gql } from '@apollo/client';
+import { DocumentNode } from 'graphql';
 import { ImageFieldsFragmentDoc } from '../../../fragments/imageFields-gql';
-import * as Apollo from '@apollo/client';
-const defaultOptions = {};
+import * as Urql from 'urql';
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type LoadProfileMenuQueryVariables = Types.Exact<{
   [key: string]: never;
 }>;
@@ -35,72 +35,76 @@ export type LoadProfileMenuQuery = {
   }>;
 };
 
-export const LoadProfileMenuDocument = gql`
-  query loadProfileMenu {
-    currentAccount {
-      id
-      profile {
-        id
-        slug
-        name
-        avatarImage {
-          ...imageFields
-        }
-        bannerImage {
-          ...imageFields
-        }
-      }
-    }
-  }
-  ${ImageFieldsFragmentDoc}
-`;
+export const LoadProfileMenuDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'loadProfileMenu' },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'currentAccount' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'profile' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'avatarImage' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'FragmentSpread',
+                              name: { kind: 'Name', value: 'imageFields' },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'bannerImage' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'FragmentSpread',
+                              name: { kind: 'Name', value: 'imageFields' },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...ImageFieldsFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode;
 
-/**
- * __useLoadProfileMenuQuery__
- *
- * To run a query within a React component, call `useLoadProfileMenuQuery` and pass it any options that fit your needs.
- * When your component renders, `useLoadProfileMenuQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useLoadProfileMenuQuery({
- *   variables: {
- *   },
- * });
- */
 export function useLoadProfileMenuQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    LoadProfileMenuQuery,
-    LoadProfileMenuQueryVariables
-  >
+  options: Omit<Urql.UseQueryArgs<LoadProfileMenuQueryVariables>, 'query'> = {}
 ) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<LoadProfileMenuQuery, LoadProfileMenuQueryVariables>(
-    LoadProfileMenuDocument,
-    options
-  );
+  return Urql.useQuery<LoadProfileMenuQuery>({
+    query: LoadProfileMenuDocument,
+    ...options,
+  });
 }
-export function useLoadProfileMenuLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    LoadProfileMenuQuery,
-    LoadProfileMenuQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    LoadProfileMenuQuery,
-    LoadProfileMenuQueryVariables
-  >(LoadProfileMenuDocument, options);
-}
-export type LoadProfileMenuQueryHookResult = ReturnType<
-  typeof useLoadProfileMenuQuery
->;
-export type LoadProfileMenuLazyQueryHookResult = ReturnType<
-  typeof useLoadProfileMenuLazyQuery
->;
-export type LoadProfileMenuQueryResult = Apollo.QueryResult<
-  LoadProfileMenuQuery,
-  LoadProfileMenuQueryVariables
->;
