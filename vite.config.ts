@@ -25,6 +25,7 @@ switch (process.env.BUILD_TARGET) {
     break;
   case 'client':
     build = {
+      sourcemap: true,
       outDir: path.resolve(__dirname, 'dist/client'),
       rollupOptions: {
         input: {
