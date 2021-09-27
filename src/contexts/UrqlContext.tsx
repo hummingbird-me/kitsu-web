@@ -10,9 +10,12 @@ import {
 import authExchange from 'app/urql-exchanges/auth';
 import { useSession } from 'app/contexts/SessionContext';
 import { apiHost } from 'app/constants/config';
+import buildAcceptLanguage from 'app/utils/buildAcceptLanguage';
+import useLocale from 'app/hooks/useLocale';
 
 const UrqlContext: React.FC = function ({ children }): JSX.Element {
   const session = useSession();
+  const { locale } = useLocale();
 
   const client = createClient({
     suspense: true,
@@ -23,6 +26,9 @@ const UrqlContext: React.FC = function ({ children }): JSX.Element {
       fetchExchange,
     ],
     url: `${apiHost}/api/graphql`,
+    fetchOptions: {
+      headers: { 'Accept-Language': buildAcceptLanguage(locale) },
+    },
   });
 
   return <Provider value={client}>{children}</Provider>;
