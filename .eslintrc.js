@@ -35,7 +35,11 @@ module.exports = {
           'autoComplete',
           'kind',
         ],
-        ignoreComponent: ['FormattedMessage', 'HeaderSettings'],
+        ignoreComponent: [
+          'FormattedMessage',
+          'FormattedDate',
+          'HeaderSettings',
+        ],
       },
     ],
   },
