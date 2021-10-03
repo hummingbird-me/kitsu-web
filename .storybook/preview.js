@@ -3,6 +3,7 @@ import { StaticRouter } from 'react-router';
 
 import UrqlContextProvider from '../src/contexts/UrqlContext';
 import IntlProvider from '../src/contexts/IntlContext';
+import KitsuTheme from './KitsuTheme';
 
 import '../src/styles/index.css';
 
@@ -23,6 +24,7 @@ export const parameters = {
       { name: 'oled', class: 'theme-oled', color: '#000000' },
     ],
   },
+  docs: { theme: KitsuTheme },
 };
 
 export const decorators = [
