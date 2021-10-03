@@ -3,6 +3,8 @@ const path = require('path');
 module.exports = ({ config }) => {
   config.resolve.alias = {
     app: path.resolve(__dirname, '..', 'src'),
+    // HACK: Webpack is fucking something up and this fixes it idk
+    './app': path.resolve(__dirname, '..', 'src'),
   };
 
   const assetRule = config.module.rules.find(({ test }) => test.test('.svg'));
