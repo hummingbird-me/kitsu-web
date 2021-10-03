@@ -7,6 +7,7 @@ module.exports = {
       name: '@storybook/addon-essentials',
       options: { backgrounds: false },
     },
+    'storybook-addon-designs',
     '@storybook/addon-postcss',
     'storybook-css-modules-preset',
   ],
