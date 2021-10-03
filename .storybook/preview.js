@@ -1,3 +1,9 @@
+import React from 'react';
+import { StaticRouter } from 'react-router';
+
+import UrqlContextProvider from '../src/contexts/UrqlContext';
+import IntlProvider from '../src/contexts/IntlContext';
+
 import '../src/styles/index.css';
 
 export const parameters = {
@@ -18,3 +24,19 @@ export const parameters = {
     ],
   },
 };
+
+export const decorators = [
+  (Story) => (
+    <React.StrictMode>
+      <React.Suspense fallback={null}>
+        <StaticRouter location={{}}>
+          <IntlProvider>
+            <UrqlContextProvider>
+              <Story />
+            </UrqlContextProvider>
+          </IntlProvider>
+        </StaticRouter>
+      </React.Suspense>
+    </React.StrictMode>
+  ),
+];
