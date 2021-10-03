@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:client build:server build:library",
+    "build": "npm run build:client && npm run build:server && npm run build:library && npm run build:storybook",
     "build:client": "BUILD_TARGET=client vite build",
     "build:server": "BUILD_TARGET=server vite build",
     "build:library": "BUILD_TARGET=library vite build",
