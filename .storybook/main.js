@@ -9,7 +9,17 @@ module.exports = {
     },
     'storybook-addon-designs',
     '@storybook/addon-a11y',
-    '@storybook/addon-postcss',
+    {
+      name: '@storybook/addon-postcss',
+      options: {
+        cssLoaderOptions: {
+          importLoaders: 1,
+        },
+        postcssLoaderOptions: {
+          implementation: require('postcss'),
+        },
+      },
+    },
     'storybook-css-modules-preset',
   ],
 };
