@@ -8,6 +8,7 @@ module.exports = {
       options: { backgrounds: false },
     },
     'storybook-addon-designs',
+    '@storybook/addon-a11y',
     '@storybook/addon-postcss',
     'storybook-css-modules-preset',
   ],
