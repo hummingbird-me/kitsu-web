@@ -2,7 +2,6 @@ import React from 'react';
 import { StaticRouter } from 'react-router';
 import { addParameters } from '@storybook/react';
 import { map } from 'lodash-es';
-import { useLocale } from 'storybook-addon-locale';
 import { withDirection } from 'storybook-rtl-addon';
 
 import KitsuTheme from './KitsuTheme';
@@ -11,23 +10,39 @@ import IntlProvider from 'app/contexts/IntlContext';
 import translations from 'app/translations';
 import 'app/styles/index.css';
 
+function getFlagEmoji(countryCode) {
+  if (countryCode.length === 2) {
+    const codePoints = countryCode
+      .toUpperCase()
+      .split('')
+      .map((char) => 127397 + char.charCodeAt());
+    return String.fromCodePoint(...codePoints);
+  } else {
+    return '';
+  }
+}
+
 const locales = (() => {
-  const displayNames = new Intl.DisplayNames(['en'], { type: 'language' });
-  return Object.fromEntries(
-    Object.keys(translations).map((key) => [
-      key,
-      {
-        name: displayNames.of(key),
-        text: displayNames.of(key),
-      },
-    ])
-  );
+  const language = new Intl.DisplayNames(['en'], { type: 'language' });
+
+  return Object.keys(translations).map((key) => ({
+    value: key,
+    title: language.of(key),
+    right: getFlagEmoji(key.split('-')[1]),
+  }));
 })();
 
-addParameters({
-  locales,
-  defaultLocale: 'en-US',
-});
+export const globalTypes = {
+  locale: {
+    name: 'Locale',
+    description: 'Global locale for components',
+    defaultValue: 'en-US',
+    toolbar: {
+      icon: 'globe',
+      items: locales,
+    },
+  },
+};
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -51,8 +66,7 @@ export const parameters = {
 
 export const decorators = [
   withDirection,
-  (Story) => {
-    const locale = useLocale();
+  (Story, { globals: { locale } }) => {
     return (
       <React.StrictMode>
         <React.Suspense fallback={null}>
