@@ -1,0 +1,179 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+
+import Button from './index';
+
+<Meta
+  title="Components/Button"
+  component={Button}
+  parameters={{
+    layout: 'centered',
+    controls: { expanded: true },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/7KLXsWEmbIbkNy9CnFA0Ke/Kitsu-Web-V4?node-id=218%3A1210',
+    },
+  }}
+/>
+
+# Button
+
+Buttons are used to show options for actions within a context. They should help the user find the
+most important actions within a given context and allow them to perform those actions. The contents
+should clearly indicate what action will be triggered when clicked.
+
+<Canvas>
+  <Story
+    name="Playground"
+    parameters={{ layout: 'centered' }}
+    args={{
+      kind: 'primary',
+      children: 'Text goes here',
+      loading: false,
+      disabled: false,
+    }}>
+    {Button.bind({})}
+  </Story>
+</Canvas>
+
+## Kinds
+
+There are four main kinds of buttons, each with different implications to the user:
+
+### Primary Buttons
+
+Primary buttons should designate the _default_ action, and is displayed in a lovely shade of green.
+Use this when there's one action you expect to be used most frequently.
+
+<Canvas>
+  <Story
+    name="Kind: Primary"
+    parameters={{ layout: 'centered' }}
+    argTypes={{
+      kind: { table: { disable: true } },
+    }}
+    args={{
+      children: 'Create Account',
+      loading: false,
+      disabled: false,
+    }}>
+    {(args) => <Button {...args} kind="primary" />}
+  </Story>
+</Canvas>
+
+### Inverted Buttons
+
+A button with an inverted style. Generally only used on a dark background, this button is displayed
+in white with dark text. This is sometimes used as an alternative to the primary button kind.
+
+<Canvas>
+  <Story
+    name="Kind: Inverted"
+    parameters={{ layout: 'centered' }}
+    argTypes={{
+      kind: { table: { disable: true } },
+    }}
+    args={{
+      children: 'Learn More',
+      loading: false,
+      disabled: false,
+    }}>
+    {(args) => <Button {...args} kind="inverted" />}
+  </Story>
+</Canvas>
+
+### Outline Buttons
+
+A button with just an outline. Generally used for a cancellation action alongside a primary button.
+
+<Canvas>
+  <Story
+    name="Kind: Outline"
+    parameters={{ layout: 'centered' }}
+    argTypes={{
+      kind: { table: { disable: true } },
+    }}
+    args={{
+      children: 'Cancel',
+      loading: false,
+      disabled: false,
+    }}>
+    {(args) => <Button {...args} kind="outline" />}
+  </Story>
+</Canvas>
+
+## States
+
+States are overrides beyond the default styles for a given button. They are used to indicate status
+of the button, such as whether it is non-interactive or if it's doing something.
+
+### Disabled State
+
+When a button is disabled, it will not respond to user interaction. Additionally, it is displayed in
+a greyed-out style, to indicate that it is not available to the user.
+
+<Canvas>
+  <Story
+    name="State: Disabled"
+    parameters={{ layout: 'centered' }}
+    argTypes={{
+      disabled: { table: { disable: true } },
+    }}
+    args={{
+      kind: 'primary',
+      children: 'Create Account',
+      loading: false,
+    }}>
+    {(args) => <Button {...args} disabled />}
+  </Story>
+</Canvas>
+
+### Loading State
+
+When a button is disabled, it will not respond to user interaction. Additionally, it is displayed in
+a greyed-out style, to indicate that it is not available to the user.
+
+<Canvas>
+  <Story
+    name="State: Loading"
+    parameters={{ layout: 'centered' }}
+    argTypes={{
+      loading: { table: { disable: true } },
+    }}
+    args={{
+      kind: 'primary',
+      children: 'Create Account',
+      disabled: false,
+    }}>
+    {(args) => <Button {...args} loading />}
+  </Story>
+</Canvas>
+
+## Compositions
+
+While Buttons are often usable on their own, you'll often want to compose them with other components
+to create a more complex UI.
+
+### With Icon
+
+Sometimes you want an icon on your button. You can just include the icon as a child of the button,
+and if it's an SVG it will be automatically styled.
+
+import { FaTrash } from 'react-icons/fa';
+
+<Canvas>
+  <Story
+    name="With: Icon"
+    parameters={{ layout: 'centered' }}
+    args={{
+      kind: 'primary',
+      children: 'Delete Item',
+      loading: false,
+      disabled: false,
+    }}>
+    {({ children, ...args }) => (
+      <Button {...args}>
+        <FaTrash /> {children}
+      </Button>
+    )}
+  </Story>
+</Canvas>

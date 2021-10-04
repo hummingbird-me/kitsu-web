@@ -25,7 +25,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
 }
 
-/** A button component. */
+/**
+ * The `<Button>` component represents a clickable button, used to submit forms or anywhere in a
+ * document for accessible, standard button functionality.  It also provides a loading indicator to
+ * inform the user when the button is performing a task.
+ */
 const Button: FC<ButtonProps> = function ({
   kind,
   loading = false,
