@@ -2,7 +2,6 @@ import React from 'react';
 import { StaticRouter } from 'react-router';
 import { addParameters } from '@storybook/react';
 import { map } from 'lodash-es';
-import { withDirection } from 'storybook-rtl-addon';
 
 import KitsuTheme from './KitsuTheme';
 import { LayoutSettingsContextProvider } from 'app/contexts/LayoutSettingsContext';
@@ -67,7 +66,6 @@ export const parameters = {
 };
 
 export const decorators = [
-  withDirection,
   (Story, { globals: { locale } }) => {
     return (
       <React.StrictMode>
