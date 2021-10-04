@@ -5,6 +5,8 @@ import { map } from 'lodash-es';
 import { withDirection } from 'storybook-rtl-addon';
 
 import KitsuTheme from './KitsuTheme';
+import { LayoutSettingsContextProvider } from 'app/contexts/LayoutSettingsContext';
+import { ToasterContextProvider } from 'app/components/Toaster/Context';
 import UrqlContextProvider from 'app/contexts/UrqlContext';
 import IntlProvider from 'app/contexts/IntlContext';
 import translations from 'app/translations';
@@ -70,13 +72,17 @@ export const decorators = [
     return (
       <React.StrictMode>
         <React.Suspense fallback={null}>
-          <StaticRouter location={{}}>
-            <IntlProvider locale={locale}>
-              <UrqlContextProvider>
-                <Story />
-              </UrqlContextProvider>
-            </IntlProvider>
-          </StaticRouter>
+          <LayoutSettingsContextProvider>
+            <StaticRouter location={{}}>
+              <IntlProvider locale={locale}>
+                <UrqlContextProvider>
+                  <ToasterContextProvider>
+                    <Story />
+                  </ToasterContextProvider>
+                </UrqlContextProvider>
+              </IntlProvider>
+            </StaticRouter>
+          </LayoutSettingsContextProvider>
         </React.Suspense>
       </React.StrictMode>
     );
