@@ -1,0 +1,39 @@
+.container {
+  background: var(--modal-page-background);
+  min-height: 100vh;
+}
+
+.content {
+  width: 50%;
+  max-width: 850px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 10px;
+  grid-template-areas:
+    'illustration title'
+    'illustration subtitle'
+    'illustration search';
+  color: white;
+}
+
+.illustration {
+  grid-area: illustration;
+  position: relative;
+  align-self: center;
+}
+
+.title {
+  grid-area: title;
+  font-size: var(--font-xxxxl);
+  margin: 0;
+}
+
+.subtitle {
+  grid-area: subtitle;
+  font-size: var(--font-xxl);
+}
+
+.search {
+  grid-area: search;
+}

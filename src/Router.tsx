@@ -4,6 +4,7 @@ import { Switch, Route, useLocation } from 'react-router-dom';
 
 import 'app/styles/index.css';
 
+import NotFoundPage from './pages/Errors/NotFound';
 import SignInModal from './pages/modals/SignIn';
 import SignUpModal from './pages/modals/SignUp';
 import ForgotPasswordModal from './pages/modals/ForgotPassword';
@@ -27,6 +28,7 @@ export default function Router() {
         <Route path="/auth/forgot-password">
           <ForgotPasswordModal displayMode="page" />
         </Route>
+        <Route path="/*" component={NotFoundPage} />
       </Switch>
       {background && (
         <>
