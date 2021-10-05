@@ -1,0 +1,123 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+
+import Alert from './index';
+
+<Meta
+  title="Components/Alert"
+  component={Alert}
+  parameters={{
+    layout: 'centered',
+    controls: { expanded: true },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/7KLXsWEmbIbkNy9CnFA0Ke/Kitsu-Web-V4?node-id=480%3A1582',
+    },
+  }}
+/>
+
+# Alert
+
+Alerts provide contextual feedback for a variety of user actions. They can hold any length of text,
+as well as optional close button, icon, and header text. Alerts are typically used to communicate
+error or success messages to the user at the top of the form which they pertain to.
+
+<Canvas>
+  <Story
+    name="Playground"
+    parameters={{ layout: 'centered' }}
+    args={{
+      kind: 'info',
+      children:
+        'Cupcake ipsum dolor. Sit amet marshmallow topping cheesecake muffin. Halvah croissant candy canes bonbon candy. Apple pie jelly beans topping carrot cake danish tart cake cheesecake. Muffin danish chocolate soufflé pastry icing bonbon oat cake. Powder cake jujubes oat cake. Lemon drops tootsie roll marshmallow halvah carrot cake.',
+    }}>
+    {Alert.bind({})}
+  </Story>
+</Canvas>
+
+## Kinds
+
+There are four kinds of alerts, each with different implications to the user:
+
+### Success Alerts
+
+Success alerts inform the user that an action they requested has been completed successfully. In
+many circumstances, this will not be necessary since the user will be able to see the result of
+the action itself, but some actions may lack an obvious result, and this can be used to provide a
+visual indication that the action has been completed.
+
+<Canvas>
+  <Story
+    name="Kind: Success"
+    parameters={{ layout: 'centered' }}
+    argTypes={{
+      kind: { table: { disable: true } },
+    }}
+    args={{
+      children:
+        'Great News! Your anime and manga lists have been imported from MyAnimeList successfully.',
+    }}>
+    {(args) => <Alert {...args} kind="success" />}
+  </Story>
+</Canvas>
+
+### Warning Alerts
+
+Warning alerts are generally used in two circumstances: either an action _partially_ failed in a way
+which likely doesn't matter, or there's an important message the user should be aware of before
+performing an action.
+
+<Canvas>
+  <Story
+    name="Kind: Warning"
+    parameters={{ layout: 'centered' }}
+    argTypes={{
+      kind: { table: { disable: true } },
+    }}
+    args={{
+      children:
+        'Your list has been partially imported from MyAnimeList. The following items failed to import...',
+    }}>
+    {(args) => <Alert {...args} kind="warning" />}
+  </Story>
+</Canvas>
+
+### Error Alerts
+
+Error alerts are the most important kind of alert, and are used when an action failed completely or
+thoroughly enough that the user would consider it completely failed. For validation errors, prefer
+to indicate next to the input using a different component. TODO: make that component lol
+
+<Canvas>
+  <Story
+    name="Kind: Error"
+    parameters={{ layout: 'centered' }}
+    argTypes={{
+      kind: { table: { disable: true } },
+    }}
+    args={{
+      children: 'We were unable to import your list from MyAnimeList.',
+    }}>
+    {(args) => <Alert {...args} kind="error" />}
+  </Story>
+</Canvas>
+
+### Info Alerts
+
+Info alerts are neutral, and typically not connected to an action the user performed. Instead, they
+generally _inform_ the user of something relating to a form. Honestly? You probably won't use these
+much. There's generally a better option in any context, but this is here in case you need it.
+
+<Canvas>
+  <Story
+    name="Kind: Info"
+    parameters={{ layout: 'centered' }}
+    argTypes={{
+      kind: { table: { disable: true } },
+    }}
+    args={{
+      children:
+        'Hey! Just wanted to let you know that this login process will be changing on October 43rd, 3069',
+    }}>
+    {(args) => <Alert {...args} kind="info" />}
+  </Story>
+</Canvas>
