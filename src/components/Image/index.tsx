@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 
 type ImageViewType = Pick<GQImageView, 'height' | 'width' | 'url'>;
 export type ImageSource = Pick<GQImage, 'blurhash'> & {
-  views: ImageViewType[];
+  views: readonly ImageViewType[];
 };
 
 const viewsToSrcset = (views: readonly ImageViewType[]) =>
@@ -43,6 +43,7 @@ const Image = forwardRef<
   // Figure out the intrinsic size of the image and scale to max 32x32
   const intrinsicHeight = source?.views[0].height ?? 32;
   const intrinsicWidth = source?.views[0].width ?? 32;
+  const aspectRatio = `${intrinsicWidth} / ${intrinsicHeight}`;
   const scale = Math.min(
     blurhashSize / intrinsicHeight,
     blurhashSize / intrinsicWidth
@@ -51,7 +52,7 @@ const Image = forwardRef<
   return (
     <div
       className={[styles.container, className].join(' ')}
-      style={{ height, width }}
+      style={{ width, height, aspectRatio }}
       ref={ref}
       {...props}>
       {source?.blurhash ? (
