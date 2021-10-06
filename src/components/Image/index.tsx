@@ -1,4 +1,10 @@
-import React, { useState, forwardRef, HTMLProps } from 'react';
+import React, {
+  useState,
+  useRef,
+  useLayoutEffect,
+  forwardRef,
+  HTMLProps,
+} from 'react';
 import { BlurhashCanvas } from 'react-blurhash';
 
 import { Image as GQImage, ImageView as GQImageView } from 'app/types/graphql';
@@ -38,7 +44,17 @@ const Image = forwardRef<
   },
   ref
 ) {
+  const imageRef = useRef<HTMLImageElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [needsFadeIn, setNeedsFadeIn] = useState(false);
+
+  useLayoutEffect(() => {
+    if (imageRef.current?.complete) {
+      setIsLoaded(true);
+    } else {
+      setNeedsFadeIn(true);
+    }
+  }, []);
 
   // Figure out the intrinsic size of the image and scale to max 32x32
   const intrinsicHeight = source?.views[0].height ?? 32;
@@ -66,12 +82,14 @@ const Image = forwardRef<
       ) : null}
       {source ? (
         <img
+          ref={imageRef}
           onLoad={() => setIsLoaded(true)}
           height={height}
           width={width}
           className={[
             styles.image,
             imageClassName,
+            needsFadeIn ? styles.fadeIn : null,
             isLoaded ? styles.loaded : null,
           ].join(' ')}
           style={{ objectFit }}
