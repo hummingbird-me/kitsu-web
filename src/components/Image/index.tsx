@@ -84,6 +84,7 @@ const Image = forwardRef<
         <img
           ref={imageRef}
           onLoad={() => setIsLoaded(true)}
+          loading="lazy"
           height={height}
           width={width}
           className={[
