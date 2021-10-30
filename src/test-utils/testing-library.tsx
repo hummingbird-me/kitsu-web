@@ -7,7 +7,7 @@ import {
 import { IntlProvider } from 'react-intl';
 import { mapValues } from 'lodash-es';
 
-import _messages from 'app/translations/en-US.json';
+import _messages from 'app/locales/translations/en-US.json';
 
 const messages = mapValues(_messages, 'message');
 
