@@ -7,7 +7,7 @@ import {
   fetchExchange,
 } from 'urql';
 
-import authExchange from 'app/urql-exchanges/auth';
+import authExchange from 'app/graphql/urql-exchanges/auth';
 import { useSession } from 'app/contexts/SessionContext';
 import { useLocale } from 'app/contexts/IntlContext';
 import { apiHost } from 'app/constants/config';

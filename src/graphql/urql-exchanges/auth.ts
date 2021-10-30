@@ -3,6 +3,7 @@ import { authExchange } from '@urql/exchange-auth';
 
 import { Session } from 'app/types/session';
 import loginWithRefreshToken from 'app/utils/login/withRefreshToken';
+import { LoginFailed } from 'app/errors';
 
 function addAuthToOperation({
   authState,
@@ -11,6 +12,7 @@ function addAuthToOperation({
   authState: Session;
   operation: Operation;
 }) {
+  console.log(authState);
   if (!authState || !authState.accessToken) return operation;
 
   // fetchOptions can be a function (See Client API) but you can simplify this based on usage
@@ -45,13 +47,24 @@ export default function kitsuAuthExchange({
 }): Exchange {
   return authExchange<Session>({
     addAuthToOperation,
+    didAuthError({ error }) {
+      return error.response.status === 401;
+    },
     async getAuth({ authState }) {
       if (!authState) return session;
 
       if (authState?.refreshToken) {
-        const newSession = await loginWithRefreshToken(authState.refreshToken);
-        setSession(newSession);
-        return newSession;
+        try {
+          const newSession = await loginWithRefreshToken(
+            authState.refreshToken
+          );
+          setSession(newSession);
+          return newSession;
+        } catch (e) {
+          if (e instanceof LoginFailed) {
+            setSession(null);
+          }
+        }
       } else {
         clearSession();
         return null;

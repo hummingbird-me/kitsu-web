@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { BlurhashCanvas } from 'react-blurhash';
 
-import { Image as GQImage, ImageView as GQImageView } from 'app/types/graphql';
+import { Image as GQImage, ImageView as GQImageView } from 'app/graphql/types';
 
 import styles from './styles.module.css';
 

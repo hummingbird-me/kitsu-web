@@ -4,7 +4,7 @@ import { captureException } from '@sentry/react';
 import {
   TitleLanguagePreferenceEnum,
   RatingSystemEnum,
-} from 'app/types/graphql';
+} from 'app/graphql/types';
 
 import { useLoadAccountSettingsQuery } from './loadAccountSettings-gql';
 
