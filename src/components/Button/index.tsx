@@ -15,9 +15,16 @@ export enum ButtonKind {
   DISABLED = 'disabled',
 }
 
+export enum ButtonSize {
+  MEDIUM = 'medium',
+  SMALL = 'small',
+}
+
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** The kind of button to render */
   kind: ButtonKind;
+  /** The size of the button */
+  size?: ButtonSize;
   /** Whether the button should be rendered in a loading state. Also disables interactivity, but
    *  does not render a disabled state */
   loading?: boolean;
@@ -32,6 +39,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  */
 const Button: FC<ButtonProps> = function ({
   kind,
+  size = ButtonSize.MEDIUM,
   loading = false,
   disabled = false,
   className,
@@ -44,7 +52,9 @@ const Button: FC<ButtonProps> = function ({
     <button
       {...args}
       disabled={disabled || loading}
-      className={[className, styles.button, styles[kind]].join(' ')}>
+      className={[className, styles.button, styles[kind], styles[size]].join(
+        ' '
+      )}>
       {loading ? <Spinner /> : children}
     </button>
   );

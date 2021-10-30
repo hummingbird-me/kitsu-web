@@ -1,17 +1,26 @@
 .button {
   padding: 4px 16px;
-  height: 44px;
-  border-radius: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-size: var(--font-la);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition-property: background-color, color, border-color, border-width;
   transition-duration: 150ms;
   transition-timing-function: ease-in-out-sine;
+}
+
+.medium {
+  height: 44px;
+  border-radius: var(--radius-medium);
+  font-size: var(--font-la);
+}
+
+.small {
+  height: 32px;
+  border-radius: var(--radius-small);
+  font-size: var(--font-me);
 }
 
 .primary {
