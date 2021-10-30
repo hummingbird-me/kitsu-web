@@ -21,6 +21,13 @@ module.exports = {
     },
   },
   rules: {
+    '@typescript-eslint/ban-ts-comment': [
+      'error',
+      {
+        'ts-ignore': 'allow-with-description',
+        minimumDescriptionLength: 3,
+      },
+    ],
     'react/prop-types': 'off',
     'i18next/no-literal-string': [
       'error',
