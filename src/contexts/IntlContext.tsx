@@ -1,9 +1,10 @@
 import React, { useReducer } from 'react';
 import { useCookie, useEvent, useAsync } from 'react-use';
 import { IntlProvider } from 'react-intl';
+import { Locale as DateFnsLocale } from 'date-fns';
 import preferredLocale from 'preferred-locale';
 
-import translations from 'app/translations';
+import translations from 'app/locales';
 
 type LocaleState = {
   locale: string;
@@ -48,27 +49,39 @@ const LocaleContext = React.createContext<{
   unsetLocale: () => null,
 });
 
+// @ts-ignore We guarantee that this is actually never null
+const DateFnsLocaleContext = React.createContext<DateFnsLocale>(null);
+
 const IntlContext: React.FC<{ locale: string }> = function ({
   children,
   locale,
 }) {
   const value = useLocaleState(locale);
-  const { loading, value: messages } = useAsync(translations[value.locale]);
+  const { value: localeData } = useAsync(translations[value.locale].load);
 
-  return loading ? null : (
+  return localeData ? (
     <LocaleContext.Provider value={value}>
-      <IntlProvider
-        locale={value.locale}
-        messages={messages?.default}
-        key={value.locale}>
-        {children}
-      </IntlProvider>
+      <DateFnsLocaleContext.Provider value={localeData.dateFns}>
+        <IntlProvider
+          locale={value.locale}
+          messages={localeData.kitsu}
+          key={value.locale}
+          defaultRichTextElements={{
+            b: (children) => <b>{children}</b>,
+          }}>
+          {children}
+        </IntlProvider>
+      </DateFnsLocaleContext.Provider>
     </LocaleContext.Provider>
-  );
+  ) : null;
 };
 
 export default IntlContext;
 
 export function useLocale(): LocaleState {
   return React.useContext(LocaleContext);
+}
+
+export function useDateFnsLocale(): DateFnsLocale {
+  return React.useContext(DateFnsLocaleContext);
 }
