@@ -5,10 +5,11 @@ import styles from './styles.module.css';
 
 export const TabBar: React.FC<HTMLProps<HTMLElement>> = function ({
   children,
+  className,
   ...args
 }): JSX.Element {
   return (
-    <nav {...args}>
+    <nav className={[className, styles.nav].join(' ')} {...args}>
       <ul className={styles.navList}>{children}</ul>
     </nav>
   );
