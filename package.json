@@ -24,7 +24,7 @@
     "build:storybook": "build-storybook --modern --output-dir ./dist/client/docs/ui/",
     "serve": "vite preview",
     "test": "jest",
-    "codegen": "npm run codegen:intl codegen:graphql",
+    "codegen": "npm run codegen:intl && npm run codegen:graphql",
     "codegen:intl": "ts-node ./bin/extract.ts",
     "codegen:graphql": "graphql-codegen --config codegen.yml",
     "storybook": "start-storybook -p 6006",
@@ -41,6 +41,7 @@
     "blurhash": "^1.1.4",
     "date-fns": "^2.25.0",
     "graphql": "^16.0.0",
+    "graphql-scalars": "^1.12.0",
     "lodash-es": "^4.17.21",
     "preferred-locale": "^1.0.10",
     "react": "^17.0.0",
@@ -52,6 +53,7 @@
     "react-router-dom": "^5.3.0",
     "react-use": "^17.3.1",
     "urql": "^2.0.5",
+    "urql-custom-scalars-exchange": "^0.1.5",
     "vite-plugin-svgr": "^0.4.0"
   },
   "devDependencies": {
