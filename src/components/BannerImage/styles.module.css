@@ -1,12 +1,9 @@
 .container {
   position: relative;
-  height: 400px;
-  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .background,
 .overlay {
-  position: absolute;
   height: 100%;
   width: 100%;
   top: 0;
@@ -16,9 +13,23 @@
 }
 
 .background {
+  position: absolute;
   z-index: var(--layer-background);
 }
 
 .overlay {
+  /* This allows us to size the parent container relative to the content */
+  min-height: 400px;
+  background: var(--banner-image-fade);
   z-index: var(--layer-base);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  /* Add a top padding for the header */
+  padding-top: 82px;
+
+  @media (--medium) {
+    padding-top: 41px;
+  }
 }
