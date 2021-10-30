@@ -6,6 +6,10 @@ hooks:
     - prettier --write
 
 generates:
+  src/graphql/schema.json:
+    plugins:
+      - introspection
+
   src/types/graphql.ts:
     plugins:
       - typescript
