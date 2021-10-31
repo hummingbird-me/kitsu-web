@@ -4,7 +4,7 @@ import { useIntersection } from 'react-use';
 import { NavLink } from 'react-router-dom';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import logo from 'app/assets/logo.svg';
+import { ReactComponent as Logo } from 'app/assets/logo.svg';
 import { ReactComponent as SearchIcon } from 'app/assets/icons/search.svg';
 import utilStyles from 'app/styles/utils.module.css';
 import { useSession } from 'app/contexts/SessionContext';
@@ -44,7 +44,7 @@ export default function Header({
             styles.container,
           ].join(' ')}>
           <NavLink to="/" className={styles.logo}>
-            <img src={logo} />
+            <Logo />
           </NavLink>
           <ul className={styles.navList}>
             <li>
