@@ -1,0 +1,50 @@
+.groupBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.groupBoxTitle {
+  flex: none;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    '. title .'
+    'left title right';
+
+  &::before,
+  &::after {
+    display: block;
+    content: ' ';
+    border-top: var(--group-box-border);
+  }
+
+  &::before {
+    grid-area: left;
+    border-left: var(--group-box-border);
+    border-top-left-radius: var(--radius-medium);
+  }
+
+  &::after {
+    grid-area: right;
+    border-right: var(--group-box-border);
+    border-top-right-radius: var(--radius-medium);
+  }
+}
+
+.groupBoxTitleText {
+  grid-area: title;
+  color: var(--group-box-title-color);
+  text-transform: uppercase;
+  padding-inline: 0.5em;
+  font-weight: var(--font-semi-bold);
+  font-size: var(--font-xxs);
+}
+
+.groupBoxContent {
+  flex: 1;
+  border: var(--group-box-border);
+  border-block-start-width: 0;
+  border-radius: 0 0 var(--radius-medium) var(--radius-medium);
+  padding: 7px;
+}
