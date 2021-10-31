@@ -27,3 +27,21 @@
   border: var(--alert-warning-border);
   color: var(--alert-warning-text-color);
 }
+
+.dismiss {
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0;
+  margin-block-start: 4px;
+  margin-inline-start: 12px;
+  opacity: 75%;
+  cursor: pointer;
+  transition: opacity 100ms ease-in-out;
+  align-self: flex-start;
+
+  &:hover,
+  &:focus {
+    opacity: 100%;
+  }
+}

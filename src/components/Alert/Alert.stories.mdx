@@ -34,6 +34,25 @@ error or success messages to the user at the top of the form which they pertain 
   </Story>
 </Canvas>
 
+## Dismiss Button
+
+If you pass an `onDismiss` prop to the Alert, a dismiss button will be rendered.
+
+<Canvas>
+  <Story
+    name="Dismissable"
+    parameters={{ layout: 'centered' }}
+    argTypes={{
+      kind: { table: { disable: true } },
+    }}
+    args={{
+      children:
+        'Great News! Your anime and manga lists have been imported from MyAnimeList successfully.',
+    }}>
+    {(args) => <Alert {...args} kind="error" />}
+  </Story>
+</Canvas>
+
 ## Kinds
 
 There are four kinds of alerts, each with different implications to the user:
@@ -56,7 +75,7 @@ visual indication that the action has been completed.
       children:
         'Great News! Your anime and manga lists have been imported from MyAnimeList successfully.',
     }}>
-    {(args) => <Alert {...args} kind="success" />}
+    {(args) => <Alert {...args} kind="success" onDismiss={null} />}
   </Story>
 </Canvas>
 
@@ -74,10 +93,19 @@ performing an action.
       kind: { table: { disable: true } },
     }}
     args={{
-      children:
-        'Your list has been partially imported from MyAnimeList. The following items failed to import...',
+      children: (
+        <>
+          <p>
+            Your list has been partially imported from MyAnimeList. The
+            following items failed to import:
+          </p>
+          <ul>
+            <li>Boku no Pico</li>
+          </ul>
+        </>
+      ),
     }}>
-    {(args) => <Alert {...args} kind="warning" />}
+    {(args) => <Alert {...args} kind="warning" onDismiss={null} />}
   </Story>
 </Canvas>
 
@@ -97,7 +125,7 @@ to indicate next to the input using a different component. TODO: make that compo
     args={{
       children: 'We were unable to import your list from MyAnimeList.',
     }}>
-    {(args) => <Alert {...args} kind="error" />}
+    {(args) => <Alert {...args} kind="error" onDismiss={null} />}
   </Story>
 </Canvas>
 
@@ -118,6 +146,6 @@ much. There's generally a better option in any context, but this is here in case
       children:
         'Hey! Just wanted to let you know that this login process will be changing on October 43rd, 3069',
     }}>
-    {(args) => <Alert {...args} kind="info" />}
+    {(args) => <Alert {...args} kind="info" onDismiss={null} />}
   </Story>
 </Canvas>
