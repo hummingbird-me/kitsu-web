@@ -25,7 +25,7 @@ const Image = forwardRef<
   HTMLProps<HTMLDivElement> & {
     height: number | string;
     width: number | string;
-    source?: ImageSource;
+    source?: ImageSource | null;
     objectFit?: 'contain' | 'cover' | 'fill' | 'none';
     blurhashSize?: number;
     className?: string;
