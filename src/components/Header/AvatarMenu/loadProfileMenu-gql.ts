@@ -1,7 +1,7 @@
-import * as Types from '../../../types/graphql';
+import * as Types from '../../../graphql/types';
 
 import { DocumentNode } from 'graphql';
-import { ImageFieldsFragmentDoc } from '../../../fragments/imageFields-gql';
+import { ImageFieldsFragmentDoc } from '../../Image/imageFields-gql';
 import * as Urql from 'urql';
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type LoadProfileMenuQueryVariables = Types.Exact<{
@@ -9,30 +9,39 @@ export type LoadProfileMenuQueryVariables = Types.Exact<{
 }>;
 
 export type LoadProfileMenuQuery = {
-  currentAccount?: Types.Maybe<{
-    id: string;
-    profile: {
-      id: string;
-      slug?: Types.Maybe<string>;
-      name: string;
-      avatarImage?: Types.Maybe<{
-        blurhash?: Types.Maybe<string>;
-        views: Array<{
-          height?: Types.Maybe<number>;
-          width?: Types.Maybe<number>;
-          url: string;
-        }>;
-      }>;
-      bannerImage?: Types.Maybe<{
-        blurhash?: Types.Maybe<string>;
-        views: Array<{
-          height?: Types.Maybe<number>;
-          width?: Types.Maybe<number>;
-          url: string;
-        }>;
-      }>;
-    };
-  }>;
+  currentAccount?:
+    | {
+        id: string;
+        profile: {
+          id: string;
+          slug?: string | null | undefined;
+          name: string;
+          avatarImage?:
+            | {
+                blurhash?: string | null | undefined;
+                views: Array<{
+                  height?: number | null | undefined;
+                  width?: number | null | undefined;
+                  url: string;
+                }>;
+              }
+            | null
+            | undefined;
+          bannerImage?:
+            | {
+                blurhash?: string | null | undefined;
+                views: Array<{
+                  height?: number | null | undefined;
+                  width?: number | null | undefined;
+                  url: string;
+                }>;
+              }
+            | null
+            | undefined;
+        };
+      }
+    | null
+    | undefined;
 };
 
 export const LoadProfileMenuDocument = {
