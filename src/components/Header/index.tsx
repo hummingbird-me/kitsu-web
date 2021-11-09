@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { uniqueId } from 'lodash-es';
 import { useIntersection } from 'react-use';
 import { NavLink } from 'react-router-dom';
@@ -9,6 +9,7 @@ import { ReactComponent as SearchIcon } from 'app/assets/icons/search.svg';
 import utilStyles from 'app/styles/utils.module.css';
 import { useSession } from 'app/contexts/SessionContext';
 import ModalLink from 'app/components/ModalLink';
+import Spinner from 'app/components/Spinner';
 
 import AvatarMenu from './AvatarMenu';
 import styles from './styles.module.css';
@@ -100,13 +101,15 @@ export default function Header({
           </div>
           {session ? (
             <>
-              <a
-                className={[styles.circular, styles.notificationCount].join(
-                  ' '
-                )}>
-                3
-              </a>
-              <AvatarMenu className={styles.avatar} />
+              <Suspense fallback={<Spinner />}>
+                <a
+                  className={[styles.circular, styles.notificationCount].join(
+                    ' '
+                  )}>
+                  3
+                </a>
+                <AvatarMenu className={styles.avatar} />
+              </Suspense>
             </>
           ) : (
             <div className={styles.authCta}>
