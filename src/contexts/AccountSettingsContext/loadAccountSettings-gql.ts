@@ -1,4 +1,4 @@
-import * as Types from '../../types/graphql';
+import * as Types from '../../graphql/types';
 
 import { DocumentNode } from 'graphql';
 import * as Urql from 'urql';
@@ -8,17 +8,23 @@ export type LoadAccountSettingsQueryVariables = Types.Exact<{
 }>;
 
 export type LoadAccountSettingsQuery = {
-  currentAccount?: Types.Maybe<{
-    id: string;
-    country?: Types.Maybe<string>;
-    language?: Types.Maybe<string>;
-    titleLanguagePreference?: Types.Maybe<Types.TitleLanguagePreferenceEnum>;
-    ratingSystem: Types.RatingSystemEnum;
-    sfwFilter?: Types.Maybe<boolean>;
-    sitePermissions: Array<Types.SitePermissionEnum>;
-    timeZone?: Types.Maybe<string>;
-    enabledFeatures: Array<string>;
-  }>;
+  currentAccount?:
+    | {
+        id: string;
+        country?: string | null | undefined;
+        language?: string | null | undefined;
+        titleLanguagePreference?:
+          | Types.TitleLanguagePreferenceEnum
+          | null
+          | undefined;
+        ratingSystem: Types.RatingSystemEnum;
+        sfwFilter?: boolean | null | undefined;
+        sitePermissions: Array<Types.SitePermissionEnum>;
+        timeZone?: string | null | undefined;
+        enabledFeatures: Array<string>;
+      }
+    | null
+    | undefined;
 };
 
 export const LoadAccountSettingsDocument = {
