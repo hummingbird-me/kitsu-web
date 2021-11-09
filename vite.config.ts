@@ -55,7 +55,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     formatjsTransformPlugin(),
     formatjsCompilePlugin({
-      include: 'src/translations/*.json',
+      include: 'src/locales/translations/*.json',
       format: 'crowdin',
       ast: true,
     }),
