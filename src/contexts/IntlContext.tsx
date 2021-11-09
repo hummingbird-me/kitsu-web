@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 import { useCookie, useEvent, useAsync } from 'react-use';
 import { IntlProvider } from 'react-intl';
+import { OnErrorFn } from '@formatjs/intl';
 import { Locale as DateFnsLocale } from 'date-fns';
 import preferredLocale from 'preferred-locale';
 
@@ -59,10 +60,18 @@ const IntlContext: React.FC<{ locale: string }> = function ({
   const value = useLocaleState(locale);
   const { value: localeData } = useAsync(translations[value.locale].load);
 
+  const onError: OnErrorFn | undefined = import.meta.env.DEV
+    ? (err) => {
+        if (err.code === 'MISSING_TRANSLATION') return;
+        throw err;
+      }
+    : undefined;
+
   return localeData ? (
     <LocaleContext.Provider value={value}>
       <DateFnsLocaleContext.Provider value={localeData.dateFns}>
         <IntlProvider
+          onError={onError}
           locale={value.locale}
           messages={localeData.kitsu}
           key={value.locale}

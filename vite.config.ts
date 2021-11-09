@@ -47,7 +47,7 @@ switch (process.env.BUILD_TARGET) {
 }
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   build,
   json: {
     stringify: true,
@@ -64,9 +64,13 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@formatjs/icu-messageformat-parser':
-        '@formatjs/icu-messageformat-parser/no-parser',
+      ...(mode !== 'development'
+        ? {
+            '@formatjs/icu-messageformat-parser':
+              '@formatjs/icu-messageformat-parser/no-parser',
+          }
+        : {}),
       app: path.resolve(__dirname, '/src'),
     },
   },
-});
+}));
