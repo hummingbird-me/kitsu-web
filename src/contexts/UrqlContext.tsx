@@ -6,6 +6,7 @@ import {
   cacheExchange,
   fetchExchange,
 } from 'urql';
+import { devtoolsExchange } from '@urql/devtools';
 
 import authExchange from 'app/graphql/urql-exchanges/auth';
 import scalarsExchange from 'app/graphql/urql-exchanges/scalars';
@@ -26,6 +27,7 @@ const UrqlContext: React.FC = function ({ children }): JSX.Element {
       cacheExchange,
       authExchange(session),
       fetchExchange,
+      devtoolsExchange,
     ],
     url: `${apiHost}api/graphql`,
     fetchOptions: {
