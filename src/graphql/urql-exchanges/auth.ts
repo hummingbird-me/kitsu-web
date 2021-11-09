@@ -12,7 +12,6 @@ function addAuthToOperation({
   authState: Session;
   operation: Operation;
 }) {
-  console.log(authState);
   if (!authState || !authState.accessToken) return operation;
 
   // fetchOptions can be a function (See Client API) but you can simplify this based on usage
