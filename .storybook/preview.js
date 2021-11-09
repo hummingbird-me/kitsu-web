@@ -8,7 +8,7 @@ import { LayoutSettingsContextProvider } from 'app/contexts/LayoutSettingsContex
 import { ToasterContextProvider } from 'app/components/Toaster/Context';
 import UrqlContextProvider from 'app/contexts/UrqlContext';
 import IntlProvider from 'app/contexts/IntlContext';
-import translations from 'app/translations';
+import translations from 'app/locales';
 import 'app/styles/index.css';
 
 function getFlagEmoji(countryCode) {
