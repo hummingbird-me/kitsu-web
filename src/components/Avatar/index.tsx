@@ -21,29 +21,18 @@ const Avatar: React.FC<
     size: number;
   } & Partial<ComponentProps<typeof Image>>
 > = function ({ source, size, className, ...props }) {
-  if (source) {
-    return (
-      <Image
-        className={[styles.avatar, className].join(' ')}
-        source={source}
-        blurhashSize={6}
-        height={size}
-        width={size}
-        {...props}
-      />
-    );
-  } else {
-    return (
-      <Image
-        className={[styles.avatar, className].join(' ')}
-        source={DEFAULT_AVATAR}
-        height={size}
-        width={size}
-        blurhashSize={6}
-        {...props}
-      />
-    );
-  }
+  if (!source) source = DEFAULT_AVATAR;
+
+  return (
+    <Image
+      className={[styles.avatar, className].join(' ')}
+      source={source}
+      blurhashSize={6}
+      height={size}
+      width={size}
+      {...props}
+    />
+  );
 };
 
 export default Avatar;
