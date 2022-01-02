@@ -63,6 +63,7 @@ export default function kitsuAuthExchange({
           if (e instanceof LoginFailed) {
             setSession(null);
           }
+          return null;
         }
       } else {
         clearSession();
