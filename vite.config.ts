@@ -13,7 +13,7 @@ switch (process.env.BUILD_TARGET) {
     build = {
       outDir: path.resolve(__dirname, 'dist/library'),
       lib: {
-        entry: path.resolve(__dirname, 'src/ember.tsx'),
+        entry: path.resolve(__dirname, 'src/entry-ember.tsx'),
         formats: ['es'],
         fileName: 'kitsu-v4',
       },
