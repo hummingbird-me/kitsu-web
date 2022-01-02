@@ -1,6 +1,7 @@
 import React, { lazy } from 'react';
 import { Location } from 'history';
 import { Switch, Route, useLocation } from 'react-router-dom';
+import { ErrorBoundary } from '@sentry/react';
 
 import 'app/styles/index.css';
 
@@ -8,6 +9,7 @@ import NotFoundPage from './pages/Errors/NotFound';
 import SignInModal from './pages/modals/SignIn';
 import SignUpModal from './pages/modals/SignUp';
 import ForgotPasswordModal from './pages/modals/ForgotPassword';
+import GeneralErrorPage from './pages/Errors/General';
 
 export default function Router() {
   // If the location has a background page set, we render the modal over it
@@ -16,7 +18,7 @@ export default function Router() {
   const background = location.state?.background;
 
   return (
-    <>
+    <ErrorBoundary fallback={<GeneralErrorPage />}>
       <Switch location={background || location}>
         <Route path="/users/:id">User Profile</Route>
         <Route path="/auth/sign-in">
@@ -43,6 +45,6 @@ export default function Router() {
           </Route>
         </>
       )}
-    </>
+    </ErrorBoundary>
   );
 }
