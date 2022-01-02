@@ -31,6 +31,7 @@ switch (process.env.BUILD_TARGET) {
         input: {
           main: path.resolve(__dirname, 'index.html'),
           oauth2: path.resolve(__dirname, 'oauth2-callback.html'),
+          quEmbed: path.resolve(__dirname, 'qu-embed.html'),
         },
       },
     };
