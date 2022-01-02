@@ -6,7 +6,6 @@ import {
   formatjsCompilePlugin,
   formatjsTransformPlugin,
 } from 'rollup-plugin-formatjs';
-import { visualizer } from 'rollup-plugin-visualizer';
 
 let build: BuildOptions;
 switch (process.env.BUILD_TARGET) {
