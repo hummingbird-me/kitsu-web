@@ -41,6 +41,7 @@ module.exports = {
           'href',
           'autoComplete',
           'kind',
+          'size',
         ],
         ignoreComponent: [
           'FormattedMessage',
