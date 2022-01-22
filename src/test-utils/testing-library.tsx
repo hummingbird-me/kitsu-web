@@ -1,9 +1,11 @@
 import React from 'react';
 import {
+  cleanup,
   render as _render,
   RenderOptions,
   RenderResult,
 } from '@testing-library/react';
+import { beforeEach } from 'vitest';
 import { IntlProvider } from 'react-intl';
 import { mapValues } from 'lodash-es';
 
@@ -27,6 +29,9 @@ function render(
 ): RenderResult {
   return _render(ui, { wrapper: Provider, ...options });
 }
+
+// Tell Vitest to clean up after each test
+beforeEach(cleanup);
 
 // re-export everything
 export * from '@testing-library/react';

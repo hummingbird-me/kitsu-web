@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import path from 'path';
 import { defineConfig, BuildOptions } from 'vite';
 import reactRefresh from '@vitejs/plugin-react-refresh';
@@ -51,6 +53,10 @@ export default defineConfig(({ mode }) => ({
   build,
   json: {
     stringify: true,
+  },
+  test: {
+    exclude: ['cypress', 'node_modules', 'dist', '.git', '.cache'],
+    environment: 'happy-dom',
   },
   plugins: [
     formatjsTransformPlugin(),
