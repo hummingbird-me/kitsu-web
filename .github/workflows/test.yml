@@ -31,7 +31,7 @@ jobs:
         run: npm ci
 
       - name: Test App
-        run: COVERAGE=true npm test
+        run: COVERAGE=true npm run test:unit
 
       - name: Report Test Coverage
         if: github.event_name == 'push' && github.ref == 'refs/heads/react'
