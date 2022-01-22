@@ -1,6 +1,7 @@
+import { afterEach, vi, describe, test, expect } from 'vitest';
 import fetchMock from 'fetch-mock';
 afterEach(() => fetchMock.reset());
-jest.mock('app/constants/config');
+vi.mock('app/constants/config');
 
 import loginWithRefreshToken from './withRefreshToken';
 describe('loginWithRefreshToken', () => {

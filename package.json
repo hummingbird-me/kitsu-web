@@ -17,18 +17,18 @@
   ],
   "scripts": {
     "dev": "vite",
+    "dev:storybook": "start-storybook -p 6006",
     "build": "npm run build:client && npm run build:server && npm run build:library && npm run build:storybook",
     "build:client": "BUILD_TARGET=client vite build",
     "build:server": "BUILD_TARGET=server vite build",
     "build:library": "BUILD_TARGET=library vite build",
     "build:storybook": "build-storybook --modern --output-dir ./dist/client/docs/ui/",
-    "serve": "vite preview",
-    "test": "jest",
+    "test:unit": "vitest run --coverage",
+    "test:unit:watch": "vitest watch",
+    "test:e2e": "cypress",
     "codegen": "npm run codegen:intl && npm run codegen:graphql",
     "codegen:intl": "ts-node ./bin/extract.ts",
-    "codegen:graphql": "graphql-codegen --config codegen.yml",
-    "storybook": "start-storybook -p 6006",
-    "cypress": "cypress"
+    "codegen:graphql": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@nanoauth/base": "^0.3.0",
@@ -77,7 +77,6 @@
     "@svgr/webpack": "^6.2.0",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.4.0",
     "@types/json-stable-stringify": "^1.0.33",
     "@types/lodash-es": "^4.17.5",
     "@types/node": "^17.0.10",
@@ -96,10 +95,8 @@
     "eslint-plugin-react": "^7.28.0",
     "fast-glob": "^3.2.11",
     "fetch-mock": "^9.11.0",
-    "fetch-mock-jest": "^1.5.1",
+    "happy-dom": "^2.27.2",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.4.7",
-    "jest-circus": "^27.3.1",
     "json-stable-stringify": "^1.0.1",
     "node-fetch": "^2.6.1",
     "postcss-color-mod-function": "npm:@alexlafroscia/postcss-color-mod-function@^4.0.0",
@@ -118,10 +115,10 @@
     "stylelint-config-standard": "^24.0.0",
     "stylelint-declaration-strict-value": "^1.8.0",
     "stylelint-use-logical": "^1.1.0",
-    "ts-jest": "^27.1.2",
     "ts-node": "^10.4.0",
     "type-fest": "^2.9.0",
     "typescript": "^4.5.4",
-    "vite": "^2.7.13"
+    "vite": "^2.7.13",
+    "vitest": "^0.1.19"
   }
 }
