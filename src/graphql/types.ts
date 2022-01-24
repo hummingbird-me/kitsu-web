@@ -1,4 +1,5 @@
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
 };
@@ -116,6 +117,8 @@ export type Anime = Episodic &
     readonly ageRatingGuide?: Maybe<Scalars['String']>;
     /** The average rating of this media amongst all Kitsu users */
     readonly averageRating?: Maybe<Scalars['Float']>;
+    /** The rank of this media by rating */
+    readonly averageRatingRank?: Maybe<Scalars['Int']>;
     /** A large banner image for this media */
     readonly bannerImage: Image;
     /** A list of categories for this media */
@@ -144,10 +147,19 @@ export type Anime = Episodic &
     readonly myWikiSubmissions: WikiSubmissionConnection;
     /** The time of the next release of this media */
     readonly nextRelease?: Maybe<Scalars['ISO8601DateTime']>;
-    /** The country in which the media was primarily produced */
+    /** The countries in which the media was originally primarily produced */
+    readonly originCountries: ReadonlyArray<Scalars['String']>;
+    /** The languages the media was originally produced in */
+    readonly originLanguages: ReadonlyArray<Scalars['String']>;
+    /**
+     * The country in which the media was primarily produced
+     * @deprecated Replaced with originCountries and originLanguages
+     */
     readonly originalLocale?: Maybe<Scalars['String']>;
     /** The poster image of this media */
     readonly posterImage: Image;
+    /** All posts that tag this media. */
+    readonly posts: PostConnection;
     /** The companies which helped to produce this media */
     readonly productions: MediaProductionConnection;
     /** A list of quotes from this media */
@@ -181,87 +193,97 @@ export type Anime = Episodic &
     readonly updatedAt: Scalars['ISO8601DateTime'];
     /** The number of users with this in their library */
     readonly userCount?: Maybe<Scalars['Int']>;
+    /** The rank of this media by popularity */
+    readonly userCountRank?: Maybe<Scalars['Int']>;
     /** Video id for a trailer on YouTube */
     readonly youtubeTrailerVideoId?: Maybe<Scalars['String']>;
   };
 
 export type AnimeCategoriesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<MediaCategorySortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaCategorySortOption>>>;
 };
 
 export type AnimeCharactersArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<MediaCharacterSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaCharacterSortOption>>>;
 };
 
 export type AnimeDescriptionArgs = {
-  locales?: Maybe<ReadonlyArray<Scalars['String']>>;
+  locales?: InputMaybe<ReadonlyArray<Scalars['String']>>;
 };
 
 export type AnimeEpisodesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<EpisodeSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<EpisodeSortOption>>>;
 };
 
 export type AnimeMappingsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type AnimeMyWikiSubmissionsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<WikiSubmissionSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<WikiSubmissionSortOption>>>;
+};
+
+export type AnimePostsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<PostSortOption>>>;
 };
 
 export type AnimeProductionsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type AnimeQuotesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type AnimeReactionsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<MediaReactionSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaReactionSortOption>>>;
 };
 
 export type AnimeStaffArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type AnimeStreamingLinksArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type AnimeAmountConsumed = AmountConsumed & {
@@ -308,18 +330,18 @@ export type AnimeConnection = {
 };
 
 export type AnimeCreateInput = {
-  readonly ageRating?: Maybe<AgeRatingEnum>;
-  readonly ageRatingGuide?: Maybe<Scalars['String']>;
-  readonly bannerImage?: Maybe<Scalars['Upload']>;
+  readonly ageRating?: InputMaybe<AgeRatingEnum>;
+  readonly ageRatingGuide?: InputMaybe<Scalars['String']>;
+  readonly bannerImage?: InputMaybe<Scalars['Upload']>;
   readonly description: Scalars['Map'];
-  readonly endDate?: Maybe<Scalars['Date']>;
-  readonly episodeCount?: Maybe<Scalars['Int']>;
-  readonly episodeLength?: Maybe<Scalars['Int']>;
-  readonly posterImage?: Maybe<Scalars['Upload']>;
-  readonly startDate?: Maybe<Scalars['Date']>;
-  readonly tba?: Maybe<Scalars['String']>;
+  readonly endDate?: InputMaybe<Scalars['Date']>;
+  readonly episodeCount?: InputMaybe<Scalars['Int']>;
+  readonly episodeLength?: InputMaybe<Scalars['Int']>;
+  readonly posterImage?: InputMaybe<Scalars['Upload']>;
+  readonly startDate?: InputMaybe<Scalars['Date']>;
+  readonly tba?: InputMaybe<Scalars['String']>;
   readonly titles: TitlesListInput;
-  readonly youtubeTrailerVideoId?: Maybe<Scalars['String']>;
+  readonly youtubeTrailerVideoId?: InputMaybe<Scalars['String']>;
 };
 
 /** Autogenerated return type of AnimeCreate */
@@ -380,19 +402,19 @@ export enum AnimeSubtypeEnum {
 }
 
 export type AnimeUpdateInput = {
-  readonly ageRating?: Maybe<AgeRatingEnum>;
-  readonly ageRatingGuide?: Maybe<Scalars['String']>;
-  readonly bannerImage?: Maybe<Scalars['Upload']>;
-  readonly description?: Maybe<Scalars['Map']>;
-  readonly endDate?: Maybe<Scalars['Date']>;
-  readonly episodeCount?: Maybe<Scalars['Int']>;
-  readonly episodeLength?: Maybe<Scalars['Int']>;
+  readonly ageRating?: InputMaybe<AgeRatingEnum>;
+  readonly ageRatingGuide?: InputMaybe<Scalars['String']>;
+  readonly bannerImage?: InputMaybe<Scalars['Upload']>;
+  readonly description?: InputMaybe<Scalars['Map']>;
+  readonly endDate?: InputMaybe<Scalars['Date']>;
+  readonly episodeCount?: InputMaybe<Scalars['Int']>;
+  readonly episodeLength?: InputMaybe<Scalars['Int']>;
   readonly id: Scalars['ID'];
-  readonly posterImage?: Maybe<Scalars['Upload']>;
-  readonly startDate?: Maybe<Scalars['Date']>;
-  readonly tba?: Maybe<Scalars['String']>;
-  readonly titles?: Maybe<TitlesListInput>;
-  readonly youtubeTrailerVideoId?: Maybe<Scalars['String']>;
+  readonly posterImage?: InputMaybe<Scalars['Upload']>;
+  readonly startDate?: InputMaybe<Scalars['Date']>;
+  readonly tba?: InputMaybe<Scalars['String']>;
+  readonly titles?: InputMaybe<TitlesListInput>;
+  readonly youtubeTrailerVideoId?: InputMaybe<Scalars['String']>;
 };
 
 /** Autogenerated return type of AnimeUpdate */
@@ -426,20 +448,20 @@ export type Category = WithTimestamps & {
 
 /** Information about a specific Category */
 export type CategoryChildrenArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /** Information about a specific Category */
 export type CategoryDescriptionArgs = {
-  locales?: Maybe<ReadonlyArray<Scalars['String']>>;
+  locales?: InputMaybe<ReadonlyArray<Scalars['String']>>;
 };
 
 /** Information about a specific Category */
 export type CategoryTitleArgs = {
-  locales?: Maybe<ReadonlyArray<Scalars['String']>>;
+  locales?: InputMaybe<ReadonlyArray<Scalars['String']>>;
 };
 
 /** Generic Category Breakdown based on Media */
@@ -502,7 +524,7 @@ export type Chapter = Unit &
 
 /** A single chapter of a manga */
 export type ChapterDescriptionArgs = {
-  locales?: Maybe<ReadonlyArray<Scalars['String']>>;
+  locales?: InputMaybe<ReadonlyArray<Scalars['String']>>;
 };
 
 /** The connection type for Chapter. */
@@ -549,15 +571,15 @@ export type Character = WithTimestamps & {
 
 /** Information about a Character in the Kitsu database */
 export type CharacterDescriptionArgs = {
-  locales?: Maybe<ReadonlyArray<Scalars['String']>>;
+  locales?: InputMaybe<ReadonlyArray<Scalars['String']>>;
 };
 
 /** Information about a Character in the Kitsu database */
 export type CharacterMediaArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export enum CharacterRoleEnum {
@@ -643,20 +665,20 @@ export type Comment = WithTimestamps & {
 
 /** A comment on a post */
 export type CommentLikesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<CommentLikeSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<CommentLikeSortOption>>>;
 };
 
 /** A comment on a post */
 export type CommentRepliesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<CommentSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<CommentSortOption>>>;
 };
 
 /** The connection type for Comment. */
@@ -727,7 +749,7 @@ export type Episode = Unit &
 
 /** An Episode of a Media */
 export type EpisodeDescriptionArgs = {
-  locales?: Maybe<ReadonlyArray<Scalars['String']>>;
+  locales?: InputMaybe<ReadonlyArray<Scalars['String']>>;
 };
 
 /** The connection type for Episode. */
@@ -744,13 +766,13 @@ export type EpisodeConnection = {
 };
 
 export type EpisodeCreateInput = {
-  readonly description?: Maybe<Scalars['Map']>;
-  readonly length?: Maybe<Scalars['Int']>;
+  readonly description?: InputMaybe<Scalars['Map']>;
+  readonly length?: InputMaybe<Scalars['Int']>;
   readonly mediaId: Scalars['ID'];
   readonly mediaType: MediaTypeEnum;
   readonly number: Scalars['Int'];
-  readonly releasedAt?: Maybe<Scalars['Date']>;
-  readonly thumbnailImage?: Maybe<Scalars['Upload']>;
+  readonly releasedAt?: InputMaybe<Scalars['Date']>;
+  readonly thumbnailImage?: InputMaybe<Scalars['Upload']>;
   readonly titles: TitlesListInput;
 };
 
@@ -811,13 +833,13 @@ export type EpisodeSortOption = {
 };
 
 export type EpisodeUpdateInput = {
-  readonly description?: Maybe<Scalars['Map']>;
+  readonly description?: InputMaybe<Scalars['Map']>;
   readonly id: Scalars['ID'];
-  readonly length?: Maybe<Scalars['Int']>;
-  readonly number?: Maybe<Scalars['Int']>;
-  readonly releasedAt?: Maybe<Scalars['Date']>;
-  readonly thumbnailImage?: Maybe<Scalars['Upload']>;
-  readonly titles?: Maybe<TitlesListInput>;
+  readonly length?: InputMaybe<Scalars['Int']>;
+  readonly number?: InputMaybe<Scalars['Int']>;
+  readonly releasedAt?: InputMaybe<Scalars['Date']>;
+  readonly thumbnailImage?: InputMaybe<Scalars['Upload']>;
+  readonly titles?: InputMaybe<TitlesListInput>;
 };
 
 /** Autogenerated return type of EpisodeUpdate */
@@ -841,11 +863,11 @@ export type Episodic = {
 
 /** An episodic media in the Kitsu database */
 export type EpisodicEpisodesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<EpisodeSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<EpisodeSortOption>>>;
 };
 
 /** Generic error fields used by all errors. */
@@ -920,11 +942,11 @@ export type Franchise = WithTimestamps & {
 
 /** Related media grouped together */
 export type FranchiseInstallmentsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<InstallmentSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<InstallmentSortOption>>>;
 };
 
 /** The connection type for Franchise. */
@@ -979,7 +1001,7 @@ export type Image = {
 };
 
 export type ImageViewsArgs = {
-  names?: Maybe<ReadonlyArray<Scalars['String']>>;
+  names?: InputMaybe<ReadonlyArray<Scalars['String']>>;
 };
 
 export type ImageView = {
@@ -1080,56 +1102,56 @@ export type Library = {
 
 /** The user library filterable by media_type and status */
 export type LibraryAllArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
   mediaType: MediaTypeEnum;
-  status?: Maybe<ReadonlyArray<LibraryEntryStatusEnum>>;
+  status?: InputMaybe<ReadonlyArray<LibraryEntryStatusEnum>>;
 };
 
 /** The user library filterable by media_type and status */
 export type LibraryCompletedArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
   mediaType: MediaTypeEnum;
 };
 
 /** The user library filterable by media_type and status */
 export type LibraryCurrentArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
   mediaType: MediaTypeEnum;
 };
 
 /** The user library filterable by media_type and status */
 export type LibraryDroppedArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
   mediaType: MediaTypeEnum;
 };
 
 /** The user library filterable by media_type and status */
 export type LibraryOnHoldArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
   mediaType: MediaTypeEnum;
 };
 
 /** The user library filterable by media_type and status */
 export type LibraryPlannedArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
   mediaType: MediaTypeEnum;
 };
 
@@ -1184,11 +1206,11 @@ export type LibraryEntry = WithTimestamps & {
 
 /** Information about a specific media entry for a user */
 export type LibraryEntryEventsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  mediaTypes?: Maybe<ReadonlyArray<MediaTypeEnum>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  mediaTypes?: InputMaybe<ReadonlyArray<MediaTypeEnum>>;
 };
 
 /** The connection type for LibraryEntry. */
@@ -1205,18 +1227,18 @@ export type LibraryEntryConnection = {
 };
 
 export type LibraryEntryCreateInput = {
-  readonly finishedAt?: Maybe<Scalars['ISO8601DateTime']>;
+  readonly finishedAt?: InputMaybe<Scalars['ISO8601DateTime']>;
   readonly mediaId: Scalars['ID'];
   readonly mediaType: MediaTypeEnum;
-  readonly notes?: Maybe<Scalars['String']>;
-  readonly private?: Maybe<Scalars['Boolean']>;
-  readonly progress?: Maybe<Scalars['Int']>;
-  readonly rating?: Maybe<Scalars['Int']>;
-  readonly reconsumeCount?: Maybe<Scalars['Int']>;
-  readonly reconsuming?: Maybe<Scalars['Boolean']>;
-  readonly startedAt?: Maybe<Scalars['ISO8601DateTime']>;
+  readonly notes?: InputMaybe<Scalars['String']>;
+  readonly private?: InputMaybe<Scalars['Boolean']>;
+  readonly progress?: InputMaybe<Scalars['Int']>;
+  readonly rating?: InputMaybe<Scalars['Int']>;
+  readonly reconsumeCount?: InputMaybe<Scalars['Int']>;
+  readonly reconsuming?: InputMaybe<Scalars['Boolean']>;
+  readonly startedAt?: InputMaybe<Scalars['ISO8601DateTime']>;
   readonly status: LibraryEntryStatusEnum;
-  readonly volumesOwned?: Maybe<Scalars['Int']>;
+  readonly volumesOwned?: InputMaybe<Scalars['Int']>;
 };
 
 /** Autogenerated return type of LibraryEntryCreate */
@@ -1314,17 +1336,17 @@ export enum LibraryEntryStatusEnum {
 }
 
 export type LibraryEntryUpdateInput = {
-  readonly finishedAt?: Maybe<Scalars['ISO8601DateTime']>;
+  readonly finishedAt?: InputMaybe<Scalars['ISO8601DateTime']>;
   readonly id: Scalars['ID'];
-  readonly notes?: Maybe<Scalars['String']>;
-  readonly private?: Maybe<Scalars['Boolean']>;
-  readonly progress?: Maybe<Scalars['Int']>;
-  readonly rating?: Maybe<Scalars['Int']>;
-  readonly reconsumeCount?: Maybe<Scalars['Int']>;
-  readonly reconsuming?: Maybe<Scalars['Boolean']>;
-  readonly startedAt?: Maybe<Scalars['ISO8601DateTime']>;
-  readonly status?: Maybe<LibraryEntryStatusEnum>;
-  readonly volumesOwned?: Maybe<Scalars['Int']>;
+  readonly notes?: InputMaybe<Scalars['String']>;
+  readonly private?: InputMaybe<Scalars['Boolean']>;
+  readonly progress?: InputMaybe<Scalars['Int']>;
+  readonly rating?: InputMaybe<Scalars['Int']>;
+  readonly reconsumeCount?: InputMaybe<Scalars['Int']>;
+  readonly reconsuming?: InputMaybe<Scalars['Boolean']>;
+  readonly startedAt?: InputMaybe<Scalars['ISO8601DateTime']>;
+  readonly status?: InputMaybe<LibraryEntryStatusEnum>;
+  readonly volumesOwned?: InputMaybe<Scalars['Int']>;
 };
 
 /** Autogenerated return type of LibraryEntryUpdate */
@@ -1489,6 +1511,8 @@ export type Manga = Media &
     readonly ageRatingGuide?: Maybe<Scalars['String']>;
     /** The average rating of this media amongst all Kitsu users */
     readonly averageRating?: Maybe<Scalars['Float']>;
+    /** The rank of this media by rating */
+    readonly averageRatingRank?: Maybe<Scalars['Int']>;
     /** A large banner image for this media */
     readonly bannerImage: Image;
     /** A list of categories for this media */
@@ -1517,10 +1541,19 @@ export type Manga = Media &
     readonly myWikiSubmissions: WikiSubmissionConnection;
     /** The time of the next release of this media */
     readonly nextRelease?: Maybe<Scalars['ISO8601DateTime']>;
-    /** The country in which the media was primarily produced */
+    /** The countries in which the media was originally primarily produced */
+    readonly originCountries: ReadonlyArray<Scalars['String']>;
+    /** The languages the media was originally produced in */
+    readonly originLanguages: ReadonlyArray<Scalars['String']>;
+    /**
+     * The country in which the media was primarily produced
+     * @deprecated Replaced with originCountries and originLanguages
+     */
     readonly originalLocale?: Maybe<Scalars['String']>;
     /** The poster image of this media */
     readonly posterImage: Image;
+    /** All posts that tag this media. */
+    readonly posts: PostConnection;
     /** The companies which helped to produce this media */
     readonly productions: MediaProductionConnection;
     /** A list of quotes from this media */
@@ -1548,80 +1581,90 @@ export type Manga = Media &
     readonly updatedAt: Scalars['ISO8601DateTime'];
     /** The number of users with this in their library */
     readonly userCount?: Maybe<Scalars['Int']>;
+    /** The rank of this media by popularity */
+    readonly userCountRank?: Maybe<Scalars['Int']>;
     /** The number of volumes in this manga. */
     readonly volumeCount?: Maybe<Scalars['Int']>;
   };
 
 export type MangaCategoriesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<MediaCategorySortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaCategorySortOption>>>;
 };
 
 export type MangaChaptersArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<CharacterVoiceSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<CharacterVoiceSortOption>>>;
 };
 
 export type MangaCharactersArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<MediaCharacterSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaCharacterSortOption>>>;
 };
 
 export type MangaDescriptionArgs = {
-  locales?: Maybe<ReadonlyArray<Scalars['String']>>;
+  locales?: InputMaybe<ReadonlyArray<Scalars['String']>>;
 };
 
 export type MangaMappingsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type MangaMyWikiSubmissionsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<WikiSubmissionSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<WikiSubmissionSortOption>>>;
+};
+
+export type MangaPostsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<PostSortOption>>>;
 };
 
 export type MangaProductionsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type MangaQuotesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type MangaReactionsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<MediaReactionSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaReactionSortOption>>>;
 };
 
 export type MangaStaffArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type MangaAmountConsumed = AmountConsumed & {
@@ -1809,11 +1852,11 @@ export type MappingMutationsUpdateArgs = {
 };
 
 export type MappingUpdateInput = {
-  readonly externalId?: Maybe<Scalars['ID']>;
-  readonly externalSite?: Maybe<MappingExternalSiteEnum>;
+  readonly externalId?: InputMaybe<Scalars['ID']>;
+  readonly externalSite?: InputMaybe<MappingExternalSiteEnum>;
   readonly id: Scalars['ID'];
-  readonly itemId?: Maybe<Scalars['ID']>;
-  readonly itemType?: Maybe<MappingItemEnum>;
+  readonly itemId?: InputMaybe<Scalars['ID']>;
+  readonly itemType?: InputMaybe<MappingItemEnum>;
 };
 
 /** Autogenerated return type of MappingUpdate */
@@ -1831,6 +1874,8 @@ export type Media = {
   readonly ageRatingGuide?: Maybe<Scalars['String']>;
   /** The average rating of this media amongst all Kitsu users */
   readonly averageRating?: Maybe<Scalars['Float']>;
+  /** The rank of this media by rating */
+  readonly averageRatingRank?: Maybe<Scalars['Int']>;
   /** A large banner image for this media */
   readonly bannerImage: Image;
   /** A list of categories for this media */
@@ -1852,10 +1897,19 @@ export type Media = {
   readonly myWikiSubmissions: WikiSubmissionConnection;
   /** The time of the next release of this media */
   readonly nextRelease?: Maybe<Scalars['ISO8601DateTime']>;
-  /** The country in which the media was primarily produced */
+  /** The countries in which the media was originally primarily produced */
+  readonly originCountries: ReadonlyArray<Scalars['String']>;
+  /** The languages the media was originally produced in */
+  readonly originLanguages: ReadonlyArray<Scalars['String']>;
+  /**
+   * The country in which the media was primarily produced
+   * @deprecated Replaced with originCountries and originLanguages
+   */
   readonly originalLocale?: Maybe<Scalars['String']>;
   /** The poster image of this media */
   readonly posterImage: Image;
+  /** All posts that tag this media. */
+  readonly posts: PostConnection;
   /** The companies which helped to produce this media */
   readonly productions: MediaProductionConnection;
   /** A list of quotes from this media */
@@ -1880,79 +1934,90 @@ export type Media = {
   readonly type: Scalars['String'];
   /** The number of users with this in their library */
   readonly userCount?: Maybe<Scalars['Int']>;
+  /** The rank of this media by popularity */
+  readonly userCountRank?: Maybe<Scalars['Int']>;
 };
 
 /** A media in the Kitsu database */
 export type MediaCategoriesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<MediaCategorySortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaCategorySortOption>>>;
 };
 
 /** A media in the Kitsu database */
 export type MediaCharactersArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<MediaCharacterSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaCharacterSortOption>>>;
 };
 
 /** A media in the Kitsu database */
 export type MediaDescriptionArgs = {
-  locales?: Maybe<ReadonlyArray<Scalars['String']>>;
+  locales?: InputMaybe<ReadonlyArray<Scalars['String']>>;
 };
 
 /** A media in the Kitsu database */
 export type MediaMappingsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /** A media in the Kitsu database */
 export type MediaMyWikiSubmissionsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<WikiSubmissionSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<WikiSubmissionSortOption>>>;
+};
+
+/** A media in the Kitsu database */
+export type MediaPostsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<PostSortOption>>>;
 };
 
 /** A media in the Kitsu database */
 export type MediaProductionsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /** A media in the Kitsu database */
 export type MediaQuotesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /** A media in the Kitsu database */
 export type MediaReactionsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<MediaReactionSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaReactionSortOption>>>;
 };
 
 /** A media in the Kitsu database */
 export type MediaStaffArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export enum MediaCategorySortEnum {
@@ -1983,12 +2048,12 @@ export type MediaCharacter = WithTimestamps & {
 
 /** Information about a Character starring in a Media */
 export type MediaCharacterVoicesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  locale?: Maybe<ReadonlyArray<Scalars['String']>>;
-  sort?: Maybe<ReadonlyArray<Maybe<CharacterVoiceSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<ReadonlyArray<Scalars['String']>>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<CharacterVoiceSortOption>>>;
 };
 
 /** The connection type for MediaCharacter. */
@@ -2093,6 +2158,8 @@ export type MediaReaction = WithTimestamps & {
   /** The author who wrote this reaction. */
   readonly author: Profile;
   readonly createdAt: Scalars['ISO8601DateTime'];
+  /** Whether you have liked this media reaction */
+  readonly hasLiked: Scalars['Boolean'];
   readonly id: Scalars['ID'];
   /** The library entry related to this reaction. */
   readonly libraryEntry: LibraryEntry;
@@ -2109,11 +2176,11 @@ export type MediaReaction = WithTimestamps & {
 
 /** A simple review that is 140 characters long expressing how you felt about a media */
 export type MediaReactionLikesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<MediaReactionVoteSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaReactionVoteSortOption>>>;
 };
 
 /** The connection type for MediaReaction. */
@@ -2252,23 +2319,23 @@ export type Person = WithTimestamps & {
 
 /** A Voice Actor, Director, Animator, or other person who works in the creation and localization of media */
 export type PersonDescriptionArgs = {
-  locales?: Maybe<ReadonlyArray<Scalars['String']>>;
+  locales?: InputMaybe<ReadonlyArray<Scalars['String']>>;
 };
 
 /** A Voice Actor, Director, Animator, or other person who works in the creation and localization of media */
 export type PersonMediaStaffArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /** A Voice Actor, Director, Animator, or other person who works in the creation and localization of media */
 export type PersonVoicesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /** A post that is visible to your followers and globally in the news-feed. */
@@ -2305,28 +2372,28 @@ export type Post = WithTimestamps & {
 
 /** A post that is visible to your followers and globally in the news-feed. */
 export type PostCommentsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<CommentSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<CommentSortOption>>>;
 };
 
 /** A post that is visible to your followers and globally in the news-feed. */
 export type PostFollowsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /** A post that is visible to your followers and globally in the news-feed. */
 export type PostLikesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<PostLikeSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<PostLikeSortOption>>>;
 };
 
 /** The connection type for Post. */
@@ -2541,91 +2608,91 @@ export type Profile = WithTimestamps & {
 
 /** A user profile on Kitsu */
 export type ProfileCommentsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /** A user profile on Kitsu */
 export type ProfileFavoritesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /** A user profile on Kitsu */
 export type ProfileFollowersArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<FollowSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<FollowSortOption>>>;
 };
 
 /** A user profile on Kitsu */
 export type ProfileFollowingArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<FollowSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<FollowSortOption>>>;
 };
 
 /** A user profile on Kitsu */
 export type ProfileLibraryEventsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  kind?: Maybe<ReadonlyArray<LibraryEventKindEnum>>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<LibraryEventSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  kind?: InputMaybe<ReadonlyArray<LibraryEventKindEnum>>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<LibraryEventSortOption>>>;
 };
 
 /** A user profile on Kitsu */
 export type ProfileMediaReactionsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<MediaReactionSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaReactionSortOption>>>;
 };
 
 /** A user profile on Kitsu */
 export type ProfilePostsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<PostSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<PostSortOption>>>;
 };
 
 /** A user profile on Kitsu */
 export type ProfileReviewsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<WikiSubmissionSortOption>>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<WikiSubmissionSortOption>>>;
 };
 
 /** A user profile on Kitsu */
 export type ProfileSiteLinksArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /** A user profile on Kitsu */
 export type ProfileWikiSubmissionsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<WikiSubmissionSortOption>>>;
-  statuses?: Maybe<ReadonlyArray<WikiSubmissionStatusEnum>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<WikiSubmissionSortOption>>>;
+  statuses?: InputMaybe<ReadonlyArray<WikiSubmissionStatusEnum>>;
 };
 
 /** The connection type for Profile. */
@@ -2746,25 +2813,25 @@ export type Query = {
 };
 
 export type QueryAnimeArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type QueryAnimeByStatusArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
   status: ReleaseStatusEnum;
 };
 
 export type QueryCategoriesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type QueryFindAnimeByIdArgs = {
@@ -2836,42 +2903,42 @@ export type QueryFindWikiSubmissionByIdArgs = {
 };
 
 export type QueryFranchisesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type QueryGlobalTrendingArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
   mediaType: MediaTypeEnum;
 };
 
 export type QueryLibraryEntriesByMediaArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
   mediaId: Scalars['ID'];
   mediaType: MediaTypeEnum;
 };
 
 export type QueryLibraryEntriesByMediaTypeArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
   mediaType: MediaTypeEnum;
 };
 
 export type QueryLocalTrendingArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
   mediaType: MediaTypeEnum;
 };
 
@@ -2881,25 +2948,25 @@ export type QueryLookupMappingArgs = {
 };
 
 export type QueryMangaArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type QueryMangaByStatusArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
   status: ReleaseStatusEnum;
 };
 
 export type QueryPatronsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type QueryRandomMediaArgs = {
@@ -2908,60 +2975,60 @@ export type QueryRandomMediaArgs = {
 };
 
 export type QueryReportsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type QueryReportsByStatusArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  statuses?: Maybe<ReadonlyArray<ReportStatusEnum>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  statuses?: InputMaybe<ReadonlyArray<ReportStatusEnum>>;
 };
 
 export type QuerySearchAnimeByTitleArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
 };
 
 export type QuerySearchMangaByTitleArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
 };
 
 export type QuerySearchMediaByTitleArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  mediaType?: Maybe<MediaTypeEnum>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  mediaType?: InputMaybe<MediaTypeEnum>;
   title: Scalars['String'];
 };
 
 export type QuerySearchProfileByUsernameArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
   username: Scalars['String'];
 };
 
 export type QueryWikiSubmissionsByStatusesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  sort?: Maybe<ReadonlyArray<Maybe<WikiSubmissionSortOption>>>;
-  statuses?: Maybe<ReadonlyArray<WikiSubmissionStatusEnum>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<WikiSubmissionSortOption>>>;
+  statuses?: InputMaybe<ReadonlyArray<WikiSubmissionStatusEnum>>;
 };
 
 /** A quote from a media */
@@ -2978,10 +3045,10 @@ export type Quote = WithTimestamps & {
 
 /** A quote from a media */
 export type QuoteLinesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /** The connection type for Quote. */
@@ -3178,10 +3245,10 @@ export type Review = WithTimestamps & {
 
 /** A media review made by a user */
 export type ReviewLikesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /** The connection type for Review. */
@@ -3293,18 +3360,18 @@ export type Streamer = WithTimestamps & {
 
 /** The streaming company. */
 export type StreamerStreamingLinksArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /** The streaming company. */
 export type StreamerVideosArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /** The stream link. */
@@ -3364,22 +3431,36 @@ export type TitlesList = {
   /** A list of additional, alternative, abbreviated, or unofficial titles */
   readonly alternatives?: Maybe<ReadonlyArray<Scalars['String']>>;
   /** The official or de facto international title */
-  readonly canonical?: Maybe<Scalars['String']>;
+  readonly canonical: Scalars['String'];
   /** The locale code that identifies which title is used as the canonical title */
   readonly canonicalLocale?: Maybe<Scalars['String']>;
   /** The list of localized titles keyed by locale */
   readonly localized: Scalars['Map'];
+  /** The original title of the media in the original language */
+  readonly original?: Maybe<Scalars['String']>;
+  /** The locale code that identifies which title is used as the original title */
+  readonly originalLocale?: Maybe<Scalars['String']>;
+  /** The title that best matches the user's preferred settings */
+  readonly preferred: Scalars['String'];
+  /** The original title, romanized into latin script */
+  readonly romanized?: Maybe<Scalars['String']>;
+  /** The locale code that identifies which title is used as the romanized title */
+  readonly romanizedLocale?: Maybe<Scalars['String']>;
+  /** The title translated into the user's locale */
+  readonly translated?: Maybe<Scalars['String']>;
+  /** The locale code that identifies which title is used as the translated title */
+  readonly translatedLocale?: Maybe<Scalars['String']>;
 };
 
 export type TitlesListLocalizedArgs = {
-  locales?: Maybe<ReadonlyArray<Scalars['String']>>;
+  locales?: InputMaybe<ReadonlyArray<Scalars['String']>>;
 };
 
 export type TitlesListInput = {
-  readonly alternatives?: Maybe<ReadonlyArray<Scalars['String']>>;
-  readonly canonical?: Maybe<Scalars['String']>;
-  readonly canonicalLocale?: Maybe<Scalars['String']>;
-  readonly localized?: Maybe<Scalars['Map']>;
+  readonly alternatives?: InputMaybe<ReadonlyArray<Scalars['String']>>;
+  readonly canonical?: InputMaybe<Scalars['String']>;
+  readonly canonicalLocale?: InputMaybe<Scalars['String']>;
+  readonly localized?: InputMaybe<Scalars['Map']>;
 };
 
 /** Media units such as episodes or chapters */
@@ -3397,7 +3478,7 @@ export type Unit = {
 
 /** Media units such as episodes or chapters */
 export type UnitDescriptionArgs = {
-  locales?: Maybe<ReadonlyArray<Scalars['String']>>;
+  locales?: InputMaybe<ReadonlyArray<Scalars['String']>>;
 };
 
 /** The media video. */
@@ -3465,10 +3546,10 @@ export type Volume = WithTimestamps & {
 
 /** A manga volume which can contain multiple chapters. */
 export type VolumeChaptersArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /** A Wiki Submission is used to either create or edit existing data in our database. This will allow a simple and convient way for users to submit issues/corrections without all the work being left to the mods. */
@@ -3504,8 +3585,8 @@ export type WikiSubmissionConnection = {
 
 export type WikiSubmissionCreateDraftInput = {
   readonly data: Scalars['JSON'];
-  readonly notes?: Maybe<Scalars['String']>;
-  readonly title?: Maybe<Scalars['String']>;
+  readonly notes?: InputMaybe<Scalars['String']>;
+  readonly title?: InputMaybe<Scalars['String']>;
 };
 
 /** Autogenerated return type of WikiSubmissionCreateDraft */
@@ -3566,8 +3647,8 @@ export enum WikiSubmissionStatusEnum {
 export type WikiSubmissionSubmitDraftInput = {
   readonly data: Scalars['JSON'];
   readonly id: Scalars['ID'];
-  readonly notes?: Maybe<Scalars['String']>;
-  readonly title?: Maybe<Scalars['String']>;
+  readonly notes?: InputMaybe<Scalars['String']>;
+  readonly title?: InputMaybe<Scalars['String']>;
 };
 
 /** Autogenerated return type of WikiSubmissionSubmitDraft */
@@ -3580,7 +3661,7 @@ export type WikiSubmissionSubmitDraftPayload = {
 export type WikiSubmissionUpdateDraftInput = {
   readonly data: Scalars['JSON'];
   readonly id: Scalars['ID'];
-  readonly notes?: Maybe<Scalars['String']>;
+  readonly notes?: InputMaybe<Scalars['String']>;
 };
 
 /** Autogenerated return type of WikiSubmissionUpdateDraft */
