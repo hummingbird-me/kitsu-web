@@ -15,6 +15,17 @@
   --font-extra-bold: 800;
 
   /* Font Families */
-  --font-family-body: 'Open Sans', sans-serif;
-  --font-family-headings: 'Asap', sans-serif;
+  /* We support a lot of languages, so these lists are a bit long */
+
+  /* prettier-ignore */
+  --font-family-body: 'Open Sans', sans-serif,
+    /* Japanese */
+    'Hiragino Sans', 'Noto Sans JP', 'M PLUS 2', /* Mac, Android, Web */
+    /* Korean */
+    'Apple SD Gothic Neo', 'Noto Sans KR'; /* Mac, Android/Web */
+
+  /* prettier-ignore */
+  --font-family-headings: 'Asap', sans-serif,
+    'M PLUS Rounded 1c', /* Japanese */
+    'Jua'; /* Korean */
 }
