@@ -1,0 +1,9 @@
+# import categoryTagFields from 'app/components/CategoryTag/categoryTagFields';
+
+fragment categoryListFields on Media {
+  categories(first: 50, sort: [{ on: ANCESTRY, direction: ASCENDING }]) {
+    nodes {
+      ...categoryTagFields
+    }
+  }
+}
