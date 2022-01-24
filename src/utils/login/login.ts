@@ -1,5 +1,5 @@
 import { addSeconds } from 'date-fns';
-import { apiHost } from 'app/constants/config';
+import { apiHost, clientId } from 'app/constants/config';
 
 import { Session } from 'app/types/session';
 import { LoginFailed, NetworkError } from 'app/errors';
@@ -12,6 +12,7 @@ export default async function login({
   init?: RequestInit;
 }): Promise<NonNullable<Session>> {
   const body = new URLSearchParams(params);
+  body.set('client_id', clientId);
   const response = await fetch(`${apiHost}api/oauth/token`, {
     method: 'POST',
     headers: {
