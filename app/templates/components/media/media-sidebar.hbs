@@ -22,7 +22,7 @@
     {{else if getStreamersTask.last.value}}
       <ul class="nav">
         {{#each media.streamingLinks as |link|}}
-          <li>
+          <li style="width:25%;">
             <a href={{link.url}} target="_blank" rel="noopener noreferrer" class="hint--top hint--bounce hint--rounded" aria-label={{link.streamer.siteName}}>
               {{svg-jar (to-lower link.streamer.siteName)}}
             </a>
