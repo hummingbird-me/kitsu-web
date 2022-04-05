@@ -290,21 +290,22 @@
     padding-left: 10px;
     padding-right: 20px;
     min-width: 50px;
-    color: $body-secondary-text-color;
+    color: $reaction-color;
     font-weight: 600;
     font-family: inherit;
     svg {
       width: 9px;
       height: 6px;
       margin-bottom: 2px;
-      fill: $body-secondary-text-color;
+      fill: $reaction-color;
       position: relative;
       left: -1px;
     }
-    &:hover, &.upvoted {
-      color: $body-text-color;
+    &:hover,
+    &.upvoted {
+      color: $reaction-upvoted-color;
       svg {
-        fill: $body-text-color;
+        fill: $reaction-upvoted-color;
       }
     }
   }
@@ -468,9 +469,9 @@
   }
 }
 .media-rankings.full {
-  border-top: 1px solid darken($background-color,5);
+  border-top: 1px solid darken($background-color, 5);
   padding: 15px 0;
-  border-bottom: 1px solid darken($background-color,5);
+  border-bottom: 1px solid darken($background-color, 5);
   margin-bottom: 20px;
 }
 
@@ -493,7 +494,11 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.8) 100%);
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.8) 50%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
     background-size: auto 200%;
     h3 {
       margin: 0 15px;
@@ -540,15 +545,16 @@
 
   .favorite-media-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50px, calc(25% - .5rem)));
-    gap: .5rem;
-    
-    .favorite-item.col-sm-3, .favorite-item.col-sx-3 {
+    grid-template-columns: repeat(auto-fit, minmax(50px, calc(25% - 0.5rem)));
+    gap: 0.5rem;
+
+    .favorite-item.col-sm-3,
+    .favorite-item.col-sx-3 {
       width: unset;
       height: unset;
       max-width: unset;
       padding: 0;
-      
+
       img {
         width: unset;
         height: unset;
@@ -614,7 +620,7 @@
     margin-left: 10px;
     color: #a3a9b7;
     &:hover {
-      background: rgba(255,255,255,.1);
+      background: rgba(255, 255, 255, 0.1);
     }
   }
   svg {
@@ -640,7 +646,7 @@
   max-width: 175px;
   overflow: hidden;
   &:hover {
-    opacity: .8;
+    opacity: 0.8;
   }
   img {
     width: 100%;
@@ -654,10 +660,10 @@
   text-align: center;
   font-weight: 500;
   display: block;
-  @if $theme == "kitsu-light" {
+  @if $theme == 'kitsu-light' {
     color: #333;
   }
-  @if $theme == "kitsu-dark" {
+  @if $theme == 'kitsu-dark' {
     color: #ebebeb;
   }
 }
@@ -666,7 +672,7 @@
   display: flex;
   max-width: 173px;
   margin-right: 10px;
-  &:nth-child(5n+5) {
+  &:nth-child(5n + 5) {
     margin-right: 0px;
     @media (max-width: 990px) {
       margin-right: 10px;
@@ -687,11 +693,11 @@
   font-family: $base-font-family;
   font-weight: 500;
   line-height: 25px;
-  @if $theme == "kitsu-light" {
+  @if $theme == 'kitsu-light' {
     color: #333;
     background: #f2f2f2;
   }
-  @if $theme == "kitsu-dark" {
+  @if $theme == 'kitsu-dark' {
     color: #ebebeb;
     background: $background-color;
   }
@@ -700,7 +706,8 @@
   &:last-child {
     margin-bottom: 0;
   }
-  .lazy-image, img {
+  .lazy-image,
+  img {
     width: 25px;
     height: 38px;
     float: left;
@@ -762,7 +769,11 @@
       &:hover {
         .poster-overlay {
           opacity: 1;
-          background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.8) 100%);
+          background-image: linear-gradient(
+            rgba(0, 0, 0, 0.1),
+            rgba(0, 0, 0, 0.8) 50%,
+            rgba(0, 0, 0, 0.8) 100%
+          );
           background-size: auto 200%;
         }
       }
