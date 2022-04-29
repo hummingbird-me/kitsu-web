@@ -23,13 +23,13 @@ const UrqlContext: React.FC = function ({ children }): JSX.Element {
   const client = createClient({
     suspense: true,
     exchanges: [
+      devtoolsExchange,
       dedupExchange,
       cacheExchange({
         schema,
       }),
       authExchange(session),
       fetchExchange,
-      devtoolsExchange,
     ],
     url: `${apiHost}api/graphql`,
     fetchOptions: {
