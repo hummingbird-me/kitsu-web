@@ -17,7 +17,10 @@ export type ImageSource = Pick<GQImage, 'blurhash'> & {
 };
 
 const viewsToSrcset = (views: readonly ImageViewType[]) =>
-  views.map(({ width, url }) => `${url} ${width}w`).join(', ');
+  views
+    .filter(({ width }) => width)
+    .map(({ width, url }) => `${url} ${width}w`)
+    .join(', ');
 
 // TODO: find a better way to get the intrinsic size of the image
 const Image = forwardRef<
