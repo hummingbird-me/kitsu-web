@@ -28,6 +28,11 @@ const UrqlContext: React.FC = function ({ children }): JSX.Element {
       dedupExchange,
       cacheExchange({
         schema,
+        keys: {
+          Image: () => null,
+          ImageView: () => null,
+          TitlesList: () => null,
+        },
         resolvers,
       }),
       authExchange(session),
