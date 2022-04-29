@@ -3,9 +3,10 @@ import {
   createClient,
   Provider,
   dedupExchange,
-  cacheExchange,
   fetchExchange,
+  Exchange,
 } from 'urql';
+import { cacheExchange } from '@urql/exchange-graphcache';
 import { devtoolsExchange } from '@urql/devtools';
 
 import authExchange from 'app/graphql/urql-exchanges/auth';
@@ -13,6 +14,7 @@ import { useSession } from 'app/contexts/SessionContext';
 import { useLocale } from 'app/contexts/IntlContext';
 import { apiHost } from 'app/constants/config';
 import buildAcceptLanguage from 'app/utils/buildAcceptLanguage';
+import schema from 'app/graphql/schema';
 
 const UrqlContext: React.FC = function ({ children }): JSX.Element {
   const session = useSession();
@@ -22,7 +24,9 @@ const UrqlContext: React.FC = function ({ children }): JSX.Element {
     suspense: true,
     exchanges: [
       dedupExchange,
-      cacheExchange,
+      cacheExchange({
+        schema,
+      }),
       authExchange(session),
       fetchExchange,
       devtoolsExchange,
