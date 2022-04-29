@@ -9,7 +9,6 @@ import {
 import { devtoolsExchange } from '@urql/devtools';
 
 import authExchange from 'app/graphql/urql-exchanges/auth';
-import scalarsExchange from 'app/graphql/urql-exchanges/scalars';
 import { useSession } from 'app/contexts/SessionContext';
 import { useLocale } from 'app/contexts/IntlContext';
 import { apiHost } from 'app/constants/config';
@@ -23,7 +22,6 @@ const UrqlContext: React.FC = function ({ children }): JSX.Element {
     suspense: true,
     exchanges: [
       dedupExchange,
-      scalarsExchange,
       cacheExchange,
       authExchange(session),
       fetchExchange,
