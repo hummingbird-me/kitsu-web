@@ -1,6 +1,6 @@
-import { afterEach, vi, describe, test, expect } from 'vitest';
-import fetchMock from 'fetch-mock';
-afterEach(() => fetchMock.reset());
+import { vi, describe, test, expect } from 'vitest';
+
+import fetchMock from 'app/test-utils/fetch-mock';
 vi.mock('app/constants/config');
 
 import { LoginFailed, NetworkError } from 'app/errors';
