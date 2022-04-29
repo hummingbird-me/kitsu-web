@@ -14,6 +14,7 @@ import { useSession } from 'app/contexts/SessionContext';
 import { useLocale } from 'app/contexts/IntlContext';
 import { apiHost } from 'app/constants/config';
 import buildAcceptLanguage from 'app/utils/buildAcceptLanguage';
+import resolvers from 'app/graphql/resolvers';
 import schema from 'app/graphql/schema';
 
 const UrqlContext: React.FC = function ({ children }): JSX.Element {
@@ -27,6 +28,7 @@ const UrqlContext: React.FC = function ({ children }): JSX.Element {
       dedupExchange,
       cacheExchange({
         schema,
+        resolvers,
       }),
       authExchange(session),
       fetchExchange,
