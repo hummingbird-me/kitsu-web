@@ -85,6 +85,7 @@ export default Base.extend(Validations, {
   reviewsCount: attr('number'),
   roles: attr('array'),
   sfwFilter: attr('boolean'),
+  sfwFilterPreference: attr('string'), // enum: 'sfw', 'nsfw_sometimes', 'nsfw_everywhere'
   slug: attr('string'),
   shareToGlobal: attr('boolean'),
   status: attr('string', { defaultValue: 'registered' }),
