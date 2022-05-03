@@ -127,7 +127,6 @@ export default Controller.extend({
     changeFilter(filter) {
       set(this, 'selectedFilter', filter);
       set(this, 'user.sfwFilterPreference', get(filter, 'value'));
-      console.log(filter);
     }
   },
 
