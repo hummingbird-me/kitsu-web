@@ -41,8 +41,9 @@ export default Controller.extend({
 
   filters: getter(() => (
     [
-      { value: true, text: 'Hide Adult Content' },
-      { value: false, text: 'Show Adult Content (¬‿¬ )' }
+      { value: 'sfw', text: 'Hide All Adult Content (❁´◡`❁)' },
+      { value: 'nsfw_sometimes', text: 'Limit to Following Feed (¬‿¬ )' },
+      { value: 'nsfw_everywhere', text: 'Adult Content Everywhere (⓿_⓿)' },
     ]
   )),
 
@@ -93,7 +94,7 @@ export default Controller.extend({
       .find(item => get(item, 'id') === get(this, 'user.ratingSystem'));
     set(this, 'selectedRating', rating);
     const filter = get(this, 'filters')
-      .find(item => get(item, 'value') === get(this, 'user.sfwFilter'));
+      .find(item => get(item, 'value') === get(this, 'user.sfwFilterPreference'));
     set(this, 'selectedFilter', filter);
   },
 
@@ -125,7 +126,8 @@ export default Controller.extend({
 
     changeFilter(filter) {
       set(this, 'selectedFilter', filter);
-      set(this, 'user.sfwFilter', get(filter, 'value'));
+      set(this, 'user.sfwFilterPreference', get(filter, 'value'));
+      console.log(filter);
     }
   },
 
