@@ -59,6 +59,11 @@ export default defineConfig(({ mode }) => ({
   test: {
     exclude: ['cypress', 'node_modules', 'dist', '.git', '.cache'],
     environment: 'happy-dom',
+    coverage: {
+      reporter: ['lcovonly', 'html', 'text-summary'],
+      all: true,
+      src: 'src',
+    },
   },
   plugins: [
     formatjsTransformPlugin(),
