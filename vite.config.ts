@@ -74,7 +74,8 @@ export default defineConfig(({ mode }) => ({
     }),
     ...(process.env.NODE_ENV !== 'test' ? [react()] : []),
     svgr(),
-    sri(),
+    // TODO: set up SRI plugin correctly
+    //sri(),
   ],
   resolve: {
     alias: {
