@@ -42,10 +42,22 @@
       name="twitter:description"
       content="Track, Discover and Share Anime and Manga"
     />
+
+    <!--  sets theme before body loads so that we don't get a flash of unstyled content.
+          Cannot be of type module, as that will run it after <body> has initialised  -->
+    <script src="/src/theme-init.ts"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/src/styles/index.css"
+      media="screen"
+    />
   </head>
 
   <body>
-    <div id="app"><!--ssr-outlet--></div>
+    <div id="app">
+      <!--ssr-outlet-->
+    </div>
     <script type="module" src="/src/entry-client.tsx"></script>
   </body>
 </html>
