@@ -43,13 +43,13 @@ Now visit `http://localhost:3000` and you should see the Kitsu application!
 > `.env` file. This is generally not necessary, but there are some things which don't work fully in
 > staging.
 >
-> In future we plan to integrate this into the
+> In the future we plan to integrate this into the
 > [kitsu-tools](https://github.com/hummingbird-me/kitsu-tools) dev environment better.
 
 ### Navigating the Codebase
 
 While the basic project structure should be familiar to most developers who have used React and Vite
-in past, Kitsu is a large application and has more structure than you might be accustomed to.
+in the past, Kitsu is a large application and has more structure than you might be accustomed to.
 
 #### Entry Points
 
@@ -83,7 +83,7 @@ Vite compiles the application starting at an "entry point". In our case, we have
   at runtime
 - [`src/graphql/`](./src/graphql/) — GraphQL support code, such as the generated schema types,
   scalars, and urql exchanges.
-- [`src/hooks/`](.src/hooks/) — custom react hooks for the application
+- [`src/hooks/`](./src/hooks/) — custom react hooks for the application
 - [`src/locales/`](./src/locales/) — data for every locale we support (translations, date-fn
   locales, etc.)
 - [`src/errors/`](./src/errors/) — all our error subclasses
