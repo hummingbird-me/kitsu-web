@@ -6,8 +6,9 @@ import {
   fetchExchange,
   Exchange,
 } from 'urql';
-import { cacheExchange } from '@urql/exchange-graphcache';
+import { offlineExchange } from '@urql/exchange-graphcache';
 import { devtoolsExchange } from '@urql/devtools';
+import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage';
 
 import authExchange from 'app/graphql/urql-exchanges/auth';
 import { useSession } from 'app/contexts/SessionContext';
@@ -21,12 +22,17 @@ const UrqlContext: React.FC = function ({ children }): JSX.Element {
   const session = useSession();
   const { locale } = useLocale();
 
+  const storage = makeDefaultStorage({
+    idbName: 'kitsu-cache',
+    maxAge: 7,
+  });
   const client = createClient({
     suspense: true,
     exchanges: [
       devtoolsExchange,
       dedupExchange,
-      cacheExchange({
+      offlineExchange({
+        storage,
         schema,
         keys: {
           Image: () => null,
