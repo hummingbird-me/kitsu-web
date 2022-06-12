@@ -51,8 +51,10 @@ const Modal: React.FC<
     <IsModalContextProvider>
       <Dialog.Root defaultOpen onOpenChange={(isOpen) => isOpen || goBack()}>
         <Dialog.Overlay asChild>
-          <Scrim displayMode={displayMode}>
-            <Dialog.Content asChild>
+          <Scrim displayMode={displayMode} onClick={(e) => goBack()}>
+            <Dialog.Content
+              asChild
+              onInteractOutside={(e) => e.preventDefault()}>
               <dialog
                 data-testid="modal"
                 open
