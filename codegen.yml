@@ -9,6 +9,10 @@ generates:
   src/graphql/schema.json:
     plugins:
       - introspection
+    config:
+      includeScalars: true
+      includeEnums: true
+      includeInputs: true
 
   src/graphql/types.ts:
     plugins:
