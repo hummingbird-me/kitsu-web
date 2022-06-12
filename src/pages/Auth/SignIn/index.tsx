@@ -18,6 +18,7 @@ import { LoginFailed } from 'app/errors';
 import Alert from 'app/components/Alert';
 
 import styles from './styles.module.css';
+import { useAuthModalContext } from '../Modal';
 
 function errorMessageFor(error?: Error): JSX.Element | null {
   if (error instanceof LoginFailed) {
@@ -39,11 +40,9 @@ function errorMessageFor(error?: Error): JSX.Element | null {
   }
 }
 
-const SignInModal: React.FC<{
-  email: string;
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
-}> = function ({ email, setEmail }): JSX.Element {
+const SignInModal: React.FC = function (): JSX.Element {
   const { formatMessage } = useIntl();
+  const { email, setEmail } = useAuthModalContext();
   const [password, setPassword] = React.useState('');
   const [passwordLoginState, loginWithPassword] = useLoginFn(
     _loginWithPassword,

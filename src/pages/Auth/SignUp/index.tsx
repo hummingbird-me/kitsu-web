@@ -4,21 +4,18 @@ import {
   FaApple as AppleLogo,
   FaTwitter as TwitterLogo,
 } from 'react-icons/fa';
-import { useLocation } from 'react-router-dom';
 
 import Button, { ButtonKind } from 'app/components/Button';
 import TextInput from 'app/components/TextInput';
 import Rule from 'app/components/Rule';
 
 import styles from './styles.module.css';
+import { useAuthModalContext } from '../Modal';
 
 export default function SignUpModal(): JSX.Element {
-  const { state } = useLocation() as {
-    state?: { email?: string; password?: string };
-  };
-  const [email, setEmail] = React.useState(state?.email ?? '');
+  const { email, setEmail } = useAuthModalContext();
   const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState(state?.password ?? '');
+  const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
 
   return (
@@ -48,7 +45,7 @@ export default function SignUpModal(): JSX.Element {
       <TextInput
         type="password"
         autoComplete="new-password"
-        placeholder="Password"
+        placeholder="Confirm Password"
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
       />

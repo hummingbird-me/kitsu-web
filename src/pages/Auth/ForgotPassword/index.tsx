@@ -7,30 +7,23 @@ import TextInput from 'app/components/TextInput';
 import AuthModalHeader from 'app/components/AuthModalHeader';
 
 import styles from './styles.module.css';
+import { useAuthModalContext } from '../Modal';
 
-export default function ForgotPasswordModal({
-  displayMode,
-}: {
-  displayMode: 'page' | 'modal';
-}): JSX.Element {
-  const { state } = useLocation<{ email?: string } | undefined>();
-  const [email, setEmail] = React.useState(state?.email ?? '');
+export default function ForgotPasswordModal(): JSX.Element {
+  const { email, setEmail } = useAuthModalContext();
 
   return (
-    <Modal displayMode={displayMode} className={styles.modal}>
-      <AuthModalHeader email={email} />
-      <form className={styles.authForm}>
-        <TextInput
-          type="email"
-          autoComplete="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <Button type="submit" kind={ButtonKind.PRIMARY}>
-          Send password reset
-        </Button>
-      </form>
-    </Modal>
+    <form className={styles.authForm}>
+      <TextInput
+        type="email"
+        autoComplete="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <Button type="submit" kind={ButtonKind.PRIMARY}>
+        Send password reset
+      </Button>
+    </form>
   );
 }

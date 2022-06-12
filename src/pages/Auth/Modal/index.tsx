@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useLocation, useOutlet } from 'react-router-dom';
 
 import Modal from 'app/components/Modal';
 import AuthModalHeader from 'app/components/AuthModalHeader';
 
 import styles from './styles.module.css';
+
+const AuthModalContext = React.createContext<{
+  email?: string;
+  setEmail: (email: string) => void;
+}>({
+  setEmail: () => null,
+});
+
+export function useAuthModalContext() {
+  return useContext(AuthModalContext);
+}
 
 const AuthModal: React.FC<React.ComponentProps<typeof Modal>> = function ({
   displayMode,
@@ -16,10 +27,12 @@ const AuthModal: React.FC<React.ComponentProps<typeof Modal>> = function ({
   const outlet = useOutlet();
 
   return (
-    <Modal className={styles.modal} displayMode={displayMode}>
-      <AuthModalHeader email={email} />
-      {outlet}
-    </Modal>
+    <AuthModalContext.Provider value={{ email, setEmail }}>
+      <Modal className={styles.modal} displayMode={displayMode}>
+        <AuthModalHeader email={email} />
+        {outlet}
+      </Modal>
+    </AuthModalContext.Provider>
   );
 };
 
