@@ -40,3 +40,21 @@
     }
   }
 }
+
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: var(--modal-close-button-color);
+  opacity: 0.5;
+  transition: opacity 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+  }
+}
