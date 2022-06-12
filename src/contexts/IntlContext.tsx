@@ -13,7 +13,7 @@ type LocaleState = {
   unsetLocale: () => void;
 };
 
-function useLocaleState(locale: string): LocaleState {
+function useLocaleState(locale?: string): LocaleState {
   const [cookie, setCookie, unsetCookie] = useCookie('chosenLocale');
   const availableLocales = Object.keys(translations);
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
@@ -25,7 +25,7 @@ function useLocaleState(locale: string): LocaleState {
     useEvent('languagechange', forceUpdate, window);
 
     // If the user has chosen an invalid locale, delete it
-    if (cookie && availableLocales.indexOf(locale) === -1) {
+    if (cookie && availableLocales.indexOf(cookie) === -1) {
       unsetCookie();
     }
 
@@ -53,7 +53,7 @@ const LocaleContext = React.createContext<{
 // @ts-ignore We guarantee that this is actually never null
 const DateFnsLocaleContext = React.createContext<DateFnsLocale>(null);
 
-const IntlContext: React.FC<{ locale: string }> = function ({
+const IntlContext: React.FC<{ locale?: string }> = function ({
   children,
   locale,
 }) {
