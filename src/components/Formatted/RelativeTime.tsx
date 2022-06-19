@@ -1,6 +1,10 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import { formatDistanceToNow, differenceInSeconds } from 'date-fns';
+import {
+  formatDistanceToNow,
+  differenceInSeconds,
+  format as formatDate,
+  formatDistanceToNowStrict,
+} from 'date-fns';
 import { useInterval, useUpdate } from 'react-use';
 
 import { useDateFnsLocale } from 'app/contexts/IntlContext';
@@ -26,19 +30,21 @@ function intervalFor(time: Date) {
   }
 }
 
-const FormattedRelativeTime: React.FC<{ time: Date }> = function ({ time }) {
-  const update = useUpdate();
-  const locale = useDateFnsLocale();
-  useInterval(update, intervalFor(time));
+const FormattedRelativeTime: React.FC<{ time: Date; strict?: boolean }> =
+  function ({ time, strict = false }) {
+    const update = useUpdate();
+    const locale = useDateFnsLocale();
+    useInterval(update, intervalFor(time));
 
-  return (
-    <FormattedMessage
-      defaultMessage="{time} ago"
-      values={{
-        time: formatDistanceToNow(time, { addSuffix: true, locale }),
-      }}
-    />
-  );
-};
+    const formatted = strict
+      ? formatDistanceToNowStrict(time, { addSuffix: true, locale })
+      : formatDistanceToNow(time, { addSuffix: true, locale });
+
+    return (
+      <time dateTime={time.toISOString()} title={formatDate(time, 'PPPp')}>
+        {formatted}
+      </time>
+    );
+  };
 
 export default FormattedRelativeTime;
