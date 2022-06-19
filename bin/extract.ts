@@ -3,13 +3,14 @@ import { extract } from '@formatjs/cli';
 import glob from 'fast-glob';
 import stringify from 'json-stable-stringify';
 
-const OUT_FILE = 'src/translations/en-US.json';
+const OUT_FILE = 'src/locales/translations/en-US.json';
 
 (async () => {
   const files = await glob('src/**/*.tsx');
   const existing = JSON.parse(await readFile(OUT_FILE, 'utf8'));
   const extracted = JSON.parse(
     await extract(files, {
+      additionalFunctionNames: ['formatMessage'],
       idInterpolationPattern: '[sha512:contenthash:base64:6]',
       extractSourceLocation: true,
       format: 'crowdin',
