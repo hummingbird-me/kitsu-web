@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  height: 2rem;
+  align-items: center;
+}
+
+.title {
+  all: unset;
+  color: var(--section-header-text-color);
+  font-weight: var(--font-bold);
+}
+
+.link {
+  color: var(--section-header-link-color);
+  font-weight: var(--font-bold);
+  margin-inline-start: auto;
+  font-size: var(--font-me);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: color ease-in-out-sine 0.2s;
+
+  &:hover {
+    color: var(--section-header-text-color);
+  }
+}
