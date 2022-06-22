@@ -53,7 +53,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.stories.{js,jsx,ts,tsx}'],
+      files: ['*.{stories,test}.{js,jsx,ts,tsx}'],
       rules: {
         'i18next/no-literal-string': 'off',
       },
