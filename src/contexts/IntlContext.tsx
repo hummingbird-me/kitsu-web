@@ -40,7 +40,7 @@ function useLocaleState(locale?: string): LocaleState {
   }
 }
 
-const LocaleContext = React.createContext<{
+export const LocaleContext = React.createContext<{
   locale: string;
   setLocale: (locale: string) => void;
   unsetLocale: () => void;
@@ -51,7 +51,7 @@ const LocaleContext = React.createContext<{
 });
 
 // @ts-ignore We guarantee that this is actually never null
-const DateFnsLocaleContext = React.createContext<DateFnsLocale>(null);
+export const DateFnsLocaleContext = React.createContext<DateFnsLocale>(null);
 
 const IntlContext: React.FC<{ locale?: string }> = function ({
   children,
