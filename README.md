@@ -24,6 +24,8 @@ web application. If so, welcome! It's pretty easy to get started, and we're here
 way. If you have any questions, please don't hesitate to ask us on our
 [Discord](https://invite.gg/kitsu) in the #dev channel!
 
+Before you make a pull request, please [read the styleguide](./STYLEGUIDE.md) and make sure that you're keeping the codebase clean and consistent for future developers.
+
 ### Getting It Running
 
 You're gonna need a [fairly modern Node.js version](https://nodejs.org/en/about/releases/). The
