@@ -3,6 +3,7 @@ import React, {
   ButtonHTMLAttributes,
   useEffect,
   useLayoutEffect,
+  useRef,
 } from 'react';
 
 import Spinner from 'app/components/Spinner';
@@ -96,7 +97,7 @@ const Button: FC<ButtonProps> = function ({
   ...args
 }: ButtonProps) {
   if (disabled) kind = ButtonKind.DISABLED;
-
+  let ref = useRef<HTMLButtonElement>(null);
   useLayoutEffect(() => {
     // let themeMode = document.querySelector('html')?.dataset.theme ?? 'light';
     // theme = 'dark';
@@ -114,25 +115,16 @@ const Button: FC<ButtonProps> = function ({
       '--background-contrast-200': `var(--button-translucent-${alternativeColor}-25)`,
     };
     for (let [key, value] of Object.entries(CSSColorReassignment)) {
-      let buttonClass: HTMLElement = document.querySelector(
-        '.' + styles.button
-      )!;
-      buttonClass.style.setProperty(key, value);
+      ref?.current?.style.setProperty(key, value);
     }
 
     if (theme == 'dark' && (kind == 'outline' || kind == 'borderless')) {
       for (let [key, value] of Object.entries(CSSDarkBgColorReassignment)) {
-        let buttonClass: HTMLElement = document.querySelector(
-          '.' + styles.button
-        )!;
-        buttonClass.style.setProperty(key, value);
+        ref?.current?.style.setProperty(key, value);
       }
     } else {
       for (let [key, value] of Object.entries(CSSDarkBgColorReassignment)) {
-        let buttonClass: HTMLElement = document.querySelector(
-          '.' + styles.button
-        )!;
-        buttonClass.style.setProperty(key, 'transparent');
+        ref?.current?.style.setProperty(key, 'transparent');
       }
     }
   }, [kind, alternativeColor, theme]);
@@ -141,6 +133,7 @@ const Button: FC<ButtonProps> = function ({
     <button
       {...args}
       disabled={disabled || loading}
+      ref={ref}
       className={[
         className,
         styles.button,
