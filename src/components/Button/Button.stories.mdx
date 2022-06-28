@@ -28,11 +28,13 @@ should clearly indicate what action will be triggered when clicked.
     args={{
       kind: 'primary',
       size: 'medium',
+      alternativeColor: 'safe-grey',
+      extendedPadding: 'padding-md',
       children: 'Text goes here',
       loading: false,
       disabled: false,
     }}>
-    {Button.bind({})}
+    {(args) => <Button {...args} />}
   </Story>
 </Canvas>
 
@@ -56,12 +58,16 @@ Use this when there's one action you expect to be used most frequently.
       children: 'Create Account',
       loading: false,
       disabled: false,
+      size: 'medium',
+      extendedPadding: 'padding-md',
+      alternativeColor: 'green',
+      theme: 'light',
     }}>
     {(args) => <Button {...args} kind="primary" />}
   </Story>
 </Canvas>
 
-### Inverted Buttons
+<!-- ### Inverted Buttons
 
 A button with an inverted style. Generally only used on a dark background, this button is displayed
 in white with dark text. This is sometimes used as an alternative to the primary button kind.
@@ -80,7 +86,7 @@ in white with dark text. This is sometimes used as an alternative to the primary
     }}>
     {(args) => <Button {...args} kind="inverted" />}
   </Story>
-</Canvas>
+</Canvas> -->
 
 ### Outline Buttons
 
@@ -94,11 +100,65 @@ A button with just an outline. Generally used for a cancellation action alongsid
       kind: { table: { disable: true } },
     }}
     args={{
+      children: 'Feedback',
+      loading: false,
+      disabled: false,
+      size: 'medium',
+      extendedPadding: 'padding-md',
+      alternativeColor: 'yellow',
+      theme: 'light',
+    }}>
+    {(args) => <Button {...args} kind="outline" />}
+  </Story>
+</Canvas>
+
+### Borderless Buttons
+
+A button with just an outline. Generally used for a cancellation action alongside a primary button.
+
+<Canvas>
+  <Story
+    name="Kind: Borderless"
+    parameters={{ layout: 'centered' }}
+    argTypes={{
+      kind: { table: { disable: true } },
+    }}
+    args={{
+      children: 'Leave',
+      loading: false,
+      disabled: false,
+      hoverBehaviour: 'bg-lighten',
+      size: 'medium',
+      alternativeColor: 'red',
+      extendedPadding: 'padding-md',
+      theme: 'light',
+    }}>
+    {(args) => <Button {...args} kind="borderless" />}
+  </Story>
+</Canvas>
+
+### Screen Buttons
+
+A button with just an outline. Generally used for a cancellation action alongside a primary button.
+
+<Canvas>
+  <Story
+    name="Kind: Screen"
+    parameters={{ layout: 'centered' }}
+    argTypes={{
+      kind: { table: { disable: true } },
+      alternativeColor: { table: { disable: true } },
+    }}
+    args={{
       children: 'Cancel',
       loading: false,
       disabled: false,
+      hoverBehaviour: 'bg-lighten',
+      size: 'medium',
+      extendedPadding: 'padding-md',
+      theme: 'light',
     }}>
-    {(args) => <Button {...args} kind="outline" />}
+    {(args) => <Button {...args} kind="screen" />}
   </Story>
 </Canvas>
 
@@ -117,7 +177,20 @@ a greyed-out style, to indicate that it is not available to the user.
     name="State: Disabled"
     parameters={{ layout: 'centered' }}
     argTypes={{
-      disabled: { table: { disable: true } },
+      kind: { table: { disable: true } },
+      size: {
+        defaultValue: 'large',
+      },
+      extendedPadding: {
+        defaultValue: 'padding-lg',
+      },
+      alternativeColor: { table: { disable: true } },
+      hoverBehaviour: {
+        defaultValue: 'bg-darken',
+      },
+      theme: {
+        defaultValue: 'light',
+      },
     }}
     args={{
       kind: 'primary',
