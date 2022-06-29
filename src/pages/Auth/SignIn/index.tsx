@@ -7,9 +7,9 @@ import {
 import { useIntl, FormattedMessage } from 'react-intl';
 import getAuthorization from '@nanoauth/myanimelist';
 
-import { malClientId } from 'app/constants/config';
+// import { malClientId } from 'app/constants/config';
 import ModalLink from 'app/components/ModalLink';
-import Button, { ButtonKind } from 'app/components/Button';
+import Button, { AlternativeColors, ButtonKind, HoverBehaviour } from 'app/components/Button';
 import TextInput from 'app/components/TextInput';
 import Rule from 'app/components/Rule';
 import _loginWithPassword from 'app/utils/login/withPassword';
@@ -84,6 +84,8 @@ const SignInModal: React.FC = function (): JSX.Element {
       <Button
         type="submit"
         kind={ButtonKind.PRIMARY}
+        hoverBehaviour={HoverBehaviour.LIGHTEN}
+        alternativeColor={AlternativeColors.GREEN}
         loading={passwordLoginState.loading}>
         <FormattedMessage
           defaultMessage="Log in"

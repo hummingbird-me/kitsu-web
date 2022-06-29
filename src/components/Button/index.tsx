@@ -4,11 +4,13 @@ import React, {
   useEffect,
   useLayoutEffect,
   useRef,
+  useState,
 } from 'react';
 
 import Spinner from 'app/components/Spinner';
 
 import styles from './styles.module.css';
+import useMatchTheme, { themes } from 'app/hooks/useMatchTheme';
 
 export enum ButtonKind {
   /** A primary button, generally displayed in green. */
@@ -73,9 +75,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
   /** Whether the button should be disabled (non-interactive) */
   disabled?: boolean;
-
-  /** !! Since Darkmode on Storyboard not fully set up,  I quick fix here for now  !! */
-  theme: 'dark' | 'light';
 }
 
 /**
@@ -83,14 +82,14 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  * document for accessible, standard button functionality.  It also provides a loading indicator to
  * inform the user when the button is performing a task.
  */
+
 const Button: FC<ButtonProps> = function ({
   kind,
   size = ButtonSize.MD,
   loading = false,
-  alternativeColor = AlternativeColors.GREY,
+  alternativeColor,
   hoverBehaviour = HoverBehaviour.DARKEN,
   extendedPadding = ExtendedPadding.MD,
-  theme = 'light',
   disabled = false,
   className,
   children,
@@ -98,10 +97,17 @@ const Button: FC<ButtonProps> = function ({
 }: ButtonProps) {
   if (disabled) kind = ButtonKind.DISABLED;
   let ref = useRef<HTMLButtonElement>(null);
+  let theme = useMatchTheme();
+
   useLayoutEffect(() => {
-    // let themeMode = document.querySelector('html')?.dataset.theme ?? 'light';
-    // theme = 'dark';
-    console.log(theme);
+    //presets
+
+    if (kind === 'primary' && !alternativeColor) {
+      alternativeColor = AlternativeColors.GREEN;
+    }
+    //if no priorties - default to grey;
+    if (!alternativeColor) alternativeColor = AlternativeColors.GREY;
+
     let CSSColorReassignment = {
       '--defaultColor': `var(--${alternativeColor})`,
       '--lighten-100': `var(--button-lighten-${alternativeColor}-100)`,
@@ -114,11 +120,32 @@ const Button: FC<ButtonProps> = function ({
       '--background-contrast-100': `var(--button-translucent-${alternativeColor}-5)`,
       '--background-contrast-200': `var(--button-translucent-${alternativeColor}-25)`,
     };
-    for (let [key, value] of Object.entries(CSSColorReassignment)) {
-      ref?.current?.style.setProperty(key, value);
+
+    if (
+      (theme == 'theme-dark' || theme == 'theme-oled') &&
+      (kind == 'outline' || kind == 'borderless')
+    ) {
+      //brighten text color anyways for dark theme
+      CSSColorReassignment[
+        '--darken-100'
+      ] = `var(--button-lighten-${alternativeColor}-100)`;
+      CSSColorReassignment[
+        '--darken-200'
+      ] = `var(--button-lighten-${alternativeColor}-200)`;
+      for (let [key, value] of Object.entries(CSSColorReassignment)) {
+        ref?.current?.style.setProperty(key, value);
+      }
+    } else {
+      for (let [key, value] of Object.entries(CSSColorReassignment)) {
+        ref?.current?.style.setProperty(key, value);
+      }
     }
 
-    if (theme == 'dark' && (kind == 'outline' || kind == 'borderless')) {
+    if (
+      theme == 'theme-dark' ||
+      (theme == 'theme-oled' && (kind == 'outline' || kind == 'borderless'))
+    ) {
+      //add contrast transucency to backgrounds of specified kind
       for (let [key, value] of Object.entries(CSSDarkBgColorReassignment)) {
         ref?.current?.style.setProperty(key, value);
       }
@@ -128,6 +155,12 @@ const Button: FC<ButtonProps> = function ({
       }
     }
   }, [kind, alternativeColor, theme]);
+
+  useEffect(() => {
+    //reappend the transition duration after the style has applied.
+    //this will prevent initial transition from base color.
+    ref?.current?.style.setProperty('transition-duration', '100ms');
+  }, []);
 
   return (
     <button

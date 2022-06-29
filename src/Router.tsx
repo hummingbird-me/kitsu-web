@@ -5,7 +5,7 @@ import { ErrorBoundary } from '@sentry/react';
 
 import 'app/styles/index.css';
 
-import AnimePage, { AnimeById } from './pages/Anime';
+// import AnimePage, { AnimeById } from './pages/Anime';
 import NotFoundPage from './pages/Errors/NotFound';
 import AuthModal from './pages/Auth/Modal';
 import SignInModal from './pages/Auth/SignIn';
@@ -35,8 +35,8 @@ export default function Router() {
     <ErrorBoundary fallback={<GeneralErrorPage />}>
       <Routes location={background || location}>
         <Route path="anime">
-          <Route path=":id(\d+)" element={<AnimeById />} />
-          <Route path=":slug" element={<AnimePage />} />
+          {/* <Route path=":id(\d+)" element={<AnimeById />} />
+          <Route path=":slug" element={<AnimePage />} /> */}
         </Route>
         {modals({ displayMode: 'page' })}
         <Route path="*" element={<NotFoundPage />} />

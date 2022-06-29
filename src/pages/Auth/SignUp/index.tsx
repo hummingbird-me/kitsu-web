@@ -5,7 +5,11 @@ import {
   FaTwitter as TwitterLogo,
 } from 'react-icons/fa';
 
-import Button, { ButtonKind } from 'app/components/Button';
+import Button, {
+  AlternativeColors,
+  ButtonKind,
+  HoverBehaviour,
+} from 'app/components/Button';
 import TextInput from 'app/components/TextInput';
 import Rule from 'app/components/Rule';
 
@@ -49,7 +53,10 @@ export default function SignUpModal(): JSX.Element {
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
       />
-      <Button type="submit" kind={ButtonKind.PRIMARY}>
+      <Button
+        type="submit"
+        kind={ButtonKind.PRIMARY}
+        hoverBehaviour={HoverBehaviour.LIGHTEN}>
         Create account
       </Button>
       <Rule label="Or sign up with" />

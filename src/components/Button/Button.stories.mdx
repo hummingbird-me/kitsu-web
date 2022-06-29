@@ -61,47 +61,36 @@ Use this when there's one action you expect to be used most frequently.
       size: 'medium',
       extendedPadding: 'padding-md',
       alternativeColor: 'green',
-      theme: 'light',
     }}>
     {(args) => <Button {...args} kind="primary" />}
   </Story>
-  <Button kind="primary" alternativeColor="red" theme="dark">
+  <Button kind="primary" alternativeColor="red">
     Report
   </Button>
-  <Button
-    kind="primary"
-    alternativeColor="yellow"
-    theme="dark"
-    extendedPadding="padding-lg">
+  <Button kind="primary" alternativeColor="yellow" extendedPadding="padding-lg">
     Remove
   </Button>
-  <Button
-    kind="primary"
-    alternativeColor="green"
-    theme="dark"
-    extendedPadding="padding-xl">
+  <Button kind="primary" alternativeColor="green" extendedPadding="padding-xl">
     Completed
   </Button>
-  <Button
-    kind="primary"
-    alternativeColor="blue"
-    theme="dark"
-    extendedPadding="padding-xl">
+  <Button kind="primary" alternativeColor="blue" extendedPadding="padding-xl">
     Want to Watch
   </Button>
   <Button
     kind="primary"
     alternativeColor="safe-purple"
-    theme="dark"
     extendedPadding="padding-xl">
     Started Watching
   </Button>
+  <Button kind="primary" alternativeColor="blue" extendedPadding="padding-xl">
+    Add to Library
+  </Button>
   <Button
     kind="primary"
-    alternativeColor="blue"
-    theme="dark"
+    alternativeColor="safe-grey"
+    hoverBehaviour={'bg-lighten'}
     extendedPadding="padding-xl">
-    Add to Library
+    This button brightens on hover
   </Button>
 </Canvas>
 
@@ -123,14 +112,12 @@ A button with just an outline. Generally used for a cancellation action alongsid
       size: 'medium',
       extendedPadding: 'padding-md',
       alternativeColor: 'yellow',
-      theme: 'light',
     }}>
     {(args) => <Button {...args} kind="outline" />}
   </Story>
   <Button
     kind="outline"
     alternativeColor="blue"
-    theme="dark"
     size="small"
     hoverBehaviour="bg-lighten"
     extendedPadding="padding-xl">
@@ -140,7 +127,6 @@ A button with just an outline. Generally used for a cancellation action alongsid
     kind="outline"
     size="small"
     alternativeColor="green"
-    theme="dark"
     hoverBehaviour="bg-lighten"
     extendedPadding="padding-xl">
     Confirm
@@ -148,7 +134,6 @@ A button with just an outline. Generally used for a cancellation action alongsid
   <Button
     kind="outline"
     alternativeColor="yellow"
-    theme="dark"
     size="small"
     hoverBehaviour="bg-lighten"
     extendedPadding="padding-xl">
@@ -157,7 +142,6 @@ A button with just an outline. Generally used for a cancellation action alongsid
   <Button
     kind="outline"
     alternativeColor="blue"
-    theme="dark"
     size="small"
     hoverBehaviour="bg-lighten"
     extendedPadding="padding-xl">
@@ -167,7 +151,6 @@ A button with just an outline. Generally used for a cancellation action alongsid
     kind="outline"
     size="small"
     alternativeColor="safe-grey"
-    theme="dark"
     hoverBehaviour="bg-lighten"
     extendedPadding="padding-sm">
     Edit
@@ -176,7 +159,6 @@ A button with just an outline. Generally used for a cancellation action alongsid
     kind="outline"
     size="small"
     alternativeColor="red"
-    theme="dark"
     hoverBehaviour="bg-lighten"
     extendedPadding="padding-sm">
     (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
@@ -184,7 +166,6 @@ A button with just an outline. Generally used for a cancellation action alongsid
   <Button
     kind="outline"
     alternativeColor="yellow"
-    theme="dark"
     size="medium"
     hoverBehaviour="bg-lighten"
     extendedPadding="padding-md">
@@ -193,7 +174,6 @@ A button with just an outline. Generally used for a cancellation action alongsid
   <Button
     kind="outline"
     alternativeColor="safe-purple"
-    theme="dark"
     size="medium"
     hoverBehaviour="bg-lighten"
     extendedPadding="padding-md">
@@ -223,29 +203,26 @@ buttons actions. Developers should use atmost one per form, otherwise use second
       size: 'medium',
       alternativeColor: 'red',
       extendedPadding: 'padding-md',
-      theme: 'light',
     }}>
     {(args) => <Button {...args} kind="borderless" />}
   </Story>
-  <Button kind="borderless" alternativeColor="red" theme="dark">
+  <Button kind="borderless" alternativeColor="red">
     Exit
   </Button>
-  <Button kind="borderless" alternativeColor="yellow" theme="dark">
+  <Button kind="borderless" alternativeColor="yellow">
     Cancel
   </Button>
-  <Button
-    kind="borderless"
-    alternativeColor="red"
-    theme="dark"
-    hoverBehaviour="bg-lighten">
+  <Button kind="borderless" alternativeColor="red" hoverBehaviour="bg-lighten">
     Unfollow
   </Button>
   <Button
     kind="borderless"
     alternativeColor="safe-purple"
-    theme="dark"
     hoverBehaviour="bg-lighten">
     ( ಥ ʖ̯ ಥ)
+  </Button>
+  <Button kind="borderless" hoverBehaviour="bg-darken">
+    Restore
   </Button>
 </Canvas>
 
@@ -269,7 +246,6 @@ such as overlaying on images. The screen button hovers into black or white to pr
       hoverBehaviour: 'bg-lighten',
       size: 'medium',
       extendedPadding: 'padding-md',
-      theme: 'light',
     }}>
     {(args) => <Button {...args} kind="screen" />}
   </Story>
@@ -332,9 +308,6 @@ a greyed-out style, to indicate that it is not available to the user.
       hoverBehaviour: {
         defaultValue: 'bg-darken',
       },
-      theme: {
-        defaultValue: 'light',
-      },
     }}
     args={{
       kind: 'primary',
@@ -387,6 +360,7 @@ import { FaTrash } from 'react-icons/fa';
       children: 'Delete Item',
       loading: false,
       disabled: false,
+      alternativeColor: 'red',
     }}>
     {({ children, ...args }) => (
       <Button {...args}>

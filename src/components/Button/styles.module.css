@@ -18,7 +18,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition-property: background-color, color, border-color, border-width;
-  transition-duration: 100ms;
+  /* transition-duration: 100ms; */
   transition-timing-function: ease-in-out-sine;
   cursor: pointer;
 }
@@ -59,7 +59,7 @@
   &.bg-lighten {
     &:hover {
       color: var(--lighten-100);
-      background-color: var(--background-contrast-100);
+      background-color: var(----background-contrast-100);
       border: 1px solid var(--lighten-100);
     }
     &:active {
@@ -84,15 +84,16 @@
 }
 
 .borderless {
-  color: var(--button-borderless-text-color);
+  /* button-borderless-text-color */
+  color: var(--defaultColor);
   background-color: var(--default-borderless-backgroundd);
   border: var(--border);
   &.bg-lighten {
     &:hover {
-      color: var(--darken-100);
+      color: var(--lighten-100);
     }
     &:active {
-      color: var(--darken-200);
+      color: var(--lighten-200);
     }
   }
 
@@ -119,7 +120,7 @@
     }
     &:active {
       color: black;
-      background-color: white;
+      background-color: rgb(218, 218, 218);
     }
   }
   &.bg-darken {
@@ -129,7 +130,7 @@
     }
     &:active {
       color: white;
-      background-color: black;
+      background-color: rgb(17, 17, 17);
     }
   }
 }
