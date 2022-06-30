@@ -97,70 +97,19 @@ const Button: FC<ButtonProps> = function ({
 }: ButtonProps) {
   if (disabled) kind = ButtonKind.DISABLED;
   let ref = useRef<HTMLButtonElement>(null);
-  let theme = useMatchTheme();
 
-  useLayoutEffect(() => {
-    //presets
+  //presets
+  if (kind == 'primary' && !alternativeColor) {
+    alternativeColor = AlternativeColors.GREEN;
+  } else if (!alternativeColor) {
+    alternativeColor = AlternativeColors.GREY;
+  }
 
-    if (kind === 'primary' && !alternativeColor) {
-      alternativeColor = AlternativeColors.GREEN;
-    }
-    //if no priorties - default to grey;
-    if (!alternativeColor) alternativeColor = AlternativeColors.GREY;
-
-    let CSSColorReassignment = {
-      '--defaultColor': `var(--${alternativeColor})`,
-      '--lighten-100': `var(--button-lighten-${alternativeColor}-100)`,
-      '--lighten-200': `var(--button-lighten-${alternativeColor}-200)`,
-      '--darken-100': `var(--button-darken-${alternativeColor}-100)`,
-      '--darken-200': `var(--button-darken-${alternativeColor}-200)`,
-    };
-
-    let CSSDarkBgColorReassignment = {
-      '--background-contrast-100': `var(--button-translucent-${alternativeColor}-5)`,
-      '--background-contrast-200': `var(--button-translucent-${alternativeColor}-25)`,
-    };
-
-    if (
-      (theme == 'theme-dark' || theme == 'theme-oled') &&
-      (kind == 'outline' || kind == 'borderless')
-    ) {
-      //brighten text color anyways for dark theme
-      CSSColorReassignment[
-        '--darken-100'
-      ] = `var(--button-lighten-${alternativeColor}-100)`;
-      CSSColorReassignment[
-        '--darken-200'
-      ] = `var(--button-lighten-${alternativeColor}-200)`;
-      for (let [key, value] of Object.entries(CSSColorReassignment)) {
-        ref?.current?.style.setProperty(key, value);
-      }
-    } else {
-      for (let [key, value] of Object.entries(CSSColorReassignment)) {
-        ref?.current?.style.setProperty(key, value);
-      }
-    }
-
-    if (
-      theme == 'theme-dark' ||
-      (theme == 'theme-oled' && (kind == 'outline' || kind == 'borderless'))
-    ) {
-      //add contrast transucency to backgrounds of specified kind
-      for (let [key, value] of Object.entries(CSSDarkBgColorReassignment)) {
-        ref?.current?.style.setProperty(key, value);
-      }
-    } else {
-      for (let [key, value] of Object.entries(CSSDarkBgColorReassignment)) {
-        ref?.current?.style.setProperty(key, 'transparent');
-      }
-    }
-  }, [kind, alternativeColor, theme]);
-
-  useEffect(() => {
-    //reappend the transition duration after the style has applied.
-    //this will prevent initial transition from base color.
-    ref?.current?.style.setProperty('transition-duration', '100ms');
-  }, []);
+  // useEffect(() => {
+  //   //reappend the transition duration after the style has applied.
+  //   //this will prevent initial transition from base color.
+  //   ref?.current?.style.setProperty('transition-duration', '100ms');
+  // }, []);
 
   return (
     <button
@@ -174,6 +123,7 @@ const Button: FC<ButtonProps> = function ({
         styles[size],
         styles[hoverBehaviour],
         styles[extendedPadding],
+        styles[alternativeColor],
       ].join(' ')}>
       {loading ? <Spinner /> : children}
     </button>

@@ -18,35 +18,106 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition-property: background-color, color, border-color, border-width;
-  /* transition-duration: 100ms; */
+  transition-duration: 100ms;
   transition-timing-function: ease-in-out-sine;
   cursor: pointer;
 }
 
-/* Primary Type */
+.green {
+  --defaultColor: var(--green);
+  --lighten-100: var(--button-lighten-green-100);
+  --lighten-200: var(--button-lighten-green-200);
+  --darken-100: var(--button-darken-green-100);
+  --darken-200: var(--button-darken-green-200);
+
+  --background-contrast-100: var(--button-outline-bg-hover-green);
+  --background-contrast-200: var(--button-outline-bg-active-green);
+}
+
+.red {
+  --defaultColor: var(--red);
+  --lighten-100: var(--button-lighten-red-100);
+  --lighten-200: var(--button-lighten-red-200);
+  --darken-100: var(--button-darken-red-100);
+  --darken-200: var(--button-darken-red-200);
+
+  --background-contrast-100: var(--button-outline-bg-hover-red);
+  --background-contrast-200: var(--button-outline-bg-active-red);
+}
+
+.blue {
+  --defaultColor: var(--blue);
+  --lighten-100: var(--button-lighten-blue-100);
+  --lighten-200: var(--button-lighten-blue-200);
+  --darken-100: var(--button-darken-blue-100);
+  --darken-200: var(--button-darken-blue-200);
+
+  --background-contrast-100: var(--button-outline-bg-hover-blue);
+  --background-contrast-200: var(--button-outline-bg-active-blue);
+}
+
+.yellow {
+  --defaultColor: var(--yellow);
+  --lighten-100: var(--button-lighten-yellow-100);
+  --lighten-200: var(--button-lighten-yellow-200);
+  --darken-100: var(--button-darken-yellow-100);
+  --darken-200: var(--button-darken-yellow-200);
+
+  --background-contrast-100: var(--button-outline-bg-hover-yellow);
+  --background-contrast-200: var(--button-outline-bg-active-yellow);
+}
+
+.safe-purple {
+  --defaultColor: var(--safe-purple);
+  --lighten-100: var(--button-lighten-safe-purple-100);
+  --lighten-200: var(--button-lighten-safe-purple-200);
+  --darken-100: var(--button-darken-safe-purple-100);
+  --darken-200: var(--button-darken-safe-purple-200);
+
+  --background-contrast-100: var(--button-outline-bg-hover-safe-purple);
+  --background-contrast-200: var(--button-outline-bg-active-safe-purple);
+}
+
+.safe-grey {
+  --defaultColor: var(--safe-grey);
+  --lighten-100: var(--button-lighten-safe-grey-100);
+  --lighten-200: var(--button-lighten-safe-grey-200);
+  --darken-100: var(--button-darken-safe-grey-100);
+  --darken-200: var(--button-darken-safe-grey-200);
+
+  --background-contrast-100: var(--button-outline-bg-hover-safe-grey);
+  --background-contrast-200: var(--button-outline-bg-active-safe-grey);
+}
+
 .primary {
-  --border: var(--button-primary-border);
+  --white-t-50: rgba(255, 255, 255, 0.5);
+  --white-t-60: rgba(255, 255, 255, 0.6);
   color: white;
   background-color: var(--defaultColor);
-  border: var(--border);
+  border: 1px solid var(--LIGHT, transparent) var(--DARK, var(--white-t-50))
+    var(--OLED, var(--white-t-50));
   &.bg-lighten {
     &:hover {
       background-color: var(--lighten-100);
-      border: var(--border);
+      border: 1px solid var(--LIGHT, transparent) var(--DARK, var(--white-t-60))
+        var(--OLED, var(--white-t-50));
     }
     &:active {
       background-color: var(--lighten-200);
-      border: var(--border);
+      border: 1px solid var(--LIGHT, transparent) var(--DARK, var(--white-t-50))
+        var(--OLED, var(--white-t-50));
     }
   }
   &.bg-darken {
     &:hover {
       background-color: var(--darken-100);
-      border: var(--border);
+      border: 1px solid var(--LIGHT, transparent) var(--DARK, var(--white-t-60))
+        var(--OLED, var(--white-t-50));
     }
     &:active {
       background-color: var(--darken-200);
-      border: var(--border);
+      border: 1px solid var(--LIGHT, transparent) var(--DARK, var(--white-t-50))
+        var(--OLED, var(--white-t-50));
     }
   }
 }
@@ -55,28 +126,29 @@
   color: var(--button-outline-text-color);
   background-color: var(--default-outline-background);
   border: var(--button-outline-border);
-
   &.bg-lighten {
     &:hover {
       color: var(--lighten-100);
-      background-color: var(----background-contrast-100);
+      background-color: var(--outline-lighten-bg);
       border: 1px solid var(--lighten-100);
     }
     &:active {
       color: var(--lighten-200);
-      background-color: var(--background-contrast-200);
+      background-color: var(--outline-lighten-bg);
       border: 1px solid var(--lighten-200);
     }
   }
-
   &.bg-darken {
     &:hover {
-      color: var(--darken-100);
+      /*In dark mode: against dark bg, we over ride to get text with higher brighteness.*/
+      color: var(--LIGHT, var(--darken-100)) var(--DARK, var(--lighten-100))
+        var(--OLED, var(--lighten-100));
       background-color: var(--background-contrast-100);
       border: 1px solid var(--darken-100);
     }
     &:active {
-      color: var(--darken-200);
+      color: var(--LIGHT, var(--darken-200)) var(--DARK, var(--lighten-200))
+        var(--OLED, var(--lighten-200));
       background-color: var(--background-contrast-200);
       border: 1px solid var(--darken-200);
     }
@@ -84,26 +156,29 @@
 }
 
 .borderless {
-  /* button-borderless-text-color */
   color: var(--defaultColor);
-  background-color: var(--default-borderless-backgroundd);
+  background-color: transparent;
   border: var(--border);
   &.bg-lighten {
     &:hover {
       color: var(--lighten-100);
+      background-color: var(--background-contrast-100);
     }
     &:active {
       color: var(--lighten-200);
+      background-color: var(--background-contrast-100);
     }
   }
 
   &.bg-darken {
     &:hover {
-      color: var(--darken-100);
+      color: var(--LIGHT, var(--darken-100)) var(--DARK, var(--lighten-100))
+        var(--OLED, var(--lighten-100));
       background-color: var(--background-contrast-100);
     }
     &:active {
-      color: var(--darken-200);
+      color: var(--LIGHT, var(--darken-200)) var(--DARK, var(--lighten-200))
+        var(--OLED, var(--lighten-200));
       background-color: var(--background-contrast-200);
     }
   }
