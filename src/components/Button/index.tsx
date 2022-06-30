@@ -104,13 +104,7 @@ const Button: FC<ButtonProps> = function ({
   } else if (!alternativeColor) {
     alternativeColor = AlternativeColors.GREY;
   }
-
-  // useEffect(() => {
-  //   //reappend the transition duration after the style has applied.
-  //   //this will prevent initial transition from base color.
-  //   ref?.current?.style.setProperty('transition-duration', '100ms');
-  // }, []);
-
+  
   return (
     <button
       {...args}
