@@ -6,8 +6,8 @@
   --darken-100: var(--button-darken-safe-grey-100);
   --darken-200: var(--button-darken-safe-grey-200);
 
-  --background-contrast-100: transparent;
-  --background-contrast-200: transparent;
+  --background-outline-100: transparent;
+  --background-outline-200: transparent;
 
   gap: 8px;
   padding: 4px 16px;
@@ -30,8 +30,8 @@
   --darken-100: var(--button-darken-green-100);
   --darken-200: var(--button-darken-green-200);
 
-  --background-contrast-100: var(--button-outline-bg-hover-green);
-  --background-contrast-200: var(--button-outline-bg-active-green);
+  --translucent-5: var(--button-translucent-green-5);
+  --translucent-25: var(--button-translucent-green-25);
 }
 
 .red {
@@ -41,8 +41,8 @@
   --darken-100: var(--button-darken-red-100);
   --darken-200: var(--button-darken-red-200);
 
-  --background-contrast-100: var(--button-outline-bg-hover-red);
-  --background-contrast-200: var(--button-outline-bg-active-red);
+  --translucent-5: var(--button-translucent-red-5);
+  --translucent-25: var(--button-translucent-red-25);
 }
 
 .blue {
@@ -52,8 +52,8 @@
   --darken-100: var(--button-darken-blue-100);
   --darken-200: var(--button-darken-blue-200);
 
-  --background-contrast-100: var(--button-outline-bg-hover-blue);
-  --background-contrast-200: var(--button-outline-bg-active-blue);
+  --translucent-5: var(--button-translucent-blue-5);
+  --translucent-25: var(--button-translucent-blue-25);
 }
 
 .yellow {
@@ -63,8 +63,8 @@
   --darken-100: var(--button-darken-yellow-100);
   --darken-200: var(--button-darken-yellow-200);
 
-  --background-contrast-100: var(--button-outline-bg-hover-yellow);
-  --background-contrast-200: var(--button-outline-bg-active-yellow);
+  --translucent-5: var(--button-translucent-yellow-5);
+  --translucent-25: var(--button-translucent-yellow-25);
 }
 
 .safe-purple {
@@ -74,8 +74,8 @@
   --darken-100: var(--button-darken-safe-purple-100);
   --darken-200: var(--button-darken-safe-purple-200);
 
-  --background-contrast-100: var(--button-outline-bg-hover-safe-purple);
-  --background-contrast-200: var(--button-outline-bg-active-safe-purple);
+  --translucent-5: var(--button-translucent-safe-purple-5);
+  --translucent-25: var(--button-translucent-safe-purple-25);
 }
 
 .safe-grey {
@@ -85,8 +85,8 @@
   --darken-100: var(--button-darken-safe-grey-100);
   --darken-200: var(--button-darken-safe-grey-200);
 
-  --background-contrast-100: var(--button-outline-bg-hover-safe-grey);
-  --background-contrast-200: var(--button-outline-bg-active-safe-grey);
+  --translucent-5: var(--button-translucent-safe-grey-5);
+  --translucent-25: var(--button-translucent-safe-grey-25);
 }
 
 .primary {
@@ -140,16 +140,18 @@
   }
   &.bg-darken {
     &:hover {
-      /*In dark mode: against dark bg, we over ride to get text with higher brighteness.*/
+      /*In dark mode: against dark bg, we add logic to mtaintain text to higher brighteness.*/
       color: var(--LIGHT, var(--darken-100)) var(--DARK, var(--lighten-100))
         var(--OLED, var(--lighten-100));
-      background-color: var(--background-contrast-100);
+      background-color:  var(--LIGHT, transaprent) var(--DARK, var(--translucent-5))
+        var(--OLED, var(--translucent-5));
       border: 1px solid var(--darken-100);
     }
     &:active {
       color: var(--LIGHT, var(--darken-200)) var(--DARK, var(--lighten-200))
         var(--OLED, var(--lighten-200));
-      background-color: var(--background-contrast-200);
+      background-color:  var(--LIGHT, transaprent) var(--DARK, var(--translucent-25))
+        var(--OLED, var(--translucent-25));
       border: 1px solid var(--darken-200);
     }
   }
@@ -162,11 +164,11 @@
   &.bg-lighten {
     &:hover {
       color: var(--lighten-100);
-      background-color: var(--background-contrast-100);
+      background-color: transparent;
     }
     &:active {
       color: var(--lighten-200);
-      background-color: var(--background-contrast-100);
+      background-color: transparent;
     }
   }
 
@@ -174,12 +176,14 @@
     &:hover {
       color: var(--LIGHT, var(--darken-100)) var(--DARK, var(--lighten-100))
         var(--OLED, var(--lighten-100));
-      background-color: var(--background-contrast-100);
+      background-color:  var(--LIGHT, var(--translucent-5)) var(--DARK, var(--translucent-5))
+        var(--OLED, var(--translucent-25));
     }
     &:active {
       color: var(--LIGHT, var(--darken-200)) var(--DARK, var(--lighten-200))
         var(--OLED, var(--lighten-200));
-      background-color: var(--background-contrast-200);
+      background-color:  var(--LIGHT, var(--translucent-5)) var(--DARK, var(--translucent-25))
+        var(--OLED, var(--translucent-25));
     }
   }
 }

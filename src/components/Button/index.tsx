@@ -1,16 +1,8 @@
-import React, {
-  FC,
-  ButtonHTMLAttributes,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { FC, ButtonHTMLAttributes, useRef } from 'react';
 
 import Spinner from 'app/components/Spinner';
 
 import styles from './styles.module.css';
-import useMatchTheme, { themes } from 'app/hooks/useMatchTheme';
 
 export enum ButtonKind {
   /** A primary button, generally displayed in green. */
@@ -48,12 +40,6 @@ export enum AlternativeColors {
   PURPLE = 'safe-purple',
 }
 
-export enum ButtonPreset {
-  CONFIRM = 'confirm',
-  WARN = 'warning',
-  ALERT = 'alert',
-}
-
 export enum HoverBehaviour {
   LIGHTEN = 'bg-lighten',
   DARKEN = 'bg-darken',
@@ -82,7 +68,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  * document for accessible, standard button functionality.  It also provides a loading indicator to
  * inform the user when the button is performing a task.
  */
-
 const Button: FC<ButtonProps> = function ({
   kind,
   size = ButtonSize.MD,
@@ -96,20 +81,18 @@ const Button: FC<ButtonProps> = function ({
   ...args
 }: ButtonProps) {
   if (disabled) kind = ButtonKind.DISABLED;
-  let ref = useRef<HTMLButtonElement>(null);
 
   //presets
-  if (kind == 'primary' && !alternativeColor) {
+  if (kind === 'primary' && !alternativeColor) {
     alternativeColor = AlternativeColors.GREEN;
   } else if (!alternativeColor) {
     alternativeColor = AlternativeColors.GREY;
   }
-  
+
   return (
     <button
       {...args}
       disabled={disabled || loading}
-      ref={ref}
       className={[
         className,
         styles.button,
