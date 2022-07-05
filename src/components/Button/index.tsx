@@ -52,8 +52,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;
   /*A set of altenrative colors are selectable */
   alternativeColor?: AlternativeColors;
-  /*This configurates the hover visual contrast, multiple properties are set */
-  hoverBehaviour?: HoverBehaviour;
   /*This configurates the padding on x-axis */
   extendedPadding?: ExtendedPadding;
   /** Whether the button should be rendered in a loading state. Also disables interactivity, but
@@ -73,7 +71,6 @@ const Button: FC<ButtonProps> = function ({
   size = ButtonSize.MD,
   loading = false,
   alternativeColor,
-  hoverBehaviour = HoverBehaviour.DARKEN,
   extendedPadding = ExtendedPadding.MD,
   disabled = false,
   className,
@@ -98,7 +95,6 @@ const Button: FC<ButtonProps> = function ({
         styles.button,
         styles[kind],
         styles[size],
-        styles[hoverBehaviour],
         styles[extendedPadding],
         styles[alternativeColor],
       ].join(' ')}>

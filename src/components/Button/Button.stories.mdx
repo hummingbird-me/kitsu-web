@@ -88,7 +88,6 @@ Use this when there's one action you expect to be used most frequently.
   <Button
     kind="primary"
     alternativeColor="safe-grey"
-    hoverBehaviour={'bg-lighten'}
     extendedPadding="padding-xl">
     This button brightens on hover
   </Button>
@@ -119,7 +118,6 @@ A button with just an outline. Generally used for a cancellation action alongsid
     kind="outline"
     alternativeColor="blue"
     size="small"
-    hoverBehaviour="bg-lighten"
     extendedPadding="padding-xl">
     Join Group
   </Button>
@@ -127,7 +125,6 @@ A button with just an outline. Generally used for a cancellation action alongsid
     kind="outline"
     size="small"
     alternativeColor="green"
-    hoverBehaviour="bg-lighten"
     extendedPadding="padding-xl">
     Confirm
   </Button>
@@ -135,7 +132,6 @@ A button with just an outline. Generally used for a cancellation action alongsid
     kind="outline"
     alternativeColor="yellow"
     size="small"
-    hoverBehaviour="bg-lighten"
     extendedPadding="padding-xl">
     Make Changes
   </Button>
@@ -143,7 +139,6 @@ A button with just an outline. Generally used for a cancellation action alongsid
     kind="outline"
     alternativeColor="blue"
     size="small"
-    hoverBehaviour="bg-lighten"
     extendedPadding="padding-xl">
     Join Group
   </Button>
@@ -151,7 +146,6 @@ A button with just an outline. Generally used for a cancellation action alongsid
     kind="outline"
     size="small"
     alternativeColor="safe-grey"
-    hoverBehaviour="bg-lighten"
     extendedPadding="padding-sm">
     Edit
   </Button>
@@ -159,7 +153,6 @@ A button with just an outline. Generally used for a cancellation action alongsid
     kind="outline"
     size="small"
     alternativeColor="red"
-    hoverBehaviour="bg-lighten"
     extendedPadding="padding-sm">
     (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
   </Button>
@@ -167,7 +160,6 @@ A button with just an outline. Generally used for a cancellation action alongsid
     kind="outline"
     alternativeColor="yellow"
     size="medium"
-    hoverBehaviour="bg-lighten"
     extendedPadding="padding-md">
     Revert
   </Button>
@@ -175,7 +167,6 @@ A button with just an outline. Generally used for a cancellation action alongsid
     kind="outline"
     alternativeColor="safe-purple"
     size="medium"
-    hoverBehaviour="bg-lighten"
     extendedPadding="padding-md">
     Purple Visibility
   </Button>
@@ -199,7 +190,6 @@ buttons actions. Developers should use atmost one per form, otherwise use second
       children: 'Leave',
       loading: false,
       disabled: false,
-      hoverBehaviour: 'bg-lighten',
       size: 'medium',
       alternativeColor: 'red',
       extendedPadding: 'padding-md',
@@ -212,18 +202,13 @@ buttons actions. Developers should use atmost one per form, otherwise use second
   <Button kind="borderless" alternativeColor="yellow">
     Cancel
   </Button>
-  <Button kind="borderless" alternativeColor="red" hoverBehaviour="bg-lighten">
+  <Button kind="borderless" alternativeColor="red">
     Unfollow
   </Button>
-  <Button
-    kind="borderless"
-    alternativeColor="safe-purple"
-    hoverBehaviour="bg-lighten">
+  <Button kind="borderless" alternativeColor="safe-purple">
     ( ಥ ʖ̯ ಥ)
   </Button>
-  <Button kind="borderless" hoverBehaviour="bg-darken">
-    Restore
-  </Button>
+  <Button kind="borderless">Restore</Button>
 </Canvas>
 
 ### Screen Buttons
@@ -243,41 +228,22 @@ such as overlaying on images. The screen button hovers into black or white to pr
       children: 'Cancel',
       loading: false,
       disabled: false,
-      hoverBehaviour: 'bg-lighten',
       size: 'medium',
       extendedPadding: 'padding-md',
     }}>
     {(args) => <Button {...args} kind="screen" />}
   </Story>
-  <Button kind="screen" hoverBehaviour="bg-darken">
-    B
-  </Button>
-  <Button
-    kind="screen"
-    hoverBehaviour="bg-lighten"
-    size="large"
-    extendedPadding="padding-xl">
+  <Button kind="screen">B</Button>
+  <Button kind="screen" size="large" extendedPadding="padding-xl">
     Big Follow Button
   </Button>
-  <Button
-    kind="screen"
-    hoverBehaviour="bg-lighten"
-    size="medium"
-    extendedPadding="padding-md">
+  <Button kind="screen" size="medium" extendedPadding="padding-md">
     Follow Me
   </Button>
-  <Button
-    kind="screen"
-    hoverBehaviour="bg-lighten"
-    size="small"
-    extendedPadding="padding-sm">
+  <Button kind="screen" size="small" extendedPadding="padding-sm">
     Small follow me
   </Button>
-  <Button
-    kind="screen"
-    hoverBehaviour="bg-lighten"
-    size="small"
-    extendedPadding="padding-xs">
+  <Button kind="screen" size="small" extendedPadding="padding-xs">
     crammed, help
   </Button>
 </Canvas>
@@ -305,9 +271,6 @@ a greyed-out style, to indicate that it is not available to the user.
         defaultValue: 'padding-lg',
       },
       alternativeColor: { table: { disable: true } },
-      hoverBehaviour: {
-        defaultValue: 'bg-darken',
-      },
     }}
     args={{
       kind: 'primary',
