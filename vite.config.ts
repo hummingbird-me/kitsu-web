@@ -46,6 +46,10 @@ switch (process.env.BUILD_TARGET) {
       },
     };
     break;
+  default:
+    throw new Error(
+      'Unknown build target. Please set BUILD_TARGET to one of: library, client, server'
+    );
 }
 
 // https://vitejs.dev/config/
@@ -60,7 +64,7 @@ export default defineConfig(({ mode }) => ({
     coverage: {
       reporter: ['lcovonly', 'html', 'text-summary'],
       all: true,
-      src: 'src',
+      src: ['src'],
     },
   },
   plugins: [
