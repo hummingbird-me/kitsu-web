@@ -17,7 +17,10 @@ export default Service.extend({
   }).drop(),
 
   getIndex: task(function* (name) {
-    yield this.getKeys.perform();
+    // Ember Concurrency will happily give us a dropped task instance from .perform() so we need to
+    // use .last instead to get the last *actually executed* instance to wait on.
+    this.getKeys.perform();
+    yield this.getKeys.last;
 
     if (this.indices[name]) return this.indices[name];
 
