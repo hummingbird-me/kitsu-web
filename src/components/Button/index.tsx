@@ -40,11 +40,6 @@ export enum AlternativeColors {
   PURPLE = 'safe-purple',
 }
 
-export enum HoverBehaviour {
-  LIGHTEN = 'bg-lighten',
-  DARKEN = 'bg-darken',
-}
-
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** The kind of button to render */
   kind: ButtonKind;

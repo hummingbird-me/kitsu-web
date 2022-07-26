@@ -23,11 +23,6 @@
   --light-black: #464646;
   --black: #000000;
 
-  /***** Logical Palette *****/
-  --DARK: ;
-  --LIGHT: initial;
-  --OLED: ;
-
   /* Page */
   --page-background: var(--dark-white);
   --page-text-color: var(--light-black);
@@ -75,12 +70,11 @@
   --input-sidecar-background: var(--grey);
 
   /* Button */
-  /*can use color-mod to make deviations instead of manually enter them - currently this follows the figma project values*/
-  /* - https://www.figma.com/file/zaPBj1kYY7bZ7NTC3HDnkU/Kitsu-Buttons?node-id=0%3A1 */
-  --button-d-purple: #ce9fe9; /* for dark mode*/
+  /* Extended safe-colors to palette for visual compatiability */
   --safe-purple: #8548a8;
   --safe-grey: #727272;
 
+  /* Predefined border and background values for various button variants */
   --button-primary-border: 1px solid transparent;
 
   --button-outline-text-color: var(--darker-grey);
@@ -91,57 +85,45 @@
   --button-borderless-border: 1px solid transparent;
   --default-borderless-background: transparent;
 
+  --button-disabled-background: var(--dark-grey);
+  --button-disabled-text-color: var(--darker-grey);
+  --button-disabled-border: none;
+
   /*GREY Button*/
-  --button-lighten-safe-grey-100: #878787;
-  --button-lighten-safe-grey-200: #b9b9b9;
-  --button-darken-safe-grey-100: #616161;
-  --button-darken-safe-grey-200: #4a4a4a;
+  --button-lighten-safe-grey-100: #878787; /* Brighten base color, alternatively, can define using color-mod with final color palette */
+  --button-lighten-safe-grey-200: #b9b9b9; /* higher -200, means brighter color relative to safe-grey */
   --button-translucent-safe-grey-5: color-mod(var(--safe-grey) a(5%));
   --button-translucent-safe-grey-25: color-mod(var(--safe-grey) a(25%));
 
   /*GREEN Button*/
   --button-lighten-green-100: #39ae97;
   --button-lighten-green-200: #68c1b0;
-  --button-darken-green-100: #138871;
-  --button-darken-green-200: #0e6856;
   --button-translucent-green-5: color-mod(var(--green) a(5%));
   --button-translucent-green-25: color-mod(var(--green) a(25%));
 
   /*BLUE Button*/
   --button-lighten-blue-100: #5fb8f3;
   --button-lighten-blue-200: #85c8f6;
-  --button-darken-blue-100: #3991cd;
-  --button-darken-blue-200: #2c6f9d;
   --button-translucent-blue-5: color-mod(var(--blue) a(5%));
   --button-translucent-blue-25: color-mod(var(--blue) a(25%));
 
   /*YELLOW Button*/
   --button-lighten-yellow-100: #f2b969;
   --button-lighten-yellow-200: #f5ca8c;
-  --button-darken-yellow-100: #cc9342;
-  --button-darken-yellow-200: #9c7033;
   --button-translucent-yellow-5: color-mod(var(--yellow) a(5%));
   --button-translucent-yellow-25: color-mod(var(--yellow) a(25%));
 
   /*RED Button*/
   --button-lighten-red-100: #e0766b;
   --button-lighten-red-200: #e7968e;
-  --button-darken-red-100: #b95045;
-  --button-darken-red-200: #8e3d35;
   --button-translucent-red-5: color-mod(var(--red) a(5%));
   --button-translucent-red-25: color-mod(var(--red) a(25%));
 
   /*SAFE-PURPLE Button*/
   --button-lighten-safe-purple-100: #9763b5;
   --button-lighten-safe-purple-200: #b088c6;
-  --button-darken-safe-purple-100: #713d8f;
-  --button-darken-safe-purple-200: #562f6d;
   --button-translucent-safe-purple-5: color-mod(var(--safe-purple) a(5%));
   --button-translucent-safe-purple-25: color-mod(var(--safe-purple) a(25%));
-
-  --button-disabled-background: var(--dark-grey);
-  --button-disabled-text-color: var(--darker-grey);
-  --button-disabled-border: none;
 
   /* Tabs */
   --tab-text-color: var(--grey);
