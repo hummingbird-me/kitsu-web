@@ -10,7 +10,7 @@ import { beforeEach } from 'vitest';
 import { IntlProvider } from 'react-intl';
 
 import { DateFnsLocaleContext, LocaleContext } from 'app/contexts/IntlContext';
-import enUS from 'app/locales/headers/en-US';
+import enUS from 'app/locales/bundles/en-US.header';
 const localeData = await enUS.load();
 
 const Provider: React.FC = function ({ children }) {
