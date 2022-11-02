@@ -1,13 +1,13 @@
 import { mapKeys, mapValues } from 'lodash-es';
-import { Locale } from './utils/locale';
+import { LocaleHeader } from './utils/LocaleHeader';
 
-const translationFiles = import.meta.globEager('./headers/*.ts');
+const localeHeaders = import.meta.globEager('./bundles/*.header.ts');
 
-const translations: Record<string, Locale> = mapValues(
-  mapKeys(translationFiles, (_value, key) =>
-    key.replace(/^\.\/headers\/(.*)\.ts$/, '$1')
+const locales: Record<string, LocaleHeader> = mapValues(
+  mapKeys(localeHeaders, (_value, key) =>
+    key.replace(/^\.\/bundles\/(.*)\.header\.ts$/, '$1')
   ),
   (module) => module.default
 );
 
-export default translations;
+export default locales;
