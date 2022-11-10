@@ -3,6 +3,11 @@
   "plugins": ["stylelint-declaration-strict-value", "stylelint-use-logical"],
   "ignoreFiles": ["**/*.tsx"],
   "rules": {
+    "function-no-unknown": [
+      true,
+      { "ignoreFunctions": ["color-mod", "shade", "tint", "alpha"] }
+    ],
+    "import-notation": "string",
     "string-quotes": "single",
     "csstools/use-logical": true,
     "color-hex-length": "long",
@@ -29,5 +34,11 @@
         "ignorePseudoClasses": ["global", "local"]
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.module.css"],
+      "rules": { "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$" }
+    }
+  ]
 }
