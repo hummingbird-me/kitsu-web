@@ -1,5 +1,5 @@
 import { readFile, writeFile } from 'fs/promises';
-import { extract } from '@formatjs/cli';
+import { extract } from '@formatjs/cli-lib';
 import glob from 'fast-glob';
 import stringify from 'json-stable-stringify';
 
