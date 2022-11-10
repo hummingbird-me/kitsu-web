@@ -16,15 +16,10 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** A date, expressed as an ISO8601 string */
   Date: Date;
-  /** An ISO 8601-encoded date */
   ISO8601Date: Date;
-  /** An ISO 8601-encoded datetime */
   ISO8601DateTime: Date;
-  /** Represents untyped JSON */
   JSON: unknown;
-  /** A loose key-value map in GraphQL */
   Map: Record<string, string>;
   Upload: any;
 };
@@ -2556,9 +2551,15 @@ export type ProSubscription = WithTimestamps & {
 };
 
 export enum ProTierEnum {
-  /** Aozora Pro (only hides ads) */
+  /**
+   * Aozora Pro (only hides ads)
+   * @deprecated No longer for sale
+   */
   AoPro = 'AO_PRO',
-  /** Aozora Pro+ (only hides ads) */
+  /**
+   * Aozora Pro+ (only hides ads)
+   * @deprecated No longer for sale
+   */
   AoProPlus = 'AO_PRO_PLUS',
   /** Top tier of Kitsu Pro */
   Patron = 'PATRON',

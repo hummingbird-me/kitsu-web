@@ -9,39 +9,30 @@ export type LoadProfileMenuQueryVariables = Types.Exact<{
 }>;
 
 export type LoadProfileMenuQuery = {
-  currentAccount?:
-    | {
-        id: string;
-        profile: {
-          id: string;
-          slug?: string | null | undefined;
-          name: string;
-          avatarImage?:
-            | {
-                blurhash?: string | null | undefined;
-                views: Array<{
-                  height?: number | null | undefined;
-                  width?: number | null | undefined;
-                  url: string;
-                }>;
-              }
-            | null
-            | undefined;
-          bannerImage?:
-            | {
-                blurhash?: string | null | undefined;
-                views: Array<{
-                  height?: number | null | undefined;
-                  width?: number | null | undefined;
-                  url: string;
-                }>;
-              }
-            | null
-            | undefined;
-        };
-      }
-    | null
-    | undefined;
+  currentAccount?: {
+    id: string;
+    profile: {
+      id: string;
+      slug?: string | null;
+      name: string;
+      avatarImage?: {
+        blurhash?: string | null;
+        views: Array<{
+          height?: number | null;
+          width?: number | null;
+          url: string;
+        }>;
+      } | null;
+      bannerImage?: {
+        blurhash?: string | null;
+        views: Array<{
+          height?: number | null;
+          width?: number | null;
+          url: string;
+        }>;
+      } | null;
+    };
+  } | null;
 };
 
 export const LoadProfileMenuDocument = {
@@ -110,9 +101,9 @@ export const LoadProfileMenuDocument = {
 } as unknown as DocumentNode;
 
 export function useLoadProfileMenuQuery(
-  options: Omit<Urql.UseQueryArgs<LoadProfileMenuQueryVariables>, 'query'> = {}
+  options?: Omit<Urql.UseQueryArgs<LoadProfileMenuQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<LoadProfileMenuQuery>({
+  return Urql.useQuery<LoadProfileMenuQuery, LoadProfileMenuQueryVariables>({
     query: LoadProfileMenuDocument,
     ...options,
   });

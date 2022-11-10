@@ -2,12 +2,8 @@ import * as Types from '../../graphql/types';
 
 import { DocumentNode } from 'graphql';
 export type ImageFieldsFragment = {
-  blurhash?: string | null | undefined;
-  views: Array<{
-    height?: number | null | undefined;
-    width?: number | null | undefined;
-    url: string;
-  }>;
+  blurhash?: string | null;
+  views: Array<{ height?: number | null; width?: number | null; url: string }>;
 };
 
 export const ImageFieldsFragmentDoc = {

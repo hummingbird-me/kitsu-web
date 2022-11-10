@@ -4,35 +4,21 @@ import { DocumentNode } from 'graphql';
 import { CategoryTagFieldsFragmentDoc } from '../CategoryTag/categoryTagFields-gql';
 export type CategoryListFields_Anime_Fragment = {
   categories: {
-    nodes?:
-      | Array<
-          | {
-              slug: string;
-              title: Record<string, string>;
-              root?: { slug: string } | null | undefined;
-            }
-          | null
-          | undefined
-        >
-      | null
-      | undefined;
+    nodes?: Array<{
+      slug: string;
+      title: Record<string, string>;
+      root?: { slug: string } | null;
+    } | null> | null;
   };
 };
 
 export type CategoryListFields_Manga_Fragment = {
   categories: {
-    nodes?:
-      | Array<
-          | {
-              slug: string;
-              title: Record<string, string>;
-              root?: { slug: string } | null | undefined;
-            }
-          | null
-          | undefined
-        >
-      | null
-      | undefined;
+    nodes?: Array<{
+      slug: string;
+      title: Record<string, string>;
+      root?: { slug: string } | null;
+    } | null> | null;
   };
 };
 

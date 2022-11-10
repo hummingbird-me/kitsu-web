@@ -7,46 +7,37 @@ export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type LoadAccountQueryVariables = Types.Exact<{ [key: string]: never }>;
 
 export type LoadAccountQuery = {
-  currentAccount?:
-    | {
-        id: string;
-        country?: string | null | undefined;
-        language?: string | null | undefined;
-        ratingSystem: Types.RatingSystemEnum;
-        sfwFilter?: boolean | null | undefined;
-        sitePermissions: Array<Types.SitePermissionEnum>;
-        timeZone?: string | null | undefined;
-        enabledFeatures: Array<string>;
-        profile: {
-          id: string;
-          slug?: string | null | undefined;
-          name: string;
-          avatarImage?:
-            | {
-                blurhash?: string | null | undefined;
-                views: Array<{
-                  height?: number | null | undefined;
-                  width?: number | null | undefined;
-                  url: string;
-                }>;
-              }
-            | null
-            | undefined;
-          bannerImage?:
-            | {
-                blurhash?: string | null | undefined;
-                views: Array<{
-                  height?: number | null | undefined;
-                  width?: number | null | undefined;
-                  url: string;
-                }>;
-              }
-            | null
-            | undefined;
-        };
-      }
-    | null
-    | undefined;
+  currentAccount?: {
+    id: string;
+    country?: string | null;
+    language?: string | null;
+    ratingSystem: Types.RatingSystemEnum;
+    sfwFilter?: boolean | null;
+    sitePermissions: Array<Types.SitePermissionEnum>;
+    timeZone?: string | null;
+    enabledFeatures: Array<string>;
+    profile: {
+      id: string;
+      slug?: string | null;
+      name: string;
+      avatarImage?: {
+        blurhash?: string | null;
+        views: Array<{
+          height?: number | null;
+          width?: number | null;
+          url: string;
+        }>;
+      } | null;
+      bannerImage?: {
+        blurhash?: string | null;
+        views: Array<{
+          height?: number | null;
+          width?: number | null;
+          url: string;
+        }>;
+      } | null;
+    };
+  } | null;
 };
 
 export const LoadAccountDocument = {
@@ -131,9 +122,9 @@ export const LoadAccountDocument = {
 } as unknown as DocumentNode;
 
 export function useLoadAccountQuery(
-  options: Omit<Urql.UseQueryArgs<LoadAccountQueryVariables>, 'query'> = {}
+  options?: Omit<Urql.UseQueryArgs<LoadAccountQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<LoadAccountQuery>({
+  return Urql.useQuery<LoadAccountQuery, LoadAccountQueryVariables>({
     query: LoadAccountDocument,
     ...options,
   });

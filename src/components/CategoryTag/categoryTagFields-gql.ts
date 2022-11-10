@@ -4,7 +4,7 @@ import { DocumentNode } from 'graphql';
 export type CategoryTagFieldsFragment = {
   slug: string;
   title: Record<string, string>;
-  root?: { slug: string } | null | undefined;
+  root?: { slug: string } | null;
 };
 
 export const CategoryTagFieldsFragmentDoc = {
