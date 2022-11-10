@@ -1,5 +1,5 @@
 import React from 'react';
-import { StaticRouter } from 'react-router';
+import { HashRouter } from 'react-router-dom';
 import { addParameters } from '@storybook/react';
 import { map } from 'lodash-es';
 
@@ -71,7 +71,7 @@ export const decorators = [
       <React.StrictMode>
         <React.Suspense fallback={null}>
           <LayoutSettingsContextProvider>
-            <StaticRouter location={{}}>
+            <HashRouter location={{}}>
               <IntlProvider locale={locale}>
                 <UrqlContextProvider>
                   <ToasterContextProvider>
@@ -79,7 +79,7 @@ export const decorators = [
                   </ToasterContextProvider>
                 </UrqlContextProvider>
               </IntlProvider>
-            </StaticRouter>
+            </HashRouter>
           </LayoutSettingsContextProvider>
         </React.Suspense>
       </React.StrictMode>
