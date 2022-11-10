@@ -5,7 +5,6 @@ import { ErrorBoundary } from '@sentry/react';
 
 import 'app/styles/index.css';
 
-import AnimePage, { AnimeById } from './pages/Anime';
 import NotFoundPage from './pages/Errors/NotFound';
 import AuthModal from './pages/Auth/Modal';
 import SignInModal from './pages/Auth/SignIn';
