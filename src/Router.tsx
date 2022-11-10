@@ -35,8 +35,8 @@ export default function Router() {
     <ErrorBoundary fallback={<GeneralErrorPage />}>
       <Routes location={background || location}>
         <Route path="anime">
-          <Route path=":id(\d+)" element={<AnimeById />} />
-          <Route path=":slug" element={<AnimePage />} />
+          <Route path=":id(\d+)" element={<NotFoundPage />} />
+          <Route path=":slug" element={<NotFoundPage />} />
         </Route>
         {modals({ displayMode: 'page' })}
         <Route path="*" element={<NotFoundPage />} />
