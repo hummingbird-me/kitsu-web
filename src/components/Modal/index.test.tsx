@@ -1,103 +1,122 @@
 import { describe, test, expect } from 'vitest';
 import React from 'react';
-import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { render, screen } from 'app/test-utils/testing-library';
 import userEvent from '@testing-library/user-event';
 
 import Modal from './index';
 
-// TODO: @testing-library/user-event gets confused by the nesting of pointer-events from Body (none)
-// to Scrim (auto) to Modal (auto), we should file an issue on their repo to fix this. Until then,
-// we just skip the tests which use pointer-events. These have been manually tested in the browser.
-describe.skip('with displayMode="modal"', () => {
+describe('with displayMode="modal"', () => {
   test('handles clicking out of the modal', async () => {
-    const history = createMemoryHistory({
-      initialEntries: ['/modal?returnTo=/back'],
-    });
-
-    render(
-      <HistoryRouter history={history}>
-        <Modal displayMode="modal" />
-      </HistoryRouter>
+    const router = createMemoryRouter(
+      [
+        {
+          element: <Modal displayMode="modal" />,
+          path: '/modal',
+        },
+        { element: <></>, path: '/back' },
+      ],
+      {
+        initialEntries: ['/modal?returnTo=/back'],
+      }
     );
 
-    expect(history.location.pathname).toBe('/modal');
+    render(<RouterProvider router={router} />);
+
+    expect(router.state.location.pathname).toBe('/modal');
     await userEvent.click(screen.getByTestId('scrim'));
-    expect(history.location.pathname).toBe('/back');
+    expect(router.state.location.pathname).toBe('/back');
   });
 
   test('clicking in the modal does not navigate away', async () => {
-    const history = createMemoryHistory({
-      initialEntries: ['/back', '/modal'],
-      initialIndex: 1,
-    });
-
-    render(
-      <HistoryRouter history={history}>
-        <Modal displayMode="modal">
-          <button>Test</button>
-        </Modal>
-      </HistoryRouter>
+    const router = createMemoryRouter(
+      [
+        {
+          element: <Modal displayMode="modal">Test</Modal>,
+          path: '/modal',
+        },
+        { element: <></>, path: '/back' },
+      ],
+      {
+        initialEntries: ['/back', '/modal'],
+        initialIndex: 1,
+      }
     );
 
-    screen.debug();
+    render(<RouterProvider router={router} />);
 
-    expect(history.location.pathname).toBe('/modal');
+    expect(router.state.location.pathname).toBe('/modal');
     await userEvent.click(screen.getByText('Test'));
-    expect(history.location.pathname).toBe('/modal');
+    expect(router.state.location.pathname).toBe('/modal');
   });
 });
 
 describe('with displayMode="page"', () => {
   test('clicking on the close button navigates to the returnTo parameter', async () => {
-    const history = createMemoryHistory({
-      initialEntries: ['/modal?returnTo=/previous'],
-    });
-
-    render(
-      <HistoryRouter history={history}>
-        <Modal displayMode="page" />
-      </HistoryRouter>
+    const router = createMemoryRouter(
+      [
+        {
+          element: <Modal displayMode="page" />,
+          path: '/modal',
+        },
+        { element: <></>, path: '/previous' },
+      ],
+      {
+        initialEntries: ['/modal?returnTo=/previous'],
+      }
     );
 
-    expect(history.location.pathname).toBe('/modal');
+    render(<RouterProvider router={router} />);
+
+    expect(router.state.location.pathname).toBe('/modal');
     await userEvent.click(screen.getByText('Close'));
-    expect(history.location.pathname).toBe('/previous');
+    expect(router.state.location.pathname).toBe('/previous');
   });
 
   test('clicking on the scrim navigates to the returnTo parameter', async () => {
-    const history = createMemoryHistory({
-      initialEntries: ['/modal?returnTo=/previous'],
-    });
-
-    render(
-      <HistoryRouter history={history}>
-        <Modal displayMode="page" />
-      </HistoryRouter>
+    const router = createMemoryRouter(
+      [
+        {
+          element: <Modal displayMode="page" />,
+          path: '/modal',
+        },
+        { element: <></>, path: '/previous' },
+      ],
+      {
+        initialEntries: ['/modal?returnTo=/previous'],
+      }
     );
 
-    expect(history.location.pathname).toBe('/modal');
+    render(<RouterProvider router={router} />);
+
+    expect(router.state.location.pathname).toBe('/modal');
     await userEvent.click(screen.getByTestId('scrim'));
-    expect(history.location.pathname).toBe('/previous');
+    expect(router.state.location.pathname).toBe('/previous');
   });
 
   test('clicking in the modal does not navigate away', async () => {
-    const history = createMemoryHistory({
-      initialEntries: ['/back', '/modal'],
-      initialIndex: 1,
-    });
-
-    render(
-      <HistoryRouter history={history}>
-        <Modal displayMode="page">
-          <button>Test</button>
-        </Modal>
-      </HistoryRouter>
+    const router = createMemoryRouter(
+      [
+        {
+          element: (
+            <Modal displayMode="page">
+              <button>Test</button>
+            </Modal>
+          ),
+          path: '/modal',
+        },
+        { element: <>Penis</>, path: '/back' },
+      ],
+      {
+        initialEntries: ['/back', '/modal'],
+        initialIndex: 1,
+      }
     );
 
-    expect(history.location.pathname).toBe('/modal');
+    render(<RouterProvider router={router} />);
+
+    expect(router.state.location.pathname).toBe('/modal');
     await userEvent.click(screen.getByText('Test'));
-    expect(history.location.pathname).toBe('/modal');
+    expect(router.state.location.pathname).toBe('/modal');
   });
 });
