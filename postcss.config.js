@@ -1,7 +1,7 @@
 module.exports = {
   plugins: [
     require('postcss-custom-media')({
-      importFrom: './src/styles/breakpoints.css',
+      importFrom: './src/styles/globals/breakpoints.css',
     }),
     require('postcss-nesting'),
     require('autoprefixer'),
