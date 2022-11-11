@@ -9,6 +9,7 @@ module.exports = {
     require('postcss-preset-env'),
     require('postcss-custom-properties')({
       importFrom: './src/styles/globals/colors.css',
+      disableDeprecationNotice: true,
     }),
     require('./postcss/resolveLocalCustomProperties'),
     require('postcss-color-mod-function'),
