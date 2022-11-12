@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: '/'
+    target-branch: 'react'
+    schedule:
+      interval: daily
+      time: '17:00'
+      timezone: America/Los_Angeles
+    open-pull-requests-limit: 10
+    versioning-strategy: increase
+    labels:
+      - 'react'
+    assignees:
+      - 'NuckChorris'
+    allow:
+      - dependency-type: direct
+  - package-ecosystem: docker
+    directory: '/'
+    schedule:
+      interval: daily
+      time: '17:00'
+      timezone: Europe/London
+    open-pull-requests-limit: 10
+    allow:
+      - dependency-type: all
