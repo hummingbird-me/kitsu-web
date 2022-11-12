@@ -8,8 +8,6 @@ import {
   formatjsCompilePlugin,
   formatjsTransformPlugin,
 } from 'rollup-plugin-formatjs';
-import { graphqlMinifySchemaPlugin } from 'rollup-plugin-graphql-minify-schema';
-import { visualizer } from 'rollup-plugin-visualizer';
 
 let build: BuildOptions;
 switch (process.env.BUILD_TARGET) {
@@ -73,9 +71,6 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     splitVendorChunkPlugin(),
     formatjsTransformPlugin(),
-    graphqlMinifySchemaPlugin({
-      include: 'src/graphql/schema.json',
-    }),
     formatjsCompilePlugin({
       include: 'src/locales/translations/*.json',
       format: 'crowdin',
@@ -85,10 +80,6 @@ export default defineConfig(({ mode }) => ({
     svgr(),
     // TODO: set up SRI plugin correctly
     //sri(),
-    visualizer({
-      brotliSize: true,
-      template: 'sunburst',
-    }),
   ],
   esbuild: {
     // We distribute the comments as part of the github source code instead of in our bundle.
