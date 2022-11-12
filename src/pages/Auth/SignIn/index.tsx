@@ -7,7 +7,7 @@ import {
 import { useIntl, FormattedMessage } from 'react-intl';
 import getAuthorization from '@nanoauth/myanimelist';
 
-import { malClientId } from 'app/constants/config';
+import { nanoauthCredentials } from 'app/constants/config';
 import ModalLink from 'app/components/ModalLink';
 import Button, { ButtonKind } from 'app/components/Button';
 import TextInput from 'app/components/TextInput';
@@ -103,7 +103,7 @@ const SignInModal: React.FC = function (): JSX.Element {
           className={styles.socialLoginButton}
           onClick={async () => {
             const result = await getAuthorization({
-              clientId: malClientId,
+              clientId: nanoauthCredentials.myanimelist.clientId,
               redirectUri: 'http://localhost:3000/oauth2-callback.html',
             });
             console.log(result);
