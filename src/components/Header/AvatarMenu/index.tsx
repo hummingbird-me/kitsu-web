@@ -1,13 +1,13 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import { useSession } from 'app/contexts/SessionContext';
-import Image from 'app/components/Image';
 import * as Dropdown from 'app/components/Dropdown';
+import Image from 'app/components/Image';
+import { useSession } from 'app/contexts/SessionContext';
 
+import headerStyles from '../styles.module.css';
 import { useLoadProfileMenuQuery } from './loadProfileMenu-gql';
 import styles from './styles.module.css';
-import headerStyles from '../styles.module.css';
-import { FormattedMessage } from 'react-intl';
 
 const AvatarMenu: React.FC<{ className?: string }> = ({ className }) => {
   const { clearSession } = useSession();

@@ -1,8 +1,9 @@
-import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import React from 'react';
 import { withDesign } from 'storybook-addon-designs';
 
 import { ReactComponent as Illustration } from 'app/assets/illustrations/not-found/foreground.svg';
+
 import ErrorPage from './index';
 
 export default {

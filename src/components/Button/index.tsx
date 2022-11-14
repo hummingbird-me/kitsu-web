@@ -1,4 +1,4 @@
-import React, { FC, ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes, FC } from 'react';
 
 import Spinner from 'app/components/Spinner';
 
@@ -54,7 +54,8 @@ const Button: FC<ButtonProps> = function ({
       disabled={disabled || loading}
       className={[className, styles.button, styles[kind], styles[size]].join(
         ' '
-      )}>
+      )}
+    >
       {loading ? <Spinner /> : children}
     </button>
   );

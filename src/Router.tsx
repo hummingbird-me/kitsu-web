@@ -1,16 +1,16 @@
-import React from 'react';
-import { Location } from 'history';
-import { Routes, Route, useLocation, Outlet } from 'react-router-dom';
 import { ErrorBoundary } from '@sentry/react';
+import { Location } from 'history';
+import React from 'react';
+import { Outlet, Route, Routes, useLocation } from 'react-router-dom';
 
 import 'app/styles/index.css';
 
-import NotFoundPage from './pages/Errors/NotFound';
+import ForgotPasswordModal from './pages/Auth/ForgotPassword';
 import AuthModal from './pages/Auth/Modal';
 import SignInModal from './pages/Auth/SignIn';
 import SignUpModal from './pages/Auth/SignUp';
-import ForgotPasswordModal from './pages/Auth/ForgotPassword';
 import GeneralErrorPage from './pages/Errors/General';
+import NotFoundPage from './pages/Errors/NotFound';
 
 function modals({ displayMode }: { displayMode: 'page' | 'modal' }) {
   return (

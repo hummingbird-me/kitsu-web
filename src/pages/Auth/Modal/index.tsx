@@ -1,8 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useLocation, useOutlet } from 'react-router-dom';
 
-import Modal from 'app/components/Modal';
 import AuthModalHeader from 'app/components/AuthModalHeader';
+import Modal from 'app/components/Modal';
 
 import styles from './styles.module.css';
 

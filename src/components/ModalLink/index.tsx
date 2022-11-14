@@ -1,5 +1,5 @@
+import { Location, createPath, parsePath } from 'history';
 import React, { ComponentProps, useContext } from 'react';
-import { Location, parsePath, createPath } from 'history';
 import { Link, useLocation } from 'react-router-dom';
 
 import { IsModalContext } from 'app/contexts/ModalContext';

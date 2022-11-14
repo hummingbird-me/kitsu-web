@@ -1,6 +1,6 @@
 import React, { HTMLProps } from 'react';
-import { Link, LinkProps } from 'react-router-dom';
 import { FaChevronRight } from 'react-icons/fa';
+import { Link, LinkProps } from 'react-router-dom';
 
 import styles from './styles.module.css';
 

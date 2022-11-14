@@ -3,10 +3,11 @@ import React, { Suspense } from 'react';
 import 'app/initializers';
 import 'app/styles/index.css';
 
-import ApplicationContext from 'app/contexts';
-import { LayoutSettingsContextProvider } from './contexts/LayoutSettingsContext';
 import Router from 'app/Router';
 import Layout from 'app/components/Layout';
+import ApplicationContext from 'app/contexts';
+
+import { LayoutSettingsContextProvider } from './contexts/LayoutSettingsContext';
 
 const App: React.FC = function ({ children = <Router /> }) {
   return (

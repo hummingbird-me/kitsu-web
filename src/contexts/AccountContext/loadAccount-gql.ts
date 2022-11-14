@@ -1,8 +1,9 @@
+import { DocumentNode } from 'graphql';
+import * as Urql from 'urql';
+
+import { ImageFieldsFragmentDoc } from '../../components/Image/imageFields-gql';
 import * as Types from '../../graphql/types';
 
-import { DocumentNode } from 'graphql';
-import { ImageFieldsFragmentDoc } from '../../components/Image/imageFields-gql';
-import * as Urql from 'urql';
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type LoadAccountQueryVariables = Types.Exact<{ [key: string]: never }>;
 

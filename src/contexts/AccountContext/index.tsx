@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
 import { captureException } from '@sentry/react';
+import React, { useContext } from 'react';
 
 import { RatingSystemEnum } from 'app/graphql/types';
 
-import { useLoadAccountQuery, LoadAccountQuery } from './loadAccount-gql';
+import { LoadAccountQuery, useLoadAccountQuery } from './loadAccount-gql';
 
 // Mangle our
 export type Account = {

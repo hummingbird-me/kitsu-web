@@ -1,9 +1,9 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import ErrorPage from 'app/layouts/Error';
-import { ReactComponent as Foreground } from 'app/assets/illustrations/not-found/foreground.svg';
 import { ReactComponent as Background } from 'app/assets/illustrations/not-found/background.svg';
+import { ReactComponent as Foreground } from 'app/assets/illustrations/not-found/foreground.svg';
+import ErrorPage from 'app/layouts/Error';
 
 import styles from './styles.module.css';
 

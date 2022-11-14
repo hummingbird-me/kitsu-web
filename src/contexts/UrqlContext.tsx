@@ -1,22 +1,22 @@
+import { devtoolsExchange } from '@urql/devtools';
+import { offlineExchange } from '@urql/exchange-graphcache';
+import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage';
 import React from 'react';
 import {
-  createClient,
+  Exchange,
   Provider,
+  createClient,
   dedupExchange,
   fetchExchange,
-  Exchange,
 } from 'urql';
-import { offlineExchange } from '@urql/exchange-graphcache';
-import { devtoolsExchange } from '@urql/devtools';
-import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage';
 
-import authExchange from 'app/graphql/urql-exchanges/auth';
-import { useSession } from 'app/contexts/SessionContext';
-import { useLocale } from 'app/contexts/IntlContext';
 import { apiHost } from 'app/constants/config';
-import buildAcceptLanguage from 'app/utils/buildAcceptLanguage';
+import { useLocale } from 'app/contexts/IntlContext';
+import { useSession } from 'app/contexts/SessionContext';
 import resolvers from 'app/graphql/resolvers';
 import schema from 'app/graphql/schema';
+import authExchange from 'app/graphql/urql-exchanges/auth';
+import buildAcceptLanguage from 'app/utils/buildAcceptLanguage';
 
 const UrqlContext: React.FC = function ({ children }): JSX.Element {
   const session = useSession();

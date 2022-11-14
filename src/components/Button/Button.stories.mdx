@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 import Button from './index';
 
@@ -31,7 +31,8 @@ should clearly indicate what action will be triggered when clicked.
       children: 'Text goes here',
       loading: false,
       disabled: false,
-    }}>
+    }}
+  >
     {Button.bind({})}
   </Story>
 </Canvas>
@@ -56,7 +57,8 @@ Use this when there's one action you expect to be used most frequently.
       children: 'Create Account',
       loading: false,
       disabled: false,
-    }}>
+    }}
+  >
     {(args) => <Button {...args} kind="primary" />}
   </Story>
 </Canvas>
@@ -77,7 +79,8 @@ in white with dark text. This is sometimes used as an alternative to the primary
       children: 'Learn More',
       loading: false,
       disabled: false,
-    }}>
+    }}
+  >
     {(args) => <Button {...args} kind="inverted" />}
   </Story>
 </Canvas>
@@ -97,7 +100,8 @@ A button with just an outline. Generally used for a cancellation action alongsid
       children: 'Cancel',
       loading: false,
       disabled: false,
-    }}>
+    }}
+  >
     {(args) => <Button {...args} kind="outline" />}
   </Story>
 </Canvas>
@@ -123,7 +127,8 @@ a greyed-out style, to indicate that it is not available to the user.
       kind: 'primary',
       children: 'Create Account',
       loading: false,
-    }}>
+    }}
+  >
     {(args) => <Button {...args} disabled />}
   </Story>
 </Canvas>
@@ -144,7 +149,8 @@ a greyed-out style, to indicate that it is not available to the user.
       kind: 'primary',
       children: 'Create Account',
       disabled: false,
-    }}>
+    }}
+  >
     {(args) => <Button {...args} loading />}
   </Story>
 </Canvas>
@@ -170,7 +176,8 @@ import { FaTrash } from 'react-icons/fa';
       children: 'Delete Item',
       loading: false,
       disabled: false,
-    }}>
+    }}
+  >
     {({ children, ...args }) => (
       <Button {...args}>
         <FaTrash /> {children}

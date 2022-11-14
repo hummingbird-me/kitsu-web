@@ -1,24 +1,24 @@
+import getAuthorization from '@nanoauth/myanimelist';
 import React from 'react';
 import {
-  FaFacebook as FacebookLogo,
   FaApple as AppleLogo,
+  FaFacebook as FacebookLogo,
   FaTwitter as TwitterLogo,
 } from 'react-icons/fa';
-import { useIntl, FormattedMessage } from 'react-intl';
-import getAuthorization from '@nanoauth/myanimelist';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import { nanoauthCredentials } from 'app/constants/config';
-import ModalLink from 'app/components/ModalLink';
-import Button, { ButtonKind } from 'app/components/Button';
-import TextInput from 'app/components/TextInput';
-import Rule from 'app/components/Rule';
-import _loginWithPassword from 'app/utils/login/withPassword';
-import useLoginFn from 'app/hooks/useLoginFn';
-import { LoginFailed } from 'app/errors';
 import Alert from 'app/components/Alert';
+import Button, { ButtonKind } from 'app/components/Button';
+import ModalLink from 'app/components/ModalLink';
+import Rule from 'app/components/Rule';
+import TextInput from 'app/components/TextInput';
+import { nanoauthCredentials } from 'app/constants/config';
+import { LoginFailed } from 'app/errors';
+import useLoginFn from 'app/hooks/useLoginFn';
+import _loginWithPassword from 'app/utils/login/withPassword';
 
-import styles from './styles.module.css';
 import { useAuthModalContext } from '../Modal';
+import styles from './styles.module.css';
 
 function errorMessageFor(error?: Error): JSX.Element | null {
   if (error instanceof LoginFailed) {
@@ -84,7 +84,8 @@ const SignInModal: React.FC = function (): JSX.Element {
       <Button
         type="submit"
         kind={ButtonKind.PRIMARY}
-        loading={passwordLoginState.loading}>
+        loading={passwordLoginState.loading}
+      >
         <FormattedMessage
           defaultMessage="Log in"
           description="Submit button for Sign In"
@@ -107,7 +108,8 @@ const SignInModal: React.FC = function (): JSX.Element {
               redirectUri: 'http://localhost:3000/oauth2-callback.html',
             });
             console.log(result);
-          }}>
+          }}
+        >
           <FacebookLogo
             title={formatMessage({
               defaultMessage: 'Log in with Facebook',
@@ -118,7 +120,8 @@ const SignInModal: React.FC = function (): JSX.Element {
         <Button
           type="button"
           kind={ButtonKind.OUTLINE}
-          className={styles.socialLoginButton}>
+          className={styles.socialLoginButton}
+        >
           <TwitterLogo
             title={formatMessage({
               defaultMessage: 'Log in with Twitter',
@@ -129,7 +132,8 @@ const SignInModal: React.FC = function (): JSX.Element {
         <Button
           type="button"
           kind={ButtonKind.OUTLINE}
-          className={styles.socialLoginButton}>
+          className={styles.socialLoginButton}
+        >
           <AppleLogo
             title={formatMessage({
               defaultMessage: 'Log in with Apple',

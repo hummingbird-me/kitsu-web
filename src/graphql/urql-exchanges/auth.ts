@@ -1,9 +1,9 @@
-import { Operation, Exchange } from 'urql';
 import { authExchange } from '@urql/exchange-auth';
+import { Exchange, Operation } from 'urql';
 
+import { LoginFailed } from 'app/errors';
 import { Session } from 'app/types/session';
 import loginWithRefreshToken from 'app/utils/login/withRefreshToken';
-import { LoginFailed } from 'app/errors';
 
 function addAuthToOperation({
   authState,

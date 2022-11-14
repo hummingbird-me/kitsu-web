@@ -1,6 +1,7 @@
-import { Session } from 'app/types/session';
-import login from './login';
 import LoginFailed from 'app/errors/LoginFailed';
+import { Session } from 'app/types/session';
+
+import login from './login';
 
 export default async function loginWithPassword(
   { username, password }: { username?: string; password?: string },

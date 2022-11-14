@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
-  FaFacebook as FacebookLogo,
   FaApple as AppleLogo,
+  FaFacebook as FacebookLogo,
   FaTwitter as TwitterLogo,
 } from 'react-icons/fa';
 
 import Button, { ButtonKind } from 'app/components/Button';
-import TextInput from 'app/components/TextInput';
 import Rule from 'app/components/Rule';
+import TextInput from 'app/components/TextInput';
 
-import styles from './styles.module.css';
 import { useAuthModalContext } from '../Modal';
+import styles from './styles.module.css';
 
 export default function SignUpModal(): JSX.Element {
   const { email, setEmail } = useAuthModalContext();

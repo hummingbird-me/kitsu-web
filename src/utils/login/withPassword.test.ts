@@ -1,9 +1,11 @@
-import { vi, describe, test, expect } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 
 import fetchMock from 'app/test-utils/fetch-mock';
-vi.mock('app/constants/config');
 
 import loginWithPassword from './withPassword';
+
+vi.mock('app/constants/config');
+
 describe('loginWithPassword', () => {
   test('with successful response', async () => {
     fetchMock.post('https://kitsu.io/api/oauth/token', {

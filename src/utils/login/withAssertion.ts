@@ -1,4 +1,5 @@
 import { Session } from 'app/types/session';
+
 import login from './login';
 
 export default async function loginWithAssertion(

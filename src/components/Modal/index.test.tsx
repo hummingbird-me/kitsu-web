@@ -1,8 +1,9 @@
-import { describe, test, expect } from 'vitest';
-import React from 'react';
-import { createMemoryRouter, RouterProvider } from 'react-router-dom';
-import { render, screen } from 'app/test-utils/testing-library';
 import userEvent from '@testing-library/user-event';
+import React from 'react';
+import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+import { describe, expect, test } from 'vitest';
+
+import { render, screen } from 'app/test-utils/testing-library';
 
 import Modal from './index';
 

@@ -23,7 +23,8 @@ const AuthModalHeader: React.FC<{
             <ModalLink
               component={NavLink}
               to={{ pathname: '/auth/sign-up', state }}
-              className={styles.navLink}>
+              className={styles.navLink}
+            >
               Sign Up
             </ModalLink>
           </li>
@@ -31,7 +32,8 @@ const AuthModalHeader: React.FC<{
             <ModalLink
               component={NavLink}
               to={{ pathname: '/auth/sign-in', state }}
-              className={styles.navLink}>
+              className={styles.navLink}
+            >
               Sign In
             </ModalLink>
           </li>

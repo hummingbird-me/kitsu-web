@@ -1,9 +1,9 @@
 import React, {
-  useState,
-  useRef,
-  useLayoutEffect,
-  forwardRef,
   HTMLProps,
+  forwardRef,
+  useLayoutEffect,
+  useRef,
+  useState,
 } from 'react';
 import { BlurhashCanvas } from 'react-blurhash';
 
@@ -73,7 +73,8 @@ const Image = forwardRef<
       className={[styles.container, className].join(' ')}
       style={{ width, height, aspectRatio }}
       ref={ref}
-      {...props}>
+      {...props}
+    >
       {source?.blurhash ? (
         <BlurhashCanvas
           hash={source.blurhash}

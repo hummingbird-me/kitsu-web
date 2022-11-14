@@ -1,11 +1,12 @@
-import { vi, describe, test, expect } from 'vitest';
-
-import fetchMock from 'app/test-utils/fetch-mock';
-vi.mock('app/constants/config');
+import { describe, expect, test, vi } from 'vitest';
 
 import { LoginFailed, NetworkError } from 'app/errors';
+import fetchMock from 'app/test-utils/fetch-mock';
 
 import loginWithAssertion from './withAssertion';
+
+vi.mock('app/constants/config');
+
 describe('loginWithAssertion', () => {
   test('with successful response', async () => {
     fetchMock.post('https://kitsu.io/api/oauth/token', {

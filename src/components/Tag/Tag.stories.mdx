@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 import Tag, { TagColor } from './index';
 
@@ -26,7 +26,8 @@ Tags are used to display a genre or tag for a media item.
     args={{
       color: TagColor.BLUE,
       children: 'Tag Name',
-    }}>
+    }}
+  >
     {Tag.bind({})}
   </Story>
 </Canvas>

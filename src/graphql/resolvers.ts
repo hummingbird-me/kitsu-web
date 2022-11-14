@@ -1,12 +1,15 @@
-import { ResolverConfig, Resolver } from '@urql/exchange-graphcache';
+import { Resolver, ResolverConfig } from '@urql/exchange-graphcache';
 import {
-  IntrospectionType,
-  IntrospectionOutputTypeRef,
   IntrospectionInterfaceType,
+  IntrospectionOutputTypeRef,
+  IntrospectionType,
 } from 'graphql';
 
 // Load the types and convert them into a map of name to type
 import schema from 'app/graphql/schema';
+
+import * as scalars from './scalars';
+
 const types = schema.__schema.types;
 const keyedTypes: { [key: string]: IntrospectionType } = types.reduce(
   (out, type) => ({ ...out, [type.name]: type }),
@@ -15,7 +18,6 @@ const keyedTypes: { [key: string]: IntrospectionType } = types.reduce(
 
 // Load the resolvers and create a map of scalar name to resolver function
 type ScalarResolver = (value: unknown) => ReturnType<Resolver>;
-import * as scalars from './scalars';
 
 function resolverFor(type: IntrospectionOutputTypeRef): ScalarResolver | null {
   const scalarResolver =

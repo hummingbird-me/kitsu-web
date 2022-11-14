@@ -1,16 +1,18 @@
 /* eslint-disable i18next/no-literal-string */
-import React from 'react';
+
 import {
-  cleanup,
-  render as _render,
   RenderOptions,
   RenderResult,
+  render as _render,
+  cleanup,
 } from '@testing-library/react';
-import { beforeEach } from 'vitest';
+import React from 'react';
 import { IntlProvider } from 'react-intl';
+import { beforeEach } from 'vitest';
 
 import { DateFnsLocaleContext, LocaleContext } from 'app/contexts/IntlContext';
 import enUS from 'app/locales/headers/en-US';
+
 const localeData = await enUS.load();
 
 const Provider: React.FC = function ({ children }) {
@@ -20,7 +22,8 @@ const Provider: React.FC = function ({ children }) {
         locale: 'en-US',
         setLocale: () => null,
         unsetLocale: () => null,
-      }}>
+      }}
+    >
       <DateFnsLocaleContext.Provider value={localeData.dateFns}>
         <IntlProvider locale="en-US" key="en-US" messages={localeData.kitsu}>
           {children}

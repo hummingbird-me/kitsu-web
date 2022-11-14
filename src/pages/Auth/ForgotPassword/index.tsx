@@ -1,13 +1,13 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Modal from 'app/components/Modal';
-import Button, { ButtonKind } from 'app/components/Button';
-import TextInput from 'app/components/TextInput';
 import AuthModalHeader from 'app/components/AuthModalHeader';
+import Button, { ButtonKind } from 'app/components/Button';
+import Modal from 'app/components/Modal';
+import TextInput from 'app/components/TextInput';
 
-import styles from './styles.module.css';
 import { useAuthModalContext } from '../Modal';
+import styles from './styles.module.css';
 
 export default function ForgotPasswordModal(): JSX.Element {
   const { email, setEmail } = useAuthModalContext();

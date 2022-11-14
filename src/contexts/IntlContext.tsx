@@ -1,9 +1,9 @@
-import React, { useReducer } from 'react';
-import { useCookie, useEvent, useAsync } from 'react-use';
-import { IntlProvider } from 'react-intl';
 import { OnErrorFn } from '@formatjs/intl';
 import { Locale as DateFnsLocale } from 'date-fns';
 import preferredLocale from 'preferred-locale';
+import React, { useReducer } from 'react';
+import { IntlProvider } from 'react-intl';
+import { useAsync, useCookie, useEvent } from 'react-use';
 
 import translations from 'app/locales';
 
@@ -77,7 +77,8 @@ const IntlContext: React.FC<{ locale?: string }> = function ({
           key={value.locale}
           defaultRichTextElements={{
             b: (children) => <b>{children}</b>,
-          }}>
+          }}
+        >
           {children}
         </IntlProvider>
       </DateFnsLocaleContext.Provider>

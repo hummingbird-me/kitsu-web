@@ -1,11 +1,11 @@
+import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
+import * as Dialog from '@radix-ui/react-dialog';
 import React, { DialogHTMLAttributes } from 'react';
 import { BsX } from 'react-icons/bs';
-import * as Dialog from '@radix-ui/react-dialog';
-import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import { useIntl } from 'react-intl';
 
-import { IsModalContextProvider } from 'app/contexts/ModalContext';
 import { HeaderSettings } from 'app/contexts/LayoutSettingsContext';
+import { IsModalContextProvider } from 'app/contexts/ModalContext';
 import useReturnToFn from 'app/hooks/useReturnToFn';
 
 import styles from './styles.module.css';
@@ -24,19 +24,22 @@ const PageModal: React.FC<DialogHTMLAttributes<HTMLDialogElement>> = function ({
       <div
         className={styles.pageContainer}
         onPointerDown={goBack}
-        data-testid="scrim">
+        data-testid="scrim"
+      >
         <dialog
           data-testid="modal"
           open
           onPointerDown={(e) => e.stopPropagation()}
           className={[className, styles.modal].join(' ')}
-          {...args}>
+          {...args}
+        >
           <button className={styles.closeButton} onPointerDown={goBack}>
             <AccessibleIcon
               label={formatMessage({
                 defaultMessage: 'Close',
                 description: 'Accessibility label for modal close button',
-              })}>
+              })}
+            >
               <BsX />
             </AccessibleIcon>
           </button>
@@ -59,23 +62,27 @@ const OverlayModal: React.FC<DialogHTMLAttributes<HTMLDialogElement>> =
             <div
               onPointerDown={goBack}
               data-testid="scrim"
-              className={styles.modalContainer}>
+              className={styles.modalContainer}
+            >
               <Dialog.Content
                 asChild
                 onEscapeKeyDown={() => goBack()}
-                onPointerDownOutside={(e) => e.preventDefault()}>
+                onPointerDownOutside={(e) => e.preventDefault()}
+              >
                 <dialog
                   data-testid="modal"
                   open
                   onPointerDown={(e) => e.stopPropagation()}
-                  className={[className, styles.modal].join(' ')}>
+                  className={[className, styles.modal].join(' ')}
+                >
                   <Dialog.Close className={styles.closeButton}>
                     <AccessibleIcon
                       label={formatMessage({
                         defaultMessage: 'Close',
                         description:
                           'Accessibility label for modal close button',
-                      })}>
+                      })}
+                    >
                       <BsX />
                     </AccessibleIcon>
                   </Dialog.Close>

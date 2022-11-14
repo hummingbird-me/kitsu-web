@@ -1,7 +1,7 @@
 import React, { ComponentProps } from 'react';
 
-import Image, { ImageSource } from 'app/components/Image';
 import defaultAvatar from 'app/assets/default_avatar.png';
+import Image, { ImageSource } from 'app/components/Image';
 
 import styles from './styles.module.css';
 

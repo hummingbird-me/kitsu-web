@@ -1,11 +1,11 @@
 import React from 'react';
 
-import IntlProvider from './IntlContext';
-import UrqlContextProvider from './UrqlContext';
-
-import { SessionContextProvider } from './SessionContext';
-import { AccountContextProvider } from './AccountContext';
 import { ToasterContextProvider } from 'app/components/Toaster/Context';
+
+import { AccountContextProvider } from './AccountContext';
+import IntlProvider from './IntlContext';
+import { SessionContextProvider } from './SessionContext';
+import UrqlContextProvider from './UrqlContext';
 
 const ApplicationContext: React.FC = function ({ children }) {
   return (

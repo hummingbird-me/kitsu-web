@@ -1,5 +1,5 @@
-import { afterEach } from 'vitest';
 import fetchMock from 'fetch-mock';
+import { afterEach } from 'vitest';
 
 afterEach(() => {
   fetchMock.reset();

@@ -1,6 +1,7 @@
+import { DocumentNode } from 'graphql';
+
 import * as Types from '../../graphql/types';
 
-import { DocumentNode } from 'graphql';
 export type CategoryTagFieldsFragment = {
   slug: string;
   title: Record<string, string>;
