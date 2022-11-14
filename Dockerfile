@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:19-alpine
 
 RUN mkdir -p /opt/kitsu/client
 
