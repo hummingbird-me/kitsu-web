@@ -1,22 +1,22 @@
 import React from 'react';
 import { HashRouter } from 'react-router-dom';
-import { addParameters } from '@storybook/react';
-import { map } from 'lodash-es';
+
+import { ToasterContextProvider } from 'app/components/Toaster/Context';
+import IntlProvider from 'app/contexts/IntlContext';
+import { LayoutSettingsContextProvider } from 'app/contexts/LayoutSettingsContext';
+import UrqlContextProvider from 'app/contexts/UrqlContext';
+import translations from 'app/locales';
 
 import KitsuTheme from './KitsuTheme';
-import { LayoutSettingsContextProvider } from 'app/contexts/LayoutSettingsContext';
-import { ToasterContextProvider } from 'app/components/Toaster/Context';
-import UrqlContextProvider from 'app/contexts/UrqlContext';
-import IntlProvider from 'app/contexts/IntlContext';
-import translations from 'app/locales';
+
 import 'app/styles/index.css';
 
-function getFlagEmoji(countryCode) {
+function getFlagEmoji(countryCode: string) {
   if (countryCode.length === 2) {
     const codePoints = countryCode
       .toUpperCase()
       .split('')
-      .map((char) => 127397 + char.charCodeAt());
+      .map((char) => 127397 + char.charCodeAt(0));
     return String.fromCodePoint(...codePoints);
   } else {
     return '';
@@ -66,23 +66,21 @@ export const parameters = {
 };
 
 export const decorators = [
-  (Story, { globals: { locale } }) => {
-    return (
-      <React.StrictMode>
-        <React.Suspense fallback={null}>
-          <LayoutSettingsContextProvider>
-            <HashRouter location={{}}>
-              <IntlProvider locale={locale}>
-                <UrqlContextProvider>
-                  <ToasterContextProvider>
-                    <Story />
-                  </ToasterContextProvider>
-                </UrqlContextProvider>
-              </IntlProvider>
-            </HashRouter>
-          </LayoutSettingsContextProvider>
-        </React.Suspense>
-      </React.StrictMode>
-    );
-  },
+  (Story, { globals: { locale } }) => (
+    <React.StrictMode>
+      <React.Suspense fallback={null}>
+        <LayoutSettingsContextProvider>
+          <HashRouter>
+            <IntlProvider locale={locale}>
+              <UrqlContextProvider>
+                <ToasterContextProvider>
+                  <Story />
+                </ToasterContextProvider>
+              </UrqlContextProvider>
+            </IntlProvider>
+          </HashRouter>
+        </LayoutSettingsContextProvider>
+      </React.Suspense>
+    </React.StrictMode>
+  ),
 ];
