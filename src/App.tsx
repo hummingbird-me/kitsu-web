@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 
 import 'app/initializers';
+import 'app/theme-init';
 import 'app/styles/index.css';
 
 import Router from 'app/Router';
