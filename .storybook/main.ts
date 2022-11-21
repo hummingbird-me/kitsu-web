@@ -1,5 +1,6 @@
-const path = require('path');
-module.exports = {
+import type { StorybookConfig } from '@storybook/types';
+
+const config: StorybookConfig = {
   stories: [
     '../src/docs/**/*.mdx',
     '../src/**/*.stories.mdx',
@@ -22,3 +23,5 @@ module.exports = {
     options: {},
   },
 };
+
+export default config;
