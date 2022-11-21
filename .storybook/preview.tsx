@@ -1,5 +1,6 @@
 import React from 'react';
 import { HashRouter } from 'react-router-dom';
+import { withThemes } from 'storybook-addon-themes';
 
 import { ToasterContextProvider } from 'app/components/Toaster/Context';
 import IntlProvider from 'app/contexts/IntlContext';
@@ -66,6 +67,7 @@ export const parameters = {
 };
 
 export const decorators = [
+  withThemes,
   (
     Story: React.ComponentType,
     { globals: { locale } }: { globals: { locale: string } }
