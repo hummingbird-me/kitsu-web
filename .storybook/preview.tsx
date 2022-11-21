@@ -66,7 +66,10 @@ export const parameters = {
 };
 
 export const decorators = [
-  (Story, { globals: { locale } }) => (
+  (
+    Story: React.ComponentType,
+    { globals: { locale } }: { globals: { locale: string } }
+  ) => (
     <React.StrictMode>
       <React.Suspense fallback={null}>
         <LayoutSettingsContextProvider>
