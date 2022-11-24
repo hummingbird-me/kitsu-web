@@ -1,8 +1,8 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { withDesign } from 'storybook-addon-designs';
 
-import { ReactComponent as Illustration } from 'app/assets/illustrations/not-found/foreground.svg';
+import illustrationSrc from 'app/assets/illustrations/not-found.svg';
 
 import ErrorPage from './index';
 
@@ -17,14 +17,21 @@ export default {
     },
   },
   decorators: [withDesign],
-} as ComponentMeta<typeof ErrorPage>;
+} as Meta<typeof ErrorPage>;
 
-export const Basic: ComponentStory<typeof ErrorPage> = (args) => (
-  <ErrorPage {...args} search={false} illustration={<Illustration />} />
-);
-
-Basic.args = {
-  title: 'Uh oh, you’re lost!',
-  subtitle:
-    'We couldn’t find this page. It may have moved, or it may have disappeared into space.',
+export const Basic: StoryObj<typeof ErrorPage> = {
+  render(args) {
+    return (
+      <ErrorPage
+        {...args}
+        search={false}
+        illustration={<img src={illustrationSrc} />}
+      />
+    );
+  },
+  args: {
+    title: 'Uh oh, you’re lost!',
+    subtitle:
+      'We couldn’t find this page. It may have moved, or it may have disappeared into space.',
+  },
 };
