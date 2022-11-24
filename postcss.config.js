@@ -4,6 +4,7 @@ module.exports = {
       importFrom: './src/styles/globals/breakpoints.css',
       exportTo: './src/styles/globals/breakpoints.json',
     }),
+    require('postcss-normalize'),
     require('postcss-nesting'),
     require('autoprefixer'),
     require('postcss-easings'),

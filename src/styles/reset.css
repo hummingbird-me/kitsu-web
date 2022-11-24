@@ -1,0 +1,49 @@
+/* stylelint-disable at-rule-no-unknown */
+@import-normalize;
+@import-sanitize;
+@import-sanitize 'reduce-motion';
+/* stylelint-enable at-rule-no-unknown */
+
+/******************************************************************************
+ * Reset: build on top of normalized+sanitized base, adding common styles for
+ * Kitsu which apply based on HTML element.
+ ******************************************************************************/
+
+body {
+  /* Get rid of the margins because this isn't 1994 */
+  /* Ensure our body is always at least the height of the screen */
+  min-height: 100vh;
+  /* Apply our base colors and typography */
+  background-color: var(--page-background);
+  color: var(--page-text-color);
+  font-weight: var(--font-regular);
+  font-size: var(--font-me);
+  font-family: var(--font-family-body);
+}
+
+/* allow locking the body scroll with a class */
+body.scroll-lock {
+  overflow: hidden;
+}
+
+/* apply our heading font stack to all h1-6 elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-headings);
+}
+
+/* Make the app container full height and a column flexbox */
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Provide a focus ring based on our theme */
+*:focus-visible {
+  outline: 3px solid var(--focus-outline-color);
+}
