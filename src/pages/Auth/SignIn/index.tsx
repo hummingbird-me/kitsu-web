@@ -7,11 +7,11 @@ import {
 } from 'react-icons/fa';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import Alert from 'app/components/Alert';
 import Button, { ButtonKind } from 'app/components/Button';
 import ModalLink from 'app/components/ModalLink';
 import Rule from 'app/components/Rule';
-import TextInput from 'app/components/TextInput';
+import TextInput from 'app/components/controls/TextInput';
+import Alert from 'app/components/feedback/Alert';
 import { nanoauthCredentials } from 'app/constants/config';
 import { LoginFailed } from 'app/errors';
 import useLoginFn from 'app/hooks/useLoginFn';

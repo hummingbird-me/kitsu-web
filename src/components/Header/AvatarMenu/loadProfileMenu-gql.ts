@@ -2,7 +2,7 @@ import { DocumentNode } from 'graphql';
 import * as Urql from 'urql';
 
 import * as Types from '../../../graphql/types';
-import { ImageFieldsFragmentDoc } from '../../Image/imageFields-gql';
+import { ImageFieldsFragmentDoc } from '../../content/Image/imageFields-gql';
 
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type LoadProfileMenuQueryVariables = Types.Exact<{

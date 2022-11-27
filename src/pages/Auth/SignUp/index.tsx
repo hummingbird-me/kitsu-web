@@ -7,7 +7,7 @@ import {
 
 import Button, { ButtonKind } from 'app/components/Button';
 import Rule from 'app/components/Rule';
-import TextInput from 'app/components/TextInput';
+import TextInput from 'app/components/controls/TextInput';
 
 import { useAuthModalContext } from '../Modal';
 import styles from './styles.module.css';

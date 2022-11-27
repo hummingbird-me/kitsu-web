@@ -7,7 +7,7 @@ import { useIntersection } from 'react-use';
 import { ReactComponent as SearchIcon } from 'app/assets/icons/search.svg';
 import { ReactComponent as Logo } from 'app/assets/logo.svg';
 import ModalLink from 'app/components/ModalLink';
-import Spinner from 'app/components/Spinner';
+import Spinner from 'app/components/feedback/Spinner';
 import { useSession } from 'app/contexts/SessionContext';
 import utilStyles from 'app/styles/utils.module.css';
 
@@ -43,8 +43,7 @@ export default function Header({
             utilStyles.container,
             session ? styles.loggedIn : null,
             styles.container,
-          ].join(' ')}
-        >
+          ].join(' ')}>
           <NavLink to="/" className={styles.logo}>
             <Logo />
           </NavLink>
@@ -106,8 +105,7 @@ export default function Header({
                 <a
                   className={[styles.circular, styles.notificationCount].join(
                     ' '
-                  )}
-                >
+                  )}>
                   3
                 </a>
                 <AvatarMenu className={styles.avatar} />
