@@ -1,7 +1,7 @@
 import { DocumentNode } from 'graphql';
 import * as Urql from 'urql';
 
-import { ImageFieldsFragmentDoc } from '../../components/Image/imageFields-gql';
+import { ImageFieldsFragmentDoc } from '../../components/content/Image/imageFields-gql';
 import * as Types from '../../graphql/types';
 
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
