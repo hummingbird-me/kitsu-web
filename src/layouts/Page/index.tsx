@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 
-import { SpinnerBlock } from 'app/components/Spinner';
+import { SpinnerBlock } from 'app/components/feedback/Spinner';
 
 import styles from './styles.module.css';
 
