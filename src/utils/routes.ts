@@ -67,8 +67,12 @@ export default class RouteBuilder extends PathBuilder {
     return new RouteBuilder('/');
   }
 
-  static profile(slugOrId: string) {
-    return new ProfileRouteBuilder(`/users/${slugOrId}`);
+  static profile(slugOrId: string | { slug?: string; id: string }) {
+    if (typeof slugOrId === 'string') {
+      return new ProfileRouteBuilder(`/users/${slugOrId}`);
+    } else {
+      return new ProfileRouteBuilder(`/users/${slugOrId.slug ?? slugOrId.id}`);
+    }
   }
 
   static media(type: string, slug: string) {
