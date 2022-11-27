@@ -1,0 +1,58 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { BlurhashCanvas } from 'react-blurhash';
+import { useAsync } from 'react-use';
+
+import defaultImage from 'app/assets/default_avatar.png';
+import { imageSourceLoader } from 'app/docs/utilities/uploadToImageSource';
+
+import Image from './index';
+
+<Meta
+  title="Content/Image"
+  component={Image}
+  argTypes={{
+    source: {
+      control: { type: 'file' },
+      defaultValue: [new URL(defaultImage, window.location).toString()],
+    },
+    width: {
+      control: { type: 'number' },
+      defaultValue: 100,
+    },
+    height: {
+      control: { type: 'number' },
+      defaultValue: 100,
+    },
+    isLoaded: {
+      control: { type: 'boolean' },
+      defaultValue: true,
+    },
+    objectFit: {
+      defaultValue: 'cover',
+    },
+  }}
+  parameters={{
+    layout: 'centered',
+    controls: { expanded: true },
+  }}
+/>
+
+# Image
+
+The Image component takes in the API's representation of an image and displays it. It handles:
+
+- Displaying a blurhash until the image has finished loading
+- Generating a `<picture>` tag with all the sizes and formats as sources
+- Fading in the image when it finishes loading, unless it's loaded from browser cache
+- Enabling lazy loading on the image
+
+<Canvas>
+  <Story
+    name="Playground"
+    parameters={{ layout: 'centered' }}
+    loaders={[imageSourceLoader('source')]}>
+    {(args, { loaded }) => {
+      return <Image {...args} source={loaded?.source} />;
+    }}
+  </Story>
+</Canvas>

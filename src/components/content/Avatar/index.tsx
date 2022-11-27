@@ -19,15 +19,27 @@ const DEFAULT_AVATAR: ImageSource = {
 const Avatar: React.FC<
   {
     size: number;
-  } & Partial<ComponentProps<typeof Image>>
-> = function ({ source, size, className, ...props }) {
+    source?: ImageSource;
+    className?: string;
+  } & Pick<
+    ComponentProps<typeof Image>,
+    'source' | 'isLoaded' | 'imageClassName' | 'blurhashSize'
+  >
+> = function ({
+  source = DEFAULT_AVATAR,
+  size,
+  className,
+  blurhashSize = 6,
+  ...props
+}) {
   if (!source) source = DEFAULT_AVATAR;
 
   return (
     <Image
       className={[styles.avatar, className].join(' ')}
       source={source}
-      blurhashSize={6}
+      blurhashSize={blurhashSize}
+      objectFit="cover"
       height={size}
       width={size}
       {...props}
