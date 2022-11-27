@@ -6,13 +6,16 @@ import styles from './styles.module.css';
 
 export default function Spinner({
   className,
+  style,
   size = '1.2em',
 }: {
   className?: string;
+  style: React.CSSProperties;
   size?: React.SVGAttributes<SVGElement>['height'];
 }): JSX.Element {
   return (
     <SpinnerImage
+      style={style}
       className={[styles.spinner, className].join(' ')}
       height={size}
       width={size}
