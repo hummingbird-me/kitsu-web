@@ -3,7 +3,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 import Alert from './index';
 
 <Meta
-  title="Components/Alert"
+  title="Feedback/Alert"
   component={Alert}
   parameters={{
     layout: 'centered',
@@ -29,8 +29,7 @@ error or success messages to the user at the top of the form which they pertain 
       kind: 'info',
       children:
         'Cupcake ipsum dolor. Sit amet marshmallow topping cheesecake muffin. Halvah croissant candy canes bonbon candy. Apple pie jelly beans topping carrot cake danish tart cake cheesecake. Muffin danish chocolate soufflé pastry icing bonbon oat cake. Powder cake jujubes oat cake. Lemon drops tootsie roll marshmallow halvah carrot cake.',
-    }}
-  >
+    }}>
     {Alert.bind({})}
   </Story>
 </Canvas>
@@ -49,8 +48,7 @@ If you pass an `onDismiss` prop to the Alert, a dismiss button will be rendered.
     args={{
       children:
         'Great News! Your anime and manga lists have been imported from MyAnimeList successfully.',
-    }}
-  >
+    }}>
     {(args) => <Alert {...args} kind="error" />}
   </Story>
 </Canvas>
@@ -76,8 +74,7 @@ visual indication that the action has been completed.
     args={{
       children:
         'Great News! Your anime and manga lists have been imported from MyAnimeList successfully.',
-    }}
-  >
+    }}>
     {(args) => <Alert {...args} kind="success" onDismiss={null} />}
   </Story>
 </Canvas>
@@ -107,8 +104,7 @@ performing an action.
           </ul>
         </>
       ),
-    }}
-  >
+    }}>
     {(args) => <Alert {...args} kind="warning" onDismiss={null} />}
   </Story>
 </Canvas>
@@ -128,8 +124,7 @@ to indicate next to the input using a different component. TODO: make that compo
     }}
     args={{
       children: 'We were unable to import your list from MyAnimeList.',
-    }}
-  >
+    }}>
     {(args) => <Alert {...args} kind="error" onDismiss={null} />}
   </Story>
 </Canvas>
@@ -150,8 +145,7 @@ much. There's generally a better option in any context, but this is here in case
     args={{
       children:
         'Hey! Just wanted to let you know that this login process will be changing on October 43rd, 3069',
-    }}
-  >
+    }}>
     {(args) => <Alert {...args} kind="info" onDismiss={null} />}
   </Story>
 </Canvas>

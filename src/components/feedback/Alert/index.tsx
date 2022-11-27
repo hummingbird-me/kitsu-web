@@ -6,6 +6,7 @@ import styles from './styles.module.css';
 export type AlertKind = 'success' | 'info' | 'warning' | 'error';
 
 const Alert: React.FC<{
+  children: React.ReactNode;
   className?: string;
   onDismiss?: () => void;
   kind: AlertKind;
