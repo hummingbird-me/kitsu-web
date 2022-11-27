@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Tag, { TagColor } from 'app/components/Tag';
+import Tag, { TagColor } from 'app/components/content/Tag';
 
 import { CategoryTagFieldsFragment } from './categoryTagFields-gql';
 

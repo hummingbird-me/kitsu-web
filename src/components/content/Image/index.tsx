@@ -29,8 +29,9 @@ const Image = forwardRef<
     height: number | string;
     width: number | string;
     source?: ImageSource | null;
-    objectFit?: 'contain' | 'cover' | 'fill' | 'none';
+    objectFit?: 'contain' | 'cover' | 'fill';
     blurhashSize?: number;
+    isLoaded?: boolean;
     className?: string;
     imageClassName?: string;
   }
@@ -41,6 +42,7 @@ const Image = forwardRef<
     source,
     objectFit = 'cover',
     blurhashSize = 32,
+    isLoaded: isLoadedProp,
     className,
     imageClassName,
     ...props
@@ -48,9 +50,11 @@ const Image = forwardRef<
   ref
 ) {
   const imageRef = useRef<HTMLImageElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoadedState, setIsLoaded] = useState(false);
   const [needsFadeIn, setNeedsFadeIn] = useState(false);
+  const isLoaded = isLoadedProp ?? isLoadedState;
 
+  // Detect when the image is loaded from cache and skip the fade-in animation
   useLayoutEffect(() => {
     if (imageRef.current?.complete) {
       setIsLoaded(true);
@@ -73,8 +77,7 @@ const Image = forwardRef<
       className={[styles.container, className].join(' ')}
       style={{ width, height, aspectRatio }}
       ref={ref}
-      {...props}
-    >
+      {...props}>
       {source?.blurhash ? (
         <BlurhashCanvas
           hash={source.blurhash}

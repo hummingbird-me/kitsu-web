@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CategoryTag from 'app/components/CategoryTag';
+import CategoryTag from 'app/components/content/CategoryTag';
 
 import { CategoryListFieldsFragment } from './categoryListFields-gql';
 import styles from './styles.module.css';

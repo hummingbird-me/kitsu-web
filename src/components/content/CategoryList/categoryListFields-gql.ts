@@ -1,6 +1,6 @@
 import { DocumentNode } from 'graphql';
 
-import * as Types from '../../graphql/types';
+import * as Types from '../../../graphql/types';
 import { CategoryTagFieldsFragmentDoc } from '../CategoryTag/categoryTagFields-gql';
 
 export type CategoryListFields_Anime_Fragment = {
