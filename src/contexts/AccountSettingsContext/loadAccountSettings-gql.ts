@@ -48,29 +48,29 @@ export const LoadAccountSettingsDocument = {
                 { kind: 'Field', name: { kind: 'Name', value: 'language' } },
                 {
                   kind: 'Field',
-                  name: { kind: 'Name', value: 'titleLanguagePreference' },
+                  name: { kind: 'Name', value: 'titleLanguagePreference' }
                 },
                 {
                   kind: 'Field',
-                  name: { kind: 'Name', value: 'ratingSystem' },
+                  name: { kind: 'Name', value: 'ratingSystem' }
                 },
                 { kind: 'Field', name: { kind: 'Name', value: 'sfwFilter' } },
                 {
                   kind: 'Field',
-                  name: { kind: 'Name', value: 'sitePermissions' },
+                  name: { kind: 'Name', value: 'sitePermissions' }
                 },
                 { kind: 'Field', name: { kind: 'Name', value: 'timeZone' } },
                 {
                   kind: 'Field',
-                  name: { kind: 'Name', value: 'enabledFeatures' },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
+                  name: { kind: 'Name', value: 'enabledFeatures' }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
 } as unknown as DocumentNode;
 
 export function useLoadAccountSettingsQuery(
@@ -81,6 +81,6 @@ export function useLoadAccountSettingsQuery(
 ) {
   return Urql.useQuery<LoadAccountSettingsQuery>({
     query: LoadAccountSettingsDocument,
-    ...options,
+    ...options
   });
 }

@@ -8,7 +8,7 @@ import UrqlContextProvider from 'app/contexts/UrqlContext';
 import IntlProvider from 'app/contexts/IntlContext';
 import { AccountSettingsContextProvider } from 'app/contexts/AccountSettingsContext';
 import QURouter from 'app/QURouter';
-import Layout from 'app/components/QUEmbed/Layout';
+import Header from 'app/components/QUEmbed/Header';
 
 const QUEmbedApp: React.FC = function ({ children = <QURouter /> }) {
   return (
@@ -18,7 +18,8 @@ const QUEmbedApp: React.FC = function ({ children = <QURouter /> }) {
           <UrqlContextProvider>
             <IntlProvider>
               <AccountSettingsContextProvider>
-                <Layout>{children}</Layout>
+                <Header />
+                {children}
               </AccountSettingsContextProvider>
             </IntlProvider>
           </UrqlContextProvider>

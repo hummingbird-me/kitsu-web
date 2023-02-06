@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import QUEmbedApp from 'app/QUEmbedApp';
-import { MemoryRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 ReactDOM.render(
-  <MemoryRouter>
+  <HashRouter>
     <QUEmbedApp />
-  </MemoryRouter>,
+  </HashRouter>,
   document.getElementById('app')
 );

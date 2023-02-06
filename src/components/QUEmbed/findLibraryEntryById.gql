@@ -1,0 +1,19 @@
+query FindLibraryEntryByMedia($id: ID!) {
+  findLibraryEntryByMedia(id: $id) {
+    id
+    nextUnit {
+      titles {
+        preferred
+      }
+    }
+    progress
+    media {
+      id
+      typei
+      slug
+      titles {
+        preferred
+      }
+    }
+  }
+}

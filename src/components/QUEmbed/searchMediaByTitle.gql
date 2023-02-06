@@ -1,0 +1,8 @@
+query SearchMediaByTitle($title: String!, $mediaType: MediaTypeEnum) {
+  searchMediaByTitle(title: $title, mediaType: $mediaType) {
+    nodes {
+      id
+      slug
+    }
+  }
+}
