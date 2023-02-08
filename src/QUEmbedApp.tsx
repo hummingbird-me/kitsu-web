@@ -6,9 +6,9 @@ import 'app/styles/index.css';
 import { SessionContextProvider } from 'app/contexts/SessionContext';
 import UrqlContextProvider from 'app/contexts/UrqlContext';
 import IntlProvider from 'app/contexts/IntlContext';
-import { AccountSettingsContextProvider } from 'app/contexts/AccountSettingsContext';
-import QURouter from 'app/QURouter';
+import { AccountContextProvider } from 'app/contexts/AccountContext';
 import Header from 'app/components/QUEmbed/Header';
+import QURouter from 'app/QURouter';
 
 const QUEmbedApp: React.FC = function ({ children = <QURouter /> }) {
   return (
@@ -17,10 +17,10 @@ const QUEmbedApp: React.FC = function ({ children = <QURouter /> }) {
         <SessionContextProvider>
           <UrqlContextProvider>
             <IntlProvider>
-              <AccountSettingsContextProvider>
+              <AccountContextProvider>
                 <Header />
                 {children}
-              </AccountSettingsContextProvider>
+              </AccountContextProvider>
             </IntlProvider>
           </UrqlContextProvider>
         </SessionContextProvider>

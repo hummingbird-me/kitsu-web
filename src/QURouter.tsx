@@ -1,31 +1,34 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 // import 'app/styles/index.css';
 
 // import NotFoundPage from './pages/Errors/NotFound';
-import SignInModal from './pages/modals/SignIn';
-import SignUpModal from './pages/modals/SignUp';
-import ForgotPasswordModal from './pages/modals/ForgotPassword';
+import SignInModal from './pages/Auth/SignIn';
+import SignUpModal from './pages/Auth/SignUp';
+import ForgotPasswordModal from './pages/Auth/ForgotPassword';
 import { UserRoute } from './utils/user_route';
 import HomePage from './pages/QUEmbed/Home';
+import AuthModal from './pages/Auth/Modal';
 
 export default function QURouter() {
   return (
     <>
-      <Switch>
-        {/* <Route path="/users/:id">User Profile</Route> */}
-        <Route path="/auth/sign-in">
-          <SignInModal displayMode="page" />
+      <Routes>
+        <Route path="auth" element={<AuthModal displayMode="page" />}>
+          <Route path="sign-in" element={<SignInModal />} />
+          <Route path="sign-up" element={<SignUpModal />} />
+          <Route path="forgot-password" element={<ForgotPasswordModal />} />
         </Route>
-        <Route path="/auth/sign-up">
-          <SignUpModal displayMode="page" />
-        </Route>
-        <Route path="/auth/forgot-password">
-          <ForgotPasswordModal displayMode="page" />
-        </Route>
-        <UserRoute path="/">
-          {/*
+        <Route
+          path="/"
+          element={
+            <UserRoute>
+              <HomePage />
+            </UserRoute>
+          }
+        />
+        {/*
               1. User signs in to kitsu via extension
               2. User goes to mangadex
               3. User goes to https://mangadex.org/title/9957316c-eadb-49c5-bc2d-f6cbfe9034a3/cheat-eater-isekai-shoukan-kotogotoku-horobubeshi
@@ -38,10 +41,9 @@ export default function QURouter() {
 
               Now whenever the user goes to this manga or reads from a chapter we can determine what library_entry needs to be updated via IndexDB.
           */}
-          <HomePage />
-        </UserRoute>
+        {/* <HomePage /> */}
         {/* <Route path="/*" component={NotFoundPage} /> */}
-      </Switch>
+      </Routes>
     </>
   );
 }

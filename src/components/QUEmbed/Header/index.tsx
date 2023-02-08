@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { ReactComponent as Logo } from 'app/assets/logo.svg';
 import { useSession } from 'app/contexts/SessionContext';
-import Spinner from 'app/components/Spinner';
+import Spinner from 'app/components/feedback/Spinner';
 
 // import AvatarMenu from './AvatarMenu';
 import styles from './styles.module.css';
