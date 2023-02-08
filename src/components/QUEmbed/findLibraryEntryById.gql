@@ -1,5 +1,5 @@
-query FindLibraryEntryByMedia($id: ID!) {
-  findLibraryEntryByMedia(id: $id) {
+query FindLibraryEntryById($id: ID!) {
+  findLibraryEntryById(id: $id) {
     id
     nextUnit {
       titles {
@@ -9,7 +9,7 @@ query FindLibraryEntryByMedia($id: ID!) {
     progress
     media {
       id
-      typei
+      type
       slug
       titles {
         preferred

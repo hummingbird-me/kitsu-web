@@ -1,6 +1,8 @@
 import * as Types from '../../graphql/types';
 
 import { DocumentNode } from 'graphql';
+import { MediaListConnectionFragmentDoc } from './MediaList/mediaListConnection-gql';
+import { MediaFieldsFragmentDoc } from './Media/mediaFields-gql';
 import * as Urql from 'urql';
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type SearchMediaByTitleQueryVariables = Types.Exact<{
@@ -12,8 +14,18 @@ export type SearchMediaByTitleQuery = {
   searchMediaByTitle: {
     nodes?:
       | Array<
-          | { id: string; slug: string }
-          | { id: string; slug: string }
+          | {
+              id: string;
+              type: string;
+              slug: string;
+              titles: { preferred: string };
+            }
+          | {
+              id: string;
+              type: string;
+              slug: string;
+              titles: { preferred: string };
+            }
           | null
           | undefined
         >
@@ -75,28 +87,28 @@ export const SearchMediaByTitleDocument = {
                   kind: 'Variable',
                   name: { kind: 'Name', value: 'mediaType' }
                 }
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'first' },
+                value: { kind: 'IntValue', value: '10' }
               }
             ],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'nodes' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } }
-                    ]
-                  }
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'MediaListConnection' }
                 }
               ]
             }
           }
         ]
       }
-    }
+    },
+    ...MediaListConnectionFragmentDoc.definitions,
+    ...MediaFieldsFragmentDoc.definitions
   ]
 } as unknown as DocumentNode;
 

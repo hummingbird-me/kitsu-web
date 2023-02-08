@@ -8,7 +8,7 @@ import SignInModal from './pages/modals/SignIn';
 import SignUpModal from './pages/modals/SignUp';
 import ForgotPasswordModal from './pages/modals/ForgotPassword';
 import { UserRoute } from './utils/user_route';
-import QUEmbedHome from './pages/QUEmbedHome';
+import HomePage from './pages/QUEmbed/Home';
 
 export default function QURouter() {
   return (
@@ -38,7 +38,7 @@ export default function QURouter() {
 
               Now whenever the user goes to this manga or reads from a chapter we can determine what library_entry needs to be updated via IndexDB.
           */}
-          <QUEmbedHome />
+          <HomePage />
         </UserRoute>
         {/* <Route path="/*" component={NotFoundPage} /> */}
       </Switch>

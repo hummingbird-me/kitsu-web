@@ -11,7 +11,25 @@ export type FindLibraryEntryByIdQuery = {
   findLibraryEntryById?:
     | {
         id: string;
-        media: { id: string; slug: string } | { id: string; slug: string };
+        progress: number;
+        nextUnit?:
+          | { titles: { preferred: string } }
+          | { titles: { preferred: string } }
+          | null
+          | undefined;
+        media:
+          | {
+              id: string;
+              type: string;
+              slug: string;
+              titles: { preferred: string };
+            }
+          | {
+              id: string;
+              type: string;
+              slug: string;
+              titles: { preferred: string };
+            };
       }
     | null
     | undefined;
@@ -53,12 +71,49 @@ export const FindLibraryEntryByIdDocument = {
                 { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 {
                   kind: 'Field',
+                  name: { kind: 'Name', value: 'nextUnit' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'titles' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'preferred' }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                { kind: 'Field', name: { kind: 'Name', value: 'progress' } },
+                {
+                  kind: 'Field',
                   name: { kind: 'Name', value: 'media' },
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
                       { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } }
+                      { kind: 'Field', name: { kind: 'Name', value: 'type' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'titles' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'preferred' }
+                            }
+                          ]
+                        }
+                      }
                     ]
                   }
                 }

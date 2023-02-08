@@ -1,8 +1,5 @@
 query SearchMediaByTitle($title: String!, $mediaType: MediaTypeEnum) {
-  searchMediaByTitle(title: $title, mediaType: $mediaType) {
-    nodes {
-      id
-      slug
-    }
+  searchMediaByTitle(title: $title, mediaType: $mediaType, first: 10) {
+    ...MediaListConnection
   }
 }
