@@ -1,24 +1,35 @@
-import React from 'react';
+/* eslint-disable i18next/no-literal-string */
+
 import {
-  cleanup,
-  render as _render,
   RenderOptions,
   RenderResult,
+  render as _render,
+  cleanup,
 } from '@testing-library/react';
-import { beforeEach } from 'vitest';
+import React from 'react';
 import { IntlProvider } from 'react-intl';
-import { mapValues } from 'lodash-es';
+import { beforeEach } from 'vitest';
 
-import _messages from 'app/locales/translations/en-US.json';
+import { DateFnsLocaleContext, LocaleContext } from 'app/contexts/IntlContext';
+import enUS from 'app/locales/headers/en-US';
 
-const messages = mapValues(_messages, 'message');
+const localeData = await enUS.load();
 
 const Provider: React.FC = function ({ children }) {
   return (
-    // eslint-disable-next-line i18next/no-literal-string
-    <IntlProvider locale="en-US" messages={messages}>
-      {children}
-    </IntlProvider>
+    <LocaleContext.Provider
+      value={{
+        locale: 'en-US',
+        setLocale: () => null,
+        unsetLocale: () => null,
+      }}
+    >
+      <DateFnsLocaleContext.Provider value={localeData.dateFns}>
+        <IntlProvider locale="en-US" key="en-US" messages={localeData.kitsu}>
+          {children}
+        </IntlProvider>
+      </DateFnsLocaleContext.Provider>
+    </LocaleContext.Provider>
   );
 };
 

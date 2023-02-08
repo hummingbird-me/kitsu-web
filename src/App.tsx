@@ -1,33 +1,23 @@
 import React, { Suspense } from 'react';
 
 import 'app/initializers';
+import 'app/theme-init';
 import 'app/styles/index.css';
 
-import { SessionContextProvider } from 'app/contexts/SessionContext';
-import UrqlContextProvider from 'app/contexts/UrqlContext';
-import IntlProvider from 'app/contexts/IntlContext';
-import { LayoutSettingsContextProvider } from './contexts/LayoutSettingsContext';
-import { AccountSettingsContextProvider } from 'app/contexts/AccountSettingsContext';
-import { ToasterContextProvider } from 'app/components/Toaster/Context';
 import Router from 'app/Router';
 import Layout from 'app/components/Layout';
+import ApplicationContext from 'app/contexts';
+
+import { LayoutSettingsContextProvider } from './contexts/LayoutSettingsContext';
 
 const App: React.FC = function ({ children = <Router /> }) {
   return (
     <React.StrictMode>
       <Suspense fallback={null}>
         <LayoutSettingsContextProvider>
-          <SessionContextProvider>
-            <UrqlContextProvider>
-              <IntlProvider>
-                <AccountSettingsContextProvider>
-                  <ToasterContextProvider>
-                    <Layout>{children}</Layout>
-                  </ToasterContextProvider>
-                </AccountSettingsContextProvider>
-              </IntlProvider>
-            </UrqlContextProvider>
-          </SessionContextProvider>
+          <ApplicationContext>
+            <Layout>{children}</Layout>
+          </ApplicationContext>
         </LayoutSettingsContextProvider>
       </Suspense>
     </React.StrictMode>

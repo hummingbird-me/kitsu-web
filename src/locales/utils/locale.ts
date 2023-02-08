@@ -1,5 +1,5 @@
-import { MessageFormatElement } from 'react-intl';
 import { Locale as DateFnsLocale } from 'date-fns';
+import { MessageFormatElement } from 'react-intl';
 
 type KitsuLocale = Record<string, MessageFormatElement[]>;
 

@@ -1,8 +1,7 @@
 /// <reference types="vitest" />
 
 import path from 'path';
-import { defineConfig, BuildOptions } from 'vite';
-import reactRefresh from '@vitejs/plugin-react-refresh';
+import { defineConfig, BuildOptions, splitVendorChunkPlugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import {
@@ -47,6 +46,10 @@ switch (process.env.BUILD_TARGET) {
       },
     };
     break;
+  default:
+    throw new Error(
+      'Unknown build target. Please set BUILD_TARGET to one of: library, client, server'
+    );
 }
 
 // https://vitejs.dev/config/
@@ -55,11 +58,18 @@ export default defineConfig(({ mode }) => ({
   json: {
     stringify: true,
   },
+  minify: false,
   test: {
     exclude: ['cypress', 'node_modules', 'dist', '.git', '.cache'],
     environment: 'happy-dom',
+    coverage: {
+      reporter: ['lcovonly', 'html', 'text-summary'],
+      all: true,
+      src: ['src'],
+    },
   },
   plugins: [
+    splitVendorChunkPlugin(),
     formatjsTransformPlugin(),
     formatjsCompilePlugin({
       include: 'src/locales/translations/*.json',
@@ -68,7 +78,13 @@ export default defineConfig(({ mode }) => ({
     }),
     ...(process.env.NODE_ENV !== 'test' ? [react()] : []),
     svgr(),
+    // TODO: set up SRI plugin correctly
+    //sri(),
   ],
+  esbuild: {
+    // We distribute the comments as part of the github source code instead of in our bundle.
+    legalComments: 'none',
+  },
   resolve: {
     alias: {
       ...(mode !== 'development'

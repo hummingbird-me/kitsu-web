@@ -1,6 +1,6 @@
-import React, { FC, ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes, FC } from 'react';
 
-import Spinner from 'app/components/Spinner';
+import Spinner from 'app/components/feedback/Spinner';
 
 import styles from './styles.module.css';
 

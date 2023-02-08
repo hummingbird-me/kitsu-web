@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Image, { ImageSource } from 'app/components/Image';
+import Image, { ImageSource } from 'app/components/content/Image';
 
 import styles from './styles.module.css';
 

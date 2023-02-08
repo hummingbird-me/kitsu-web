@@ -1,0 +1,44 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import { imageSourceLoader } from 'app/docs/utilities/uploadToImageSource';
+
+import Avatar from './index';
+
+<Meta
+  title="Content/Avatar"
+  component={Avatar}
+  argTypes={{
+    source: {
+      control: { type: 'file' },
+    },
+  }}
+  args={{
+    size: 200,
+  }}
+  parameters={{
+    layout: 'centered',
+    controls: { expanded: true },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/QnRsGDTY1hcHmeFX0seHqd/Kitsu-Design-(Universal)?node-id=41%3A7&t=DD4vSmziTuwYcwKT-1',
+    },
+  }}
+/>
+
+# Avatar
+
+Avatars are a special case of Images, representing a user by their chosen profile image. Compared to
+the Image component, there are a few key differences:
+
+- `source` parameter is nullable; a placeholder will be displayed if no source is provided.
+- `size` parameter is recommended instead of `width` and `height` parameters.
+- a circular mask is applied to the image.
+
+<Canvas>
+  <Story
+    name="Avatar"
+    parameters={{ layout: 'centered' }}
+    loaders={[imageSourceLoader('source')]}>
+    {(args, { loaded }) => <Avatar {...args} source={loaded?.source} />}
+  </Story>
+</Canvas>

@@ -1,13 +1,13 @@
-import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import React from 'react';
 import { FaEllipsisH } from 'react-icons/fa';
 
 import {
-  Wrapper as DropdownWrapper,
-  Toggle as DropdownToggle,
-  Menu as DropdownMenu,
   Item as DropdownItem,
   ItemLink as DropdownItemLink,
+  Menu as DropdownMenu,
+  Toggle as DropdownToggle,
+  Wrapper as DropdownWrapper,
 } from './index';
 
 export default {
@@ -37,7 +37,8 @@ export const Basic: ComponentStory<typeof DropdownWrapper> = (args) => (
           borderRadius: 50,
           height: 50,
           width: 50,
-        }}>
+        }}
+      >
         <FaEllipsisH />
       </div>
     </DropdownToggle>

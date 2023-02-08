@@ -1,0 +1,16 @@
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Content-Security-Policy: default-src 'self'; object-src 'none'; img-src https:; font-src fonts.gstatic.com; style-src 'self' fonts.googleapis.com; connect-src 'self' kitsu.io
+  
+/docs/ui/*
+  ! Content-Security-Policy
+  ! X-Content-Type-Options
+  ! X-Frame-Options
+
+/*.mjs
+  Content-Type: text/javascript
+
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+  

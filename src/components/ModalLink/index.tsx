@@ -1,29 +1,33 @@
+import { Location, createPath, parsePath } from 'history';
 import React, { ComponentProps, useContext } from 'react';
-import { LocationDescriptor, Location } from 'history';
 import { Link, useLocation } from 'react-router-dom';
 
 import { IsModalContext } from 'app/contexts/ModalContext';
 import useQueryParams from 'app/hooks/useQueryParams';
 
+function useBackgroundLocation(): Location | undefined {
+  const isModal = useContext(IsModalContext);
+  const location = useLocation() as Location & {
+    state?: { background?: Location };
+  };
+  const { background } = location.state ?? {};
+
+  if (isModal) return background;
+
+  return background ?? location;
+}
+
 const ModalLink: React.FC<
   {
     component?: React.ElementType;
-    to:
-      | LocationDescriptor<{
-          background?: Location;
-          [key: string]: unknown;
-        }>
-      | string;
-  } & ComponentProps<Link>
+  } & ComponentProps<typeof Link>
 > = function ModalLink({ component: Component = Link, to, ...args }) {
-  const isModal = useContext(IsModalContext);
   const query = useQueryParams();
-  const location = useLocation<{ background?: Location }>();
-  const background =
-    location.state?.background ?? (isModal ? undefined : location);
+  const background = useBackgroundLocation();
   const returnTo = background?.pathname ?? query.get('returnTo');
 
   if (typeof to === 'string') {
+    // When we get a string we need to parse it to add our returnTo query param
     const url = new URL(to, window.location.href);
     const search = new URLSearchParams(url.search);
     if (returnTo) search.append('returnTo', returnTo);
@@ -31,7 +35,6 @@ const ModalLink: React.FC<
     to = {
       pathname: to,
       search: search.toString(),
-      state: { background },
     };
   } else {
     const search = new URLSearchParams(to.search);
@@ -40,11 +43,10 @@ const ModalLink: React.FC<
     to = {
       ...to,
       search: search.toString(),
-      state: { background, ...(to.state ?? {}) },
     };
   }
 
-  return <Component to={to} {...args} />;
+  return <Component to={to} state={{ background }} {...args} />;
 };
 
 export default ModalLink;

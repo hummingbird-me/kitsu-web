@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { Session } from 'app/types/session';
 import * as SessionStore from 'app/utils/session-store';
@@ -33,7 +33,8 @@ export const SessionContextProvider: React.FC = function ({ children }) {
         session,
         setSession,
         clearSession,
-      }}>
+      }}
+    >
       {children}
     </SessionContext.Provider>
   );

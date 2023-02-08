@@ -1,16 +1,15 @@
-import React, { useContext, ComponentProps, HTMLProps } from 'react';
 import { Options } from '@popperjs/core';
+import React, { ComponentProps, HTMLProps, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import useDropdown from 'app/hooks/useDropdown';
 
 import styles from './styles.module.css';
 
-const DropdownContext =
-  React.createContext<{
-    arrow: boolean;
-    dropdown: ReturnType<typeof useDropdown>;
-  } | null>(null);
+const DropdownContext = React.createContext<{
+  arrow: boolean;
+  dropdown: ReturnType<typeof useDropdown>;
+} | null>(null);
 
 interface DropdownWrapperProps {
   /** Whether to display an arrow */
@@ -81,7 +80,7 @@ const DropdownItem: React.FC<HTMLProps<HTMLDivElement>> = function ({
   );
 };
 
-const DropdownItemLink: React.FC<ComponentProps<Link>> = function ({
+const DropdownItemLink: React.FC<ComponentProps<typeof Link>> = function ({
   className,
   onClick,
   ...args

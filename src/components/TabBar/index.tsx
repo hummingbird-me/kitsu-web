@@ -21,7 +21,7 @@ export const TabBarItem: React.FC<HTMLProps<HTMLLIElement>> = function (
   return <li {...args} />;
 };
 
-export const TabBarLink: React.FC<ComponentProps<NavLink>> = function ({
+export const TabBarLink: React.FC<ComponentProps<typeof NavLink>> = function ({
   className,
   ...args
 }): JSX.Element {

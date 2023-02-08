@@ -14,11 +14,16 @@
     "paths": {
       "app/*": ["./src/*"]
     },
-    "types": ["vite-plugin-svgr/client", "jest"],
+    "types": ["vite-plugin-svgr/client"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "allowJs": false
   },
-  "include": ["./src"]
+  "include": ["./src"],
+  "references": [
+    { "path": "./tsconfig.node.json" },
+    { "path": "./tsconfig.head.json" },
+    { "path": "./.storybook/tsconfig.json" }
+  ]
 }

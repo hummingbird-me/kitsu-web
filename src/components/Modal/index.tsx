@@ -1,10 +1,100 @@
-import React, { DialogHTMLAttributes, useEffect } from 'react';
+import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
+import * as Dialog from '@radix-ui/react-dialog';
+import React, { DialogHTMLAttributes } from 'react';
+import { BsX } from 'react-icons/bs';
+import { useIntl } from 'react-intl';
 
-import { IsModalContextProvider } from 'app/contexts/ModalContext';
 import { HeaderSettings } from 'app/contexts/LayoutSettingsContext';
+import { IsModalContextProvider } from 'app/contexts/ModalContext';
+import useReturnToFn from 'app/hooks/useReturnToFn';
 
 import styles from './styles.module.css';
-import useReturnToFn from 'app/hooks/useReturnToFn';
+
+const PageModal: React.FC<DialogHTMLAttributes<HTMLDialogElement>> = function ({
+  children,
+  className,
+  ...args
+}) {
+  const goBack = useReturnToFn();
+  const { formatMessage } = useIntl();
+
+  return (
+    <IsModalContextProvider>
+      <HeaderSettings background="opaque" scrollBackground="opaque" />
+      <div
+        className={styles.pageContainer}
+        onPointerDown={goBack}
+        data-testid="scrim"
+      >
+        <dialog
+          data-testid="modal"
+          open
+          onPointerDown={(e) => e.stopPropagation()}
+          className={[className, styles.modal].join(' ')}
+          {...args}
+        >
+          <button className={styles.closeButton} onPointerDown={goBack}>
+            <AccessibleIcon
+              label={formatMessage({
+                defaultMessage: 'Close',
+                description: 'Accessibility label for modal close button',
+              })}
+            >
+              <BsX />
+            </AccessibleIcon>
+          </button>
+          {children}
+        </dialog>
+      </div>
+    </IsModalContextProvider>
+  );
+};
+
+const OverlayModal: React.FC<DialogHTMLAttributes<HTMLDialogElement>> =
+  function ({ children, className }) {
+    const goBack = useReturnToFn();
+    const { formatMessage } = useIntl();
+
+    return (
+      <IsModalContextProvider>
+        <Dialog.Root defaultOpen onOpenChange={(isOpen) => isOpen || goBack()}>
+          <Dialog.Overlay asChild>
+            <div
+              onPointerDown={goBack}
+              data-testid="scrim"
+              className={styles.modalContainer}
+            >
+              <Dialog.Content
+                asChild
+                onEscapeKeyDown={() => goBack()}
+                onPointerDownOutside={(e) => e.preventDefault()}
+              >
+                <dialog
+                  data-testid="modal"
+                  open
+                  onPointerDown={(e) => e.stopPropagation()}
+                  className={[className, styles.modal].join(' ')}
+                >
+                  <Dialog.Close className={styles.closeButton}>
+                    <AccessibleIcon
+                      label={formatMessage({
+                        defaultMessage: 'Close',
+                        description:
+                          'Accessibility label for modal close button',
+                      })}
+                    >
+                      <BsX />
+                    </AccessibleIcon>
+                  </Dialog.Close>
+                  {children}
+                </dialog>
+              </Dialog.Content>
+            </div>
+          </Dialog.Overlay>
+        </Dialog.Root>
+      </IsModalContextProvider>
+    );
+  };
 
 /**
  * A Modal or dialog box component
@@ -18,42 +108,11 @@ import useReturnToFn from 'app/hooks/useReturnToFn';
  */
 const Modal: React.FC<
   { displayMode: 'modal' | 'page' } & DialogHTMLAttributes<HTMLDialogElement>
-> = function ({ children, className, displayMode = 'modal', ...args }) {
-  const goBack = useReturnToFn();
-
-  // When displaying as a modal, we need to lock the scrolling of the page
-  useEffect(() => {
-    if (displayMode === 'modal') {
-      document.body.classList.add('scroll-lock');
-      return () => document.body.classList.remove('scroll-lock');
-    }
-  }, [displayMode]);
-
-  return (
-    <>
-      {displayMode === 'page' ? (
-        <HeaderSettings background="opaque" scrollBackground="opaque" />
-      ) : null}
-      <IsModalContextProvider>
-        <div
-          data-testid="scrim"
-          className={
-            displayMode === 'modal'
-              ? styles.modalContainer
-              : styles.pageContainer
-          }
-          onClick={goBack}>
-          <dialog
-            data-testid="modal"
-            open
-            className={[className, styles.modal].join(' ')}
-            onClick={(e) => e.stopPropagation()}
-            {...args}>
-            {children}
-          </dialog>
-        </div>
-      </IsModalContextProvider>
-    </>
+> = function ({ displayMode, ...args }) {
+  return displayMode === 'modal' ? (
+    <OverlayModal {...args} />
+  ) : (
+    <PageModal {...args} />
   );
 };
 

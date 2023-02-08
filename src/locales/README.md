@@ -25,7 +25,7 @@ If a locale has reached a point where it is usable (generally at least 50% compl
 released to users. To do this, create a new file in `./headers/` with the following format:
 
 ```typescript
-import { defineLocale, LocaleStatus } from '../utils/locale';
+import { LocaleStatus, defineLocale } from '../utils/locale';
 
 export default defineLocale({
   /**

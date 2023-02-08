@@ -1,4 +1,5 @@
 import { mapKeys, mapValues } from 'lodash-es';
+
 import { Locale } from './utils/locale';
 
 const translationFiles = import.meta.globEager('./headers/*.ts');

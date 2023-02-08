@@ -1,9 +1,9 @@
-import React, { useReducer } from 'react';
-import { useCookie, useEvent, useAsync } from 'react-use';
-import { IntlProvider } from 'react-intl';
 import { OnErrorFn } from '@formatjs/intl';
 import { Locale as DateFnsLocale } from 'date-fns';
 import preferredLocale from 'preferred-locale';
+import React, { useReducer } from 'react';
+import { IntlProvider } from 'react-intl';
+import { useAsync, useCookie, useEvent } from 'react-use';
 
 import translations from 'app/locales';
 
@@ -13,7 +13,7 @@ type LocaleState = {
   unsetLocale: () => void;
 };
 
-function useLocaleState(locale: string): LocaleState {
+function useLocaleState(locale?: string): LocaleState {
   const [cookie, setCookie, unsetCookie] = useCookie('chosenLocale');
   const availableLocales = Object.keys(translations);
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
@@ -25,7 +25,7 @@ function useLocaleState(locale: string): LocaleState {
     useEvent('languagechange', forceUpdate, window);
 
     // If the user has chosen an invalid locale, delete it
-    if (cookie && availableLocales.indexOf(locale) === -1) {
+    if (cookie && availableLocales.indexOf(cookie) === -1) {
       unsetCookie();
     }
 
@@ -40,7 +40,7 @@ function useLocaleState(locale: string): LocaleState {
   }
 }
 
-const LocaleContext = React.createContext<{
+export const LocaleContext = React.createContext<{
   locale: string;
   setLocale: (locale: string) => void;
   unsetLocale: () => void;
@@ -51,9 +51,9 @@ const LocaleContext = React.createContext<{
 });
 
 // @ts-ignore We guarantee that this is actually never null
-const DateFnsLocaleContext = React.createContext<DateFnsLocale>(null);
+export const DateFnsLocaleContext = React.createContext<DateFnsLocale>(null);
 
-const IntlContext: React.FC<{ locale: string }> = function ({
+const IntlContext: React.FC<{ locale?: string }> = function ({
   children,
   locale,
 }) {
@@ -77,7 +77,8 @@ const IntlContext: React.FC<{ locale: string }> = function ({
           key={value.locale}
           defaultRichTextElements={{
             b: (children) => <b>{children}</b>,
-          }}>
+          }}
+        >
           {children}
         </IntlProvider>
       </DateFnsLocaleContext.Provider>

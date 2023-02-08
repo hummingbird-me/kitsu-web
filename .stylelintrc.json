@@ -3,19 +3,18 @@
   "plugins": ["stylelint-declaration-strict-value", "stylelint-use-logical"],
   "ignoreFiles": ["**/*.tsx"],
   "rules": {
+    "function-no-unknown": [
+      true,
+      { "ignoreFunctions": ["color-mod", "shade", "tint", "alpha"] }
+    ],
+    "import-notation": "string",
     "string-quotes": "single",
     "csstools/use-logical": true,
     "color-hex-length": "long",
     "custom-property-empty-line-before": null,
     "value-list-comma-newline-after": null,
     "declaration-colon-newline-after": null,
-    "comment-empty-line-before": [
-      "always",
-      {
-        "except": ["first-nested"],
-        "ignore": ["after-comment", "stylelint-commands"]
-      }
-    ],
+    "comment-empty-line-before": null,
     "scale-unlimited/declaration-strict-value": [
       ["/color$/"],
       {
@@ -29,5 +28,11 @@
         "ignorePseudoClasses": ["global", "local"]
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.module.css"],
+      "rules": { "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$" }
+    }
+  ]
 }

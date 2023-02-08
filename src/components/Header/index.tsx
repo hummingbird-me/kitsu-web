@@ -1,15 +1,15 @@
-import React, { useState, Suspense } from 'react';
 import { uniqueId } from 'lodash-es';
-import { useIntersection } from 'react-use';
-import { NavLink } from 'react-router-dom';
+import React, { Suspense, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { NavLink } from 'react-router-dom';
+import { useIntersection } from 'react-use';
 
-import { ReactComponent as Logo } from 'app/assets/logo.svg';
 import { ReactComponent as SearchIcon } from 'app/assets/icons/search.svg';
-import utilStyles from 'app/styles/utils.module.css';
-import { useSession } from 'app/contexts/SessionContext';
+import { ReactComponent as Logo } from 'app/assets/logo.svg';
 import ModalLink from 'app/components/ModalLink';
-import Spinner from 'app/components/Spinner';
+import Spinner from 'app/components/feedback/Spinner';
+import { useSession } from 'app/contexts/SessionContext';
+import utilStyles from 'app/styles/utils.module.css';
 
 import AvatarMenu from './AvatarMenu';
 import styles from './styles.module.css';

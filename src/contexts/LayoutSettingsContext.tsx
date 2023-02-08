@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
 import { isEqual, merge } from 'lodash-es';
+import React, { useContext, useEffect, useState } from 'react';
 import { PartialDeep } from 'type-fest';
 
 import { HeaderProps } from 'app/components/Header';
@@ -32,7 +32,8 @@ export const LayoutSettingsContextProvider: React.FC = function ({ children }) {
       value={{
         layoutSettings,
         setLayoutSettings,
-      }}>
+      }}
+    >
       {children}
     </LayoutSettingsContext.Provider>
   );

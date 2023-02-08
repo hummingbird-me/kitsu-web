@@ -1,0 +1,49 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import Spinner, { SpinnerBlock } from './index';
+
+<Meta
+  title="Feedback/Spinner"
+  component={Spinner}
+  parameters={{
+    layout: 'centered',
+    controls: { expanded: true },
+  }}
+/>
+
+# Spinner
+
+Spinners are a compact way to tell the user "hey, we're doing something, just wait a sec".
+
+Works especially well on buttons, in the margins, or to represent processing of something in the
+background. If you're loading a whole page or section, you should prefer a Skeleton.
+
+The spinner is displayed in the text color of the context it's placed in, and defaults to `3em`
+size. You can pass `style` or `className` props to override the style, including color. You can
+change the size by passing a value to `size`. Just... please don't actually color it magenta, okay?
+
+For users with reduced motion, the spinner is significantly slowed down to a 3-second animation.
+
+<Canvas>
+  <Story name="Default" parameters={{ layout: 'centered' }}>
+    {Spinner.bind({})}
+  </Story>
+  <Story
+    name="Colored"
+    parameters={{ layout: 'centered' }}
+    args={{ style: { color: 'magenta' } }}>
+    {Spinner.bind({})}
+  </Story>
+</Canvas>
+
+## Block Spinner
+
+Don't have time to use a Skeleton, or isn't added to the UI kit yet? Use the block spinner to
+indicate a section or page that is still loading! It'll grow to fit your block, and position a big
+spinner right in the middle.
+
+Is it janky? Yes! Does it work? Also yes!
+
+<Canvas>
+  <Story name="Block">{SpinnerBlock.bind({})}</Story>
+</Canvas>

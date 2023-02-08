@@ -9,16 +9,20 @@ generates:
   src/graphql/schema.json:
     plugins:
       - introspection
+    config:
+      includeScalars: true
+      includeEnums: true
+      includeInputs: true
 
-  src/types/graphql.ts:
+  src/graphql/types.ts:
     plugins:
       - typescript
     config:
       immutableTypes: true
       scalars:
         Map: 'Record<string, string>'
-        JSON: 'Record<string, unknown>'
-        Date: 'string'
+        JSON: 'unknown'
+        Date: 'Date'
         ISO8601Date: 'Date'
         ISO8601DateTime: 'Date'
 
@@ -34,8 +38,8 @@ generates:
       dedupeFragments: true
       scalars:
         Map: 'Record<string, string>'
-        JSON: 'Record<string, unknown>'
-        Date: 'string'
+        JSON: 'unknown'
+        Date: 'Date'
         ISO8601Date: 'Date'
         ISO8601DateTime: 'Date'
     plugins:

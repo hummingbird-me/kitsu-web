@@ -23,15 +23,23 @@
   align-self: center;
 }
 
+.title,
+.subtitle {
+  -webkit-font-smoothing: antialiased;
+}
+
 .title {
   grid-area: title;
   font-size: var(--font-xxxxl);
+  font-family: var(--font-family-headings);
+  align-self: flex-end;
   margin: 0;
 }
 
 .subtitle {
   grid-area: subtitle;
   font-size: var(--font-xxl);
+  font-weight: var(--font-semi-bold);
 }
 
 .search {

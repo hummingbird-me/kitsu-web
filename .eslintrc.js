@@ -11,6 +11,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier',
+    'plugin:storybook/recommended',
   ],
   env: {
     browser: true,
@@ -53,7 +54,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.stories.{js,jsx,ts,tsx}'],
+      files: ['*.{stories,test}.{js,jsx,ts,tsx}'],
       rules: {
         'i18next/no-literal-string': 'off',
       },

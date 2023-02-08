@@ -1,4 +1,4 @@
-import { defineLocale, LocaleStatus } from '../utils/locale';
+import { LocaleStatus, defineLocale } from '../utils/locale';
 
 export default defineLocale({
   name: 'English (United States)',

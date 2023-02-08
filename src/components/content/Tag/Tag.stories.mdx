@@ -1,0 +1,68 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import Tag, { TagColor } from './index';
+
+<Meta
+  title="Content/Tag"
+  component={Tag}
+  parameters={{
+    layout: 'centered',
+    controls: { expanded: true },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/7KLXsWEmbIbkNy9CnFA0Ke/Kitsu-Web-V4?node-id=57%3A106',
+    },
+  }}
+/>
+
+# Tag
+
+Tags are used to display a genre or tag for a media item.
+
+<Canvas>
+  <Story
+    name="Red"
+    parameters={{ layout: 'centered' }}
+    args={{
+      color: TagColor.RED,
+      children: 'Red',
+    }}>
+    {Tag.bind({})}
+  </Story>
+  <Story
+    name="Orange"
+    parameters={{ layout: 'centered' }}
+    args={{
+      color: TagColor.ORANGE,
+      children: 'Orange',
+    }}>
+    {Tag.bind({})}
+  </Story>
+  <Story
+    name="Green"
+    parameters={{ layout: 'centered' }}
+    args={{
+      color: TagColor.GREEN,
+      children: 'Green',
+    }}>
+    {Tag.bind({})}
+  </Story>
+  <Story
+    name="Blue"
+    parameters={{ layout: 'centered' }}
+    args={{
+      color: TagColor.BLUE,
+      children: 'Blue',
+    }}>
+    {Tag.bind({})}
+  </Story>
+  <Story
+    name="Purple"
+    parameters={{ layout: 'centered' }}
+    args={{
+      color: TagColor.PURPLE,
+      children: 'Purple',
+    }}>
+    {Tag.bind({})}
+  </Story>
+</Canvas>
