@@ -1,9 +1,10 @@
-import React, { ReactElement } from 'react';
-import { useFindLibraryEntryByIdQuery } from 'app/components/QUEmbed/findLibraryEntryById-gql';
-import { useSearchMediaByTitleQuery } from 'app/components/QUEmbed/searchMediaByTitle-gql';
-import { Maybe, MediaTypeEnum } from 'app/graphql/types';
-import MediaList from 'app/components/QUEmbed/MediaList';
+import React, { ReactElement, useEffect } from 'react';
+
 import { MediaFieldsFragment } from 'app/components/QUEmbed/Media/mediaFields-gql';
+import MediaList from 'app/components/QUEmbed/MediaList';
+import { useSearchMediaByTitleQuery } from 'app/components/QUEmbed/searchMediaByTitle-gql';
+import { MediaTypeEnum } from 'app/graphql/types';
+import { kitsuDB } from 'app/utils/indexdb/kitsuDB';
 
 interface QUEmbedProps {
   externalMediaId: string;
@@ -13,19 +14,37 @@ interface QUEmbedProps {
   title?: string;
 }
 
+type MediaRecord = {
+  external_media_source: string;
+  external_media_id: string;
+  media_type: MediaTypeEnum;
+  kitsu_media_id: string;
+  metadata: {
+    title: string;
+  };
+};
+
 export default function Home({
-  externalMediaId,
+  externalMediaId = '9957316c-eadb-49c5-bc2d-f6cbfe9034a3',
   mediaType = MediaTypeEnum.Manga,
-  externalMediaSource,
-  kitsuMediaId = '1234',
-  title = 'angel'
+  externalMediaSource = 'mangadex',
+  title = 'angel beats',
 }: QUEmbedProps): ReactElement {
-  const shouldPause = false;
-  // const shouldPause = kitsuMediaId === null ? true : false;
-  // const [resultLibrary] = useFindLibraryEntryByIdQuery({
-  //   variables: { id: libraryEntryId || '' },
-  //   pause: shouldPause
-  // });
+  let shouldPause = false;
+  const [mediaRecord, setMediaRecord] = React.useState<MediaRecord | null>(
+    null
+  );
+
+  useEffect(() => {
+    const response: Promise<MediaRecord> = kitsuDB.get('mappings', [
+      externalMediaSource,
+      externalMediaId,
+      mediaType,
+    ]);
+    response.then((res) => {
+      setMediaRecord(res);
+    });
+  }, []);
 
   // const { data: libraryData, fetching: libraryFetch } = resultLibrary;
 
@@ -41,13 +60,39 @@ export default function Home({
   //     ? false
   //     : true;
 
-  const handleEntrySubmit = (media: Maybe<MediaFieldsFragment>) => {
-    console.log('handleEntrySubmit', media);
+  const handleEntrySubmit = (media: MediaFieldsFragment) => {
+    const item: MediaRecord = {
+      external_media_source: externalMediaSource,
+      external_media_id: externalMediaId,
+      media_type: mediaType,
+      kitsu_media_id: media.id,
+      metadata: {
+        title: media.titles.preferred,
+      },
+    };
+
+    console.log('Submitted', item);
+
+    setMediaRecord(item);
+
+    kitsuDB
+      .put('mappings', item)
+      .then((res) => {
+        console.log('Added to DB', res);
+      })
+      .catch((err) => {
+        console.log('Error adding to DB', err);
+      });
   };
 
+  if (mediaRecord) {
+    console.log('Found', mediaRecord);
+    shouldPause = false;
+  }
+
   const [resultSearch] = useSearchMediaByTitleQuery({
-    variables: { title: title || '', mediaType: mediaType },
-    pause: shouldPause
+    variables: { title: title, mediaType: mediaType },
+    pause: shouldPause,
   });
 
   const { data: searchData, fetching: searchFetch } = resultSearch;
@@ -64,7 +109,13 @@ export default function Home({
   //       <div>{libraryData.findLibraryEntryById.media.slug}</div>
   //     </div>
   //   );
-  if (searchData?.searchMediaByTitle) {
+  if (mediaRecord) {
+    return (
+      <div>
+        <div>Library Entry Found!</div>
+      </div>
+    );
+  } else if (searchData?.searchMediaByTitle) {
     return (
       <div>
         <MediaList

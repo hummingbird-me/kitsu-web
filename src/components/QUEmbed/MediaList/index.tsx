@@ -1,36 +1,38 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
+
 import Media from '../Media';
-import { Maybe } from 'app/graphql/types';
-import { MediaListConnectionFragment } from './mediaListConnection-gql';
 import { MediaFieldsFragment } from '../Media/mediaFields-gql';
+import { MediaListConnectionFragment } from './mediaListConnection-gql';
 
 interface QUEmbedMediaListProps {
   entries: MediaListConnectionFragment;
-  onSubmit: (media: Maybe<MediaFieldsFragment>) => void;
+  onSubmit: (media: MediaFieldsFragment) => void;
 }
 
 export default function MediaList({
   entries,
-  onSubmit
+  onSubmit,
 }: QUEmbedMediaListProps): ReactElement {
   const [selectedMedia, setSelectedMedia] =
-    React.useState<Maybe<MediaFieldsFragment>>(null);
+    React.useState<MediaFieldsFragment | null>(null);
 
   if (entries == null || entries.nodes == null) {
     return <div>Nothing to see here</div>;
   }
 
-  const handleSelect = (media: Maybe<MediaFieldsFragment>) => {
+  const handleSelect = (media: MediaFieldsFragment) => {
+    console.log('selected', media);
     setSelectedMedia(media);
   };
 
   // TODO: Work with MediaFieldsFragment
-  const renderedList = entries?.nodes.map((media: any): JSX.Element => {
-    const selected = media?.id == selectedMedia?.id ? true : false;
+  const renderedList = entries.nodes.map((media: any): JSX.Element => {
+    const formattedMedia = media as MediaFieldsFragment;
+    const selected = formattedMedia.id === selectedMedia?.id ? true : false;
     return (
       <Media
-        key={media?.id}
-        media={media}
+        key={formattedMedia.id}
+        media={formattedMedia}
         onSelect={handleSelect}
         selected={selected}
       />
@@ -42,9 +44,9 @@ export default function MediaList({
       <div>{renderedList}</div>
       <button
         onClick={() => {
-          onSubmit(selectedMedia);
+          if (selectedMedia != null) onSubmit(selectedMedia);
         }}>
-        Submit
+        {'Submit'}
       </button>
     </div>
   );
