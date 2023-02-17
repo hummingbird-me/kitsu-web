@@ -1,9 +1,10 @@
-import * as Types from '../../graphql/types';
-
 import { DocumentNode } from 'graphql';
-import { MediaListConnectionFragmentDoc } from './MediaList/mediaListConnection-gql';
-import { MediaFieldsFragmentDoc } from './Media/mediaFields-gql';
 import * as Urql from 'urql';
+
+import * as Types from '../../graphql/types';
+import { MediaFieldsFragmentDoc } from './Media/mediaFields-gql';
+import { MediaListConnectionFragmentDoc } from './MediaList/mediaListConnection-gql';
+
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type SearchMediaByTitleQueryVariables = Types.Exact<{
   title: Types.Scalars['String'];
@@ -12,25 +13,27 @@ export type SearchMediaByTitleQueryVariables = Types.Exact<{
 
 export type SearchMediaByTitleQuery = {
   searchMediaByTitle: {
-    nodes?:
-      | Array<
-          | {
-              id: string;
-              type: string;
-              slug: string;
-              titles: { preferred: string };
-            }
-          | {
-              id: string;
-              type: string;
-              slug: string;
-              titles: { preferred: string };
-            }
-          | null
-          | undefined
-        >
+    nodes?: Array<
+      | {
+          id: string;
+          type: string;
+          slug: string;
+          titles: { preferred: string };
+          posterImage?: { original: { url: string } } | null;
+          bannerImage?: { original: { url: string } } | null;
+          myLibraryEntry?: { id: string; progress: number } | null;
+        }
+      | {
+          id: string;
+          type: string;
+          slug: string;
+          titles: { preferred: string };
+          posterImage?: { original: { url: string } } | null;
+          bannerImage?: { original: { url: string } } | null;
+          myLibraryEntry?: { id: string; progress: number } | null;
+        }
       | null
-      | undefined;
+    > | null;
   };
 };
 
@@ -46,24 +49,27 @@ export const SearchMediaByTitleDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'title' }
+            name: { kind: 'Name', value: 'title' },
           },
           type: {
             kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } }
-          }
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
         },
         {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'mediaType' }
+            name: { kind: 'Name', value: 'mediaType' },
           },
           type: {
             kind: 'NamedType',
-            name: { kind: 'Name', value: 'MediaTypeEnum' }
-          }
-        }
+            name: { kind: 'Name', value: 'MediaTypeEnum' },
+          },
+        },
       ],
       selectionSet: {
         kind: 'SelectionSet',
@@ -77,49 +83,46 @@ export const SearchMediaByTitleDocument = {
                 name: { kind: 'Name', value: 'title' },
                 value: {
                   kind: 'Variable',
-                  name: { kind: 'Name', value: 'title' }
-                }
+                  name: { kind: 'Name', value: 'title' },
+                },
               },
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'mediaType' },
                 value: {
                   kind: 'Variable',
-                  name: { kind: 'Name', value: 'mediaType' }
-                }
+                  name: { kind: 'Name', value: 'mediaType' },
+                },
               },
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'first' },
-                value: { kind: 'IntValue', value: '10' }
-              }
+                value: { kind: 'IntValue', value: '10' },
+              },
             ],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'MediaListConnection' }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: { kind: 'Name', value: 'MediaListConnection' },
+                },
+              ],
+            },
+          },
+        ],
+      },
     },
     ...MediaListConnectionFragmentDoc.definitions,
-    ...MediaFieldsFragmentDoc.definitions
-  ]
+    ...MediaFieldsFragmentDoc.definitions,
+  ],
 } as unknown as DocumentNode;
 
 export function useSearchMediaByTitleQuery(
-  options: Omit<
-    Urql.UseQueryArgs<SearchMediaByTitleQueryVariables>,
-    'query'
-  > = {}
+  options: Omit<Urql.UseQueryArgs<SearchMediaByTitleQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<SearchMediaByTitleQuery>({
-    query: SearchMediaByTitleDocument,
-    ...options
-  });
+  return Urql.useQuery<
+    SearchMediaByTitleQuery,
+    SearchMediaByTitleQueryVariables
+  >({ query: SearchMediaByTitleDocument, ...options });
 }

@@ -1,38 +1,35 @@
-import * as Types from '../../graphql/types';
-
 import { DocumentNode } from 'graphql';
 import * as Urql from 'urql';
+
+import * as Types from '../../graphql/types';
+
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type FindLibraryEntryByIdQueryVariables = Types.Exact<{
   id: Types.Scalars['ID'];
 }>;
 
 export type FindLibraryEntryByIdQuery = {
-  findLibraryEntryById?:
-    | {
-        id: string;
-        progress: number;
-        nextUnit?:
-          | { titles: { preferred: string } }
-          | { titles: { preferred: string } }
-          | null
-          | undefined;
-        media:
-          | {
-              id: string;
-              type: string;
-              slug: string;
-              titles: { preferred: string };
-            }
-          | {
-              id: string;
-              type: string;
-              slug: string;
-              titles: { preferred: string };
-            };
-      }
-    | null
-    | undefined;
+  findLibraryEntryById?: {
+    id: string;
+    progress: number;
+    nextUnit?:
+      | { titles: { preferred: string } }
+      | { titles: { preferred: string } }
+      | null;
+    media:
+      | {
+          id: string;
+          type: string;
+          slug: string;
+          titles: { preferred: string };
+        }
+      | {
+          id: string;
+          type: string;
+          slug: string;
+          titles: { preferred: string };
+        };
+  } | null;
 };
 
 export const FindLibraryEntryByIdDocument = {
@@ -48,9 +45,9 @@ export const FindLibraryEntryByIdDocument = {
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
           type: {
             kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'ID' } }
-          }
-        }
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'ID' } },
+          },
+        },
       ],
       selectionSet: {
         kind: 'SelectionSet',
@@ -62,8 +59,11 @@ export const FindLibraryEntryByIdDocument = {
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'id' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'id' } }
-              }
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'id' },
+                },
+              },
             ],
             selectionSet: {
               kind: 'SelectionSet',
@@ -83,13 +83,13 @@ export const FindLibraryEntryByIdDocument = {
                           selections: [
                             {
                               kind: 'Field',
-                              name: { kind: 'Name', value: 'preferred' }
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
+                              name: { kind: 'Name', value: 'preferred' },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
                 },
                 { kind: 'Field', name: { kind: 'Name', value: 'progress' } },
                 {
@@ -109,31 +109,28 @@ export const FindLibraryEntryByIdDocument = {
                           selections: [
                             {
                               kind: 'Field',
-                              name: { kind: 'Name', value: 'preferred' }
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  ]
+                              name: { kind: 'Name', value: 'preferred' },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
 } as unknown as DocumentNode;
 
 export function useFindLibraryEntryByIdQuery(
-  options: Omit<
-    Urql.UseQueryArgs<FindLibraryEntryByIdQueryVariables>,
-    'query'
-  > = {}
+  options: Omit<Urql.UseQueryArgs<FindLibraryEntryByIdQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<FindLibraryEntryByIdQuery>({
-    query: FindLibraryEntryByIdDocument,
-    ...options
-  });
+  return Urql.useQuery<
+    FindLibraryEntryByIdQuery,
+    FindLibraryEntryByIdQueryVariables
+  >({ query: FindLibraryEntryByIdDocument, ...options });
 }

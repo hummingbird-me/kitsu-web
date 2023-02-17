@@ -1,27 +1,30 @@
-import * as Types from '../../../graphql/types';
-
 import { DocumentNode } from 'graphql';
+
+import * as Types from '../../../graphql/types';
 import { MediaFieldsFragmentDoc } from '../Media/mediaFields-gql';
+
 export type MediaListConnectionFragment = {
-  nodes?:
-    | Array<
-        | {
-            id: string;
-            type: string;
-            slug: string;
-            titles: { preferred: string };
-          }
-        | {
-            id: string;
-            type: string;
-            slug: string;
-            titles: { preferred: string };
-          }
-        | null
-        | undefined
-      >
+  nodes?: Array<
+    | {
+        id: string;
+        type: string;
+        slug: string;
+        titles: { preferred: string };
+        posterImage?: { original: { url: string } } | null;
+        bannerImage?: { original: { url: string } } | null;
+        myLibraryEntry?: { id: string; progress: number } | null;
+      }
+    | {
+        id: string;
+        type: string;
+        slug: string;
+        titles: { preferred: string };
+        posterImage?: { original: { url: string } } | null;
+        bannerImage?: { original: { url: string } } | null;
+        myLibraryEntry?: { id: string; progress: number } | null;
+      }
     | null
-    | undefined;
+  > | null;
 };
 
 export const MediaListConnectionFragmentDoc = {
@@ -32,7 +35,7 @@ export const MediaListConnectionFragmentDoc = {
       name: { kind: 'Name', value: 'MediaListConnection' },
       typeCondition: {
         kind: 'NamedType',
-        name: { kind: 'Name', value: 'MediaConnection' }
+        name: { kind: 'Name', value: 'MediaConnection' },
       },
       selectionSet: {
         kind: 'SelectionSet',
@@ -45,13 +48,13 @@ export const MediaListConnectionFragmentDoc = {
               selections: [
                 {
                   kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'MediaFields' }
-                }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  ]
+                  name: { kind: 'Name', value: 'MediaFields' },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
 } as unknown as DocumentNode;

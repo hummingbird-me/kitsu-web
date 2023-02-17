@@ -15,7 +15,7 @@ export const ImageFieldsFragmentDoc = {
       name: { kind: 'Name', value: 'imageFields' },
       typeCondition: {
         kind: 'NamedType',
-        name: { kind: 'Name', value: 'Image' }
+        name: { kind: 'Name', value: 'Image' },
       },
       selectionSet: {
         kind: 'SelectionSet',
@@ -29,12 +29,12 @@ export const ImageFieldsFragmentDoc = {
               selections: [
                 { kind: 'Field', name: { kind: 'Name', value: 'height' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'width' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'url' } }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  ]
+                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
 } as unknown as DocumentNode;

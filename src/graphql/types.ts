@@ -2754,6 +2754,20 @@ export type ProfileEdge = {
   readonly node?: Maybe<Profile>;
 };
 
+/** An external site that can be linked to a user. */
+export type ProfileLinkSite = WithTimestamps & {
+  readonly __typename?: 'ProfileLinkSite';
+  readonly createdAt: Scalars['ISO8601DateTime'];
+  readonly id: Scalars['ID'];
+  /** Name of the external profile website. */
+  readonly name: Scalars['String'];
+  readonly updatedAt: Scalars['ISO8601DateTime'];
+  /** Regex pattern used to validate the profile link. */
+  readonly validateFind: Scalars['String'];
+  /** Pattern to be replaced after validation. */
+  readonly validateReplace: Scalars['String'];
+};
+
 /** The different types of user stats that we calculate. */
 export type ProfileStats = {
   readonly __typename?: 'ProfileStats';
@@ -3328,6 +3342,8 @@ export type SiteLink = WithTimestamps & {
   readonly author: Profile;
   readonly createdAt: Scalars['ISO8601DateTime'];
   readonly id: Scalars['ID'];
+  /** The actual linked website. */
+  readonly site: ProfileLinkSite;
   readonly updatedAt: Scalars['ISO8601DateTime'];
   /** A fully qualified URL of the user profile on an external site. */
   readonly url: Scalars['String'];

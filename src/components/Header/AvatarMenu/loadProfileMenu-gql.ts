@@ -70,10 +70,10 @@ export const LoadProfileMenuDocument = {
                           selections: [
                             {
                               kind: 'FragmentSpread',
-                              name: { kind: 'Name', value: 'imageFields' }
-                            }
-                          ]
-                        }
+                              name: { kind: 'Name', value: 'imageFields' },
+                            },
+                          ],
+                        },
                       },
                       {
                         kind: 'Field',
@@ -83,22 +83,22 @@ export const LoadProfileMenuDocument = {
                           selections: [
                             {
                               kind: 'FragmentSpread',
-                              name: { kind: 'Name', value: 'imageFields' }
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                              name: { kind: 'Name', value: 'imageFields' },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     },
-    ...ImageFieldsFragmentDoc.definitions
-  ]
+    ...ImageFieldsFragmentDoc.definitions,
+  ],
 } as unknown as DocumentNode;
 
 export function useLoadProfileMenuQuery(
@@ -106,6 +106,6 @@ export function useLoadProfileMenuQuery(
 ) {
   return Urql.useQuery<LoadProfileMenuQuery, LoadProfileMenuQueryVariables>({
     query: LoadProfileMenuDocument,
-    ...options
+    ...options,
   });
 }

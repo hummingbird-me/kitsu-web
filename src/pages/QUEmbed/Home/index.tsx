@@ -19,8 +19,12 @@ type MediaRecord = {
   external_media_id: string;
   media_type: MediaTypeEnum;
   kitsu_media_id: string;
+  library_entry_id?: string;
+  progress: number;
   metadata: {
     title: string;
+    poster_image?: string;
+    banner_image?: string;
   };
 };
 
@@ -46,28 +50,18 @@ export default function Home({
     });
   }, []);
 
-  // const { data: libraryData, fetching: libraryFetch } = resultLibrary;
-
-  // if (libraryFetch) {
-  //   return <div>Loading Library...</div>;
-  // }
-
-  // Pause if the query either returns something or query returns nothing and if the title is null
-  // shouldPause =
-  //   libraryData?.findLibraryEntryById === null &&
-  //   title !== null &&
-  //   mediaType !== null
-  //     ? false
-  //     : true;
-
   const handleEntrySubmit = (media: MediaFieldsFragment) => {
     const item: MediaRecord = {
       external_media_source: externalMediaSource,
       external_media_id: externalMediaId,
       media_type: mediaType,
       kitsu_media_id: media.id,
+      library_entry_id: media.myLibraryEntry?.id,
+      progress: media.myLibraryEntry?.progress || 0,
       metadata: {
         title: media.titles.preferred,
+        poster_image: media.posterImage?.original?.url,
+        banner_image: media.bannerImage?.original?.url,
       },
     };
 
@@ -101,14 +95,6 @@ export default function Home({
     return <div>Loading Search...</div>;
   }
 
-  // if (libraryData?.findLibraryEntryById) {
-  //   return (
-  //     <div>
-  //       <div>Library Entry</div>
-  //       <div>{libraryData.findLibraryEntryById.id}</div>
-  //       <div>{libraryData.findLibraryEntryById.media.slug}</div>
-  //     </div>
-  //   );
   if (mediaRecord) {
     return (
       <div>
