@@ -1,15 +1,15 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import ForgotPasswordModal from './pages/Auth/ForgotPassword';
+import AuthModal from './pages/Auth/Modal';
 // import 'app/styles/index.css';
 
 // import NotFoundPage from './pages/Errors/NotFound';
 import SignInModal from './pages/Auth/SignIn';
 import SignUpModal from './pages/Auth/SignUp';
-import ForgotPasswordModal from './pages/Auth/ForgotPassword';
-import { UserRoute } from './utils/user_route';
 import HomePage from './pages/QUEmbed/Home';
-import AuthModal from './pages/Auth/Modal';
+import { UserRoute } from './utils/user_route';
 
 export default function QURouter() {
   return (
@@ -20,6 +20,7 @@ export default function QURouter() {
           <Route path="sign-up" element={<SignUpModal />} />
           <Route path="forgot-password" element={<ForgotPasswordModal />} />
         </Route>
+        {/* NOTE: is there a way to declare which query params are allowed? */}
         <Route
           path="/"
           element={
