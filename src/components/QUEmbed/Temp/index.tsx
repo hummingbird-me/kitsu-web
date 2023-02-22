@@ -102,13 +102,16 @@ export default function Temp({
 
   console.log('Search Data Results', searchData);
 
+  // HACK: should add a total to the nodes again?
+  const totalNodes = searchData?.searchMediaByTitle?.nodes?.length || 0;
+
   if (mediaRecord) {
     return (
       <div>
         <div>Library Entry Found!</div>
       </div>
     );
-  } else if (searchData?.searchMediaByTitle) {
+  } else if (searchData?.searchMediaByTitle && totalNodes > 0) {
     return (
       <div>
         <MediaList
