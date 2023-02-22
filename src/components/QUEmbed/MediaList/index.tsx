@@ -42,12 +42,14 @@ export default function MediaList({
   return (
     <div>
       <div>{renderedList}</div>
-      <button
-        onClick={() => {
-          if (selectedMedia != null) onSubmit(selectedMedia);
-        }}>
-        {'Submit'}
-      </button>
+      {selectedMedia && (
+        <button
+          onClick={() => {
+            onSubmit(selectedMedia);
+          }}>
+          {'Submit'}
+        </button>
+      )}
     </div>
   );
 }
