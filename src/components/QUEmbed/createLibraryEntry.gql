@@ -1,0 +1,15 @@
+mutation CreateLibraryEntry($input: LibraryEntryCreateInput!) {
+  libraryEntry {
+    create(input: $input) {
+      libraryEntry {
+        id
+      }
+      errors {
+        __typename
+        code
+        path
+        message
+      }
+    }
+  }
+}

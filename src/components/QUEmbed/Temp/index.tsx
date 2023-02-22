@@ -3,8 +3,10 @@ import React, { ReactElement, useEffect } from 'react';
 import { MediaFieldsFragment } from 'app/components/QUEmbed/Media/mediaFields-gql';
 import MediaList from 'app/components/QUEmbed/MediaList';
 import { useSearchMediaByTitleQuery } from 'app/components/QUEmbed/searchMediaByTitle-gql';
-import { MediaTypeEnum } from 'app/graphql/types';
+import { LibraryEntryStatusEnum, MediaTypeEnum } from 'app/graphql/types';
 import { kitsuDB } from 'app/utils/indexdb/kitsuDB';
+
+import { useCreateLibraryEntryMutation } from '../createLibraryEntry-gql';
 
 interface QUEmbedProps {
   externalMediaId: string;
@@ -18,7 +20,6 @@ type MediaRecord = {
   external_media_id: string;
   media_type: MediaTypeEnum;
   kitsu_media_id: string;
-  library_entry_id?: string;
   progress: number;
   metadata: {
     title: string;
@@ -40,6 +41,8 @@ export default function Temp({
     null
   );
 
+  const [_, createLibraryEntry] = useCreateLibraryEntryMutation();
+
   useEffect(() => {
     const response: Promise<MediaRecord> = kitsuDB.get('mappings', [
       externalMediaSource,
@@ -52,12 +55,34 @@ export default function Temp({
   }, []);
 
   const handleEntrySubmit = (media: MediaFieldsFragment) => {
+    const libraryEntryId = media.myLibraryEntry?.id;
+
+    // Only create a new library entry if one doesn't exist
+    if (!libraryEntryId) {
+      const request = createLibraryEntry({
+        input: {
+          mediaId: media.id,
+          mediaType: MediaTypeEnum.Manga,
+          status: LibraryEntryStatusEnum.Current,
+        },
+      });
+
+      request.then((res) => {
+        if (res.data?.libraryEntry?.create?.errors) {
+          console.log('Error creating Library Entry', res);
+        } else if (res.data?.libraryEntry?.create?.libraryEntry) {
+          console.log('Created Library Entry', res);
+        } else {
+          console.log('No Library Entry found', res);
+        }
+      });
+    }
+
     const item: MediaRecord = {
       external_media_source: externalMediaSource,
       external_media_id: externalMediaId,
       media_type: mediaType,
       kitsu_media_id: media.id,
-      library_entry_id: media.myLibraryEntry?.id,
       progress: media.myLibraryEntry?.progress || 0,
       metadata: {
         title: media.titles.preferred,
@@ -65,8 +90,6 @@ export default function Temp({
         banner_image: media.bannerImage?.original?.url,
       },
     };
-
-    console.log('Submitted', item);
 
     setMediaRecord(item);
 
@@ -78,6 +101,8 @@ export default function Temp({
       .catch((err) => {
         console.log('Error adding to DB', err);
       });
+
+    console.log('Submitted', item);
   };
 
   if (mediaRecord) {

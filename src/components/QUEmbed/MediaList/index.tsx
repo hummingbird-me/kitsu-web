@@ -26,10 +26,13 @@ export default function MediaList({
   };
 
   // TODO: Work with MediaFieldsFragment
-  const renderedList = entries.nodes.map((media: any): JSX.Element => {
+  const existingMediaLibraryEntry: JSX.Element[] = [];
+  const newMediaLibraryEntry: JSX.Element[] = [];
+
+  entries.nodes.forEach((media: any): void => {
     const formattedMedia = media as MediaFieldsFragment;
     const selected = formattedMedia.id === selectedMedia?.id ? true : false;
-    return (
+    const record = (
       <Media
         key={formattedMedia.id}
         media={formattedMedia}
@@ -37,11 +40,24 @@ export default function MediaList({
         selected={selected}
       />
     );
+
+    if (formattedMedia.myLibraryEntry?.id) {
+      existingMediaLibraryEntry.push(record);
+    } else {
+      newMediaLibraryEntry.push(record);
+    }
   });
 
   return (
     <div>
-      <div>{renderedList}</div>
+      <div>
+        <h3>In your Library</h3>
+        <div>{existingMediaLibraryEntry}</div>
+      </div>
+      <div>
+        <h3>Not in your Library</h3>
+        <div>{newMediaLibraryEntry}</div>
+      </div>
       {selectedMedia && (
         <button
           onClick={() => {
