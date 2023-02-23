@@ -16,6 +16,7 @@ interface QUEmbedProps {
 }
 
 type MediaRecord = {
+  id?: number;
   external_media_source: string;
   external_media_id: string;
   media_type: MediaTypeEnum;
@@ -91,12 +92,11 @@ export default function Temp({
       },
     };
 
-    setMediaRecord(item);
-
     kitsuDB
       .put('mappings', item)
       .then((res) => {
-        console.log('Added to DB', res);
+        item.id = res as number;
+        setMediaRecord(item);
       })
       .catch((err) => {
         console.log('Error adding to DB', err);
