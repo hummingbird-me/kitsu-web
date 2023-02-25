@@ -1,0 +1,17 @@
+mutation QuickUpdateNoPost(
+  $libraryEntryInput: LibraryEntryUpdateProgressByMediaInput!
+) {
+  libraryEntry {
+    updateProgressByMedia(input: $libraryEntryInput) {
+      libraryEntry {
+        id
+        progress
+      }
+      errors {
+        message
+        code
+        path
+      }
+    }
+  }
+}

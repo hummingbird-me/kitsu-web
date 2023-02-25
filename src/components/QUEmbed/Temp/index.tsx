@@ -6,6 +6,7 @@ import { useSearchMediaByTitleQuery } from 'app/components/QUEmbed/searchMediaBy
 import { LibraryEntryStatusEnum, MediaTypeEnum } from 'app/graphql/types';
 import { kitsuDB } from 'app/utils/indexdb/kitsuDB';
 
+import ChosenMedia from '../ChosenMedia';
 import { useCreateLibraryEntryMutation } from '../createLibraryEntry-gql';
 
 interface QUEmbedProps {
@@ -15,7 +16,7 @@ interface QUEmbedProps {
   title: string;
 }
 
-type MediaRecord = {
+export type MediaRecord = {
   id?: number;
   external_media_source: string;
   external_media_id: string;
@@ -45,12 +46,13 @@ export default function Temp({
   const [_, createLibraryEntry] = useCreateLibraryEntryMutation();
 
   useEffect(() => {
-    const response: Promise<MediaRecord> = kitsuDB.get('mappings', [
-      externalMediaSource,
-      externalMediaId,
-      mediaType,
-    ]);
+    const response: Promise<MediaRecord> = kitsuDB.getFromIndex(
+      'mappings',
+      'external_media_source_external_media_id_media_type_index',
+      [externalMediaSource, externalMediaId, mediaType]
+    );
     response.then((res) => {
+      console.log('MediaRecord Found', res);
       setMediaRecord(res);
     });
   }, []);
@@ -110,8 +112,6 @@ export default function Temp({
     shouldPause = true;
   }
 
-  console.log('Should Pause?', shouldPause);
-
   const [resultSearch] = useSearchMediaByTitleQuery({
     // variables: { title: title, mediaType: mediaType },
     // NOTE: something is wonky with the enum type
@@ -133,7 +133,7 @@ export default function Temp({
   if (mediaRecord) {
     return (
       <div>
-        <div>Library Entry Found!</div>
+        <ChosenMedia record={mediaRecord} />
       </div>
     );
   } else if (searchData?.searchMediaByTitle && totalNodes > 0) {
