@@ -8,6 +8,7 @@ import { kitsuDB } from 'app/utils/indexdb/kitsuDB';
 
 import ChosenMedia from '../ChosenMedia';
 import { useCreateLibraryEntryMutation } from '../createLibraryEntry-gql';
+import { useFindMediaByIdAndTypeQuery } from '../findMediaByIdAndType-gql';
 
 interface QUEmbedProps {
   externalMediaId: string;
@@ -22,12 +23,6 @@ export type MediaRecord = {
   external_media_id: string;
   media_type: MediaTypeEnum;
   kitsu_media_id: string;
-  progress: number;
-  metadata: {
-    title: string;
-    poster_image?: string;
-    banner_image?: string;
-  };
 };
 
 export default function Temp({
@@ -86,12 +81,6 @@ export default function Temp({
       external_media_id: externalMediaId,
       media_type: mediaType,
       kitsu_media_id: media.id,
-      progress: media.myLibraryEntry?.progress || 0,
-      metadata: {
-        title: media.titles.preferred,
-        poster_image: media.posterImage?.original?.url,
-        banner_image: media.bannerImage?.original?.url,
-      },
     };
 
     kitsuDB
@@ -107,10 +96,39 @@ export default function Temp({
     console.log('Submitted', item);
   };
 
-  if (mediaRecord) {
-    console.log('Found', mediaRecord);
+  // TODO: figure out how to not need to make the second call again after saving to indexdb.
+  if (!mediaRecord) {
     shouldPause = true;
   }
+
+  const mediaQueryVariables = {
+    id: mediaRecord?.kitsu_media_id.toString() || '',
+    mediaType: MediaTypeEnum.Manga,
+  };
+
+  console.log('Should Pause Before Media by Id and Type', shouldPause);
+
+  const [resultMedia] = useFindMediaByIdAndTypeQuery({
+    variables: mediaQueryVariables,
+    pause: shouldPause,
+  });
+
+  const { data: mediaData, fetching: mediaFetch } = resultMedia;
+
+  if (mediaFetch) {
+    return <div>Loading Media...</div>;
+  }
+
+  console.log('Media Data Results', mediaData);
+
+  if (!mediaData) {
+    shouldPause = false;
+  } else {
+    shouldPause = true;
+  }
+
+  console.log('Title', title);
+  console.log('Should Pause Before Search', shouldPause);
 
   const [resultSearch] = useSearchMediaByTitleQuery({
     // variables: { title: title, mediaType: mediaType },
@@ -130,10 +148,10 @@ export default function Temp({
   // HACK: should add a total to the nodes again?
   const totalNodes = searchData?.searchMediaByTitle?.nodes?.length || 0;
 
-  if (mediaRecord) {
+  if (mediaData?.findMediaByIdAndType) {
     return (
       <div>
-        <ChosenMedia record={mediaRecord} />
+        <ChosenMedia record={mediaData.findMediaByIdAndType} />
       </div>
     );
   } else if (searchData?.searchMediaByTitle && totalNodes > 0) {

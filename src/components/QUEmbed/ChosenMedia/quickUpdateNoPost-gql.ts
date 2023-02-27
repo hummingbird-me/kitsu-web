@@ -11,7 +11,15 @@ export type QuickUpdateNoPostMutationVariables = Types.Exact<{
 export type QuickUpdateNoPostMutation = {
   libraryEntry: {
     updateProgressByMedia?: {
-      libraryEntry?: { id: string; progress: number } | null;
+      libraryEntry?: {
+        __typename: 'LibraryEntry';
+        id: string;
+        progress: number;
+        nextUnit?:
+          | { __typename: 'Chapter'; id: string; number: number }
+          | { __typename: 'Episode'; id: string; number: number }
+          | null;
+      } | null;
       errors?: Array<
         | { message: string; code?: string | null; path?: Array<string> | null }
         | { message: string; code?: string | null; path?: Array<string> | null }
@@ -79,7 +87,32 @@ export const QuickUpdateNoPostDocument = {
                           selections: [
                             {
                               kind: 'Field',
+                              name: { kind: 'Name', value: '__typename' },
+                            },
+                            {
+                              kind: 'Field',
                               name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'nextUnit' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: '__typename' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'id' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'number' },
+                                  },
+                                ],
+                              },
                             },
                             {
                               kind: 'Field',

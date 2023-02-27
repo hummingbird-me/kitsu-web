@@ -4,7 +4,13 @@ mutation QuickUpdateNoPost(
   libraryEntry {
     updateProgressByMedia(input: $libraryEntryInput) {
       libraryEntry {
+        __typename
         id
+        nextUnit {
+          __typename
+          id
+          number
+        }
         progress
       }
       errors {
