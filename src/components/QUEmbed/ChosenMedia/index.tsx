@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   LibraryEntryUpdateProgressByMediaInput,
@@ -28,6 +29,9 @@ export default function ChosenMedia({
   );
 
   const [post, setPost] = React.useState<string>('');
+  const kitsuUrl = `https://kitsu.io/${record.type.toLowerCase()}/${
+    record.slug
+  }`;
 
   const [, createQuickUpdate] = useQuickUpdateMutation();
   const [, createQuickUpdateNoPost] = useQuickUpdateNoPostMutation();
@@ -105,12 +109,16 @@ export default function ChosenMedia({
 
   return (
     <div>
-      <h1>{record.titles.preferred}</h1>
+      <h1>
+        <a href={kitsuUrl} target="_blank" rel="noreferrer">
+          {record.titles.preferred}
+        </a>
+      </h1>
       <button onClick={deleteIndexDbRecord}>
         Incorrect Title? Click to Remove (locally only)
       </button>
       <div>
-        <h2>Progress - {unitNumber}</h2>
+        <h2>Currently Reading - {unitNumber}</h2>
       </div>
       <div>
         <h2>Post</h2>
