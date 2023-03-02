@@ -12,9 +12,13 @@ import { useQuickUpdateNoPostMutation } from './quickUpdateNoPost-gql';
 
 interface QUEmbedProps {
   record: MediaDataFragment;
+  deleteIndexDbRecord: () => void;
 }
 
-export default function ChosenMedia({ record }: QUEmbedProps): ReactElement {
+export default function ChosenMedia({
+  record,
+  deleteIndexDbRecord,
+}: QUEmbedProps): ReactElement {
   const unitType = record.myLibraryEntry?.nextUnit?.__typename;
   const [unitId, setUnitId] = React.useState<string | undefined>(
     record.myLibraryEntry?.nextUnit?.id
@@ -102,6 +106,9 @@ export default function ChosenMedia({ record }: QUEmbedProps): ReactElement {
   return (
     <div>
       <h1>{record.titles.preferred}</h1>
+      <button onClick={deleteIndexDbRecord}>
+        Incorrect Title? Click to Remove (locally only)
+      </button>
       <div>
         <h2>Progress - {unitNumber}</h2>
       </div>

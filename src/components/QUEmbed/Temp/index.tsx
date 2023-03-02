@@ -38,7 +38,7 @@ export default function Temp({
     null
   );
 
-  const [_, createLibraryEntry] = useCreateLibraryEntryMutation();
+  const [, createLibraryEntry] = useCreateLibraryEntryMutation();
 
   useEffect(() => {
     const response: Promise<MediaRecord> = kitsuDB.getFromIndex(
@@ -96,6 +96,20 @@ export default function Temp({
     console.log('Submitted', item);
   };
 
+  const deleteIndexDbRecord = (e) => {
+    e.preventDefault();
+
+    if (mediaRecord?.id) {
+      const resp = kitsuDB.delete('mappings', mediaRecord.id);
+      resp.then(() => {
+        console.log('Deleted from DB');
+        setMediaRecord(null);
+      });
+    } else {
+      console.log('No Media Record to delete', mediaRecord);
+    }
+  };
+
   // TODO: figure out how to not need to make the second call again after saving to indexdb.
   if (!mediaRecord) {
     shouldPause = true;
@@ -151,7 +165,10 @@ export default function Temp({
   if (mediaData?.findMediaByIdAndType) {
     return (
       <div>
-        <ChosenMedia record={mediaData.findMediaByIdAndType} />
+        <ChosenMedia
+          record={mediaData.findMediaByIdAndType}
+          deleteIndexDbRecord={deleteIndexDbRecord}
+        />
       </div>
     );
   } else if (searchData?.searchMediaByTitle && totalNodes > 0) {
