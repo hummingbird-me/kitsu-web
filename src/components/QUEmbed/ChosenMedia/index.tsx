@@ -121,7 +121,12 @@ export default function ChosenMedia({
       </div>
       <div>
         <h2>Post</h2>
-        <textarea value={post} onChange={(e) => setPost(e.target.value)} />
+        <textarea
+          cols={30}
+          rows={10}
+          value={post}
+          onChange={(e) => setPost(e.target.value)}
+        />
       </div>
 
       <button onClick={handleSubmit}>Submit</button>

@@ -22,6 +22,8 @@ export default function Media({
     };
   }
 
+  const progress = media.myLibraryEntry?.progress;
+
   return (
     <div>
       <div
@@ -29,7 +31,8 @@ export default function Media({
           onSelect(media);
         }}
         style={style}>
-        {media.id} - {media.titles?.preferred}
+        {media.id} - {media.titles?.preferred} (
+        {progress ? `ch: ${progress}` : ``})
       </div>
     </div>
   );
