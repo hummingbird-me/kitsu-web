@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 
 import Media from '../Media';
 import { MediaFieldsFragment } from '../Media/mediaFields-gql';

@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react';
 
-import Temp from 'app/components/QUEmbed/Temp';
 import { MediaTypeEnum } from 'app/graphql/types';
+
+import SearchPage from '../SearchPage';
 
 export default function Home(): ReactElement {
   const searchParams = new URLSearchParams(window.location.search);
@@ -9,17 +10,22 @@ export default function Home(): ReactElement {
     Object.fromEntries(searchParams);
   const formattedMediaType: MediaTypeEnum = mediaType as MediaTypeEnum;
 
-  console.log('title', title);
-  console.log('externalMediaId', externalMediaId);
-  console.log('externalMediaSource', externalMediaSource);
-  console.log('mediaType', mediaType);
+  console.log(
+    'searchParams',
+    title,
+    externalMediaId,
+    externalMediaSource,
+    mediaType
+  );
 
   return (
-    <Temp
+    <SearchPage
       title={title}
       externalMediaId={externalMediaId}
       externalMediaSource={externalMediaSource}
       mediaType={formattedMediaType}
     />
   );
+
+  // <MediaPage record={media} deleteIndexDbRecord={deleteIndexDbRecord} />
 }

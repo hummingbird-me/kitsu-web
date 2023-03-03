@@ -12,7 +12,7 @@ import { useQuickUpdateNoPostMutation } from './quickUpdateNoPost-gql';
 
 interface QUEmbedProps {
   record: MediaDataFragment;
-  deleteIndexDbRecord: () => void;
+  deleteIndexDbRecord: (e) => void;
 }
 
 export default function ChosenMedia({

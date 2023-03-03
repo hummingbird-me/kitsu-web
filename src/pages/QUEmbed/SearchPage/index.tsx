@@ -2,22 +2,22 @@ import React, { ReactElement, useEffect } from 'react';
 
 import { MediaFieldsFragment } from 'app/components/QUEmbed/Media/mediaFields-gql';
 import MediaList from 'app/components/QUEmbed/MediaList';
+import { useCreateLibraryEntryMutation } from 'app/components/QUEmbed/createLibraryEntry-gql';
+import { useFindMediaByIdAndTypeQuery } from 'app/components/QUEmbed/findMediaByIdAndType-gql';
 import { useSearchMediaByTitleQuery } from 'app/components/QUEmbed/searchMediaByTitle-gql';
 import { LibraryEntryStatusEnum, MediaTypeEnum } from 'app/graphql/types';
 import { kitsuDB } from 'app/utils/indexdb/kitsuDB';
 
-import ChosenMedia from '../ChosenMedia';
-import { useCreateLibraryEntryMutation } from '../createLibraryEntry-gql';
-import { useFindMediaByIdAndTypeQuery } from '../findMediaByIdAndType-gql';
+import MediaPage from '../MediaPage';
 
-interface QUEmbedProps {
+interface Props {
   externalMediaId: string;
   mediaType: MediaTypeEnum;
   externalMediaSource: string; // TODO: Enum
   title: string;
 }
 
-export type MediaRecord = {
+export type CachedRecord = {
   id?: number;
   external_media_source: string;
   external_media_id: string;
@@ -25,33 +25,31 @@ export type MediaRecord = {
   kitsu_media_id: string;
 };
 
-export default function Temp({
+export default function SearchPage({
   externalMediaId,
   mediaType,
   externalMediaSource,
   title,
-}: QUEmbedProps): ReactElement {
+}: Props): ReactElement {
   let shouldPause = false;
 
-  // Add search params to an object or something
-  const [mediaRecord, setMediaRecord] = React.useState<MediaRecord | null>(
+  const [cachedRecord, setCachedRecord] = React.useState<CachedRecord | null>(
     null
   );
 
-  const [, createLibraryEntry] = useCreateLibraryEntryMutation();
-
   useEffect(() => {
-    const response: Promise<MediaRecord> = kitsuDB.getFromIndex(
+    const response: Promise<CachedRecord> = kitsuDB.getFromIndex(
       'mappings',
       'external_media_source_external_media_id_media_type_index',
       [externalMediaSource, externalMediaId, mediaType]
     );
     response.then((res) => {
-      console.log('MediaRecord Found', res);
-      setMediaRecord(res);
+      console.log('Cached Record Found', res);
+      setCachedRecord(res);
     });
   }, []);
 
+  const [, createLibraryEntry] = useCreateLibraryEntryMutation();
   const handleEntrySubmit = (media: MediaFieldsFragment) => {
     const libraryEntryId = media.myLibraryEntry?.id;
 
@@ -76,7 +74,7 @@ export default function Temp({
       });
     }
 
-    const item: MediaRecord = {
+    const item: CachedRecord = {
       external_media_source: externalMediaSource,
       external_media_id: externalMediaId,
       media_type: mediaType,
@@ -87,7 +85,7 @@ export default function Temp({
       .put('mappings', item)
       .then((res) => {
         item.id = res as number;
-        setMediaRecord(item);
+        setCachedRecord(item);
       })
       .catch((err) => {
         console.log('Error adding to DB', err);
@@ -99,28 +97,22 @@ export default function Temp({
   const deleteIndexDbRecord = (e) => {
     e.preventDefault();
 
-    if (mediaRecord?.id) {
-      const resp = kitsuDB.delete('mappings', mediaRecord.id);
+    if (cachedRecord?.id) {
+      const resp = kitsuDB.delete('mappings', cachedRecord.id);
       resp.then(() => {
-        console.log('Deleted from DB');
-        setMediaRecord(null);
+        setCachedRecord(null);
       });
-    } else {
-      console.log('No Media Record to delete', mediaRecord);
     }
   };
 
-  // TODO: figure out how to not need to make the second call again after saving to indexdb.
-  if (!mediaRecord) {
+  if (!cachedRecord) {
     shouldPause = true;
   }
 
   const mediaQueryVariables = {
-    id: mediaRecord?.kitsu_media_id.toString() || '',
+    id: cachedRecord?.kitsu_media_id.toString() || '',
     mediaType: MediaTypeEnum.Manga,
   };
-
-  console.log('Should Pause Before Media by Id and Type', shouldPause);
 
   const [resultMedia] = useFindMediaByIdAndTypeQuery({
     variables: mediaQueryVariables,
@@ -140,9 +132,6 @@ export default function Temp({
   } else {
     shouldPause = true;
   }
-
-  console.log('Title', title);
-  console.log('Should Pause Before Search', shouldPause);
 
   const [resultSearch] = useSearchMediaByTitleQuery({
     // variables: { title: title, mediaType: mediaType },
@@ -164,12 +153,10 @@ export default function Temp({
 
   if (mediaData?.findMediaByIdAndType) {
     return (
-      <div>
-        <ChosenMedia
-          record={mediaData.findMediaByIdAndType}
-          deleteIndexDbRecord={deleteIndexDbRecord}
-        />
-      </div>
+      <MediaPage
+        record={mediaData.findMediaByIdAndType}
+        deleteIndexDbRecord={deleteIndexDbRecord}
+      />
     );
   } else if (searchData?.searchMediaByTitle && totalNodes > 0) {
     return (
