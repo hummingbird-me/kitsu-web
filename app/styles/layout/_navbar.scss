@@ -329,6 +329,11 @@
 
 .search--drop {
   width: 350px;
+
+  @media (max-width: 452px) {
+    width: 300px;
+  }
+
   max-height: 90vh;
   background-color: $search-background-color;
   overflow: auto;
@@ -339,6 +344,12 @@
 .search--results {
   padding: 5px 0;
   .media {
+    @media (max-width: 550px) {
+      display: grid;
+      grid-template-columns: 62px 1fr min-content;
+      column-gap: 8px;
+    }
+
     padding: 5px 10px;
     &:hover {
       background: $search-results-hover-background;
@@ -364,6 +375,15 @@
   background-color: $search-header-background;
   padding: 10px;
   margin-bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .search-close {
+    border: none;
+    background-color: inherit;
+    color: $body-text-color;
+  }
 }
 
 .search--group-header {

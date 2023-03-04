@@ -6,9 +6,13 @@
     attachment=(or attachment "top right")
     targetAttachment=(or targetAttachment "bottom right")
     offset=(or offset "-30px 0px")
+    constraints=tetherConstraints
   }}
     <div class="search--drop">
-      <p class="search--header">{{t "components.search.header"}}</p>
+      <p class="search--header">
+        {{t "components.search.header"}}
+        <button class="search-close" onclick={{action "close"}}>🞪</button>
+      </p>
       <div style="overflow: auto">
         {{! media group }}
         {{search-results/group
