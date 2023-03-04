@@ -4,6 +4,11 @@
   top: 0;
   bottom: 0;
   padding: 0 0 60px 15px;
+
+  @media (max-width: 652px) {
+    padding-left: 0;
+  }
+
   width: 300px;
   margin-right: -10px;
   > .sidebar-item:first-child {
@@ -175,6 +180,10 @@
     font-size: 12px;
     &:hover {
       color: $white;
+    }
+
+    @media (max-width: 380px) {
+      padding: 10px 40px;
     }
   }
 }
@@ -389,6 +398,25 @@
   font-size: 14px;
   p {
     white-space: pre-line;
+  }
+}
+
+@media (max-width: 652px) {
+  .cover-page {
+    .onboarding-mobile {
+      width: 96%;
+    }
+    .user-favorites {
+      padding-right: 16px;
+    }
+    .stream-onboarding {
+      margin-right: 16px;
+    }
+    .feed-stream {
+      >:last-child {
+        margin-right: 16px;
+      }
+    }
   }
 }
 
