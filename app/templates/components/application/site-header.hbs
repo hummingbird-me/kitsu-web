@@ -69,7 +69,7 @@
         <ul class="nav navbar-nav">
           {{! Library }}
           {{#if session.hasUser}}
-            <li class="nav-item">
+            <li class="nav-item" data-toggle="collapse" data-target="#exCollapsingNavbar2">
               {{link-to (t "header.library") "users.library" session.account class="nav-link"}}
             </li>
           {{/if}}
@@ -84,7 +84,7 @@
             </div>
           </li>
           {{! Groups }}
-          <li class="nav-item">
+          <li class="nav-item" data-toggle="collapse" data-target="#exCollapsingNavbar2">
             {{link-to (t "header.groups") "groups.index" class="nav-link"}}
           </li>
           {{! Feedback}}
