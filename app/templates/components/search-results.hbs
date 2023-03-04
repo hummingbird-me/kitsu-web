@@ -11,7 +11,11 @@
     <div class="search--drop">
       <p class="search--header">
         {{t "components.search.header"}}
-        <button class="search-close" onclick={{action "close"}}>🞪</button>
+        <button class="search-close" onclick={{action "close"}}>
+          <span class="svgIcon">
+            {{svg-jar "close"}}
+          </span>
+        </button>
       </p>
       <div style="overflow: auto">
         {{! media group }}
