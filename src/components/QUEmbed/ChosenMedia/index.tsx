@@ -5,6 +5,7 @@ import {
   MediaTypeEnum,
   PostCreateInput,
 } from 'app/graphql/types';
+import { formattedMediaType } from 'app/pages/QUEmbed/Home';
 
 import { MediaDataFragment } from '../findMediaByIdAndType-gql';
 import { useQuickUpdateMutation } from './quickUpdate-gql';
@@ -43,7 +44,7 @@ export default function ChosenMedia({
 
     const libraryEntryInput: LibraryEntryUpdateProgressByMediaInput = {
       mediaId: record.id,
-      mediaType: MediaTypeEnum.Manga,
+      mediaType: formattedMediaType(record.type),
       progress: unitNumber,
     };
 
@@ -73,7 +74,7 @@ export default function ChosenMedia({
       const postInput: PostCreateInput = {
         content: post,
         mediaId: record.id,
-        mediaType: MediaTypeEnum.Manga,
+        mediaType: formattedMediaType(record.type),
         isSpoiler: true,
         isNsfw: !sfw,
         spoiledUnitId: unitId,

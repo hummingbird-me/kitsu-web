@@ -58,7 +58,7 @@ export default function SearchPage({
       const request = createLibraryEntry({
         input: {
           mediaId: media.id,
-          mediaType: MediaTypeEnum.Manga,
+          mediaType: mediaType,
           status: LibraryEntryStatusEnum.Current,
         },
       });
@@ -111,7 +111,7 @@ export default function SearchPage({
 
   const mediaQueryVariables = {
     id: cachedRecord?.kitsu_media_id.toString() || '',
-    mediaType: MediaTypeEnum.Manga,
+    mediaType: mediaType,
   };
 
   const [resultMedia] = useFindMediaByIdAndTypeQuery({
@@ -133,10 +133,12 @@ export default function SearchPage({
     shouldPause = true;
   }
 
+  console.log('Media Type', mediaType);
+
   const [resultSearch] = useSearchMediaByTitleQuery({
     // variables: { title: title, mediaType: mediaType },
     // NOTE: something is wonky with the enum type
-    variables: { title: title, mediaType: MediaTypeEnum.Manga },
+    variables: { title: title, mediaType: mediaType },
     pause: shouldPause,
   });
 

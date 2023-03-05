@@ -8,14 +8,14 @@ export default function Home(): ReactElement {
   const searchParams = new URLSearchParams(window.location.search);
   const { title, externalMediaId, externalMediaSource, mediaType } =
     Object.fromEntries(searchParams);
-  const formattedMediaType: MediaTypeEnum = mediaType as MediaTypeEnum;
+  const mediaTypeEnum = formattedMediaType(mediaType);
 
   console.log(
     'searchParams',
     title,
     externalMediaId,
     externalMediaSource,
-    mediaType
+    mediaTypeEnum
   );
 
   return (
@@ -23,9 +23,20 @@ export default function Home(): ReactElement {
       title={title}
       externalMediaId={externalMediaId}
       externalMediaSource={externalMediaSource}
-      mediaType={formattedMediaType}
+      mediaType={mediaTypeEnum}
     />
   );
 
   // <MediaPage record={media} deleteIndexDbRecord={deleteIndexDbRecord} />
+}
+
+export function formattedMediaType(mediaType: string): MediaTypeEnum {
+  switch (mediaType.toLowerCase()) {
+    case 'anime':
+      return MediaTypeEnum.Anime;
+    case 'manga':
+      return MediaTypeEnum.Manga;
+    default:
+      return MediaTypeEnum.Manga;
+  }
 }
