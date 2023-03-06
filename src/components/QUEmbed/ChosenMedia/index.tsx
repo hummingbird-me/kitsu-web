@@ -4,7 +4,6 @@ import {
   LibraryEntryUpdateProgressByMediaInput,
   PostCreateInput,
 } from 'app/graphql/types';
-import { formattedMediaType } from 'app/pages/QUEmbed/Home';
 
 import { MediaDataFragment } from '../findMediaByIdAndType-gql';
 import { useQuickUpdateMutation } from './quickUpdate-gql';

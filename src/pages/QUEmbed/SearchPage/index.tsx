@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { MediaFieldsFragment } from 'app/components/QUEmbed/Media/mediaFields-gql';
 import MediaList from 'app/components/QUEmbed/MediaList';
@@ -7,47 +8,25 @@ import { useFindMediaByIdAndTypeQuery } from 'app/components/QUEmbed/findMediaBy
 import { useSearchMediaByTitleQuery } from 'app/components/QUEmbed/searchMediaByTitle-gql';
 import { LibraryEntryStatusEnum, MediaTypeEnum } from 'app/graphql/types';
 import { kitsuDB } from 'app/utils/indexdb/kitsuDB';
+import { CachedRecord } from 'app/utils/quickUpdateEmbedTypes';
 
-import MediaPage from '../MediaPage';
+import { formattedMediaType } from '../MediaPage';
 
-interface Props {
-  externalMediaId: string;
-  mediaType: MediaTypeEnum;
-  externalMediaSource: string; // TODO: Enum
-  title: string;
-}
+export default function SearchPage(): ReactElement {
+  const searchParams = new URLSearchParams(window.location.search);
+  const { title, externalMediaId, externalMediaSource, mediaType } =
+    Object.fromEntries(searchParams);
+  const mediaTypeEnum = formattedMediaType(mediaType);
 
-export type CachedRecord = {
-  id?: number;
-  external_media_source: string;
-  external_media_id: string;
-  media_type: MediaTypeEnum;
-  kitsu_media_id: string;
-};
-
-export default function SearchPage({
-  externalMediaId,
-  mediaType,
-  externalMediaSource,
-  title,
-}: Props): ReactElement {
-  let shouldPause = false;
-
-  const [cachedRecord, setCachedRecord] = React.useState<CachedRecord | null>(
-    null
+  console.log(
+    'Search Page',
+    title,
+    externalMediaId,
+    externalMediaSource,
+    mediaTypeEnum
   );
 
-  useEffect(() => {
-    const response: Promise<CachedRecord> = kitsuDB.getFromIndex(
-      'mappings',
-      'external_media_source_external_media_id_media_type_index',
-      [externalMediaSource, externalMediaId, mediaType]
-    );
-    response.then((res) => {
-      console.log('Cached Record Found', res);
-      setCachedRecord(res);
-    });
-  }, []);
+  const navigate = useNavigate();
 
   const [, createLibraryEntry] = useCreateLibraryEntryMutation();
   const handleEntrySubmit = (media: MediaFieldsFragment) => {
@@ -58,7 +37,7 @@ export default function SearchPage({
       const request = createLibraryEntry({
         input: {
           mediaId: media.id,
-          mediaType: mediaType,
+          mediaType: mediaTypeEnum,
           status: LibraryEntryStatusEnum.Current,
         },
       });
@@ -77,15 +56,17 @@ export default function SearchPage({
     const item: CachedRecord = {
       external_media_source: externalMediaSource,
       external_media_id: externalMediaId,
-      media_type: mediaType,
+      media_type: mediaTypeEnum,
       kitsu_media_id: media.id,
     };
 
     kitsuDB
       .put('mappings', item)
-      .then((res) => {
-        item.id = res as number;
-        setCachedRecord(item);
+      .then(() => {
+        console.log('Added to DB', item);
+        navigate('/', {
+          state: { title, externalMediaId, externalMediaSource, mediaType },
+        });
       })
       .catch((err) => {
         console.log('Error adding to DB', err);
@@ -94,52 +75,8 @@ export default function SearchPage({
     console.log('Submitted', item);
   };
 
-  const deleteIndexDbRecord = (e) => {
-    e.preventDefault();
-
-    if (cachedRecord?.id) {
-      const resp = kitsuDB.delete('mappings', cachedRecord.id);
-      resp.then(() => {
-        setCachedRecord(null);
-      });
-    }
-  };
-
-  if (!cachedRecord) {
-    shouldPause = true;
-  }
-
-  const mediaQueryVariables = {
-    id: cachedRecord?.kitsu_media_id.toString() || '',
-    mediaType: mediaType,
-  };
-
-  const [resultMedia] = useFindMediaByIdAndTypeQuery({
-    variables: mediaQueryVariables,
-    pause: shouldPause,
-  });
-
-  const { data: mediaData, fetching: mediaFetch } = resultMedia;
-
-  if (mediaFetch) {
-    return <div>Loading Media...</div>;
-  }
-
-  console.log('Media Data Results', mediaData);
-
-  if (!mediaData) {
-    shouldPause = false;
-  } else {
-    shouldPause = true;
-  }
-
-  console.log('Media Type', mediaType);
-
   const [resultSearch] = useSearchMediaByTitleQuery({
-    // variables: { title: title, mediaType: mediaType },
-    // NOTE: something is wonky with the enum type
-    variables: { title: title, mediaType: mediaType },
-    pause: shouldPause,
+    variables: { title: title, mediaType: mediaTypeEnum },
   });
 
   const { data: searchData, fetching: searchFetch } = resultSearch;
@@ -153,14 +90,7 @@ export default function SearchPage({
   // HACK: should add a total to the nodes again?
   const totalNodes = searchData?.searchMediaByTitle?.nodes?.length || 0;
 
-  if (mediaData?.findMediaByIdAndType) {
-    return (
-      <MediaPage
-        record={mediaData.findMediaByIdAndType}
-        deleteIndexDbRecord={deleteIndexDbRecord}
-      />
-    );
-  } else if (searchData?.searchMediaByTitle && totalNodes > 0) {
+  if (searchData?.searchMediaByTitle && totalNodes > 0) {
     return (
       <div>
         <MediaList
@@ -170,6 +100,6 @@ export default function SearchPage({
       </div>
     );
   } else {
-    return <div>Missing</div>;
+    return <div>Missing Data</div>;
   }
 }
