@@ -2,7 +2,6 @@ import React, { ReactElement } from 'react';
 
 import {
   LibraryEntryUpdateProgressByMediaInput,
-  MediaTypeEnum,
   PostCreateInput,
 } from 'app/graphql/types';
 import { formattedMediaType } from 'app/pages/QUEmbed/Home';
@@ -21,6 +20,7 @@ export default function ChosenMedia({
   deleteIndexDbRecord,
 }: QUEmbedProps): ReactElement {
   const unitType = record.myLibraryEntry?.nextUnit?.__typename;
+  const unitPrefix = unitType === 'Episode' ? 'Watching' : 'Reading';
   const [unitId, setUnitId] = React.useState<string | undefined>(
     record.myLibraryEntry?.nextUnit?.id
   );
@@ -114,11 +114,11 @@ export default function ChosenMedia({
           {record.titles.preferred}
         </a>
       </h1>
-      <button onClick={deleteIndexDbRecord}>
-        Incorrect Title? Click to Remove (locally only)
-      </button>
+      <button onClick={deleteIndexDbRecord}>Unlink</button>
       <div>
-        <h2>Currently Reading - {unitNumber}</h2>
+        <h2>
+          Currently {unitPrefix} - {unitNumber}
+        </h2>
       </div>
       <div>
         <h2>Post</h2>

@@ -23,6 +23,7 @@ export default function Media({
   }
 
   const progress = media.myLibraryEntry?.progress;
+  const prefix = media.type.toLowerCase() === 'anime' ? 'ep' : 'ch';
 
   return (
     <div>
@@ -32,7 +33,7 @@ export default function Media({
         }}
         style={style}>
         {media.id} - {media.titles?.preferred} (
-        {progress ? `ch: ${progress}` : ``})
+        {progress ? `${prefix}: ${progress}` : ``})
       </div>
     </div>
   );
