@@ -84,13 +84,12 @@ export default function MediaPage(): ReactElement {
   }
 
   if (mediaData?.findMediaByIdAndType) {
-    return <div>Chosen Media Found!</div>;
-    // return (
-    //   <ChosenMedia
-    //     record={mediaData.findMediaByIdAndType}
-    //     deleteIndexDbRecord={deleteIndexDbRecord}
-    //   />
-    // );
+    return (
+      <ChosenMedia
+        record={mediaData.findMediaByIdAndType}
+        deleteIndexDbRecord={deleteIndexDbRecord}
+      />
+    );
   } else {
     return (
       <Navigate
