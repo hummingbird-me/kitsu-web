@@ -1,0 +1,43 @@
+query FindMediaByIdAndType($id: ID!, $mediaType: MediaTypeEnum!) {
+  findMediaByIdAndType(id: $id, mediaType: $mediaType) {
+    ...MediaData
+  }
+}
+
+fragment MediaData on Media {
+  __typename
+  id
+  slug
+  type
+  sfw
+  titles {
+    preferred
+  }
+  bannerImage {
+    original {
+      name
+      url
+    }
+  }
+  posterImage {
+    original {
+      name
+      url
+    }
+  }
+  myLibraryEntry {
+    __typename
+    id
+    nextUnit {
+      __typename
+      id
+      number
+    }
+    lastUnit {
+      __typename
+      id
+      number
+    }
+    progress
+  }
+}

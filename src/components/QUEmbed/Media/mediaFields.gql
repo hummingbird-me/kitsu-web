@@ -1,0 +1,22 @@
+fragment MediaFields on Media {
+  id
+  type
+  slug
+  titles {
+    preferred
+  }
+  posterImage {
+    original {
+      url
+    }
+  }
+  bannerImage {
+    original {
+      url
+    }
+  }
+  myLibraryEntry {
+    id
+    progress
+  }
+}

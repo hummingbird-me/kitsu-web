@@ -16,10 +16,15 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  Date: Date;
+  /** A date, expressed as an ISO8601 string */
+  Date: string;
+  /** An ISO 8601-encoded date */
   ISO8601Date: Date;
+  /** An ISO 8601-encoded datetime */
   ISO8601DateTime: Date;
-  JSON: unknown;
+  /** Represents untyped JSON */
+  JSON: Record<string, unknown>;
+  /** A loose key-value map in GraphQL */
   Map: Record<string, string>;
   Upload: any;
 };
@@ -109,7 +114,7 @@ export enum AgeRatingEnum {
   /** Possible lewd or intense themes; should be safe for teens and older */
   R = 'R',
   /** Contains adult content or themes; should only be viewed by adults */
-  R18 = 'R18',
+  R18 = 'R18'
 }
 
 /** Generic Amount Consumed based on Media */
@@ -418,7 +423,7 @@ export enum AnimeSubtypeEnum {
   Ova = 'OVA',
   /** Spinoffs or Extras of the original. */
   Special = 'SPECIAL',
-  Tv = 'TV',
+  Tv = 'TV'
 }
 
 export type AnimeUpdateInput = {
@@ -527,8 +532,6 @@ export type Chapter = Unit &
     /** A brief summary or description of the unit */
     readonly description: Scalars['Map'];
     readonly id: Scalars['ID'];
-    /** Number of pages in chapter. */
-    readonly length?: Maybe<Scalars['Int']>;
     /** The manga this chapter is in. */
     readonly manga: Manga;
     /** The sequence number of this unit */
@@ -612,7 +615,7 @@ export enum CharacterRoleEnum {
   /** A character who appears throughout a series and is a focal point of the media */
   Main = 'MAIN',
   /** A character who appears in multiple episodes but is not a main character */
-  Recurring = 'RECURRING',
+  Recurring = 'RECURRING'
 }
 
 /** Information about a VA (Person) voicing a Character in a Media */
@@ -655,7 +658,7 @@ export type CharacterVoiceEdge = {
 
 export enum CharacterVoiceSortEnum {
   CreatedAt = 'CREATED_AT',
-  UpdatedAt = 'UPDATED_AT',
+  UpdatedAt = 'UPDATED_AT'
 }
 
 export type CharacterVoiceSortOption = {
@@ -727,7 +730,7 @@ export type CommentEdge = {
 
 export enum CommentLikeSortEnum {
   CreatedAt = 'CREATED_AT',
-  Following = 'FOLLOWING',
+  Following = 'FOLLOWING'
 }
 
 export type CommentLikeSortOption = {
@@ -738,7 +741,7 @@ export type CommentLikeSortOption = {
 export enum CommentSortEnum {
   CreatedAt = 'CREATED_AT',
   Following = 'FOLLOWING',
-  LikesCount = 'LIKES_COUNT',
+  LikesCount = 'LIKES_COUNT'
 }
 
 export type CommentSortOption = {
@@ -846,7 +849,7 @@ export type EpisodeMutationsUpdateArgs = {
 export enum EpisodeSortEnum {
   CreatedAt = 'CREATED_AT',
   Number = 'NUMBER',
-  UpdatedAt = 'UPDATED_AT',
+  UpdatedAt = 'UPDATED_AT'
 }
 
 export type EpisodeSortOption = {
@@ -904,7 +907,7 @@ export type Error = {
 
 export enum ExternalIdentityProviderEnum {
   /** Facebook identity */
-  Facebook = 'FACEBOOK',
+  Facebook = 'FACEBOOK'
 }
 
 /** Favorite media, characters, and people for a user */
@@ -947,7 +950,7 @@ export type FavoriteItemUnion = Anime | Character | Manga | Person;
 export enum FollowSortEnum {
   CreatedAt = 'CREATED_AT',
   FollowingFollowed = 'FOLLOWING_FOLLOWED',
-  FollowingFollower = 'FOLLOWING_FOLLOWER',
+  FollowingFollower = 'FOLLOWING_FOLLOWER'
 }
 
 export type FollowSortOption = {
@@ -1085,7 +1088,7 @@ export type InstallmentEdge = {
 
 export enum InstallmentSortEnum {
   AlternativeOrder = 'ALTERNATIVE_ORDER',
-  ReleaseOrder = 'RELEASE_ORDER',
+  ReleaseOrder = 'RELEASE_ORDER'
 }
 
 export type InstallmentSortOption = {
@@ -1105,7 +1108,7 @@ export enum InstallmentTagEnum {
   /** Takes place sometime during the main storyline. */
   SideStory = 'SIDE_STORY',
   /** Uses characters of a different series, but is not an alternate setting or story. */
-  Spinoff = 'SPINOFF',
+  Spinoff = 'SPINOFF'
 }
 
 /** The user library filterable by media_type and status */
@@ -1359,7 +1362,7 @@ export enum LibraryEntryStatusEnum {
   /** The user started but paused reading or watching this media. */
   OnHold = 'ON_HOLD',
   /** The user plans to read or watch this media in future. */
-  Planned = 'PLANNED',
+  Planned = 'PLANNED'
 }
 
 export type LibraryEntryUpdateInput = {
@@ -1510,12 +1513,12 @@ export enum LibraryEventKindEnum {
   /** Reaction was added/updated. */
   Reacted = 'REACTED',
   /** Status or Reconsuming was added/updated. */
-  Updated = 'UPDATED',
+  Updated = 'UPDATED'
 }
 
 export enum LibraryEventSortEnum {
   CreatedAt = 'CREATED_AT',
-  UpdatedAt = 'UPDATED_AT',
+  UpdatedAt = 'UPDATED_AT'
 }
 
 export type LibraryEventSortOption = {
@@ -1526,7 +1529,7 @@ export type LibraryEventSortOption = {
 export enum LockedReasonEnum {
   Closed = 'CLOSED',
   Spam = 'SPAM',
-  TooHeated = 'TOO_HEATED',
+  TooHeated = 'TOO_HEATED'
 }
 
 export type Manga = Media &
@@ -1755,7 +1758,7 @@ export enum MangaSubtypeEnum {
   Novel = 'NOVEL',
   /** Original English Language. */
   Oel = 'OEL',
-  Oneshot = 'ONESHOT',
+  Oneshot = 'ONESHOT'
 }
 
 /** Media Mappings from External Sites (MAL, Anilist, etc..) to Kitsu. */
@@ -1833,7 +1836,7 @@ export enum MappingExternalSiteEnum {
   Thetvdb = 'THETVDB',
   ThetvdbSeason = 'THETVDB_SEASON',
   ThetvdbSeries = 'THETVDB_SERIES',
-  Trakt = 'TRAKT',
+  Trakt = 'TRAKT'
 }
 
 export enum MappingItemEnum {
@@ -1843,7 +1846,7 @@ export enum MappingItemEnum {
   Episode = 'EPISODE',
   Manga = 'MANGA',
   Person = 'PERSON',
-  Producer = 'PRODUCER',
+  Producer = 'PRODUCER'
 }
 
 /** Objects which are Mappable */
@@ -2049,7 +2052,7 @@ export type MediaStaffArgs = {
 
 export enum MediaCategorySortEnum {
   Ancestry = 'ANCESTRY',
-  CreatedAt = 'CREATED_AT',
+  CreatedAt = 'CREATED_AT'
 }
 
 export type MediaCategorySortOption = {
@@ -2108,7 +2111,7 @@ export type MediaCharacterEdge = {
 export enum MediaCharacterSortEnum {
   CreatedAt = 'CREATED_AT',
   Role = 'ROLE',
-  UpdatedAt = 'UPDATED_AT',
+  UpdatedAt = 'UPDATED_AT'
 }
 
 export type MediaCharacterSortOption = {
@@ -2176,7 +2179,7 @@ export enum MediaProductionRoleEnum {
   Licensor = 'LICENSOR',
   Producer = 'PRODUCER',
   Serialization = 'SERIALIZATION',
-  Studio = 'STUDIO',
+  Studio = 'STUDIO'
 }
 
 /** A simple review that is 140 characters long expressing how you felt about a media */
@@ -2235,7 +2238,7 @@ export type MediaReactionEdge = {
 export enum MediaReactionSortEnum {
   CreatedAt = 'CREATED_AT',
   UpdatedAt = 'UPDATED_AT',
-  UpVotesCount = 'UP_VOTES_COUNT',
+  UpVotesCount = 'UP_VOTES_COUNT'
 }
 
 export type MediaReactionSortOption = {
@@ -2245,7 +2248,7 @@ export type MediaReactionSortOption = {
 
 export enum MediaReactionVoteSortEnum {
   CreatedAt = 'CREATED_AT',
-  Following = 'FOLLOWING',
+  Following = 'FOLLOWING'
 }
 
 export type MediaReactionVoteSortOption = {
@@ -2292,7 +2295,7 @@ export type MediaStaffEdge = {
 /** これはアニメやマンガです */
 export enum MediaTypeEnum {
   Anime = 'ANIME',
-  Manga = 'MANGA',
+  Manga = 'MANGA'
 }
 
 export type Mutation = {
@@ -2442,23 +2445,6 @@ export type PostConnection = {
   readonly totalCount: Scalars['Int'];
 };
 
-export type PostCreateInput = {
-  readonly content: Scalars['String'];
-  readonly isNsfw?: InputMaybe<Scalars['Boolean']>;
-  readonly isSpoiler?: InputMaybe<Scalars['Boolean']>;
-  readonly mediaId?: InputMaybe<Scalars['ID']>;
-  readonly mediaType?: InputMaybe<MediaTypeEnum>;
-  readonly spoiledUnitId?: InputMaybe<Scalars['ID']>;
-  readonly spoiledUnitType?: InputMaybe<Scalars['String']>;
-};
-
-/** Autogenerated return type of PostCreate */
-export type PostCreatePayload = {
-  readonly __typename?: 'PostCreatePayload';
-  readonly errors?: Maybe<ReadonlyArray<Error>>;
-  readonly post?: Maybe<Post>;
-};
-
 /** An edge in a connection. */
 export type PostEdge = {
   readonly __typename?: 'PostEdge';
@@ -2470,7 +2456,7 @@ export type PostEdge = {
 
 export enum PostLikeSortEnum {
   CreatedAt = 'CREATED_AT',
-  Following = 'FOLLOWING',
+  Following = 'FOLLOWING'
 }
 
 export type PostLikeSortOption = {
@@ -2492,16 +2478,10 @@ export type PostLockPayload = {
 
 export type PostMutations = {
   readonly __typename?: 'PostMutations';
-  /** Create a Post. */
-  readonly create?: Maybe<PostCreatePayload>;
   /** Lock a Post. */
   readonly lock?: Maybe<PostLockPayload>;
   /** Unlock a Post. */
   readonly unlock?: Maybe<PostUnlockPayload>;
-};
-
-export type PostMutationsCreateArgs = {
-  input: PostCreateInput;
 };
 
 export type PostMutationsLockArgs = {
@@ -2513,7 +2493,7 @@ export type PostMutationsUnlockArgs = {
 };
 
 export enum PostSortEnum {
-  CreatedAt = 'CREATED_AT',
+  CreatedAt = 'CREATED_AT'
 }
 
 export type PostSortOption = {
@@ -2576,20 +2556,14 @@ export type ProSubscription = WithTimestamps & {
 };
 
 export enum ProTierEnum {
-  /**
-   * Aozora Pro (only hides ads)
-   * @deprecated No longer for sale
-   */
+  /** Aozora Pro (only hides ads) */
   AoPro = 'AO_PRO',
-  /**
-   * Aozora Pro+ (only hides ads)
-   * @deprecated No longer for sale
-   */
+  /** Aozora Pro+ (only hides ads) */
   AoProPlus = 'AO_PRO_PLUS',
   /** Top tier of Kitsu Pro */
   Patron = 'PATRON',
   /** Basic tier of Kitsu Pro */
-  Pro = 'PRO',
+  Pro = 'PRO'
 }
 
 /** Autogenerated return type of ProUnsubscribe */
@@ -2836,8 +2810,6 @@ export type Query = {
   readonly findMangaById?: Maybe<Manga>;
   /** Find a single Manga by Slug */
   readonly findMangaBySlug?: Maybe<Manga>;
-  /** Find a single Media by ID and Type */
-  readonly findMediaByIdAndType?: Maybe<Media>;
   /** Find a single Person by ID */
   readonly findPersonById?: Maybe<Person>;
   /** Find a single Person by Slug */
@@ -2950,11 +2922,6 @@ export type QueryFindMangaByIdArgs = {
 
 export type QueryFindMangaBySlugArgs = {
   slug: Scalars['String'];
-};
-
-export type QueryFindMediaByIdAndTypeArgs = {
-  id: Scalars['ID'];
-  mediaType: MediaTypeEnum;
 };
 
 export type QueryFindPersonByIdArgs = {
@@ -3198,7 +3165,7 @@ export enum RatingSystemEnum {
   /** 1-20 in increments of 2 displayed as 5 stars in 0.5 star increments */
   Regular = 'REGULAR',
   /** 1-20 displayed as 4 smileys - Awful (1), Meh (8), Good (14) and Great (20) */
-  Simple = 'SIMPLE',
+  Simple = 'SIMPLE'
 }
 
 export enum RecurringBillingServiceEnum {
@@ -3209,7 +3176,7 @@ export enum RecurringBillingServiceEnum {
   /** Bill a PayPal account */
   Paypal = 'PAYPAL',
   /** Bill a credit card via Stripe */
-  Stripe = 'STRIPE',
+  Stripe = 'STRIPE'
 }
 
 export enum ReleaseSeasonEnum {
@@ -3220,7 +3187,7 @@ export enum ReleaseSeasonEnum {
   /** Released during the Summer season */
   Summer = 'SUMMER',
   /** Released during the Winter season */
-  Winter = 'WINTER',
+  Winter = 'WINTER'
 }
 
 export enum ReleaseStatusEnum {
@@ -3233,7 +3200,7 @@ export enum ReleaseStatusEnum {
   /** This media is not released yet */
   Unreleased = 'UNRELEASED',
   /** This media is releasing soon */
-  Upcoming = 'UPCOMING',
+  Upcoming = 'UPCOMING'
 }
 
 /** A report made by a user */
@@ -3289,13 +3256,13 @@ export enum ReportReasonEnum {
   Offensive = 'OFFENSIVE',
   Other = 'OTHER',
   Spam = 'SPAM',
-  Spoiler = 'SPOILER',
+  Spoiler = 'SPOILER'
 }
 
 export enum ReportStatusEnum {
   Declined = 'DECLINED',
   Reported = 'REPORTED',
-  Resolved = 'RESOLVED',
+  Resolved = 'RESOLVED'
 }
 
 /** A media review made by a user */
@@ -3409,12 +3376,12 @@ export enum SitePermissionEnum {
   /** Moderator of community behavior */
   CommunityMod = 'COMMUNITY_MOD',
   /** Maintainer of the Kitsu media database */
-  DatabaseMod = 'DATABASE_MOD',
+  DatabaseMod = 'DATABASE_MOD'
 }
 
 export enum SortDirection {
   Ascending = 'ASCENDING',
-  Descending = 'DESCENDING',
+  Descending = 'DESCENDING'
 }
 
 /** Media that is streamable. */
@@ -3508,7 +3475,7 @@ export enum TitleLanguagePreferenceEnum {
   /** Prefer the localized title for media */
   Localized = 'LOCALIZED',
   /** Prefer the romanized title for media */
-  Romanized = 'ROMANIZED',
+  Romanized = 'ROMANIZED'
 }
 
 export type TitlesList = {
@@ -3724,7 +3691,7 @@ export type WikiSubmissionMutationsUpdateDraftArgs = {
 
 export enum WikiSubmissionSortEnum {
   CreatedAt = 'CREATED_AT',
-  UpdatedAt = 'UPDATED_AT',
+  UpdatedAt = 'UPDATED_AT'
 }
 
 export type WikiSubmissionSortOption = {
@@ -3736,7 +3703,7 @@ export enum WikiSubmissionStatusEnum {
   Approved = 'APPROVED',
   Draft = 'DRAFT',
   Pending = 'PENDING',
-  Rejected = 'REJECTED',
+  Rejected = 'REJECTED'
 }
 
 export type WikiSubmissionSubmitDraftInput = {
