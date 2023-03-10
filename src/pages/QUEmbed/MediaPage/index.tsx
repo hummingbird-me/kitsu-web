@@ -10,6 +10,8 @@ import { LibraryEntryStatusEnum, MediaTypeEnum } from 'app/graphql/types';
 import { kitsuDB } from 'app/utils/indexdb/kitsuDB';
 import { CachedRecord } from 'app/utils/quickUpdateEmbedTypes';
 
+type ActiveTabs = 'media' | 'rating' | 'reaction';
+
 export default function MediaPage(): ReactElement {
   const searchParams = new URLSearchParams(window.location.search);
   const { title, externalMediaId, externalMediaSource, mediaType } =
@@ -25,11 +27,11 @@ export default function MediaPage(): ReactElement {
   );
   let shouldPause = false;
 
+  const [loading, setLoading] = React.useState<boolean>(true);
   const [cachedRecord, setCachedRecord] = React.useState<CachedRecord | null>(
     null
   );
-
-  const [loading, setLoading] = React.useState<boolean>(true);
+  const [activeTab, setActiveTab] = React.useState<ActiveTabs>('media');
 
   useEffect(() => {
     const response: Promise<CachedRecord> = kitsuDB.getFromIndex(
@@ -83,12 +85,38 @@ export default function MediaPage(): ReactElement {
     return <div>Loading...</div>;
   }
 
-  if (mediaData?.findMediaByIdAndType) {
+  if (cachedRecord && mediaData?.findMediaByIdAndType) {
+    const headers = (
+      <div>
+        <ul>
+          <li onClick={() => setActiveTab('media')}>Media</li>
+          <li onClick={() => setActiveTab('reaction')}>Reaction</li>
+          <li onClick={() => setActiveTab('rating')}>Rating</li>
+        </ul>
+      </div>
+    );
+    let activeTabData = null;
+    switch (activeTab) {
+      case 'reaction':
+        activeTabData = <div>Reaction</div>;
+        break;
+      case 'rating':
+        activeTabData = <div>Rating</div>;
+        break;
+      default:
+        activeTabData = (
+          <ChosenMedia
+            record={mediaData.findMediaByIdAndType}
+            deleteIndexDbRecord={deleteIndexDbRecord}
+          />
+        );
+    }
+
     return (
-      <ChosenMedia
-        record={mediaData.findMediaByIdAndType}
-        deleteIndexDbRecord={deleteIndexDbRecord}
-      />
+      <>
+        {headers}
+        {activeTabData}
+      </>
     );
   } else {
     return (
