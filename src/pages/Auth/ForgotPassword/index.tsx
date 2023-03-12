@@ -6,7 +6,7 @@ import Button, { ButtonKind } from 'app/components/Button';
 import Modal from 'app/components/Modal';
 import TextInput from 'app/components/controls/TextInput';
 
-import { useAuthModalContext } from '../Modal';
+import { useAuthModalContext } from '../Layout';
 import styles from './styles.module.css';
 
 export default function ForgotPasswordModal(): JSX.Element {

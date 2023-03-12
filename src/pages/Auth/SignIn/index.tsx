@@ -17,7 +17,7 @@ import { LoginFailed } from 'app/errors';
 import useLoginFn from 'app/hooks/useLoginFn';
 import _loginWithPassword from 'app/utils/login/withPassword';
 
-import { useAuthModalContext } from '../Modal';
+import { useAuthModalContext } from '../Layout';
 import styles from './styles.module.css';
 
 function errorMessageFor(error?: Error): JSX.Element | null {
@@ -84,8 +84,7 @@ const SignInModal: React.FC = function (): JSX.Element {
       <Button
         type="submit"
         kind={ButtonKind.PRIMARY}
-        loading={passwordLoginState.loading}
-      >
+        loading={passwordLoginState.loading}>
         <FormattedMessage
           defaultMessage="Log in"
           description="Submit button for Sign In"
@@ -108,8 +107,7 @@ const SignInModal: React.FC = function (): JSX.Element {
               redirectUri: 'http://localhost:3000/oauth2-callback.html',
             });
             console.log(result);
-          }}
-        >
+          }}>
           <FacebookLogo
             title={formatMessage({
               defaultMessage: 'Log in with Facebook',
@@ -120,8 +118,7 @@ const SignInModal: React.FC = function (): JSX.Element {
         <Button
           type="button"
           kind={ButtonKind.OUTLINE}
-          className={styles.socialLoginButton}
-        >
+          className={styles.socialLoginButton}>
           <TwitterLogo
             title={formatMessage({
               defaultMessage: 'Log in with Twitter',
@@ -132,8 +129,7 @@ const SignInModal: React.FC = function (): JSX.Element {
         <Button
           type="button"
           kind={ButtonKind.OUTLINE}
-          className={styles.socialLoginButton}
-        >
+          className={styles.socialLoginButton}>
           <AppleLogo
             title={formatMessage({
               defaultMessage: 'Log in with Apple',

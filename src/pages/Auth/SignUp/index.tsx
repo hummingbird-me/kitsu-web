@@ -9,7 +9,7 @@ import Button, { ButtonKind } from 'app/components/Button';
 import Rule from 'app/components/Rule';
 import TextInput from 'app/components/controls/TextInput';
 
-import { useAuthModalContext } from '../Modal';
+import { useAuthModalContext } from '../Layout';
 import styles from './styles.module.css';
 
 export default function SignUpModal(): JSX.Element {
