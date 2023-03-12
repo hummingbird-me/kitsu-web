@@ -1,6 +1,7 @@
 import { DocumentNode } from 'graphql';
 
 import * as Types from '../../../graphql/types';
+import { ImageFieldsFragmentDoc } from '../../content/Image/imageFields-gql';
 import { MediaFieldsFragmentDoc } from '../Media/mediaFields-gql';
 
 export type MediaListConnectionFragment = {
@@ -9,18 +10,48 @@ export type MediaListConnectionFragment = {
         id: string;
         type: string;
         slug: string;
+        description: Record<string, string>;
         titles: { preferred: string };
-        posterImage?: { original: { url: string } } | null;
-        bannerImage?: { original: { url: string } } | null;
+        posterImage?: {
+          blurhash?: string | null;
+          views: Array<{
+            height?: number | null;
+            width?: number | null;
+            url: string;
+          }>;
+        } | null;
+        bannerImage?: {
+          blurhash?: string | null;
+          views: Array<{
+            height?: number | null;
+            width?: number | null;
+            url: string;
+          }>;
+        } | null;
         myLibraryEntry?: { id: string; progress: number } | null;
       }
     | {
         id: string;
         type: string;
         slug: string;
+        description: Record<string, string>;
         titles: { preferred: string };
-        posterImage?: { original: { url: string } } | null;
-        bannerImage?: { original: { url: string } } | null;
+        posterImage?: {
+          blurhash?: string | null;
+          views: Array<{
+            height?: number | null;
+            width?: number | null;
+            url: string;
+          }>;
+        } | null;
+        bannerImage?: {
+          blurhash?: string | null;
+          views: Array<{
+            height?: number | null;
+            width?: number | null;
+            url: string;
+          }>;
+        } | null;
         myLibraryEntry?: { id: string; progress: number } | null;
       }
     | null

@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import Media from '../Media';
 import { MediaFieldsFragment } from '../Media/mediaFields-gql';
 import { MediaListConnectionFragment } from './mediaListConnection-gql';
+import styles from './styles.module.css';
 
 interface QUEmbedMediaListProps {
   entries: MediaListConnectionFragment;
@@ -47,25 +48,24 @@ export default function MediaList({
       newMediaLibraryEntry.push(record);
     }
   });
-
   return (
-    <div>
-      <div>
-        <h3>In your Library</h3>
-        <div>{existingMediaLibraryEntry}</div>
+    <div id="media-list-container">
+      <div className={styles.column}>
+        <div className={styles.resultsContainer}>
+          <div className={styles.resultHeader}>{'In Library'}</div>
+          {existingMediaLibraryEntry}
+          <div className={styles.resultHeader}>{'Not In Library'}</div>
+          {newMediaLibraryEntry}
+          {selectedMedia && (
+            <button
+              onClick={() => {
+                onSubmit(selectedMedia);
+              }}>
+              {'Submit'}
+            </button>
+          )}
+        </div>
       </div>
-      <div>
-        <h3>Not in your Library</h3>
-        <div>{newMediaLibraryEntry}</div>
-      </div>
-      {selectedMedia && (
-        <button
-          onClick={() => {
-            onSubmit(selectedMedia);
-          }}>
-          {'Submit'}
-        </button>
-      )}
     </div>
   );
 }

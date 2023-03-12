@@ -1,6 +1,9 @@
 import React, { ReactElement } from 'react';
 
+import Image, { ImageSource } from 'app/components/content/Image';
+
 import { MediaFieldsFragment } from './mediaFields-gql';
+import styles from './styles.module.css';
 
 interface QUEmbedMediaProps {
   media: MediaFieldsFragment;
@@ -24,17 +27,26 @@ export default function Media({
 
   const progress = media.myLibraryEntry?.progress;
   const prefix = media.type.toLowerCase() === 'anime' ? 'ep' : 'ch';
+  const progressInfo = progress ? `${prefix}: ${progress}` : ``;
+
+  const imageSource = media.posterImage as ImageSource;
 
   return (
-    <div>
-      <div
-        onClick={() => {
-          onSelect(media);
-        }}
-        style={style}>
-        {media.id} - {media.titles?.preferred} (
-        {progress ? `${prefix}: ${progress}` : ``})
+    <div
+      className={styles.mediaItem}
+      style={style}
+      onClick={() => onSelect(media)}>
+      <Image
+        className={styles.image}
+        source={imageSource}
+        width="100%"
+        height="100%"
+      />
+      <div className={styles.title}>
+        <div className={styles.preferredTitle}>{media.titles?.preferred}</div>
+        <div className={styles.unitType}>{progressInfo}</div>
       </div>
+      <div className={styles.description}>{media.description?.en}</div>
     </div>
   );
 }

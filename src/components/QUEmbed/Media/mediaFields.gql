@@ -1,19 +1,18 @@
+# import imageFields from 'app/components/Image/imageFields';
+
 fragment MediaFields on Media {
   id
   type
   slug
+  description
   titles {
     preferred
   }
   posterImage {
-    original {
-      url
-    }
+    ...imageFields
   }
   bannerImage {
-    original {
-      url
-    }
+    ...imageFields
   }
   myLibraryEntry {
     id

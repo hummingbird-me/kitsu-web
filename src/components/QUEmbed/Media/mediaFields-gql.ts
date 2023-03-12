@@ -1,14 +1,30 @@
 import { DocumentNode } from 'graphql';
 
 import * as Types from '../../../graphql/types';
+import { ImageFieldsFragmentDoc } from '../../content/Image/imageFields-gql';
 
 export type MediaFields_Anime_Fragment = {
   id: string;
   type: string;
   slug: string;
+  description: Record<string, string>;
   titles: { preferred: string };
-  posterImage?: { original: { url: string } } | null;
-  bannerImage?: { original: { url: string } } | null;
+  posterImage?: {
+    blurhash?: string | null;
+    views: Array<{
+      height?: number | null;
+      width?: number | null;
+      url: string;
+    }>;
+  } | null;
+  bannerImage?: {
+    blurhash?: string | null;
+    views: Array<{
+      height?: number | null;
+      width?: number | null;
+      url: string;
+    }>;
+  } | null;
   myLibraryEntry?: { id: string; progress: number } | null;
 };
 
@@ -16,9 +32,24 @@ export type MediaFields_Manga_Fragment = {
   id: string;
   type: string;
   slug: string;
+  description: Record<string, string>;
   titles: { preferred: string };
-  posterImage?: { original: { url: string } } | null;
-  bannerImage?: { original: { url: string } } | null;
+  posterImage?: {
+    blurhash?: string | null;
+    views: Array<{
+      height?: number | null;
+      width?: number | null;
+      url: string;
+    }>;
+  } | null;
+  bannerImage?: {
+    blurhash?: string | null;
+    views: Array<{
+      height?: number | null;
+      width?: number | null;
+      url: string;
+    }>;
+  } | null;
   myLibraryEntry?: { id: string; progress: number } | null;
 };
 
@@ -42,6 +73,7 @@ export const MediaFieldsFragmentDoc = {
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'type' } },
           { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'titles' },
@@ -59,14 +91,8 @@ export const MediaFieldsFragmentDoc = {
               kind: 'SelectionSet',
               selections: [
                 {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'original' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                    ],
-                  },
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'imageFields' },
                 },
               ],
             },
@@ -78,14 +104,8 @@ export const MediaFieldsFragmentDoc = {
               kind: 'SelectionSet',
               selections: [
                 {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'original' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                    ],
-                  },
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'imageFields' },
                 },
               ],
             },

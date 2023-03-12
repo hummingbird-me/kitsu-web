@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { MediaFieldsFragment } from 'app/components/QUEmbed/Media/mediaFields-gql';
 import MediaList from 'app/components/QUEmbed/MediaList';
 import { useCreateLibraryEntryMutation } from 'app/components/QUEmbed/createLibraryEntry-gql';
-import { useFindMediaByIdAndTypeQuery } from 'app/components/QUEmbed/findMediaByIdAndType-gql';
 import { useSearchMediaByTitleQuery } from 'app/components/QUEmbed/searchMediaByTitle-gql';
 import { LibraryEntryStatusEnum, MediaTypeEnum } from 'app/graphql/types';
 import { kitsuDB } from 'app/utils/indexdb/kitsuDB';
@@ -92,7 +91,7 @@ export default function SearchPage(): ReactElement {
 
   if (searchData?.searchMediaByTitle && totalNodes > 0) {
     return (
-      <div>
+      <div id="searchPage">
         <MediaList
           entries={searchData.searchMediaByTitle}
           onSubmit={handleEntrySubmit}
