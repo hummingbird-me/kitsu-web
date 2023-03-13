@@ -1,6 +1,5 @@
-import { Location, createPath, parsePath } from 'history';
 import React, { ComponentProps, useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, Location, useLocation } from 'react-router-dom';
 
 import { IsModalContext } from 'app/contexts/ModalContext';
 import useQueryParams from 'app/hooks/useQueryParams';
@@ -10,7 +9,7 @@ function useBackgroundLocation(): Location | undefined {
   const location = useLocation() as Location & {
     state?: { background?: Location };
   };
-  const { background } = location.state ?? {};
+  const background = location?.state?.background;
 
   if (isModal) return background;
 
