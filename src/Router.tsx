@@ -1,26 +1,12 @@
 import { ErrorBoundary } from '@sentry/react';
-import { Location } from 'history';
 import React from 'react';
-import { Outlet, Route, Routes, useLocation } from 'react-router-dom';
+import { Location, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 
 import 'app/styles/index.css';
 
-import ForgotPasswordModal from './pages/Auth/ForgotPassword';
-import AuthModal from './pages/Auth/Modal';
-import SignInModal from './pages/Auth/SignIn';
-import SignUpModal from './pages/Auth/SignUp';
 import GeneralErrorPage from './pages/Errors/General';
 import NotFoundPage from './pages/Errors/NotFound';
-
-function modals({ displayMode }: { displayMode: 'page' | 'modal' }) {
-  return (
-    <Route path="auth" element={<AuthModal displayMode={displayMode} />}>
-      <Route path="sign-in" element={<SignInModal />} />
-      <Route path="sign-up" element={<SignUpModal />} />
-      <Route path="forgot-password" element={<ForgotPasswordModal />} />
-    </Route>
-  );
-}
+import { modals, pages } from './pages/routes';
 
 export default function Router() {
   // If the location has a background page set, we render the modal over it
@@ -33,17 +19,13 @@ export default function Router() {
   return (
     <ErrorBoundary fallback={<GeneralErrorPage />}>
       <Routes location={background || location}>
-        <Route path="anime">
-          <Route path=":id(\d+)" element={<NotFoundPage />} />
-          <Route path=":slug" element={<NotFoundPage />} />
-        </Route>
-        {modals({ displayMode: 'page' })}
+        {pages}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       {/* The modal fades in and slides up */}
       {background && (
         <Routes>
-          {modals({ displayMode: 'modal' })}
+          {modals}
           {/* Ignore any non-modal stuff */}
           <Route path="*" element={<Outlet />} />
         </Routes>
