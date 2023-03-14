@@ -10,6 +10,8 @@ import { LibraryEntryStatusEnum, MediaTypeEnum } from 'app/graphql/types';
 import { kitsuDB } from 'app/utils/indexdb/kitsuDB';
 import { CachedRecord } from 'app/utils/quickUpdateEmbedTypes';
 
+import styles from './styles.module.css';
+
 type ActiveTabs = 'media' | 'rating' | 'reaction';
 
 export default function MediaPage(): ReactElement {
@@ -87,21 +89,35 @@ export default function MediaPage(): ReactElement {
 
   if (cachedRecord && mediaData?.findMediaByIdAndType) {
     const headers = (
-      <div>
-        <ul>
-          <li onClick={() => setActiveTab('media')}>Media</li>
-          <li onClick={() => setActiveTab('reaction')}>Reaction</li>
-          <li onClick={() => setActiveTab('rating')}>Rating</li>
-        </ul>
+      <div className={styles.header}>
+        <nav className={styles.nav}>
+          <li
+            className={styles.chosenMedia}
+            onClick={() => setActiveTab('media')}>
+            {'Media'}
+          </li>
+          <li
+            className={styles.reaction}
+            onClick={() => setActiveTab('reaction')}>
+            {'Reaction'}
+          </li>
+          <li className={styles.rating} onClick={() => setActiveTab('rating')}>
+            {'Rating'}
+          </li>
+        </nav>
+        <div className="unlink">
+          <button onClick={deleteIndexDbRecord}>{'Unlink'}</button>
+        </div>
       </div>
     );
+
     let activeTabData = null;
     switch (activeTab) {
       case 'reaction':
-        activeTabData = <div>Reaction</div>;
+        activeTabData = <div>{'Reaction'}</div>;
         break;
       case 'rating':
-        activeTabData = <div>Rating</div>;
+        activeTabData = <div>{'Rating'}</div>;
         break;
       default:
         activeTabData = (
@@ -113,10 +129,10 @@ export default function MediaPage(): ReactElement {
     }
 
     return (
-      <>
+      <div className={styles.container}>
         {headers}
         {activeTabData}
-      </>
+      </div>
     );
   } else {
     return (

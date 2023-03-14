@@ -1,0 +1,54 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.2fr 0.8fr 0.4fr 0.2fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "header header header"
+    "bannerImage bannerImage bannerImage"
+    "post post post"
+    "footer footer footer";
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "nav nav nav unlink"
+    "nav nav nav unlink"
+    "nav nav nav unlink";
+  grid-area: header;
+}
+
+.unlink {
+  grid-area: unlink;
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "chosenMedia reaction rating"
+    "chosenMedia reaction rating"
+    "chosenMedia reaction rating";
+  grid-area: nav;
+}
+
+.chosenMedia {
+  grid-area: chosenMedia;
+}
+
+.reaction {
+  grid-area: reaction;
+}
+
+.rating {
+  grid-area: rating;
+}

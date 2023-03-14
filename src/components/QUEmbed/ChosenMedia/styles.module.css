@@ -1,0 +1,33 @@
+.bannerImage {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1.5fr 0.5fr;
+  gap: 0px 0px;
+  grid-area: bannerImage;
+}
+
+.title {
+  justify-self: center;
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.image {
+  grid-area: 1 / 1 / 3 / 2;
+}
+
+.post {
+  grid-area: post;
+}
+.footer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "submit";
+  grid-area: footer;
+}
+
+.submit {
+  grid-area: submit;
+}

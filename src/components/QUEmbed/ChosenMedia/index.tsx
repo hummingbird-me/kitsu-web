@@ -1,5 +1,7 @@
 import React, { ReactElement } from 'react';
 
+import BannerImage from 'app/components/BannerImage';
+import { ImageSource } from 'app/components/content/Image';
 import {
   LibraryEntryUpdateProgressByMediaInput,
   PostCreateInput,
@@ -9,16 +11,13 @@ import { formattedMediaType } from 'app/pages/QUEmbed/MediaPage';
 import { MediaDataFragment } from '../findMediaByIdAndType-gql';
 import { useQuickUpdateMutation } from './quickUpdate-gql';
 import { useQuickUpdateNoPostMutation } from './quickUpdateNoPost-gql';
+import styles from './styles.module.css';
 
 interface QUEmbedProps {
   record: MediaDataFragment;
-  deleteIndexDbRecord: (e) => void;
 }
 
-export default function ChosenMedia({
-  record,
-  deleteIndexDbRecord,
-}: QUEmbedProps): ReactElement {
+export default function ChosenMedia({ record }: QUEmbedProps): ReactElement {
   const unitType = record.myLibraryEntry?.nextUnit?.__typename;
   const unitPrefix = unitType === 'Episode' ? 'Watching' : 'Reading';
   const [unitId, setUnitId] = React.useState<string | undefined>(
@@ -32,6 +31,7 @@ export default function ChosenMedia({
   const kitsuUrl = `https://kitsu.io/${record.type.toLowerCase()}/${
     record.slug
   }`;
+  const background = record.bannerImage as ImageSource;
 
   const [, createQuickUpdate] = useQuickUpdateMutation();
   const [, createQuickUpdateNoPost] = useQuickUpdateNoPostMutation();
@@ -108,29 +108,28 @@ export default function ChosenMedia({
   };
 
   return (
-    <div>
-      <h1>
-        <a href={kitsuUrl} target="_blank" rel="noreferrer">
-          {record.titles.preferred}
-        </a>
-      </h1>
-      <button onClick={deleteIndexDbRecord}>Unlink</button>
-      <div>
-        <h2>
-          Currently {unitPrefix} - {unitNumber}
-        </h2>
+    <>
+      <div className={styles.bannerImage}>
+        <BannerImage className={styles.image} background={background}>
+          <h1 className={styles.title}>
+            <a href={kitsuUrl} target="_blank" rel="noreferrer">
+              {record.titles.preferred}
+            </a>
+          </h1>
+        </BannerImage>
       </div>
-      <div>
-        <h2>Post</h2>
-        <textarea
-          cols={30}
-          rows={10}
-          value={post}
-          onChange={(e) => setPost(e.target.value)}
-        />
+      <textarea
+        className={styles.post}
+        value={post}
+        onChange={(e) => setPost(e.target.value)}
+      />
+      <div className={styles.footer}>
+        <button
+          className={styles.submit}
+          onClick={
+            handleSubmit
+          }>{`Completed ${unitPrefix} ${unitNumber}`}</button>
       </div>
-
-      <button onClick={handleSubmit}>Submit</button>
-    </div>
+    </>
   );
 }

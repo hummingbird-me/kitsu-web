@@ -2,6 +2,7 @@ import { DocumentNode } from 'graphql';
 import * as Urql from 'urql';
 
 import * as Types from '../../graphql/types';
+import { ImageFieldsFragmentDoc } from '../content/Image/imageFields-gql';
 
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type FindMediaByIdAndTypeQueryVariables = Types.Exact<{
@@ -18,8 +19,22 @@ export type FindMediaByIdAndTypeQuery = {
         type: string;
         sfw: boolean;
         titles: { preferred: string };
-        bannerImage?: { original: { name: string; url: string } } | null;
-        posterImage?: { original: { name: string; url: string } } | null;
+        bannerImage?: {
+          blurhash?: string | null;
+          views: Array<{
+            height?: number | null;
+            width?: number | null;
+            url: string;
+          }>;
+        } | null;
+        posterImage?: {
+          blurhash?: string | null;
+          views: Array<{
+            height?: number | null;
+            width?: number | null;
+            url: string;
+          }>;
+        } | null;
         myLibraryEntry?: {
           __typename: 'LibraryEntry';
           id: string;
@@ -41,8 +56,22 @@ export type FindMediaByIdAndTypeQuery = {
         type: string;
         sfw: boolean;
         titles: { preferred: string };
-        bannerImage?: { original: { name: string; url: string } } | null;
-        posterImage?: { original: { name: string; url: string } } | null;
+        bannerImage?: {
+          blurhash?: string | null;
+          views: Array<{
+            height?: number | null;
+            width?: number | null;
+            url: string;
+          }>;
+        } | null;
+        posterImage?: {
+          blurhash?: string | null;
+          views: Array<{
+            height?: number | null;
+            width?: number | null;
+            url: string;
+          }>;
+        } | null;
         myLibraryEntry?: {
           __typename: 'LibraryEntry';
           id: string;
@@ -67,8 +96,22 @@ export type MediaData_Anime_Fragment = {
   type: string;
   sfw: boolean;
   titles: { preferred: string };
-  bannerImage?: { original: { name: string; url: string } } | null;
-  posterImage?: { original: { name: string; url: string } } | null;
+  bannerImage?: {
+    blurhash?: string | null;
+    views: Array<{
+      height?: number | null;
+      width?: number | null;
+      url: string;
+    }>;
+  } | null;
+  posterImage?: {
+    blurhash?: string | null;
+    views: Array<{
+      height?: number | null;
+      width?: number | null;
+      url: string;
+    }>;
+  } | null;
   myLibraryEntry?: {
     __typename: 'LibraryEntry';
     id: string;
@@ -91,8 +134,22 @@ export type MediaData_Manga_Fragment = {
   type: string;
   sfw: boolean;
   titles: { preferred: string };
-  bannerImage?: { original: { name: string; url: string } } | null;
-  posterImage?: { original: { name: string; url: string } } | null;
+  bannerImage?: {
+    blurhash?: string | null;
+    views: Array<{
+      height?: number | null;
+      width?: number | null;
+      url: string;
+    }>;
+  } | null;
+  posterImage?: {
+    blurhash?: string | null;
+    views: Array<{
+      height?: number | null;
+      width?: number | null;
+      url: string;
+    }>;
+  } | null;
   myLibraryEntry?: {
     __typename: 'LibraryEntry';
     id: string;
@@ -147,15 +204,8 @@ export const MediaDataFragmentDoc = {
               kind: 'SelectionSet',
               selections: [
                 {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'original' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                    ],
-                  },
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'imageFields' },
                 },
               ],
             },
@@ -167,15 +217,8 @@ export const MediaDataFragmentDoc = {
               kind: 'SelectionSet',
               selections: [
                 {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'original' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                    ],
-                  },
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'imageFields' },
                 },
               ],
             },
@@ -302,6 +345,7 @@ export const FindMediaByIdAndTypeDocument = {
       },
     },
     ...MediaDataFragmentDoc.definitions,
+    ...ImageFieldsFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode;
 

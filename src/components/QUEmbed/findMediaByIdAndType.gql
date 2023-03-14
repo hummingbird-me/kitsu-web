@@ -1,3 +1,5 @@
+# import imageFields from 'app/components/Image/imageFields';
+
 query FindMediaByIdAndType($id: ID!, $mediaType: MediaTypeEnum!) {
   findMediaByIdAndType(id: $id, mediaType: $mediaType) {
     ...MediaData
@@ -14,16 +16,10 @@ fragment MediaData on Media {
     preferred
   }
   bannerImage {
-    original {
-      name
-      url
-    }
+    ...imageFields
   }
   posterImage {
-    original {
-      name
-      url
-    }
+    ...imageFields
   }
   myLibraryEntry {
     __typename
