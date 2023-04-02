@@ -1,0 +1,140 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { BsExclamationCircle, BsShieldCheck } from 'react-icons/bs';
+
+import TextInput from './index';
+
+<Meta
+  title="Controls/TextInput"
+  component={TextInput}
+  argTypes={{
+    label: {
+      control: {
+        type: 'text',
+      },
+    },
+  }}
+  parameters={{
+    layout: 'centered',
+    controls: { expanded: true },
+  }}
+/>
+
+# TextInput
+
+Text inputs are used to collect short textual information, such as names, email
+addresses, passwords, phone numbers, and more. In theory, this component
+supports any input type you want, but in practice it's only styled for the
+following `type=` values:
+
+- `email`
+- `password`
+- `text`
+- `url`
+- `tel`
+
+Generally, if it's styled like a text input, it's supported by TextInput. For
+everything else, there are other components that are more appropriate and have
+their own particular styles. One notable exception is `type="number"`, which is
+_not_ supported by TextInput. If you need a number input, use the `NumberInput`
+component, which provides styled, accessible input controls for incrementing and
+decrementing numbers.
+
+<Canvas>
+  <Story name="Unfilled" parameters={{ layout: 'centered' }}>
+    {(args) => {
+      return (
+        <TextInput
+          label="Username"
+          style={{
+            width: '400px',
+          }}
+          {...args}
+        />
+      );
+    }}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Invalid Email" parameters={{ layout: 'centered' }}>
+    {(args) => {
+      return (
+        <TextInput
+          label="Email Address"
+          style={{
+            width: '400px',
+          }}
+          validation={{
+            type: 'invalid',
+            icon: BsExclamationCircle,
+            message: 'There is already an account with this email.',
+          }}
+          defaultValue="nuck@kitsu.io"
+          {...args}
+        />
+      );
+    }}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Valid Password" parameters={{ layout: 'centered' }}>
+    {(args) => {
+      return (
+        <TextInput
+          label="Password"
+          style={{
+            width: '400px',
+          }}
+          validation={{
+            type: 'valid',
+            icon: BsShieldCheck,
+            message: "Woah, that's an excellent password!",
+          }}
+          type="password"
+          defaultValue="correct horse battery staple"
+          {...args}
+        />
+      );
+    }}
+  </Story>
+</Canvas>
+
+It also supports more esoteric text input types such as `type="search"` and
+`type="month"`, though not with perfect styling:
+
+<Canvas>
+  <Story name="Search" parameters={{ layout: 'centered' }}>
+    {(args) => {
+      return (
+        <TextInput
+          label="Search for Anime or Manga..."
+          style={{
+            width: '400px',
+          }}
+          type="search"
+          defaultValue="Attack on Titan"
+          {...args}
+        />
+      );
+    }}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Month" parameters={{ layout: 'centered' }}>
+    {(args) => {
+      return (
+        <TextInput
+          label="Month"
+          style={{
+            width: '400px',
+          }}
+          type="month"
+          defaultValue="Junuary"
+          {...args}
+        />
+      );
+    }}
+  </Story>
+</Canvas>

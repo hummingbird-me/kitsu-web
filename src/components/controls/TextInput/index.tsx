@@ -1,19 +1,29 @@
-import React, { InputHTMLAttributes } from 'react';
+import React, { InputHTMLAttributes, forwardRef } from 'react';
 
-import styles from './styles.module.css';
+import FormField, {
+  FormFieldValidationProps,
+} from 'app/components/controls/Field';
 
 export type TextInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
   'placeholder'
-> & {
-  label: string;
-};
+> & { label: string; validation?: FormFieldValidationProps };
 
-const TextInput = function ({
-  className,
-  ...props
-}: TextInputProps): JSX.Element {
-  return <input {...props} className={[className, styles.input].join(' ')} />;
-};
+const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+  function TextInput({ className, label, validation, ...props }, ref) {
+    return (
+      <FormField label={label} validation={validation}>
+        {(fieldProps) => (
+          <input
+            {...props}
+            {...fieldProps}
+            ref={ref}
+            className={[className, fieldProps.className].join(' ')}
+          />
+        )}
+      </FormField>
+    );
+  }
+);
 
 export default TextInput;
