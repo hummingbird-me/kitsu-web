@@ -1,53 +1,116 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import {
   FaApple as AppleLogo,
   FaFacebook as FacebookLogo,
   FaTwitter as TwitterLogo,
 } from 'react-icons/fa';
+import * as yup from 'yup';
 
-import Button, { ButtonKind } from 'app/components/Button';
 import Rule from 'app/components/Rule';
+import Button, { ButtonKind } from 'app/components/controls/Button';
 import TextInput from 'app/components/controls/TextInput';
 
 import { useAuthModalContext } from '../Layout';
 import styles from './styles.module.css';
 
+const schema = yup
+  .object({
+    username: yup.string().min(3).max(20).required(),
+    email: yup.string().email().min(3).required(),
+    password: yup.string().max(72).required(),
+    confirmPassword: yup
+      .string()
+      .test(
+        'passwords-match',
+        'Passwords must match',
+        (value, ctx) => ctx.parent.password === value
+      ),
+  })
+  .required();
+
 export default function SignUpModal(): JSX.Element {
-  const { email, setEmail } = useAuthModalContext();
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [confirmPassword, setConfirmPassword] = React.useState('');
+  const { email: defaultEmail, setEmail } = useAuthModalContext();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    shouldUseNativeValidation: true,
+    mode: 'onTouched',
+    criteriaMode: 'all',
+    resolver: yupResolver(schema),
+    defaultValues: {
+      username: '',
+      email: defaultEmail,
+      password: '',
+      confirmPassword: '',
+    },
+  });
+  const currentEmail = watch('email');
+  useEffect(() => {
+    currentEmail && setEmail(currentEmail);
+  }, [currentEmail]);
 
   return (
-    <form className={styles.authForm}>
+    <form
+      noValidate
+      className={styles.authForm}
+      onSubmit={handleSubmit((args) => console.log(args))}>
       <TextInput
         autoFocus
         type="text"
         autoComplete="username"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        label="Username"
+        onInvalid={(e) => e.preventDefault()}
+        validation={
+          errors.username && {
+            type: 'invalid',
+            message: errors.username.message,
+          }
+        }
+        {...register('username')}
       />
       <TextInput
         type="email"
         autoComplete="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        label="Email"
+        onInvalid={(e) => e.preventDefault()}
+        validation={
+          errors.email && {
+            type: 'invalid',
+            message: errors.email.message,
+          }
+        }
+        {...register('email')}
       />
       <TextInput
         type="password"
         autoComplete="new-password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        label="Password"
+        onInvalid={(e) => e.preventDefault()}
+        validation={
+          errors.password && {
+            type: 'invalid',
+            message: errors.password.message,
+          }
+        }
+        {...register('password')}
       />
       <TextInput
         type="password"
         autoComplete="new-password"
-        placeholder="Confirm Password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
+        label="Confirm Password"
+        onInvalid={(e) => e.preventDefault()}
+        validation={
+          errors.confirmPassword && {
+            type: 'invalid',
+            message: errors.confirmPassword.message,
+          }
+        }
+        {...register('confirmPassword')}
       />
       <Button type="submit" kind={ButtonKind.PRIMARY}>
         Create account

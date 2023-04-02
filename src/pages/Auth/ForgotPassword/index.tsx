@@ -2,8 +2,8 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 import AuthModalHeader from 'app/components/AuthModalHeader';
-import Button, { ButtonKind } from 'app/components/Button';
 import Modal from 'app/components/Modal';
+import Button, { ButtonKind } from 'app/components/controls/Button';
 import TextInput from 'app/components/controls/TextInput';
 
 import { useAuthModalContext } from '../Layout';
