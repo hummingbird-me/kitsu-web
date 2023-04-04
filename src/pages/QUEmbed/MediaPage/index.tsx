@@ -1,18 +1,19 @@
 import React, { ReactElement, useEffect } from 'react';
-import { Navigate, redirect, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import ChosenMedia from 'app/components/QUEmbed/ChosenMedia';
-import { MediaFieldsFragment } from 'app/components/QUEmbed/Media/mediaFields-gql';
-import { useCreateLibraryEntryMutation } from 'app/components/QUEmbed/createLibraryEntry-gql';
-import { useFindMediaByIdAndTypeQuery } from 'app/components/QUEmbed/findMediaByIdAndType-gql';
-import { useSearchMediaByTitleQuery } from 'app/components/QUEmbed/searchMediaByTitle-gql';
-import { LibraryEntryStatusEnum, MediaTypeEnum } from 'app/graphql/types';
+import ChosenMediaHeader from 'app/components/QUEmbed/ChosenMedia/Header';
+import {
+  MediaDataFragment,
+  useFindMediaByIdAndTypeQuery,
+} from 'app/components/QUEmbed/findMediaByIdAndType-gql';
+import { MediaTypeEnum } from 'app/graphql/types';
 import { kitsuDB } from 'app/utils/indexdb/kitsuDB';
 import { CachedRecord } from 'app/utils/quickUpdateEmbedTypes';
 
 import styles from './styles.module.css';
 
-type ActiveTabs = 'media' | 'rating' | 'reaction';
+export type ActiveTabs = 'media' | 'rating' | 'reaction';
 
 export default function MediaPage(): ReactElement {
   const searchParams = new URLSearchParams(window.location.search);
@@ -89,51 +90,19 @@ export default function MediaPage(): ReactElement {
 
   if (cachedRecord && mediaData?.findMediaByIdAndType) {
     const headers = (
-      <div className={styles.header}>
-        <nav className={styles.nav}>
-          <li
-            className={styles.chosenMedia}
-            onClick={() => setActiveTab('media')}>
-            {'Media'}
-          </li>
-          <li
-            className={styles.reaction}
-            onClick={() => setActiveTab('reaction')}>
-            {'Reaction'}
-          </li>
-          <li className={styles.rating} onClick={() => setActiveTab('rating')}>
-            {'Rating'}
-          </li>
-        </nav>
-        <div className="unlink">
-          <button onClick={deleteIndexDbRecord}>{'Unlink'}</button>
-        </div>
-      </div>
+      <ChosenMediaHeader
+        onClickUnlink={deleteIndexDbRecord}
+        onClickActiveTab={(tab: ActiveTabs) => setActiveTab(tab)}
+      />
     );
 
-    let activeTabData = null;
-    switch (activeTab) {
-      case 'reaction':
-        activeTabData = <div>{'Reaction'}</div>;
-        break;
-      case 'rating':
-        activeTabData = <div>{'Rating'}</div>;
-        break;
-      default:
-        activeTabData = (
-          <ChosenMedia
-            record={mediaData.findMediaByIdAndType}
-            deleteIndexDbRecord={deleteIndexDbRecord}
-          />
-        );
-    }
-
-    return (
-      <div className={styles.container}>
-        {headers}
-        {activeTabData}
-      </div>
+    const html = activeTabData(
+      activeTab,
+      headers,
+      mediaData.findMediaByIdAndType
     );
+
+    return html;
   } else {
     return (
       <Navigate
@@ -141,6 +110,36 @@ export default function MediaPage(): ReactElement {
         state={{ title, externalMediaId, externalMediaSource, mediaType }}
       />
     );
+  }
+}
+
+function activeTabData(
+  activeTab: ActiveTabs,
+  headers: ReactElement,
+  mediaRecord: MediaDataFragment
+): ReactElement {
+  switch (activeTab) {
+    case 'reaction':
+      return (
+        <div className={styles.reactionContainer}>
+          {headers}
+          <div>{'Reaction'}</div>
+        </div>
+      );
+    case 'rating':
+      return (
+        <div className={styles.ratingContainer}>
+          {headers}
+          <div>{'Rating'}</div>
+        </div>
+      );
+    default:
+      return (
+        <div className={styles.chosenMediaContainer}>
+          {headers}
+          <ChosenMedia record={mediaRecord} />
+        </div>
+      );
   }
 }
 

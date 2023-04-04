@@ -1,54 +1,14 @@
-.container {
+.chosenMediaContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.2fr 0.8fr 0.4fr 0.2fr;
+  grid-template-rows: 0.1fr 0.8fr 0.8fr;
   gap: 0px 0px;
-  grid-auto-flow: row;
   grid-template-areas:
-    "header header header"
-    "bannerImage bannerImage bannerImage"
-    "post post post"
-    "footer footer footer";
+    "headers headers headers"
+    "banner banner banner"
+    "post post post";
 }
 
-.header {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "nav nav nav unlink"
-    "nav nav nav unlink"
-    "nav nav nav unlink";
-  grid-area: header;
-}
+.reactionContainer {
 
-.unlink {
-  grid-area: unlink;
-}
-
-.nav {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "chosenMedia reaction rating"
-    "chosenMedia reaction rating"
-    "chosenMedia reaction rating";
-  grid-area: nav;
-}
-
-.chosenMedia {
-  grid-area: chosenMedia;
-}
-
-.reaction {
-  grid-area: reaction;
-}
-
-.rating {
-  grid-area: rating;
 }

@@ -109,8 +109,8 @@ export default function ChosenMedia({ record }: QUEmbedProps): ReactElement {
 
   return (
     <>
-      <div className={styles.bannerImage}>
-        <BannerImage className={styles.image} background={background}>
+      <div className={styles.banner}>
+        <BannerImage className={styles.mainImage} background={background}>
           <h1 className={styles.title}>
             <a href={kitsuUrl} target="_blank" rel="noreferrer">
               {record.titles.preferred}
@@ -118,14 +118,15 @@ export default function ChosenMedia({ record }: QUEmbedProps): ReactElement {
           </h1>
         </BannerImage>
       </div>
-      <textarea
-        className={styles.post}
-        value={post}
-        onChange={(e) => setPost(e.target.value)}
-      />
-      <div className={styles.footer}>
+      <div className={styles.post}>
+        <textarea
+          className={styles.postBody}
+          value={post}
+          onChange={(e) => setPost(e.target.value)}
+        />
+
         <button
-          className={styles.submit}
+          className={styles.submitPost}
           onClick={
             handleSubmit
           }>{`Completed ${unitPrefix} ${unitNumber}`}</button>

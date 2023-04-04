@@ -1,33 +1,30 @@
-.bannerImage {
+.banner {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1.5fr 0.5fr;
+  grid-template-rows: 1.5fr;
   gap: 0px 0px;
-  grid-area: bannerImage;
+  grid-area: banner;
 }
 
 .title {
-  justify-self: center;
-  grid-area: 2 / 1 / 3 / 2;
-}
-
-.image {
-  grid-area: 1 / 1 / 3 / 2;
+  text-align: center
 }
 
 .post {
-  grid-area: post;
-}
-.footer {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
+  grid-template-rows: 0.8fr 0.2fr;
   gap: 0px 0px;
   grid-template-areas:
-    "submit";
-  grid-area: footer;
+    "postBody"
+    "submitPost";
+  grid-area: post;
 }
 
-.submit {
-  grid-area: submit;
+.postBody {
+  grid-area: postBody;
+}
+
+.submitPost {
+  grid-area: submitPost;
 }
