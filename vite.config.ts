@@ -1,13 +1,14 @@
 /// <reference types="vitest" />
 
 import path from 'path';
-import { defineConfig, BuildOptions, splitVendorChunkPlugin } from 'vite';
+
 import react from '@vitejs/plugin-react';
-import svgr from 'vite-plugin-svgr';
 import {
   formatjsCompilePlugin,
   formatjsTransformPlugin,
 } from 'rollup-plugin-formatjs';
+import { BuildOptions, defineConfig, splitVendorChunkPlugin } from 'vite';
+import svgr from 'vite-plugin-svgr';
 
 let build: BuildOptions;
 switch (process.env.BUILD_TARGET) {
@@ -63,6 +64,7 @@ export default defineConfig(({ mode }) => ({
     exclude: ['cypress', 'node_modules', 'dist', '.git', '.cache'],
     environment: 'happy-dom',
     coverage: {
+      provider: 'c8',
       reporter: ['lcovonly', 'html', 'text-summary'],
       all: true,
       src: ['src'],
@@ -78,8 +80,6 @@ export default defineConfig(({ mode }) => ({
     }),
     ...(process.env.NODE_ENV !== 'test' ? [react()] : []),
     svgr(),
-    // TODO: set up SRI plugin correctly
-    //sri(),
   ],
   esbuild: {
     // We distribute the comments as part of the github source code instead of in our bundle.
