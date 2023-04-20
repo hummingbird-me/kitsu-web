@@ -47,6 +47,11 @@ export const globalTypes = {
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
+  options: {
+    storySort: {
+      order: ['Introduction', 'Colors', 'Typography'],
+    },
+  },
   controls: {
     matchers: {
       color: /(background|color)$/i,

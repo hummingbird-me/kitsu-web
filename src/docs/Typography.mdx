@@ -1,0 +1,96 @@
+import { Meta, Typeset } from '@storybook/blocks';
+
+<Meta title="Typography" />
+
+import 'app/styles/globals/fonts.css';
+
+# Typography
+
+## Sizes
+
+We define a size palette for our fonts, which should be used for every single `font-size` in any component.
+
+- `--font-xxs:   0.6rem (~10px)`
+- `--font-xs:    0.8rem (~11px)`
+- `--font-sm:    0.9rem (~14px)` ← Avoid getting smaller than this
+- `--font-me:    1rem   (~16px)` ← **Base size**
+- `--font-la:    1.2rem (~19px)`
+- `--font-xl:    1.5rem (~24px)`
+- `--font-xxl:   2rem   (~32px)`
+- `--font-xxxl:  3rem   (~48px)`
+- `--font-xxxxl: 4rem   (~64px)` ← Actually massive
+
+## Weights
+
+We also define a _weight_ palette for our fonts, which should be used for every single `font-weight`
+in any component.
+
+- `--font-light:      300`
+- `--font-regular:    400` ← **Base weight**
+- `--font-semi-bold:  600`
+- `--font-bold:       700`
+- `--font-extra-bold: 900`
+
+## Fonts
+
+### Body Text
+
+Our body font stack consists of the following fonts, with priority given to native fonts (especially
+on mobile devices such as iOS and Android):
+
+- **English:**
+  - Open Sans (web font)
+- **Japanese:**
+  - Hiragino Sans (Mac/iOS native font)
+  - Noto Sans JP (Android native font)
+  - M PLUS 2 (web font)
+- **Korean:**
+  - Apple SD Gothic Neo (Mac/iOS native font)
+  - Noto Sans KR (Android native font and web font)
+
+<Typeset
+  fontSizes={[
+    'var(--font-xxs)',
+    'var(--font-xs)',
+    'var(--font-sm)',
+    'var(--font-me)',
+    'var(--font-la)',
+    'var(--font-xl)',
+    'var(--font-xxl)',
+    'var(--font-xxxl)',
+    'var(--font-xxxxl)',
+  ]}
+  fontWeight={'var(--font-regular)'}
+  fontFamily={'var(--font-family-body)'}
+  sampleText="English 한국어 日本語"
+/>
+
+### Headings
+
+Our headings font stack consists of the following fonts, chosen for their consistent "rounded"
+visual. Notably, these are primarily used for _page titles_, not for _section titles_, which
+generally use bold versions of the body font.
+
+- **English:**
+  - Asap (web font)
+- **Japanese:**
+  - M PLUS Rounded 1c (web font)
+- **Korean:**
+  - Jua (web font)
+
+<Typeset
+  fontSizes={[
+    'var(--font-xxs)',
+    'var(--font-xs)',
+    'var(--font-sm)',
+    'var(--font-me)',
+    'var(--font-la)',
+    'var(--font-xl)',
+    'var(--font-xxl)',
+    'var(--font-xxxl)',
+    'var(--font-xxxxl)',
+  ]}
+  fontWeight={'var(--font-bold)'}
+  fontFamily={'var(--font-family-headings)'}
+  sampleText="English 한국어 日本語"
+/>

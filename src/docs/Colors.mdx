@@ -1,0 +1,78 @@
+import { ColorItem, ColorPalette, Meta } from '@storybook/blocks';
+
+import colors from 'app/styles/globals/colors.json';
+
+export function generateColors(color) {
+  return Object.fromEntries(
+    Object.keys(colors['custom-properties'])
+      .filter((key) => key.includes(color))
+      .map((key) => [key, colors['custom-properties'][key]])
+  );
+}
+
+<Meta title="Colors" />
+
+# Colors
+
+Kitsu has two "layers" of color palettes, starting with a set of base colors, which are then aliased
+in each theme to a set of _semantic_ colors which are then used by components.
+
+## Base Colors
+
+The base color palette should generally _not_ be directly used by components, though exceptions can
+be made. Usually the exceptions should be limited to declaring a color _group_ rather than the exact
+color (e.g. `red` instead of `--red-2`) so that the component styles can account for the theme and
+adjust the brightness accordingly to maintain proper contrast.
+
+The following is our base color palette from `app/styles/globals/colors.css`:
+
+<ColorPalette>
+  <ColorItem
+    title="Red"
+    subtitle="for errors or danger"
+    colors={generateColors('--red')}
+  />
+  <ColorItem
+    title="Pink"
+    subtitle="for passion and love"
+    colors={generateColors('--pink')}
+  />
+  <ColorItem
+    title="Yellow"
+    subtitle="for stars or medals"
+    colors={generateColors('--yellow')}
+  />
+  <ColorItem
+    title="Green"
+    subtitle="for primary actions"
+    colors={generateColors('--green')}
+  />
+  <ColorItem
+    title="Blue"
+    subtitle="for positive actions"
+    colors={generateColors('--blue')}
+  />
+  <ColorItem
+    title="Purple"
+    subtitle="for playfulness"
+    colors={generateColors('--purple')}
+  />
+  <ColorItem
+    title="Kitsu Purple"
+    subtitle="for our brand"
+    colors={generateColors('--kitsu-purple')}
+  />
+  <ColorItem
+    title="Grey"
+    subtitle="for neutrality"
+    colors={generateColors('--grey')}
+  />
+</ColorPalette>
+
+## Semantic Colors
+
+Semantic colors are defined in each theme and are used by components. They are aliases to the base
+colors, named to describe their purpose. For example, in the light theme `--page-background` is
+`--grey-1` but in the dark theme it is `--kitsu-purple-5`.
+
+To see more, please see the CSS files in `src/styles/themes/`.
