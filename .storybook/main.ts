@@ -7,7 +7,7 @@ const config: StorybookConfig = {
     '../src/**/*.stories.tsx',
   ],
   addons: [
-    'storybook-addon-themes',
+    '@kitsu-io-forks/storybook-addon-themes',
     '@storybook/addon-links',
     {
       name: '@storybook/addon-essentials',
@@ -22,6 +22,8 @@ const config: StorybookConfig = {
     name: '@storybook/react-vite',
     options: {},
   },
+  docs: {
+    autodocs: true,
+  },
 };
-
 export default config;

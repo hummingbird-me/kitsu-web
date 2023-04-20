@@ -1,6 +1,5 @@
 import React from 'react';
 import { HashRouter } from 'react-router-dom';
-import { withThemes } from 'storybook-addon-themes';
 
 import { ToasterContextProvider } from 'app/components/Toaster/Context';
 import IntlProvider from 'app/contexts/IntlContext';
@@ -57,17 +56,18 @@ export const parameters = {
   themes: {
     clearable: false,
     default: 'light',
-    list: [
-      { name: 'light', class: 'theme-light', color: '#f7f7f7' },
-      { name: 'dark', class: 'theme-dark', color: '#443443' },
-      { name: 'oled', class: 'theme-oled', color: '#000000' },
+    target: '.docs-story, :root',
+    property: 'data-theme',
+    options: [
+      { name: 'light', value: 'light', color: '#f7f7f7' },
+      { name: 'dark', value: 'dark', color: '#443443' },
+      { name: 'oled', value: 'oled', color: '#000000' },
     ],
   },
   docs: { theme: KitsuTheme },
 };
 
 export const decorators = [
-  withThemes,
   (
     Story: React.ComponentType,
     { globals: { locale } }: { globals: { locale: string } }
