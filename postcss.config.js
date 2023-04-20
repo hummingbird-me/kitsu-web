@@ -11,6 +11,7 @@ module.exports = {
     require('postcss-preset-env'),
     require('postcss-custom-properties')({
       importFrom: './src/styles/globals/colors.css',
+      exportTo: './src/styles/globals/colors.json',
       disableDeprecationNotice: true,
     }),
     require('./postcss/resolveLocalCustomProperties'),
