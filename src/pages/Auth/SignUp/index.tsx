@@ -9,7 +9,11 @@ import {
 import * as yup from 'yup';
 
 import Rule from 'app/components/Rule';
-import Button, { ButtonKind } from 'app/components/controls/Button';
+import Button, {
+  ButtonColor,
+  ButtonKind,
+  ButtonPreset,
+} from 'app/components/controls/Button';
 import TextInput from 'app/components/controls/TextInput';
 
 import { useAuthModalContext } from '../Layout';
@@ -112,18 +116,27 @@ export default function SignUpModal(): JSX.Element {
         }
         {...register('confirmPassword')}
       />
-      <Button type="submit" kind={ButtonKind.PRIMARY}>
+      <Button type="submit" {...ButtonPreset.PRIMARY}>
         Create account
       </Button>
       <Rule label="Or sign up with" />
       <div className={styles.socialLoginContainer}>
-        <Button kind={ButtonKind.OUTLINE} className={styles.socialLoginButton}>
+        <Button
+          kind={ButtonKind.OUTLINE}
+          color={ButtonColor.GREY}
+          className={styles.socialLoginButton}>
           <FacebookLogo title="Log in with Facebook" />
         </Button>
-        <Button kind={ButtonKind.OUTLINE} className={styles.socialLoginButton}>
+        <Button
+          kind={ButtonKind.OUTLINE}
+          color={ButtonColor.GREY}
+          className={styles.socialLoginButton}>
           <TwitterLogo title="Log in with Twitter" />
         </Button>
-        <Button kind={ButtonKind.OUTLINE} className={styles.socialLoginButton}>
+        <Button
+          kind={ButtonKind.OUTLINE}
+          color={ButtonColor.GREY}
+          className={styles.socialLoginButton}>
           <AppleLogo title="Log in with Apple" />
         </Button>
       </div>

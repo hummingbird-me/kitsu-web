@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import AuthModalHeader from 'app/components/AuthModalHeader';
 import Modal from 'app/components/Modal';
-import Button, { ButtonKind } from 'app/components/controls/Button';
+import Button, { ButtonPreset } from 'app/components/controls/Button';
 import TextInput from 'app/components/controls/TextInput';
 
 import { useAuthModalContext } from '../Layout';
@@ -17,11 +17,11 @@ export default function ForgotPasswordModal(): JSX.Element {
       <TextInput
         type="email"
         autoComplete="email"
-        placeholder="Email"
+        label="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <Button type="submit" kind={ButtonKind.PRIMARY}>
+      <Button type="submit" {...ButtonPreset.PRIMARY}>
         Send password reset
       </Button>
     </form>

@@ -10,7 +10,11 @@ import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 
 import ModalLink from 'app/components/ModalLink';
 import Rule from 'app/components/Rule';
-import Button, { ButtonKind } from 'app/components/controls/Button';
+import Button, {
+  ButtonColor,
+  ButtonKind,
+  ButtonPreset,
+} from 'app/components/controls/Button';
 import TextInput from 'app/components/controls/TextInput';
 import Alert from 'app/components/feedback/Alert';
 import { nanoauthCredentials } from 'app/constants/config';
@@ -101,7 +105,7 @@ const SignInModal: React.FC = function (): JSX.Element {
         })}
         {...register('password')}
       />
-      <Button type="submit" kind={ButtonKind.PRIMARY} loading={isSubmitting}>
+      <Button type="submit" {...ButtonPreset.PRIMARY} loading={isSubmitting}>
         <FormattedMessage
           defaultMessage="Log in"
           description="Submit button for Sign In"
@@ -117,6 +121,7 @@ const SignInModal: React.FC = function (): JSX.Element {
         <Button
           type="button"
           kind={ButtonKind.OUTLINE}
+          color={ButtonColor.GREY}
           className={styles.socialLoginButton}
           onClick={async () => {
             const result = await getAuthorization({
@@ -135,6 +140,7 @@ const SignInModal: React.FC = function (): JSX.Element {
         <Button
           type="button"
           kind={ButtonKind.OUTLINE}
+          color={ButtonColor.GREY}
           className={styles.socialLoginButton}>
           <TwitterLogo
             title={formatMessage({
@@ -146,6 +152,7 @@ const SignInModal: React.FC = function (): JSX.Element {
         <Button
           type="button"
           kind={ButtonKind.OUTLINE}
+          color={ButtonColor.GREY}
           className={styles.socialLoginButton}>
           <AppleLogo
             title={formatMessage({
