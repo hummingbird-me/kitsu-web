@@ -1,11 +1,7 @@
 import type { StorybookConfig } from '@storybook/types';
 
 const config: StorybookConfig = {
-  stories: [
-    '../src/docs/**/*.mdx',
-    '../src/**/*.stories.mdx',
-    '../src/**/*.stories.tsx',
-  ],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.tsx'],
   addons: [
     '@kitsu-io-forks/storybook-addon-themes',
     '@storybook/addon-links',
