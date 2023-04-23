@@ -1,0 +1,23 @@
+import LinkTo from '@storybook/addon-links/react';
+import { Canvas, Meta } from '@storybook/blocks';
+
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+Checkboxes are a square box that can be activated or deactivated (or somewhere in between), and
+allow users to select one or more options from a list of choices, or confirm an action.
+
+Similar to, but distinct from, radio buttons and toggle switches. Unlike radio buttons, checkboxes
+permit for multiple options to be selected. Unlike toggle switches, checkboxes are not designed to
+be used for on/off actions.
+
+<Canvas of={CheckboxStories.Unchecked} />
+
+<Canvas of={CheckboxStories.Checked} />
+
+<Canvas of={CheckboxStories.Indeterminate} />
+
+<Canvas of={CheckboxStories.Disabled} />
