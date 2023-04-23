@@ -1,0 +1,82 @@
+import { Canvas, Meta, Story } from '@storybook/blocks';
+
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+Buttons are used to show options for actions within a context. They should help the user find the
+most important actions within a given context and allow them to perform those actions. The contents
+should clearly indicate what action will be triggered when clicked.
+
+Buttons have three different style properties: `kind`, `size`, and `color`, which can be mixed and
+matched to form a variety of different buttons. For common combinations, there are also a few
+exported presets which you can use with the spread operator.
+
+## Kinds
+
+There are three kinds of buttons, each with different implications to the user. They come in eight
+stylish colors and three sizes, and can be mixed and matched to form a variety of different buttons
+to suit any context.
+
+### Solid
+
+A solid button is generally used for a primary action, and features a solid background which darkens
+to indicate focus, hover, and pressed states.
+
+<Canvas of={ButtonStories.Solid} />
+
+### Outline Buttons
+
+An outline button is generally used for a secondary action alongside a solid button, such as a
+cancellation or a destructive action. It features a thin outline, and fills with a solid color to
+indicate focus, hover, and pressed states.
+
+<Canvas of={ButtonStories.Outline} />
+
+### Borderless Buttons
+
+A borderless button is generally used as a secondary or tertiary action along side a solid button.
+It has no outline or background until it is hovered, focused, or pressed, at which point it fills
+with a solid color.
+
+<Canvas of={ButtonStories.Borderless} />
+
+## Presets
+
+There are a few common combinations of button styles that are used throughout the app. The most
+notable is the primary button, which is displayed in a stylish green color.
+
+<Canvas of={ButtonStories.Primary} />
+
+## States
+
+States are overrides beyond the default styles for a given button. They are used to indicate status
+of the button, such as whether it is non-interactive or if it's doing something.
+
+### Disabled State
+
+When a button is disabled, it will not respond to user interaction. Additionally, it is displayed in
+a greyed-out style, to indicate that it is not available to the user.
+
+<Canvas of={ButtonStories.Disabled} />
+
+### Loading State
+
+When a button is disabled, it will not respond to user interaction. Additionally, it is displayed in
+a greyed-out style, to indicate that it is not available to the user.
+
+<Canvas of={ButtonStories.Loading} />
+
+## Compositions
+
+While Buttons are often usable on their own, you'll often want to compose them with other components
+to create a more complex UI.
+
+### With Icon
+
+Sometimes you want an icon on your button. You can just include the icon as a child of the button,
+they'll get spaced out by the button's flexbox gap.
+
+<Canvas of={ButtonStories.WithIcon} />
