@@ -12,7 +12,7 @@ export default {
     controls: { expanded: true },
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/7KLXsWEmbIbkNy9CnFA0Ke/Kitsu-Web-V4?node-id=218%3A1210',
+      url: 'https://www.figma.com/file/QnRsGDTY1hcHmeFX0seHqd/Kitsu-Design-(Universal)?node-id=6%3A378&t=LrJkeenEpm0NXeUW-1',
     },
   },
 } satisfies Meta<typeof Button>;
