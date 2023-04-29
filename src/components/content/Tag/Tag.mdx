@@ -1,0 +1,30 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import * as TagStories from './Tag.stories';
+
+<Meta of={TagStories} />
+
+# Tag
+
+Tags are a small visual "bubble" used to display a genre or tag for a media item. They come in the
+whole palette of colors, and can be clickable and/or removable.
+
+The most basic tag is just a colored bubble with text:
+
+<Canvas of={TagStories.Default} />
+
+But you can also make it clickable by passing an `onClick` action and it will be styled accordingly
+with a hover effect and a pointer cursor:
+
+<Canvas of={TagStories.Clickable} />
+
+You can also make it removable by passing an `onRemove` action and it will have a remove button at
+the end:
+
+<Canvas of={TagStories.Removable} />
+
+# CategoryTag
+
+The `CategoryTag` component is the way you will usually interact with this. It provides a GraphQL
+fragment and a wrapper around the `Tag` component that will automatically display it according to
+our standard color scheme, according to their root category.

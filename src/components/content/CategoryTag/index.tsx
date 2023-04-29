@@ -11,11 +11,13 @@ function tagColorForRoot(root?: string): TagColor {
     case 'themes':
       return TagColor.BLUE;
     case 'setting':
-      return TagColor.ORANGE;
+      return TagColor.YELLOW;
     case 'target-demographics':
       return TagColor.GREEN;
-    default:
+    case 'elements':
       return TagColor.RED;
+    default:
+      return TagColor.GREY;
   }
 }
 

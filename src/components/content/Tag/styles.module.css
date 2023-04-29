@@ -1,32 +1,101 @@
 /* stylelint-disable scale-unlimited/declaration-strict-value */
 
 .tag {
+  display: inline-flex;
+  align-items: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 4px 10px;
+  padding: 2px 10px;
   border-radius: 9999px;
-  color: var(--white);
+  color: var(--tag-fg);
   font-weight: var(--font-semi-bold);
-  font-size: var(--font-xs);
+  font-size: var(--font-sm);
   white-space: nowrap;
 }
 
-.red {
-  background-color: #d95e40;
+.tag.clickable {
+  cursor: pointer;
+  transition: background-color 100ms ease-in-out;
+
+  &:hover {
+    background-color: var(--tag-hover-bg);
+  }
 }
 
-.orange {
-  background-color: #f2992e;
+.tag.removable {
+  padding-inline-end: calc(1rem + 8px);
+  position: relative;
+}
+
+.removeButton {
+  font-size: 1rem;
+  height: 1rem;
+  width: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset-inline-end: 4px;
+  border-radius: 9999px;
+  transition: background-color 100ms ease-in-out;
+
+  &:hover {
+    background-color: var(--tag-action-bg);
+  }
+}
+
+.red {
+  --tag-hover-bg: var(--tag-red-hover-bg);
+  --tag-action-bg: var(--tag-red-action-bg);
+
+  background-color: var(--tag-red-bg);
+}
+
+.pink {
+  --tag-hover-bg: var(--tag-pink-hover-bg);
+  --tag-action-bg: var(--tag-pink-action-bg);
+
+  background-color: var(--tag-pink-bg);
+}
+
+.yellow {
+  --tag-hover-bg: var(--tag-yellow-hover-bg);
+  --tag-action-bg: var(--tag-yellow-action-bg);
+
+  background-color: var(--tag-yellow-bg);
 }
 
 .green {
-  background-color: #56bc8a;
+  --tag-hover-bg: var(--tag-green-hover-bg);
+  --tag-action-bg: var(--tag-green-action-bg);
+
+  background-color: var(--tag-green-bg);
 }
 
 .blue {
-  background-color: #529ecc;
+  --tag-hover-bg: var(--tag-blue-hover-bg);
+  --tag-action-bg: var(--tag-blue-action-bg);
+
+  background-color: var(--tag-blue-bg);
 }
 
 .purple {
-  background-color: #a77dc2;
+  --tag-hover-bg: var(--tag-purple-hover-bg);
+  --tag-action-bg: var(--tag-purple-action-bg);
+
+  background-color: var(--tag-purple-bg);
+}
+
+.kitsuPurple {
+  --tag-hover-bg: var(--tag-kitsu-purple-hover-bg);
+  --tag-action-bg: var(--tag-kitsu-purple-action-bg);
+
+  background-color: var(--tag-kitsu-purple-bg);
+}
+
+.grey {
+  --tag-hover-bg: var(--tag-grey-hover-bg);
+  --tag-action-bg: var(--tag-grey-action-bg);
+
+  background-color: var(--tag-grey-bg);
 }
