@@ -14,6 +14,9 @@ import matches from 'client/utils/elements-match';
 
 const FILE_UPLOAD_LIMIT = 20;
 const LINK_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
+const INDICES = {
+  users: ['id', 'slug', 'name', 'avatar'],
+};
 
 export default Component.extend({
   classNameBindings: ['isExpanded:is-expanded'],
@@ -29,6 +32,11 @@ export default Component.extend({
   maxLength: 9000,
   _usableMedia: null,
   embedUrl: null,
+  isUserSearchOpen: false,
+  previousUserSearchTimeoutId: null,
+  previousContent: null,
+  currentlyEdtitingUserTag: null,
+  users: [],
 
   ajax: service(),
   store: service(),
@@ -36,6 +44,7 @@ export default Component.extend({
   fileQueue: service(),
   notify: service(),
   raven: service(),
+  algolia: service(),
 
   canPost: or('contentPresent', 'uploadsReady', 'embedUrl'),
   uploadsReady: and('uploadsPresent', 'queueFinished'),
@@ -242,6 +251,24 @@ export default Component.extend({
     set(this, 'uploads', uploads);
   },
 
+  usersTask: task(function* (query, options = {}) {
+    const index = yield get(this, 'algolia.getIndex').perform('users');
+    if (isEmpty(index)) {
+      return {};
+    }
+    return yield index.search(query, {
+      attributesToRetrieve: INDICES.users,
+      hitsPerPage: 4,
+      queryLanguages: ['en', 'ja'],
+      naturalLanguages: ['en', 'ja'],
+      attributesToHighlight: [],
+      responseFields: ['hits', 'hitsPerPage', 'nbHits', 'nbPages', 'offset', 'page'],
+      removeStopWords: false,
+      removeWordsIfNoResults: 'allOptional',
+      ...options
+    });
+  }).restartable(),
+
   actions: {
     createPost(component, event) {
       const { metaKey, ctrlKey } = event;
@@ -312,6 +339,102 @@ export default Component.extend({
         this.set('embedUrl', undefined);
       }
       invoke(this, 'processLinks', this.get('content'), true);
+    },
+
+    autocompleteUserTag(selectedTag) {
+      const currentlyEditingUserTag = this.get('currentlyEdtitingUserTag')
+      const textarea = document.getElementById('create-post-textarea')
+
+      const newContent =
+        this.content.substring(0, currentlyEditingUserTag.index) +
+        '@' +
+        this.content.substring(currentlyEditingUserTag.index).replace(currentlyEditingUserTag.tag, selectedTag)
+
+      this.set('isUserSearchOpen', false)
+      textarea.value = newContent
+      textarea.selectionEnd = newContent.indexOf(' ', currentlyEditingUserTag.index)
+      this.set('previousContent', newContent);
+    },
+
+    autocompleteUserTagOnTab(_, event) {
+      const textarea = document.getElementById('create-post-textarea')
+
+      if (this.get('currentlyEdtitingUserTag') !== null) event.preventDefault();
+
+      const user = this.get('users').at(0)
+      if (user === undefined) {
+        textarea.value = textarea.value + ' '
+        this.set('previousContent', textarea.value);
+        return
+      }
+
+      const selectedTag = user.tag
+      this.send("autocompleteUserTag", selectedTag)
+    },
+
+    closeUserTagSearch() {
+      this.set('isUserSearchOpen', false)
+    },
+
+    userTagSearch(content) {
+      const stringDiffIndex = (s1, s2) => {
+        let i = 0;
+        while (s1[i] === s2[i] && i <= Math.max(s1.length, s2.length)) i++;
+        return i
+      }
+
+      const previousContent = this.get('previousContent')
+
+      if (previousContent) {
+        const index = stringDiffIndex(previousContent, content)
+        const didTypeWhiteSpace = [' ', '\n'].includes(content.at(index)) && content.length > previousContent.length
+
+        if (!didTypeWhiteSpace) {
+          const tagRegex = /(@[a-zA-Z])\w+/g
+          const tagMatches = content.matchAll(tagRegex)
+
+          // Assume no tag is being edited each keystroke
+          this.set('currentlyEdtitingUserTag', null)
+
+          for (const tagMatch of tagMatches) {
+            const tag = tagMatch[0]
+            const isEditingBeforeTagEnd = tagMatch.index + tag.length >= index
+            const isEditingAfterTagStart = index > tagMatch.index
+            const isEditingThisTag = isEditingAfterTagStart && isEditingBeforeTagEnd
+
+            if (isEditingThisTag) {
+              this.set('currentlyEdtitingUserTag', {
+                tag,
+                index: tagMatch.index
+              })
+
+              const query = tag.substring(1)
+
+              this.usersTask.perform(query).then(response => {
+                const records = get(response, 'hits') || [];
+                const users = records.map(record => ({
+                  name: record.name,
+                  tag: record.slug ?? record.id,
+                  avatar: record.avatar?.tiny,
+                }))
+                set(this, 'users', users);
+                set(this, 'isUserSearchOpen', true);
+
+                if (this.get('previousUserSearchTimeoutId') !== null) clearTimeout(this.get('previousUserSearchTimeoutId'))
+                this.set('previousUserSearchTimeoutId', setTimeout(() => {
+                  this.set('isUserSearchOpen', false);
+                }, 5000));
+              }).catch(error => {
+                get(this, 'raven').captureException(error);
+              });
+            }
+          }
+        }
+      }
+
+      const didEditTag = this.get('currentlyEdtitingUserTag') !== null
+      if (!didEditTag) this.set('isUserSearchOpen', false);
+      this.set('previousContent', content);
     }
   }
 });

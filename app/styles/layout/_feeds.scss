@@ -1008,6 +1008,44 @@
   color: $input-text-color;
 }
 
+.userTagPopover {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: $secondary-background-color;
+  color: $white;
+  border-radius: 0.25rem;
+  padding: 4px;
+
+  .userTagSearchResult {
+    display: grid;
+    grid-template-columns: 40px auto;
+    column-gap: 12px;
+    padding: 6px 10px;
+    border-radius: inherit;
+
+    &:hover {
+      background-color: lighten($secondary-background-color, 10);
+    }
+
+    .userAvatar img {
+      border-radius: 100%;
+    }
+
+    .userName {
+      line-height: 1;
+    }
+
+    .userTag {
+      color: $body-link-color;
+
+      &::before {
+        content: '@';
+      }
+    }
+  }
+}
+
 .stream-content {
   @include word-break();
   overflow: hidden;
