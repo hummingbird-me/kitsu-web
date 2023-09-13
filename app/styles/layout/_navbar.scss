@@ -39,6 +39,7 @@
       }
       @media (max-width: 768px) {
         width: 100%;
+        max-height: 179px;
         padding: 0;
         margin: 0;
         left: -2px;
@@ -223,6 +224,10 @@
   &.navbar-nav .nav-item + .nav-item {
     margin-left: 10px;
   }
+
+  @media (max-width: 604px) {
+    padding-right: 10px;
+  }
 }
 .notifications {
   width: 25px;
@@ -324,6 +329,11 @@
 
 .search--drop {
   width: 350px;
+
+  @media (max-width: 452px) {
+    width: 300px;
+  }
+
   max-height: 90vh;
   background-color: $search-background-color;
   overflow: auto;
@@ -334,6 +344,12 @@
 .search--results {
   padding: 5px 0;
   .media {
+    @media (max-width: 550px) {
+      display: grid;
+      grid-template-columns: 62px 1fr min-content;
+      column-gap: 8px;
+    }
+
     padding: 5px 10px;
     &:hover {
       background: $search-results-hover-background;
@@ -359,6 +375,15 @@
   background-color: $search-header-background;
   padding: 10px;
   margin-bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .search-close {
+    border: none;
+    background-color: inherit;
+    fill: $body-text-color;
+  }
 }
 
 .search--group-header {
