@@ -33,7 +33,7 @@
     "test:e2e": "cypress",
     "codegen": "npm run codegen:intl && npm run codegen:graphql",
     "codegen:intl": "ts-node ./bin/extract.ts",
-    "codegen:graphql": "graphql-codegen --config codegen.yml"
+    "codegen:graphql": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.11",
@@ -69,11 +69,11 @@
   "devDependencies": {
     "@babel/core": "^7.22.5",
     "@formatjs/cli-lib": "^6.1.3",
-    "@graphql-codegen/cli": "^2.14.1",
-    "@graphql-codegen/introspection": "^2.2.1",
-    "@graphql-codegen/near-operation-file-preset": "^2.4.4",
-    "@graphql-codegen/typescript": "^2.8.2",
-    "@graphql-codegen/typescript-operations": "^2.5.7",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/introspection": "^4.0.0",
+    "@graphql-codegen/near-operation-file-preset": "^2.5.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-operations": "^4.0.1",
     "@graphql-codegen/typescript-urql": "^3.7.3",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
     "@kitsu-io-forks/storybook-addon-themes": "^7.0.0",

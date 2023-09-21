@@ -1,6 +1,5 @@
 import { DocumentNode } from 'graphql';
 import * as Urql from 'urql';
-
 import * as Types from '../../../graphql/types';
 import { ImageFieldsFragmentDoc } from '../../content/Image/imageFields-gql';
 
