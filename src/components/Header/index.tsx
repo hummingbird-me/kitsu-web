@@ -4,8 +4,8 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 import { useIntersection } from 'react-use';
 
-import { ReactComponent as SearchIcon } from 'app/assets/icons/search.svg';
-import { ReactComponent as Logo } from 'app/assets/logo.svg';
+import SearchIcon from 'app/assets/icons/search.svg?react';
+import Logo from 'app/assets/logo.svg?react';
 import ModalLink from 'app/components/ModalLink';
 import Spinner from 'app/components/feedback/Spinner';
 import { useSession } from 'app/contexts/SessionContext';

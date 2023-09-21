@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { ReactComponent as Illustration } from 'app/assets/illustrations/ice-cube.svg';
+import Illustration from 'app/assets/illustrations/ice-cube.svg?react';
 import ErrorPage from 'app/layouts/Error';
 
 import styles from './styles.module.css';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { ReactComponent as Logo } from 'app/assets/logo.svg';
+import Logo from 'app/assets/logo.svg?react';
 import ModalLink from 'app/components/ModalLink';
 
 import styles from './styles.module.css';

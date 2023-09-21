@@ -1,5 +1,4 @@
 import { DocumentNode } from 'graphql';
-
 import * as Types from '../../../graphql/types';
 
 export type ImageFieldsFragment = {
