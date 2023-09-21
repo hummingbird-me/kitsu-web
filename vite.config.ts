@@ -64,7 +64,7 @@ export default defineConfig(({ mode }) => ({
     exclude: ['cypress', 'node_modules', 'dist', '.git', '.cache'],
     environment: 'happy-dom',
     coverage: {
-      provider: 'c8',
+      provider: 'v8',
       reporter: ['lcovonly', 'html', 'text-summary'],
       all: true,
       src: ['src'],
