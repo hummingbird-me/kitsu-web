@@ -1,39 +1,9 @@
 import { authExchange } from '@urql/exchange-auth';
-import { Exchange, Operation } from 'urql';
+import { Exchange } from 'urql';
 
 import { LoginFailed } from 'app/errors';
 import { Session } from 'app/types/session';
 import loginWithRefreshToken from 'app/utils/login/withRefreshToken';
-
-function addAuthToOperation({
-  authState,
-  operation,
-}: {
-  authState: Session;
-  operation: Operation;
-}) {
-  if (!authState || !authState.accessToken) return operation;
-
-  // fetchOptions can be a function (See Client API) but you can simplify this based on usage
-  const fetchOptions =
-    typeof operation.context.fetchOptions === 'function'
-      ? operation.context.fetchOptions()
-      : operation.context.fetchOptions || {};
-
-  return {
-    ...operation,
-    context: {
-      ...operation.context,
-      fetchOptions: {
-        ...fetchOptions,
-        headers: {
-          ...fetchOptions.headers,
-          Authorization: `Bearer ${authState.accessToken}`,
-        },
-      },
-    },
-  };
-}
 
 export default function kitsuAuthExchange({
   session,
@@ -44,31 +14,30 @@ export default function kitsuAuthExchange({
   setSession: (session: Session) => void;
   clearSession: () => void;
 }): Exchange {
-  return authExchange<Session>({
-    addAuthToOperation,
-    didAuthError({ error }) {
-      return error.response.status === 401;
-    },
-    async getAuth({ authState }) {
-      if (!authState) return session;
+  return authExchange(async utils => ({
+    addAuthToOperation(operation) {
+      if (!session?.accessToken) return operation;
 
-      if (authState?.refreshToken) {
+      return utils.appendHeaders(operation, {
+        Authorization: `Bearer ${session.accessToken}`,
+      })
+    },
+    didAuthError(errors) {
+      return errors.response.status === 401;
+    },
+    async refreshAuth() {
+      if (session?.refreshToken) {
         try {
-          const newSession = await loginWithRefreshToken(
-            authState.refreshToken
-          );
+          const newSession = await loginWithRefreshToken(session.refreshToken);
           setSession(newSession);
-          return newSession;
         } catch (e) {
           if (e instanceof LoginFailed) {
-            setSession(null);
+            clearSession();
           }
-          return null;
         }
       } else {
         clearSession();
-        return null;
       }
     },
-  });
+  }));
 }

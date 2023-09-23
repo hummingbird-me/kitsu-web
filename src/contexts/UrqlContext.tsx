@@ -3,10 +3,8 @@ import { offlineExchange } from '@urql/exchange-graphcache';
 import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage';
 import React from 'react';
 import {
-  Exchange,
   Provider,
   createClient,
-  dedupExchange,
   fetchExchange,
 } from 'urql';
 
@@ -18,7 +16,7 @@ import schema from 'app/graphql/schema';
 import authExchange from 'app/graphql/urql-exchanges/auth';
 import buildAcceptLanguage from 'app/utils/buildAcceptLanguage';
 
-const UrqlContext: React.FC = function ({ children }): JSX.Element {
+const UrqlContext = function ({ children }: { children: React.ReactNode }): JSX.Element {
   const session = useSession();
   const { locale } = useLocale();
 
@@ -30,7 +28,6 @@ const UrqlContext: React.FC = function ({ children }): JSX.Element {
     suspense: true,
     exchanges: [
       devtoolsExchange,
-      dedupExchange,
       offlineExchange({
         storage,
         schema,
