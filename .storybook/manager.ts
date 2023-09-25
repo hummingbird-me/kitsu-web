@@ -5,6 +5,6 @@ import KitsuTheme from './KitsuTheme';
 addons.setConfig({
   theme: KitsuTheme,
   sidebar: {
-    showRoots: false,
+    showRoots: true,
   },
 });

@@ -1,7 +1,7 @@
 <style>
   .css-1xonygc button,
   .css-1tgscux button {
-    text-transform: uppercase;
+    text-transform: uppercase !important;
   }
 
   .css-gxp98j {
@@ -14,9 +14,14 @@
 
   .sidebar-item {
     font-size: 15px !important;
-    height: 40px;
+    height: 40px !important;
     align-items: center !important;
     display: flex !important;
+  }
+
+  .sidebar-item > a {
+    font-size: 15px !important;
+    align-items: center;
   }
 
   .css-bt79wf,
@@ -26,9 +31,16 @@
     margin-left: 14px !important;
   }
 
-  .sidebar-item > svg {
-    height: 16px;
-    width: 16px;
-    margin: 0 5px;
+  .sidebar-item svg {
+    height: 16px !important;
+    width: 16px !important;
+    margin: 0 5px !important;
+  }
+
+  .sidebar-subheading,
+  .search-result-recentlyOpened {
+    letter-spacing: unset !important;
+    font-size: 14px !important;
+    color: #968094 !important;
   }
 </style>

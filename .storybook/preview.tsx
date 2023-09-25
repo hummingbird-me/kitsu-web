@@ -53,6 +53,7 @@ export const parameters = {
     },
   },
   controls: {
+    expanded: true,
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
@@ -75,7 +76,7 @@ export const parameters = {
 export const decorators = [
   (
     Story: React.ComponentType,
-    { globals: { locale } }: { globals: { locale: string } }
+    { globals: { locale } }: { globals: { locale: string } },
   ) => (
     <React.StrictMode>
       <React.Suspense fallback={null}>
