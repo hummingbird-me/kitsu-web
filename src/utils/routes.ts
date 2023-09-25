@@ -11,7 +11,7 @@ export class Path {
   constructor(
     path = '/',
     query: URLSearchParams | Record<string, string> = new URLSearchParams(),
-    fragment = ''
+    fragment = '',
   ) {
     this.path = path;
     this.query = new URLSearchParams(query);
@@ -34,9 +34,9 @@ export class Path {
   toString(): string {
     return [
       this.path,
-      this.query ? `?${this.query}` : '',
+      this.query.size > 0 ? `?${this.query}` : '',
       this.fragment ? `#${this.fragment}` : '',
-    ].join(',');
+    ].join('');
   }
 }
 
