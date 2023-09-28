@@ -1,6 +1,6 @@
 import React, {
-  HTMLProps,
   forwardRef,
+  HTMLProps,
   useLayoutEffect,
   useRef,
   useState,
@@ -16,6 +16,17 @@ export type ImageSource = Pick<GQImage, 'blurhash'> & {
   views: readonly ImageViewType[];
 };
 
+export type ImageProps = HTMLProps<HTMLDivElement> & {
+  height: number | string;
+  width: number | string;
+  source?: ImageSource | null;
+  objectFit?: 'contain' | 'cover' | 'fill';
+  blurhashSize?: number;
+  isLoaded?: boolean;
+  className?: string;
+  imageClassName?: string;
+};
+
 const viewsToSrcset = (views: readonly ImageViewType[]) =>
   views
     .filter(({ width }) => width)
@@ -23,19 +34,7 @@ const viewsToSrcset = (views: readonly ImageViewType[]) =>
     .join(', ');
 
 // TODO: find a better way to get the intrinsic size of the image
-const Image = forwardRef<
-  HTMLDivElement,
-  HTMLProps<HTMLDivElement> & {
-    height: number | string;
-    width: number | string;
-    source?: ImageSource | null;
-    objectFit?: 'contain' | 'cover' | 'fill';
-    blurhashSize?: number;
-    isLoaded?: boolean;
-    className?: string;
-    imageClassName?: string;
-  }
->(function Image(
+const Image = forwardRef<HTMLDivElement, ImageProps>(function Image(
   {
     height,
     width,
@@ -47,7 +46,7 @@ const Image = forwardRef<
     imageClassName,
     ...props
   },
-  ref
+  ref,
 ) {
   const imageRef = useRef<HTMLImageElement>(null);
   const [isLoadedState, setIsLoaded] = useState(false);
@@ -69,7 +68,7 @@ const Image = forwardRef<
   const aspectRatio = `${intrinsicWidth} / ${intrinsicHeight}`;
   const scale = Math.min(
     blurhashSize / intrinsicHeight,
-    blurhashSize / intrinsicWidth
+    blurhashSize / intrinsicWidth,
   );
 
   return (
