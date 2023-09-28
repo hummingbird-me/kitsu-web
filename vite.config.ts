@@ -10,6 +10,8 @@ import {
 import { BuildOptions, defineConfig, splitVendorChunkPlugin } from 'vite';
 import svgr from 'vite-plugin-svgr';
 
+import { imageMetadataPlugin } from './rollup/imageMetadataPlugin';
+
 let build: BuildOptions;
 switch (process.env.BUILD_TARGET) {
   case 'library':
@@ -49,7 +51,7 @@ switch (process.env.BUILD_TARGET) {
     break;
   default:
     throw new Error(
-      'Unknown build target. Please set BUILD_TARGET to one of: library, client, server'
+      'Unknown build target. Please set BUILD_TARGET to one of: library, client, server',
     );
 }
 
@@ -79,6 +81,7 @@ export default defineConfig(({ mode }) => ({
       ast: true,
     }),
     ...(process.env.NODE_ENV !== 'test' ? [react()] : []),
+    imageMetadataPlugin(),
     svgr(),
   ],
   esbuild: {
