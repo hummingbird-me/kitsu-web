@@ -17,19 +17,22 @@
   z-index: var(--layer-background);
 }
 
+.hasChildren {
+  background-color: var(--banner-image-fade);
+}
+
 .overlay {
   /* This allows us to size the parent container relative to the content */
-  min-height: 400px;
-  background: var(--banner-image-fade);
+  min-block-size: 400px;
   z-index: var(--layer-base);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 
   /* Add a top padding for the header */
-  padding-top: 82px;
+  padding-block-start: 82px;
 
   @media (--medium) {
-    padding-top: 41px;
+    padding-block-start: 41px;
   }
 }

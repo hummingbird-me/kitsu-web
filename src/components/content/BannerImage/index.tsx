@@ -7,6 +7,7 @@ import styles from './styles.module.css';
 
 type BannerImageProps = {
   background?: ImageSource | null;
+  isLoaded?: boolean;
   children?: React.ReactNode;
   className?: string;
 };
@@ -14,6 +15,7 @@ type BannerImageProps = {
 export default function BannerImage({
   background,
   children,
+  isLoaded,
   className,
 }: BannerImageProps) {
   return (
@@ -22,9 +24,15 @@ export default function BannerImage({
         source={background ?? defaultBanner}
         height="100%"
         width="100%"
+        isLoaded={isLoaded}
         className={styles.background}
       />
-      <div className={styles.overlay}>{children}</div>
+      <div
+        className={[styles.overlay, children ? styles.hasChildren : ''].join(
+          ' ',
+        )}>
+        {children}
+      </div>
     </div>
   );
 }
