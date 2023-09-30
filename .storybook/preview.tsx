@@ -1,3 +1,4 @@
+import * as Docs from '@storybook/blocks';
 import React from 'react';
 import { HashRouter } from 'react-router-dom';
 
@@ -70,7 +71,6 @@ export const parameters = {
       { name: 'oled', value: 'oled', color: '#000000' },
     ],
   },
-  docs: { theme: KitsuTheme },
   status: {
     statuses: {
       completed: {
@@ -95,6 +95,22 @@ export const parameters = {
           'This component is no longer supported, and will be removed in future.',
       },
     },
+  },
+  docs: {
+    theme: KitsuTheme,
+    toc: {
+      headingSelector: 'h2, h3',
+    },
+    page: () => (
+      <>
+        <Docs.Title />
+        <Docs.Subtitle />
+        <Docs.Description />
+        <Docs.Primary />
+        <Docs.Controls />
+        <Docs.Stories includePrimary={false} />
+      </>
+    ),
   },
 };
 

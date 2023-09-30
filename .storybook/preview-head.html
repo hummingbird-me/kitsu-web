@@ -1,7 +1,6 @@
 <link
   href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&family=M+PLUS+2:wght@100..900&family=Noto+Sans+KR:wght@400..800&family=Noto+Sans+JP:wght@400..800&family=Asap:wght@400..700&family=M+PLUS+Rounded+1c:wght@800&family=Jua&display=swap"
-  rel="stylesheet"
-/>
+  rel="stylesheet" />
 
 <style>
   .sbdocs-wrapper {
@@ -46,5 +45,33 @@
   }
   .docblock-typeset > div > div {
     display: table-cell;
+  }
+
+  .toc-list {
+    border-left: none !important;
+  }
+
+  .toc-list-item::before {
+    border: none !important;
+    width: 4px;
+    border-radius: 0 2px 2px 0;
+    background: linear-gradient(to top, #ed485f 0%, #f27c36 100%);
+  }
+
+  .toc-wrapper > .toc-list {
+    border-left: none !important;
+  }
+
+  .toc-list-item.is-active-li > a {
+    font-weight: unset !important;
+  }
+
+  .toc-wrapper > .toc-list > .toc-list-item > a {
+    font-weight: 700 !important;
+  }
+
+  .css-1wizkyk,
+  .css-1jw3z0o {
+    width: 16rem !important;
   }
 </style>
