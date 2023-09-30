@@ -1,7 +1,7 @@
-import { FilterPattern, createFilter } from '@rollup/pluginutils';
+import { createFilter, FilterPattern } from '@rollup/pluginutils';
+import { encode } from 'blurhash';
 import { Plugin } from 'rollup';
 import sharp from 'sharp';
-import { encode } from 'blurhash';
 
 type PluginOptions = {
   /**
@@ -73,8 +73,8 @@ const generateImageSource = async (
     new Uint8ClampedArray(data),
     info.width,
     info.height,
-    info.width / 16,
-    info.height / 16,
+    Math.max(Math.min(Math.floor(info.width / 16), 3), 6),
+    Math.max(Math.min(Math.floor(info.height / 16), 3), 6),
   );
 
   const url = /export default "([^"]+)"/.exec(input)?.[1];
