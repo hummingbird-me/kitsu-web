@@ -1,13 +1,20 @@
 import { encode } from 'blurhash';
 
-export const imageSourceLoader =
-  (field: string) =>
-  async ({ args }: { args: { [key: string]: string } }) => ({
-    // We need to get the first upload in the field, because files always return an array
-    [field]: await generateImageSource(args[field]?.[0]),
-  });
+import { ImageSource } from 'app/components/content/Image';
 
-export const generateImageSource = async (src: string | null) => {
+export function imageSourceLoader<Key extends string>(field: Key) {
+  return async ({ args }: { args: unknown }) =>
+    ({
+      // We need to get the first upload in the field, because files always return an array
+      [field]: await generateImageSource(
+        (<{ [key in Key]: string[] }>args)[field]?.[0],
+      ),
+    }) as { [key in Key]: ImageSource | null };
+}
+
+export async function generateImageSource(
+  src: string | null,
+): Promise<ImageSource | null> {
   if (!src) return null;
   const image = await loadImage(src);
   const { data, width, height } = getImageData(image);
@@ -16,7 +23,7 @@ export const generateImageSource = async (src: string | null) => {
     blurhash,
     views: [{ url: src, height: image.height, width: image.width }],
   };
-};
+}
 
 const loadImage = async (src: string): Promise<HTMLImageElement> =>
   new Promise((resolve, reject) => {
