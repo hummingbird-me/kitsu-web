@@ -13,6 +13,7 @@ const config: StorybookConfig = {
     },
     'storybook-addon-designs',
     '@storybook/addon-a11y',
+    '@etchteam/storybook-addon-status',
   ],
   framework: {
     name: '@storybook/react-vite',

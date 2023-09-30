@@ -71,6 +71,31 @@ export const parameters = {
     ],
   },
   docs: { theme: KitsuTheme },
+  status: {
+    statuses: {
+      completed: {
+        background: '#068d75',
+        color: '#ffffff',
+        label: 'Completed',
+        description:
+          'This component is ready for usage throughout the Kitsu codebase. It is thoroughly documented, tested, and supported.',
+      },
+      inDevelopment: {
+        background: '#cd8c2f',
+        color: '#ffffff',
+        label: 'In Development',
+        description:
+          'This component is in development and may change without warning. The documentation may be incomplete or incorrect.',
+      },
+      deprecated: {
+        background: '#b33f39',
+        color: '#ffffff',
+        label: 'Deprecated',
+        description:
+          'This component is no longer supported, and will be removed in future.',
+      },
+    },
+  },
 };
 
 export const decorators = [
