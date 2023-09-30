@@ -9,12 +9,14 @@ export default {
   title: 'Content/BannerImage',
   component: BannerImage,
   parameters: {
+    status: {
+      type: 'completed',
+    },
     layout: 'fullscreen',
   },
   argTypes: {
     background: {
       control: { type: 'file' },
-      defaultValue: [null],
     },
     isLoaded: {
       control: { type: 'boolean' },

@@ -5,13 +5,24 @@ import Image, { ImageSource } from 'app/components/content/Image';
 
 import styles from './styles.module.css';
 
-type BannerImageProps = {
+export type BannerImageProps = {
+  /** The background image to display. Defaults to a default banner image. */
   background?: ImageSource | null;
+  /** Overrides the loading state of the image. Usually unnecessary. */
   isLoaded?: boolean;
   children?: React.ReactNode;
+  /** Classes which get applied to the container */
   className?: string;
 };
 
+/**
+ * Y'know those funny decorative images that show up at the top of a page? Those are banner images.
+ * This component makes them easy and consistent across all pages, with a thin wrapper around the
+ * Image component.
+ *
+ * Any children passed to this component will be rendered as an overlay, with a darkened background.
+ * This is useful for displaying things like avatars, tab bars, etc.
+ */
 export default function BannerImage({
   background,
   children,
