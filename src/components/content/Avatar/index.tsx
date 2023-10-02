@@ -1,6 +1,6 @@
 import React, { ComponentProps } from 'react';
 
-import { source as defaultAvatar } from 'app/assets/default_avatar.png';
+import { source as defaultAvatar } from 'app/assets/default_avatar.svg?imageSource';
 import Image, { ImageSource } from 'app/components/content/Image';
 
 import styles from './styles.module.css';

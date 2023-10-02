@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { source as defaultBanner } from 'app/assets/default_banner.png';
+import { source as defaultBanner } from 'app/assets/default_banner.jpg?imageSource';
 import Image, { ImageSource } from 'app/components/content/Image';
 
 import styles from './styles.module.css';
