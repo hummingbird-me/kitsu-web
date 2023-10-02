@@ -101,6 +101,15 @@ export const parameters = {
     toc: {
       headingSelector: 'h2, h3',
     },
+    argTypes: {
+      sort: 'requiredFirst',
+    },
+    controls: {
+      sort: 'requiredFirst',
+    },
+    source: {
+      language: 'tsx',
+    },
     page: () => (
       <>
         <Docs.Title />
