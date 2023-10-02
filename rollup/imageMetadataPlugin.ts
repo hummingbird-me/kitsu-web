@@ -58,7 +58,7 @@ const generateImageSource = async (
   input: string,
   id: string,
 ): Promise<ImageSource> => {
-  const image = sharp(id);
+  const image = sharp(id.split('?')[0]);
 
   const [{ data, info }, metadata] = await Promise.all([
     image
@@ -77,7 +77,7 @@ const generateImageSource = async (
     Math.max(Math.min(Math.floor(info.height / 16), 3), 6),
   );
 
-  const url = /export default "([^"]+)"/.exec(input)?.[1];
+  const url = /export default "([^"?]+)(\?[^"]+)?"/.exec(input)?.[1];
 
   return {
     blurhash,
