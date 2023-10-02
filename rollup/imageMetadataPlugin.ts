@@ -17,7 +17,7 @@ type PluginOptions = {
 };
 
 const DEFAULT_OPTIONS: PluginOptions = {
-  include: /^[^?]+\.(heic|heif|avif|jpeg|jpg|png|tiff|webp|gif)(\?.*)?$/i,
+  include: /^[^?]+\?imageSource$/i,
   exclude: 'public/**/*',
 };
 

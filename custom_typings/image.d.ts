@@ -9,18 +9,6 @@ type ImageSource = {
   ];
 };
 
-declare module '*.png' {
-  export const source: ImageSource;
-}
-
-declare module '*.jpg' {
-  export const source: ImageSource;
-}
-
-declare module '*.jpeg' {
-  export const source: ImageSource;
-}
-
-declare module '*.gif' {
+declare module '*?imageSource' {
   export const source: ImageSource;
 }
