@@ -7,43 +7,51 @@ import React, {
 } from 'react';
 import { BlurhashCanvas } from 'react-blurhash';
 
-import { Image as GQImage, ImageView as GQImageView } from 'app/graphql/types';
+import { ImageSource, ImageView } from 'app/types/ImageSource';
 
 import styles from './styles.module.css';
 
-type ImageViewType = Pick<GQImageView, 'height' | 'width' | 'url'>;
-export type ImageSource = Pick<GQImage, 'blurhash'> & {
-  views: readonly ImageViewType[];
-};
+// Max dimension of the blurhash canvas
+const BLURHASH_SIZE = 32;
 
 export type ImageProps = HTMLProps<HTMLDivElement> & {
   height: number | string;
   width: number | string;
   source?: ImageSource | null;
+  /** How the image should be resized to fit its container. */
   objectFit?: 'contain' | 'cover' | 'fill';
-  blurhashSize?: number;
+  /** Override the loading state of the image to display the blurhash. */
   isLoaded?: boolean;
+  /**
+   * The className for the image component. Technically applies to a <div> wrapping the image and
+   * blurhash elements.
+   */
   className?: string;
-  imageClassName?: string;
 };
 
-const viewsToSrcset = (views: readonly ImageViewType[]) =>
+const viewsToSrcset = (views: readonly ImageView[]) =>
   views
     .filter(({ width }) => width)
     .map(({ width, url }) => `${url} ${width}w`)
     .join(', ');
 
-// TODO: find a better way to get the intrinsic size of the image
+/**
+ * The Image component takes in the API's representation of an image and displays it. It handles:
+ *
+ * - Displaying a blurhash until the image has finished loading
+ * - Generating a `<picture>` tag with all the sizes and formats as sources
+ * - Fading in the image when it finishes loading, unless it's loaded from browser cache
+ * - Enabling lazy loading on the image
+ */
 const Image = forwardRef<HTMLDivElement, ImageProps>(function Image(
   {
     height,
     width,
     source,
     objectFit = 'cover',
-    blurhashSize = 32,
     isLoaded: isLoadedProp,
     className,
-    imageClassName,
+    style,
     ...props
   },
   ref,
@@ -53,7 +61,7 @@ const Image = forwardRef<HTMLDivElement, ImageProps>(function Image(
   const [needsFadeIn, setNeedsFadeIn] = useState(false);
   const isLoaded = isLoadedProp ?? isLoadedState;
 
-  // Detect when the image is loaded from cache and skip the fade-in animation
+  // Detect if the image is loaded from cache and skip the fade-in animation
   useLayoutEffect(() => {
     if (imageRef.current?.complete) {
       setIsLoaded(true);
@@ -62,19 +70,20 @@ const Image = forwardRef<HTMLDivElement, ImageProps>(function Image(
     }
   }, []);
 
+  // TODO: find a better way to get the intrinsic size of the image
   // Figure out the intrinsic size of the image and scale to max 32x32
   const intrinsicHeight = source?.views[0].height ?? 32;
   const intrinsicWidth = source?.views[0].width ?? 32;
   const aspectRatio = `${intrinsicWidth} / ${intrinsicHeight}`;
   const scale = Math.min(
-    blurhashSize / intrinsicHeight,
-    blurhashSize / intrinsicWidth,
+    BLURHASH_SIZE / intrinsicHeight,
+    BLURHASH_SIZE / intrinsicWidth,
   );
 
   return (
     <div
       className={[styles.container, className].join(' ')}
-      style={{ width, height, aspectRatio }}
+      style={{ ...style, width, height, aspectRatio }}
       ref={ref}
       {...props}>
       {source?.blurhash ? (
@@ -95,7 +104,6 @@ const Image = forwardRef<HTMLDivElement, ImageProps>(function Image(
           width={width}
           className={[
             styles.image,
-            imageClassName,
             needsFadeIn ? styles.fadeIn : null,
             isLoaded ? styles.loaded : null,
           ].join(' ')}
