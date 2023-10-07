@@ -37,22 +37,27 @@
       {
         "ignoreShorthands": ["/grid/"]
       }
-    ],
-    "kitsu-io/validate-theme-variables": [
-      "warning",
-      {
-        "files": [
-          "./src/styles/themes/light.css",
-          "./src/styles/themes/dark.css",
-          "./src/styles/themes/oled.css"
-        ]
-      }
     ]
   },
   "overrides": [
     {
       "files": ["**/*.module.css"],
       "rules": { "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$" }
+    },
+    {
+      "files": ["./src/styles/themes/*.css"],
+      "rules": {
+        "kitsu-io/validate-theme-variables": [
+          "warning",
+          {
+            "files": [
+              "./src/styles/themes/light.css",
+              "./src/styles/themes/dark.css",
+              "./src/styles/themes/oled.css"
+            ]
+          }
+        ]
+      }
     }
   ]
 }
