@@ -1,6 +1,10 @@
 {
   "extends": "stylelint-config-standard",
-  "plugins": ["stylelint-declaration-strict-value", "stylelint-use-logical"],
+  "plugins": [
+    "stylelint-declaration-strict-value",
+    "stylelint-use-logical",
+    "./postcss/validateThemeVariables.js"
+  ],
   "ignoreFiles": ["**/*.tsx"],
   "rules": {
     "function-no-unknown": [
@@ -32,6 +36,16 @@
       true,
       {
         "ignoreShorthands": ["/grid/"]
+      }
+    ],
+    "kitsu-io/validate-theme-variables": [
+      "warning",
+      {
+        "files": [
+          "./src/styles/themes/light.css",
+          "./src/styles/themes/dark.css",
+          "./src/styles/themes/oled.css"
+        ]
       }
     ]
   },
