@@ -66,13 +66,13 @@ const Button: FC<ButtonProps> = function ({
       {...args}
       disabled={disabled}
       className={[
-        className,
         styles.button,
         styles[kind],
         styles[size],
         styles[color],
         loading && styles.loading,
         disabled && styles.disabled,
+        className,
       ].join(' ')}>
       {loading ? <Spinner /> : children}
     </button>

@@ -8,6 +8,7 @@ export default {
   title: 'Controls/Button',
   component: Button,
   parameters: {
+    status: 'released',
     layout: 'centered',
     controls: { expanded: true },
     design: {
