@@ -7,7 +7,7 @@ export function imageSourceLoader<Key extends string>(field: Key) {
     ({
       // We need to get the first upload in the field, because files always return an array
       [field]: await generateImageSource(
-        (<{ [key in Key]: string[] }>args)[field]?.[0],
+        (args as { [key in Key]: string[] })[field]?.[0],
       ),
     }) as { [key in Key]: ImageSource | null };
 }
