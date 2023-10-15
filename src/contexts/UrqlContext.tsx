@@ -1,43 +1,32 @@
 import { devtoolsExchange } from '@urql/devtools';
-import { offlineExchange } from '@urql/exchange-graphcache';
-import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage';
 import React from 'react';
-import {
-  Provider,
-  createClient,
-  fetchExchange,
-} from 'urql';
+import { createClient, fetchExchange, Provider } from 'urql';
 
 import { apiHost } from 'app/constants/config';
 import { useLocale } from 'app/contexts/IntlContext';
 import { useSession } from 'app/contexts/SessionContext';
-import resolvers from 'app/graphql/resolvers';
-import schema from 'app/graphql/schema';
 import authExchange from 'app/graphql/urql-exchanges/auth';
+import cacheExchange from 'app/graphql/urql-exchanges/cache';
 import buildAcceptLanguage from 'app/utils/buildAcceptLanguage';
 
-const UrqlContext = function ({ children }: { children: React.ReactNode }): JSX.Element {
+if (import.meta.hot) {
+  // HMR causes issues with urql, so we reload the page instead
+  import.meta.hot.accept(() => location.reload());
+}
+
+export default function UrqlContext({
+  children,
+}: {
+  children: React.ReactNode;
+}): JSX.Element {
   const session = useSession();
   const { locale } = useLocale();
 
-  const storage = makeDefaultStorage({
-    idbName: 'kitsu-cache',
-    maxAge: 7,
-  });
   const client = createClient({
     suspense: true,
     exchanges: [
       devtoolsExchange,
-      offlineExchange({
-        storage,
-        schema,
-        keys: {
-          Image: () => null,
-          ImageView: () => null,
-          TitlesList: () => null,
-        },
-        resolvers,
-      }),
+      cacheExchange(),
       authExchange(session),
       fetchExchange,
     ],
@@ -48,5 +37,4 @@ const UrqlContext = function ({ children }: { children: React.ReactNode }): JSX.
   });
 
   return <Provider value={client}>{children}</Provider>;
-};
-export default UrqlContext;
+}
