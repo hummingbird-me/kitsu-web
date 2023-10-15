@@ -60,7 +60,7 @@ module.exports = {
       },
     },
     {
-      files: ['.eslintrc.js', '*.config.{js,ts}'],
+      files: ['.eslintrc.js', '*.config.{js,ts}', 'postcss/*.js'],
       parserOptions: {
         sourceType: 'script',
         ecmaVersion: 2015,
@@ -68,6 +68,9 @@ module.exports = {
       env: {
         browser: false,
         node: true,
+      },
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
       },
     },
   ],
