@@ -1,7 +1,8 @@
-import React, { ComponentProps } from 'react';
+import React from 'react';
 
 import { source as defaultAvatar } from 'app/assets/default_avatar.svg?imageSource';
-import Image, { ImageSource } from 'app/components/content/Image';
+import Image, { ImageProps } from 'app/components/content/Image';
+import { ImageSource } from 'app/types/ImageSource';
 
 import styles from './styles.module.css';
 
@@ -9,10 +10,7 @@ export type AvatarProps = {
   size: number;
   source?: ImageSource;
   className?: string;
-} & Pick<
-  ComponentProps<typeof Image>,
-  'source' | 'isLoaded' | 'imageClassName' | 'blurhashSize'
->;
+} & Pick<ImageProps, 'source' | 'isLoaded'>;
 
 /**
  * Avatars are a special case of Images, representing a user by their chosen profile image. Compared
@@ -26,7 +24,6 @@ export default function Avatar({
   source = defaultAvatar,
   size,
   className,
-  blurhashSize = 6,
   ...props
 }: AvatarProps): JSX.Element {
   if (!source) source = defaultAvatar;
@@ -35,7 +32,6 @@ export default function Avatar({
     <Image
       className={[styles.avatar, className].join(' ')}
       source={source}
-      blurhashSize={blurhashSize}
       objectFit="cover"
       height={size}
       width={size}
