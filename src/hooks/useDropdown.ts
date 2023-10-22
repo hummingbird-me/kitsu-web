@@ -1,5 +1,5 @@
 import { Options } from '@popperjs/core';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { usePopper } from 'react-popper';
 import { useClickAway } from 'react-use';
 
@@ -9,7 +9,7 @@ export default function useDropdown(config: Partial<Options>) {
   const [toggleElement, setToggleElement] = useState<HTMLElement | null>(null);
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>(null);
   const [menuElement, setMenuElement] = useState<HTMLElement | null>(null);
-  useClickAway({ current: menuElement }, () => isOpen && setIsOpen(false), [
+  useClickAway({ current: toggleElement }, () => isOpen && setIsOpen(false), [
     'click',
   ]);
   const popper = usePopper(toggleElement, menuElement, {
