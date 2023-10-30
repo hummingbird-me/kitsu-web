@@ -1,14 +1,20 @@
 .nav {
   max-width: 100%;
-  overflow: auto;
   padding-inline: 20px;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   mask-image: linear-gradient(
     90deg,
-    rgba(0, 0, 0, 0%) 0%,
-    rgba(0, 0, 0, 100%) 15px,
-    rgba(0, 0, 0, 100%) calc(100% - 15px),
-    rgba(0, 0, 0, 0%) 100%
+    rgb(0 0 0 / 0%) 0%,
+    rgb(0 0 0 / 100%) 15px,
+    rgb(0 0 0 / 100%) calc(100% - 15px),
+    rgb(0 0 0 / 0%) 100%
   );
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .navList {
@@ -20,41 +26,41 @@
 
 .navList > li {
   all: unset;
-  flex: 1;
   display: flex;
+  flex: 1;
   align-items: center;
   justify-content: center;
 }
 
 .navLink {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0.5rem 1.2rem;
   overflow-y: hidden;
   color: var(--tab-text-color);
-  opacity: var(--tab-inactive-opacity);
   font-weight: var(--font-semi-bold);
   font-size: var(--font-sm);
   letter-spacing: 0.4px;
   text-decoration: none;
   text-transform: uppercase;
-  position: relative;
-  height: 100%;
-  padding: 0.5rem 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  opacity: var(--tab-inactive-opacity);
   transition: opacity 0.3s ease;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 
   &::after {
     position: absolute;
-    inset-block-end: 0;
-    inset-inline-start: 0;
-    content: ' ';
     width: 100%;
     height: 5px;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    transform: translateY(100%);
     border-radius: var(--radius-small) var(--radius-small) 0 0;
     background: var(--tab-active-gradient);
-    transform: translateY(100%);
+    content: ' ';
     transition: transform 0.1s ease;
   }
 }
