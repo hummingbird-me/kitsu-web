@@ -11,7 +11,7 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
 };
 export type MakeEmpty<
   T extends { [key: string]: unknown },
-  K extends keyof T
+  K extends keyof T,
 > = { [_ in K]?: never };
 export type Incremental<T> =
   | T
@@ -722,6 +722,17 @@ export type ChapterEdge = {
   readonly cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   readonly node?: Maybe<Chapter>;
+};
+
+export enum ChapterSortEnum {
+  CreatedAt = 'CREATED_AT',
+  Number = 'NUMBER',
+  UpdatedAt = 'UPDATED_AT',
+}
+
+export type ChapterSortOption = {
+  readonly direction: SortDirection;
+  readonly on: ChapterSortEnum;
 };
 
 /** Information about a Character in the Kitsu database */
@@ -1756,6 +1767,8 @@ export type Manga = Media &
     readonly bannerImage?: Maybe<Image>;
     /** A list of categories for this media */
     readonly categories: CategoryConnection;
+    /** Get a specific chapter of the manga. */
+    readonly chapter?: Maybe<Chapter>;
     /** The number of chapters in this manga. */
     readonly chapterCount?: Maybe<Scalars['Int']['output']>;
     /** The estimated number of chapters in this manga. */
@@ -1834,12 +1847,16 @@ export type MangaCategoriesArgs = {
   sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaCategorySortOption>>>;
 };
 
+export type MangaChapterArgs = {
+  number: Scalars['Int']['input'];
+};
+
 export type MangaChaptersArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<CharacterVoiceSortOption>>>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<ChapterSortOption>>>;
 };
 
 export type MangaCharactersArgs = {
