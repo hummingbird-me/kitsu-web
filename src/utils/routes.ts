@@ -40,26 +40,22 @@ export class Path {
   }
 }
 
-export class PathTree<Subpaths extends Record<string, PathBuilder> = Record<string, PathBuilder>> {
-  #path: Path;
-  [key: string]: PathBuilder;
+export const PATH_TREE_BASE = Symbol('PATH_TREE_BASE');
 
-  constructor(path: string | Path, subpaths: Subpaths) {
-    if (path instanceof Path) {
-      this.#path = path;
-    } else {
-      this.#path = new Path(path);
-    }
-    for (const key of Object.keys(subpaths)) {
-      this[key] = subpaths[key];
-    }
-  }
-  toString(): string {
-    return this.#path.toString();
-  }
+export function pathTree<Subpaths extends Record<string, PathBuilder>>(base: Path, subpaths: Subpaths) {
+  return {
+    [PATH_TREE_BASE]: base,
+    ...subpaths,
+  } satisfies PathTree;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type PathFunction = (...args: any) => PathBuilder;
-export type PathRecords = { [key: string]: PathBuilder };
-export type PathBuilder = PathFunction | PathRecords | PathTree | Path | string;
+export type PathRecords = {
+  [key: string]: PathBuilder;
+};
+export type PathTree =  PathRecords & {
+  // @private - this is a symbol that we use to identify the base path of a path tree
+  [PATH_TREE_BASE]: Path
+};
+export type PathBuilder = PathFunction | PathTree | PathRecords | Path | string;

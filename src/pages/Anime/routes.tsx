@@ -1,9 +1,9 @@
-import { Path, PathBuilder, PathTree } from 'app/utils/routes';
+import { Path, PathBuilder, pathTree } from 'app/utils/routes';
 
 export const paths = ((slug: string) => {
   const path = new Path(`/anime/${slug}`);
 
-  return new PathTree(path, {
+  return pathTree(path, {
     episodes: () => new Path(`${path}/episodes`),
     episode: (number: string) => new Path(`${path}/episodes/${number}`),
     characters: () => new Path(`${path}/characters`),

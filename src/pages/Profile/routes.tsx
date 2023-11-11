@@ -1,9 +1,9 @@
-import { Path, PathBuilder, PathTree } from 'app/utils/routes';
+import { Path, PathBuilder, pathTree } from 'app/utils/routes';
 
 export const paths = (({ slug, id }: { slug?: string | null; id?: string }) => {
   const path = new Path(`/users/${slug ?? id}`);
 
-  return new PathTree(path, {
+  return pathTree(path, {
     reactions: () => new Path(`${path}/reactions`),
     reviews: () => new Path(`${path}/reviews`),
     followers: () => new Path(`${path}/followers`),
