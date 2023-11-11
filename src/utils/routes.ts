@@ -40,7 +40,26 @@ export class Path {
   }
 }
 
+export class PathTree<Subpaths extends Record<string, PathBuilder> = Record<string, PathBuilder>> {
+  #path: Path;
+  [key: string]: PathBuilder;
+
+  constructor(path: string | Path, subpaths: Subpaths) {
+    if (path instanceof Path) {
+      this.#path = path;
+    } else {
+      this.#path = new Path(path);
+    }
+    for (const key of Object.keys(subpaths)) {
+      this[key] = subpaths[key];
+    }
+  }
+  toString(): string {
+    return this.#path.toString();
+  }
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type PathFunction = (...args: any) => PathBuilder;
-export type PathCollection = { [key: string]: PathBuilder };
-export type PathBuilder = PathFunction | PathCollection | Path;
+export type PathRecords = { [key: string]: PathBuilder };
+export type PathBuilder = PathFunction | PathRecords | PathTree | Path | string;
