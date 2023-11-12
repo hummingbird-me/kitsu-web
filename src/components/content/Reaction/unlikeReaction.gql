@@ -1,0 +1,13 @@
+mutation unlikeReaction($id: ID!) {
+  mediaReaction {
+    unlike(input: { mediaReactionId: $id }) {
+      result {
+        id
+        hasLiked
+        likes(first: 1) {
+          totalCount
+        }
+      }
+    }
+  }
+}

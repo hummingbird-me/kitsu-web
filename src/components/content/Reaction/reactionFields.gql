@@ -1,0 +1,26 @@
+# import imageFields from 'app/components/Image/imageFields';
+
+fragment reactionFields on MediaReaction {
+  id
+  createdAt
+  reaction
+  hasLiked
+  likes(first: 1) {
+    totalCount
+  }
+  author {
+    id
+    slug
+    name
+    avatarImage {
+      ...imageFields
+    }
+  }
+  media {
+    id
+    slug
+    titles {
+      preferred
+    }
+  }
+}
