@@ -1,0 +1,14 @@
+# import imageFields from 'app/components/Image/imageFields';
+
+fragment mediaBannerFields on Media {
+  slug
+  bannerImage {
+    ...imageFields
+  }
+  posterImage {
+    ...imageFields
+  }
+  titles {
+    preferred
+  }
+}

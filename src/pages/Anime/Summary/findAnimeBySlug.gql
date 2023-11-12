@@ -1,0 +1,34 @@
+# import animeFields from 'app/pages/Anime/Layout/animeLayoutFields';
+
+query findAnimeBySlug($slug: String!) {
+  findAnime: findAnimeBySlug(slug: $slug) {
+    ...animeLayoutFields
+    description
+    categories(first: 50, sort: [{ on: ANCESTRY, direction: ASCENDING }]) {
+      nodes {
+        id
+        slug
+        title
+        root {
+          id
+          slug
+        }
+        parent {
+          id
+          slug
+        }
+      }
+    }
+    reactions(
+      sort: [
+        { on: UP_VOTES_COUNT, direction: DESCENDING }
+        { on: CREATED_AT, direction: DESCENDING }
+      ]
+      first: 6
+    ) {
+      nodes {
+        ...reactionFields
+      }
+    }
+  }
+}

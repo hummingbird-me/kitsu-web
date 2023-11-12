@@ -1,4 +1,17 @@
+import React from 'react';
+import { Route } from 'react-router-dom';
+
 import { Path, PathBuilder, pathTree } from 'app/utils/routes';
+
+import AnimeSummaryPage from './Summary';
+
+export const pages = (
+  <Route path="anime">
+    <Route path=":slug">
+      <Route path="" element={<AnimeSummaryPage />} />
+    </Route>
+  </Route>
+);
 
 export const paths = ((slug: string) => {
   const path = new Path(`/anime/${slug}`);

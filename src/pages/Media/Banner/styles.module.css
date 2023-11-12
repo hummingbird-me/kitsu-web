@@ -1,0 +1,78 @@
+.container {
+  display: grid;
+  grid-template-rows: 1fr auto auto 46px;
+  grid-template-columns: 1fr 3em;
+  grid-template-areas:
+    'poster poster'
+    'subtitle edit-button'
+    'title edit-button'
+    'navigation navigation';
+  justify-items: center;
+  text-align: center;
+
+  @media (--medium) {
+    grid-template-rows: 1fr auto auto 46px;
+    grid-template-columns: auto 1fr 3em;
+    grid-template-areas:
+      'poster . .'
+      'poster subtitle edit-button'
+      'poster title edit-button'
+      'poster navigation navigation';
+    justify-items: start;
+    text-align: start;
+  }
+}
+
+.poster {
+  grid-area: poster;
+  align-self: flex-end;
+  max-inline-size: 80vw;
+  margin: 10px;
+  border-radius: var(--radius-medium);
+  opacity: calc(1 - var(--stickiness));
+
+  @media (--medium) {
+    visibility: hidden;
+  }
+}
+
+.title {
+  grid-area: title;
+  margin: 0;
+  color: white;
+}
+
+.subtitle {
+  grid-area: subtitle;
+  color: white;
+  opacity: calc(0.7 * (1 - var(--stickiness)));
+  transition: 250ms opacity;
+}
+
+.title,
+.subtitle {
+  margin-inline-start: 0;
+  margin-inline-end: -3rem;
+
+  @media (--medium) {
+    margin-inline-start: 20px;
+  }
+}
+
+.editButton {
+  grid-area: edit-button;
+  align-self: center;
+  justify-self: center;
+  margin-inline-end: 20px;
+  color: white;
+  opacity: 0.5;
+  transition: opacity ease-in-out-sine 0.1s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.nav {
+  grid-area: navigation;
+}

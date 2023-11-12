@@ -10,7 +10,7 @@ const CategoryList: React.FC<{
 }> = function ({ categories }) {
   return (
     <div className={styles.tagList}>
-      {categories.nodes?.map(
+      {categories?.nodes?.map(
         (category) =>
           category && (
             <CategoryTag key={category.slug} category={category}>

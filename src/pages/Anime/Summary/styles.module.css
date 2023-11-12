@@ -1,0 +1,33 @@
+.communitySidebar {
+  @media (--medium) {
+    flex: none;
+    inline-size: 320px;
+  }
+}
+
+.descriptionCard {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+}
+
+.description {
+  white-space: pre-wrap;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+
+  @media (--medium) {
+    flex: 1;
+    flex-direction: row;
+  }
+}
+
+.reactionList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

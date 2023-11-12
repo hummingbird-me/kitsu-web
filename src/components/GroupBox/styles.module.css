@@ -16,19 +16,19 @@
   &::after {
     display: block;
     content: ' ';
-    border-top: var(--group-box-border);
+    border-block-start: var(--group-box-border);
   }
 
   &::before {
     grid-area: left;
-    border-left: var(--group-box-border);
-    border-top-left-radius: var(--radius-medium);
+    border-inline-start: var(--group-box-border);
+    border-start-start-radius: var(--radius-medium);
   }
 
   &::after {
     grid-area: right;
-    border-right: var(--group-box-border);
-    border-top-right-radius: var(--radius-medium);
+    border-inline-end: var(--group-box-border);
+    border-start-end-radius: var(--radius-medium);
   }
 }
 
@@ -38,7 +38,7 @@
   text-transform: uppercase;
   padding-inline: 0.5em;
   font-weight: var(--font-semi-bold);
-  font-size: var(--font-xxs);
+  font-size: var(--font-xs);
 }
 
 .groupBoxContent {
@@ -47,4 +47,9 @@
   border-block-start-width: 0;
   border-radius: 0 0 var(--radius-medium) var(--radius-medium);
   padding: 7px;
+}
+
+.groupBoxDetailsButton {
+  border-block-start: var(--group-box-border);
+  color: var(--group-box-details-button-text-color);
 }

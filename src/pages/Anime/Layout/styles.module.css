@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 1em 10px;
+  gap: 10px;
+
+  @media (--medium) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.infoSidebar {
+  @media (--medium) {
+    z-index: calc(var(--layer-overlay) + 1);
+    position: sticky;
+    flex: none;
+    align-self: flex-start;
+    width: 180px;
+    /* Sticky it lower on the page, but then reverse that with transforms */
+    inset-block-start: calc(15px + 125px + 50px);
+    transform: translateY(calc(-15px - 125px));
+  }
+}
+
+.poster {
+  display: none;
+
+  @media (--medium) {
+    display: flex;
+    margin-block-end: 15px;
+    border-radius: var(--radius-medium);
+  }
+}

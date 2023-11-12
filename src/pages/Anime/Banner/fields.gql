@@ -1,0 +1,11 @@
+# import imageFields from 'app/components/Image/imageFields';
+# import mediaBannerFields from 'app/pages/Media/Banner/fields';
+
+fragment animeBannerFields on Anime {
+  ...mediaBannerFields
+  status
+  startDate
+  endDate
+  subtype
+  episodeCount
+}
