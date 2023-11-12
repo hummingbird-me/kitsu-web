@@ -20,6 +20,7 @@ const config: StorybookConfig = {
     options: {},
   },
   docs: {
+    docsMode: true,
     autodocs: true,
   },
 };
