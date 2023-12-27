@@ -4,6 +4,7 @@
   "files": [
     "dist"
   ],
+  "type": "module",
   "module": "./dist/kitsu-v4.es.js",
   "exports": {
     ".": {
@@ -33,8 +34,9 @@
     "test:unit": "BUILD_TARGET=client vitest run --coverage",
     "test:unit:watch": "BUILD_TARGET=client vitest watch",
     "test:e2e": "cypress",
-    "codegen": "npm run codegen:intl && npm run codegen:graphql",
-    "codegen:intl": "ts-node ./bin/extract.ts",
+    "codegen": "run-p codegen:*",
+    "codegen:intl": "tsx ./bin/extract-intl.ts",
+    "codegen:css-globals": "tsx ./bin/extract-css-globals.ts",
     "codegen:graphql": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
@@ -71,6 +73,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",
+    "@csstools/postcss-extract": "^3.0.1",
+    "@csstools/postcss-global-data": "^2.1.1",
     "@etchteam/storybook-addon-status": "^4.2.4",
     "@formatjs/cli-lib": "^6.1.3",
     "@graphql-codegen/cli": "^5.0.0",
@@ -136,7 +140,7 @@
     "stylelint-config-standard": "^34.0.0",
     "stylelint-declaration-strict-value": "^1.9.2",
     "stylelint-use-logical": "^2.1.0",
-    "ts-node": "^10.9.1",
+    "tsx": "^4.7.0",
     "type-fest": "^4.0.0",
     "typescript": "^5.2.2",
     "vite": "^4.4.12",
