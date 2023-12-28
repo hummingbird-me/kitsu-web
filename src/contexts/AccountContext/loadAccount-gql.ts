@@ -1,5 +1,6 @@
 import { DocumentNode } from 'graphql';
 import * as Urql from 'urql';
+
 import { ImageFieldsFragmentDoc } from '../../components/content/Image/imageFields-gql';
 import * as Types from '../../graphql/types';
 
@@ -122,7 +123,7 @@ export const LoadAccountDocument = {
 } as unknown as DocumentNode;
 
 export function useLoadAccountQuery(
-  options?: Omit<Urql.UseQueryArgs<LoadAccountQueryVariables>, 'query'>
+  options?: Omit<Urql.UseQueryArgs<LoadAccountQueryVariables>, 'query'>,
 ) {
   return Urql.useQuery<LoadAccountQuery, LoadAccountQueryVariables>({
     query: LoadAccountDocument,

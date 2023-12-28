@@ -1,5 +1,6 @@
 import { DocumentNode } from 'graphql';
 import * as Urql from 'urql';
+
 import * as Types from '../../../graphql/types';
 import { ImageFieldsFragmentDoc } from '../../content/Image/imageFields-gql';
 
@@ -101,7 +102,7 @@ export const LoadProfileMenuDocument = {
 } as unknown as DocumentNode;
 
 export function useLoadProfileMenuQuery(
-  options?: Omit<Urql.UseQueryArgs<LoadProfileMenuQueryVariables>, 'query'>
+  options?: Omit<Urql.UseQueryArgs<LoadProfileMenuQueryVariables>, 'query'>,
 ) {
   return Urql.useQuery<LoadProfileMenuQuery, LoadProfileMenuQueryVariables>({
     query: LoadProfileMenuDocument,
