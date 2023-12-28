@@ -5,11 +5,20 @@
     "stylelint-use-logical",
     "./postcss/validateThemeVariables.js"
   ],
-  "ignoreFiles": ["**/*.tsx"],
+  "ignoreFiles": [
+    "**/*.tsx"
+  ],
   "rules": {
     "function-no-unknown": [
       true,
-      { "ignoreFunctions": ["color-mod", "shade", "tint", "alpha"] }
+      {
+        "ignoreFunctions": [
+          "color-mod",
+          "shade",
+          "tint",
+          "alpha"
+        ]
+      }
     ],
     "import-notation": "string",
     "string-quotes": "single",
@@ -20,32 +29,49 @@
     "declaration-colon-newline-after": null,
     "comment-empty-line-before": null,
     "scale-unlimited/declaration-strict-value": [
-      ["/color$/"],
+      [
+        "/color$/"
+      ],
       {
         "ignoreFunctions": true,
-        "ignoreValues": ["currentcolor", "inherit", "transparent"]
+        "ignoreValues": [
+          "currentcolor",
+          "inherit",
+          "transparent"
+        ]
       }
     ],
     "selector-pseudo-class-no-unknown": [
       true,
       {
-        "ignorePseudoClasses": ["global", "local"]
+        "ignorePseudoClasses": [
+          "global",
+          "local"
+        ]
       }
     ],
     "declaration-block-no-redundant-longhand-properties": [
       true,
       {
-        "ignoreShorthands": ["/grid/"]
+        "ignoreShorthands": [
+          "/grid/"
+        ]
       }
     ]
   },
   "overrides": [
     {
-      "files": ["**/*.module.css"],
-      "rules": { "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$" }
+      "files": [
+        "**/*.module.css"
+      ],
+      "rules": {
+        "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$"
+      }
     },
     {
-      "files": ["./src/styles/themes/*.css"],
+      "files": [
+        "./src/styles/themes/*.css"
+      ],
       "rules": {
         "kitsu-io/validate-theme-variables": [
           "warning",
