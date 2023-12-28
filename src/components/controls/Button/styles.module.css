@@ -17,11 +17,6 @@
   &:focus {
     outline: var(--focus-outline);
   }
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.75;
-  }
 }
 
 /*** Button Kinds ***/
@@ -88,179 +83,359 @@
 }
 
 /*** Button Colors ***/
-.red {
-  &.solid {
-    --bg: var(--button-red-solid-bg);
-    --bg-hover: var(--button-red-solid-hover-bg);
-    --bg-active: var(--button-red-solid-active-bg);
+:--theme-light {
+  .red {
+    &.solid {
+      --bg: var(--red-4);
+      --bg-hover: var(--red-5);
+      --bg-active: var(--red-6);
+    }
+
+    &.outline {
+      --color: var(--red-4);
+      --color-hover: var(--red-5);
+      --color-active: var(--red-6);
+    }
+
+    &.borderless {
+      --fg: var(--red-4);
+      --fg-hover: var(--red-5);
+      --bg-hover: var(--red-1);
+      --fg-active: var(--red-6);
+      --bg-active: var(--red-2);
+    }
   }
 
-  &.outline {
-    --color: var(--button-red-outline-color);
-    --color-hover: var(--button-red-outline-hover-color);
-    --color-active: var(--button-red-outline-active-color);
+  .pink {
+    &.solid {
+      --bg: var(--pink-4);
+      --bg-hover: var(--pink-5);
+      --bg-active: var(--pink-6);
+    }
+
+    &.outline {
+      --color: var(--pink-4);
+      --color-hover: var(--pink-5);
+      --color-active: var(--pink-6);
+    }
+
+    &.borderless {
+      --fg: var(--pink-4);
+      --fg-hover: var(--pink-5);
+      --bg-hover: var(--pink-1);
+      --fg-active: var(--pink-6);
+      --bg-active: var(--pink-2);
+    }
   }
 
-  &.borderless {
-    --fg: var(--button-red-borderless-fg);
-    --fg-hover: var(--button-red-borderless-hover-fg);
-    --bg-hover: var(--button-red-borderless-hover-bg);
-    --fg-active: var(--button-red-borderless-active-fg);
-    --bg-active: var(--button-red-borderless-active-bg);
+  .yellow {
+    &.solid {
+      --bg: var(--yellow-4);
+      --bg-hover: var(--yellow-5);
+      --bg-active: var(--yellow-6);
+    }
+
+    &.outline {
+      --color: var(--yellow-4);
+      --color-hover: var(--yellow-5);
+      --color-active: var(--yellow-6);
+    }
+
+    &.borderless {
+      --fg: var(--yellow-4);
+      --fg-hover: var(--yellow-5);
+      --bg-hover: var(--yellow-1);
+      --fg-active: var(--yellow-6);
+      --bg-active: var(--yellow-2);
+    }
+  }
+
+  .green {
+    &.solid {
+      --bg: var(--green-4);
+      --bg-hover: var(--green-5);
+      --bg-active: var(--green-6);
+    }
+
+    &.outline {
+      --color: var(--green-4);
+      --color-hover: var(--green-5);
+      --color-active: var(--green-6);
+    }
+
+    &.borderless {
+      --fg: var(--green-4);
+      --fg-hover: var(--green-5);
+      --bg-hover: var(--green-1);
+      --fg-active: var(--green-6);
+      --bg-active: var(--green-2);
+    }
+  }
+
+  .blue {
+    &.solid {
+      --bg: var(--blue-4);
+      --bg-hover: var(--blue-5);
+      --bg-active: var(--blue-6);
+    }
+
+    &.outline {
+      --color: var(--blue-4);
+      --color-hover: var(--blue-5);
+      --color-active: var(--blue-6);
+    }
+
+    &.borderless {
+      --fg: var(--blue-4);
+      --fg-hover: var(--blue-5);
+      --bg-hover: var(--blue-1);
+      --fg-active: var(--blue-6);
+      --bg-active: var(--blue-2);
+    }
+  }
+
+  .purple {
+    &.solid {
+      --bg: var(--purple-4);
+      --bg-hover: var(--purple-5);
+      --bg-active: var(--purple-6);
+    }
+
+    &.outline {
+      --color: var(--purple-4);
+      --color-hover: var(--purple-5);
+      --color-active: var(--purple-6);
+    }
+
+    &.borderless {
+      --fg: var(--purple-4);
+      --fg-hover: var(--purple-5);
+      --bg-hover: var(--purple-1);
+      --fg-active: var(--purple-6);
+      --bg-active: var(--purple-2);
+    }
+  }
+
+  .kitsu-purple {
+    &.solid {
+      --bg: var(--kitsu-purple-4);
+      --bg-hover: var(--kitsu-purple-5);
+      --bg-active: var(--kitsu-purple-6);
+    }
+
+    &.outline {
+      --color: var(--kitsu-purple-4);
+      --color-hover: var(--kitsu-purple-5);
+      --color-active: var(--kitsu-purple-6);
+    }
+
+    &.borderless {
+      --fg: var(--kitsu-purple-4);
+      --fg-hover: var(--kitsu-purple-5);
+      --bg-hover: var(--kitsu-purple-1);
+      --fg-active: var(--kitsu-purple-6);
+      --bg-active: var(--kitsu-purple-2);
+    }
+  }
+
+  .grey {
+    &.solid {
+      --bg: var(--grey-4);
+      --bg-hover: var(--grey-5);
+      --bg-active: var(--grey-6);
+    }
+
+    &.outline {
+      --color: var(--grey-4);
+      --color-hover: var(--grey-5);
+      --color-active: var(--grey-6);
+    }
+
+    &.borderless {
+      --fg: var(--grey-4);
+      --fg-hover: var(--grey-5);
+      --bg-hover: var(--grey-1);
+      --fg-active: var(--grey-6);
+      --bg-active: var(--grey-2);
+    }
   }
 }
 
-.pink {
-  &.solid {
-    --bg: var(--button-pink-solid-bg);
-    --bg-hover: var(--button-pink-solid-hover-bg);
-    --bg-active: var(--button-pink-solid-active-bg);
+:--theme-dark {
+  .red {
+    &.solid {
+      --bg: var(--red-4);
+      --bg-hover: var(--red-5);
+      --bg-active: var(--red-6);
+    }
+
+    &.outline {
+      --color: var(--red-3);
+      --color-hover: var(--red-4);
+      --color-active: var(--red-5);
+    }
+
+    &.borderless {
+      --fg: var(--red-4);
+      --fg-hover: var(--red-5);
+      --bg-hover: var(--red-1);
+      --fg-active: var(--red-6);
+      --bg-active: var(--red-2);
+    }
   }
 
-  &.outline {
-    --color: var(--button-pink-outline-color);
-    --color-hover: var(--button-pink-outline-hover-color);
-    --color-active: var(--button-pink-outline-active-color);
+  .pink {
+    &.solid {
+      --bg: var(--pink-4);
+      --bg-hover: var(--pink-5);
+      --bg-active: var(--pink-6);
+    }
+
+    &.outline {
+      --color: var(--pink-3);
+      --color-hover: var(--pink-4);
+      --color-active: var(--pink-5);
+    }
+
+    &.borderless {
+      --fg: var(--pink-4);
+      --fg-hover: var(--pink-5);
+      --bg-hover: var(--pink-1);
+      --fg-active: var(--pink-6);
+      --bg-active: var(--pink-2);
+    }
   }
 
-  &.borderless {
-    --fg: var(--button-pink-borderless-fg);
-    --fg-hover: var(--button-pink-borderless-hover-fg);
-    --bg-hover: var(--button-pink-borderless-hover-bg);
-    --fg-active: var(--button-pink-borderless-active-fg);
-    --bg-active: var(--button-pink-borderless-active-bg);
-  }
-}
+  .yellow {
+    &.solid {
+      --bg: var(--yellow-4);
+      --bg-hover: var(--yellow-5);
+      --bg-active: var(--yellow-6);
+    }
 
-.yellow {
-  &.solid {
-    --bg: var(--button-yellow-solid-bg);
-    --bg-hover: var(--button-yellow-solid-hover-bg);
-    --bg-active: var(--button-yellow-solid-active-bg);
-  }
+    &.outline {
+      --color: var(--yellow-3);
+      --color-hover: var(--yellow-4);
+      --color-active: var(--yellow-5);
+    }
 
-  &.outline {
-    --color: var(--button-yellow-outline-color);
-    --color-hover: var(--button-yellow-outline-hover-color);
-    --color-active: var(--button-yellow-outline-active-color);
-  }
-
-  &.borderless {
-    --fg: var(--button-yellow-borderless-fg);
-    --fg-hover: var(--button-yellow-borderless-hover-fg);
-    --bg-hover: var(--button-yellow-borderless-hover-bg);
-    --fg-active: var(--button-yellow-borderless-active-fg);
-    --bg-active: var(--button-yellow-borderless-active-bg);
-  }
-}
-
-.green {
-  &.solid {
-    --bg: var(--button-green-solid-bg);
-    --bg-hover: var(--button-green-solid-hover-bg);
-    --bg-active: var(--button-green-solid-active-bg);
+    &.borderless {
+      --fg: var(--yellow-4);
+      --fg-hover: var(--yellow-5);
+      --bg-hover: var(--yellow-1);
+      --fg-active: var(--yellow-6);
+      --bg-active: var(--yellow-2);
+    }
   }
 
-  &.outline {
-    --color: var(--button-green-outline-color);
-    --color-hover: var(--button-green-outline-hover-color);
-    --color-active: var(--button-green-outline-active-color);
+  .green {
+    &.solid {
+      --bg: var(--green-4);
+      --bg-hover: var(--green-5);
+      --bg-active: var(--green-6);
+    }
+
+    &.outline {
+      --color: var(--green-3);
+      --color-hover: var(--green-4);
+      --color-active: var(--green-5);
+    }
+
+    &.borderless {
+      --fg: var(--green-4);
+      --fg-hover: var(--green-5);
+      --bg-hover: var(--green-1);
+      --fg-active: var(--green-6);
+      --bg-active: var(--green-2);
+    }
   }
 
-  &.borderless {
-    --fg: var(--button-green-borderless-fg);
-    --fg-hover: var(--button-green-borderless-hover-fg);
-    --bg-hover: var(--button-green-borderless-hover-bg);
-    --fg-active: var(--button-green-borderless-active-fg);
-    --bg-active: var(--button-green-borderless-active-bg);
-  }
-}
+  .blue {
+    &.solid {
+      --bg: var(--blue-4);
+      --bg-hover: var(--blue-5);
+      --bg-active: var(--blue-6);
+    }
 
-.blue {
-  &.solid {
-    --bg: var(--button-blue-solid-bg);
-    --bg-hover: var(--button-blue-solid-hover-bg);
-    --bg-active: var(--button-blue-solid-active-bg);
-  }
+    &.outline {
+      --color: var(--blue-3);
+      --color-hover: var(--blue-4);
+      --color-active: var(--blue-5);
+    }
 
-  &.outline {
-    --color: var(--button-blue-outline-color);
-    --color-hover: var(--button-blue-outline-hover-color);
-    --color-active: var(--button-blue-outline-active-color);
-  }
-
-  &.borderless {
-    --fg: var(--button-blue-borderless-fg);
-    --fg-hover: var(--button-blue-borderless-hover-fg);
-    --bg-hover: var(--button-blue-borderless-hover-bg);
-    --fg-active: var(--button-blue-borderless-active-fg);
-    --bg-active: var(--button-blue-borderless-active-bg);
-  }
-}
-
-.purple {
-  &.solid {
-    --bg: var(--button-purple-solid-bg);
-    --bg-hover: var(--button-purple-solid-hover-bg);
-    --bg-active: var(--button-purple-solid-active-bg);
+    &.borderless {
+      --fg: var(--blue-4);
+      --fg-hover: var(--blue-5);
+      --bg-hover: var(--blue-1);
+      --fg-active: var(--blue-6);
+      --bg-active: var(--blue-2);
+    }
   }
 
-  &.outline {
-    --color: var(--button-purple-outline-color);
-    --color-hover: var(--button-purple-outline-hover-color);
-    --color-active: var(--button-purple-outline-active-color);
+  .purple {
+    &.solid {
+      --bg: var(--purple-4);
+      --bg-hover: var(--purple-5);
+      --bg-active: var(--purple-6);
+    }
+
+    &.outline {
+      --color: var(--purple-3);
+      --color-hover: var(--purple-4);
+      --color-active: var(--purple-5);
+    }
+
+    &.borderless {
+      --fg: var(--purple-4);
+      --fg-hover: var(--purple-5);
+      --bg-hover: var(--purple-1);
+      --fg-active: var(--purple-6);
+      --bg-active: var(--purple-2);
+    }
   }
 
-  &.borderless {
-    --fg: var(--button-purple-borderless-fg);
-    --fg-hover: var(--button-purple-borderless-hover-fg);
-    --bg-hover: var(--button-purple-borderless-hover-bg);
-    --fg-active: var(--button-purple-borderless-active-fg);
-    --bg-active: var(--button-purple-borderless-active-bg);
-  }
-}
+  .kitsu-purple {
+    &.solid {
+      --bg: var(--kitsu-purple-3);
+      --bg-hover: var(--kitsu-purple-4);
+      --bg-active: var(--kitsu-purple-6);
+    }
 
-.kitsu-purple {
-  &.solid {
-    --bg: var(--button-kitsu-purple-solid-bg);
-    --bg-hover: var(--button-kitsu-purple-solid-hover-bg);
-    --bg-active: var(--button-kitsu-purple-solid-active-bg);
-  }
+    &.outline {
+      --color: var(--kitsu-purple-2);
+      --color-hover: var(--kitsu-purple-3);
+      --color-active: var(--kitsu-purple-5);
+    }
 
-  &.outline {
-    --color: var(--button-kitsu-purple-outline-color);
-    --color-hover: var(--button-kitsu-purple-outline-hover-color);
-    --color-active: var(--button-kitsu-purple-outline-active-color);
-  }
-
-  &.borderless {
-    --fg: var(--button-kitsu-purple-borderless-fg);
-    --fg-hover: var(--button-kitsu-purple-borderless-hover-fg);
-    --bg-hover: var(--button-kitsu-purple-borderless-hover-bg);
-    --fg-active: var(--button-kitsu-purple-borderless-active-fg);
-    --bg-active: var(--button-kitsu-purple-borderless-active-bg);
-  }
-}
-
-.grey {
-  &.solid {
-    --bg: var(--button-grey-solid-bg);
-    --bg-hover: var(--button-grey-solid-hover-bg);
-    --bg-active: var(--button-grey-solid-active-bg);
+    &.borderless {
+      --fg: var(--kitsu-purple-2);
+      --fg-hover: var(--kitsu-purple-3);
+      --bg-hover: var(--kitsu-purple-1);
+      --fg-active: var(--kitsu-purple-4);
+      --bg-active: var(--kitsu-purple-2);
+    }
   }
 
-  &.outline {
-    --color: var(--button-grey-outline-color);
-    --color-hover: var(--button-grey-outline-hover-color);
-    --color-active: var(--button-grey-outline-active-color);
-  }
+  .grey {
+    &.solid {
+      --bg: var(--grey-4);
+      --bg-hover: var(--grey-5);
+      --bg-active: var(--grey-6);
+    }
 
-  &.borderless {
-    --fg: var(--button-grey-borderless-fg);
-    --fg-hover: var(--button-grey-borderless-hover-fg);
-    --bg-hover: var(--button-grey-borderless-hover-bg);
-    --fg-active: var(--button-grey-borderless-active-fg);
-    --bg-active: var(--button-grey-borderless-active-bg);
+    &.outline {
+      --color: var(--grey-4);
+      --color-hover: var(--grey-5);
+      --color-active: var(--grey-6);
+    }
+
+    &.borderless {
+      --fg: var(--grey-4);
+      --fg-hover: var(--grey-5);
+      --bg-hover: var(--grey-1);
+      --fg-active: var(--grey-6);
+      --bg-active: var(--grey-2);
+    }
   }
 }
 
@@ -287,21 +462,14 @@
 }
 
 /*** Button States ***/
-.loading {
+.loading,
+.disabled {
   pointer-events: none;
 }
 
-.disabled {
-  &.solid {
-    --bg: var(--button-disabled-solid-bg);
-  }
-
-  &.outline {
-    --color: var(--button-disabled-outline-color);
-  }
-
-  &.borderless {
-    --fg: var(--button-disabled-borderless-fg);
-    --bg: transparent;
-  }
+.button.disabled,
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+  filter: saturate(50%);
 }
