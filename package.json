@@ -4,7 +4,6 @@
   "files": [
     "dist"
   ],
-  "type": "module",
   "module": "./dist/kitsu-v4.es.js",
   "exports": {
     ".": {
@@ -35,8 +34,8 @@
     "test:unit:watch": "BUILD_TARGET=client vitest watch",
     "test:e2e": "cypress",
     "codegen": "run-p codegen:*",
-    "codegen:intl": "tsx ./bin/extract-intl.ts",
-    "codegen:css-globals": "tsx ./bin/extract-css-globals.ts",
+    "codegen:intl": "tsx ./bin/extract-intl.mts",
+    "codegen:css-globals": "tsx ./bin/extract-css-globals.mts",
     "codegen:graphql": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
