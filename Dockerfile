@@ -1,4 +1,4 @@
-FROM node:20-bookworm
+FROM node:21-bookworm
 
 RUN mkdir -p /opt/kitsu/client
 RUN npm set cache /var/cache/npm
