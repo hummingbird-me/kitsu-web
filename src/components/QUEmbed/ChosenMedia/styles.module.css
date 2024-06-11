@@ -1,0 +1,30 @@
+.banner {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1.5fr;
+  gap: 0px 0px;
+  grid-area: banner;
+}
+
+.title {
+  text-align: center
+}
+
+.post {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.8fr 0.2fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "postBody"
+    "submitPost";
+  grid-area: post;
+}
+
+.postBody {
+  grid-area: postBody;
+}
+
+.submitPost {
+  grid-area: submitPost;
+}
