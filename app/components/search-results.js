@@ -37,6 +37,10 @@ export default Component.extend({
   algolia: service(),
   metrics: service(),
   raven: service(),
+  tetherConstraints: [{
+    to: 'window',
+    pin: true
+  }],
 
   init() {
     this._super(...arguments);
