@@ -22,15 +22,42 @@
   {{#file-dropzone name="uploads" as |dropzone uploadQueue|}}
   {{! editor }}
   {{expanding-textarea content
-  update=(action (queue (action (mut content)) (action "processLinks")))
+  update=(action (queue (action (mut content)) (action "processLinks") (action "userTagSearch")))
   keyEvents=(hash
   13=(action "createPost")
+  9=(action "autocompleteUserTagOnTab")
+  27=(action "closeUserTagSearch")
   )
   onpaste=(action "paste")
   autofocus=true
   maxlength=maxLength
   class="stream-content-editor"
+  id="create-post-textarea"
   }}
+
+  {{#if (and users isUserSearchOpen)}}
+  <div>
+  {{#ember-tether
+    class=tooltipClass
+    target=".stream-content-editor"
+    attachment=(or attachment "top left")
+    targetAttachment=(or targetAttachment "bottom left")
+    offset=(or offset "-10px -20px")
+  }}
+  <div class="userTagPopover">
+    {{#each users as |user|}}
+    <div class="userTagSearchResult" onclick={{action "autocompleteUserTag" user.tag}}>
+      <div class="userAvatar">{{lazy-image src=user.avatar}}</div>
+      <div>
+        <div class="userName">{{ user.name }}</div>
+        <small class="userTag">{{ user.tag }}</small>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/ember-tether}}
+  </div>
+  {{/if}}
 
   <div class="post-uploads">
     {{#if uploads}}
