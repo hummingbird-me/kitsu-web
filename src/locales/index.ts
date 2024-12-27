@@ -2,7 +2,9 @@ import { mapKeys, mapValues } from 'lodash-es';
 
 import { Locale } from './utils/locale';
 
-const translationFiles = import.meta.globEager('./headers/*.ts');
+const translationFiles = import.meta.glob('./headers/*.ts', {
+  eager: true
+});
 
 const translations: Record<string, Locale> = mapValues(
   mapKeys(translationFiles, (_value, key) =>
