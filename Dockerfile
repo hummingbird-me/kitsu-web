@@ -1,4 +1,4 @@
-FROM node:20-bookworm
+FROM node:22-bookworm
 
 RUN mkdir -p /opt/kitsu/client
 RUN npm set cache /var/cache/npm
@@ -14,5 +14,4 @@ RUN --mount=type=cache,target=/var/cache/npm npm install
 COPY . /opt/kitsu/client
 
 ENTRYPOINT ["npm", "run"]
-CMD ["dev", "--port=80", "--strictPort"]
-EXPOSE 80
+CMD ["dev"]
