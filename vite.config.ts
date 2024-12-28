@@ -1,13 +1,12 @@
 /// <reference types="vitest" />
 
 import path from 'path';
-
 import react from '@vitejs/plugin-react';
 import {
   formatjsCompilePlugin,
   formatjsTransformPlugin,
 } from 'rollup-plugin-formatjs';
-import { BuildOptions, defineConfig, splitVendorChunkPlugin } from 'vite';
+import { defineConfig, splitVendorChunkPlugin, type BuildOptions } from 'vite';
 import svgr from 'vite-plugin-svgr';
 
 import { imageMetadataPlugin } from './rollup/imageMetadataPlugin';
@@ -97,6 +96,7 @@ export default defineConfig(({ mode }) => ({
           }
         : {}),
       app: path.resolve(__dirname, './src'),
+      '@': path.resolve(__dirname, './src'),
     },
   },
 }));
