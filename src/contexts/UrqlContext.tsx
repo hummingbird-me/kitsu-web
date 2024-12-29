@@ -1,40 +1,39 @@
-import { devtoolsExchange } from '@urql/devtools';
-import React from 'react';
+import React, { useContext, useMemo } from 'react';
 import { createClient, fetchExchange, Provider } from 'urql';
 
+import InvariantViolated from '@/errors/InvariantViolated';
 import { apiHost } from 'app/constants/config';
 import { useLocale } from 'app/contexts/IntlContext';
-import { useSession } from 'app/contexts/SessionContext';
+import { SessionContext } from 'app/contexts/SessionContext';
 import authExchange from 'app/graphql/urql-exchanges/auth';
 import cacheExchange from 'app/graphql/urql-exchanges/cache';
 import buildAcceptLanguage from 'app/utils/buildAcceptLanguage';
-
-if (import.meta.hot) {
-  // HMR causes issues with urql, so we reload the page instead
-  import.meta.hot.accept(() => location.reload());
-}
 
 export default function UrqlContext({
   children,
 }: {
   children: React.ReactNode;
 }): JSX.Element {
-  const session = useSession();
   const { locale } = useLocale();
+  const sessionContext = useContext(SessionContext);
+  if (!sessionContext) throw new InvariantViolated('SessionContext is missing');
 
-  const client = createClient({
-    suspense: true,
-    exchanges: [
-      devtoolsExchange,
-      cacheExchange(),
-      authExchange(session),
-      fetchExchange,
-    ],
-    url: `${apiHost}api/graphql`,
-    fetchOptions: {
-      headers: { 'Accept-Language': buildAcceptLanguage(locale) },
-    },
-  });
+  const client = useMemo(
+    () =>
+      createClient({
+        suspense: true,
+        exchanges: [
+          cacheExchange(),
+          authExchange(sessionContext),
+          fetchExchange,
+        ],
+        url: `${apiHost}api/graphql`,
+        fetchOptions: {
+          headers: { 'Accept-Language': buildAcceptLanguage(locale) },
+        },
+      }),
+    [sessionContext, locale],
+  );
 
   return <Provider value={client}>{children}</Provider>;
 }

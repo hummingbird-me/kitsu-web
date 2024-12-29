@@ -1,27 +1,27 @@
 import getAuthorization from '@nanoauth/myanimelist';
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   FaApple as AppleLogo,
   FaFacebook as FacebookLogo,
   FaTwitter as TwitterLogo,
 } from 'react-icons/fa';
-import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
+import { FormattedMessage, useIntl, type IntlShape } from 'react-intl';
 
-import ModalLink from 'app/components/ModalLink';
-import Rule from 'app/components/Rule';
 import Button, {
   ButtonColor,
   ButtonKind,
   ButtonPreset,
-} from 'app/components/controls/Button';
-import TextInput from 'app/components/controls/TextInput';
-import Alert from 'app/components/feedback/Alert';
-import { nanoauthCredentials } from 'app/constants/config';
-import { useSession } from 'app/contexts/SessionContext';
-import { LoginFailed } from 'app/errors';
-import useReturnToFn from 'app/hooks/useReturnToFn';
-import loginWithPassword from 'app/utils/login/withPassword';
+} from '@/components/controls/Button';
+import TextInput from '@/components/controls/TextInput';
+import Alert from '@/components/feedback/Alert';
+import ModalLink from '@/components/ModalLink';
+import Rule from '@/components/Rule';
+import { nanoauthCredentials } from '@/constants/config';
+import { SessionContext } from '@/contexts/SessionContext';
+import { LoginFailed } from '@/errors';
+import useReturnToFn from '@/hooks/useReturnToFn';
+import loginWithPassword from '@/utils/login/withPassword';
 
 import { useAuthModalContext } from '../Layout';
 import styles from './styles.module.css';
@@ -45,7 +45,7 @@ function useFormatErrorMessage(formatMessage: IntlShape['formatMessage']) {
 const SignInModal: React.FC = function (): JSX.Element {
   const { email: defaultEmail, setEmail } = useAuthModalContext();
   const { formatMessage } = useIntl();
-  const { setSession } = useSession();
+  const { setSession } = useContext(SessionContext);
   const returnTo = useReturnToFn();
   const formatErrorMessage = useFormatErrorMessage(formatMessage);
   const {
@@ -62,8 +62,8 @@ const SignInModal: React.FC = function (): JSX.Element {
   });
   const email = watch('email');
   useEffect(() => {
-    email && setEmail(email);
-  }, [email]);
+    if (email) setEmail(email);
+  }, [email, setEmail]);
 
   return (
     <form

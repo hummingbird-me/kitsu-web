@@ -1,6 +1,17 @@
 import { differenceInSeconds } from 'date-fns';
 
-import { Session } from 'app/types/session';
+import InvariantViolated from '@/errors/InvariantViolated';
+
+export type LoggedInSession = {
+  loggedIn: true;
+  accessToken: string;
+  refreshToken: string;
+  expiresAt: Date;
+};
+export type LoggedOutSession = {
+  loggedIn: false;
+};
+export type Session = LoggedInSession | LoggedOutSession;
 
 /*
  * For now, we maintain compatibility with Ember Simple Auth so we can coexist with the
@@ -19,7 +30,7 @@ type EmberSimpleAuthSession = {
   };
 };
 
-export function save(session: Session): void {
+export function save(session: LoggedInSession): void {
   if (!session) return;
 
   const emberSession: EmberSimpleAuthSession = {
@@ -37,7 +48,7 @@ export function save(session: Session): void {
 
   localStorage.setItem(
     'ember_simple_auth:session',
-    JSON.stringify(emberSession)
+    JSON.stringify(emberSession),
   );
 }
 
@@ -46,14 +57,21 @@ export function clear(): void {
 }
 
 export function load(): Session {
-  const rawEmberSession = localStorage.getItem('ember_simple_auth:session');
-  if (!rawEmberSession) return null;
-  const emberSession: EmberSimpleAuthSession = JSON.parse(rawEmberSession);
+  try {
+    const rawEmberSession = localStorage.getItem('ember_simple_auth:session');
+    if (!rawEmberSession) return { loggedIn: false };
+    const emberSession: EmberSimpleAuthSession = JSON.parse(rawEmberSession);
 
-  return {
-    loggedIn: true,
-    accessToken: emberSession.authenticated.access_token,
-    refreshToken: emberSession.authenticated.refresh_token,
-    expiresAt: new Date(emberSession.authenticated.expires_at),
-  };
+    return {
+      loggedIn: true,
+      accessToken: emberSession.authenticated.access_token,
+      refreshToken: emberSession.authenticated.refresh_token,
+      expiresAt: new Date(emberSession.authenticated.expires_at),
+    };
+  } catch (cause) {
+    console.error(
+      new InvariantViolated('Error while parsing session', { cause }),
+    );
+    return { loggedIn: false };
+  }
 }

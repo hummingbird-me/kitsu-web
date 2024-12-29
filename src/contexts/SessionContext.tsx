@@ -1,30 +1,39 @@
-import React, { useContext, useState } from 'react';
+import { memoize } from 'lodash-es';
+import React, { createContext, useContext, useState } from 'react';
 
-import { Session } from 'app/types/session';
-import * as SessionStore from 'app/utils/session-store';
+import InvariantViolated from '@/errors/InvariantViolated';
+import loginWithRefreshToken from '@/utils/login/withRefreshToken';
+import {
+  clear as _clearSession,
+  load as _loadSession,
+  save as _saveSession,
+  type LoggedInSession,
+  type Session,
+} from '@/utils/session';
 
-export const SessionContext = React.createContext<{
+export type SessionContextType = {
   session: Session;
-  setSession: (newSession: Session) => void;
+  setSession: (newSession: LoggedInSession) => void;
   clearSession: () => void;
-}>({
-  session: null,
-  /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-  setSession: () => {},
-  /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-  clearSession: () => {},
-});
+};
 
-export const SessionContextProvider: React.FC = function ({ children }) {
-  const [session, _setSession] = useState<Session>(SessionStore.load);
+// Null only occurs before the component is loaded (it should never occur)
+export const SessionContext = createContext<SessionContextType | null>(null);
 
-  const setSession = (newSession: Session) => {
+export function SessionContextProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [session, _setSession] = useState<Session>(_loadSession());
+
+  const setSession = (newSession: LoggedInSession) => {
     _setSession(newSession);
-    SessionStore.save(newSession);
+    _saveSession(newSession);
   };
   const clearSession = () => {
-    _setSession(null);
-    SessionStore.clear();
+    _setSession({ loggedIn: false });
+    _clearSession();
   };
 
   return (
@@ -33,13 +42,43 @@ export const SessionContextProvider: React.FC = function ({ children }) {
         session,
         setSession,
         clearSession,
-      }}
-    >
+      }}>
       {children}
     </SessionContext.Provider>
   );
+}
+
+/**
+ * Get the current session from the context.
+ *
+ * @returns The current session object
+ */
+export const useSession = function () {
+  const context = useContext(SessionContext);
+  if (!context) throw new InvariantViolated('Session context missing');
+  return context.session;
 };
 
-export const useSession = function () {
-  return useContext(SessionContext);
-};
+/**
+ * Refresh the session by exchanging the refreshToken for a new accessToken.
+ *
+ * Note that this function is memoized to prevent multiple calls using the same refreshToken, with
+ * repeated calls returning the same promise.
+ *
+ * @param session The current session context object
+ */
+export const refreshSession = memoize(
+  async function ({
+    session,
+    setSession,
+  }: SessionContextType): Promise<Session> {
+    if (!session.loggedIn) return session;
+
+    const newSession = await loginWithRefreshToken(session.refreshToken);
+
+    setSession(newSession);
+
+    return newSession;
+  },
+  ({ session }) => (session.loggedIn ? session.refreshToken : null),
+);
