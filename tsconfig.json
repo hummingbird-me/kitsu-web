@@ -20,12 +20,19 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "allowJs": false
+    "allowJs": false,
+    "plugins": [
+      {
+        "name": "gql.tada/ts-plugin",
+        "schema": "./src/graphql/schema.tada.json",
+        "tadaOutputLocation": "./src/types/graphql-env.d.ts"
+      }
+    ]
   },
   "include": ["./src"],
   "references": [
     { "path": "./tsconfig.node.json" },
     { "path": "./tsconfig.head.json" },
     { "path": "./.storybook/tsconfig.json" }
-  ]
+  ],
 }

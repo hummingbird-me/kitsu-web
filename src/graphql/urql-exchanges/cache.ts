@@ -1,8 +1,8 @@
 import { offlineExchange } from '@urql/exchange-graphcache';
 import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage';
 
-import resolvers from 'app/graphql/resolvers';
-import schema from 'app/graphql/schema';
+import resolvers from '@/graphql/resolvers';
+import schema from '@/graphql/schema.urql.json';
 
 import optimistic from '../optimistic-mutations';
 

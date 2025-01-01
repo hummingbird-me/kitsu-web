@@ -13,12 +13,13 @@ export default {
     afterAllFileWrite: ['prettier --write'],
   },
   generates: {
-    'src/graphql/schema.json': {
+    'src/graphql/schema.urql.json': {
       plugins: ['urql-introspection'],
+    },
+    'src/graphql/schema.tada.json': {
+      plugins: ['introspection'],
       config: {
-        includeScalars: true,
-        includeEnums: true,
-        includeInputs: true,
+        specifiedByUrl: true,
       },
     },
   },
