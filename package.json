@@ -36,7 +36,7 @@
     "codegen": "run-p codegen:*",
     "codegen:intl": "tsx ./bin/extract-intl.mts",
     "codegen:css-globals": "tsx ./bin/extract-css-globals.mts",
-    "codegen:graphql": "graphql-codegen --config codegen.ts"
+    "codegen:graphql-schema": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.11",
@@ -78,11 +78,7 @@
     "@etchteam/storybook-addon-status": "^4.2.4",
     "@formatjs/cli-lib": "^6.6.6",
     "@graphql-codegen/cli": "^5.0.3",
-    "@graphql-codegen/introspection": "^4.0.3",
-    "@graphql-codegen/near-operation-file-preset": "^2.5.0",
-    "@graphql-codegen/typescript": "^4.1.2",
-    "@graphql-codegen/typescript-operations": "^4.4.0",
-    "@graphql-codegen/typescript-urql": "^3.7.3",
+    "@graphql-codegen/urql-introspection": "^3.0.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
     "@kitsu-io-forks/storybook-addon-themes": "^7.1.0",
     "@small-tech/vite-plugin-sri": "small-tech/vite-plugin-sri#main",
