@@ -113,9 +113,9 @@ Vite compiles the application starting at an "entry point". In our case, we have
 npm run codegen
 ```
 
-If you change a `.gql` file or add a new translation key, you will need to run `npm run codegen` to
-have them work properly. The GraphQL Codegen will generate typescript files for every query and the
-Intl Codegen will extract all the translation keys from your components.
+If you add a new translation key or need schema changes from the API, you will need to run `npm run
+codegen` to have them work properly. The GraphQL Codegen will download the schema and the Intl
+Codegen will extract all the translation keys from your components.
 
 #### Running Storybook
 
@@ -124,7 +124,7 @@ npm run storybook
 ```
 
 We use [Storybook](https://storybook.js.org/docs/react/get-started/introduction) to document
-components. We ask that you please document any new components you add.
+components. We ask that you please document any new reusable components you add.
 
 #### Running Tests
 
