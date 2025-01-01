@@ -1,5 +1,5 @@
-import { OnErrorFn } from '@formatjs/intl';
-import { Locale as DateFnsLocale } from 'date-fns';
+import { type OnErrorFn } from '@formatjs/intl';
+import { type Locale as DateFnsLocale } from 'date-fns';
 import preferredLocale from 'preferred-locale';
 import React, { useReducer } from 'react';
 import { IntlProvider } from 'react-intl';
@@ -18,12 +18,12 @@ function useLocaleState(locale?: string): LocaleState {
   const availableLocales = Object.keys(translations);
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
+  // Listen for language change
+  useEvent('languagechange', forceUpdate, window);
+
   if (locale) {
     return { locale, setLocale: setCookie, unsetLocale: unsetCookie };
   } else if (cookie) {
-    // Listen for language change
-    useEvent('languagechange', forceUpdate, window);
-
     // If the user has chosen an invalid locale, delete it
     if (cookie && availableLocales.indexOf(cookie) === -1) {
       unsetCookie();
@@ -58,7 +58,9 @@ const IntlContext: React.FC<{ locale?: string }> = function ({
   locale,
 }) {
   const value = useLocaleState(locale);
-  const { value: localeData } = useAsync(translations[value.locale].load);
+  const { value: localeData } = useAsync(
+    translations[value.locale].bundles.main,
+  );
 
   const onError: OnErrorFn | undefined = import.meta.env.DEV
     ? (err) => {
@@ -77,8 +79,7 @@ const IntlContext: React.FC<{ locale?: string }> = function ({
           key={value.locale}
           defaultRichTextElements={{
             b: (children) => <b>{children}</b>,
-          }}
-        >
+          }}>
           {children}
         </IntlProvider>
       </DateFnsLocaleContext.Provider>
