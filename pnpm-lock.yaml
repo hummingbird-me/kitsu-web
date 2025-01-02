@@ -34,13 +34,13 @@ importers:
         version: 8.47.0(react@19.0.0)
       '@urql/devtools':
         specifier: ^2.0.3
-        version: 2.0.3(graphql@16.10.0)
+        version: 2.0.3(@urql/core@5.1.0(graphql@16.10.0))(graphql@16.10.0)
       '@urql/exchange-auth':
         specifier: ^2.2.0
-        version: 2.2.0
+        version: 2.2.0(@urql/core@5.1.0(graphql@16.10.0))
       '@urql/exchange-graphcache':
         specifier: ^7.2.1
-        version: 7.2.1(graphql@16.10.0)
+        version: 7.2.1(@urql/core@5.1.0(graphql@16.10.0))(graphql@16.10.0)
       '@zxcvbn-ts/core':
         specifier: ^3.0.4
         version: 3.0.4
@@ -100,10 +100,7 @@ importers:
         version: 1.3.3
       urql:
         specifier: ^4.2.1
-        version: 4.2.1(react@19.0.0)
-      urql-custom-scalars-exchange:
-        specifier: ^1.0.1
-        version: 1.0.1(graphql@16.10.0)(wonka@6.3.4)
+        version: 4.2.1(@urql/core@5.1.0(graphql@16.10.0))(react@19.0.0)
       yup:
         specifier: ^1.6.1
         version: 1.6.1
@@ -3728,6 +3725,9 @@ packages:
   '@typescript-eslint/visitor-keys@8.19.0':
     resolution: {integrity: sha512-mCFtBbFBJDCNCWUl5y6sZSCHXw1DEFEk3c/M3nRK2a4XUB8StGFtmcEMizdjKuBzB6e/smJAAWYug3VrdLMr1w==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@urql/core@5.1.0':
+    resolution: {integrity: sha512-yC3sw8yqjbX45GbXxfiBY8GLYCiyW/hLBbQF9l3TJrv4ro00Y0ChkKaD9I2KntRxAVm9IYBqh0awX8fwWAe/Yw==}
 
   '@urql/devtools@2.0.3':
     resolution: {integrity: sha512-TktPLiBS9LcBPHD6qcnb8wqOVcg3Bx0iCtvQ80uPpfofwwBGJmqnQTjUdEFU6kwaLOFZULQ9+Uo4831G823mQw==}
@@ -8014,14 +8014,6 @@ packages:
 
   urlpattern-polyfill@10.0.0:
     resolution: {integrity: sha512-H/A06tKD7sS1O1X2SshBVeA5FLycRpjqiBeqGKmBwBDBy28EnRjORxTNe269KSSr5un5qyWi1iL61wLxpd+ZOg==}
-
-  urql-custom-scalars-exchange@1.0.1:
-    resolution: {integrity: sha512-NSxUaw1ZWu72iJ/t4qy6hbm33HKthIglLl8JzHEtEQgE1ICxl5kXmzmZWL5ycxlNRgCOvU2nqzrplIhBo7q3UQ==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      '@urql/core': ^1.12.3 || ^2.0.0 || ^3.0.0
-      graphql: ^15.3.0 || ^16.0.0
-      wonka: ^4.0.14 || ^6.0.0
 
   urql@4.2.1:
     resolution: {integrity: sha512-Y/cVi1rsR96kbF3VX6YgfHw1V3kJ287nR1TqpjGzVPyAmXuwRvBvABI+sHY2WOquWCNh+kvFapM/LLYeiC3wig==}
@@ -12698,18 +12690,28 @@ snapshots:
       '@typescript-eslint/types': 8.19.0
       eslint-visitor-keys: 4.2.0
 
-  '@urql/devtools@2.0.3(graphql@16.10.0)':
+  '@urql/core@5.1.0(graphql@16.10.0)':
     dependencies:
+      '@0no-co/graphql.web': 1.0.12(graphql@16.10.0)
+      wonka: 6.3.4
+    transitivePeerDependencies:
+      - graphql
+
+  '@urql/devtools@2.0.3(@urql/core@5.1.0(graphql@16.10.0))(graphql@16.10.0)':
+    dependencies:
+      '@urql/core': 5.1.0(graphql@16.10.0)
       graphql: 16.10.0
       wonka: 6.3.4
 
-  '@urql/exchange-auth@2.2.0':
+  '@urql/exchange-auth@2.2.0(@urql/core@5.1.0(graphql@16.10.0))':
     dependencies:
+      '@urql/core': 5.1.0(graphql@16.10.0)
       wonka: 6.3.4
 
-  '@urql/exchange-graphcache@7.2.1(graphql@16.10.0)':
+  '@urql/exchange-graphcache@7.2.1(@urql/core@5.1.0(graphql@16.10.0))(graphql@16.10.0)':
     dependencies:
       '@0no-co/graphql.web': 1.0.12(graphql@16.10.0)
+      '@urql/core': 5.1.0(graphql@16.10.0)
       wonka: 6.3.4
     transitivePeerDependencies:
       - graphql
@@ -17708,13 +17710,9 @@ snapshots:
 
   urlpattern-polyfill@10.0.0: {}
 
-  urql-custom-scalars-exchange@1.0.1(graphql@16.10.0)(wonka@6.3.4):
+  urql@4.2.1(@urql/core@5.1.0(graphql@16.10.0))(react@19.0.0):
     dependencies:
-      graphql: 16.10.0
-      wonka: 6.3.4
-
-  urql@4.2.1(react@19.0.0):
-    dependencies:
+      '@urql/core': 5.1.0(graphql@16.10.0)
       react: 19.0.0
       wonka: 6.3.4
 
