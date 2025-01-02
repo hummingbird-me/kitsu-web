@@ -1,9 +1,9 @@
 import type { StorybookConfig } from '@storybook/types';
 
-const config: StorybookConfig = {
+export default {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.tsx'],
+
   addons: [
-    '@kitsu-io-forks/storybook-addon-themes',
     '@storybook/addon-links',
     {
       name: '@storybook/addon-essentials',
@@ -11,7 +11,7 @@ const config: StorybookConfig = {
         backgrounds: false,
       },
     },
-    'storybook-addon-designs',
+    '@storybook/addon-designs',
     '@storybook/addon-a11y',
     '@etchteam/storybook-addon-status',
   ],
@@ -21,7 +21,5 @@ const config: StorybookConfig = {
   },
   docs: {
     docsMode: true,
-    autodocs: true,
   },
-};
-export default config;
+} satisfies StorybookConfig;

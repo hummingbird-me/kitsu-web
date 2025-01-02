@@ -47,7 +47,6 @@ export const globalTypes = {
 };
 
 export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
   options: {
     storySort: {
       order: ['Introduction', 'Colors', 'Typography'],
@@ -101,6 +100,10 @@ export const parameters = {
     toc: {
       headingSelector: 'h2, h3',
     },
+    canvas: {
+      sourceState: 'shown',
+      withToolbar: false,
+    },
     argTypes: {
       sort: 'requiredFirst',
     },
@@ -145,3 +148,4 @@ export const decorators = [
     </React.StrictMode>
   ),
 ];
+export const tags = ['autodocs'];

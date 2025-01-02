@@ -1,9 +1,26 @@
-import React, { HTMLProps } from 'react';
+import React, { type HTMLProps } from 'react';
 
 import SpinnerImage from 'app/assets/spinner.svg?react';
 
 import styles from './styles.module.css';
 
+/**
+ * Spinners are a compact way to tell the user "hey, we're doing something, just wait a sec".
+ *
+ * Works especially well on buttons, in the margins, or to represent processing of something in the
+ * background. If you're loading a whole page or section, you should prefer a Skeleton.
+ *
+ * The spinner is displayed in the text color of the context it's placed in, and defaults to `3em`
+ * size. You can pass `style` or `className` props to override the style, including color. You can
+ * change the size by passing a value to `size`. Just... please don't actually color it magenta, okay?
+ *
+ * For users with reduced motion, the spinner is significantly slowed down to a 3-second animation.
+ *
+ * @param className
+ * @param style
+ * @param size
+ * @constructor
+ */
 export default function Spinner({
   className,
   style,
