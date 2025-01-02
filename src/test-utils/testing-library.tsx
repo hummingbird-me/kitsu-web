@@ -1,21 +1,19 @@
-/* eslint-disable i18next/no-literal-string */
-
 import '@testing-library/jest-dom/vitest';
 
 import {
   render as _render,
   cleanup,
-  RenderOptions,
-  RenderResult,
+  type RenderOptions,
+  type RenderResult,
 } from '@testing-library/react';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { beforeEach } from 'vitest';
 
 import { DateFnsLocaleContext, LocaleContext } from 'app/contexts/IntlContext';
-import enUS from 'app/locales/headers/en-US';
+import enUS from 'app/locales/bundles/en-US/header';
 
-const localeData = await enUS.load();
+const main = await enUS.bundles.main();
 
 const Provider = function ({
   children,
@@ -29,8 +27,8 @@ const Provider = function ({
         setLocale: () => null,
         unsetLocale: () => null,
       }}>
-      <DateFnsLocaleContext.Provider value={localeData.dateFns}>
-        <IntlProvider locale="en-US" key="en-US" messages={localeData.kitsu}>
+      <DateFnsLocaleContext.Provider value={main.dateFns}>
+        <IntlProvider locale="en-US" key="en-US" messages={main.kitsu}>
           {children}
         </IntlProvider>
       </DateFnsLocaleContext.Provider>
