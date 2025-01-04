@@ -1,35 +1,57 @@
 import React, {
   forwardRef,
-  HTMLProps,
   useLayoutEffect,
   useRef,
   useState,
+  type HTMLProps,
 } from 'react';
 import { BlurhashCanvas } from 'react-blurhash';
 
-import { ImageSource, ImageView } from 'app/types/ImageSource';
+import {
+  graphql,
+  readFragment,
+  type FragmentOf,
+  type ResultOf,
+} from '@/graphql/tada';
 
 import styles from './styles.module.css';
+
+export const ImageFragment = graphql(`
+  fragment ImageFragment on Image {
+    blurhash
+    views {
+      height
+      width
+      url
+    }
+  }
+`);
 
 // Max dimension of the blurhash canvas
 const BLURHASH_SIZE = 32;
 
-export type ImageProps = HTMLProps<HTMLDivElement> & {
-  height: number | string;
-  width: number | string;
-  source?: ImageSource | null;
+export type ImageSource =
+  | FragmentOf<typeof ImageFragment>
+  | ResultOf<typeof ImageFragment>;
+
+export type ImageProps = {
+  /** The alt text for the image */
+  alt?: string;
+  /** Override whether the image is considered loaded */
+  isLoaded?: boolean;
+  /** The source of the image **/
+  source: ImageSource;
   /** How the image should be resized to fit its container. */
   objectFit?: 'contain' | 'cover' | 'fill';
-  /** Override the loading state of the image to display the blurhash. */
-  isLoaded?: boolean;
-  /**
-   * The className for the image component. Technically applies to a <div> wrapping the image and
-   * blurhash elements.
-   */
-  className?: string;
-};
+} & HTMLProps<HTMLDivElement>;
 
-const viewsToSrcset = (views: readonly ImageView[]) =>
+const viewsToSrcset = (
+  views: readonly {
+    height?: number | null;
+    width?: number | null;
+    url: string;
+  }[],
+) =>
   views
     .filter(({ width }) => width)
     .map(({ width, url }) => `${url} ${width}w`)
@@ -39,7 +61,8 @@ const viewsToSrcset = (views: readonly ImageView[]) =>
  * The Image component takes in the API's representation of an image and displays it. It handles:
  *
  * - Displaying a blurhash until the image has finished loading
- * - Generating a `<picture>` tag with all the sizes and formats as sources
+ * - Generating a srcset with all the sizes and formats of the image
+ * - Detecting if the image is loaded from cache
  * - Fading in the image when it finishes loading, unless it's loaded from browser cache
  * - Enabling lazy loading on the image
  */
@@ -47,11 +70,12 @@ const Image = forwardRef<HTMLDivElement, ImageProps>(function Image(
   {
     height,
     width,
-    source,
+    source: sourceProp,
     objectFit = 'cover',
     isLoaded: isLoadedProp,
     className,
     style,
+    alt,
     ...props
   },
   ref,
@@ -60,6 +84,7 @@ const Image = forwardRef<HTMLDivElement, ImageProps>(function Image(
   const [isLoadedState, setIsLoaded] = useState(false);
   const [needsFadeIn, setNeedsFadeIn] = useState(false);
   const isLoaded = isLoadedProp ?? isLoadedState;
+  const source = readFragment(ImageFragment, sourceProp);
 
   // Detect if the image is loaded from cache and skip the fade-in animation
   useLayoutEffect(() => {
@@ -86,7 +111,7 @@ const Image = forwardRef<HTMLDivElement, ImageProps>(function Image(
       style={{ ...style, width, height, aspectRatio }}
       ref={ref}
       {...props}>
-      {source?.blurhash ? (
+      {source.blurhash ? (
         <BlurhashCanvas
           hash={source.blurhash}
           height={Math.ceil(intrinsicHeight * scale)}
@@ -95,22 +120,21 @@ const Image = forwardRef<HTMLDivElement, ImageProps>(function Image(
           style={{ objectFit }}
         />
       ) : null}
-      {source ? (
-        <img
-          ref={imageRef}
-          onLoad={() => setIsLoaded(true)}
-          loading="lazy"
-          height={height}
-          width={width}
-          className={[
-            styles.image,
-            needsFadeIn ? styles.fadeIn : null,
-            isLoaded ? styles.loaded : null,
-          ].join(' ')}
-          style={{ objectFit }}
-          srcSet={viewsToSrcset(source.views)}
-        />
-      ) : null}
+      <img
+        ref={imageRef}
+        onLoad={() => setIsLoaded(true)}
+        loading="lazy"
+        height={height}
+        width={width}
+        alt={alt}
+        className={[
+          styles.image,
+          needsFadeIn ? styles.fadeIn : null,
+          isLoaded ? styles.loaded : null,
+        ].join(' ')}
+        style={{ objectFit }}
+        srcSet={viewsToSrcset(source.views)}
+      />
     </div>
   );
 });
