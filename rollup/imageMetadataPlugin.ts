@@ -1,7 +1,7 @@
-import { createFilter, FilterPattern } from '@rollup/pluginutils';
+import { createFilter, type FilterPattern } from '@rollup/pluginutils';
 import { encode } from 'blurhash';
-import { Plugin } from 'rollup';
 import sharp from 'sharp';
+import type { Plugin } from 'vite';
 
 type PluginOptions = {
   /**
@@ -23,7 +23,7 @@ const DEFAULT_OPTIONS: PluginOptions = {
 
 export const imageMetadataPlugin = (
   userOptions: Partial<PluginOptions> = {},
-): Plugin & { enforce: 'post' } => {
+): Plugin => {
   const options = { ...DEFAULT_OPTIONS, ...userOptions };
   const filter = createFilter(options.include, options.exclude);
 
