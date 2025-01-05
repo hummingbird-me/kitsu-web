@@ -1,8 +1,9 @@
-import { type SessionContextType } from '@/contexts/SessionContext';
-import loginWithRefreshToken from '@/utils/login/withRefreshToken';
 import * as Sentry from '@sentry/react';
 import { authExchange } from '@urql/exchange-auth';
 import { type Exchange } from 'urql';
+
+import { type SessionContextType } from '@/contexts/SessionContext';
+import loginWithRefreshToken from '@/utils/login/withRefreshToken';
 
 export default function kitsuAuthExchange({
   session,
@@ -19,7 +20,7 @@ export default function kitsuAuthExchange({
       });
     },
     didAuthError(errors) {
-      return errors.response.status === 401;
+      return errors.response?.status === 401;
     },
     async refreshAuth() {
       if (!session.loggedIn) return;
