@@ -7,7 +7,9 @@ const scalars = {
 } as const;
 
 export type Scalars = {
-  [Property in keyof typeof scalars]: ReturnType<(typeof scalars)[Property]>;
+  [Property in keyof typeof scalars]: NonNullable<
+    ReturnType<(typeof scalars)[Property]>
+  >;
 };
 
 export default scalars;
