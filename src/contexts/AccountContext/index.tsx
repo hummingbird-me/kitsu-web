@@ -1,35 +1,75 @@
 import { captureException } from '@sentry/react';
-import React, { useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 
-import { RatingSystemEnum } from 'app/graphql/types';
+import { ImageFragment } from '@/components/content/Image';
+import { graphql, useQuery, type ResultOf } from '@/graphql';
 
-import { LoadAccountQuery, useLoadAccountQuery } from './loadAccount-gql';
+const LoadAccountQuery = graphql(
+  `
+    query loadAccount {
+      currentAccount {
+        id
+        profile {
+          id
+          slug
+          name
+          avatarImage {
+            ...ImageFragment
+          }
+          bannerImage {
+            ...ImageFragment
+          }
+        }
+        country
+        language
+        ratingSystem
+        sfwFilter
+        sitePermissions
+        timeZone
+        enabledFeatures
+      }
+    }
+  `,
+  [ImageFragment],
+);
 
-// Mangle our
 export type Account = {
   id?: string;
-  profile?: NonNullable<LoadAccountQuery['currentAccount']>['profile'];
-  // These are guaranteed by our defaults below
-  timeZone: string;
-  ratingSystem: RatingSystemEnum;
+  country?: string;
+  language?: string;
+  ratingSystem: string;
   sfwFilter: boolean;
   sitePermissions: Set<string>;
+  timeZone?: string;
   enabledFeatures: Set<string>;
+  profile?: {
+    id: string;
+    slug?: string;
+    name: string;
+    avatarImage?: ResultOf<typeof ImageFragment>;
+    bannerImage?: ResultOf<typeof ImageFragment>;
+  };
 };
 
 const DEFAULTS: Account = {
   timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-  ratingSystem: RatingSystemEnum.Simple,
+  ratingSystem: 'SIMPLE',
   sfwFilter: true,
   sitePermissions: new Set(),
   enabledFeatures: new Set(),
 };
 
-export const AccountContext = React.createContext<Account>(DEFAULTS);
+export const AccountContext = createContext<Account>(DEFAULTS);
 
-export const AccountContextProvider: React.FC = function ({ children }) {
-  const [{ data, error }] = useLoadAccountQuery({
+export function AccountContextProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [{ data, error }] = useQuery({
+    query: LoadAccountQuery,
     requestPolicy: 'cache-and-network',
+    suspense: false,
   });
 
   // If the query fails, log the error to Sentry and return an empty list of settings
@@ -45,7 +85,7 @@ export const AccountContextProvider: React.FC = function ({ children }) {
       {children}
     </AccountContext.Provider>
   );
-};
+}
 
 export function useAccount(): Account {
   return useContext(AccountContext);
