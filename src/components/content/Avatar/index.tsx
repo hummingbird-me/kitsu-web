@@ -1,14 +1,18 @@
 import React from 'react';
 
 import { source as defaultAvatar } from '@/assets/default_avatar.svg?imageSource';
-import Image, { type ImageProps } from '@/components/content/Image';
+import Image, {
+  type ImageProps,
+  type ImageSource,
+} from '@/components/content/Image';
 
 import styles from './styles.module.css';
 
 export type AvatarProps = {
   size: number;
   className?: string;
-} & Omit<ImageProps, 'height' | 'width'>;
+  source?: ImageSource | null;
+} & Omit<ImageProps, 'height' | 'width' | 'source'>;
 
 /**
  * Avatars are a special case of Images, representing a user by their chosen profile image. Compared
