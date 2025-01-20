@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { type Meta, type StoryObj } from '@storybook/react';
 import React from 'react';
 
 import { imageSourceLoader } from 'app/docs/utilities/uploadToImageSource';

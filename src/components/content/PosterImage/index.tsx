@@ -2,7 +2,7 @@ import React from 'react';
 
 import { source as defaultPoster } from 'app/assets/default_poster.jpg?imageSource';
 
-import Image, { ImageProps } from '../Image';
+import Image, { type ImageProps, type ImageSource } from '../Image';
 import styles from './styles.module.css';
 
 // This is the aspect ratio of an A size paper, which is common for posters.
@@ -10,21 +10,27 @@ const ASPECT_RATIO = Math.SQRT2;
 
 // This is a bit verbose but basically expresses that we want to require at least one of height or
 // width. This is necessary because we need to calculate the other dimension from the aspect ratio.
-interface PosterWithHeight {
+type PosterWithHeight = {
   height: number;
   width?: number;
-}
-interface PosterWithWidth {
+};
+type PosterWithWidth = {
   width: number;
   height?: number;
-}
-interface PosterWithBoth {
+};
+type PosterWithBoth = {
   height: number;
   width: number;
-}
+};
 
-export type PosterImageProps = Omit<ImageProps, 'height' | 'width' | 'ref'> &
-  (PosterWithHeight | PosterWithWidth | PosterWithBoth);
+export type PosterImageProps = Omit<
+  ImageProps,
+  'height' | 'width' | 'source'
+> & { source: ImageSource | undefined | null } & (
+    | PosterWithHeight
+    | PosterWithWidth
+    | PosterWithBoth
+  );
 
 /**
  * A poster image with a portrait aspect ratio. This is a thin wrapper around the Image component,
@@ -44,9 +50,9 @@ export default function PosterImage({
   // We are guaranteed to have both of these by the above logic and the input types.
   return (
     <Image
-      height={height!}
-      width={width!}
-      source={source}
+      height={height}
+      width={width}
+      source={source ?? defaultPoster}
       className={[styles.posterImage, className].join(' ')}
       {...args}
     />

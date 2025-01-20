@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { type Meta, type StoryObj } from '@storybook/react';
 import React from 'react';
 
 import { imageSourceLoader } from 'app/docs/utilities/uploadToImageSource';
@@ -15,7 +15,7 @@ export default {
     layout: 'fullscreen',
   },
   argTypes: {
-    background: {
+    source: {
       control: { type: 'file' },
     },
     isLoaded: {
@@ -27,7 +27,7 @@ export default {
 
 export const Default = {
   name: 'Default',
-  loaders: [imageSourceLoader('background')],
+  loaders: [imageSourceLoader('source')],
   render: (args, { loaded }) => <BannerImage {...args} {...loaded} />,
 } satisfies StoryObj<typeof BannerImage>;
 
@@ -38,7 +38,7 @@ export const Default = {
  */
 export const WithChildren = {
   name: 'With Children',
-  loaders: [imageSourceLoader('background')],
+  loaders: [imageSourceLoader('source')],
   render: (args, { loaded }) => (
     <BannerImage {...args} {...loaded}>
       <div style={{ color: 'white' }}>This is some text.</div>

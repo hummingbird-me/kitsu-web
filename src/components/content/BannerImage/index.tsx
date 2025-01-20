@@ -1,20 +1,19 @@
 import React from 'react';
 
-import { source as defaultBanner } from 'app/assets/default_banner.jpg?imageSource';
-import Image from 'app/components/content/Image';
-import { ImageSource } from 'app/types/ImageSource';
+import { source as defaultBanner } from '@/assets/default_banner.jpg?imageSource';
+import Image, {
+  type ImageProps,
+  type ImageSource,
+} from '@/components/content/Image';
 
 import styles from './styles.module.css';
 
 export type BannerImageProps = {
-  /** The background image to display. Defaults to a default banner image. */
-  background?: ImageSource | null;
-  /** Overrides the loading state of the image. Usually unnecessary. */
-  isLoaded?: boolean;
-  children?: React.ReactNode;
+  source?: ImageSource | null;
   /** Classes which get applied to the container */
   className?: string;
-};
+  children?: React.ReactNode;
+} & Omit<ImageProps, 'height' | 'width' | 'source'>;
 
 /**
  * Y'know those funny decorative images that show up at the top of a page? Those are banner images.
@@ -25,7 +24,7 @@ export type BannerImageProps = {
  * This is useful for displaying things like avatars, tab bars, etc.
  */
 export default function BannerImage({
-  background,
+  source,
   children,
   isLoaded,
   className,
@@ -33,7 +32,7 @@ export default function BannerImage({
   return (
     <div className={[styles.container, className].join(' ')}>
       <Image
-        source={background ?? defaultBanner}
+        source={source ?? defaultBanner}
         height="100%"
         width="100%"
         isLoaded={isLoaded}

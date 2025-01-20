@@ -23,7 +23,7 @@ export type AvatarProps = {
  * - a circular mask is applied to the image.
  */
 export default function Avatar({
-  source = defaultAvatar,
+  source,
   size,
   className,
   ...props
