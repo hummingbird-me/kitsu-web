@@ -1,39 +1,50 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { AnimeSubtypeEnum, MangaSubtypeEnum } from 'app/graphql/types';
-
 export default function FormattedSubtype({
   subtype,
 }: {
-  subtype: AnimeSubtypeEnum | MangaSubtypeEnum;
-}): JSX.Element {
+  subtype:
+    | 'MOVIE'
+    | 'MUSIC'
+    | 'ONA'
+    | 'OVA'
+    | 'SPECIAL'
+    | 'TV'
+    | 'DOUJIN'
+    | 'MANGA'
+    | 'MANHUA'
+    | 'MANHWA'
+    | 'NOVEL'
+    | 'OEL'
+    | 'ONESHOT';
+}) {
   switch (subtype) {
-    case AnimeSubtypeEnum.Movie:
+    case 'MOVIE':
       return <FormattedMessage defaultMessage="Movie" />;
-    case AnimeSubtypeEnum.Music:
+    case 'MUSIC':
       return <FormattedMessage defaultMessage="Music" />;
-    case AnimeSubtypeEnum.Ona:
+    case 'ONA':
       return <FormattedMessage defaultMessage="ONA" />;
-    case AnimeSubtypeEnum.Ova:
+    case 'OVA':
       return <FormattedMessage defaultMessage="OVA" />;
-    case AnimeSubtypeEnum.Special:
+    case 'SPECIAL':
       return <FormattedMessage defaultMessage="Special" />;
-    case AnimeSubtypeEnum.Tv:
+    case 'TV':
       return <FormattedMessage defaultMessage="TV" />;
-    case MangaSubtypeEnum.Doujin:
+    case 'DOUJIN':
       return <FormattedMessage defaultMessage="Doujin" />;
-    case MangaSubtypeEnum.Manga:
+    case 'MANGA':
       return <FormattedMessage defaultMessage="Manga" />;
-    case MangaSubtypeEnum.Manhua:
+    case 'MANHUA':
       return <FormattedMessage defaultMessage="Manhua" />;
-    case MangaSubtypeEnum.Manhwa:
+    case 'MANHWA':
       return <FormattedMessage defaultMessage="Manhwa" />;
-    case MangaSubtypeEnum.Novel:
+    case 'NOVEL':
       return <FormattedMessage defaultMessage="Novel" />;
-    case MangaSubtypeEnum.Oel:
+    case 'OEL':
       return <FormattedMessage defaultMessage="OEL" />;
-    case MangaSubtypeEnum.Oneshot:
+    case 'ONESHOT':
       return <FormattedMessage defaultMessage="One-shot" />;
   }
 }

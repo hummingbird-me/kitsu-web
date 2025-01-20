@@ -1,23 +1,21 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { ReleaseStatusEnum } from 'app/graphql/types';
-
 export default function FormattedReleaseStatus({
   releaseStatus,
 }: {
-  releaseStatus: ReleaseStatusEnum;
-}): JSX.Element {
+  releaseStatus: 'CURRENT' | 'FINISHED' | 'TBA' | 'UNRELEASED' | 'UPCOMING';
+}) {
   switch (releaseStatus) {
-    case ReleaseStatusEnum.Current:
+    case 'CURRENT':
       return <FormattedMessage defaultMessage="Ongoing" />;
-    case ReleaseStatusEnum.Finished:
+    case 'FINISHED':
       return <FormattedMessage defaultMessage="Finished" />;
-    case ReleaseStatusEnum.Tba:
+    case 'TBA':
       return <FormattedMessage defaultMessage="TBA" />;
-    case ReleaseStatusEnum.Unreleased:
+    case 'UNRELEASED':
       return <FormattedMessage defaultMessage="Unreleased" />;
-    case ReleaseStatusEnum.Upcoming:
+    case 'UPCOMING':
       return <FormattedMessage defaultMessage="Upcoming" />;
   }
 }
