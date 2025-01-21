@@ -1,31 +1,48 @@
 import React from 'react';
 
-import BannerImage from 'app/components/content/BannerImage';
-import PosterImage from 'app/components/content/PosterImage';
-import TabBar from 'app/components/navigation/TabBar';
-import { HeaderSettings } from 'app/contexts/LayoutSettingsContext';
-import utilStyles from 'app/styles/utils.module.css';
-import { ImageSource } from 'app/types/ImageSource';
+import BannerImage from '@/components/content/BannerImage';
+import { ImageFragment } from '@/components/content/Image';
+import PosterImage from '@/components/content/PosterImage';
+import TabBar from '@/components/navigation/TabBar';
+import { HeaderSettings } from '@/contexts/LayoutSettingsContext';
+import { graphql, readFragment, type FragmentOf } from '@/graphql/tada';
+import utilStyles from '@/styles/utils.module.css';
 
-import { BannerFieldsFragment } from './fields-gql';
 import styles from './styles.module.css';
 
-function MediaBanner({
-  media,
-  children,
-}: {
-  media?: BannerFieldsFragment;
+export const MediaBannerFragment = graphql(
+  `
+    fragment MediaBannerFragment on Media @_unmask {
+      slug
+      bannerImage {
+        ...ImageFragment
+      }
+      posterImage {
+        ...ImageFragment
+      }
+      titles {
+        preferred
+      }
+    }
+  `,
+  [ImageFragment],
+);
+
+export type MediaBannerProps = {
+  media?: FragmentOf<typeof MediaBannerFragment>;
   children?: React.ReactNode;
-}): JSX.Element | null {
-  if (!media) return null;
+};
+
+function MediaBanner(props: MediaBannerProps): JSX.Element | null {
+  const media = readFragment(MediaBannerFragment, props.media);
 
   return (
     <>
       <HeaderSettings background="transparent" scrollBackground="opaque" />
 
-      <BannerImage background={media?.bannerImage} className={styles.banner}>
+      <BannerImage source={media?.bannerImage} className={styles.banner}>
         <div className={[utilStyles.container, styles.container].join(' ')}>
-          {children}
+          {props.children}
         </div>
       </BannerImage>
     </>
