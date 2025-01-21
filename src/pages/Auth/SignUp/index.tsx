@@ -8,13 +8,13 @@ import {
 } from 'react-icons/fa';
 import * as yup from 'yup';
 
-import Rule from 'app/components/Rule';
 import Button, {
   ButtonColor,
   ButtonKind,
   ButtonPreset,
 } from 'app/components/controls/Button';
 import TextInput from 'app/components/controls/TextInput';
+import Rule from 'app/components/Rule';
 
 import { useAuthModalContext } from '../Layout';
 import styles from './styles.module.css';
@@ -29,12 +29,12 @@ const schema = yup
       .test(
         'passwords-match',
         'Passwords must match',
-        (value, ctx) => ctx.parent.password === value
+        (value, ctx) => ctx.parent.password === value,
       ),
   })
   .required();
 
-export default function SignUpModal(): JSX.Element {
+export default function SignUpModal() {
   const { email: defaultEmail, setEmail } = useAuthModalContext();
   const {
     register,

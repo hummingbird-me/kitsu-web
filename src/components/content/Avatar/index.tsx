@@ -27,7 +27,7 @@ export default function Avatar({
   size,
   className,
   ...props
-}: AvatarProps): JSX.Element {
+}: AvatarProps) {
   if (!source) source = defaultAvatar;
 
   return (

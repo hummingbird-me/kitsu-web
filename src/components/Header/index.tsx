@@ -6,8 +6,8 @@ import { useIntersection } from 'react-use';
 
 import SearchIcon from 'app/assets/icons/search.svg?react';
 import Logo from 'app/assets/logo.svg?react';
-import ModalLink from 'app/components/ModalLink';
 import Spinner from 'app/components/feedback/Spinner';
+import ModalLink from 'app/components/ModalLink';
 import { useSession } from 'app/contexts/SessionContext';
 import utilStyles from 'app/styles/utils.module.css';
 
@@ -24,7 +24,7 @@ export type HeaderProps = {
 export default function Header({
   background = 'opaque',
   scrollBackground = 'opaque',
-}: HeaderProps): JSX.Element {
+}: HeaderProps) {
   // We don't expect to have this multiple times per page but we should still be careful
   const [searchId] = useState(() => uniqueId('header-search-'));
   const { session } = useSession();
@@ -104,7 +104,7 @@ export default function Header({
               <Suspense fallback={<Spinner />}>
                 <a
                   className={[styles.circular, styles.notificationCount].join(
-                    ' '
+                    ' ',
                   )}>
                   3
                 </a>

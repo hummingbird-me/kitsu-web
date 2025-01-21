@@ -15,11 +15,7 @@ import enUS from 'app/locales/bundles/en-US/header';
 
 const main = await enUS.bundles.main();
 
-const Provider = function ({
-  children,
-}: {
-  children: React.ReactNode;
-}): JSX.Element {
+const Provider = function ({ children }: { children: React.ReactNode }) {
   return (
     <LocaleContext.Provider
       value={{

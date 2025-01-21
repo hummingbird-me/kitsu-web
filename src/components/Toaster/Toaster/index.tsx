@@ -5,7 +5,7 @@ import utilStyles from 'app/styles/utils.module.css';
 import { useToaster } from '../Context';
 import styles from './styles.module.css';
 
-export default function Toaster(): JSX.Element {
+export default function Toaster() {
   const { items, remove } = useToaster();
 
   const toasterItems = items.map(({ item, id }) => {

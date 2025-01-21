@@ -11,7 +11,7 @@ const ErrorLayout: React.FC<{
   title: React.ReactNode;
   subtitle: React.ReactNode;
   search: boolean;
-}> = function ({ illustration, title, subtitle, search }): JSX.Element {
+}> = function ({ illustration, title, subtitle, search }) {
   return (
     <Page loading={false}>
       <HeaderSettings background="opaque" />

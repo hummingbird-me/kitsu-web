@@ -1,19 +1,19 @@
 import React from 'react';
 import {
-  To as _To,
   Link as _Link,
-  LinkProps as _LinkProps,
   NavLink as _NavLink,
-  NavLinkProps as _NavLinkProps,
+  type LinkProps as _LinkProps,
+  type NavLinkProps as _NavLinkProps,
+  type To as _To,
 } from 'react-router-dom';
 
-import { Path, PathTree, PATH_TREE_BASE } from 'app/utils/routes';
+import { Path, PATH_TREE_BASE, type PathTree } from 'app/utils/routes';
 
 export type To = _To | Path | PathTree;
 
 /**
  * Converts our own "To" type into the react-router-dom "To" type. Has a funny name.
- * 
+ *
  * @param path The path to convert.
  * @returns The converted path.
  */
@@ -27,15 +27,16 @@ function toToTo(path: To): _To {
 
 export type LinkProps = Omit<_LinkProps, 'to'> & { to: To };
 
-export function Link({ to, ...args }: LinkProps): JSX.Element {
+export function Link({ to, ...args }: LinkProps) {
   return <_Link to={toToTo(to)} {...args} />;
 }
 
 export type NavLinkProps = Omit<_NavLinkProps, 'to'> & { to: To };
 
-export function NavLink({ to, ...args }: NavLinkProps): JSX.Element {
+export function NavLink({ to, ...args }: NavLinkProps) {
   // Handle PathTree objects by checking for _base
-  if (typeof to !== 'string' && PATH_TREE_BASE in to && to[PATH_TREE_BASE]) to = to[PATH_TREE_BASE];
+  if (typeof to !== 'string' && PATH_TREE_BASE in to && to[PATH_TREE_BASE])
+    to = to[PATH_TREE_BASE];
   if (to instanceof Path) to = to.toString();
 
   return <_NavLink to={toToTo(to)} end {...args} />;

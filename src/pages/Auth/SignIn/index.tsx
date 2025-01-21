@@ -42,7 +42,7 @@ function useFormatErrorMessage(formatMessage: IntlShape['formatMessage']) {
   };
 }
 
-const SignInModal: React.FC = function (): JSX.Element {
+const SignInModal: React.FC = function () {
   const { email: defaultEmail, setEmail } = useAuthModalContext();
   const { formatMessage } = useIntl();
   const { setSession } = useContext(SessionContext);

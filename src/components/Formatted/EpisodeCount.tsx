@@ -5,7 +5,7 @@ export default function FormattedEpisodeCount({
   episodeCount,
 }: {
   episodeCount: number;
-}): JSX.Element {
+}) {
   return (
     <FormattedMessage
       defaultMessage="{count, plural, one {# Episode} other {# Episodes}}"

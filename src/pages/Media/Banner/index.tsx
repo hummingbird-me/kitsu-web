@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type ComponentProps } from 'react';
 
 import BannerImage from '@/components/content/BannerImage';
 import { ImageFragment } from '@/components/content/Image';
@@ -33,7 +33,7 @@ export type MediaBannerProps = {
   children?: React.ReactNode;
 };
 
-function MediaBanner(props: MediaBannerProps): JSX.Element | null {
+function MediaBanner(props: MediaBannerProps) | null {
   const media = readFragment(MediaBannerFragment, props.media);
 
   return (
@@ -53,7 +53,7 @@ MediaBanner.Title = function MediaBannerTitle({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
+}) {
   return <h1 className={styles.title}>{children}</h1>;
 };
 
@@ -61,7 +61,7 @@ MediaBanner.Subtitle = function MediaBannerSubtitle({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
+}) {
   return <span className={styles.subtitle}>{children}</span>;
 };
 
@@ -69,15 +69,13 @@ MediaBanner.TabBar = function MediaBannerTabBar({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
+}) {
   return <TabBar className={styles.nav}>{children}</TabBar>;
 };
 
 MediaBanner.PosterImage = function MediaBannerPosterImage({
   source,
-}: {
-  source?: ImageSource;
-}) {
+}: Omit<ComponentProps<typeof PosterImage>, 'height' | 'width'>) {
   return <PosterImage source={source} className={styles.poster} width={180} />;
 };
 

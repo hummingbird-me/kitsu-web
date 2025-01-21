@@ -29,7 +29,7 @@ export default function Spinner({
   className?: string;
   style?: React.CSSProperties;
   size?: React.SVGAttributes<SVGElement>['height'];
-}): JSX.Element {
+}) {
   return (
     <SpinnerImage
       style={style}

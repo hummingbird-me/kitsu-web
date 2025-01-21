@@ -20,7 +20,7 @@ export default function Checkbox({
   onChange,
   label,
   disabled,
-}: CheckboxProps): JSX.Element {
+}: CheckboxProps) {
   const checkboxRef = useRef<HTMLInputElement>(null);
   const onCheckboxChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +33,7 @@ export default function Checkbox({
         onChange(CheckboxState.UNCHECKED);
       }
     },
-    [onChange]
+    [onChange],
   );
 
   useEffect(() => {

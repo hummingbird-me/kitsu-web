@@ -6,7 +6,7 @@ import ErrorPage from 'app/layouts/Error';
 
 import styles from './styles.module.css';
 
-export default function NotFoundPage(): JSX.Element {
+export default function NotFoundPage() {
   return (
     <ErrorPage
       title={<FormattedMessage defaultMessage="Uh oh!" />}

@@ -10,10 +10,7 @@ type DescriptionProps = {
   className?: string;
 };
 
-export function Description({
-  text,
-  className,
-}: DescriptionProps): JSX.Element {
+export function Description({ text, className }: DescriptionProps) {
   // @TODO: Clean up the data in the database instead.
   const source = text.match(SOURCE_REGEX)?.[1];
   text = text.replace(SOURCE_REGEX, '');

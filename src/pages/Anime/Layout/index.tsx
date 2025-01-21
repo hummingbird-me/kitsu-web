@@ -5,7 +5,7 @@ import LibraryBox from 'app/pages/Media/LibraryBox';
 import utilStyles from 'app/styles/utils.module.css';
 
 import { AnimeBanner } from '../Banner';
-import { AnimeLayoutFieldsFragment } from './fields-gql';
+import { type AnimeLayoutFieldsFragment } from './fields-gql';
 import styles from './styles.module.css';
 
 export default function AnimeLayout({
@@ -14,7 +14,7 @@ export default function AnimeLayout({
 }: {
   media: AnimeLayoutFieldsFragment;
   children: React.ReactNode;
-}): JSX.Element {
+}) {
   return (
     <div className={styles.page}>
       <AnimeBanner anime={media} />

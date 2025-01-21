@@ -13,7 +13,7 @@ export default function UrqlContext({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
+}) {
   const { locale } = useLocale();
   const sessionContext = useContext(SessionContext);
   if (!sessionContext) throw new InvariantViolated('SessionContext is missing');

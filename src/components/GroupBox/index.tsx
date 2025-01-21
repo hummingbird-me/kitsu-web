@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link, To as LinkTo } from 'app/components/content/Link';
+import { Link, type To as LinkTo } from 'app/components/content/Link';
 
 import styles from './styles.module.css';
 
@@ -19,7 +19,7 @@ export default function GroupBox({
   title,
   className,
   detailsLink,
-}: GroupBoxProps): JSX.Element {
+}: GroupBoxProps) {
   return (
     <div className={styles.groupBox}>
       <div className={styles.groupBoxTitle}>

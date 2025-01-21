@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import illustration from 'app/assets/illustrations/not-found.svg?url';
 import ErrorPage from 'app/layouts/Error';
 
-export default function NotFoundPage(): JSX.Element {
+export default function NotFoundPage() {
   return (
     <ErrorPage
       title={<FormattedMessage defaultMessage="Uh oh, you're lost!" />}

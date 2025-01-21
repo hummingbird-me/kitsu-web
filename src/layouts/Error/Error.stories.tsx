@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { withDesign } from '@storybook/addon-designs';
+import { type Meta, type StoryObj } from '@storybook/react';
 import React from 'react';
-import { withDesign } from 'storybook-addon-designs';
 
 import illustrationSrc from 'app/assets/illustrations/not-found.svg';
 

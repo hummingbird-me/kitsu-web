@@ -21,12 +21,7 @@ export type TagProps = {
   onClick?: React.MouseEventHandler<HTMLElement>;
 };
 
-export default function Tag({
-  children,
-  color,
-  onRemove,
-  onClick,
-}: TagProps): JSX.Element {
+export default function Tag({ children, color, onRemove, onClick }: TagProps) {
   return (
     <span
       className={[

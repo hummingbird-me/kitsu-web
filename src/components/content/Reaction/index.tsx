@@ -96,7 +96,7 @@ function ReactionLikeButton({
   hasLiked: boolean;
   likesCount: number;
   id: string;
-}): JSX.Element {
+}) {
   const [, likeReaction] = useLikeMutation(id);
   const [, unlikeReaction] = useUnlikeMutation(id);
 
@@ -122,7 +122,7 @@ export type ReactionCardProps = {
  *
  * Reaction cards are a simple grid layout, and scale smoothly with no breakpoints.
  */
-export default function ReactionCard(props: ReactionCardProps): JSX.Element {
+export default function ReactionCard(props: ReactionCardProps) {
   const reaction = readFragment(ReactionCardFragment, props.reaction);
 
   return (
