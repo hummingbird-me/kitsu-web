@@ -5,25 +5,37 @@ import {
   FormattedEpisodeCount,
   FormattedReleaseStatus,
   FormattedSubtype,
-} from 'app/components/Formatted';
-import TabBar from 'app/components/navigation/TabBar';
-import MediaBanner from 'app/pages/Media/Banner';
-import { paths } from 'app/pages/routes';
+} from '@/components/Formatted';
+import TabBar from '@/components/navigation/TabBar';
+import { graphql, readFragment, type FragmentOf } from '@/graphql/tada';
+import MediaBanner, { MediaBannerFragment } from '@/pages/Media/Banner';
+import { paths } from '@/pages/routes';
 
-import { AnimeBannerFieldsFragment } from './fields-gql';
+export const AnimeBannerFragment = graphql(
+  `
+    fragment AnimeBannerFragment on Anime {
+      ...MediaBannerFragment
+      status
+      startDate
+      subtype
+      episodeCount
+    }
+  `,
+  [MediaBannerFragment],
+);
 
-function AnimeFactoids({
-  anime,
-}: {
-  anime: AnimeBannerFieldsFragment;
-}): JSX.Element {
-  const startDate = anime.startDate && (
-    <FormattedDate value={anime.startDate} year="numeric" key="startDate" />
-  );
+export type AnimeBannerProps = {
+  anime: FragmentOf<typeof AnimeBannerFragment>;
+};
+
+function AnimeFactoids(props: AnimeBannerProps) {
+  const anime = readFragment(AnimeBannerFragment, props.anime);
 
   const factoids = [
     <FormattedSubtype subtype={anime.subtype} key="subtype" />,
-    startDate,
+    anime.startDate && (
+      <FormattedDate value={anime.startDate} year="numeric" key="startDate" />
+    ),
     <FormattedReleaseStatus releaseStatus={anime.status} key="releaseStatus" />,
     'episodeCount' in anime && anime.episodeCount && (
       <FormattedEpisodeCount
@@ -42,7 +54,8 @@ function AnimeFactoids({
   );
 }
 
-export function AnimeBanner({ anime }: { anime: AnimeBannerFieldsFragment }) {
+export function AnimeBanner(props: AnimeBannerProps) {
+  const anime = readFragment(AnimeBannerFragment, props.anime);
   const route = paths.anime(anime.slug);
 
   return (
@@ -50,7 +63,7 @@ export function AnimeBanner({ anime }: { anime: AnimeBannerFieldsFragment }) {
       <MediaBanner.PosterImage source={anime.posterImage} />
       <MediaBanner.Title>{anime.titles?.preferred}</MediaBanner.Title>
       <MediaBanner.Subtitle>
-        <AnimeFactoids anime={anime} />
+        <AnimeFactoids anime={props.anime} />
       </MediaBanner.Subtitle>
       <MediaBanner.TabBar>
         <TabBar.LinkItem to={route}>

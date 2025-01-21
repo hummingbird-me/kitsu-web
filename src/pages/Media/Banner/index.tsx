@@ -33,7 +33,7 @@ export type MediaBannerProps = {
   children?: React.ReactNode;
 };
 
-function MediaBanner(props: MediaBannerProps) | null {
+function MediaBanner(props: MediaBannerProps) {
   const media = readFragment(MediaBannerFragment, props.media);
 
   return (
