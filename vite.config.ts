@@ -6,7 +6,7 @@ import {
   formatjsCompilePlugin,
   formatjsTransformPlugin,
 } from 'rollup-plugin-formatjs';
-import { defineConfig, splitVendorChunkPlugin, type BuildOptions } from 'vite';
+import { defineConfig, type BuildOptions } from 'vite';
 import svgr from 'vite-plugin-svgr';
 
 import { imageMetadataPlugin } from './rollup/imageMetadataPlugin';
@@ -72,7 +72,6 @@ export default defineConfig(({ mode }) => ({
     },
   },
   plugins: [
-    splitVendorChunkPlugin(),
     formatjsTransformPlugin(),
     formatjsCompilePlugin({
       include: 'src/locales/translations/*.json',
