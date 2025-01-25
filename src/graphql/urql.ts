@@ -13,7 +13,7 @@ export function useQuery<
   suspense = true,
   context: baseContext,
   ...args
-}: UseQueryArgs<Variables, Data> & { suspense: boolean }): UseQueryResponse<
+}: UseQueryArgs<Variables, Data> & { suspense?: boolean }): UseQueryResponse<
   Data,
   Variables
 > {

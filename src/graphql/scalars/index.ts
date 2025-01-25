@@ -10,6 +10,8 @@ export type Scalars = {
   [Property in keyof typeof scalars]: NonNullable<
     ReturnType<(typeof scalars)[Property]>
   >;
+} & {
+  Map: Record<string, string>;
 };
 
 export default scalars;
