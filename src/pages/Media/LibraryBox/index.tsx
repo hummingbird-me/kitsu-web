@@ -5,16 +5,31 @@ import Button, {
   ButtonColor,
   ButtonKind,
   ButtonSize,
-} from 'app/components/controls/Button';
-import GroupBox from 'app/components/GroupBox';
-import { MediaTypeEnum } from 'app/graphql/types';
+} from '@/components/controls/Button';
+import GroupBox from '@/components/GroupBox';
+import { graphql, readFragment, type FragmentOf } from '@/graphql/tada';
 
-import { LibraryBoxFieldsFragment } from './fields-gql';
 import styles from './styles.module.css';
 
-type LibraryBoxParams = { media: LibraryBoxFieldsFragment };
+export const LibraryBoxFragment = graphql(`
+  fragment LibraryBoxFragment on Media {
+    type
+    id
+    myLibraryEntry {
+      id
+      status
+      progress
+      rating
+      reconsumeCount
+      reconsuming
+    }
+  }
+`);
 
-function AddToLibraryBox({ media }: LibraryBoxParams): JSX.Element {
+export type LibraryBoxParams = { media: FragmentOf<typeof LibraryBoxFragment> };
+
+function AddToLibraryBox(props: LibraryBoxParams) {
+  const media = readFragment(LibraryBoxFragment, props.media);
   const { formatMessage } = useIntl();
 
   return (
@@ -39,7 +54,7 @@ function AddToLibraryBox({ media }: LibraryBoxParams): JSX.Element {
         size={ButtonSize.MEDIUM}
         color={ButtonColor.BLUE}
         className={styles.libraryButton}>
-        {media.type === MediaTypeEnum.Anime ? (
+        {media.type === 'ANIME' ? (
           <FormattedMessage
             defaultMessage="Want to Watch"
             description="Action button to mark show as want to watch"
@@ -56,7 +71,7 @@ function AddToLibraryBox({ media }: LibraryBoxParams): JSX.Element {
         size={ButtonSize.MEDIUM}
         color={ButtonColor.PURPLE}
         className={styles.libraryButton}>
-        {media.type === MediaTypeEnum.Anime ? (
+        {media.type === 'ANIME' ? (
           <FormattedMessage
             defaultMessage="Started Watching"
             description="Action button to mark show as started"
@@ -72,7 +87,8 @@ function AddToLibraryBox({ media }: LibraryBoxParams): JSX.Element {
   );
 }
 
-function EditLibraryBox({ media }: LibraryBoxParams) {
+function EditLibraryBox(props: LibraryBoxParams) {
+  const media = readFragment(LibraryBoxFragment, props.media);
   const { formatMessage } = useIntl();
 
   return (
@@ -82,7 +98,10 @@ function EditLibraryBox({ media }: LibraryBoxParams) {
         description: 'Header for library entry edit sidebar',
       })}
       className={styles.libraryGroupBox}>
-      <Button kind={ButtonKind.PRIMARY} size={ButtonSize.SMALL}>
+      <Button
+        kind={ButtonKind.SOLID}
+        size={ButtonSize.SMALL}
+        color={ButtonColor.GREEN}>
         <FormattedMessage
           defaultMessage="Completed"
           description="Action button to mark show as seen"
@@ -92,10 +111,12 @@ function EditLibraryBox({ media }: LibraryBoxParams) {
   );
 }
 
-export default function LibraryBox({ media }: LibraryBoxParams): JSX.Element {
+export default function LibraryBox(props: LibraryBoxParams) {
+  const media = readFragment(LibraryBoxFragment, props.media);
+
   if (!media.myLibraryEntry) {
-    return <AddToLibraryBox media={media} />;
+    return <AddToLibraryBox {...props} />;
   } else {
-    return <EditLibraryBox media={media} />;
+    return <EditLibraryBox {...props} />;
   }
 }

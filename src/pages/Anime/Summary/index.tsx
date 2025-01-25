@@ -1,23 +1,68 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import invariant from 'tiny-invariant';
+import { useQuery } from 'urql';
 
-import CategoryList from 'app/components/content/CategoryList';
-import { Description } from 'app/components/content/Description';
-import Reaction from 'app/components/content/Reaction';
-import Section from 'app/components/Section';
-import Card from 'app/components/surfaces/Card';
-import { useLocale } from 'app/contexts/IntlContext';
-import AnimeLayout from 'app/pages/Anime/Layout';
+import CategoryList from '@/components/content/CategoryList';
+import { Description } from '@/components/content/Description';
+import Reaction, { ReactionCardFragment } from '@/components/content/Reaction';
+import Section from '@/components/Section';
+import Card from '@/components/surfaces/Card';
+import { useLocale } from '@/contexts/IntlContext';
+import { graphql } from '@/graphql/tada';
+import AnimeLayout, { AnimeLayoutFragment } from '@/pages/Anime/Layout';
 
-import { useFindAnimeBySlugQuery } from './findAnimeBySlug-gql';
 import styles from './styles.module.css';
 
-export default function AnimeSummaryPage(): JSX.Element | null {
+export const AnimeSummaryPageQuery = graphql(
+  `
+    query findAnimeBySlug($slug: String!) {
+      findAnime: findAnimeBySlug(slug: $slug) {
+        ...AnimeLayoutFragment
+        slug
+        description
+        categories(first: 50, sort: [{ on: ANCESTRY, direction: ASCENDING }]) {
+          nodes {
+            id
+            slug
+            title
+            root {
+              id
+              slug
+            }
+            parent {
+              id
+              slug
+            }
+          }
+        }
+        reactions(
+          sort: [
+            { on: UP_VOTES_COUNT, direction: DESCENDING }
+            { on: CREATED_AT, direction: DESCENDING }
+          ]
+          first: 6
+        ) {
+          nodes {
+            id
+            ...ReactionCardFragment
+          }
+        }
+      }
+    }
+  `,
+  [ReactionCardFragment, AnimeLayoutFragment],
+);
+
+export default function AnimeSummaryPage() {
   const { locale } = useLocale();
   const { slug } = useParams<'slug'>();
   invariant(slug, 'Missing slug on AnimeSummary');
-  const results = useFindAnimeBySlugQuery({ variables: { slug, locale } });
+
+  const results = useQuery({
+    query: AnimeSummaryPageQuery,
+    variables: { slug, locale },
+  });
 
   if (!results[0].data?.findAnime) return null;
 

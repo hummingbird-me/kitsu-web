@@ -1,12 +1,27 @@
 import React from 'react';
 
-import CategoryTag from 'app/components/content/CategoryTag';
+import CategoryTag, {
+  CategoryTagFragment,
+} from '@/components/content/CategoryTag';
+import { graphql } from '@/graphql';
 
-import { CategoryListFieldsFragment } from './categoryListFields-gql';
 import styles from './styles.module.css';
 
+export const CategoryListFragment = graphql(
+  `
+    fragment CategoryListFragment on Media {
+      categories(first: 50, sort: [{ on: ANCESTRY, direction: ASCENDING }]) {
+        nodes {
+          ...CategoryTagFragment
+        }
+      }
+    }
+  `,
+  [CategoryTagFragment],
+);
+
 const CategoryList: React.FC<{
-  categories: CategoryListFieldsFragment['categories'];
+  categories: (typeof CategoryListFragment)['categories'];
 }> = function ({ categories }) {
   return (
     <div className={styles.tagList}>
@@ -16,7 +31,7 @@ const CategoryList: React.FC<{
             <CategoryTag key={category.slug} category={category}>
               {category.title['en']}
             </CategoryTag>
-          )
+          ),
       )}
     </div>
   );

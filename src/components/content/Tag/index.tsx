@@ -3,16 +3,15 @@ import { BsX } from 'react-icons/bs';
 
 import styles from './styles.module.css';
 
-export enum TagColor {
-  RED = 'red',
-  PINK = 'pink',
-  YELLOW = 'yellow',
-  GREEN = 'green',
-  BLUE = 'blue',
-  PURPLE = 'purple',
-  KITSU_PURPLE = 'kitsuPurple',
-  GREY = 'grey',
-}
+export type TagColor =
+  | 'red'
+  | 'pink'
+  | 'yellow'
+  | 'green'
+  | 'blue'
+  | 'purple'
+  | 'kitsuPurple'
+  | 'grey';
 
 export type TagProps = {
   children: string;

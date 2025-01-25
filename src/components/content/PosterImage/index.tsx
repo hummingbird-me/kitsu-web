@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { source as defaultPoster } from 'app/assets/default_poster.jpg?imageSource';
+import { source as defaultPoster } from '@/assets/default_poster.jpg?imageSource';
 
 import Image, { type ImageProps, type ImageSource } from '../Image';
 import styles from './styles.module.css';
