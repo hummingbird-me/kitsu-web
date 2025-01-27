@@ -1,0 +1,38 @@
+.Container {
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  border: none;
+  background: var(--header-search-background);
+  margin-block: 8px;
+  align-self: stretch;
+  color: var(--header-search-text-color);
+
+  @media (--medium) {
+    & {
+      inline-size: 200px;
+    }
+  }
+}
+
+.Icon {
+  height: 19px;
+  display: block;
+}
+
+.Input {
+  appearance: none;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: var(--font-sm);
+  font-weight: var(--font-semi-bold);
+  text-overflow: ellipsis;
+
+  &::placeholder {
+    opacity: 0.8;
+  }
+}

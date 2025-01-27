@@ -1,0 +1,32 @@
+.ScrollMonitor {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  block-size: 1px;
+  inline-size: 100vw;
+  pointer-events: none;
+}
+
+.Background {
+  z-index: var(--layer-overlay);
+  color: var(--header-text-color);
+  font-size: var(--font-me);
+  inline-size: 100vi;
+  display: flex;
+  font-family: var(--font-family-headings);
+  background-color: transparent;
+  position: fixed;
+  transition:
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+}
+
+.opaque {
+  border-block-end: 1px solid var(--header-secondary-background);
+  background-color: var(--header-primary-background);
+}
+
+.transparent {
+  border-block-end: 1px solid transparent;
+  background-color: transparent;
+}
