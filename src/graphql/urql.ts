@@ -1,6 +1,7 @@
 import { type AnyVariables } from '@urql/core';
 import { useMemo } from 'react';
 import {
+  useMutation as urql_useMutation,
   useQuery as urql_useQuery,
   type UseQueryArgs,
   type UseQueryResponse,
@@ -23,3 +24,5 @@ export function useQuery<
   );
   return urql_useQuery({ ...args, context } as UseQueryArgs<Variables, Data>);
 }
+
+export const useMutation = urql_useMutation;
