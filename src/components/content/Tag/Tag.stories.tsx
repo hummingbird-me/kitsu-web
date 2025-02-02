@@ -1,7 +1,7 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { type Meta, type StoryObj } from '@storybook/react';
 import React from 'react';
 
-import Tag, { TagColor } from './index';
+import Tag from './index';
 
 export default {
   title: 'Content/Tag',
@@ -19,7 +19,7 @@ export const Default = {
   name: 'Default',
   args: {
     children: 'Basic Tag',
-    color: TagColor.PURPLE,
+    color: 'purple',
     onClick: undefined,
     onRemove: undefined,
   },
@@ -30,7 +30,7 @@ export const Clickable = {
   name: 'Clickable',
   args: {
     children: 'Clickable Tag',
-    color: TagColor.YELLOW,
+    color: 'yellow',
     onRemove: undefined,
   },
   render: Tag,
@@ -40,7 +40,7 @@ export const Removable = {
   name: 'Removable',
   args: {
     children: 'Removable Tag',
-    color: TagColor.GREEN,
+    color: 'green',
     onClick: undefined,
   },
   render: Tag,

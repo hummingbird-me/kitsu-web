@@ -2,6 +2,7 @@ import * as Docs from '@storybook/blocks';
 import React from 'react';
 import { HashRouter } from 'react-router-dom';
 
+import { SessionContextProvider } from '@/contexts/SessionContext';
 import { ToasterContextProvider } from 'app/components/Toaster/Context';
 import IntlProvider from 'app/contexts/IntlContext';
 import { LayoutSettingsContextProvider } from 'app/contexts/LayoutSettingsContext';
@@ -135,13 +136,15 @@ export const decorators = [
       <React.Suspense fallback={null}>
         <LayoutSettingsContextProvider>
           <HashRouter>
-            <IntlProvider locale={locale}>
-              <UrqlContextProvider>
-                <ToasterContextProvider>
-                  <Story />
-                </ToasterContextProvider>
-              </UrqlContextProvider>
-            </IntlProvider>
+            <SessionContextProvider>
+              <IntlProvider locale={locale}>
+                <UrqlContextProvider>
+                  <ToasterContextProvider>
+                    <Story />
+                  </ToasterContextProvider>
+                </UrqlContextProvider>
+              </IntlProvider>
+            </SessionContextProvider>
           </HashRouter>
         </LayoutSettingsContextProvider>
       </React.Suspense>
