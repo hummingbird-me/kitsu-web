@@ -1,0 +1,42 @@
+.HeldItemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.HeldItemCard {
+  container-type: inline-size;
+  padding: 0.5rem;
+  display: grid;
+  grid-auto-rows: 1fr;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: max-content 1fr max-content;
+  grid-template-areas:
+    'byline byline byline'
+    'content content content'
+    'deleteBtn banBtn unholdBtn';
+  justify-content: stretch;
+  justify-items: stretch;
+}
+
+.Byline {
+  grid-area: byline;
+}
+
+.Content {
+  grid-area: content;
+}
+
+.DeleteButton {
+  grid-area: deleteBtn;
+}
+
+.BanButton {
+  grid-area: banBtn;
+}
+
+.UnholdButton {
+  grid-area: unholdBtn;
+}
