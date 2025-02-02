@@ -6,7 +6,9 @@ import {
 } from 'graphql';
 
 // Load the types and convert them into a map of name to type
-import schema from '@/graphql/schema.urql.json';
+// @todo This should be using the smaller urql schema but it calls all scalars "Any" so we can't use it
+// We should fix that!
+import schema from '@/graphql/schema.tada.json';
 
 import scalars from './index';
 
