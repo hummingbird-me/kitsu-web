@@ -25,6 +25,8 @@ function Logo({ className }: { className?: string }) {
   );
 }
 
+// TODO: Revisit this when CSS Anchor positioning is available, see if we can
+// switch to NavigationMenu for better accessibility and sleeker animations.
 export default function Header({
   background = 'opaque',
   scrollBackground = 'opaque',
