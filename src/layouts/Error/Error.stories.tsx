@@ -1,4 +1,3 @@
-import { withDesign } from '@storybook/addon-designs';
 import { type Meta, type StoryObj } from '@storybook/react';
 import React from 'react';
 
@@ -16,7 +15,6 @@ export default {
       url: 'https://www.figma.com/file/7KLXsWEmbIbkNy9CnFA0Ke/Kitsu-Web-V4?node-id=423%3A996',
     },
   },
-  decorators: [withDesign],
 } as Meta<typeof ErrorPage>;
 
 export const Basic: StoryObj<typeof ErrorPage> = {
