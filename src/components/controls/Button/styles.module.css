@@ -1,9 +1,8 @@
-.button {
-  gap: 8px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.Button {
+  display: grid;
+  grid-template-areas: 'content';
   justify-content: center;
+  align-items: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition-property: background-color, color, outline-width, box-shadow;
@@ -17,6 +16,30 @@
   &:focus {
     outline: var(--focus-outline);
   }
+
+  & > .Content,
+  & > .Spinner {
+    transition: opacity 100ms ease-in-out;
+  }
+
+  & > .Content {
+    opacity: 1;
+  }
+
+  & > .Spinner {
+    opacity: 0;
+  }
+}
+
+.Content {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.Spinner,
+.Content {
+  grid-area: 1 / 1 / -1 / -1;
 }
 
 /*** Button Kinds ***/
@@ -449,14 +472,14 @@
 
 .medium {
   padding-block: 0.55rem;
-  padding-inline: 3rem;
+  padding-inline: 1rem;
   font-size: var(--font-sm);
   border-radius: 5px;
 }
 
 .large {
   padding-block: 1rem;
-  padding-inline: 4rem;
+  padding-inline: 1rem;
   font-size: var(--font-la);
   border-radius: 8px;
 }
@@ -467,8 +490,18 @@
   pointer-events: none;
 }
 
-.button.disabled,
-.button:disabled {
+.Button.loading {
+  & > .Content {
+    opacity: 0;
+  }
+
+  & > .Spinner {
+    opacity: 1;
+  }
+}
+
+.Button.disabled,
+.Button:disabled {
   cursor: not-allowed;
   opacity: 0.75;
   filter: saturate(50%);
