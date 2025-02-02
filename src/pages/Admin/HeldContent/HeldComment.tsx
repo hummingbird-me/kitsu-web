@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BsEyeFill, BsTrashFill } from 'react-icons/bs';
 
 import Avatar from '@/components/content/Avatar';
@@ -75,9 +75,14 @@ type HeldCommentProps = {
 
 export default function HeldComment(props: HeldCommentProps) {
   const comment = readFragment(HeldCommentFragment, props.comment);
+  const [success, setSuccess] = useState(false);
 
   return (
-    <Card className={styles.HeldItemCard}>
+    <Card
+      className={[styles.HeldItemCard, success ? styles.Success : null].join(
+        ' ',
+      )}>
+      {' '}
       <Byline.Container className={styles.Byline}>
         <Byline.Avatar>
           <a
@@ -113,6 +118,7 @@ export default function HeldComment(props: HeldCommentProps) {
           if (result.error || result.data?.comment.delete?.errors?.length)
             return 'Failed';
         }}
+        onSuccess={() => setSuccess(true)}
         size="medium"
         kind="solid"
         color="red"
@@ -135,6 +141,7 @@ export default function HeldComment(props: HeldCommentProps) {
           if (result.error || result.data?.comment.unhold?.errors?.length)
             return 'Failed';
         }}
+        onSuccess={() => setSuccess(true)}
         size="medium"
         kind="solid"
         color="green"

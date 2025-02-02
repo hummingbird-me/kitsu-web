@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BsEyeFill, BsTrashFill } from 'react-icons/bs';
 
 import Avatar from '@/components/content/Avatar';
@@ -75,9 +75,13 @@ type HeldMediaReactionProps = {
 
 export default function HeldMediaReaction(props: HeldMediaReactionProps) {
   const reaction = readFragment(HeldMediaReactionFragment, props.reaction);
+  const [success, setSuccess] = useState(false);
 
   return (
-    <Card className={styles.HeldItemCard}>
+    <Card
+      className={[styles.HeldItemCard, success ? styles.Success : null].join(
+        ' ',
+      )}>
       <Byline.Container className={styles.Byline}>
         <Byline.Avatar>
           <a
@@ -113,6 +117,7 @@ export default function HeldMediaReaction(props: HeldMediaReactionProps) {
           if (result.error || result.data?.mediaReaction.delete?.errors?.length)
             return 'Failed';
         }}
+        onSuccess={() => setSuccess(true)}
         size="medium"
         kind="solid"
         color="red"
@@ -135,6 +140,7 @@ export default function HeldMediaReaction(props: HeldMediaReactionProps) {
           if (result.error || result.data?.mediaReaction.unhold?.errors?.length)
             return 'Failed';
         }}
+        onSuccess={() => setSuccess(true)}
         size="medium"
         kind="solid"
         color="green"
