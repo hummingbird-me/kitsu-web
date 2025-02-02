@@ -110,7 +110,7 @@ export default function HeldMediaReaction(props: HeldMediaReactionProps) {
         mutation={DeleteMediaReactionMutation}
         variables={{ id: reaction.id }}
         didError={(result) => {
-          if (result.error || result.data?.mediaReaction.delete?.errors)
+          if (result.error || result.data?.mediaReaction.delete?.errors?.length)
             return 'Failed';
         }}
         size="medium"
@@ -132,7 +132,7 @@ export default function HeldMediaReaction(props: HeldMediaReactionProps) {
         mutation={UnholdMediaReactionMutation}
         variables={{ id: reaction.id }}
         didError={(result) => {
-          if (result.error || result.data?.mediaReaction.unhold?.errors)
+          if (result.error || result.data?.mediaReaction.unhold?.errors?.length)
             return 'Failed';
         }}
         size="medium"

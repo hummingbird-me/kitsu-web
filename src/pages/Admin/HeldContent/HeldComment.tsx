@@ -110,7 +110,7 @@ export default function HeldComment(props: HeldCommentProps) {
         mutation={DeleteCommentMutation}
         variables={{ id: comment.id }}
         didError={(result) => {
-          if (result.error || result.data?.comment.delete?.errors)
+          if (result.error || result.data?.comment.delete?.errors?.length)
             return 'Failed';
         }}
         size="medium"
@@ -132,7 +132,7 @@ export default function HeldComment(props: HeldCommentProps) {
         mutation={UnholdCommentMutation}
         variables={{ id: comment.id }}
         didError={(result) => {
-          if (result.error || result.data?.comment.unhold?.errors)
+          if (result.error || result.data?.comment.unhold?.errors?.length)
             return 'Failed';
         }}
         size="medium"
