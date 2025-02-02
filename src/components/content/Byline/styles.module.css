@@ -1,0 +1,37 @@
+.Byline {
+  display: grid;
+  grid-template-areas:
+    'avatar title    right'
+    'avatar subtitle right';
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: max-content 1fr max-content;
+  gap: 0 0.5rem;
+}
+
+.Avatar {
+  grid-area: avatar;
+  place-self: center;
+}
+
+.Title {
+  grid-area: title;
+  font-family: var(--font-family-headings);
+  font-size: var(--font-me);
+  line-height: 1.1rem;
+  font-weight: var(--font-bold);
+  color: var(--grey-7);
+  align-self: flex-end;
+}
+
+.Subtitle {
+  grid-area: subtitle;
+  font-family: var(--font-family-body);
+  font-size: var(--font-sm);
+  font-weight: var(--font-semi-bold);
+  color: var(--grey-4);
+  align-self: flex-start;
+}
+
+.Right {
+  grid-area: right;
+}
