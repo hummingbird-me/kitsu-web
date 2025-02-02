@@ -1,8 +1,8 @@
 import { isEqual, merge } from 'lodash-es';
 import React, { useContext, useEffect, useState } from 'react';
-import { PartialDeep } from 'type-fest';
+import { type PartialDeep } from 'type-fest';
 
-import { HeaderProps } from 'app/components/Header';
+import { type HeaderProps } from '@/components/Header/Header';
 
 type LayoutSettings = {
   header: HeaderProps;
@@ -20,7 +20,7 @@ type LayoutSettingsContextType = {
 export const LayoutSettingsContext =
   React.createContext<LayoutSettingsContextType>({
     layoutSettings: DEFAULT_LAYOUT_SETTINGS,
-    /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+
     setLayoutSettings: () => {},
   });
 
@@ -32,18 +32,17 @@ export const LayoutSettingsContextProvider: React.FC = function ({ children }) {
       value={{
         layoutSettings,
         setLayoutSettings,
-      }}
-    >
+      }}>
       {children}
     </LayoutSettingsContext.Provider>
   );
 };
 
 export const setLayoutSettings = function (
-  settings: PartialDeep<LayoutSettings>
+  settings: PartialDeep<LayoutSettings>,
 ): void {
   const { layoutSettings, setLayoutSettings } = useContext(
-    LayoutSettingsContext
+    LayoutSettingsContext,
   );
 
   // Ensure the settings are actually being changed before updating
@@ -51,7 +50,7 @@ export const setLayoutSettings = function (
     {},
     DEFAULT_LAYOUT_SETTINGS,
     layoutSettings,
-    settings
+    settings,
   );
   if (!isEqual(layoutSettings, mergedLayoutSettings)) {
     useEffect(() => {

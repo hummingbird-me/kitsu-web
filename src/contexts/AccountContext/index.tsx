@@ -34,6 +34,7 @@ const LoadAccountQuery = graphql(
 );
 
 export type Account = {
+  fetching: boolean;
   id?: string;
   country?: string;
   language?: string;
@@ -52,6 +53,7 @@ export type Account = {
 };
 
 const DEFAULTS: Account = {
+  fetching: true,
   timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   ratingSystem: 'SIMPLE',
   sfwFilter: true,
@@ -66,7 +68,7 @@ export function AccountContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [{ data, error }] = useQuery({
+  const [{ data, error, fetching }] = useQuery({
     query: LoadAccountQuery,
     requestPolicy: 'cache-and-network',
     suspense: false,
@@ -75,10 +77,16 @@ export function AccountContextProvider({
   // If the query fails, log the error to Sentry and return an empty list of settings
   if (error) captureException(error);
 
-  const account: Account = Object.assign({}, DEFAULTS, data?.currentAccount, {
-    sitePermissions: new Set(data?.currentAccount?.sitePermissions ?? []),
-    enabledFeatures: new Set(data?.currentAccount?.enabledFeatures ?? []),
-  });
+  const account: Account = Object.assign(
+    {},
+    DEFAULTS,
+    data?.currentAccount,
+    {
+      sitePermissions: new Set(data?.currentAccount?.sitePermissions ?? []),
+      enabledFeatures: new Set(data?.currentAccount?.enabledFeatures ?? []),
+    },
+    { fetching },
+  );
 
   return (
     <AccountContext.Provider value={account}>
