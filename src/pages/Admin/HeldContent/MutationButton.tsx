@@ -14,7 +14,7 @@ export default function MutationButton<
   mutation,
   variables,
   didError,
-  onMutate,
+  onSuccess,
   children,
   ...props
 }: {
@@ -23,7 +23,7 @@ export default function MutationButton<
   didError?(
     result: OperationResult<ResultOf<Mutation>, Variables>,
   ): string | null | undefined;
-  onMutate?(result: OperationResult<ResultOf<Mutation>, Variables>): void;
+  onSuccess?(result: OperationResult<ResultOf<Mutation>, Variables>): void;
 } & ButtonProps) {
   const [result, mutate] = useMutation<ResultOf<Mutation>, Variables>(mutation);
   const [error, setError] = useState<string | null | undefined>(null);
@@ -35,10 +35,10 @@ export default function MutationButton<
     setError(errorMessage);
     if (!errorMessage) {
       setSuccess(true);
-      if (onMutate) onMutate(result);
+      if (onSuccess) onSuccess(result);
     }
     if (result.error) captureException(result.error);
-  }, [mutate, variables, didError, onMutate]);
+  }, [mutate, variables, didError, onSuccess]);
 
   return (
     <Button
