@@ -5405,7 +5405,7 @@
           },
           {
             "name": "heldReason",
-            "description": "The reason why this comment is held for manual moderator approval.",
+            "description": "The reason this content was held for moderation",
             "args": [],
             "type": {
               "kind": "ENUM",
@@ -5508,6 +5508,18 @@
                 "name": "ProfileConnection",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "moderationScores",
+            "description": "The moderation scores for this post.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Map",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -16971,7 +16983,7 @@
           },
           {
             "name": "heldReason",
-            "description": "The reason why this reaction is held for manual moderator approval.",
+            "description": "The reason this content was held for moderation",
             "args": [],
             "type": {
               "kind": "ENUM",
@@ -17106,6 +17118,18 @@
                 "name": "Media",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "moderationScores",
+            "description": "The moderation scores for this post.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Map",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -17944,7 +17968,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "Post",
+              "name": "MediaReaction",
               "ofType": null
             },
             "isDeprecated": false,
@@ -19745,7 +19769,7 @@
           },
           {
             "name": "heldReason",
-            "description": "The reason why this post is held for manual moderator approval.",
+            "description": "The reason this content was held for moderation",
             "args": [],
             "type": {
               "kind": "ENUM",
@@ -19927,6 +19951,18 @@
             "type": {
               "kind": "INTERFACE",
               "name": "Media",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "moderationScores",
+            "description": "The moderation scores for this post.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Map",
               "ofType": null
             },
             "isDeprecated": false,

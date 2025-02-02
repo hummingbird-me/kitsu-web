@@ -11,7 +11,7 @@ export type Scalars = {
     ReturnType<(typeof scalars)[Property]>
   >;
 } & {
-  Map: Record<string, string>;
+  Map: Record<string, unknown>;
 };
 
 export default scalars;
