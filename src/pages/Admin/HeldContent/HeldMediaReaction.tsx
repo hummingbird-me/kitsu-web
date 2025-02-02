@@ -8,6 +8,7 @@ import Tag from '@/components/content/Tag';
 import { FormattedRelativeTime } from '@/components/Formatted';
 import Card from '@/components/surfaces/Card';
 import { graphql, readFragment, type FragmentOf } from '@/graphql';
+import ModerationScoreTag from '@/pages/Admin/HeldContent/ModerationScoreTag';
 
 import MutationButton from './MutationButton';
 import styles from './styles.module.css';
@@ -18,6 +19,7 @@ export const HeldMediaReactionFragment = graphql(
       id
       reaction
       createdAt
+      moderationScores
       author {
         id
         slug
@@ -94,7 +96,12 @@ export default function HeldMediaReaction(props: HeldMediaReactionProps) {
             <FormattedRelativeTime time={reaction.createdAt} />
           </a>
         </Byline.Subtitle>
-        <Byline.Right>
+        <Byline.Right className={styles.HeldItemTags}>
+          <ModerationScoreTag
+            moderationScores={
+              reaction.moderationScores as Record<string, number>
+            }
+          />
           <Tag color="purple">Reaction</Tag>
         </Byline.Right>
       </Byline.Container>

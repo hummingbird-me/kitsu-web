@@ -9,6 +9,7 @@ import { FormattedRelativeTime } from '@/components/Formatted';
 import Card from '@/components/surfaces/Card';
 import { graphql, readFragment, type FragmentOf } from '@/graphql';
 
+import ModerationScoreTag from './ModerationScoreTag';
 import MutationButton from './MutationButton';
 import styles from './styles.module.css';
 
@@ -19,6 +20,7 @@ export const HeldPostFragment = graphql(
       content
       createdAt
       heldReason
+      moderationScores
       author {
         id
         slug
@@ -95,7 +97,10 @@ export default function HeldPost(props: HeldPostProps) {
             <FormattedRelativeTime time={post.createdAt} />
           </a>
         </Byline.Subtitle>
-        <Byline.Right>
+        <Byline.Right className={styles.HeldItemTags}>
+          <ModerationScoreTag
+            moderationScores={post.moderationScores as Record<string, number>}
+          />
           <Tag color="yellow">Post</Tag>
         </Byline.Right>
       </Byline.Container>
@@ -104,7 +109,8 @@ export default function HeldPost(props: HeldPostProps) {
         mutation={DeletePostMutation}
         variables={{ id: post.id }}
         didError={(result) => {
-          if (result.error || result.data?.post.delete?.errors) return 'Failed';
+          if (result.error || result.data?.post.delete?.errors?.length)
+            return 'Failed';
         }}
         size="medium"
         kind="solid"
@@ -125,7 +131,8 @@ export default function HeldPost(props: HeldPostProps) {
         mutation={UnholdPostMutation}
         variables={{ id: post.id }}
         didError={(result) => {
-          if (result.error || result.data?.post.unhold?.errors) return 'Failed';
+          if (result.error || result.data?.post.unhold?.errors?.length)
+            return 'Failed';
         }}
         size="medium"
         kind="solid"

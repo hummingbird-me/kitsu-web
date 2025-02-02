@@ -35,16 +35,19 @@ const HeldContentQuery = graphql(
 export default function HeldContentPage() {
   const [after, setAfter] = useState('');
 
-  const [{ data, fetching, error }] = useQuery({
+  const [{ data, fetching, error, stale }] = useQuery({
     query: HeldContentQuery,
     variables: { first: 50, after },
     suspense: false,
+    requestPolicy: 'network-only',
   });
 
   const items = data?.heldForModeration;
 
   return (
     <Container className={styles.HeldItemsList}>
+      {stale && <p>Stale data...</p>}
+
       {error && <p>Oh no... {error.message}</p>}
 
       {fetching && <p>Loading...</p>}

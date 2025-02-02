@@ -1,7 +1,7 @@
 import { captureException } from '@sentry/react';
 import { type DocumentNode } from 'graphql';
 import React, { useCallback, useState } from 'react';
-import { BsXCircleFill } from 'react-icons/bs';
+import { BsCheckCircleFill, BsXCircleFill } from 'react-icons/bs';
 import { type AnyVariables, type OperationResult } from 'urql';
 
 import Button, { type ButtonProps } from '@/components/controls/Button';
@@ -27,13 +27,17 @@ export default function MutationButton<
 } & ButtonProps) {
   const [result, mutate] = useMutation<ResultOf<Mutation>, Variables>(mutation);
   const [error, setError] = useState<string | null | undefined>(null);
+  const [success, setSuccess] = useState(false);
 
   const onClick = useCallback(async () => {
     const result = await mutate(variables);
-    setError(didError ? didError(result) : null);
+    const errorMessage = didError ? didError(result) : null;
+    setError(errorMessage);
+    if (!errorMessage) {
+      setSuccess(true);
+      if (onMutate) onMutate(result);
+    }
     if (result.error) captureException(result.error);
-
-    if (onMutate) onMutate(result);
   }, [mutate, variables, didError, onMutate]);
 
   return (
@@ -46,6 +50,11 @@ export default function MutationButton<
         <>
           <BsXCircleFill aria-hidden />
           {error}
+        </>
+      ) : success ? (
+        <>
+          <BsCheckCircleFill aria-hidden />
+          Done!
         </>
       ) : (
         children
