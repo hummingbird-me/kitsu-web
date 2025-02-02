@@ -60,6 +60,17 @@ export const useSession = function () {
 };
 
 /**
+ * Get the raw session context object with setSession and clearSession functions.
+ *
+ * @returns The raw session context object
+ */
+export const useRawSession = function () {
+  const context = useContext(SessionContext);
+  if (!context) throw new InvariantViolated('Session context missing');
+  return context;
+};
+
+/**
  * Refresh the session by exchanging the refreshToken for a new accessToken.
  *
  * Note that this function is memoized to prevent multiple calls using the same refreshToken, with
