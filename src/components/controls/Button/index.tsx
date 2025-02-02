@@ -1,37 +1,57 @@
-import React, { ButtonHTMLAttributes, FC } from 'react';
+import React, { type ButtonHTMLAttributes } from 'react';
 
 import Spinner from 'app/components/feedback/Spinner';
 
 import styles from './styles.module.css';
 
-export enum ButtonKind {
-  /** A solid button. Useful anywhere you need something pressable. */
-  SOLID = 'solid',
-  /** A button with no background, just an outline. Useful for secondary actions and situations
-   *  where you want to de-emphasize the button. */
-  OUTLINE = 'outline',
-  /** A button with no border or background. Useful for tertiary actions. */
-  BORDERLESS = 'borderless',
-}
+/**
+ * @deprecated Just use strings instead.
+ */
+export const ButtonKind = {
+  SOLID: 'solid',
+  OUTLINE: 'outline',
+  BORDERLESS: 'borderless',
+} as const;
 
-export enum ButtonSize {
-  SMALL = 'small',
-  MEDIUM = 'medium',
-  LARGE = 'large',
-}
+export type ButtonKind = 'solid' | 'outline' | 'borderless';
 
-export enum ButtonColor {
-  RED = 'red',
-  PINK = 'pink',
-  YELLOW = 'yellow',
-  GREEN = 'green',
-  BLUE = 'blue',
-  PURPLE = 'purple',
-  KITSU_PURPLE = 'kitsu-purple',
-  GREY = 'grey',
-}
+/**
+ * @deprecated Just use strings instead.
+ */
+export const ButtonSize = {
+  SMALL: 'small',
+  MEDIUM: 'medium',
+  LARGE: 'large',
+} as const;
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export type ButtonSize = 'small' | 'medium' | 'large';
+
+/**
+ * @deprecated Just use strings instead.
+ */
+export const ButtonColor = {
+  RED: 'red',
+  PINK: 'pink',
+  YELLOW: 'yellow',
+  GREEN: 'green',
+  BLUE: 'blue',
+  PURPLE: 'purple',
+  KITSU_PURPLE: 'kitsu-purple',
+  GREY: 'grey',
+} as const;
+
+export type ButtonColor =
+  | 'red'
+  | 'pink'
+  | 'yellow'
+  | 'green'
+  | 'blue'
+  | 'purple'
+  | 'kitsu-purple'
+  | 'grey';
+
+export type ButtonProps = {
+  children: React.ReactNode;
   /** The kind of button to render */
   kind: ButtonKind;
   /** The size of the button, scaling font-size, padding and letter-spacing */
@@ -44,16 +64,16 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Whether the button should be non-interactive; disables pointer events and styles the button
    *  accordingly. */
   disabled?: boolean;
-}
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 /**
  * The `<Button>` component represents a clickable button, used to submit forms or anywhere in a
  * document for accessible, standard button functionality.  It also provides a loading indicator to
  * inform the user when the button is performing a task.
  */
-const Button: FC<ButtonProps> = function ({
-  kind = ButtonKind.SOLID,
-  size = ButtonSize.MEDIUM,
+const Button = function ({
+  kind = 'solid',
+  size = 'medium',
   color,
   loading = false,
   disabled = false,
@@ -66,7 +86,7 @@ const Button: FC<ButtonProps> = function ({
       {...args}
       disabled={disabled}
       className={[
-        styles.button,
+        styles.Button,
         styles[kind],
         styles[size],
         styles[color],
@@ -74,16 +94,19 @@ const Button: FC<ButtonProps> = function ({
         disabled && styles.disabled,
         className,
       ].join(' ')}>
-      {loading ? <Spinner /> : children}
+      <div className={styles.Content}>{children}</div>
+      <div className={styles.Spinner}>
+        <Spinner />
+      </div>
     </button>
   );
 };
 
 export default Button;
 
-export const ButtonPreset: { [key: string]: ButtonProps } = {
+export const ButtonPreset: { [key: string]: Partial<ButtonProps> } = {
   PRIMARY: {
-    kind: ButtonKind.SOLID,
-    color: ButtonColor.GREEN,
+    kind: 'solid',
+    color: 'green',
   },
 };
