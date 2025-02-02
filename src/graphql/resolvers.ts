@@ -5,6 +5,9 @@ import { merge } from 'lodash-es';
 import scalarResolvers from './scalars/resolvers';
 
 export default merge(scalarResolvers, {
+  Query: {
+    heldForModeration: relayPagination(),
+  },
   Profile: {
     library: relayPagination(),
   },
