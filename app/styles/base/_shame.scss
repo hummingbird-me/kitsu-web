@@ -136,3 +136,21 @@ body {
     background-color: $background-color;
   }
 }
+
+// Admin reports: show already-visited target links in blue so moderators can
+// tell at a glance which reports they have already looked at. The base %link
+// style forces every anchor to $body-link-color (and only styles
+// :visited:hover), which suppresses the browser's default visited color.
+// $status-planned-background-color (#2980b9) is the site's standard blue and
+// works in both the light and dark themes.
+.user-reports {
+  a.report-target {
+    &:visited {
+      color: $status-planned-background-color;
+
+      &:hover {
+        color: darken($status-planned-background-color, 10);
+      }
+    }
+  }
+}
